@@ -1,6 +1,6 @@
 {
- "rev": "REV 7",
- "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; parking/liquor line still schematic)",
+ "rev": "REV 8",
+ "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line per plat trace; parking still schematic)",
  "viewBox": {
   "main": "0 0 1480 990",
   "full": "0 -310 1480 1300"
@@ -153,6 +153,26 @@
    ],
    "split135": "mid-depth wall: 135A breezeway/west square + 135B Patricia/east square, each 42.245' × 37.4' = 1,580 SF; both front M.A. (135A door to breezeway, 135B rear door to Patricia)"
   }
+ },
+ "liquorLine": {
+  "bearing": "S38°32'00\"E",
+  "offsetFromArnouldFt": 165.11,
+  "offsetDerivation": "surveyed tie S51°28'00\"W 181.31' (Arnould R/W → Lots 9–11 north line) minus 16.2' raster (liquor line north of that lot line); run height constant at two stations 390' apart",
+  "runFt": 594.45,
+  "runDimString": "plat: 100.00 + 100.00 + 12.98 + 87.02 + 100.00 + 100.00 + 94.45 (S38°32'00\"E), tangent point → east boundary; raster check 594.2'",
+  "tangentAFt": 68.63,
+  "eastExitAFt": 663.08,
+  "arc": {
+   "centerAB": [
+    68.63,
+    -339.21000000000004
+   ],
+   "radiusFt": 174.1,
+   "note": "raster fit through 5 dash centroids (max residual 0.7 px ≈ 0.1'); ≈ the 175-ft figure of easement §3a; center = church parcel corner across Marie Antoinette"
+  },
+  "offParcel": "west arc continues across Patricia St; east tail curves into Johnston R/W (drawn clipped at sheet edges); plat jogs the line ~10' around a sign pocket at the east boundary (not drawn)",
+  "crossings": "enters short bldg storefront face at b≈-165.9 (unit 139), crosses the 139/137 wall, exits rear face at b≈-178.4 (unit 137); permitted side holds 149/145/143/141 and most of 139",
+  "source": "raster trace at 200 dpi (6.667 px/ft, plat scale 1\"=30') — tools/measure-liquor*.py, crops reference/hunt-*"
  },
  "boundary": {
   "mainTract": {
@@ -1315,42 +1335,6 @@
     }
    },
    {
-    "t": "line",
-    "x1": 82,
-    "y1": 360,
-    "x2": 1352,
-    "y2": 360,
-    "attrs": {
-     "stroke": "#A87E2F",
-     "stroke-width": 2,
-     "stroke-dasharray": "14 7"
-    }
-   },
-   {
-    "t": "text",
-    "x": 300,
-    "y": 354,
-    "s": "LIQUOR RESTRICTED THIS SIDE OF LINE ▲",
-    "attrs": {
-     "class": "svg-lab",
-     "font-size": "9",
-     "font-weight": "600",
-     "fill": "#A87E2F"
-    }
-   },
-   {
-    "t": "text",
-    "x": 300,
-    "y": 374,
-    "s": "LIQUOR PERMITTED THIS SIDE OF LINE ▼ — PER OUR SAVIOR'S CHURCH EASEMENT §3a (WAIVER SURVIVES TERMINATION)",
-    "attrs": {
-     "class": "svg-lab",
-     "font-size": "9",
-     "font-weight": "600",
-     "fill": "#A87E2F"
-    }
-   },
-   {
     "t": "rect",
     "x": 306,
     "y": 386,
@@ -2014,6 +1998,55 @@
      "font-size": "9.5",
      "text-anchor": "end"
     }
+   },
+   {
+    "t": "path",
+    "d": "M 3.96 337.68 L 86.02 350.49 L 1186.64 350.49 A 322.35 328.46 0 0 0 1471.09 176.56",
+    "attrs": {
+     "fill": "none",
+     "stroke": "#A87E2F",
+     "stroke-width": 2,
+     "stroke-dasharray": "14 7",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 300,
+    "y": 343.99,
+    "s": "LIQUOR RESTRICTED THIS SIDE OF LINE ▲",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9",
+     "font-weight": "600",
+     "fill": "#A87E2F",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 300,
+    "y": 364.49,
+    "s": "LIQUOR PERMITTED THIS SIDE OF LINE ▼ — PER OUR SAVIOR'S CHURCH EASEMENT §3a (WAIVER SURVIVES TERMINATION)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9",
+     "font-weight": "600",
+     "fill": "#A87E2F",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 300,
+    "y": 377.49,
+    "s": "TRUE COURSE PER PLAT: S38°32'00\"E 594.45' AT 165.1' OFF ARNOULD R/W · WEST END ARCS R≈175' AROUND CHURCH PARCEL CORNER ACROSS M.A.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7.5",
+     "fill": "#A87E2F",
+     "pointer-events": "none"
+    }
    }
   ],
   "generalNotes": [
@@ -2200,7 +2233,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 7 — 135A/B MID-DEPTH SQUARE SPLIT (PLAT + OPERATOR)",
+    "s": "REV 8 — LIQUOR LINE TRUE COURSE (PLAT TRACE)",
     "attrs": {
      "class": "svg-lab",
      "font-size": "9"

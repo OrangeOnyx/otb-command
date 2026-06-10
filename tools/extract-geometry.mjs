@@ -234,12 +234,8 @@ const parking = [];
 parking.push(rect(150, 302, 914, 40, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1 }));
 for (let x = 168; x <= 1050; x += 30)
   parking.push(line(x, 304, x, 340, { stroke: "#C9CEBE", "stroke-width": 1 }));
-// liquor line — Our Savior's Church easement §3a (traced from recorded plat; bearing approx.)
-parking.push(line(82, 360, 1352, 360, { stroke: "#A87E2F", "stroke-width": 2, "stroke-dasharray": "14 7" }));
-parking.push(text(300, 354, "LIQUOR RESTRICTED THIS SIDE OF LINE ▲",
-  { class: "svg-lab", "font-size": "9", "font-weight": "600", fill: "#A87E2F" }));
-parking.push(text(300, 374, "LIQUOR PERMITTED THIS SIDE OF LINE ▼ — PER OUR SAVIOR'S CHURCH EASEMENT §3a (WAIVER SURVIVES TERMINATION)",
-  { class: "svg-lab", "font-size": "9", "font-weight": "600", fill: "#A87E2F" }));
+// liquor line moved to the annotations layer (true plat course crosses the
+// short building, so it must draw above the unit rects) — see LIQ below
 // main parking field — Arnould side of liquor line
 parking.push(rect(306, 386, 734, 258, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1, rx: 3 }));
 for (let r = 0; r < 2; r++) {
@@ -340,12 +336,55 @@ const sbYNorth = r2(sbYSouth - ky * sbLen);                        // M.A.-end f
 base.push(rect(r2(placed["101"].x), r2(lbY + lbH + 2), r2(kx * lbLen - 2), 18, { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 1 }));
 base.push(rect(r2(sbXRight - sbW - 20), sbYNorth, 18, r2(ky * sbLen), { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 1 }));
 
+/* ── liquor line — Our Savior's Church easement §3a, TRUE COURSE (REV 8) ──
+   Raster-traced from the plat at 200 dpi, 6.667 px/ft (tools/measure-liquor*.py).
+   Straight run: S38°32'00"E parallel to Arnould at 165.11' off the R/W
+   (surveyed tie: S51°28'00"W 181.31' from the Arnould boundary to the
+   Lots 9–11 north line; liquor line measured 16.2' north of that line).
+   Run length 594.45' per the plat's own dimension string along the line
+   (100 + 100 + 12.98 + 87.02 + 100 + 100 + 94.45), tangent point → east
+   boundary exit; raster check 594.2'. West end: circular arc, raster-fit
+   R 174.1' (three further dash centroids fit within 0.7 px — and ≈ the
+   175-ft figure of §3a), centered on the church parcel corner across
+   Marie Antoinette; the arc crosses the short building at 139/137 and
+   exits over Patricia St. East end: crosses the Johnston-side boundary
+   and curves into the R/W (off-parcel tail, clipped at the sheet edge).
+   The plat also jogs the line around a sign pocket at the east boundary
+   (~10', not drawn). Restricted side = church side (M.A., screen-top).  */
+const LIQ = {
+  bearing: "S38°32'00\"E",
+  offsetFromArnouldFt: 165.11,
+  runFt: 594.45,
+  tangentAFt: 68.63,
+  radiusFt: 174.1
+};
+LIQ.centerAB = [LIQ.tangentAFt, -(LIQ.offsetFromArnouldFt + LIQ.radiusFt)];
+const liqT = toXY([LIQ.tangentAFt, -LIQ.offsetFromArnouldFt]);            // tangent pt (inside short bldg)
+const liqE = toXY([LIQ.tangentAFt + LIQ.runFt, -LIQ.offsetFromArnouldFt]); // east boundary exit
+const liqTail = toXY([707.4, -171.9]);                                     // off-parcel SE tail, clipped
+const liqAW = -85;                                                          // arc render end (Patricia band)
+const liqBW = LIQ.centerAB[1] + Math.sqrt(LIQ.radiusFt ** 2 - (liqAW - LIQ.centerAB[0]) ** 2);
+const liqW = toXY([liqAW, liqBW]);
+const liqPath =
+  "M " + r2(liqTail[0]) + " " + r2(liqTail[1]) +
+  " L " + r2(liqE[0]) + " " + r2(liqE[1]) +
+  " L " + r2(liqT[0]) + " " + r2(liqT[1]) +
+  // sweep 0 verified by midArc cross product (arc bows toward Patricia corner)
+  " A " + r2(LIQ.radiusFt * kx) + " " + r2(LIQ.radiusFt * ky) + " 0 0 0 " + r2(liqW[0]) + " " + r2(liqW[1]);
+
 /* ── annotations ── */
 const annotations = [
   text(160, 110, "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
     { class: "svg-lab", "font-size": "9.5" }),
   text(r2(sbXRight), r2(sbYSouth + 14), "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
-    { class: "svg-lab", "font-size": "9.5", "text-anchor": "end" })
+    { class: "svg-lab", "font-size": "9.5", "text-anchor": "end" }),
+  path(liqPath, { fill: "none", stroke: "#A87E2F", "stroke-width": 2, "stroke-dasharray": "14 7", "pointer-events": "none" }),
+  text(300, r2(liqT[1] - 6.5), "LIQUOR RESTRICTED THIS SIDE OF LINE ▲",
+    { class: "svg-lab", "font-size": "9", "font-weight": "600", fill: "#A87E2F", "pointer-events": "none" }),
+  text(300, r2(liqT[1] + 14), "LIQUOR PERMITTED THIS SIDE OF LINE ▼ — PER OUR SAVIOR'S CHURCH EASEMENT §3a (WAIVER SURVIVES TERMINATION)",
+    { class: "svg-lab", "font-size": "9", "font-weight": "600", fill: "#A87E2F", "pointer-events": "none" }),
+  text(300, r2(liqT[1] + 27), "TRUE COURSE PER PLAT: S38°32'00\"E 594.45' AT 165.1' OFF ARNOULD R/W · WEST END ARCS R≈175' AROUND CHURCH PARCEL CORNER ACROSS M.A.",
+    { class: "svg-lab", "font-size": "7.5", fill: "#A87E2F", "pointer-events": "none" })
 ];
 
 /* ── general notes sheet band ── */
@@ -376,15 +415,15 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 7 — 135A/B MID-DEPTH SQUARE SPLIT (PLAT + OPERATOR)", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 8 — LIQUOR LINE TRUE COURSE (PLAT TRACE)", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 7",
-  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; parking/liquor line still schematic)",
+  rev: "REV 8",
+  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line per plat trace; parking still schematic)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
     longBuilding: { depthFt: LB_DEPTH, rearSetbackFt: LB_REAR_SETBACK, eastGapFt: LB_EAST_GAP, lengthFt: r2(lbLen), bays: LB_BAYS },
@@ -392,6 +431,23 @@ const geometry = {
       depthFt: SB_DEPTH, patriciaOffsetFt: SB_FACE_FROM_PATRICIA_RW, arnouldOffsetFt: SB_NORTH_FROM_ARNOULD_RW, lengthFt: r2(sbLen), bays: SB_BAYS,
       split135: "mid-depth wall: 135A breezeway/west square + 135B Patricia/east square, each 42.245' × 37.4' = 1,580 SF; both front M.A. (135A door to breezeway, 135B rear door to Patricia)"
     }
+  },
+  liquorLine: {
+    bearing: LIQ.bearing,
+    offsetFromArnouldFt: LIQ.offsetFromArnouldFt,
+    offsetDerivation: "surveyed tie S51°28'00\"W 181.31' (Arnould R/W → Lots 9–11 north line) minus 16.2' raster (liquor line north of that lot line); run height constant at two stations 390' apart",
+    runFt: LIQ.runFt,
+    runDimString: "plat: 100.00 + 100.00 + 12.98 + 87.02 + 100.00 + 100.00 + 94.45 (S38°32'00\"E), tangent point → east boundary; raster check 594.2'",
+    tangentAFt: LIQ.tangentAFt,
+    eastExitAFt: r2(LIQ.tangentAFt + LIQ.runFt),
+    arc: {
+      centerAB: LIQ.centerAB,
+      radiusFt: LIQ.radiusFt,
+      note: "raster fit through 5 dash centroids (max residual 0.7 px ≈ 0.1'); ≈ the 175-ft figure of easement §3a; center = church parcel corner across Marie Antoinette"
+    },
+    offParcel: "west arc continues across Patricia St; east tail curves into Johnston R/W (drawn clipped at sheet edges); plat jogs the line ~10' around a sign pocket at the east boundary (not drawn)",
+    crossings: "enters short bldg storefront face at b≈-165.9 (unit 139), crosses the 139/137 wall, exits rear face at b≈-178.4 (unit 137); permitted side holds 149/145/143/141 and most of 139",
+    source: "raster trace at 200 dpi (6.667 px/ft, plat scale 1\"=30') — tools/measure-liquor*.py, crops reference/hunt-*"
   },
   // audit record: metes & bounds in feet + the feet→px transform used for the boundary
   boundary: {
