@@ -1,0 +1,2048 @@
+{
+ "rev": "REV 4",
+ "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (schematic, rotated 90° CW)",
+ "viewBox": {
+  "main": "0 0 1480 990",
+  "full": "0 -258 1480 1248"
+ },
+ "layers": {
+  "base": [
+   {
+    "t": "rect",
+    "x": 0,
+    "y": 6,
+    "w": 1480,
+    "h": 72,
+    "attrs": {
+     "fill": "#DDE0D4"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 6,
+    "x2": 1480,
+    "y2": 6,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 78,
+    "x2": 1480,
+    "y2": 78,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 42,
+    "x2": 1480,
+    "y2": 42,
+    "attrs": {
+     "stroke": "#FCFCF9",
+     "stroke-width": 2,
+     "stroke-dasharray": "26 20"
+    }
+   },
+   {
+    "t": "text",
+    "x": 700,
+    "y": 48,
+    "s": "M A R I E   A N T O I N E T T E   S T R E E T   ( 4 0 '  R / W   A S P H A L T )",
+    "attrs": {
+     "class": "svg-street",
+     "font-size": "16",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 0,
+    "y": 676,
+    "w": 1480,
+    "h": 76,
+    "attrs": {
+     "fill": "#DDE0D4"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 676,
+    "x2": 1480,
+    "y2": 676,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 752,
+    "x2": 1480,
+    "y2": 752,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 714,
+    "x2": 1480,
+    "y2": 714,
+    "attrs": {
+     "stroke": "#FCFCF9",
+     "stroke-width": 2,
+     "stroke-dasharray": "26 20"
+    }
+   },
+   {
+    "t": "text",
+    "x": 700,
+    "y": 720,
+    "s": "A R N O U L D   B O U L E V A R D   ( 8 0 '  R / W   C O N C R E T E )",
+    "attrs": {
+     "class": "svg-street",
+     "font-size": "18",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1396,
+    "y": 0,
+    "w": 84,
+    "h": 752,
+    "attrs": {
+     "fill": "#DDE0D4"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1396,
+    "y1": 0,
+    "x2": 1396,
+    "y2": 752,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "text",
+    "x": 1440,
+    "y": 376,
+    "s": "P A T R I C I A   S T   ( 5 0 '  R / W )",
+    "attrs": {
+     "class": "svg-street",
+     "font-size": "15",
+     "text-anchor": "middle",
+     "transform": "rotate(90 1440 376)"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 0,
+    "y": 0,
+    "w": 50,
+    "h": 752,
+    "attrs": {
+     "fill": "#DDE0D4"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 50,
+    "y1": 0,
+    "x2": 50,
+    "y2": 752,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "text",
+    "x": 28,
+    "y": 376,
+    "s": "J O H N S T O N   S T   ·   U S   H W Y   1 6 7   ( ± 1 0 0 '  R / W )",
+    "attrs": {
+     "class": "svg-street",
+     "font-size": "14",
+     "text-anchor": "middle",
+     "transform": "rotate(-90 28 376)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 70 96 H 1360 V 662 H 292 V 460 H 70 Z",
+    "attrs": {
+     "fill": "none",
+     "stroke": "#1C2B26",
+     "stroke-width": "1.4",
+     "stroke-dasharray": "14 5 3 5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 178,
+    "y": 556,
+    "s": "NOT A PART",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "10",
+     "text-anchor": "middle",
+     "letter-spacing": ".22em"
+    }
+   },
+   {
+    "t": "text",
+    "x": 178,
+    "y": 572,
+    "s": "(EXCLUDED CORNER PARCEL)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7.5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 150,
+    "y": 280,
+    "w": 914,
+    "h": 18,
+    "attrs": {
+     "fill": "#E2E5D9",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1076,
+    "y": 208,
+    "w": 18,
+    "h": 434,
+    "attrs": {
+     "fill": "#E2E5D9",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   }
+  ],
+  "remoteLot": [
+   {
+    "t": "rect",
+    "x": 1078,
+    "y": -224,
+    "w": 276,
+    "h": 212,
+    "attrs": {
+     "fill": "none",
+     "stroke": "#1C2B26",
+     "stroke-width": 1.2,
+     "stroke-dasharray": "14 5 3 5",
+     "rx": 2
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1088,
+    "y": -214,
+    "w": 256,
+    "h": 192,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1,
+     "rx": 3
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1106,
+    "y1": -158,
+    "x2": 1326,
+    "y2": -158,
+    "attrs": {
+     "stroke": "#C2C8B5",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1106,
+    "y1": -182,
+    "x2": 1106,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1126,
+    "y1": -182,
+    "x2": 1126,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1146,
+    "y1": -182,
+    "x2": 1146,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1166,
+    "y1": -182,
+    "x2": 1166,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1186,
+    "y1": -182,
+    "x2": 1186,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1206,
+    "y1": -182,
+    "x2": 1206,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1226,
+    "y1": -182,
+    "x2": 1226,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1246,
+    "y1": -182,
+    "x2": 1246,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1266,
+    "y1": -182,
+    "x2": 1266,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1286,
+    "y1": -182,
+    "x2": 1286,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1306,
+    "y1": -182,
+    "x2": 1306,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1326,
+    "y1": -182,
+    "x2": 1326,
+    "y2": -134,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1106,
+    "y1": -72,
+    "x2": 1326,
+    "y2": -72,
+    "attrs": {
+     "stroke": "#C2C8B5",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1106,
+    "y1": -96,
+    "x2": 1106,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1126,
+    "y1": -96,
+    "x2": 1126,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1146,
+    "y1": -96,
+    "x2": 1146,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1166,
+    "y1": -96,
+    "x2": 1166,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1186,
+    "y1": -96,
+    "x2": 1186,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1206,
+    "y1": -96,
+    "x2": 1206,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1226,
+    "y1": -96,
+    "x2": 1226,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1246,
+    "y1": -96,
+    "x2": 1246,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1266,
+    "y1": -96,
+    "x2": 1266,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1286,
+    "y1": -96,
+    "x2": 1286,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1306,
+    "y1": -96,
+    "x2": 1306,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1326,
+    "y1": -96,
+    "x2": 1326,
+    "y2": -48,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 1216,
+    "y": -40,
+    "s": "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "10",
+     "text-anchor": "middle",
+     "font-weight": "600"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1216,
+    "y": -26,
+    "s": "LOT 7, BLOCK M · ASSESSOR PARCEL 6009649 · ±14,375 SF · ±24 SPACES",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1216,
+    "y": -234,
+    "s": "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1216,
+    "y1": -12,
+    "x2": 1216,
+    "y2": 96,
+    "attrs": {
+     "stroke": "#8A937F",
+     "stroke-width": 1.5,
+     "stroke-dasharray": "5 4"
+    }
+   }
+  ],
+  "parking": [
+   {
+    "t": "rect",
+    "x": 150,
+    "y": 302,
+    "w": 914,
+    "h": 40,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 168,
+    "y1": 304,
+    "x2": 168,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 198,
+    "y1": 304,
+    "x2": 198,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 228,
+    "y1": 304,
+    "x2": 228,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 258,
+    "y1": 304,
+    "x2": 258,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 288,
+    "y1": 304,
+    "x2": 288,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 318,
+    "y1": 304,
+    "x2": 318,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 348,
+    "y1": 304,
+    "x2": 348,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 378,
+    "y1": 304,
+    "x2": 378,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 408,
+    "y1": 304,
+    "x2": 408,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 438,
+    "y1": 304,
+    "x2": 438,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 468,
+    "y1": 304,
+    "x2": 468,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 498,
+    "y1": 304,
+    "x2": 498,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 528,
+    "y1": 304,
+    "x2": 528,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 558,
+    "y1": 304,
+    "x2": 558,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 588,
+    "y1": 304,
+    "x2": 588,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 618,
+    "y1": 304,
+    "x2": 618,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 648,
+    "y1": 304,
+    "x2": 648,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 678,
+    "y1": 304,
+    "x2": 678,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 708,
+    "y1": 304,
+    "x2": 708,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 738,
+    "y1": 304,
+    "x2": 738,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 768,
+    "y1": 304,
+    "x2": 768,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 798,
+    "y1": 304,
+    "x2": 798,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 828,
+    "y1": 304,
+    "x2": 828,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 858,
+    "y1": 304,
+    "x2": 858,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 888,
+    "y1": 304,
+    "x2": 888,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 918,
+    "y1": 304,
+    "x2": 918,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 948,
+    "y1": 304,
+    "x2": 948,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 978,
+    "y1": 304,
+    "x2": 978,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1008,
+    "y1": 304,
+    "x2": 1008,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1038,
+    "y1": 304,
+    "x2": 1038,
+    "y2": 340,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 82,
+    "y1": 360,
+    "x2": 1352,
+    "y2": 360,
+    "attrs": {
+     "stroke": "#A87E2F",
+     "stroke-width": 2,
+     "stroke-dasharray": "14 7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 300,
+    "y": 354,
+    "s": "LIQUOR RESTRICTED THIS SIDE OF LINE ▲",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9",
+     "font-weight": "600",
+     "fill": "#A87E2F"
+    }
+   },
+   {
+    "t": "text",
+    "x": 300,
+    "y": 374,
+    "s": "LIQUOR PERMITTED THIS SIDE OF LINE ▼ — PER OUR SAVIOR'S CHURCH EASEMENT §3a (WAIVER SURVIVES TERMINATION)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9",
+     "font-weight": "600",
+     "fill": "#A87E2F"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 306,
+    "y": 386,
+    "w": 734,
+    "h": 258,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1,
+     "rx": 3
+    }
+   },
+   {
+    "t": "line",
+    "x1": 336,
+    "y1": 434,
+    "x2": 1010,
+    "y2": 434,
+    "attrs": {
+     "stroke": "#C2C8B5",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 327,
+    "y1": 412,
+    "x2": 345,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 360,
+    "y1": 412,
+    "x2": 378,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 393,
+    "y1": 412,
+    "x2": 411,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 426,
+    "y1": 412,
+    "x2": 444,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 459,
+    "y1": 412,
+    "x2": 477,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 492,
+    "y1": 412,
+    "x2": 510,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 525,
+    "y1": 412,
+    "x2": 543,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 558,
+    "y1": 412,
+    "x2": 576,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 591,
+    "y1": 412,
+    "x2": 609,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 624,
+    "y1": 412,
+    "x2": 642,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 657,
+    "y1": 412,
+    "x2": 675,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 690,
+    "y1": 412,
+    "x2": 708,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 723,
+    "y1": 412,
+    "x2": 741,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 756,
+    "y1": 412,
+    "x2": 774,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 789,
+    "y1": 412,
+    "x2": 807,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 822,
+    "y1": 412,
+    "x2": 840,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 855,
+    "y1": 412,
+    "x2": 873,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 888,
+    "y1": 412,
+    "x2": 906,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 921,
+    "y1": 412,
+    "x2": 939,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 954,
+    "y1": 412,
+    "x2": 972,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 987,
+    "y1": 412,
+    "x2": 1005,
+    "y2": 456,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 336,
+    "y1": 526,
+    "x2": 1010,
+    "y2": 526,
+    "attrs": {
+     "stroke": "#C2C8B5",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 327,
+    "y1": 504,
+    "x2": 345,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 360,
+    "y1": 504,
+    "x2": 378,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 393,
+    "y1": 504,
+    "x2": 411,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 426,
+    "y1": 504,
+    "x2": 444,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 459,
+    "y1": 504,
+    "x2": 477,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 492,
+    "y1": 504,
+    "x2": 510,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 525,
+    "y1": 504,
+    "x2": 543,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 558,
+    "y1": 504,
+    "x2": 576,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 591,
+    "y1": 504,
+    "x2": 609,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 624,
+    "y1": 504,
+    "x2": 642,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 657,
+    "y1": 504,
+    "x2": 675,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 690,
+    "y1": 504,
+    "x2": 708,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 723,
+    "y1": 504,
+    "x2": 741,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 756,
+    "y1": 504,
+    "x2": 774,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 789,
+    "y1": 504,
+    "x2": 807,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 822,
+    "y1": 504,
+    "x2": 840,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 855,
+    "y1": 504,
+    "x2": 873,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 888,
+    "y1": 504,
+    "x2": 906,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 921,
+    "y1": 504,
+    "x2": 939,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 954,
+    "y1": 504,
+    "x2": 972,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 987,
+    "y1": 504,
+    "x2": 1005,
+    "y2": 548,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 673,
+    "y": 630,
+    "s": "MAIN PARKING FIELD · FILLS FIRST · 324 STALLS SITE-WIDE PER VARIANCE ENTRY 99-11797 (344 REQUIRED)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "10.5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1100,
+    "y": 102,
+    "w": 254,
+    "h": 98,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1,
+     "rx": 3
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1120,
+    "y1": 150,
+    "x2": 1334,
+    "y2": 150,
+    "attrs": {
+     "stroke": "#C2C8B5",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1120,
+    "y1": 128,
+    "x2": 1120,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1142,
+    "y1": 128,
+    "x2": 1142,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1164,
+    "y1": 128,
+    "x2": 1164,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1186,
+    "y1": 128,
+    "x2": 1186,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1208,
+    "y1": 128,
+    "x2": 1208,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1230,
+    "y1": 128,
+    "x2": 1230,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1252,
+    "y1": 128,
+    "x2": 1252,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1274,
+    "y1": 128,
+    "x2": 1274,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1296,
+    "y1": 128,
+    "x2": 1296,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1318,
+    "y1": 128,
+    "x2": 1318,
+    "y2": 172,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 1227,
+    "y": 192,
+    "s": "LOT 8 — ±15 SPACES (PATRICIA / M.A. CORNER)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "text-anchor": "middle"
+    }
+   }
+  ],
+  "annotations": [
+   {
+    "t": "text",
+    "x": 150,
+    "y": 92,
+    "s": "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1306,
+    "y": 92,
+    "s": "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5",
+     "text-anchor": "end"
+    }
+   }
+  ],
+  "generalNotes": [
+   {
+    "t": "rect",
+    "x": 70,
+    "y": 778,
+    "w": 978,
+    "h": 200,
+    "attrs": {
+     "fill": "#F6F7F1",
+     "stroke": "#1C2B26",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 70,
+    "y1": 806,
+    "x2": 1048,
+    "y2": 806,
+    "attrs": {
+     "stroke": "#1C2B26",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 798,
+    "s": "GENERAL NOTES",
+    "attrs": {
+     "fill": "#1C2B26",
+     "style": "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 826,
+    "s": "1.  PARKING VARIANCE ENTRY 99-11797 — 324 PROVIDED / 344 REQUIRED. FLOOR SPACE “LIMITED TO AVAILABLE PARKING SPACES.” ASSESS EVERY LEASE OR LICENSE AGAINST THIS FIGURE.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 851,
+    "s": "2.  OUR SAVIOR'S CHURCH ACCESS & PARKING EASEMENT — $350/MO · 25-YR TERM · SUNDAYS + 6PM–MIDNIGHT · §3a LIQUOR WAIVER SURVIVES TERMINATION (ENABLES RESTAURANT LEASING WITHIN 175 FT).",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 876,
+    "s": "3.  JD BANK RECIPROCAL EASEMENT — $250/MO TO BELLE + 13 BANK SPACES · 50/50 MAINTENANCE SPLIT · EXPIRES 12/30/2034 · SUPERSEDES ENTRY 2004-00057697.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 901,
+    "s": "4.  PARKING FILL ORDER: MAIN FIELD → LOT 8 (±15 SP, PATRICIA/M.A. CORNER) → LOT 7 (REMOTE, BLK M, ±24 SP). ZONING ALSO REQUIRES 20% GREEN AREA. CROSS-PARKING LICENSES NON-EXCLUSIVE — NO ASSIGNED STALLS.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 926,
+    "s": "5.  LEGAL: LOTS 1–3, 1–14, PARTITION OF LOTS 1 & 2 BLK I + REMOTE PARCEL, BLK M, ARNOLD HEIGHTS SUBD. EXT. NO. 1 · 4.84 AC · OUTSIDE SFHA. ASSESSOR: 6026783 · 6026784 · 6026785 · 6026788 · 6009649 (REMOTE).",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 951,
+    "s": "6.  STREET SPELLING VARIANTS ‘ARNAULD / ARNOLD / ARNOULD’ — TITLE CHECK PENDING (P0). PLAT: MONTAGNET & DOMINGUE, INC., 5/20/1994, LAST REV. 7/19/2019.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9.5"
+    }
+   }
+  ],
+  "titleBlock": [
+   {
+    "t": "rect",
+    "x": 1064,
+    "y": 778,
+    "w": 296,
+    "h": 200,
+    "attrs": {
+     "fill": "#F6F7F1",
+     "stroke": "#1C2B26",
+     "stroke-width": 1.4
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1064,
+    "y1": 806,
+    "x2": 1360,
+    "y2": 806,
+    "attrs": {
+     "stroke": "#1C2B26",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1064,
+    "y1": 902,
+    "x2": 1360,
+    "y2": 902,
+    "attrs": {
+     "stroke": "#1C2B26",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 798,
+    "s": "ON THE BOULEVARD",
+    "attrs": {
+     "fill": "#1C2B26",
+     "style": "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:17px;letter-spacing:.08em"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 826,
+    "s": "BELLE REALTY OF LAFAYETTE, LLC",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 842,
+    "s": "SHEET A-1 · SITE PLAN · ZONED CH",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 858,
+    "s": "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 874,
+    "s": "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 890,
+    "s": "REV 4 — LOT 7/8 CORRECTED · LOT 7 ALIGNED AT PATRICIA CORNER",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "9"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M1296 936 L1322 930 L1315 936 L1322 942 Z",
+    "attrs": {
+     "fill": "#1C2B26"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1332,
+    "y": 940,
+    "s": "N",
+    "attrs": {
+     "dominant-baseline": "middle",
+     "font-family": "'IBM Plex Mono',monospace",
+     "font-size": "10",
+     "font-weight": "600",
+     "fill": "#1C2B26"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1212,
+    "y": 962,
+    "s": "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7.5",
+     "text-anchor": "middle"
+    }
+   }
+  ]
+ },
+ "units": {
+  "101": {
+   "x": 150,
+   "y": 100,
+   "w": 137.0090034424927,
+   "h": 178
+  },
+  "103": {
+   "x": 289.0090034424927,
+   "y": 100,
+   "w": 59.732368258451764,
+   "h": 178
+  },
+  "105": {
+   "x": 350.74137170094446,
+   "y": 100,
+   "w": 42.91464383440727,
+   "h": 178
+  },
+  "107": {
+   "x": 395.65601553535174,
+   "y": 100,
+   "w": 33.232324123929736,
+   "h": 178
+  },
+  "109": {
+   "x": 430.8883396592815,
+   "y": 100,
+   "w": 49.46385382646306,
+   "h": 178
+  },
+  "111": {
+   "x": 482.3521934857445,
+   "y": 100,
+   "w": 32.161002736340365,
+   "h": 178
+  },
+  "113": {
+   "x": 516.5131962220848,
+   "y": 100,
+   "w": 50.67667049165858,
+   "h": 178
+  },
+  "115": {
+   "x": 569.1898667137434,
+   "y": 100,
+   "w": 41.8635360579045,
+   "h": 178
+  },
+  "117": {
+   "x": 613.0534027716479,
+   "y": 100,
+   "w": 41.8635360579045,
+   "h": 178
+  },
+  "119": {
+   "x": 692.6748168417336,
+   "y": 100,
+   "w": 38.063377173625206,
+   "h": 178
+  },
+  "121": {
+   "x": 772.6398623002913,
+   "y": 100,
+   "w": 32.54506134698561,
+   "h": 178
+  },
+  "123": {
+   "x": 807.1849236472768,
+   "y": 100,
+   "w": 70.02109630152705,
+   "h": 178
+  },
+  "125": {
+   "x": 879.2060199488039,
+   "y": 100,
+   "w": 33.07061523523701,
+   "h": 178
+  },
+  "127": {
+   "x": 914.276635184041,
+   "y": 100,
+   "w": 49.30214493777032,
+   "h": 178
+  },
+  "129": {
+   "x": 965.5787801218113,
+   "y": 100,
+   "w": 34.16215023391297,
+   "h": 178
+  },
+  "131": {
+   "x": 1001.7409303557242,
+   "y": 100,
+   "w": 36.54735634213081,
+   "h": 178
+  },
+  "133": {
+   "x": 1040.288286697855,
+   "y": 100,
+   "w": 28,
+   "h": 178
+  },
+  "137": {
+   "x": 1096,
+   "y": 280,
+   "w": 192,
+   "h": 49.84777452211525
+  },
+  "139": {
+   "x": 1096,
+   "y": 331.84777452211523,
+   "w": 192,
+   "h": 46.41314357471745
+  },
+  "141": {
+   "x": 1096,
+   "y": 380.2609180968327,
+   "w": 192,
+   "h": 46.41314357471745
+  },
+  "143": {
+   "x": 1096,
+   "y": 428.67406167155013,
+   "w": 192,
+   "h": 46.41314357471745
+  },
+  "145": {
+   "x": 1096,
+   "y": 477.08720524626756,
+   "w": 192,
+   "h": 46.41314357471745
+  },
+  "149": {
+   "x": 1096,
+   "y": 525.500348820985,
+   "w": 192,
+   "h": 114.49965117901492
+  },
+  "117.5": {
+   "x": 656.9169388295525,
+   "y": 100,
+   "w": 33.75787801218113,
+   "h": 178
+  },
+  "119.5": {
+   "x": 732.7381940153588,
+   "y": 100,
+   "w": 37.90166828493248,
+   "h": 178
+  },
+  "135A": {
+   "x": 1096,
+   "y": 208,
+   "w": 95,
+   "h": 68
+  },
+  "135B": {
+   "x": 1193,
+   "y": 208,
+   "w": 95,
+   "h": 68
+  }
+ }
+}

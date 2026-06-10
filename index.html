@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On The Boulevard — Property Command</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div>
+      <div class="wordmark">ON THE <span>BOULEVARD</span></div>
+    </div>
+    <div class="addr">101–149 ARNOULD BLVD · LAFAYETTE, LA 70506 · BELLE REALTY OF LAFAYETTE, LLC</div>
+    <div class="spacer"></div>
+    <div class="tb-actions">
+      <button class="tb-btn" id="btnExport" title="Download compliance + notes state as JSON">EXPORT JSON</button>
+      <button class="tb-btn" id="btnImport" title="Restore state from a JSON export">IMPORT JSON</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+    <div class="stamp">ISSUE <b id="todayStamp"></b><br>62,883 SF · 27 UNITS · 324 STALLS</div>
+  </div>
+
+  <nav class="side">
+    <div class="ix-title">Sheet Index</div>
+    <div class="nav" id="nav"></div>
+    <div class="foot">
+      <b>ZONING</b> CH — Commercial Heavy<br>
+      <b>VARIANCE</b> Entry 99-11797<br>324 provided / 344 required<br>
+      <b>REMOTE LOT</b> Marie Antoinette St
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- D-1 DASHBOARD -->
+    <section class="page" id="pg-dash">
+      <div class="page-head"><h1>Operations Dashboard</h1><div class="sub">D-1 · LIVE FROM RENT ROLL</div></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="dash-grid">
+        <div class="card">
+          <div class="panel-h"><h2>Lease Runway</h2><div class="sub">TERM REMAINING BY UNIT — TODAY MARKED</div></div>
+          <div class="runway" id="runway"></div>
+          <div class="run-axis" id="runAxis"></div>
+        </div>
+        <div class="card">
+          <div class="panel-h"><h2>Action Queue</h2><div class="sub">DERIVED FROM CURRENT STATE</div></div>
+          <div class="alerts" id="alerts"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A-1 SITE PLAN -->
+    <section class="page" id="pg-plan">
+      <div class="page-head"><h1>Site Plan</h1><div class="sub">A-1 · INTERACTIVE — CLICK A UNIT</div></div>
+      <div class="plan-tools">
+        <span class="lg">Scope</span>
+        <button class="chip on" data-scope="main">Main parcel</button>
+        <button class="chip" data-scope="full">Full site + remote lot</button>
+        <span class="lg" style="margin-left:10px">Color by</span>
+        <button class="chip on" data-mode="status">Status</button>
+        <button class="chip" data-mode="expiry">Expiration</button>
+        <button class="chip" data-mode="rent">Rent PSF</button>
+        <button class="chip" data-mode="use">Use Type</button>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="card plan-card"><svg id="plan" viewBox="0 0 1480 990" role="img" aria-label="On The Boulevard site plan"></svg></div>
+    </section>
+
+    <!-- R-1 RENT ROLL -->
+    <section class="page" id="pg-roll">
+      <div class="page-head"><h1>Rent Roll</h1><div class="sub">R-1 · CLICK HEADERS TO SORT · CLICK ROW FOR DETAIL</div>
+        <div class="right"><span class="chip" id="rollStamp"></span></div></div>
+      <div class="card tablecard" id="rollTable"></div>
+    </section>
+
+    <!-- C-1 COMPLIANCE -->
+    <section class="page" id="pg-comp">
+      <div class="page-head"><h1>Tenant Compliance</h1><div class="sub">C-1 · 11 FIELDS × 27 UNITS · CLICK CELL TO CYCLE</div></div>
+      <div class="card matrix" id="matrix"></div>
+    </section>
+
+    <!-- T-1 CRITICAL DATES -->
+    <section class="page" id="pg-dates">
+      <div class="page-head"><h1>Critical Dates</h1><div class="sub">T-1 · EXPIRATIONS, EASEMENTS, INSTRUMENTS</div></div>
+      <div class="card"><div class="tl" id="timeline"></div></div>
+    </section>
+
+  </main>
+</div>
+
+<div class="tt" id="tt"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="dw-head" style="position:relative">
+    <button class="dw-x" id="dwX" aria-label="Close">✕</button>
+    <div class="unit" id="dwUnit"></div>
+    <h3 id="dwName"></h3>
+    <span id="dwPill"></span>
+  </div>
+  <div class="dw-body" id="dwBody"></div>
+</aside>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

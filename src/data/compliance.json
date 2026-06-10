@@ -1,0 +1,25 @@
+{
+  "fields": [
+    ["coi", "Certificate of insurance"],
+    ["lic", "Occupational license"],
+    ["hvac", "HVAC PM contract"],
+    ["grease", "Grease trap service"],
+    ["ansul", "Hood / Ansul inspection"],
+    ["dep", "Security deposit"],
+    ["w9", "W-9 on file"],
+    ["walk", "Last walk-through"],
+    ["sign", "Signage approval"],
+    ["lease", "Executed lease on file"],
+    ["ach", "ACH on file"]
+  ],
+  "foodOnly": ["grease", "ansul"],
+  "states": ["u", "ok", "flag", "na"],
+  "stateLabels": { "u": "Unverified", "ok": "On file", "flag": "Flag", "na": "N/A" },
+  "seed": {
+    "149": {
+      "coi": "ok", "lic": "ok", "hvac": "ok", "grease": "ok", "ansul": "ok",
+      "dep": "flag", "w9": "ok", "walk": "u", "sign": "ok", "lease": "ok", "ach": "u"
+    }
+  },
+  "seedNote": "Unit 149 pre-seeded from executed lease + addendums · deposit flagged (none on file — consistent with national-chain anchor)"
+}
