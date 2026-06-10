@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "extract-geometry": "node tools/extract-geometry.mjs"
+    "extract-geometry": "node tools/extract-geometry.mjs",
+    "export-package": "node tools/export-package.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0"
