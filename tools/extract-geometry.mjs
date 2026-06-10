@@ -284,14 +284,16 @@ const LB_BAYS = [ // [unit, width ft, source]
 ];
 /* Short building: along Patricia, 84.49' deep, 208.65' long (plat wall dim).
    Jason's Deli (149) at the Arnould end. 1,917 SF bays share the residual
-   evenly. 135A/135B are 18.7' full-depth sections (plat: POLITICS 3,160);
-   ASSUMPTION: 135B at the Marie Antoinette end, 135A adjacent to 137.     */
+   evenly. 135 (plat: POLITICS 3,160) is the 37.4' M.A.-end section split at
+   MID-DEPTH into two ~square units (42.245' × 37.4' = 1,580 SF each), both
+   fronting M.A.: 135A on the breezeway (west) side — front door to the
+   breezeway, double doors to M.A.; 135B on the Patricia (east) side —
+   double doors to M.A., rear door to Patricia. Operator-confirmed.        */
 const SB_DEPTH = 84.49;
 const SB_FACE_FROM_PATRICIA_RW = 26.5;  // scaled from plat (no string)
 const SB_NORTH_FROM_ARNOULD_RW = 26.0;  // scaled from plat (no string)
 const SB_BAYS = [ // Marie Antoinette end → Arnould end
-  ["135B", 18.7, "plat 37.4' POLITICS section halved; end placement assumed"],
-  ["135A", 18.7, "plat 37.4' POLITICS section halved"],
+  ["135", 37.4, "plat: POLITICS 3,160 section — mid-depth split into 135A (breezeway square) / 135B (Patricia square)"],
   ["137", 24.3, "plat"],
   ["139", 23.0875, "derived: (208.65 − 54.6 − 24.3 − 37.4) / 4"],
   ["141", 23.0875, "derived"], ["143", 23.0875, "derived"], ["145", 23.0875, "derived"],
@@ -321,7 +323,15 @@ const sbYNorth = r2(sbYSouth - ky * sbLen);                        // M.A.-end f
 {
   let off = 0; // feet from the M.A. end
   SB_BAYS.forEach(([unit, w]) => {
-    placed[unit] = { x: r2(sbXRight - sbW), y: r2(sbYNorth + ky * off), w: sbW, h: r2(ky * w - 2) };
+    const y = r2(sbYNorth + ky * off), h = r2(ky * w - 2);
+    if (unit === "135") {
+      // mid-depth split: two squares side by side, both fronting M.A.
+      const half = kx * (SB_DEPTH / 2);
+      placed["135A"] = { x: r2(sbXRight - sbW), y, w: r2(half - 2), h };          // breezeway (west) square
+      placed["135B"] = { x: r2(sbXRight - sbW + half), y, w: r2(half - 2), h };   // Patricia (east) square
+    } else {
+      placed[unit] = { x: r2(sbXRight - sbW), y, w: sbW, h };
+    }
     off += w;
   });
 }
@@ -366,19 +376,22 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 6 — BLDG FOOTPRINTS, DEMISING & LOT 7 PER PLAT", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 7 — 135A/B MID-DEPTH SQUARE SPLIT (PLAT + OPERATOR)", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 6",
+  rev: "REV 7",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; parking/liquor line still schematic)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
     longBuilding: { depthFt: LB_DEPTH, rearSetbackFt: LB_REAR_SETBACK, eastGapFt: LB_EAST_GAP, lengthFt: r2(lbLen), bays: LB_BAYS },
-    shortBuilding: { depthFt: SB_DEPTH, patriciaOffsetFt: SB_FACE_FROM_PATRICIA_RW, arnouldOffsetFt: SB_NORTH_FROM_ARNOULD_RW, lengthFt: r2(sbLen), bays: SB_BAYS }
+    shortBuilding: {
+      depthFt: SB_DEPTH, patriciaOffsetFt: SB_FACE_FROM_PATRICIA_RW, arnouldOffsetFt: SB_NORTH_FROM_ARNOULD_RW, lengthFt: r2(sbLen), bays: SB_BAYS,
+      split135: "mid-depth wall: 135A breezeway/west square + 135B Patricia/east square, each 42.245' × 37.4' = 1,580 SF; both front M.A. (135A door to breezeway, 135B rear door to Patricia)"
+    }
   },
   // audit record: metes & bounds in feet + the feet→px transform used for the boundary
   boundary: {

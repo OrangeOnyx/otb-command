@@ -1,5 +1,5 @@
 {
- "rev": "REV 6",
+ "rev": "REV 7",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; parking/liquor line still schematic)",
  "viewBox": {
   "main": "0 0 1480 990",
@@ -116,14 +116,9 @@
    "lengthFt": 208.65,
    "bays": [
     [
-     "135B",
-     18.7,
-     "plat 37.4' POLITICS section halved; end placement assumed"
-    ],
-    [
-     "135A",
-     18.7,
-     "plat 37.4' POLITICS section halved"
+     "135",
+     37.4,
+     "plat: POLITICS 3,160 section — mid-depth split into 135A (breezeway square) / 135B (Patricia square)"
     ],
     [
      "137",
@@ -155,7 +150,8 @@
      54.6,
      "plat"
     ]
-   ]
+   ],
+   "split135": "mid-depth wall: 135A breezeway/west square + 135B Patricia/east square, each 42.245' × 37.4' = 1,580 SF; both front M.A. (135A door to breezeway, 135B rear door to Patricia)"
   }
  },
  "boundary": {
@@ -2204,7 +2200,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 6 — BLDG FOOTPRINTS, DEMISING & LOT 7 PER PLAT",
+    "s": "REV 7 — 135A/B MID-DEPTH SQUARE SPLIT (PLAT + OPERATOR)",
     "attrs": {
      "class": "svg-lab",
      "font-size": "9"
@@ -2394,17 +2390,17 @@
    "w": 35.4,
    "h": 161.21
   },
-  "135B": {
-   "x": 1154.51,
-   "y": 219.31,
-   "w": 156.43,
-   "h": 33.28
-  },
   "135A": {
    "x": 1154.51,
-   "y": 254.59,
-   "w": 156.43,
-   "h": 33.28
+   "y": 219.31,
+   "w": 76.22,
+   "h": 68.56
+  },
+  "135B": {
+   "x": 1232.73,
+   "y": 219.31,
+   "w": 76.22,
+   "h": 68.56
   }
  }
 }
