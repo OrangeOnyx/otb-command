@@ -1,5 +1,5 @@
 {
- "rev": "REV 9",
+ "rev": "REV 10",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
  "viewBox": {
   "main": "0 0 1480 990",
@@ -230,6 +230,30 @@
    "required": 344
   },
   "reconciliation": "plat striping labels total 314 vs variance 324 provided — Δ -10 UNRECONCILED (surfaced, not adjusted; variance-era striping may differ from the 7/19/2019 plat revision)"
+ },
+ "streets": {
+  "marieAntoinette": {
+   "rwFt": 40,
+   "edges": "true — band y 20.55…96 (b -340…-300), both edges exact"
+  },
+  "arnould": {
+   "rwFt": 80,
+   "edges": "near edge true at b=0 (y 662, on the boundary); centerline true at 40'; far edge clipped at the sheet margin y 752 (full width would reach y ≈ 813)"
+  },
+  "patricia": {
+   "rwFt": 50,
+   "edges": "true — near edge a=-25 (x 1360), far edge a=-75 (x 1452.6)"
+  },
+  "johnston": {
+   "rwFt": "±100",
+   "edges": "near edge = true R/W arc, R 1872.44' (boundary course 4 extended along the same circle); far side beyond the sheet"
+  },
+  "cornerReturns": {
+   "patriciaArnould": "R=25 L=39.27 (boundary course 9)",
+   "maPatricia": "R=25 L=39.27 (course 7)",
+   "johnstonMA": "R=30 L=48.65 (course 5)",
+   "bankCorner": "R=30.00 L=49.38 CH=N08°37'26\"E 43.99 (bank parcel corner per plat — street edge only, NOT Belle)"
+  }
  },
  "boundary": {
   "mainTract": {
@@ -505,9 +529,9 @@
    {
     "t": "rect",
     "x": 0,
-    "y": 676,
+    "y": 662,
     "w": 1480,
-    "h": 76,
+    "h": 90,
     "attrs": {
      "fill": "#DDE0D4"
     }
@@ -515,9 +539,9 @@
    {
     "t": "line",
     "x1": 0,
-    "y1": 676,
+    "y1": 662,
     "x2": 1480,
-    "y2": 676,
+    "y2": 662,
     "attrs": {
      "stroke": "#AEB4A2",
      "stroke-width": 2
@@ -537,9 +561,9 @@
    {
     "t": "line",
     "x1": 0,
-    "y1": 714,
+    "y1": 737.47,
     "x2": 1480,
-    "y2": 714,
+    "y2": 737.47,
     "attrs": {
      "stroke": "#FCFCF9",
      "stroke-width": 2,
@@ -549,7 +573,7 @@
    {
     "t": "text",
     "x": 700,
-    "y": 720,
+    "y": 726,
     "s": "A R N O U L D   B O U L E V A R D   ( 8 0 '  R / W   C O N C R E T E )",
     "attrs": {
      "class": "svg-street",
@@ -559,19 +583,30 @@
    },
    {
     "t": "rect",
-    "x": 1396,
-    "y": 0,
-    "w": 84,
-    "h": 752,
+    "x": 1360,
+    "y": -310,
+    "w": 92.58,
+    "h": 1062,
     "attrs": {
      "fill": "#DDE0D4"
     }
    },
    {
     "t": "line",
-    "x1": 1396,
-    "y1": 0,
-    "x2": 1396,
+    "x1": 1360,
+    "y1": -310,
+    "x2": 1360,
+    "y2": 752,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1452.58,
+    "y1": -310,
+    "x2": 1452.58,
     "y2": 752,
     "attrs": {
      "stroke": "#AEB4A2",
@@ -580,33 +615,28 @@
    },
    {
     "t": "text",
-    "x": 1440,
+    "x": 1406.29,
     "y": 376,
     "s": "P A T R I C I A   S T   ( 5 0 '  R / W )",
     "attrs": {
      "class": "svg-street",
      "font-size": "15",
      "text-anchor": "middle",
-     "transform": "rotate(90 1440 376)"
+     "transform": "rotate(90 1406.29 376)"
     }
    },
    {
-    "t": "rect",
-    "x": 0,
-    "y": 0,
-    "w": 50,
-    "h": 752,
+    "t": "path",
+    "d": "M 16.15 -310 A 3466.82 3532.59 0 0 1 50.31 751.98 L 0 752 L 0 -310 Z",
     "attrs": {
      "fill": "#DDE0D4"
     }
    },
    {
-    "t": "line",
-    "x1": 50,
-    "y1": 0,
-    "x2": 50,
-    "y2": 752,
+    "t": "path",
+    "d": "M 16.15 -310 A 3466.82 3532.59 0 0 1 50.31 751.98",
     "attrs": {
+     "fill": "none",
      "stroke": "#AEB4A2",
      "stroke-width": 2
     }
@@ -621,6 +651,15 @@
      "font-size": "14",
      "text-anchor": "middle",
      "transform": "rotate(-90 28 376)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 115.19 661.99 A 55.55 56.6 0 0 1 64.36 605.39",
+    "attrs": {
+     "fill": "none",
+     "stroke": "#AEB4A2",
+     "stroke-width": 2
     }
    },
    {
@@ -5152,7 +5191,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 9 — PARKING ZONES & TALLY PER PLAT · LB REAR 18.73'",
+    "s": "REV 10 — STREET R/W EDGES & CORNER RETURNS PER PLAT",
     "attrs": {
      "class": "svg-lab",
      "font-size": "9"

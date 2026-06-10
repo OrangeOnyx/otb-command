@@ -157,23 +157,57 @@ base.push(line(0, 96, 1480, 96, { stroke: "#AEB4A2", "stroke-width": 2 }));
 base.push(line(0, 58.3, 1480, 58.3, { stroke: "#FCFCF9", "stroke-width": 2, "stroke-dasharray": "26 20" }));
 base.push(text(700, 64, "M A R I E   A N T O I N E T T E   S T R E E T   ( 4 0 '  R / W   A S P H A L T )",
   { class: "svg-street", "font-size": "16", "text-anchor": "middle" }));
-// Arnould Blvd (east frontage → bottom band)
-base.push(rect(0, 676, 1480, 76, { fill: "#DDE0D4" }));
-base.push(line(0, 676, 1480, 676, { stroke: "#AEB4A2", "stroke-width": 2 }));
+// Arnould Blvd (east frontage → bottom band) — REV 10: near R/W edge TRUE
+// at b=0 (y 662, coincident with the boundary line); the 80' R/W clips at
+// the sheet margin y 752 (the full far edge would land at y ≈ 813, under
+// the notes band). Centerline drawn true at 40' out.
+base.push(rect(0, 662, 1480, 90, { fill: "#DDE0D4" }));
+base.push(line(0, 662, 1480, 662, { stroke: "#AEB4A2", "stroke-width": 2 }));
 base.push(line(0, 752, 1480, 752, { stroke: "#AEB4A2", "stroke-width": 2 }));
-base.push(line(0, 714, 1480, 714, { stroke: "#FCFCF9", "stroke-width": 2, "stroke-dasharray": "26 20" }));
-base.push(text(700, 720, "A R N O U L D   B O U L E V A R D   ( 8 0 '  R / W   C O N C R E T E )",
+base.push(line(0, r2(662 + ky * 40), 1480, r2(662 + ky * 40), { stroke: "#FCFCF9", "stroke-width": 2, "stroke-dasharray": "26 20" }));
+base.push(text(700, 726, "A R N O U L D   B O U L E V A R D   ( 8 0 '  R / W   C O N C R E T E )",
   { class: "svg-street", "font-size": "18", "text-anchor": "middle" }));
-// Patricia (north → right band)
-base.push(rect(1396, 0, 84, 752, { fill: "#DDE0D4" }));
-base.push(line(1396, 0, 1396, 752, { stroke: "#AEB4A2", "stroke-width": 2 }));
-base.push(text(1440, 376, "P A T R I C I A   S T   ( 5 0 '  R / W )",
-  { class: "svg-street", "font-size": "15", "text-anchor": "middle", transform: "rotate(90 1440 376)" }));
-// Johnston (south → left band)
-base.push(rect(0, 0, 50, 752, { fill: "#DDE0D4" }));
-base.push(line(50, 0, 50, 752, { stroke: "#AEB4A2", "stroke-width": 2 }));
-base.push(text(28, 376, "J O H N S T O N   S T   ·   U S   H W Y   1 6 7   ( ± 1 0 0 '  R / W )",
-  { class: "svg-street", "font-size": "14", "text-anchor": "middle", transform: "rotate(-90 28 376)" }));
+// Patricia (north → right band) — REV 10: true 50' R/W, near edge at a=-25
+// (x 1360); extends through the full-scope view past Marie Antoinette
+base.push(rect(1360, -310, r2(kx * 50), 1062, { fill: "#DDE0D4" }));
+base.push(line(1360, -310, 1360, 752, { stroke: "#AEB4A2", "stroke-width": 2 }));
+base.push(line(r2(1360 + kx * 50), -310, r2(1360 + kx * 50), 752, { stroke: "#AEB4A2", "stroke-width": 2 }));
+base.push(text(r2(1360 + kx * 25), 376, "P A T R I C I A   S T   ( 5 0 '  R / W )",
+  { class: "svg-street", "font-size": "15", "text-anchor": "middle", transform: "rotate(90 " + r2(1360 + kx * 25) + " 376)" }));
+// Johnston (south → left band) — REV 10: near edge follows the TRUE R/W arc
+// (R=1872.44', boundary course 4 extended along the same circle); far side
+// of the ±100' R/W lies beyond the sheet edge
+{
+  const cc = (P, Q, S) => {
+    const d = 2 * (P[0] * (Q[1] - S[1]) + Q[0] * (S[1] - P[1]) + S[0] * (P[1] - Q[1]));
+    return [
+      ((P[0] ** 2 + P[1] ** 2) * (Q[1] - S[1]) + (Q[0] ** 2 + Q[1] ** 2) * (S[1] - P[1]) + (S[0] ** 2 + S[1] ** 2) * (P[1] - Q[1])) / d,
+      ((P[0] ** 2 + P[1] ** 2) * (S[0] - Q[0]) + (Q[0] ** 2 + Q[1] ** 2) * (P[0] - S[0]) + (S[0] ** 2 + S[1] ** 2) * (Q[0] - P[0])) / d
+    ];
+  };
+  const seg = main.segs[3];
+  const S_ = toAB(seg.start), M_ = toAB(seg.midArc), E_ = toAB(seg.end);
+  const C_ = cc(S_, M_, E_);
+  const R_ = Math.hypot(S_[0] - C_[0], S_[1] - C_[1]);           // ≈ 1872.44
+  const side = Math.sign(S_[0] - C_[0]);
+  const aAt = b => C_[0] + side * Math.sqrt(R_ * R_ - (b - C_[1]) ** 2);
+  const bTop = -515.2, bBot = 47.7;                               // y -310 … 752
+  const JT = toXY([aAt(bTop), bTop]), JB = toXY([aAt(bBot), bBot]);
+  const JM = toXY([aAt((bTop + bBot) / 2), (bTop + bBot) / 2]);
+  const sw = ((JM[0] - JT[0]) * (JB[1] - JT[1]) - (JM[1] - JT[1]) * (JB[0] - JT[0])) > 0 ? 1 : 0;
+  const arc = "M " + r2(JT[0]) + " " + r2(JT[1]) + " A " + r2(R_ * kx) + " " + r2(R_ * ky) + " 0 0 " + sw + " " + r2(JB[0]) + " " + r2(JB[1]);
+  base.push(path(arc + " L 0 752 L 0 -310 Z", { fill: "#DDE0D4" }));
+  base.push(path(arc, { fill: "none", stroke: "#AEB4A2", "stroke-width": 2 }));
+  base.push(text(28, 376, "J O H N S T O N   S T   ·   U S   H W Y   1 6 7   ( ± 1 0 0 '  R / W )",
+    { class: "svg-street", "font-size": "14", "text-anchor": "middle", transform: "rotate(-90 28 376)" }));
+  // JD Bank corner return — Johnston × Arnould (plat: R=30.00' L=49.38'
+  // CH=N08°37'26"E 43.99', bank parcel corner; street edge only, NOT Belle)
+  const aC = aAt(0);
+  const T1 = toXY([aC - 30, 0]), T2 = toXY([aAt(-30), -30]), TM = toXY([aC - 8.79, -8.79]);
+  const sw2 = ((TM[0] - T1[0]) * (T2[1] - T1[1]) - (TM[1] - T1[1]) * (T2[0] - T1[0])) > 0 ? 1 : 0;
+  base.push(path("M " + r2(T1[0]) + " " + r2(T1[1]) + " A " + r2(30 * kx) + " " + r2(30 * ky) + " 0 0 " + sw2 + " " + r2(T2[0]) + " " + r2(T2[1]),
+    { fill: "none", stroke: "#AEB4A2", "stroke-width": 2 }));
+}
 // parcel boundary — plat-exact metes & bounds (REV 5); notch at Johnston ×
 // Arnould corner is the excluded (sold) parcel per courses 2–3
 base.push(path(bdPath,
@@ -553,14 +587,14 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 9 — PARKING ZONES & TALLY PER PLAT · LB REAR 18.73'", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 10 — STREET R/W EDGES & CORNER RETURNS PER PLAT", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 9",
+  rev: "REV 10",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
@@ -603,6 +637,18 @@ const geometry = {
     totalPlat: 314,
     variance: { entry: "99-11797", provided: 324, required: 344 },
     reconciliation: "plat striping labels total 314 vs variance 324 provided — Δ -10 UNRECONCILED (surfaced, not adjusted; variance-era striping may differ from the 7/19/2019 plat revision)"
+  },
+  streets: {
+    marieAntoinette: { rwFt: 40, edges: "true — band y 20.55…96 (b -340…-300), both edges exact" },
+    arnould: { rwFt: 80, edges: "near edge true at b=0 (y 662, on the boundary); centerline true at 40'; far edge clipped at the sheet margin y 752 (full width would reach y ≈ 813)" },
+    patricia: { rwFt: 50, edges: "true — near edge a=-25 (x 1360), far edge a=-75 (x 1452.6)" },
+    johnston: { rwFt: "±100", edges: "near edge = true R/W arc, R 1872.44' (boundary course 4 extended along the same circle); far side beyond the sheet" },
+    cornerReturns: {
+      patriciaArnould: "R=25 L=39.27 (boundary course 9)",
+      maPatricia: "R=25 L=39.27 (course 7)",
+      johnstonMA: "R=30 L=48.65 (course 5)",
+      bankCorner: "R=30.00 L=49.38 CH=N08°37'26\"E 43.99 (bank parcel corner per plat — street edge only, NOT Belle)"
+    }
   },
   // audit record: metes & bounds in feet + the feet→px transform used for the boundary
   boundary: {
