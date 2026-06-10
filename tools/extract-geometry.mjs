@@ -140,7 +140,7 @@ const courseLabels = [
   lbl(60, mid(scr[3])[1], "R=1872.44' L=168.53' CH=S51°07'34\"W",
     { "text-anchor": "middle", transform: "rotate(-90 60 " + r2(mid(scr[3])[1]) + ")" }),                           // Johnston curve
   lbl(140, 452, "R=30.00' L=48.65'"),                                                                               // Johnston × M.A. return
-  lbl(876, 92, fmtB(scr[5].bearing) + " — 641.77'", { "text-anchor": "middle" }),                                   // Marie Antoinette
+  lbl(720, 91, fmtB(scr[5].bearing) + " — 641.77'", { "text-anchor": "middle" }),                                   // Marie Antoinette
   lbl(1374, mid(scr[7])[1], fmtB(scr[7].bearing) + " — 250.00'",
     { "text-anchor": "middle", transform: "rotate(90 1374 " + r2(mid(scr[7])[1]) + ")" }),                          // Patricia
   lbl(1305, 644, "R=25.00' L=39.27'", { "text-anchor": "end" })                                                     // Patricia × Arnould return
@@ -148,12 +148,14 @@ const courseLabels = [
 
 /* ── base layer: streets, parcel boundary, notch labels, sidewalks ── */
 const base = [];
-// Marie Antoinette (west frontage → top band)
-base.push(rect(0, 6, 1480, 72, { fill: "#DDE0D4" }));
-base.push(line(0, 6, 1480, 6, { stroke: "#AEB4A2", "stroke-width": 2 }));
-base.push(line(0, 78, 1480, 78, { stroke: "#AEB4A2", "stroke-width": 2 }));
-base.push(line(0, 42, 1480, 42, { stroke: "#FCFCF9", "stroke-width": 2, "stroke-dasharray": "26 20" }));
-base.push(text(700, 48, "M A R I E   A N T O I N E T T E   S T R E E T   ( 4 0 '  R / W   A S P H A L T )",
+// Marie Antoinette (west frontage → top band) — TRUE position: 40' R/W
+// abutting the boundary at y=96 (far R/W edge at b=-340)
+const MA_TOP = r2(ENV.yBottom - ky * 340); // 20.55
+base.push(rect(0, MA_TOP, 1480, r2(96 - MA_TOP), { fill: "#DDE0D4" }));
+base.push(line(0, MA_TOP, 1480, MA_TOP, { stroke: "#AEB4A2", "stroke-width": 2 }));
+base.push(line(0, 96, 1480, 96, { stroke: "#AEB4A2", "stroke-width": 2 }));
+base.push(line(0, 58.3, 1480, 58.3, { stroke: "#FCFCF9", "stroke-width": 2, "stroke-dasharray": "26 20" }));
+base.push(text(700, 64, "M A R I E   A N T O I N E T T E   S T R E E T   ( 4 0 '  R / W   A S P H A L T )",
   { class: "svg-street", "font-size": "16", "text-anchor": "middle" }));
 // Arnould Blvd (east frontage → bottom band)
 base.push(rect(0, 676, 1480, 76, { fill: "#DDE0D4" }));
@@ -182,23 +184,49 @@ base.push(text(178, 572, "(EXCLUDED CORNER PARCEL)",
   { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" }));
 base.push(...courseLabels);
 
-/* ── remote lot layer: Lot 7, Block M across Marie Antoinette ── */
+/* ── remote lot layer: Lot 7, Block M — plat-exact trapezoid (REV 6) ──
+   POB sits across Marie Antoinette at the Patricia corner: ab = (0, -340)
+   (far M.A. R/W edge, 25' along S38°32'E from the corner, per commencement). */
 const remoteLot = [];
-remoteLot.push(rect(1078, -224, 276, 212, { fill: "none", stroke: "#1C2B26", "stroke-width": 1.2, "stroke-dasharray": "14 5 3 5", rx: 2 }));
-remoteLot.push(rect(1088, -214, 256, 192, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1, rx: 3 }));
-for (let r = 0; r < 2; r++) {
-  const ry = -158 + r * 86;
-  remoteLot.push(line(1106, ry, 1326, ry, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
-  for (let rx = 1106; rx <= 1326; rx += 20)
-    remoteLot.push(line(rx, ry - 24, rx, ry + 24, { stroke: "#C9CEBE", "stroke-width": 1 }));
+{
+  const POB7 = [0, -340];
+  let p7 = "";
+  const pts7 = [];
+  lot7.segs.forEach((s, i) => {
+    const S = toXY([POB7[0] + toAB(s.start)[0], POB7[1] + toAB(s.start)[1]]);
+    const E = toXY([POB7[0] + toAB(s.end)[0], POB7[1] + toAB(s.end)[1]]);
+    if (i === 0) p7 += "M " + r2(S[0]) + " " + r2(S[1]);
+    if (s.type === "line") { p7 += " L " + r2(E[0]) + " " + r2(E[1]); pts7.push(S, E); }
+    else {
+      const M = toXY([POB7[0] + toAB(s.midArc)[0], POB7[1] + toAB(s.midArc)[1]]);
+      const sweep = ((M[0] - S[0]) * (E[1] - S[1]) - (M[1] - S[1]) * (E[0] - S[0])) > 0 ? 1 : 0;
+      p7 += " A " + r2(s.R * kx) + " " + r2(s.R * ky) + " 0 0 " + sweep + " " + r2(E[0]) + " " + r2(E[1]);
+      pts7.push(S, E, M);
+    }
+  });
+  p7 += " Z";
+  const xL = Math.min(...pts7.map(p => p[0])), xR = Math.max(...pts7.map(p => p[0]));
+  const yT = Math.min(...pts7.map(p => p[1])), yB = Math.max(...pts7.map(p => p[1]));
+  const cx = r2((xL + xR) / 2);
+  remoteLot.push(path(p7, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1 }));
+  remoteLot.push(path(p7, { fill: "none", stroke: "#1C2B26", "stroke-width": 1.2, "stroke-dasharray": "14 5 3 5" }));
+  // stall striping — two double-loaded rows (±24 spaces), schematic until item 4
+  for (let r = 0; r < 2; r++) {
+    const ry = r2(yT + 78 + r * 86);
+    remoteLot.push(line(r2(xL + 16), ry, r2(xR - 16), ry, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
+    for (let rx = Math.ceil(xL + 16); rx <= xR - 16; rx += 20)
+      remoteLot.push(line(r2(rx), ry - 24, r2(rx), ry + 24, { stroke: "#C9CEBE", "stroke-width": 1 }));
+  }
+  remoteLot.push(text(cx, r2(yB - 22), "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
+    { class: "svg-lab", "font-size": "10", "text-anchor": "middle", "font-weight": "600" }));
+  remoteLot.push(text(cx, r2(yB - 8), "LOT 7, BLOCK M · PARCEL 6009649 · ±24 SPACES",
+    { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }));
+  remoteLot.push(text(cx, r2(yT - 10), "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
+    { class: "svg-lab", "font-size": "9.5", "text-anchor": "middle" }));
+  remoteLot.push(text(r2(xR + 10), r2((yT + yB) / 2), "S38°32'00\"E 75.00' FRONTAGE · 150.17' DEEP",
+    { class: "svg-lab", "font-size": "8", "text-anchor": "middle", transform: "rotate(90 " + r2(xR + 10) + " " + r2((yT + yB) / 2) + ")" }));
+  remoteLot.push(line(cx, r2(yB), cx, 96, { stroke: "#8A937F", "stroke-width": 1.5, "stroke-dasharray": "5 4" }));
 }
-remoteLot.push(text(1216, -40, "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
-  { class: "svg-lab", "font-size": "10", "text-anchor": "middle", "font-weight": "600" }));
-remoteLot.push(text(1216, -26, "LOT 7, BLOCK M · ASSESSOR PARCEL 6009649 · ±14,375 SF · ±24 SPACES",
-  { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }));
-remoteLot.push(text(1216, -234, "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
-  { class: "svg-lab", "font-size": "9.5", "text-anchor": "middle" }));
-remoteLot.push(line(1216, -12, 1216, 96, { stroke: "#8A937F", "stroke-width": 1.5, "stroke-dasharray": "5 4" }));
 
 /* ── parking layer: storefront row, liquor line, main field, Lot 8 ── */
 const parking = [];
@@ -220,50 +248,93 @@ for (let r = 0; r < 2; r++) {
   for (let x = 336; x <= 1010; x += 33)
     parking.push(line(x - 9, y - 22, x + 9, y + 22, { stroke: "#C9CEBE", "stroke-width": 1 }));
 }
-parking.push(text(673, 630, "MAIN PARKING FIELD · FILLS FIRST · 324 STALLS SITE-WIDE PER VARIANCE ENTRY 99-11797 (344 REQUIRED)",
+parking.push(text(673, 656, "MAIN PARKING FIELD · FILLS FIRST · 324 STALLS SITE-WIDE PER VARIANCE ENTRY 99-11797 (344 REQUIRED)",
   { class: "svg-lab", "font-size": "10.5", "text-anchor": "middle" }));
-// LOT 8 — pocket lot at Patricia × Marie Antoinette corner (added 3/26/98 per plat rev.)
-parking.push(rect(1100, 102, 254, 98, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1, rx: 3 }));
-parking.push(line(1120, 150, 1334, 150, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
-for (let x = 1120; x <= 1334; x += 22)
+// LOT 8 — pocket at Patricia × M.A. corner (added 3/26/98 per plat rev.);
+// extent fitted between the long building's Patricia end and Patricia R/W —
+// exact trace pending item 4
+parking.push(rect(1136, 102, 218, 98, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1, rx: 3 }));
+parking.push(line(1154, 150, 1336, 150, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
+for (let x = 1154; x <= 1336; x += 22)
   parking.push(line(x, 128, x, 172, { stroke: "#C9CEBE", "stroke-width": 1 }));
-parking.push(text(1227, 192, "LOT 8 — ±15 SPACES (PATRICIA / M.A. CORNER)",
+parking.push(text(1245, 192, "LOT 8 — ±15 SPACES (PATRICIA / M.A. CORNER)",
   { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }));
 
-/* ── building placements (plat-proportioned, identical math to baseline) ── */
-const LONG = ["101","103","105","107","109","111","113","115","117","117.5","119","119.5","121","123","125","127","129","131","133"];
-const RUN = ["137","139","141","143","145","149"];
-const placed = {};
-// Long building: hugs Marie Antoinette, 101 at Johnston end → 133 at Patricia end
-const LB_X = 150, LB_Y = 100, LB_W = 916, LB_H = 178;
-const longTotal = LONG.reduce((s, k) => s + SF[k], 0);
-let x = LB_X;
-LONG.forEach(k => {
-  const w = Math.max(30, (SF[k] / longTotal) * LB_W);
-  placed[k] = { x, y: LB_Y, w: w - 2, h: LB_H };
-  x += w;
-});
-// Short building: vertical run 137→149 reaching Arnould corner; 135A/B wing on top
-const SB_X = 1096, SB_W = 192, RUN_Y = 280, RUN_H = 362;
-const runTotal = RUN.reduce((s, k) => s + SF[k], 0);
-let y = RUN_Y;
-RUN.forEach(k => {
-  const h = Math.max(40, (SF[k] / runTotal) * RUN_H);
-  placed[k] = { x: SB_X, y, w: SB_W, h: h - 2 };
-  y += h;
-});
-placed["135A"] = { x: SB_X, y: 208, w: SB_W / 2 - 1, h: 68 };        // west half of wing
-placed["135B"] = { x: SB_X + SB_W / 2 + 1, y: 208, w: SB_W / 2 - 1, h: 68 }; // east half (Patricia side)
+/* ── building placements — plat-exact demising (REV 6) ──────────────
+   Long building: 85.45' deep, demising widths from the plat's dimension
+   strings (Montagnet & Domingue). Widths marked "derived" are SF-proportional
+   splits inside a measured plat envelope (today's demising differs from the
+   2019 plat-era tenancy there). Patricia → Johnston order.                 */
+const LB_DEPTH = 85.45;          // plat: end-wall dimension string
+const LB_REAR_SETBACK = 10;      // rear face at the 10' utility easement off M.A. R/W
+const LB_EAST_GAP = 19.07;       // plat: building SE corner to boundary at Johnston end
+const LB_BAYS = [ // [unit, width ft, source]
+  ["133", 14.88, "derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block"],
+  ["131", 22.32, "derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block"],
+  ["129", 20.9, "plat"], ["127", 29.7, "plat"], ["125", 20.3, "plat"], ["123", 41.7, "plat"],
+  ["121", 20.0, "plat"], ["119.5", 23.1, "plat"], ["119", 23.2, "plat"],
+  ["117.5", 20.2, "plat (string conflicts with plat SF 1,769 → 20.7'; string governs)"],
+  ["117", 25.4, "plat"], ["115", 25.4, "plat"],
+  ["113", 30.78, "derived: SF split of plat 80.8' (LOT 12) block"],
+  ["111", 19.96, "derived: SF split of plat 80.8' (LOT 12) block"],
+  ["109", 30.07, "derived: SF split of plat 80.8' (LOT 12) block"],
+  ["107", 20.4, "plat"], ["105", 26.0, "plat"],
+  ["103", 33.21, "derived: SF split of plat 108.00' (BROTHER'S) end block"],
+  ["101", 74.79, "derived: SF split of plat 108.00' (BROTHER'S) end block"]
+];
+/* Short building: along Patricia, 84.49' deep, 208.65' long (plat wall dim).
+   Jason's Deli (149) at the Arnould end. 1,917 SF bays share the residual
+   evenly. 135A/135B are 18.7' full-depth sections (plat: POLITICS 3,160);
+   ASSUMPTION: 135B at the Marie Antoinette end, 135A adjacent to 137.     */
+const SB_DEPTH = 84.49;
+const SB_FACE_FROM_PATRICIA_RW = 26.5;  // scaled from plat (no string)
+const SB_NORTH_FROM_ARNOULD_RW = 26.0;  // scaled from plat (no string)
+const SB_BAYS = [ // Marie Antoinette end → Arnould end
+  ["135B", 18.7, "plat 37.4' POLITICS section halved; end placement assumed"],
+  ["135A", 18.7, "plat 37.4' POLITICS section halved"],
+  ["137", 24.3, "plat"],
+  ["139", 23.0875, "derived: (208.65 − 54.6 − 24.3 − 37.4) / 4"],
+  ["141", 23.0875, "derived"], ["143", 23.0875, "derived"], ["145", 23.0875, "derived"],
+  ["149", 54.6, "plat"]
+];
 
-// sidewalks (baseline appends these to the base layer)
-base.push(rect(LB_X, LB_Y + LB_H + 2, LB_W - 2, 18, { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 1 }));
-base.push(rect(SB_X - 20, 208, 18, 434, { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 1 }));
+const placed = {};
+// long building: rear backs M.A.; east face 19.07' from the boundary's Johnston terminus
+const lbAEast = 641.77 - LB_EAST_GAP;
+const lbLen = LB_BAYS.reduce((s, b) => s + b[1], 0);
+const lbY = r2(ENV.yBottom - ky * (300 - LB_REAR_SETBACK));
+const lbH = r2(ky * LB_DEPTH);
+{
+  let a = lbAEast - lbLen; // west (Patricia-side) end
+  LB_BAYS.forEach(([unit, w]) => {
+    const x = ENV.xRight - kx * (a + w + 25);
+    placed[unit] = { x: r2(x), y: lbY, w: r2(kx * w - 2), h: lbH };
+    a += w;
+  });
+}
+// short building: along Patricia; stacked from the M.A. end toward Arnould
+const sbXRight = r2(ENV.xRight - kx * SB_FACE_FROM_PATRICIA_RW);
+const sbW = r2(kx * SB_DEPTH);
+const sbLen = SB_BAYS.reduce((s, b) => s + b[1], 0);
+const sbYSouth = r2(ENV.yBottom - ky * SB_NORTH_FROM_ARNOULD_RW); // Arnould-end face
+const sbYNorth = r2(sbYSouth - ky * sbLen);                        // M.A.-end face
+{
+  let off = 0; // feet from the M.A. end
+  SB_BAYS.forEach(([unit, w]) => {
+    placed[unit] = { x: r2(sbXRight - sbW), y: r2(sbYNorth + ky * off), w: sbW, h: r2(ky * w - 2) };
+    off += w;
+  });
+}
+
+// sidewalks along both storefront faces (base layer, below buildings)
+base.push(rect(r2(placed["101"].x), r2(lbY + lbH + 2), r2(kx * lbLen - 2), 18, { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 1 }));
+base.push(rect(r2(sbXRight - sbW - 20), sbYNorth, 18, r2(ky * sbLen), { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 1 }));
 
 /* ── annotations ── */
 const annotations = [
-  text(150, 92, "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
+  text(160, 110, "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
     { class: "svg-lab", "font-size": "9.5" }),
-  text(1306, 92, "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
+  text(r2(sbXRight), r2(sbYSouth + 14), "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
     { class: "svg-lab", "font-size": "9.5", "text-anchor": "end" })
 ];
 
@@ -295,16 +366,20 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 5 — BOUNDARY PER RECORDED METES & BOUNDS (M&D PLAT)", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 6 — BLDG FOOTPRINTS, DEMISING & LOT 7 PER PLAT", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 5",
-  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; interior still schematic, rotated 90° CW)",
-  viewBox: { main: "0 0 1480 990", full: "0 -258 1480 1248" },
+  rev: "REV 6",
+  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; parking/liquor line still schematic)",
+  viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
+  demising: {
+    longBuilding: { depthFt: LB_DEPTH, rearSetbackFt: LB_REAR_SETBACK, eastGapFt: LB_EAST_GAP, lengthFt: r2(lbLen), bays: LB_BAYS },
+    shortBuilding: { depthFt: SB_DEPTH, patriciaOffsetFt: SB_FACE_FROM_PATRICIA_RW, arnouldOffsetFt: SB_NORTH_FROM_ARNOULD_RW, lengthFt: r2(sbLen), bays: SB_BAYS }
+  },
   // audit record: metes & bounds in feet + the feet→px transform used for the boundary
   boundary: {
     mainTract: { ...MAIN_TRACT, closureFt: r2(main.closureFt) },
