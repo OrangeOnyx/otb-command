@@ -2,8 +2,8 @@
  "rev": "REV 11",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
  "viewBox": {
-  "main": "0 0 1480 990",
-  "full": "0 -310 1480 1300"
+  "main": "0 0 1480 1142",
+  "full": "0 -310 1480 1452"
  },
  "demising": {
   "longBuilding": {
@@ -5186,61 +5186,384 @@
    {
     "t": "text",
     "x": 84,
-    "y": 826,
-    "s": "1.  PARKING VARIANCE ENTRY 99-11797 — 324 PROVIDED / 344 REQUIRED. FLOOR SPACE “LIMITED TO AVAILABLE PARKING SPACES.” ASSESS EVERY LEASE OR LICENSE AGAINST THIS FIGURE.",
+    "y": 823,
+    "s": "1.  PARKING VARIANCE ENTRY 99-11797 — 324 PROVIDED / 344 REQUIRED. FLOOR SPACE “LIMITED TO AVAILABLE PARKING",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9.5"
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
     }
    },
    {
     "t": "text",
     "x": 84,
-    "y": 851,
-    "s": "2.  OUR SAVIOR'S CHURCH ACCESS & PARKING EASEMENT — $350/MO · 25-YR TERM · SUNDAYS + 6PM–MIDNIGHT · §3a LIQUOR WAIVER SURVIVES TERMINATION (ENABLES RESTAURANT LEASING WITHIN 175 FT).",
+    "y": 836.5,
+    "s": "      SPACES.” ASSESS EVERY LEASE OR LICENSE AGAINST THIS FIGURE.",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9.5"
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
     }
    },
    {
     "t": "text",
     "x": 84,
-    "y": 876,
-    "s": "3.  JD BANK RECIPROCAL EASEMENT — $250/MO TO BELLE + 13 BANK SPACES · 50/50 MAINTENANCE SPLIT · EXPIRES 12/30/2034 · SUPERSEDES ENTRY 2004-00057697.",
+    "y": 850,
+    "s": "2.  OUR SAVIOR'S CHURCH ACCESS & PARKING EASEMENT — $350/MO · 25-YR TERM · SUNDAYS + 6PM–MIDNIGHT · §3a LIQUOR",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9.5"
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
     }
    },
    {
     "t": "text",
     "x": 84,
-    "y": 901,
-    "s": "4.  PARKING FILL ORDER: MAIN FIELD → LOT 8 (19 SP PER PLAT, PATRICIA/M.A. CORNER) → LOT 7 (REMOTE, BLK M, 32 SP PER PLAT). ZONING ALSO REQUIRES 20% GREEN AREA. CROSS-PARKING LICENSES NON-EXCLUSIVE — NO ASSIGNED STALLS.",
+    "y": 863.5,
+    "s": "      WAIVER SURVIVES TERMINATION (ENABLES RESTAURANT LEASING WITHIN 175 FT).",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9.5"
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
     }
    },
    {
     "t": "text",
     "x": 84,
-    "y": 926,
-    "s": "5.  LEGAL: LOTS 1–3, 1–14, PARTITION OF LOTS 1 & 2 BLK I + REMOTE PARCEL, BLK M, ARNOLD HEIGHTS SUBD. EXT. NO. 1 · 4.84 AC · OUTSIDE SFHA. ASSESSOR: 6026783 · 6026784 · 6026785 · 6026788 · 6009649 (REMOTE).",
+    "y": 877,
+    "s": "3.  JD BANK RECIPROCAL EASEMENT — $250/MO TO BELLE + 13 BANK SPACES · 50/50 MAINTENANCE SPLIT · EXPIRES",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9.5"
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
     }
    },
    {
     "t": "text",
     "x": 84,
-    "y": 951,
-    "s": "6.  STREET SPELLING VARIANTS ‘ARNAULD / ARNOLD / ARNOULD’ — TITLE CHECK PENDING (P0). PLAT: MONTAGNET & DOMINGUE, INC., 5/20/1994, LAST REV. 7/19/2019.",
+    "y": 890.5,
+    "s": "      12/30/2034 · SUPERSEDES ENTRY 2004-00057697.",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9.5"
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 904,
+    "s": "4.  PARKING FILL ORDER: MAIN FIELD → LOT 8 (19 SP PER PLAT, PATRICIA/M.A. CORNER) → LOT 7 (REMOTE, BLK M, 32",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 917.5,
+    "s": "      SP PER PLAT). ZONING ALSO REQUIRES 20% GREEN AREA. CROSS-PARKING LICENSES NON-EXCLUSIVE — NO ASSIGNED",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 931,
+    "s": "      STALLS.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 944.5,
+    "s": "5.  LEGAL: LOTS 1–3, 1–14, PARTITION OF LOTS 1 & 2 BLK I + REMOTE PARCEL, BLK M, ARNOLD HEIGHTS SUBD. EXT. NO.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 958,
+    "s": "      1 · 4.84 AC · OUTSIDE SFHA. ASSESSOR: 6026783 · 6026784 · 6026785 · 6026788 · 6009649 (REMOTE).",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 971.5,
+    "s": "6.  STREET SPELLING VARIANTS ‘ARNAULD / ARNOLD / ARNOULD’ — TITLE CHECK PENDING (P0). PLAT: MONTAGNET &",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 985,
+    "s": "      DOMINGUE, INC., 5/20/1994, LAST REV. 7/19/2019.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "xml:space": "preserve",
+     "style": "white-space:pre"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 70,
+    "y": 990,
+    "w": 978,
+    "h": 140,
+    "attrs": {
+     "fill": "#F6F7F1",
+     "stroke": "#1C2B26",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 70,
+    "y1": 1018,
+    "x2": 1048,
+    "y2": 1018,
+    "attrs": {
+     "stroke": "#1C2B26",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1010,
+    "s": "USING THIS PROGRAM",
+    "attrs": {
+     "fill": "#1C2B26",
+     "style": "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1036,
+    "s": "1.  CLICK ANY UNIT ON A-1 OR ANY ROW ON R-1 TO OPEN THE UNIT DRAWER — LEASE, RENT, NOTES & COMPLIANCE DETAIL.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1054,
+    "s": "2.  C-1 MATRIX: CLICK ANY CELL TO CYCLE U → OK → FLAG → N/A. THE DRAWER'S COMPLIANCE CHIPS CYCLE THE SAME STATES.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1072,
+    "s": "3.  UNIT NOTES EDIT IN THE DRAWER — OVERRIDES ARE FLAGGED AND REVERT WHEN THE TEXT MATCHES THE SOT. ALL EDITS PERSIST IN THIS BROWSER.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1090,
+    "s": "4.  EXPORT JSON (TOP BAR) SNAPSHOTS EVERY EDIT; IMPORT JSON RESTORES A SNAPSHOT — USE FOR BACKUP OR MOVING MACHINES.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1108,
+    "s": "5.  A-1 TOOLS: SCOPE MAIN PARCEL vs FULL SITE + REMOTE LOT · COLOR BY STATUS / EXPIRATION / RENT PSF / USE TYPE · HOVER FOR THE QUICK CARD.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 84,
+    "y": 1126,
+    "s": "DATA: RECORDED PLAT (MONTAGNET & DOMINGUE, REV 7/19/2019) · SOT WORKBOOK v1.1 · FULL TRACE AUDIT EMBEDDED IN GEOMETRY.JSON.",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1064,
+    "y": 990,
+    "w": 296,
+    "h": 140,
+    "attrs": {
+     "fill": "#F6F7F1",
+     "stroke": "#1C2B26",
+     "stroke-width": 1.2
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1064,
+    "y1": 1018,
+    "x2": 1360,
+    "y2": 1018,
+    "attrs": {
+     "stroke": "#1C2B26",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1064,
+    "y1": 1098,
+    "x2": 1360,
+    "y2": 1098,
+    "attrs": {
+     "stroke": "#1C2B26",
+     "stroke-width": 0.6
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1010,
+    "s": "PLANNED ADDITIONS",
+    "attrs": {
+     "fill": "#1C2B26",
+     "style": "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1033,
+    "s": "·  ROOF/HVAC & PYLON SIGN PHOTO OVERLAYS",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1044.5,
+    "s": "·  PER-UNIT FLOOR-PLAN VIEWER",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1056,
+    "s": "·  DOORLOOP RENT-ROLL IMPORT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1067.5,
+    "s": "·  EXPIRATION / HOLDOVER ALERTING",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1079,
+    "s": "·  PARKING Δ −10 RECONCILIATION MEMO",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1090.5,
+    "s": "·  SERVER PERSISTENCE (NODE + SQLITE)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1108,
+    "s": "REV LOG: 4 BASELINE · 5 BOUNDARY M&B",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1118,
+    "s": "6 BLDGS+LOT 7 · 7 135A/B · 8 LIQUOR LINE",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1078,
+    "y": 1128,
+    "s": "9 PARKING · 10 STREETS · 11 EASEMENTS ◀",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5"
     }
    }
   ],
@@ -5306,37 +5629,37 @@
     "s": "SHEET A-1 · SITE PLAN · ZONED CH",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9"
+     "font-size": "8"
     }
    },
    {
     "t": "text",
     "x": 1078,
     "y": 858,
-    "s": "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT",
+    "s": "62,883 SF · 27 UNITS · 2 BLDGS + LOT 7",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9"
+     "font-size": "8"
     }
    },
    {
     "t": "text",
     "x": 1078,
     "y": 874,
-    "s": "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)",
+    "s": "GEOMETRY PER PLAT (ROTATED 90° CW)",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9"
+     "font-size": "8"
     }
    },
    {
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 11 — EASEMENT & UTILITY OVERLAYS PER PLAT",
+    "s": "REV 11 — EASEMENT & UTILITY OVERLAYS",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "9"
+     "font-size": "8"
     }
    },
    {
