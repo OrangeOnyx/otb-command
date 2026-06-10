@@ -1,6 +1,7 @@
-/* Deterministic geometry extraction — replicates baseline/OTB_Command_v7.html
-   drawPlan() placement math exactly and emits src/data/geometry.json.
-   Geometry derived from recorded plat (Montagnet & Domingue, rev. 2020 print),
+/* Deterministic geometry extraction — emits src/data/geometry.json.
+   Schematic frame replicates baseline/OTB_Command_v7.html drawPlan() exactly;
+   the parcel boundary (REV 5) is traced from the recorded metes & bounds
+   (Montagnet & Domingue plat, 5/20/1994, last rev. 7/19/2019 — legal description),
    rotated 90° CW: Johnston=left, Patricia=right, Marie Antoinette=top, Arnould=bottom.
    Re-run with `npm run extract-geometry` after editing this file. */
 import { readFileSync, writeFileSync } from "node:fs";
@@ -15,6 +16,135 @@ const rect = (x, y, w, h, attrs = {}) => ({ t: "rect", x, y, w, h, attrs });
 const line = (x1, y1, x2, y2, attrs = {}) => ({ t: "line", x1, y1, x2, y2, attrs });
 const text = (x, y, s, attrs = {}) => ({ t: "text", x, y, s, attrs });
 const path = (d, attrs = {}) => ({ t: "path", d, attrs });
+
+/* ════════════════════════════════════════════════════════════════════
+   PLAT-EXACT BOUNDARY (REV 5) — recorded metes & bounds, Block I tract.
+   Source: legal description, Montagnet & Domingue plat (traced 6/10/2026
+   from plat-of-survey-detailed.pdf; crops in reference/).
+   ════════════════════════════════════════════════════════════════════ */
+const D2R = Math.PI / 180;
+// quadrant bearing → compass azimuth (degrees)
+const az = ([q1, d, m, s, q2]) => {
+  const deg = d + m / 60 + s / 3600;
+  if (q1 === "N" && q2 === "E") return deg;
+  if (q1 === "S" && q2 === "E") return 180 - deg;
+  if (q1 === "S" && q2 === "W") return 180 + deg;
+  return 360 - deg; // N…W
+};
+const dir = a => [Math.sin(a * D2R), Math.cos(a * D2R)]; // ENU unit vector
+const fmtB = ([q1, d, m, s, q2]) =>
+  q1 + d + "°" + String(m).padStart(2, "0") + "'" + String(s).padStart(2, "0") + "\"" + q2;
+
+const MAIN_TRACT = {
+  name: "Block I tract — Arnould Heights Subd. + Ext. No. 1 (partition of Lots 1 & 2)",
+  commence: "SW R/W corner, Arnould Blvd × Patricia St; thence S38°32'00\"E 25.00' to POB",
+  courses: [
+    { type: "line", bearing: ["S", 38, 32, 0, "E"], dist: 550.12, along: "Arnould Blvd" },
+    { type: "line", bearing: ["S", 51, 28, 0, "W"], dist: 100.00, along: "excluded corner parcel NW line" },
+    { type: "line", bearing: ["S", 38, 32, 0, "E"], dist: 120.61, along: "excluded corner parcel SW line" },
+    { type: "curve", side: "L", R: 1872.44, L: 168.53, chordBearing: ["S", 51, 7, 34, "W"], chord: 168.48, along: "Johnston St / US 167" },
+    { type: "curve", side: "R", R: 30.00, L: 48.65, chordBearing: ["N", 84, 59, 34, "W"], chord: 43.49, along: "Johnston × Marie Antoinette return" },
+    { type: "line", bearing: ["N", 38, 32, 0, "W"], dist: 641.77, along: "Marie Antoinette St" },
+    { type: "curve", side: "R", R: 25.00, L: 39.27, chordBearing: ["N", 6, 28, 0, "E"], chord: 35.36, along: "Marie Antoinette × Patricia return" },
+    { type: "line", bearing: ["N", 51, 28, 0, "E"], dist: 250.00, along: "Patricia St" },
+    { type: "curve", side: "R", R: 25.00, L: 39.27, chordBearing: ["S", 83, 32, 0, "E"], chord: 35.36, along: "Patricia × Arnould return" }
+  ]
+};
+const LOT7_TRACT = {
+  name: "Lot 7, Block M — Arnould Heights Subd. Ext. No. 1 (remote parking, parcel 6009649)",
+  commence: "SW R/W corner, Marie Antoinette St × Patricia St; thence S38°32'00\"E 25.00' to POB",
+  courses: [
+    { type: "line", bearing: ["S", 38, 32, 0, "E"], dist: 75.00 },
+    { type: "line", bearing: ["S", 51, 28, 0, "W"], dist: 150.17 },
+    { type: "line", bearing: ["N", 38, 43, 28, "W"], dist: 100.00 },
+    { type: "line", bearing: ["N", 51, 28, 0, "E"], dist: 125.50 },
+    { type: "curve", side: "R", R: 25.00, L: 39.27, chordBearing: ["S", 83, 32, 0, "E"], chord: 35.36 }
+  ]
+};
+
+// integrate courses in ENU feet from POB(0,0); curves positioned by chord, mid-arc kept for sweep/extents
+function traceCourses(courses) {
+  let P = [0, 0];
+  const segs = [];
+  for (const c of courses) {
+    const start = P;
+    if (c.type === "line") {
+      const v = dir(az(c.bearing));
+      P = [start[0] + c.dist * v[0], start[1] + c.dist * v[1]];
+      segs.push({ ...c, start, end: P });
+    } else {
+      const v = dir(az(c.chordBearing));
+      const end = [start[0] + c.chord * v[0], start[1] + c.chord * v[1]];
+      const m = Math.sqrt(c.R * c.R - (c.chord / 2) ** 2);
+      const ctr0 = [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2];
+      const cv = dir(az(c.chordBearing) + (c.side === "R" ? 90 : -90));
+      const ctr = [ctr0[0] + m * cv[0], ctr0[1] + m * cv[1]];
+      const w = [ctr0[0] - ctr[0], ctr0[1] - ctr[1]];
+      const wl = Math.hypot(w[0], w[1]);
+      const midArc = [ctr[0] + (w[0] / wl) * c.R, ctr[1] + (w[1] / wl) * c.R];
+      segs.push({ ...c, start, end, midArc });
+      P = end;
+    }
+  }
+  return { segs, closureFt: Math.hypot(P[0], P[1]) };
+}
+
+const main = traceCourses(MAIN_TRACT.courses);
+const lot7 = traceCourses(LOT7_TRACT.courses);
+if (main.closureFt > 0.1) throw new Error("Main tract does not close: " + main.closureFt.toFixed(3) + " ft");
+if (lot7.closureFt > 0.5) throw new Error("Lot 7 tract does not close: " + lot7.closureFt.toFixed(3) + " ft");
+
+// street-grid components: a along S38°32'00"E (Arnould direction, Patricia→Johnston),
+// b along N51°28'00"E (toward Arnould). Streets are complementary (38°32' + 51°28' = 90°).
+const Av = dir(az(["S", 38, 32, 0, "E"])), Bv = dir(az(["N", 51, 28, 0, "E"]));
+const toAB = ([e, n]) => [e * Av[0] + n * Av[1], e * Bv[0] + n * Bv[1]];
+
+const abPts = main.segs.flatMap(s => [s.start, s.end, s.midArc].filter(Boolean).map(toAB));
+const aMin = Math.min(...abPts.map(p => p[0])), aMax = Math.max(...abPts.map(p => p[0]));
+const bMin = Math.min(...abPts.map(p => p[1])), bMax = Math.max(...abPts.map(p => p[1]));
+
+// fit the true boundary into the schematic envelope the REV 4 sketch occupied
+// (x 70→1360, y 96→662) so streets, buildings, and parking stay registered.
+// kx ≠ ky by ~1.9% (sheet is slightly squashed) — documented anisotropy.
+const ENV = { xRight: 1360, xLeft: 70, yBottom: 662, yTop: 96 };
+const kx = (ENV.xRight - ENV.xLeft) / (aMax - aMin);
+const ky = (ENV.yBottom - ENV.yTop) / (bMax - bMin);
+const toXY = ab => [ENV.xRight - kx * (ab[0] - aMin), ENV.yBottom + ky * (ab[1] - bMax)];
+const r2 = n => Math.round(n * 100) / 100;
+
+let bdPath = "";
+const scr = []; // screen-space segs for labels
+main.segs.forEach((s, i) => {
+  const S = toXY(toAB(s.start)), E = toXY(toAB(s.end));
+  if (i === 0) bdPath += "M " + r2(S[0]) + " " + r2(S[1]);
+  if (s.type === "line") {
+    bdPath += " L " + r2(E[0]) + " " + r2(E[1]);
+    scr.push({ ...s, S, E });
+  } else {
+    const M = toXY(toAB(s.midArc));
+    const sweep = ((M[0] - S[0]) * (E[1] - S[1]) - (M[1] - S[1]) * (E[0] - S[0])) > 0 ? 1 : 0;
+    bdPath += " A " + r2(s.R * kx) + " " + r2(s.R * ky) + " 0 0 " + sweep + " " + r2(E[0]) + " " + r2(E[1]);
+    scr.push({ ...s, S, E, M });
+  }
+});
+bdPath += " Z";
+
+// bearing/distance labels, plat-style (positions chosen against the sheet layout)
+const mid = s => [(s.S[0] + s.E[0]) / 2, (s.S[1] + s.E[1]) / 2];
+const lbl = (x, y, str, extra = {}) => text(r2(x), r2(y), str, { class: "svg-lab", "font-size": "8", ...extra });
+const courseLabels = [
+  lbl(mid(scr[0])[0], 673, fmtB(scr[0].bearing) + " — 550.12'", { "text-anchor": "middle" }),                       // Arnould
+  lbl(scr[1].S[0] - 8, mid(scr[1])[1], fmtB(scr[1].bearing) + " 100.00'",
+    { "text-anchor": "middle", transform: "rotate(-90 " + r2(scr[1].S[0] - 8) + " " + r2(mid(scr[1])[1]) + ")" }),  // notch NW line
+  lbl(mid(scr[2])[0], scr[2].S[1] - 7, fmtB(scr[2].bearing) + " 120.61'", { "text-anchor": "middle" }),             // notch SW line
+  lbl(60, mid(scr[3])[1], "R=1872.44' L=168.53' CH=S51°07'34\"W",
+    { "text-anchor": "middle", transform: "rotate(-90 60 " + r2(mid(scr[3])[1]) + ")" }),                           // Johnston curve
+  lbl(140, 452, "R=30.00' L=48.65'"),                                                                               // Johnston × M.A. return
+  lbl(876, 92, fmtB(scr[5].bearing) + " — 641.77'", { "text-anchor": "middle" }),                                   // Marie Antoinette
+  lbl(1374, mid(scr[7])[1], fmtB(scr[7].bearing) + " — 250.00'",
+    { "text-anchor": "middle", transform: "rotate(90 1374 " + r2(mid(scr[7])[1]) + ")" }),                          // Patricia
+  lbl(1305, 644, "R=25.00' L=39.27'", { "text-anchor": "end" })                                                     // Patricia × Arnould return
+];
 
 /* ── base layer: streets, parcel boundary, notch labels, sidewalks ── */
 const base = [];
@@ -42,13 +172,15 @@ base.push(rect(0, 0, 50, 752, { fill: "#DDE0D4" }));
 base.push(line(50, 0, 50, 752, { stroke: "#AEB4A2", "stroke-width": 2 }));
 base.push(text(28, 376, "J O H N S T O N   S T   ·   U S   H W Y   1 6 7   ( ± 1 0 0 '  R / W )",
   { class: "svg-street", "font-size": "14", "text-anchor": "middle", transform: "rotate(-90 28 376)" }));
-// parcel boundary — notched at Johnston × Arnould corner (excluded parcel, sold)
-base.push(path("M 70 96 H 1360 V 662 H 292 V 460 H 70 Z",
+// parcel boundary — plat-exact metes & bounds (REV 5); notch at Johnston ×
+// Arnould corner is the excluded (sold) parcel per courses 2–3
+base.push(path(bdPath,
   { fill: "none", stroke: "#1C2B26", "stroke-width": "1.4", "stroke-dasharray": "14 5 3 5" }));
 base.push(text(178, 556, "NOT A PART",
   { class: "svg-lab", "font-size": "10", "text-anchor": "middle", "letter-spacing": ".22em" }));
 base.push(text(178, 572, "(EXCLUDED CORNER PARCEL)",
   { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" }));
+base.push(...courseLabels);
 
 /* ── remote lot layer: Lot 7, Block M across Marie Antoinette ── */
 const remoteLot = [];
@@ -163,16 +295,26 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 4 — LOT 7/8 CORRECTED · LOT 7 ALIGNED AT PATRICIA CORNER", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 5 — BOUNDARY PER RECORDED METES & BOUNDS (M&D PLAT)", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 4",
-  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (schematic, rotated 90° CW)",
+  rev: "REV 5",
+  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; interior still schematic, rotated 90° CW)",
   viewBox: { main: "0 0 1480 990", full: "0 -258 1480 1248" },
+  // audit record: metes & bounds in feet + the feet→px transform used for the boundary
+  boundary: {
+    mainTract: { ...MAIN_TRACT, closureFt: r2(main.closureFt) },
+    lot7BlockM: { ...LOT7_TRACT, closureFt: r2(lot7.closureFt), note: "courses recorded; outline retrace pending (Phase 3 item 2/4)" },
+    transform: {
+      kxPxPerFt: r2(kx * 1000) / 1000, kyPxPerFt: r2(ky * 1000) / 1000,
+      envelope: ENV, aRangeFt: [r2(aMin), r2(aMax)], bRangeFt: [r2(bMin), r2(bMax)],
+      note: "fit to REV 4 sheet envelope; ~1.9% anisotropy keeps streets/buildings registered"
+    }
+  },
   // layer order = z-order: base under everything, buildings drawn by plan.js between parking and annotations
   layers: { base, remoteLot, parking, annotations, generalNotes, titleBlock },
   units: placed
@@ -182,3 +324,7 @@ writeFileSync(join(root, "src/data/geometry.json"), JSON.stringify(geometry, nul
 console.log("geometry.json written:",
   Object.keys(placed).length, "unit rects,",
   Object.values(geometry.layers).reduce((s, l) => s + l.length, 0), "primitives");
+console.log("main tract closure:", main.closureFt.toFixed(4) + " ft;",
+  "lot 7 closure:", lot7.closureFt.toFixed(4) + " ft");
+console.log("scale:", kx.toFixed(4), "px/ft (x),", ky.toFixed(4), "px/ft (y);",
+  "a:", r2(aMin), "→", r2(aMax), "ft; b:", r2(bMin), "→", r2(bMax), "ft");
