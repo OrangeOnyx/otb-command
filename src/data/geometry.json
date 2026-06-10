@@ -1,5 +1,5 @@
 {
- "rev": "REV 10",
+ "rev": "REV 11",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
  "viewBox": {
   "main": "0 0 1480 990",
@@ -254,6 +254,38 @@
    "johnstonMA": "R=30 L=48.65 (course 5)",
    "bankCorner": "R=30.00 L=49.38 CH=N08°37'26\"E 43.99 (bank parcel corner per plat — street edge only, NOT Belle)"
   }
+ },
+ "easements": {
+  "utility10ft": "perimeter 10' utility easement per plat labels — DRAWN along Arnould (b -10, clipped at the notch), Patricia (a -15), Marie Antoinette (b -290, under the rear parking row) and Lot 7's rear lot line; also labeled along Johnston on the plat (not drawn — tracks the R/W arc)",
+  "electric": {
+   "entry": "577566",
+   "holder": "City of Lafayette",
+   "location": "rear strip, a 547.2–571.2 × b -272.4…-293.4 (plat marker 14) — explains the gap in the rear parallel row",
+   "drawn": true
+  },
+  "guy": {
+   "size": "5×5 ft",
+   "location": "at the pylon-sign pocket on the Johnston-side boundary (plat marker 10 area)",
+   "drawn": true
+  },
+  "drainageExpired": [
+   {
+    "entry": "77-0783",
+    "note": "15' temporary drainage easement, EXPIRED — Lot 7 west side (not drawn)"
+   },
+   {
+    "entry": "77-000784",
+    "note": "15' temporary drainage easement, EXPIRED — Patricia St near the liquor-line crossing (not drawn)"
+   },
+   {
+    "entry": "77-000785",
+    "note": "15' temporary drainage easement, EXPIRED — Patricia at the Jason's Deli corner, plat marker 17 (not drawn)"
+   }
+  ],
+  "church": "Our Savior's Church access & parking easement — $350/mo, 25-yr, Sundays + 6pm–midnight, area-wide (no plat outline); §3a liquor waiver is the drawn liquor line",
+  "jdBank": "JD Bank reciprocal easement — 13 bank spaces drawn in the notch; $250/mo to Belle; 50/50 maintenance; expires 12/30/2034; supersedes 2004-00057697",
+  "titleMarkers": "plat circled exception markers: 10/11/13 (Lot 7 south line), 14 (electric 577566), 16/17 (drainage), 25/27 (Entry 03-060864, Lot 7/pylon area), 26/28 (Lot 2 area) — Fidelity ATC 2007054432 Schedule B §2",
+  "signPocket": "pylon sign pocket at the east boundary with 2 spaces (drawn); the plat jogs the liquor line ~10' around it (jog not drawn)"
  },
  "boundary": {
   "mainTract": {
@@ -1103,6 +1135,18 @@
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1308.16,
+    "y1": -243.97,
+    "x2": 1174.85,
+    "y2": -243.97,
+    "attrs": {
+     "stroke": "#8A937F",
+     "stroke-width": 1,
+     "stroke-dasharray": "6 4"
     }
    },
    {
@@ -4533,18 +4577,6 @@
     }
    },
    {
-    "t": "line",
-    "x1": 1124.86,
-    "y1": 114.88,
-    "x2": 165.78,
-    "y2": 114.88,
-    "attrs": {
-     "stroke": "#C9CEBE",
-     "stroke-width": 1,
-     "stroke-dasharray": "2 4"
-    }
-   },
-   {
     "t": "text",
     "x": 336.12,
     "y": 119.27,
@@ -4932,6 +4964,116 @@
      "font-size": "6.5",
      "text-anchor": "middle"
     }
+   },
+   {
+    "t": "line",
+    "x1": 1360,
+    "y1": 643.13,
+    "x2": 295.39,
+    "y2": 643.13,
+    "attrs": {
+     "stroke": "#8A937F",
+     "stroke-width": 1,
+     "stroke-dasharray": "6 4",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 234.29,
+    "y": 650.68,
+    "s": "10' UTILITY EASEMENT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1341.48,
+    "y1": 100,
+    "x2": 1341.48,
+    "y2": 658,
+    "attrs": {
+     "stroke": "#8A937F",
+     "stroke-width": 1,
+     "stroke-dasharray": "6 4",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1346.11,
+    "y": 250,
+    "s": "10' UTILITY EASEMENT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "text-anchor": "middle",
+     "transform": "rotate(-90 1346.11 250)"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1350.74,
+    "y1": 114.88,
+    "x2": 138.01,
+    "y2": 114.88,
+    "attrs": {
+     "stroke": "#8A937F",
+     "stroke-width": 1,
+     "stroke-dasharray": "6 4",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 112,
+    "y": 111.88,
+    "s": "10' UTIL ESMT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 256.14,
+    "y": 108.46,
+    "w": 44.43,
+    "h": 39.62,
+    "attrs": {
+     "fill": "none",
+     "stroke": "#8A937F",
+     "stroke-width": 1,
+     "stroke-dasharray": "4 3"
+    }
+   },
+   {
+    "t": "text",
+    "x": 278.36,
+    "y": 158.72,
+    "s": "ELEC. ESMT 577566",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 86.17,
+    "y": 369.57,
+    "w": 9.26,
+    "h": 9.44,
+    "attrs": {
+     "fill": "none",
+     "stroke": "#8A937F",
+     "stroke-width": 1,
+     "stroke-dasharray": "3 2"
+    }
    }
   ],
   "annotations": [
@@ -5191,7 +5333,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 10 — STREET R/W EDGES & CORNER RETURNS PER PLAT",
+    "s": "REV 11 — EASEMENT & UTILITY OVERLAYS PER PLAT",
     "attrs": {
      "class": "svg-lab",
      "font-size": "9"

@@ -258,6 +258,11 @@ const remoteLot = [];
   row7(8, 62, -2, -20.5, 6);        // 6 SPACES — frontage row (noses M.A.)
   row7(3, 75, -55, -73.5, 8);       // 8 SPACES — mid row
   row7(3, 75, -112, -130.5, 8);     // 8 SPACES — rear row
+  {                                  // 10' utility easement along the rear lot line (plat)
+    const A = P7(3, -140.2), B = P7(75, -140.2);
+    remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]),
+      { stroke: "#8A937F", "stroke-width": 1, "stroke-dasharray": "6 4" }));
+  }
   for (let i = 0; i <= 10; i++) {   // 10 SPACES — east-line column (horizontal ticks)
     const db = -26 - i * 9;
     const A = P7(56, db), B = P7(74.5, db);
@@ -398,7 +403,6 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
       parking.push(line(ax(a), by(-283), ax(a), by(-297), TICK));
     }
   });
-  parking.push(line(ax(102), by(-290), ax(620), by(-290), { ...TICK, "stroke-dasharray": "2 4" }));
   parking.push(zlab(ax(528), by(-289) + 2.5, "REAR PARKING — 18 PARALLEL (4+4+4+4+2)", 6.5));
 }
 
@@ -422,6 +426,29 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   for (let i = 0; i <= 7; i++) parking.push(line(ax(652), by(-20 - i * 9), ax(668), by(-20 - i * 9), TICK));   // 7 along Johnston
   parking.push(zlab(183, 528, "JD BANK — 13 SPACES (6+7)", 7.5, { "font-weight": "600" }));
   parking.push(zlab(183, 539, "RECIPROCAL EASEMENT $250/MO · EXP. 12/30/2034", 6.5));
+}
+
+/* ── easement overlays (REV 11) — live easements drawn, expired recorded
+   in the audit block only. Perimeter 10' utility easement labeled on the
+   plat along Arnould, Patricia and M.A. (also Johnston — not drawn, it
+   tracks the R/W arc); City of Lafayette electric easement entry 577566
+   at the rear (plat marker 14); 5×5' guy easement at the pylon sign.   */
+{
+  const ESMT = { stroke: "#8A937F", "stroke-width": 1, "stroke-dasharray": "6 4", "pointer-events": "none" };
+  parking.push(line(ax(-25), by(-10), ax(550), by(-10), ESMT));            // Arnould — 10' in from b=0, clipped at the notch
+  parking.push(zlab(ax(583), by(-6), "10' UTILITY EASEMENT", 6));
+  parking.push(line(r2(ax(-15)), 100, r2(ax(-15)), 658, ESMT));            // Patricia — 10' in from a=-25
+  parking.push(zlab(ax(-17.5), 250, "10' UTILITY EASEMENT", 6,
+    { transform: "rotate(-90 " + ax(-17.5) + " 250)" }));
+  parking.push(line(ax(-20), by(-290), ax(635), by(-290), ESMT));          // M.A. — 10' in from b=-300
+  parking.push(zlab(112, by(-290) - 3, "10' UTIL ESMT", 6));
+  // City of Lafayette electric easement — Entry 577566 (plat marker 14)
+  parking.push(rect(ax(571.2), by(-293.4), r2(ax(547.2) - ax(571.2)), r2(by(-272.4) - by(-293.4)),
+    { fill: "none", stroke: "#8A937F", "stroke-width": 1, "stroke-dasharray": "4 3" }));
+  parking.push(zlab((ax(547.2) + ax(571.2)) / 2, by(-271) + 8, "ELEC. ESMT 577566", 5.5));
+  // 5×5' guy easement at the pylon-sign pocket (plat marker 10 area)
+  parking.push(rect(ax(663), by(-155), r2(ax(658) - ax(663)), r2(by(-150) - by(-155)),
+    { fill: "none", stroke: "#8A937F", "stroke-width": 1, "stroke-dasharray": "3 2" }));
 }
 
 /* ── building placements — plat-exact demising (REV 6) ──────────────
@@ -587,14 +614,14 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 10 — STREET R/W EDGES & CORNER RETURNS PER PLAT", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 11 — EASEMENT & UTILITY OVERLAYS PER PLAT", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 10",
+  rev: "REV 11",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
@@ -649,6 +676,20 @@ const geometry = {
       johnstonMA: "R=30 L=48.65 (course 5)",
       bankCorner: "R=30.00 L=49.38 CH=N08°37'26\"E 43.99 (bank parcel corner per plat — street edge only, NOT Belle)"
     }
+  },
+  easements: {
+    utility10ft: "perimeter 10' utility easement per plat labels — DRAWN along Arnould (b -10, clipped at the notch), Patricia (a -15), Marie Antoinette (b -290, under the rear parking row) and Lot 7's rear lot line; also labeled along Johnston on the plat (not drawn — tracks the R/W arc)",
+    electric: { entry: "577566", holder: "City of Lafayette", location: "rear strip, a 547.2–571.2 × b -272.4…-293.4 (plat marker 14) — explains the gap in the rear parallel row", drawn: true },
+    guy: { size: "5×5 ft", location: "at the pylon-sign pocket on the Johnston-side boundary (plat marker 10 area)", drawn: true },
+    drainageExpired: [
+      { entry: "77-0783", note: "15' temporary drainage easement, EXPIRED — Lot 7 west side (not drawn)" },
+      { entry: "77-000784", note: "15' temporary drainage easement, EXPIRED — Patricia St near the liquor-line crossing (not drawn)" },
+      { entry: "77-000785", note: "15' temporary drainage easement, EXPIRED — Patricia at the Jason's Deli corner, plat marker 17 (not drawn)" }
+    ],
+    church: "Our Savior's Church access & parking easement — $350/mo, 25-yr, Sundays + 6pm–midnight, area-wide (no plat outline); §3a liquor waiver is the drawn liquor line",
+    jdBank: "JD Bank reciprocal easement — 13 bank spaces drawn in the notch; $250/mo to Belle; 50/50 maintenance; expires 12/30/2034; supersedes 2004-00057697",
+    titleMarkers: "plat circled exception markers: 10/11/13 (Lot 7 south line), 14 (electric 577566), 16/17 (drainage), 25/27 (Entry 03-060864, Lot 7/pylon area), 26/28 (Lot 2 area) — Fidelity ATC 2007054432 Schedule B §2",
+    signPocket: "pylon sign pocket at the east boundary with 2 spaces (drawn); the plat jogs the liquor line ~10' around it (jog not drawn)"
   },
   // audit record: metes & bounds in feet + the feet→px transform used for the boundary
   boundary: {
