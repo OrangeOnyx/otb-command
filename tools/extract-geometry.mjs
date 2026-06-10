@@ -178,9 +178,9 @@ base.push(text(28, 376, "J O H N S T O N   S T   ·   U S   H W Y   1 6 7   ( ±
 // Arnould corner is the excluded (sold) parcel per courses 2–3
 base.push(path(bdPath,
   { fill: "none", stroke: "#1C2B26", "stroke-width": "1.4", "stroke-dasharray": "14 5 3 5" }));
-base.push(text(178, 556, "NOT A PART",
+base.push(text(178, 500, "NOT A PART",
   { class: "svg-lab", "font-size": "10", "text-anchor": "middle", "letter-spacing": ".22em" }));
-base.push(text(178, 572, "(EXCLUDED CORNER PARCEL)",
+base.push(text(178, 514, "(EXCLUDED CORNER PARCEL)",
   { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" }));
 base.push(...courseLabels);
 
@@ -210,16 +210,29 @@ const remoteLot = [];
   const cx = r2((xL + xR) / 2);
   remoteLot.push(path(p7, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1 }));
   remoteLot.push(path(p7, { fill: "none", stroke: "#1C2B26", "stroke-width": 1.2, "stroke-dasharray": "14 5 3 5" }));
-  // stall striping — two double-loaded rows (±24 spaces), schematic until item 4
-  for (let r = 0; r < 2; r++) {
-    const ry = r2(yT + 78 + r * 86);
-    remoteLot.push(line(r2(xL + 16), ry, r2(xR - 16), ry, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
-    for (let rx = Math.ceil(xL + 16); rx <= xR - 16; rx += 20)
-      remoteLot.push(line(r2(rx), ry - 24, r2(rx), ry + 24, { stroke: "#C9CEBE", "stroke-width": 1 }));
+  // stall striping per plat (REV 9): 6 at the M.A. frontage, 8 mid-lot,
+  // 10 along the east (deep) line, 8 at the rear — 32 total, labeled rows
+  const P7 = (da, db) => toXY([POB7[0] + da, POB7[1] + db]);
+  const TICK7 = { stroke: "#C9CEBE", "stroke-width": 1 };
+  const row7 = (da0, da1, db0, db1, n) => { // n stalls → n+1 vertical ticks
+    for (let i = 0; i <= n; i++) {
+      const da = da0 + (i * (da1 - da0)) / n;
+      const A = P7(da, db0), B = P7(da, db1);
+      remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]), TICK7));
+    }
+  };
+  row7(8, 62, -2, -20.5, 6);        // 6 SPACES — frontage row (noses M.A.)
+  row7(3, 75, -55, -73.5, 8);       // 8 SPACES — mid row
+  row7(3, 75, -112, -130.5, 8);     // 8 SPACES — rear row
+  for (let i = 0; i <= 10; i++) {   // 10 SPACES — east-line column (horizontal ticks)
+    const db = -26 - i * 9;
+    const A = P7(56, db), B = P7(74.5, db);
+    remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]), TICK7));
   }
-  remoteLot.push(text(cx, r2(yB - 22), "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
+  const l7y = (db) => r2(P7(37, db)[1]);
+  remoteLot.push(text(cx, l7y(-96), "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
     { class: "svg-lab", "font-size": "10", "text-anchor": "middle", "font-weight": "600" }));
-  remoteLot.push(text(cx, r2(yB - 8), "LOT 7, BLOCK M · PARCEL 6009649 · ±24 SPACES",
+  remoteLot.push(text(cx, l7y(-88.5), "LOT 7, BLOCK M · PARCEL 6009649 · 32 SPACES PER PLAT (6+8+10+8)",
     { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }));
   remoteLot.push(text(cx, r2(yT - 10), "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
     { class: "svg-lab", "font-size": "9.5", "text-anchor": "middle" }));
@@ -230,39 +243,162 @@ const remoteLot = [];
 
 /* ── parking layer: storefront row, liquor line, main field, Lot 8 ── */
 const parking = [];
-// storefront head-in parking — concrete row in front of long building (per plat)
-parking.push(rect(150, 302, 914, 40, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1 }));
-for (let x = 168; x <= 1050; x += 30)
-  parking.push(line(x, 304, x, 340, { stroke: "#C9CEBE", "stroke-width": 1 }));
-// liquor line moved to the annotations layer (true plat course crosses the
-// short building, so it must draw above the unit rects) — see LIQ below
-// main parking field — Arnould side of liquor line
-parking.push(rect(306, 386, 734, 258, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1, rx: 3 }));
-for (let r = 0; r < 2; r++) {
-  const y = 434 + r * 92;
-  parking.push(line(336, y, 1010, y, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
-  for (let x = 336; x <= 1010; x += 33)
-    parking.push(line(x - 9, y - 22, x + 9, y + 22, { stroke: "#C9CEBE", "stroke-width": 1 }));
+/* Parking zones per plat striping + labels (REV 9). All positions derive
+   from raster-measured (a,b) feet (200 dpi, 6.667 px/ft; crops reference/
+   park-*). Counts are the plat's own "N SPACES" labels — tallied below.
+   Liquor line lives in the annotations layer (true course crosses the
+   short building) — see LIQ below.
+
+   PLAT STALL TALLY (per plat labels):
+     field angled bands  36+36+14+14 = 100
+     Arnould head-in row  7+11+11+9  =  38
+     storefront row                  =  56
+     Lot 6 zone           16+12      =  28
+     Lot 8 pocket         10+5+4     =  19
+     rear M.A. parallel   4+4+4+4+2  =  18
+     Johnston strip       8+2        =  10
+     Lot 7 remote         6+8+10+8   =  32   (remoteLot layer)
+     JD Bank parcel       6+7        =  13   (reciprocal easement)
+     TOTAL                           = 314
+   vs variance 99-11797 "324 provided" → Δ −10 UNRECONCILED (surfaced;
+   variance-era striping may differ from the 2019 plat revision).        */
+const PAVE = { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1 };
+const TICK = { stroke: "#C9CEBE", "stroke-width": 1 };
+const SPINE = { stroke: "#C2C8B5", "stroke-width": 1.2 };
+const zlab = (x, y, s, fs = 7.5, extra = {}) =>
+  text(r2(x), r2(y), s, { class: "svg-lab", "font-size": String(fs), "text-anchor": "middle", ...extra });
+const ax = a => r2(ENV.xRight - kx * (a + 25));   // a-ft → screen x
+const by = b => r2(ENV.yBottom + ky * b);          // b-ft → screen y  (b ≤ 0)
+
+// pavement fields
+parking.push(rect(ax(546), by(-167), r2(ax(118) - ax(546)), r2(660 - by(-167)), PAVE));            // central field
+parking.push(rect(ax(637.3), by(-185.2), r2(ax(127.2) - ax(637.3)), r2(by(-166) - by(-185.2)), PAVE)); // storefront strip
+parking.push(rect(1132, 98, 226, r2(by(-234.7) - 98), PAVE));                                      // Lot 8 pocket
+parking.push(rect(ax(622), by(-300) + 2, r2(ax(102) - ax(622)), r2(by(-281.3) - by(-300)) - 2, PAVE)); // rear M.A. strip
+parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-143)), PAVE));       // Johnston strip
+
+// ── Arnould head-in row: 4 × ~107' modules, 7 + 11 + 11 + 9 = 38 ──
+{
+  const MOD = [[118, 225, 7], [225, 332, 11], [332, 439, 11], [439, 546, 9]];
+  MOD.forEach(([a0, a1, n]) => {
+    for (let i = 0; i <= n; i++) {
+      const a = a0 + 4 + (i * (a1 - a0 - 8)) / n;
+      parking.push(line(ax(a), by(-18.5), ax(a), by(-1), TICK));
+    }
+    parking.push(zlab((ax(a0) + ax(a1)) / 2, 621, n + " SPACES", 7));
+  });
 }
-parking.push(text(673, 656, "MAIN PARKING FIELD · FILLS FIRST · 324 STALLS SITE-WIDE PER VARIANCE ENTRY 99-11797 (344 REQUIRED)",
-  { class: "svg-lab", "font-size": "10.5", "text-anchor": "middle" }));
-// LOT 8 — pocket at Patricia × M.A. corner (added 3/26/98 per plat rev.);
-// extent fitted between the long building's Patricia end and Patricia R/W —
-// exact trace pending item 4
-parking.push(rect(1136, 102, 218, 98, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1, rx: 3 }));
-parking.push(line(1154, 150, 1336, 150, { stroke: "#C2C8B5", "stroke-width": 1.2 }));
-for (let x = 1154; x <= 1336; x += 22)
-  parking.push(line(x, 128, x, 172, { stroke: "#C9CEBE", "stroke-width": 1 }));
-parking.push(text(1245, 192, "LOT 8 — ±15 SPACES (PATRICIA / M.A. CORNER)",
-  { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }));
+
+// ── field angled bands: two double-loaded herringbone bands, one-way aisles;
+//    plat labels 36 (west segment) + 14 (east segment) per band ──
+{
+  const BANDS = [[-42.9, -78.2], [-103.7, -139.7]];   // [b near Arnould, b far]
+  BANDS.forEach(([b0, b1]) => {
+    const ySp = (by(b0) + by(b1)) / 2;
+    const segs = [[217.2, 405], [438, 496.2]];
+    segs.forEach(([a0, a1]) => {
+      parking.push(line(ax(a0), r2(ySp), ax(a1), r2(ySp), SPINE));
+      for (let a = a0 + 4; a <= a1 - 4; a += 10.39) {
+        parking.push(line(ax(a), by(b0) - 3, r2(ax(a) - 12), r2(ySp - 2), TICK));   // Arnould-side stalls
+        parking.push(line(ax(a), r2(ySp + 2), r2(ax(a) - 12), by(b1) + 3, TICK));   // far-side stalls
+      }
+    });
+    // planting islands: west cap, mid L-island, east teardrop (per plat)
+    const iy = r2(by(b1) - 2), ih = r2(by(b0) - by(b1) + 4);
+    parking.push(rect(r2(ax(217.2) - 4), iy, 10, ih, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
+    parking.push(rect(ax(432.5), iy, r2(ax(405) - ax(432.5)), ih, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
+    parking.push(rect(ax(507), iy, r2(ax(496.2) - ax(507)), ih, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
+    parking.push(zlab((ax(217.2) + ax(405)) / 2, ySp + 2.5, "36 SPACES", 7, { "font-weight": "600" }));
+    parking.push(zlab((ax(438) + ax(496.2)) / 2, ySp + 2.5, "14 SPACES", 7, { "font-weight": "600" }));
+  });
+  // variance + tally — in the aisle between the two bands
+  parking.push(zlab(655, 486, "MAIN PARKING FIELD — FILLS FIRST · VARIANCE ENTRY 99-11797: 324 PROVIDED / 344 REQUIRED", 9.5, { "font-weight": "600" }));
+  parking.push(zlab(655, 499, "PLAT STRIPING TALLY 314 = FIELD 100 + ARNOULD 38 + STOREFRONT 56 + LOT 6 28 + LOT 8 19 + REAR M.A. 18 + JOHNSTON 10 + LOT 7 32 + JD BANK ESMT 13 · Δ −10 VS VARIANCE — UNRECONCILED", 6.5));
+}
+
+// ── storefront row: 56 angled stalls nosing the long-building walkway ──
+{
+  for (let a = 131; a <= 633.5; a += 8.96) {
+    parking.push(line(ax(a), by(-168.5), r2(ax(a) - 13), by(-184.8), TICK));
+  }
+  parking.push(zlab(380, 327, "56 SPACES", 7.5, { "font-weight": "600" }));
+  parking.push(zlab(900, 327, "56 SPACES", 7.5, { "font-weight": "600" }));
+}
+
+// ── Lot 6 zone: 16-space island module + 12 head-in at the short-bldg walkway ──
+{
+  parking.push(rect(ax(185.7), by(-137.4), r2(ax(144.5) - ax(185.7)), r2(by(-65.4) - by(-137.4)), PAVE));
+  parking.push(rect(ax(183), by(-71), r2(ax(147) - ax(183)), 11, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
+  parking.push(rect(ax(183), r2(by(-131.5) - 11), r2(ax(147) - ax(183)), 11, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
+  parking.push(line(ax(165.1), r2(by(-71.5)), ax(165.1), r2(by(-128.5)), SPINE));
+  for (let b = -73; b >= -128; b -= 9) {
+    parking.push(line(ax(147), by(b), ax(183), by(b), TICK));
+  }
+  parking.push(zlab(ax(165.1) - 9, (by(-65.4) + by(-137.4)) / 2, "16 SPACES", 7,
+    { transform: "rotate(-90 " + r2(ax(165.1) - 9) + " " + r2((by(-65.4) + by(-137.4)) / 2) + ")" }));
+  // 12-space column nosing the walkway in front of the short building
+  parking.push(rect(ax(116.7), by(-151), r2(ax(98.5) - ax(116.7)), r2(by(-42.9) - by(-151)), PAVE));
+  for (let b = -42.9; b >= -150.9; b -= 9) {
+    parking.push(line(ax(98.5), by(b), ax(116.7), by(b), TICK));
+  }
+  parking.push(zlab(ax(107.6), (by(-42.9) + by(-150.9)) / 2, "12 SPACES", 7,
+    { transform: "rotate(-90 " + r2(ax(107.6)) + " " + r2((by(-42.9) + by(-150.9)) / 2) + ")" }));
+  // handicap loading pad at the column's liquor-line end (per plat)
+  parking.push(rect(ax(116.7), by(-155.4), r2(ax(98.5) - ax(116.7)), r2(by(-149.4) - by(-155.4)), { fill: "url(#hatch2)", stroke: "#CDD2C2", "stroke-width": 1 }));
+}
+
+// ── Lot 8 pocket: 10 + 5 + 4 = 19 (plat; working estimate was ±15) ──
+{
+  for (let i = 0; i <= 10; i++) parking.push(line(r2(1186.5 + i * 13.05), by(-252.9), r2(1186.5 + i * 13.05), by(-234.7) - 2, TICK)); // 10 nose the 135 end walk
+  for (let i = 0; i <= 5; i++) parking.push(line(r2(1233.7 + i * 16.9), by(-300) + 4, r2(1233.7 + i * 16.9), by(-288), TICK));        // 5 nose M.A.
+  for (let i = 0; i <= 4; i++) parking.push(line(1154, by(-252 - i * 9), 1188, by(-252 - i * 9), TICK));                               // 4 nose the breezeway walk
+  parking.push(zlab(1242, (by(-288) + by(-252.9)) / 2 + 3, "LOT 8 — 19 SPACES PER PLAT (10+5+4)", 7.5, { "font-weight": "600" }));
+}
+
+// ── rear M.A. parallel row: 4+4+4+4+2 = 18 (10' utility easement strip) ──
+{
+  const G = [[102, 192, 4], [211, 279, 4], [279, 379, 4], [379, 479, 4], [577, 620, 2]];
+  G.forEach(([a0, a1, n]) => {
+    for (let i = 0; i <= n; i++) {
+      const a = a0 + (i * (a1 - a0)) / n;
+      parking.push(line(ax(a), by(-283), ax(a), by(-297), TICK));
+    }
+  });
+  parking.push(line(ax(102), by(-290), ax(620), by(-290), { ...TICK, "stroke-dasharray": "2 4" }));
+  parking.push(zlab(ax(528), by(-289) + 2.5, "REAR PARKING — 18 PARALLEL (4+4+4+4+2)", 6.5));
+}
+
+// ── Johnston strip (Lot 1): 8 head-in + 2 at the pylon sign = 10 ──
+{
+  for (let i = 0; i <= 8; i++) {
+    const a = 565.3 + (i * 57) / 8;
+    parking.push(line(ax(a), by(-122.4), ax(a), by(-140.4), TICK));
+  }
+  parking.push(zlab((ax(565.3) + ax(622.3)) / 2, by(-146) + 6, "8 SPACES", 7));
+  parking.push(rect(ax(668), by(-160), r2(ax(656) - ax(668)), 11, { fill: "url(#hatch2)", stroke: "#5F6E64", "stroke-width": 1 }));
+  for (let i = 0; i <= 2; i++) parking.push(line(ax(656 - i * 9), by(-147), ax(656 - i * 9), by(-163), TICK));
+  parking.push(zlab(ax(640), by(-152), "PYLON SIGN · 2 SP", 6, { "text-anchor": "start" }));
+}
+
+// ── JD Bank parcel (NOT A PART): bank building + 6+7 = 13 easement spaces ──
+{
+  parking.push(rect(ax(634.3), by(-54.9), r2(ax(571.3) - ax(634.3)), r2(by(-14.4) - by(-54.9)), { fill: "url(#hatch2)", stroke: "#5F6E64", "stroke-width": 1.2 }));
+  parking.push(zlab((ax(571.3) + ax(634.3)) / 2, (by(-14.4) + by(-54.9)) / 2 + 3, "JD BANK", 8, { "font-weight": "600" }));
+  for (let i = 0; i <= 6; i++) parking.push(line(ax(553), by(-22 - i * 9), ax(571), by(-22 - i * 9), TICK));   // 6 along the notch line
+  for (let i = 0; i <= 7; i++) parking.push(line(ax(652), by(-20 - i * 9), ax(668), by(-20 - i * 9), TICK));   // 7 along Johnston
+  parking.push(zlab(183, 528, "JD BANK — 13 SPACES (6+7)", 7.5, { "font-weight": "600" }));
+  parking.push(zlab(183, 539, "RECIPROCAL EASEMENT $250/MO · EXP. 12/30/2034", 6.5));
+}
 
 /* ── building placements — plat-exact demising (REV 6) ──────────────
    Long building: 85.45' deep, demising widths from the plat's dimension
    strings (Montagnet & Domingue). Widths marked "derived" are SF-proportional
    splits inside a measured plat envelope (today's demising differs from the
    2019 plat-era tenancy there). Patricia → Johnston order.                 */
-const LB_DEPTH = 85.45;          // plat: end-wall dimension string
-const LB_REAR_SETBACK = 10;      // rear face at the 10' utility easement off M.A. R/W
+const LB_DEPTH = 85.45;          // plat: end-wall dimension string ("85.45'" on the west end wall)
+const LB_REAR_SETBACK = 18.73;   // plat dim: rear face 18.73' off M.A. R/W (REV 9 correction —
+                                 // was 10', assumed from the utility easement; the 18.73' strip
+                                 // holds the rear parallel parking + 10' utility easement)
 const LB_EAST_GAP = 19.07;       // plat: building SE corner to boundary at Johnston end
 const LB_BAYS = [ // [unit, width ft, source]
   ["133", 14.88, "derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block"],
@@ -374,10 +510,12 @@ const liqPath =
 
 /* ── annotations ── */
 const annotations = [
-  text(160, 110, "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
-    { class: "svg-lab", "font-size": "9.5" }),
-  text(r2(sbXRight), r2(sbYSouth + 14), "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
-    { class: "svg-lab", "font-size": "9.5", "text-anchor": "end" }),
+  // long-bldg callout sits on the covered-walkway strip (its old REV 6 spot
+  // above the building is now the rear M.A. parking strip)
+  text(640, r2(lbY + lbH + 14.5), "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
+    { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }),
+  text(r2(sbXRight), 671.5, "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
+    { class: "svg-lab", "font-size": "8.5", "text-anchor": "end" }),
   path(liqPath, { fill: "none", stroke: "#A87E2F", "stroke-width": 2, "stroke-dasharray": "14 7", "pointer-events": "none" }),
   text(300, r2(liqT[1] - 6.5), "LIQUOR RESTRICTED THIS SIDE OF LINE ▲",
     { class: "svg-lab", "font-size": "9", "font-weight": "600", fill: "#A87E2F", "pointer-events": "none" }),
@@ -415,15 +553,15 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "9" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + REMOTE LOT", { class: "svg-lab", "font-size": "9" }),
   text(1078, 874, "GEOMETRY PER RECORDED PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "9" }),
-  text(1078, 890, "REV 8 — LIQUOR LINE TRUE COURSE (PLAT TRACE)", { class: "svg-lab", "font-size": "9" }),
+  text(1078, 890, "REV 9 — PARKING ZONES & TALLY PER PLAT · LB REAR 18.73'", { class: "svg-lab", "font-size": "9" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 8",
-  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line per plat trace; parking still schematic)",
+  rev: "REV 9",
+  source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
     longBuilding: { depthFt: LB_DEPTH, rearSetbackFt: LB_REAR_SETBACK, eastGapFt: LB_EAST_GAP, lengthFt: r2(lbLen), bays: LB_BAYS },
@@ -448,6 +586,23 @@ const geometry = {
     offParcel: "west arc continues across Patricia St; east tail curves into Johnston R/W (drawn clipped at sheet edges); plat jogs the line ~10' around a sign pocket at the east boundary (not drawn)",
     crossings: "enters short bldg storefront face at b≈-165.9 (unit 139), crosses the 139/137 wall, exits rear face at b≈-178.4 (unit 137); permitted side holds 149/145/143/141 and most of 139",
     source: "raster trace at 200 dpi (6.667 px/ft, plat scale 1\"=30') — tools/measure-liquor*.py, crops reference/hunt-*"
+  },
+  parking: {
+    source: "plat 'N SPACES' striping labels, raster-located at 200 dpi (crops reference/park-*); zone positions in (a,b) feet",
+    zones: [
+      { zone: "main field — two angled double-loaded herringbone bands, one-way aisles (stalls 9.00' × 23.70')", count: 100, detail: "per band: 36 (west segment) + 14 (east segment); bands at b -42.9..-78.2 and -103.7..-139.7, a 217..496" },
+      { zone: "Arnould frontage head-in row", count: 38, detail: "4 × ~100' lot modules: 7 + 11 + 11 + 9; none in front of Jason's Deli (sidewalk/landscape only); last 75.12' module before the notch is a driveway apron" },
+      { zone: "storefront row (long building)", count: 56, detail: "single angled row between the liquor line and the covered walkway, labeled '56 SPACES' twice on the plat" },
+      { zone: "Lot 6 west-field zone", count: 28, detail: "16-space island module (a 144.5-185.7) + 12 head-in at the short-bldg walkway (3 handicap symbols + loading pad at the liquor-line end)" },
+      { zone: "Lot 8 pocket (Patricia × M.A. corner)", count: 19, detail: "10 nosing the 135 end walk + 5 nosing M.A. + 4 nosing the breezeway walk — working estimate was ±15, plat says 19" },
+      { zone: "rear M.A. parallel row (18.73' strip with 10' utility easement)", count: 18, detail: "modules 4+4+4+4+2; gap at the City of Lafayette electric easement (entry 577566)" },
+      { zone: "Johnston strip (Lot 1, south of the notch)", count: 10, detail: "8 head-in + 2 at the pylon sign pocket" },
+      { zone: "Lot 7 Block M remote", count: 32, detail: "6 (M.A. frontage) + 8 (mid) + 10 (east line) + 8 (rear) — working estimate was ±24, plat says 32" },
+      { zone: "JD Bank parcel (NOT A PART — reciprocal easement spaces)", count: 13, detail: "6 along the notch line + 7 along Johnston; matches the easement's 13 exactly" }
+    ],
+    totalPlat: 314,
+    variance: { entry: "99-11797", provided: 324, required: 344 },
+    reconciliation: "plat striping labels total 314 vs variance 324 provided — Δ -10 UNRECONCILED (surfaced, not adjusted; variance-era striping may differ from the 7/19/2019 plat revision)"
   },
   // audit record: metes & bounds in feet + the feet→px transform used for the boundary
   boundary: {
