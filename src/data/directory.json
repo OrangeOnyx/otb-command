@@ -1,0 +1,26 @@
+{
+  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store.",
+  "propertyContacts": [
+    { "id": "pc:butcher", "role": "HVAC vendor", "company": "Butcher Air Conditioning", "name": "", "phone": "", "email": "", "note": "Jason's Deli (149) §9.01 — monthly PM contract required; tenant maintains 100% of Unit 149 HVAC" },
+    { "id": "pc:jdbank", "role": "Easement counterparty", "company": "JD Bank", "name": "", "phone": "", "email": "", "note": "Reciprocal parking easement — $250/mo to Belle + 13 bank spaces; expires 12/30/2034" },
+    { "id": "pc:church", "role": "Easement counterparty", "company": "Our Savior's Church", "name": "", "phone": "", "email": "", "note": "Access & parking easement — $350/mo, 25-yr; §3a liquor waiver survives termination" },
+    { "id": "pc:surveyor", "role": "Surveyor", "company": "Montagnet & Domingue, Inc.", "name": "", "phone": "", "email": "", "note": "Recorded plat — 5/20/1994, last rev. 7/19/2019" },
+    { "id": "pc:lcg", "role": "Zoning authority", "company": "Lafayette Consolidated Government — Planning, Zoning & Codes", "name": "", "phone": "", "email": "", "note": "Parking variance Entry 99-11797; zoned CH" },
+    { "id": "pc:lus", "role": "Utility", "company": "Lafayette Utilities System (City of Lafayette)", "name": "", "phone": "", "email": "", "note": "Electric easement Entry 577566 (rear strip)" },
+    { "id": "pc:title", "role": "Title insurer", "company": "Fidelity National Title Insurance Company", "name": "", "phone": "", "email": "", "note": "ATC 2007054432, Schedule B — Section 2 (exceptions)" }
+  ],
+  "propertyDocuments": [
+    { "id": "pd:plat", "name": "Recorded plat of survey", "type": "Survey", "ref": "Montagnet & Domingue, Inc. · 5/20/1994, last rev. 7/19/2019", "link": "", "note": "Source of all traced geometry (REV 5–11)" },
+    { "id": "pd:variance", "name": "Parking variance", "type": "Entitlement", "ref": "Entry 99-11797", "link": "", "note": "324 provided / 344 required; floor space limited to available parking" },
+    { "id": "pd:church", "name": "Our Savior's Church access & parking easement", "type": "Easement", "ref": "—", "link": "", "note": "$350/mo · 25-yr · §3a liquor waiver survives termination" },
+    { "id": "pd:jdbank", "name": "JD Bank reciprocal parking easement", "type": "Easement", "ref": "exp. 12/30/2034 · supersedes Entry 2004-00057697", "link": "", "note": "$250/mo to Belle + 13 spaces · 50/50 maintenance" },
+    { "id": "pd:electric", "name": "City of Lafayette electric easement", "type": "Easement", "ref": "Entry 577566", "link": "", "note": "Rear strip behind the long building" },
+    { "id": "pd:drainage", "name": "Temporary drainage easements (EXPIRED)", "type": "Easement", "ref": "77-0783 / 77-000784 / 77-000785", "link": "", "note": "Of record only — expired" },
+    { "id": "pd:hvac", "name": "HVAC preventive-maintenance schedule", "type": "Operations", "ref": "2021 PDF", "link": "", "note": "Butcher A/C scope; §9.01 anchor covenant" },
+    { "id": "pd:sotxlsx", "name": "Master template set — SOT workbook", "type": "Source of truth", "ref": "OTB-Master-Template-Set-SOT-corrected.xlsx · v1.1", "link": "", "note": "27×30 rent roll — Tier 1 SOT" },
+    { "id": "pd:sotdocx", "name": "Master SOT narrative", "type": "Source of truth", "ref": "00_OTB_Master_SOT.docx · v1.1", "link": "", "note": "Tier 1 SOT" },
+    { "id": "pd:meters", "name": "Meter / utilities workbook", "type": "Operations", "ref": "Rev_Belle_Realty_Arnould_Blvd_Property.xlsx", "link": "", "note": "Meter assignments" },
+    { "id": "pd:title", "name": "Title commitment", "type": "Title", "ref": "Fidelity National Title · ATC 2007054432 · Schedule B-2", "link": "", "note": "Exception markers keyed on the plat (10/11/13/14/16/17/25/26/27/28)" }
+  ],
+  "unitDocTypes": ["Executed lease", "Certificate of insurance", "Floor plan", "Estoppel", "Guaranty", "Sign drawing"]
+}

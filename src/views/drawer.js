@@ -3,6 +3,8 @@
 import { byUnit, COMP_FIELDS, getComp, cycleComp, getNote, noteIsOverride, setNote, setSelected, getSelected, subscribe } from "../store.js";
 import { fmt$, pDate, fDate, daysTo, esc, TODAY } from "../lib/format.js";
 import { STATUS_META } from "../lib/colors.js";
+import { unitContacts, unitDocuments } from "../lib/directory.js";
+import { mountRecords } from "../lib/recordsUI.js";
 
 const drawer = document.getElementById("drawer");
 let editingNote = false;
@@ -26,7 +28,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(
 // keep the open drawer in sync with mutations made anywhere (e.g. matrix clicks)
 subscribe((type) => {
   if (!drawer.classList.contains("open") || !getSelected()) return;
-  if (type === "comp" || type === "notes" || type === "import") renderDrawer();
+  if (type === "comp" || type === "notes" || type === "import" || type === "contacts" || type === "documents") renderDrawer();
 });
 
 function renderDrawer() {
@@ -83,7 +85,12 @@ function renderDrawer() {
     '<div class="facts">' + facts + '</div>' +
     leaseHtml +
     notesHtml +
+    '<div class="dw-sec">Contacts</div><div class="recs" id="dwContacts"></div>' +
+    '<div class="dw-sec">Documents</div><div class="recs" id="dwDocs"></div>' +
     '<div class="dw-sec">Compliance — click to cycle</div><div class="cl">' + clHtml + '</div>';
+
+  mountRecords(body.querySelector("#dwContacts"), "contacts", unitContacts(u.unit), { unit: u.unit }, renderDrawer);
+  mountRecords(body.querySelector("#dwDocs"), "documents", unitDocuments(u.unit), { unit: u.unit }, renderDrawer);
 
   body.querySelectorAll(".cl-row").forEach(row => {
     row.onclick = () => cycleComp(row.dataset.u, row.dataset.k);

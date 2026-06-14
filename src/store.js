@@ -54,7 +54,12 @@ function load() {
 const LANES = new Set(["watch", "action", "progress", "done"]);
 const emptyActions = () => ({ lane: {}, edit: {}, dismissed: {}, custom: [] });
 
-const state = { comp: baselineComp(), notes: {}, actions: emptyActions() };
+/* generic record-collection override (Directory K-1: contacts + documents).
+   Seeds live in the views; the store persists only edits/dismissals/custom. */
+const COLLECTIONS = new Set(["contacts", "documents"]);
+const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
+
+const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl() };
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -83,13 +88,24 @@ function applySnapshot(snap) {
     if (Array.isArray(a.custom))
       state.actions.custom = a.custom.filter(c => c && typeof c === "object" && c.id && c.title);
   }
+  for (const name of COLLECTIONS) {
+    const c = snap[name];
+    if (!c || typeof c !== "object") continue;
+    if (c.edit && typeof c.edit === "object")
+      for (const [id, e] of Object.entries(c.edit)) if (e && typeof e === "object") state[name].edit[id] = e;
+    if (c.dismissed && typeof c.dismissed === "object")
+      for (const [id, v] of Object.entries(c.dismissed)) if (v) state[name].dismissed[id] = true;
+    if (Array.isArray(c.custom))
+      state[name].custom = c.custom.filter(r => r && typeof r === "object" && r.id);
+  }
 }
 
 function persist() {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify({
       version: STATE_VERSION, savedAt: new Date().toISOString(),
-      comp: state.comp, notes: state.notes, actions: state.actions
+      comp: state.comp, notes: state.notes, actions: state.actions,
+      contacts: state.contacts, documents: state.documents
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -167,6 +183,33 @@ export function addAction(card) {
 }
 export function archivedCount() { return Object.keys(state.actions.dismissed).length; }
 
+/* ---------- directory collections (contacts / documents) ---------- */
+export function getCollection(name) { return state[name]; }
+export function editRecord(name, id, patch) {
+  if (!COLLECTIONS.has(name)) return;
+  state[name].edit[id] = { ...(state[name].edit[id] || {}), ...patch };
+  const custom = state[name].custom.find(r => r.id === id);
+  if (custom) Object.assign(custom, patch);
+  persist();
+  emit(name, { id });
+}
+export function dismissRecord(name, id) {
+  if (!COLLECTIONS.has(name)) return;
+  state[name].dismissed[id] = true;
+  persist();
+  emit(name, { id });
+}
+export function addRecord(name, rec) {
+  if (!COLLECTIONS.has(name)) return null;
+  const r = { ...rec };
+  r.id = r.id || (name[0] + ":u" + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36));
+  r.custom = true;
+  state[name].custom.push(r);
+  persist();
+  emit(name, { id: r.id });
+  return r.id;
+}
+
 /* ---------- JSON export / import ---------- */
 export function exportJSON() {
   return JSON.stringify({
@@ -175,17 +218,21 @@ export function exportJSON() {
     property: "On The Boulevard — 101–149 Arnould Blvd, Lafayette, LA 70506",
     comp: state.comp,
     notes: state.notes,
-    actions: state.actions
+    actions: state.actions,
+    contacts: state.contacts,
+    documents: state.documents
   }, null, 2);
 }
 export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
-  if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions)) {
-    throw new Error("Not an OTB Command export — expected { comp, notes, actions }.");
+  if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents)) {
+    throw new Error("Not an OTB Command export — expected { comp, notes, actions, … }.");
   }
   state.comp = baselineComp();
   state.notes = {};
   state.actions = emptyActions();
+  state.contacts = emptyColl();
+  state.documents = emptyColl();
   applySnapshot(snap);
   persist();
   emit("import");
