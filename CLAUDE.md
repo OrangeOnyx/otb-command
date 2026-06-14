@@ -22,13 +22,19 @@ concept built in Claude.ai. This repo evolves it into the production tool.
   US 167 (±100', S), Patricia St (50', N), Marie Antoinette St (40', W — long
   building back/service frontage). Authoritative spelling: **Arnould** (title
   check on Arnauld/Arnold variants pending, P0).
-- Long building 101–133: backs Marie Antoinette, 101 at Johnston end, storefronts
-  face the main field. Short building 135A/B (paired wing) + 137–149 vertical run;
+- Long building 101–133: backs Marie Antoinette (rear face 18.73' off the R/W
+  per plat — NOT 10'), 101 at Johnston end, storefronts face the main field.
+  Short building 135–149 along Patricia; the 37.4' M.A.-end section splits at
+  mid-depth into two ~square 1,580 SF units — 135A (C. Wolf, breezeway side)
+  and 135B (Belle office, Patricia side), both fronting M.A.;
   149 (Jason's Deli, anchor) at the Patricia × Arnould corner.
-- Parking: Main Field (fills first) → **Lot 8** (±15 spaces, pocket at Patricia ×
-  Marie Antoinette corner, butts 135A/B) → **Lot 7** (remote, Lot 7 Block M,
-  110 Marie Antoinette St, parcel 6009649, ±14,375 SF, ±24 spaces, directly across
-  Marie Antoinette from Lot 8).
+- Parking (plat-verified REV 9): Main Field (fills first) → **Lot 8** (19 spaces
+  = 10+5+4, pocket at Patricia × Marie Antoinette corner, butts 135A/B) →
+  **Lot 7** (remote, Lot 7 Block M, 110 Marie Antoinette St, parcel 6009649,
+  ±14,375 SF, 32 spaces = 6+8+10+8, directly across Marie Antoinette from Lot 8).
+  Also: rear M.A. parallel row 18 · Johnston strip 10 · JD Bank easement 13.
+  **Plat striping totals 314 vs variance "324 provided" — Δ −10 unreconciled**
+  (docs/parking-reconciliation-memo.md; cite 324 legally, plan ops on 314).
 - Assessor parcels (Belle): 6026783, 6026784, 6026785, 6026788, 6009649 (remote).
 - Easements: Our Savior's Church $350/mo, 25-yr — **§3a liquor waiver survives
   termination** (restaurants OK within 175 ft; liquor line drawn on plat).
