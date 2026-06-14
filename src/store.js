@@ -44,7 +44,17 @@ function load() {
   } catch { return null; }
 }
 
-const state = { comp: baselineComp(), notes: {} };
+/* actions = override layer over the auto-seeded Action Board (W-1).
+   Mirrors the notes-override pattern: the board derives cards from live data;
+   the store persists only what the operator changed.
+     lane[id]      → moved a seeded/custom card to a different lane
+     edit[id]      → { title?, detail?, due? } inline edits to a seeded card
+     dismissed[id] → archived/removed from the board
+     custom[]      → operator-added cards ({id,kind,lane,title,detail,due,unit?}) */
+const LANES = new Set(["watch", "action", "progress", "done"]);
+const emptyActions = () => ({ lane: {}, edit: {}, dismissed: {}, custom: [] });
+
+const state = { comp: baselineComp(), notes: {}, actions: emptyActions() };
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -62,13 +72,24 @@ function applySnapshot(snap) {
       if (byUnit[unit] && typeof v === "string") state.notes[unit] = v;
     }
   }
+  const a = snap.actions;
+  if (a && typeof a === "object") {
+    if (a.lane && typeof a.lane === "object")
+      for (const [id, l] of Object.entries(a.lane)) if (LANES.has(l)) state.actions.lane[id] = l;
+    if (a.edit && typeof a.edit === "object")
+      for (const [id, e] of Object.entries(a.edit)) if (e && typeof e === "object") state.actions.edit[id] = e;
+    if (a.dismissed && typeof a.dismissed === "object")
+      for (const [id, v] of Object.entries(a.dismissed)) if (v) state.actions.dismissed[id] = true;
+    if (Array.isArray(a.custom))
+      state.actions.custom = a.custom.filter(c => c && typeof c === "object" && c.id && c.title);
+  }
 }
 
 function persist() {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify({
       version: STATE_VERSION, savedAt: new Date().toISOString(),
-      comp: state.comp, notes: state.notes
+      comp: state.comp, notes: state.notes, actions: state.actions
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -93,6 +114,7 @@ export function getNote(unit) {
   return unit in state.notes ? state.notes[unit] : (byUnit[unit].notes || "");
 }
 export function noteIsOverride(unit) { return unit in state.notes; }
+export function getActionOverrides() { return state.actions; }
 
 /* ---------- mutations (write-through) ---------- */
 export function cycleComp(unit, key) {
@@ -109,6 +131,42 @@ export function setNote(unit, textValue) {
   emit("notes", { unit });
 }
 
+/* ---------- action board mutations ---------- */
+export function moveAction(id, lane) {
+  if (!LANES.has(lane)) return;
+  state.actions.lane[id] = lane;
+  persist();
+  emit("actions", { id, lane });
+}
+export function editAction(id, patch) {
+  const cur = state.actions.edit[id] || {};
+  state.actions.edit[id] = { ...cur, ...patch };
+  const custom = state.actions.custom.find(c => c.id === id);
+  if (custom) Object.assign(custom, patch); // edit a custom card in place
+  persist();
+  emit("actions", { id });
+}
+export function dismissAction(id) {
+  state.actions.dismissed[id] = true;
+  persist();
+  emit("actions", { id });
+}
+export function restoreActions() { // un-archive everything
+  state.actions.dismissed = {};
+  persist();
+  emit("actions", {});
+}
+export function addAction(card) {
+  const c = { kind: "task", lane: "action", detail: "", ...card };
+  c.id = c.id || ("user:" + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36));
+  c.custom = true;
+  state.actions.custom.push(c);
+  persist();
+  emit("actions", { id: c.id });
+  return c.id;
+}
+export function archivedCount() { return Object.keys(state.actions.dismissed).length; }
+
 /* ---------- JSON export / import ---------- */
 export function exportJSON() {
   return JSON.stringify({
@@ -116,16 +174,18 @@ export function exportJSON() {
     exportedAt: new Date().toISOString(),
     property: "On The Boulevard — 101–149 Arnould Blvd, Lafayette, LA 70506",
     comp: state.comp,
-    notes: state.notes
+    notes: state.notes,
+    actions: state.actions
   }, null, 2);
 }
 export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
-  if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes)) {
-    throw new Error("Not an OTB Command export — expected { comp, notes }.");
+  if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions)) {
+    throw new Error("Not an OTB Command export — expected { comp, notes, actions }.");
   }
   state.comp = baselineComp();
   state.notes = {};
+  state.actions = emptyActions();
   applySnapshot(snap);
   persist();
   emit("import");

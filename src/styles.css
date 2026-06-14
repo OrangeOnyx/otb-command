@@ -199,3 +199,39 @@ td.unitcell{font-family:var(--mono);font-weight:600}
   background:var(--brass-bg);border:1px solid #E0CDA0;border-radius:5px;padding:10px 12px;resize:vertical}
 .note-actions{display:flex;gap:8px;margin-top:6px}
 .note-actions .chip{cursor:pointer}
+
+/* ===== W-1 ACTION BOARD ===== */
+.board-meta{display:flex;gap:14px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--ink50)}
+.board-meta .bm b{font-family:var(--disp);font-size:15px;color:var(--ink);margin-right:3px}
+.board-meta .bm b.bm-over{color:var(--brick)}
+.board-meta a{color:var(--brass);cursor:pointer;text-decoration:underline}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start}
+.acol{background:var(--paper2);border:1px solid var(--line);border-radius:7px;display:flex;flex-direction:column;min-height:160px}
+.acol-h{display:flex;align-items:flex-start;justify-content:space-between;padding:11px 12px 9px;border-bottom:1px solid var(--line)}
+.acol-t{font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:.03em}
+.acol-n{font-family:var(--mono);font-size:11px;color:var(--ink50);font-weight:600}
+.acol-s{font-family:var(--mono);font-size:9.5px;color:var(--ink50);margin-top:2px;letter-spacing:.02em}
+.acol-add{border:1px solid var(--line);background:var(--card);border-radius:6px;width:24px;height:24px;
+  font-size:16px;line-height:1;color:var(--ink50);flex-shrink:0}
+.acol-add:hover{border-color:var(--brass);color:var(--brass)}
+.acol-body{padding:10px;display:flex;flex-direction:column;gap:9px;flex:1;border-radius:0 0 7px 7px;transition:background .12s}
+.acol-body.drag-over{background:var(--brass-bg)}
+.acard{position:relative;background:var(--white);border:1px solid var(--line2);border-radius:6px;
+  padding:10px 11px 11px;box-shadow:var(--shadow);cursor:grab;border-left:3px solid var(--line)}
+.acard:hover{border-left-color:var(--brass)}
+.acard.dragging{opacity:.45;cursor:grabbing}
+.acard-x{position:absolute;top:6px;right:7px;border:0;background:transparent;color:var(--ink30);font-size:12px;line-height:1;padding:2px}
+.acard-x:hover{color:var(--brick)}
+.ktag{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--kc);background:color-mix(in srgb,var(--kc) 12%,transparent);padding:2px 7px;border-radius:99px;vertical-align:middle}
+.uchip{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--ink);background:var(--paper2);
+  border:1px solid var(--line);border-radius:4px;padding:1px 6px;margin-left:6px;cursor:pointer;vertical-align:middle}
+.uchip:hover{border-color:var(--brass);color:var(--brass)}
+.due{display:inline-block;font-family:var(--mono);font-size:9.5px;color:var(--ink50);margin-left:6px;vertical-align:middle}
+.due.soon{color:var(--brass)} .due.over{color:var(--brick);font-weight:600}
+.atitle{font-family:var(--body);font-weight:600;font-size:13px;line-height:1.35;margin-top:7px;color:var(--ink);padding-right:14px}
+.adetail{font-family:var(--mono);font-size:10px;line-height:1.5;color:var(--ink50);margin-top:4px}
+.acard-new{padding:0}
+.acard-new input{width:100%;font-family:var(--body);font-size:12.5px;padding:8px 10px;border:1px dashed var(--brass);
+  border-radius:6px;background:var(--card);color:var(--ink)}
+@media (max-width:1180px){.board{grid-template-columns:repeat(2,1fr)}}
