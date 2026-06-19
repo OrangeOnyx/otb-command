@@ -5,9 +5,11 @@ import { fmt$, pDate, fDate, daysTo, esc, TODAY } from "../lib/format.js";
 import { STATUS_META } from "../lib/colors.js";
 import { unitContacts, unitDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
+import { mountAssets } from "../lib/assetsUI.js";
 
 const drawer = document.getElementById("drawer");
 let editingNote = false;
+let assetDispose = null; // tears down the previous Photos&Plans mount (URLs + listener)
 
 export function openDrawer(unit) {
   setSelected(unit);
@@ -19,6 +21,7 @@ export function openDrawer(unit) {
 export function closeDrawer() {
   drawer.classList.remove("open");
   editingNote = false;
+  if (assetDispose) { assetDispose(); assetDispose = null; }
   setSelected(null);
 }
 
@@ -87,10 +90,13 @@ function renderDrawer() {
     notesHtml +
     '<div class="dw-sec">Contacts</div><div class="recs" id="dwContacts"></div>' +
     '<div class="dw-sec">Documents</div><div class="recs" id="dwDocs"></div>' +
+    '<div class="dw-sec">Photos &amp; Plans</div><div class="assets" id="dwAssets"></div>' +
     '<div class="dw-sec">Compliance — click to cycle</div><div class="cl">' + clHtml + '</div>';
 
   mountRecords(body.querySelector("#dwContacts"), "contacts", unitContacts(u.unit), { unit: u.unit }, renderDrawer);
   mountRecords(body.querySelector("#dwDocs"), "documents", unitDocuments(u.unit), { unit: u.unit }, renderDrawer);
+  if (assetDispose) assetDispose();
+  assetDispose = mountAssets(body.querySelector("#dwAssets"), u.unit);
 
   body.querySelectorAll(".cl-row").forEach(row => {
     row.onclick = () => cycleComp(row.dataset.u, row.dataset.k);

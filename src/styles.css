@@ -266,3 +266,29 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 .rec-add{margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--brass);
   background:transparent;border:1px dashed var(--line);border-radius:6px;padding:7px 12px;width:100%}
 .rec-add:hover{border-color:var(--brass)}
+
+/* ===== PHOTOS & PLANS (asset store) ===== */
+.assets{padding:4px 0 2px}
+.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.asset{position:relative;margin:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper2)}
+.asset img{display:block;width:100%;height:84px;object-fit:cover;cursor:zoom-in}
+.asset figcaption{font-family:var(--mono);font-size:8.5px;color:var(--ink50);padding:4px 6px;line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.asset-kind{display:block;color:var(--brass);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:8px}
+.asset-x{position:absolute;top:3px;right:3px;width:18px;height:18px;border:0;border-radius:99px;
+  background:rgba(28,43,38,.78);color:#fff;font-size:10px;line-height:1;opacity:0;transition:opacity .12s}
+.asset:hover .asset-x{opacity:1}
+.asset-add{display:flex;align-items:center;gap:10px;margin-top:9px;padding:10px;border:1px dashed var(--line);
+  border-radius:7px;transition:background .12s,border-color .12s}
+.asset-add.drag-over{background:var(--brass-bg);border-color:var(--brass)}
+.asset-kindsel{font-family:var(--mono);font-size:10.5px;padding:5px 8px;border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink)}
+.asset-pick{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--brass);cursor:pointer;
+  border:1px solid var(--line);border-radius:99px;padding:5px 12px}
+.asset-pick:hover{border-color:var(--brass)}
+.asset-hint{font-family:var(--mono);font-size:9.5px;color:var(--ink50)}
+.photo-badge{cursor:pointer}.photo-badge:hover circle{fill:var(--brass)}
+.lightbox{position:fixed;inset:0;z-index:90;background:rgba(20,28,24,.86);display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out}
+.lightbox.on{display:flex}
+.lightbox figure{margin:0;max-width:92vw;max-height:92vh;display:flex;flex-direction:column;gap:8px}
+.lightbox img{max-width:92vw;max-height:84vh;object-fit:contain;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.lightbox figcaption{font-family:var(--mono);font-size:11px;color:var(--paper);text-align:center;letter-spacing:.04em}

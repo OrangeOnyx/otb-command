@@ -5,10 +5,12 @@ import { UNITS, getSelected, subscribe } from "../store.js";
 import { unitFill, legendFor } from "../lib/colors.js";
 import { fmt$0, pDate, fDate, esc, TODAY } from "../lib/format.js";
 import { NS, g, rect, text, renderPrims } from "../lib/svg.js";
+import { unitsWithAssets, onAssetChange } from "../lib/assets.js";
 import { openDrawer } from "./drawer.js";
 
 let planMode = "status";
 let planScope = "main";
+let showPhotos = true; // 📷 badge on units that have photos/plans
 
 export function drawPlan() {
   const svg = document.getElementById("plan");
@@ -50,6 +52,29 @@ export function drawPlan() {
   renderPrims(g(svg), geometry.layers.annotations);
   renderPrims(g(svg), geometry.layers.generalNotes);
   renderPrims(g(svg), geometry.layers.titleBlock);
+
+  // photo badges drawn last (topmost, clickable); filled async from IndexedDB
+  const badgeLayer = g(svg);
+  paintBadges(badgeLayer);
+}
+
+async function paintBadges(layer) {
+  while (layer.firstChild) layer.removeChild(layer.firstChild);
+  if (!showPhotos) return;
+  const have = await unitsWithAssets();
+  if (!layer.isConnected) return; // a newer render replaced us
+  have.forEach(unit => {
+    const p = geometry.units[unit];
+    if (!p) return;
+    const cx = p.x + p.w - 11, cy = p.y + 11;
+    const bg = document.createElementNS(NS, "g");
+    bg.setAttribute("class", "photo-badge");
+    bg.setAttribute("transform", "translate(" + cx + "," + cy + ")");
+    bg.innerHTML = '<circle r="8.5" fill="#1C2B26" stroke="#FCFCF9" stroke-width="1"/>' +
+      '<text y="3.2" text-anchor="middle" font-size="9" fill="#FCFCF9">📷</text>';
+    bg.addEventListener("click", e => { e.stopPropagation(); openDrawer(unit); });
+    layer.appendChild(bg);
+  });
 }
 
 /* tooltip */
@@ -82,8 +107,15 @@ export function initPlan() {
       b.classList.add("on"); planScope = b.dataset.scope; drawPlan();
     };
   });
+  const photoChip = document.querySelector('.plan-tools .chip[data-overlay="photos"]');
+  if (photoChip) photoChip.onclick = () => {
+    showPhotos = !showPhotos;
+    photoChip.classList.toggle("on", showPhotos);
+    drawPlan();
+  };
   // selection highlight tracks drawer open/close from any sheet
   subscribe(type => { if (type === "selection") drawPlan(); });
+  onAssetChange(() => drawPlan()); // repaint badges when photos are added/removed
   drawPlan();
   renderLegend();
 }
