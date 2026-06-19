@@ -5,8 +5,22 @@
 import { UNITS, OPEX_LINES, getFinancials, setOpex, setCapRate, subscribe } from "../store.js";
 import { CAT_META } from "../lib/colors.js";
 import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
+import recoveries from "../data/recoveries.json";
 
 const annual = u => (u.monthly || 0) * 12;
+
+/* annual income by component (PSF × SF), from SOT Sheet2 rent composition */
+function composition() {
+  const c = { base: 0, cam: 0, tax: 0, ins: 0 };
+  UNITS.forEach(u => {
+    const r = recoveries.units[u.unit];
+    if (!r) return;
+    c.base += r.base * u.sf; c.cam += r.cam * u.sf; c.tax += r.tax * u.sf; c.ins += r.ins * u.sf;
+  });
+  c.total = c.base + c.cam + c.tax + c.ins;
+  c.recoveries = c.cam + c.tax + c.ins;
+  return c;
+}
 
 function income() {
   const gla = UNITS.reduce((s, u) => s + u.sf, 0);
@@ -91,13 +105,40 @@ export function renderFinancial() {
   const topBars = top.map(t => bar(t.dba, t.rent, topMax, "var(--slate)",
     (t.rent / inc.annualRent * 100).toFixed(0) + "%")).join("");
 
-  const opexRows = OPEX_LINES.map(([k, label]) =>
-    '<div class="opex-row"><label>' + esc(label) + '</label>' +
-    '<input type="number" min="0" step="1000" data-opex="' + k + '" value="' + (fin.opex[k] || "") + '" placeholder="0"></div>').join("");
+  // income composition (from SOT rent breakdown) — base vs NNN recoveries
+  const comp = composition();
+  const compRows = [
+    ["Base rent", comp.base, "var(--green)"],
+    ["CAM recovery", comp.cam, "var(--slate)"],
+    ["Tax recovery", comp.tax, "var(--navy)"],
+    ["Insurance recovery", comp.ins, "var(--plum)"]
+  ];
+  const compMax = Math.max(...compRows.map(r => r[1]));
+  const compBars = compRows.map(([l, v, c]) => bar(l, v, compMax, c,
+    fmt$0(v) + " · " + (v / comp.total * 100).toFixed(0) + "%")).join("") +
+    '<div class="comp-foot">NNN recoveries (CAM+Tax+Ins): <b>' + fmt$0(comp.recoveries) + '/yr</b> — tenant reimbursements, offset against actual expenses below.</div>';
+
+  // recovery income per recoverable OpEx category, for the worksheet hints
+  const RECOVER = { cam: comp.cam, taxes: comp.tax, insurance: comp.ins };
+  const opexRows = OPEX_LINES.map(([k, label]) => {
+    const rec = RECOVER[k];
+    const exp = fin.opex[k] || 0;
+    let hint = "";
+    if (rec != null) {
+      const net = rec - exp;
+      hint = '<div class="opex-hint">recovers ' + fmt$0(rec) + "/yr" +
+        (exp ? ' · net <b class="' + (net >= 0 ? "pos" : "neg") + '">' + (net >= 0 ? "+" : "−") + fmt$0(Math.abs(net)) + "</b>" : "") + "</div>";
+    }
+    return '<div class="opex-row"><div class="opex-top"><label>' + esc(label) +
+      (rec != null ? ' <span class="nnn">NNN</span>' : "") + '</label>' +
+      '<input type="number" min="0" step="1000" data-opex="' + k + '" value="' + (fin.opex[k] || "") + '" placeholder="0"></div>' +
+      hint + "</div>";
+  }).join("");
 
   root.querySelector(".fin-body").innerHTML =
     '<div class="kpis fin-kpis">' + kpis + '</div>' +
     '<div class="fin-grid">' +
+      '<div class="card"><div class="panel-h"><h2>Income composition</h2><div class="sub">BASE RENT vs NNN RECOVERIES · PER SOT</div></div><div class="fbars">' + compBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Income by use</h2><div class="sub">ANNUAL IN-PLACE RENT · SHARE</div></div><div class="fbars">' + catBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Lease rollover schedule</h2><div class="sub">ANNUAL RENT EXPIRING BY YEAR</div></div><div class="fbars">' + rollBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Tenant concentration</h2><div class="sub">TOP 5 BY IN-PLACE RENT</div></div><div class="fbars">' + topBars + '</div></div>' +

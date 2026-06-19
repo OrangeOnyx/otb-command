@@ -311,12 +311,18 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 .noi-line.total b{font-family:var(--disp);font-size:18px}
 .noi-line.value b{font-family:var(--disp);font-size:18px;color:var(--brass)}
 .noi-line .muted{color:var(--ink30);font-family:var(--mono);font-size:11px;font-weight:400}
-.opex{padding:4px 16px 6px;display:flex;flex-direction:column;gap:5px}
-.opex-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.opex{padding:4px 16px 6px;display:flex;flex-direction:column;gap:7px}
+.opex-row{display:flex;flex-direction:column;gap:2px}
+.opex-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .opex-row label{font-family:var(--mono);font-size:10.5px;color:var(--ink50)}
+.opex-row .nnn{font-size:8px;font-weight:600;letter-spacing:.08em;color:var(--slate);background:var(--slate-bg);padding:1px 5px;border-radius:99px;vertical-align:middle}
 .opex-row input{width:128px;font-family:var(--mono);font-size:12px;text-align:right;padding:5px 9px;
   border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink)}
 .opex-row input:focus{outline:none;border-color:var(--brass)}
+.opex-hint{font-family:var(--mono);font-size:9px;color:var(--ink50);text-align:right;letter-spacing:.02em}
+.opex-hint b.pos{color:var(--green)} .opex-hint b.neg{color:var(--brick)}
+.comp-foot{font-family:var(--mono);font-size:9.5px;line-height:1.5;color:var(--ink50);margin-top:8px;padding-top:8px;border-top:1px solid var(--line2)}
+.comp-foot b{color:var(--ink70)}
 .noi-line.cap .cap-in{font-family:var(--mono);font-size:12px;color:var(--ink70)}
 .noi-line.cap input{width:66px;font-family:var(--mono);font-size:12px;text-align:right;padding:5px 8px;margin-right:4px;
   border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink)}
