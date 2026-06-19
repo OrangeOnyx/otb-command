@@ -59,7 +59,16 @@ const emptyActions = () => ({ lane: {}, edit: {}, dismissed: {}, custom: [] });
 const COLLECTIONS = new Set(["contacts", "documents"]);
 const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
-const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl() };
+/* financials = operator-entered operating assumptions for the P-1 NOI rollup.
+   Income is derived from the rent roll; expenses aren't in the SOT, so these
+   annual figures are the one manual input. Fixed schema — no add/remove. */
+export const OPEX_LINES = [
+  ["taxes", "Property taxes"], ["insurance", "Insurance"], ["cam", "CAM / R&M"],
+  ["mgmt", "Management"], ["utilities", "Utilities (common)"], ["reserves", "Reserves"]
+];
+const emptyFin = () => ({ opex: { taxes: 0, insurance: 0, cam: 0, mgmt: 0, utilities: 0, reserves: 0 }, capRatePct: null });
+
+const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin() };
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -98,6 +107,12 @@ function applySnapshot(snap) {
     if (Array.isArray(c.custom))
       state[name].custom = c.custom.filter(r => r && typeof r === "object" && r.id);
   }
+  const f = snap.financials;
+  if (f && typeof f === "object") {
+    if (f.opex && typeof f.opex === "object")
+      for (const [k, v] of Object.entries(f.opex)) if (k in state.financials.opex && Number.isFinite(+v)) state.financials.opex[k] = +v;
+    if (Number.isFinite(+f.capRatePct)) state.financials.capRatePct = +f.capRatePct;
+  }
 }
 
 function persist() {
@@ -105,7 +120,7 @@ function persist() {
     localStorage.setItem(LS_KEY, JSON.stringify({
       version: STATE_VERSION, savedAt: new Date().toISOString(),
       comp: state.comp, notes: state.notes, actions: state.actions,
-      contacts: state.contacts, documents: state.documents
+      contacts: state.contacts, documents: state.documents, financials: state.financials
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -210,6 +225,21 @@ export function addRecord(name, rec) {
   return r.id;
 }
 
+/* ---------- financials (P-1 operating assumptions) ---------- */
+export function getFinancials() { return state.financials; }
+export function setOpex(key, value) {
+  if (!(key in state.financials.opex)) return;
+  state.financials.opex[key] = Math.max(0, +value || 0);
+  persist();
+  emit("financials", { key });
+}
+export function setCapRate(value) {
+  const v = parseFloat(value);
+  state.financials.capRatePct = Number.isFinite(v) && v > 0 ? v : null;
+  persist();
+  emit("financials", {});
+}
+
 /* ---------- JSON export / import ---------- */
 export function exportJSON() {
   return JSON.stringify({
@@ -220,12 +250,13 @@ export function exportJSON() {
     notes: state.notes,
     actions: state.actions,
     contacts: state.contacts,
-    documents: state.documents
+    documents: state.documents,
+    financials: state.financials
   }, null, 2);
 }
 export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
-  if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents)) {
+  if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents && !snap.financials)) {
     throw new Error("Not an OTB Command export — expected { comp, notes, actions, … }.");
   }
   state.comp = baselineComp();
@@ -233,6 +264,7 @@ export function importJSON(text) {
   state.actions = emptyActions();
   state.contacts = emptyColl();
   state.documents = emptyColl();
+  state.financials = emptyFin();
   applySnapshot(snap);
   persist();
   emit("import");

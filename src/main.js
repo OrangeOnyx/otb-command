@@ -9,10 +9,11 @@ import { initMatrix } from "./views/compliance.js";
 import { renderDates } from "./views/dates.js";
 import { initBoard } from "./views/board.js";
 import { initDirectory } from "./views/directory.js";
+import { initFinancial } from "./views/financial.js";
 import { closeDrawer } from "./views/drawer.js";
 
 /* ---------- navigation (drawing-set sheet index) ---------- */
-const PAGES = [["dash", "D-1", "Dashboard"], ["plan", "A-1", "Site Plan"], ["roll", "R-1", "Rent Roll"], ["comp", "C-1", "Compliance"], ["dates", "T-1", "Critical Dates"], ["board", "W-1", "Action Board"], ["dir", "K-1", "Directory"]];
+const PAGES = [["dash", "D-1", "Dashboard"], ["plan", "A-1", "Site Plan"], ["roll", "R-1", "Rent Roll"], ["comp", "C-1", "Compliance"], ["fin", "P-1", "Financial"], ["dates", "T-1", "Critical Dates"], ["board", "W-1", "Action Board"], ["dir", "K-1", "Directory"]];
 const nav = document.getElementById("nav");
 PAGES.forEach(([id, sheet, label], i) => {
   const b = document.createElement("button");
@@ -60,3 +61,4 @@ initMatrix();
 renderDates();
 initBoard();
 initDirectory();
+initFinancial();
