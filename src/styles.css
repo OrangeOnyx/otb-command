@@ -239,6 +239,9 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 /* ===== K-1 DIRECTORY + shared records UI (contacts / documents) ===== */
 .dir-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 @media (max-width:1100px){.dir-grid{grid-template-columns:1fr}}
+.dir-imagery{grid-column:1/-1}
+.dir-imagery .assets{padding:8px 14px 14px}
+#overlayOpacity{width:84px;vertical-align:middle;accent-color:var(--brass);margin-left:4px}
 .recs{padding:8px 14px 14px}
 .rec{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line2)}
 .rec:last-of-type{border-bottom:0}

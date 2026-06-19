@@ -5,6 +5,9 @@
 import { subscribe } from "../store.js";
 import { propertyContacts, propertyDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
+import { mountAssets } from "../lib/assetsUI.js";
+
+let imageryDispose = null;
 
 export function renderDirectory() {
   const c = document.getElementById("dirContacts");
@@ -12,6 +15,8 @@ export function renderDirectory() {
   if (!c || !d) return;
   mountRecords(c, "contacts", propertyContacts(), {}, renderDirectory);
   mountRecords(d, "documents", propertyDocuments(), {}, renderDirectory);
+  const img = document.getElementById("dirImagery");
+  if (img && !imageryDispose) imageryDispose = mountAssets(img, "property"); // self-refreshing; mount once
 }
 
 export function initDirectory() {

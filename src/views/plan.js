@@ -5,12 +5,24 @@ import { UNITS, getSelected, subscribe } from "../store.js";
 import { unitFill, legendFor } from "../lib/colors.js";
 import { fmt$0, pDate, fDate, esc, TODAY } from "../lib/format.js";
 import { NS, g, rect, text, renderPrims } from "../lib/svg.js";
-import { unitsWithAssets, onAssetChange } from "../lib/assets.js";
+import { unitsWithAssets, onAssetChange, listAssets, makeURL, revokeURL } from "../lib/assets.js";
 import { openDrawer } from "./drawer.js";
 
 let planMode = "status";
 let planScope = "main";
 let showPhotos = true; // 📷 badge on units that have photos/plans
+const overlays = { roof: false, signage: false }; // raster overlays (property-scope images)
+let overlayOpacity = 0.55;
+let overlayURLs = []; // object URLs to revoke on redraw
+
+// building envelope (union of unit rects) — target box for roster overlays
+const ENV_BOX = (() => {
+  const ps = Object.values(geometry.units);
+  const x0 = Math.min(...ps.map(p => p.x)), y0 = Math.min(...ps.map(p => p.y));
+  const x1 = Math.max(...ps.map(p => p.x + p.w)), y1 = Math.max(...ps.map(p => p.y + p.h));
+  const mx = (x1 - x0) * 0.06, my = (y1 - y0) * 0.06;
+  return { x: x0 - mx, y: y0 - my, w: x1 - x0 + 2 * mx, h: y1 - y0 + 2 * my };
+})();
 
 export function drawPlan() {
   const svg = document.getElementById("plan");
@@ -26,6 +38,10 @@ export function drawPlan() {
   renderPrims(g(svg), geometry.layers.base);
   renderPrims(g(svg), geometry.layers.remoteLot);
   renderPrims(g(svg), geometry.layers.parking);
+
+  // raster overlay layer — below the unit rects so units stay interactive
+  const overlayLayer = g(svg);
+  paintOverlays(overlayLayer);
 
   /* interactive unit rects + labels */
   const gb = g(svg);
@@ -56,6 +72,25 @@ export function drawPlan() {
   // photo badges drawn last (topmost, clickable); filled async from IndexedDB
   const badgeLayer = g(svg);
   paintBadges(badgeLayer);
+}
+
+async function paintOverlays(layer) {
+  overlayURLs.forEach(revokeURL); overlayURLs = [];
+  const kinds = Object.keys(overlays).filter(k => overlays[k]);
+  if (!kinds.length) return;
+  const assets = (await listAssets("property")).filter(a => kinds.includes(a.kind));
+  if (!layer.isConnected) return;
+  assets.forEach(a => {
+    const url = makeURL(a.blob); overlayURLs.push(url);
+    const img = document.createElementNS(NS, "image");
+    img.setAttribute("href", url);
+    img.setAttribute("x", ENV_BOX.x); img.setAttribute("y", ENV_BOX.y);
+    img.setAttribute("width", ENV_BOX.w); img.setAttribute("height", ENV_BOX.h);
+    img.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    img.setAttribute("opacity", overlayOpacity);
+    img.setAttribute("pointer-events", "none");
+    layer.appendChild(img);
+  });
 }
 
 async function paintBadges(layer) {
@@ -113,6 +148,18 @@ export function initPlan() {
     photoChip.classList.toggle("on", showPhotos);
     drawPlan();
   };
+  document.querySelectorAll('.plan-tools .chip[data-overlay="roof"],.plan-tools .chip[data-overlay="signage"]').forEach(chip => {
+    chip.onclick = () => {
+      const k = chip.dataset.overlay;
+      overlays[k] = !overlays[k];
+      chip.classList.toggle("on", overlays[k]);
+      const opc = document.getElementById("overlayOpacity");
+      if (opc) opc.style.display = (overlays.roof || overlays.signage) ? "" : "none";
+      drawPlan();
+    };
+  });
+  const opc = document.getElementById("overlayOpacity");
+  if (opc) opc.oninput = () => { overlayOpacity = +opc.value / 100; drawPlan(); };
   // selection highlight tracks drawer open/close from any sheet
   subscribe(type => { if (type === "selection") drawPlan(); });
   onAssetChange(() => drawPlan()); // repaint badges when photos are added/removed

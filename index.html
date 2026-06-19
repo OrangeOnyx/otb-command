@@ -67,6 +67,9 @@
         <button class="chip" data-mode="hvac">HVAC exposure</button>
         <span class="lg" style="margin-left:10px">Overlay</span>
         <button class="chip on" data-overlay="photos">📷 Photos</button>
+        <button class="chip" data-overlay="roof">Roof / HVAC</button>
+        <button class="chip" data-overlay="signage">Signage</button>
+        <input type="range" id="overlayOpacity" min="10" max="100" value="55" title="Overlay opacity" style="display:none">
         <div class="legend" id="legend"></div>
       </div>
       <div class="card plan-card"><svg id="plan" viewBox="0 0 1480 990" role="img" aria-label="On The Boulevard site plan"></svg></div>
@@ -115,6 +118,10 @@
         <div class="card">
           <div class="panel-h"><h2>Document Register</h2><div class="sub">RECORDED INSTRUMENTS &amp; KEY FILES — PASTE LINKS</div></div>
           <div class="recs" id="dirDocs"></div>
+        </div>
+        <div class="card dir-imagery">
+          <div class="panel-h"><h2>Site imagery</h2><div class="sub">ROOF / HVAC &amp; SIGNAGE IMAGES — TAG THEN OVERLAY ON A-1</div></div>
+          <div class="assets" id="dirImagery"></div>
         </div>
       </div>
     </section>
