@@ -159,6 +159,10 @@ tbody tr:hover{background:rgba(168,126,47,.06);cursor:pointer}
 tbody td .dba{font-weight:600} tbody td .legal{font-size:11px;color:var(--ink50)}
 tfoot td{padding:11px 12px;font-family:var(--mono);font-weight:600;border-top:2px solid var(--ink);background:var(--card)}
 td.unitcell{font-family:var(--mono);font-weight:600}
+/* R-1 carries 11 columns — tighten padding and PSF columns so it fits */
+#rollTable th,#rollTable td{padding-left:8px;padding-right:8px}
+#rollTable th.num,#rollTable td.num{font-size:11.5px}
+#rollTable th:first-child,#rollTable td:first-child{padding-left:14px}
 
 /* ===== COMPLIANCE MATRIX ===== */
 .matrix{overflow:auto}
