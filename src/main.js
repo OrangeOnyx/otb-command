@@ -2,11 +2,11 @@
 import "./styles.css";
 import { exportJSON, importJSON } from "./store.js";
 import { TODAY } from "./lib/format.js";
-import { renderDashboard } from "./views/dashboard.js";
+import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { renderRoll } from "./views/rentroll.js";
 import { initMatrix } from "./views/compliance.js";
-import { renderDates } from "./views/dates.js";
+import { initDates } from "./views/dates.js";
 import { initBoard } from "./views/board.js";
 import { initDirectory } from "./views/directory.js";
 import { initFinancial } from "./views/financial.js";
@@ -54,11 +54,11 @@ importFile.onchange = async () => {
 };
 
 /* ---------- boot ---------- */
-renderDashboard();
 initPlan();
 renderRoll();
 initMatrix();
-renderDates();
+initDates();
 initBoard();
 initDirectory();
 initFinancial();
+initDashboard(); // last — its Action Queue reads the board's live cards

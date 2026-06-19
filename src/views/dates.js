@@ -1,5 +1,7 @@
-/* T-1 Critical Dates — lease expirations + instrument deadlines on a timeline. */
-import { UNITS } from "../store.js";
+/* T-1 Critical Dates — lease expirations + instrument deadlines on a timeline.
+   Source data is static (lease ends + fixed instrument dates); the only store
+   event that can change it is a full state import, so we subscribe to that. */
+import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
 
 export function renderDates() {
@@ -27,4 +29,9 @@ export function renderDates() {
       '<span class="tx">' + e.t + '<span class="sub">' + e.sub + '</span></span></div>';
   });
   document.getElementById("timeline").innerHTML = h;
+}
+
+export function initDates() {
+  renderDates();
+  subscribe(type => { if (type === "import") renderDates(); });
 }

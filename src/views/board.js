@@ -15,7 +15,7 @@ const LANES = [
   ["progress", "In Progress", "Actively working"],
   ["done", "Cleared", "Resolved — archive when stale"]
 ];
-const KIND = {
+export const ACTION_KIND = {
   holdover: ["Holdover", "var(--brick)"],
   renewal: ["Renewal", "var(--brass)"],
   vacancy: ["Lease-up", "var(--navy)"],
@@ -77,6 +77,8 @@ function cards() {
     .map(card => ({ ...card, lane: ov.lane[card.id] || card.lane, ...(ov.edit[card.id] || {}) }));
   return merged;
 }
+/* live action cards for other surfaces (e.g. D-1 Action Queue) — single source */
+export function getActionCards() { return cards(); }
 
 /* ---- render ---- */
 function dueChip(due) {
@@ -89,7 +91,7 @@ function dueChip(due) {
 }
 
 function cardHTML(card) {
-  const [kl, kc] = KIND[card.kind] || KIND.task;
+  const [kl, kc] = ACTION_KIND[card.kind] || ACTION_KIND.task;
   return '<div class="acard" draggable="true" data-id="' + esc(card.id) + '">' +
     '<button class="acard-x" data-id="' + esc(card.id) + '" title="Archive">✕</button>' +
     '<span class="ktag" style="--kc:' + kc + '">' + kl + '</span>' +

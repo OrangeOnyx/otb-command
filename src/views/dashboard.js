@@ -1,11 +1,20 @@
-/* D-1 Operations Dashboard — KPIs, lease runway, action queue. */
-import { UNITS } from "../store.js";
+/* D-1 Operations Dashboard — KPIs, lease runway, action queue.
+   The Action Queue derives from the SAME live cards as W-1 (single source) and
+   re-renders on store changes; KPIs/runway are read-only from the rent roll. */
+import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
+import { getActionCards, ACTION_KIND } from "./board.js";
 
 export function renderDashboard() {
   renderKPIs();
   renderRunway();
   renderAlerts();
+}
+
+export function initDashboard() {
+  renderDashboard();
+  // alerts derive from compliance flags + action-board overrides — refresh on those
+  subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
 }
 
 function renderKPIs() {
@@ -23,7 +32,7 @@ function renderKPIs() {
     ["brick", "In Holdover", hold.length, hold.map(u => u.unit).join(" · ")],
     ["brass", "Expiring ≤ 12 mo", exp12.length, exp12.map(u => u.unit).join(" · ") || "none"],
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
-    ["brass", "Parking", "324<small>/344</small>", "variance <b>99-11797</b> — protect"]
+    ["brass", "Parking", "324<small>/344</small>", "legal (var. <b>99-11797</b>) · 314 drawn"]
   ].map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 
@@ -46,16 +55,21 @@ function renderRunway() {
   document.getElementById("runAxis").innerHTML = ["2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033"].map(y => "<span>" + y + "</span>").join("");
 }
 
+/* Action Queue — a prioritized read of the live W-1 cards (single source).
+   Surfaces the urgent lanes (Action Needed + anything overdue), most-overdue
+   first; click-through is on W-1, this is the home-page triage. */
 function renderAlerts() {
-  const items = [];
-  items.push({ c: "var(--brick)", tag: "Holdover — priority", t: "<b>109 · JC Kate Boutique</b> expired 9/17/25 — 8+ months in holdover. Highest-priority renewal." });
-  UNITS.filter(u => u.status === "expired" && u.unit !== "109").forEach(u =>
-    items.push({ c: "var(--brick)", tag: "Holdover", t: "<b>" + u.unit + " · " + esc(u.dba) + "</b> expired " + fDate(pDate(u.end)) + ". Renew or recover possession." }));
-  items.push({ c: "var(--brass)", tag: "Leasing", t: "<b>131</b> — LOI pending with furniture-store prospect (1,907 SF). <b>133</b> in active marketing (1,272 SF)." });
-  items.push({ c: "#C99A33", tag: "Expiring Sep 2026", t: "<b>115/117 · Clothing Loft Exchange</b> expires 9/11/26 — open renewal discussion now (4,340 SF combined)." });
-  items.push({ c: "var(--anchor)", tag: "Anchor obligation", t: "<b>149 · Jason's Deli</b> — §9.01 requires monthly HVAC PM contract with <b>Butcher Air Conditioning</b>. Confirm contract is current." });
-  items.push({ c: "var(--navy)", tag: "Exclusive-use watch", t: "<b>129 · HotWorx</b> vs <b>135A · C. Wolf</b> — monitor exclusive-use boundaries before any new services lease." });
-  items.push({ c: "var(--slate)", tag: "Instruments", t: "Church easement <b>$350/mo</b> — §3a liquor waiver survives termination. JD Bank easement <b>$250/mo</b> in, 13 spaces, expires 12/30/2034." });
-  document.getElementById("alerts").innerHTML = items.map(a =>
-    '<div class="alert"><div class="bar" style="background:' + a.c + '"></div><div class="t"><span class="tag">' + a.tag + '</span>' + a.t + '</div></div>').join("");
+  const urgent = getActionCards()
+    .filter(c => c.lane === "action" || (c.due && pDate(c.due) < TODAY && c.lane !== "done"))
+    .map(c => ({ ...c, over: c.due ? (TODAY - pDate(c.due)) : -Infinity }))
+    .sort((a, b) => b.over - a.over);
+  const el = document.getElementById("alerts");
+  if (!urgent.length) { el.innerHTML = '<div class="alert"><div class="t"><span class="tag">All clear</span>No action-needed items — see W-1 for the full board.</div></div>'; return; }
+  el.innerHTML = urgent.map(c => {
+    const [label, color] = ACTION_KIND[c.kind] || ACTION_KIND.task;
+    const overTxt = c.due && pDate(c.due) < TODAY ? ' <b style="color:var(--brick)">' + Math.abs(daysTo(pDate(c.due))) + 'd over</b>' : "";
+    return '<div class="alert"><div class="bar" style="background:' + color + '"></div><div class="t">' +
+      '<span class="tag">' + esc(label) + (c.unit ? " · " + esc(c.unit) : "") + '</span>' +
+      '<b>' + esc(c.title) + '</b>' + overTxt + (c.detail ? '<br>' + esc(c.detail) : "") + '</div></div>';
+  }).join("");
 }
