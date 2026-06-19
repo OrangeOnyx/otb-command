@@ -5480,7 +5480,7 @@
     "t": "text",
     "x": 1078,
     "y": 1033,
-    "s": "·  ROOF/HVAC & PYLON SIGN PHOTO OVERLAYS",
+    "s": "·  FINANCIAL ROLLUP — NOI (P-1, NEXT)",
     "attrs": {
      "class": "svg-lab",
      "font-size": "7"
@@ -5490,7 +5490,7 @@
     "t": "text",
     "x": 1078,
     "y": 1044.5,
-    "s": "·  PER-UNIT FLOOR-PLAN VIEWER",
+    "s": "·  ROOF/HVAC & SIGNAGE RASTER OVERLAYS",
     "attrs": {
      "class": "svg-lab",
      "font-size": "7"
@@ -5500,7 +5500,7 @@
     "t": "text",
     "x": 1078,
     "y": 1056,
-    "s": "·  DOORLOOP RENT-ROLL IMPORT",
+    "s": "·  HOSTED BACKEND — CROSS-DEVICE SYNC",
     "attrs": {
      "class": "svg-lab",
      "font-size": "7"
@@ -5510,7 +5510,7 @@
     "t": "text",
     "x": 1078,
     "y": 1067.5,
-    "s": "·  EXPIRATION / HOLDOVER ALERTING",
+    "s": "·  PARKING Δ −10 — PULL VARIANCE FILE",
     "attrs": {
      "class": "svg-lab",
      "font-size": "7"
@@ -5520,17 +5520,7 @@
     "t": "text",
     "x": 1078,
     "y": 1079,
-    "s": "·  PARKING Δ −10 RECONCILIATION MEMO",
-    "attrs": {
-     "class": "svg-lab",
-     "font-size": "7"
-    }
-   },
-   {
-    "t": "text",
-    "x": 1078,
-    "y": 1090.5,
-    "s": "·  SERVER PERSISTENCE (NODE + SQLITE)",
+    "s": "·  STREETSCAPE / TENANT PHOTO TOUR",
     "attrs": {
      "class": "svg-lab",
      "font-size": "7"

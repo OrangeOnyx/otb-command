@@ -68,7 +68,9 @@ concept built in Claude.ai. This repo evolves it into the production tool.
    boundary bearings, liquor-line course, stall counts per zone. Geometry lives in
    geometry.json, never hard-coded in render functions.
 4. Later: photo-overlay layers per view (Roof/HVAC, Signage pylon panels),
-   floor-plan viewer per unit, DoorLoop import, expiration alerting.
+   floor-plan viewer per unit, expiration alerting, financial rollup.
+   **DoorLoop import is OFF the roadmap (operator decision, Jun 2026) — do
+   not re-propose it.** SOT stays the workbook + manual edits via the store.
 
 ## Data sources of truth (Tier 1)
 - 00_OTB_Master_SOT.docx v1.1 · OTBMasterTemplateSetSOTcorrected.xlsx (27×30 rent

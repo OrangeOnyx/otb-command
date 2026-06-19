@@ -646,12 +646,11 @@ generalNotes.push(
     { fill: "#1C2B26", style: "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em" })
 );
 const PLANNED = [
-  "·  ROOF/HVAC & PYLON SIGN PHOTO OVERLAYS",
-  "·  PER-UNIT FLOOR-PLAN VIEWER",
-  "·  DOORLOOP RENT-ROLL IMPORT",
-  "·  EXPIRATION / HOLDOVER ALERTING",
-  "·  PARKING Δ −10 RECONCILIATION MEMO",
-  "·  SERVER PERSISTENCE (NODE + SQLITE)"
+  "·  FINANCIAL ROLLUP — NOI (P-1, NEXT)",
+  "·  ROOF/HVAC & SIGNAGE RASTER OVERLAYS",
+  "·  HOSTED BACKEND — CROSS-DEVICE SYNC",
+  "·  PARKING Δ −10 — PULL VARIANCE FILE",
+  "·  STREETSCAPE / TENANT PHOTO TOUR"
 ];
 PLANNED.forEach((n, i) => generalNotes.push(text(1078, 1033 + i * 11.5, n, { class: "svg-lab", "font-size": "7" })));
 const REVLOG = [
