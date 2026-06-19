@@ -4,8 +4,11 @@
 Full visual property-management program for **On The Boulevard Shopping Center**,
 101–149 Arnould Blvd, Lafayette, LA 70506. Owner-operator: Adam — Managing Member,
 Orange Ocean, LLC (manager of Belle Realty of Lafayette, LLC, the owning entity).
-Baseline: `baseline/OTB_Command_v7.html` (Rev 4) — a blessed single-file visual
-concept built in Claude.ai. This repo evolves it into the production tool.
+Baseline was `baseline/OTB_Command_v7.html` (Rev 4) — a blessed single-file
+visual concept built in Claude.ai. The modular Vite app has long superseded it;
+the file was removed (recoverable from git at commit 81b1541) so the repo isn't
+carrying a second full copy of the tool. This repo IS the authoritative version;
+all exported HTML/JSON/SVG are one-way, disposable snapshots.
 
 ## Operator's working style (follow strictly)
 - Executive register. Working output first, explanation second. No filler.
