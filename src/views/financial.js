@@ -9,13 +9,15 @@ import recoveries from "../data/recoveries.json";
 
 const annual = u => (u.monthly || 0) * 12;
 
-/* annual income by component (PSF × SF), from SOT Sheet2 rent composition */
+/* annual income by component (PSF × SF). Base is single-sourced from units.json
+   (SOT rent roll); CAM/Tax/Ins come from the recoveries composition. */
 function composition() {
   const c = { base: 0, cam: 0, tax: 0, ins: 0 };
   UNITS.forEach(u => {
+    c.base += (u.base || 0) * u.sf;
     const r = recoveries.units[u.unit];
     if (!r) return;
-    c.base += r.base * u.sf; c.cam += r.cam * u.sf; c.tax += r.tax * u.sf; c.ins += r.ins * u.sf;
+    c.cam += r.cam * u.sf; c.tax += r.tax * u.sf; c.ins += r.ins * u.sf;
   });
   c.total = c.base + c.cam + c.tax + c.ins;
   c.recoveries = c.cam + c.tax + c.ins;

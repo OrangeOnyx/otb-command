@@ -8,12 +8,15 @@ import recoveries from "../data/recoveries.json";
 import { openDrawer } from "./drawer.js";
 
 let sortKey = "unit", sortDir = 1;
-const PSF_KEYS = new Set(["base", "cam", "tax", "ins", "total"]);
+// Base & Total PSF are single-sourced from units.json (the SOT rent roll);
+// recoveries.json supplies only the CAM/Tax/Ins decomposition.
+const REC_KEYS = new Set(["cam", "tax", "ins"]);
 const rec = u => recoveries.units[u.unit] || {};
 
-// value accessor — PSF columns read from the composition, everything else from the unit
+// value accessor — base/total from the unit, CAM/Tax/Ins from the composition
 function val(u, key) {
-  if (PSF_KEYS.has(key)) return rec(u)[key] || 0;
+  if (REC_KEYS.has(key)) return rec(u)[key] || 0;
+  if (key === "base" || key === "total") return u[key] || 0;
   if (key === "unit") return parseFloat(u.unit);
   if (key === "end") return u.end || "9999";
   return u[key];
@@ -38,11 +41,11 @@ export function renderRoll() {
     h += '<tr data-u="' + u.unit + '"><td class="unitcell">' + u.unit + '</td>' +
       '<td><div class="dba">' + esc(u.dba) + '</div><div class="legal">' + esc(u.legal || "") + '</div></td>' +
       '<td class="num">' + u.sf.toLocaleString() + '</td>' +
-      '<td class="num">' + psf(r.base) + '</td>' +
+      '<td class="num">' + psf(u.base) + '</td>' +
       '<td class="num">' + psf(r.cam) + '</td>' +
       '<td class="num">' + psf(r.tax) + '</td>' +
       '<td class="num">' + psf(r.ins) + '</td>' +
-      '<td class="num">' + psf(r.total) + '</td>' +
+      '<td class="num">' + psf(u.total) + '</td>' +
       '<td class="num">' + (u.monthly ? fmt$(u.monthly) : "—") + '</td>' +
       '<td>' + (u.end ? fDate(pDate(u.end)) : "—") + '</td>' +
       '<td><span class="pill ' + sm.pill + '"><span class="dot"></span>' + sm.label + '</span></td></tr>';
