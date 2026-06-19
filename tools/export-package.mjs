@@ -11,9 +11,13 @@ import { dirname, join } from "node:path";
 import { unitFill, STATUS_META, CAT_META } from "../src/lib/colors.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const geometry = JSON.parse(readFileSync(join(root, "src/data/geometry.json"), "utf8"));
-const units = JSON.parse(readFileSync(join(root, "src/data/units.json"), "utf8"));
-const compliance = JSON.parse(readFileSync(join(root, "src/data/compliance.json"), "utf8"));
+const rd = f => JSON.parse(readFileSync(join(root, "src/data", f), "utf8"));
+const geometry = rd("geometry.json");
+const units = rd("units.json");
+const compliance = rd("compliance.json");
+const hvac = rd("hvac.json");
+const recoveries = rd("recoveries.json");
+const directory = rd("directory.json");
 const out = join(root, "export");
 mkdirSync(out, { recursive: true });
 
@@ -86,6 +90,15 @@ const monthly = sum(units.map(u => u.monthly));
 const pDate = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
 const fmt$ = n => "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 const exp12 = units.filter(u => u.end && pDate(u.end) > TODAY && pDate(u.end) < new Date(2027, 5, 10));
+const annualRent = monthly * 12;
+const holdRent = sum(holdovers.map(u => u.monthly * 12));
+const exp12Rent = sum(exp12.map(u => u.monthly * 12));
+const comp = { base: 0, cam: 0, tax: 0, ins: 0 };
+units.forEach(u => { const r = recoveries.units[u.unit]; if (r) { comp.base += r.base * u.sf; comp.cam += r.cam * u.sf; comp.tax += r.tax * u.sf; comp.ins += r.ins * u.sf; } });
+comp.total = comp.base + comp.cam + comp.tax + comp.ins;
+comp.recoveries = comp.cam + comp.tax + comp.ins;
+const pct = (n, d) => (n / d * 100).toFixed(0) + "%";
+const hvacRow = u => { const h = hvac.units[u.unit]; return h ? (h.repair === "100%" && h.replace === "100%" ? "tenant 100% (full)" : `${h.repair}/occ · ${h.replace} repl`) : "n/a"; };
 
 /* ── dossier markdown ──────────────────────────────────────────── */
 const row = u => `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${u.total ? "$" + u.total.toFixed(2) : "—"} | ${u.monthly ? fmt$(u.monthly) : "—"} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`;
@@ -114,6 +127,18 @@ ${units.map(row).join("\n")}
 - Combined leases: 101+103 (Pink Paisley, 9,931 SF) · 115+117 (Clothing Loft, 4,340 SF) · 125+127 (Jordan Amanda, 4,273 SF) · 139+141 (Fast Pass, 3,834 SF)
 - Owner-occupied: 135B (Belle Realty management office, 1,580 SF)
 
+## Financial summary
+*Income derived from the rent-roll SOT (Sheet2 composition). Operating expenses are NOT in the SOT — NOI requires the owner's actual expense figures; do not invent them.*
+- **In-place rent: ${fmt$(annualRent)}/yr** (${fmt$(monthly)}/mo)
+- **Income composition** (annual, base + NNN recoveries reconcile to in-place rent):
+  - Base rent ${fmt$(comp.base)} (${pct(comp.base, comp.total)})
+  - CAM recovery ${fmt$(comp.cam)} (${pct(comp.cam, comp.total)})
+  - Tax recovery ${fmt$(comp.tax)} (${pct(comp.tax, comp.total)})
+  - Insurance recovery ${fmt$(comp.ins)} (${pct(comp.ins, comp.total)})
+  - **NNN recoveries (CAM+Tax+Ins): ${fmt$(comp.recoveries)}/yr** — tenant reimbursements that offset the corresponding operating expenses
+- **Revenue at risk: ${fmt$(holdRent + exp12Rent)}/yr (${pct(holdRent + exp12Rent, annualRent)} of in-place rent)** — ${fmt$(holdRent)} in ${holdovers.length} holdovers + ${fmt$(exp12Rent)} expiring within 12 months. WALT is short; near-term rollover is the central asset-management risk.
+- Anchor concentration: Jason's Deli (149) is ${pct(units.find(u => u.unit === "149").monthly * 12, annualRent)} of in-place rent.
+
 ## Buildings & demising (plat-traced)
 - **Long building (101–133):** 85.45' deep × 522.31' long, 19 bays; backs Marie Antoinette St with rear face 18.73' off the R/W (rear strip holds parallel parking over a 10' utility easement); storefronts face the main field; 101 at the Johnston end.
 - **Short building (135–149):** 84.49' deep × 208.65' long along Patricia St; Jason's Deli (54.6') anchors the Arnould corner. The 37.4' Marie Antoinette-end section splits at mid-depth into two ~square units — **135A (C. Wolf Barber, breezeway side)** and **135B (Belle Realty, Patricia side)**, each 42.245' × 37.4' = 1,580 SF, both fronting M.A.
@@ -141,12 +166,24 @@ Our Savior's Church easement §3a carries a **liquor waiver that survives termin
 - 5×5' guy easement at the pylon sign (Johnston-side boundary, sign has 2 adjacent spaces).
 - Expired (of record only): three 15' temporary drainage easements, Entries 77-0783 / 77-000784 / 77-000785.
 
+## HVAC cost responsibility (per lease, SOT)
+Each tenant carries a per-occurrence/annual repair cap and a replacement share; above the cap the landlord covers, and a quarterly PM contract with **${hvac.provider}** (or an approved provider) is required. 100% = tenant fully responsible.
+| Unit | Tenant | HVAC split (tenant) |
+|---|---|---|
+${units.map(u => `| ${u.unit} | ${u.dba} | ${hvacRow(u)} |`).join("\n")}
+- Fully tenant-responsible (zero landlord HVAC exposure): ${units.filter(u => { const h = hvac.units[u.unit]; return h && h.repair === "100%" && h.replace === "100%"; }).map(u => u.unit).join(", ")}.
+
 ## Covenants & operations notes
 - **Jason's Deli §9.01:** landlord-side requirement that HVAC PM run monthly with **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC.
 - **Exclusive-use watch:** HotWorx (129, Mar 2024) vs C. Wolf Barber (135A, Nov 2024).
 - Compliance tracking fields per unit: ${compliance.fields.map(f => f[1] || f).join(", ")}.
 - Assessor parcels (Belle): 6026783 · 6026784 · 6026785 · 6026788 · 6009649 (remote Lot 7).
 - Legal: Lots 1–3, 1–14, partition of Lots 1 & 2 Block I + remote parcel Block M, Arnold Heights Subd. Ext. No. 1 · outside SFHA.
+
+## Key parties & document register
+*Vendors, counterparties, agencies, and recorded instruments tracked in the tool's Directory (K-1).*
+- **Parties:** ${directory.propertyContacts.map(c => c.company + " (" + c.role + ")").join(" · ")}.
+- **Recorded instruments / key files:** ${directory.propertyDocuments.map(d => d.name + (d.ref && d.ref !== "—" ? " — " + d.ref : "")).join(" · ")}.
 
 ## Known anomalies (surfaced, unresolved — do not "fix")
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
@@ -172,11 +209,15 @@ writeFileSync(join(out, "OTB-Property-Data.json"), JSON.stringify({
     headline: { glaSf: 62883, units: 27, buildings: 2, acres: 4.84, zoning: "CH" }
   },
   derived: {
-    unitSfSum: sfSum, monthlyIncome: Math.round(monthly), annualIncome: Math.round(monthly * 12),
+    unitSfSum: sfSum, monthlyIncome: Math.round(monthly), annualIncome: Math.round(annualRent),
     occupiedUnits: occ.length, vacantUnits: vacant.length, vacantSf: sum(vacant.map(u => u.sf)),
-    holdoverUnits: holdovers.map(u => u.unit)
+    holdoverUnits: holdovers.map(u => u.unit),
+    incomeComposition: { base: Math.round(comp.base), cam: Math.round(comp.cam), tax: Math.round(comp.tax), ins: Math.round(comp.ins), nnnRecoveries: Math.round(comp.recoveries) },
+    revenueAtRisk: { holdoverRent: Math.round(holdRent), expiring12moRent: Math.round(exp12Rent), total: Math.round(holdRent + exp12Rent) }
   },
   units, compliance,
+  rentComposition: recoveries.units, hvac: hvac.units,
+  contacts: directory.propertyContacts, documents: directory.propertyDocuments,
   demising: geometry.demising, parking: geometry.parking, liquorLine: geometry.liquorLine,
   easements: geometry.easements, streets: geometry.streets, boundary: geometry.boundary
 }, null, 1));
