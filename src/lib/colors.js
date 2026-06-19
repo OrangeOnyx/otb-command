@@ -1,6 +1,6 @@
 /* Status/category color system + plan color-mode fills (identical to baseline). */
 import { pDate, monthsTo } from "./format.js";
-import hvac from "../data/hvac.json";
+import hvac from "../data/hvac.json" with { type: "json" };
 
 /* Landlord HVAC replacement exposure — bound to the discrete lease-structure
    tier carried in hvac.json (full / pct / standard), not a dollar gradient:

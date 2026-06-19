@@ -94,7 +94,7 @@ const annualRent = monthly * 12;
 const holdRent = sum(holdovers.map(u => u.monthly * 12));
 const exp12Rent = sum(exp12.map(u => u.monthly * 12));
 const comp = { base: 0, cam: 0, tax: 0, ins: 0 };
-units.forEach(u => { const r = recoveries.units[u.unit]; if (r) { comp.base += r.base * u.sf; comp.cam += r.cam * u.sf; comp.tax += r.tax * u.sf; comp.ins += r.ins * u.sf; } });
+units.forEach(u => { comp.base += (u.base || 0) * u.sf; const r = recoveries.units[u.unit]; if (r) { comp.cam += r.cam * u.sf; comp.tax += r.tax * u.sf; comp.ins += r.ins * u.sf; } });
 comp.total = comp.base + comp.cam + comp.tax + comp.ins;
 comp.recoveries = comp.cam + comp.tax + comp.ins;
 const pct = (n, d) => (n / d * 100).toFixed(0) + "%";
