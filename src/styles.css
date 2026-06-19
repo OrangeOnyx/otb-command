@@ -321,3 +321,4 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 .noi-line.cap input{width:66px;font-family:var(--mono);font-size:12px;text-align:right;padding:5px 8px;margin-right:4px;
   border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink)}
 .noi-note{font-family:var(--mono);font-size:9.5px;line-height:1.5;color:var(--ink50);padding:8px 16px 0}
+.hvac-note{font-family:var(--mono);font-size:10px;line-height:1.5;color:var(--ink50);margin-top:6px;padding-left:2px}

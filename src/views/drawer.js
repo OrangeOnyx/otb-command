@@ -6,6 +6,7 @@ import { STATUS_META } from "../lib/colors.js";
 import { unitContacts, unitDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
+import hvacData from "../data/hvac.json";
 
 const drawer = document.getElementById("drawer");
 let editingNote = false;
@@ -61,6 +62,21 @@ function renderDrawer() {
     ["Term end", u.end ? fDate(e) : "—"]
   ].map(([k, v]) => '<div class="fact"><div class="k">' + k + '</div><div class="v">' + v + '</div></div>').join("");
 
+  const hv = hvacData.units[u.unit];
+  let hvacHtml = "";
+  if (hv) {
+    const full = hv.repair === "100%" && hv.replace === "100%";
+    hvacHtml = '<div class="dw-sec">HVAC responsibility</div>' +
+      '<div class="facts">' +
+        '<div class="fact"><div class="k">Tenant repair cap</div><div class="v">' + esc(hv.repair) + (full ? "" : ' <small>/ occ.</small>') + '</div></div>' +
+        '<div class="fact"><div class="k">Tenant replacement</div><div class="v">' + esc(hv.replace) + '</div></div>' +
+      '</div>' +
+      '<div class="hvac-note">' + (full
+        ? "Tenant fully responsible for HVAC repair &amp; replacement."
+        : "Tenant pays to the cap; landlord covers the excess.") +
+        " Quarterly PM contract with " + esc(hvacData.provider) + " (or approved provider) required.</div>";
+  }
+
   const note = getNote(u.unit);
   // a compliance click can re-render mid-edit — keep the unsaved draft
   const draft = editingNote ? (document.getElementById("noteTa")?.value ?? note) : note;
@@ -87,6 +103,7 @@ function renderDrawer() {
   body.innerHTML =
     '<div class="facts">' + facts + '</div>' +
     leaseHtml +
+    hvacHtml +
     notesHtml +
     '<div class="dw-sec">Contacts</div><div class="recs" id="dwContacts"></div>' +
     '<div class="dw-sec">Documents</div><div class="recs" id="dwDocs"></div>' +

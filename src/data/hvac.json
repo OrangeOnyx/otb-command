@@ -1,0 +1,108 @@
+{
+ "_note": "Per-tenant HVAC cost split from SOT workbook (OTB-Master-Template-Set-SOT-with hvac.xlsx, Sheet3). repair = tenant per-occurrence/annual repair cap; replace = tenant replacement share (dollar cap or %). Above the cap the landlord covers per the lease HVAC clause; quarterly PM contract with Butcher Air Conditioning (or approved provider) required. 100%/100% = tenant fully responsible; null = vacant / n/a.",
+ "provider": "Butcher Air Conditioning",
+ "units": {
+  "101": {
+   "repair": "$1,000",
+   "replace": "$1,000"
+  },
+  "103": {
+   "repair": "$1,000",
+   "replace": "$1,000"
+  },
+  "105": {
+   "repair": "$700",
+   "replace": "$1,000"
+  },
+  "107": {
+   "repair": "$750",
+   "replace": "$1,500"
+  },
+  "109": {
+   "repair": "$750",
+   "replace": "$750"
+  },
+  "111": {
+   "repair": "$750",
+   "replace": "50%"
+  },
+  "113": {
+   "repair": "$750",
+   "replace": "$750"
+  },
+  "115": {
+   "repair": "$750",
+   "replace": "$2,500"
+  },
+  "117": {
+   "repair": "$750",
+   "replace": "$2,500"
+  },
+  "117.5": {
+   "repair": "$500",
+   "replace": "$500"
+  },
+  "119": {
+   "repair": "$750",
+   "replace": "$1,500"
+  },
+  "119.5": {
+   "repair": "$750",
+   "replace": "$2,000"
+  },
+  "121": {
+   "repair": "$1,500",
+   "replace": "50%"
+  },
+  "123": {
+   "repair": "$2,000",
+   "replace": "50%"
+  },
+  "125": {
+   "repair": "$1,500",
+   "replace": "50%"
+  },
+  "127": {
+   "repair": "$1,500",
+   "replace": "50%"
+  },
+  "129": {
+   "repair": "100%",
+   "replace": "100%"
+  },
+  "131": null,
+  "133": null,
+  "135A": {
+   "repair": "$1,000",
+   "replace": "$1,000"
+  },
+  "135B": {
+   "repair": "$1,000",
+   "replace": "$1,000"
+  },
+  "137": {
+   "repair": "$750",
+   "replace": "15%"
+  },
+  "139": {
+   "repair": "$1,500",
+   "replace": "50%"
+  },
+  "141": {
+   "repair": "$1,500",
+   "replace": "50%"
+  },
+  "143": {
+   "repair": "$500",
+   "replace": "$500"
+  },
+  "145": {
+   "repair": "$1,500",
+   "replace": "$1,500"
+  },
+  "149": {
+   "repair": "100%",
+   "replace": "100%"
+  }
+ }
+}
