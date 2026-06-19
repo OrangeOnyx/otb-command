@@ -2,20 +2,17 @@
 import { pDate, monthsTo } from "./format.js";
 import hvac from "../data/hvac.json";
 
-/* Landlord HVAC replacement exposure from the tenant's split (lib/assets of risk):
-   tenant 100% = none; high tenant % or high $ cap = low; mid = med; low $ cap or
-   low tenant % = high landlord exposure. */
-const EXPO_COLOR = { none: "#2F6B4F", low: "#2F6B6B", med: "#C99A33", high: "#C25E33" };
-export function hvacExposure(u) {
+/* Landlord HVAC replacement exposure — bound to the discrete lease-structure
+   tier carried in hvac.json (full / pct / standard), not a dollar gradient:
+     full     = tenant 100% — no lessor exposure (green)
+     pct      = tenant pays a % of replacement — lessor carries complement (amber)
+     standard = fixed-dollar cap — lessor covers replacement above it (brick) */
+const TIER_COLOR = { full: "#2F6B4F", pct: "#C99A33", standard: "#C25E33" };
+export const TIER_LABEL = { full: "Tenant 100%", pct: "% split", standard: "$ cap — lessor covers excess", vacant: "—" };
+export function hvacTier(u) {
   const h = hvac.units[u.unit];
-  if (!h || !h.replace) return null;
-  const r = h.replace;
-  if (r === "100%") return "none";
-  if (r.endsWith("%")) { const t = parseFloat(r); return t >= 85 ? "low" : t >= 50 ? "med" : "high"; }
-  const cap = parseFloat(r.replace(/[$,]/g, ""));
-  return cap >= 2000 ? "low" : cap >= 1000 ? "med" : "high";
+  return h && h.tier ? h.tier : null;
 }
-export const EXPO_LABEL = { none: "No landlord exp.", low: "Low", med: "Medium", high: "High landlord exp." };
 
 export function lerp(a, b, t) { return a + (b - a) * t; }
 export function mix(c1, c2, t) {
@@ -41,7 +38,7 @@ export function unitFill(u, mode) {
   if (mode === "status") return STATUS_META[u.status].fill;
   if (mode === "use") return CAT_META[u.cat][1];
   if (u.status === "vacant") return "url(#hatch)";
-  if (mode === "hvac") { const e = hvacExposure(u); return e ? EXPO_COLOR[e] : "#5F6E64"; }
+  if (mode === "hvac") { const t = hvacTier(u); return t ? TIER_COLOR[t] : "#5F6E64"; }
   if (mode === "expiry") {
     if (!u.end) return "#5F6E64";
     const m = monthsTo(pDate(u.end));
@@ -61,6 +58,6 @@ export function legendFor(mode) {
   if (mode === "status") return [["Active", "#2F6B4F"], ["Anchor", "#1E4F3C"], ["Holdover", "#C25E33"], ["Vacant", "repeating-linear-gradient(45deg,#fff,#fff 3px,#c9cebe 3px,#c9cebe 5px)"], ["Owner", "#5F6E64"]];
   if (mode === "expiry") return [["Expired", "#C25E33"], ["< 12 mo", "#C99A33"], ["12–60 mo", "#7F9A5E"], ["5 yr +", "#2F6B4F"], ["No term", "#5F6E64"]];
   if (mode === "rent") return [["$15.50 PSF", "#7E8C7C"], ["$20.20 PSF", "#A87E2F"], ["No rent", "#5F6E64"]];
-  if (mode === "hvac") return [["No landlord exp.", "#2F6B4F"], ["Low", "#2F6B6B"], ["Medium", "#C99A33"], ["High landlord exp.", "#C25E33"]];
+  if (mode === "hvac") return [["Tenant 100%", "#2F6B4F"], ["% split", "#C99A33"], ["$ cap — lessor covers excess", "#C25E33"]];
   return Object.values(CAT_META).filter(c => c[1].indexOf("url") < 0).map(c => [c[0], c[1]]);
 }

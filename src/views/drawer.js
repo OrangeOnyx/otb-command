@@ -2,7 +2,7 @@
    Compliance cycling and note edits go through the store (write-through). */
 import { byUnit, COMP_FIELDS, getComp, cycleComp, getNote, noteIsOverride, setNote, setSelected, getSelected, subscribe } from "../store.js";
 import { fmt$, pDate, fDate, daysTo, esc, TODAY } from "../lib/format.js";
-import { STATUS_META, hvacExposure, EXPO_LABEL } from "../lib/colors.js";
+import { STATUS_META, hvacTier, TIER_LABEL } from "../lib/colors.js";
 import { unitContacts, unitDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
@@ -66,8 +66,8 @@ function renderDrawer() {
   let hvacHtml = "";
   if (hv) {
     const full = hv.repair === "100%" && hv.replace === "100%";
-    const expo = hvacExposure(u);
-    const expoTag = expo ? ' <span class="expo-tag expo-' + expo + '">' + esc(EXPO_LABEL[expo]) + '</span>' : "";
+    const tier = hvacTier(u);
+    const expoTag = tier ? ' <span class="expo-tag expo-' + tier + '">' + esc(TIER_LABEL[tier]) + '</span>' : "";
     hvacHtml = '<div class="dw-sec">HVAC responsibility' + expoTag + '</div>' +
       '<div class="facts">' +
         '<div class="fact"><div class="k">Tenant repair cap</div><div class="v">' + esc(hv.repair) + (full ? "" : ' <small>/ occ.</small>') + '</div></div>' +

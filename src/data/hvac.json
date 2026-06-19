@@ -4,105 +4,130 @@
  "units": {
   "101": {
    "repair": "$1,000",
-   "replace": "$1,000"
+   "replace": "$1,000",
+   "tier": "standard"
   },
   "103": {
    "repair": "$1,000",
-   "replace": "$1,000"
+   "replace": "$1,000",
+   "tier": "standard"
   },
   "105": {
    "repair": "$700",
-   "replace": "$1,000"
+   "replace": "$1,000",
+   "tier": "standard"
   },
   "107": {
    "repair": "$750",
-   "replace": "$1,500"
+   "replace": "$1,500",
+   "tier": "standard"
   },
   "109": {
    "repair": "$750",
-   "replace": "$750"
+   "replace": "$750",
+   "tier": "standard"
   },
   "111": {
    "repair": "$750",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "113": {
    "repair": "$750",
-   "replace": "$750"
+   "replace": "$750",
+   "tier": "standard"
   },
   "115": {
    "repair": "$750",
-   "replace": "$2,500"
+   "replace": "$2,500",
+   "tier": "standard"
   },
   "117": {
    "repair": "$750",
-   "replace": "$2,500"
+   "replace": "$2,500",
+   "tier": "standard"
   },
   "117.5": {
    "repair": "$500",
-   "replace": "$500"
+   "replace": "$500",
+   "tier": "standard"
   },
   "119": {
    "repair": "$750",
-   "replace": "$1,500"
+   "replace": "$1,500",
+   "tier": "standard"
   },
   "119.5": {
    "repair": "$750",
-   "replace": "$2,000"
+   "replace": "$2,000",
+   "tier": "standard"
   },
   "121": {
    "repair": "$1,500",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "123": {
    "repair": "$2,000",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "125": {
    "repair": "$1,500",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "127": {
    "repair": "$1,500",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "129": {
    "repair": "100%",
-   "replace": "100%"
+   "replace": "100%",
+   "tier": "full"
   },
   "131": null,
   "133": null,
   "135A": {
    "repair": "$1,000",
-   "replace": "$1,000"
+   "replace": "$1,000",
+   "tier": "standard"
   },
   "135B": {
    "repair": "$1,000",
-   "replace": "$1,000"
+   "replace": "$1,000",
+   "tier": "standard"
   },
   "137": {
    "repair": "$750",
-   "replace": "15%"
+   "replace": "15%",
+   "tier": "pct"
   },
   "139": {
    "repair": "$1,500",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "141": {
    "repair": "$1,500",
-   "replace": "50%"
+   "replace": "50%",
+   "tier": "pct"
   },
   "143": {
    "repair": "$500",
-   "replace": "$500"
+   "replace": "$500",
+   "tier": "standard"
   },
   "145": {
    "repair": "$1,500",
-   "replace": "$1,500"
+   "replace": "$1,500",
+   "tier": "standard"
   },
   "149": {
    "repair": "100%",
-   "replace": "100%"
+   "replace": "100%",
+   "tier": "full"
   }
  }
 }

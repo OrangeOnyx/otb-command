@@ -32,10 +32,19 @@ for row in list(ws.iter_rows(values_only=True))[1:]:
         continue
     m_rep = re.search(r"([\d.]+%?)\s*per\s*occur", val, re.I)
     m_rpl = re.search(r"and\s*([\d.]+%?)\s*Replacement", val, re.I)
-    units[unit] = {
-        "repair": norm(m_rep.group(1)) if m_rep else None,
-        "replace": norm(m_rpl.group(1)) if m_rpl else None,
-    }
+    repair = norm(m_rep.group(1)) if m_rep else None
+    replace = norm(m_rpl.group(1)) if m_rpl else None
+    # discrete lease-structure tier (categorical, not a dollar gradient):
+    #   full = tenant 100%/100% (no lessor exposure)
+    #   pct  = tenant pays a % of replacement (lessor carries the complement)
+    #   standard = fixed-dollar cap (lessor covers replacement above the cap)
+    if repair == "100%" and replace == "100%":
+        tier = "full"
+    elif replace and replace.endswith("%"):
+        tier = "pct"
+    else:
+        tier = "standard"
+    units[unit] = {"repair": repair, "replace": replace, "tier": tier}
 
 out = {
     "_note": "Per-tenant HVAC cost split from SOT workbook (OTB-Master-Template-Set-SOT-with hvac.xlsx, Sheet3). repair = tenant per-occurrence/annual repair cap; replace = tenant replacement share (dollar cap or %). Above the cap the landlord covers per the lease HVAC clause; quarterly PM contract with Butcher Air Conditioning (or approved provider) required. 100%/100% = tenant fully responsible; null = vacant / n/a.",
