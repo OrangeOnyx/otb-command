@@ -68,6 +68,18 @@ Free tier (500 MB DB, 1 GB storage, 50k MAU) covers one property + a few users w
 4. **Depth** — **B0→B3** this pass (B4 realtime deferred).
 5. **Custom domain** — not yet chosen; start on a Vercel subdomain, add `command.ontheblvd.com` later.
 
+## PROVISIONED 2026-06-20
+- **Live (B0):** https://otb-command.vercel.app (Vercel, team `adams-projects-0c52918e`). Public, 24/7.
+  Currently the localStorage build — shared login/sync is B1/B2 (in progress).
+- **Supabase project:** `otb-command` ref `kbhsghodquchkgfdzckc` · url `https://kbhsghodquchkgfdzckc.supabase.co`
+  (org `oamxhllxpegnybdyqgrw`). Keys in local `.env` (git-ignored); publishable key is client-safe.
+- **DB done:** `profiles` (role operator/owner, auto-created on signup) · `property_state` (jsonb mirror,
+  layers comp/notes/actions/contacts/documents/financials/ownerSheets) · RLS operator-write / authenticated-read ·
+  private `assets` storage bucket (same rules) · security advisor clean.
+- **Remaining B1/B2/B3:** front-end `remote.js` (auth gate + load/push state), `@supabase/supabase-js` added;
+  set Vercel env `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY`; set Supabase Auth Site URL = the Vercel URL;
+  redeploy; set Adam's profile role = 'operator'; migrate IndexedDB images → `assets` bucket.
+
 ## To start (operator action required — cloud accounts)
 B0 needs accounts I can't create:
 - **Supabase** — create a project; share the project URL + anon key (or authorize the Supabase
