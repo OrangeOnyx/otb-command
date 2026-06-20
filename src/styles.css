@@ -339,3 +339,15 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 .expo-full{color:var(--green);background:var(--green-bg)}
 .expo-pct{color:#8a6d1f;background:var(--brass-bg)}
 .expo-standard{color:var(--brick);background:var(--brick-bg)}
+
+/* owner-view (Path B): operator picks owner-visible sheets + previews */
+.ownerview{padding:10px 14px;border-top:1px solid var(--line)}
+.ov-toggle{width:100%;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.04em;padding:7px 8px;border:1px solid var(--brass);background:transparent;color:var(--ink);border-radius:4px;cursor:pointer}
+.ov-toggle.on{background:var(--anchor);color:var(--paper);border-color:var(--anchor)}
+.ov-cfg{margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--slate)}
+.ov-cfg summary{cursor:pointer;letter-spacing:.04em}
+.ov-list{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+.ov-list label{display:flex;align-items:center;gap:6px;cursor:pointer}
+body.owner-preview .tb-actions{display:none}
+body.owner-preview .ov-cfg{display:none}
+body.owner-preview .main::before{content:"OWNER PREVIEW — read-only · limited sheets";display:block;background:var(--anchor);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-align:center;padding:6px}

@@ -59,6 +59,11 @@ const emptyActions = () => ({ lane: {}, edit: {}, dismissed: {}, custom: [] });
 const COLLECTIONS = new Set(["contacts", "documents"]);
 const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
+/* owner-visible sheets (Path B owner view): operator picks which sheets the
+   shopping-center owners can see. Persisted + exported so it travels. */
+const PAGE_IDS = ["dash", "plan", "roll", "comp", "fin", "dates", "board", "dir"];
+const DEFAULT_OWNER_SHEETS = ["dash", "plan", "roll", "fin"];
+
 /* financials = operator-entered operating assumptions for the P-1 NOI rollup.
    Income is derived from the rent roll; expenses aren't in the SOT, so these
    annual figures are the one manual input. Fixed schema — no add/remove. */
@@ -68,7 +73,7 @@ export const OPEX_LINES = [
 ];
 const emptyFin = () => ({ opex: { taxes: 0, insurance: 0, cam: 0, mgmt: 0, utilities: 0, reserves: 0 }, capRatePct: null });
 
-const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin() };
+const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin(), ownerSheets: [...DEFAULT_OWNER_SHEETS] };
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -113,6 +118,8 @@ function applySnapshot(snap) {
       for (const [k, v] of Object.entries(f.opex)) if (k in state.financials.opex && Number.isFinite(+v)) state.financials.opex[k] = +v;
     if (Number.isFinite(+f.capRatePct)) state.financials.capRatePct = +f.capRatePct;
   }
+  if (Array.isArray(snap.ownerSheets))
+    state.ownerSheets = PAGE_IDS.filter(p => snap.ownerSheets.includes(p));
 }
 
 function persist() {
@@ -120,7 +127,8 @@ function persist() {
     localStorage.setItem(LS_KEY, JSON.stringify({
       version: STATE_VERSION, savedAt: new Date().toISOString(),
       comp: state.comp, notes: state.notes, actions: state.actions,
-      contacts: state.contacts, documents: state.documents, financials: state.financials
+      contacts: state.contacts, documents: state.documents, financials: state.financials,
+      ownerSheets: state.ownerSheets
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -225,6 +233,17 @@ export function addRecord(name, rec) {
   return r.id;
 }
 
+/* ---------- owner-view sheet visibility ---------- */
+export function getOwnerSheets() { return state.ownerSheets.slice(); }
+export function setOwnerSheet(id, on) {
+  if (!PAGE_IDS.includes(id)) return;
+  const s = new Set(state.ownerSheets);
+  on ? s.add(id) : s.delete(id);
+  state.ownerSheets = PAGE_IDS.filter(p => s.has(p));
+  persist();
+  emit("ownerSheets", { id });
+}
+
 /* ---------- financials (P-1 operating assumptions) ---------- */
 export function getFinancials() { return state.financials; }
 export function setOpex(key, value) {
@@ -251,7 +270,8 @@ export function exportJSON() {
     actions: state.actions,
     contacts: state.contacts,
     documents: state.documents,
-    financials: state.financials
+    financials: state.financials,
+    ownerSheets: state.ownerSheets
   }, null, 2);
 }
 export function importJSON(text) {
@@ -265,6 +285,7 @@ export function importJSON(text) {
   state.contacts = emptyColl();
   state.documents = emptyColl();
   state.financials = emptyFin();
+  state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
   applySnapshot(snap);
   persist();
   emit("import");
