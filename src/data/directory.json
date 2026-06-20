@@ -20,7 +20,11 @@
     { "id": "pd:sotxlsx", "name": "Master template set — SOT workbook", "type": "Source of truth", "ref": "OTB-Master-Template-Set-SOT-corrected.xlsx · v1.1", "link": "", "note": "27×30 rent roll — Tier 1 SOT" },
     { "id": "pd:sotdocx", "name": "Master SOT narrative", "type": "Source of truth", "ref": "00_OTB_Master_SOT.docx · v1.1", "link": "", "note": "Tier 1 SOT" },
     { "id": "pd:meters", "name": "Meter / utilities workbook", "type": "Operations", "ref": "Rev_Belle_Realty_Arnould_Blvd_Property.xlsx", "link": "", "note": "Meter assignments" },
-    { "id": "pd:title", "name": "Title commitment", "type": "Title", "ref": "Fidelity National Title · ATC 2007054432 · Schedule B-2", "link": "", "note": "Exception markers keyed on the plat (10/11/13/14/16/17/25/26/27/28)" }
+    { "id": "pd:title", "name": "Title commitment", "type": "Title", "ref": "Fidelity National Title · ATC 2007054432 · Schedule B-2", "link": "", "note": "Exception markers keyed on the plat (10/11/13/14/16/17/25/26/27/28)" },
+    { "id": "pd:reconmemo", "name": "Parking reconciliation memo", "type": "Analysis", "ref": "docs/parking-reconciliation-memo.md", "link": "", "note": "Plat striping 314 vs variance 324 (Δ −10); cite 324 legally, plan ops on 314" },
+    { "id": "pd:dossier", "name": "Property dossier (LLM export)", "type": "Reference", "ref": "OTB-Property-Dossier.md · npm run export-package", "link": "", "note": "Auto-generated narrative + data snapshot for AI / owner sharing" },
+    { "id": "pd:poster", "name": "Leasing poster — plan-room", "type": "Marketing", "ref": "OTB-poster-B-planroom.svg · npm run poster", "link": "", "note": "Chosen leasing flyer; regenerates on availability change" },
+    { "id": "pd:pylon", "name": "Monument / pylon sign artwork", "type": "Marketing", "ref": "OTB-pylon-blank / -tenants.svg · npm run pylon", "link": "", "note": "Scaled 14-panel sign matching the Hwy-167 pylon" }
   ],
   "unitDocTypes": ["Executed lease", "Certificate of insurance", "Floor plan", "Estoppel", "Guaranty", "Sign drawing"]
 }
