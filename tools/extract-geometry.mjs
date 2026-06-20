@@ -586,79 +586,31 @@ const annotations = [
     { class: "svg-lab", "font-size": "7.5", fill: "#A87E2F", "pointer-events": "none" })
 ];
 
-/* ── general notes sheet band ── */
+/* ── tenant directory sheet band (replaces general notes + operator band) ── */
 const generalNotes = [
   rect(70, 778, 978, 200, { fill: "#F6F7F1", stroke: "#1C2B26", "stroke-width": 1.2 }),
   line(70, 806, 1048, 806, { stroke: "#1C2B26", "stroke-width": 1 }),
-  text(84, 798, "GENERAL NOTES",
-    { fill: "#1C2B26", style: "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em" })
+  text(84, 798, "TENANT DIRECTORY",
+    { fill: "#1C2B26", style: "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em" }),
+  text(1030, 798, "27 UNITS · 62,883 SF GLA", { class: "svg-lab", "font-size": "8.5", "text-anchor": "end" })
 ];
-const NOTES = [
-  "1.  PARKING VARIANCE ENTRY 99-11797 — 324 PROVIDED / 344 REQUIRED. FLOOR SPACE “LIMITED TO AVAILABLE PARKING SPACES.” ASSESS EVERY LEASE OR LICENSE AGAINST THIS FIGURE.",
-  "2.  OUR SAVIOR'S CHURCH ACCESS & PARKING EASEMENT — $350/MO · 25-YR TERM · SUNDAYS + 6PM–MIDNIGHT · §3a LIQUOR WAIVER SURVIVES TERMINATION (ENABLES RESTAURANT LEASING WITHIN 175 FT).",
-  "3.  JD BANK RECIPROCAL EASEMENT — $250/MO TO BELLE + 13 BANK SPACES · 50/50 MAINTENANCE SPLIT · EXPIRES 12/30/2034 · SUPERSEDES ENTRY 2004-00057697.",
-  "4.  PARKING FILL ORDER: MAIN FIELD → LOT 8 (19 SP PER PLAT, PATRICIA/M.A. CORNER) → LOT 7 (REMOTE, BLK M, 32 SP PER PLAT). ZONING ALSO REQUIRES 20% GREEN AREA. CROSS-PARKING LICENSES NON-EXCLUSIVE — NO ASSIGNED STALLS.",
-  "5.  LEGAL: LOTS 1–3, 1–14, PARTITION OF LOTS 1 & 2 BLK I + REMOTE PARCEL, BLK M, ARNOLD HEIGHTS SUBD. EXT. NO. 1 · 4.84 AC · OUTSIDE SFHA. ASSESSOR: 6026783 · 6026784 · 6026785 · 6026788 · 6009649 (REMOTE).",
-  "6.  STREET SPELLING VARIANTS ‘ARNAULD / ARNOLD / ARNOULD’ — TITLE CHECK PENDING (P0). PLAT: MONTAGNET & DOMINGUE, INC., 5/20/1994, LAST REV. 7/19/2019."
-];
-// word-wrap each note into the panel (usable width ≈ 950 px ≈ 110 chars at 8.5px mono)
-const wrapNote = (s, max = 110) => {
-  const out = [];
-  let cur = "";
-  for (const w of s.split(" ")) {
-    const cand = cur ? cur + " " + w : w;
-    if (cand.length > max && cur) { out.push(cur); cur = "      " + w; }
-    else cur = cand;
-  }
-  if (cur) out.push(cur);
-  return out;
-};
+/* tenant directory — 27 current units in 3 columns; vacant shown AVAILABLE.
+   Fills the band the old general-notes / operator boxes occupied. */
 {
-  let ny = 823;
-  NOTES.forEach(n => wrapNote(n).forEach(l => {
-    generalNotes.push(text(84, r2(ny), l, { class: "svg-lab", "font-size": "8.5", "xml:space": "preserve", style: "white-space:pre" }));
-    ny += 13.5;
-  }));
+  const per = 9, colw = 320;
+  units.forEach((u, i) => {
+    const col = Math.floor(i / per), row = i % per;
+    const x = 84 + col * colw, y = 830 + row * 16;
+    const vac = u.status === "vacant";
+    const nm = vac ? "AVAILABLE" : (u.dba.length > 30 ? u.dba.slice(0, 29) + "…" : u.dba);
+    const fill = vac ? "#C25E33" : "#1C2B26";
+    generalNotes.push(text(x, y, u.unit, { class: "svg-lab", "font-size": "9", "font-weight": "700", fill }));
+    generalNotes.push(text(x + 32, y, nm, { class: "svg-lab", "font-size": "8.5", fill }));
+  });
+  generalNotes.push(text(84, 970,
+    "AVAILABLE: 131 · 133 (COMBINABLE ±3,179 SF) · ANCHOR: 149 JASON'S DELI · PYLON SIGN AT JOHNSTON / US-167 CORNER",
+    { class: "svg-lab", "font-size": "8", "font-weight": "600" }));
 }
-
-/* ── operator band: program usage + revision log / planned additions ──
-   Second sheet row below the notes/title block (viewBox extended). */
-generalNotes.push(
-  rect(70, 990, 978, 140, { fill: "#F6F7F1", stroke: "#1C2B26", "stroke-width": 1.2 }),
-  line(70, 1018, 1048, 1018, { stroke: "#1C2B26", "stroke-width": 1 }),
-  text(84, 1010, "USING THIS PROGRAM",
-    { fill: "#1C2B26", style: "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em" })
-);
-const USAGE = [
-  "1.  CLICK ANY UNIT ON A-1 OR ANY ROW ON R-1 TO OPEN THE UNIT DRAWER — LEASE, RENT, NOTES & COMPLIANCE DETAIL.",
-  "2.  C-1 MATRIX: CLICK ANY CELL TO CYCLE U → OK → FLAG → N/A. THE DRAWER'S COMPLIANCE CHIPS CYCLE THE SAME STATES.",
-  "3.  UNIT NOTES EDIT IN THE DRAWER — OVERRIDES ARE FLAGGED AND REVERT WHEN THE TEXT MATCHES THE SOT. ALL EDITS PERSIST IN THIS BROWSER.",
-  "4.  EXPORT JSON (TOP BAR) SNAPSHOTS EVERY EDIT; IMPORT JSON RESTORES A SNAPSHOT — USE FOR BACKUP OR MOVING MACHINES.",
-  "5.  A-1 TOOLS: SCOPE MAIN PARCEL vs FULL SITE + REMOTE LOT · COLOR BY STATUS / EXPIRATION / RENT PSF / USE TYPE · HOVER FOR THE QUICK CARD.",
-  "DATA: RECORDED PLAT (MONTAGNET & DOMINGUE, REV 7/19/2019) · SOT WORKBOOK v1.1 · FULL TRACE AUDIT EMBEDDED IN GEOMETRY.JSON."
-];
-USAGE.forEach((n, i) => generalNotes.push(text(84, 1036 + i * 18, n, { class: "svg-lab", "font-size": "8.5" })));
-generalNotes.push(
-  rect(1064, 990, 296, 140, { fill: "#F6F7F1", stroke: "#1C2B26", "stroke-width": 1.2 }),
-  line(1064, 1018, 1360, 1018, { stroke: "#1C2B26", "stroke-width": 1 }),
-  line(1064, 1098, 1360, 1098, { stroke: "#1C2B26", "stroke-width": 0.6 }),
-  text(1078, 1010, "PLANNED ADDITIONS",
-    { fill: "#1C2B26", style: "font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:15px;letter-spacing:.1em" })
-);
-const PLANNED = [
-  "·  FINANCIAL ROLLUP — NOI (P-1, NEXT)",
-  "·  ROOF/HVAC & SIGNAGE RASTER OVERLAYS",
-  "·  HOSTED BACKEND — CROSS-DEVICE SYNC",
-  "·  PARKING Δ −10 — PULL VARIANCE FILE",
-  "·  STREETSCAPE / TENANT PHOTO TOUR"
-];
-PLANNED.forEach((n, i) => generalNotes.push(text(1078, 1033 + i * 11.5, n, { class: "svg-lab", "font-size": "7" })));
-const REVLOG = [
-  "REV LOG: 4 BASELINE · 5 BOUNDARY M&B",
-  "6 BLDGS+LOT 7 · 7 135A/B · 8 LIQUOR LINE",
-  "9 PARKING · 10 STREETS · 11 EASEMENTS ◀"
-];
-REVLOG.forEach((n, i) => generalNotes.push(text(1078, 1108 + i * 10, n, { class: "svg-lab", "font-size": "6.5" })));
 
 /* ── title block ── */
 const titleBlock = [
@@ -680,7 +632,7 @@ const titleBlock = [
 const geometry = {
   rev: "REV 11",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
-  viewBox: { main: "0 0 1480 1142", full: "0 -310 1480 1452" },
+  viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
     longBuilding: { depthFt: LB_DEPTH, rearSetbackFt: LB_REAR_SETBACK, eastGapFt: LB_EAST_GAP, lengthFt: r2(lbLen), bays: LB_BAYS },
     shortBuilding: {
