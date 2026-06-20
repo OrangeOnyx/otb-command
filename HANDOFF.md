@@ -31,9 +31,9 @@ W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + 
 All five original notes resolved on the chosen B variant: tenant DBAs off the boxes (number-only,
 turned 90° CCW + centered both axes); pylon at the surveyor 'SIGN' coord by Unit 101 (no leader line);
 Johnston label curves with the road, within the lane lines; boundary dashes thinned; OTB contact block
-+ enlarged logo. **Still open:** (a) **GLA figure** — B prints audited 62,883; public variants print
-±70,000 (brand). Operator to lock one. (b) **Swap real tenant logos into the pylon** — operator to drop
-logo files in `tools/brand-assets/`. (c) A/C/D/E are exploratory; only B is blessed.
++ enlarged logo. **GLA LOCKED to audited 62,883 across ALL variants** (operator, 2026-06-20 — overrides
+the brand's 70,000 marketing figure). **Still open:** (a) **Swap real tenant logos into the pylon** —
+operator to drop logo files in `tools/brand-assets/`. (b) A/C/D/E are exploratory; only B is blessed.
 
 ## Brand (ingested 2026-06-20) — `~/.claude/skills/abdalla-brand-system`
 Three skills installed: `abdalla-brand-system` (router → per-entity `references/*.md` + `assets/` logos), `abdalla-web-templates`, `adam-brand-context`. Auto-trigger on OTB / Orange Ocean / Belle Realty / brand keywords. DO NOT pull brand details from memory — read the entity doc.
@@ -43,7 +43,7 @@ Three skills installed: `abdalla-brand-system` (router → per-entity `reference
 - Logo: `assets/otb_logo.png` (use the file, not a typed wordmark).
 - Contact block: Adam Anthony Abdalla, Property Manager · 101-149 Arnould Blvd., Lafayette, LA 70506 · **P 337-769-1554 · E info@ontheblvd.com · W ontheblvd.com**. Required attribution: **"Managed by Orange Ocean, LLC on behalf of Belle Realty of Lafayette, LLC."**
 - Tone: welcoming/local; AVOID investment/legal/B2B jargon on public pieces (strip "variance 99-11797", "hard corner", etc.).
-- **GLA figure conflict:** brand markets **"70,000 sq ft"**; our audit = 62,883 demised / 62,810 sum. Reconcile which to print (operator decision).
+- **GLA figure conflict:** brand markets **"70,000 sq ft"**; our audit = 62,883 demised / 62,810 sum. **RESOLVED 2026-06-20: print audited 62,883 on all marketing (operator decision).**
 - Audience question: tenant-facing leasing = OTB brand; broker/investor/sale = Orange Ocean B2B brand (`brand-orange-ocean.md`).
 
 ### Fold poster into the repo (re-runnable tool) — DONE 2026-06-20

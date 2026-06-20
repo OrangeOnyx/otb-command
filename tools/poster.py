@@ -228,7 +228,7 @@ def variant_A():
     o.append('<text x="%d" y="%d" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="%s">Combine 131 + 133 for ±3,179 SF contiguous.</text>'%(PX,y+4,NAVY)); y+=42
     o.append('<text x="%d" y="%d" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="%s" letter-spacing="1">THE CENTER</text>'%(PX,y,NAVY))
     o.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="%s" stroke-width="2"/>'%(PX,y+10,PX+PW,y+10,NAVY)); y+=40
-    for k,v in [("Total area","±70,000 SF"),("Suites","27"),("Anchored by","Jason's Deli"),
+    for k,v in [("Total area","62,883 SF"),("Suites","27"),("Anchored by","Jason's Deli"),
                 ("Parking","324 spaces"),("Frontage","Arnould Blvd · Hwy 167")]:
         o.append('<text x="%d" y="%d" font-family="Arial,Helvetica,sans-serif" font-size="14" fill="#5b6680">%s</text>'%(PX,y,k))
         o.append('<text x="%d" y="%d" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="%s">%s</text>'%(PX+PW,y,NAVY,esc(v)))
@@ -332,7 +332,7 @@ def variant_C():
     o.append('<text x="%d" y="%d" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#fff">DIVISIBLE / COMBINABLE TO ±3,179 SF</text>'%(PX+16,y+7)); y+=46
     o.append('<text x="%d" y="%d" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="800" fill="%s">PROPERTY HIGHLIGHTS</text>'%(PX,y,NAVY))
     o.append('<rect x="%d" y="%d" width="%d" height="3" fill="#C9A55C"/>'%(PX,y+10,PW)); y+=36
-    for b in ["±70,000 SF anchored neighborhood center","Anchored by Jason's Deli","324 parking spaces on site",
+    for b in ["62,883 SF anchored neighborhood center","Anchored by Jason's Deli","324 parking spaces on site",
               "Frontage on Hwy 167 (Johnston St) & Arnould Blvd","27 suites · retail, dining & service mix","Renovated 2019"]:
         o.append('<circle cx="%d" cy="%d" r="3" fill="#C9A55C"/>'%(PX+4,y-4))
         o.append('<text x="%d" y="%d" font-family="Arial,Helvetica,sans-serif" font-size="13.5" fill="#2a3550">%s</text>'%(PX+18,y,esc(b))); y+=27
@@ -376,7 +376,7 @@ def variant_D():
         o.append('<text x="%d" y="%d" text-anchor="end" font-family="\'Archivo\',sans-serif" font-size="14" fill="#8492ad">%s</text>'%(PX+PW-12,y+40,esc(u["use"])))
         y+=140
     o.append('<text x="%d" y="%d" font-family="\'Archivo\',sans-serif" font-size="16" font-weight="700" fill="#aeb9d0">Combine 131 + 133 → ±3,179 SF contiguous.</text>'%(PX,y+6)); y+=64
-    facts=[("±70k","SQ FT"),("27","SUITES"),("324","PARKING"),("167","HWY FRONT")]
+    facts=[("62,883","SQ FT"),("27","SUITES"),("324","PARKING"),("167","HWY FRONT")]
     fxw=PW/4
     for i,(a,b) in enumerate(facts):
         fxc=PX+i*fxw
@@ -434,7 +434,7 @@ def variant_E():
     o.append('<text x="%d" y="%d" font-family="\'Fraunces\',serif" font-size="15" font-style="italic" fill="%s">Combine 131 &amp; 133 for ±3,179 sq ft.</text>'%(PX,y,INKB)); y+=46
     o.append('<text x="%d" y="%d" font-family="\'Fraunces\',serif" font-size="30" font-weight="900" fill="%s">The Center</text>'%(PX,y,INKB))
     o.append('<rect x="%d" y="%d" width="%d" height="4" fill="%s"/>'%(PX,y+12,PW,RUST)); y+=48
-    for k,v in [("Since","1976 · renovated 2019"),("Size","±70,000 sq ft"),("Shops","27 suites"),
+    for k,v in [("Since","1976 · renovated 2019"),("Size","62,883 sq ft"),("Shops","27 suites"),
                 ("Anchor","Jason's Deli"),("Parking","324 spaces")]:
         o.append('<text x="%d" y="%d" font-family="\'Fraunces\',serif" font-size="15" font-style="italic" fill="#7a6a48">%s</text>'%(PX,y,k))
         o.append('<text x="%d" y="%d" text-anchor="end" font-family="\'Fraunces\',serif" font-size="15" font-weight="900" fill="%s">%s</text>'%(PX+PW,y,INKB,esc(v)))
