@@ -1,5 +1,15 @@
 # OTB Property Command — Project Memory
 
+> **New session: read `HANDOFF.md` for live state + the open punch-list.**
+> Current build = 8 sheets (D-1 Dashboard · A-1 Site Plan · R-1 Rent Roll ·
+> P-1 Financial · C-1 Compliance · T-1 Critical Dates · W-1 Action Board ·
+> K-1 Directory). Persisted layers: comp, notes, actions, contacts, documents,
+> financials (localStorage + Export/Import). Images in IndexedDB (asset store
+> w/ swappable backend seam). Marketing poster generated from the architect's
+> CAD (`Boulev_CLEAN.dxf`, in feet) via `poster.py`. Portability: Path A
+> (Drive-link files) approved; Path B (hosted backend so owners can open it)
+> approved to plan. Brand sheet PENDING.
+
 ## What this is
 Full visual property-management program for **On The Boulevard Shopping Center**,
 101–149 Arnould Blvd, Lafayette, LA 70506. Owner-operator: Adam — Managing Member,
