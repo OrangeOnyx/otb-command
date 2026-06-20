@@ -2,6 +2,8 @@
    derive per-unit contact/document seeds from the rent roll (units.json). */
 import directory from "../data/directory.json";
 import leaseLinks from "../data/lease-links.json";
+import floorplanLinks from "../data/floorplan-links.json";
+import contactsInfo from "../data/contacts-info.json";
 import { byUnit, getCollection } from "../store.js";
 
 export const UNIT_DOC_TYPES = directory.unitDocTypes;
@@ -21,10 +23,11 @@ export const propertyDocuments = () => merge("documents", directory.propertyDocu
 function unitContactSeed(unit) {
   const u = byUnit[unit];
   if (!u || u.status === "vacant") return [];
+  const ci = contactsInfo[unit] || {};
   return [{
     id: "c:" + unit + ":tenant",
     unit, role: u.status === "owner" ? "Owner / occupant" : "Tenant of record",
-    company: u.legal || u.dba, name: "", phone: "", email: "",
+    company: u.legal || u.dba, name: ci.name || "", phone: ci.phone || "", email: ci.email || "",
     note: u.dba + (u.use ? " — " + u.use : "")
   }];
 }
@@ -40,6 +43,17 @@ function unitDocSeed(unit) {
       ref: ll ? ll.file : (u.legal || u.dba),
       link: ll ? (ll.url || "") : "", // Drive share URL → clickable "Open ↗"
       note: term
+    });
+  }
+  const fp = floorplanLinks[unit];
+  if (fp && (fp.url || fp.file)) {
+    docs.push({
+      id: "d:" + unit + ":floorplan", unit, name: "Floor plan", type: "Floor plan",
+      ref: fp.file || "Floor plan", link: fp.url || "", note: ""
+    });
+    if (fp.url2) docs.push({
+      id: "d:" + unit + ":floorplan2", unit, name: "Floor plan — 2nd floor", type: "Floor plan",
+      ref: "Second floor", link: fp.url2, note: ""
     });
   }
   return docs;

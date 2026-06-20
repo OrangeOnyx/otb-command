@@ -24,7 +24,8 @@
     { "id": "pd:reconmemo", "name": "Parking reconciliation memo", "type": "Analysis", "ref": "docs/parking-reconciliation-memo.md", "link": "", "note": "Plat striping 314 vs variance 324 (Δ −10); cite 324 legally, plan ops on 314" },
     { "id": "pd:dossier", "name": "Property dossier (LLM export)", "type": "Reference", "ref": "OTB-Property-Dossier.md · npm run export-package", "link": "", "note": "Auto-generated narrative + data snapshot for AI / owner sharing" },
     { "id": "pd:poster", "name": "Leasing poster — plan-room", "type": "Marketing", "ref": "OTB-poster-B-planroom.svg · npm run poster", "link": "", "note": "Chosen leasing flyer; regenerates on availability change" },
-    { "id": "pd:pylon", "name": "Monument / pylon sign artwork", "type": "Marketing", "ref": "OTB-pylon-blank / -tenants.svg · npm run pylon", "link": "", "note": "Scaled 14-panel sign matching the Hwy-167 pylon" }
+    { "id": "pd:pylon", "name": "Monument / pylon sign artwork", "type": "Marketing", "ref": "OTB-pylon-blank / -tenants.svg · npm run pylon", "link": "", "note": "Scaled 14-panel sign matching the Hwy-167 pylon" },
+    { "id": "pd:floorplan", "name": "Floor plan — whole center", "type": "Floor plan", "ref": "Floor Plan - Whole Center.jpg", "link": "https://drive.google.com/open?id=1KQRhcgtsFQqbNlZXeAS19CzwfAO3JAAA&usp=drive_fs", "note": "Per-unit floor plans on each unit drawer (A-1 → unit)" }
   ],
   "unitDocTypes": ["Executed lease", "Certificate of insurance", "Floor plan", "Estoppel", "Guaranty", "Sign drawing"]
 }
