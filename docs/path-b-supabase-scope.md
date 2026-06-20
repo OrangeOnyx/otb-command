@@ -76,9 +76,12 @@ Free tier (500 MB DB, 1 GB storage, 50k MAU) covers one property + a few users w
 - **DB done:** `profiles` (role operator/owner, auto-created on signup) · `property_state` (jsonb mirror,
   layers comp/notes/actions/contacts/documents/financials/ownerSheets) · RLS operator-write / authenticated-read ·
   private `assets` storage bucket (same rules) · security advisor clean.
-- **Remaining B1/B2/B3:** front-end `remote.js` (auth gate + load/push state), `@supabase/supabase-js` added;
-  set Vercel env `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY`; set Supabase Auth Site URL = the Vercel URL;
-  redeploy; set Adam's profile role = 'operator'; migrate IndexedDB images → `assets` bucket.
+- **B1/B2 DONE:** `remote.js` auth gate (magic-link) + shared `property_state` sync; Vercel env set;
+  Supabase Site URL set to the Vercel URL; `adam@adamabdalla.com` = operator; owners read-only + scoped.
+- **B3 DONE:** `assets.js` Supabase Storage backend (private bucket, signed URLs) + one-time local→cloud
+  migration on operator login. Falls back to IndexedDB when no backend.
+- **Status: B0→B3 shipped 2026-06-20.** Deferred: B4 (realtime/normalized tables), custom domain,
+  per-sheet read RLS (owners currently read all layers; sheet hiding is client-side), custom SMTP for auth email.
 
 ## To start (operator action required — cloud accounts)
 B0 needs accounts I can't create:

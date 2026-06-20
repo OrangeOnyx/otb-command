@@ -50,8 +50,8 @@ Three skills installed: `abdalla-brand-system` (router → per-entity `reference
 - DXF committed to `cad/`; `poster.py` + `pylon.py` in `tools/`; `npm run poster` / `npm run pylon` wired; `marketing/` gitignored. Regenerates whenever availability changes.
 
 ### Portability (operator goal: "moves with the app wherever")
-- **Path A — APPROVED, do first**: link SOT files, leases, and the artifacts I created (poster, dossier, reconciliation memo) into K-1 Document Register as Drive URLs. Stays on operator's machine for now.
-- **Path B — APPROVED to plan + implement**: hosted backend so the **shopping-center owners can open it** from any device. Supabase fits; the store + asset layers already have the swap-in seam. Carries state + files + images in one place. This is a real milestone — scope it.
+- **Path A — DONE 2026-06-20**: lease Drive URLs wired (clickable in unit drawers), floor-plan links + real tenant contacts seeded, session artifacts in K-1 register. Non-lease doc URLs (plat/variance/easements/title/HVAC) still blank — operator to paste.
+- **Path B — LIVE 2026-06-20** (`docs/path-b-supabase-scope.md`): hosted at **https://otb-command.vercel.app** (Vercel) + Supabase (project `kbhsghodquchkgfdzckc`). Magic-link auth; operator (adam@adamabdalla.com) edits, owners read-only + scoped sheets; state + images sync to Supabase. Deploy: `npx vercel deploy --prod --scope adams-projects-0c52918e` (needs a Vercel token). Deferred: B4 realtime, custom domain, per-sheet read RLS, custom SMTP.
 
 ### Visuals / 2.5D (next session)
 - Operator wants state-of-the-art data viz + **2.5D / isometric renderings** of OTB. Inline viz capability exists (mcp__visualize__show_widget) + in-app views. Needs the inputs in `docs/visuals-input-checklist` (see below / chat).
