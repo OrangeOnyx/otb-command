@@ -59,13 +59,19 @@ Repo stays authoritative for **seed/SOT** (units, geometry, directory seed); Sup
 ## Cost
 Free tier (500 MB DB, 1 GB storage, 50k MAU) covers one property + a few users with headroom.
 
-## Decisions needed from operator
-1. **Owner access model** — magic-link per owner email (recommended) vs one shared owner login?
-2. **Owner scope** — which sheets owners see (all read-only, or a curated subset: D-1/A-1/R-1/P-1)?
-3. **Host** — Vercel (recommended) vs Netlify for the static front-end.
-4. **Custom domain** — e.g. `command.ontheblvd.com`, or a Vercel/Netlify subdomain to start.
-5. **Go depth now** — stop after B1–B3 (single operator + read-only owners, the milestone),
-   or push B4 (realtime/multi-editor) in this pass?
+## Decisions — LOCKED 2026-06-20
+1. **Owner access** — **magic-link per owner email** (operator deferred to recommendation).
+2. **Owner scope** — **operator-configurable**; default D-1/A-1/R-1/P-1. ✅ Front-end shipped
+   (`c3644fb`): sidebar "Owners can see…" picker + "Preview owner view" toggle (persisted/exported).
+   B2 RLS will enforce it server-side.
+3. **Host** — **Vercel**.
+4. **Depth** — **B0→B3** this pass (B4 realtime deferred).
+5. **Custom domain** — not yet chosen; start on a Vercel subdomain, add `command.ontheblvd.com` later.
 
-**Recommended first cut:** B0→B3 = a real, shippable milestone (~3–5 days) — owners open it
-anywhere, read-only; operator edits from any device; images travel. B4 only if multi-editor is needed.
+## To start (operator action required — cloud accounts)
+B0 needs accounts I can't create:
+- **Supabase** — create a project; share the project URL + anon key (or authorize the Supabase
+  integration so I can read them).
+- **Vercel** — connect/authorize so I can deploy the static build + set env vars.
+Once either is provided I wire `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY`, add the remote
+store sink, and ship B0→B3.
