@@ -38,8 +38,8 @@ function unitDocSeed(unit) {
     docs.push({
       id: "d:" + unit + ":lease", unit, name: "Executed lease", type: "Lease",
       ref: ll ? ll.file : (u.legal || u.dba),
-      link: "", // local Drive path is in note; paste a share URL to make it clickable
-      note: [term, ll ? ll.path : ""].filter(Boolean).join(" · ")
+      link: ll ? (ll.url || "") : "", // Drive share URL → clickable "Open ↗"
+      note: term
     });
   }
   return docs;
