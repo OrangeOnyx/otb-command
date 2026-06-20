@@ -1,7 +1,7 @@
 /* Photos & Plans UI — drag-drop / pick images, thumbnail grid, click-to-enlarge
    lightbox. Async (IndexedDB-backed); manages object-URL lifecycle so nothing
    leaks across re-mounts. Used by the unit drawer; reusable for property scope. */
-import { ASSET_KINDS, addAsset, listAssets, removeAsset, makeURL, revokeURL, onAssetChange } from "./assets.js";
+import { ASSET_KINDS, addAsset, listAssets, removeAsset, revokeURL, onAssetChange } from "./assets.js";
 import { esc } from "./format.js";
 
 const KIND_LABEL = Object.fromEntries(ASSET_KINDS);
@@ -34,7 +34,7 @@ export function mountAssets(el, scope) {
 
     const kindOpts = ASSET_KINDS.map(([k, l]) => '<option value="' + k + '">' + l + '</option>').join("");
     const grid = assets.map(a => {
-      const url = makeURL(a.blob); urls.push(url);
+      const url = a.url; urls.push(url);
       return '<figure class="asset" data-id="' + esc(a.id) + '" data-url="' + url + '">' +
         '<img src="' + url + '" alt="' + esc(a.name) + '" loading="lazy">' +
         '<button class="asset-x" data-id="' + esc(a.id) + '" title="Remove">✕</button>' +

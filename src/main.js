@@ -2,6 +2,7 @@
 import "./styles.css";
 import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe } from "./store.js";
 import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState } from "./lib/remote.js";
+import { migrateLocalToRemote } from "./lib/assets.js";
 import { TODAY } from "./lib/format.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
@@ -200,7 +201,13 @@ async function boot() {
     buildShell(account);
     initViews();
     applyRole(account.role);
-    if (account.role === "operator") wireSync();
+    if (account.role === "operator") {
+      wireSync();
+      if (!localStorage.getItem("otb-assets-migrated")) {
+        try { await migrateLocalToRemote(); } catch (e) { console.warn("asset migrate:", e); }
+        localStorage.setItem("otb-assets-migrated", "1");
+      }
+    }
   } else {
     buildShell(null);
     initViews();
