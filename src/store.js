@@ -259,6 +259,20 @@ export function setCapRate(value) {
   emit("financials", {});
 }
 
+/* ---------- remote hydrate (Path B): load a server snapshot as the base ---------- */
+export function hydrateRemote(snap) {
+  if (!snap || typeof snap !== "object") return;
+  state.comp = baselineComp();
+  state.notes = {};
+  state.actions = emptyActions();
+  state.contacts = emptyColl();
+  state.documents = emptyColl();
+  state.financials = emptyFin();
+  state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
+  applySnapshot(snap);
+  persist(); // cache locally too
+}
+
 /* ---------- JSON export / import ---------- */
 export function exportJSON() {
   return JSON.stringify({

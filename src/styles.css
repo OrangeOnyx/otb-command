@@ -351,3 +351,22 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 body.owner-preview .tb-actions{display:none}
 body.owner-preview .ov-cfg{display:none}
 body.owner-preview .main::before{content:"OWNER PREVIEW — read-only · limited sheets";display:block;background:var(--anchor);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-align:center;padding:6px}
+
+/* login gate (Path B auth) */
+.login-gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--paper);z-index:9999}
+.login-card{width:360px;max-width:90vw;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:28px;box-shadow:var(--shadow)}
+.login-wm{font-family:var(--disp);font-weight:700;font-size:26px;letter-spacing:.04em;color:var(--ink)}
+.login-wm span{color:var(--brass)}
+.login-sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--slate);margin:4px 0 18px;text-transform:uppercase}
+.login-card input{width:100%;box-sizing:border-box;padding:10px 12px;font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:5px;margin-bottom:10px}
+.login-card button{width:100%;padding:10px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--paper);background:var(--anchor);border:none;border-radius:5px;cursor:pointer}
+.login-card button:disabled{opacity:.6;cursor:default}
+.login-msg{font-family:var(--body);font-size:12px;color:var(--slate);margin-top:12px;line-height:1.5}
+
+/* account row + owner read-only */
+.acct{padding:10px 14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.acct-who{font-family:var(--mono);font-size:10px;color:var(--slate);overflow:hidden;text-overflow:ellipsis}
+.acct-out{font-family:var(--mono);font-size:11px;padding:5px 8px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;cursor:pointer}
+body.role-owner .tb-actions{display:none}
+body.role-owner input,body.role-owner select,body.role-owner textarea{pointer-events:none;opacity:.85}
+body.role-owner .rec-edit,body.role-owner .rec-x,body.role-owner .rec-add{display:none}
