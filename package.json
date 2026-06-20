@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "extract-geometry": "node tools/extract-geometry.mjs",
-    "export-package": "node tools/export-package.mjs"
+    "export-package": "node tools/export-package.mjs",
+    "poster": "python tools/poster.py",
+    "pylon": "python tools/pylon.py"
   },
   "devDependencies": {
     "vite": "^7.1.0"

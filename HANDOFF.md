@@ -3,7 +3,7 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-06-19.
+Last updated: 2026-06-20.
 
 ## Run / verify
 - `npm run dev` (Vite) · preview via Claude_Preview (launch.json: `otb-command-dev`, port 5173).
@@ -19,21 +19,35 @@ W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + 
 - **Data**: src/data/{units,compliance,geometry,directory,hvac,recoveries}.json. Single-source rule: Base/Total PSF from units.json; recoveries.json only supplies CAM/Tax/Ins.
 - Headline vs drawn convention (labeled, not bugs): GLA 62,883 headline / 62,810 demised; parking 324 legal (variance 99-11797) / 314 drawn.
 
-## Marketing (CAD-derived)
-- **CAD**: `C:\Users\adam\Downloads\Boulev_CLEAN.dxf` (+ .dwg) — AutoCAD R14, in FEET, the architect's layered plat. NOT in the repo yet.
-- **Poster generator**: `C:\Users\adam\Downloads\poster.py` (reads the DXF + units.json/geometry.json). Outputs to Downloads; copied to `G:\My Drive\00 OTB\` as `OTB-Leasing-Poster.{svg,png,pdf}`. Bays color-coded by current tenancy; true north derived from plat bearings (−51.5° vs screen-up).
+## Marketing (CAD-derived) — FOLDED INTO REPO 2026-06-20
+- **CAD**: `cad/Boulev_CLEAN.dxf` — AutoCAD R14, in FEET, the architect's layered plat. Now committed (~644 KB). (Source .dwg still only in Downloads.)
+- **Poster generator**: `tools/poster.py` → `npm run poster`. Reads `cad/Boulev_CLEAN.dxf` + units.json/geometry.json, logos vendored in `tools/brand-assets/` (otb_logo.png + a white-knockout). Emits **5 style variants** to `marketing/` (gitignored, disposable): A brand · **B plan-room (CHOSEN)** · C standard · D editorial · E heritage. Bays color-coded by tenancy; true north −51.5°. Johnston label rides a center lane-stripe via textPath; pylon marker at the surveyor 'SIGN' coord (1075.8,321.1).
+- **Pylon generator**: `tools/pylon.py` → `npm run pylon`. Emits `OTB-pylon-blank.svg` (scaled 14-panel template, matches the real sign) + `OTB-pylon-tenants.svg` (type stand-ins). Real-logo version is the operator's own image — drop logo files in `tools/brand-assets/` to swap.
+- Generated SVG→PNG locally via headless Chrome (no cairosvg/rsvg in repo): wrap SVG in HTML, `chrome --headless --screenshot`.
 - **LLM export package**: `tools/export-package.mjs` → `export/` → copied to `G:\My Drive\00 OTB\OTB-LLM-Export\`. Re-run after any A-1/geometry change.
 
 ## OPEN — next session punch-list
-### Poster edits (operator review, do before folding into repo)
-1. **Remove tenant names from the unit boxes** (text doesn't fit; directory already lists them). Explore a SHORT enhanced-business-description / category tag instead (e.g. "SALON", "NAILS") only if it fits.
-2. **Pylon sign placement is wrong** — move it to the **parking-lot ingress by Unit 101** (Johnston end), not the top-right corner.
-3. **Johnston St label** — too high; bring it **down and center** it along the Johnston frontage.
-4. **Dashed lines too bold** — reduce boundary dash stroke weight.
-5. **Contact details are wrong** — fix with the Abdalla/OTB brand sheet (PENDING from operator; no brand skill installed). Codify as a reusable `otb-brand` skill/memory so every artifact auto-uses correct logo/colors/contact/entity names.
+### Poster edits — DONE on B (2026-06-20)
+All five original notes resolved on the chosen B variant: tenant DBAs off the boxes (number-only,
+turned 90° CCW + centered both axes); pylon at the surveyor 'SIGN' coord by Unit 101 (no leader line);
+Johnston label curves with the road, within the lane lines; boundary dashes thinned; OTB contact block
++ enlarged logo. **Still open:** (a) **GLA figure** — B prints audited 62,883; public variants print
+±70,000 (brand). Operator to lock one. (b) **Swap real tenant logos into the pylon** — operator to drop
+logo files in `tools/brand-assets/`. (c) A/C/D/E are exploratory; only B is blessed.
 
-### Then: fold poster into the repo (re-runnable tool)
-- Commit `Boulev_CLEAN.dxf` (~644 KB) into the repo (e.g. `cad/`), move `poster.py` → `tools/`, add `npm run poster`. So it regenerates whenever availability changes.
+## Brand (ingested 2026-06-20) — `~/.claude/skills/abdalla-brand-system`
+Three skills installed: `abdalla-brand-system` (router → per-entity `references/*.md` + `assets/` logos), `abdalla-web-templates`, `adam-brand-context`. Auto-trigger on OTB / Orange Ocean / Belle Realty / brand keywords. DO NOT pull brand details from memory — read the entity doc.
+**OTB public brand (tenant-facing marketing = leasing poster):**
+- Palette: **strictly Boulevard Navy `#1C2D4F` + White/Off-White `#F5F5F5`. NO orange or gray accent bars.** (Conflicts with the app "plan-room" palette — two separate systems: app stays plan-room; public OTB marketing = navy/white.)
+- Type: Helvetica/Arial (headers/marketing); Times New Roman (formal notices). NOT Big Shoulders/Plex.
+- Logo: `assets/otb_logo.png` (use the file, not a typed wordmark).
+- Contact block: Adam Anthony Abdalla, Property Manager · 101-149 Arnould Blvd., Lafayette, LA 70506 · **P 337-769-1554 · E info@ontheblvd.com · W ontheblvd.com**. Required attribution: **"Managed by Orange Ocean, LLC on behalf of Belle Realty of Lafayette, LLC."**
+- Tone: welcoming/local; AVOID investment/legal/B2B jargon on public pieces (strip "variance 99-11797", "hard corner", etc.).
+- **GLA figure conflict:** brand markets **"70,000 sq ft"**; our audit = 62,883 demised / 62,810 sum. Reconcile which to print (operator decision).
+- Audience question: tenant-facing leasing = OTB brand; broker/investor/sale = Orange Ocean B2B brand (`brand-orange-ocean.md`).
+
+### Fold poster into the repo (re-runnable tool) — DONE 2026-06-20
+- DXF committed to `cad/`; `poster.py` + `pylon.py` in `tools/`; `npm run poster` / `npm run pylon` wired; `marketing/` gitignored. Regenerates whenever availability changes.
 
 ### Portability (operator goal: "moves with the app wherever")
 - **Path A — APPROVED, do first**: link SOT files, leases, and the artifacts I created (poster, dossier, reconciliation memo) into K-1 Document Register as Drive URLs. Stays on operator's machine for now.
