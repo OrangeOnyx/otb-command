@@ -17,7 +17,7 @@
     { "id": "pd:electric", "name": "City of Lafayette electric easement", "type": "Easement", "ref": "Entry 577566", "link": "", "note": "Rear strip behind the long building" },
     { "id": "pd:drainage", "name": "Temporary drainage easements (EXPIRED)", "type": "Easement", "ref": "77-0783 / 77-000784 / 77-000785", "link": "", "note": "Of record only — expired" },
     { "id": "pd:hvac", "name": "HVAC preventive-maintenance schedule", "type": "Operations", "ref": "2021 PDF", "link": "", "note": "Butcher A/C scope; §9.01 anchor covenant" },
-    { "id": "pd:sotxlsx", "name": "Master template set — SOT workbook", "type": "Source of truth", "ref": "OTB-Master-Template-Set-SOT-corrected.xlsx · v1.1", "link": "", "note": "27×30 rent roll — Tier 1 SOT" },
+    { "id": "pd:sotxlsx", "name": "Master template set — SOT workbook", "type": "Source of truth", "ref": "OTB_Master_SOT_Lease_Logo_HVAC.xlsx", "link": "", "note": "Tier 1 SOT — rent roll + lease, logo & HVAC Drive paths (supersedes -corrected.xlsx v1.1)" },
     { "id": "pd:sotdocx", "name": "Master SOT narrative", "type": "Source of truth", "ref": "00_OTB_Master_SOT.docx · v1.1", "link": "", "note": "Tier 1 SOT" },
     { "id": "pd:meters", "name": "Meter / utilities workbook", "type": "Operations", "ref": "Rev_Belle_Realty_Arnould_Blvd_Property.xlsx", "link": "", "note": "Meter assignments" },
     { "id": "pd:title", "name": "Title commitment", "type": "Title", "ref": "Fidelity National Title · ATC 2007054432 · Schedule B-2", "link": "", "note": "Exception markers keyed on the plat (10/11/13/14/16/17/25/26/27/28)" },

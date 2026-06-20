@@ -1,6 +1,7 @@
 /* Directory helpers — merge seed records with the store's override layer, and
    derive per-unit contact/document seeds from the rent roll (units.json). */
 import directory from "../data/directory.json";
+import leaseLinks from "../data/lease-links.json";
 import { byUnit, getCollection } from "../store.js";
 
 export const UNIT_DOC_TYPES = directory.unitDocTypes;
@@ -31,10 +32,16 @@ function unitDocSeed(unit) {
   const u = byUnit[unit];
   if (!u) return [];
   const docs = [];
-  if (u.status !== "vacant") docs.push({
-    id: "d:" + unit + ":lease", unit, name: "Executed lease", type: "Lease",
-    ref: u.legal || u.dba, link: "", note: u.end ? "Term to " + u.end : ""
-  });
+  if (u.status !== "vacant") {
+    const ll = leaseLinks[unit];
+    const term = u.end ? "Term to " + u.end : "";
+    docs.push({
+      id: "d:" + unit + ":lease", unit, name: "Executed lease", type: "Lease",
+      ref: ll ? ll.file : (u.legal || u.dba),
+      link: "", // local Drive path is in note; paste a share URL to make it clickable
+      note: [term, ll ? ll.path : ""].filter(Boolean).join(" · ")
+    });
+  }
   return docs;
 }
 
