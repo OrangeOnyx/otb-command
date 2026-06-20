@@ -2,7 +2,7 @@
 """OTB monument / pylon sign — scaled front elevation.
 Outputs: OTB-pylon-blank.svg (panel template w/ dims) and OTB-pylon-tenants.svg (populated).
 Panel schedule per operator's sign: P1 2x8, P2 4x8 (anchor), P3-14 2x4 pairs."""
-import base64, os
+import base64, os, json
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS=os.path.join(ROOT,"tools","brand-assets")
 OUT=os.path.join(ROOT,"marketing"); os.makedirs(OUT,exist_ok=True)
@@ -127,16 +127,35 @@ TEN={
  "P10":(["BERNINA Lafayette","Sewing Center"],"#FFFFFF","#C8102E",SANS,False,21),
  "P11":(["1st Franklin","Financial"],"#143A7B","#FFFFFF",SANS,True,26),
  "P12":(["Victoria Nails"],"#FFFFFF","#B5462E",FRA,True,30),
- "P13":(["Boulevard","NUTRITION"],"#F3EFE2","#2F6B4F",SER,False,24),
+ "P13":(["Upstream","Rehabilitation"],"#FFFFFF","#1F5132",SANS,False,22),
  "P14":(["OUPAC","LOANS"],"#1a1a1a","#E8C457",SANS,True,30),
 }
+# panel -> unit (the operator's physical sign order; P13 = Upstream Rehab, replaced Blvd Nutrition)
+PANEL_UNIT={"P1":"107","P2":"149","P3":"123","P4":"139","P5":"109","P6":"125","P7":"115",
+            "P8":"129","P9":"119.5","P10":"111","P11":"143","P12":"117.5","P13":"145","P14":"119"}
+LOGO_DIR=os.path.join(ASSETS,"tenant-logos")
+LOGO_IDX=json.load(open(os.path.join(LOGO_DIR,"_index.json"),encoding="utf-8")) if os.path.exists(os.path.join(LOGO_DIR,"_index.json")) else {}
+MIME={".png":"png",".jpg":"jpeg",".jpeg":"jpeg",".webp":"webp",".gif":"gif"}
+def logo_data(unit):
+    fn=LOGO_IDX.get(unit)
+    if not fn: return None
+    p=os.path.join(LOGO_DIR,fn); ext=os.path.splitext(fn)[1].lower()
+    return "data:image/%s;base64,%s"%(MIME.get(ext,"png"), base64.b64encode(open(p,"rb").read()).decode())
+
 def tenants():
     o=header_svg("#FFFFFF"); frame(o)
     for kind,name,x,y,w,h in LAYOUT:
-        lines,bg,fg,font,ital,base=TEN[name]
-        panel_box(o,x,y,w,h,bg)
-        lines_text(o,x,y,w,h,lines,fg,font=font,italic=ital,base=base)
-    o.append('<text x="%.1f" y="%.1f" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="%s">Tenant names set as type — drop in official logo art per panel. Layout to scale (P1 2x8 · P2 4x8 · P3-14 2x4).</text>'%(CX,H-24,SUB))
+        panel_box(o,x,y,w,h,"#FFFFFF")
+        unit=PANEL_UNIT.get(name); data=logo_data(unit) if unit else None
+        if data:
+            pad=10 if kind=="full" else 7
+            o.append('<image x="%.1f" y="%.1f" width="%.1f" height="%.1f" href="%s" preserveAspectRatio="xMidYMid meet"/>'%(
+                x+pad,y+pad,w-2*pad,h-2*pad,data))
+        else:  # fallback: styled type
+            lines,bg,fg,font,ital,base=TEN[name]
+            if bg!="#FFFFFF": panel_box(o,x,y,w,h,bg)
+            lines_text(o,x,y,w,h,lines,fg,font=font,italic=ital,base=base)
+    o.append('<text x="%.1f" y="%.1f" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="%s">Tenant logos per current SOT · layout to scale (P1 2x8 · P2 4x8 · P3-14 2x4).</text>'%(CX,H-24,SUB))
     open(os.path.join(OUT,"OTB-pylon-tenants.svg"),"w",encoding="utf-8").write("\n".join(o)+"\n</svg>")
 
 blank(); tenants()
