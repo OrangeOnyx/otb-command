@@ -11,7 +11,7 @@ Last updated: 2026-06-20.
 - Quality gate before delivery: `node --check` each module + `npm run build`. Console clean.
 
 ## What's built (8 sheets)
-D-1 Dashboard · A-1 Site Plan (plat-exact + photo/overlay layers) · R-1 Rent Roll (11 cols, PSF breakdown) ·
+D-1 Dashboard · A-1 Site Plan (plat-exact + photo/overlay layers; **whole-center floor-plan overlay** registered to the unit envelope w/ unit-fill opacity slider; unit numbers uniform, tenant names off A-1) · R-1 Rent Roll (11 cols, PSF breakdown) ·
 P-1 Financial (income composition + NOI worksheet) · C-1 Compliance · T-1 Critical Dates ·
 W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + site imagery).
 - **Persisted state layers** (localStorage, write-through, in Export/Import JSON): comp, notes, actions, contacts, documents, financials.
