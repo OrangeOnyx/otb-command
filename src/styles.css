@@ -371,3 +371,5 @@ body.role-owner .tb-actions{display:none}
 body.role-owner input,body.role-owner select,body.role-owner textarea{pointer-events:none;opacity:.85}
 body.role-owner .rec-edit,body.role-owner .rec-x,body.role-owner .rec-add{display:none}
 body.role-owner .asset-add,body.role-owner .asset-x{display:none}
+/* faded unit fills (reading an overlay underneath): dark, haloed labels stay legible */
+#plan.see-through .u-num,#plan.see-through .u-dba{fill:#1C2B26 !important;paint-order:stroke;stroke:rgba(255,255,255,.92);stroke-width:3px;stroke-linejoin:round}

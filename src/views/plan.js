@@ -14,6 +14,7 @@ let showPhotos = true; // 📷 badge on units that have photos/plans
 const overlays = { roof: false, signage: false }; // raster overlays (property-scope images)
 let showFacility = false; // whole-center floor-plan overlay (static, registered to the unit envelope)
 let overlayOpacity = 0.55;
+let unitOpacity = 1; // unit-box fill opacity (dial down to read an overlay underneath)
 let overlayURLs = []; // object URLs to revoke on redraw
 
 // building envelope (union of unit rects) — target box for roster overlays
@@ -36,6 +37,7 @@ const FAC = (() => {
 export function drawPlan() {
   const svg = document.getElementById("plan");
   svg.setAttribute("viewBox", geometry.viewBox[planScope === "full" ? "full" : "main"]);
+  svg.classList.toggle("see-through", unitOpacity < 0.9); // dark, haloed labels when fill is faded
   svg.innerHTML = "";
   const defs = document.createElementNS(NS, "defs");
   defs.innerHTML = '<pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">' +
@@ -61,6 +63,7 @@ export function drawPlan() {
     if (!p) return;
     const r = rect(gb, p.x, p.y, p.w, p.h, { fill: unitFill(u, planMode), rx: 2 });
     r.setAttribute("class", "u-rect" + (selected === u.unit ? " sel" : ""));
+    if (unitOpacity < 1) r.setAttribute("fill-opacity", unitOpacity);
     r.addEventListener("click", () => openDrawer(u.unit));
     r.addEventListener("mousemove", e => showTT(e, u));
     r.addEventListener("mouseleave", hideTT);
@@ -180,15 +183,20 @@ export function initPlan() {
       drawPlan();
     };
   });
+  const uop = document.getElementById("unitOpacity");
   const facChip = document.querySelector('.plan-tools .chip[data-overlay="facility"]');
   if (facChip) facChip.onclick = () => {
     showFacility = !showFacility;
     facChip.classList.toggle("on", showFacility);
+    // turning the floor plan on fades units so you can read it; off restores
+    unitOpacity = showFacility ? 0.4 : 1;
+    if (uop) uop.value = unitOpacity * 100;
     opcVisible();
     drawPlan();
   };
   const opc = document.getElementById("overlayOpacity");
   if (opc) opc.oninput = () => { overlayOpacity = +opc.value / 100; drawPlan(); };
+  if (uop) uop.oninput = () => { unitOpacity = +uop.value / 100; drawPlan(); };
   // selection highlight tracks drawer open/close from any sheet
   subscribe(type => { if (type === "selection") drawPlan(); });
   onAssetChange(() => drawPlan()); // repaint badges when photos are added/removed
