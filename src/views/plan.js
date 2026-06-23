@@ -68,14 +68,12 @@ export function drawPlan() {
     r.addEventListener("mousemove", e => showTT(e, u));
     r.addEventListener("mouseleave", hideTT);
     const dark = u.status === "vacant";
-    const narrow = p.w < 58 && p.h > p.w;
-    const t = text(gb, p.x + p.w / 2, narrow ? p.y + p.h / 2 : p.y + p.h / 2 - (p.w > 120 ? 8 : -1), u.unit,
-      { class: "u-num" + (dark ? " dk" : ""), "text-anchor": "middle", "dominant-baseline": "middle", "font-size": narrow ? "15" : (p.w < 96 && p.h < 60 ? "13" : "17") });
-    if (narrow) t.setAttribute("transform", "rotate(-90 " + (p.x + p.w / 2) + " " + (p.y + p.h / 2) + ")");
-    if (p.w >= 120) {
-      const nm = u.dba.length > 22 ? u.dba.slice(0, 21) + "…" : u.dba;
-      text(gb, p.x + p.w / 2, p.y + p.h / 2 + 13, nm, { class: "u-dba", "text-anchor": "middle", fill: dark ? "rgba(28,43,38,.6)" : "rgba(252,252,249,.85)" });
-    }
+    const cx = p.x + p.w / 2, cy = p.y + p.h / 2;
+    // uniform unit numbers: one size, centered both axes, rotated only on tall bays
+    const vertical = p.h > p.w; // long-building bays rotate; short-building stay upright
+    const t = text(gb, cx, cy, u.unit,
+      { class: "u-num" + (dark ? " dk" : ""), "text-anchor": "middle", "dominant-baseline": "middle", "font-size": "15" });
+    if (vertical) t.setAttribute("transform", "rotate(-90 " + cx + " " + cy + ")");
   });
 
   renderPrims(g(svg), geometry.layers.annotations);
