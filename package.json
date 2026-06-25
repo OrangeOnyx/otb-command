@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "extract-geometry": "node tools/extract-geometry.mjs",
     "export-package": "node tools/export-package.mjs",
+    "export-buyer": "node tools/export-package.mjs nofin",
     "poster": "python tools/poster.py",
     "pylon": "python tools/pylon.py"
   },

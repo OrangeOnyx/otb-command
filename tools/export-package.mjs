@@ -18,7 +18,8 @@ const compliance = rd("compliance.json");
 const hvac = rd("hvac.json");
 const recoveries = rd("recoveries.json");
 const directory = rd("directory.json");
-const out = join(root, "export");
+const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ figures
+const out = join(root, NOFIN ? "export-buyer" : "export");
 mkdirSync(out, { recursive: true });
 
 const TODAY = new Date(2026, 5, 10);
@@ -101,8 +102,41 @@ const pct = (n, d) => (n / d * 100).toFixed(0) + "%";
 const hvacRow = u => { const h = hvac.units[u.unit]; return h ? (h.repair === "100%" && h.replace === "100%" ? "tenant 100% (full)" : `${h.repair}/occ · ${h.replace} repl`) : "n/a"; };
 
 /* ── dossier markdown ──────────────────────────────────────────── */
-const row = u => `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${u.total ? "$" + u.total.toFixed(2) : "—"} | ${u.monthly ? fmt$(u.monthly) : "—"} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`;
-const md = `# On The Boulevard Shopping Center — Property Dossier
+const row = u => NOFIN
+  ? `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`
+  : `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${u.total ? "$" + u.total.toFixed(2) : "—"} | ${u.monthly ? fmt$(u.monthly) : "—"} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`;
+const rollHead = NOFIN
+  ? `| Unit | Tenant (DBA) | Use | SF | Term end | Status |\n|---|---|---|---|---|---|`
+  : `| Unit | Tenant (DBA) | Use | SF | Total PSF | Monthly | Term end | Status |\n|---|---|---|---|---|---|---|---|`;
+const glanceRent = NOFIN
+  ? `- Tenancy: ${leased.length} occupied tenancies; full rent roll, income & NOI available to qualified parties under NDA`
+  : `- In-place rent: ${fmt$(monthly)}/mo (${fmt$(monthly * 12)}/yr) across ${leased.length} paying tenancies`;
+const finSection = NOFIN
+  ? `## Financials\n*Withheld from this overview. The complete rent roll (per-unit base + NNN), income composition, NNN recoveries, revenue-at-risk, and NOI workup are available to qualified parties under an executed confidentiality agreement.*`
+  : `## Financial summary
+*Income derived from the rent-roll SOT (Sheet2 composition). Operating expenses are NOT in the SOT — NOI requires the owner's actual expense figures; do not invent them.*
+- **In-place rent: ${fmt$(annualRent)}/yr** (${fmt$(monthly)}/mo)
+- **Income composition** (annual, base + NNN recoveries reconcile to in-place rent):
+  - Base rent ${fmt$(comp.base)} (${pct(comp.base, comp.total)})
+  - CAM recovery ${fmt$(comp.cam)} (${pct(comp.cam, comp.total)})
+  - Tax recovery ${fmt$(comp.tax)} (${pct(comp.tax, comp.total)})
+  - Insurance recovery ${fmt$(comp.ins)} (${pct(comp.ins, comp.total)})
+  - **NNN recoveries (CAM+Tax+Ins): ${fmt$(comp.recoveries)}/yr** — tenant reimbursements that offset the corresponding operating expenses
+- **Revenue at risk: ${fmt$(holdRent + exp12Rent)}/yr (${pct(holdRent + exp12Rent, annualRent)} of in-place rent)** — ${fmt$(holdRent)} in ${holdovers.length} holdovers + ${fmt$(exp12Rent)} expiring within 12 months. WALT is short; near-term rollover is the central asset-management risk.
+- Anchor concentration: Jason's Deli (149) is ${pct(units.find(u => u.unit === "149").monthly * 12, annualRent)} of in-place rent.`;
+const hvacSection = NOFIN
+  ? ""
+  : `## HVAC cost responsibility (per lease, SOT)
+Each tenant carries a per-occurrence/annual repair cap and a replacement share; above the cap the landlord covers, and a quarterly PM contract with **${hvac.provider}** (or an approved provider) is required. 100% = tenant fully responsible.
+| Unit | Tenant | HVAC split (tenant) |
+|---|---|---|
+${units.map(u => `| ${u.unit} | ${u.dba} | ${hvacRow(u)} |`).join("\n")}
+- Fully tenant-responsible (zero landlord HVAC exposure): ${units.filter(u => { const h = hvac.units[u.unit]; return h && h.repair === "100%" && h.replace === "100%"; }).map(u => u.unit).join(", ")}.
+
+`;
+const depositAnomaly = NOFIN ? "" : " · missing deposits 107/137/143/149";
+const docTitle = NOFIN ? "Property Overview" : "Property Dossier";
+const md = `# On The Boulevard Shopping Center — ${docTitle}
 **101–149 Arnould Blvd, Lafayette, LA 70506** · Owner: Belle Realty of Lafayette, LLC (managed by Orange Ocean, LLC — Adam, Managing Member)
 *Generated ${TODAY.toLocaleDateString("en-US")} from OTB Property Command (geometry REV ${geometry.rev.replace("REV ", "")}, traced from the recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019). Companion image: OTB-SitePlan-A1.svg / .png*
 
@@ -113,12 +147,11 @@ const md = `# On The Boulevard Shopping Center — Property Dossier
 - Hard-corner retail at **Johnston St (US Hwy 167, ±100' R/W)** and Arnould Blvd, with full block frontage: Arnould Blvd (80' concrete, address frontage), Patricia St (50'), Marie Antoinette St (40')
 - **Anchor: Jason's Deli** (Unit 149, Deli Management, Inc.) at the Patricia × Arnould corner, term through 10/31/2030
 - Occupancy: ${occ.length}/27 units (${(sum(occ.map(u => u.sf)) / sfSum * 100).toFixed(1)}% of SF); 2 vacancies totaling ${sum(vacant.map(u => u.sf)).toLocaleString()} SF
-- In-place rent: ${fmt$(monthly)}/mo (${fmt$(monthly * 12)}/yr) across ${leased.length} paying tenancies
+${glanceRent}
 - Parking: variance Entry 99-11797 — **324 provided / 344 required**; floor space "limited to available parking spaces"; 20% green area required. Plat striping labels tally 314 (see reconciliation note below)
 
-## Rent roll (as of ${TODAY.toLocaleDateString("en-US")})
-| Unit | Tenant (DBA) | Use | SF | Total PSF | Monthly | Term end | Status |
-|---|---|---|---|---|---|---|---|
+## ${NOFIN ? "Tenant roster" : "Rent roll"} (as of ${TODAY.toLocaleDateString("en-US")})
+${rollHead}
 ${units.map(row).join("\n")}
 
 - **Vacant / available:** ${vacant.map(u => `Unit ${u.unit} (${u.sf.toLocaleString()} SF${u.notes ? " — " + u.notes : ""})`).join("; ")}
@@ -127,17 +160,7 @@ ${units.map(row).join("\n")}
 - Combined leases: 101+103 (Pink Paisley, 9,931 SF) · 115+117 (Clothing Loft, 4,340 SF) · 125+127 (Jordan Amanda, 4,273 SF) · 139+141 (Fast Pass, 3,834 SF)
 - Owner-occupied: 135B (Belle Realty management office, 1,580 SF)
 
-## Financial summary
-*Income derived from the rent-roll SOT (Sheet2 composition). Operating expenses are NOT in the SOT — NOI requires the owner's actual expense figures; do not invent them.*
-- **In-place rent: ${fmt$(annualRent)}/yr** (${fmt$(monthly)}/mo)
-- **Income composition** (annual, base + NNN recoveries reconcile to in-place rent):
-  - Base rent ${fmt$(comp.base)} (${pct(comp.base, comp.total)})
-  - CAM recovery ${fmt$(comp.cam)} (${pct(comp.cam, comp.total)})
-  - Tax recovery ${fmt$(comp.tax)} (${pct(comp.tax, comp.total)})
-  - Insurance recovery ${fmt$(comp.ins)} (${pct(comp.ins, comp.total)})
-  - **NNN recoveries (CAM+Tax+Ins): ${fmt$(comp.recoveries)}/yr** — tenant reimbursements that offset the corresponding operating expenses
-- **Revenue at risk: ${fmt$(holdRent + exp12Rent)}/yr (${pct(holdRent + exp12Rent, annualRent)} of in-place rent)** — ${fmt$(holdRent)} in ${holdovers.length} holdovers + ${fmt$(exp12Rent)} expiring within 12 months. WALT is short; near-term rollover is the central asset-management risk.
-- Anchor concentration: Jason's Deli (149) is ${pct(units.find(u => u.unit === "149").monthly * 12, annualRent)} of in-place rent.
+${finSection}
 
 ## Buildings & demising (plat-traced)
 - **Long building (101–133):** 85.45' deep × 522.31' long, 19 bays; backs Marie Antoinette St with rear face 18.73' off the R/W (rear strip holds parallel parking over a 10' utility easement); storefronts face the main field; 101 at the Johnston end.
@@ -159,21 +182,14 @@ Our Savior's Church easement §3a carries a **liquor waiver that survives termin
 - **Inside the restricted zone (waiver applies):** 137, 135A/B, the entire long building (101–133), and the M.A. half of the field.
 
 ## Easements & encumbrances
-- **Our Savior's Church access & parking** — $350/mo, 25-yr term, Sundays + 6pm–midnight; §3a liquor waiver survives termination.
-- **JD Bank reciprocal** — $250/mo to Belle + 13 bank spaces (6+7, drawn on plan); 50/50 maintenance; expires 12/30/2034; supersedes Entry 2004-00057697. The JD Bank corner parcel at Johnston × Arnould is **sold — NOT Belle property** (the "NOT A PART" notch).
+- **Our Savior's Church access & parking** — ${NOFIN ? "" : "$350/mo, "}25-yr term, Sundays + 6pm–midnight; §3a liquor waiver survives termination.
+- **JD Bank reciprocal** — ${NOFIN ? "13 bank spaces" : "$250/mo to Belle + 13 bank spaces"} (6+7, drawn on plan); 50/50 maintenance; expires 12/30/2034; supersedes Entry 2004-00057697. The JD Bank corner parcel at Johnston × Arnould is **sold — NOT Belle property** (the "NOT A PART" notch).
 - **Perimeter 10' utility easement** along Arnould, Patricia, Marie Antoinette (and Johnston per plat), plus Lot 7's rear line.
 - **City of Lafayette electric easement, Entry 577566** — rear strip behind the long building.
 - 5×5' guy easement at the pylon sign (Johnston-side boundary, sign has 2 adjacent spaces).
 - Expired (of record only): three 15' temporary drainage easements, Entries 77-0783 / 77-000784 / 77-000785.
 
-## HVAC cost responsibility (per lease, SOT)
-Each tenant carries a per-occurrence/annual repair cap and a replacement share; above the cap the landlord covers, and a quarterly PM contract with **${hvac.provider}** (or an approved provider) is required. 100% = tenant fully responsible.
-| Unit | Tenant | HVAC split (tenant) |
-|---|---|---|
-${units.map(u => `| ${u.unit} | ${u.dba} | ${hvacRow(u)} |`).join("\n")}
-- Fully tenant-responsible (zero landlord HVAC exposure): ${units.filter(u => { const h = hvac.units[u.unit]; return h && h.repair === "100%" && h.replace === "100%"; }).map(u => u.unit).join(", ")}.
-
-## Covenants & operations notes
+${hvacSection}## Covenants & operations notes
 - **Jason's Deli §9.01:** landlord-side requirement that HVAC PM run monthly with **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC.
 - **Exclusive-use watch:** HotWorx (129, Mar 2024) vs C. Wolf Barber (135A, Nov 2024).
 - Compliance tracking fields per unit: ${compliance.fields.map(f => f[1] || f).join(", ")}.
@@ -187,7 +203,7 @@ ${units.map(u => `| ${u.unit} | ${u.dba} | ${hvacRow(u)} |`).join("\n")}
 
 ## Known anomalies (surfaced, unresolved — do not "fix")
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
-- Workbook: 101 SF 6,877 vs 6,677 · 117.5 SF 1,769 vs plat-implied 1,789 · 145 term-months "1572" · missing deposits 107/137/143/149.
+- Workbook: 101 SF 6,877 vs 6,677 · 117.5 SF 1,769 vs plat-implied 1,789 · 145 term-months "1572"${depositAnomaly}.
 - Parking Δ −10 (plat 314 vs variance 324) — reconciliation memo pending.
 - Street-name spelling variants "Arnauld / Arnold / Arnould" — title check pending (authoritative spelling: **Arnould**).
 - Plat internal conflicts: 117.5 dimension string 20.2' vs its SF label (implies 20.7'); LOT 12 block string 80.8' vs SF label (implies 79.6'). Strings govern in the drawing.
@@ -198,29 +214,34 @@ ${units.map(u => `| ${u.unit} | ${u.dba} | ${hvacRow(u)} |`).join("\n")}
 - US Hwy 167 (Johnston St) exposure at the southern boundary; pylon sign at the Johnston-side corner.
 - Restaurant-capable inline space on the permitted side of the liquor line without invoking the waiver (139–149 run); waiver covers the rest.
 `;
-writeFileSync(join(out, "OTB-Property-Dossier.md"), md);
+writeFileSync(join(out, NOFIN ? "OTB-Property-Overview.md" : "OTB-Property-Dossier.md"), md);
 
 /* ── merged machine-readable JSON ──────────────────────────────── */
-writeFileSync(join(out, "OTB-Property-Data.json"), JSON.stringify({
+const jsonObj = {
   meta: {
     property: "On The Boulevard Shopping Center, 101-149 Arnould Blvd, Lafayette, LA 70506",
     owner: "Belle Realty of Lafayette, LLC (manager: Orange Ocean, LLC)",
     generated: "2026-06-10", geometryRev: geometry.rev, source: geometry.source,
-    headline: { glaSf: 62883, units: 27, buildings: 2, acres: 4.84, zoning: "CH" }
+    headline: { glaSf: 62883, units: 27, buildings: 2, acres: 4.84, zoning: "CH" },
+    ...(NOFIN ? { note: "Buyer overview — financial figures (rent, PSF, income, NOI, recoveries) withheld; available under NDA." } : {})
   },
-  derived: {
-    unitSfSum: sfSum, monthlyIncome: Math.round(monthly), annualIncome: Math.round(annualRent),
-    occupiedUnits: occ.length, vacantUnits: vacant.length, vacantSf: sum(vacant.map(u => u.sf)),
-    holdoverUnits: holdovers.map(u => u.unit),
-    incomeComposition: { base: Math.round(comp.base), cam: Math.round(comp.cam), tax: Math.round(comp.tax), ins: Math.round(comp.ins), nnnRecoveries: Math.round(comp.recoveries) },
-    revenueAtRisk: { holdoverRent: Math.round(holdRent), expiring12moRent: Math.round(exp12Rent), total: Math.round(holdRent + exp12Rent) }
-  },
-  units, compliance,
-  rentComposition: recoveries.units, hvac: hvac.units,
+  derived: NOFIN
+    ? { unitSfSum: sfSum, occupiedUnits: occ.length, vacantUnits: vacant.length, vacantSf: sum(vacant.map(u => u.sf)), holdoverUnits: holdovers.map(u => u.unit) }
+    : {
+        unitSfSum: sfSum, monthlyIncome: Math.round(monthly), annualIncome: Math.round(annualRent),
+        occupiedUnits: occ.length, vacantUnits: vacant.length, vacantSf: sum(vacant.map(u => u.sf)),
+        holdoverUnits: holdovers.map(u => u.unit),
+        incomeComposition: { base: Math.round(comp.base), cam: Math.round(comp.cam), tax: Math.round(comp.tax), ins: Math.round(comp.ins), nnnRecoveries: Math.round(comp.recoveries) },
+        revenueAtRisk: { holdoverRent: Math.round(holdRent), expiring12moRent: Math.round(exp12Rent), total: Math.round(holdRent + exp12Rent) }
+      },
+  units: NOFIN ? units.map(({ base, total, monthly, ...u }) => u) : units,
+  compliance,
+  ...(NOFIN ? {} : { rentComposition: recoveries.units, hvac: hvac.units }),
   contacts: directory.propertyContacts, documents: directory.propertyDocuments,
   demising: geometry.demising, parking: geometry.parking, liquorLine: geometry.liquorLine,
   easements: geometry.easements, streets: geometry.streets, boundary: geometry.boundary
-}, null, 1));
+};
+writeFileSync(join(out, NOFIN ? "OTB-Property-Data-NoFinancials.json" : "OTB-Property-Data.json"), JSON.stringify(jsonObj, null, 1));
 
 console.log("export written:", out);
 console.log("dossier:", md.length, "chars · svg:", svg.length, "chars · png target", pngW + "x" + pngH);
