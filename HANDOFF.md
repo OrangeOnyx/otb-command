@@ -6,8 +6,9 @@ Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
 Last updated: 2026-06-20.
 
 ## Run / verify
-- `npm run dev` (Vite) · preview via Claude_Preview (launch.json: `otb-command-dev`, port 5173).
-- Generators: `npm run extract-geometry` · `extract-hvac` (py) · `extract-recoveries` (py) · `npm run export-package`.
+- `npm run dev` (Vite) · preview via Claude_Preview (`otb-command-dev`, port 5173). Note: with `.env` present the app is **login-gated** (Path B); to view locally without login, move `.env` aside temporarily.
+- **Generators (all re-runnable):** `npm run poster` (5 leasing posters) · `npm run pylon` (monument sign) · `npm run proforma` (owner Excel proforma) · `npm run export-package` (LLM export) · `npm run export-buyer` (no-financials buyer set) · `npm run extract-geometry` · `extract-hvac`/`extract-recoveries` (py).
+- **Deploy (Path B):** `npx vercel deploy --prod --yes --scope adams-projects-0c52918e --token <VERCEL_TOKEN>` (token = a Vercel access token; not stored in repo).
 - Quality gate before delivery: `node --check` each module + `npm run build`. Console clean.
 
 ## What's built (8 sheets)
@@ -24,7 +25,12 @@ W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + 
 - **Poster generator**: `tools/poster.py` → `npm run poster`. Reads `cad/Boulev_CLEAN.dxf` + units.json/geometry.json, logos vendored in `tools/brand-assets/` (otb_logo.png + a white-knockout). Emits **5 style variants** to `marketing/` (gitignored, disposable): A brand · **B plan-room (CHOSEN)** · C standard · D editorial · E heritage. Bays color-coded by tenancy; true north −51.5°. Johnston label rides a center lane-stripe via textPath; pylon marker at the surveyor 'SIGN' coord (1075.8,321.1).
 - **Pylon generator**: `tools/pylon.py` → `npm run pylon`. Emits `OTB-pylon-blank.svg` (scaled 14-panel template, matches the real sign) + `OTB-pylon-tenants.svg` (type stand-ins). Real-logo version is the operator's own image — drop logo files in `tools/brand-assets/` to swap.
 - Generated SVG→PNG locally via headless Chrome (no cairosvg/rsvg in repo): wrap SVG in HTML, `chrome --headless --screenshot`.
-- **LLM export package**: `tools/export-package.mjs` → `export/` → copied to `G:\My Drive\00 OTB\OTB-LLM-Export\`. Re-run after any A-1/geometry change.
+- **Pylon real logos DONE 2026-06-20**: 25 tenant logos vendored to `tools/brand-assets/tenant-logos/` (from the updated SOT's LOGO sheet), embedded per panel; P13 Boulevard Nutrition → Upstream Rehabilitation.
+
+## Export deliverables (all → `export*/`, gitignored; copied to `G:\My Drive\00 OTB\`)
+- **LLM export** (`npm run export-package` → `export/`): dossier MD + data JSON + A-1 SVG/PNG/HTML. Full detail incl. financials.
+- **Buyer overview** (`npm run export-buyer` → `export-buyer/`): same set with **all $ stripped** (roster only, financials → NDA note). For the prospective-buyer group. NOTE: still contains "Known anomalies" + "Marketing angles (LOI pending)" — operator may want those trimmed before sending externally.
+- **Owner proforma** (`npm run proforma` → `export/OTB-Proforma.xlsx`): live Excel model — real in-place income (EGI $1,080,773/yr), yellow OpEx cells = seeded estimates the owner overrides, formula-driven NOI + cap-rate value. Pending option: add vacancy/credit-loss line + stabilized (lease-up 131/133) scenario.
 
 ## OPEN — next session punch-list
 ### Poster edits — DONE on B (2026-06-20)
@@ -32,8 +38,8 @@ All five original notes resolved on the chosen B variant: tenant DBAs off the bo
 turned 90° CCW + centered both axes); pylon at the surveyor 'SIGN' coord by Unit 101 (no leader line);
 Johnston label curves with the road, within the lane lines; boundary dashes thinned; OTB contact block
 + enlarged logo. **GLA LOCKED to audited 62,883 across ALL variants** (operator, 2026-06-20 — overrides
-the brand's 70,000 marketing figure). **Still open:** (a) **Swap real tenant logos into the pylon** —
-operator to drop logo files in `tools/brand-assets/`. (b) A/C/D/E are exploratory; only B is blessed.
+the brand's 70,000 marketing figure). Real pylon logos now embedded (see Export/Marketing). A/C/D/E
+remain exploratory; only B is blessed.
 
 ## Brand (ingested 2026-06-20) — `~/.claude/skills/abdalla-brand-system`
 Three skills installed: `abdalla-brand-system` (router → per-entity `references/*.md` + `assets/` logos), `abdalla-web-templates`, `adam-brand-context`. Auto-trigger on OTB / Orange Ocean / Belle Realty / brand keywords. DO NOT pull brand details from memory — read the entity doc.
@@ -50,15 +56,15 @@ Three skills installed: `abdalla-brand-system` (router → per-entity `reference
 - DXF committed to `cad/`; `poster.py` + `pylon.py` in `tools/`; `npm run poster` / `npm run pylon` wired; `marketing/` gitignored. Regenerates whenever availability changes.
 
 ### Portability (operator goal: "moves with the app wherever")
-- **Path A — DONE 2026-06-20**: lease Drive URLs wired (clickable in unit drawers), floor-plan links + real tenant contacts seeded, session artifacts in K-1 register. Non-lease doc URLs (plat/variance/easements/title/HVAC) still blank — operator to paste.
+- **Path A — DONE 2026-06-20**: lease Drive URLs wired (clickable in unit drawers), floor-plan links + real tenant contacts seeded (from updated SOT `OTB_Master_SOT_Lease_Logo_HVAC.xlsx` — sidecars `src/data/{lease,floorplan,logo}-links.json` + `contacts-info.json`), session artifacts in K-1 register. **Google Drive connector is CONNECTED** (file search/metadata works). Remaining: the 11 non-lease register docs (plat/variance/easements/title/HVAC/SOT-docx/meters) still have blank `link` — next step is to point at the Drive folder holding the recorded instruments and match URLs (keyword search hits node_modules noise). SOT workbook URL already on hand.
 - **Path B — LIVE 2026-06-20** (`docs/path-b-supabase-scope.md`): hosted at **https://otb-command.vercel.app** (Vercel) + Supabase (project `kbhsghodquchkgfdzckc`). Magic-link auth; operator (adam@adamabdalla.com) edits, owners read-only + scoped sheets; state + images sync to Supabase. Deploy: `npx vercel deploy --prod --scope adams-projects-0c52918e` (needs a Vercel token). Deferred: B4 realtime, custom domain, per-sheet read RLS, custom SMTP.
 
 ### Visuals / 2.5D (next session)
 - Operator wants state-of-the-art data viz + **2.5D / isometric renderings** of OTB. Inline viz capability exists (mcp__visualize__show_widget) + in-app views. Needs the inputs in `docs/visuals-input-checklist` (see below / chat).
 
 ### Other
-- **Floor plans**: operator has a Floorplanner file (per-unit + whole-center; columns/benches/trash/water-shutoffs mapped). Usable TODAY via existing features — per-unit images → unit drawer Photos & Plans ("Floor plan" kind); whole-center → K-1 Site imagery or an A-1 facilities overlay. Needs the PNG/PDF export from operator. Interactive facilities layer = future build needing source data.
-- **LLM export** re-run on 2026-06-19 to reflect the decluttered A-1 (tenant directory + zoomed plan).
+- **Floor plans — A-1 overlay LIVE 2026-06-20**: whole-center plan (`public/floorplan-center.png`, processed from `G:\…\Floor Plan - Whole Center.jpg` — exterior/parking knocked transparent, largest-component crop, rotated 180° to match A-1) renders under the unit boxes via **A-1 → Overlay → Floor plan**, registered to the unit envelope (`FAC` box in `plan.js`), with a **Unit-fill opacity slider** (auto-fades boxes to 40% when the overlay is on; labels go dark+halo). Per-unit floor-plan **links** also live in each unit drawer. Tuning preview tool: composite floor plan + unit rects offline (see chat).
+- **Still parked:** app logo thumbnails (drawer/directory; logos already vendored) · custom domain `command.ontheblvd.com` + custom SMTP for auth email · doc Drive URLs (above) · 2.5D/isometric viz (needs `docs/visuals-input-checklist`) · Magnolia (121) executed lease swap (Draft→Executed when provided) · Arnould spelling title-check (P0).
 
 ## Locked decisions
 - DoorLoop is OFF the roadmap (don't re-propose).
