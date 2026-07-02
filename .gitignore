@@ -13,3 +13,6 @@ __pycache__/
 .vercel
 preview_align.png
 export-buyer/
+
+# brainstorming visual companion
+.superpowers/
