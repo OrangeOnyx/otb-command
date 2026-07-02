@@ -39,10 +39,15 @@ shared geometry+data core, each shipped independently:
 - **Lens A — SVG Isometric** (foundation)
 - **Lens B — WebGL 3D Twin**
 - **Lens C — Satellite Spatial** (harvested from v9)
+- **Lens D — Reality capture** (photoreal drone twin; added 2026-07-02)
 
 **Massing = uniform real** (audit-grade heights from CAD). **Color = live unit status.**
 Click any unit in any lens → the existing unit drawer. Metric-driven height
 (rent PSF / SF / NOI) is explicitly **out of scope** for P6 (future toggle).
+
+**Two twins, complementary:** Lenses A/B are the *interactive data twin* (schematic,
+clickable, exportable, ship without any capture). Lens D is the *photoreal reality
+twin* from a real capture. They coexist; D does not replace the extruded model.
 
 ---
 
@@ -113,6 +118,10 @@ A consumer can render any lens knowing only this interface, without reading iso.
 - Click via raycaster → shared selection → drawer.
 - Presented as a toggle within the A-2 sheet ("2D iso ↔ 3D"), not a separate sheet.
 - Optional (later within P6b): a satellite/plan ground plane; not required for first ship.
+- **Swappable geometry source:** Lens B loads its geometry through one interface —
+  extruded prisms by default, a captured mesh (Lens D) as a drop-in. This seam is
+  what lets the reality capture replace the schematic massing without rewiring
+  selection, theming, or the drawer.
 
 ---
 
@@ -138,6 +147,40 @@ A consumer can render any lens knowing only this interface, without reading iso.
 
 ---
 
+## 6b. Lens D — Reality capture (P6d, photoreal drone twin)
+
+**Capture method (operator decision, 2026-07-02): one drone session → two outputs.**
+A single drone orbit + nadir-grid flight over the center yields both:
+- a **photogrammetry mesh** (textured glTF/OBJ, decimated for web) — the engineerable,
+  georeferenceable geometry, usable as Lens B's drop-in mesh; and
+- a **3D Gaussian Splat** (`.ply` → `.ksplat`/`.splat`) trained from the same footage —
+  the photoreal hero/tour.
+
+### 6b.1 Web delivery
+- Splat: a three.js-compatible splat viewer/loader (e.g. a Gaussian-splats-3D loader),
+  **lazy-loaded** only when Lens D is opened. Splat file lives in Supabase Storage
+  (large; not committed to the repo), streamed via signed URL — reuses the existing
+  asset seam / private-bucket pattern.
+- Mesh: standard glTF loader; decimated target that holds framerate on a laptop.
+
+### 6b.2 Clickability (the bridge)
+- A capture is not segmented, so it has no notion of units. We keep click→drawer by
+  **draping invisible, pickable unit polygons** (the georeferenced footprints from
+  Lens C, extruded to CAD heights) as transparent hit-areas over the capture. A ray
+  hit on a hit-area resolves to a unit → shared selection → drawer.
+- This is why Lens C's georeferencing (`georef.json`) is a hard dependency of Lens D.
+
+### 6b.3 Framing
+- Owner/analytical use: mesh in Lens B (measure, inspect, clickable).
+- Buyer/marketing use: splat as an immersive hero walkthrough.
+- Both read the same selection + theme; splat imagery is physical (not theme-inverted).
+
+### 6b.4 What this needs from the operator (real-world)
+- A drone capture session (self-flown or a service). Deliverables we want back:
+  the source imagery/video (for re-training), a decimated textured mesh, and the
+  trained splat. Capture logistics, airspace, and processing are outside the app but
+  gate P6d; P6a–c do not wait on them.
+
 ## 7. Cross-cutting — theme switch
 
 - Add a plan-room ↔ dark ("command") theme toggle (the substrate decision).
@@ -152,6 +195,8 @@ A consumer can render any lens knowing only this interface, without reading iso.
 ## 8. Dependencies & non-goals
 
 **New deps:** `three`, `maplibre-gl` (both standard, MIT/BSD; added to the Vite app).
+A Gaussian-splat loader for Three.js is added only at P6d, **lazy-loaded** so lenses
+A–C stay light. Capture assets (mesh, splat) live in Supabase Storage, not the repo.
 **Not in P6:**
 - Metric-driven extrusion height (rent PSF / SF / NOI) — future toggle.
 - v9's global search — separate small harvest, its own later task.
@@ -165,6 +210,9 @@ A consumer can render any lens knowing only this interface, without reading iso.
    sheet) + theme switch. Independently shippable and demoable.
 2. **P6b** — Lens B (Three.js 3D twin) toggle.
 3. **P6c** — Lens C (MapLibre satellite) + georeferencing.
+4. **P6d** — Lens D (reality capture): mesh into Lens B's swappable source + splat hero
+   lens, with draped hit-areas for clickability. Gated on a drone capture session;
+   does not block P6a–c.
 
 Each step is usable on its own; no big-bang.
 
@@ -194,6 +242,10 @@ Each step is usable on its own; no big-bang.
   A-2 sheet's SVG lens (A) stays light.
 - **Rev label:** A-1 title-block Rev convention — A-2 gets its own rev label; any
   geometry change bumps it.
+- **Capture (Lens D):** splat file size / streaming perf (mitigated: lazy-load +
+  signed-URL streaming from Storage, decimated mesh target); clickability depends
+  entirely on Lens C georef accuracy (shared risk); capture logistics/quality are
+  real-world and out of app control.
 
 ---
 
