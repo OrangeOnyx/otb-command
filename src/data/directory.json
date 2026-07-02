@@ -10,7 +10,7 @@
     { "id": "pc:title", "role": "Title insurer", "company": "Fidelity National Title Insurance Company", "name": "", "phone": "", "email": "", "note": "ATC 2007054432, Schedule B — Section 2 (exceptions)" }
   ],
   "propertyDocuments": [
-    { "id": "pd:plat", "name": "Recorded plat of survey", "type": "Survey", "ref": "Montagnet & Domingue, Inc. · 5/20/1994, last rev. 7/19/2019", "link": "", "note": "Source of all traced geometry (REV 5–11)" },
+    { "id": "pd:plat", "name": "Recorded plat of survey", "type": "Survey", "ref": "Montagnet & Domingue, Inc. · 5/20/1994, last rev. 7/19/2019", "link": "/plat-render.svg", "note": "Source of all traced geometry (REV 5–11). Schematic reproduction from CAD (npm run plat) — not the certified instrument." },
     { "id": "pd:variance", "name": "Parking variance", "type": "Entitlement", "ref": "Entry 99-11797", "link": "", "note": "324 provided / 344 required; floor space limited to available parking" },
     { "id": "pd:church", "name": "Our Savior's Church access & parking easement", "type": "Easement", "ref": "—", "link": "", "note": "$350/mo · 25-yr · §3a liquor waiver survives termination" },
     { "id": "pd:jdbank", "name": "JD Bank reciprocal parking easement", "type": "Easement", "ref": "exp. 12/30/2034 · supersedes Entry 2004-00057697", "link": "", "note": "$250/mo to Belle + 13 spaces · 50/50 maintenance" },

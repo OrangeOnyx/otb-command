@@ -12,7 +12,8 @@
     "export-buyer": "node tools/export-package.mjs nofin",
     "proforma": "python tools/proforma.py",
     "poster": "python tools/poster.py",
-    "pylon": "python tools/pylon.py"
+    "pylon": "python tools/pylon.py",
+    "plat": "python tools/plat.py"
   },
   "devDependencies": {
     "vite": "^7.1.0"
