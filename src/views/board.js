@@ -65,8 +65,6 @@ function seed() {
     title: "JD Bank parking easement expiry", detail: "Belle loses 13 spaces + $250/mo — re-run parking vs variance well before" });
   c.push({ id: "park:recon", kind: "parking", lane: "action", due: null,
     title: "Reconcile parking Δ−10", detail: "Plat striping 314 vs variance 324 — pull file 99-11797 (see reconciliation memo)" });
-  c.push({ id: "title:spelling", kind: "task", lane: "watch", due: null,
-    title: "Title check — ‘Arnould’ spelling (P0)", detail: "Resolve Arnauld / Arnold / Arnould variants of record" });
   return c;
 }
 

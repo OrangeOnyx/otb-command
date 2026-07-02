@@ -33,8 +33,11 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   licensing, or stall-removal decision. Zoning also requires 20% green area.
 - Streets: Arnould Blvd (80' R/W concrete, address frontage, E), Johnston St /
   US 167 (±100', S), Patricia St (50', N), Marie Antoinette St (40', W — long
-  building back/service frontage). Authoritative spelling: **Arnould** (title
-  check on Arnauld/Arnold variants pending, P0).
+  building back/service frontage). Authoritative spelling: **Arnould** (street).
+  TITLE CHECK CLOSED 2026-06-27 (operator-confirmed): the street is **Arnould
+  Blvd**; the recorded **subdivision** of record is **"Arnold Heights Subd. Ext.
+  No. 1"** — a distinct legal proper noun, NOT a misspelling. Keep both; do not
+  "correct" the subdivision name to Arnould.
 - Long building 101–133: backs Marie Antoinette (rear face 18.73' off the R/W
   per plat — NOT 10'), 101 at Johnston end, storefronts face the main field.
   Short building 135–149 along Patricia; the 37.4' M.A.-end section splits at

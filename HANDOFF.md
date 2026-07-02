@@ -64,7 +64,11 @@ Three skills installed: `abdalla-brand-system` (router → per-entity `reference
 
 ### Other
 - **Floor plans — A-1 overlay LIVE 2026-06-20**: whole-center plan (`public/floorplan-center.png`, processed from `G:\…\Floor Plan - Whole Center.jpg` — exterior/parking knocked transparent, largest-component crop, rotated 180° to match A-1) renders under the unit boxes via **A-1 → Overlay → Floor plan**, registered to the unit envelope (`FAC` box in `plan.js`), with a **Unit-fill opacity slider** (auto-fades boxes to 40% when the overlay is on; labels go dark+halo). Per-unit floor-plan **links** also live in each unit drawer. Tuning preview tool: composite floor plan + unit rects offline (see chat).
-- **Still parked:** app logo thumbnails (drawer/directory; logos already vendored) · custom domain `command.ontheblvd.com` + custom SMTP for auth email · doc Drive URLs (above) · 2.5D/isometric viz (needs `docs/visuals-input-checklist`) · Magnolia (121) executed lease swap (Draft→Executed when provided) · Arnould spelling title-check (P0).
+- **Still parked:** app logo thumbnails (drawer/directory; logos already vendored) · custom domain `command.ontheblvd.com` + custom SMTP for auth email · doc Drive URLs (above) · 2.5D/isometric viz (needs `docs/visuals-input-checklist`) · Magnolia (121) executed lease swap (Draft→Executed when provided).
+- **Title check (P0) — CLOSED 2026-06-27**: street = **Arnould Blvd** (operator-confirmed);
+  recorded subdivision of record = **"Arnold Heights Subd. Ext. No. 1"** (distinct legal
+  name, deliberately "Arnold" — not a variant to reconcile). App already uses Arnould
+  consistently; "do not fix" the subdivision name. See CLAUDE.md property facts.
 
 ## Locked decisions
 - DoorLoop is OFF the roadmap (don't re-propose).

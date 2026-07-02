@@ -205,7 +205,6 @@ ${hvacSection}## Covenants & operations notes
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
 - Workbook: 101 SF 6,877 vs 6,677 · 117.5 SF 1,769 vs plat-implied 1,789 · 145 term-months "1572"${depositAnomaly}.
 - Parking Δ −10 (plat 314 vs variance 324) — reconciliation memo pending.
-- Street-name spelling variants "Arnauld / Arnold / Arnould" — title check pending (authoritative spelling: **Arnould**).
 - Plat internal conflicts: 117.5 dimension string 20.2' vs its SF label (implies 20.7'); LOT 12 block string 80.8' vs SF label (implies 79.6'). Strings govern in the drawing.
 
 ## Marketing angles (grounded)
