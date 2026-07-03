@@ -67,9 +67,53 @@ function renderLegend() {
     '<span class="li"><span class="sw" style="background:' + c + '"></span>' + l + "</span>").join("");
 }
 
+let scene = null;        // Lens B handle (null until 3D opened)
+let lens = "iso";
+
+// resolved per-unit data for the 3D scene (footprint + real height + status color)
+function unitData() {
+  return UNITS.map(u => {
+    const p = geometry.units[u.unit];
+    if (!p) return null;
+    return { unit: u.unit, x: p.x, y: p.y, w: p.w, h: p.h,
+      heightFt: heights[u.unit] || DEFAULT_FT, color: baseColor(u) };
+  }).filter(Boolean);
+}
+
+async function open3d() {
+  const host = document.getElementById("spatial3d");
+  if (!host || scene) return;
+  const dark = document.documentElement.dataset.theme === "dark";
+  const { createScene } = await import("../lib/scene3d.js");
+  scene = createScene(host, unitData(), { dark, onPick: openDrawer });
+  scene.setSelected(getSelected());
+}
+
+function setLens(next) {
+  lens = next;
+  const svg = document.getElementById("spatial");
+  const host = document.getElementById("spatial3d");
+  document.getElementById("lensIso").classList.toggle("on", next === "iso");
+  document.getElementById("lens3d").classList.toggle("on", next === "3d");
+  if (next === "3d") {
+    svg.setAttribute("hidden", "");
+    host.removeAttribute("hidden");
+    open3d().then(() => scene && scene.resize());
+  } else {
+    host.setAttribute("hidden", "");
+    svg.removeAttribute("hidden");
+    if (scene) { scene.dispose(); scene = null; }
+  }
+}
+
 export function initSpatial() {
   renderLegend();
   drawSpatial();
-  // keep the massing's selection outline in sync with drawer open/close anywhere
-  subscribe(type => { if (type === "selection") drawSpatial(); });
+  const iso = document.getElementById("lensIso");
+  const d3 = document.getElementById("lens3d");
+  if (iso) iso.onclick = () => setLens("iso");
+  if (d3) d3.onclick = () => setLens("3d");
+  subscribe(type => {
+    if (type === "selection") { drawSpatial(); if (scene) scene.setSelected(getSelected()); }
+  });
 }

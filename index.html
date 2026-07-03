@@ -81,11 +81,16 @@
     </section>
 
     <section class="page" id="pg-spatial">
-      <div class="page-head"><h1>Spatial</h1><div class="sub">A-2 · ISOMETRIC — CLICK A UNIT</div></div>
+      <div class="page-head"><h1>Spatial</h1><div class="sub">A-2 · ISOMETRIC / 3D — CLICK A UNIT</div></div>
       <div class="plan-tools">
+        <button class="chip on" id="lensIso" data-lens="iso">▱ Isometric</button>
+        <button class="chip" id="lens3d" data-lens="3d">◧ 3D</button>
         <div class="legend" id="spatialLegend"></div>
       </div>
-      <div class="card plan-card"><svg id="spatial" role="img" aria-label="On The Boulevard isometric massing"></svg></div>
+      <div class="card plan-card">
+        <svg id="spatial" role="img" aria-label="On The Boulevard isometric massing"></svg>
+        <div id="spatial3d" class="spatial3d" hidden></div>
+      </div>
     </section>
 
     <!-- R-1 RENT ROLL -->
