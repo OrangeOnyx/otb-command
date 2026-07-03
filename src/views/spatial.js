@@ -5,7 +5,7 @@ import geometry from "../data/geometry.json";
 import heights from "../data/heights.json";
 import { UNITS, getSelected, subscribe } from "../store.js";
 import { STATUS_META } from "../lib/colors.js";
-import { NS, g, path, text } from "../lib/svg.js";
+import { g, path, text } from "../lib/svg.js";
 import { prismFaces, facePath, depthKey, shade, isoBounds, FT_SCALE } from "../lib/iso.js";
 import { openDrawer } from "./drawer.js";
 
