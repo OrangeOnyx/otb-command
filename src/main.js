@@ -6,6 +6,7 @@ import { migrateLocalToRemote } from "./lib/assets.js";
 import { TODAY } from "./lib/format.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
+import { initSpatial } from "./views/spatial.js";
 import { renderRoll } from "./views/rentroll.js";
 import { initMatrix } from "./views/compliance.js";
 import { initDates } from "./views/dates.js";
@@ -14,7 +15,7 @@ import { initDirectory } from "./views/directory.js";
 import { initFinancial } from "./views/financial.js";
 import { closeDrawer } from "./views/drawer.js";
 
-const PAGES = [["dash", "D-1", "Dashboard"], ["plan", "A-1", "Site Plan"], ["roll", "R-1", "Rent Roll"], ["comp", "C-1", "Compliance"], ["fin", "P-1", "Financial"], ["dates", "T-1", "Critical Dates"], ["board", "W-1", "Action Board"], ["dir", "K-1", "Directory"]];
+const PAGES = [["dash", "D-1", "Dashboard"], ["plan", "A-1", "Site Plan"], ["spatial", "A-2", "Spatial"], ["roll", "R-1", "Rent Roll"], ["comp", "C-1", "Compliance"], ["fin", "P-1", "Financial"], ["dates", "T-1", "Critical Dates"], ["board", "W-1", "Action Board"], ["dir", "K-1", "Directory"]];
 
 /* ---------- login gate ---------- */
 function showLogin(msg) {
@@ -160,6 +161,7 @@ function applyRole(role) {
 
 function initViews() {
   initPlan();
+  initSpatial();
   renderRoll();
   initMatrix();
   initDates();
