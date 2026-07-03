@@ -3,7 +3,34 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-06-20.
+Last updated: 2026-07-03.
+
+## ELITE ROADMAP (started 2026-07-03) — see `docs/superpowers/specs` + `docs/superpowers/plans`
+Vision: full owner/operator platform. Three threads on the live Supabase foundation:
+- **Thread 1 · Secure Documents:** P1 Document Repository → P2 Owner Safe → P3 Vendor Portal
+  (all = role-scoped file storage; extends the existing image asset seam / private bucket).
+- **Thread 2 · AI Property Concierge:** P4 grounded text RAG → P5 realtime voice + avatar.
+- **Thread 3 · Spatial & 2.5D:** **P6** (this thread, in progress).
+**Substrate decision (operator):** ONE app — the repo is authoritative; harvest v9
+(`~/OneDrive/Desktop/otbcommandv9kimi.html`, a dark Mapbox "spatial engine" concept)
+IDEAS ONLY (Mapbox satellite map + global search). Plan-room = default palette; dark = optional
+theme switch (SHIPPED, see below). Do NOT fork into two codebases.
+
+### P6 · 2.5D + Spatial — **P6a SHIPPED 2026-07-03**
+- Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plan `docs/superpowers/plans/2026-07-02-p6a-svg-isometric.md`.
+- **A-2 "Spatial" sheet LIVE** (nav D-1·A-1·**A-2**·R-1…): native-SVG isometric of the center,
+  unit footprints extruded to **real CAD heights** (`npm run extract-heights` → `src/data/heights.json`,
+  from the DXF `BLD_HT` layer), block color = live status, click → shared drawer, selection syncs across sheets.
+  Core is pure `src/lib/iso.js` (unit-tested: **`npm test`** via native node:test — repo's first tests).
+- **Theme switch SHIPPED**: plan-room (DEFAULT) ↔ dark, toggle in sidebar foot, persisted `localStorage["otb-theme"]`,
+  dark overrides `:root` vars under `[data-theme="dark"]`.
+- **Next in P6 (each its own plan):** P6b WebGL 3D twin (Three.js, orbit) — Lens B geometry source is
+  swappable so P6d's mesh drops in; P6c satellite (MapLibre + free Esri imagery, needs plat georeference
+  → `georef.json`); **P6d Reality capture** — operator to do a **drone shoot → photogrammetry mesh + 3D
+  Gaussian Splat**; clickability via georef-draped hit-areas. Deferred from P6a: metric-height toggle,
+  north/scale, static-SVG export of A-2, v9 global-search harvest.
+- Height note (operator eyeball): 22/27 units = 16.4′ (real nearest-BLD_HT match, not fabricated); 103=23.6′,
+  101=13.5′, 105/107/109=13.2′. Real skew, not a bug.
 
 ## Run / verify
 - `npm run dev` (Vite) · preview via Claude_Preview (`otb-command-dev`, port 5173). Note: with `.env` present the app is **login-gated** (Path B); to view locally without login, move `.env` aside temporarily.
