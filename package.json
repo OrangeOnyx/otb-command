@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "extract-geometry": "node tools/extract-geometry.mjs",
+    "test": "node --test",
     "export-package": "node tools/export-package.mjs",
     "export-buyer": "node tools/export-package.mjs nofin",
     "proforma": "python tools/proforma.py",
