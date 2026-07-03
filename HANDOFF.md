@@ -16,19 +16,24 @@ Vision: full owner/operator platform. Three threads on the live Supabase foundat
 IDEAS ONLY (Mapbox satellite map + global search). Plan-room = default palette; dark = optional
 theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 
-### P6 · 2.5D + Spatial — **P6a SHIPPED 2026-07-03**
-- Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plan `docs/superpowers/plans/2026-07-02-p6a-svg-isometric.md`.
-- **A-2 "Spatial" sheet LIVE** (nav D-1·A-1·**A-2**·R-1…): native-SVG isometric of the center,
-  unit footprints extruded to **real CAD heights** (`npm run extract-heights` → `src/data/heights.json`,
-  from the DXF `BLD_HT` layer), block color = live status, click → shared drawer, selection syncs across sheets.
-  Core is pure `src/lib/iso.js` (unit-tested: **`npm test`** via native node:test — repo's first tests).
+### P6 · 2.5D + Spatial — **P6a + P6b SHIPPED 2026-07-03**
+- Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plans `docs/superpowers/plans/2026-07-0{2-p6a-svg-isometric,3-p6b-webgl-3d-twin}.md`.
+- **A-2 "Spatial" sheet LIVE** (nav D-1·A-1·**A-2**·R-1…) with an **Iso / 3D lens toggle**:
+  - **Lens A (SVG isometric, P6a):** native-SVG, footprints extruded to **real CAD heights**
+    (`npm run extract-heights` → `src/data/heights.json`, from DXF `BLD_HT`), block color = live status.
+    Pure core `src/lib/iso.js` (unit-tested).
+  - **Lens B (WebGL 3D twin, P6b):** Three.js (`three@0.185`), orbit controls, same footprints/heights/colors,
+    raycast click → drawer. Loaded **lazily** (dynamic import → code-split `scene3d-*.js` chunk; `three` only
+    loads when 3D opens). Pure layout `src/lib/scene3d-layout.js` (unit-tested); scene `src/lib/scene3d.js`.
+    **Verified live in WebGL 2.0** (render + real heights + click→drawer + clean dispose on toggle-back).
+  - Both: click → shared drawer, selection syncs across sheets. **`npm test`** = 15 tests (native node:test).
+  - **Swappable geometry seam:** `buildBoxes()` in scene3d.js is isolated so **P6d's captured mesh drops in**.
 - **Theme switch SHIPPED**: plan-room (DEFAULT) ↔ dark, toggle in sidebar foot, persisted `localStorage["otb-theme"]`,
-  dark overrides `:root` vars under `[data-theme="dark"]`.
-- **Next in P6 (each its own plan):** P6b WebGL 3D twin (Three.js, orbit) — Lens B geometry source is
-  swappable so P6d's mesh drops in; P6c satellite (MapLibre + free Esri imagery, needs plat georeference
+  dark overrides `:root` vars under `[data-theme="dark"]`; the 3D scene reads the theme too.
+- **Next in P6 (each its own plan):** **P6c satellite** (MapLibre + free Esri imagery, needs plat georeference
   → `georef.json`); **P6d Reality capture** — operator to do a **drone shoot → photogrammetry mesh + 3D
-  Gaussian Splat**; clickability via georef-draped hit-areas. Deferred from P6a: metric-height toggle,
-  north/scale, static-SVG export of A-2, v9 global-search harvest.
+  Gaussian Splat**, clickability via georef-draped hit-areas over the swappable seam. Deferred: metric-height
+  toggle, north/scale, static-SVG export of A-2, v9 global-search harvest.
 - Height note (operator eyeball): 22/27 units = 16.4′ (real nearest-BLD_HT match, not fabricated); 103=23.6′,
   101=13.5′, 105/107/109=13.2′. Real skew, not a bug.
 
