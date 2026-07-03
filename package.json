@@ -14,7 +14,8 @@
     "proforma": "python tools/proforma.py",
     "poster": "python tools/poster.py",
     "pylon": "python tools/pylon.py",
-    "plat": "python tools/plat.py"
+    "plat": "python tools/plat.py",
+    "extract-heights": "python tools/extract-heights.py"
   },
   "devDependencies": {
     "vite": "^7.1.0"
