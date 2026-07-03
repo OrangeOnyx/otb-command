@@ -68,7 +68,6 @@ function renderLegend() {
 }
 
 let scene = null;        // Lens B handle (null until 3D opened)
-let lens = "iso";
 
 // resolved per-unit data for the 3D scene (footprint + real height + status color)
 function unitData() {
@@ -90,7 +89,6 @@ async function open3d() {
 }
 
 function setLens(next) {
-  lens = next;
   const svg = document.getElementById("spatial");
   const host = document.getElementById("spatial3d");
   document.getElementById("lensIso").classList.toggle("on", next === "iso");

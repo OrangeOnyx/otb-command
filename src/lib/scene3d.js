@@ -50,7 +50,6 @@ export function createScene(container, units, opts = {}) {
       const mesh = new THREE.Mesh(geo, mat);
       mesh.position.set(b.x, b.y, b.z);
       mesh.userData.unit = b.unit;
-      mesh.userData.baseColor = base.clone();
       const edges = new THREE.LineSegments(
         new THREE.EdgesGeometry(geo),
         new THREE.LineBasicMaterial({ color: 0x1C2B26, transparent: true, opacity: 0.35 }));
@@ -85,7 +84,7 @@ export function createScene(container, units, opts = {}) {
   function setSelected(unit) {
     meshes.forEach((mesh, u) => {
       const on = u === unit;
-      mesh.material.emissive = new THREE.Color(on ? 0xA87E2F : 0x000000);
+      mesh.material.emissive.set(on ? 0xA87E2F : 0x000000);
       mesh.material.emissiveIntensity = on ? 0.5 : 0;
     });
   }
