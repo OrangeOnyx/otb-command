@@ -33,8 +33,6 @@ export function drawSpatial() {
   svg.setAttribute("viewBox", [box.x, box.y, box.w, box.h].map(n => n.toFixed(1)).join(" "));
   svg.innerHTML = "";
 
-  // ground shadow (subtle) then blocks back-to-front
-  const ground = g(svg, "iso-ground");
   const layer = g(svg, "iso-blocks");
   const selected = getSelected();
 
@@ -58,7 +56,6 @@ export function drawSpatial() {
     });
     grp.addEventListener("click", () => openDrawer(r.unit));
   });
-  void ground; // reserved for a future drop shadow; keeps layer order stable
 }
 
 function renderLegend() {

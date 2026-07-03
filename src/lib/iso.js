@@ -2,7 +2,7 @@
    Projects plan-space unit footprints (geometry.units) to a 2:1 dimetric
    isometric and builds extruded prism faces. Tested in test/iso.test.mjs. */
 
-export const COS = Math.cos(Math.PI / 6); // ≈0.8660 — 2:1 dimetric
+export const COS = Math.cos(Math.PI / 6); // ≈0.8660 — 2:1 isometric axes
 export const SIN = Math.sin(Math.PI / 6); // 0.5
 export const FT_SCALE = 3.2;              // plan-units per foot for extrusion height (visual, tunable)
 
