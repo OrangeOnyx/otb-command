@@ -140,6 +140,7 @@ function buildShell(account) {
 
   /* expose for role application */
   buildShell._applyOwner = applyOwner;
+  initTheme();
 }
 
 function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
@@ -184,6 +185,20 @@ function wireSync() {
       } catch (e) { console.warn("sync error:", e); }
     }, 800);
   });
+}
+
+function initTheme() {
+  const saved = localStorage.getItem("otb-theme") === "dark" ? "dark" : "light";
+  document.documentElement.dataset.theme = saved;
+  const btn = document.getElementById("themeToggle");
+  const label = () => { if (btn) btn.textContent = document.documentElement.dataset.theme === "dark" ? "◑ Light mode" : "◐ Dark mode"; };
+  label();
+  if (btn) btn.onclick = () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("otb-theme", next);
+    label();
+  };
 }
 
 /* ---------- boot ---------- */

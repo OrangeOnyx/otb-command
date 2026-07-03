@@ -373,3 +373,24 @@ body.role-owner .rec-edit,body.role-owner .rec-x,body.role-owner .rec-add{displa
 body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 /* faded unit fills (reading an overlay underneath): dark, haloed labels stay legible */
 #plan.see-through .u-num,#plan.see-through .u-dba{fill:#1C2B26 !important;paint-order:stroke;stroke:rgba(255,255,255,.92);stroke-width:3px;stroke-linejoin:round}
+
+/* ---- A-2 isometric view ---- */
+#spatial { width: 100%; height: auto; display: block; }
+.iso-num { font-family: var(--disp); fill: var(--white); }
+.iso-num.dk { fill: var(--ink); }
+.iso-unit:hover .iso-num { font-weight: 700; }
+
+/* ---- theme toggle ---- */
+.theme-toggle { margin: 8px 12px; width: calc(100% - 24px); padding: 8px 10px;
+  font: 600 12px/1 var(--mono); color: var(--ink70); background: var(--card);
+  border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
+.theme-toggle:hover { border-color: var(--brass); color: var(--ink); }
+
+/* ---- dark theme: override the :root plan-room tokens ---- */
+[data-theme="dark"] {
+  --paper: #12151A; --paper2: #0E1116; --card: #1A1F26; --white: #E8EBE6;
+  --ink: #E8EBE6; --ink70: rgba(232,235,230,.72); --ink50: rgba(232,235,230,.5); --ink30: rgba(232,235,230,.3);
+  --line: #2C333C; --line2: #232A31;
+  --brass-bg: #2A2416; --green-bg: #16241D; --brick-bg: #2A1B14; --slate-bg: #1E2420;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.5);
+}
