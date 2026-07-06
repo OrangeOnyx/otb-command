@@ -40,7 +40,10 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 ## Run / verify
 - `npm run dev` (Vite) · preview via Claude_Preview (`otb-command-dev`, port 5173). Note: with `.env` present the app is **login-gated** (Path B); to view locally without login, move `.env` aside temporarily.
 - **Generators (all re-runnable):** `npm run poster` (5 leasing posters) · `npm run pylon` (monument sign) · `npm run proforma` (owner Excel proforma) · `npm run export-package` (LLM export) · `npm run export-buyer` (no-financials buyer set) · `npm run extract-geometry` · `extract-hvac`/`extract-recoveries` (py).
-- **Deploy (Path B):** `npx vercel deploy --prod --yes --scope adams-projects-0c52918e --token <VERCEL_TOKEN>` (token = a Vercel access token; not stored in repo).
+- **Deploy (Path B):** `npx vercel deploy --prod --yes --scope adams-projects-0c52918e` — the Vercel CLI is
+  **logged in on this machine as `orangeonyx`** (device-flow login 2026-07-03; no token needed).
+  **IMPORTANT: local commits do NOT auto-deploy** (no git remote / no Vercel git integration) — run the deploy
+  command after shipping, or the live site silently stays stale.
 - Quality gate before delivery: `node --check` each module + `npm run build`. Console clean.
 
 ## What's built (8 sheets)
