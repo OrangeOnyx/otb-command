@@ -2,8 +2,14 @@
    No-op when env keys are absent — the app then runs on localStorage only. */
 import { createClient } from "@supabase/supabase-js";
 
-const URL = import.meta.env.VITE_SUPABASE_URL;
-const KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+/* Vite statically replaces these exact import.meta.env.VITE_* expressions at
+   build time; the try/catch only matters under plain Node (node --test), where
+   import.meta.env is undefined and the app correctly falls back to local-only. */
+let URL, KEY;
+try {
+  URL = import.meta.env.VITE_SUPABASE_URL;
+  KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+} catch { /* plain Node — no Vite env */ }
 export const REMOTE = !!(URL && KEY);
 export const sb = REMOTE ? createClient(URL, KEY) : null;
 
