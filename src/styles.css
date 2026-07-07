@@ -399,3 +399,8 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 .spatial3d { width: 100%; height: 70vh; min-height: 420px; }
 .spatial3d canvas { display: block; width: 100%; height: 100%; border-radius: 6px; }
 #pg-spatial .plan-tools .chip[data-lens] { font-family: var(--mono); }
+
+/* ---- document attach (P1) ---- */
+.rec-attachrow { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
+.rec-attach-msg { font-size: 10.5px; color: var(--ink50); }
+.rec-doclink { font-weight: 600; }

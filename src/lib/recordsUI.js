@@ -4,6 +4,7 @@
    happens on Save (intended) — no cross-render draft state to manage. */
 import { editRecord, addRecord, dismissRecord } from "../store.js";
 import { esc } from "./format.js";
+import { addDoc, docURL, buildDocLink, isDocLink, docPath } from "./docs.js";
 
 const FIELDS = {
   contacts: [["role", "Role"], ["company", "Company"], ["name", "Contact"], ["phone", "Phone"], ["email", "Email"], ["note", "Note"]],
@@ -25,7 +26,9 @@ function docView(r) {
     (r.ref ? '<div class="rec-s mono">' + esc(r.ref) + '</div>' : "") +
     (r.note ? '<div class="rec-note">' + esc(r.note) + '</div>' : "") +
     (r.link
-      ? '<a class="rec-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">Open ↗</a>'
+      ? (isDocLink(r.link)
+        ? '<a class="rec-link rec-doclink" href="#" data-doc="' + esc(docPath(r.link)) + '">Open 📎</a>'
+        : '<a class="rec-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">Open ↗</a>')
       : '<span class="rec-s mute">no file linked</span>') +
     '</div>';
 }
@@ -34,6 +37,10 @@ function formHTML(name, r) {
   return '<div class="rec-form">' + FIELDS[name].map(([k, label]) =>
     '<label class="rec-f"><span>' + label + '</span>' +
     '<input data-k="' + k + '" value="' + esc(r[k] || "") + '"></label>').join("") +
+    (name === "documents"
+      ? '<div class="rec-attachrow"><button class="chip rec-attach">📎 Attach file</button>' +
+        '<input type="file" class="rec-file" hidden><span class="rec-attach-msg mono"></span></div>'
+      : "") +
     '<div class="rec-formacts"><button class="chip on rec-save">Save</button>' +
     '<button class="chip rec-cancel">Cancel</button></div></div>';
 }
@@ -60,12 +67,37 @@ export function mountRecords(el, name, records, scope, rerender) {
       rerender();
     };
     form.querySelector(".rec-cancel").onclick = () => rerender();
+    const attach = form.querySelector(".rec-attach");
+    if (attach) {
+      const fileIn = form.querySelector(".rec-file");
+      const msg = form.querySelector(".rec-attach-msg");
+      attach.onclick = e => { e.preventDefault(); fileIn.click(); };
+      fileIn.onchange = async () => {
+        const f = fileIn.files[0];
+        fileIn.value = "";
+        if (!f) return;
+        attach.disabled = true; msg.textContent = "Uploading…";
+        try {
+          const path = await addDoc(f, scope.unit ? { unit: scope.unit } : {});
+          form.querySelector('input[data-k="link"]').value = buildDocLink(path);
+          msg.textContent = f.name + " attached — Save to keep it";
+        } catch (err) { msg.textContent = "Upload failed: " + err.message; }
+        attach.disabled = false;
+      };
+    }
   };
 
   el.querySelectorAll(".rec").forEach(row => {
     const r = records.find(x => x.id === row.dataset.id);
     row.querySelector(".rec-edit").onclick = () => openForm(row, r, false);
     row.querySelector(".rec-del").onclick = () => { dismissRecord(name, r.id); rerender(); };
+  });
+  el.querySelectorAll(".rec-doclink").forEach(a => {
+    a.onclick = async e => {
+      e.preventDefault();
+      try { window.open(await docURL(a.dataset.doc), "_blank", "noopener"); }
+      catch (err) { alert("Could not open file: " + err.message); }
+    };
   });
   el.querySelector(".rec-add").onclick = e => openForm(e.target, {}, true);
 }
