@@ -29,6 +29,16 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   Remote signed-URL path: operator should attach one real PDF to a register row as the live smoke test.
 - P2 Owner Safe / P3 Vendor Portal build on this (role-scoped buckets/policies; versioning; search — later).
 
+### P2 · Owner Safe — **SHIPPED + DEPLOYED 2026-07-03**
+- **S-1 "Owner Safe" sheet** (nav after P-1): vault for Proforma/Leases/Tax/Insurance/Banking/Other.
+  Private **`safe` bucket** — read = `is_owner_or_operator()` (NEW fn; a future P3 vendor role is sealed out
+  at the DB layer, unlike `documents` which is any-auth read), write = operator. 10-min signed URLs.
+  **`safe_log` audit table**: every view/upload/delete recorded (who/when/what); "Recent access" panel =
+  operator-only. Owners: read/open only (role-owner CSS + RLS). Migration `owner_safe_bucket_log_policies`.
+  Seam `src/lib/safe.js` (pure helpers unit-tested → 23 tests total); view `src/views/safe.js`.
+- Verified live: upload → list → byte-exact open → audit rows (view/upload) → delete; owner-mode hides all
+  operator controls + log. Deployed; S-1 in prod HTML.
+
 ### P6 · 2.5D + Spatial — **P6a + P6b SHIPPED 2026-07-03**
 - Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plans `docs/superpowers/plans/2026-07-0{2-p6a-svg-isometric,3-p6b-webgl-3d-twin}.md`.
 - **A-2 "Spatial" sheet LIVE** (nav D-1·A-1·**A-2**·R-1…) with an **Iso / 3D lens toggle**:
