@@ -404,3 +404,26 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 .rec-attachrow { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
 .rec-attach-msg { font-size: 10.5px; color: var(--ink50); }
 .rec-doclink { font-weight: 600; }
+
+/* ---- S-1 Owner Safe (P2) ---- */
+.safe-card, .safe-log-card { padding: 18px 20px; }
+.safe-cat { margin-bottom: 18px; }
+.safe-cat-head { display: flex; align-items: center; gap: 10px; border-bottom: 1.5px solid var(--ink); padding-bottom: 5px; margin-bottom: 6px; }
+.safe-cat-name { font-family: var(--disp); font-size: 17px; font-weight: 700; letter-spacing: .5px; color: var(--ink); }
+.safe-cat-n { font-size: 11px; color: var(--ink50); }
+.safe-cat-head .safe-add { margin-left: auto; }
+.safe-row { display: flex; align-items: center; gap: 12px; padding: 6px 2px; border-bottom: 1px solid var(--line2); }
+.safe-name { flex: 1; font-size: 13.5px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.safe-meta { font-size: 10.5px; color: var(--ink50); }
+.safe-del { background: none; border: none; color: var(--ink30); cursor: pointer; font-size: 13px; }
+.safe-del:hover { color: var(--brick); }
+.safe-empty { font-size: 12px; padding: 4px 2px 8px; color: var(--ink30); font-style: italic; }
+.safe-log-card { margin-top: 14px; }
+.safe-log-row { display: grid; grid-template-columns: 110px 64px 220px 1fr; gap: 10px; font-size: 11px; color: var(--ink70); padding: 3px 0; border-bottom: 1px solid var(--line2); }
+.safe-log-act { font-weight: 600; }
+.safe-log-view { color: var(--green); }
+.safe-log-upload { color: var(--brass); }
+.safe-log-delete { color: var(--brick); }
+.safe-log-path { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink50); }
+body.role-owner .safe-add, body.role-owner .safe-del { display: none; }
+body.role-owner .safe-log-card { display: none; }
