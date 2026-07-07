@@ -79,6 +79,8 @@ function unitData() {
   }).filter(Boolean);
 }
 
+let geoScene = null;     // Lens C handle (null until satellite opened)
+
 async function open3d() {
   const host = document.getElementById("spatial3d");
   if (!host || scene) return;
@@ -88,30 +90,44 @@ async function open3d() {
   scene.setSelected(getSelected());
 }
 
+async function openSat() {
+  const host = document.getElementById("spatialSat");
+  if (!host || geoScene) return;
+  const { createGeoScene } = await import("../lib/scenegeo.js");
+  geoScene = createGeoScene(host, unitData(), { onPick: openDrawer });
+  geoScene.setSelected(getSelected());
+}
+
 function setLens(next) {
-  const svg = document.getElementById("spatial");
-  const host = document.getElementById("spatial3d");
-  document.getElementById("lensIso").classList.toggle("on", next === "iso");
-  document.getElementById("lens3d").classList.toggle("on", next === "3d");
-  if (next === "3d") {
-    svg.setAttribute("hidden", "");
-    host.removeAttribute("hidden");
-    open3d().then(() => scene && scene.resize());
-  } else {
-    host.setAttribute("hidden", "");
-    svg.removeAttribute("hidden");
-    if (scene) { scene.dispose(); scene = null; }
-  }
+  const panes = {
+    iso: document.getElementById("spatial"),
+    "3d": document.getElementById("spatial3d"),
+    sat: document.getElementById("spatialSat")
+  };
+  ["lensIso", "lens3d", "lensSat"].forEach((id, i) => {
+    document.getElementById(id).classList.toggle("on", ["iso", "3d", "sat"][i] === next);
+  });
+  Object.entries(panes).forEach(([k, el]) => {
+    if (k === next) el.removeAttribute("hidden"); else el.setAttribute("hidden", "");
+  });
+  if (next !== "3d" && scene) { scene.dispose(); scene = null; }
+  if (next !== "sat" && geoScene) { geoScene.dispose(); geoScene = null; }
+  if (next === "3d") open3d().then(() => scene && scene.resize());
+  if (next === "sat") openSat().then(() => geoScene && geoScene.resize());
 }
 
 export function initSpatial() {
   renderLegend();
   drawSpatial();
-  const iso = document.getElementById("lensIso");
-  const d3 = document.getElementById("lens3d");
-  if (iso) iso.onclick = () => setLens("iso");
-  if (d3) d3.onclick = () => setLens("3d");
+  [["lensIso", "iso"], ["lens3d", "3d"], ["lensSat", "sat"]].forEach(([id, lens]) => {
+    const b = document.getElementById(id);
+    if (b) b.onclick = () => setLens(lens);
+  });
   subscribe(type => {
-    if (type === "selection") { drawSpatial(); if (scene) scene.setSelected(getSelected()); }
+    if (type === "selection") {
+      drawSpatial();
+      if (scene) scene.setSelected(getSelected());
+      if (geoScene) geoScene.setSelected(getSelected());
+    }
   });
 }

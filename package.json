@@ -15,13 +15,15 @@
     "poster": "python tools/poster.py",
     "pylon": "python tools/pylon.py",
     "plat": "python tools/plat.py",
-    "extract-heights": "python tools/extract-heights.py"
+    "extract-heights": "python tools/extract-heights.py",
+    "extract-georef": "python tools/extract-georef.py"
   },
   "devDependencies": {
     "vite": "^7.1.0"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
+    "maplibre-gl": "^5.24.0",
     "three": "^0.185.1"
   }
 }
