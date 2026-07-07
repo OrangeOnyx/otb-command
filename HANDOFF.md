@@ -39,6 +39,22 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 - Verified live: upload → list → byte-exact open → audit rows (view/upload) → delete; owner-mode hides all
   operator controls + log. Deployed; S-1 in prod HTML.
 
+### Global search — **SHIPPED + DEPLOYED 2026-07-03** (v9 harvest complete)
+- Topbar search box (+ **"/" hotkey**): units / property contacts / register docs; Enter opens the top hit
+  (units → drawer; contacts/docs → K-1). Pure matcher `src/lib/search.js` (unit-tested; 29 tests total).
+- With this + the satellite lens, the v9-concept harvest is DONE — `otbcommandv9kimi.html` is now fully
+  superseded and can be archived/deleted from the Desktop whenever.
+
+### ROADMAP REMAINING (all gated on operator inputs — nothing ungated left)
+- **P3 Vendor Portal**: needs the real vendor list/emails to provision `vendor` role logins (safe bucket
+  already sealed against that role). Build next session once operator supplies vendors.
+- **P4 AI knowledge engine (text RAG)**: needs an **Anthropic API key** from the operator + a small
+  serverless function (Vercel) so the key never ships to the client.
+- **P5 Voice/avatar**: needs P4 + a voice provider key (e.g. ElevenLabs).
+- **P6d Reality capture**: needs the operator's **drone shoot → photogrammetry mesh + 3DGS splat**.
+- Small deferreds: metric-height toggle on A-2, iso north/scale, static-SVG export of A-2, buyer-export trim,
+  Magnolia (121) lease swap, remaining Drive-doc links, custom domain + SMTP, B4 realtime.
+
 ### P6 · 2.5D + Spatial — **P6a + P6b SHIPPED 2026-07-03**
 - Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plans `docs/superpowers/plans/2026-07-0{2-p6a-svg-isometric,3-p6b-webgl-3d-twin}.md`.
 - **A-2 "Spatial" sheet LIVE** (nav D-1·A-1·**A-2**·R-1…) with an **Iso / 3D lens toggle**:
