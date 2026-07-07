@@ -8,6 +8,7 @@ import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
 import { initSafe } from "./views/safe.js";
+import { initSearch } from "./views/search.js";
 import { renderRoll } from "./views/rentroll.js";
 import { initMatrix } from "./views/compliance.js";
 import { initDates } from "./views/dates.js";
@@ -165,6 +166,7 @@ function initViews() {
   initPlan();
   initSpatial();
   initSafe();
+  initSearch();
   renderRoll();
   initMatrix();
   initDates();
