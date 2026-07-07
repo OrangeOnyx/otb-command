@@ -53,8 +53,15 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   - **Swappable geometry seam:** `buildBoxes()` in scene3d.js is isolated so **P6d's captured mesh drops in**.
 - **Theme switch SHIPPED**: plan-room (DEFAULT) ↔ dark, toggle in sidebar foot, persisted `localStorage["otb-theme"]`,
   dark overrides `:root` vars under `[data-theme="dark"]`; the 3D scene reads the theme too.
-- **Next in P6 (each its own plan):** **P6c satellite** (MapLibre + free Esri imagery, needs plat georeference
-  → `georef.json`); **P6d Reality capture** — operator to do a **drone shoot → photogrammetry mesh + 3D
+- **P6c satellite lens — SHIPPED + DEPLOYED 2026-07-03**: third A-2 chip **🛰 Satellite** — MapLibre GL
+  (lazy chunk, only loads on open) + free Esri World Imagery + **georeferenced unit footprints**
+  (`npm run extract-georef` → `src/data/footprints-geo.json`; tunables in `tools/extract-georef.py`:
+  anchorLL [30.201785, -92.054218], azY 70.5 — tuned visually against imagery; long building registers
+  on the roof, short building within eyeball tolerance). Status-colored polygons, click → drawer,
+  selection outline. Layers attach on load+idle (robust in throttled tabs).
+  **RESIDUAL:** could not paint MapLibre in the headless preview (occluded-tab rAF throttling) —
+  registration/data/wiring verified offline; operator's first click in prod = the smoke test.
+- **Next in P6:** **P6d Reality capture** — operator to do a **drone shoot → photogrammetry mesh + 3D
   Gaussian Splat**, clickability via georef-draped hit-areas over the swappable seam. Deferred: metric-height
   toggle, north/scale, static-SVG export of A-2, v9 global-search harvest.
 - Height note (operator eyeball): 22/27 units = 16.4′ (real nearest-BLD_HT match, not fabricated); 103=23.6′,
