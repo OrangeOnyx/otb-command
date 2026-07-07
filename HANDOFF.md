@@ -16,6 +16,19 @@ Vision: full owner/operator platform. Three threads on the live Supabase foundat
 IDEAS ONLY (Mapbox satellite map + global search). Plan-room = default palette; dark = optional
 theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 
+### P1 · Document Repository — **SHIPPED + DEPLOYED 2026-07-03**
+- Plan `docs/superpowers/plans/2026-07-03-p1-document-repository.md`. Any document row (K-1 register +
+  unit-drawer docs) can carry a real uploaded file: **"📎 Attach file"** in the row's edit form uploads to the
+  **private Supabase `documents` bucket** (25 MB cap; RLS cloned from `assets`: auth read / operator write —
+  migration `documents_bucket_and_policies`) and sets the row's existing `link` to **`doc://<path>`**; rows
+  render **"Open 📎"** which resolves a fresh signed URL on click. External Drive links unchanged. Local
+  fallback = IndexedDB (`otb-docs`). Seam: `src/lib/docs.js` (mirrors assets.js; pure doc:// helpers unit-tested).
+- Also fixed: `remote.js` now guards `import.meta.env` (was crashing `node --test`; Vite static replacement
+  verified intact — URL still baked into the prod bundle).
+- Verified: local round-trip (attach → save → Open 📎 → byte-exact) + prod bundle carries the feature.
+  Remote signed-URL path: operator should attach one real PDF to a register row as the live smoke test.
+- P2 Owner Safe / P3 Vendor Portal build on this (role-scoped buckets/policies; versioning; search — later).
+
 ### P6 · 2.5D + Spatial — **P6a + P6b SHIPPED 2026-07-03**
 - Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plans `docs/superpowers/plans/2026-07-0{2-p6a-svg-isometric,3-p6b-webgl-3d-twin}.md`.
 - **A-2 "Spatial" sheet LIVE** (nav D-1·A-1·**A-2**·R-1…) with an **Iso / 3D lens toggle**:
