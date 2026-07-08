@@ -66,7 +66,7 @@ function seed() {
   c.push({ id: "park:recon", kind: "parking", lane: "action", due: null,
     title: "Reconcile parking Δ−10", detail: "Plat striping 314 vs variance 324 — pull file 99-11797 (see reconciliation memo)" });
   c.push({ id: "roof:brief", kind: "compliance", lane: "action", due: null,
-    title: "Roof: membrane failure + moisture anomaly — roofer walk", detail: "Skydio 2025-10-15: failed membrane on long bldg (RTU row, Johnston end) + thermal hot-spot near 149 · see docs/roof-condition-brief.md · pull Butcher Air PM records" });
+    title: "Roof: membrane failure (long bldg) — roofer walk", detail: "Skydio 2025-10-15: failed membrane on long-bldg RTU row (~101-109), open to weather · see docs/roof-condition-brief.md (thermal anomaly RETRACTED - neighbor's roof)" });
   return c;
 }
 

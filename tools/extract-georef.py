@@ -20,11 +20,14 @@ g = json.load(open(os.path.join(ROOT, "src", "data", "geometry.json"), encoding=
 GEOREF = {
     # CAD anchor: center of the long building's Johnston-end face region (near unit 101 / pylon)
     "anchorCad": [1051.4, 215.55],
-    # real-world anchor: Nominatim address point for 101 Arnould Blvd (30.20195, -92.05315),
-    # nudged to the building rather than the street after visual registration
-    "anchorLL": [30.201785, -92.054218],
-    # CAD +y axis azimuth in degrees east of north (plat north arrow = -51.5 deg screen)
-    "azY": 70.5,
+    # real-world anchor: FITTED against Esri imagery by tools/fit-georef.py
+    # (2026-07-08 — both buildings register, plat-rigid, on-roof frac .94/.84;
+    # re-run the fitter whenever Esri refreshes imagery and paste here)
+    "anchorLL": [30.201685, -92.053962],
+    # CAD +y azimuth east of north — fitted 51.75, matching the plat's own
+    # north arrow (-51.5 deg screen); the old eyeballed 70.5 was the drift the
+    # operator saw on A-2
+    "azY": 51.75,
     "scaleTweak": 1.0,   # multiply CAD feet by this if imagery says the model runs long/short
     "notes": "CAD feet -> WGS84 local-tangent affine. Tune anchorLL/azY/scaleTweak by eye vs Esri imagery."
 }

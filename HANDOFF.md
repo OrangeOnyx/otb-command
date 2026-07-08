@@ -13,10 +13,12 @@ attachments + global search + dark mode. 58 unit tests. ALL SHIPPED PHASES ARE D
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
 **Open items, ranked:**
-1. **OPERATOR: call the roofer** — `docs/roof-condition-brief.md` is DONE (2026-07-08): membrane
-   failure on the long-building roof (RTU row, Johnston end; frames S1002424/27/33) + thermal
-   moisture anomaly on the short building near 149 (S1002330/28). Register row on K-1 + action
-   card on W-1 are live. Butcher Air PM records for 149 worth pulling in the same conversation.
+1. **OPERATOR: call the roofer** — `docs/roof-condition-brief.md` (updated 2026-07-08): membrane
+   failure on the long-building roof (RTU row, ~101–109; frames S1002424/27/33), open to weather.
+   Register row on K-1 + action card on W-1 are live. **The "thermal moisture anomaly near 149"
+   was RETRACTED** — after the georef refit, frames S1002330/28 locate on the NEIGHBOR's roof
+   north of Patricia (the Skydio sweep covered neighbor roofs for mesh context). Courtesy
+   heads-up to that neighbor = operator's call; no Belle repair scope from it.
 2. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
    (GPS'd) → decimated .glb → swap into Lens B's buildBoxes() seam.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
@@ -141,14 +143,13 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   transformed into y-up world via addSplatScene {position,rotation,scale}; invisible TRUE-proportion hit
   boxes (no Lens-B vertical exaggeration) raycast → drawer. Verified in preview: full click-sweep opened
   101→125 in correct plan order + 149 on the short building; splat renders upright/level/plan-oriented.
-- **Roof-condition brief — DONE 2026-07-08**: `docs/roof-condition-brief.md` + downscaled key
-  frames in `docs/roof-brief-assets/` (originals stay on J:). Two findings: (1) membrane failure,
-  long-building roof, RTU row toward Johnston end — exact bay ≈101–109 pending roofer walk (the
-  oblique yaw metadata is ambiguous; the RTU+gas-line geometry in S1002433 locates it on-roof);
-  (2) circular thermal anomaly + warm seams (probable wet insulation) on the short building near
-  143/145/149, true-nadir GPS. Also documented: footprints-geo reads ~25 m SW of ground truth at
-  the NE corner (P6c eyeball tolerance) — relevant to anyone mapping GPS frames to units.
-  Seeded: K-1 register row `pd:roofbrief` + W-1 card `roof:brief` (both DEPLOYED).
+- **Roof-condition brief — DONE 2026-07-08 (CORRECTED same day)**: `docs/roof-condition-brief.md`
+  + downscaled key frames in `docs/roof-brief-assets/` (originals stay on J:). Finding 1 STANDS:
+  membrane failure, long-building roof, RTU row ≈101–109 (bay confirmed on the roofer walk; the
+  RTU+gas-line geometry in S1002433 locates it on-roof). Finding 2 **RETRACTED for Belle** after
+  the georef refit: the thermal anomaly (S1002330/28, true-nadir GPS) locates on the NEIGHBOR's
+  roof north of Patricia — the Skydio sweep photographed neighbor roofs for mesh context. Brief,
+  K-1 register row `pd:roofbrief`, and W-1 card `roof:brief` all corrected + DEPLOYED.
 - Prior assessment (2026-07-04) — `Downloads/Drone Footage RAW/`,
   9 clips 4K/100Mbps: 0001-0003 dusk + 0008-0016 golden (marketing only); **0023/0029/0030 daylight = reconstruction
   set**. Frame package CUT: `Drone Footage RAW/OTB-3DGS-frames/` — 242 sharp 4K stills (2fps, blur-culled) +
@@ -180,9 +181,13 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 - **P6c satellite lens — SHIPPED + DEPLOYED 2026-07-03**: third A-2 chip **🛰 Satellite** — MapLibre GL
   (lazy chunk, only loads on open) + free Esri World Imagery + **georeferenced unit footprints**
   (`npm run extract-georef` → `src/data/footprints-geo.json`; tunables in `tools/extract-georef.py`:
-  anchorLL [30.201785, -92.054218], azY 70.5 — tuned visually against imagery; long building registers
-  on the roof, short building within eyeball tolerance). Status-colored polygons, click → drawer,
-  selection outline. Layers attach on load+idle (robust in throttled tabs).
+  anchorLL/azY tunables). **Georef RE-FITTED computationally 2026-07-08** after the operator's
+  screenshot showed drift: NEW `tools/fit-georef.py` masks the white roofs in the same Esri tiles,
+  sweeps azimuth with per-building translations, and accepts only azimuths where BOTH buildings
+  agree (<6 m) — fitted anchorLL [30.201685, -92.053962], azY 51.75 (= the plat's own north arrow;
+  the old eyeballed 70.5 was the drift — Esri had also refreshed imagery). On-roof coverage .94/.84.
+  Re-run the fitter + `npm run extract-georef` whenever Esri refreshes tiles. Status-colored
+  polygons, click → drawer, selection outline. Layers attach on load+idle (robust in throttled tabs).
   **RESIDUAL:** could not paint MapLibre in the headless preview (occluded-tab rAF throttling) —
   registration/data/wiring verified offline; operator's first click in prod = the smoke test.
 - **Next in P6:** **P6d Reality capture** — operator to do a **drone shoot → photogrammetry mesh + 3D

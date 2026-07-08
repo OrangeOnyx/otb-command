@@ -22,15 +22,17 @@ Downscaled key frames in `docs/roof-brief-assets/`; full-resolution originals st
 - **Read:** this is past "watch" — saturated substrate means water is getting under the system.
   Interior leak check for the corresponding bays is warranted.
 
-## Finding 2 — Thermal anomaly (probable subsurface moisture), SHORT BUILDING roof
-**Evidence:** radiometric frame `S1002330` + paired RGB `S1002328` (true nadir, gimbal −87°,
-11:59), drone directly over the roof at the **Patricia × Arnould (NE) end — 143/145/149 area**.
-- Thermal shows a **distinct circular hot anomaly** plus irregular warm zones tracking panel
-  seams — a classic wet-insulation signature. (Fastener-grid warm dots are normal thermal
-  bridging; the circular blob is not.)
-- Paired RGB shows staining/discoloration around and down-roof of an RTU at the same spot.
-- **Caveat:** midday solar loading makes single-frame thermal indicative, not conclusive —
-  confirm with a moisture scan or core cut before cutting a repair scope.
+## Finding 2 — Thermal anomaly: **RETRACTED for Belle (2026-07-08) — it is on a NEIGHBOR'S roof**
+**Original claim:** radiometric `S1002330` + paired RGB `S1002328` (true nadir, gimbal −87°)
+show a circular hot anomaly + warm seams (wet-insulation signature) "on the short building
+near 149."
+**Correction:** after the satellite-lens georef was re-fitted computationally (2026-07-08,
+`tools/fit-georef.py` — both Belle buildings register plat-rigid at the plat's own north-arrow
+azimuth), the drone's GPS position for these frames falls on the **building NORTH of Patricia
+St** (~75 m from Belle's unit 149). The Skydio flight was a photogrammetry sweep that covered
+neighboring roofs for mesh context — that hover was not over Belle property. **No Belle action
+required**; a courtesy heads-up to that neighbor is the operator's call. The thermal signature
+itself remains real and textbook — kept here as reference imagery.
 
 ## Secondary observations (maintenance-grade)
 - **Ponding stain rings** across large areas of the long-building section in `S1002433` —
@@ -41,24 +43,24 @@ Downscaled key frames in `docs/roof-brief-assets/`; full-resolution originals st
   grime.
 
 ## Recommended actions (seeded on W-1)
-1. **Roofer inspection** — walk both flagged areas with this brief; moisture scan / core cut at
-   Finding 1 and Finding 2; interior ceiling check in the corresponding bays; quote repair scope.
-   Finding 1 first — it is open to weather.
-2. **Butcher Air conversation** — the Finding-2 RTU sits in the 143–149 area. If any of the
-   staining traces to unit-149 equipment, Jason's Deli §9.01 (tenant maintains 100% of 149 HVAC,
-   monthly PM with Butcher Air) governs who pays for the HVAC-side remediation. Pull the PM
-   records for that unit.
-3. After scope/repair, re-shoot the two spots (15-min Skydio hop) to close the loop.
+1. **Roofer inspection — Finding 1** (the only Belle finding): walk the long-building RTU row
+   with this brief; moisture scan / core cut at the failed area; interior ceiling check in the
+   corresponding bays (~101–109); quote repair scope. It is open to weather.
+2. While the roofer is up there: drainage review of the ponding rings + rusted gas-line
+   supports (secondary observations below).
+3. After repair, re-shoot the spot (15-min Skydio hop) to close the loop.
 
 ## Frame localization notes (for whoever re-flies or re-analyzes)
 - RGB frames are GPS-tagged (~0.15 m HPositioningError); gimbal pitch/yaw live in XMP
   (`Camera:` namespace, second Pitch/Yaw entry = gimbal).
 - Nadir frames (pitch < −80°): subject = drone position. Oblique frames: subject is offset along
   the view ray — do not map them by GPS alone.
-- The app's georeferenced footprints (`src/data/footprints-geo.json`) read **~25 m SW of
-  ground truth** at the NE corner (known "eyeball tolerance" from P6c) — nadir frames that show
-  roof directly below can plot just outside the polygons. See
-  `docs/roof-brief-assets/07-flight-track.svg` for the full flight track over the footprints.
+- The app's georeferenced footprints (`src/data/footprints-geo.json`) were **re-fitted
+  computationally 2026-07-08** (`tools/fit-georef.py` — the earlier eyeballed transform read
+  ~25 m off and mislocated Finding 2). Nadir GPS positions can now be trusted against the
+  footprints directly. The Skydio sweep also covered NEIGHBOR roofs (photogrammetry context):
+  the building north of Patricia and 115 Foreman Dr — don't assume a frame is Belle roof
+  without checking its position. See `docs/roof-brief-assets/07-flight-track.svg`.
 
 | Asset | Frame | What it shows |
 |---|---|---|

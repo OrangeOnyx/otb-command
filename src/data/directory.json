@@ -10,7 +10,7 @@
     { "id": "pc:title", "role": "Title insurer", "company": "Fidelity National Title Insurance Company", "name": "", "phone": "", "email": "", "note": "ATC 2007054432, Schedule B — Section 2 (exceptions)" }
   ],
   "propertyDocuments": [
-    { "id": "pd:roofbrief", "name": "Roof condition brief (Skydio survey 2025-10-15)", "type": "Report", "ref": "docs/roof-condition-brief.md", "link": "", "note": "Membrane failure on long-building roof (RTU row, Johnston end) + thermal moisture anomaly on short building near 149. Frames on J: drive; key assets in docs/roof-brief-assets. Get roofer on roof." },
+    { "id": "pd:roofbrief", "name": "Roof condition brief (Skydio survey 2025-10-15)", "type": "Report", "ref": "docs/roof-condition-brief.md", "link": "", "note": "Membrane failure on long-building roof (RTU row, ~101-109), open to weather - get roofer on roof. (Thermal anomaly finding RETRACTED 2026-07-08: georef refit showed it on the neighbor roof north of Patricia.) Frames on J: drive; key assets in docs/roof-brief-assets." },
     { "id": "pd:plat", "name": "Recorded plat of survey", "type": "Survey", "ref": "Montagnet & Domingue, Inc. · 5/20/1994, last rev. 7/19/2019", "link": "/plat-render.svg", "note": "Source of all traced geometry (REV 5–11). Schematic reproduction from CAD (npm run plat) — not the certified instrument." },
     { "id": "pd:variance", "name": "Parking variance", "type": "Entitlement", "ref": "Entry 99-11797", "link": "", "note": "324 provided / 344 required; floor space limited to available parking" },
     { "id": "pd:church", "name": "Our Savior's Church access & parking easement", "type": "Easement", "ref": "—", "link": "", "note": "$350/mo · 25-yr · §3a liquor waiver survives termination" },
