@@ -61,7 +61,7 @@ const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
 /* owner-visible sheets (Path B owner view): operator picks which sheets the
    shopping-center owners can see. Persisted + exported so it travels. */
-const PAGE_IDS = ["dash", "plan", "roll", "comp", "fin", "dates", "board", "dir"];
+const PAGE_IDS = ["dash", "plan", "roll", "comp", "fin", "dates", "board", "dir", "ai"];
 const DEFAULT_OWNER_SHEETS = ["dash", "plan", "roll", "fin"];
 
 /* financials = operator-entered operating assumptions for the P-1 NOI rollup.

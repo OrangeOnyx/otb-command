@@ -447,3 +447,30 @@ body.role-owner .safe-log-card { display: none; }
 
 /* SVG ignores the hidden attribute in some engines - enforce for lens panes */
 #pg-spatial [hidden] { display: none !important; }
+
+/* ── AI-1 Concierge ─────────────────────────────────────────────── */
+.ai-card { display: flex; flex-direction: column; height: calc(100vh - 190px); min-height: 420px; padding: 0; overflow: hidden; }
+.ai-thread { flex: 1; overflow-y: auto; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; }
+.ai-hello { margin: auto; max-width: 620px; text-align: center; }
+.ai-hello-t { font-family: var(--disp); font-weight: 700; font-size: 26px; letter-spacing: .05em; text-transform: uppercase; }
+.ai-hello-s { font-size: 13px; margin: 8px 0 18px; color: var(--ink50); }
+.ai-sugs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.ai-sug { cursor: pointer; text-align: left; }
+.ai-msg { max-width: 78%; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; line-height: 1.55; }
+.ai-user { align-self: flex-end; background: var(--ink); color: var(--paper); border-bottom-right-radius: 3px; }
+.ai-assist { align-self: flex-start; background: var(--white); border: 1px solid var(--line); border-bottom-left-radius: 3px; }
+.ai-assist h4 { font-family: var(--disp); font-weight: 600; font-size: 15px; letter-spacing: .05em; text-transform: uppercase; margin: 8px 0 3px; }
+.ai-assist p { margin: 6px 0; }
+.ai-assist ul { margin: 6px 0 6px 18px; }
+.ai-assist li { margin: 3px 0; }
+.ai-assist code { font-family: var(--mono); font-size: 12px; background: var(--paper2); padding: 1px 5px; border-radius: 4px; }
+.ai-cursor { color: var(--brass); animation: aiblink 1s steps(2) infinite; }
+@keyframes aiblink { 50% { opacity: 0; } }
+.ai-err { color: var(--brick, #C25E33); }
+.ai-note { padding: 24px; }
+.ai-ask { display: flex; gap: 10px; padding: 14px 16px; border-top: 1.5px solid var(--ink); background: var(--card); }
+.ai-ask input { flex: 1; font-family: var(--body); font-size: 13.5px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); color: var(--ink); }
+.ai-ask input:focus { outline: none; border-color: var(--brass); }
+.ai-ask button { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; padding: 0 22px; border: none; border-radius: 8px; background: var(--ink); color: var(--paper); cursor: pointer; }
+.ai-ask button:disabled { opacity: .45; cursor: default; }
+body.role-owner .ai-ask { display: flex; } /* owners may ask — endpoint enforces role anyway */

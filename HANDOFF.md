@@ -7,8 +7,9 @@ Last updated: 2026-07-08.
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
-**State:** 10 sheets incl. A-2 Spatial (4 lenses: Iso · 3D · Satellite · 🎥 Reality splat) + S-1 Owner Safe
-+ doc attachments + global search + dark mode. 29 unit tests. ALL SHIPPED PHASES ARE DEPLOYED.
+**State:** 11 sheets incl. A-2 Spatial (4 lenses: Iso · 3D · Satellite · 🎥 Reality splat) + S-1 Owner Safe
++ **AI-1 Concierge (P4, SHIPPED 2026-07-08)** + doc attachments + global search + dark mode.
+39 unit tests. ALL SHIPPED PHASES ARE DEPLOYED.
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
 **Open items, ranked:**
@@ -17,15 +18,20 @@ Last updated: 2026-07-08.
 2. **Roof-condition brief** — Skydio thermal set shows membrane damage + a moisture hot-spot
    (`J:/Shared drives/AA & RR/Drone Photos/Arnould Boulavard/`, samples ~S1002427/S1002330);
    annotate → K-1/Safe + roofer/Butcher-Air action. 9 months stale — time-sensitive.
-3. **P4 AI concierge** — gated on operator's Anthropic API key (+ small Vercel function).
-4. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe).
-5. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
+3. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe;
+   the concierge endpoint also rejects the vendor role).
+4. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
    (GPS'd) → decimated .glb → swap into Lens B's buildBoxes() seam.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
 **Smoke tests operator hasn't confirmed yet:** attach a PDF to a K-1 row (signed-URL path) ·
-click 🛰 Satellite once · orbit 🎥 Reality once.
+click 🛰 Satellite once · orbit 🎥 Reality once · **ask AI-1 one question** (auth path verified
+to 401 unauthenticated; the Anthropic leg verified live pre-deploy — only the full authed
+round-trip awaits the operator).
+**SECURITY:** the Anthropic key was pasted into a chat session on 2026-07-08 — rotate it at
+console.anthropic.com when convenient, then update Vercel env `ANTHROPIC_API_KEY` (Production)
+and redeploy. Key lives ONLY in Vercel env; never in the repo or client bundle.
 
 ## ELITE ROADMAP (started 2026-07-03) — see `docs/superpowers/specs` + `docs/superpowers/plans`
 Vision: full owner/operator platform. Three threads on the live Supabase foundation:
@@ -70,9 +76,18 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 ### ROADMAP REMAINING (all gated on operator inputs — nothing ungated left)
 - **P3 Vendor Portal**: needs the real vendor list/emails to provision `vendor` role logins (safe bucket
   already sealed against that role). Build next session once operator supplies vendors.
-- **P4 AI knowledge engine (text RAG)**: needs an **Anthropic API key** from the operator + a small
-  serverless function (Vercel) so the key never ships to the client.
-- **P5 Voice/avatar**: needs P4 + a voice provider key (e.g. ElevenLabs).
+- **P4 AI concierge — SHIPPED + DEPLOYED 2026-07-08 (v1)**: **AI-1 "Concierge" sheet** (nav after S-1) —
+  grounded property Q&A chat. Server side: `api/concierge.js` (Vercel function, `claude-opus-4-8`,
+  adaptive thinking, effort medium, streaming) — requires a Supabase session token, role must be
+  owner/operator (vendor sealed out), key = Vercel env `ANTHROPIC_API_KEY` (Production, set 2026-07-08;
+  never ships to client). Grounding: static dossier `api/_context.mjs` (**generated — regenerate with
+  `npm run concierge-context` whenever src/data changes**; reuses export-package.mjs, prompt-cached
+  ~7.6k tokens) + live `property_state` digest woven into the final user turn (cache-safe). Pure seam
+  `src/lib/concierge.js` (sanitize/digest/buildMessages/mdToHtml — unit-tested, 39 tests total); view
+  `src/views/concierge.js`. History is session-only (resets on reload — persistence = later).
+  Owner visibility togglable via "Owners can see…" (off by default). Persona/system prompt lives in
+  `api/concierge.js` PREAMBLE — operator may want to tune voice/rules there.
+- **P5 Voice/avatar**: needs a voice provider key (e.g. ElevenLabs); P4 now live.
 - **P6d Reality lens — SHIPPED + DEPLOYED 2026-07-08 (v1, $0)**: fourth A-2 chip **🎥 Reality** —
   photoreal 3DGS splat of the center, trained via the OPEN pipeline (no Postshot license needed:
   its free tier can't export): **COLMAP 3.11.1 CUDA** (`C:/Users/adam/tools3dgs`, solved 121 frames in
