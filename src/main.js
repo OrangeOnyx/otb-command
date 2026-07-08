@@ -4,6 +4,7 @@ import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, s
 import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState } from "./lib/remote.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { TODAY } from "./lib/format.js";
+import { PAGES } from "./lib/pages.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
@@ -18,7 +19,6 @@ import { initFinancial } from "./views/financial.js";
 import { initConcierge } from "./views/concierge.js";
 import { closeDrawer } from "./views/drawer.js";
 
-const PAGES = [["dash", "D-1", "Dashboard"], ["plan", "A-1", "Site Plan"], ["spatial", "A-2", "Spatial"], ["roll", "R-1", "Rent Roll"], ["comp", "C-1", "Compliance"], ["fin", "P-1", "Financial"], ["safe", "S-1", "Owner Safe"], ["ai", "AI-1", "Concierge"], ["dates", "T-1", "Critical Dates"], ["board", "W-1", "Action Board"], ["dir", "K-1", "Directory"]];
 
 /* ---------- login gate ---------- */
 function showLogin(msg) {

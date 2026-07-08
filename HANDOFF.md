@@ -24,6 +24,11 @@ Last updated: 2026-07-08.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
+**ownerSheets whitelist FIXED 2026-07-08:** ticking A-2/S-1 in "Owners can see…" was a silent no-op
+(store whitelist predated those sheets — owners could never see the Owner Safe). Nav table now lives in
+`src/lib/pages.js` (single source; store derives its whitelist; unit-tested). S-1 is default-on for FRESH
+state only — **operator: tick S-1 (and A-2 if desired) in "Owners can see…" once**, since the persisted
+prod selection predates the fix.
 **Smoke tests operator hasn't confirmed yet:** attach a PDF to a K-1 row (signed-URL path) ·
 click 🛰 Satellite once · orbit 🎥 Reality once · **ask AI-1 one question** (auth path verified
 to 401 unauthenticated; the Anthropic leg verified live pre-deploy — only the full authed

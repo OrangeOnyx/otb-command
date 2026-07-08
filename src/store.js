@@ -3,6 +3,7 @@
    read-only from units.json (SOT) in Phase 2. */
 import unitsData from "./data/units.json";
 import complianceData from "./data/compliance.json";
+import { PAGE_IDS, DEFAULT_OWNER_SHEETS } from "./lib/pages.js";
 
 const LS_KEY = "otb-command-state-v1";
 const STATE_VERSION = 1;
@@ -60,9 +61,8 @@ const COLLECTIONS = new Set(["contacts", "documents"]);
 const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
 /* owner-visible sheets (Path B owner view): operator picks which sheets the
-   shopping-center owners can see. Persisted + exported so it travels. */
-const PAGE_IDS = ["dash", "plan", "roll", "comp", "fin", "dates", "board", "dir", "ai"];
-const DEFAULT_OWNER_SHEETS = ["dash", "plan", "roll", "fin"];
+   shopping-center owners can see. Persisted + exported so it travels.
+   PAGE_IDS/DEFAULT_OWNER_SHEETS live in lib/pages.js with the nav table. */
 
 /* financials = operator-entered operating assumptions for the P-1 NOI rollup.
    Income is derived from the rent roll; expenses aren't in the SOT, so these
