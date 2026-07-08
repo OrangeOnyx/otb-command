@@ -18,6 +18,7 @@ const compliance = rd("compliance.json");
 const hvac = rd("hvac.json");
 const recoveries = rd("recoveries.json");
 const directory = rd("directory.json");
+const vendors = rd("vendors.json");
 const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ figures
 const out = join(root, NOFIN ? "export-buyer" : "export");
 mkdirSync(out, { recursive: true });
@@ -200,6 +201,7 @@ ${hvacSection}## Covenants & operations notes
 *Vendors, counterparties, agencies, and recorded instruments tracked in the tool's Directory (K-1).*
 - **Parties:** ${directory.propertyContacts.map(c => c.company + " (" + c.role + ")").join(" · ")}.
 - **Recorded instruments / key files:** ${directory.propertyDocuments.map(d => d.name + (d.ref && d.ref !== "—" ? " — " + d.ref : "")).join(" · ")}.
+${NOFIN ? "" : `- **Service vendors on file (V-1 roster, from the AP vendor list):** ${vendors.filter(v => v.kind === "service").map(v => v.company).join(" · ")}. Full roster incl. payees in the data JSON.`}
 
 ${NOFIN ? "" : `## Known anomalies (surfaced, unresolved — do not "fix")
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
@@ -237,10 +239,52 @@ const jsonObj = {
   compliance,
   ...(NOFIN ? {} : { rentComposition: recoveries.units, hvac: hvac.units }),
   contacts: directory.propertyContacts, documents: directory.propertyDocuments,
+  ...(NOFIN ? {} : { vendors }),
   demising: geometry.demising, parking: geometry.parking, liquorLine: geometry.liquorLine,
   easements: geometry.easements, streets: geometry.streets, boundary: geometry.boundary
 };
 writeFileSync(join(out, NOFIN ? "OTB-Property-Data-NoFinancials.json" : "OTB-Property-Data.json"), JSON.stringify(jsonObj, null, 1));
+
+/* ── platform capabilities brief (full export only) ─────────────
+   The dossier is the PROPERTY fact pack; this is the TOOL fact pack — paste
+   both into an LLM so it knows the asset AND the platform managing it. */
+if (!NOFIN) {
+  const platform = `# OTB Property Command — Platform Brief
+*What the tool is and can do, for LLM grounding. Generated ${TODAY.toLocaleDateString("en-US")}; companion to OTB-Property-Dossier.md (the property fact pack).*
+
+**Live:** https://otb-command.vercel.app (magic-link auth) · Stack: Vite vanilla-JS app + Supabase (auth/Postgres-RLS/storage) + Vercel serverless functions + Claude (Anthropic) + ElevenLabs voice. Repo is authoritative; every export is one-way and disposable.
+
+## Sheets (drawing-set nav)
+- **D-1 Dashboard** — KPIs + live action queue.
+- **A-1 Site Plan** — plat-exact native SVG (recorded-plat trace), photo/floor-plan overlay layers, unit click → shared drawer.
+- **A-2 Spatial** — four lenses: SVG isometric (real CAD parapet heights) · Three.js 3D twin · satellite (MapLibre + Esri imagery, footprints computationally FITTED to the imagery) · 🎥 Reality — a drone-captured 3D Gaussian splat, similarity-transform-aligned to plan space so UNITS ARE CLICKABLE inside the photoreal capture. All lenses click → drawer; selection syncs everywhere.
+- **R-1 Rent Roll** (11 cols, PSF breakdown) · **P-1 Financial** (income composition + NOI worksheet w/ owner OpEx inputs) · **C-1 Compliance** (per-unit tracked fields) · **T-1 Critical Dates** · **W-1 Action Board** (kanban auto-seeded from live data) · **K-1 Directory** (contacts + document register w/ Drive links + uploads).
+- **S-1 Owner Safe** — RLS-sealed vault (owner+operator only), 10-min signed URLs, full access audit log.
+- **AI-1 Agent Desk** — three Claude agents on one chat surface (below).
+- **V-1 Vendor Portal** — per-vendor sealed document folders (below).
+
+## AI agent desk (AI-1)
+- **🏛 Concierge** — grounded property Q&A. **🤝 Leasing Agent** — inventory, prospect screening (exclusive-use watch, liquor line, parking variance), and a LEASE ASSEMBLER tool: collects terms conversationally, then generates a tenant-facing Lease Proposal (OTB navy/white brand, DRAFT–subject-to-legal-review stamp, real SF/NNN/HVAC figures) or the internal Owner Lease Summary form; packages upload to sealed storage with 7-day signed links + one-click email compose. **🔧 Property Manager** — operations, HVAC splits/covenants, vendors, tenant-notice drafting.
+- Grounding = this dossier (prompt-cached server-side) + a live digest of operator edits; the Anthropic key never ships to the client; assembly is operator-only; every conversation persists as a transcript (History panel reloads any thread).
+- **Voice**: replies speak via ElevenLabs (server proxy), auto-speak toggle, mic input.
+
+## Roles & security
+- Roles: **operator** (full control) · **owner** (read-oriented: operator-picked sheets, Safe read, vendor-roster read) · **vendor** (one-sheet shell: ONLY their own document folder — read + upload; sealed from everything else at the database layer) · **pending** (holding pen — no access).
+- New sign-ins resolve: SOT Vendor-List email → vendor · operator's allowlist → owner · else pending. Operator manages access in-app (sidebar → Sign-in access…).
+- Private storage buckets (assets/documents/safe/vendor-docs) with row-level-security policies; Safe + vendor access is audit-logged.
+
+## Data & pipelines (all re-runnable)
+- Source of truth: SOT workbook (rent roll / HVAC splits / vendor list) + recorded plat CAD → extractors emit src/data JSON (units, geometry, heights, georef footprints, vendors, recoveries, HVAC).
+- Generators: leasing posters + pylon artwork from CAD · owner proforma (Excel) · this LLM export + a no-financials buyer overview · concierge grounding context · splat pipeline (COLMAP → Brush → web splat) with a computational splat↔plan alignment fitter · satellite-georef fitter (re-fit when Esri refreshes imagery).
+- Persisted state (compliance, notes, actions, contacts, documents, financials) syncs to Supabase; owners see live data.
+
+## Conventions an LLM should respect
+- Audit-grade facts in the dossier are immutable; known anomalies are surfaced, never silently "fixed".
+- Generated lease documents are DRAFTS subject to legal review — nothing binds without an executed lease.
+- Tenant-facing brand: Boulevard Navy #1C2D4F + white, Helvetica; attribution "Managed by Orange Ocean, LLC on behalf of Belle Realty of Lafayette, LLC."
+`;
+  writeFileSync(join(out, "OTB-Command-Platform.md"), platform);
+}
 
 console.log("export written:", out);
 console.log("dossier:", md.length, "chars · svg:", svg.length, "chars · png target", pngW + "x" + pngH);
