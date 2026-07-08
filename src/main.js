@@ -1,7 +1,7 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
 import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState } from "./lib/remote.js";
+import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles } from "./lib/remote.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { TODAY } from "./lib/format.js";
 import { PAGES, VENDOR_SHEET } from "./lib/pages.js";
@@ -93,6 +93,42 @@ function buildShell(account) {
   });
   ovCfg.appendChild(ovList);
   ovWrap.append(ovToggle, ovCfg);
+
+  /* sign-in access (operator; ovWrap is hidden for owner/vendor roles).
+     Authorize BEFORE first sign-in → the magic-link trigger assigns the role
+     directly; anyone already parked in 'pending' is promoted on the spot. */
+  if (REMOTE) {
+    const ac = document.createElement("details");
+    ac.className = "ov-cfg";
+    ac.innerHTML = "<summary>Sign-in access…</summary>" +
+      '<div class="ac-body"><form class="ac-add" id="acAdd">' +
+      '<input id="acEmail" type="email" placeholder="owner@email.com" autocomplete="off">' +
+      '<button type="submit">+ Owner</button></form>' +
+      '<div class="ac-list" id="acList"></div>' +
+      '<div class="ac-note mute">Vendors are authorized by the SOT Vendor List (V-1), not here.</div></div>';
+    ovWrap.append(ac);
+    const paint = async () => {
+      const list = ac.querySelector("#acList");
+      try {
+        const [auth, pending] = await Promise.all([listAuthorized(), listPendingProfiles()]);
+        list.innerHTML =
+          pending.map(p => '<div class="ac-row"><span class="ac-mail">' + escapeHtml(p.email) + '</span>' +
+            '<span class="ac-tag pend mono">pending</span><button class="ac-ok" data-e="' + escapeHtml(p.email) + '">make owner</button></div>').join("") +
+          auth.map(a => '<div class="ac-row"><span class="ac-mail">' + escapeHtml(a.email) + '</span>' +
+            '<span class="ac-tag mono">' + escapeHtml(a.role) + '</span><button class="ac-x" data-e="' + escapeHtml(a.email) + '" title="Revoke pre-authorization">✕</button></div>').join("") ||
+          '<div class="mute" style="font-size:11px;padding:4px 2px">no authorized emails yet</div>';
+        list.querySelectorAll(".ac-ok").forEach(b => { b.onclick = async () => { await authorizeEmail(b.dataset.e, "owner"); paint(); }; });
+        list.querySelectorAll(".ac-x").forEach(b => { b.onclick = async () => { await revokeAuthorized(b.dataset.e); paint(); }; });
+      } catch (e) { list.innerHTML = '<div class="mute" style="font-size:11px">' + escapeHtml(e.message) + "</div>"; }
+    };
+    ac.addEventListener("toggle", () => { if (ac.open) paint(); });
+    ac.querySelector("#acAdd").onsubmit = async e => {
+      e.preventDefault();
+      const inp = ac.querySelector("#acEmail");
+      try { await authorizeEmail(inp.value, "owner"); inp.value = ""; paint(); }
+      catch (err) { alert(err.message); }
+    };
+  }
   const side = document.querySelector(".side");
   side.insertBefore(ovWrap, side.querySelector(".foot"));
 

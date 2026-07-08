@@ -38,6 +38,13 @@ full `export-package` dossier keeps both — verified on both generators.
 click 🛰 Satellite once · orbit 🎥 Reality once · **ask AI-1 one question** (auth path verified
 to 401 unauthenticated; the Anthropic leg verified live pre-deploy — only the full authed
 round-trip awaits the operator).
+**Sign-in access panel — SHIPPED 2026-07-08:** sidebar → "Sign-in access…" (operator-only; inside
+the owner-view panel, so owner/vendor roles never see it). Type an email + "+ Owner" to
+PRE-AUTHORIZE it (`authorized_emails` table, consulted by the sign-up trigger: vendor-roster match >
+allowlist > pending) — the person's first magic link lands them straight in as owner. Anyone already
+parked in 'pending' shows in the same panel with a one-click "make owner". Revoke = ✕ (removes the
+pre-authorization; does not demote an existing profile — do that in Supabase if ever needed).
+Migration `owner_email_allowlist`; trigger logic verified with SQL (vendor/allowlist/stranger paths).
 **SECURITY:** the Anthropic key was pasted into a chat session on 2026-07-08 — rotate it at
 console.anthropic.com when convenient, then update Vercel env `ANTHROPIC_API_KEY` (Production)
 and redeploy. Key lives ONLY in Vercel env; never in the repo or client bundle.

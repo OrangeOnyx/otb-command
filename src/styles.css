@@ -512,3 +512,17 @@ body.role-vendor .ownerview { display: none !important; }
 .ai-pkg { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding: 9px 12px; border: 1.5px solid var(--brass); border-radius: 9px; background: var(--brass-bg); }
 .ai-pkg-name { flex: 1; font-size: 12.5px; font-weight: 600; }
 .ai-pkg .chip { text-decoration: none; }
+
+/* ── sidebar: sign-in access panel ──────────────────────────────── */
+.ac-body { padding: 6px 2px 2px; }
+.ac-add { display: flex; gap: 6px; margin-bottom: 8px; }
+.ac-add input { flex: 1; min-width: 0; font-family: var(--body); font-size: 11.5px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); color: var(--ink); }
+.ac-add button { font-family: var(--mono); font-size: 10.5px; padding: 0 9px; border: 1px solid var(--ink); border-radius: 6px; background: var(--ink); color: var(--paper); cursor: pointer; white-space: nowrap; }
+.ac-row { display: flex; align-items: center; gap: 6px; padding: 3px 2px; font-size: 11.5px; }
+.ac-mail { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ac-tag { font-size: 9.5px; color: var(--green); }
+.ac-tag.pend { color: var(--brick, #C25E33); }
+.ac-ok { font-family: var(--mono); font-size: 9.5px; padding: 2px 7px; border: 1px solid var(--brass); border-radius: 99px; background: var(--brass-bg); cursor: pointer; }
+.ac-x { border: none; background: none; color: var(--ink50); cursor: pointer; font-size: 11px; }
+.ac-x:hover { color: var(--brick, #C25E33); }
+.ac-note { font-size: 10px; margin-top: 6px; }
