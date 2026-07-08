@@ -3,7 +3,29 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-03.
+Last updated: 2026-07-08.
+
+## ⚡ NEXT SESSION — START HERE
+**Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
+**State:** 10 sheets incl. A-2 Spatial (4 lenses: Iso · 3D · Satellite · 🎥 Reality splat) + S-1 Owner Safe
++ doc attachments + global search + dark mode. 29 unit tests. ALL SHIPPED PHASES ARE DEPLOYED.
+**Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
+(CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
+**Open items, ranked:**
+1. **Splat↔world alignment** — make 🎥 Reality clickable (drape unit hit-areas; similarity transform
+   from splat frame to plan space; the other 3 lenses already click→drawer).
+2. **Roof-condition brief** — Skydio thermal set shows membrane damage + a moisture hot-spot
+   (`J:/Shared drives/AA & RR/Drone Photos/Arnould Boulavard/`, samples ~S1002427/S1002330);
+   annotate → K-1/Safe + roofer/Butcher-Air action. 9 months stale — time-sensitive.
+3. **P4 AI concierge** — gated on operator's Anthropic API key (+ small Vercel function).
+4. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe).
+5. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
+   (GPS'd) → decimated .glb → swap into Lens B's buildBoxes() seam.
+**Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
+Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
+frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
+**Smoke tests operator hasn't confirmed yet:** attach a PDF to a K-1 row (signed-URL path) ·
+click 🛰 Satellite once · orbit 🎥 Reality once.
 
 ## ELITE ROADMAP (started 2026-07-03) — see `docs/superpowers/specs` + `docs/superpowers/plans`
 Vision: full owner/operator platform. Three threads on the live Supabase foundation:
