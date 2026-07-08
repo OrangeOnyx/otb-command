@@ -51,7 +51,11 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 - **P4 AI knowledge engine (text RAG)**: needs an **Anthropic API key** from the operator + a small
   serverless function (Vercel) so the key never ships to the client.
 - **P5 Voice/avatar**: needs P4 + a voice provider key (e.g. ElevenLabs).
-- **P6d Reality capture**: needs the operator's **drone shoot → photogrammetry mesh + 3DGS splat**.
+- **P6d Reality capture**: DRONE FOOTAGE EXISTS (assessed 2026-07-04) — `Downloads/Drone Footage RAW/`,
+  9 clips 4K/100Mbps: 0001-0003 dusk + 0008-0016 golden (marketing only); **0023/0029/0030 daylight = reconstruction
+  set**. Frame package CUT: `Drone Footage RAW/OTB-3DGS-frames/` — 242 sharp 4K stills (2fps, blur-culled) +
+  README-TRAINING.md (Postshot/Luma for splat · RealityCapture for mesh · 15-min supplemental-flight recipe).
+  Remaining operator step: run the training (GPU/cloud), hand back .ksplat/.glb → wire Lens D.
 - Small deferreds: metric-height toggle on A-2, iso north/scale, static-SVG export of A-2, buyer-export trim,
   Magnolia (121) lease swap, remaining Drive-doc links, custom domain + SMTP, B4 realtime.
 
