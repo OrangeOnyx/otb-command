@@ -11,12 +11,10 @@
    layers woven into the final user turn so the cached prefix stays byte-stable. */
 import Anthropic from "@anthropic-ai/sdk";
 import { CONTEXT } from "./_context.mjs";
+import { requireOwnerOrOperator, supaJson } from "./_auth.mjs";
 import { buildMessages, digestState } from "../src/lib/concierge.js";
 
 export const maxDuration = 60;
-
-const SUPA = process.env.VITE_SUPABASE_URL;
-const ANON = process.env.VITE_SUPABASE_ANON_KEY;
 
 const PREAMBLE = `You are the AI concierge inside "OTB Property Command", the private management tool for On The Boulevard Shopping Center (101–149 Arnould Blvd, Lafayette, LA). Your users are the operator (Adam, Managing Member of Orange Ocean, LLC) and the property's owners.
 
@@ -31,30 +29,16 @@ The dossier:
 
 `;
 
-async function supaJson(path, token) {
-  const r = await fetch(SUPA + path, { headers: { apikey: ANON, authorization: "Bearer " + token } });
-  if (!r.ok) return null;
-  return r.json();
-}
-
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
   if (!process.env.ANTHROPIC_API_KEY) return res.status(500).json({ error: "concierge not configured (missing ANTHROPIC_API_KEY)" });
-  if (!SUPA || !ANON) return res.status(500).json({ error: "concierge not configured (missing Supabase env)" });
 
-  const token = (req.headers.authorization || "").replace(/^Bearer\s+/i, "");
-  if (!token) return res.status(401).json({ error: "sign in required" });
-
-  const user = await supaJson("/auth/v1/user", token);
-  if (!user || !user.id) return res.status(401).json({ error: "invalid session" });
-
-  const prof = await supaJson("/rest/v1/profiles?id=eq." + user.id + "&select=role", token);
-  const role = (Array.isArray(prof) && prof[0]?.role) || "owner";
-  if (role !== "owner" && role !== "operator") return res.status(403).json({ error: "concierge is owner/operator only" });
+  const gate = await requireOwnerOrOperator(req);
+  if (gate.error) return res.status(gate.status).json({ error: gate.error });
 
   let msgs;
   try {
-    msgs = buildMessages(req.body?.messages, await liveDigest(token));
+    msgs = buildMessages(req.body?.messages, await liveDigest(gate.token));
   } catch (e) {
     return res.status(400).json({ error: e.message });
   }

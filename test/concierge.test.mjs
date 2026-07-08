@@ -100,3 +100,17 @@ test("mdToHtml closes lists and skips blank lines", () => {
   const html = mdToHtml("- a\n- b\n\nafter");
   assert.equal(html, "<ul><li>a</li><li>b</li></ul><p>after</p>");
 });
+
+/* ── mdToSpeech (P5 voice) ────────────────────────────────────── */
+test("mdToSpeech strips markdown into speakable prose", async () => {
+  const { mdToSpeech } = await import("../src/lib/concierge.js");
+  const s = mdToSpeech("## Rent\n**Total** is `$90k`\n- unit 105\n- unit 109\n\n| a | b |");
+  assert.equal(s, "Rent. Total is $90k. unit 105. unit 109. , a , b ,".replace(/\s{2,}/g, " "));
+  assert.ok(!/[#*`|]/.test(s));
+});
+
+test("mdToSpeech handles empty and plain input", async () => {
+  const { mdToSpeech } = await import("../src/lib/concierge.js");
+  assert.equal(mdToSpeech(""), "");
+  assert.equal(mdToSpeech("Plain sentence."), "Plain sentence.");
+});

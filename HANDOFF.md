@@ -109,7 +109,18 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   `src/views/concierge.js`. History is session-only (resets on reload — persistence = later).
   Owner visibility togglable via "Owners can see…" (off by default). Persona/system prompt lives in
   `api/concierge.js` PREAMBLE — operator may want to tune voice/rules there.
-- **P5 Voice/avatar**: needs a voice provider key (e.g. ElevenLabs); P4 now live.
+- **P5 Voice — SHIPPED + DEPLOYED 2026-07-08 (v1: voice, avatar deferred)**: AI-1 speaks.
+  Server: `api/voice.js` — ElevenLabs TTS proxy (model `eleven_turbo_v2_5`, voice **"Jack John —
+  Natural Customer Support Agent"** `7EzWGsX10sAS4c9m9cPf`, override via env `ELEVENLABS_VOICE_ID`);
+  key = Vercel env `ELEVENLABS_API_KEY` (Production, set 2026-07-08 — account tier Creator, ~284k
+  chars/mo quota; 2,400-char cap per request protects it). Same owner/operator session gate as the
+  concierge — shared `api/_auth.mjs` (concierge refactored onto it; vendors 403). Client: 🔊 button
+  per reply + persisted auto-speak toggle + 🎙 mic input (Web Speech API, Chrome/Edge only —
+  auto-hidden elsewhere); `mdToSpeech` pure helper strips markdown for natural reading (60 tests).
+  **SECURITY: the ElevenLabs key was pasted into chat 2026-07-08 — rotate at elevenlabs.io when
+  convenient, update the Vercel env, redeploy** (same drill as the Anthropic key). Smoke test:
+  ask AI-1 a question, tap 🔊 on the answer. Deferred: avatar (needs a design/provider decision),
+  streaming TTS-while-generating, voice for vendor portal.
 - **P6d Reality lens — SHIPPED + DEPLOYED 2026-07-08 (v1, $0)**: fourth A-2 chip **🎥 Reality** —
   photoreal 3DGS splat of the center, trained via the OPEN pipeline (no Postshot license needed:
   its free tier can't export): **COLMAP 3.11.1 CUDA** (`C:/Users/adam/tools3dgs`, solved 121 frames in

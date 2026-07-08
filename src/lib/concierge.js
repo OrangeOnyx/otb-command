@@ -88,6 +88,25 @@ export function buildMessages(history, digest) {
   ];
 }
 
+/* Markdown → speakable plain text for the P5 voice layer: strips headings,
+   bold/code markers, list bullets, and table pipes so TTS reads prose, not
+   punctuation. Numbered lists keep their numbers (they read naturally). */
+export function mdToSpeech(md) {
+  return String(md || "")
+    .split(/\r?\n/)
+    .map(line => line
+      .replace(/^#{1,6}\s+/, "")               // headings
+      .replace(/^\s*[-*•]\s+/, "")             // bullets
+      .replace(/\*\*([^*]+)\*\*/g, "$1")       // bold
+      .replace(/`([^`]+)`/g, "$1")             // code
+      .replace(/\|/g, ", ")                    // table pipes
+      .trim())
+    .filter(Boolean)
+    .join(". ")
+    .replace(/\.\s*\./g, ".")                  // collapse doubled periods
+    .replace(/\s{2,}/g, " ");
+}
+
 /* Minimal markdown → HTML for assistant replies (headings, bold, code,
    bullet/numbered lists, tables collapse to plain lines). Escapes HTML first —
    model output is untrusted. */

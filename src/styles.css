@@ -493,3 +493,10 @@ body.role-owner .ai-ask { display: flex; } /* owners may ask — endpoint enforc
 /* vendor-role shell: V-1 only; hide operator/owner chrome */
 body.role-vendor .search, body.role-vendor #btnExport, body.role-vendor #btnImport,
 body.role-vendor .ownerview { display: none !important; }
+
+/* ── P5 voice controls (AI-1) ───────────────────────────────────── */
+.ai-tool { font-size: 15px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); cursor: pointer; opacity: .55; }
+.ai-tool.on { opacity: 1; border-color: var(--brass); background: var(--brass-bg); }
+.ai-speak { float: right; margin: 4px 0 0 8px; font-size: 13px; border: none; background: none; cursor: pointer; opacity: .45; }
+.ai-speak:hover { opacity: 1; }
+.ai-speak.playing { opacity: 1; animation: aiblink 1.2s steps(2) infinite; }
