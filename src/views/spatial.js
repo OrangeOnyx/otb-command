@@ -98,28 +98,40 @@ async function openSat() {
   geoScene.setSelected(getSelected());
 }
 
+let realScene = null;    // Lens D handle (null until reality opened)
+
+async function openReal() {
+  const host = document.getElementById("spatialReal");
+  if (!host || realScene) return;
+  const { createSplatScene } = await import("../lib/scenesplat.js");
+  realScene = createSplatScene(host);
+}
+
 function setLens(next) {
   const panes = {
     iso: document.getElementById("spatial"),
     "3d": document.getElementById("spatial3d"),
-    sat: document.getElementById("spatialSat")
+    sat: document.getElementById("spatialSat"),
+    real: document.getElementById("spatialReal")
   };
-  ["lensIso", "lens3d", "lensSat"].forEach((id, i) => {
-    document.getElementById(id).classList.toggle("on", ["iso", "3d", "sat"][i] === next);
+  ["lensIso", "lens3d", "lensSat", "lensReal"].forEach((id, i) => {
+    document.getElementById(id).classList.toggle("on", ["iso", "3d", "sat", "real"][i] === next);
   });
   Object.entries(panes).forEach(([k, el]) => {
     if (k === next) el.removeAttribute("hidden"); else el.setAttribute("hidden", "");
   });
   if (next !== "3d" && scene) { scene.dispose(); scene = null; }
   if (next !== "sat" && geoScene) { geoScene.dispose(); geoScene = null; }
+  if (next !== "real" && realScene) { realScene.dispose(); realScene = null; }
   if (next === "3d") open3d().then(() => scene && scene.resize());
   if (next === "sat") openSat().then(() => geoScene && geoScene.resize());
+  if (next === "real") openReal();
 }
 
 export function initSpatial() {
   renderLegend();
   drawSpatial();
-  [["lensIso", "iso"], ["lens3d", "3d"], ["lensSat", "sat"]].forEach(([id, lens]) => {
+  [["lensIso", "iso"], ["lens3d", "3d"], ["lensSat", "sat"], ["lensReal", "real"]].forEach(([id, lens]) => {
     const b = document.getElementById(id);
     if (b) b.onclick = () => setLens(lens);
   });

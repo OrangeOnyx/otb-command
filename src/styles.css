@@ -444,3 +444,6 @@ body.role-owner .safe-log-card { display: none; }
 .gs-unit { background: var(--green); } .gs-doc { background: var(--brass); } .gs-contact { background: var(--navy); }
 .gs-t { font-size: 12.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .gs-s { font-size: 10.5px; color: var(--ink50); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* SVG ignores the hidden attribute in some engines - enforce for lens panes */
+#pg-spatial [hidden] { display: none !important; }

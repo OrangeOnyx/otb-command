@@ -16,3 +16,6 @@ export-buyer/
 
 # brainstorming visual companion
 .superpowers/
+
+# splat (regenerable: node tools/convert-splat.mjs)
+public/OTB-splat.ksplat
