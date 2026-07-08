@@ -56,6 +56,12 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   set**. Frame package CUT: `Drone Footage RAW/OTB-3DGS-frames/` — 242 sharp 4K stills (2fps, blur-culled) +
   README-TRAINING.md (Postshot/Luma for splat · RealityCapture for mesh · 15-min supplemental-flight recipe).
   Remaining operator step: run the training (GPU/cloud), hand back .ksplat/.glb → wire Lens D.
+  **PLUS (found 2026-07-04): Skydio VT300-L roof survey** (`J:/Shared drives/AA & RR/Drone Photos/
+  Arnould Boulavard/`, 2025-10-15): 165 GPS-tagged 50MP near-nadir stills (copied to
+  `Drone Footage RAW/OTB-mesh-photos-skydio/` — FILLS the nadir gap; mesh via RealityCapture w/ both
+  sets) + **330 thermal IR roof frames** — samples show membrane damage + a thermal hot spot
+  (possible moisture): flag for roof-condition review / C-1 / Butcher Air conversation. Operator has
+  Postshot installed (RTX 4070 SUPER local training).
 - Small deferreds: metric-height toggle on A-2, iso north/scale, static-SVG export of A-2, buyer-export trim,
   Magnolia (121) lease swap, remaining Drive-doc links, custom domain + SMTP, B4 realtime.
 
