@@ -500,3 +500,15 @@ body.role-vendor .ownerview { display: none !important; }
 .ai-speak { float: right; margin: 4px 0 0 8px; font-size: 13px; border: none; background: none; cursor: pointer; opacity: .45; }
 .ai-speak:hover { opacity: 1; }
 .ai-speak.playing { opacity: 1; animation: aiblink 1.2s steps(2) infinite; }
+
+/* ── AI-1 agent desk (agents · history · packages) ──────────────── */
+.ai-agents { display: flex; gap: 8px; align-items: center; padding: 12px 16px; border-bottom: 1.5px solid var(--ink); background: var(--card); }
+.ai-agent.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.ai-history { max-height: 260px; overflow-y: auto; border-bottom: 1.5px solid var(--line); background: var(--white); padding: 6px; }
+.ai-thr { display: flex; flex-direction: column; gap: 1px; width: 100%; text-align: left; padding: 7px 10px; border: none; border-radius: 7px; background: none; cursor: pointer; color: var(--ink); }
+.ai-thr:hover { background: var(--paper2); }
+.ai-thr-t { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ai-thr-m { font-size: 10px; color: var(--ink50); }
+.ai-pkg { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding: 9px 12px; border: 1.5px solid var(--brass); border-radius: 9px; background: var(--brass-bg); }
+.ai-pkg-name { flex: 1; font-size: 12.5px; font-weight: 600; }
+.ai-pkg .chip { text-decoration: none; }

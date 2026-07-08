@@ -116,6 +116,25 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   `src/views/concierge.js`. History is session-only (resets on reload — persistence = later).
   Owner visibility togglable via "Owners can see…" (off by default). Persona/system prompt lives in
   `api/concierge.js` PREAMBLE — operator may want to tune voice/rules there.
+- **AGENT DESK — SHIPPED + DEPLOYED 2026-07-08**: AI-1 is now THREE agents on one chat surface —
+  **🏛 Concierge** (Q&A, unchanged) · **🤝 Leasing Agent** · **🔧 Property Manager** (chips at the top;
+  per-agent suggestions/personas in `api/concierge.js` AGENTS registry).
+  **Transcripts:** every conversation persists to `chat_threads`/`chat_messages` (migration
+  `agent_desk_transcripts`, owner+operator RLS; vendors sealed). 🗂 History panel reloads any thread;
+  + New starts fresh. Server returns `X-Thread-Id`; client stores per-agent thread state.
+  **Lease assembler:** the leasing agent carries a strict tool `assemble_lease_package`
+  (OPERATOR-only, enforced server-side) — collects terms conversationally, then generates
+  (a) a tenant-facing **Lease Proposal** (OTB navy/white brand, DRAFT–subject-to-legal-review stamp,
+  real SF/NNN/HVAC-split figures from units/recoveries/hvac.json; vacant units fall back to
+  camFlatPsf + median tax/ins) and/or (b) the internal **Owner Lease Summary** (mirrors the
+  operator's `Owner_Lease_Template_Form.docx` sections). Output = HTML uploaded to the `documents`
+  bucket under `lease-packages/`, 7-day signed URL, delivered as a `[[package:url|label]]` line in
+  the stream → client renders a card with **Open 🔒** + **✉ Email** (mailto prefilled with the link
+  + OTB signature — true in-app send needs a Resend/SendGrid key later, deliberately human-in-loop
+  for now). Pure seam `src/lib/lease.js` (builders + tool schema + package-line parser — 69 tests
+  total). VERIFIED live pre-deploy: real model call drove the tool with perfect strict input; the
+  assembled proposal renders on-brand (export/lease-proposal-test.html). Smoke test: open AI-1 →
+  🤝 Leasing → "Assemble a lease proposal for unit 131…" with terms → open + email the card.
 - **P5 Voice — SHIPPED + DEPLOYED 2026-07-08 (v1: voice, avatar deferred)**: AI-1 speaks.
   Server: `api/voice.js` — ElevenLabs TTS proxy (model `eleven_turbo_v2_5`, voice **"Jack John —
   Natural Customer Support Agent"** `7EzWGsX10sAS4c9m9cPf`, override via env `ELEVENLABS_VOICE_ID`);
