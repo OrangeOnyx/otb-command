@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { sanitizeName, vendorPath, displayName, vendorOf, portalCapable, rosterOrder, findVendorByEmail } from "../src/lib/vendors.js";
+import { sanitizeName, vendorPath, displayName, vendorOf, portalCapable, rosterOrder, findVendorByEmail, portalFace } from "../src/lib/vendors.js";
 import VENDORS from "../src/data/vendors.json" with { type: "json" };
 
 test("vendorPath sanitizes names and prefixes the vendor folder", () => {
@@ -49,4 +49,19 @@ test("seeded roster: Butcher Air is portal-capable service vendor", () => {
   assert.ok(VENDORS.length >= 60);
   // slugs are folder names — must be path-safe
   VENDORS.forEach(v => assert.match(v.id, /^[a-z0-9-]+$/));
+});
+
+/* V-1 face selection: owners were made owner-visible on V-1 but RLS grants
+   them roster read ONLY (no vendor-docs, no vendor_log) — they must get the
+   read-only face, never the operator console with failing upload/empty files. */
+test("portalFace maps role to the correct V-1 face", () => {
+  assert.equal(portalFace("operator"), "operator");
+  assert.equal(portalFace("vendor"), "vendor");
+  assert.equal(portalFace("owner"), "owner");
+});
+
+test("portalFace defaults unknown/absent roles to the least-privileged owner face", () => {
+  assert.equal(portalFace("pending"), "owner");
+  assert.equal(portalFace(null), "owner");
+  assert.equal(portalFace(undefined), "owner");
 });

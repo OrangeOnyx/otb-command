@@ -6,7 +6,7 @@
    VENDOR: sees only their own folder — "shared with you" list + an upload box
    (COIs, W-9s, invoices). RLS enforces the folder boundary; this UI just mirrors it. */
 import { REMOTE, sb } from "../lib/remote.js";
-import { rosterOrder, portalCapable, findVendorByEmail, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog } from "../lib/vendors.js";
+import { rosterOrder, portalCapable, findVendorByEmail, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog } from "../lib/vendors.js";
 import { esc } from "../lib/format.js";
 import roster from "../data/vendors.json";
 
@@ -119,6 +119,31 @@ async function renderVendor(host, email) {
   wireFileActions(host, () => renderVendor(host, email));
 }
 
+/* ---------- owner face: read-only roster (RLS grants roster read only) ---- */
+function renderOwnerReadOnly(host) {
+  const list = rosterOrder(roster);
+  host.innerHTML =
+    '<div class="dw-sec">Vendor roster — ' + list.length + ' <span class="mute">(read-only)</span></div>' +
+    '<input id="vpFilter" type="text" placeholder="Filter vendors…" class="vp-filter" style="max-width:340px">' +
+    '<div class="vp-list" id="vpList" style="max-height:none"></div>';
+  const listEl = host.querySelector("#vpList");
+  const paint = q => {
+    const needle = (q || "").toLowerCase();
+    listEl.innerHTML = list
+      .filter(x => !needle || x.company.toLowerCase().includes(needle) || x.email.includes(needle))
+      .map(x =>
+        '<div class="vp-vendor" style="cursor:default">' +
+        '<span class="vp-co">' + esc(x.company) + '</span>' +
+        '<span class="vp-tags mono">' + esc(x.kind) +
+        (x.contact ? " · " + esc(x.contact) : "") +
+        (x.email ? " · " + esc(x.email) : "") +
+        (x.phone ? " · " + esc(x.phone) : "") + '</span>' +
+        '</div>').join("");
+  };
+  paint("");
+  host.querySelector("#vpFilter").oninput = e => paint(e.target.value);
+}
+
 export function initVendorPortal(account) {
   const host = document.getElementById("vpBody");
   if (!host) return;
@@ -126,6 +151,8 @@ export function initVendorPortal(account) {
     host.innerHTML = '<div class="ai-note mute">The vendor portal runs on the hosted backend — unavailable in local-only mode.</div>';
     return;
   }
-  if (account && account.role === "vendor") renderVendor(host, account.email);
-  else renderOperator(host);
+  const face = portalFace(account && account.role);
+  if (face === "vendor") renderVendor(host, account.email);
+  else if (face === "operator") renderOperator(host);
+  else renderOwnerReadOnly(host);
 }

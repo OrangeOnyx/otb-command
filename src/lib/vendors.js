@@ -31,6 +31,12 @@ export function findVendorByEmail(list, email) {
   const e = String(email || "").trim().toLowerCase();
   return e ? list.find(v => v.email === e) || null : null;
 }
+/* Which V-1 face a role gets. Owners (and anything unknown) get the read-only
+   roster face: RLS grants them vendors-table read ONLY — no vendor-docs, no
+   vendor_log — so the operator console would just error at them. */
+export function portalFace(role) {
+  return role === "operator" ? "operator" : role === "vendor" ? "vendor" : "owner";
+}
 
 /* ---- audit (fire-and-forget) ---- */
 export async function logVendorAccess(action, path) {
