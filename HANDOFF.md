@@ -51,7 +51,17 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
 - **P4 AI knowledge engine (text RAG)**: needs an **Anthropic API key** from the operator + a small
   serverless function (Vercel) so the key never ships to the client.
 - **P5 Voice/avatar**: needs P4 + a voice provider key (e.g. ElevenLabs).
-- **P6d Reality capture**: DRONE FOOTAGE EXISTS (assessed 2026-07-04) — `Downloads/Drone Footage RAW/`,
+- **P6d Reality lens — SHIPPED + DEPLOYED 2026-07-08 (v1, $0)**: fourth A-2 chip **🎥 Reality** —
+  photoreal 3DGS splat of the center, trained via the OPEN pipeline (no Postshot license needed:
+  its free tier can't export): **COLMAP 3.11.1 CUDA** (`C:/Users/adam/tools3dgs`, solved 121 frames in
+  4.7 min, 0.9px err) → **Brush v0.3** (413k gaussians, ~10 min on the 4070) → master PLY
+  `Drone Footage RAW/OTB-splat-v1.ply` (93MB) → `node tools/convert-splat.mjs` → `public/OTB-splat.ksplat`
+  (16MB, SH1; gitignored but deployed — `.vercelignore` controls uploads now). Lazy GaussianSplats3D viewer
+  (`src/lib/scenesplat.js`). RE-FLY/RETRAIN recipe in `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`.
+  **v1 residuals:** orbit-only (unit click-through needs a splat↔world alignment pass — planned);
+  splat frame Y-down (cameraUp set); operator should orbit it in prod as the smoke test.
+  Postshot can be closed/uninstalled — nothing depends on it.
+- Prior assessment (2026-07-04) — `Downloads/Drone Footage RAW/`,
   9 clips 4K/100Mbps: 0001-0003 dusk + 0008-0016 golden (marketing only); **0023/0029/0030 daylight = reconstruction
   set**. Frame package CUT: `Drone Footage RAW/OTB-3DGS-frames/` — 242 sharp 4K stills (2fps, blur-culled) +
   README-TRAINING.md (Postshot/Luma for splat · RealityCapture for mesh · 15-min supplemental-flight recipe).
