@@ -7,9 +7,9 @@ Last updated: 2026-07-08.
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
-**State:** 11 sheets incl. A-2 Spatial (4 lenses: Iso · 3D · Satellite · 🎥 Reality splat) + S-1 Owner Safe
-+ **AI-1 Concierge (P4, SHIPPED 2026-07-08)** + doc attachments + global search + dark mode.
-39 unit tests. ALL SHIPPED PHASES ARE DEPLOYED.
+**State:** 12 sheets incl. A-2 Spatial (4 lenses, 🎥 Reality now CLICKABLE) + S-1 Owner Safe
++ **AI-1 Concierge (P4)** + **V-1 Vendor Portal (P3)** — both SHIPPED 2026-07-08 — + doc
+attachments + global search + dark mode. 58 unit tests. ALL SHIPPED PHASES ARE DEPLOYED.
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
 **Open items, ranked:**
@@ -17,9 +17,7 @@ Last updated: 2026-07-08.
    failure on the long-building roof (RTU row, Johnston end; frames S1002424/27/33) + thermal
    moisture anomaly on the short building near 149 (S1002330/28). Register row on K-1 + action
    card on W-1 are live. Butcher Air PM records for 149 worth pulling in the same conversation.
-2. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe;
-   the concierge endpoint also rejects the vendor role).
-3. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
+2. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
    (GPS'd) → decimated .glb → swap into Lens B's buildBoxes() seam.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
@@ -78,8 +76,28 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   superseded and can be archived/deleted from the Desktop whenever.
 
 ### ROADMAP REMAINING (all gated on operator inputs — nothing ungated left)
-- **P3 Vendor Portal**: needs the real vendor list/emails to provision `vendor` role logins (safe bucket
-  already sealed against that role). Build next session once operator supplies vendors.
+- **P3 Vendor Portal — SHIPPED + DEPLOYED 2026-07-08**: **V-1 "Vendor Portal" sheet** (nav last).
+  Roster = SOT "Vendor List" sheet in `OTB_Master_SOT_Lease_Logo_HVAC.xlsx` → `python
+  tools/extract-vendors.py` → `src/data/vendors.json` (69 vendors: 28 service / payees / people,
+  26 with email = portal-capable) → seeded into `public.vendors` (migration `vendor_portal_p3`).
+  **Operator face:** filterable roster (service first, green "portal" tag), per-vendor private folder
+  in the **`vendor-docs` bucket** (upload/open 10-min URLs/delete) + `vendor_log` audit panel.
+  **Vendor face:** a vendor signs in with the SAME magic-link gate using their roster email — the DB
+  trigger assigns role `vendor` — and gets a one-sheet shell (role-vendor CSS + nav lock): only their
+  folder, read + "send a file to management". RLS: vendor sees/uploads ONLY `<their-id>/…`; sealed out
+  of safe, documents, assets, property_state, and the concierge endpoint (403).
+  **SECURITY (same migration):** new sign-ins used to default to role **owner** (anyone completing a
+  magic link could read the Safe) — now default **'pending'** (holding-pen screen). ⚠ Consequence: a
+  NEW legitimate owner will land in 'pending' until promoted (Supabase → profiles.role='owner').
+  Also tightened documents/assets buckets + property_state reads from any-auth → owner/operator.
+  Advisor WARNs about SECURITY DEFINER helpers callable via RPC = pre-existing pattern, they only
+  return facts about the caller — accepted. Seam `src/lib/vendors.js` (pure helpers tested; 58 total);
+  view `src/views/vendorportal.js`. Smoke test: upload a doc to any vendor folder on V-1. **Inviting a
+  real vendor = telling them to magic-link in with their roster email (e.g. marlin@butcherac.com) —
+  operator's call when to make that ask.** Deferred: per-file "request from vendor" checklist, COI
+  expiry tracking, email notifications. NOTE: static seed data (incl. rents in units.json) rides in
+  the public JS bundle — the login gate protects live state, not the seeds; consider moving sensitive
+  seeds behind auth later.
 - **P4 AI concierge — SHIPPED + DEPLOYED 2026-07-08 (v1)**: **AI-1 "Concierge" sheet** (nav after S-1) —
   grounded property Q&A chat. Server side: `api/concierge.js` (Vercel function, `claude-opus-4-8`,
   adaptive thinking, effort medium, streaming) — requires a Supabase session token, role must be

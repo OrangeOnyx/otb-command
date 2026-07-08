@@ -1,0 +1,692 @@
+[
+ {
+  "id": "a-p-electrical-service-inc",
+  "company": "A & P Electrical Service, Inc",
+  "contact": "",
+  "email": "apelecinfo@gmail.com",
+  "phone": "337-856-8383",
+  "city": "Youngsville",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "abdalla-enterprises-llc",
+  "company": "Abdalla Enterprises LLC",
+  "contact": "",
+  "email": "",
+  "phone": "337-288-5411",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "adam-abdalla",
+  "company": "Adam Abdalla",
+  "contact": "",
+  "email": "",
+  "phone": "337-288-5411",
+  "city": "",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "all-around-plumbing-services-inc",
+  "company": "All Around Plumbing & Services, Inc.",
+  "contact": "",
+  "email": "",
+  "phone": "337-988-1570",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "almost-there-plumbing-repair",
+  "company": "Almost There Plumbing Repair",
+  "contact": "Terry Jennings",
+  "email": "info@almostthereplumbingrepair.com",
+  "phone": "337-896-3198",
+  "city": "Carencro",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "becker-hebert",
+  "company": "Becker & Hebert",
+  "contact": "",
+  "email": "",
+  "phone": "337-233-1987",
+  "city": "LAFAYETTE",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "beo-ac-refrigeration",
+  "company": "Beo AC & Refrigeration",
+  "contact": "",
+  "email": "",
+  "phone": "337-280-1411",
+  "city": "Prairiville",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "butcher-air-conditioning",
+  "company": "Butcher Air Conditioning",
+  "contact": "",
+  "email": "marlin@butcherac.com",
+  "phone": "337-837-2000",
+  "city": "BROUSSARD",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "cajun-cloud-services-llc",
+  "company": "Cajun Cloud Services, LLC",
+  "contact": "",
+  "email": "support@cajuncloud.com",
+  "phone": "337-993-1126",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "darnall-sikes-frederick",
+  "company": "Darnall Sikes & Frederick",
+  "contact": "",
+  "email": "info@dsfcpas.com",
+  "phone": "337-232-3312",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "dibenedetto-security-llc",
+  "company": "Dibenedetto Security LLC",
+  "contact": "",
+  "email": "info@dibenedettosecurity.com",
+  "phone": "337-356-2724",
+  "city": "Youngsville",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "doug-ashy-building-materials",
+  "company": "Doug Ashy Building Materials",
+  "contact": "",
+  "email": "bhollier@dougashy.com",
+  "phone": "337-984-2110",
+  "city": "Lafayette",
+  "notes": "Account No: BELLER00",
+  "kind": "service"
+ },
+ {
+  "id": "grizzly-roofing-llc",
+  "company": "Grizzly Roofing, LLC",
+  "contact": "",
+  "email": "info@grizzlyroofing.com",
+  "phone": "337-243-6700",
+  "city": "Scott",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "harrison-paint-co-inc",
+  "company": "Harrison Paint Co., Inc.",
+  "contact": "",
+  "email": "info@harrisonpaintco.com",
+  "phone": "337-231-5086",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "j-j-exterminating",
+  "company": "J & J Exterminating",
+  "contact": "",
+  "email": "customerservice@jjext.com",
+  "phone": "337-234-2847",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "j-kevin-stelly-law-firm-llc",
+  "company": "J. Kevin Stelly Law Firm, LLC",
+  "contact": "",
+  "email": "",
+  "phone": "337-233-4447",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "josh-arceneaux",
+  "company": "Josh Arceneaux",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "jp-s-hydroblast-llc",
+  "company": "JP's Hydroblast, LLC",
+  "contact": "",
+  "email": "",
+  "phone": "337-280-2972",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "miguel-antonio-osorio-nieto",
+  "company": "Miguel Antonio Osorio Nieto",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "montagnet-domingue",
+  "company": "Montagnet & Domingue",
+  "contact": "",
+  "email": "",
+  "phone": "337-981-2130",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "rexel-usa",
+  "company": "Rexel USA",
+  "contact": "",
+  "email": "",
+  "phone": "337-234-7427",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "rotolo-consultants-inc",
+  "company": "Rotolo Consultants, Inc",
+  "contact": "",
+  "email": "info@rotoloconsultants.com",
+  "phone": "985-643-2427",
+  "city": "Slidell",
+  "notes": "Account No: BELREA",
+  "kind": "service"
+ },
+ {
+  "id": "rtr-sound-security",
+  "company": "RTR Sound & Security",
+  "contact": "",
+  "email": "",
+  "phone": "337-356-2724",
+  "city": "Youngsville",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "russell-randol",
+  "company": "Russell Randol",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "shingle-solutions-lft",
+  "company": "Shingle Solutions - LFT",
+  "contact": "",
+  "email": "info@shinglesolutions.com",
+  "phone": "337-513-0777",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "statewide-restoration-llc",
+  "company": "Statewide Restoration, LLC",
+  "contact": "",
+  "email": "lastatewide167@gmail.com",
+  "phone": "337-450-7663",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "thomson-smith-leach",
+  "company": "Thomson Smith & Leach",
+  "contact": "",
+  "email": "lafayette@tslins.com",
+  "phone": "337-262-0511",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "wuertenberg-llc-dba-a-a-locksmith",
+  "company": "Wuertenberg,  LLC dba A & A Locksmith",
+  "contact": "",
+  "email": "info@aalocksmithlafayette.com",
+  "phone": "337-235-5397",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "service"
+ },
+ {
+  "id": "acadiana-security-plus-inc",
+  "company": "Acadiana Security Plus, Inc.",
+  "contact": "",
+  "email": "contactus@getaspnow.com",
+  "phone": "337-839-1880",
+  "city": "Broussard",
+  "notes": "Account No: ASP-25991",
+  "kind": "payee"
+ },
+ {
+  "id": "american-express",
+  "company": "American Express",
+  "contact": "",
+  "email": "",
+  "phone": "1-800-528-4800",
+  "city": "Dallas",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "at-t-mobility",
+  "company": "AT & T Mobility",
+  "contact": "",
+  "email": "",
+  "phone": "855-737-1820",
+  "city": "Carol Stream",
+  "notes": "Account No: 820042951",
+  "kind": "payee"
+ },
+ {
+  "id": "best-buy",
+  "company": "Best Buy",
+  "contact": "",
+  "email": "",
+  "phone": "337-216-0501",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "chase-card-services",
+  "company": "Chase Card Services",
+  "contact": "",
+  "email": "",
+  "phone": "1-800-432-3117",
+  "city": "Carol Stream",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "city-of-lafayette",
+  "company": "City of Lafayette",
+  "contact": "",
+  "email": "",
+  "phone": "337-291-8272",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "costco-membership",
+  "company": "Costco Membership",
+  "contact": "",
+  "email": "",
+  "phone": "1-800-774-2678",
+  "city": "Seattle",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "event-limo-llc",
+  "company": "Event Limo LLC",
+  "contact": "",
+  "email": "info@eventlimo.net",
+  "phone": "337-534-4003",
+  "city": "Scott",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "friends-of-don-landry",
+  "company": "Friends of Don Landry",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "gm-financial",
+  "company": "GM Financial",
+  "contact": "",
+  "email": "",
+  "phone": "1-855-501-5563",
+  "city": "",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "harbor-freight",
+  "company": "Harbor Freight",
+  "contact": "",
+  "email": "",
+  "phone": "337-984-1101",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "high-end-automotive-llc",
+  "company": "High-End Automotive LLC",
+  "contact": "",
+  "email": "sales@high-endauto.com",
+  "phone": "337-268-5101",
+  "city": "Youngsville",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "i-monelli-restaurant",
+  "company": "i Monelli Restaurant",
+  "contact": "",
+  "email": "",
+  "phone": "337-989-9291",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "icsc",
+  "company": "ICSC",
+  "contact": "",
+  "email": "",
+  "phone": "646-728-3800",
+  "city": "New York",
+  "notes": "Account No: 1109806",
+  "kind": "payee"
+ },
+ {
+  "id": "investar-bank",
+  "company": "Investar Bank",
+  "contact": "",
+  "email": "",
+  "phone": "337-981-7827",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "investart-bank-line-of-credit",
+  "company": "Investart Bank Line of Credit",
+  "contact": "",
+  "email": "",
+  "phone": "866-604-2006",
+  "city": "",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "ipfs-corporation-for-velocity-insurance",
+  "company": "IPFS Corporation for Velocity Insurance",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "krewe-of-gabriel",
+  "company": "Krewe of Gabriel",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "l-u-s",
+  "company": "L U S",
+  "contact": "",
+  "email": "custservice@lus.org",
+  "phone": "337-291-8280",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "lafayette-consolidated-government",
+  "company": "Lafayette Consolidated Government",
+  "contact": "",
+  "email": "info@lafayettela.gov",
+  "phone": "337-291-8200",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "lafayette-music-company",
+  "company": "Lafayette Music Company",
+  "contact": "",
+  "email": "justinb@lafmusic.com",
+  "phone": "337-984-3700",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "lafayette-parish-tax-collector",
+  "company": "Lafayette Parish Tax Collector",
+  "contact": "",
+  "email": "",
+  "phone": "337-236-5880",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "lftfiber",
+  "company": "LFTfiber",
+  "contact": "",
+  "email": "noc@lftfiber.com",
+  "phone": "337-993-4237",
+  "city": "Lafayette",
+  "notes": "Account No: 110265",
+  "kind": "payee"
+ },
+ {
+  "id": "lshmp",
+  "company": "LSHMP",
+  "contact": "",
+  "email": "",
+  "phone": "225-383-2871",
+  "city": "Baton Rouge",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "lwcc",
+  "company": "LWCC",
+  "contact": "",
+  "email": "billingrequest@lwcc.com",
+  "phone": "225-924-7788",
+  "city": "Baton Rouge",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "one-acadiana",
+  "company": "One Acadiana",
+  "contact": "",
+  "email": "",
+  "phone": "337-233-2705",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "republic-services-833",
+  "company": "Republic Services #833",
+  "contact": "",
+  "email": "customerservice@republicservices.com",
+  "phone": "337-232-2425",
+  "city": "Charlotte",
+  "notes": "Account No: 3-8033-004090945",
+  "kind": "payee"
+ },
+ {
+  "id": "rooms-to-go",
+  "company": "Rooms to Go",
+  "contact": "",
+  "email": "",
+  "phone": "337-216-0501",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "sam-s-club",
+  "company": "Sam's Club",
+  "contact": "",
+  "email": "",
+  "phone": "337-216-0633",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "second-harvest-food-bank",
+  "company": "Second Harvest Food Bank",
+  "contact": "",
+  "email": "help@secondharvest.org",
+  "phone": "337-237-7711",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "synchrony-bank",
+  "company": "Synchrony Bank",
+  "contact": "",
+  "email": "customerservice@synchrony.com",
+  "phone": "1-866-226-5638",
+  "city": "",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "the-hartford",
+  "company": "The Hartford",
+  "contact": "",
+  "email": "",
+  "phone": "1-866-467-8730",
+  "city": "Lake Mary",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "the-past-commodore-s-club",
+  "company": "The Past Commodore's  Club",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "Lafayette",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "visa-business-investar",
+  "company": "Visa Business Investar",
+  "contact": "",
+  "email": "",
+  "phone": "1-866-604-2006",
+  "city": "",
+  "notes": "",
+  "kind": "payee"
+ },
+ {
+  "id": "adam-schnexnayder",
+  "company": "Adam Schnexnayder",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ },
+ {
+  "id": "brody-broussard",
+  "company": "Brody Broussard",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ },
+ {
+  "id": "cash",
+  "company": "Cash",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ },
+ {
+  "id": "catherine-abdalla",
+  "company": "Catherine Abdalla",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ },
+ {
+  "id": "claude-broussard",
+  "company": "Claude Broussard",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ },
+ {
+  "id": "edward-abdalla",
+  "company": "Edward Abdalla",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ },
+ {
+  "id": "mae-lewis",
+  "company": "Mae Lewis",
+  "contact": "",
+  "email": "",
+  "phone": "",
+  "city": "",
+  "notes": "",
+  "kind": "person"
+ }
+]

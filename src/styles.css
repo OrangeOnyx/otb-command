@@ -474,3 +474,22 @@ body.role-owner .safe-log-card { display: none; }
 .ai-ask button { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; padding: 0 22px; border: none; border-radius: 8px; background: var(--ink); color: var(--paper); cursor: pointer; }
 .ai-ask button:disabled { opacity: .45; cursor: default; }
 body.role-owner .ai-ask { display: flex; } /* owners may ask — endpoint enforces role anyway */
+
+/* ── V-1 Vendor Portal ──────────────────────────────────────────── */
+.vp-card { padding: 18px; min-height: 420px; }
+.vp-grid { display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); gap: 22px; }
+@media (max-width: 900px) { .vp-grid { grid-template-columns: 1fr; } }
+.vp-filter { width: 100%; font-family: var(--body); font-size: 12.5px; padding: 7px 10px; margin: 8px 0; border: 1px solid var(--line); border-radius: 7px; background: var(--white); color: var(--ink); }
+.vp-filter:focus { outline: none; border-color: var(--brass); }
+.vp-list { max-height: calc(100vh - 340px); overflow-y: auto; display: flex; flex-direction: column; gap: 3px; }
+.vp-vendor { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; text-align: left; padding: 7px 10px; border: 1px solid transparent; border-radius: 7px; background: none; cursor: pointer; color: var(--ink); }
+.vp-vendor:hover { background: var(--paper2); }
+.vp-vendor.on { background: var(--card); border-color: var(--brass); }
+.vp-co { font-size: 13px; font-weight: 600; }
+.vp-tags { font-size: 10px; color: var(--ink50); }
+.vp-portal { color: var(--green); font-weight: 600; }
+.vp-detail { min-width: 0; }
+
+/* vendor-role shell: V-1 only; hide operator/owner chrome */
+body.role-vendor .search, body.role-vendor #btnExport, body.role-vendor #btnImport,
+body.role-vendor .ownerview { display: none !important; }

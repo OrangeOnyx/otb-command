@@ -4,7 +4,7 @@ import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, s
 import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState } from "./lib/remote.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { TODAY } from "./lib/format.js";
-import { PAGES } from "./lib/pages.js";
+import { PAGES, VENDOR_SHEET } from "./lib/pages.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
@@ -17,6 +17,7 @@ import { initBoard } from "./views/board.js";
 import { initDirectory } from "./views/directory.js";
 import { initFinancial } from "./views/financial.js";
 import { initConcierge } from "./views/concierge.js";
+import { initVendorPortal } from "./views/vendorportal.js";
 import { closeDrawer } from "./views/drawer.js";
 
 
@@ -150,7 +151,16 @@ function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;
 
 function applyRole(role) {
   const owner = role === "owner";
+  const vendor = role === "vendor";
   document.body.classList.toggle("role-owner", owner);
+  document.body.classList.toggle("role-vendor", vendor);
+  if (vendor) {
+    /* vendors get exactly one sheet; RLS seals the rest server-side too */
+    PAGES.forEach(([id]) => { navBtn[id].style.display = id === VENDOR_SHEET ? "" : "none"; });
+    navBtn[VENDOR_SHEET].click();
+    if (ovWrap) ovWrap.style.display = "none";
+    return;
+  }
   if (owner) {
     const vis = new Set(getOwnerSheets());
     PAGES.forEach(([id]) => { navBtn[id].style.display = vis.has(id) ? "" : "none"; });
@@ -163,7 +173,7 @@ function applyRole(role) {
   }
 }
 
-function initViews() {
+function initViews(account) {
   initPlan();
   initSpatial();
   initSafe();
@@ -175,6 +185,7 @@ function initViews() {
   initDirectory();
   initFinancial();
   initConcierge();
+  initVendorPortal(account);
   initDashboard(); // last — its Action Queue reads the board's live cards
 }
 
@@ -216,13 +227,14 @@ async function boot() {
     let account = null;
     try { account = await getRole(); } catch (e) { console.warn(e); }
     account = account || { email: "", role: "owner" };
+    if (account.role === "pending") { showPending(account.email); return; }
     try {
       const remote = await loadState();
       if (Object.keys(remote).length) hydrateRemote(remote);
       else if (account.role === "operator") await pushState(JSON.parse(exportJSON())); // seed empty backend from local
     } catch (e) { console.warn("remote state:", e); }
     buildShell(account);
-    initViews();
+    initViews(account);
     applyRole(account.role);
     if (account.role === "operator") {
       wireSync();
@@ -233,8 +245,28 @@ async function boot() {
     }
   } else {
     buildShell(null);
-    initViews();
+    initViews(null);
   }
+}
+
+/* signed in, but not yet operator/owner/vendor — least-privilege holding pen
+   (new sign-ins default to 'pending' since the P3 migration; the operator
+   promotes real owners in Supabase → profiles.role) */
+function showPending(email) {
+  const app = document.querySelector(".app");
+  if (app) app.style.display = "none";
+  const o = document.createElement("div");
+  o.className = "login-gate";
+  o.innerHTML =
+    '<div class="login-card">' +
+    '<div class="login-wm">ON THE <span>BOULEVARD</span></div>' +
+    '<div class="login-sub">Access pending</div>' +
+    '<div class="login-msg">You’re signed in as <b>' + escapeHtml(email || "") + '</b>, but this address isn’t linked ' +
+    'to an owner, operator, or vendor account yet. Contact management to be granted access.</div>' +
+    '<button id="pendingOut">Sign out</button>' +
+    '</div>';
+  document.body.appendChild(o);
+  o.querySelector("#pendingOut").onclick = async () => { await signOut(); location.reload(); };
 }
 
 boot();
