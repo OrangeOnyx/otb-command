@@ -1,0 +1,21 @@
+{
+  "quaternion": [
+    -0.95804432,
+    0.04636747,
+    -0.24888224,
+    -0.13438291
+  ],
+  "scale": 7.178733,
+  "position": [
+    -27.11425,
+    25.32055,
+    47.96241
+  ],
+  "meta": {
+    "fit": "tools/fit-splat-align.mjs",
+    "source": "OTB-splat-v1.ply",
+    "score": 0.1624,
+    "yawDeg": 321.93,
+    "splatUnitsPerFt": 0.01559
+  }
+}

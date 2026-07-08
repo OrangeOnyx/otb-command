@@ -13,9 +13,7 @@ Last updated: 2026-07-08.
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
 **Open items, ranked:**
-1. **Splat↔world alignment** — make 🎥 Reality clickable (drape unit hit-areas; similarity transform
-   from splat frame to plan space; the other 3 lenses already click→drawer).
-2. **Roof-condition brief** — Skydio thermal set shows membrane damage + a moisture hot-spot
+1. **Roof-condition brief** — Skydio thermal set shows membrane damage + a moisture hot-spot
    (`J:/Shared drives/AA & RR/Drone Photos/Arnould Boulavard/`, samples ~S1002427/S1002330);
    annotate → K-1/Safe + roofer/Butcher-Air action. 9 months stale — time-sensitive.
 3. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe;
@@ -95,9 +93,19 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   `Drone Footage RAW/OTB-splat-v1.ply` (93MB) → `node tools/convert-splat.mjs` → `public/OTB-splat.ksplat`
   (16MB, SH1; gitignored but deployed — `.vercelignore` controls uploads now). Lazy GaussianSplats3D viewer
   (`src/lib/scenesplat.js`). RE-FLY/RETRAIN recipe in `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`.
-  **v1 residuals:** orbit-only (unit click-through needs a splat↔world alignment pass — planned);
-  splat frame Y-down (cameraUp set); operator should orbit it in prod as the smoke test.
   Postshot can be closed/uninstalled — nothing depends on it.
+- **P6d v2 — splat↔world alignment SHIPPED + DEPLOYED 2026-07-08**: 🎥 Reality is now CLICKABLE
+  (click a storefront → unit drawer; selection = brass wireframe; synced across sheets). The similarity
+  transform (COLMAP frame → Lens-B world) was fitted COMPUTATIONALLY, no GPS: `tools/fit-splat-align.mjs`
+  (**re-run after any splat re-train**) density-crops the site, RANSACs the parking-field ground plane
+  from a mini-DTM, seeds scale from the 16.4' parapet, then grid-searches yaw/scale/translation matching
+  FACADES to footprint outlines (the DJI orbit reconstructs walls, not roofs — no nadir coverage) +
+  penalizing ground points inside footprints. Result committed: `src/data/splat-align.json` (score .162,
+  ~0.0156 splat-units/ft); visual check regenerable at `export/splat-align-preview.svg`. Pure math seam
+  `src/lib/splat-align.js` (quat helpers + true-height realityBoxes — 46 tests total). Runtime: splat
+  transformed into y-up world via addSplatScene {position,rotation,scale}; invisible TRUE-proportion hit
+  boxes (no Lens-B vertical exaggeration) raycast → drawer. Verified in preview: full click-sweep opened
+  101→125 in correct plan order + 149 on the short building; splat renders upright/level/plan-oriented.
 - Prior assessment (2026-07-04) — `Downloads/Drone Footage RAW/`,
   9 clips 4K/100Mbps: 0001-0003 dusk + 0008-0016 golden (marketing only); **0023/0029/0030 daylight = reconstruction
   set**. Frame package CUT: `Drone Footage RAW/OTB-3DGS-frames/` — 242 sharp 4K stills (2fps, blur-culled) +

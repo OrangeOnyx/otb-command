@@ -104,7 +104,8 @@ async function openReal() {
   const host = document.getElementById("spatialReal");
   if (!host || realScene) return;
   const { createSplatScene } = await import("../lib/scenesplat.js");
-  realScene = createSplatScene(host);
+  realScene = createSplatScene(host, unitData(), { onPick: openDrawer });
+  realScene.setSelected(getSelected());
 }
 
 function setLens(next) {
@@ -140,6 +141,7 @@ export function initSpatial() {
       drawSpatial();
       if (scene) scene.setSelected(getSelected());
       if (geoScene) geoScene.setSelected(getSelected());
+      if (realScene) realScene.setSelected(getSelected());
     }
   });
 }
