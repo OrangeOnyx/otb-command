@@ -13,12 +13,13 @@ Last updated: 2026-07-08.
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
 **Open items, ranked:**
-1. **Roof-condition brief** — Skydio thermal set shows membrane damage + a moisture hot-spot
-   (`J:/Shared drives/AA & RR/Drone Photos/Arnould Boulavard/`, samples ~S1002427/S1002330);
-   annotate → K-1/Safe + roofer/Butcher-Air action. 9 months stale — time-sensitive.
-3. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe;
+1. **OPERATOR: call the roofer** — `docs/roof-condition-brief.md` is DONE (2026-07-08): membrane
+   failure on the long-building roof (RTU row, Johnston end; frames S1002424/27/33) + thermal
+   moisture anomaly on the short building near 149 (S1002330/28). Register row on K-1 + action
+   card on W-1 are live. Butcher Air PM records for 149 worth pulling in the same conversation.
+2. **P3 Vendor Portal** — gated on vendor list/emails (vendor role already sealed out of Safe;
    the concierge endpoint also rejects the vendor role).
-4. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
+3. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
    (GPS'd) → decimated .glb → swap into Lens B's buildBoxes() seam.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
@@ -106,6 +107,14 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   transformed into y-up world via addSplatScene {position,rotation,scale}; invisible TRUE-proportion hit
   boxes (no Lens-B vertical exaggeration) raycast → drawer. Verified in preview: full click-sweep opened
   101→125 in correct plan order + 149 on the short building; splat renders upright/level/plan-oriented.
+- **Roof-condition brief — DONE 2026-07-08**: `docs/roof-condition-brief.md` + downscaled key
+  frames in `docs/roof-brief-assets/` (originals stay on J:). Two findings: (1) membrane failure,
+  long-building roof, RTU row toward Johnston end — exact bay ≈101–109 pending roofer walk (the
+  oblique yaw metadata is ambiguous; the RTU+gas-line geometry in S1002433 locates it on-roof);
+  (2) circular thermal anomaly + warm seams (probable wet insulation) on the short building near
+  143/145/149, true-nadir GPS. Also documented: footprints-geo reads ~25 m SW of ground truth at
+  the NE corner (P6c eyeball tolerance) — relevant to anyone mapping GPS frames to units.
+  Seeded: K-1 register row `pd:roofbrief` + W-1 card `roof:brief` (both DEPLOYED).
 - Prior assessment (2026-07-04) — `Downloads/Drone Footage RAW/`,
   9 clips 4K/100Mbps: 0001-0003 dusk + 0008-0016 golden (marketing only); **0023/0029/0030 daylight = reconstruction
   set**. Frame package CUT: `Drone Footage RAW/OTB-3DGS-frames/` — 242 sharp 4K stills (2fps, blur-culled) +
