@@ -140,7 +140,7 @@ const md = `# On The Boulevard Shopping Center — ${docTitle}
 **101–149 Arnould Blvd, Lafayette, LA 70506** · Owner: Belle Realty of Lafayette, LLC (managed by Orange Ocean, LLC — Adam, Managing Member)
 *Generated ${TODAY.toLocaleDateString("en-US")} from OTB Property Command (geometry REV ${geometry.rev.replace("REV ", "")}, traced from the recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019). Companion image: OTB-SitePlan-A1.svg / .png*
 
-> **How to use this file:** paste it (with the site-plan image if the model accepts images) into any LLM as grounding context for marketing copy, leasing flyers, broker packages, investor summaries, or Q&A. Every figure below traces to the recorded plat, the rent-roll source-of-truth workbook, or recorded easements. Items under "Known anomalies" are unresolved source conflicts — do not let a model silently "fix" them.
+> **How to use this file:** paste it (with the site-plan image if the model accepts images) into any LLM as grounding context for marketing copy, leasing flyers, broker packages, investor summaries, or Q&A. Every figure below traces to the recorded plat, the rent-roll source-of-truth workbook, or recorded easements.${NOFIN ? "" : ' Items under "Known anomalies" are unresolved source conflicts — do not let a model silently "fix" them.'}
 
 ## Property at a glance
 - **GLA 62,883 SF** · 27 demised units · 2 buildings · 4.84 acres · zoned CH (Commercial Heavy), Lafayette, LA
@@ -201,7 +201,7 @@ ${hvacSection}## Covenants & operations notes
 - **Parties:** ${directory.propertyContacts.map(c => c.company + " (" + c.role + ")").join(" · ")}.
 - **Recorded instruments / key files:** ${directory.propertyDocuments.map(d => d.name + (d.ref && d.ref !== "—" ? " — " + d.ref : "")).join(" · ")}.
 
-## Known anomalies (surfaced, unresolved — do not "fix")
+${NOFIN ? "" : `## Known anomalies (surfaced, unresolved — do not "fix")
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
 - Workbook: 101 SF 6,877 vs 6,677 · 117.5 SF 1,769 vs plat-implied 1,789 · 145 term-months "1572"${depositAnomaly}.
 - Parking Δ −10 (plat 314 vs variance 324) — reconciliation memo pending.
@@ -212,7 +212,7 @@ ${hvacSection}## Covenants & operations notes
 - Co-tenancy mix: anchor deli, women's fashion cluster (Pink Paisley, JC Kate, Jordan Amanda, Clothing Loft), services (HotWorx, salons, nails, barber), medical (Cat Clinic, Upstream PT), financial (OUPAC, 1st Franklin, Fast Pass).
 - US Hwy 167 (Johnston St) exposure at the southern boundary; pylon sign at the Johnston-side corner.
 - Restaurant-capable inline space on the permitted side of the liquor line without invoking the waiver (139–149 run); waiver covers the rest.
-`;
+`}`;
 writeFileSync(join(out, NOFIN ? "OTB-Property-Overview.md" : "OTB-Property-Dossier.md"), md);
 
 /* ── merged machine-readable JSON ──────────────────────────────── */
