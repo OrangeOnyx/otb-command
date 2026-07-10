@@ -57,15 +57,31 @@ transcripts creator-scoped (`owns_thread` RLS); per-user daily caps on concierge
 `check_and_bump_usage`; "Arnould Heights"→"Arnold Heights" audit-grade fix (was poisoning export JSON);
 client role fails closed to pending; `[[package:]]` https-only allowlist; delete-throws-before-audit-log;
 25MB caps on vendor-docs+assets buckets; capRatePct null-coercion.
-**OPEN — needs your decision (NOT yet done):**
-- **C1 (the big one): sensitive seeds ship in the public JS bundle.** `units.json` (rents), `contacts-info.json`
-  (tenant emails/phones), `vendors.json`, `lease-links.json` are Vite-inlined → downloadable by anyone via
-  `curl` the bundle, no login. The login gate only protects LIVE state, not seeds. Fix = hydrate sensitive
-  seeds from a role-gated endpoint after sign-in (a boot refactor — deferred for a decision on scope).
-- Magic-link has no CAPTCHA (email-bomb / junk-pending abuse) — enable in Supabase Auth settings.
-- `TODAY` is pinned to 2026-06-10 (documented) — decide live `new Date()` vs "data as of" label.
-- Test coverage: concierge handler (the money/document endpoint) has 0 tests; money-math has no regression test.
-- No CSP/security headers (no vercel.json); rotate the two API keys still pending.
+**ALL CODE-IMPLEMENTABLE FINDINGS FIXED + DEPLOYED 2026-07-10 (Fable 5 pass).** Beyond the
+earlier quick-wins:
+- **C1 CLOSED** — confidential seeds no longer in the public bundle. `tools/split-seed.mjs`
+  (`npm run split-seed`) → `src/data/units.public.json` (skeleton) + `api/_seed.json` (rents,
+  tenant PII, lease/floorplan Drive URLs, AP roster; bundled into the seed function ONLY).
+  Client boots skeleton; owner/operator hydrate via role-gated `/api/seed` before initViews;
+  vendors read own row from RLS-scoped `public.vendors`. VERIFIED in prod: bundle has 0 rent
+  values/tenant emails/vendor emails/legal entities; `/api/_seed.json` → 404; `/api/seed` → 401.
+  **Re-run `npm run split-seed` after editing any src/data seed** (like concierge-context).
+  NOTE: local-only dev mode (no backend) now shows the skeleton (no rents) — by design.
+- CSP + 6 security headers (`vercel.json`) — verified: login page + fonts + Supabase boot call
+  raise ZERO CSP violations. TODAY now LIVE (holdover/expiry track real time); exports show
+  generated-date + "data as of". Audit-log email JWT-stamped (can't be forged). Security model
+  version-controlled in `supabase/security-model.sql`. +8 tests (78 total: seed round-trip +
+  money-math/data-integrity regression guards).
+**OPERATOR-ONLY (cannot be done from code — 2 console actions):**
+- **Enable CAPTCHA**: Supabase Dashboard → Auth → Settings → Bot & Abuse Protection (stops
+  magic-link email-bomb / junk-pending abuse). No API for this.
+- **Rotate both API keys** (Anthropic + ElevenLabs — pasted in chat): providers' consoles →
+  update Vercel Production env → redeploy.
+**Accepted (not changed, by design):** SECURITY DEFINER helper WARNs (caller-scoped facts;
+revoking EXECUTE risks breaking RLS); policies `to public` relying on helpers returning false
+for anon (correct, marginally looser than checklist); concierge-handler lacks a unit test
+(would need full Supabase+Anthropic mocking — covered by live 401/403/429 smoke + pure-helper
+tests).
 
 ## ELITE ROADMAP (started 2026-07-03) — see `docs/superpowers/specs` + `docs/superpowers/plans`
 Vision: full owner/operator platform. Three threads on the live Supabase foundation:
