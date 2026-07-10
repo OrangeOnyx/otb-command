@@ -49,6 +49,24 @@ Migration `owner_email_allowlist`; trigger logic verified with SQL (vendor/allow
 console.anthropic.com when convenient, then update Vercel env `ANTHROPIC_API_KEY` (Production)
 and redeploy. Key lives ONLY in Vercel env; never in the repo or client bundle.
 
+## SECURITY AUDIT 2026-07-08 (multi-agent: server/RLS + client + correctness)
+**Overall posture GOOD** — the real boundary (Supabase RLS + `api/_auth.mjs` gate) fails closed and holds:
+roles can't be spoofed/self-escalated, vendor isolation airtight, no service-role bypass, all buckets
+private, no committed secrets, 0 prod dep vulns. **Quick-wins FIXED + DEPLOYED** (commit c576bd3):
+transcripts creator-scoped (`owns_thread` RLS); per-user daily caps on concierge(200)/voice(150) via
+`check_and_bump_usage`; "Arnould Heights"→"Arnold Heights" audit-grade fix (was poisoning export JSON);
+client role fails closed to pending; `[[package:]]` https-only allowlist; delete-throws-before-audit-log;
+25MB caps on vendor-docs+assets buckets; capRatePct null-coercion.
+**OPEN — needs your decision (NOT yet done):**
+- **C1 (the big one): sensitive seeds ship in the public JS bundle.** `units.json` (rents), `contacts-info.json`
+  (tenant emails/phones), `vendors.json`, `lease-links.json` are Vite-inlined → downloadable by anyone via
+  `curl` the bundle, no login. The login gate only protects LIVE state, not seeds. Fix = hydrate sensitive
+  seeds from a role-gated endpoint after sign-in (a boot refactor — deferred for a decision on scope).
+- Magic-link has no CAPTCHA (email-bomb / junk-pending abuse) — enable in Supabase Auth settings.
+- `TODAY` is pinned to 2026-06-10 (documented) — decide live `new Date()` vs "data as of" label.
+- Test coverage: concierge handler (the money/document endpoint) has 0 tests; money-math has no regression test.
+- No CSP/security headers (no vercel.json); rotate the two API keys still pending.
+
 ## ELITE ROADMAP (started 2026-07-03) — see `docs/superpowers/specs` + `docs/superpowers/plans`
 Vision: full owner/operator platform. Three threads on the live Supabase foundation:
 - **Thread 1 · Secure Documents:** P1 Document Repository → P2 Owner Safe → P3 Vendor Portal
