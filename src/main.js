@@ -262,7 +262,7 @@ async function boot() {
     if (!session) { showLogin(); return; }
     let account = null;
     try { account = await getRole(); } catch (e) { console.warn(e); }
-    account = account || { email: "", role: "owner" };
+    account = account || { email: "", role: "pending" }; // fail closed, not to owner
     if (account.role === "pending") { showPending(account.email); return; }
     try {
       const remote = await loadState();

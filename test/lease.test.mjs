@@ -68,3 +68,12 @@ test("extractPackages is a no-op on plain text", () => {
   assert.equal(packages.length, 0);
   assert.equal(clean, "plain answer");
 });
+
+test("extractPackages allowlists https only (drops javascript:/data:)", () => {
+  const ok = extractPackages("here [[package:https://x.supabase.co/f.html|Open]] done");
+  assert.equal(ok.packages.length, 1);
+  assert.equal(ok.packages[0].url, "https://x.supabase.co/f.html");
+  const bad = extractPackages("x [[package:javascript:alert(1)|Open]] [[package:data:text/html,x|Y]]");
+  assert.equal(bad.packages.length, 0);
+  assert.ok(!bad.clean.includes("javascript"));
+});

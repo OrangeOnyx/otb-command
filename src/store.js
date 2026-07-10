@@ -116,7 +116,7 @@ function applySnapshot(snap) {
   if (f && typeof f === "object") {
     if (f.opex && typeof f.opex === "object")
       for (const [k, v] of Object.entries(f.opex)) if (k in state.financials.opex && Number.isFinite(+v)) state.financials.opex[k] = +v;
-    if (Number.isFinite(+f.capRatePct)) state.financials.capRatePct = +f.capRatePct;
+    if (f.capRatePct != null && Number.isFinite(+f.capRatePct)) state.financials.capRatePct = +f.capRatePct; // null must stay null, not coerce to 0
   }
   if (Array.isArray(snap.ownerSheets))
     state.ownerSheets = PAGE_IDS.filter(p => snap.ownerSheets.includes(p));

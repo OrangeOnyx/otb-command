@@ -11,7 +11,7 @@
    pending 403). Lease assembly itself is OPERATOR-only. */
 import Anthropic from "@anthropic-ai/sdk";
 import { CONTEXT } from "./_context.mjs";
-import { requireOwnerOrOperator, supaJson } from "./_auth.mjs";
+import { requireOwnerOrOperator, supaJson, underDailyCap } from "./_auth.mjs";
 import { buildMessages, digestState } from "../src/lib/concierge.js";
 import { LEASE_TOOL, buildProposalHTML, buildOwnerSummaryHTML, packageFileName } from "../src/lib/lease.js";
 import units from "../src/data/units.json" with { type: "json" };
@@ -124,6 +124,8 @@ export default async function handler(req, res) {
 
   const gate = await requireOwnerOrOperator(req);
   if (gate.error) return res.status(gate.status).json({ error: gate.error });
+  if (!(await underDailyCap("concierge", 200, gate.token)))
+    return res.status(429).json({ error: "daily message limit reached — try again tomorrow" });
 
   const agentKey = AGENTS[req.body?.agent] ? req.body.agent : "concierge";
   const agent = AGENTS[agentKey];

@@ -24,8 +24,12 @@ export async function getRole() {
   if (!REMOTE) return null;
   const u = (await sb.auth.getUser()).data.user;
   if (!u) return null;
-  const { data } = await sb.from("profiles").select("role").eq("id", u.id).maybeSingle();
-  return { email: u.email, role: data?.role || "owner" };
+  const { data, error } = await sb.from("profiles").select("role").eq("id", u.id).maybeSingle();
+  // Fail CLOSED: an unreadable/absent profile is least-privilege 'pending',
+  // never 'owner' (the server auth gate does the same). RLS is the real
+  // boundary, but the client should not fail open to owner UI + bundle seeds.
+  if (error) return { email: u.email, role: "pending" };
+  return { email: u.email, role: data?.role || "pending" };
 }
 export async function sendMagicLink(email) {
   return sb.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin } });

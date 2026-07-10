@@ -177,7 +177,10 @@ ${p.notes ? `<h2>Special Terms</h2><p>${esc(p.notes)}</p>` : ""}
 export function extractPackages(text) {
   const packages = [];
   const clean = String(text || "").replace(/\[\[package:([^\]|]+)\|([^\]]+)\]\]/g, (_, url, label) => {
-    packages.push({ url: url.trim(), label: label.trim() });
+    const u = url.trim();
+    // scheme allowlist — the model streams this line, so never trust the scheme.
+    // Only https (Supabase signed URLs) is renderable; drop javascript:/data:/etc.
+    if (/^https:\/\//i.test(u)) packages.push({ url: u, label: label.trim() });
     return "";
   }).trim();
   return { clean, packages };

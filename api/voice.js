@@ -4,7 +4,7 @@
    same gate as /api/concierge. Text is capped to protect the character quota.
    Voice: ELEVENLABS_VOICE_ID env override, else "Jack John" (natural customer
    support agent — the account's professional conversational voice). */
-import { requireOwnerOrOperator } from "./_auth.mjs";
+import { requireOwnerOrOperator, underDailyCap } from "./_auth.mjs";
 
 export const maxDuration = 60;
 
@@ -17,6 +17,8 @@ export default async function handler(req, res) {
 
   const gate = await requireOwnerOrOperator(req);
   if (gate.error) return res.status(gate.status).json({ error: gate.error });
+  if (!(await underDailyCap("voice", 150, gate.token)))
+    return res.status(429).json({ error: "daily voice limit reached — try again tomorrow" });
 
   const text = String(req.body?.text || "").trim().slice(0, MAX_TTS_CHARS);
   if (!text) return res.status(400).json({ error: "no text" });

@@ -74,13 +74,14 @@ export async function listVendorDocs(vendorId) {
 }
 
 export async function vendorDocURL(path) {
-  logVendorAccess("view", path);
   const { data, error } = await sb.storage.from("vendor-docs").createSignedUrl(path, 600); // 10 min
   if (error) throw error;
+  logVendorAccess("view", path); // log only after the URL was actually issued
   return data.signedUrl;
 }
 
 export async function removeVendorDoc(path) {
-  await sb.storage.from("vendor-docs").remove([path]);
+  const { error } = await sb.storage.from("vendor-docs").remove([path]);
+  if (error) throw error; // don't write a "deleted" audit row on a failed delete
   logVendorAccess("delete", path);
 }

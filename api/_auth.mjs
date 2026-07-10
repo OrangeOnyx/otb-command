@@ -11,6 +11,23 @@ export async function supaJson(path, token) {
   return r.json();
 }
 
+/* Per-user daily cap on the paid endpoints. Postgres counts (serverless-safe);
+   the caller's email is resolved server-side from their JWT, so the count can't
+   be spoofed. Returns true if this request is allowed (and now counted).
+   Fails OPEN on infra error — a rate-limiter outage shouldn't take the feature
+   down; the DB is the durable ceiling. */
+export async function underDailyCap(kind, limit, token) {
+  try {
+    const r = await fetch(SUPA + "/rest/v1/rpc/check_and_bump_usage", {
+      method: "POST",
+      headers: { apikey: ANON, authorization: "Bearer " + token, "content-type": "application/json" },
+      body: JSON.stringify({ p_kind: kind, p_limit: limit }),
+    });
+    if (!r.ok) return true;
+    return (await r.json()) === true;
+  } catch { return true; }
+}
+
 export async function requireOwnerOrOperator(req) {
   if (!SUPA || !ANON) return { error: "not configured (missing Supabase env)", status: 500 };
   const token = (req.headers.authorization || "").replace(/^Bearer\s+/i, "");

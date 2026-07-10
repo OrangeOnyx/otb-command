@@ -95,19 +95,24 @@ export async function listSafe() {
 }
 
 export async function safeURL(path) {
-  logAccess("view", path);
   if (REMOTE) {
     const { data, error } = await sb.storage.from("safe").createSignedUrl(path, 600); // short-lived: 10 min
     if (error) throw error;
+    logAccess("view", path); // log only after the URL was actually issued
     return data.signedUrl;
   }
   const rec = await wrap((await store("readonly")).get(path));
   if (!rec) throw new Error("File not found locally");
+  logAccess("view", path);
   return URL.createObjectURL(rec.blob);
 }
 
 export async function removeSafeDoc(path) {
-  if (REMOTE) { await sb.storage.from("safe").remove([path]); }
-  else { await wrap((await store("readwrite")).delete(path)); }
+  if (REMOTE) {
+    const { error } = await sb.storage.from("safe").remove([path]);
+    if (error) throw error; // don't write a "deleted" audit row on a failed delete
+  } else {
+    await wrap((await store("readwrite")).delete(path));
+  }
   logAccess("delete", path);
 }
