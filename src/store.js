@@ -1,7 +1,9 @@
 /* Single source of mutable state. Every mutation writes through to localStorage.
-   Persisted: compliance cell states + note overrides. Unit/rent data stays
-   read-only from units.json (SOT) in Phase 2. */
-import unitsData from "./data/units.json";
+   Persisted: compliance cell states + note overrides.
+   C1: the CLIENT bundle carries only the public unit skeleton (no $/legal/notes);
+   confidential fields are merged in at boot via installUnitsPrivate() from the
+   auth-gated /api/seed endpoint. Full units.json stays the SOT for tools+server. */
+import unitsData from "./data/units.public.json";
 import complianceData from "./data/compliance.json";
 import { PAGE_IDS, DEFAULT_OWNER_SHEETS } from "./lib/pages.js";
 
@@ -11,6 +13,15 @@ const STATE_VERSION = 1;
 export const UNITS = unitsData;
 export const byUnit = {};
 UNITS.forEach(u => { byUnit[u.unit] = u; });
+
+/* Merge confidential per-unit fields (base/total/monthly/legal/notes) into the
+   skeleton objects IN PLACE — UNITS entries and byUnit values are the same
+   references, so every view sees the merged data after boot hydration. */
+export function installUnitsPrivate(map) {
+  for (const [unit, priv] of Object.entries(map || {})) {
+    if (byUnit[unit] && priv && typeof priv === "object") Object.assign(byUnit[unit], priv);
+  }
+}
 
 export const COMP_FIELDS = complianceData.fields;
 export const COMP_STATES = complianceData.states; // cycle order: u → ok → flag → na

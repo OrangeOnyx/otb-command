@@ -6,9 +6,14 @@
    VENDOR: sees only their own folder — "shared with you" list + an upload box
    (COIs, W-9s, invoices). RLS enforces the folder boundary; this UI just mirrors it. */
 import { REMOTE, sb } from "../lib/remote.js";
-import { rosterOrder, portalCapable, findVendorByEmail, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog } from "../lib/vendors.js";
+import { rosterOrder, portalCapable, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog } from "../lib/vendors.js";
 import { esc } from "../lib/format.js";
-import roster from "../data/vendors.json";
+
+/* C1: the AP roster is NOT bundled (it leaked vendor contacts). Operator/owner
+   get it at boot from the auth-gated /api/seed via installVendors(); the vendor
+   face reads only its OWN row from public.vendors (RLS-scoped). */
+let roster = [];
+export function installVendors(list) { roster = Array.isArray(list) ? list : []; }
 
 const fmtSize = n => !n ? "" : n > 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB";
 const fmtWhen = iso => iso ? new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
@@ -38,8 +43,8 @@ function wireFileActions(host, rerender) {
     b.onclick = async () => {
       const row = b.closest(".safe-row");
       if (!confirm("Remove " + row.querySelector(".safe-name").textContent + "?")) return;
-      await removeVendorDoc(row.dataset.path);
-      rerender();
+      try { await removeVendorDoc(row.dataset.path); rerender(); } // L2: surface failures
+      catch (err) { alert("Could not remove: " + err.message); }
     };
   });
 }
@@ -98,11 +103,15 @@ async function renderOperator(host) {
 }
 
 /* ---------- vendor face ---------- */
+let vendorRenderGen = 0; // L1: drop a stale async render if a newer one started
 async function renderVendor(host, email) {
-  const v = findVendorByEmail(roster, email);
+  const gen = ++vendorRenderGen;
+  // vendor reads ONLY its own row (RLS-scoped) — no bundled roster needed
+  const { data: rows } = await sb.from("vendors").select("id,company").limit(1);
+  const v = rows && rows[0];
   if (!v) { host.innerHTML = '<div class="ai-note mute">Your login isn’t linked to a vendor record yet — contact management.</div>'; return; }
   const files = await listVendorDocs(v.id);
-  if (!host.isConnected) return;
+  if (gen !== vendorRenderGen) return; // a newer render superseded this one
   host.innerHTML =
     '<div class="safe-cat-head"><span class="safe-cat-name">' + esc(v.company) + '</span>' +
     '<span class="mono mute">documents shared between you and On The Boulevard management</span>' +

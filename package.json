@@ -12,6 +12,7 @@
     "export-package": "node tools/export-package.mjs",
     "export-buyer": "node tools/export-package.mjs nofin",
     "concierge-context": "node tools/build-concierge-context.mjs",
+    "split-seed": "node tools/split-seed.mjs",
     "proforma": "python tools/proforma.py",
     "poster": "python tools/poster.py",
     "pylon": "python tools/pylon.py",

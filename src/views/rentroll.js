@@ -50,8 +50,8 @@ export function renderRoll() {
       '<td>' + (u.end ? fDate(pDate(u.end)) : "—") + '</td>' +
       '<td><span class="pill ' + sm.pill + '"><span class="dot"></span>' + sm.label + '</span></td></tr>';
   });
-  h += '</tbody><tfoot><tr><td colspan="2">TOTALS — 27 UNITS</td><td class="num">' + totSF.toLocaleString() + '</td>' +
-    '<td class="num" colspan="5">blended ' + (tot * 12 / totSF).toFixed(2) + ' PSF</td>' +
+  h += '</tbody><tfoot><tr><td colspan="2">TOTALS — ' + UNITS.length + ' UNITS</td><td class="num">' + totSF.toLocaleString() + '</td>' +
+    '<td class="num" colspan="5">gross ' + (tot * 12 / totSF).toFixed(2) + ' PSF <span class="mono" style="opacity:.6">(all SF incl. vacant; P-1 effective = leased SF)</span></td>' +
     '<td class="num">' + fmt$(tot) + '</td><td colspan="2">' + fmt$0(tot * 12) + ' / YR</td></tr></tfoot></table>';
   const el = document.getElementById("rollTable");
   el.innerHTML = h;

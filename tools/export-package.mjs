@@ -23,7 +23,9 @@ const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ fig
 const out = join(root, NOFIN ? "export-buyer" : "export");
 mkdirSync(out, { recursive: true });
 
-const TODAY = new Date(2026, 5, 10);
+const DATA_AS_OF = new Date(2026, 5, 10);  // rent-roll SOT issue date
+const GENERATED = new Date();               // real generation date (audit M3)
+const TODAY = DATA_AS_OF;                    // figures/expiry windows are as-of the SOT
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /* ── standalone SVG ─────────────────────────────────────────────── */
@@ -139,7 +141,7 @@ const depositAnomaly = NOFIN ? "" : " · missing deposits 107/137/143/149";
 const docTitle = NOFIN ? "Property Overview" : "Property Dossier";
 const md = `# On The Boulevard Shopping Center — ${docTitle}
 **101–149 Arnould Blvd, Lafayette, LA 70506** · Owner: Belle Realty of Lafayette, LLC (managed by Orange Ocean, LLC — Adam, Managing Member)
-*Generated ${TODAY.toLocaleDateString("en-US")} from OTB Property Command (geometry REV ${geometry.rev.replace("REV ", "")}, traced from the recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019). Companion image: OTB-SitePlan-A1.svg / .png*
+*Generated ${GENERATED.toLocaleDateString("en-US")} · data as of ${DATA_AS_OF.toLocaleDateString("en-US")} · from OTB Property Command (geometry REV ${geometry.rev.replace("REV ", "")}, traced from the recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019). Companion image: OTB-SitePlan-A1.svg / .png*
 
 > **How to use this file:** paste it (with the site-plan image if the model accepts images) into any LLM as grounding context for marketing copy, leasing flyers, broker packages, investor summaries, or Q&A. Every figure below traces to the recorded plat, the rent-roll source-of-truth workbook, or recorded easements.${NOFIN ? "" : ' Items under "Known anomalies" are unresolved source conflicts — do not let a model silently "fix" them.'}
 
@@ -222,7 +224,7 @@ const jsonObj = {
   meta: {
     property: "On The Boulevard Shopping Center, 101-149 Arnould Blvd, Lafayette, LA 70506",
     owner: "Belle Realty of Lafayette, LLC (manager: Orange Ocean, LLC)",
-    generated: "2026-06-10", geometryRev: geometry.rev, source: geometry.source,
+    generated: GENERATED.toISOString().slice(0,10), dataAsOf: "2026-06-10", geometryRev: geometry.rev, source: geometry.source,
     headline: { glaSf: 62883, units: 27, buildings: 2, acres: 4.84, zoning: "CH" },
     ...(NOFIN ? { note: "Buyer overview — financial figures (rent, PSF, income, NOI, recoveries) withheld; available under NDA." } : {})
   },
@@ -250,7 +252,7 @@ writeFileSync(join(out, NOFIN ? "OTB-Property-Data-NoFinancials.json" : "OTB-Pro
    both into an LLM so it knows the asset AND the platform managing it. */
 if (!NOFIN) {
   const platform = `# OTB Property Command — Platform Brief
-*What the tool is and can do, for LLM grounding. Generated ${TODAY.toLocaleDateString("en-US")}; companion to OTB-Property-Dossier.md (the property fact pack).*
+*What the tool is and can do, for LLM grounding. Generated ${GENERATED.toLocaleDateString("en-US")}; companion to OTB-Property-Dossier.md (the property fact pack).*
 
 **Live:** https://otb-command.vercel.app (magic-link auth) · Stack: Vite vanilla-JS app + Supabase (auth/Postgres-RLS/storage) + Vercel serverless functions + Claude (Anthropic) + ElevenLabs voice. Repo is authoritative; every export is one-way and disposable.
 

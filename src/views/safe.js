@@ -57,8 +57,8 @@ async function render() {
     b.onclick = async () => {
       const row = b.closest(".safe-row");
       if (!confirm("Remove " + row.querySelector(".safe-name").textContent + " from the safe?")) return;
-      await removeSafeDoc(row.dataset.path);
-      render(); renderLog();
+      try { await removeSafeDoc(row.dataset.path); render(); renderLog(); } // L2: surface failures
+      catch (err) { alert("Could not remove: " + err.message); }
     };
   });
 }

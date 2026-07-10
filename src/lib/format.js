@@ -1,5 +1,10 @@
 /* Formatting + date helpers (identical to baseline). */
-export const TODAY = new Date(2026, 5, 10); // Jun 10 2026 — SOT issue date, pinned
+// TODAY is LIVE (audit M3 fix): holdover "days over", "expiring ≤12mo", WALT,
+// and critical-dates now track real time instead of freezing at the SOT date.
+// DATA_AS_OF is the rent-roll SOT issue date — show it as "data as of" wherever
+// the figures' vintage matters (they don't move with the calendar).
+export const TODAY = new Date();
+export const DATA_AS_OF = new Date(2026, 5, 10); // Jun 10 2026 — SOT issue date
 
 export const fmt$ = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 export const fmt$0 = n => "$" + Math.round(n).toLocaleString("en-US");

@@ -86,7 +86,7 @@ async function runLeaseTool(input, token) {
   const sign = await fetch(`${SUPA}/storage/v1/object/sign/documents/${file}`, {
     method: "POST",
     headers: { apikey: ANON, authorization: "Bearer " + token, "content-type": "application/json" },
-    body: JSON.stringify({ expiresIn: 604800 }), // 7 days
+    body: JSON.stringify({ expiresIn: 172800 }), // 48h — emailed bearer link; the package persists in the documents bucket, re-open from K-1 to reissue
   });
   if (!sign.ok) return { ok: false, error: "package signing failed (" + sign.status + ")" };
   const { signedURL } = await sign.json();

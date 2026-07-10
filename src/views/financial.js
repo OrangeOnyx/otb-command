@@ -77,8 +77,8 @@ export function renderFinancial() {
   const opexTotal = OPEX_LINES.reduce((s, [k]) => s + (fin.opex[k] || 0), 0);
   const noi = inc.annualRent - opexTotal;
   const value = fin.capRatePct ? noi / (fin.capRatePct / 100) : null;
-  const anchor = UNITS.find(u => u.unit === "149");
-  const anchorPct = inc.annualRent ? annual(anchor) / inc.annualRent * 100 : 0;
+  const anchor = UNITS.find(u => u.unit === "149"); // L7: guard — don't kill P-1 if 149 ever leaves the roll
+  const anchorPct = (anchor && inc.annualRent) ? annual(anchor) / inc.annualRent * 100 : 0;
 
   const kpis = [
     ["green", "In-place rent", fmt$0(inc.annualRent), fmt$0(inc.annualRent / 12) + "/mo · " + inc.leasedCount + " tenancies"],

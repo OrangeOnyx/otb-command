@@ -50,11 +50,15 @@ export function leaseMath(p, unit, rec) {
   const nnn = rec ? (+rec.cam || 0) + (+rec.tax || 0) + (+rec.ins || 0) : 0;
   const baseMo = sf * p.base_psf / 12;
   const nnnMo = sf * nnn / 12;
+  // L6: a term shorter than 12 months only accrues for its actual length.
+  const term = Math.max(0, +p.term_months || 0);
+  const payMonths = Math.min(12, term); // billable months in the first year
+  const freeInY1 = Math.min(p.free_rent_months || 0, payMonths);
   return {
     sf, nnnPsf: nnn,
     baseMo, nnnMo, totalMo: baseMo + nnnMo,
     totalPsf: p.base_psf + nnn,
-    year1: baseMo * Math.max(0, 12 - (p.free_rent_months || 0)) + nnnMo * 12,
+    year1: baseMo * Math.max(0, payMonths - freeInY1) + nnnMo * payMonths,
   };
 }
 

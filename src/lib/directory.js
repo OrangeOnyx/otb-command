@@ -1,10 +1,17 @@
 /* Directory helpers — merge seed records with the store's override layer, and
    derive per-unit contact/document seeds from the rent roll (units.json). */
 import directory from "../data/directory.json";
-import leaseLinks from "../data/lease-links.json";
-import floorplanLinks from "../data/floorplan-links.json";
-import contactsInfo from "../data/contacts-info.json";
 import { byUnit, getCollection } from "../store.js";
+
+/* C1: tenant PII + executed-lease Drive URLs are NOT bundled — they arrive at
+   boot via installDirectorySeed() from the auth-gated /api/seed. Empty until
+   then (K-1 renders after boot hydration). */
+let leaseLinks = {}, floorplanLinks = {}, contactsInfo = {};
+export function installDirectorySeed(s) {
+  if (s?.leaseLinks) leaseLinks = s.leaseLinks;
+  if (s?.floorplanLinks) floorplanLinks = s.floorplanLinks;
+  if (s?.contacts) contactsInfo = s.contacts;
+}
 
 export const UNIT_DOC_TYPES = directory.unitDocTypes;
 

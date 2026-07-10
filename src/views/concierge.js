@@ -139,7 +139,8 @@ async function paintHistory(host) {
   ).join("") || '<div class="mute" style="padding:10px">no transcripts yet</div>';
   panel.querySelectorAll(".ai-thr").forEach(b => {
     b.onclick = async () => {
-      const { data: rows } = await sb.from("chat_messages").select("role,content").eq("thread_id", b.dataset.id).order("at");
+      const { data: rows, error: loadErr } = await sb.from("chat_messages").select("role,content").eq("thread_id", b.dataset.id).order("at");
+      if (loadErr) { alert("Couldn't load that conversation: " + loadErr.message); return; }
       const agent = AGENTS[b.dataset.agent] ? b.dataset.agent : "concierge";
       state[agent].history = (rows || []).map(r => ({ role: r.role, content: r.content }));
       state[agent].threadId = b.dataset.id;
@@ -234,6 +235,7 @@ async function ask(host, q, send) {
   bubble(thread, "ai-user", esc(q));
   const out = bubble(thread, "ai-assist", '<span class="ai-cursor">▋</span>');
   send.disabled = true;
+  let text = ""; // hoisted so the catch can tell early-failure from mid-stream (M6)
   try {
     const session = (await sb.auth.getSession()).data.session;
     if (!session) throw new Error("session expired — reload and sign in again");
@@ -250,7 +252,6 @@ async function ask(host, q, send) {
     s.threadId = r.headers.get("X-Thread-Id") || s.threadId;
     const reader = r.body.getReader();
     const dec = new TextDecoder();
-    let text = "";
     for (;;) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -263,8 +264,17 @@ async function ask(host, q, send) {
     s.history.push({ role: "assistant", content: text });
     if (autoSpeak()) speak(text, sp);
   } catch (err) {
-    out.innerHTML = '<span class="ai-err">Could not answer: ' + esc(err.message) + '</span>';
-    s.history.pop();
+    // M6: if the stream had started, the server may already have persisted this
+    // exchange — keep the user turn (and the partial reply, marked) so the client
+    // history stays consistent with the thread. Only drop the turn on an early
+    // failure (nothing streamed → nothing persisted), so a retry is clean.
+    if (text) {
+      out.innerHTML = assistantHTML(text) + '<div class="ai-err">⚠ interrupted — reply may be incomplete</div>';
+      s.history.push({ role: "assistant", content: text });
+    } else {
+      out.innerHTML = '<span class="ai-err">Could not answer: ' + esc(err.message) + '</span>';
+      s.history.pop();
+    }
   } finally {
     send.disabled = false;
     thread.scrollTop = thread.scrollHeight;

@@ -3,6 +3,7 @@ import "./styles.css";
 import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe } from "./store.js";
 import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles } from "./lib/remote.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
+import { loadSeed } from "./lib/seed.js";
 import { TODAY } from "./lib/format.js";
 import { PAGES, VENDOR_SHEET } from "./lib/pages.js";
 import { initDashboard } from "./views/dashboard.js";
@@ -118,7 +119,7 @@ function buildShell(account) {
             '<span class="ac-tag mono">' + escapeHtml(a.role) + '</span><button class="ac-x" data-e="' + escapeHtml(a.email) + '" title="Revoke pre-authorization">✕</button></div>').join("") ||
           '<div class="mute" style="font-size:11px;padding:4px 2px">no authorized emails yet</div>';
         list.querySelectorAll(".ac-ok").forEach(b => { b.onclick = async () => { await authorizeEmail(b.dataset.e, "owner"); paint(); }; });
-        list.querySelectorAll(".ac-x").forEach(b => { b.onclick = async () => { await revokeAuthorized(b.dataset.e); paint(); }; });
+        list.querySelectorAll(".ac-x").forEach(b => { b.onclick = async () => { if (!confirm("Revoke pre-authorization for " + b.dataset.e + "?\n(Does not sign out an already-active account.)")) return; try { await revokeAuthorized(b.dataset.e); paint(); } catch (e) { alert(e.message); } }; });
       } catch (e) { list.innerHTML = '<div class="mute" style="font-size:11px">' + escapeHtml(e.message) + "</div>"; }
     };
     ac.addEventListener("toggle", () => { if (ac.open) paint(); });
@@ -264,6 +265,9 @@ async function boot() {
     try { account = await getRole(); } catch (e) { console.warn(e); }
     account = account || { email: "", role: "pending" }; // fail closed, not to owner
     if (account.role === "pending") { showPending(account.email); return; }
+    // C1: hydrate confidential seed (rents/PII/vendors) before rendering. Owner
+    // + operator only; a failure leaves skeletons (never leaks), so don't block boot.
+    try { await loadSeed(); } catch (e) { console.warn("seed:", e); }
     try {
       const remote = await loadState();
       if (Object.keys(remote).length) hydrateRemote(remote);
