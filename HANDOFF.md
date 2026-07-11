@@ -28,6 +28,14 @@ iso+3D · north arrow + 100′ scale bar on the iso · ⤓ standalone-SVG export
 thumbnails in unit drawer + R-1 (`npm run logo-thumbs`) · **P6d mesh in Lens B** (in-pane
 🏗 Mesh / ◧ Massing toggle) · v9 concept + stale Drive "(1)" duplicates moved to
 `G:\My Drive\00 OTB\_archive\` (operator empties at will).
+**ROOF ORTHOMOSAIC 2026-07-11:** `OTB-roof-ortho-2025-10-15.png` (3 cm/px, north-up, 91 MB)
+in `Drone Footage RAW/` + `G:\My Drive\00 OTB\` — direct-georeferenced from the Skydio set's
+XMP RTK poses (`tools3dgs/build-roof-ortho2.py`); annotate maintenance issues on it (it's the
+Oct-2025 baseline, pre-dating the current 101–109 membrane state). NOTE: COLMAP SfM is
+DEGENERATE on this set (planar nadir + repetitive membrane + telephoto — 6 attempts audited);
+a Skydio-only roof SPLAT therefore needs either Postshot's own SfM (drag folder in, ~3 min
+operator test, license now owned) or a pose-injected COLMAP model built from the XMP RTK
+poses (session-sized job, not yet attempted).
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
