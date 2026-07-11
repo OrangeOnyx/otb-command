@@ -28,6 +28,13 @@ iso+3D · north arrow + 100′ scale bar on the iso · ⤓ standalone-SVG export
 thumbnails in unit drawer + R-1 (`npm run logo-thumbs`) · **P6d mesh in Lens B** (in-pane
 🏗 Mesh / ◧ Massing toggle) · v9 concept + stale Drive "(1)" duplicates moved to
 `G:\My Drive\00 OTB\_archive\` (operator empties at will).
+**SITE-ASSET PINS (digital twin) SHIPPED + DEPLOYED 2026-07-11:** A-1 → Overlay → "📍 Assets"
++ "＋ Pin": operator drops typed pins (💧 shutoff ⚡ meter 🧯 hydrant 🏛 column 🪑 bench
+🗑 can 💡 light 🪧 sign 📍 other) anywhere on the plan; click a pin → label/notes editor;
+owners see read-only pins. New persisted `features` layer (store → property_state → 
+Export/Import). Operator's mapping walk = drop a pin per shutoff/bench/can/column with a
+label. Deferred: pins on the 🛰 satellite lens (needs plan→geo transform reuse), photo per pin.
+NOTE: dev server moved to port 5199 (`.claude/launch.json`) — 5173 is held by another project.
 **ROOF ORTHOMOSAIC 2026-07-11:** `OTB-roof-ortho-2025-10-15.png` (3 cm/px, north-up, 91 MB)
 in `Drone Footage RAW/` + `G:\My Drive\00 OTB\` — direct-georeferenced from the Skydio set's
 XMP RTK poses (`tools3dgs/build-roof-ortho2.py`); annotate maintenance issues on it (it's the
