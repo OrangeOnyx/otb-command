@@ -1,7 +1,7 @@
 /* A-1 Site Plan — renders geometry.json primitives + interactive unit rects.
    All coordinates live in geometry.json; this module only renders. */
 import geometry from "../data/geometry.json";
-import { UNITS, getSelected, subscribe } from "../store.js";
+import { UNITS, getSelected, subscribe, FEATURE_TYPES, getFeatures, addFeature, editFeature, removeFeature } from "../store.js";
 import { unitFill, legendFor } from "../lib/colors.js";
 import { fmt$0, pDate, fDate, esc, TODAY } from "../lib/format.js";
 import { NS, g, rect, text, renderPrims } from "../lib/svg.js";
@@ -10,6 +10,8 @@ import { openDrawer } from "./drawer.js";
 
 let planMode = "status";
 let planScope = "main";
+let showFeatures = true;   // 📍 site-asset pins (features layer)
+let addPinMode = false;    // ＋ Pin: next plan click drops a pin
 let showPhotos = true; // 📷 badge on units that have photos/plans
 const overlays = { roof: false, signage: false }; // raster overlays (property-scope images)
 let showFacility = false; // whole-center floor-plan overlay (static, registered to the unit envelope)
@@ -83,6 +85,71 @@ export function drawPlan() {
   // photo badges drawn last (topmost, clickable); filled async from IndexedDB
   const badgeLayer = g(svg);
   paintBadges(badgeLayer);
+
+  paintFeatures(g(svg, "feat-layer"));
+}
+
+/* ---- site-asset pins (digital-twin features layer) ---- */
+const FEAT_META = Object.fromEntries(FEATURE_TYPES.map(([id, glyph, label]) => [id, { glyph, label }]));
+
+function paintFeatures(layer) {
+  if (!showFeatures) return;
+  getFeatures().forEach(f => {
+    const m = FEAT_META[f.type] || FEAT_META.other;
+    const pin = document.createElementNS(NS, "g");
+    pin.setAttribute("class", "feat-pin");
+    pin.setAttribute("transform", "translate(" + f.x + "," + f.y + ")");
+    pin.innerHTML = '<circle r="10" fill="#F6F7F1" stroke="#A87E2F" stroke-width="1.6"/>' +
+      '<text y="3.8" text-anchor="middle" font-size="11" style="pointer-events:none">' + m.glyph + '</text>';
+    pin.addEventListener("click", e => { e.stopPropagation(); openFeatureEditor(f, e); });
+    pin.addEventListener("mousemove", e => showFeatTT(e, f, m));
+    pin.addEventListener("mouseleave", hideTT);
+    layer.appendChild(pin);
+  });
+}
+
+function showFeatTT(e, f, m) {
+  tt.innerHTML = '<div class="h">' + m.glyph + ' ' + esc(f.label || m.label) + '</div>' +
+    (f.note ? '<div class="m">' + esc(f.note) + '</div>' : '<div class="m">' + m.label + '</div>');
+  tt.style.display = "block";
+  tt.style.left = Math.min(window.innerWidth - 280, e.clientX + 16) + "px";
+  tt.style.top = (e.clientY + 14) + "px";
+}
+
+const readOnlyRole = () =>
+  document.body.classList.contains("role-owner") || document.body.classList.contains("role-vendor");
+
+let featEd = null; // open editor element
+function closeFeatureEditor() { if (featEd) { featEd.remove(); featEd = null; } }
+function openFeatureEditor(f, evt) {
+  if (readOnlyRole()) { showFeatTT(evt, f, FEAT_META[f.type] || FEAT_META.other); return; }
+  closeFeatureEditor();
+  const card = document.querySelector("#pg-plan .plan-card");
+  const ed = document.createElement("div");
+  ed.className = "feat-editor";
+  ed.innerHTML =
+    '<div class="fe-h">Asset pin</div>' +
+    '<select class="fe-type">' + FEATURE_TYPES.map(([id, glyph, label]) =>
+      '<option value="' + id + '"' + (id === f.type ? " selected" : "") + '>' + glyph + " " + label + '</option>').join("") + '</select>' +
+    '<input class="fe-label" placeholder="Label (e.g. Shutoff — units 101–109)" value="' + esc(f.label) + '">' +
+    '<textarea class="fe-note" placeholder="Notes (valve size, access, condition…)">' + esc(f.note) + '</textarea>' +
+    '<div class="fe-row"><button class="chip on fe-save">Save</button>' +
+    '<button class="chip fe-del">Delete</button><button class="chip fe-x">Close</button></div>';
+  card.appendChild(ed);
+  const rect_ = card.getBoundingClientRect();
+  ed.style.left = Math.min(rect_.width - 280, Math.max(8, evt.clientX - rect_.left + 12)) + "px";
+  ed.style.top = Math.max(8, evt.clientY - rect_.top - 10) + "px";
+  ed.querySelector(".fe-save").onclick = () => {
+    editFeature(f.id, {
+      type: ed.querySelector(".fe-type").value,
+      label: ed.querySelector(".fe-label").value.trim(),
+      note: ed.querySelector(".fe-note").value.trim()
+    });
+    closeFeatureEditor();
+  };
+  ed.querySelector(".fe-del").onclick = () => { removeFeature(f.id); closeFeatureEditor(); };
+  ed.querySelector(".fe-x").onclick = closeFeatureEditor;
+  featEd = ed;
 }
 
 function paintFacility(layer) {
@@ -195,8 +262,42 @@ export function initPlan() {
   const opc = document.getElementById("overlayOpacity");
   if (opc) opc.oninput = () => { overlayOpacity = +opc.value / 100; drawPlan(); };
   if (uop) uop.oninput = () => { unitOpacity = +uop.value / 100; drawPlan(); };
+  /* site-asset pins: show/hide + add mode */
+  const featShow = document.getElementById("featShow");
+  const featAdd = document.getElementById("featAdd");
+  const featType = document.getElementById("featType");
+  if (featType) featType.innerHTML = FEATURE_TYPES.map(([id, glyph, label]) =>
+    '<option value="' + id + '">' + glyph + " " + label + '</option>').join("");
+  if (featShow) featShow.onclick = () => {
+    showFeatures = !showFeatures;
+    featShow.classList.toggle("on", showFeatures);
+    closeFeatureEditor();
+    drawPlan();
+  };
+  if (featAdd) featAdd.onclick = () => {
+    addPinMode = !addPinMode;
+    featAdd.classList.toggle("on", addPinMode);
+    if (featType) featType.hidden = !addPinMode;
+    const svg = document.getElementById("plan");
+    svg.style.cursor = addPinMode ? "crosshair" : "";
+    if (addPinMode && !showFeatures) { showFeatures = true; featShow.classList.add("on"); drawPlan(); }
+  };
+  // capture-phase click so add-mode wins over unit rects / drawer
+  document.getElementById("plan").addEventListener("click", e => {
+    if (!addPinMode) return;
+    e.stopPropagation(); e.preventDefault();
+    const svg = document.getElementById("plan");
+    const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM().inverse());
+    const type = featType ? featType.value : "other";
+    const f = addFeature({ type, label: "", note: "", x: pt.x, y: pt.y });
+    openFeatureEditor(f, e); // name it right away
+  }, true);
+
   // selection highlight tracks drawer open/close from any sheet
-  subscribe(type => { if (type === "selection") drawPlan(); });
+  subscribe(type => {
+    if (type === "selection") drawPlan();
+    if (type === "features" || type === "import") { closeFeatureEditor(); drawPlan(); }
+  });
   onAssetChange(() => drawPlan()); // repaint badges when photos are added/removed
   drawPlan();
   renderLegend();

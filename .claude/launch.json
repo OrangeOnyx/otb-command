@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "otb-command-dev",
+      "name": "otb-dev-5199",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 5173
+      "runtimeArgs": ["run", "dev", "--", "--port", "5199", "--strictPort"],
+      "port": 5199
     }
   ]
 }

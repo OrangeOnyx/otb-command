@@ -84,7 +84,22 @@ export const OPEX_LINES = [
 ];
 const emptyFin = () => ({ opex: { taxes: 0, insurance: 0, cam: 0, mgmt: 0, utilities: 0, reserves: 0 }, capRatePct: null });
 
-const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin(), ownerSheets: [...DEFAULT_OWNER_SHEETS] };
+/* features = site-asset pins on A-1 (digital-twin layer): water shutoffs, meters,
+   benches, cans, columns… Operator-placed points in plan coordinates (the A-1
+   1480×990 space). Pure custom data — no seeds, whole array persists. */
+export const FEATURE_TYPES = [
+  ["shutoff", "💧", "Water shutoff"], ["meter", "⚡", "Utility meter"],
+  ["hydrant", "🧯", "Fire hydrant/riser"], ["column", "🏛", "Column"],
+  ["bench", "🪑", "Bench"], ["can", "🗑", "Trash can"],
+  ["light", "💡", "Light pole"], ["sign", "🪧", "Sign"], ["other", "📍", "Other"]
+];
+const FEATURE_IDS = new Set(FEATURE_TYPES.map(t => t[0]));
+const cleanFeature = f => ({
+  id: String(f.id), type: FEATURE_IDS.has(f.type) ? f.type : "other",
+  label: String(f.label || ""), note: String(f.note || ""), x: +f.x, y: +f.y
+});
+
+const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin(), ownerSheets: [...DEFAULT_OWNER_SHEETS], features: [] };
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -131,6 +146,10 @@ function applySnapshot(snap) {
   }
   if (Array.isArray(snap.ownerSheets))
     state.ownerSheets = PAGE_IDS.filter(p => snap.ownerSheets.includes(p));
+  if (Array.isArray(snap.features))
+    state.features = snap.features
+      .filter(f => f && typeof f === "object" && f.id && Number.isFinite(+f.x) && Number.isFinite(+f.y))
+      .map(cleanFeature);
 }
 
 function persist() {
@@ -139,7 +158,7 @@ function persist() {
       version: STATE_VERSION, savedAt: new Date().toISOString(),
       comp: state.comp, notes: state.notes, actions: state.actions,
       contacts: state.contacts, documents: state.documents, financials: state.financials,
-      ownerSheets: state.ownerSheets
+      ownerSheets: state.ownerSheets, features: state.features
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -270,6 +289,25 @@ export function setCapRate(value) {
   emit("financials", {});
 }
 
+/* ---------- site-asset pins (A-1 features layer) ---------- */
+export function getFeatures() { return state.features.slice(); }
+export function addFeature(f) {
+  const rec = cleanFeature({ ...f, id: "sf" + Date.now().toString(36) + Math.floor(Math.random() * 1e4) });
+  state.features.push(rec);
+  persist(); emit("features", { id: rec.id });
+  return rec;
+}
+export function editFeature(id, patch) {
+  const i = state.features.findIndex(f => f.id === id);
+  if (i < 0) return;
+  state.features[i] = cleanFeature({ ...state.features[i], ...patch, id });
+  persist(); emit("features", { id });
+}
+export function removeFeature(id) {
+  state.features = state.features.filter(f => f.id !== id);
+  persist(); emit("features", { id });
+}
+
 /* ---------- remote hydrate (Path B): load a server snapshot as the base ---------- */
 export function hydrateRemote(snap) {
   if (!snap || typeof snap !== "object") return;
@@ -280,6 +318,7 @@ export function hydrateRemote(snap) {
   state.documents = emptyColl();
   state.financials = emptyFin();
   state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
+  state.features = [];
   applySnapshot(snap);
   persist(); // cache locally too
 }
@@ -296,7 +335,8 @@ export function exportJSON() {
     contacts: state.contacts,
     documents: state.documents,
     financials: state.financials,
-    ownerSheets: state.ownerSheets
+    ownerSheets: state.ownerSheets,
+    features: state.features
   }, null, 2);
 }
 export function importJSON(text) {
@@ -311,6 +351,7 @@ export function importJSON(text) {
   state.documents = emptyColl();
   state.financials = emptyFin();
   state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
+  state.features = [];
   applySnapshot(snap);
   persist();
   emit("import");

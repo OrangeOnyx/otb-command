@@ -14,7 +14,7 @@ export const REMOTE = !!(URL && KEY);
 export const sb = REMOTE ? createClient(URL, KEY) : null;
 
 const PROPERTY = "otb";
-const LAYERS = ["comp", "notes", "actions", "contacts", "documents", "financials", "ownerSheets"];
+const LAYERS = ["comp", "notes", "actions", "contacts", "documents", "financials", "ownerSheets", "features"];
 
 export async function getSession() {
   if (!REMOTE) return null;
