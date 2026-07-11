@@ -6,6 +6,7 @@ import { STATUS_META, hvacTier, TIER_LABEL } from "../lib/colors.js";
 import { unitContacts, unitDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
+import { logoUrl } from "../lib/logos.js";
 import hvacData from "../data/hvac.json";
 
 const drawer = document.getElementById("drawer");
@@ -41,6 +42,11 @@ function renderDrawer() {
   const sm = STATUS_META[u.status];
   document.getElementById("dwUnit").textContent = "UNIT " + u.unit + " · " + u.sf.toLocaleString() + " SF";
   document.getElementById("dwName").textContent = u.dba;
+  const logo = document.getElementById("dwLogo"), lu = u.status === "vacant" ? null : logoUrl(u.unit);
+  if (logo) {
+    if (lu) { logo.src = lu; logo.removeAttribute("hidden"); } else { logo.setAttribute("hidden", ""); logo.removeAttribute("src"); }
+    logo.parentElement.classList.toggle("has-logo", !!lu);
+  }
   document.getElementById("dwPill").innerHTML = '<span class="pill ' + sm.pill + '"><span class="dot"></span>' + sm.label + '</span>';
 
   const e = pDate(u.end), s = pDate(u.start);

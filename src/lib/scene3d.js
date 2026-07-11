@@ -18,7 +18,7 @@ export function createScene(container, units, opts = {}) {
   const rects = units.map(u => ({ unit: u.unit, x: u.x, y: u.y, w: u.w, h: u.h }));
   const heightFt = r => (units.find(u => u.unit === r.unit)?.heightFt) || 16.4;
   const colorOf = unit => units.find(u => u.unit === unit)?.color || "#5F6E64";
-  const { boxes, span } = layout3d(rects, heightFt);
+  const { boxes, span } = layout3d(rects, heightFt, opts.ftWorld ? { ftWorld: opts.ftWorld } : {});
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -41,7 +41,7 @@ export function createScene(container, units, opts = {}) {
   scene.add(ground);
 
   // one mesh per unit (the swappable box source)
-  const meshes = new Map();
+  const meshes = new Map(), brassOutlines = new Map();
   const buildBoxes = () => {
     boxes.forEach(b => {
       const geo = new THREE.BoxGeometry(b.w, b.h, b.d);
@@ -54,11 +54,57 @@ export function createScene(container, units, opts = {}) {
         new THREE.EdgesGeometry(geo),
         new THREE.LineBasicMaterial({ color: 0x1C2B26, transparent: true, opacity: 0.35 }));
       mesh.add(edges);
+      const brass = new THREE.LineSegments(
+        new THREE.EdgesGeometry(geo),
+        new THREE.LineBasicMaterial({ color: 0xA87E2F, transparent: true, opacity: 0.95 }));
+      brass.visible = false;                 // selection outline for mesh mode
+      mesh.add(brass);
       scene.add(mesh);
       meshes.set(b.unit, mesh);
+      brassOutlines.set(b.unit, brass);
     });
   };
   buildBoxes();
+
+  /* P6d photogrammetry skin — public/OTB-mesh.glb (built by tools/build-mesh-glb.py,
+     baked into this world frame via splat-align.json). When present, an in-pane
+     toggle swaps the colored massing for the captured mesh; boxes stay as
+     invisible raycast targets and selection becomes the brass wireframe.
+     Vertex colors carry the photo lighting, so the mesh renders unlit. */
+  let meshRoot = null, meshBtn = null, showMesh = false, selectedUnit = null;
+  function applyMeshMode() {
+    meshes.forEach(m => {
+      m.material.transparent = showMesh;
+      m.material.opacity = showMesh ? 0 : 1;
+      m.material.depthWrite = !showMesh;
+      m.children[0].visible = !showMesh;     // ink box edges only in massing mode
+    });
+    if (meshRoot) meshRoot.visible = showMesh;
+    if (meshBtn) meshBtn.textContent = showMesh ? "◧ Massing" : "🏗 Mesh";
+    setSelected(selectedUnit);
+  }
+  (async () => {
+    try {
+      const url = (import.meta.env?.BASE_URL || "/") + "OTB-mesh.glb";
+      const head = await fetch(url, { method: "HEAD" });
+      if (!head.ok || /text\/html/.test(head.headers.get("content-type") || "")) return;
+      const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
+      const gltf = await new GLTFLoader().loadAsync(url);
+      meshRoot = gltf.scene;
+      meshRoot.traverse(o => {
+        if (o.isMesh) o.material = new THREE.MeshBasicMaterial({ vertexColors: true });
+      });
+      meshRoot.visible = false;
+      scene.add(meshRoot);
+      meshBtn = document.createElement("button");
+      meshBtn.type = "button";
+      meshBtn.className = "mesh-toggle";
+      meshBtn.textContent = "🏗 Mesh";
+      meshBtn.onclick = () => { showMesh = !showMesh; applyMeshMode(); };
+      container.style.position = "relative";
+      container.appendChild(meshBtn);
+    } catch { /* no mesh shipped — massing only */ }
+  })();
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
@@ -82,11 +128,13 @@ export function createScene(container, units, opts = {}) {
   });
 
   function setSelected(unit) {
+    selectedUnit = unit;
     meshes.forEach((mesh, u) => {
       const on = u === unit;
-      mesh.material.emissive.set(on ? 0xA87E2F : 0x000000);
-      mesh.material.emissiveIntensity = on ? 0.5 : 0;
+      mesh.material.emissive.set(on && !showMesh ? 0xA87E2F : 0x000000);
+      mesh.material.emissiveIntensity = on && !showMesh ? 0.5 : 0;
     });
+    brassOutlines.forEach((o, u) => { o.visible = showMesh && u === unit; });
   }
 
   function setTheme(dark) {
@@ -119,6 +167,8 @@ export function createScene(container, units, opts = {}) {
     ro.disconnect();
     controls.dispose();
     meshes.forEach(m => { m.geometry.dispose(); m.material.dispose(); m.children.forEach(c => { c.geometry?.dispose(); c.material?.dispose(); }); });
+    if (meshRoot) meshRoot.traverse(o => { if (o.isMesh) { o.geometry.dispose(); o.material.dispose(); } });
+    if (meshBtn && meshBtn.parentNode) meshBtn.parentNode.removeChild(meshBtn);
     ground.geometry.dispose(); ground.material.dispose();
     renderer.dispose();
     if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);

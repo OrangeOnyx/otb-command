@@ -91,6 +91,8 @@
         <button class="chip" id="lens3d" data-lens="3d">◧ 3D</button>
         <button class="chip" id="lensSat" data-lens="sat">🛰 Satellite</button>
         <button class="chip" id="lensReal" data-lens="real">🎥 Reality</button>
+        <button class="chip" id="isoTrue" title="Toggle true height proportions (plat scale) vs presentation exaggeration">⇅ True heights</button>
+        <button class="chip" id="isoExport" title="Download the isometric as a standalone SVG">⤓ SVG</button>
         <div class="legend" id="spatialLegend"></div>
       </div>
       <div class="card plan-card">
@@ -179,6 +181,7 @@
 <aside class="drawer" id="drawer">
   <div class="dw-head" style="position:relative">
     <button class="dw-x" id="dwX" aria-label="Close">✕</button>
+    <img class="dw-logo" id="dwLogo" alt="" hidden>
     <div class="unit" id="dwUnit"></div>
     <h3 id="dwName"></h3>
     <span id="dwPill"></span>

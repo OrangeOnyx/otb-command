@@ -3,7 +3,7 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-08.
+Last updated: 2026-07-11.
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
@@ -19,8 +19,15 @@ attachments + global search + dark mode. 58 unit tests. ALL SHIPPED PHASES ARE D
    was RETRACTED** — after the georef refit, frames S1002330/28 locate on the NEIGHBOR's roof
    north of Patricia (the Skydio sweep covered neighbor roofs for mesh context). Courtesy
    heads-up to that neighbor = operator's call; no Belle repair scope from it.
-2. **Photogrammetry mesh** — RealityCapture w/ `Drone Footage RAW/OTB-3DGS-frames` + `OTB-mesh-photos-skydio`
-   (GPS'd) → decimated .glb → swap into Lens B's buildBoxes() seam.
+2. ~~Photogrammetry mesh~~ **SHIPPED 2026-07-11 (v1, $0, no RealityCapture)** — see P6d mesh note
+   below. Optional v2 upgrade: re-run the dense pass with the Skydio nadir set folded in
+   (better roofs) once RealityCapture/Metashape is available, or after the 15-min supplemental
+   flight in `README-TRAINING.md`.
+**SHIPPED 2026-07-11 (this session, all deployed):** A-2 polish (⇅ True-heights toggle on
+iso+3D · north arrow + 100′ scale bar on the iso · ⤓ standalone-SVG export) · tenant-logo
+thumbnails in unit drawer + R-1 (`npm run logo-thumbs`) · **P6d mesh in Lens B** (in-pane
+🏗 Mesh / ◧ Massing toggle) · v9 concept + stale Drive "(1)" duplicates moved to
+`G:\My Drive\00 OTB\_archive\` (operator empties at will).
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
@@ -196,6 +203,26 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   (16MB, SH1; gitignored but deployed — `.vercelignore` controls uploads now). Lazy GaussianSplats3D viewer
   (`src/lib/scenesplat.js`). RE-FLY/RETRAIN recipe in `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`.
   Postshot can be closed/uninstalled — nothing depends on it.
+- **P6d v3 — photogrammetry mesh in Lens B SHIPPED 2026-07-11 ($0, open pipeline)**: Lens B
+  (◧ 3D) now carries an in-pane **🏗 Mesh / ◧ Massing** toggle — the captured photoreal mesh
+  swaps in over the buildBoxes() seam; unit boxes stay as invisible raycast targets (click →
+  drawer, selection = brass wireframe), massing stays the default. NO RealityCapture needed:
+  COLMAP dense (`tools3dgs/run-dense-mesh.sh`: undistort → PatchMatch stereo ~40 min on the
+  4070 → 5.1M-pt fusion) on the SAME 121-frame solve as the splat, so `splat-align.json` bakes
+  the mesh straight into Lens-B world (alignment verified: `export/mesh-align-check.png`).
+  `npm run mesh-glb` (`tools/build-mesh-glb.py`) crops the FUSED CLOUD to the site first
+  (meshing the full cloud makes a Poisson balloon around the background — don't), Poisson d11,
+  decimates to 150k tris, vertex colors → `public/OTB-mesh.glb` (3 MB, gitignored, deploys
+  like the splat; mesh renders UNLIT — photo colors already carry the sun). Loader is
+  fail-soft: no glb → no toggle, massing only. Re-run mesh-glb after any dense re-run or
+  align re-fit. Known v1 limits: roofs thin (no nadir in the DJI set), vegetation blobs.
+- **A-2 polish SHIPPED 2026-07-11**: ⇅ True-heights chip (iso + Lens B swap between
+  presentation exaggeration ×1.7 and plat-true 1.8657 px/ft) · north arrow + 100′ scale bar
+  on the iso (plan-rotated: true north = +x; along an iso axis projected length = plan length,
+  so the bar is exact) · ⤓ SVG chip downloads a standalone A-2 isometric (fonts/colors inlined,
+  CSS vars resolved). Tenant logos: `npm run logo-thumbs` → `public/tenant-logos/` +
+  `src/data/logo-thumbs.json`; chips render in the unit-drawer header + R-1 tenant cells
+  (vacant rows skipped; sources stay vendored in `tools/brand-assets/tenant-logos/`).
 - **P6d v2 — splat↔world alignment SHIPPED + DEPLOYED 2026-07-08**: 🎥 Reality is now CLICKABLE
   (click a storefront → unit drawer; selection = brass wireframe; synced across sheets). The similarity
   transform (COLMAP frame → Lens-B world) was fitted COMPUTATIONALLY, no GPS: `tools/fit-splat-align.mjs`
@@ -226,8 +253,9 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   sets) + **330 thermal IR roof frames** — samples show membrane damage + a thermal hot spot
   (possible moisture): flag for roof-condition review / C-1 / Butcher Air conversation. Operator has
   Postshot installed (RTX 4070 SUPER local training).
-- Small deferreds: metric-height toggle on A-2, iso north/scale, static-SVG export of A-2, buyer-export trim,
-  Magnolia (121) lease swap, remaining Drive-doc links, custom domain + SMTP, B4 realtime.
+- Small deferreds: Magnolia (121) lease swap, remaining Drive-doc links, custom domain + SMTP,
+  B4 realtime. (A-2 metric-height/north/scale/SVG-export + logo thumbnails + buyer-export trim
+  all shipped — see above.)
 
 ### P6 · 2.5D + Spatial — **P6a + P6b SHIPPED 2026-07-03**
 - Spec `docs/superpowers/specs/2026-07-02-p6-2p5d-spatial-design.md`; plans `docs/superpowers/plans/2026-07-0{2-p6a-svg-isometric,3-p6b-webgl-3d-twin}.md`.
@@ -323,7 +351,7 @@ Three skills installed: `abdalla-brand-system` (router → per-entity `reference
 
 ### Other
 - **Floor plans — A-1 overlay LIVE 2026-06-20**: whole-center plan (`public/floorplan-center.png`, processed from `G:\…\Floor Plan - Whole Center.jpg` — exterior/parking knocked transparent, largest-component crop, rotated 180° to match A-1) renders under the unit boxes via **A-1 → Overlay → Floor plan**, registered to the unit envelope (`FAC` box in `plan.js`), with a **Unit-fill opacity slider** (auto-fades boxes to 40% when the overlay is on; labels go dark+halo). Per-unit floor-plan **links** also live in each unit drawer. Tuning preview tool: composite floor plan + unit rects offline (see chat).
-- **Still parked:** app logo thumbnails (drawer/directory; logos already vendored) · custom domain `command.ontheblvd.com` + custom SMTP for auth email · doc Drive URLs (above) · 2.5D/isometric viz (needs `docs/visuals-input-checklist`) · Magnolia (121) executed lease swap (Draft→Executed when provided).
+- **Still parked:** custom domain `command.ontheblvd.com` + custom SMTP for auth email · doc Drive URLs (above) · Magnolia (121) executed lease swap (Draft→Executed when provided). (Logo thumbnails + 2.5D viz shipped.)
 - **Title check (P0) — CLOSED 2026-06-27**: street = **Arnould Blvd** (operator-confirmed);
   recorded subdivision of record = **"Arnold Heights Subd. Ext. No. 1"** (distinct legal
   name, deliberately "Arnold" — not a variant to reconcile). App already uses Arnould

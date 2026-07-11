@@ -5,6 +5,7 @@ import { UNITS } from "../store.js";
 import { fmt$, fmt$0, pDate, fDate, esc } from "../lib/format.js";
 import { STATUS_META } from "../lib/colors.js";
 import recoveries from "../data/recoveries.json";
+import { logoUrl } from "../lib/logos.js";
 import { openDrawer } from "./drawer.js";
 
 let sortKey = "unit", sortDir = 1;
@@ -39,7 +40,9 @@ export function renderRoll() {
   rows.forEach(u => {
     const sm = STATUS_META[u.status], r = rec(u);
     h += '<tr data-u="' + u.unit + '"><td class="unitcell">' + u.unit + '</td>' +
-      '<td><div class="dba">' + esc(u.dba) + '</div><div class="legal">' + esc(u.legal || "") + '</div></td>' +
+      '<td><div class="dba">' + (u.status !== "vacant" && logoUrl(u.unit)
+        ? '<img class="dba-logo" src="' + logoUrl(u.unit) + '" alt="" loading="lazy">' : "") +
+        esc(u.dba) + '</div><div class="legal">' + esc(u.legal || "") + '</div></td>' +
       '<td class="num">' + u.sf.toLocaleString() + '</td>' +
       '<td class="num">' + psf(u.base) + '</td>' +
       '<td class="num">' + psf(r.cam) + '</td>' +

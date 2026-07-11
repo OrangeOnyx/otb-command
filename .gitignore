@@ -19,3 +19,6 @@ export-buyer/
 
 # splat (regenerable: node tools/convert-splat.mjs)
 public/OTB-splat.ksplat
+
+# photogrammetry mesh (regenerable: npm run mesh-glb)
+public/OTB-mesh.glb

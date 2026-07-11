@@ -18,7 +18,9 @@
     "pylon": "python tools/pylon.py",
     "plat": "python tools/plat.py",
     "extract-heights": "python tools/extract-heights.py",
-    "extract-georef": "python tools/extract-georef.py"
+    "extract-georef": "python tools/extract-georef.py",
+    "logo-thumbs": "python tools/make-logo-thumbs.py",
+    "mesh-glb": "python tools/build-mesh-glb.py"
   },
   "devDependencies": {
     "vite": "^7.1.0"
