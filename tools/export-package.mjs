@@ -205,6 +205,12 @@ ${hvacSection}## Covenants & operations notes
 - **Recorded instruments / key files:** ${directory.propertyDocuments.map(d => d.name + (d.ref && d.ref !== "—" ? " — " + d.ref : "")).join(" · ")}.
 ${NOFIN ? "" : `- **Service vendors on file (V-1 roster, from the AP vendor list):** ${vendors.filter(v => v.kind === "service").map(v => v.company).join(" · ")}. Full roster incl. payees in the data JSON.`}
 
+## Center performance (Jul-2025 marketing package — marketing-grade, non-financial)
+- 95% occupancy (industry benchmark cited 85%) · 88% tenant retention (industry 75–85%) · **14 businesses on the waiting list**.
+- Transformation story: ~50% → 95% occupancy since the late-2019 renovation.
+- Daily traffic 33,000+ vehicles · trade area ~1.1M people · I-10/I-49 hub position.
+- Source + conflict flags: docs/marketing-package-2025.md (package GLA/site-area figures are superseded by the audit-grade numbers above).
+
 ${NOFIN ? "" : `## Known anomalies (surfaced, unresolved — do not "fix")
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
 - Workbook: 101 SF 6,877 vs 6,677 · 117.5 SF 1,769 vs plat-implied 1,789 · 145 term-months "1572"${depositAnomaly}.
@@ -216,6 +222,8 @@ ${NOFIN ? "" : `## Known anomalies (surfaced, unresolved — do not "fix")
 - Co-tenancy mix: anchor deli, women's fashion cluster (Pink Paisley, JC Kate, Jordan Amanda, Clothing Loft), services (HotWorx, salons, nails, barber), medical (Cat Clinic, Upstream PT), financial (OUPAC, 1st Franklin, Fast Pass).
 - US Hwy 167 (Johnston St) exposure at the southern boundary; pylon sign at the Johnston-side corner.
 - Restaurant-capable inline space on the permitted side of the liquor line without invoking the waiver (139–149 run); waiver covers the rest.
+- 2025 revenue story (marketing-grade): $788,105 (2019) → $1,047,394 (Jul-2025 package) = 32.9% growth; app in-place EGI (Jun 2026) $1,080,773 — different as-of/measure, do not mix in one document.
+- Market lease-rate comp: $10–17/SF/yr NNN (LoopNet 2025, per the marketing package).
 `}`;
 writeFileSync(join(out, NOFIN ? "OTB-Property-Overview.md" : "OTB-Property-Dossier.md"), md);
 

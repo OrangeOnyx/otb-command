@@ -286,10 +286,12 @@ def variant_B():
         o.append('<text x="%.0f" y="%.0f" font-family="\'IBM Plex Mono\',monospace" font-size="10" font-weight="600" fill="%s">%s</text>'%(rx,ry,nc,u["unit"]))
         o.append('<text x="%.0f" y="%.0f" font-family="\'Public Sans\',sans-serif" font-size="10.5" fill="%s">%s</text>'%(rx+38,ry,nc,esc(nm[:22])))
     y=y0+half*20.5+16
-    o.append('<rect x="%d" y="%d" width="%d" height="64" fill="%s"/>'%(PX,y,PW,INK))
+    o.append('<rect x="%d" y="%d" width="%d" height="78" fill="%s"/>'%(PX,y,PW,INK))
     logo(o,PX+14,y+12,30,white=True)
     o.append('<text x="%d" y="%d" text-anchor="end" font-family="\'IBM Plex Mono\',monospace" font-size="11" font-weight="600" fill="#fff">P 337-769-1554 · info@ontheblvd.com</text>'%(PX+PW-14,y+26))
     o.append('<text x="%d" y="%d" text-anchor="end" font-family="\'IBM Plex Mono\',monospace" font-size="9.5" fill="#9aa694">ontheblvd.com</text>'%(PX+PW-14,y+44))
+    # 2025 performance strip (Jul-2025 marketing package; marketing-grade figures)
+    o.append('<text x="%d" y="%d" font-family="\'IBM Plex Mono\',monospace" font-size="8.5" font-weight="600" fill="#C9A55C">95%% OCCUPANCY · 88%% RETENTION · 14-BUSINESS WAITLIST · 33,000+ VPD</text>'%(PX+14,y+66))
     o.append('<text x="%d" y="%d" font-family="\'IBM Plex Mono\',monospace" font-size="8.5" fill="%s">%s</text>'%(64,H-16,SAGE,ATTRIB))
     return save(o,"OTB-poster-B-planroom.svg")
 
