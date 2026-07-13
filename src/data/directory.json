@@ -67,6 +67,14 @@
   ],
   "propertyDocuments": [
     {
+      "id": "pd:mktpkg2025",
+      "name": "Marketing package (Jul 2025, both editions)",
+      "type": "Marketing",
+      "ref": "docs/marketing-package-2025.md",
+      "link": "",
+      "note": "2025 stats package + older tenant brochure. Harvested facts + flagged conflicts (GLA 62,749 vs audited 62,883; 5 ac vs 4.84 ac) in the repo doc. Source PDF in Belle Shared Drive/Marketing."
+    },
+    {
       "id": "pd:roofbrief",
       "name": "Roof condition brief (Skydio survey 2025-10-15)",
       "type": "Report",
