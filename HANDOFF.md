@@ -31,6 +31,11 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
 7. **Smoke tests still unconfirmed:** attach a PDF to a K-1 row · 🛰 Satellite click · 🎥 Reality
    orbit · 🏗 Mesh toggle · ask AI-1 one authed question · 🔊 one reply · one lease-package
    assembly · one V-1 vendor-folder upload.
+   NOTE 2026-07-13: 🎥 Reality was BROKEN in prod since the 07-10 CSP (script-src lacked
+   'wasm-unsafe-eval' → GaussianSplats3D's WASM sorter blocked → infinite "Processing
+   splats…"). Fixed in vercel.json + deployed 07-13; A/B-verified locally against the
+   prod-exact header. Lesson: after CSP changes, smoke every WASM/worker surface
+   (splat lens), not just the login page.
 8. Decide canonical domain (ontheblvd.com per Apr-2026 brand doc vs shopontheblvd.com in the
    2025 package) before the next print run.
 
