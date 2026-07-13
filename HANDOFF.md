@@ -3,50 +3,63 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-11.
+Last updated: 2026-07-12.
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
-**State:** 12 sheets incl. A-2 Spatial (4 lenses, 🎥 Reality now CLICKABLE) + S-1 Owner Safe
-+ **AI-1 Concierge (P4)** + **V-1 Vendor Portal (P3)** — both SHIPPED 2026-07-08 — + doc
-attachments + global search + dark mode. 58 unit tests. ALL SHIPPED PHASES ARE DEPLOYED.
+**State:** 12 sheets, all deployed: D-1 · A-1 (now with 📍 asset pins) · A-2 Spatial (4 lenses;
+Lens B has 🏗 Mesh/◧ Massing toggle; 🎥 Reality clickable) · R-1 (tenant logos) · P-1 · C-1 ·
+T-1 · W-1 · K-1 · S-1 Safe · AI-1 Agent Desk (voice) · V-1 Vendor Portal. 78 unit tests.
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
-(CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — the 16MB splat rides in public/).
-**Open items, ranked:**
-1. **OPERATOR: call the roofer** — `docs/roof-condition-brief.md` (updated 2026-07-08): membrane
-   failure on the long-building roof (RTU row, ~101–109; frames S1002424/27/33), open to weather.
-   Register row on K-1 + action card on W-1 are live. **The "thermal moisture anomaly near 149"
-   was RETRACTED** — after the georef refit, frames S1002330/28 locate on the NEIGHBOR's roof
-   north of Patricia (the Skydio sweep covered neighbor roofs for mesh context). Courtesy
-   heads-up to that neighbor = operator's call; no Belle repair scope from it.
-2. ~~Photogrammetry mesh~~ **SHIPPED 2026-07-11 (v1, $0, no RealityCapture)** — see P6d mesh note
-   below. Optional v2 upgrade: re-run the dense pass with the Skydio nadir set folded in
-   (better roofs) once RealityCapture/Metashape is available, or after the 15-min supplemental
-   flight in `README-TRAINING.md`.
-**SHIPPED 2026-07-11 (this session, all deployed):** A-2 polish (⇅ True-heights toggle on
-iso+3D · north arrow + 100′ scale bar on the iso · ⤓ standalone-SVG export) · tenant-logo
-thumbnails in unit drawer + R-1 (`npm run logo-thumbs`) · **P6d mesh in Lens B** (in-pane
-🏗 Mesh / ◧ Massing toggle) · v9 concept + stale Drive "(1)" duplicates moved to
-`G:\My Drive\00 OTB\_archive\` (operator empties at will).
-**SITE-ASSET PINS (digital twin) SHIPPED + DEPLOYED 2026-07-11:** A-1 → Overlay → "📍 Assets"
-+ "＋ Pin": operator drops typed pins (💧 shutoff ⚡ meter 🧯 hydrant 🏛 column 🪑 bench
-🗑 can 💡 light 🪧 sign 📍 other) anywhere on the plan; click a pin → label/notes editor;
-owners see read-only pins. New persisted `features` layer (store → property_state → 
-Export/Import). Operator's mapping walk = drop a pin per shutoff/bench/can/column with a
-label. Deferred: pins on the 🛰 satellite lens (needs plan→geo transform reuse), photo per pin.
-NOTE: dev server moved to port 5199 (`.claude/launch.json`) — 5173 is held by another project.
-**ROOF ORTHOMOSAIC 2026-07-11:** `OTB-roof-ortho-2025-10-15.png` (3 cm/px, north-up, 91 MB)
-in `Drone Footage RAW/` + `G:\My Drive\00 OTB\` — direct-georeferenced from the Skydio set's
-XMP RTK poses (`tools3dgs/build-roof-ortho2.py`); annotate maintenance issues on it (it's the
-Oct-2025 baseline, pre-dating the current 101–109 membrane state). **ROOF SPLAT — CLOSED AS CAPTURE-LIMITED 2026-07-12:** exhaustive: COLMAP SfM (6 configs),
-Postshot SfM (operator ran it — fog), pose-injected triangulation from XMP RTK poses, 3DGS on
-true poses, and dense MVS on true poses (330 pts) ALL fail — the white membrane has no texture
-and the X10 zoom was used at two presets mid-flight. The ortho is that set's ceiling. The
-10-min RE-FLY RECIPE that fixes it is in `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`
-(one zoom, one altitude, 75–80%-overlap nadir grid + low RTU orbit); once flown, the scripted
-pipeline (`tools3dgs/build-roof-ortho2.py` + `build-posed-model.py` + Brush) yields both a
-gap-free ortho and the roof splat with zero manual SfM. Postshot's `roofsplat.ply` in
-Drone Footage RAW is fog — operator may delete.
+(CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — splat 16MB +
+mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
+another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
+
+### OPERATOR punch-list (nothing here is Claude-doable)
+1. **Call the roofer** — `docs/roof-condition-brief.md`: membrane failure, long-building RTU row
+   (~101–109), open to weather since ≤Oct-2025. K-1 register row + W-1 card live. (The "thermal
+   anomaly near 149" was RETRACTED — neighbor's roof.) Mark findings on the roof ortho.
+2. **Rotate BOTH API keys** (Anthropic + ElevenLabs, pasted in chat 2026-07-08) → providers'
+   consoles → Vercel Production env → redeploy.
+3. **Enable CAPTCHA** — Supabase Dashboard → Auth → Bot & Abuse Protection (no API for it).
+4. **10-min roof RE-FLY** (when the Skydio is next up) — recipe in
+   `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`; unlocks gap-free ortho + real roof
+   splat through the already-scripted pipeline.
+5. **Asset-pin walk** — A-1 → ＋ Pin: drop a pin per water shutoff/meter/bench/can/column.
+6. **Drag-drop blessed photos** — `Belle Shared Drive/Marketing/_BLESSED-2020-shoot/app-ready-2000px/`
+   → K-1 Site imagery + unit drawers (2 min).
+7. **Smoke tests still unconfirmed:** attach a PDF to a K-1 row · 🛰 Satellite click · 🎥 Reality
+   orbit · 🏗 Mesh toggle · ask AI-1 one authed question · 🔊 one reply · one lease-package
+   assembly · one V-1 vendor-folder upload.
+8. Decide canonical domain (ontheblvd.com per Apr-2026 brand doc vs shopontheblvd.com in the
+   2025 package) before the next print run.
+
+### CLAUDE next-action menu (say the word)
+- **Splice the approved 2026 end card** into the marketing video (ffmpeg; card + spec in
+  `Belle Shared Drive/Marketing/`; treatment A rendered and delivered 2026-07-12).
+- Tenant-spotlights photo folder (from the 334-frame review) · satellite-lens asset pins ·
+  photo-per-pin · COI tracking / vendor notifications · concierge thread-persistence polish ·
+  avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
+  Magnolia 121 lease swap (needs executed copy) · B4 realtime.
+
+### SHIPPED 2026-07-11/12 digest (details in sections below)
+A-2 polish (true-heights ⇅, north/scale, ⤓ SVG export) · tenant logo thumbs (drawer + R-1) ·
+**P6d photogrammetry mesh in Lens B** (`npm run mesh-glb`) · **site-asset pin layer** (A-1
+📍/＋ Pin, persisted `features` layer) · **roof orthomosaic** `OTB-roof-ortho-2025-10-15.png`
+(3 cm/px, RTK direct-georef, in Drone Footage RAW + G: Drive) · **roof splat CLOSED as
+capture-limited** (all SfM + pose-injected + MVS fail on the blank membrane + mixed zoom;
+Postshot `roofsplat.ply` = fog, deletable; re-fly recipe written) · marketing library curated
+(`_BLESSED-2020-shoot/`, 31 frames) · video end-card spec + draft card · **Jul-2025 marketing
+package harvested** (`docs/marketing-package-2025.md`, K-1 row pd:mktpkg2025; conflicts flagged:
+pkg GLA 62,749 vs audited 62,883, 5 ac vs 4.84) · 2025 story woven into dossier/buyer set/
+poster B + concierge context · fresh exports + poster SVG/PNG/PDF + LLM zip on G: Drive.
+
+### Note for the /graphify session (operator plans `graphify . --obsidian --wiki` on this repo)
+Exclude noise dirs: `node_modules/`, `dist/`, `export*/`, `marketing/`, `public/tenant-logos/`,
+`.vercel/`, binary blobs (`*.ksplat`, `*.glb`, `*.png` in public/). The knowledge-dense inputs:
+`CLAUDE.md`, `HANDOFF.md`, `docs/**` (incl. superpowers specs/plans), `src/lib/*.js` headers,
+`src/data/*.json`, `supabase/security-model.sql`, `tools/*.py|mjs` headers. Graph outputs should
+NOT be committed into this repo root — park them in `docs/graph/` or outside the repo.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
