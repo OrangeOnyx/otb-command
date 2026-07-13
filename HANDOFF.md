@@ -339,7 +339,13 @@ W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + 
 - **Owner proforma** (`npm run proforma` → `export/OTB-Proforma.xlsx`): live Excel model — real in-place income (EGI $1,080,773/yr), yellow OpEx cells = seeded estimates the owner overrides, formula-driven NOI + cap-rate value. Pending option: add vacancy/credit-loss line + stabilized (lease-up 131/133) scenario.
 
 ## OPEN — next session punch-list
-### Poster edits — DONE on B (2026-06-20)
+### Poster edits — DONE on B (2026-06-20; 2025-stats strip added 2026-07-12)
+2026-07-12: brass performance strip (95% occ · 88% retention · 14-business waitlist ·
+33,000+ VPD, from the Jul-2025 marketing package — see docs/marketing-package-2025.md)
+added inside B's contact bar; dossier + buyer set gained a "Center performance" section
+(non-financial in both; revenue story + $10–17 NNN comp in full dossier only); concierge
+context regenerated + deployed; fresh poster SVG/PNG/PDF + LLM export on G: Drive.
+### (original 2026-06-20 notes)
 All five original notes resolved on the chosen B variant: tenant DBAs off the boxes (number-only,
 turned 90° CCW + centered both axes); pylon at the surveyor 'SIGN' coord by Unit 101 (no leader line);
 Johnston label curves with the road, within the lane lines; boundary dashes thinned; OTB contact block
