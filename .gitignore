@@ -22,3 +22,8 @@ public/OTB-splat.ksplat
 
 # photogrammetry mesh (regenerable: npm run mesh-glb)
 public/OTB-mesh.glb
+
+# knowledge graph outputs (regenerable: /graphify from docs/graph; see HANDOFF graphify note)
+docs/graph/graphify-out/
+docs/graph/.graphify_*
+graphify-out/

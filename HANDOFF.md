@@ -54,12 +54,26 @@ package harvested** (`docs/marketing-package-2025.md`, K-1 row pd:mktpkg2025; co
 pkg GLA 62,749 vs audited 62,883, 5 ac vs 4.84) · 2025 story woven into dossier/buyer set/
 poster B + concierge context · fresh exports + poster SVG/PNG/PDF + LLM zip on G: Drive.
 
-### Note for the /graphify session (operator plans `graphify . --obsidian --wiki` on this repo)
-Exclude noise dirs: `node_modules/`, `dist/`, `export*/`, `marketing/`, `public/tenant-logos/`,
-`.vercel/`, binary blobs (`*.ksplat`, `*.glb`, `*.png` in public/). The knowledge-dense inputs:
-`CLAUDE.md`, `HANDOFF.md`, `docs/**` (incl. superpowers specs/plans), `src/lib/*.js` headers,
-`src/data/*.json`, `supabase/security-model.sql`, `tools/*.py|mjs` headers. Graph outputs should
-NOT be committed into this repo root — park them in `docs/graph/` or outside the repo.
+### Knowledge graph — BUILT 2026-07-13 (`/graphify --obsidian --wiki`)
+Lives in `docs/graph/graphify-out/` (gitignored; all regenerable): `graph.json` (572 nodes /
+1,206 edges / 35 communities, GraphRAG-ready) · `graph.html` (interactive) · `obsidian/`
+(607-note vault + graph.canvas — open `graphify-out/` as a vault to get wiki too) · `wiki/`
+(45 agent-crawlable articles) · `GRAPH_REPORT.md` (audit; every edge tagged
+EXTRACTED/INFERRED/AMBIGUOUS). Avg query ≈3.7k tokens vs ~104k naive (28×) — future sessions:
+answer "how does X relate to Y" from the graph before re-reading the repo
+(`/graphify query "..."` run from `docs/graph/`). **Update, don't rebuild:**
+`/graphify <repo> --update` after doc-heavy sessions (code-only changes = free AST pass).
+The corpus filter (noise exclusions per the old prep note) is encoded in
+`docs/graph/_detect.py`; the other `_*.py` there are the re-run pipeline. Traced finding
+saved into the graph: app render layer escapes through ONE chokepoint (`lib/format.js esc()`,
+14 importers) + six independent local esc() copies in tools/server contexts (7 places to
+patch an escaping bug). Stale root `graphify-out/` deleted 2026-07-13.
+**Auto-refresh hook INSTALLED 2026-07-13** (`.git/hooks/post-commit` — hooks aren't
+versioned; the file documents its own reinstall): every commit touching `.js/.mjs/.py/.sql/
+.html` re-runs the filtered AST pass in the background and rewrites graph.json/html/report,
+preserving the semantic (doc/image) layer and community labels (`docs/graph/_refresh.py` +
+`labels.json`). Do NOT use stock `graphify hook install` — it writes an unfiltered graph
+to the repo root. Log: `docs/graph/graphify-out/refresh.log`.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
