@@ -38,11 +38,15 @@ NOTE: dev server moved to port 5199 (`.claude/launch.json`) — 5173 is held by 
 **ROOF ORTHOMOSAIC 2026-07-11:** `OTB-roof-ortho-2025-10-15.png` (3 cm/px, north-up, 91 MB)
 in `Drone Footage RAW/` + `G:\My Drive\00 OTB\` — direct-georeferenced from the Skydio set's
 XMP RTK poses (`tools3dgs/build-roof-ortho2.py`); annotate maintenance issues on it (it's the
-Oct-2025 baseline, pre-dating the current 101–109 membrane state). NOTE: COLMAP SfM is
-DEGENERATE on this set (planar nadir + repetitive membrane + telephoto — 6 attempts audited);
-a Skydio-only roof SPLAT therefore needs either Postshot's own SfM (drag folder in, ~3 min
-operator test, license now owned) or a pose-injected COLMAP model built from the XMP RTK
-poses (session-sized job, not yet attempted).
+Oct-2025 baseline, pre-dating the current 101–109 membrane state). **ROOF SPLAT — CLOSED AS CAPTURE-LIMITED 2026-07-12:** exhaustive: COLMAP SfM (6 configs),
+Postshot SfM (operator ran it — fog), pose-injected triangulation from XMP RTK poses, 3DGS on
+true poses, and dense MVS on true poses (330 pts) ALL fail — the white membrane has no texture
+and the X10 zoom was used at two presets mid-flight. The ortho is that set's ceiling. The
+10-min RE-FLY RECIPE that fixes it is in `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`
+(one zoom, one altitude, 75–80%-overlap nadir grid + low RTU orbit); once flown, the scripted
+pipeline (`tools3dgs/build-roof-ortho2.py` + `build-posed-model.py` + Brush) yields both a
+gap-free ortho and the roof splat with zero manual SfM. Postshot's `roofsplat.ply` in
+Drone Footage RAW is fog — operator may delete.
 **Splat pipeline (owned, $0):** COLMAP (`C:/Users/adam/tools3dgs`) → Brush → `node tools/convert-splat.mjs`.
 Postshot license (operator buying) = marketing fly-through renders only; do NOT mix Skydio (Oct-2025)
 frames into the DJI hero splat (season mismatch → ghosting); Skydio-only roof splat = optional side project.
