@@ -3,7 +3,7 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-12.
+Last updated: 2026-07-14.
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
@@ -19,8 +19,13 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
 1. **Call the roofer** — `docs/roof-condition-brief.md`: membrane failure, long-building RTU row
    (~101–109), open to weather since ≤Oct-2025. K-1 register row + W-1 card live. (The "thermal
    anomaly near 149" was RETRACTED — neighbor's roof.) Mark findings on the roof ortho.
-2. **Rotate BOTH API keys** (Anthropic + ElevenLabs, pasted in chat 2026-07-08) → providers'
-   consoles → Vercel Production env → redeploy.
+2. **Key rotation — Anthropic DONE 2026-07-13** (new key verified live, swapped into Vercel
+   Production, redeployed; endpoints fail closed 401). Two loose ends: (a) **DISABLE the OLD
+   Anthropic key** at console.anthropic.com — new key doesn't revoke old; (b) **ElevenLabs
+   still pending** — rotate at elevenlabs.io, paste into Vercel dashboard env
+   `ELEVENLABS_API_KEY` (Production) YOURSELF (don't paste in chat — the 07-13 Anthropic key
+   went through chat again, transcript-exposed; re-rotate dashboard-only if that bothers you),
+   then tell Claude to redeploy.
 3. **Enable CAPTCHA** — Supabase Dashboard → Auth → Bot & Abuse Protection (no API for it).
 4. **10-min roof RE-FLY** (when the Skydio is next up) — recipe in
    `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`; unlocks gap-free ortho + real roof
@@ -46,6 +51,18 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   photo-per-pin · COI tracking / vendor notifications · concierge thread-persistence polish ·
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
+
+### SHIPPED 2026-07-13/14 digest
+**🎥 Reality lens prod hang FIXED + DEPLOYED** — the 07-10 CSP blocked GaussianSplats3D's
+WASM sorter (`script-src` lacked `'wasm-unsafe-eval'`); splat stalled forever at "Processing
+splats…" on the live site (dev sends no CSP header, so it only broke in prod). One-token
+vercel.json fix, A/B-verified against the prod-exact header (commit c15e9bc). Lesson encoded
+below: after CSP changes, smoke WASM/worker surfaces, not just the login page. ·
+**Anthropic key rotated** into Vercel Production + redeployed (see punch-list #2 for the two
+loose ends). · **Dev-server launch fixed**: `~/.claude/launch.json` (used when the session
+cwd is the home dir) was stale on port 5173 — now mirrors the repo config (5199,
+`--strictPort`, `autoPort:false`); an orphaned Vite on 5199 was killed. Keep both
+launch.json copies in sync.
 
 ### SHIPPED 2026-07-11/12 digest (details in sections below)
 A-2 polish (true-heights ⇅, north/scale, ⤓ SVG export) · tenant logo thumbs (drawer + R-1) ·
@@ -103,9 +120,9 @@ allowlist > pending) — the person's first magic link lands them straight in as
 parked in 'pending' shows in the same panel with a one-click "make owner". Revoke = ✕ (removes the
 pre-authorization; does not demote an existing profile — do that in Supabase if ever needed).
 Migration `owner_email_allowlist`; trigger logic verified with SQL (vendor/allowlist/stranger paths).
-**SECURITY:** the Anthropic key was pasted into a chat session on 2026-07-08 — rotate it at
-console.anthropic.com when convenient, then update Vercel env `ANTHROPIC_API_KEY` (Production)
-and redeploy. Key lives ONLY in Vercel env; never in the repo or client bundle.
+**SECURITY:** Anthropic key ROTATED 2026-07-13 (Vercel Production env updated + redeployed);
+disable the old key at console.anthropic.com if not already done. ElevenLabs rotation still
+pending. Key lives ONLY in Vercel env; never in the repo or client bundle.
 
 ## SECURITY AUDIT 2026-07-08 (multi-agent: server/RLS + client + correctness)
 **Overall posture GOOD** — the real boundary (Supabase RLS + `api/_auth.mjs` gate) fails closed and holds:
