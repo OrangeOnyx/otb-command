@@ -48,7 +48,14 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
-### SHIPPED 2026-07-13/14 digest
+### SHIPPED 2026-07-13/15 digest
+**🎥 Reality unit overlay (2026-07-15, operator ask)** — status-colored border on every unit
+hit box + camera-facing unit-number chip above each parapet; in-pane "▦ Units on/off" toggle
+(default on); selection still = brass wireframe (colored border yields to avoid z-fight).
+Pure seam `labelSpecs`/`inkOn` in splat-align.js (+2 tests → 80). DEPLOYED; prod chunk
+verified to carry it. Pixel check = operator (preview pane was occluded → 0 rAF, same
+throttling class as the 07-03 MapLibre lesson — splat lens can't be screenshot-verified
+in a hidden preview either).
 **🎥 Reality lens prod hang FIXED + DEPLOYED** — the 07-10 CSP blocked GaussianSplats3D's
 WASM sorter (`script-src` lacked `'wasm-unsafe-eval'`); splat stalled forever at "Processing
 splats…" on the live site (dev sends no CSP header, so it only broke in prod). One-token
