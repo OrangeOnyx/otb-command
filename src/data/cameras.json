@@ -1,0 +1,31 @@
+{
+ "source": "DW Spectrum cloud roster (system 'Belle Reality', read 2026-07-15) + 2021 install-map plat (Camera Options for Belle.pdf p.1). NVR: Digital Watchdog Blackjack Cube (DW-BJCUBE), DW Spectrum IPVMS, ONVIF/RTSP, LAN 10.10.10.0/24, server 192.168.1.9.",
+ "systemId": "97bad7e3-923e-433b-b6ee-4caffcc1f7b7",
+ "cloudBase": "https://dwspectrum.digital-watchdog.com",
+ "posNote": "pos = A-1 plan px (viewBox 0 0 1480 990). aimDeg: 0=+x (true north / Patricia), 90=+y (Arnould), 180=-x (Johnston), 270=-y (Marie Antoinette). All positions ESTIMATED from camera names + install map + daytime views — refine on an operator walk (drag-correct later).",
+ "cameras": [
+  { "id": "suite-101-old-brothers", "name": "Suite 101 Old Brothers", "ip": "10.10.10.101", "dwViewId": "90a16408-e22d-6e48-5602-7fc7fba1a1c8", "suite": "101", "pos": { "x": 168, "y": 302 }, "aimDeg": 135, "fovDeg": 100, "rangePx": 150, "zone": "storefront east end", "posConfidence": "estimated" },
+  { "id": "suite-101-parking", "name": "Suite 101 Parking", "ip": "10.10.10.105", "dwViewId": "cadf9c34-22c6-c636-a698-2ba5652c5e76", "suite": "101", "pos": { "x": 250, "y": 306 }, "aimDeg": 90, "fovDeg": 100, "rangePx": 165, "zone": "storefront row / main field", "posConfidence": "estimated" },
+  { "id": "suite-105-parking", "name": "Suite 105 Parking", "ip": "10.10.10.110", "dwViewId": "164d5e83-af87-2a97-4c88-c4f77b0d5df7", "suite": "105", "pos": { "x": 384, "y": 306 }, "aimDeg": 90, "fovDeg": 100, "rangePx": 165, "zone": "storefront row / main field", "posConfidence": "estimated" },
+  { "id": "suite-113-north", "name": "Suite 113 North", "ip": "10.10.10.106", "dwViewId": "a10d5ba5-697d-dd81-d0e7-1bc936263ab9", "suite": "113", "pos": { "x": 566, "y": 299 }, "aimDeg": 0, "fovDeg": 80, "rangePx": 210, "zone": "colonnade walkway, looking north (toward 131)", "posConfidence": "estimated" },
+  { "id": "suite-113-south", "name": "Suite 113 South", "ip": "10.10.10.108", "dwViewId": "b9c8f49c-4def-7fb9-3a17-b95048370aac", "suite": "113", "pos": { "x": 572, "y": 299 }, "aimDeg": 180, "fovDeg": 80, "rangePx": 210, "zone": "colonnade walkway, looking south (toward 101)", "posConfidence": "estimated" },
+  { "id": "suite-119-parking", "name": "Suite 119 Parking", "ip": "10.10.10.103", "dwViewId": "8811982b-06ea-eb11-1171-0ecbfa514079", "suite": "119", "pos": { "x": 748, "y": 306 }, "aimDeg": 90, "fovDeg": 100, "rangePx": 165, "zone": "storefront row / main field", "posConfidence": "estimated" },
+  { "id": "suite-131", "name": "Suite 131", "ip": "10.10.10.102", "dwViewId": "7ee69e9a-19a4-fcea-18e4-728e468972a8", "suite": "131", "pos": { "x": 1078, "y": 300 }, "aimDeg": 90, "fovDeg": 100, "rangePx": 150, "zone": "storefront west end", "posConfidence": "estimated" },
+  { "id": "suite-131-parking", "name": "Suite 131 Parking", "ip": "10.10.10.107", "dwViewId": "614045a7-856c-8e38-ce0e-dd05a8609aea", "suite": "131", "pos": { "x": 1092, "y": 308 }, "aimDeg": 45, "fovDeg": 100, "rangePx": 160, "zone": "Lot 6 west field / short-building walkway", "posConfidence": "estimated" },
+  { "id": "suite-131-back-north", "name": "Suite 131 Back North", "ip": "10.10.10.117", "dwViewId": "c8ccf93a-c0ad-ef44-2f5d-e3dda65ee00c", "suite": "131", "pos": { "x": 1082, "y": 128 }, "aimDeg": 0, "fovDeg": 90, "rangePx": 185, "zone": "rear M.A. row, looking north", "posConfidence": "estimated" },
+  { "id": "suite-131-back-south", "name": "Suite 131 Back South", "ip": "10.10.10.116", "dwViewId": "c1b9ee13-1c06-5f28-43f3-e45e270f2ff5", "suite": "131", "pos": { "x": 1076, "y": 128 }, "aimDeg": 180, "fovDeg": 90, "rangePx": 185, "zone": "rear M.A. row, looking south", "posConfidence": "estimated" },
+  { "id": "suite-135-back", "name": "Suite 135 Back", "ip": "10.10.10.113", "dwViewId": "507f8968-cf44-fc59-efde-0c336fe40fef", "suite": "135A/B", "pos": { "x": 1230, "y": 216 }, "aimDeg": 270, "fovDeg": 100, "rangePx": 130, "zone": "135 M.A. face / service-dumpster pad", "posConfidence": "estimated" },
+  { "id": "politics-parking", "name": "Politics Parking", "ip": "10.10.10.104", "dwViewId": "6e740a3c-8cd5-e9c7-dd68-98e5dd7bcf35", "suite": "135A", "pos": { "x": 1158, "y": 296 }, "aimDeg": 315, "fovDeg": 100, "rangePx": 150, "zone": "Lot 8 pocket (Patricia × M.A. corner) — 'Politics' = Sneaker Politics-era name for 135A/B", "posConfidence": "estimated" },
+  { "id": "jasons-deli-149", "name": "Jason's Deli Suite 149", "ip": "10.10.10.112", "dwViewId": "52d91661-34bf-0401-be5c-975807a85ef1", "suite": "149", "pos": { "x": 1150, "y": 560 }, "aimDeg": 180, "fovDeg": 100, "rangePx": 125, "zone": "149 patio seating", "posConfidence": "estimated" },
+  { "id": "jasons-deli-149-back", "name": "Jason's Deli Suite 149 Back", "ip": "10.10.10.114", "dwViewId": "127a0626-6a54-be8c-13f0-e2ad470f2db6", "suite": "149", "pos": { "x": 1313, "y": 565 }, "aimDeg": 45, "fovDeg": 100, "rangePx": 110, "zone": "149 rear — wood fence / freezer pad", "posConfidence": "estimated" },
+  { "id": "jasons-deli-149-parking", "name": "Jason's Deli Suite 149 Parking", "ip": "10.10.10.115", "dwViewId": "85bf00a3-50d3-fae2-7bd6-12fa779ce66b", "suite": "149", "pos": { "x": 1150, "y": 606 }, "aimDeg": 135, "fovDeg": 100, "rangePx": 175, "zone": "Arnould frontage row at the 149 corner", "posConfidence": "estimated" },
+  { "id": "johnston-street-parking", "name": "Johnston Street Parking", "ip": "10.10.10.109", "dwViewId": "dd8dd5f9-a4b6-15d1-05ab-7677bda9c93f", "suite": "101", "pos": { "x": 140, "y": 420 }, "aimDeg": 225, "fovDeg": 100, "rangePx": 175, "zone": "Johnston strip / pylon pocket", "posConfidence": "estimated" },
+  { "id": "server-cabinet", "name": "Server Cabinet", "ip": "10.10.10.111", "dwViewId": "b6ee9a45-ecb7-487a-de27-40ecd421b470", "suite": null, "pos": null, "aimDeg": null, "fovDeg": null, "rangePx": null, "zone": "interior — NVR cabinet self-watch", "interior": true, "posConfidence": "n/a" }
+ ],
+ "excluded": [
+  { "name": "IPC", "ip": "192.168.1.168", "why": "off-property (192.168.1.x LAN, not the 10.10.10.x camera VLAN)" },
+  { "name": "ipcamipc", "ip": "192.168.1.136", "why": "off-property" },
+  { "name": "WVCY3C", "ip": "192.168.1.54", "why": "off-property" },
+  { "name": "WVCY3C", "ip": "192.168.1.106", "why": "off-property" }
+ ]
+}

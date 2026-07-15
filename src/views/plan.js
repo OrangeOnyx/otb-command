@@ -7,12 +7,16 @@ import { fmt$0, pDate, fDate, esc, TODAY } from "../lib/format.js";
 import { NS, g, rect, text, renderPrims } from "../lib/svg.js";
 import { unitsWithAssets, onAssetChange, listAssets, revokeURL } from "../lib/assets.js";
 import { openDrawer } from "./drawer.js";
+import cameraRegistry from "../data/cameras.json";
+import { drawableCameras, frustumPath, dwViewUrl } from "../lib/cameras.js";
 
 let planMode = "status";
 let planScope = "main";
 let showFeatures = true;   // 📍 site-asset pins (features layer)
 let addPinMode = false;    // ＋ Pin: next plan click drops a pin
 let showPhotos = true; // 📷 badge on units that have photos/plans
+let showParking = true;  // 🅿 plat-traced stall striping (carved-out layer)
+let showCameras = false; // 🎥 CCTV mounts + view cones (registry: data/cameras.json)
 const overlays = { roof: false, signage: false }; // raster overlays (property-scope images)
 let showFacility = false; // whole-center floor-plan overlay (static, registered to the unit envelope)
 let overlayOpacity = 0.55;
@@ -50,7 +54,7 @@ export function drawPlan() {
 
   renderPrims(g(svg), geometry.layers.base);
   renderPrims(g(svg), geometry.layers.remoteLot);
-  renderPrims(g(svg), geometry.layers.parking);
+  if (showParking) renderPrims(g(svg, "parking-layer"), geometry.layers.parking);
 
   // raster overlay layer — below the unit rects so units stay interactive
   const overlayLayer = g(svg);
@@ -87,6 +91,48 @@ export function drawPlan() {
   paintBadges(badgeLayer);
 
   paintFeatures(g(svg, "feat-layer"));
+  paintCameras(g(svg, "cam-layer"));
+}
+
+/* ---- CCTV layer: mounts + view cones (registry: src/data/cameras.json) ---- */
+function paintCameras(layer) {
+  if (!showCameras) return;
+  drawableCameras(cameraRegistry.cameras).forEach(cam => {
+    const grp = document.createElementNS(NS, "g");
+    grp.setAttribute("class", "cam-pin");
+    const cone = document.createElementNS(NS, "path");
+    cone.setAttribute("d", frustumPath(cam));
+    cone.setAttribute("fill", "#A87E2F");
+    cone.setAttribute("fill-opacity", "0.10");
+    cone.setAttribute("stroke", "#A87E2F");
+    cone.setAttribute("stroke-opacity", "0.45");
+    cone.setAttribute("stroke-width", "0.8");
+    cone.setAttribute("stroke-dasharray", "4 3");
+    grp.appendChild(cone);
+    const pin = document.createElementNS(NS, "g");
+    pin.setAttribute("transform", "translate(" + cam.pos.x + "," + cam.pos.y + ")");
+    pin.innerHTML = '<circle r="9" fill="#1C2B26" stroke="#A87E2F" stroke-width="1.4"/>' +
+      '<text y="3.4" text-anchor="middle" font-size="9" style="pointer-events:none">🎥</text>';
+    grp.appendChild(pin);
+    grp.style.cursor = "pointer";
+    grp.addEventListener("click", e => {
+      e.stopPropagation();
+      window.open(dwViewUrl(cam, cameraRegistry), "_blank", "noopener");
+    });
+    grp.addEventListener("mousemove", e => showCamTT(e, cam));
+    grp.addEventListener("mouseleave", hideTT);
+    layer.appendChild(grp);
+  });
+}
+
+function showCamTT(e, cam) {
+  tt.innerHTML = '<div class="h">🎥 ' + esc(cam.name) + '</div>' +
+    '<div class="m">' + esc(cam.zone || "") + '</div>' +
+    '<div class="m">' + esc(cam.ip) + ' · click for live view' +
+    (cam.posConfidence === "estimated" ? ' · position estimated' : '') + '</div>';
+  tt.style.display = "block";
+  tt.style.left = Math.min(window.innerWidth - 280, e.clientX + 16) + "px";
+  tt.style.top = (e.clientY + 14) + "px";
 }
 
 /* ---- site-asset pins (digital-twin features layer) ---- */
@@ -236,6 +282,18 @@ export function initPlan() {
   if (photoChip) photoChip.onclick = () => {
     showPhotos = !showPhotos;
     photoChip.classList.toggle("on", showPhotos);
+    drawPlan();
+  };
+  const parkChip = document.querySelector('.plan-tools .chip[data-overlay="parking"]');
+  if (parkChip) parkChip.onclick = () => {
+    showParking = !showParking;
+    parkChip.classList.toggle("on", showParking);
+    drawPlan();
+  };
+  const camChip = document.querySelector('.plan-tools .chip[data-overlay="cameras"]');
+  if (camChip) camChip.onclick = () => {
+    showCameras = !showCameras;
+    camChip.classList.toggle("on", showCameras);
     drawPlan();
   };
   const opcVisible = () => { const opc = document.getElementById("overlayOpacity"); if (opc) opc.style.display = (overlays.roof || overlays.signage || showFacility) ? "" : "none"; };
