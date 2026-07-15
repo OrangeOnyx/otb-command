@@ -108,7 +108,9 @@ changes category. Encode from day one:
 5. **Watch item:** God's Eye View OSS repo drop (July 2026) — evaluate on release.
 
 ## Suggested build order (each independently shippable)
-Phase C1: camera registry + A-1/satellite/Lens B frusta layer (needs #1–3 above)
+Phase C1: camera registry + A-1/satellite/Lens B frusta layer — **SHIPPED 2026-07-15**
+(A-1 only; registry `src/data/cameras.json`; NVR = DW Blackjack Cube, DW Spectrum
+cloud system "Belle Reality"; positions estimated — operator walk to refine)
 Phase C2: de-warp + plat-homography per camera → `camera-align.json`
 Phase C3: parking occupancy counts → Supabase `activity` table → P-1/D-1 tiles
 Phase C4: overnight VLM night-watch → W-1 card drafts

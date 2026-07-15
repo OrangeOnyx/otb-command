@@ -48,6 +48,22 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
+### SHIPPED 2026-07-15 (part 2) — parking fix + CCTV Phase C1
+**Storefront parking corrected to plat (REV 12):** the 56-space row against the long
+building was drawn ANGLED since the original trace — plat + operator's daytime camera
+views prove head-on; all 57 ticks now perpendicular. Main-field herringbone verified
+plat-exact and untouched. **Parking carved out** into its own toggleable A-1 layer
+(🅿 chip, default on) + pure seam `src/lib/parking.js` — ready to re-project into
+satellite/Lens B later. **Phase C1 cameras SHIPPED:** `src/data/cameras.json` = the
+17-camera DW Spectrum roster (Blackjack Cube NVR, LAN 10.10.10.101–117, cloud system
+"Belle Reality" 97bad7e3…; 4 off-property 192.168.1.x cams excluded). A-1 🎥 Cameras
+chip (default off) draws mounts + brass view cones; click a camera → DW cloud live
+view. **ALL positions/aims ESTIMATED** (from names + the 2021 install-map plat in
+`Camera Options for Belle.pdf` + daytime grid) — refine on an operator walk.
+Full 4D roadmap: `docs/camera-4d-brief.md` (C2 de-warp/homography → C3 parking
+occupancy → C4 VLM night-watch → C5 timeline lens). +11 tests (91). DEPLOYED,
+prod bundle verified. Watch item: Bilawal Sidhu's "God's Eye View" OSS drop (July).
+
 ### SHIPPED 2026-07-13/15 digest
 **🎥 Reality unit overlay (2026-07-15, operator ask)** — status-colored border on every unit
 hit box + camera-facing unit-number chip above each parapet; in-pane "▦ Units on/off" toggle
