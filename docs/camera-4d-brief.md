@@ -107,6 +107,23 @@ changes category. Encode from day one:
 4. **Privacy stance:** confirm the aggregate-only rule above.
 5. **Watch item:** God's Eye View OSS repo drop (July 2026) — evaluate on release.
 
+## Cube access (decision 2026-07-15: Tailscale)
+The Blackjack Cube (Windows 10, DW Spectrum server, LAN 192.168.1.9 + camera VLAN
+10.10.10.x, Chrome Remote Desktop installed) is at the property; the 4070 build box
+is not. Access plan, in order:
+1. **Tailscale (chosen):** operator installs Tailscale on the Cube via a CRD session
+   (tailscale.com/download, sign in, done — free tier) and on the 4070 box. Result:
+   the Cube gets a stable 100.x address reachable from anywhere; frame pulls hit the
+   DW Spectrum server API (port 7001: RTSP `rtsp://<cube>:7001/<cameraId>`, JPEG
+   snapshots via `/ec2/cameraThumbnail`) with a **local DW viewer account the
+   operator creates** (Spectrum → Users → add, Viewer role; credentials go straight
+   into an env var / .env on the 4070 box — never into chat or the repo).
+   No port-forwarding, no firewall changes at the property.
+2. Fallback (works today, no install): DW cloud relay — snapshot/API calls relayed
+   through dwspectrum.digital-watchdog.com with cloud auth. Fine for 1 frame/min
+   C3 sampling; not for full-rate RTSP.
+3. CRD screen access = one-off configuration only (not a data path).
+
 ## Suggested build order (each independently shippable)
 Phase C1: camera registry + A-1/satellite/Lens B frusta layer — **SHIPPED 2026-07-15**
 (A-1 only; registry `src/data/cameras.json`; NVR = DW Blackjack Cube, DW Spectrum

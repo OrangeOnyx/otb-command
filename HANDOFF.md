@@ -48,7 +48,15 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
-### SHIPPED 2026-07-15 (part 2) — parking fix + CCTV Phase C1
+### SHIPPED 2026-07-15 (part 2) — parking fix + CCTV Phase C1 + drag-to-place
+**Drag-to-place cameras:** ✎ Adjust cams chip (operator-only) —
+drag pin = move, drag brass dot = re-aim, double-click = reset; corrections persist
+via the new store 'cameras' layer (localStorage + Supabase property_state + Export/
+Import; remote.js LAYERS updated) and merge over the seed via applyOverrides().
+Once the operator finishes the walk, bake overrides into cameras.json and clear.
+94 tests. DEPLOYED. **Cube access decision: Tailscale** on the Blackjack Cube via
+the operator's Chrome Remote Desktop (see camera-4d-brief §Cube access) → unlocks
+C3 frame pulls from the 4070 box.
 **Storefront parking corrected to plat (REV 12):** the 56-space row against the long
 building was drawn ANGLED since the original trace — plat + operator's daytime camera
 views prove head-on; all 57 ticks now perpendicular. Main-field herringbone verified
