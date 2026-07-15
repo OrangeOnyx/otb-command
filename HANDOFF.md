@@ -19,11 +19,9 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
 1. **Call the roofer** — `docs/roof-condition-brief.md`: membrane failure, long-building RTU row
    (~101–109), open to weather since ≤Oct-2025. K-1 register row + W-1 card live. (The "thermal
    anomaly near 149" was RETRACTED — neighbor's roof.) Mark findings on the roof ortho.
-2. **Key rotation — BOTH DONE 2026-07-14** (operator pasted both keys into the Vercel
-   dashboard; redeployed; site 200, concierge/voice/seed all fail closed 401). Remaining:
-   **disable the OLD keys** at console.anthropic.com + elevenlabs.io if not already done
-   (new keys don't revoke old ones). Key validity end-to-end = the two authed smoke taps
-   (ask AI-1 one question · tap 🔊 once).
+2. ~~Rotate both API keys~~ **CLOSED 2026-07-14**: both keys rotated via Vercel dashboard,
+   old keys disabled at both providers, redeployed, authed AI-1 question + 🔊 reply
+   confirmed both keys end-to-end (operator, 2026-07-14).
 3. **Enable CAPTCHA** — Supabase Dashboard → Auth → Bot & Abuse Protection (no API for it).
 4. **10-min roof RE-FLY** (when the Skydio is next up) — recipe in
    `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`; unlocks gap-free ortho + real roof
@@ -32,8 +30,8 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
 6. **Drag-drop blessed photos** — `Belle Shared Drive/Marketing/_BLESSED-2020-shoot/app-ready-2000px/`
    → K-1 Site imagery + unit drawers (2 min).
 7. **Smoke tests still unconfirmed:** attach a PDF to a K-1 row · 🛰 Satellite click · 🎥 Reality
-   orbit · 🏗 Mesh toggle · ask AI-1 one authed question · 🔊 one reply · one lease-package
-   assembly · one V-1 vendor-folder upload.
+   orbit · 🏗 Mesh toggle · one lease-package assembly · one V-1 vendor-folder upload.
+   (AI-1 authed question + 🔊 reply CONFIRMED 2026-07-14 during key rotation.)
    NOTE 2026-07-13: 🎥 Reality was BROKEN in prod since the 07-10 CSP (script-src lacked
    'wasm-unsafe-eval' → GaussianSplats3D's WASM sorter blocked → infinite "Processing
    splats…"). Fixed in vercel.json + deployed 07-13; A/B-verified locally against the
