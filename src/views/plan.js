@@ -8,7 +8,8 @@ import { NS, g, rect, text, renderPrims } from "../lib/svg.js";
 import { unitsWithAssets, onAssetChange, listAssets, revokeURL } from "../lib/assets.js";
 import { openDrawer } from "./drawer.js";
 import cameraRegistry from "../data/cameras.json";
-import { drawableCameras, frustumPath, dwViewUrl } from "../lib/cameras.js";
+import { drawableCameras, frustumPath, dwViewUrl, applyOverrides } from "../lib/cameras.js";
+import { getCamOverrides, setCamOverride, clearCamOverride } from "../store.js";
 
 let planMode = "status";
 let planScope = "main";
@@ -17,6 +18,7 @@ let addPinMode = false;    // ＋ Pin: next plan click drops a pin
 let showPhotos = true; // 📷 badge on units that have photos/plans
 let showParking = true;  // 🅿 plat-traced stall striping (carved-out layer)
 let showCameras = false; // 🎥 CCTV mounts + view cones (registry: data/cameras.json)
+let camEdit = false;     // ✎ Adjust: drag pins to move, drag the ◆ handle to re-aim
 const overlays = { roof: false, signage: false }; // raster overlays (property-scope images)
 let showFacility = false; // whole-center floor-plan overlay (static, registered to the unit envelope)
 let overlayOpacity = 0.55;
@@ -94,14 +96,20 @@ export function drawPlan() {
   paintCameras(g(svg, "cam-layer"));
 }
 
-/* ---- CCTV layer: mounts + view cones (registry: src/data/cameras.json) ---- */
+/* ---- CCTV layer: mounts + view cones (registry: src/data/cameras.json;
+   operator drag-corrections persist via the store 'cameras' layer) ---- */
 function paintCameras(layer) {
   if (!showCameras) return;
-  drawableCameras(cameraRegistry.cameras).forEach(cam => {
+  const svgEl = document.getElementById("plan");
+  const toPlan = e => new DOMPoint(e.clientX, e.clientY).matrixTransform(svgEl.getScreenCTM().inverse());
+  const cams = drawableCameras(applyOverrides(cameraRegistry.cameras, getCamOverrides()));
+  cams.forEach(cam => {
+    let { x, y } = cam.pos, aim = cam.aimDeg;
     const grp = document.createElementNS(NS, "g");
     grp.setAttribute("class", "cam-pin");
     const cone = document.createElementNS(NS, "path");
-    cone.setAttribute("d", frustumPath(cam));
+    const setCone = () => cone.setAttribute("d", frustumPath({ ...cam, pos: { x, y }, aimDeg: aim }));
+    setCone();
     cone.setAttribute("fill", "#A87E2F");
     cone.setAttribute("fill-opacity", "0.10");
     cone.setAttribute("stroke", "#A87E2F");
@@ -110,15 +118,70 @@ function paintCameras(layer) {
     cone.setAttribute("stroke-dasharray", "4 3");
     grp.appendChild(cone);
     const pin = document.createElementNS(NS, "g");
-    pin.setAttribute("transform", "translate(" + cam.pos.x + "," + cam.pos.y + ")");
+    const setPin = () => pin.setAttribute("transform", "translate(" + x + "," + y + ")");
+    setPin();
     pin.innerHTML = '<circle r="9" fill="#1C2B26" stroke="#A87E2F" stroke-width="1.4"/>' +
       '<text y="3.4" text-anchor="middle" font-size="9" style="pointer-events:none">🎥</text>';
     grp.appendChild(pin);
-    grp.style.cursor = "pointer";
-    grp.addEventListener("click", e => {
-      e.stopPropagation();
-      window.open(dwViewUrl(cam, cameraRegistry), "_blank", "noopener");
-    });
+    let aimHandle = null;
+    const handlePos = () => {
+      const a = aim * Math.PI / 180, r = (cam.rangePx || 150) * 0.8;
+      return [x + r * Math.cos(a), y + r * Math.sin(a)];
+    };
+    if (camEdit) {
+      aimHandle = document.createElementNS(NS, "circle");
+      const setHandle = () => { const [hx, hy] = handlePos(); aimHandle.setAttribute("cx", hx); aimHandle.setAttribute("cy", hy); };
+      setHandle();
+      aimHandle.setAttribute("r", "6");
+      aimHandle.setAttribute("fill", "#A87E2F");
+      aimHandle.setAttribute("stroke", "#F6F7F1");
+      aimHandle.setAttribute("stroke-width", "1.5");
+      aimHandle.style.cursor = "grab";
+      grp.appendChild(aimHandle);
+      // drag ◆ handle → re-aim (persist on release)
+      aimHandle.addEventListener("pointerdown", e => {
+        e.stopPropagation(); e.preventDefault();
+        aimHandle.setPointerCapture(e.pointerId);
+        const move = ev => {
+          const p = toPlan(ev);
+          aim = ((Math.atan2(p.y - y, p.x - x) * 180 / Math.PI) % 360 + 360) % 360;
+          setCone(); setHandle();
+        };
+        const up = () => {
+          aimHandle.removeEventListener("pointermove", move);
+          aimHandle.removeEventListener("pointerup", up);
+          setCamOverride(cam.id, { x, y, aimDeg: Math.round(aim) });
+        };
+        aimHandle.addEventListener("pointermove", move);
+        aimHandle.addEventListener("pointerup", up);
+      });
+      // drag pin → move mount (persist on release)
+      pin.style.cursor = "grab";
+      pin.addEventListener("pointerdown", e => {
+        e.stopPropagation(); e.preventDefault();
+        pin.setPointerCapture(e.pointerId);
+        const move = ev => {
+          const p = toPlan(ev);
+          x = Math.round(p.x * 10) / 10; y = Math.round(p.y * 10) / 10;
+          setPin(); setCone(); if (aimHandle) { const [hx, hy] = handlePos(); aimHandle.setAttribute("cx", hx); aimHandle.setAttribute("cy", hy); }
+        };
+        const up = () => {
+          pin.removeEventListener("pointermove", move);
+          pin.removeEventListener("pointerup", up);
+          setCamOverride(cam.id, { x, y, aimDeg: Math.round(aim) });
+        };
+        pin.addEventListener("pointermove", move);
+        pin.addEventListener("pointerup", up);
+      });
+      // double-click pin → drop the override, back to the seeded estimate
+      pin.addEventListener("dblclick", e => { e.stopPropagation(); clearCamOverride(cam.id); });
+    } else {
+      grp.style.cursor = "pointer";
+      grp.addEventListener("click", e => {
+        e.stopPropagation();
+        window.open(dwViewUrl(cam, cameraRegistry), "_blank", "noopener");
+      });
+    }
     grp.addEventListener("mousemove", e => showCamTT(e, cam));
     grp.addEventListener("mouseleave", hideTT);
     layer.appendChild(grp);
@@ -126,10 +189,12 @@ function paintCameras(layer) {
 }
 
 function showCamTT(e, cam) {
+  const hint = camEdit
+    ? "drag pin to move · drag dot to aim · double-click resets"
+    : "click for live view" + (cam.posConfidence === "estimated" ? " · position estimated" : "");
   tt.innerHTML = '<div class="h">🎥 ' + esc(cam.name) + '</div>' +
     '<div class="m">' + esc(cam.zone || "") + '</div>' +
-    '<div class="m">' + esc(cam.ip) + ' · click for live view' +
-    (cam.posConfidence === "estimated" ? ' · position estimated' : '') + '</div>';
+    '<div class="m">' + esc(cam.ip) + ' · ' + hint + '</div>';
   tt.style.display = "block";
   tt.style.left = Math.min(window.innerWidth - 280, e.clientX + 16) + "px";
   tt.style.top = (e.clientY + 14) + "px";
@@ -291,11 +356,23 @@ export function initPlan() {
     drawPlan();
   };
   const camChip = document.querySelector('.plan-tools .chip[data-overlay="cameras"]');
+  const camAdj = document.getElementById("camAdjust");
+  const camAdjVisible = () => { if (camAdj) camAdj.hidden = !showCameras || readOnlyRole(); };
   if (camChip) camChip.onclick = () => {
     showCameras = !showCameras;
     camChip.classList.toggle("on", showCameras);
+    if (!showCameras && camEdit) { camEdit = false; if (camAdj) camAdj.classList.remove("on"); }
+    camAdjVisible();
     drawPlan();
   };
+  if (camAdj) {
+    camAdjVisible();
+    camAdj.onclick = () => {
+      camEdit = !camEdit;
+      camAdj.classList.toggle("on", camEdit);
+      drawPlan();
+    };
+  }
   const opcVisible = () => { const opc = document.getElementById("overlayOpacity"); if (opc) opc.style.display = (overlays.roof || overlays.signage || showFacility) ? "" : "none"; };
   document.querySelectorAll('.plan-tools .chip[data-overlay="roof"],.plan-tools .chip[data-overlay="signage"]').forEach(chip => {
     chip.onclick = () => {
@@ -353,7 +430,7 @@ export function initPlan() {
 
   // selection highlight tracks drawer open/close from any sheet
   subscribe(type => {
-    if (type === "selection") drawPlan();
+    if (type === "selection" || type === "cameras") drawPlan();
     if (type === "features" || type === "import") { closeFeatureEditor(); drawPlan(); }
   });
   onAssetChange(() => drawPlan()); // repaint badges when photos are added/removed

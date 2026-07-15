@@ -29,6 +29,24 @@ export function frustumPath(cam, stepDeg = 10) {
   return "M" + x + " " + y + " L" + pts.join(" L") + " Z";
 }
 
+/* Merge operator drag-corrections (store 'cameras' layer: id → {x,y,aimDeg})
+   over the seeded estimates. Interior cameras are never overridden. */
+export function applyOverrides(cameras, overrides = {}) {
+  return cameras.map(c => {
+    const o = overrides[c.id];
+    if (!o || c.interior) return c;
+    const moved = Number.isFinite(o.x) && Number.isFinite(o.y);
+    const aimed = Number.isFinite(o.aimDeg);
+    if (!moved && !aimed) return c;
+    return {
+      ...c,
+      pos: moved ? { x: o.x, y: o.y } : c.pos,
+      aimDeg: aimed ? o.aimDeg : c.aimDeg,
+      posConfidence: "operator-set",
+    };
+  });
+}
+
 /* Deep link into the DW Spectrum cloud portal for one camera's live view. */
 export function dwViewUrl(cam, registry) {
   return registry.cloudBase + "/systems/" + registry.systemId + "/view/" + cam.dwViewId;

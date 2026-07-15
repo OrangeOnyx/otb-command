@@ -99,7 +99,18 @@ const cleanFeature = f => ({
   label: String(f.label || ""), note: String(f.note || ""), x: +f.x, y: +f.y
 });
 
-const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin(), ownerSheets: [...DEFAULT_OWNER_SHEETS], features: [] };
+/* cameras = operator drag-corrections to the CCTV layer (A-1): camera id →
+   { x, y, aimDeg } overriding the seeded ESTIMATES in data/cameras.json.
+   Positions are property facts — once a walk confirms them, bake back into
+   the seed and clear the overrides. */
+const cleanCamOverride = o => {
+  const r = {};
+  if (Number.isFinite(+o.x) && Number.isFinite(+o.y)) { r.x = +o.x; r.y = +o.y; }
+  if (Number.isFinite(+o.aimDeg)) r.aimDeg = ((+o.aimDeg % 360) + 360) % 360;
+  return r;
+};
+
+const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin(), ownerSheets: [...DEFAULT_OWNER_SHEETS], features: [], cameras: {} };
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -150,6 +161,13 @@ function applySnapshot(snap) {
     state.features = snap.features
       .filter(f => f && typeof f === "object" && f.id && Number.isFinite(+f.x) && Number.isFinite(+f.y))
       .map(cleanFeature);
+  if (snap.cameras && typeof snap.cameras === "object" && !Array.isArray(snap.cameras)) {
+    for (const [id, o] of Object.entries(snap.cameras)) {
+      if (!o || typeof o !== "object") continue;
+      const clean = cleanCamOverride(o);
+      if (Object.keys(clean).length) state.cameras[String(id)] = clean;
+    }
+  }
 }
 
 function persist() {
@@ -158,7 +176,7 @@ function persist() {
       version: STATE_VERSION, savedAt: new Date().toISOString(),
       comp: state.comp, notes: state.notes, actions: state.actions,
       contacts: state.contacts, documents: state.documents, financials: state.financials,
-      ownerSheets: state.ownerSheets, features: state.features
+      ownerSheets: state.ownerSheets, features: state.features, cameras: state.cameras
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -308,6 +326,19 @@ export function removeFeature(id) {
   persist(); emit("features", { id });
 }
 
+/* ---------- CCTV position overrides (A-1 camera layer) ---------- */
+export function getCamOverrides() { return { ...state.cameras }; }
+export function setCamOverride(id, patch) {
+  const clean = cleanCamOverride({ ...state.cameras[id], ...patch });
+  if (!Object.keys(clean).length) return;
+  state.cameras[String(id)] = clean;
+  persist(); emit("cameras", { id });
+}
+export function clearCamOverride(id) {
+  delete state.cameras[id];
+  persist(); emit("cameras", { id });
+}
+
 /* ---------- remote hydrate (Path B): load a server snapshot as the base ---------- */
 export function hydrateRemote(snap) {
   if (!snap || typeof snap !== "object") return;
@@ -319,6 +350,7 @@ export function hydrateRemote(snap) {
   state.financials = emptyFin();
   state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
   state.features = [];
+  state.cameras = {};
   applySnapshot(snap);
   persist(); // cache locally too
 }
@@ -336,7 +368,8 @@ export function exportJSON() {
     documents: state.documents,
     financials: state.financials,
     ownerSheets: state.ownerSheets,
-    features: state.features
+    features: state.features,
+    cameras: state.cameras
   }, null, 2);
 }
 export function importJSON(text) {
@@ -352,6 +385,7 @@ export function importJSON(text) {
   state.financials = emptyFin();
   state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
   state.features = [];
+  state.cameras = {};
   applySnapshot(snap);
   persist();
   emit("import");

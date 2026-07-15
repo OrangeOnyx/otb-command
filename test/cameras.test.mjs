@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { drawableCameras, frustumPath, dwViewUrl, validateRegistry } from "../src/lib/cameras.js";
+import { drawableCameras, frustumPath, dwViewUrl, validateRegistry, applyOverrides } from "../src/lib/cameras.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const registry = JSON.parse(readFileSync(join(root, "src/data/cameras.json"), "utf8"));
@@ -47,6 +47,30 @@ test("dwViewUrl deep-links into the Belle Reality cloud system", () => {
   const url = dwViewUrl(cam, registry);
   assert.equal(url,
     "https://dwspectrum.digital-watchdog.com/systems/97bad7e3-923e-433b-b6ee-4caffcc1f7b7/view/a10d5ba5-697d-dd81-d0e7-1bc936263ab9");
+});
+
+test("applyOverrides: drag-corrections replace pos/aim and mark operator-set", () => {
+  const out = applyOverrides(registry.cameras, { "suite-113-north": { x: 600, y: 280, aimDeg: 10 } });
+  const c = out.find(c => c.id === "suite-113-north");
+  assert.deepEqual(c.pos, { x: 600, y: 280 });
+  assert.equal(c.aimDeg, 10);
+  assert.equal(c.posConfidence, "operator-set");
+  // untouched cameras pass through by reference (no churn)
+  assert.equal(out.find(c => c.id === "suite-119-parking"), registry.cameras.find(c => c.id === "suite-119-parking"));
+});
+
+test("applyOverrides: aim-only override keeps the seeded position", () => {
+  const seed = registry.cameras.find(c => c.id === "suite-131");
+  const out = applyOverrides(registry.cameras, { "suite-131": { aimDeg: 120 } });
+  const c = out.find(c => c.id === "suite-131");
+  assert.deepEqual(c.pos, seed.pos);
+  assert.equal(c.aimDeg, 120);
+});
+
+test("applyOverrides: interior cameras and empty overrides are untouched", () => {
+  const out = applyOverrides(registry.cameras, { "server-cabinet": { x: 1, y: 1, aimDeg: 0 } });
+  assert.equal(out.find(c => c.id === "server-cabinet").pos, null);
+  assert.deepEqual(applyOverrides(registry.cameras), registry.cameras);
 });
 
 test("registry excludes the four off-property 192.168.1.x cameras", () => {
