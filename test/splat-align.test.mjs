@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { qMul, qRotate, qFromAxisAngle, qBetween, levelQuat, applyAlign, composeAlign, realityBoxes, TRUE_FT_WORLD } from "../src/lib/splat-align.js";
+import { qMul, qRotate, qFromAxisAngle, qBetween, levelQuat, applyAlign, composeAlign, realityBoxes, labelSpecs, inkOn, LABEL_LIFT_FT, TRUE_FT_WORLD } from "../src/lib/splat-align.js";
 import { WORLD, FT_WORLD } from "../src/lib/scene3d-layout.js";
 
 const close = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) < eps, a + " !~ " + b);
@@ -55,4 +55,25 @@ test("realityBoxes uses true-proportion heights (no Lens-B exaggeration)", () =>
   assert.ok(TRUE_FT_WORLD < FT_WORLD);             // flatter than Lens B
   close(boxes[0].w, 100 * WORLD, 1e-12);           // plan scale unchanged
   close(boxes[0].y, boxes[0].h / 2, 1e-12);        // rests on ground
+});
+
+test("inkOn flips dark on light fills, light on status greens", () => {
+  assert.equal(inkOn("#E7E9E0"), "#1C2B26");       // vacant near-white → ink
+  assert.equal(inkOn("#2F6B4F"), "#F6F7F1");       // active green → paper
+  assert.equal(inkOn("#1E4F3C"), "#F6F7F1");       // anchor
+  assert.equal(inkOn("bogus"), "#F6F7F1");         // malformed → safe default
+});
+
+test("labelSpecs floats the chip LABEL_LIFT_FT above the box top", () => {
+  const units = [{ unit: "149", x: 0, y: 0, w: 100, h: 50, heightFt: 23.6 }];
+  const { boxes } = realityBoxes(units);
+  const [s] = labelSpecs(boxes, () => "#1E4F3C");
+  assert.equal(s.unit, "149");
+  assert.equal(s.color, "#1E4F3C");
+  assert.equal(s.ink, "#F6F7F1");
+  close(s.x, boxes[0].x, 1e-12);
+  close(s.z, boxes[0].z, 1e-12);
+  close(s.y, boxes[0].y + boxes[0].h / 2 + LABEL_LIFT_FT * TRUE_FT_WORLD, 1e-12);
+  // no color resolved → slate fallback
+  assert.equal(labelSpecs(boxes, () => undefined)[0].color, "#5F6E64");
 });

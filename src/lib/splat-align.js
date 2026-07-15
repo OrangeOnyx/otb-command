@@ -19,6 +19,28 @@ export function realityBoxes(units) {
   return layout3d(rects, heightFt, { ftWorld: TRUE_FT_WORLD });
 }
 
+/* Reality-lens unit overlay (status-colored borders + number chips) — pure
+   placement/color math consumed by scenesplat.js. Chips float LABEL_LIFT_FT
+   above each box top; ink flips dark on light fills (vacant #E7E9E0). */
+export const LABEL_LIFT_FT = 5;
+
+export function inkOn(hex) {
+  const h = String(hex).replace("#", "");
+  if (h.length < 6) return "#F6F7F1";
+  const [r, g, b] = [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) > 0.55 ? "#1C2B26" : "#F6F7F1";
+}
+
+export function labelSpecs(boxes, colorOf) {
+  return boxes.map(b => {
+    const color = colorOf(b.unit) || "#5F6E64";
+    return {
+      unit: b.unit, color, ink: inkOn(color),
+      x: b.x, y: b.y + b.h / 2 + LABEL_LIFT_FT * TRUE_FT_WORLD, z: b.z,
+    };
+  });
+}
+
 /* ── quaternions [x,y,z,w] ────────────────────────────────────── */
 export function qMul(a, b) {
   const [ax, ay, az, aw] = a, [bx, by, bz, bw] = b;
