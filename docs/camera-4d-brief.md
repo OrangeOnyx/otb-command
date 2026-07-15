@@ -107,7 +107,19 @@ changes category. Encode from day one:
 4. **Privacy stance:** confirm the aggregate-only rule above.
 5. **Watch item:** God's Eye View OSS repo drop (July 2026) — evaluate on release.
 
-## Cube access (decision 2026-07-15: Tailscale)
+## Cube access — LIVE 2026-07-15
+Tailscale installed on both ends same day (Cube = `dw-cube` **100.73.185.15**,
+this box = `belle-lenovo-legion`). Verified from here: ping 53 ms;
+`/api/moduleInformation` answers (system "Belle Reality", protoVersion 5107);
+**REST v2 confirmed** — and `/rest/v2/system/info` device GUIDs are IDENTICAL to
+the `dwViewId` GUIDs in cameras.json (one key joins cloud links + server API).
+Collector scaffold: `npm run cube-frames` (`tools/cube-frames.mjs`) — one JPEG
+per exterior camera into `capture/YYYY-MM-DD/`, `--loop 60` for sampling.
+REMAINING (operator, 2 min): create a LOCAL Viewer user in DW Spectrum on the
+Cube and drop it in `~/.otb-cube.env` (CUBE_USER= / CUBE_PASS=) — the script
+prints these exact instructions when creds are missing.
+
+## Original access plan (kept for reference; decision was #1)
 The Blackjack Cube (Windows 10, DW Spectrum server, LAN 192.168.1.9 + camera VLAN
 10.10.10.x, Chrome Remote Desktop installed) is at the property; the 4070 build box
 is not. Access plan, in order:

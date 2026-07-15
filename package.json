@@ -20,7 +20,8 @@
     "extract-heights": "python tools/extract-heights.py",
     "extract-georef": "python tools/extract-georef.py",
     "logo-thumbs": "python tools/make-logo-thumbs.py",
-    "mesh-glb": "python tools/build-mesh-glb.py"
+    "mesh-glb": "python tools/build-mesh-glb.py",
+    "cube-frames": "node tools/cube-frames.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0"

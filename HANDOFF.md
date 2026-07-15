@@ -54,9 +54,11 @@ drag pin = move, drag brass dot = re-aim, double-click = reset; corrections pers
 via the new store 'cameras' layer (localStorage + Supabase property_state + Export/
 Import; remote.js LAYERS updated) and merge over the seed via applyOverrides().
 Once the operator finishes the walk, bake overrides into cameras.json and clear.
-94 tests. DEPLOYED. **Cube access decision: Tailscale** on the Blackjack Cube via
-the operator's Chrome Remote Desktop (see camera-4d-brief §Cube access) → unlocks
-C3 frame pulls from the 4070 box.
+94 tests. DEPLOYED. **Cube access LIVE (Tailscale):** dw-cube = 100.73.185.15,
+DW Spectrum REST v2 verified from this box (device GUIDs = registry dwViewIds).
+Collector ready: `npm run cube-frames` (--loop 60 = C3 sampling). Blocked only on
+the operator creating a LOCAL Viewer user in DW Spectrum → `~/.otb-cube.env`
+(CUBE_USER=/CUBE_PASS=). Do NOT commit creds; script self-documents.
 **Storefront parking corrected to plat (REV 12):** the 56-space row against the long
 building was drawn ANGLED since the original trace — plat + operator's daytime camera
 views prove head-on; all 57 ticks now perpendicular. Main-field herringbone verified
