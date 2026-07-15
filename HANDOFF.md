@@ -19,13 +19,11 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
 1. **Call the roofer** — `docs/roof-condition-brief.md`: membrane failure, long-building RTU row
    (~101–109), open to weather since ≤Oct-2025. K-1 register row + W-1 card live. (The "thermal
    anomaly near 149" was RETRACTED — neighbor's roof.) Mark findings on the roof ortho.
-2. **Key rotation — Anthropic DONE 2026-07-13** (new key verified live, swapped into Vercel
-   Production, redeployed; endpoints fail closed 401). Two loose ends: (a) **DISABLE the OLD
-   Anthropic key** at console.anthropic.com — new key doesn't revoke old; (b) **ElevenLabs
-   still pending** — rotate at elevenlabs.io, paste into Vercel dashboard env
-   `ELEVENLABS_API_KEY` (Production) YOURSELF (don't paste in chat — the 07-13 Anthropic key
-   went through chat again, transcript-exposed; re-rotate dashboard-only if that bothers you),
-   then tell Claude to redeploy.
+2. **Key rotation — BOTH DONE 2026-07-14** (operator pasted both keys into the Vercel
+   dashboard; redeployed; site 200, concierge/voice/seed all fail closed 401). Remaining:
+   **disable the OLD keys** at console.anthropic.com + elevenlabs.io if not already done
+   (new keys don't revoke old ones). Key validity end-to-end = the two authed smoke taps
+   (ask AI-1 one question · tap 🔊 once).
 3. **Enable CAPTCHA** — Supabase Dashboard → Auth → Bot & Abuse Protection (no API for it).
 4. **10-min roof RE-FLY** (when the Skydio is next up) — recipe in
    `Drone Footage RAW/OTB-3DGS-frames/README-TRAINING.md`; unlocks gap-free ortho + real roof
