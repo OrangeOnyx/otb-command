@@ -14,6 +14,8 @@ import { CONTEXT } from "./_context.mjs";
 import { requireOwnerOrOperator, supaJson, underDailyCap } from "./_auth.mjs";
 import { buildMessages, digestState } from "../src/lib/concierge.js";
 import { LEASE_TOOL, buildProposalHTML, buildOwnerSummaryHTML, packageFileName } from "../src/lib/lease.js";
+import { CALC_TOOL, runCalc, calcFallback } from "../src/lib/calc/index.js";
+import { collectKnownNumbers, validateNumbers } from "../src/lib/calc/guardrail.js";
 import units from "../src/data/units.json" with { type: "json" };
 import recoveries from "../src/data/recoveries.json" with { type: "json" };
 import hvac from "../src/data/hvac.json" with { type: "json" };
@@ -28,13 +30,14 @@ Rules:
 - Ground every answer in the property dossier below and the <live_state> block (when present). Live state supersedes the dossier where they conflict.
 - Audit-grade facts are immutable: GLA 62,883 SF, 27 units, parking variance 99-11797 (324 provided / 344 required), street "Arnould Blvd", recorded subdivision "Arnold Heights Subd. Ext. No. 1" (deliberately "Arnold" — never "correct" it).
 - Never invent numbers. If a figure is not in your context, say so and point to the sheet that holds it (R-1 rent roll, P-1 financial, C-1 compliance, T-1 dates, W-1 actions, K-1 directory, S-1 owner safe, V-1 vendors, A-1/A-2 plans).
+- Never do arithmetic yourself. For deal comparisons (NER), CAM gross-up, Louisiana eviction sequencing, or KPI math, call the run_calc tool and narrate ONLY the numbers it returns — your reply is validated against the calculator output and withheld if figures don't trace.
 - Known anomalies are surfaced-not-fixed; if asked about them, explain the conflict rather than resolving it.
 - Executive register: answer first, brief support after. No filler.`;
 
 const AGENTS = {
   concierge: {
     persona: `You are the property CONCIERGE — grounded Q&A across the whole record.`,
-    tools: [],
+    tools: [CALC_TOOL],
   },
   leasing: {
     persona: `You are the LEASING AGENT for On The Boulevard.
@@ -42,14 +45,14 @@ const AGENTS = {
 - Screen every prospect against: the exclusive-use watch (HotWorx 129 vs C. Wolf 135A), the liquor line (restaurant/alcohol uses — say which side the unit is on), and parking variance 99-11797 (floor space limited to available parking).
 - When the operator asks you to assemble/prepare/send a lease package, collect the required terms conversationally, confirm them in one summary line, then call assemble_lease_package. 'proposal' is the tenant-facing package; 'owner_summary' is the internal review form. Never call the tool with terms the operator has not confirmed. After the tool returns, tell the operator the package is ready and that the buttons below the message open or email it.
 - Every generated document is a DRAFT subject to legal review — say so.`,
-    tools: [LEASE_TOOL],
+    tools: [LEASE_TOOL, CALC_TOOL],
   },
   manager: {
+    tools: [CALC_TOOL],
     persona: `You are the PROPERTY MANAGER'S desk — operations, maintenance, compliance, tenants, vendors.
 - HVAC: per-unit tenant splits are in the dossier's HVAC table; Jason's Deli §9.01 requires monthly PM with Butcher Air Conditioning. The V-1 vendor roster holds service vendors (roofer: Grizzly Roofing / Shingle Solutions; exterminator: J&J; landscaping: Rotolo; plumbing, electrical, security are all on file).
-- Open items you should know: roof membrane failure on the long-building RTU row (~101–109, roofer walk pending); holdovers 105/109 highest priority.
+- Open items you should know: roof membrane failure on the long-building RTU row (~101–109, roofer walk pending). NO holdovers as of Jul 2026 — all five renewed per the owner-corrected rent roll; nearest expiration is Clothing Loft (115-117) on 9/30/26.
 - Draft tenant notices/letters in a welcoming, local, professional voice (Helvetica-plain business style; sign as Adam Anthony Abdalla, Property Manager; include "Managed by Orange Ocean, LLC on behalf of Belle Realty of Lafayette, LLC."). Deliver drafts in the chat; they are drafts for the operator to send.`,
-    tools: [],
   },
 };
 
@@ -149,9 +152,17 @@ export default async function handler(req, res) {
   const system = [{ type: "text", text: agent.persona + "\n\n" + CORE + "\n\nThe dossier:\n\n" + CONTEXT, cache_control: { type: "ephemeral" } }];
   const packages = [];
   let full = "";
+  // Numeric guardrail (split by stakes): chat streams live, but once run_calc
+  // has produced figures, every later round is BUFFERED and validated against
+  // the calculator output before the operator sees it — fail closed, never
+  // fabricated numbers (donor: belle-realty-pwa synth-validator, spec §385).
+  let calcKnown = null;
+  const calcFallbacks = [];
   try {
     let loop = [...msgs];
     for (let round = 0; round < 4; round++) {
+      let roundText = "";
+      const buffered = calcKnown !== null;
       const stream = client.messages.stream({
         model: "claude-opus-4-8",
         max_tokens: 2500,
@@ -161,8 +172,22 @@ export default async function handler(req, res) {
         tools: agent.tools,
         messages: loop,
       });
-      stream.on("text", t => { full += t; res.write(t); });
+      stream.on("text", t => {
+        if (buffered) roundText += t;
+        else { full += t; res.write(t); }
+      });
       const final = await stream.finalMessage();
+      if (buffered && roundText) {
+        const v = validateNumbers(roundText, calcKnown);
+        let outText = roundText;
+        if (!v.passed) {
+          console.warn("guardrail failed closed:", agentKey, "unverified:", v.hallucinated.join(", "));
+          outText = "⚠ I withheld my draft answer — it contained figures that don't trace to the calculator." +
+            (calcFallbacks.length ? "\n\n" + calcFallbacks.join("\n") : "") +
+            "\n\nAsk again and I'll re-run the numbers.";
+        }
+        full += outText; res.write(outText);
+      }
       if (final.stop_reason !== "tool_use") {
         if (final.stop_reason === "refusal" || (!full && !packages.length)) {
           const msg = "I can't help with that request — ask me about the property.";
@@ -173,6 +198,19 @@ export default async function handler(req, res) {
       const results = [];
       for (const block of final.content.filter(b => b.type === "tool_use")) {
         let out;
+        if (block.name === "run_calc") {
+          out = runCalc(block.input);
+          if (out.ok) {
+            // Ground later narration in the calc output AND the model's own
+            // inputs (which echo dossier/operator figures legitimately).
+            const add = collectKnownNumbers(out, block.input);
+            calcKnown = calcKnown ? new Set([...calcKnown, ...add]) : add;
+            const fb = calcFallback(out);
+            if (fb) calcFallbacks.push(fb);
+          }
+          results.push({ type: "tool_result", tool_use_id: block.id, content: JSON.stringify(out) });
+          continue;
+        }
         if (block.name !== "assemble_lease_package") out = { ok: false, error: "unknown tool" };
         else if (gate.role !== "operator") out = { ok: false, error: "Lease assembly is operator-only." };
         else out = await runLeaseTool(block.input, gate.token);

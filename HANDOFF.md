@@ -66,6 +66,25 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
+### SHIPPED 2026-07-16 (part 2) — calc engines + numeric guardrail in AI-1 (PWA harvest #1)
+AI-1 agents now carry a **run_calc** tool (all three personas): deterministic engines
+ported from belle-realty-pwa @ 19f7c06 into the pure seam `src/lib/calc/` — **NER
+deal comparison** (retain-vs-replace / blend-and-extend / free-rent-vs-TI, pairwise
+deltas + asset value at cap), **CAM gross-up** (variable-only to 95%, never grosses
+down, Exhibit-C methodology line), **Louisiana eviction sequencer** (CCP 4701→4733,
+waiver/acceptance-of-rent/bankruptcy/self-help traps, 200% holdover math), **monthly
+KPI** (NOI/occupancy/collections with precomputed MoM direction words). **Numeric
+guardrail** (`src/lib/calc/guardrail.js`, donor synth-validator M1/M2): once a calc
+runs, later rounds are BUFFERED server-side and every $/%/decimal must trace to calc
+output (≤0.5% tolerance; years/CCP articles/≤12 ints ignored) — FAILS CLOSED, replying
+with the engines' own deterministic summaries instead. Chat without calcs streams
+live as before. Manager persona stale-holdover line fixed. +26 tests (120).
+Smoke test (operator): ask 🤝 Leasing "compare retaining a tenant at $17 vs replacing
+at $20 with 3 months free and $10 TI, 5-yr term, 1,917 SF, 7.5% cap".
+NEXT HARVESTS QUEUED: owner-brief auto-trigger (Vercel cron) → event-sourced
+compliance + heat-map lenses (otb-ops) → ledger-lite → capex/insurance/OCR engines
+(when their data surfaces exist) → e-sign/tenant-portal schemas.
+
 ### SHIPPED 2026-07-16 — SOT reconciliation (owner-corrected rent roll)
 **All five holdovers RESOLVED** (105→3/31/29 · 109→9/30/28 · 117.5→2/28/29 · 119→2/28/27 ·
 143→1/31/31), Upstream 145 signed $14.95 base / $19.95 total / $3,187.01 mo, Magnolia 121
