@@ -1,0 +1,3 @@
+exception_id,severity,subject,description,recommended_system_behavior
+exception_101_103_the_pink_paisley_llc_monthly_variance,accepted_exception,"The Pink Paisley, LLC 101-103",Stated monthly rent differs from PSF formula by -4.84. Owner retained stated rent after Unit 103 SF correction.,Store both stated and calculated amounts. Default billing to stated monthly amount.
+exception_119_half_cat_clinic_of_lafayette_monthly_variance,accepted_exception,Cat Clinic of Lafayette 119 1/2,Stated monthly rent differs from PSF formula by 0.01. Owner retained stated rent after Unit 103 SF correction.,Store both stated and calculated amounts. Default billing to stated monthly amount.

@@ -59,8 +59,10 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - Anchor: Jason's Deli (149) — §9.01 requires monthly HVAC PM contract with
   **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC.
 - Exclusive-use watch: HotWorx (129, Mar 2024) vs C. Wolf (135A, Nov 2024).
-- Holdovers as of Jun 2026: 105, 109 (highest priority), 117.5, 119, 143.
-  Vacant: 131 (LOI pending), 133. Owner-occupied: 135B.
+- **NO holdovers as of Jul 2026** — all five (105, 109, 117.5, 119, 143) RENEWED per the
+  owner-corrected signed rent roll (docs/sot-2026-07/, reconciled 2026-07-16; see
+  docs/sot-reconciliation-2026-07.md for new expirations). Upstream (145) signed at
+  $19.95/SF total. Vacant: 131 (LOI pending), 133. Owner-occupied: 135B.
 
 ## Locked design system ("plan room" aesthetic — do not drift)
 - Palette: paper #EDEFE8 / card #F6F7F1 / ink #1C2B26 / brass #A87E2F /
@@ -89,12 +91,18 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
    not re-propose it.** SOT stays the workbook + manual edits via the store.
 
 ## Data sources of truth (Tier 1)
+- **Rent roll / lease economics: `docs/sot-2026-07/` (owner-corrected signed rent
+  roll, adopted 2026-07-16) — supersedes the workbook for tenant/economics/expirations.**
+  Carries its own authority ranking + validation rules; DoorLoop dates never authoritative.
 - 00_OTB_Master_SOT.docx v1.1 · OTBMasterTemplateSetSOTcorrected.xlsx (27×30 rent
   roll) · Rev_Belle_Realty_Arnould_Blvd_Property.xlsx (meters) · HVAC PDF (2021)
   · recorded plat (Montagnet & Domingue, 5/20/1994, last rev 7/19/2019).
-- Known workbook anomalies (do not silently "fix"): 101 SF 6,877 vs 6,677;
-  117.5 SF 1,769 vs 1,789; 135B #VALUE!; 145 term-months 1572; missing deposits
-  107/137/143/149. Surface, don't guess.
+- Workbook anomalies MOSTLY CLOSED 2026-07-16 by the owner-corrected signed rent roll
+  (docs/sot-2026-07/): 101 SF = 6,877 CONFIRMED; 117.5 SF = 1,769 CONFIRMED; 135B =
+  owner-occupied $0 (the #VALUE! is moot); 145 re-signed (old term-months moot); unit
+  103 corrected 3,051→3,054. STILL OPEN: missing deposits 107/137/143/149. New
+  owner-accepted stated-rent exceptions (do not "fix" to formula): Pink Paisley 101-103
+  stated $16,008.90/mo (−$4.84 vs formula); Cat Clinic 119.5 $0.01 rounding.
 
 ## Conventions
 - Validate before delivery: `node --check` each module / `npm run build`.

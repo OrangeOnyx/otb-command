@@ -1,0 +1,106 @@
+charge_id,lease_id,charge_type,amount_type,annual_psf,monthly_amount_formula,monthly_amount_calculated,billing_frequency,source_authority,notes
+charge_lease_101_103_the_pink_paisley_llc_base_rent,lease_101_103_the_pink_paisley_llc,base_rent,annual_psf,15.35,rentable_sf * annual_psf / 12,12703.4,monthly,signed rent roll,
+charge_lease_101_103_the_pink_paisley_llc_cam,lease_101_103_the_pink_paisley_llc,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,1737.93,monthly,signed rent roll,
+charge_lease_101_103_the_pink_paisley_llc_tax_reimbursement,lease_101_103_the_pink_paisley_llc,tax_reimbursement,annual_psf,0.9,rentable_sf * annual_psf / 12,744.82,monthly,signed rent roll,
+charge_lease_101_103_the_pink_paisley_llc_insurance_reimbursement,lease_101_103_the_pink_paisley_llc,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,827.58,monthly,signed rent roll,
+charge_lease_101_103_the_pink_paisley_llc_total_monthly_stated,lease_101_103_the_pink_paisley_llc,total_monthly_authoritative,monthly_stated,19.35,,16008.9,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_105_painted_bayou_base_rent,lease_105_painted_bayou,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,2499.75,monthly,signed rent roll,
+charge_lease_105_painted_bayou_cam,lease_105_painted_bayou,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,388.85,monthly,signed rent roll,
+charge_lease_105_painted_bayou_tax_reimbursement,lease_105_painted_bayou,tax_reimbursement,annual_psf,0.85,rentable_sf * annual_psf / 12,157.39,monthly,signed rent roll,
+charge_lease_105_painted_bayou_insurance_reimbursement,lease_105_painted_bayou,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,185.17,monthly,signed rent roll,
+charge_lease_105_painted_bayou_total_monthly_stated,lease_105_painted_bayou,total_monthly_authoritative,monthly_stated,17.45,,3231.16,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_107_great_american_base_rent,lease_107_great_american,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,1960.88,monthly,signed rent roll,
+charge_lease_107_great_american_cam,lease_107_great_american,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,305.03,monthly,signed rent roll,
+charge_lease_107_great_american_tax_reimbursement,lease_107_great_american,tax_reimbursement,annual_psf,0.9,rentable_sf * annual_psf / 12,130.73,monthly,signed rent roll,
+charge_lease_107_great_american_insurance_reimbursement,lease_107_great_american,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,145.25,monthly,signed rent roll,
+charge_lease_107_great_american_total_monthly_stated,lease_107_great_american,total_monthly_authoritative,monthly_stated,17.5,,2541.88,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_109_jc_kate_base_rent,lease_109_jc_kate,base_rent,annual_psf,14.0,rentable_sf * annual_psf / 12,2970.33,monthly,signed rent roll,
+charge_lease_109_jc_kate_cam,lease_109_jc_kate,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,445.55,monthly,signed rent roll,
+charge_lease_109_jc_kate_tax_reimbursement,lease_109_jc_kate,tax_reimbursement,annual_psf,0.85,rentable_sf * annual_psf / 12,180.34,monthly,signed rent roll,
+charge_lease_109_jc_kate_insurance_reimbursement,lease_109_jc_kate,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,212.17,monthly,signed rent roll,
+charge_lease_109_jc_kate_total_monthly_stated,lease_109_jc_kate,total_monthly_authoritative,monthly_stated,17.95,,3808.39,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_111_lola_pink_base_rent,lease_111_lola_pink,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,1901.25,monthly,signed rent roll,
+charge_lease_111_lola_pink_cam,lease_111_lola_pink,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,295.75,monthly,signed rent roll,
+charge_lease_111_lola_pink_tax_reimbursement,lease_111_lola_pink,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,133.79,monthly,signed rent roll,
+charge_lease_111_lola_pink_insurance_reimbursement,lease_111_lola_pink,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,274.63,monthly,signed rent roll,
+charge_lease_111_lola_pink_total_monthly_stated,lease_111_lola_pink,total_monthly_authoritative,monthly_stated,18.5,,2605.42,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_113_graze_acadiana_base_rent,lease_113_graze_acadiana,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,2931.75,monthly,signed rent roll,
+charge_lease_113_graze_acadiana_cam,lease_113_graze_acadiana,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,456.05,monthly,signed rent roll,
+charge_lease_113_graze_acadiana_tax_reimbursement,lease_113_graze_acadiana,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,206.31,monthly,signed rent roll,
+charge_lease_113_graze_acadiana_insurance_reimbursement,lease_113_graze_acadiana,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,423.47,monthly,signed rent roll,
+charge_lease_113_graze_acadiana_total_monthly_stated,lease_113_graze_acadiana,total_monthly_authoritative,monthly_stated,18.5,,4017.58,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_115_117_the_clothing_loft_base_rent,lease_115_117_the_clothing_loft,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,4882.5,monthly,signed rent roll,
+charge_lease_115_117_the_clothing_loft_cam,lease_115_117_the_clothing_loft,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,759.5,monthly,signed rent roll,
+charge_lease_115_117_the_clothing_loft_tax_reimbursement,lease_115_117_the_clothing_loft,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,343.58,monthly,signed rent roll,
+charge_lease_115_117_the_clothing_loft_insurance_reimbursement,lease_115_117_the_clothing_loft,insurance_reimbursement,annual_psf,1.85,rentable_sf * annual_psf / 12,669.08,monthly,signed rent roll,
+charge_lease_115_117_the_clothing_loft_total_monthly_stated,lease_115_117_the_clothing_loft,total_monthly_authoritative,monthly_stated,18.4,,6654.67,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_117_half_victoria_nails_base_rent,lease_117_half_victoria_nails,base_rent,annual_psf,14.0,rentable_sf * annual_psf / 12,2063.83,monthly,signed rent roll,
+charge_lease_117_half_victoria_nails_cam,lease_117_half_victoria_nails,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,309.58,monthly,signed rent roll,
+charge_lease_117_half_victoria_nails_tax_reimbursement,lease_117_half_victoria_nails,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,140.05,monthly,signed rent roll,
+charge_lease_117_half_victoria_nails_insurance_reimbursement,lease_117_half_victoria_nails,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,287.46,monthly,signed rent roll,
+charge_lease_117_half_victoria_nails_total_monthly_stated,lease_117_half_victoria_nails,total_monthly_authoritative,monthly_stated,19.0,,2800.92,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_119_oupac_base_rent,lease_119_oupac,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,2229.75,monthly,signed rent roll,
+charge_lease_119_oupac_cam,lease_119_oupac,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,346.85,monthly,signed rent roll,
+charge_lease_119_oupac_tax_reimbursement,lease_119_oupac,tax_reimbursement,annual_psf,0.9,rentable_sf * annual_psf / 12,148.65,monthly,signed rent roll,
+charge_lease_119_oupac_insurance_reimbursement,lease_119_oupac,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,165.17,monthly,signed rent roll,
+charge_lease_119_oupac_total_monthly_stated,lease_119_oupac,total_monthly_authoritative,monthly_stated,17.5,,2890.42,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_119_half_cat_clinic_of_lafayette_base_rent,lease_119_half_cat_clinic_of_lafayette,base_rent,annual_psf,14.0,rentable_sf * annual_psf / 12,2303.0,monthly,signed rent roll,
+charge_lease_119_half_cat_clinic_of_lafayette_cam,lease_119_half_cat_clinic_of_lafayette,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,345.45,monthly,signed rent roll,
+charge_lease_119_half_cat_clinic_of_lafayette_tax_reimbursement,lease_119_half_cat_clinic_of_lafayette,tax_reimbursement,annual_psf,1.2,rentable_sf * annual_psf / 12,197.4,monthly,signed rent roll,
+charge_lease_119_half_cat_clinic_of_lafayette_insurance_reimbursement,lease_119_half_cat_clinic_of_lafayette,insurance_reimbursement,annual_psf,1.15,rentable_sf * annual_psf / 12,189.17,monthly,signed rent roll,
+charge_lease_119_half_cat_clinic_of_lafayette_total_monthly_stated,lease_119_half_cat_clinic_of_lafayette,total_monthly_authoritative,monthly_stated,18.45,,3035.03,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_121_magnolia_salon_base_rent,lease_121_magnolia_salon,base_rent,annual_psf,12.75,rentable_sf * annual_psf / 12,1815.81,monthly,signed rent roll,
+charge_lease_121_magnolia_salon_cam,lease_121_magnolia_salon,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,299.08,monthly,signed rent roll,
+charge_lease_121_magnolia_salon_tax_reimbursement,lease_121_magnolia_salon,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,135.3,monthly,signed rent roll,
+charge_lease_121_magnolia_salon_insurance_reimbursement,lease_121_magnolia_salon,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,277.71,monthly,signed rent roll,
+charge_lease_121_magnolia_salon_total_monthly_stated,lease_121_magnolia_salon,total_monthly_authoritative,monthly_stated,17.75,,2527.9,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_123_the_tux_shoppe_base_rent,lease_123_the_tux_shoppe,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,4008.38,monthly,signed rent roll,
+charge_lease_123_the_tux_shoppe_cam,lease_123_the_tux_shoppe,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,623.53,monthly,signed rent roll,
+charge_lease_123_the_tux_shoppe_tax_reimbursement,lease_123_the_tux_shoppe,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,282.07,monthly,signed rent roll,
+charge_lease_123_the_tux_shoppe_insurance_reimbursement,lease_123_the_tux_shoppe,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,578.99,monthly,signed rent roll,
+charge_lease_123_the_tux_shoppe_total_monthly_stated,lease_123_the_tux_shoppe,total_monthly_authoritative,monthly_stated,18.5,,5492.96,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_125_127_jordan_amanda_base_rent,lease_125_127_jordan_amanda,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,4807.13,monthly,signed rent roll,
+charge_lease_125_127_jordan_amanda_cam,lease_125_127_jordan_amanda,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,747.78,monthly,signed rent roll,
+charge_lease_125_127_jordan_amanda_tax_reimbursement,lease_125_127_jordan_amanda,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,338.28,monthly,signed rent roll,
+charge_lease_125_127_jordan_amanda_insurance_reimbursement,lease_125_127_jordan_amanda,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,694.36,monthly,signed rent roll,
+charge_lease_125_127_jordan_amanda_total_monthly_stated,lease_125_127_jordan_amanda,total_monthly_authoritative,monthly_stated,18.5,,6587.54,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_129_hotworx_base_rent,lease_129_hotworx,base_rent,annual_psf,14.0,rentable_sf * annual_psf / 12,2087.17,monthly,signed rent roll,
+charge_lease_129_hotworx_cam,lease_129_hotworx,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,313.08,monthly,signed rent roll,
+charge_lease_129_hotworx_tax_reimbursement,lease_129_hotworx,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,141.63,monthly,signed rent roll,
+charge_lease_129_hotworx_insurance_reimbursement,lease_129_hotworx,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,290.71,monthly,signed rent roll,
+charge_lease_129_hotworx_total_monthly_stated,lease_129_hotworx,total_monthly_authoritative,monthly_stated,19.0,,2832.58,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_135a_c_wolf_barber_shop_base_rent,lease_135a_c_wolf_barber_shop,base_rent,annual_psf,10.5,rentable_sf * annual_psf / 12,1382.5,monthly,signed rent roll,
+charge_lease_135a_c_wolf_barber_shop_cam,lease_135a_c_wolf_barber_shop,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,276.5,monthly,signed rent roll,
+charge_lease_135a_c_wolf_barber_shop_tax_reimbursement,lease_135a_c_wolf_barber_shop,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,125.08,monthly,signed rent roll,
+charge_lease_135a_c_wolf_barber_shop_insurance_reimbursement,lease_135a_c_wolf_barber_shop,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,256.75,monthly,signed rent roll,
+charge_lease_135a_c_wolf_barber_shop_total_monthly_stated,lease_135a_c_wolf_barber_shop,total_monthly_authoritative,monthly_stated,15.5,,2040.83,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_135b_belle_realty_base_rent,lease_135b_belle_realty,base_rent,annual_psf,0.0,rentable_sf * annual_psf / 12,0.0,monthly,signed rent roll,
+charge_lease_135b_belle_realty_cam,lease_135b_belle_realty,cam,annual_psf,0.0,rentable_sf * annual_psf / 12,0.0,monthly,signed rent roll,
+charge_lease_135b_belle_realty_tax_reimbursement,lease_135b_belle_realty,tax_reimbursement,annual_psf,0.0,rentable_sf * annual_psf / 12,0.0,monthly,signed rent roll,
+charge_lease_135b_belle_realty_insurance_reimbursement,lease_135b_belle_realty,insurance_reimbursement,annual_psf,0.0,rentable_sf * annual_psf / 12,0.0,monthly,signed rent roll,
+charge_lease_135b_belle_realty_total_monthly_stated,lease_135b_belle_realty,total_monthly_authoritative,monthly_stated,0.0,,0.0,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_137_greek_expressions_base_rent,lease_137_greek_expressions,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,2309.63,monthly,signed rent roll,
+charge_lease_137_greek_expressions_cam,lease_137_greek_expressions,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,359.28,monthly,signed rent roll,
+charge_lease_137_greek_expressions_tax_reimbursement,lease_137_greek_expressions,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,162.53,monthly,signed rent roll,
+charge_lease_137_greek_expressions_insurance_reimbursement,lease_137_greek_expressions,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,333.61,monthly,signed rent roll,
+charge_lease_137_greek_expressions_total_monthly_stated,lease_137_greek_expressions,total_monthly_authoritative,monthly_stated,18.5,,3165.04,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_139_141_fast_pass_tag_and_title_base_rent,lease_139_141_fast_pass_tag_and_title,base_rent,annual_psf,13.5,rentable_sf * annual_psf / 12,4313.25,monthly,signed rent roll,
+charge_lease_139_141_fast_pass_tag_and_title_cam,lease_139_141_fast_pass_tag_and_title,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,670.95,monthly,signed rent roll,
+charge_lease_139_141_fast_pass_tag_and_title_tax_reimbursement,lease_139_141_fast_pass_tag_and_title,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,303.53,monthly,signed rent roll,
+charge_lease_139_141_fast_pass_tag_and_title_insurance_reimbursement,lease_139_141_fast_pass_tag_and_title,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,623.03,monthly,signed rent roll,
+charge_lease_139_141_fast_pass_tag_and_title_total_monthly_stated,lease_139_141_fast_pass_tag_and_title,total_monthly_authoritative,monthly_stated,18.5,,5910.75,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_143_1st_franklin_financial_base_rent,lease_143_1st_franklin_financial,base_rent,annual_psf,16.0,rentable_sf * annual_psf / 12,2556.0,monthly,signed rent roll,
+charge_lease_143_1st_franklin_financial_cam,lease_143_1st_franklin_financial,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,335.48,monthly,signed rent roll,
+charge_lease_143_1st_franklin_financial_tax_reimbursement,lease_143_1st_franklin_financial,tax_reimbursement,annual_psf,0.85,rentable_sf * annual_psf / 12,135.79,monthly,signed rent roll,
+charge_lease_143_1st_franklin_financial_insurance_reimbursement,lease_143_1st_franklin_financial,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,159.75,monthly,signed rent roll,
+charge_lease_143_1st_franklin_financial_total_monthly_stated,lease_143_1st_franklin_financial,total_monthly_authoritative,monthly_stated,19.95,,3187.01,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_145_upstream_rehabilitation_base_rent,lease_145_upstream_rehabilitation,base_rent,annual_psf,14.95,rentable_sf * annual_psf / 12,2388.26,monthly,signed rent roll,
+charge_lease_145_upstream_rehabilitation_cam,lease_145_upstream_rehabilitation,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,335.48,monthly,signed rent roll,
+charge_lease_145_upstream_rehabilitation_tax_reimbursement,lease_145_upstream_rehabilitation,tax_reimbursement,annual_psf,0.95,rentable_sf * annual_psf / 12,151.76,monthly,signed rent roll,
+charge_lease_145_upstream_rehabilitation_insurance_reimbursement,lease_145_upstream_rehabilitation,insurance_reimbursement,annual_psf,1.95,rentable_sf * annual_psf / 12,311.51,monthly,signed rent roll,
+charge_lease_145_upstream_rehabilitation_total_monthly_stated,lease_145_upstream_rehabilitation,total_monthly_authoritative,monthly_stated,19.95,,3187.01,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.
+charge_lease_149_jason_s_deli_base_rent,lease_149_jason_s_deli,base_rent,annual_psf,16.25,rentable_sf * annual_psf / 12,6246.77,monthly,signed rent roll,
+charge_lease_149_jason_s_deli_cam,lease_149_jason_s_deli,cam,annual_psf,2.1,rentable_sf * annual_psf / 12,807.28,monthly,signed rent roll,
+charge_lease_149_jason_s_deli_tax_reimbursement,lease_149_jason_s_deli,tax_reimbursement,annual_psf,0.85,rentable_sf * annual_psf / 12,326.75,monthly,signed rent roll,
+charge_lease_149_jason_s_deli_insurance_reimbursement,lease_149_jason_s_deli,insurance_reimbursement,annual_psf,1.0,rentable_sf * annual_psf / 12,384.42,monthly,signed rent roll,
+charge_lease_149_jason_s_deli_total_monthly_stated,lease_149_jason_s_deli,total_monthly_authoritative,monthly_stated,20.2,,7765.22,monthly,owner-corrected signed rent roll,Use this amount for billing unless owner explicitly chooses PSF recomputation.

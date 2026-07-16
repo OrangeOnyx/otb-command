@@ -1,0 +1,3 @@
+parking_agreement_id,property_id,agreement_type,party,status,notes,source_authority
+parking_jd_bank,prop_on_the_boulevard,Parking Agreement,JD Bank,unconfirmed_reference,Listed on All Units sheet,All Units
+parking_our_saviors_church,prop_on_the_boulevard,Parking Agreement,Our Saviors Church,unconfirmed_reference,Listed on All Units sheet,All Units

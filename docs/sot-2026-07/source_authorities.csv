@@ -1,0 +1,5 @@
+source_id,rank,source_name,applies_to,rule
+owner_corrected_signed_rent_roll,1,Owner-corrected signed rent roll,"current tenant, economics, expiration, lease status","Highest authority for rent roll, PSF, monthly rent, expiration dates, and signed lease status."
+all_units,2,All Units sheet,"physical unit split, unit labels, square footage",Highest authority for physical unit separation and unit square footage. Unit 103 owner correction included.
+lease_abstracts,3,Adobe lease abstracts,"legal entity, contact, use clause, insurance, maintenance, late fees",Use for clause details when not contradicted by owner-corrected rent roll.
+doorloop_reference_only,99,DoorLoop exports,file reference only,Do not use DoorLoop dates as authoritative. DoorLoop is reference-only unless owner manually validates a field.

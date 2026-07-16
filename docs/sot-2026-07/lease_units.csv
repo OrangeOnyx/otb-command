@@ -1,0 +1,26 @@
+lease_unit_id,lease_id,unit_id,unit_label,unit_sf,lease_suite_group,allocation_percent,allocated_monthly_reporting_amount,allocation_is_legal_charge,notes
+lease_unit_lease_101_103_the_pink_paisley_llc_101,lease_101_103_the_pink_paisley_llc,unit_101,101,6877,101-103,0.692478,11085.81,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_101_103_the_pink_paisley_llc_103,lease_101_103_the_pink_paisley_llc,unit_103,103,3054,101-103,0.307522,4923.09,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_105_painted_bayou_105,lease_105_painted_bayou,unit_105,105,2222,105,1.0,3231.16,True,
+lease_unit_lease_107_great_american_107,lease_107_great_american,unit_107,107,1743,107,1.0,2541.88,True,
+lease_unit_lease_109_jc_kate_109,lease_109_jc_kate,unit_109,109,2546,109,1.0,3808.39,True,
+lease_unit_lease_111_lola_pink_111,lease_111_lola_pink,unit_111,111,1690,111,1.0,2605.42,True,
+lease_unit_lease_113_graze_acadiana_113,lease_113_graze_acadiana,unit_113,113,2606,113,1.0,4017.58,True,
+lease_unit_lease_115_117_the_clothing_loft_115,lease_115_117_the_clothing_loft,unit_115,115,2170,115-117,0.5,3327.34,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_115_117_the_clothing_loft_117,lease_115_117_the_clothing_loft,unit_117,117,2170,115-117,0.5,3327.34,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_117_half_victoria_nails_117_half,lease_117_half_victoria_nails,unit_117_half,117 1/2,1769,117 1/2,1.0,2800.92,True,
+lease_unit_lease_119_oupac_119,lease_119_oupac,unit_119,119,1982,119,1.0,2890.42,True,
+lease_unit_lease_119_half_cat_clinic_of_lafayette_119_half,lease_119_half_cat_clinic_of_lafayette,unit_119_half,119 1/2,1974,119 1/2,1.0,3035.03,True,
+lease_unit_lease_121_magnolia_salon_121,lease_121_magnolia_salon,unit_121,121,1709,121,1.0,2527.9,True,
+lease_unit_lease_123_the_tux_shoppe_123,lease_123_the_tux_shoppe,unit_123,123,3563,123,1.0,5492.96,True,
+lease_unit_lease_125_127_jordan_amanda_125,lease_125_127_jordan_amanda,unit_125,125,1735,125-127,0.406038,2674.79,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_125_127_jordan_amanda_127,lease_125_127_jordan_amanda,unit_127,127,2538,125-127,0.593962,3912.75,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_129_hotworx_129,lease_129_hotworx,unit_129,129,1789,129,1.0,2832.58,True,
+lease_unit_lease_135a_c_wolf_barber_shop_135a,lease_135a_c_wolf_barber_shop,unit_135a,135A,1580,135A,1.0,2040.83,True,
+lease_unit_lease_135b_belle_realty_135b,lease_135b_belle_realty,unit_135b,135B,1580,135B,1.0,0.0,True,
+lease_unit_lease_137_greek_expressions_137,lease_137_greek_expressions,unit_137,137,2053,137,1.0,3165.04,True,
+lease_unit_lease_139_141_fast_pass_tag_and_title_139,lease_139_141_fast_pass_tag_and_title,unit_139,139,1917,139/141,0.5,2955.38,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_139_141_fast_pass_tag_and_title_141,lease_139_141_fast_pass_tag_and_title,unit_141,141,1917,139/141,0.5,2955.38,False,Reporting allocation only for combined lease groups.
+lease_unit_lease_143_1st_franklin_financial_143,lease_143_1st_franklin_financial,unit_143,143,1917,143,1.0,3187.01,True,
+lease_unit_lease_145_upstream_rehabilitation_145,lease_145_upstream_rehabilitation,unit_145,145,1917,145,1.0,3187.01,True,
+lease_unit_lease_149_jason_s_deli_149,lease_149_jason_s_deli,unit_149,149,4613,149,1.0,7765.22,True,

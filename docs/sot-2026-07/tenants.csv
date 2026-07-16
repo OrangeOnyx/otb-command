@@ -1,0 +1,22 @@
+tenant_id,display_name,legal_entity,dba,status,primary_contact_id,billing_address,source_authority
+tenant_the_pink_paisley_llc,"The Pink Paisley, LLC","The Pink Paisley, LLC",The Pink Paisley,ACTIVE,contact_the_pink_paisley_llc_primary,101-103 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_painted_bayou,Painted Bayou,"Painted Bayou, LLC",Painted Bayou,ACTIVE,contact_painted_bayou_primary,105 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_great_american,Great American,"Lafayette Cookies and Cream, LLC",Great American,ACTIVE,contact_great_american_primary,107 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_jc_kate,JC Kate,J.C. Kate Boutique LLC,JC Kate,ACTIVE,contact_jc_kate_primary,109 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_lola_pink,Lola Pink,"Lola Pink Fabrics, LLC",Lola Pink,ACTIVE,contact_lola_pink_primary,111 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_graze_acadiana,Graze Acadiana,"Graze Acadiana, LLC",Graze Acadiana,ACTIVE,contact_graze_acadiana_primary,113 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_the_clothing_loft,The Clothing Loft,"The Clothing Loft Exchange, LLC",The Clothing Loft,ACTIVE,contact_the_clothing_loft_primary,115-117 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_victoria_nails,Victoria Nails,"Victoria Nails, LLC",Victoria Nails,ACTIVE,contact_victoria_nails_primary,117.5 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_oupac,Oupac,"Daco Investments, LLC",Oupac,ACTIVE,contact_oupac_primary,119 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_cat_clinic_of_lafayette,Cat Clinic of Lafayette,"Cat Clinic of Lafayette, L.L.C.",Cat Clinic of Lafayette,ACTIVE,contact_cat_clinic_of_lafayette_primary,119.5 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_magnolia_salon,Magnolia Salon,"Robertson Family Holdings, LLC",Magnolia Salon,ACTIVE,contact_magnolia_salon_primary,121 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_the_tux_shoppe,The Tux Shoppe,"The Tux Shoppe, LLC",The Tux Shoppe,ACTIVE,contact_the_tux_shoppe_primary,123 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_jordan_amanda,Jordan Amanda,"Jordan Amanda, LLC",Jordan Amanda,ACTIVE,contact_jordan_amanda_primary,125-127 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_hotworx,HotWorx,"Lexi Investments 2, LLC",HotWorx,ACTIVE,contact_hotworx_primary,129 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_c_wolf_barber_shop,C Wolf Barber Shop,C. Wolf Barber & Shop LLC,C Wolf Barber Shop,ACTIVE,contact_c_wolf_barber_shop_primary,135A Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_belle_realty,Belle Realty,Belle Realty Property Management,Belle Realty of Lafayette,OWNER_OCCUPIED,contact_belle_realty_primary,135B Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_greek_expressions,Greek Expressions,"Parish Lettering, LLC",Greek Expressions,ACTIVE,contact_greek_expressions_primary,137 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_fast_pass_tag_and_title,Fast Pass Tag & Title,"Fastpass Tag & Title, LLC",Fast Pass Tag & Title,ACTIVE,contact_fast_pass_tag_and_title_primary,139/141 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_1st_franklin_financial,1st Franklin Financial,1st Franklin Financial Corporation,1st Franklin Financial,ACTIVE,contact_1st_franklin_financial_primary,143 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_upstream_rehabilitation,Upstream Rehabilitation,Upstream Partners,Upstream Rehabilitation,ACTIVE,contact_upstream_rehabilitation_primary,145 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections
+tenant_jason_s_deli,Jason's Deli,"Deli Management, Inc.",Jasons Deli,ACTIVE,contact_jason_s_deli_primary,149 Arnould Boulevard,FINAL_UNIT_SOT plus owner corrections

@@ -1,0 +1,2 @@
+property_id,property_name,ownership_entity,property_type,market,primary_address,total_rentable_sf,source_of_truth_status,notes
+prop_on_the_boulevard,On The Boulevard,"Belle Realty of Lafayette, LLC",retail_strip_center,"Lafayette, Louisiana","Arnould Boulevard / Johnston Street / Marie Antoinette Street, Lafayette, LA",62810,owner_corrected_signed_rent_roll,Seeded from owner-corrected source-of-truth workbook. DoorLoop data is reference-only and must not override signed rent roll economics or expiration dates.

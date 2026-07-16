@@ -1,0 +1,6 @@
+rule_id,severity,description,current_status
+unit_sf_total_must_equal_62810,blocking,"Physical unit rentable SF must sum to 62,810.",pass
+doorloop_dates_cannot_override_signed_rent_roll,blocking,DoorLoop dates must never overwrite signed rent roll expiration dates without manual owner approval.,active_rule
+combined_lease_units_report_allocation_only,high,"For combined lease groups, allocated unit rent is for reporting only and is not a legal charge unless explicitly approved.",active_rule
+owner_occupied_zero_rent_allowed,medium,Belle Realty Unit 135B is owner occupied. Zero rent and no expiration are intentional.,active_rule
+billing_uses_stated_monthly_rent,high,"Default billing must use owner-confirmed stated monthly rent. Formula rent is an audit check, not the billing source, unless owner approves recalculation.",active_rule

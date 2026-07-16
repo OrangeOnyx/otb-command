@@ -20,15 +20,25 @@ test("per-unit total = base + CAM + Tax + Ins (single-source invariant)", () => 
   }
 });
 
-test("monthly = total × SF / 12 for every leased unit", () => {
+// Owner-accepted stated-rent exceptions (docs/sot-2026-07/known_exceptions.csv):
+// billing uses the STATED monthly from the signed rent roll; PSF formula is an
+// audit check only. Pink Paisley (101-103) group stated $16,008.90 vs formula
+// $16,013.74 → documented −$4.84/mo. Do not "fix" these back to formula.
+const STATED_EXCEPTIONS = { "101": 11085.81, "103": 4923.09 };
+
+test("monthly = total × SF / 12 for every leased unit (except documented stated-rent exceptions)", () => {
   for (const u of units) {
     if (!u.monthly) continue;
+    if (u.unit in STATED_EXCEPTIONS) {
+      assert.equal(u.monthly, STATED_EXCEPTIONS[u.unit], `unit ${u.unit}: stated exception drifted`);
+      continue;
+    }
     const expect = u.total * u.sf / 12;
     assert.ok(Math.abs(u.monthly - expect) < 0.5, `unit ${u.unit}: monthly ${u.monthly} ≠ ${expect.toFixed(2)}`);
   }
 });
 
-test("income composition reconciles to in-place rent within rounding", () => {
+test("income composition reconciles to in-place rent within the documented variance", () => {
   const comp = { base: 0, cam: 0, tax: 0, ins: 0 };
   units.forEach(u => {
     comp.base += (u.base || 0) * u.sf;
@@ -37,7 +47,11 @@ test("income composition reconciles to in-place rent within rounding", () => {
   });
   const compTotal = comp.base + comp.cam + comp.tax + comp.ins;
   const monthlyAnnual = units.reduce((s, u) => s + (u.monthly || 0), 0) * 12;
-  assert.ok(Math.abs(compTotal - monthlyAnnual) < 1, `composition ${compTotal.toFixed(2)} vs monthly×12 ${monthlyAnnual.toFixed(2)} (Δ must be <$1)`);
+  // Expected gap = Pink Paisley owner-accepted −$4.84/mo = $58.08/yr (± rounding pennies)
+  const documentedVariance = 4.84 * 12;
+  const delta = compTotal - monthlyAnnual;
+  assert.ok(Math.abs(delta - documentedVariance) < 1,
+    `composition ${compTotal.toFixed(2)} vs monthly×12 ${monthlyAnnual.toFixed(2)}: Δ ${delta.toFixed(2)} ≠ documented ${documentedVariance.toFixed(2)} (±$1)`);
 });
 
 test("every unit id joins cleanly to recoveries and hvac (incl. 117.5 / 135A/B)", () => {

@@ -66,6 +66,19 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
+### SHIPPED 2026-07-16 — SOT reconciliation (owner-corrected rent roll)
+**All five holdovers RESOLVED** (105→3/31/29 · 109→9/30/28 · 117.5→2/28/29 · 119→2/28/27 ·
+143→1/31/31), Upstream 145 signed $14.95 base / $19.95 total / $3,187.01 mo, Magnolia 121
+→12/31/31, ~15 expiration dates corrected to owner month-end dates (107 pulled back to
+3/31/27), Pink Paisley allocations set to stated rent (owner-accepted −$4.84/mo vs formula).
+Source dataset vendored: `docs/sot-2026-07/` (authority ranking + validation rules +
+known-exceptions log, from belle-realty-pwa @ 19f7c06); full diff in
+`docs/sot-reconciliation-2026-07.md`. CLAUDE.md anomalies for 101/117.5/135B/145 CLOSED
+(deposits 107/137/143/149 still open). split-seed + concierge-context regenerated;
+data-integrity guards updated to pin the documented stated-rent exceptions. 94 tests.
+NOTE: D-1/P-1 "revenue at risk" and W-1 holdover cards now empty of holdovers — correct,
+not a bug. Poster/dossier occupancy stats unchanged (131/133 still the only vacancies).
+
 ### SHIPPED 2026-07-15 (part 3) — marketing set + twin-marketing plan
 Four pieces generated, reviewed, delivered to `G:\My Drive\00 OTB` (SVG+PNG+PDF), all from
 committed re-runnable tools: **B refresh** (`npm run poster`, current availability) ·
@@ -496,3 +509,13 @@ Three skills installed: `abdalla-brand-system` (router → per-entity `reference
 - Repo is authoritative; all exports are one-way/disposable.
 - v7 baseline deleted (recoverable at git 81b1541).
 - Audit-grade facts in CLAUDE.md must not be contradicted.
+- **CONSOLIDATION (operator, 2026-07-16): OTB Command is the SURVIVOR.** The parallel
+  builds are DONORS, not co-equals: `belle-realty-pwa` @ 19f7c06 (NestJS/Railway,
+  Downloads zip + live app.belle-realty.com) and `otb-ops` (Manus). Harvest into this
+  repo on Supabase — no two-backend federation, no new features in donors. Harvest
+  queue: calc engines + numeric guardrail (started 2026-07-16) → owner-brief
+  auto-trigger patterns → event-sourced compliance + heat-map lenses (otb-ops) →
+  ledger-lite → e-sign/tenant-portal schemas. Supabase plan upgraded 2026-07-16 →
+  splat/mesh can move to Supabase storage, which then unlocks git-integration
+  auto-deploy safely (assets are gitignored — flipping auto-deploy BEFORE moving
+  them ships prod without the Reality lens).
