@@ -13,10 +13,10 @@ test("registry carries the full 17-camera DW roster, no duplicates", () => {
   assert.deepEqual(validateRegistry(registry), []);
 });
 
-test("16 drawable exterior cameras; Server Cabinet stays interior-only", () => {
+test("all 17 cameras drawable — Server Cabinet is exterior (rear 101/103, operator-corrected 2026-07-16)", () => {
   const draw = drawableCameras(registry.cameras);
-  assert.equal(draw.length, 16);
-  assert.ok(!draw.some(c => c.id === "server-cabinet"));
+  assert.equal(draw.length, 17);
+  assert.ok(draw.some(c => c.id === "server-cabinet"));
 });
 
 test("every drawable camera sits inside the A-1 main viewBox", () => {
@@ -68,8 +68,9 @@ test("applyOverrides: aim-only override keeps the seeded position", () => {
 });
 
 test("applyOverrides: interior cameras and empty overrides are untouched", () => {
-  const out = applyOverrides(registry.cameras, { "server-cabinet": { x: 1, y: 1, aimDeg: 0 } });
-  assert.equal(out.find(c => c.id === "server-cabinet").pos, null);
+  const interior = [{ id: "nvr-watch", interior: true, pos: null, aimDeg: null }];
+  const out = applyOverrides(interior, { "nvr-watch": { x: 1, y: 1, aimDeg: 0 } });
+  assert.equal(out[0].pos, null);
   assert.deepEqual(applyOverrides(registry.cameras), registry.cameras);
 });
 
