@@ -3,13 +3,28 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-14.
+Last updated: 2026-07-15 (evening).
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
-**State:** 12 sheets, all deployed: D-1 · A-1 (now with 📍 asset pins) · A-2 Spatial (4 lenses;
-Lens B has 🏗 Mesh/◧ Massing toggle; 🎥 Reality clickable) · R-1 (tenant logos) · P-1 · C-1 ·
-T-1 · W-1 · K-1 · S-1 Safe · AI-1 Agent Desk (voice) · V-1 Vendor Portal. 78 unit tests.
+**State:** 12 sheets, all deployed: D-1 · A-1 (📍 asset pins + 🅿 parking layer + 🎥 CCTV
+layer w/ drag-to-place ✎ Adjust) · A-2 Spatial (4 lenses; Lens B 🏗 Mesh toggle; 🎥 Reality
+clickable + unit overlay) · R-1 · P-1 · C-1 · T-1 · W-1 · K-1 · S-1 Safe · AI-1 Agent Desk
+(voice) · V-1 Vendor Portal. **94 unit tests.**
+**FIRST MOVES next session:**
+1. If operator says "creds are in" (`~/.otb-cube.env`): `npm run cube-frames` → verify all
+   16 exterior views vs `src/data/cameras.json` → correct the ESTIMATED pins from labeled
+   stills → bake into the seed → then C3 occupancy sampling (--loop 60). Tailscale to the
+   Cube is LIVE (dw-cube 100.73.185.15, REST v2 verified; collector tested to auth boundary).
+2. Twin-marketing build order OPERATOR-APPROVED 2026-07-15: **B2 public read-only twin
+   microsite (?tour, skeleton seed ONLY — no rents/PII; camera layer never public) → B1 QR
+   window vinyls for 131/133 → A2 monthly Owner Intelligence Brief → C1 OO case study.**
+   Then B3 fly-through video · B4 public scoped leasing bot · C2 sandbox demo login ·
+   C3 LinkedIn series. Full plan in the 2026-07-15 chat digest below.
+3. **Blessed creative direction:** operator picked the NAVY/WHITE creative poster
+   ("the blue advertisement") = `OTB-poster-X-boulevard` from `tools/poster-specials.py`
+   (plat-as-art, "27 doors / 25 taken"). Use its aesthetic for the microsite + QR vinyls.
+   (If he meant the dark-navy OO showcase instead, confirm — X is the strict-navy one.)
 **Deploy rule:** commits do NOT auto-deploy → `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — splat 16MB +
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
@@ -41,12 +56,28 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
    2025 package) before the next print run.
 
 ### CLAUDE next-action menu (say the word)
+- **APPROVED QUEUE (see FIRST MOVES above):** twin-marketing B2→B1→A2→C1 (+B3/B4/C2/C3) ·
+  camera frame pull + pin correction + C3 occupancy the moment Cube creds land.
 - **Splice the approved 2026 end card** into the marketing video (ffmpeg; card + spec in
-  `Belle Shared Drive/Marketing/`; treatment A rendered and delivered 2026-07-12).
+  `Belle Shared Drive/Marketing/`; treatment A rendered and delivered 2026-07-12) — note
+  B3 (twin fly-through) supersedes/absorbs this if built together.
 - Tenant-spotlights photo folder (from the 334-frame review) · satellite-lens asset pins ·
   photo-per-pin · COI tracking / vendor notifications · concierge thread-persistence polish ·
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
+
+### SHIPPED 2026-07-15 (part 3) — marketing set + twin-marketing plan
+Four pieces generated, reviewed, delivered to `G:\My Drive\00 OTB` (SVG+PNG+PDF), all from
+committed re-runnable tools: **B refresh** (`npm run poster`, current availability) ·
+**F two-bays** (plan-room, 131/133 halo + leader, "TOUR THIS WEEK") · **OO twin showcase**
+("THE INSTRUMENTED ASSET", geometry.json plan + 16 camera cones in Sunset Orange, 6
+capability cards, OO brand per brand-orange-ocean.md) · **X creative NAVY/WHITE**
+("27 doors / 25 taken", plat-as-art, vacant bays pulse in SVG) ← **OPERATOR-LIKED** ·
+**pylon refresh** (current logos). Generator: `tools/poster-specials.py` (imports poster.py
+plumbing; regenerating A–E is a side effect). Copy-honesty fixes applied during review:
+removed unverified "24 years" claim; fixed false "two doors from Jason's Deli" adjacency;
+VPD phrased as "passing the center". Twin-marketing plan (3 audiences, ranked) delivered
+in-chat + queued as tasks; operator approved the B2→B1→A2→C1 order.
 
 ### SHIPPED 2026-07-15 (part 2) — parking fix + CCTV Phase C1 + drag-to-place
 **Drag-to-place cameras:** ✎ Adjust cams chip (operator-only) —
