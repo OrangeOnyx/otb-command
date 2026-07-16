@@ -97,9 +97,20 @@ end; $$;
 --   safe        SELECT is_owner_or_operator() | INSERT/UPDATE/DELETE is_operator()
 --   vendor-docs SELECT/INSERT foldername[1]=current_vendor_id() | ALL is_operator()
 --
+-- public.app_secrets    RLS enabled, NO policies (deny-all) — shared secrets
+--                        readable only by SECURITY DEFINER fns. Row 'auto_trigger'
+--                        = the cron secret (mirrors Vercel env CRON_SECRET).
+-- fn open_trigger_thread(secret, agent, title, trigger, content) SECURITY DEFINER:
+--                        verifies secret vs app_secrets, then idempotently opens a
+--                        cron-seeded AI-1 thread (chat_threads.trigger_source UNIQUE
+--                        partial index) + one assistant chat_message. Threads land
+--                        created_by = operator. Only unauthenticated write path;
+--                        wrong secret = exception. Called by api/auto-trigger.mjs.
+--
 -- ── MIGRATION HISTORY (Supabase, authoritative) ─────────────────────────────
 --   20260620122933 otb_core_schema           20260708111850 vendor_portal_p3
 --   20260620122947 otb_storage_assets        20260708181505 agent_desk_transcripts
 --   20260620123019 harden_definer_functions  20260708211923 owner_email_allowlist
 --   20260707173305 documents_bucket_policies  20260710182827 scope_transcripts_and_bucket_caps
 --   20260707194616 owner_safe_bucket_log      20260710182958 api_usage_rate_limit
+--   20260716______ auto_trigger_threads (trigger_source + app_secrets + open_trigger_thread)

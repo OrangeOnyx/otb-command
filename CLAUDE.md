@@ -21,7 +21,9 @@ carrying a second full copy of the tool. This repo IS the authoritative version;
 all exported HTML/JSON/SVG are one-way, disposable snapshots.
 
 ## Operator's working style (follow strictly)
-- Executive register. Working output first, explanation second. No filler.
+- Executive register. Working output first, explanation second. No unnecessary
+  or way-off-topic filler. Contribution opportunities (small code/judgment
+  decisions offered to the operator) are acceptable and desired (2026-07-16).
 - Forced rankings when presenting options; he picks by number/letter.
 - Never relitigate confirmed decisions. Target only what changed on iterations.
 - Quality gate: `node --check` (or build + typecheck) before every delivery.

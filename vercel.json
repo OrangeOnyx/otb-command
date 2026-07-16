@@ -1,5 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "crons": [
+    { "path": "/api/auto-trigger", "schedule": "0 11 * * *" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
