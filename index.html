@@ -20,6 +20,7 @@
       <div class="gs-results" id="gsResults"></div>
     </div>
     <div class="tb-actions">
+      <button class="tb-btn" id="btnPrintSheet" title="Visual export — print or save the open sheet as PDF">⤓ SHEET</button>
       <button class="tb-btn" id="btnExport" title="Download compliance + notes state as JSON">EXPORT JSON</button>
       <button class="tb-btn" id="btnImport" title="Restore state from a JSON export">IMPORT JSON</button>
       <input type="file" id="importFile" accept="application/json,.json" hidden>
@@ -39,6 +40,7 @@
     </div>
   </nav>
 
+  <div class="print-foot" id="printFoot"></div>
   <main class="main">
 
     <!-- D-1 DASHBOARD -->

@@ -66,6 +66,19 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
+### SHIPPED 2026-07-16 (part 3) — visual sheet export (⤓ SHEET)
+Topbar **⤓ SHEET** button (+ plain Ctrl+P): prints/saves the OPEN sheet as a PDF —
+print CSS isolates `.page.on`, hides chrome, forces plan-room colors exact
+(`print-color-adjust`), letter-landscape @page, scroll containers unrolled so long
+tables flow across pages, and a drawing-set footer stamps sheet code + PRINTED date +
+headline figures (doc title becomes the PDF filename, e.g. `OTB-R-1-2026-07-16`).
+Dark mode auto-reverts to paper for print and restores after. Pure seam
+`src/lib/printsheet.js` (+3 tests → 123). Verified in preview: button renders,
+beforeprint/afterprint lifecycle stamps per-sheet (D-1/A-1) and restores; pixel/print
+dialog check = operator (occluded preview can't screenshot). NOTE: WebGL lenses
+(A-2 3D/satellite/Reality) don't rasterize into print — A-2's own ⤓ SVG chip remains
+the export path there.
+
 ### SHIPPED 2026-07-16 (part 2) — calc engines + numeric guardrail in AI-1 (PWA harvest #1)
 AI-1 agents now carry a **run_calc** tool (all three personas): deterministic engines
 ported from belle-realty-pwa @ 19f7c06 into the pure seam `src/lib/calc/` — **NER

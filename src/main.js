@@ -11,6 +11,7 @@ import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
 import { initSafe } from "./views/safe.js";
 import { initSearch } from "./views/search.js";
+import { printFootText, printDocTitle } from "./lib/printsheet.js";
 import { renderRoll } from "./views/rentroll.js";
 import { initMatrix } from "./views/compliance.js";
 import { initDates } from "./views/dates.js";
@@ -55,6 +56,7 @@ let navBtn = {}, ovWrap = null;
 function buildShell(account) {
   /* navigation (drawing-set sheet index) */
   const nav = document.getElementById("nav");
+  let currentPage = PAGES[0][0];
   PAGES.forEach(([id, sheet, label], i) => {
     const b = document.createElement("button");
     b.innerHTML = '<span class="sheet">' + sheet + '</span>' + label;
@@ -64,12 +66,31 @@ function buildShell(account) {
       b.classList.add("on");
       document.querySelectorAll(".page").forEach(p => p.classList.remove("on"));
       document.getElementById("pg-" + id).classList.add("on");
+      currentPage = id;
       closeDrawer();
     };
     navBtn[id] = b;
     nav.appendChild(b);
   });
   document.getElementById("pg-dash").classList.add("on");
+
+  /* visual sheet export: footer + doc title stamp on print (button or Ctrl+P) */
+  let printTheme = null; // paper prints light regardless of screen theme
+  const stampPrint = () => {
+    const dateStr = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
+    document.getElementById("printFoot").textContent = printFootText(PAGES, currentPage, dateStr);
+    document.title = printDocTitle(PAGES, currentPage, TODAY.toISOString().slice(0, 10));
+    if (printTheme === null && document.documentElement.dataset.theme) {
+      printTheme = document.documentElement.dataset.theme;
+      delete document.documentElement.dataset.theme;
+    }
+  };
+  window.addEventListener("beforeprint", stampPrint);
+  window.addEventListener("afterprint", () => {
+    document.title = "OTB Property Command";
+    if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
+  });
+  document.getElementById("btnPrintSheet").onclick = () => { stampPrint(); window.print(); };
   document.getElementById("todayStamp").textContent = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
 
   /* owner view: operator picks owner-visible sheets, then previews */

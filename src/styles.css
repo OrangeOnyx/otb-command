@@ -547,3 +547,26 @@ body.role-vendor .ownerview { display: none !important; }
 .ac-x { border: none; background: none; color: var(--ink50); cursor: pointer; font-size: 11px; }
 .ac-x:hover { color: var(--brick, #C25E33); }
 .ac-note { font-size: 10px; margin-top: 6px; }
+
+/* ── Visual sheet export (⤓ SHEET / Ctrl+P): print ONLY the open sheet, ──────
+   plan-room colors exact, landscape drawing-set page with a stamped footer. */
+.print-foot { display: none; }
+@page { size: letter landscape; margin: 10mm 12mm; }
+@media print {
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  body, .app { background: #EDEFE8 !important; display: block !important; }
+  .topbar, .side, .drawer, .drawer-veil, .gs-results { display: none !important; }
+  .main { display: block !important; padding: 0 !important; margin: 0 !important; overflow: visible !important; height: auto !important; }
+  .page { display: none !important; }
+  .page.on { display: block !important; overflow: visible !important; height: auto !important; }
+  /* let long tables/boards flow across pages instead of scrolling */
+  .page.on .card, .page.on [class*="scroll"], .page.on [class*="wrap"] {
+    overflow: visible !important; max-height: none !important; height: auto !important;
+  }
+  .print-foot {
+    display: block; position: fixed; bottom: 0; left: 0; right: 0;
+    font: 600 8.5px/1.6 "IBM Plex Mono", monospace; letter-spacing: .08em;
+    color: #1C2B26; border-top: 1.5px solid #1C2B26; padding-top: 3px;
+    background: #EDEFE8; text-align: right;
+  }
+}
