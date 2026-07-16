@@ -97,7 +97,7 @@ async function pullOnce(token) {
 }
 
 const token = await login();
-console.log(`Authenticated to ${HOST} (system "Belle Reality") — ${cams.length} exterior cameras`);
+console.log(`Authenticated to ${HOST} (system "Belle Reality") — ${registry.cameras.filter(c => !c.interior).length} exterior cameras`);
 await pullOnce(token);
 if (LOOP > 0) {
   console.log(`Sampling every ${LOOP}s — Ctrl-C to stop.`);
