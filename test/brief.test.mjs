@@ -22,9 +22,10 @@ const UNITS = [
   { unit: "143", dba: "Delta", status: "active", sf: 900, end: "2026-06-30" }, // holdover
 ];
 const PRIV = {
-  101: { monthly: 3000 }, 103: { monthly: 1500 },
-  105: { monthly: 5000 }, 143: { monthly: 1000 },
+  101: { monthly: 3000, base: 14, total: 18 }, 103: { monthly: 1500, base: 14, total: 18 },
+  105: { monthly: 5000, base: 12, total: 15 }, 143: { monthly: 1000, base: 10, total: 13.33 },
 };
+const REC = { units: { 101: { cam: 2.5, tax: 0.9, ins: 0.6 }, 103: { cam: 2.5, tax: 0.9, ins: 0.6 } } };
 const STATE = {
   financials: { opex: { insurance: 24000, cam: 36000, zero: 0 }, capRatePct: 7.5 },
   actions: {
@@ -51,6 +52,35 @@ test("model: occupancy, income, vacants, holdovers, expirations", () => {
   // 103 (2026-09-30) and 101 (2027-03-31) both inside today+365 = 2027-07-17, date-sorted
   assert.deepEqual(m.expirations.map(e => e.unit), ["103", "101"]);
   assert.equal(m.expiringMonthly, 4500);
+});
+
+test("model: expiration rows carry the PSF breakdown (base/cam/tax/ins/total)", () => {
+  const m = buildBriefModel(UNITS, PRIV, STATE, TODAY, REC);
+  const e = m.expirations.find(x => x.unit === "103");
+  assert.equal(e.basePsf, 14);
+  assert.equal(e.camPsf, 2.5);
+  assert.equal(e.taxPsf, 0.9);
+  assert.equal(e.insPsf, 0.6);
+  assert.equal(e.totalPsf, 18);
+  assert.equal(e.monthly, 1500); // bare monthly = TOTAL rent, operator convention
+});
+
+test("model: missing recoveries → PSF fields null, never invented", () => {
+  const m = buildBriefModel(UNITS, PRIV, STATE, TODAY, null);
+  const e = m.expirations.find(x => x.unit === "103");
+  assert.equal(e.camPsf, null);
+  assert.equal(e.basePsf, 14); // rent-roll figures still flow
+});
+
+test("html: expiration table shows the breakdown columns and dashes for gaps", () => {
+  const m = buildBriefModel(UNITS, PRIV, STATE, TODAY, REC);
+  const html = briefHTML(m, null);
+  assert.match(html, /<th class="num">Base<\/th><th class="num">CAM<\/th><th class="num">Tax<\/th><th class="num">Ins<\/th><th class="num">Total PSF<\/th><th class="num">Total \/mo<\/th>/);
+  assert.match(html, /\$14\.00/);
+  assert.match(html, /\$2\.50/);
+  assert.match(html, /Total \/mo is total rent \(base \+ additional\)/);
+  const noRec = briefHTML(buildBriefModel(UNITS, PRIV, STATE, TODAY, null), null);
+  assert.match(noRec, />—</); // missing PSF renders as a dash
 });
 
 test("model: financials worksheet → NOI and cap value; zero opex rows dropped", () => {

@@ -13,6 +13,7 @@
      https://otb-command.vercel.app/api/auto-trigger */
 
 import UNITS from "../src/data/units.public.json" with { type: "json" };
+import RECOVERIES from "../src/data/recoveries.json" with { type: "json" };
 import SEED from "./_seed.json" with { type: "json" };
 import { collectCandidates } from "../src/lib/autotrigger.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
@@ -37,7 +38,7 @@ async function rpc(name, body) {
    [[brief:...]] card line for the monthly thread seed (or "" if the brief
    already existed / failed — the thread text stands alone either way). */
 async function ensureMonthlyBrief(units, secret, today, summary) {
-  const model = buildBriefModel(units, SEED.unitsPrivate, null, today); // state woven in below
+  const model = buildBriefModel(units, SEED.unitsPrivate, null, today, RECOVERIES); // state woven in below
   try {
     const existing = await rpc("get_owner_brief_model", { p_secret: secret, p_month: model.month });
     if (existing) { summary.brief = "exists"; return ""; }
@@ -45,7 +46,7 @@ async function ensureMonthlyBrief(units, secret, today, summary) {
       rpc("get_brief_state", { p_secret: secret }),
       rpc("get_owner_brief_model", { p_secret: secret, p_month: prevMonthKey(model.month) }),
     ]);
-    const full = buildBriefModel(units, SEED.unitsPrivate, state, today);
+    const full = buildBriefModel(units, SEED.unitsPrivate, state, today, RECOVERIES);
     const html = briefHTML(full, momDeltas(full, prior));
     await rpc("put_owner_brief", { p_secret: secret, p_month: full.month, p_html: html, p_model: full });
     summary.brief = "generated";

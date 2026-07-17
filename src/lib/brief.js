@@ -38,7 +38,7 @@ function addDays(todayISO, n) {
 
 /* ── model ─────────────────────────────────────────────────────── */
 
-export function buildBriefModel(units, priv, state, todayISO) {
+export function buildBriefModel(units, priv, state, todayISO, recoveries) {
   const totalSf = units.reduce((s, u) => s + (Number(u.sf) || 0), 0);
   const occUnits = units.filter(occupied);
   const occupiedSf = occUnits.reduce((s, u) => s + (Number(u.sf) || 0), 0);
@@ -46,10 +46,20 @@ export function buildBriefModel(units, priv, state, todayISO) {
   const scheduledMonthly = round2(units.filter(leased).reduce((s, u) => s + monthly(u), 0));
 
   const edge = addDays(todayISO, EXPIRATION_HORIZON_DAYS);
+  /* Operator convention: a bare monthly figure is always TOTAL rent (base +
+     additional); component economics appear only as an explicit PSF breakdown
+     (base / CAM / tax / ins → total PSF), single-source: base+total from the
+     rent roll, CAM/tax/ins from recoveries. */
+  const psfRow = u => {
+    const p = priv?.[u.unit] || {};
+    const r = recoveries?.units?.[u.unit] || {};
+    const n = v => (Number.isFinite(+v) ? round2(+v) : null);
+    return { basePsf: n(p.base), camPsf: n(r.cam), taxPsf: n(r.tax), insPsf: n(r.ins), totalPsf: n(p.total) };
+  };
   const expirations = units
     .filter(u => leased(u) && u.end && u.end >= todayISO && u.end <= edge)
     .sort((a, b) => (a.end < b.end ? -1 : 1))
-    .map(u => ({ unit: u.unit, dba: u.dba, end: u.end, sf: Number(u.sf) || 0, monthly: round2(monthly(u)) }));
+    .map(u => ({ unit: u.unit, dba: u.dba, end: u.end, sf: Number(u.sf) || 0, ...psfRow(u), monthly: round2(monthly(u)) }));
 
   const fin = state?.financials || {};
   const opexItems = Object.entries(fin.opex || {})
@@ -131,8 +141,8 @@ const OO = `
   .kpi .l{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#4A6FA5;margin-top:2px}
   .kpi .d{font-size:11px;margin-top:4px;color:#1C2D4F}
   .kpi .d.up{color:#2F6B4F}.kpi .d.down{color:#A33B1F}
-  table{width:100%;border-collapse:collapse;font-size:12.5px}
-  td,th{border:1px solid #C7D0DE;padding:6px 10px;text-align:left}
+  table{width:100%;border-collapse:collapse;font-size:11.5px}
+  td,th{border:1px solid #C7D0DE;padding:5px 7px;text-align:left}
   th{background:#F0F4F8;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#1C2D4F}
   td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   p,li{font-size:13px;line-height:1.55}
@@ -160,8 +170,11 @@ export function briefHTML(model, mom) {
     ? m.vacants.map(v => `Suite ${esc(v.unit)} (${v.sf.toLocaleString()} SF)`).join(" · ")
     : "None — the center is fully occupied.";
 
+  const psf = v => (v === null || v === undefined ? "—" : "$" + (+v).toFixed(2));
   const expRows = m.expirations.map(e =>
-    `<tr><td>${esc(e.unit)}</td><td>${esc(e.dba)}</td><td>${esc(e.end)}</td><td class="num">${e.sf.toLocaleString()}</td><td class="num">${money2(e.monthly)}</td></tr>`).join("");
+    `<tr><td>${esc(e.unit)}</td><td>${esc(e.dba)}</td><td>${esc(e.end)}</td><td class="num">${e.sf.toLocaleString()}</td>` +
+    `<td class="num">${psf(e.basePsf)}</td><td class="num">${psf(e.camPsf)}</td><td class="num">${psf(e.taxPsf)}</td><td class="num">${psf(e.insPsf)}</td>` +
+    `<td class="num"><b>${psf(e.totalPsf)}</b></td><td class="num"><b>${money2(e.monthly)}</b></td></tr>`).join("");
 
   const finBlock = m.noi !== null ? `
 <h2>Financial Position (Owner Worksheet)</h2>
@@ -187,7 +200,7 @@ ${m.capValue ? kpiTile(money0(m.capValue), `Value @ ${m.capRatePct}% cap`) : ""}
 
 <div class="kpis">
 ${kpiTile(pct1(m.occupancyPct), `Occupancy (${m.occupiedUnits}/${m.unitCount} units)`, occChip)}
-${kpiTile(money0(m.scheduledMonthly), "Scheduled rent /mo", incChip)}
+${kpiTile(money0(m.scheduledMonthly), "Total scheduled rent /mo", incChip)}
 ${kpiTile(m.occupiedSf.toLocaleString() + " SF", `of ${m.totalSf.toLocaleString()} SF demised occupied`)}
 </div>
 
@@ -197,10 +210,10 @@ ${m.holdovers.length ? `<p><b>Holdovers:</b> Suite ${m.holdovers.map(esc).join("
 
 <h2>Lease Expirations — Next 12 Months</h2>
 ${m.expirations.length ? `<table>
-<tr><th>Suite</th><th>Tenant</th><th>Expires</th><th class="num">SF</th><th class="num">Monthly</th></tr>
+<tr><th>Suite</th><th>Tenant</th><th>Expires</th><th class="num">SF</th><th class="num">Base</th><th class="num">CAM</th><th class="num">Tax</th><th class="num">Ins</th><th class="num">Total PSF</th><th class="num">Total /mo</th></tr>
 ${expRows}
 </table>
-<p class="note">${m.expirations.length} lease(s), ${money0(m.expiringMonthly)}/mo of scheduled rent in the window — each is a renewal conversation to open early.</p>` : `<p>No expirations inside 12 months.</p>`}
+<p class="note">PSF columns are $/SF/yr; Total /mo is total rent (base + additional). ${m.expirations.length} lease(s), ${money0(m.expiringMonthly)}/mo of total scheduled rent in the window — each is a renewal conversation to open early.</p>` : `<p>No expirations inside 12 months.</p>`}
 ${finBlock}
 ${actionsBlock}
 <div class="foot">Orange Ocean, LLC · Property Manager for Belle Realty of Lafayette, LLC<br>

@@ -107,6 +107,11 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   stated $16,008.90/mo (−$4.84 vs formula); Cat Clinic 119.5 $0.01 rounding.
 
 ## Conventions
+- **Rent presentation (operator, 2026-07-17):** any bare monthly amount in owner/
+  tenant-facing output = TOTAL rent (base + additional). Component economics
+  appear only as an explicit PSF breakdown chart: Base · CAM · Tax · Ins →
+  Total PSF → Total $/mo. (Base/Total PSF from the rent roll; CAM/Tax/Ins from
+  recoveries.json — single-source rule.)
 - Validate before delivery: `node --check` each module / `npm run build`.
 - Commit per logical change with imperative messages ("Add geometry.json trace").
 - Rev label in the A-1 title block bumps on every geometry change.
