@@ -31,7 +31,7 @@ button{font-family:inherit;cursor:pointer}
 .topbar .stamp b{color:#C9A55C;font-weight:600}
 
 /* sidebar = drawing-set sheet index */
-.side{background:var(--paper2);border-right:1px solid var(--line);padding:18px 0;display:flex;flex-direction:column}
+.side{background:var(--paper2);border-right:1px solid var(--line);padding:18px 0;display:flex;flex-direction:column;min-height:0;overflow-y:auto}
 .side .ix-title{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink50);padding:0 20px 10px;text-transform:uppercase}
 .nav{display:flex;flex-direction:column}
 .nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;
