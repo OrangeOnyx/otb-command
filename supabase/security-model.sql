@@ -97,6 +97,14 @@ end; $$;
 --   safe        SELECT is_owner_or_operator() | INSERT/UPDATE/DELETE is_operator()
 --   vendor-docs SELECT/INSERT foldername[1]=current_vendor_id() | ALL is_operator()
 --
+-- public.owner_briefs   SELECT is_owner_or_operator() | NO client write policies
+--                        (deny-all) — monthly Owner Intelligence Brief html+model,
+--                        written ONLY by the secret-gated definer fns below.
+-- fn get_owner_brief_model(secret, month) / put_owner_brief(secret, month, html,
+--    model) / get_brief_state(secret) SECURITY DEFINER: same app_secrets
+--    'auto_trigger' verification as open_trigger_thread; put is insert-once per
+--    month (on conflict do nothing → false); get_brief_state returns the
+--    financials+actions property_state layers for the brief generator.
 -- public.app_secrets    RLS enabled, NO policies (deny-all) — shared secrets
 --                        readable only by SECURITY DEFINER fns. Row 'auto_trigger'
 --                        = the cron secret (mirrors Vercel env CRON_SECRET).
@@ -114,3 +122,4 @@ end; $$;
 --   20260707173305 documents_bucket_policies  20260710182827 scope_transcripts_and_bucket_caps
 --   20260707194616 owner_safe_bucket_log      20260710182958 api_usage_rate_limit
 --   20260716______ auto_trigger_threads (trigger_source + app_secrets + open_trigger_thread)
+--   20260717______ owner_intelligence_briefs (owner_briefs + get/put_owner_brief + get_brief_state)

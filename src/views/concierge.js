@@ -8,6 +8,7 @@
 import { REMOTE, sb } from "../lib/remote.js";
 import { mdToHtml, mdToSpeech } from "../lib/concierge.js";
 import { extractPackages } from "../lib/lease.js";
+import { extractBriefs } from "../lib/brief.js";
 import { esc } from "../lib/format.js";
 
 const AGENTS = {
@@ -61,7 +62,7 @@ async function speak(md, btn) {
     const r = await fetch("/api/voice", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: "Bearer " + session.access_token },
-      body: JSON.stringify({ text: mdToSpeech(extractPackages(md).clean) }),
+      body: JSON.stringify({ text: mdToSpeech(extractBriefs(extractPackages(md).clean).clean) }),
     });
     if (!r.ok) throw new Error("HTTP " + r.status);
     const url = URL.createObjectURL(await r.blob());
@@ -88,9 +89,27 @@ function packageCards(packages) {
       '<a class="chip" href="' + mail + '">✉ Email</a></div>';
   }).join("");
 }
+/* Owner Intelligence Brief cards ([[brief:month|label]] in cron-seeded
+   threads). The html is fetched via RLS (owner_briefs), never from the line. */
+function briefCards(briefs) {
+  return briefs.map(b =>
+    '<div class="ai-pkg"><span class="ai-pkg-name">📊 ' + esc(b.label) + '</span>' +
+    '<button class="chip ai-brief" data-month="' + esc(b.month) + '">Open 🔒</button></div>').join("");
+}
+async function openBrief(month) {
+  const { data, error } = await sb.from("owner_briefs").select("html").eq("month", month).single();
+  if (error || !data?.html) { alert("Couldn't open the brief: " + (error?.message || "not found")); return; }
+  const url = URL.createObjectURL(new Blob([data.html], { type: "text/html" }));
+  window.open(url, "_blank", "noopener");
+  setTimeout(() => URL.revokeObjectURL(url), 60_000);
+}
+function wireBriefs(el) {
+  el.querySelectorAll(".ai-brief").forEach(b => { b.onclick = () => openBrief(b.dataset.month); });
+}
 function assistantHTML(md) {
-  const { clean, packages } = extractPackages(md);
-  return mdToHtml(clean) + packageCards(packages) + '<button class="ai-speak" title="Read aloud">🔊</button>';
+  const pk = extractPackages(md);
+  const { clean, briefs } = extractBriefs(pk.clean);
+  return mdToHtml(clean) + packageCards(pk.packages) + briefCards(briefs) + '<button class="ai-speak" title="Read aloud">🔊</button>';
 }
 function bubble(thread, cls, html) {
   const d = document.createElement("div");
@@ -122,8 +141,27 @@ function paintThread(host) {
   thread.innerHTML = "";
   s.history.forEach(m => {
     if (m.role === "user") bubble(thread, "ai-user", esc(m.content));
-    else wireSpeak(bubble(thread, "ai-assist", assistantHTML(m.content)), m.content);
+    else {
+      const el = bubble(thread, "ai-assist", assistantHTML(m.content));
+      wireSpeak(el, m.content);
+      wireBriefs(el);
+    }
   });
+}
+
+/* ── 📊 Briefs panel (monthly Owner Intelligence Brief archive) ── */
+async function paintBriefs(host) {
+  const panel = host.querySelector("#aiBriefsPanel");
+  panel.innerHTML = '<div class="mute" style="padding:10px">loading…</div>';
+  const { data, error } = await sb.from("owner_briefs").select("month,model,created_at").order("month", { ascending: false }).limit(24);
+  if (error) { panel.innerHTML = '<div class="ai-err" style="padding:10px">' + esc(error.message) + '</div>'; return; }
+  panel.innerHTML = (data || []).map(b =>
+    '<button class="ai-thr ai-brief" data-month="' + esc(b.month) + '">' +
+    '<span class="ai-thr-t">📊 ' + esc(b.model?.monthLabel || b.month) + '</span>' +
+    '<span class="ai-thr-m mono">occupancy ' + esc(b.model?.occupancyPct != null ? (b.model.occupancyPct * 100).toFixed(1) + "%" : "—") +
+    ' · generated ' + esc(b.model?.generated || b.created_at?.slice(0, 10) || "") + '</span></button>'
+  ).join("") || '<div class="mute" style="padding:10px">no briefs yet — the first generates on the next monthly cycle</div>';
+  wireBriefs(panel);
 }
 
 /* ── history panel (persisted transcripts) ─────────────────────── */
@@ -170,8 +208,10 @@ export function initConcierge() {
     Object.entries(AGENTS).map(([k, a]) => '<button class="chip ai-agent' + (k === current ? " on" : "") + '" data-agent="' + k + '">' + a.chip + '</button>').join("") +
     '<span style="flex:1"></span>' +
     '<button class="chip" id="aiNew" title="Start a fresh conversation">+ New</button>' +
+    '<button class="chip" id="aiBriefs" title="Monthly owner intelligence briefs">📊 Briefs</button>' +
     '<button class="chip" id="aiHist" title="Past conversations">🗂 History</button></div>' +
     '<div class="ai-history" id="aiHistory" hidden></div>' +
+    '<div class="ai-history" id="aiBriefsPanel" hidden></div>' +
     '<div class="ai-thread" id="aiThread"></div>' +
     '<form class="ai-ask" id="aiAsk">' +
     '<button type="button" class="ai-tool" id="aiMic" title="Speak your question" hidden>🎙</button>' +
@@ -188,7 +228,14 @@ export function initConcierge() {
   host.querySelector("#aiHist").onclick = () => {
     const p = host.querySelector("#aiHistory");
     p.hidden = !p.hidden;
+    host.querySelector("#aiBriefsPanel").hidden = true;
     if (!p.hidden) paintHistory(host);
+  };
+  host.querySelector("#aiBriefs").onclick = () => {
+    const p = host.querySelector("#aiBriefsPanel");
+    p.hidden = !p.hidden;
+    host.querySelector("#aiHistory").hidden = true;
+    if (!p.hidden) paintBriefs(host);
   };
 
   const autoBtn = host.querySelector("#aiAuto");
@@ -261,6 +308,7 @@ async function ask(host, q, send) {
     }
     out.innerHTML = assistantHTML(text);
     const sp = wireSpeak(out, text);
+    wireBriefs(out);
     s.history.push({ role: "assistant", content: text });
     if (autoSpeak()) speak(text, sp);
   } catch (err) {
@@ -270,6 +318,7 @@ async function ask(host, q, send) {
     // failure (nothing streamed → nothing persisted), so a retry is clean.
     if (text) {
       out.innerHTML = assistantHTML(text) + '<div class="ai-err">⚠ interrupted — reply may be incomplete</div>';
+      wireBriefs(out);
       s.history.push({ role: "assistant", content: text });
     } else {
       out.innerHTML = '<span class="ai-err">Could not answer: ' + esc(err.message) + '</span>';
