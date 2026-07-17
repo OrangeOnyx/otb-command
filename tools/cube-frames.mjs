@@ -57,12 +57,15 @@ function creds() {
   return { user, pass };
 }
 
+const FETCH_TIMEOUT_MS = 30_000; // a wedged socket must never stall the loop
+
 async function login() {
   const { user, pass } = creds();
   const r = await fetch(`https://${HOST}/rest/v2/login/sessions`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username: user, password: pass, setCookie: false }),
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   });
   if (!r.ok) throw new Error(`login failed: ${r.status} ${await r.text()}`);
   return (await r.json()).token;
@@ -73,38 +76,61 @@ const stamp = d =>
   pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds());
 const pad = n => String(n).padStart(2, "0");
 
+const logFile = join(OUT, "sampler.log");
+function log(msg) {
+  const line = `[${new Date().toLocaleString()}] ${msg}`;
+  console.log(line);
+  try { writeFileSync(logFile, line + "\n", { flag: "a" }); } catch {}
+}
+
 async function pullOnce(token) {
   const when = new Date();
   const dir = join(OUT, when.toISOString().slice(0, 10));
   mkdirSync(dir, { recursive: true });
   const cams = registry.cameras.filter(c => !c.interior);
-  let ok = 0, fail = 0;
+  let ok = 0, fail = 0, auth = false;
   for (const cam of cams) {
     try {
       const r = await fetch(`https://${HOST}/rest/v2/devices/{${cam.dwViewId}}/image`, {
         headers: { Authorization: "Bearer " + token },
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
       });
       if (!r.ok) throw new Error("HTTP " + r.status);
       const buf = Buffer.from(await r.arrayBuffer());
       writeFileSync(join(dir, `${cam.id}-${stamp(when)}.jpg`), buf);
       ok++;
     } catch (e) {
-      console.error(`  ✗ ${cam.id}: ${e.message}`);
+      if (/HTTP 401|HTTP 403/.test(e.message)) auth = true;
+      log(`  ✗ ${cam.id}: ${e.message}`);
       fail++;
     }
   }
-  console.log(`[${when.toLocaleTimeString()}] ${ok} frames → ${dir}` + (fail ? ` (${fail} failed)` : ""));
+  log(`${ok} frames → ${dir}` + (fail ? ` (${fail} failed)` : ""));
+  // an expired session token 401s every camera; surface it so the loop re-logins
+  if (ok === 0 && (auth || fail > 0)) throw new Error(auth ? "session token rejected" : "all cameras failed");
 }
 
-const token = await login();
-console.log(`Authenticated to ${HOST} (system "Belle Reality") — ${registry.cameras.filter(c => !c.interior).length} exterior cameras`);
-await pullOnce(token);
+let token = await login();
+log(`Authenticated to ${HOST} (system "Belle Reality") — ${registry.cameras.filter(c => !c.interior).length} exterior cameras`);
+await pullOnce(token).catch(e => log("initial pull: " + e.message));
 if (LOOP > 0) {
-  console.log(`Sampling every ${LOOP}s — Ctrl-C to stop.`);
-  setInterval(() => pullOnce(token).catch(async e => {
-    // token expiry → re-login once
-    console.error("pull failed (" + e.message + "), re-authenticating…");
-    const t = await login();
-    return pullOnce(t);
-  }), LOOP * 1000);
+  log(`Sampling every ${LOOP}s — Ctrl-C to stop.`);
+  let busy = false;
+  setInterval(async () => {
+    if (busy) return; // never stack ticks behind a slow pull
+    busy = true;
+    try {
+      await pullOnce(token);
+    } catch (e) {
+      log("pull failed (" + e.message + "), re-authenticating…");
+      try {
+        token = await login();
+        await pullOnce(token);
+      } catch (e2) {
+        log("re-auth/retry failed: " + e2.message + " — will retry next tick");
+      }
+    } finally {
+      busy = false;
+    }
+  }, LOOP * 1000);
 }
