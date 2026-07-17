@@ -83,6 +83,29 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
   avatar (needs provider decision) · custom domain + SMTP wiring (needs operator DNS) ·
   Magnolia 121 lease swap (needs executed copy) · B4 realtime.
 
+### SHIPPED 2026-07-17 — A2 Owner Intelligence Brief (monthly, deterministic)
+**A2 from the approved twin-marketing queue** (B2 deferred → A2 was next unblocked).
+Monthly OO-branded owner report — NO LLM in the loop, every figure deterministic:
+occupancy + scheduled-rent KPI tiles with precomputed MoM direction words (vs the
+prior month's STORED model — real deltas start August), vacancies, holdovers,
+12-month expiration table (115/117 Clothing Loft leads it — matches the live renewal
+talks), owner-worksheet NOI + cap value ONLY when the P-1 opex worksheet exists
+(July: omitted, none on file), open action cards. Pure seam `src/lib/brief.js`
+(+9 tests → 139). Storage: new `owner_briefs` table (migration
+`owner_intelligence_briefs`) — RLS read owner/operator, writes ONLY via secret-gated
+SECURITY DEFINER RPCs (get/put_owner_brief, get_brief_state) on the same app_secrets
+row as the cron; NO service-role key. Cron (api/auto-trigger.mjs) generates once per
+month, idempotent (`summary.brief`: generated/exists/failed), and appends a
+[[brief:YYYY-MM|label]] card line to the monthly seeded thread (strict YYYY-MM gate
+client-side). AI-1 gains **📊 Briefs** archive panel; cards blob-open via RLS fetch.
+DEPLOYED + LIVE-VERIFIED: manual cron run → "brief":"generated"; July row in
+owner_briefs ($90,291/mo ≈ $1.08M/yr EGI ✓, 94.9% = 25/27 ✓); prod bundle carries
+aiBriefs/owner_briefs; document visually verified via headless-Chrome render
+(OO navy/orange, on-brand). Occupancy footnoted as demised-SF (62,810) vs audited
+headline GLA 62,883. **Operator smoke: AI-1 → 📊 Briefs → July 2026 → Open 🔒.**
+NOTE: July's card is NOT in the July thread (thread pre-existed the feature) — the
+panel is the July path; August's thread will carry the card inline.
+
 ### SHIPPED 2026-07-16 (part 3) — visual sheet export (⤓ SHEET)
 Topbar **⤓ SHEET** button (+ plain Ctrl+P): prints/saves the OPEN sheet as a PDF —
 print CSS isolates `.page.on`, hides chrome, forces plan-room colors exact
