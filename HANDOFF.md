@@ -3,7 +3,13 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-15 (evening).
+Last updated: 2026-07-16 (evening). Today: Cube creds landed → 17/17 camera aims
+frame-verified + baked (Server Cabinet reclassified exterior, rear 101/103) · C3 sampler
+running · harvest #2 SHIPPED (auto-trigger cron → AI-1 threads; found live 115/117 renewal
+window, operator in discussions — strict stance, $24K AC approved) · sidebar-clip bug fixed
+(PENDING DEPLOY, see ⚠ above) · B2 microsite DEFERRED by operator until new drone/camera
+footage. Multi-space tenants: units stay individual (operator decision; rent-roll combine
+= future display option only).
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
