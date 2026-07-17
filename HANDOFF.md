@@ -7,6 +7,16 @@ Last updated: 2026-07-15 (evening).
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
+**⚠ DEPLOY BLOCKED until ~2026-07-17 evening:** Vercel free-tier upload quota burned
+(sampler frames rode into two CLI uploads before capture/ was vercelignored; "api-upload-free"
+5000/24h). Prod = harvest-#2 build (auto-trigger LIVE ✓). **PENDING DEPLOY (committed, tested):**
+sidebar scroll fix (owner-view/sign-in panels clipped on short windows — operator workaround:
+scroll the page or Ctrl+minus) · 115/117 renewal-stance seed notes. FIRST MOVE next session:
+`npx vercel deploy --prod --yes --archive=tgz --scope adams-projects-0c52918e` then verify
+.side{overflow-y:auto} in the prod CSS.
+**C3 sampler:** detached node PID in `Drone Footage RAW/OTB-cube-capture/sampler.pid`
+(300s × 17 cams → that dir, OUTSIDE the repo — never let frames back into the project;
+TaskStop orphans npm children, kill the node PID directly). Cube creds: `~/.otb-cube.env` (in).
 **State:** 12 sheets, all deployed: D-1 · A-1 (📍 asset pins + 🅿 parking layer + 🎥 CCTV
 layer w/ drag-to-place ✎ Adjust) · A-2 Spatial (4 lenses; Lens B 🏗 Mesh toggle; 🎥 Reality
 clickable + unit overlay) · R-1 · P-1 · C-1 · T-1 · W-1 · K-1 · S-1 Safe · AI-1 Agent Desk
