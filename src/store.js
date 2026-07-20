@@ -5,7 +5,9 @@
    auth-gated /api/seed endpoint. Full units.json stays the SOT for tools+server. */
 import unitsData from "./data/units.public.json";
 import complianceData from "./data/compliance.json";
-import { PAGE_IDS, DEFAULT_OWNER_SHEETS } from "./lib/pages.js";
+import { PAGE_IDS } from "./lib/pages.js";
+import { OPEX_LINES, emptyLayers, snapshotOf } from "./lib/layers.js";
+export { OPEX_LINES }; // schema lives in the layer registry; re-exported for views
 
 const LS_KEY = "otb-command-state-v1";
 const STATE_VERSION = 1;
@@ -64,12 +66,10 @@ function load() {
      dismissed[id] → archived/removed from the board
      custom[]      → operator-added cards ({id,kind,lane,title,detail,due,unit?}) */
 const LANES = new Set(["watch", "action", "progress", "done"]);
-const emptyActions = () => ({ lane: {}, edit: {}, dismissed: {}, custom: [] });
 
 /* generic record-collection override (Directory K-1: contacts + documents).
    Seeds live in the views; the store persists only edits/dismissals/custom. */
 const COLLECTIONS = new Set(["contacts", "documents"]);
-const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
 /* owner-visible sheets (Path B owner view): operator picks which sheets the
    shopping-center owners can see. Persisted + exported so it travels.
@@ -77,12 +77,8 @@ const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
 /* financials = operator-entered operating assumptions for the P-1 NOI rollup.
    Income is derived from the rent roll; expenses aren't in the SOT, so these
-   annual figures are the one manual input. Fixed schema — no add/remove. */
-export const OPEX_LINES = [
-  ["taxes", "Property taxes"], ["insurance", "Insurance"], ["cam", "CAM / R&M"],
-  ["mgmt", "Management"], ["utilities", "Utilities (common)"], ["reserves", "Reserves"]
-];
-const emptyFin = () => ({ opex: { taxes: 0, insurance: 0, cam: 0, mgmt: 0, utilities: 0, reserves: 0 }, capRatePct: null });
+   annual figures are the one manual input. Schema (OPEX_LINES) + empty shape
+   live in lib/layers.js with the rest of the layer registry. */
 
 /* features = site-asset pins on A-1 (digital-twin layer): water shutoffs, meters,
    benches, cans, columns… Operator-placed points in plan coordinates (the A-1
@@ -110,7 +106,9 @@ const cleanCamOverride = o => {
   return r;
 };
 
-const state = { comp: baselineComp(), notes: {}, actions: emptyActions(), contacts: emptyColl(), documents: emptyColl(), financials: emptyFin(), ownerSheets: [...DEFAULT_OWNER_SHEETS], features: [], cameras: {} };
+/* Every persisted layer comes from the registry (lib/layers.js) — adding a
+   layer there materializes it here, in persist/export, and in remote sync. */
+const state = emptyLayers({ comp: baselineComp });
 const saved = load();
 if (saved) applySnapshot(saved);
 
@@ -174,9 +172,7 @@ function persist() {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify({
       version: STATE_VERSION, savedAt: new Date().toISOString(),
-      comp: state.comp, notes: state.notes, actions: state.actions,
-      contacts: state.contacts, documents: state.documents, financials: state.financials,
-      ownerSheets: state.ownerSheets, features: state.features, cameras: state.cameras
+      ...snapshotOf(state)
     }));
   } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
 }
@@ -342,15 +338,7 @@ export function clearCamOverride(id) {
 /* ---------- remote hydrate (Path B): load a server snapshot as the base ---------- */
 export function hydrateRemote(snap) {
   if (!snap || typeof snap !== "object") return;
-  state.comp = baselineComp();
-  state.notes = {};
-  state.actions = emptyActions();
-  state.contacts = emptyColl();
-  state.documents = emptyColl();
-  state.financials = emptyFin();
-  state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
-  state.features = [];
-  state.cameras = {};
+  Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);
   persist(); // cache locally too
 }
@@ -361,15 +349,7 @@ export function exportJSON() {
     version: STATE_VERSION,
     exportedAt: new Date().toISOString(),
     property: "On The Boulevard — 101–149 Arnould Blvd, Lafayette, LA 70506",
-    comp: state.comp,
-    notes: state.notes,
-    actions: state.actions,
-    contacts: state.contacts,
-    documents: state.documents,
-    financials: state.financials,
-    ownerSheets: state.ownerSheets,
-    features: state.features,
-    cameras: state.cameras
+    ...snapshotOf(state)
   }, null, 2);
 }
 export function importJSON(text) {
@@ -377,15 +357,7 @@ export function importJSON(text) {
   if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents && !snap.financials)) {
     throw new Error("Not an OTB Command export — expected { comp, notes, actions, … }.");
   }
-  state.comp = baselineComp();
-  state.notes = {};
-  state.actions = emptyActions();
-  state.contacts = emptyColl();
-  state.documents = emptyColl();
-  state.financials = emptyFin();
-  state.ownerSheets = [...DEFAULT_OWNER_SHEETS];
-  state.features = [];
-  state.cameras = {};
+  Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);
   persist();
   emit("import");

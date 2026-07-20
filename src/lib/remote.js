@@ -13,8 +13,9 @@ try {
 export const REMOTE = !!(URL && KEY);
 export const sb = REMOTE ? createClient(URL, KEY) : null;
 
+import { LAYER_KEYS as LAYERS } from "./layers.js"; // single source — no twin list
+
 const PROPERTY = "otb";
-const LAYERS = ["comp", "notes", "actions", "contacts", "documents", "financials", "ownerSheets", "features", "cameras"];
 
 export async function getSession() {
   if (!REMOTE) return null;
