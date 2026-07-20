@@ -3,7 +3,9 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-16 (evening). Today: Cube creds landed → 17/17 camera aims
+Last updated: 2026-07-20 — HORIZONTAL LAYERS + B1 + C1 + harvest #3 SHIPPED (see
+"SHIPPED 2026-07-20" below; prod = HEAD, 156 tests).
+Prior update: 2026-07-16 (evening). Today: Cube creds landed → 17/17 camera aims
 frame-verified + baked (Server Cabinet reclassified exterior, rear 101/103) · C3 sampler
 running · harvest #2 SHIPPED (auto-trigger cron → AI-1 threads; found live 115/117 renewal
 window, operator in discussions — strict stance, $24K AC approved) · sidebar-clip bug fixed
@@ -29,15 +31,17 @@ layer w/ drag-to-place ✎ Adjust) · A-2 Spatial (4 lenses; Lens B 🏗 Mesh to
 clickable + unit overlay) · R-1 · P-1 · C-1 · T-1 · W-1 · K-1 · S-1 Safe · AI-1 Agent Desk
 (voice) · V-1 Vendor Portal. **94 unit tests.**
 **FIRST MOVES next session:**
-1. If operator says "creds are in" (`~/.otb-cube.env`): `npm run cube-frames` → verify all
-   16 exterior views vs `src/data/cameras.json` → correct the ESTIMATED pins from labeled
-   stills → bake into the seed → then C3 occupancy sampling (--loop 60). Tailscale to the
-   Cube is LIVE (dw-cube 100.73.185.15, REST v2 verified; collector tested to auth boundary).
+1. ~~Cube frame pull + pin verify/bake~~ **DONE 2026-07-16** (creds landed; 17/17 camera
+   aims frame-verified + baked — see header). C3 sampler RUNNING (300s × 17 cams, detached).
+   NEXT camera step = **C3 occupancy processing** over the accumulated frames (per-stall
+   homography → occupied/free counts; roadmap `docs/camera-4d-brief.md`).
 2. Twin-marketing build order OPERATOR-APPROVED 2026-07-15: **B2 public read-only twin
    microsite (?tour, skeleton seed ONLY — no rents/PII; camera layer never public) → B1 QR
    window vinyls for 131/133 → A2 monthly Owner Intelligence Brief → C1 OO case study.**
-   Then B3 fly-through video · B4 public scoped leasing bot · C2 sandbox demo login ·
-   C3 LinkedIn series. Full plan in the 2026-07-15 chat digest below.
+   STATUS: B2 DEFERRED by operator (awaits new drone/camera footage) · **A2 SHIPPED
+   2026-07-17** (see section below) · remaining unblocked: **B1 → C1**, then B3 fly-through
+   video · B4 public scoped leasing bot · C2 sandbox demo login · C3 LinkedIn series.
+   Full plan in the 2026-07-15 chat digest below.
 3. **Blessed creative direction:** operator picked the NAVY/WHITE creative poster
    ("the blue advertisement") = `OTB-poster-X-boulevard` from `tools/poster-specials.py`
    (plat-as-art, "27 doors / 25 taken"). Use its aesthetic for the microsite + QR vinyls.
@@ -46,6 +50,43 @@ clickable + unit overlay) · R-1 · P-1 · C-1 · T-1 · W-1 · K-1 · S-1 Safe 
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — splat 16MB +
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
 another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
+
+### SHIPPED 2026-07-20 — horizontal enabling layers + B1 vinyls + C1 case study + harvest #3
+**Goal session (operator: "/goal completion of the todos" + horizontal-layer audit).**
+Five cross-cutting layers identified (audit in chat); three SHIPPED, two queued:
+1. **esc consolidation + brand kit** — ONE canonical escaper (`src/lib/format.js esc`,
+   null-safe); lease/brief/concierge/main.js/export-package all import it (export-package's
+   old copy didn't escape `"` — fixed). NEW `tools/otb_brand.py`: palettes (OTB navy/white ·
+   OO · plan-room), fonts, contact blocks, logo paths, esc — poster/pylon/plat/poster-specials
+   now import it (all 10 artifacts regenerate byte-clean).
+2. **Persisted-layer registry** — NEW `src/lib/layers.js`: store.js state shape/resets/
+   persist/export AND remote.js sync allowlist all derive from ONE table (killed the
+   hand-synced twin lists — the silent never-syncs-to-Supabase bug class). Adding a layer =
+   one entry + an applySnapshot branch. +6 tests.
+3. **Server Supabase wrapper** — NEW `api/_supa.mjs`: URL/key/headers spelled ONCE; user-JWT
+   family (supaJson/supaPost/rpcUser) vs secret-gated RPC family (rpcSecret) made explicit;
+   storage upload→sign helpers. _auth/concierge/voice/seed/auto-trigger rewired.
+4. **B1 QR window vinyls SHIPPED** — `python tools/vinyl-b1.py` → marketing/OTB-vinyl-131/133
+   (SVG + PNG + 24×36" print PDF; copied to G:\My Drive\00 OTB). Blessed X aesthetic, strict
+   navy/white, plat-as-art with the suite lit + "THIS ONE IS YOURS" leader, segno QR.
+   **QR defaults to tel:+13377691554 ("SCAN TO CALL ADAM") so it works the day it prints**;
+   re-run with `--url https://…/tour` when B2 + the domain decision land (caption auto-switches).
+5. **C1 OO case study SHIPPED** — `python tools/case-study-c1.py` → marketing/
+   OO-case-study-OTB.html/.pdf/.png (on G: too). "The Instrumented Asset", OO brand (light
+   logo on light bg), one-page letter; audited figures only, 2025 stats labeled, no financials.
+6. **Harvest #3 (otb-ops donor = OneDrive/Desktop/OTBPROPOPS/OTB_Ops_Tool_v5.html):**
+   heat-map lenses were ALREADY mostly shipped (A-1 status/expiry/rent/use/hvac) — delta was
+   the donor's **Size lens** (new A-1 "Size" chip, palette ramp, vacants color too; verified
+   in preview: 22 distinct fills, legend 1,272→6,877 SF). **Event-sourced compliance** built
+   natively: migration `compliance_event_log` (append-only `compliance_events`, insert=operator,
+   read=owner/operator, NO update/delete policies) + `lib/compevents.js` seam + C-1 **⏱ History**
+   panel (REMOTE only) — every matrix flip logs who/when/what, best-effort (never blocks the click).
+   +10 tests → **156**. DEPLOYED; prod bundle verified (compliance_events/mx-hist in JS, sf chip in HTML).
+**Smoke (operator):** C-1 → flip any cell → ⏱ History shows the row · A-1 → Size chip.
+**QUEUED next (Phase 3/4 of the layer plan):** bucket-store factory (assets/docs/safe/vendors
+→ one `createBucketStore`; unlocks COI tracking + thread persistence as 5-line configs) ·
+[[…]] card-protocol registry (unlocks [[coi:]]/[[thread:]] one-liners) · C3 occupancy
+processing over the sampler frames.
 
 ### OPERATOR punch-list (nothing here is Claude-doable)
 1. **Call the roofer** — `docs/roof-condition-brief.md`: membrane failure, long-building RTU row
@@ -73,8 +114,9 @@ another project). Local preview without login: move `.env` aside, RESTORE IT AFT
    2025 package) before the next print run.
 
 ### CLAUDE next-action menu (say the word)
-- **APPROVED QUEUE (see FIRST MOVES above):** twin-marketing B2→B1→A2→C1 (+B3/B4/C2/C3) ·
-  camera frame pull + pin correction + C3 occupancy the moment Cube creds land.
+- **APPROVED QUEUE:** ~~B1 · A2 · C1~~ DONE (07-17/07-20) · B2 deferred (footage) ·
+  remaining: **bucket-store factory + card registry → COI tracking + thread persistence ·
+  C3 occupancy processing** · then B3 fly-through · B4 scoped bot · C2 sandbox · C3 LinkedIn.
 - **Splice the approved 2026 end card** into the marketing video (ffmpeg; card + spec in
   `Belle Shared Drive/Marketing/`; treatment A rendered and delivered 2026-07-12) — note
   B3 (twin fly-through) supersedes/absorbs this if built together.
