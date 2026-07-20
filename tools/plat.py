@@ -21,9 +21,9 @@ DXF = os.path.join(ROOT, "cad", "Boulev_CLEAN.dxf")
 OUT = os.path.join(ROOT, "public"); os.makedirs(OUT, exist_ok=True)
 NORTH_DEG = -51.5
 
-# plan-room palette (matches the app)
-INK = "#1C2B26"; PAPER = "#EDEFE8"; CARD = "#F6F7F1"; BRASS = "#A87E2F"
-SAGE = "#5F6E64"; GRN = "#2F6B4F"; FAINT = "#B9C0B4"; CURB = "#9aa39a"
+# plan-room palette: single source = tools/otb_brand.py (+ two plat-only tints)
+from otb_brand import esc, INK, PAPER, CARD, BRASS, SAGE, GRN
+FAINT = "#B9C0B4"; CURB = "#9aa39a"
 
 # ---- layer policy -----------------------------------------------------------
 # geometry: layer -> (stroke, width, dash, fill)
@@ -120,7 +120,7 @@ H = DRAW_H + MARGIN*2 + TITLE_H
 TX = lambda x: MARGIN + (x - minx) * s
 TY = lambda y: MARGIN + (maxy - y) * s
 
-def esc(t): return html.escape(str(t))
+# esc imported from otb_brand (shared kit)
 def clamp(v, lo, hi): return lo if v < lo else hi if v > hi else v
 
 o = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %.0f %.0f" font-family="\'IBM Plex Mono\',ui-monospace,monospace">' % (W, H)]

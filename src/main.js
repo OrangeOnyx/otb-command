@@ -4,7 +4,7 @@ import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, s
 import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles } from "./lib/remote.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { loadSeed } from "./lib/seed.js";
-import { TODAY } from "./lib/format.js";
+import { TODAY, esc } from "./lib/format.js";
 import { PAGES, VENDOR_SHEET } from "./lib/pages.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
@@ -134,14 +134,14 @@ function buildShell(account) {
       try {
         const [auth, pending] = await Promise.all([listAuthorized(), listPendingProfiles()]);
         list.innerHTML =
-          pending.map(p => '<div class="ac-row"><span class="ac-mail">' + escapeHtml(p.email) + '</span>' +
-            '<span class="ac-tag pend mono">pending</span><button class="ac-ok" data-e="' + escapeHtml(p.email) + '">make owner</button></div>').join("") +
-          auth.map(a => '<div class="ac-row"><span class="ac-mail">' + escapeHtml(a.email) + '</span>' +
-            '<span class="ac-tag mono">' + escapeHtml(a.role) + '</span><button class="ac-x" data-e="' + escapeHtml(a.email) + '" title="Revoke pre-authorization">✕</button></div>').join("") ||
+          pending.map(p => '<div class="ac-row"><span class="ac-mail">' + esc(p.email) + '</span>' +
+            '<span class="ac-tag pend mono">pending</span><button class="ac-ok" data-e="' + esc(p.email) + '">make owner</button></div>').join("") +
+          auth.map(a => '<div class="ac-row"><span class="ac-mail">' + esc(a.email) + '</span>' +
+            '<span class="ac-tag mono">' + esc(a.role) + '</span><button class="ac-x" data-e="' + esc(a.email) + '" title="Revoke pre-authorization">✕</button></div>').join("") ||
           '<div class="mute" style="font-size:11px;padding:4px 2px">no authorized emails yet</div>';
         list.querySelectorAll(".ac-ok").forEach(b => { b.onclick = async () => { await authorizeEmail(b.dataset.e, "owner"); paint(); }; });
         list.querySelectorAll(".ac-x").forEach(b => { b.onclick = async () => { if (!confirm("Revoke pre-authorization for " + b.dataset.e + "?\n(Does not sign out an already-active account.)")) return; try { await revokeAuthorized(b.dataset.e); paint(); } catch (e) { alert(e.message); } }; });
-      } catch (e) { list.innerHTML = '<div class="mute" style="font-size:11px">' + escapeHtml(e.message) + "</div>"; }
+      } catch (e) { list.innerHTML = '<div class="mute" style="font-size:11px">' + esc(e.message) + "</div>"; }
     };
     ac.addEventListener("toggle", () => { if (ac.open) paint(); });
     ac.querySelector("#acAdd").onsubmit = async e => {
@@ -175,7 +175,7 @@ function buildShell(account) {
   if (account) {
     const acct = document.createElement("div");
     acct.className = "acct";
-    acct.innerHTML = '<span class="acct-who">' + escapeHtml(account.email || "") + ' · ' + account.role + '</span>' +
+    acct.innerHTML = '<span class="acct-who">' + esc(account.email || "") + ' · ' + account.role + '</span>' +
       '<button class="acct-out" id="signOut">Sign out</button>';
     side.appendChild(acct);
     acct.querySelector("#signOut").onclick = async () => { await signOut(); location.reload(); };
@@ -204,8 +204,6 @@ function buildShell(account) {
   buildShell._applyOwner = applyOwner;
   initTheme();
 }
-
-function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 
 function applyRole(role) {
   const owner = role === "owner";
@@ -322,7 +320,7 @@ function showPending(email) {
     '<div class="login-card">' +
     '<div class="login-wm">ON THE <span>BOULEVARD</span></div>' +
     '<div class="login-sub">Access pending</div>' +
-    '<div class="login-msg">You’re signed in as <b>' + escapeHtml(email || "") + '</b>, but this address isn’t linked ' +
+    '<div class="login-msg">You’re signed in as <b>' + esc(email || "") + '</b>, but this address isn’t linked ' +
     'to an owner, operator, or vendor account yet. Contact management to be granted access.</div>' +
     '<button id="pendingOut">Sign out</button>' +
     '</div>';

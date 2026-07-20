@@ -15,16 +15,13 @@ W, H = P.W, P.H
 g = P.g
 ROOT = P.ROOT
 
-# ---- Orange Ocean brand (references/brand-orange-ocean.md, Apr 2026) ----
-ONAVY = "#1C2D4F"; ODEEP = "#0D1E38"; ORANGE = "#E8820C"; OMID = "#4A6FA5"; OLIGHT = "#F0F4F8"
-BRAND_ASSETS = os.path.join(os.path.expanduser("~"), ".claude", "skills", "abdalla-brand-system", "assets")
-def b64file(p): return "data:image/png;base64," + base64.b64encode(open(p, "rb").read()).decode()
-OO_LOGO_DARK = b64file(os.path.join(BRAND_ASSETS, "oo_logo_horizontal_dark.png"))
+# ---- Orange Ocean brand: single source = tools/otb_brand.py ----
+import otb_brand as OB
+from otb_brand import ONAVY, ODEEP, ORANGE, OMID, OLIGHT, HELV
+OO_LOGO_DARK = OB.b64(OB.OO_LOGO_DARK)
 from PIL import Image
-_oo = Image.open(os.path.join(BRAND_ASSETS, "oo_logo_horizontal_dark.png"))
+_oo = Image.open(OB.OO_LOGO_DARK)
 OO_AR = _oo.width / _oo.height
-
-HELV = "Arial, Helvetica, sans-serif"
 
 def plan_tx(frame, zoom=1.0):
     fx, fy, fw, fh = frame
@@ -175,7 +172,7 @@ def variant_T():
 
 # ================================================= X — CREATIVE (navy/white)
 def variant_X():
-    NAVY = "#1C2D4F"; OFFW = "#F5F5F5"
+    NAVY = OB.NAVY; OFFW = OB.OFF
     th = dict(ink=OFFW, accent=OFFW, street="rgba(245,245,245,.45)", tree="rgba(245,245,245,.25)",
               boundary="rgba(245,245,245,.85)", boundary_w=1.0,
               plan_line="rgba(245,245,245,.30)", plan_faint="rgba(245,245,245,.16)",

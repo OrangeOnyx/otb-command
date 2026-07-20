@@ -12,4 +12,7 @@ export const pDate = s => s ? new Date(s + "T00:00:00") : null;
 export const fDate = d => d ? d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—";
 export const monthsTo = d => (d - TODAY) / (1000 * 60 * 60 * 24 * 30.44);
 export const daysTo = d => Math.round((d - TODAY) / (1000 * 60 * 60 * 24));
-export const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]));
+/* Canonical HTML/SVG escaper — the ONLY esc in the codebase (2026-07-20
+   consolidation): lib/lease, lib/brief, lib/concierge, main.js, and
+   tools/export-package all import this. Null-safe: null/undefined → "". */
+export const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]));

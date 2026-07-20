@@ -2,6 +2,8 @@
    and the AI-1 view. No DOM, no network: message hygiene, live-state digest,
    and a minimal markdown renderer for assistant replies. Unit-tested. */
 
+import { esc } from "./format.js";
+
 export const MAX_TURNS = 20;        // messages kept (10 exchanges)
 export const MAX_MSG_CHARS = 4000;  // per-message cap
 export const MAX_DIGEST_CHARS = 3500;
@@ -111,7 +113,6 @@ export function mdToSpeech(md) {
    bullet/numbered lists, tables collapse to plain lines). Escapes HTML first —
    model output is untrusted. */
 export function mdToHtml(md) {
-  const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const inline = s => esc(s)
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");

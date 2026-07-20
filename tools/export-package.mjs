@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { unitFill, STATUS_META, CAT_META } from "../src/lib/colors.js";
+import { esc } from "../src/lib/format.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rd = f => JSON.parse(readFileSync(join(root, "src/data", f), "utf8"));
@@ -26,7 +27,8 @@ mkdirSync(out, { recursive: true });
 const DATA_AS_OF = new Date(2026, 5, 10);  // rent-roll SOT issue date
 const GENERATED = new Date();               // real generation date (audit M3)
 const TODAY = DATA_AS_OF;                    // figures/expiry windows are as-of the SOT
-const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+/* esc now imported from src/lib/format.js — the old local copy didn't escape
+   `"`, which left attribute values injectable in the standalone SVG. */
 
 /* ── standalone SVG ─────────────────────────────────────────────── */
 const attrStr = a => Object.entries(a || {}).map(([k, v]) => ` ${k}="${esc(v)}"`).join("");

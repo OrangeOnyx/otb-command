@@ -3,6 +3,7 @@
 Outputs: OTB-pylon-blank.svg (panel template w/ dims) and OTB-pylon-tenants.svg (populated).
 Panel schedule per operator's sign: P1 2x8, P2 4x8 (anchor), P3-14 2x4 pairs."""
 import base64, os, json
+from otb_brand import esc, NAVY as BRAND_NAVY  # shared brand kit
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS=os.path.join(ROOT,"tools","brand-assets")
 OUT=os.path.join(ROOT,"marketing"); os.makedirs(OUT,exist_ok=True)
@@ -13,7 +14,7 @@ LOGO_NAVY=b64(os.path.join(ASSETS,"otb_logo.png")); LOGO_AR=800/459.0
 ROOF="#A2876E"; ROOFDK="#8A7059"; ROOFLT="#B79A80"
 TAN="#D8C5A0"; TANDK="#C2AC80"; TANLT="#E8DCBE"; TANED="#B59C6E"
 POST="#F4F0E6"; POSTSH="#DAD3C2"; POSTED="#C9C2AE"
-PANEL="#F8F5EE"; PANELBD="#C7B488"; INK="#1C2D4F"; SUB="#6b6450"
+PANEL="#F8F5EE"; PANELBD="#C7B488"; INK=BRAND_NAVY; SUB="#6b6450"
 
 # ---- geometry (px) ----
 CX=512.0
@@ -51,8 +52,7 @@ POST_TOP=CAP_Y+CAP_H-8; POST_BOT=STACK_BOT+360
 
 W,H=1024,int(POST_BOT+60)
 
-def esc(t):
-    import html; return html.escape(t)
+# esc imported from otb_brand (shared kit)
 
 def frame(o):
     # posts (legs) behind everything

@@ -6,7 +6,8 @@
    Owner_Lease_Template_Form sections). Every generated document is stamped
    DRAFT — subject to legal review. Tested in test/lease.test.mjs. */
 
-export const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./format.js";
+export { esc };
 const money = n => Number.isFinite(+n) ? "$" + (+n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "—";
 const psf = n => Number.isFinite(+n) ? "$" + (+n).toFixed(2) + " PSF/yr" : "—";
 

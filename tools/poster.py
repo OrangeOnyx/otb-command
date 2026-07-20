@@ -76,7 +76,7 @@ CAT_TAG={"retail":"RETAIL","services":"SERVICE","financial":"FINANCE","food":"FO
          "medical":"MEDICAL","office":"OFFICE","vacant":"AVAILABLE"}
 VAC=sorted([u for u in units.values() if u["status"]=="vacant"], key=lambda u:u["unit"])
 
-def esc(t): return html.escape(str(t))
+from otb_brand import esc  # shared brand kit (tools/otb_brand.py)
 
 # ---------------------------------------------------------------- site plan core
 def render_plan(o, frame, th):
@@ -182,14 +182,9 @@ def logo(o,x,y,h,white=True):
     o.append('<image x="%.1f" y="%.1f" width="%.1f" height="%.1f" href="%s"/>'%(x,y,w,h,LOGO_WHITE if white else LOGO_NAVY))
     return w
 
-# palette constants
-NAVY="#1C2D4F"; OFF="#F5F5F5"; WHT="#FFFFFF"
-INK="#1C2B26"; PAPER="#EDEFE8"; CARD="#F6F7F1"; BRASS="#A87E2F"; SAGE="#5F6E64"
-GRN="#2F6B4F"; ANCH="#1E4F3C"; BRICK="#C25E33"
-
-CONTACT = ("Adam Anthony Abdalla, Property Manager", "101–149 Arnould Blvd · Lafayette, LA 70506",
-           "P 337-769-1554   ·   E info@ontheblvd.com   ·   W ontheblvd.com")
-ATTRIB = "Managed by Orange Ocean, LLC on behalf of Belle Realty of Lafayette, LLC."
+# palette + contact block: single source = tools/otb_brand.py
+from otb_brand import (NAVY, OFF, WHT, INK, PAPER, CARD, BRASS, SAGE,
+                       GRN, ANCH, BRICK, CONTACT, ATTRIB)
 
 # ================================================================ A — BRAND
 def variant_A():

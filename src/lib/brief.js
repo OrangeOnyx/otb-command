@@ -13,6 +13,7 @@
    (kpi.js philosophy). Tested in test/brief.test.mjs. */
 
 import { monthKey, monthLabel } from "./autotrigger.js";
+import { esc } from "./format.js";
 
 export const EXPIRATION_HORIZON_DAYS = 365;
 
@@ -23,7 +24,6 @@ export function prevMonthKey(month) {
 
 const round2 = n => Math.round(n * 100) / 100;
 const round4 = n => Math.round(n * 10000) / 10000;
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const money0 = n => "$" + Math.round(+n || 0).toLocaleString("en-US");
 const money2 = n => "$" + (+n || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct1 = f => (f * 100).toFixed(1) + "%";
