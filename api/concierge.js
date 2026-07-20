@@ -20,9 +20,9 @@ import units from "../src/data/units.json" with { type: "json" };
 import recoveries from "../src/data/recoveries.json" with { type: "json" };
 import hvac from "../src/data/hvac.json" with { type: "json" };
 
+import { supaPost, storageUpload, storageSignedUrl } from "./_supa.mjs";
+
 export const maxDuration = 60;
-const SUPA = process.env.VITE_SUPABASE_URL;
-const ANON = process.env.VITE_SUPABASE_ANON_KEY;
 
 const CORE = `You work inside "OTB Property Command", the private management tool for On The Boulevard Shopping Center (101–149 Arnould Blvd, Lafayette, LA). Your users are the operator (Adam, Managing Member of Orange Ocean, LLC) and the property's owners.
 
@@ -80,32 +80,22 @@ async function runLeaseTool(input, token) {
     ? buildProposalHTML(input, unit, recFor(input.unit), hv, today)
     : buildOwnerSummaryHTML(input, unit, recFor(input.unit), hv, today);
   const file = "lease-packages/" + packageFileName(input, new Date().toISOString().slice(0, 10));
-  const up = await fetch(`${SUPA}/storage/v1/object/documents/${file}`, {
-    method: "POST",
-    headers: { apikey: ANON, authorization: "Bearer " + token, "content-type": "text/html; charset=utf-8", "x-upsert": "true" },
-    body: html,
-  });
+  const up = await storageUpload("documents", file, token, html, "text/html; charset=utf-8");
   if (!up.ok) return { ok: false, error: "package upload failed (" + up.status + ")" };
-  const sign = await fetch(`${SUPA}/storage/v1/object/sign/documents/${file}`, {
-    method: "POST",
-    headers: { apikey: ANON, authorization: "Bearer " + token, "content-type": "application/json" },
-    body: JSON.stringify({ expiresIn: 172800 }), // 48h — emailed bearer link; the package persists in the documents bucket, re-open from K-1 to reissue
-  });
-  if (!sign.ok) return { ok: false, error: "package signing failed (" + sign.status + ")" };
-  const { signedURL } = await sign.json();
+  // 48h — emailed bearer link; the package persists in the documents bucket, re-open from K-1 to reissue
+  const url = await storageSignedUrl("documents", file, token, 172800);
+  if (!url) return { ok: false, error: "package signing failed" };
   const label = `Unit ${input.unit} ${input.package_type === "proposal" ? "lease proposal" : "owner lease summary"} — ${input.tenant_company}`;
-  return { ok: true, url: SUPA + "/storage/v1" + signedURL, label, file };
+  return { ok: true, url, label, file };
 }
 
 /* transcripts (best effort — never block the answer) */
 async function ensureThread(threadId, agent, firstLine, email, token) {
   if (threadId) return threadId;
   try {
-    const r = await fetch(`${SUPA}/rest/v1/chat_threads`, {
-      method: "POST",
-      headers: { apikey: ANON, authorization: "Bearer " + token, "content-type": "application/json", prefer: "return=representation" },
-      body: JSON.stringify({ agent, title: String(firstLine || "").slice(0, 80), created_by: email || "" }),
-    });
+    const r = await supaPost("/rest/v1/chat_threads", token,
+      { agent, title: String(firstLine || "").slice(0, 80), created_by: email || "" },
+      { prefer: "return=representation" });
     const rows = await r.json();
     return Array.isArray(rows) && rows[0]?.id || null;
   } catch { return null; }
@@ -113,11 +103,8 @@ async function ensureThread(threadId, agent, firstLine, email, token) {
 async function saveMessages(threadId, rows, token) {
   if (!threadId || !rows.length) return;
   try {
-    await fetch(`${SUPA}/rest/v1/chat_messages`, {
-      method: "POST",
-      headers: { apikey: ANON, authorization: "Bearer " + token, "content-type": "application/json" },
-      body: JSON.stringify(rows.map(r => ({ thread_id: threadId, role: r.role, content: r.content }))),
-    });
+    await supaPost("/rest/v1/chat_messages", token,
+      rows.map(r => ({ thread_id: threadId, role: r.role, content: r.content })));
   } catch { /* transcript loss is non-fatal */ }
 }
 

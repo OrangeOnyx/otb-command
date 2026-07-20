@@ -18,18 +18,7 @@ import SEED from "./_seed.json" with { type: "json" };
 import { collectCandidates } from "../src/lib/autotrigger.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
 
-const SUPA = process.env.VITE_SUPABASE_URL;
-const ANON = process.env.VITE_SUPABASE_ANON_KEY;
-
-async function rpc(name, body) {
-  const r = await fetch(`${SUPA}/rest/v1/rpc/${name}`, {
-    method: "POST",
-    headers: { apikey: ANON, authorization: "Bearer " + ANON, "content-type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  if (!r.ok) throw new Error(`${name}: HTTP ${r.status}`);
-  return r.json();
-}
+import { configured, rpcSecret as rpc } from "./_supa.mjs";
 
 /* A2: first run of a month generates the Owner Intelligence Brief document
    (deterministic — src/lib/brief.js) and stores it in owner_briefs via the
@@ -59,7 +48,7 @@ async function ensureMonthlyBrief(units, secret, today, summary) {
 
 export default async function handler(req, res) {
   const secret = process.env.CRON_SECRET;
-  if (!secret || !SUPA || !ANON) return res.status(500).json({ error: "not configured" });
+  if (!secret || !configured()) return res.status(500).json({ error: "not configured" });
   if ((req.headers.authorization || "") !== "Bearer " + secret)
     return res.status(401).json({ error: "unauthorized" });
 
@@ -76,16 +65,10 @@ export default async function handler(req, res) {
   }
   for (const c of candidates) {
     try {
-      const r = await fetch(`${SUPA}/rest/v1/rpc/open_trigger_thread`, {
-        method: "POST",
-        headers: { apikey: ANON, authorization: "Bearer " + ANON, "content-type": "application/json" },
-        body: JSON.stringify({
-          p_secret: secret, p_agent: c.agent, p_title: c.title,
-          p_trigger: c.triggerSource, p_content: c.detail,
-        }),
+      const id = await rpc("open_trigger_thread", {
+        p_secret: secret, p_agent: c.agent, p_title: c.title,
+        p_trigger: c.triggerSource, p_content: c.detail,
       });
-      if (!r.ok) { summary.failed++; continue; }
-      const id = await r.json();
       if (id) { summary.opened++; summary.openedSources.push(c.triggerSource); }
       else summary.skippedExisting++;
     } catch { summary.failed++; }
