@@ -34,9 +34,15 @@ export const CAT_META = {
   vacant: ["Vacant", "url(#hatch)"]
 };
 
+/* SF lens ramp bounds (otb-ops harvest: size heat-map). 1,272 = smallest bay
+   (133), 6,877 = largest (101) — vacants color too; size is status-agnostic. */
+const SF_MIN = 1200, SF_MAX = 7000;
+export const sfRamp = t => mix("#DCE0D3", "#1E4F3C", Math.max(0, Math.min(1, t)));
+
 export function unitFill(u, mode) {
   if (mode === "status") return STATUS_META[u.status].fill;
   if (mode === "use") return CAT_META[u.cat][1];
+  if (mode === "sf") return u.sf ? sfRamp((u.sf - SF_MIN) / (SF_MAX - SF_MIN)) : "#5F6E64";
   if (u.status === "vacant") return "url(#hatch)";
   if (mode === "hvac") { const t = hvacTier(u); return t ? TIER_COLOR[t] : "#5F6E64"; }
   if (mode === "expiry") {
@@ -59,5 +65,6 @@ export function legendFor(mode) {
   if (mode === "expiry") return [["Expired", "#C25E33"], ["< 12 mo", "#C99A33"], ["12–60 mo", "#7F9A5E"], ["5 yr +", "#2F6B4F"], ["No term", "#5F6E64"]];
   if (mode === "rent") return [["$15.50 PSF", "#7E8C7C"], ["$20.20 PSF", "#A87E2F"], ["No rent", "#5F6E64"]];
   if (mode === "hvac") return [["Tenant 100%", "#2F6B4F"], ["% split", "#C99A33"], ["$ cap — lessor covers excess", "#C25E33"]];
+  if (mode === "sf") return [["1,272 SF", sfRamp(0)], ["≈4,000 SF", sfRamp(0.5)], ["6,877 SF", sfRamp(1)]];
   return Object.values(CAT_META).filter(c => c[1].indexOf("url") < 0).map(c => [c[0], c[1]]);
 }

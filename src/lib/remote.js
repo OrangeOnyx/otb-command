@@ -55,6 +55,26 @@ export async function pushState(snapshot) {
   return sb.from("property_state").upsert(rows);
 }
 
+/* ── event-sourced compliance (C-1 audit trail; append-only) ─────
+   State still syncs whole via property_state.comp; these rows are the
+   who/when/what history behind it. Logging is best-effort — an audit
+   outage must never block the matrix click. */
+export async function logCompEvent(row) {
+  if (!REMOTE || !row) return;
+  try {
+    const me = (await sb.auth.getUser()).data.user;
+    await sb.from("compliance_events").insert({ ...row, changed_by: me?.email || "" });
+  } catch (e) { console.warn("comp event:", e.message); }
+}
+export async function listCompEvents(limit = 80) {
+  if (!REMOTE) return [];
+  const { data, error } = await sb.from("compliance_events")
+    .select("unit,field,old_state,new_state,changed_by,created_at")
+    .order("created_at", { ascending: false }).limit(limit);
+  if (error) throw error;
+  return data || [];
+}
+
 /* ── access management (operator-only; RLS enforces) ─────────────
    Authorize an email BEFORE first sign-in (allowlist consulted by the
    sign-up trigger) and fix anyone already stuck in 'pending'. */
