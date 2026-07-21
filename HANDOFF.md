@@ -83,10 +83,40 @@ Five cross-cutting layers identified (audit in chat); three SHIPPED, two queued:
    panel (REMOTE only) — every matrix flip logs who/when/what, best-effort (never blocks the click).
    +10 tests → **156**. DEPLOYED; prod bundle verified (compliance_events/mx-hist in JS, sf chip in HTML).
 **Smoke (operator):** C-1 → flip any cell → ⏱ History shows the row · A-1 → Size chip.
-**QUEUED next (Phase 3/4 of the layer plan):** bucket-store factory (assets/docs/safe/vendors
-→ one `createBucketStore`; unlocks COI tracking + thread persistence as 5-line configs) ·
-[[…]] card-protocol registry (unlocks [[coi:]]/[[thread:]] one-liners) · C3 occupancy
-processing over the sampler frames.
+
+### SHIPPED 2026-07-20 (part 2) — Phase 3: last two layers + the features they unlock
+7. **Bucket-store factory** — NEW `src/lib/bucketstore.js`: shared id/sanitize/path helpers,
+   IndexedDB micro-backend, audit-log factory, and `createBucketStore({bucket, ttl, audit,
+   local})` (standard folder/id__name shape). docs.js / safe.js / vendors.js are now thin
+   configs (~120 dup lines gone, public APIs byte-identical — their test files pass
+   unchanged); assets.js adopts the primitives but keeps its kind-embedded path convention.
+   Audit default = configured-only (operator pick (b): no behavior change on adoption).
+8. **Card registry** — NEW `src/lib/cards.js`: `registerCard(type, validate)` +
+   `extractCards/stripCards`; package (https-only) + brief (strict YYYY-MM) are built-ins;
+   lease/brief keep compat wrappers; AI-1 view now parses ALL card types in one pass
+   (manual extractBriefs(extractPackages(…)) chaining gone). [[coi:]]/[[thread:]] = one line.
+9. **COI tracking SHIPPED** (P3 deferred item) — migration `vendor_coi_tracking`
+   (vendors.coi_expires/coi_note; existing RLS covers it). Pure seam `src/lib/coi.js`
+   (expired/≤30d critical/≤60d expiring/ok). V-1 operator face: COI badge on every service
+   vendor row (missing = slate "COI —") + date/note editor in the vendor panel; vendor face
+   shows their own cert status + renewal nudge. Workflow: file the cert in the folder, set
+   the date. **Smoke: V-1 → any service vendor → set a COI date → badge updates.**
+10. **AI-1 thread persistence** — per-agent thread id + transcript persist to localStorage
+   (`otb-ai-state-v1`); a reload resumes the SAME conversation (server threads already
+   persisted; the client now keeps pointing at them). + New / History / agent switch all
+   persist. **Smoke: ask AI-1 something, reload, conversation still on screen.**
+   +13 tests → **169.** DEPLOYED; prod bundle verified (coi_expires/vpCoiSave/otb-ai-state-v1).
+
+### ⚠ C3 SAMPLER — died 2026-07-19 ~17:14 (machine reboot?), RELAUNCHED 2026-07-20
+Captured before death: 07-16: 8,769 · 07-17: 8,297 · 07-18: 4,694 · 07-19: 4,539 frames
+(≈26.3k total — plenty for C3 design). Relaunched detached (node, 300s loop, quoted --out
+per the 07-16 lesson), new PID in `sampler.pid`. If the machine reboots, relaunch the same
+way — the sampler does NOT auto-start.
+
+**QUEUED next (Phase 4):** **C3 occupancy processing** over the captured frames — needs the
+C2 per-camera de-warp/stall-zone step first (docs/camera-4d-brief.md); design decisions
+pending: which cams cover which stall groups + VLM vs classical classifier (cost). Then
+B3 fly-through · B4 scoped bot · C2 sandbox · C3 LinkedIn (footage-gated: B2).
 
 ### OPERATOR punch-list (nothing here is Claude-doable)
 1. **Call the roofer** — `docs/roof-condition-brief.md`: membrane failure, long-building RTU row
