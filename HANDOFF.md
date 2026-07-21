@@ -15,12 +15,15 @@ footage. Multi-space tenants: units stay individual (operator decision; rent-rol
 
 ## ⚡ NEXT SESSION — START HERE
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
-**DEPLOY UNBLOCKED + SHIPPED 2026-07-17 morning:** quota window cleared; prod now carries the
-sidebar scroll fix (verified `.side{overflow-y:auto}` in prod CSS) + 115/117 renewal-stance
-seed notes + the ⤓ SHEET print export (verified in prod JS). Prod = HEAD.
-**C3 sampler:** detached node PID in `Drone Footage RAW/OTB-cube-capture/sampler.pid`
-(300s × 17 cams → that dir, OUTSIDE the repo — never let frames back into the project;
-TaskStop orphans npm children, kill the node PID directly). Cube creds: `~/.otb-cube.env` (in).
+**PROD = HEAD as of 2026-07-20 (evening):** all five horizontal layers + B1 vinyls + C1 case
+study + harvest #3 (event-sourced compliance + Size lens) + COI tracking + AI-1 thread
+persistence deployed and bundle-verified. **169 unit tests.**
+**C3 sampler:** RELAUNCHED 2026-07-20 (died with a reboot 07-19 ~17:14; first tick verified
+20:11, 17/17 cams; ≈26.3k frames banked 07-16→07-19). Detached node PID in
+`Drone Footage RAW/OTB-cube-capture/sampler.pid` (300s × 17 cams → that dir, OUTSIDE the
+repo — never let frames back into the project; TaskStop orphans npm children, kill the node
+PID directly). **Does NOT auto-start on reboot — relaunch per the quoted --out lesson below.**
+Cube creds: `~/.otb-cube.env` (in).
 Collector HARDENED 2026-07-17 (30s fetch timeouts · re-login on all-fail/401 tick — the old
 re-auth path was dead code · no tick stacking · appends `sampler.log` in the capture dir).
 ⚠ LAUNCH LESSON: `Start-Process -ArgumentList` splits unquoted space paths — the 07-16
@@ -28,20 +31,24 @@ overnight run wrote 2,890 frames to `Downloads\Drone\` (recovered + merged 2026-
 dir deleted). Always pass the --out path with embedded quotes: `'"C:\...\OTB-cube-capture"'`.
 **State:** 12 sheets, all deployed: D-1 · A-1 (📍 asset pins + 🅿 parking layer + 🎥 CCTV
 layer w/ drag-to-place ✎ Adjust) · A-2 Spatial (4 lenses; Lens B 🏗 Mesh toggle; 🎥 Reality
-clickable + unit overlay) · R-1 · P-1 · C-1 · T-1 · W-1 · K-1 · S-1 Safe · AI-1 Agent Desk
-(voice) · V-1 Vendor Portal. **94 unit tests.**
+clickable + unit overlay) · R-1 · P-1 · C-1 (⏱ event-sourced history) · T-1 · W-1 · K-1 ·
+S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI tracking).
+**169 unit tests.**
 **FIRST MOVES next session:**
-1. ~~Cube frame pull + pin verify/bake~~ **DONE 2026-07-16** (creds landed; 17/17 camera
-   aims frame-verified + baked — see header). C3 sampler RUNNING (300s × 17 cams, detached).
-   NEXT camera step = **C3 occupancy processing** over the accumulated frames (per-stall
-   homography → occupied/free counts; roadmap `docs/camera-4d-brief.md`).
-2. Twin-marketing build order OPERATOR-APPROVED 2026-07-15: **B2 public read-only twin
-   microsite (?tour, skeleton seed ONLY — no rents/PII; camera layer never public) → B1 QR
-   window vinyls for 131/133 → A2 monthly Owner Intelligence Brief → C1 OO case study.**
-   STATUS: B2 DEFERRED by operator (awaits new drone/camera footage) · **A2 SHIPPED
-   2026-07-17** (see section below) · remaining unblocked: **B1 → C1**, then B3 fly-through
-   video · B4 public scoped leasing bot · C2 sandbox demo login · C3 LinkedIn series.
-   Full plan in the 2026-07-15 chat digest below.
+1. **Operator smoke round (~2 min, all shipped 07-17→07-20):** C-1 flip a cell → ⏱ History
+   row appears · A-1 → Size lens · V-1 → any service vendor → set a COI date → badge flips ·
+   AI-1 ask + reload → conversation resumes · AI-1 → 📊 Briefs → July 2026 → Open 🔒.
+   (Older still-unconfirmed smokes live in the punch-list below.)
+2. **C3 occupancy build is decision-gated (asked 2026-07-20, operator picks by number):**
+   classifier — **1** VLM spot-checks (Haiku on per-stall crops, recommended) · **2**
+   classical CV (background subtraction) · **3** hybrid; scope — **A** storefront 56-space
+   head-on row (recommended) · **B** full main field (requires C2 homography first).
+   Say e.g. "1A" → build. ≈26.3k frames already banked; sampler running.
+3. Twin-marketing status: ~~B1 · A2 · C1~~ **DONE** · B2 microsite DEFERRED (awaits new
+   footage) · remaining: B3 fly-through · B4 public scoped leasing bot · C2 sandbox login ·
+   C3 LinkedIn series. **Vinyl PRINT is gated on the canonical-domain decision** (punch-list
+   — QR currently encodes tel:; re-run `python tools/vinyl-b1.py --url https://…/tour` once
+   B2 + domain land). Full plan in the 2026-07-15 chat digest below.
 3. **Blessed creative direction:** operator picked the NAVY/WHITE creative poster
    ("the blue advertisement") = `OTB-poster-X-boulevard` from `tools/poster-specials.py`
    (plat-as-art, "27 doors / 25 taken"). Use its aesthetic for the microsite + QR vinyls.
@@ -135,6 +142,8 @@ B3 fly-through · B4 scoped bot · C2 sandbox · C3 LinkedIn (footage-gated: B2)
 7. **Smoke tests still unconfirmed:** attach a PDF to a K-1 row · 🛰 Satellite click · 🎥 Reality
    orbit · 🏗 Mesh toggle · one lease-package assembly · one V-1 vendor-folder upload.
    (AI-1 authed question + 🔊 reply CONFIRMED 2026-07-14 during key rotation.)
+   **NEW 2026-07-20:** C-1 ⏱ History · A-1 Size lens · V-1 COI date→badge · AI-1
+   reload-resume · leasing-calc question ("retain at $17 vs replace at $20…").
    NOTE 2026-07-13: 🎥 Reality was BROKEN in prod since the 07-10 CSP (script-src lacked
    'wasm-unsafe-eval' → GaussianSplats3D's WASM sorter blocked → infinite "Processing
    splats…"). Fixed in vercel.json + deployed 07-13; A/B-verified locally against the
