@@ -40,10 +40,33 @@ const AGENTS = {
   },
 };
 
-/* per-agent session state: in-memory transcript + server thread id */
+/* per-agent session state: transcript + server thread id. Persisted to
+   localStorage (thread-persistence polish, 2026-07-20) so a reload lands
+   back in the SAME conversation — server threads already persisted via
+   chat_threads; this keeps the client pointing at them. */
+const LS_AI = "otb-ai-state-v1";
 const state = {};
 Object.keys(AGENTS).forEach(a => { state[a] = { history: [], threadId: null }; });
 let current = "concierge";
+try {
+  const saved = JSON.parse(localStorage.getItem(LS_AI) || "null");
+  if (saved && typeof saved === "object") {
+    for (const a of Object.keys(AGENTS)) {
+      const s = saved.agents && saved.agents[a];
+      if (s && Array.isArray(s.history)) state[a] = {
+        history: s.history
+          .filter(m => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+          .slice(-40),
+        threadId: typeof s.threadId === "string" ? s.threadId : null,
+      };
+    }
+    if (AGENTS[saved.current]) current = saved.current;
+  }
+} catch { /* corrupt cache — start fresh */ }
+function persistAI() {
+  try { localStorage.setItem(LS_AI, JSON.stringify({ current, agents: state })); }
+  catch { /* quota / private mode — session-only, as before */ }
+}
 
 /* ── P5 voice (unchanged) ──────────────────────────────────────── */
 let currentAudio = null;
@@ -182,6 +205,7 @@ async function paintHistory(host) {
       const agent = AGENTS[b.dataset.agent] ? b.dataset.agent : "concierge";
       state[agent].history = (rows || []).map(r => ({ role: r.role, content: r.content }));
       state[agent].threadId = b.dataset.id;
+      persistAI();
       setAgent(host, agent);
       panel.hidden = true;
     };
@@ -191,6 +215,7 @@ async function paintHistory(host) {
 /* ── agent switching ───────────────────────────────────────────── */
 function setAgent(host, agent) {
   current = agent;
+  persistAI();
   host.querySelectorAll(".ai-agent").forEach(b => b.classList.toggle("on", b.dataset.agent === agent));
   paintThread(host);
 }
@@ -224,7 +249,7 @@ export function initConcierge() {
   const send = host.querySelector("#aiSend");
 
   host.querySelectorAll(".ai-agent").forEach(b => { b.onclick = () => setAgent(host, b.dataset.agent); });
-  host.querySelector("#aiNew").onclick = () => { state[current] = { history: [], threadId: null }; paintThread(host); };
+  host.querySelector("#aiNew").onclick = () => { state[current] = { history: [], threadId: null }; persistAI(); paintThread(host); };
   host.querySelector("#aiHist").onclick = () => {
     const p = host.querySelector("#aiHistory");
     p.hidden = !p.hidden;
@@ -310,6 +335,7 @@ async function ask(host, q, send) {
     const sp = wireSpeak(out, text);
     wireBriefs(out);
     s.history.push({ role: "assistant", content: text });
+    persistAI();
     if (autoSpeak()) speak(text, sp);
   } catch (err) {
     // M6: if the stream had started, the server may already have persisted this
@@ -324,6 +350,7 @@ async function ask(host, q, send) {
       out.innerHTML = '<span class="ai-err">Could not answer: ' + esc(err.message) + '</span>';
       s.history.pop();
     }
+    persistAI();
   } finally {
     send.disabled = false;
     thread.scrollTop = thread.scrollHeight;
