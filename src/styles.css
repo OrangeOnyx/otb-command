@@ -425,9 +425,13 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 .geo-unitnum { font-family: var(--mono); font-size: 11px; font-weight: 600; color: #FCFCF9;
   text-shadow: 0 0 3px rgba(20,25,22,.95), 0 0 6px rgba(20,25,22,.8); pointer-events: none;
   letter-spacing: .02em; }
-.geo-pin { font-size: 15px; line-height: 1; pointer-events: none;
-  filter: drop-shadow(0 1px 2px rgba(20,25,22,.8)); display: flex; align-items: center; gap: 3px; }
-.geo-pin-lab { font-family: var(--mono); font-size: 9.5px; font-weight: 600; color: #FCFCF9;
+.geo-pin { position: relative; font-size: 15px; line-height: 1; pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(20,25,22,.8)); }
+/* label hangs off to the right WITHOUT entering layout — the marker must stay
+   anchored on the icon glyph, not the icon+label row (a long label used to
+   shove the pin half its width off-target) */
+.geo-pin-lab { position: absolute; left: calc(100% + 4px); top: 50%; transform: translateY(-50%);
+  font-family: var(--mono); font-size: 9.5px; font-weight: 600; color: #FCFCF9;
   text-shadow: 0 0 3px rgba(20,25,22,.95), 0 0 5px rgba(20,25,22,.8); white-space: nowrap; }
 
 /* ---- document attach (P1) ---- */
