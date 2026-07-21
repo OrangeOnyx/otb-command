@@ -7,8 +7,7 @@
    /api/voice + auto-speak + 🎙 mic (P5). */
 import { REMOTE, sb } from "../lib/remote.js";
 import { mdToHtml, mdToSpeech } from "../lib/concierge.js";
-import { extractPackages } from "../lib/lease.js";
-import { extractBriefs } from "../lib/brief.js";
+import { extractCards, stripCards } from "../lib/cards.js";
 import { esc } from "../lib/format.js";
 
 const AGENTS = {
@@ -62,7 +61,7 @@ async function speak(md, btn) {
     const r = await fetch("/api/voice", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: "Bearer " + session.access_token },
-      body: JSON.stringify({ text: mdToSpeech(extractBriefs(extractPackages(md).clean).clean) }),
+      body: JSON.stringify({ text: mdToSpeech(stripCards(md)) }),
     });
     if (!r.ok) throw new Error("HTTP " + r.status);
     const url = URL.createObjectURL(await r.blob());
@@ -107,9 +106,10 @@ function wireBriefs(el) {
   el.querySelectorAll(".ai-brief").forEach(b => { b.onclick = () => openBrief(b.dataset.month); });
 }
 function assistantHTML(md) {
-  const pk = extractPackages(md);
-  const { clean, briefs } = extractBriefs(pk.clean);
-  return mdToHtml(clean) + packageCards(pk.packages) + briefCards(briefs) + '<button class="ai-speak" title="Read aloud">🔊</button>';
+  const { clean, cards } = extractCards(md); // ONE pass over every registered card type
+  const packages = cards.filter(c => c.type === "package").map(c => ({ url: c.token, label: c.label }));
+  const briefs = cards.filter(c => c.type === "brief").map(c => ({ month: c.token, label: c.label }));
+  return mdToHtml(clean) + packageCards(packages) + briefCards(briefs) + '<button class="ai-speak" title="Read aloud">🔊</button>';
 }
 function bubble(thread, cls, html) {
   const d = document.createElement("div");
@@ -303,7 +303,7 @@ async function ask(host, q, send) {
       const { done, value } = await reader.read();
       if (done) break;
       text += dec.decode(value, { stream: true });
-      out.innerHTML = mdToHtml(extractPackages(text).clean) + '<span class="ai-cursor">▋</span>';
+      out.innerHTML = mdToHtml(stripCards(text)) + '<span class="ai-cursor">▋</span>';
       thread.scrollTop = thread.scrollHeight;
     }
     out.innerHTML = assistantHTML(text);

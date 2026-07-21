@@ -177,16 +177,11 @@ ${p.notes ? `<h2>Special Terms</h2><p>${esc(p.notes)}</p>` : ""}
 </div></body></html>`;
 }
 
-/* [[package:url|label]] lines ride the text stream from /api/concierge —
-   extract them for rendering as package cards. */
+/* [[package:url|label]] lines ride the text stream from /api/concierge.
+   Parsing (incl. the https-only scheme allowlist) lives in the shared card
+   registry (lib/cards.js); this wrapper keeps the historical shape. */
+import { extractCardsOf } from "./cards.js";
 export function extractPackages(text) {
-  const packages = [];
-  const clean = String(text || "").replace(/\[\[package:([^\]|]+)\|([^\]]+)\]\]/g, (_, url, label) => {
-    const u = url.trim();
-    // scheme allowlist — the model streams this line, so never trust the scheme.
-    // Only https (Supabase signed URLs) is renderable; drop javascript:/data:/etc.
-    if (/^https:\/\//i.test(u)) packages.push({ url: u, label: label.trim() });
-    return "";
-  }).trim();
-  return { clean, packages };
+  const { clean, cards } = extractCardsOf(text, "package");
+  return { clean, packages: cards.map(c => ({ url: c.token, label: c.label })) };
 }

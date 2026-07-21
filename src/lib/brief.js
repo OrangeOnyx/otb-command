@@ -224,15 +224,11 @@ Figures from the reconciled rent-roll source of truth as of ${esc(m.generated)};
 
 /* ── client-side card parsing ──────────────────────────────────── */
 
-/* [[brief:YYYY-MM|label]] lines ride cron-seeded thread messages. The month
-   is the only routable token — strict format check so nothing else can ride
-   the marker (the html itself is fetched via RLS, never from this line). */
+/* [[brief:YYYY-MM|label]] lines ride cron-seeded thread messages. Parsing
+   (incl. the strict YYYY-MM gate — the html itself is fetched via RLS, never
+   from this line) lives in the shared card registry (lib/cards.js). */
+import { extractCardsOf } from "./cards.js";
 export function extractBriefs(text) {
-  const briefs = [];
-  const clean = String(text || "").replace(/\[\[brief:([^\]|]+)\|([^\]]+)\]\]/g, (_, month, label) => {
-    const mo = month.trim();
-    if (/^\d{4}-(0[1-9]|1[0-2])$/.test(mo)) briefs.push({ month: mo, label: label.trim() });
-    return "";
-  }).trim();
-  return { clean, briefs };
+  const { clean, cards } = extractCardsOf(text, "brief");
+  return { clean, briefs: cards.map(c => ({ month: c.token, label: c.label })) };
 }
