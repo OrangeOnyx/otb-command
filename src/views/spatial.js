@@ -223,5 +223,6 @@ export function initSpatial() {
       if (geoScene) geoScene.setSelected(getSelected());
       if (realScene) realScene.setSelected(getSelected());
     }
+    if (type === "features" && geoScene) geoScene.refreshPins();
   });
 }

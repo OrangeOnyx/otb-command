@@ -21,13 +21,12 @@ GEOREF = {
     # CAD anchor: center of the long building's Johnston-end face region (near unit 101 / pylon)
     "anchorCad": [1051.4, 215.55],
     # real-world anchor: FITTED against Esri imagery by tools/fit-georef.py
-    # (2026-07-08 — both buildings register, plat-rigid, on-roof frac .94/.84;
-    # re-run the fitter whenever Esri refreshes imagery and paste here)
-    "anchorLL": [30.201685, -92.053962],
-    # CAD +y azimuth east of north — fitted 51.75, matching the plat's own
-    # north arrow (-51.5 deg screen); the old eyeballed 70.5 was the drift the
-    # operator saw on A-2
-    "azY": 51.75,
+    # (2026-07-21 refresh — Esri imagery had moved ~2 m since the 07-08 fit;
+    # on-roof frac .94/.84; re-run the fitter whenever Esri refreshes and paste here)
+    "anchorLL": [30.201689, -92.053983],
+    # CAD +y azimuth east of north — fitted 52.25 (2026-07-21; was 51.75),
+    # near the plat's own north arrow; the old eyeballed 70.5 was the original drift
+    "azY": 52.25,
     "scaleTweak": 1.0,   # multiply CAD feet by this if imagery says the model runs long/short
     "notes": "CAD feet -> WGS84 local-tangent affine. Tune anchorLL/azY/scaleTweak by eye vs Esri imagery."
 }

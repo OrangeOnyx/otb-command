@@ -2,12 +2,18 @@
    with the georeferenced unit footprints (src/data/footprints-geo.json, from
    tools/extract-georef.py) drawn as status-colored polygons. Click a footprint
    -> opts.onPick(unit). Lazy-loaded by the A-2 view so maplibre only ships
-   when the lens opens. Imagery is physical — no theme inversion. */
+   when the lens opens. Imagery is physical — no theme inversion.
+   Oriented to match A-1 (plan bearing = azY+180: Marie Antoinette top, Arnould
+   bottom); the compass control resets to north-up. Unit numbers + the A-1
+   asset-pin layer render as DOM markers (no glyph server → no CSP change). */
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import geo from "../data/footprints-geo.json";
+import { planBearing, planToLL, ringCentroid } from "./geoproject.js";
+import { getFeatures, FEATURE_TYPES } from "../store.js";
 
 const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+const FEATURE_ICON = Object.fromEntries(FEATURE_TYPES.map(([id, icon]) => [id, icon]));
 
 export function createGeoScene(container, units, opts = {}) {
   const onPick = opts.onPick || (() => {});
@@ -24,6 +30,7 @@ export function createGeoScene(container, units, opts = {}) {
   };
   const lls = geo.features.flatMap(f => f.geometry.coordinates[0]);
   const bounds = lls.reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds(lls[0], lls[0]));
+  const bearing = planBearing(geo.georef);
 
   const map = new maplibregl.Map({
     container,
@@ -32,12 +39,40 @@ export function createGeoScene(container, units, opts = {}) {
       sources: { esri: { type: "raster", tiles: [ESRI], tileSize: 256, maxzoom: 19, attribution: "Imagery © Esri" } },
       layers: [{ id: "esri", type: "raster", source: "esri" }]
     },
+    bearing,
     bounds,
-    fitBoundsOptions: { padding: 60 },
+    fitBoundsOptions: { padding: 60, bearing },
     attributionControl: { compact: true }
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: true }), "top-right");
   container.__map = map; // debug/verification seam (element-scoped, no global)
+
+  // unit-number markers at footprint centroids (screen-upright at any bearing)
+  geo.features.forEach(f => {
+    const el = document.createElement("div");
+    el.className = "geo-unitnum";
+    el.textContent = f.properties.unit;
+    new maplibregl.Marker({ element: el }).setLngLat(ringCentroid(f.geometry.coordinates[0])).addTo(map);
+  });
+
+  // A-1 asset-pin layer (store 'features', plan px) projected through the georef
+  let pinMarkers = [];
+  const renderPins = () => {
+    pinMarkers.forEach(m => m.remove());
+    pinMarkers = getFeatures().map(f => {
+      const el = document.createElement("div");
+      el.className = "geo-pin";
+      el.textContent = FEATURE_ICON[f.type] || "📍";
+      if (f.label) {
+        const lab = document.createElement("span");
+        lab.className = "geo-pin-lab";
+        lab.textContent = f.label;
+        el.appendChild(lab);
+      }
+      return new maplibregl.Marker({ element: el }).setLngLat(planToLL(geo.georef, f.x, f.y)).addTo(map);
+    });
+  };
+  renderPins();
 
   // idempotent — attached on load AND idle so throttled/backgrounded tabs still get layers
   const ensureLayers = () => {
@@ -70,7 +105,7 @@ export function createGeoScene(container, units, opts = {}) {
     if (map.getLayer("unit-sel")) map.setFilter("unit-sel", ["==", ["get", "unit"], unit || "__none__"]);
   }
   function resize() { map.resize(); }
-  function dispose() { map.remove(); }
+  function dispose() { map.remove(); } // removes markers with the map
 
-  return { dispose, resize, setSelected };
+  return { dispose, resize, setSelected, refreshPins: renderPins };
 }
