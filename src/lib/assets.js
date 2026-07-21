@@ -14,11 +14,12 @@ export const ASSET_KINDS = [
   ["signage", "Signage"]
 ];
 
+/* shared id/name/IDB primitives from the bucket-store layer; the PATH
+   convention here stays custom (unit/kind__id__name — kind rides in the
+   filename), so assets adopts the primitives, not the standard store shape. */
+import { newId as mkId, sanitizeName, makeIDB } from "./bucketstore.js";
 const BUCKET = "assets";
-const DB_NAME = "otb-assets";
-const STORE = "assets";
-const VERSION = 1;
-const newId = () => "a" + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
+const newId = () => mkId("a");
 
 /* ---- change notification (shared) ---- */
 const listeners = new Set();
@@ -30,21 +31,7 @@ export function makeURL(blob) { return URL.createObjectURL(blob); }
 export function revokeURL(url) { try { URL.revokeObjectURL(url); } catch { /* not an object URL */ } }
 
 /* ================= IndexedDB backend (local fallback) ================= */
-let _db = null;
-function db() {
-  if (_db) return Promise.resolve(_db);
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, VERSION);
-    req.onupgradeneeded = () => {
-      const s = req.result.createObjectStore(STORE, { keyPath: "id" });
-      s.createIndex("unit", "unit", { unique: false });
-    };
-    req.onsuccess = () => { _db = req.result; resolve(_db); };
-    req.onerror = () => reject(req.error);
-  });
-}
-const wrap = req => new Promise((res, rej) => { req.onsuccess = () => res(req.result); req.onerror = () => rej(req.error); });
-async function store(mode) { return (await db()).transaction(STORE, mode).objectStore(STORE); }
+const idb = makeIDB("otb-assets", "assets", { index: "unit" });
 
 async function idbAdd(file, { unit = "property", kind = "photo", name } = {}) {
   const rec = {
@@ -52,17 +39,17 @@ async function idbAdd(file, { unit = "property", kind = "photo", name } = {}) {
     mime: file.type || "application/octet-stream", size: file.size || 0,
     addedAt: new Date().toISOString(), blob: file
   };
-  await wrap((await store("readwrite")).add(rec));
+  await idb.add(rec);
   emit(); return rec.id;
 }
-async function idbAll() { try { return await wrap((await store("readonly")).getAll()); } catch { return []; } }
+const idbAll = () => idb.all();
 async function idbList(scope) {
   const all = await idbAll();
   return all.filter(a => scope ? a.unit === scope : true)
     .sort((a, b) => (a.addedAt < b.addedAt ? -1 : 1))
     .map(a => ({ id: a.id, unit: a.unit, kind: a.kind, name: a.name, addedAt: a.addedAt, url: URL.createObjectURL(a.blob) }));
 }
-async function idbRemove(id) { await wrap((await store("readwrite")).delete(id)); emit(); }
+async function idbRemove(id) { await idb.del(id); emit(); }
 async function idbUnits() {
   const set = new Set();
   (await idbAll()).forEach(a => { if (a.unit && a.unit !== "property") set.add(a.unit); });
@@ -70,7 +57,7 @@ async function idbUnits() {
 }
 
 /* ================= Supabase Storage backend ================= */
-const sani = s => (s || "img").replace(/[^\w.\-]+/g, "_").slice(0, 80);
+const sani = sanitizeName;
 async function sbAdd(file, { unit = "property", kind = "photo", name } = {}) {
   const path = `${unit}/${kind}__${newId()}__${sani(name || file.name || kind)}`;
   const { error } = await sb.storage.from(BUCKET).upload(path, file, { contentType: file.type || undefined, upsert: false });
