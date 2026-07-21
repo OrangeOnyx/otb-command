@@ -115,6 +115,15 @@ end; $$;
 --                        created_by = operator. Only unauthenticated write path;
 --                        wrong secret = exception. Called by api/auto-trigger.mjs.
 --
+-- public.ledger_entries SELECT is_owner_or_operator() | INSERT is_operator()
+--                        | NO update/delete policies (append-only; a void is
+--                        itself an entry, void_of → target id). Money trail
+--                        behind the drawer Ledger panel + P-1 collections.
+-- fn post_rent_charges(secret, charges jsonb) SECURITY DEFINER: same
+--    app_secrets 'auto_trigger' verification; bulk-inserts the month's rent
+--    charges with deterministic ids (rent:YYYY-MM:unit) on conflict do
+--    nothing → idempotent daily cron re-runs. Called by api/auto-trigger.mjs.
+--
 -- ── MIGRATION HISTORY (Supabase, authoritative) ─────────────────────────────
 --   20260620122933 otb_core_schema           20260708111850 vendor_portal_p3
 --   20260620122947 otb_storage_assets        20260708181505 agent_desk_transcripts
@@ -123,3 +132,6 @@ end; $$;
 --   20260707194616 owner_safe_bucket_log      20260710182958 api_usage_rate_limit
 --   20260716______ auto_trigger_threads (trigger_source + app_secrets + open_trigger_thread)
 --   20260717______ owner_intelligence_briefs (owner_briefs + get/put_owner_brief + get_brief_state)
+--   20260720222223 compliance_event_log (compliance_events append-only audit trail)
+--   20260721010116 vendor_coi_tracking (vendors.coi_expires/coi_note)
+--   20260721______ ledger_lite (ledger_entries append-only + post_rent_charges)

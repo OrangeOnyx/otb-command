@@ -75,6 +75,35 @@ export async function listCompEvents(limit = 80) {
   return data || [];
 }
 
+/* ── ledger-lite (P-1/drawer money trail; append-only) ───────────
+   Reads owner/operator, inserts operator (RLS). Money writes FAIL LOUD —
+   unlike the best-effort audit trail, a dropped payment entry is a real
+   bookkeeping error the operator must see. */
+export async function listLedgerEntries(unit) {
+  if (!REMOTE) return [];
+  let q = sb.from("ledger_entries")
+    .select("id,unit,type,code,amount,date,due,description,void_of,entered_by,created_at")
+    .order("date").order("id");
+  if (unit) q = q.eq("unit", unit);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data || []).map(r => ({ ...r, voidOf: r.void_of }));
+}
+export async function addLedgerEntry(row) {
+  if (!REMOTE) throw new Error("ledger requires the hosted backend");
+  const me = (await sb.auth.getUser()).data.user;
+  const rec = {
+    id: row.id || "e" + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36),
+    property_id: "otb", unit: row.unit, type: row.type, code: row.code || null,
+    amount: row.amount, date: row.date, due: row.due || null,
+    description: row.description || "", void_of: row.voidOf || null,
+    entered_by: me?.email || "",
+  };
+  const { error } = await sb.from("ledger_entries").insert(rec);
+  if (error) throw error;
+  return rec;
+}
+
 /* ── access management (operator-only; RLS enforces) ─────────────
    Authorize an email BEFORE first sign-in (allowlist consulted by the
    sign-up trigger) and fix anyone already stuck in 'pending'. */

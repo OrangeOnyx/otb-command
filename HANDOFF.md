@@ -61,6 +61,37 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
 another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
 
+### SHIPPED 2026-07-21 (part 2) — LEDGER-LITE (harvest #4, belle-realty-pwa donor)
+Operator delegated the wiring decisions → built as recommended (1A drawer+P-1 ·
+2A cron auto-post · 3A suggest-only late fees · uniform policy).
+- **Pure seam `src/lib/ledger.js`** (+14 tests): donor late-fee engine (5-day grace,
+  $100 flat + $25/day — "OTB standard schedule", donor constants), append-only entry
+  algebra (void = its own entry, `void_of` → target), FIFO aging (≤30/31-60/61-90/90+),
+  idempotent month charges (`rent:YYYY-MM:unit`), late-fee SUGGESTIONS (silenced by
+  the posted fee's deterministic id `late:YYYY-MM:unit`).
+- **Migration `ledger_lite`**: `ledger_entries` append-only (read owner/operator ·
+  insert operator · NO update/delete) + secret-gated `post_rent_charges` RPC (same
+  app_secrets 'auto_trigger' row). Gate smoke-tested: wrong secret = exception,
+  real secret + empty payload = 0. Advisors: only the accepted definer-WARN class.
+- **Cron** (api/auto-trigger.mjs): posts the month's TOTAL-rent charges daily-
+  idempotently, **gated to LEDGER_START_YM = 2026-08** (going live mid-July would
+  fabricate receivables for rent already paid off-system — deliberate). Summary
+  field `rent`: "pre-start" until Aug 1, then {month, inserted:25}.
+- **Drawer "Ledger" panel** (lib/ledgerUI.js): balance headline, last 10 entries
+  w/ running balance, void ✕, add payment/charge/credit/adjustment/NSF/write-off,
+  late-fee suggestion chip → operator confirms → posts. Owners read-only (CSS),
+  vendors never reach it. REMOTE-only (local mode = note).
+- **P-1 "Collections & aging" card**: month collected-vs-charged + per-unit aging
+  table (async fill, C-1 history pattern).
+- **188 tests.** DEPLOYED; prod bundle verified (dwLedger/finLedger/ledger_entries/
+  led-sugg). Local-mode DOM verified in preview (drawer renders, console clean).
+- **Workflow (operator):** starting August, log each rent check in the unit's
+  drawer → Ledger → "Payment received". Aug 1 cron seeds the charges.
+- **Uniform-policy assumption stands** unless a lease says otherwise — flag any
+  tenant whose lease carries different late terms and the policy goes per-unit.
+**Remaining merger queue:** #5 capex/insurance/OCR engines (gated on data
+surfaces) → #6 e-sign/tenant-portal schemas → donors become archives.
+
 ### SHIPPED 2026-07-21 — 🛰 Satellite lens rework (operator smoke feedback on #8)
 Operator ran the 07-20 smoke round: **mostly passed**; #8 (satellite) flagged —
 footprints offset, no unit numbers, orientation ≠ A-1, no asset pins. All four fixed:

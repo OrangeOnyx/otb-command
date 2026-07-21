@@ -434,6 +434,36 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
   font-family: var(--mono); font-size: 9.5px; font-weight: 600; color: #FCFCF9;
   text-shadow: 0 0 3px rgba(20,25,22,.95), 0 0 5px rgba(20,25,22,.8); white-space: nowrap; }
 
+/* ---- ledger-lite (drawer + P-1) ---- */
+.led-head { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 0 6px; }
+.led-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink50); }
+.led-head b.owe { color: var(--brick); }
+.led-head b.clear { color: var(--green); }
+.led-row { display: grid; grid-template-columns: 74px 1fr auto auto 20px; gap: 8px; align-items: center;
+  font-size: 12px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.led-d, .led-a, .led-b { font-family: var(--mono); font-size: 11px; }
+.led-t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink70); }
+.led-a.deb { color: var(--brick); }
+.led-a.cred { color: var(--green); }
+.led-b { color: var(--ink50); text-align: right; }
+.led-void { border: 0; background: none; color: var(--ink30); cursor: pointer; font-size: 11px; padding: 0; }
+.led-void:hover { color: var(--brick); }
+.led-add { display: grid; grid-template-columns: 1fr 78px 1fr 1fr auto; gap: 6px; margin-top: 8px; }
+.led-add select, .led-add input { font-family: var(--mono); font-size: 11px; padding: 4px 6px;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--ink); min-width: 0; }
+.led-note { font-family: var(--mono); font-size: 10.5px; color: var(--ink50); padding: 4px 0; }
+.led-sugg { display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  font-size: 11.5px; color: var(--brick); background: color-mix(in srgb, var(--brick) 8%, transparent);
+  border: 1px dashed var(--brick); border-radius: 6px; padding: 5px 8px; margin: 4px 0; }
+.led-month { font-family: var(--mono); font-size: 11px; color: var(--ink70); padding-bottom: 8px; }
+.led-age-h, .led-age { display: grid; grid-template-columns: 52px repeat(5, 1fr); gap: 6px;
+  font-family: var(--mono); font-size: 11px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.led-age-h { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink50); }
+.led-age .led-c { text-align: right; color: var(--ink50); }
+.led-age .led-c.owe { color: var(--brick); font-weight: 600; }
+.led-age.tot { border-bottom: 0; font-weight: 600; }
+body.role-owner .led-add, body.role-owner .led-void, body.role-owner .led-sugg { display: none; }
+
 /* ---- document attach (P1) ---- */
 .rec-attachrow { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
 .rec-attach-msg { font-size: 10.5px; color: var(--ink50); }

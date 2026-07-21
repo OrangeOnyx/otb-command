@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import {
   OTB_LATE_POLICY, computeDaysLate, computeLateFeeAmount, assessLateFee,
-  effectiveEntries, withRunningBalance, unitBalance, monthRentCharges, aging, round2
+  effectiveEntries, withRunningBalance, unitBalance, monthRentCharges, aging,
+  suggestLateFees, LEDGER_START_YM, round2
 } from "../src/lib/ledger.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -94,6 +95,48 @@ test("aging: FIFO credits retire oldest debits first; buckets by age", () => {
   assert.equal(a.d61_90, 0);
   assert.equal(a.d90, 0);
   assert.equal(a.total, 1500);
+});
+
+/* ---- late-fee suggestions ---- */
+test("suggestLateFees: proposes once per open rent month, silenced by the posted fee", () => {
+  const entries = [
+    E("rent:2026-08:105", "105", "charge", 3231.16, "2026-08-01", { due: "2026-08-01", code: "rent" }),
+  ];
+  const s = suggestLateFees(entries, "2026-08-08");
+  assert.equal(s.length, 1);
+  assert.equal(s[0].id, "late:2026-08:105");
+  assert.equal(s[0].daysLate, 2);
+  assert.equal(s[0].amount, 125);
+  assert.equal(s[0].entry.type, "late_fee");
+  // posting the suggested entry (same deterministic id) silences the suggestion
+  assert.equal(suggestLateFees([...entries, s[0].entry], "2026-08-09").length, 0);
+});
+
+test("suggestLateFees: paid rent, grace window, and non-rent debits never suggest", () => {
+  const paid = [
+    E("rent:2026-08:107", "107", "charge", 500, "2026-08-01", { due: "2026-08-01", code: "rent" }),
+    E("p1", "107", "payment", 500, "2026-08-03"),
+  ];
+  assert.equal(suggestLateFees(paid, "2026-08-20").length, 0);
+  const inGrace = [E("rent:2026-08:109", "109", "charge", 500, "2026-08-01", { due: "2026-08-01", code: "rent" })];
+  assert.equal(suggestLateFees(inGrace, "2026-08-06").length, 0);
+  const misc = [E("m1", "111", "charge", 250, "2026-06-01", { due: "2026-06-01", code: "misc" })];
+  assert.equal(suggestLateFees(misc, "2026-08-01").length, 0);
+});
+
+test("suggestLateFees: partial payment keeps the remainder suggestible", () => {
+  const entries = [
+    E("rent:2026-08:113", "113", "charge", 1000, "2026-08-01", { due: "2026-08-01", code: "rent" }),
+    E("p1", "113", "payment", 900, "2026-08-02"),
+  ];
+  const s = suggestLateFees(entries, "2026-08-07");
+  assert.equal(s.length, 1);
+  assert.equal(s[0].openRent, 100);
+  assert.equal(s[0].amount, 100); // day 1 past grace = flat only
+});
+
+test("LEDGER_START_YM is a valid month gate", () => {
+  assert.match(LEDGER_START_YM, /^\d{4}-\d{2}$/);
 });
 
 test("aging: overpayment surfaces as credit and drops settled units", () => {

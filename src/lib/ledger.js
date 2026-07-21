@@ -78,25 +78,41 @@ export function monthRentCharges(units, ym) {
   }));
 }
 
-/* ---- aging (FIFO) ----
-   Credits apply to open debits oldest-first; remaining debit balances bucket
-   by age at asOf. Buckets: current (≤30), d31_60, d61_90, d90 (>90). */
+/* Go-live month: the cron never posts rent for months before this (turning
+   the ledger on mid-July would charge tenants who already paid outside the
+   system — false receivables + spurious late-fee suggestions). */
+export const LEDGER_START_YM = "2026-08";
+
+/* FIFO core: apply a unit's credits to its debits oldest-first.
+   Returns per-debit open remainders + any unapplied credit. */
+function fifoOpenDebits(list) {
+  const rows = list.slice().sort(chrono);
+  const debits = rows.filter(e => DEBIT_TYPES.includes(e.type))
+    .map(e => ({ entry: e, date: e.due || e.date, open: round2(+e.amount || 0) }));
+  let credit = rows.filter(e => CREDIT_TYPES.includes(e.type))
+    .reduce((s, e) => round2(s + (+e.amount || 0)), 0);
+  for (const d of debits) {
+    if (credit <= 0) break;
+    const take = Math.min(d.open, credit);
+    d.open = round2(d.open - take);
+    credit = round2(credit - take);
+  }
+  return { debits, credit };
+}
+
+const byUnitEff = entries => {
+  const m = {};
+  for (const e of effectiveEntries(entries)) (m[e.unit] ||= []).push(e);
+  return m;
+};
+
+/* ---- aging ----
+   Remaining open debits bucket by age at asOf: current (≤30), d31_60,
+   d61_90, d90 (>90); unapplied credit shows negative. */
 export function aging(entries, asOf) {
-  const perUnit = {};
-  for (const e of effectiveEntries(entries)) (perUnit[e.unit] ||= []).push(e);
   const out = {};
-  for (const [unit, list] of Object.entries(perUnit)) {
-    const rows = list.slice().sort(chrono);
-    const debits = rows.filter(e => DEBIT_TYPES.includes(e.type))
-      .map(e => ({ date: e.due || e.date, open: round2(+e.amount || 0) }));
-    let credit = rows.filter(e => CREDIT_TYPES.includes(e.type))
-      .reduce((s, e) => round2(s + (+e.amount || 0)), 0);
-    for (const d of debits) {
-      if (credit <= 0) break;
-      const take = Math.min(d.open, credit);
-      d.open = round2(d.open - take);
-      credit = round2(credit - take);
-    }
+  for (const [unit, list] of Object.entries(byUnitEff(entries))) {
+    const { debits, credit } = fifoOpenDebits(list);
     const b = { current: 0, d31_60: 0, d61_90: 0, d90: 0, credit: round2(-credit) };
     for (const d of debits) {
       if (d.open <= 0) continue;
@@ -108,4 +124,32 @@ export function aging(entries, asOf) {
     if (b.total !== 0 || b.credit !== 0) out[unit] = b;
   }
   return out;
+}
+
+/* ---- late-fee suggestions (3A: engine proposes, operator confirms) ----
+   One suggestion per open (unpaid-remainder) rent charge past grace, unless
+   that month's fee already posted (deterministic id late:<ym>:<unit> — the
+   confirm path uses the same id, so a posted fee silences its suggestion). */
+export function suggestLateFees(entries, today, policy = OTB_LATE_POLICY) {
+  const have = new Set(effectiveEntries(entries).map(e => e.id));
+  const out = [];
+  for (const [unit, list] of Object.entries(byUnitEff(entries))) {
+    for (const d of fifoOpenDebits(list).debits) {
+      if (d.open <= 0 || d.entry.code !== "rent") continue;
+      const ym = String(d.entry.date).slice(0, 7);
+      const id = `late:${ym}:${unit}`;
+      if (have.has(id)) continue;
+      const { daysLate, shouldAssess, amount } = assessLateFee({ referenceDate: today, dueDate: d.date, policy });
+      if (!shouldAssess || amount <= 0) continue;
+      out.push({
+        id, unit, ym, daysLate, amount, openRent: d.open,
+        entry: {
+          id, unit, type: "late_fee", code: "late_fee", amount,
+          date: today, due: today,
+          description: `Late fee ${ym} — ${daysLate} day${daysLate === 1 ? "" : "s"} past grace, $${d.open.toFixed(2)} rent open`
+        }
+      });
+    }
+  }
+  return out.sort((a, b) => b.daysLate - a.daysLate);
 }

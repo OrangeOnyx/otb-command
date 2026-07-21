@@ -5,6 +5,8 @@
 import { UNITS, OPEX_LINES, getFinancials, setOpex, setCapRate, subscribe } from "../store.js";
 import { CAT_META } from "../lib/colors.js";
 import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
+import { REMOTE, listLedgerEntries } from "../lib/remote.js";
+import { aging, effectiveEntries, CREDIT_TYPES } from "../lib/ledger.js";
 import recoveries from "../data/recoveries.json";
 
 const annual = u => (u.monthly || 0) * 12;
@@ -144,6 +146,7 @@ export function renderFinancial() {
       '<div class="card"><div class="panel-h"><h2>Income by use</h2><div class="sub">ANNUAL IN-PLACE RENT · SHARE</div></div><div class="fbars">' + catBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Lease rollover schedule</h2><div class="sub">ANNUAL RENT EXPIRING BY YEAR</div></div><div class="fbars">' + rollBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Tenant concentration</h2><div class="sub">TOP 5 BY IN-PLACE RENT</div></div><div class="fbars">' + topBars + '</div></div>' +
+      (REMOTE ? '<div class="card"><div class="panel-h"><h2>Collections &amp; aging</h2><div class="sub">LEDGER-LITE · OPEN BALANCES BY AGE</div></div><div class="fbars" id="finLedger">Loading…</div></div>' : '') +
       '<div class="card noi-card"><div class="panel-h"><h2>NOI worksheet</h2><div class="sub">ENTER ANNUAL OPERATING EXPENSES</div></div>' +
         '<div class="noi-line"><span>In-place rent (income)</span><b>' + fmt$0(inc.annualRent) + '</b></div>' +
         '<div class="opex">' + opexRows + '</div>' +
@@ -159,6 +162,41 @@ export function renderFinancial() {
     i.onchange = () => setOpex(i.dataset.opex, i.value));
   const cap = root.querySelector("#capRate");
   if (cap) cap.onchange = () => setCapRate(cap.value);
+  if (REMOTE) paintCollections();
+}
+
+/* Ledger-lite rollup: async fill after the sync render (C-1 history pattern).
+   All math is the pure seam; this only fetches and formats. */
+async function paintCollections() {
+  const el = document.getElementById("finLedger");
+  if (!el) return;
+  try {
+    const rows = await listLedgerEntries();
+    const today = new Date().toISOString().slice(0, 10);
+    const ym = today.slice(0, 7);
+    const eff = effectiveEntries(rows);
+    const charged = eff.filter(e => e.code === "rent" && String(e.date).startsWith(ym))
+      .reduce((s, e) => s + (+e.amount || 0), 0);
+    const collected = eff.filter(e => CREDIT_TYPES.includes(e.type) && String(e.date).startsWith(ym))
+      .reduce((s, e) => s + (+e.amount || 0), 0);
+    const a = aging(rows, today);
+    const units = Object.keys(a).sort();
+    const tot = { current: 0, d31_60: 0, d61_90: 0, d90: 0 };
+    units.forEach(u => { for (const k of Object.keys(tot)) tot[k] += a[u][k]; });
+    const cell = v => '<span class="led-c' + (v > 0 ? " owe" : "") + '">' + (v ? fmt$0(v) : "—") + '</span>';
+    el.innerHTML =
+      '<div class="led-month">' + ym + ": " + fmt$0(collected) + " collected of " + fmt$0(charged) + " charged" +
+        (charged ? " · " + Math.round(collected / charged * 100) + "%" : "") + '</div>' +
+      (units.length
+        ? '<div class="led-age-h"><span>Unit</span><span>≤30</span><span>31–60</span><span>61–90</span><span>90+</span><span>Total</span></div>' +
+          units.map(u => '<div class="led-age"><span>' + esc(u) + '</span>' + cell(a[u].current) +
+            cell(a[u].d31_60) + cell(a[u].d61_90) + cell(a[u].d90) + cell(a[u].total) + '</div>').join("") +
+          '<div class="led-age tot"><span>All</span>' + cell(tot.current) + cell(tot.d31_60) +
+            cell(tot.d61_90) + cell(tot.d90) + cell(tot.current + tot.d31_60 + tot.d61_90 + tot.d90) + '</div>'
+        : '<div class="led-note">No open balances — rent charges auto-post monthly starting Aug 2026; payments log in each unit\'s drawer.</div>');
+  } catch (e) {
+    el.innerHTML = '<div class="led-note">Ledger unavailable: ' + esc(e.message) + '</div>';
+  }
 }
 
 export function initFinancial() {

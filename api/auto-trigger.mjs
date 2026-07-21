@@ -17,6 +17,7 @@ import RECOVERIES from "../src/data/recoveries.json" with { type: "json" };
 import SEED from "./_seed.json" with { type: "json" };
 import { collectCandidates } from "../src/lib/autotrigger.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
+import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
 import { configured, rpcSecret as rpc } from "./_supa.mjs";
 
@@ -46,6 +47,20 @@ async function ensureMonthlyBrief(units, secret, today, summary) {
   }
 }
 
+/* Ledger-lite (harvest #4, decision 2A): idempotently post the month's TOTAL-
+   rent charges (deterministic ids + on-conflict-do-nothing in the RPC — daily
+   re-runs insert 0). Gated to LEDGER_START_YM so switching the ledger on
+   mid-month never manufactures receivables for rent already paid off-system. */
+async function ensureMonthlyRent(units, secret, today, summary) {
+  const ym = today.slice(0, 7);
+  if (ym < LEDGER_START_YM) { summary.rent = "pre-start"; return; }
+  try {
+    const merged = units.map(u => ({ ...u, ...(SEED.unitsPrivate[u.unit] || {}) }));
+    const inserted = await rpc("post_rent_charges", { p_secret: secret, p_charges: monthRentCharges(merged, ym) });
+    summary.rent = { month: ym, inserted };
+  } catch (e) { summary.rent = "failed: " + e.message; }
+}
+
 export default async function handler(req, res) {
   const secret = process.env.CRON_SECRET;
   if (!secret || !configured()) return res.status(500).json({ error: "not configured" });
@@ -58,6 +73,7 @@ export default async function handler(req, res) {
 
   const summary = { date: today, scanned: candidates.length, opened: 0, skippedExisting: 0, failed: 0, openedSources: [] };
 
+  await ensureMonthlyRent(units, secret, today, summary);
   const briefLine = await ensureMonthlyBrief(units, secret, today, summary);
   if (briefLine) {
     const b = candidates.find(c => c.kind === "brief");
