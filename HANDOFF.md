@@ -3,8 +3,11 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-20 — HORIZONTAL LAYERS + B1 + C1 + harvest #3 SHIPPED (see
-"SHIPPED 2026-07-20" below; prod = HEAD, 156 tests).
+Last updated: 2026-07-21 — smoke round MOSTLY PASSED (operator); 🛰 Satellite lens
+REWORKED + DEPLOYED same day (georef refit for Esri refresh · plan-orientation
+bearing · unit-number labels · asset-pin layer). Prod = HEAD, **174 tests**.
+Prior: 2026-07-20 — HORIZONTAL LAYERS + B1 + C1 + harvest #3 SHIPPED (see
+"SHIPPED 2026-07-20" below).
 Prior update: 2026-07-16 (evening). Today: Cube creds landed → 17/17 camera aims
 frame-verified + baked (Server Cabinet reclassified exterior, rear 101/103) · C3 sampler
 running · harvest #2 SHIPPED (auto-trigger cron → AI-1 threads; found live 115/117 renewal
@@ -57,6 +60,33 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
 (CLI logged in as orangeonyx). `.vercelignore` governs uploads (NOT .gitignore — splat 16MB +
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
 another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
+
+### SHIPPED 2026-07-21 — 🛰 Satellite lens rework (operator smoke feedback on #8)
+Operator ran the 07-20 smoke round: **mostly passed**; #8 (satellite) flagged —
+footprints offset, no unit numbers, orientation ≠ A-1, no asset pins. All four fixed:
+1. **Georef REFIT** (Esri had refreshed imagery again): `python tools/fit-georef.py` →
+   anchorLL [30.201689, -92.053983], azY 52.25 (was 51.75; on-roof .94/.84, shared
+   shift E−2.0m S−0.5m). Pasted into extract-georef.py + regenerated. NOTE: the
+   fitter's control-point line ("nearest bay 75m") is EXPECTED — the Skydio thermal
+   spot was retracted to the neighbor's roof; ignore that sanity note.
+2. **Plan orientation**: Lens C now opens at bearing azY+180 (232.25°) = A-1's exact
+   arrangement (M.Antoinette top, 101 left, short building right, 149 at Arnould
+   corner); compass control resets north-up. Verified via offline rotated-tile
+   composite `export/sat-plan-orientation-preview.png` (occluded preview can't
+   paint MapLibre — standing lesson).
+3. **Unit-number labels**: DOM markers at footprint centroids (screen-upright at any
+   bearing; NO glyph server → no CSP change). Thin bays (117.5–121) sit tight at
+   low zoom — acceptable, zoom resolves.
+4. **Asset-pin layer on satellite**: NEW pure seam `src/lib/geoproject.js` — fitted
+   plan-px→CAD-ft affine (PLAN2CAD, rms ≤5px, icon-grade) + cadToLL mirror of
+   extract-georef + planBearing + numerically-stable ringCentroid (shoelace relative
+   to first vertex — raw lng/lat cancels catastrophically on thin rings). A-1 📍 pins
+   project through the live georef; store "features" events → `refreshPins()` (wired
+   in spatial.js). Pins render once the operator does the A-1 pin walk (punch-list #5
+   — now feeds BOTH lenses).
++5 tests → **174**. DEPLOYED; prod scenegeo chunk verified (new anchor, geo-unitnum/
+geo-pin, refreshPins). **Operator re-smoke: A-2 → 🛰 — plan-oriented, labeled,
+registered; drop one pin on A-1 and see it appear on 🛰.**
 
 ### SHIPPED 2026-07-20 — horizontal enabling layers + B1 vinyls + C1 case study + harvest #3
 **Goal session (operator: "/goal completion of the todos" + horizontal-layer audit).**
