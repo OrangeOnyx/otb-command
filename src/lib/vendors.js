@@ -35,6 +35,21 @@ export function portalFace(role) {
   return role === "operator" ? "operator" : role === "vendor" ? "vendor" : "owner";
 }
 
+/* ---- COI tracking (columns on public.vendors; RLS: operator writes,
+   owner/operator read all, vendor reads own row) ---- */
+import { REMOTE, sb } from "./remote.js";
+export async function listVendorCoi() {
+  if (!REMOTE) return {};
+  const { data, error } = await sb.from("vendors").select("id,coi_expires,coi_note");
+  if (error) { console.warn("coi read:", error.message); return {}; }
+  return Object.fromEntries((data || []).map(r => [r.id, { expires: r.coi_expires, note: r.coi_note || "" }]));
+}
+export async function setVendorCoi(id, expires, note = "") {
+  const { error } = await sb.from("vendors")
+    .update({ coi_expires: expires || null, coi_note: note }).eq("id", id);
+  if (error) throw error;
+}
+
 const store = createBucketStore({
   bucket: "vendor-docs", idPrefix: "v", ttl: 600, // 10 min
   audit: "vendor_log", // no local trail — REMOTE-only surface

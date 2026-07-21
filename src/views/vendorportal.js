@@ -6,8 +6,19 @@
    VENDOR: sees only their own folder — "shared with you" list + an upload box
    (COIs, W-9s, invoices). RLS enforces the folder boundary; this UI just mirrors it. */
 import { REMOTE, sb } from "../lib/remote.js";
-import { rosterOrder, portalCapable, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog } from "../lib/vendors.js";
+import { rosterOrder, portalCapable, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog, listVendorCoi, setVendorCoi } from "../lib/vendors.js";
+import { coiStatus, coiBadge } from "../lib/coi.js";
 import { esc } from "../lib/format.js";
+
+const todayISO = () => new Date().toISOString().slice(0, 10);
+/* roster COI tag — service vendors always show one (missing = flag);
+   others only when a cert is actually on file */
+function coiTag(v, coiMap) {
+  const rec = coiMap[v.id];
+  if (v.kind !== "service" && !(rec && rec.expires)) return "";
+  const b = coiBadge(coiStatus(rec && rec.expires, todayISO()));
+  return ' · <span style="background:' + b.color + ';color:#fff;border-radius:3px;padding:0 5px;font-size:10px">' + esc(b.label) + '</span>';
+}
 
 /* C1: the AP roster is NOT bundled (it leaked vendor contacts). Operator/owner
    get it at boot from the auth-gated /api/seed via installVendors(); the vendor
@@ -53,6 +64,7 @@ function wireFileActions(host, rerender) {
 async function renderOperator(host) {
   const list = rosterOrder(roster);
   const v = list.find(x => x.id === selected) || null;
+  const coiMap = await listVendorCoi();
   host.innerHTML =
     '<div class="vp-grid">' +
     '<div class="vp-roster"><div class="dw-sec">Vendors — ' + list.length + ' <span class="mute">(portal = has email)</span></div>' +
@@ -68,7 +80,7 @@ async function renderOperator(host) {
       .map(x =>
         '<button class="vp-vendor' + (x.id === selected ? " on" : "") + '" data-id="' + esc(x.id) + '">' +
         '<span class="vp-co">' + esc(x.company) + '</span>' +
-        '<span class="vp-tags mono">' + esc(x.kind) + (portalCapable(x) ? ' · <span class="vp-portal">portal</span>' : "") + '</span>' +
+        '<span class="vp-tags mono">' + esc(x.kind) + (portalCapable(x) ? ' · <span class="vp-portal">portal</span>' : "") + coiTag(x, coiMap) + '</span>' +
         '</button>').join("");
     listEl.querySelectorAll(".vp-vendor").forEach(b => {
       b.onclick = () => { selected = b.dataset.id; renderOperator(host); };
@@ -85,8 +97,20 @@ async function renderOperator(host) {
     '<div class="safe-cat-head"><span class="safe-cat-name">' + esc(v.company) + '</span>' +
     '<span class="mono mute">' + esc(v.email || "no email — no portal access") + (v.contact ? " · " + esc(v.contact) : "") + '</span>' +
     '<button class="chip" id="vpAdd">+ Upload</button><input type="file" id="vpFile" hidden></div>' +
+    '<div style="display:flex;gap:8px;align-items:center;margin:10px 0;flex-wrap:wrap">' +
+    '<span class="mono mute" style="font-size:11px">COI expires</span>' +
+    '<input type="date" id="vpCoiDate" value="' + esc((coiMap[v.id] && coiMap[v.id].expires) || "") + '">' +
+    '<input type="text" id="vpCoiNote" placeholder="carrier / policy note" value="' + esc((coiMap[v.id] && coiMap[v.id].note) || "") + '" style="flex:1;min-width:160px">' +
+    '<button class="chip" id="vpCoiSave">Save COI</button>' +
+    (v.kind === "service" || (coiMap[v.id] && coiMap[v.id].expires) ? coiTag(v, coiMap).replace(/^ · /, "") : "") + '</div>' +
     '<div id="vpFiles">' + fileRows(files, true) + '</div>' +
     '<div class="dw-sec" style="margin-top:18px">Recent access (all vendors)</div><div id="vpLog" class="mute mono" style="font-size:11px"></div>';
+  det.querySelector("#vpCoiSave").onclick = async () => {
+    try {
+      await setVendorCoi(v.id, det.querySelector("#vpCoiDate").value || null, det.querySelector("#vpCoiNote").value.trim());
+      renderOperator(host);
+    } catch (err) { alert("COI save failed: " + err.message); }
+  };
   det.querySelector("#vpAdd").onclick = () => det.querySelector("#vpFile").click();
   det.querySelector("#vpFile").onchange = async e => {
     const f = e.target.files[0];
@@ -107,15 +131,22 @@ let vendorRenderGen = 0; // L1: drop a stale async render if a newer one started
 async function renderVendor(host, email) {
   const gen = ++vendorRenderGen;
   // vendor reads ONLY its own row (RLS-scoped) — no bundled roster needed
-  const { data: rows } = await sb.from("vendors").select("id,company").limit(1);
+  const { data: rows } = await sb.from("vendors").select("id,company,coi_expires").limit(1);
   const v = rows && rows[0];
   if (!v) { host.innerHTML = '<div class="ai-note mute">Your login isn’t linked to a vendor record yet — contact management.</div>'; return; }
+  const coi = coiStatus(v.coi_expires, todayISO());
+  const coiLine = coi.state === "none" ? "" :
+    '<div class="mute" style="font-size:12px;margin:6px 0">Certificate of insurance ' +
+    (coi.state === "expired" ? "<b style=\"color:#C25E33\">expired " + esc(v.coi_expires) + "</b> — please send an updated COI below."
+      : "on file through " + esc(v.coi_expires) +
+        (coi.state === "critical" || coi.state === "expiring" ? " — renewing soon? Send the updated cert below." : ".")) + '</div>';
   const files = await listVendorDocs(v.id);
   if (gen !== vendorRenderGen) return; // a newer render superseded this one
   host.innerHTML =
     '<div class="safe-cat-head"><span class="safe-cat-name">' + esc(v.company) + '</span>' +
     '<span class="mono mute">documents shared between you and On The Boulevard management</span>' +
     '<button class="chip" id="vpAdd">+ Send a file to management</button><input type="file" id="vpFile" hidden></div>' +
+    coiLine +
     '<div id="vpFiles">' + fileRows(files, false) + '</div>';
   host.querySelector("#vpAdd").onclick = () => host.querySelector("#vpFile").click();
   host.querySelector("#vpFile").onchange = async e => {
