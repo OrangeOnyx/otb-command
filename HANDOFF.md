@@ -316,6 +316,9 @@ questions, stable OTBC-* ids) + **Supabase migration DDL exported verbatim to
 value transited a chat session during the export (repo copy is redacted).
 Drill: new random hex → SQL `update app_secrets set value=… where
 name='auto_trigger'` → Vercel env `CRON_SECRET` update → redeploy → cron smoke.
+**DECISION (operator, 2026-07-22): rebuild target = MULTI-PROPERTY PRODUCT**
+(OTBC-Q-002 closed; OTB = tenant #1/reference dataset). Concrete deltas +
+sequencing: transfer-package/14-canonical-architecture.md "Decision addendum".
 **Top carry-forward problems distilled by the extraction** (full list:
 transfer-package/00-README.md): client-side-only owner sheet privacy (RLS reads
 all layers) · hardcoded facts in views (D-1 parking "324/344", T-1 JD Bank

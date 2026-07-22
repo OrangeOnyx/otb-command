@@ -4,6 +4,11 @@ System code: **OTBC**. Recommendation derived only from what this project
 proved out — where its strongest features should sit in a modern modular
 rebuild. This is a target map, not an implementation plan.
 
+> **DECISION 2026-07-22 (operator, confirmed — do not relitigate):
+> the rebuild target is a MULTI-PROPERTY PRODUCT.** OTB becomes tenant #1 /
+> the reference dataset, not the product boundary. The "Decision addendum"
+> at the bottom of this file makes the layer map concrete for that target.
+
 ## 1. User interface
 - Keep: sheet-based information architecture (dashboard / site plan / rent roll
   / financial / compliance / dates / board / directory / safe / AI desk /
@@ -80,6 +85,79 @@ All remain pure/deterministic with the existing test suite riding along.
 - Add the missing telemetry: error tracking, cron/job heartbeat dashboard,
   guardrail-trip and best-effort-write failure counters, deploy-verify
   automation ("prod bundle carries the change" as CI, not discipline).
+
+## Decision addendum (2026-07-22): multi-property product — concrete deltas
+
+What the decision changes, per layer. Everything not listed ports as already
+recommended above.
+
+### Tenancy model
+- `orgs` (management company, e.g. Orange Ocean) → `properties` (e.g. OTB) →
+  everything else. Every row carries `org_id` + `property_id`; RLS derives from
+  an `org_members(org_id, user_id, role)` table, replacing the global
+  `profiles.role` string. The proven trigger-onboarding flow survives but
+  resolves *membership*, not a global role.
+- Roles become **capabilities per org/property** (view_financials,
+  write_ledger, manage_members, vendor_scope, manage_property). The
+  owner-no-financials buyer view and vendor folder-scoping fall out of this for
+  free instead of being CSS.
+
+### What generalizes cleanly (the OTB build already proved the seam)
+- All pure calc engines, guardrail, ledger algebra, COI math, occupancy
+  shaping, card protocol, search — zero property assumptions inside them.
+- Bucket-store factory → bucket paths gain an `org/property/` prefix; policies
+  key on membership. Audit-log/JWT-stamp pattern unchanged.
+- Idempotency keys gain scope: `rent:ORG:PROP:YYYY-MM:unit`,
+  `trigger_source = PROP:renewal:unit:end`.
+- Auto-trigger cron iterates properties; per-property detector thresholds
+  (renewal horizon, occupancy floor, late policy) become property settings rows
+  with the OTB values as defaults.
+- The SOT governance pack becomes the **onboarding product**: each property is
+  imported as an authority-ranked package (sources, validation rules, known
+  exceptions). This is the differentiator to productize, not just port.
+- geometry.json / cameras / stall-map schemas become per-property data
+  packages; the plan renderer takes them as input (it already does — only the
+  import path is per-property).
+
+### Single-asset hardcodes to purge (the migration hit-list)
+1. `property_id text default 'otb'` on every table and in remote.js.
+2. `open_trigger_thread` hardcodes `created_by = 'adam@adamabdalla.com'`.
+3. `LEDGER_START_YM = '2026-08'` → per-property ledger go-live setting.
+4. View literals: D-1 parking "324/344", T-1 JD Bank date, W-1 covenant prose
+   → property-data records (covenants become first-class rows).
+5. Concierge dossier is one generated file → per-property generated context +
+   per-property immutable-facts list in CORE (the "Arnould/62,883" clause is
+   OTB data, not product code).
+6. OTB brand constants in brief/lease builders → per-org brand kit
+   (tools/otb_brand.py already models the shape).
+7. `property_state` JSONB single-property mirror → typed per-layer tables
+   keyed `(org_id, property_id)`; layer registry stays as the code-side schema.
+8. Sheet whitelist `ownerSheets` → per-member capability grants.
+
+### New product-level requirements the decision activates
+- **Property switcher + portfolio dashboard** (a D-0 above D-1: cross-property
+  KPIs, expirations, delinquency — brief.js/kpi.js aggregate naturally).
+- **Concurrency**: last-write-wins debounced sync is no longer acceptable —
+  per-row updates on typed tables + realtime (the deferred B4) become
+  foundation, not polish.
+- **Onboarding pipeline**: DXF/plat trace, SOT import, georef fit, camera
+  registry as guided per-property setup — today these are operator-run scripts;
+  they become the activation funnel.
+- **Ops observability**: per-property cron/job heartbeats and failure
+  telemetry (the C3 lesson) — silent per-property breakage doesn't scale past
+  one asset.
+- Per-property data residency/retention policy (camera frames, PII) stated in
+  product terms.
+
+### Sequencing recommendation (rank-ordered)
+1. Schema first: orgs/properties/membership + typed layer tables + ported RLS
+   (migrations 1-17 as the seed corpus, de-OTB'd).
+2. Port the pure seams + tests verbatim (they are the product core).
+3. Rebuild shell with routing + property switcher; sheets as routes.
+4. Onboarding pipeline (SOT import + geometry package) with OTB as the
+   reference import proving the funnel.
+5. AI layer last (per-property dossier generation + personas), guardrail
+   unchanged.
 
 ## Fit of the top features into the layers
 | Feature | Layers |
