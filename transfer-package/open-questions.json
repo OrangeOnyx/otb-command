@@ -2,7 +2,7 @@
   "system": "OTBC",
   "note": "Only questions that materially affect rebuilding or comparison.",
   "questions": [
-    { "id": "OTBC-Q-001", "question": "Export the authoritative Supabase migration history (repo holds only the snapshot security-model.sql). Without it, exact table DDL for owner_briefs/ledger_entries/occupancy_samples/chat_* must be reverse-engineered.", "blocks": "faithful backend rebuild" },
+    { "id": "OTBC-Q-001", "question": "Export the authoritative Supabase migration history (repo holds only the snapshot security-model.sql).", "blocks": "faithful backend rebuild", "status": "RESOLVED 2026-07-22 — 17 migrations exported verbatim to supabase/migrations/ (one secret redacted; rotation advised, see supabase/migrations/README.md)" },
     { "id": "OTBC-Q-002", "question": "What is the rebuild target: single-asset command center (as-is) or multi-property product? Every architecture decision (org scoping, per-layer RLS, normalization) forks on this.", "blocks": "canonical architecture execution" },
     { "id": "OTBC-Q-003", "question": "Canonical public domain: ontheblvd.com vs shopontheblvd.com — blocks vinyl QR print, custom SMTP, B2 microsite.", "blocks": "marketing + email delivery" },
     { "id": "OTBC-Q-004", "question": "Missing security deposits for units 107/137/143/149 — open SOT item; any ledger/deposit module needs these.", "blocks": "deposit accounting completeness" },

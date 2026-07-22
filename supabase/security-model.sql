@@ -124,14 +124,15 @@ end; $$;
 --    charges with deterministic ids (rent:YYYY-MM:unit) on conflict do
 --    nothing → idempotent daily cron re-runs. Called by api/auto-trigger.mjs.
 --
--- ── MIGRATION HISTORY (Supabase, authoritative) ─────────────────────────────
---   20260620122933 otb_core_schema           20260708111850 vendor_portal_p3
---   20260620122947 otb_storage_assets        20260708181505 agent_desk_transcripts
---   20260620123019 harden_definer_functions  20260708211923 owner_email_allowlist
---   20260707173305 documents_bucket_policies  20260710182827 scope_transcripts_and_bucket_caps
---   20260707194616 owner_safe_bucket_log      20260710182958 api_usage_rate_limit
---   20260716______ auto_trigger_threads (trigger_source + app_secrets + open_trigger_thread)
---   20260717______ owner_intelligence_briefs (owner_briefs + get/put_owner_brief + get_brief_state)
---   20260720222223 compliance_event_log (compliance_events append-only audit trail)
---   20260721010116 vendor_coi_tracking (vendors.coi_expires/coi_note)
---   20260721______ ledger_lite (ledger_entries append-only + post_rent_charges)
+-- ── MIGRATION HISTORY (17; full DDL exported 2026-07-22 → supabase/migrations/) ──
+--   20260620122933 otb_core_schema            20260710182827 scope_transcripts_and_bucket_caps
+--   20260620122947 otb_storage_assets         20260710182958 api_usage_rate_limit
+--   20260620123019 harden_definer_functions   20260710185921 audit_log_email_from_jwt
+--   20260707173305 documents_bucket_and_policies  20260716205410 auto_trigger_threads
+--   20260707194616 owner_safe_bucket_log_policies 20260717160451 owner_intelligence_briefs
+--   20260708111850 vendor_portal_p3           20260720222223 compliance_event_log
+--   20260708181505 agent_desk_transcripts     20260721010116 vendor_coi_tracking
+--   20260708211923 owner_email_allowlist      20260721223852 ledger_lite
+--                                             20260722212237 c3_occupancy
+--   NOTE: repo copy of auto_trigger_threads redacts the app_secrets seed value
+--   (see supabase/migrations/README.md — rotation advised).
