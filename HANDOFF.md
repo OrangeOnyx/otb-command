@@ -61,6 +61,21 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
 another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
 
+### SHIPPED 2026-07-21 (part 5) — UNIFI NETWORK CARD (key delivered via ~/.otb-unifi.env)
+- **Probe** `tools/unifi-probe.mjs` (reads the env file, never prints the key):
+  UDM Pro "Belle" (WAN 76.72.15.3) + USW Pro Max 16 PoE + U7 Pro XG Wall + 5 suite
+  AC Pros (101 Johnston side, 101 above door, 107, 119, 137, 149). Site: 10 devices,
+  **1 offline WiFi unit that Site Manager drops from the device list** (unnamed via
+  API — operator should identify it in the UniFi console).
+- **D-1 "Network (UniFi)" KPI card**: pure seam `src/lib/unifi.js` (+3 tests → 191)
+  · server proxy `api/unifi.mjs` (key ONLY in Vercel env UNIFI_API_KEY — added via
+  CLI, never in chat/repo; owner/operator session gate like concierge; 401 verified
+  unauthenticated) · card shows up/total, health line, client count, and flags the
+  unlisted-down unit. Best-effort: card absent in local mode or on API outage.
+  **Operator smoke: D-1 → "Network (UniFi)" card (expect 9/10 up, brick-red).**
+- Deferred: offline-device auto-trigger (cron candidate `unifi:<date>` → manager
+  thread) · per-AP uptime history. Build after C3 zones finish.
+
 ### SHIPPED 2026-07-21 (part 4) — FROZEN SATELLITE BASE (operator decision: 1→2)
 Operator picked: freeze the Esri base now, swap to the owned drone ortho after the
 roof re-fly (the current RTK ortho is roof-plane-projected — parking field is gaps).

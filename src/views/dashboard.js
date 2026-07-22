@@ -4,6 +4,10 @@
 import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { getActionCards, ACTION_KIND } from "./board.js";
+import { REMOTE, getSession } from "../lib/remote.js";
+import { unifiHealthLine } from "../lib/unifi.js";
+
+let unifiSummary = null; // cached /api/unifi shape; renderKPIs reads it
 
 export function renderDashboard() {
   renderKPIs();
@@ -15,6 +19,22 @@ export function initDashboard() {
   renderDashboard();
   // alerts derive from compliance flags + action-board overrides — refresh on those
   subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
+  if (REMOTE) fetchUnifi();
+}
+
+/* UniFi Site Manager card — server proxy holds the key; owner/operator only.
+   Best-effort: an infra-card outage never touches the rest of D-1. */
+async function fetchUnifi() {
+  try {
+    const session = await getSession();
+    if (!session) return;
+    const r = await fetch("/api/unifi", {
+      headers: { Authorization: "Bearer " + session.access_token },
+    });
+    if (!r.ok) return;
+    unifiSummary = await r.json();
+    renderKPIs();
+  } catch { /* card simply doesn't render */ }
 }
 
 function renderKPIs() {
@@ -33,7 +53,18 @@ function renderKPIs() {
     ["brass", "Expiring ≤ 12 mo", exp12.length, exp12.map(u => u.unit).join(" · ") || "none"],
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
     ["brass", "Parking", "324<small>/344</small>", "legal (var. <b>99-11797</b>) · 314 drawn"]
-  ].map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
+  ].concat(unifiKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
+}
+
+function unifiKpi() {
+  const s = unifiSummary;
+  if (!s) return []; // local mode / not fetched yet / endpoint down
+  const bad = s.counts.offline > 0 || s.counts.critical > 0 || s.console.state !== "connected";
+  const note = esc(unifiHealthLine(s)) +
+    " · " + (s.counts.wifiClients + s.counts.wiredClients) + " clients" +
+    (s.unlisted > 0 ? " · " + s.unlisted + " down unit not in device list — identify in UniFi console" : "");
+  return [[bad ? "brick" : "green", "Network (UniFi)",
+    (s.counts.total - s.counts.offline) + "<small>/" + s.counts.total + " up</small>", note]];
 }
 
 function renderRunway() {
