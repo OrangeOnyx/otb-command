@@ -4,10 +4,13 @@
 import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { getActionCards, ACTION_KIND } from "./board.js";
-import { REMOTE, getSession } from "../lib/remote.js";
+import { REMOTE, getSession, listOccupancy } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
+import { latestByStall, occSummary, occLine } from "../lib/occupancy.js";
+import stallMap from "../data/stall-map.json";
 
 let unifiSummary = null; // cached /api/unifi shape; renderKPIs reads it
+let occState = null;     // cached occupancy summary; renderKPIs reads it
 
 export function renderDashboard() {
   renderKPIs();
@@ -19,7 +22,18 @@ export function initDashboard() {
   renderDashboard();
   // alerts derive from compliance flags + action-board overrides — refresh on those
   subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
-  if (REMOTE) fetchUnifi();
+  if (REMOTE) { fetchUnifi(); fetchOcc(); }
+}
+
+/* C3 parking occupancy card — Supabase occupancy_samples (RLS owner/operator);
+   best-effort like the UniFi card. Covered stalls only (stall-map.json). */
+async function fetchOcc() {
+  try {
+    const rows = await listOccupancy(6);
+    if (!rows.length) return; // no recent samples → no card
+    occState = occSummary(latestByStall(rows), stallMap);
+    renderKPIs();
+  } catch { /* card simply doesn't render */ }
 }
 
 /* UniFi Site Manager card — server proxy holds the key; owner/operator only.
@@ -53,7 +67,7 @@ function renderKPIs() {
     ["brass", "Expiring ≤ 12 mo", exp12.length, exp12.map(u => u.unit).join(" · ") || "none"],
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
     ["brass", "Parking", "324<small>/344</small>", "legal (var. <b>99-11797</b>) · 314 drawn"]
-  ].concat(unifiKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
+  ].concat(unifiKpi()).concat(occKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 
 function unifiKpi() {
@@ -65,6 +79,20 @@ function unifiKpi() {
     (s.unlisted > 0 ? " · " + s.unlisted + " down unit not in device list — identify in UniFi console" : "");
   return [[bad ? "brick" : "green", "Network (UniFi)",
     (s.counts.total - s.counts.offline) + "<small>/" + s.counts.total + " up</small>", note]];
+}
+
+function occKpi() {
+  const s = occState;
+  if (!s) return []; // local mode / no samples yet / endpoint down
+  const totals = Object.values(s.ranks).reduce(
+    (a, r) => ({ occ: a.occ + r.occupied, known: a.known + r.occupied + r.empty }),
+    { occ: 0, known: 0 });
+  const when = s.asOf ? new Date(s.asOf) : null;
+  const note = esc(occLine(s)) + (when && !isNaN(when)
+    ? " · as of " + when.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })
+    : "");
+  return [["ink", "Parking Occupancy (C3)",
+    totals.occ + "<small>/" + totals.known + " camera-covered</small>", note]];
 }
 
 function renderRunway() {

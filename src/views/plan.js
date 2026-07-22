@@ -10,6 +10,9 @@ import { openDrawer } from "./drawer.js";
 import cameraRegistry from "../data/cameras.json";
 import { drawableCameras, frustumPath, dwViewUrl, applyOverrides } from "../lib/cameras.js";
 import { getCamOverrides, setCamOverride, clearCamOverride } from "../store.js";
+import stallMap from "../data/stall-map.json";
+import { latestByStall, rowOverlay } from "../lib/occupancy.js";
+import { REMOTE, listOccupancy } from "../lib/remote.js";
 
 let planMode = "status";
 let planScope = "main";
@@ -18,6 +21,7 @@ let addPinMode = false;    // ＋ Pin: next plan click drops a pin
 let showPhotos = true; // 📷 badge on units that have photos/plans
 let showParking = true;  // 🅿 plat-traced stall striping (carved-out layer)
 let showCameras = false; // 🎥 CCTV mounts + view cones (registry: data/cameras.json)
+let showOcc = false;     // 🚗 C3 stall occupancy (REMOTE only; stall-map.json row56)
 let camEdit = false;     // ✎ Adjust: drag pins to move, drag the ◆ handle to re-aim
 const overlays = { roof: false, signage: false }; // raster overlays (property-scope images)
 let showFacility = false; // whole-center floor-plan overlay (static, registered to the unit envelope)
@@ -56,6 +60,7 @@ export function drawPlan() {
 
   renderPrims(g(svg), geometry.layers.base);
   renderPrims(g(svg), geometry.layers.remoteLot);
+  if (showOcc) paintOcc(g(svg, "occ-layer")); // under the stall striping
   if (showParking) renderPrims(g(svg, "parking-layer"), geometry.layers.parking);
 
   // raster overlay layer — below the unit rects so units stay interactive
@@ -94,6 +99,33 @@ export function drawPlan() {
 
   paintFeatures(g(svg, "feat-layer"));
   paintCameras(g(svg, "cam-layer"));
+}
+
+/* ---- C3 occupancy layer: latest classified state per covered row56 stall
+   (stall-map.json indices over the plat tick band; samples from Supabase,
+   cached 5 min). Occupied = green fill, unclear = slate, empty = outline,
+   stale (no recent sample) = nothing. Best-effort like the UniFi card. ---- */
+let occCache = { rows: null, at: 0 };
+async function paintOcc(layer) {
+  if (!REMOTE) return;
+  if (!occCache.rows || Date.now() - occCache.at > 5 * 60e3) {
+    try {
+      occCache = { rows: await listOccupancy(6), at: Date.now() };
+    } catch { return; } // overlay simply stays empty
+    if (!layer.isConnected) return; // a newer render replaced us
+  }
+  const latest = latestByStall(occCache.rows);
+  for (const s of rowOverlay(latest, stallMap)) {
+    if (!s.rect || s.state === "stale") continue;
+    const r = rect(layer, s.rect.x, s.rect.y, s.rect.w, s.rect.h, {
+      fill: s.state === "occupied" ? "#2F6B4F" : s.state === "unclear" ? "#5F6E64" : "none",
+      "fill-opacity": s.state === "occupied" ? 0.5 : 0.25,
+      stroke: "#2F6B4F", "stroke-width": 0.6, "stroke-opacity": 0.5, rx: 1,
+    });
+    const tip = document.createElementNS(NS, "title");
+    tip.textContent = "Stall " + s.index + " — " + s.state + " (" + s.id + ")";
+    r.appendChild(tip);
+  }
 }
 
 /* ---- CCTV layer: mounts + view cones (registry: src/data/cameras.json;
@@ -355,6 +387,15 @@ export function initPlan() {
     parkChip.classList.toggle("on", showParking);
     drawPlan();
   };
+  const occChip = document.querySelector('.plan-tools .chip[data-overlay="occupancy"]');
+  if (occChip) {
+    if (!REMOTE) occChip.style.display = "none"; // samples live in Supabase only
+    occChip.onclick = () => {
+      showOcc = !showOcc;
+      occChip.classList.toggle("on", showOcc);
+      drawPlan();
+    };
+  }
   const camChip = document.querySelector('.plan-tools .chip[data-overlay="cameras"]');
   const camAdj = document.getElementById("camAdjust");
   const camAdjVisible = () => { if (camAdj) camAdj.hidden = !showCameras || readOnlyRole(); };

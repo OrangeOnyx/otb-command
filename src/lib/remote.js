@@ -104,6 +104,17 @@ export async function addLedgerEntry(row) {
   return rec;
 }
 
+/* ── C3 parking occupancy (append-only; uploaded from the capture
+   machine via tools/c3-upload.mjs; read = owner/operator RLS) ──── */
+export async function listOccupancy(hours = 6) {
+  if (!REMOTE) return [];
+  const since = new Date(Date.now() - hours * 3600e3).toISOString();
+  const { data, error } = await sb.from("occupancy_samples")
+    .select("stall,state,ts").gte("ts", since);
+  if (error) throw error;
+  return data || [];
+}
+
 /* ── access management (operator-only; RLS enforces) ─────────────
    Authorize an email BEFORE first sign-in (allowlist consulted by the
    sign-up trigger) and fix anyone already stuck in 'pending'. */
