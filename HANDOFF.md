@@ -32,10 +32,17 @@ occupancy_samples / chip in assets). **Daily ops until a cron lands:**
 same pull-load-delete drill) then `node tools/c3-upload.mjs --date <date>`.
 **Operator smoke: D-1 → "Parking Occupancy (C3)" card · A-1 → 🚗 chip →
 green/outline stalls along the storefront row.**
-NEXT: classify+upload cron (candidate: extend api/auto-trigger.mjs? runs on
-Vercel — can't reach the capture dir; realistically a local Task Scheduler
-job next to the watchdog) → lot8/field-149 overlay geometry → stall-walk
-index verification.
+**Classify+upload cron SHIPPED same evening:** Task `OTB-C3-Nightly`
+(daily 23:45, tools/c3-nightly.ps1; -Register to re-register) — pulls
+secrets from Vercel env at runtime, classifies current+previous UTC dirs,
+uploads. Live-tested under the scheduler: 151 requests / 643 samples
+(⚠ lesson: PYTHONUTF8=1 — Task Scheduler python stdout is cp1252; the
+verdict-arrow print killed the run after ONE frame, and the failure mode
+looked like success). occupancy_samples = 1,326 rows spanning 07-21→07-22.
+The whole C3 loop is now hands-free: sampler (watchdog-healed) → nightly
+classify+upload → A-1/D-1 surfaces.
+NEXT: lot8/field-149 overlay geometry → stall-walk index verification →
+weekly occupancy rollup (owner-brief candidate section).
 Prior: 2026-07-21 — smoke round MOSTLY PASSED (operator); 🛰 Satellite lens
 REWORKED + DEPLOYED same day (georef refit for Esri refresh · plan-orientation
 bearing · unit-number labels · asset-pin layer). Prod = HEAD, **191 tests**.
