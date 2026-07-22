@@ -61,6 +61,25 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
 another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
 
+### STARTED 2026-07-21 (part 3) — C3-A OCCUPANCY (operator picked classifier 1; scope A assumed)
+- **Sampler died AGAIN ~14:36 (second unexplained death; first was the 07-19 reboot).**
+  Relaunched 21:2x, new PID in sampler.pid, first tick verified. If it keeps dying,
+  consider a Task Scheduler auto-restart (operator decision).
+- **NEW `tools/c3-stalls.py`** + `docs/c3-stall-zones.json`: per-camera stall quads
+  (native px) → perspective crops → one Haiku request per FRAME (all stalls labeled,
+  strict JSON schema) → `<capture>/occupancy/<date>.jsonl` (outside repo), idempotent.
+  Commands: `--grid <cam>` (authoring frame) · `--montage` (crop check) · `--classify
+  --date … --every 12` (hourly sampling of the 300s frames).
+- **suite-105-parking: 3 zones authored + VALIDATED** against a known daytime frame
+  (s1 empty / s2 occupied / s3 empty — crops match ground truth; see
+  export/c3-daytime-check.jpg). ⚠ Authoring lesson: read coordinates at NATIVE res —
+  first pass used downscaled-display px and every quad was half-scale.
+- **NEXT:** author zones for the remaining storefront cams (suite-101/113-n/113-s/
+  119/131 + politics + jasons-deli-149-parking; ~4-6 stalls each) · then the live
+  Haiku run — needs ANTHROPIC_API_KEY exported locally (key lives only in Vercel env;
+  never in chat/repo) · then physical stall mapping (cam-local ids → row 1-56) ·
+  then an occupancy surface (A-1/D-1). Batches API halves cost for historical sweeps.
+
 ### SHIPPED 2026-07-21 (part 2) — LEDGER-LITE (harvest #4, belle-realty-pwa donor)
 Operator delegated the wiring decisions → built as recommended (1A drawer+P-1 ·
 2A cron auto-post · 3A suggest-only late fees · uniform policy).

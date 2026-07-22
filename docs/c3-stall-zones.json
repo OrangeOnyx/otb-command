@@ -1,0 +1,19 @@
+{
+  "_readme": [
+    "C3-A stall zones — per-camera quadrilaterals over the STOREFRONT head-on row",
+    "(56-space row against the long building; operator scope pick A, classifier 1).",
+    "Coordinates are NATIVE camera pixels (2688x1520 for the suite-* cams).",
+    "quad order: top-left, top-right, bottom-right, bottom-left (ground area of",
+    "the stall where a parked vehicle body sits — NOT the painted lines).",
+    "ids are CAMERA-LOCAL (cam-s#) until the physical stall mapping (1..56 along",
+    "the row) is established from overlap analysis; keep ids stable once classified.",
+    "Author zones against a gridded frame: python tools/c3-stalls.py --grid <camera>."
+  ],
+  "cameras": {
+    "suite-105-parking": [
+      { "id": "105-s1", "quad": [[150, 640], [660, 636], [310, 1490], [20, 1490]] },
+      { "id": "105-s2", "quad": [[660, 636], [930, 628], [1400, 1490], [310, 1490]] },
+      { "id": "105-s3", "quad": [[930, 628], [1160, 620], [2000, 1490], [1400, 1490]] }
+    ]
+  }
+}
