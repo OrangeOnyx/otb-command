@@ -88,6 +88,15 @@ export function createScene(container, units, opts = {}) {
       const url = (import.meta.env?.BASE_URL || "/") + "OTB-mesh.glb";
       const head = await fetch(url, { method: "HEAD" });
       if (!head.ok || /text\/html/.test(head.headers.get("content-type") || "")) return;
+      // mount the chip IMMEDIATELY (disabled) — the 3 MB glb takes seconds to
+      // arrive and an invisible-until-loaded button reads as "no mesh toggle"
+      meshBtn = document.createElement("button");
+      meshBtn.type = "button";
+      meshBtn.className = "mesh-toggle";
+      meshBtn.textContent = "🏗 Mesh …";
+      meshBtn.disabled = true;
+      container.style.position = "relative";
+      container.appendChild(meshBtn);
       const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
       const gltf = await new GLTFLoader().loadAsync(url);
       meshRoot = gltf.scene;
@@ -96,14 +105,10 @@ export function createScene(container, units, opts = {}) {
       });
       meshRoot.visible = false;
       scene.add(meshRoot);
-      meshBtn = document.createElement("button");
-      meshBtn.type = "button";
-      meshBtn.className = "mesh-toggle";
       meshBtn.textContent = "🏗 Mesh";
+      meshBtn.disabled = false;
       meshBtn.onclick = () => { showMesh = !showMesh; applyMeshMode(); };
-      container.style.position = "relative";
-      container.appendChild(meshBtn);
-    } catch { /* no mesh shipped — massing only */ }
+    } catch { if (meshBtn) { meshBtn.remove(); meshBtn = null; } /* no mesh — massing only */ }
   })();
 
   const controls = new OrbitControls(camera, renderer.domElement);
