@@ -61,6 +61,26 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
 mesh 3MB ride in public/). Dev server = port **5199** (`.claude/launch.json`; 5173 belongs to
 another project). Local preview without login: move `.env` aside, RESTORE IT AFTER.
 
+### SHIPPED 2026-07-21 (part 4) — FROZEN SATELLITE BASE (operator decision: 1→2)
+Operator picked: freeze the Esri base now, swap to the owned drone ortho after the
+roof re-fly (the current RTK ortho is roof-plane-projected — parking field is gaps).
+- NEW `tools/build-sat-base.py`: composites the z19 tiles the georef was FITTED
+  against → `public/OTB-sat-base.jpg` (700 KB, committed) + `src/data/sat-base.json`
+  (MapLibre image-source corners). **Re-run ONLY together with fit-georef +
+  extract-georef** (base and footprints must share one imagery vintage).
+- scenegeo.js: live Esri tile source → static image source. Kills BOTH drift
+  classes forever (per-zoom vintage mismatch + silent Esri refreshes); loads
+  instantly; ortho swap later = same corners contract, different image.
+- Verified: offline registration proof (export/_satbase_check.jpg — footprints hug
+  both buildings on the frozen image) · runtime: map constructs, bearing 232.25,
+  27 unit markers, asset serves 200, console clean (style paint = occluded-tab rAF
+  limitation, standing lesson) · prod serves OTB-sat-base.jpg + chunk carries it.
+  **Operator smoke: A-2 → 🛰 (should look identical, load faster, never drift).**
+- Mesh-toggle smoke CONFIRMED by operator (07-21). Kept: it's the photoreal skin
+  for the 3D twin (marketing/leasing show-piece); zero maintenance.
+- UniFi: `~/.otb-unifi.env` CREATED with empty UNIFI_API_KEY= — operator pastes key
+  into the file (never chat), then build the Site Manager probe (rank: after C3).
+
 ### STARTED 2026-07-21 (part 3) — C3-A OCCUPANCY (operator picked classifier 1; scope A assumed)
 - **Sampler died AGAIN ~14:36 (second unexplained death; first was the 07-19 reboot).**
   Relaunched 21:2x, new PID in sampler.pid, first tick verified. If it keeps dying,

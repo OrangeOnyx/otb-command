@@ -1,0 +1,24 @@
+{
+ "image": "/OTB-sat-base.jpg",
+ "zoom": 19,
+ "coordinates": [
+  [
+   -92.05581665039062,
+   30.203893976001527
+  ],
+  [
+   -92.05169677734375,
+   30.203893976001527
+  ],
+  [
+   -92.05169677734375,
+   30.200333349994068
+  ],
+  [
+   -92.05581665039062,
+   30.200333349994068
+  ]
+ ],
+ "source": "Esri World Imagery z19 composite (frozen; fitted vintage)",
+ "note": "Regenerate ONLY with fit-georef + extract-georef so base and footprints share a vintage."
+}

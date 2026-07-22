@@ -1,18 +1,22 @@
-/* Lens C — satellite spatial view. MapLibre GL over free Esri World Imagery,
-   with the georeferenced unit footprints (src/data/footprints-geo.json, from
-   tools/extract-georef.py) drawn as status-colored polygons. Click a footprint
-   -> opts.onPick(unit). Lazy-loaded by the A-2 view so maplibre only ships
-   when the lens opens. Imagery is physical — no theme inversion.
-   Oriented to match A-1 (plan bearing = azY+180: Marie Antoinette top, Arnould
-   bottom); the compass control resets to north-up. Unit numbers + the A-1
-   asset-pin layer render as DOM markers (no glyph server → no CSP change). */
+/* Lens C — satellite spatial view. MapLibre GL over a FROZEN imagery base
+   (public/OTB-sat-base.jpg via tools/build-sat-base.py — operator decision
+   2026-07-21: live Esri tiles serve different captures per zoom level and
+   silently refresh, so registration could never hold; the frozen composite is
+   the exact vintage the georef was fitted against. Swap to the owned drone
+   ortho after the roof re-fly: same corners contract, different image).
+   Georeferenced unit footprints (src/data/footprints-geo.json) draw as
+   status-colored polygons; click -> opts.onPick(unit). Lazy-loaded by the A-2
+   view so maplibre only ships when the lens opens. Imagery is physical — no
+   theme inversion. Oriented to match A-1 (plan bearing = azY+180); the compass
+   control resets north-up. Unit numbers + the A-1 asset-pin layer render as
+   DOM markers (no glyph server → no CSP change). */
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import geo from "../data/footprints-geo.json";
+import satBase from "../data/sat-base.json";
 import { planBearing, planToLL, ringCentroid } from "./geoproject.js";
 import { getFeatures, FEATURE_TYPES } from "../store.js";
 
-const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 const FEATURE_ICON = Object.fromEntries(FEATURE_TYPES.map(([id, icon]) => [id, icon]));
 
 export function createGeoScene(container, units, opts = {}) {
@@ -36,13 +40,19 @@ export function createGeoScene(container, units, opts = {}) {
     container,
     style: {
       version: 8,
-      sources: { esri: { type: "raster", tiles: [ESRI], tileSize: 256, maxzoom: 19, attribution: "Imagery © Esri" } },
-      layers: [{ id: "esri", type: "raster", source: "esri" }]
+      sources: {
+        base: {
+          type: "image",
+          url: (import.meta.env?.BASE_URL || "/") + satBase.image.replace(/^\//, ""),
+          coordinates: satBase.coordinates
+        }
+      },
+      layers: [{ id: "base", type: "raster", source: "base" }]
     },
     bearing,
     bounds,
     fitBoundsOptions: { padding: 60, bearing },
-    attributionControl: { compact: true }
+    attributionControl: { compact: true, customAttribution: "Imagery © Esri (frozen composite)" }
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: true }), "top-right");
   container.__map = map; // debug/verification seam (element-scoped, no global)
