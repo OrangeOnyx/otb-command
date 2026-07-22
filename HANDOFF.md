@@ -78,10 +78,12 @@ clickable + unit overlay) · R-1 · P-1 · C-1 (⏱ event-sourced history) · T-
 S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI tracking).
 **169 unit tests.**
 **FIRST MOVES next session:**
-1. **Operator smoke round (~2 min, all shipped 07-17→07-20):** C-1 flip a cell → ⏱ History
-   row appears · A-1 → Size lens · V-1 → any service vendor → set a COI date → badge flips ·
-   AI-1 ask + reload → conversation resumes · AI-1 → 📊 Briefs → July 2026 → Open 🔒.
-   (Older still-unconfirmed smokes live in the punch-list below.)
+1. ~~Operator smoke round~~ **CONFIRMED 2026-07-22 (operator: "all smoke items appear"):**
+   D-1 Parking Occupancy (C3) card · D-1 Network (UniFi) card · A-1 🚗 Occupancy chip ·
+   C-1 ⏱ History · A-1 Size lens · V-1 COI date→badge · AI-1 reload-resume ·
+   AI-1 📊 Briefs → July → Open 🔒 · A-2 🛰 frozen satellite base.
+   (Interaction smokes still open in punch-list #7: PDF attach on K-1 · 🎥 Reality orbit ·
+   lease-package assembly · V-1 vendor-folder upload · leasing-calc question.)
 2. **C3 occupancy build is decision-gated (asked 2026-07-20, operator picks by number):**
    classifier — **1** VLM spot-checks (Haiku on per-stall crops, recommended) · **2**
    classical CV (background subtraction) · **3** hybrid; scope — **A** storefront 56-space
@@ -297,8 +299,9 @@ B3 fly-through · B4 scoped bot · C2 sandbox · C3 LinkedIn (footage-gated: B2)
 7. **Smoke tests still unconfirmed:** attach a PDF to a K-1 row · 🛰 Satellite click · 🎥 Reality
    orbit · 🏗 Mesh toggle · one lease-package assembly · one V-1 vendor-folder upload.
    (AI-1 authed question + 🔊 reply CONFIRMED 2026-07-14 during key rotation.)
-   **NEW 2026-07-20:** C-1 ⏱ History · A-1 Size lens · V-1 COI date→badge · AI-1
-   reload-resume · leasing-calc question ("retain at $17 vs replace at $20…").
+   ~~C-1 ⏱ History · A-1 Size lens · V-1 COI date→badge · AI-1 reload-resume~~
+   CONFIRMED 2026-07-22 (with the C3/UniFi/🛰 round). Still open: leasing-calc
+   question ("retain at $17 vs replace at $20…").
    NOTE 2026-07-13: 🎥 Reality was BROKEN in prod since the 07-10 CSP (script-src lacked
    'wasm-unsafe-eval' → GaussianSplats3D's WASM sorter blocked → infinite "Processing
    splats…"). Fixed in vercel.json + deployed 07-13; A/B-verified locally against the
