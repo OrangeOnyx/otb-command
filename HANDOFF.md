@@ -3,9 +3,24 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-21 — smoke round MOSTLY PASSED (operator); 🛰 Satellite lens
+Last updated: 2026-07-22 — C3-A FULLY ARMED: sampler died a 3rd time (silent,
+~02:38, no reboot/crash record) → **Task Scheduler watchdog** now self-heals it
+(OTB-C3-Sampler-Watchdog, at logon + 5 min; tools/sampler-watchdog.ps1 -Register
+to re-register). **Archive backfill discovered + built** (tools/cube-backfill.mjs):
+DW Spectrum serves TRUE archive frames at native res via
+`/ec2/cameraThumbnail?cameraId=<id>&time=<epochMs>&height=1520` (the /rest/v2
+image endpoint IGNORES timestampMs → live fallback; verified with a real 03:30
+night frame). Today's 12-hr gap recovered (2,467 frames). **All 8 cams' stall
+zones AUTHORED** (34 stalls, docs/c3-stall-zones.json; tools/c3-overlay.py =
+authoring loop; busy-frame crops validated) + live Haiku classify verified
+end-to-end (key pulled from Vercel env at runtime — never on disk/chat/repo;
+`npx vercel env pull` → load → delete). NOTE: capture day-dirs are UTC-keyed
+(late-evening local frames land in next day's dir). Occupancy JSONL accruing in
+`<capture>/occupancy/`. NEXT: physical stall mapping (cam-local ids → row 1-56)
+→ occupancy surface on A-1/D-1.
+Prior: 2026-07-21 — smoke round MOSTLY PASSED (operator); 🛰 Satellite lens
 REWORKED + DEPLOYED same day (georef refit for Esri refresh · plan-orientation
-bearing · unit-number labels · asset-pin layer). Prod = HEAD, **174 tests**.
+bearing · unit-number labels · asset-pin layer). Prod = HEAD, **191 tests**.
 Prior: 2026-07-20 — HORIZONTAL LAYERS + B1 + C1 + harvest #3 SHIPPED (see
 "SHIPPED 2026-07-20" below).
 Prior update: 2026-07-16 (evening). Today: Cube creds landed → 17/17 camera aims
