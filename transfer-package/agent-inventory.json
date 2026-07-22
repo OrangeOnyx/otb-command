@@ -1,0 +1,26 @@
+{
+  "system": "OTBC",
+  "agents": [
+    { "id": "OTBC-AGENT-001", "name": "Concierge", "surface": "AI-1 chip (default)", "model": "claude-opus-4-8 (adaptive thinking, effort medium, max_tokens 2500, <=4 tool rounds, streaming)", "tools": ["run_calc"], "grounding": "prompt-cached dossier (api/_context.mjs, generated) + live property_state digest in final user turn (cache-stable)", "coreRules": ["ground in dossier+live_state (live supersedes)", "audit-grade facts immutable (GLA 62,883 / 27 units / variance 99-11797 / Arnould-vs-Arnold-Heights spellings)", "never invent numbers", "never do arithmetic — call run_calc", "surface anomalies, don't fix", "executive register"] },
+    { "id": "OTBC-AGENT-002", "name": "Leasing Agent", "surface": "AI-1 chip", "model": "same", "tools": ["run_calc", "assemble_lease_package (OPERATOR-only, server-enforced)"], "persona": "screens prospects vs exclusive-use watch / liquor line / parking variance; assembles DRAFT-stamped proposal + owner summary -> documents bucket -> signed-URL [[package:]] card; email human-in-loop" },
+    { "id": "OTBC-AGENT-003", "name": "Property Manager", "surface": "AI-1 chip", "model": "same", "tools": ["run_calc"], "persona": "operations/HVAC/vendors; drafts tenant notices signed 'Adam Anthony Abdalla, Property Manager'" },
+    { "id": "OTBC-AGENT-004", "name": "Auto-trigger cron", "surface": "api/auto-trigger.mjs (daily 11:00 UTC)", "model": "none (pure detectors) — seeds AI-1 threads", "detectors": ["holdover", "renewal <=180d", "occupancy <85%"], "idempotency": "unique trigger_source (unit+end or month)", "monthlyJobs": ["deterministic owner brief (NO LLM)", "rent charges (LEDGER_START_YM gated)"] },
+    { "id": "OTBC-AGENT-005", "name": "C3 stall classifier", "surface": "tools/c3-stalls.py (offline, nightly task)", "model": "Claude Haiku", "pattern": "stall-quad perspective crops -> ONE request per frame, all stalls labeled, strict JSON -> idempotent JSONL", "hygiene": "unclear/stale never count occupied/empty (lib/occupancy.js)" }
+  ],
+  "sharedMachinery": {
+    "guardrail": "post-calc rounds buffered; every $/%/decimal must trace to calc output (<=0.5% tol; years/CCP/ints<=12 ignored); score <90 fails closed to engine summaries (guardrail.js)",
+    "calcEngines": ["NER deal comparison", "CAM gross-up 95% never-down", "LA eviction sequencer + 200% holdover", "monthly KPI with precomputed MoM words"],
+    "cardProtocol": "[[type:token|label]]; package https-only, brief strict YYYY-MM; invalid stripped (cards.js)",
+    "inputHygiene": "<=20 turns, <=4000 chars/msg, digest <=3500 (concierge.js)",
+    "outputHygiene": "mdToHtml escapes first; mdToSpeech strips markdown",
+    "memory": "server chat_threads/chat_messages (creator-scoped RLS) + client localStorage otb-ai-state-v1 (reload resumes)",
+    "limits": "concierge 200/day, voice 150/day per user (fail-open on infra error); refusal -> canned decline"
+  },
+  "knownFailures": [
+    "arithmetic hallucination (mitigated: run_calc + fail-closed guardrail, M1/M2 tightened)",
+    "'correcting' legal proper nouns (Arnold Heights) — real incident, now pinned in CORE + tests",
+    "stale-holdover narration in manager persona (fixed 2026-07-16)",
+    "cp1252 stdout silently killed a classify run that looked successful (PYTHONUTF8=1)"
+  ],
+  "recommendedRevisions": ["externalize personas/CORE to versioned prompt files", "add per-persona eval fixtures (concierge handler currently live-smoke only)", "structured citations in replies", "wire Batches API for historical C3 sweeps"]
+}

@@ -1,0 +1,39 @@
+{
+  "system": "OTBC",
+  "name": "OTB Property Command",
+  "extractedAt": "2026-07-22",
+  "product": {
+    "purpose": "Single-asset visual property command center with audit-grade data governance and AI assistance",
+    "property": "On The Boulevard Shopping Center, 101-149 Arnould Blvd, Lafayette, LA 70506",
+    "propertyFacts": { "glaHeadlineSf": 62883, "demisedSumSf": 62810, "units": 27, "buildings": 2, "acres": 4.84, "parkingLegal": "324/344 (variance 99-11797)", "parkingPlatStriping": 314 },
+    "operator": "Adam Abdalla (Orange Ocean, LLC, managing Belle Realty of Lafayette, LLC)",
+    "liveUrl": "https://otb-command.vercel.app",
+    "maturityScore": 72
+  },
+  "stack": {
+    "frontend": "Vanilla JS ES modules + Vite 7, no framework, no router (DOM show/hide sheets)",
+    "backend": "Vercel serverless functions (Node ESM)",
+    "database": "Supabase Postgres + Auth (magic link) + Storage (4 private buckets), RLS-enforced, no service-role key",
+    "ai": "Anthropic claude-opus-4-8 (agent desk), Claude Haiku (stall classifier)",
+    "voice": "ElevenLabs TTS proxy",
+    "libs": ["three@0.185", "maplibre-gl@5.24", "@mkkellogg/gaussian-splats-3d@0.4.7", "@supabase/supabase-js@2", "@anthropic-ai/sdk@0.110"],
+    "tests": { "framework": "node --test", "files": 29, "count": 197 },
+    "offlineTooling": "Python (ezdxf/Pillow/openpyxl) + Node tools + PowerShell scheduled tasks"
+  },
+  "sheets": ["D-1 Dashboard", "A-1 Site Plan", "A-2 Spatial", "R-1 Rent Roll", "P-1 Financial", "C-1 Compliance", "T-1 Critical Dates", "W-1 Action Board", "K-1 Directory", "S-1 Owner Safe", "AI-1 Concierge", "V-1 Vendor Portal"],
+  "roles": ["operator", "owner", "vendor", "pending"],
+  "persistence": {
+    "layers": ["comp", "notes", "actions", "contacts", "documents", "financials", "ownerSheets", "features", "cameras"],
+    "tiers": ["localStorage (otb-command-state-v1)", "IndexedDB (assets/docs/safe)", "Supabase (property_state JSONB + normalized append-only tables + buckets)"]
+  },
+  "automation": {
+    "vercelCron": "/api/auto-trigger daily 11:00 UTC (triggers, monthly brief, monthly rent charges — all idempotent)",
+    "windowsTasks": ["OTB-C3-Sampler-Watchdog (logon+5min)", "OTB-C3-Nightly (23:45 classify+upload)"]
+  },
+  "files": {
+    "narrative": ["01-executive-overview.md", "02-feature-inventory.md", "03-roles-permissions.md", "04-workflow-catalog.md", "05-data-model.md", "06-business-rules.md", "07-screen-inventory.md", "08-technical-architecture.md", "09-integration-inventory.md", "10-agent-inventory.md", "11-source-code-map.md", "12-strengths-weaknesses.md", "13-reusable-assets.md", "14-canonical-architecture.md", "15-build-readiness.md", "00-README.md"],
+    "machineReadable": ["system-manifest.json", "feature-inventory.json", "data-model.json", "workflow-catalog.json", "business-rules.json", "screen-inventory.json", "integration-inventory.json", "agent-inventory.json", "reusable-assets.json", "open-questions.json"]
+  },
+  "evidenceLevels": ["VERIFIED", "STRONGLY_INFERRED", "PARTIALLY_SUPPORTED", "DISCUSSED_ONLY", "UNKNOWN"],
+  "extractionMethod": "Full source read via 4 parallel exploration agents (views, lib/business-logic, data model, api/docs/architecture) + direct reads of HANDOFF.md, security-model.sql, vercel.json, tools/"
+}

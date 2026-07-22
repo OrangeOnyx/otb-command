@@ -1,0 +1,18 @@
+{
+  "system": "OTBC",
+  "note": "Only questions that materially affect rebuilding or comparison.",
+  "questions": [
+    { "id": "OTBC-Q-001", "question": "Export the authoritative Supabase migration history (repo holds only the snapshot security-model.sql). Without it, exact table DDL for owner_briefs/ledger_entries/occupancy_samples/chat_* must be reverse-engineered.", "blocks": "faithful backend rebuild" },
+    { "id": "OTBC-Q-002", "question": "What is the rebuild target: single-asset command center (as-is) or multi-property product? Every architecture decision (org scoping, per-layer RLS, normalization) forks on this.", "blocks": "canonical architecture execution" },
+    { "id": "OTBC-Q-003", "question": "Canonical public domain: ontheblvd.com vs shopontheblvd.com — blocks vinyl QR print, custom SMTP, B2 microsite.", "blocks": "marketing + email delivery" },
+    { "id": "OTBC-Q-004", "question": "Missing security deposits for units 107/137/143/149 — open SOT item; any ledger/deposit module needs these.", "blocks": "deposit accounting completeness" },
+    { "id": "OTBC-Q-005", "question": "Parking delta -10 (variance 324 vs plat 314) — pull the 99-11797 variance file to reconcile; central constraint for stall-removal/leasing decisions.", "blocks": "parking-dependent decisions (not the rebuild itself)" },
+    { "id": "OTBC-Q-006", "question": "Was the ElevenLabs key rotation completed? (Anthropic confirmed 2026-07-14; ElevenLabs noted pending in an earlier audit note.)", "blocks": "security hygiene sign-off" },
+    { "id": "OTBC-Q-007", "question": "C3 stall-map physical indices are est-geometric pending the operator stall walk; classifier error rate never measured beyond spot checks.", "blocks": "trusting occupancy data downstream" },
+    { "id": "OTBC-Q-008", "question": "Standing unconfirmed operator smokes (PDF attach, satellite click, Reality orbit, mesh toggle, lease-package assembly, vendor upload, C-1 history, Size lens, COI badge, AI reload-resume) — several shipped features have never been human-verified end-to-end.", "blocks": "claiming LIVE features fully work" },
+    { "id": "OTBC-Q-009", "question": "Concurrency semantics under two simultaneous writers (last-write-wins debounced sync) — untested; B4 realtime deferred.", "blocks": "multi-user rollout" },
+    { "id": "OTBC-Q-010", "question": "Camera-frame retention/privacy policy (frames bank indefinitely on local disk; no stated policy).", "blocks": "compliance posture of the camera pipeline" },
+    { "id": "OTBC-Q-011", "question": "Magnolia (121) lease swap awaits the executed copy (link registry still marked Draft).", "blocks": "SOT completeness for 121" },
+    { "id": "OTBC-Q-012", "question": "Which per-lease late-fee terms differ from the uniform OTB schedule? lease_clauses.csv carries 'true' artifacts where real terms should be; policy goes per-unit if any lease differs.", "blocks": "late-fee automation correctness" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "system": "OTBC",
+  "integrations": [
+    { "id": "OTBC-INT-001", "name": "Supabase", "status": "LIVE", "purpose": "auth + Postgres + storage (entire backend)", "auth": "anon key + user JWT (RLS); secret-gated definer RPCs; NO service-role key", "direction": "bidirectional", "failure": "REMOTE=false -> local mode; money writes throw, audit swallowed", "replacement": "any Postgres+RLS stack behind remote.js/_supa.mjs seam" },
+    { "id": "OTBC-INT-002", "name": "Anthropic Claude", "status": "LIVE", "purpose": "agent desk (claude-opus-4-8) + C3 stall classifier (Haiku)", "auth": "ANTHROPIC_API_KEY server-side; local pipeline pull-load-delete drill", "dataSent": "cached dossier + live digest + chat; stall crops", "failure": "502/canned decline; guardrail fails closed; nightly skips", "replacement": "any tool-calling LLM" },
+    { "id": "OTBC-INT-003", "name": "ElevenLabs", "status": "LIVE", "purpose": "TTS voice replies", "auth": "ELEVENLABS_API_KEY server-side", "limits": "2400 chars/req, 150/day/user", "failure": "502, degrades to text" },
+    { "id": "OTBC-INT-004", "name": "UniFi Site Manager", "status": "LIVE", "purpose": "D-1 network card (hosts/sites/devices summary)", "auth": "UNIFI_API_KEY server-side", "failure": "card absent", "note": "network gear only — cameras are DW Spectrum, separate" },
+    { "id": "OTBC-INT-005", "name": "DW Spectrum NVR (Tailscale)", "status": "LOCAL", "purpose": "17-camera frame sampling + archive backfill", "auth": "~/.otb-cube.env local creds", "endpointLesson": "/ec2/cameraThumbnail?time= serves true archive; /rest/v2 ignores timestamps", "failure": "sampler died 3x; Task Scheduler watchdog self-heals", "risk": "single-Windows-machine dependency" },
+    { "id": "OTBC-INT-006", "name": "C3 occupancy pipeline", "status": "LIVE", "purpose": "sampler -> Haiku classify -> JSONL -> secret RPC upload -> occupancy_samples -> A-1/D-1", "schedule": "nightly 23:45 local task; hands-free", "costNote": "Batches API halves historical-sweep cost (not wired)" },
+    { "id": "OTBC-INT-007", "name": "Vercel", "status": "LIVE", "purpose": "hosting + serverless + cron + env secrets", "deploy": "CLI-only (no git integration, deliberate)", "cron": "auto-trigger daily 11:00 UTC" },
+    { "id": "OTBC-INT-008", "name": "Esri World Imagery", "status": "LIVE-FROZEN", "purpose": "satellite basemap", "pattern": "frozen z19 composite + regenerate-together georef contract (live tiles drifted)", "plannedSwap": "owned drone ortho, same corners contract" },
+    { "id": "OTBC-INT-009", "name": "Google Drive", "status": "LIVE-LINKS", "purpose": "executed leases/floorplans/logos by URL; export delivery to G:", "note": "no API — confidential links ride in gated seed" },
+    { "id": "OTBC-INT-010", "name": "Web Speech API", "status": "LIVE", "purpose": "mic input (Chrome/Edge, auto-hidden elsewhere)" },
+    { "id": "OTBC-INT-011", "name": "Email", "status": "PARTIAL", "purpose": "mailto prefill for lease packages (human-in-loop); Supabase default SMTP for magic links", "planned": "Resend/SendGrid + custom domain/SMTP (operator DNS gated)" },
+    { "id": "OTBC-INT-012", "name": "Windows Task Scheduler", "status": "LOCAL", "tasks": ["OTB-C3-Sampler-Watchdog (logon+5min)", "OTB-C3-Nightly (23:45, PYTHONUTF8=1 lesson)"] }
+  ],
+  "plannedOnly": ["Supabase Realtime (B4)", "custom domain command.ontheblvd.com + SMTP", "B2 microsite + B4 public scoped bot + C2 sandbox login", "voice avatar", "C2 homography / C4 VLM night-watch / C5 timeline lens"],
+  "killed": ["DoorLoop import (authority rank 99, never authoritative — operator decision)"],
+  "neverDiscussed": ["QuickBooks", "Stripe", "Twilio", "listing syndication", "e-sign (queued schemas only)", "OCR (queued)", "weather"]
+}
