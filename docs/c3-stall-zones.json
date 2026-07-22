@@ -7,13 +7,65 @@
     "the stall where a parked vehicle body sits — NOT the painted lines).",
     "ids are CAMERA-LOCAL (cam-s#) until the physical stall mapping (1..56 along",
     "the row) is established from overlap analysis; keep ids stable once classified.",
-    "Author zones against a gridded frame: python tools/c3-stalls.py --grid <camera>."
+    "Author zones against a gridded frame: python tools/c3-stalls.py --grid <camera>;",
+    "verify with tools/c3-overlay.py <camera> --zones and --montage.",
+    "AUTHORED 2026-07-22 (all 7 remaining cams) against busy 2026-07-21 10:10 frames",
+    "(parked cars = ground truth) + empty 15:00 frames. Known caveats: oblique cams",
+    "(101-parking, politics, 131 left rank) have adjacent-stall bleed at crop edges —",
+    "the classify prompt's 'partly entering adjacent stall does not count' covers it;",
+    "113n-s3 is column-clipped to its aisle half; 149p-s2/113s-s1/119-s3 are ADA",
+    "stalls (symbol visible when empty). Off-scope: main-field ranks, drive lanes."
   ],
   "cameras": {
     "suite-105-parking": [
       { "id": "105-s1", "quad": [[150, 640], [660, 636], [310, 1490], [20, 1490]] },
       { "id": "105-s2", "quad": [[660, 636], [930, 628], [1400, 1490], [310, 1490]] },
       { "id": "105-s3", "quad": [[930, 628], [1160, 620], [2000, 1490], [1400, 1490]] }
+    ],
+    "suite-101-parking": [
+      { "id": "101p-s1", "quad": [[0, 620], [677, 760], [540, 1516], [0, 1516]] },
+      { "id": "101p-s2", "quad": [[0, 280], [560, 270], [660, 560], [0, 600]] },
+      { "id": "101p-s3", "quad": [[677, 760], [1010, 600], [1300, 1516], [540, 1516]] }
+    ],
+    "suite-113-north": [
+      { "id": "113n-s1", "quad": [[480, 70], [760, 60], [600, 400], [340, 330]] },
+      { "id": "113n-s2", "quad": [[760, 60], [950, 50], [770, 430], [600, 400]] },
+      { "id": "113n-s3", "quad": [[970, 50], [1160, 60], [1080, 400], [960, 380]] },
+      { "id": "113n-s4", "quad": [[1160, 60], [1400, 80], [1180, 580], [950, 490]] },
+      { "id": "113n-s5", "quad": [[1400, 80], [1742, 140], [1534, 750], [1180, 580]] },
+      { "id": "113n-s6", "quad": [[1742, 140], [1990, 210], [1800, 920], [1534, 750]] }
+    ],
+    "suite-113-south": [
+      { "id": "113s-s1", "quad": [[804, 460], [1273, 310], [1740, 540], [1240, 760]] },
+      { "id": "113s-s2", "quad": [[780, 130], [1250, 70], [1270, 230], [800, 330]] },
+      { "id": "113s-s3", "quad": [[1270, 70], [1530, 40], [1545, 160], [1285, 230]] },
+      { "id": "113s-s4", "quad": [[1615, 45], [1850, 20], [1860, 120], [1630, 160]] }
+    ],
+    "suite-119-parking": [
+      { "id": "119-s1", "quad": [[60, 560], [590, 545], [657, 1516], [80, 1516]] },
+      { "id": "119-s2", "quad": [[590, 563], [1501, 643], [1620, 1516], [657, 1516]] },
+      { "id": "119-s3", "quad": [[2385, 830], [2688, 760], [2688, 1516], [2650, 1516]] }
+    ],
+    "suite-131-parking": [
+      { "id": "131p-s1", "quad": [[150, 650], [900, 380], [1060, 700], [300, 1200]] },
+      { "id": "131p-s2", "quad": [[60, 420], [700, 300], [790, 520], [150, 760]] },
+      { "id": "131p-s3", "quad": [[190, 260], [540, 200], [590, 360], [240, 450]] },
+      { "id": "131p-s4", "quad": [[1420, 480], [2150, 360], [2688, 950], [2000, 1400]] }
+    ],
+    "politics-parking": [
+      { "id": "pol-s1", "quad": [[430, 430], [1170, 430], [1200, 710], [440, 720]] },
+      { "id": "pol-s2", "quad": [[330, 350], [680, 340], [700, 590], [340, 600]] },
+      { "id": "pol-s3", "quad": [[1420, 120], [2020, 110], [2050, 610], [1440, 630]] },
+      { "id": "pol-s4", "quad": [[1740, 200], [2350, 190], [2380, 620], [1760, 640]] },
+      { "id": "pol-s5", "quad": [[2340, 130], [2660, 120], [2680, 430], [2360, 440]] }
+    ],
+    "jasons-deli-149-parking": [
+      { "id": "149p-s1", "quad": [[1700, 600], [2120, 560], [2260, 1050], [1780, 1150]] },
+      { "id": "149p-s2", "quad": [[2120, 470], [2370, 440], [2450, 670], [2180, 710]] },
+      { "id": "149p-s3", "quad": [[2330, 380], [2640, 340], [2688, 650], [2380, 720]] },
+      { "id": "149p-s4", "quad": [[80, 643], [523, 516], [610, 563], [134, 730]] },
+      { "id": "149p-s5", "quad": [[134, 730], [610, 563], [697, 610], [201, 817]] },
+      { "id": "149p-s6", "quad": [[201, 817], [697, 610], [750, 657], [288, 911]] }
     ]
   }
 }
