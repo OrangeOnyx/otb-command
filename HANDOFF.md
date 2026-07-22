@@ -307,6 +307,23 @@ B3 fly-through · B4 scoped bot · C2 sandbox · C3 LinkedIn (footage-gated: B2)
 8. Decide canonical domain (ontheblvd.com per Apr-2026 brand doc vs shopontheblvd.com in the
    2025 package) before the next print run.
 
+### SYSTEM EXTRACTION 2026-07-22 — `transfer-package/` (committed 2203d23/f7ec178)
+Full portable spec: 16 narrative sections + 10 machine-readable JSONs (features/
+data model/rules/workflows/screens/architecture/agents/reusable assets/open
+questions, stable OTBC-* ids) + **Supabase migration DDL exported verbatim to
+`supabase/migrations/`** (17 files — closes OTBC-Q-001).
+**⚠ NEW SECURITY ITEM: rotate the `auto_trigger` shared secret** — the live
+value transited a chat session during the export (repo copy is redacted).
+Drill: new random hex → SQL `update app_secrets set value=… where
+name='auto_trigger'` → Vercel env `CRON_SECRET` update → redeploy → cron smoke.
+**Top carry-forward problems distilled by the extraction** (full list:
+transfer-package/00-README.md): client-side-only owner sheet privacy (RLS reads
+all layers) · hardcoded facts in views (D-1 parking "324/344", T-1 JD Bank
+date, W-1 covenant prose) · no URL routing · schema-free property_state layers
+· split-seed/concierge-context/georef regen footgun · fail-open rate limit +
+CAPTCHA still off · C3 pipeline has no heartbeat/alerting · manual deploys.
+These are candidate work items, not regressions — pick by number when ready.
+
 ### CLAUDE next-action menu (say the word)
 - **APPROVED QUEUE:** ~~B1 · A2 · C1~~ DONE (07-17/07-20) · B2 deferred (footage) ·
   remaining: **bucket-store factory + card registry → COI tracking + thread persistence ·
@@ -747,10 +764,11 @@ theme switch (SHIPPED, see below). Do NOT fork into two codebases.
   command after shipping, or the live site silently stays stale.
 - Quality gate before delivery: `node --check` each module + `npm run build`. Console clean.
 
-## What's built (8 sheets)
-D-1 Dashboard · A-1 Site Plan (plat-exact + photo/overlay layers; **whole-center floor-plan overlay** registered to the unit envelope w/ unit-fill opacity slider; unit numbers uniform, tenant names off A-1) · R-1 Rent Roll (11 cols, PSF breakdown) ·
+## What's built (12 sheets)
+D-1 Dashboard · A-1 Site Plan (plat-exact + photo/overlay layers; **whole-center floor-plan overlay** registered to the unit envelope w/ unit-fill opacity slider; unit numbers uniform, tenant names off A-1) · A-2 Spatial (4 lenses) · R-1 Rent Roll (11 cols, PSF breakdown) ·
 P-1 Financial (income composition + NOI worksheet) · C-1 Compliance · T-1 Critical Dates ·
-W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + site imagery).
+W-1 Action Board (live kanban) · K-1 Directory (contacts + document register + site imagery) ·
+S-1 Owner Safe · AI-1 Concierge (3 agents) · V-1 Vendor Portal.
 - **Persisted state layers** (localStorage, write-through, in Export/Import JSON): comp, notes, actions, contacts, documents, financials.
 - **Asset store**: images (photos / floor plans / roof-HVAC / signage) in **IndexedDB** behind a swappable backend seam (lib/assets.js). NOT yet in Export/Import — per-browser today (portability gap, see below).
 - **Data**: src/data/{units,compliance,geometry,directory,hvac,recoveries}.json. Single-source rule: Base/Total PSF from units.json; recoveries.json only supplies CAM/Tax/Ins.
