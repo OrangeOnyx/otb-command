@@ -16,8 +16,26 @@ authoring loop; busy-frame crops validated) + live Haiku classify verified
 end-to-end (key pulled from Vercel env at runtime — never on disk/chat/repo;
 `npx vercel env pull` → load → delete). NOTE: capture day-dirs are UTC-keyed
 (late-evening local frames land in next day's dir). Occupancy JSONL accruing in
-`<capture>/occupancy/`. NEXT: physical stall mapping (cam-local ids → row 1-56)
-→ occupancy surface on A-1/D-1.
+`<capture>/occupancy/`. **SAME DAY (evening): stall map + occupancy surface
+SHIPPED + DEPLOYED.** `src/data/stall-map.json` (34 stalls → row56 index /
+lot8 / field-149 / aisle-101 / north-edge; est-geometric ±1 until an operator
+stall walk) + pure seam `src/lib/occupancy.js` (+6 tests → **197**). Migration
+`c3_occupancy`: occupancy_samples append-only, PK (frame,stall), read
+owner/operator, writes ONLY via secret-gated post_occupancy_samples (gate
+smoke-tested; advisors = accepted definer-WARN class only).
+`tools/c3-upload.mjs` posts a day's JSONL idempotently (636 → 0 re-run;
+CRON_SECRET via `vercel env pull`, load, delete — never chat/repo). A-1 →
+**🚗 Occupancy** chip (REMOTE-only, latest state over the row56 tick band) ·
+D-1 → **"Parking Occupancy (C3)"** card. Prod bundle verified (105-s1 /
+occupancy_samples / chip in assets). **Daily ops until a cron lands:**
+`c3-stalls.py --classify --date <UTC-date> --every 12` (ANTHROPIC_API_KEY
+same pull-load-delete drill) then `node tools/c3-upload.mjs --date <date>`.
+**Operator smoke: D-1 → "Parking Occupancy (C3)" card · A-1 → 🚗 chip →
+green/outline stalls along the storefront row.**
+NEXT: classify+upload cron (candidate: extend api/auto-trigger.mjs? runs on
+Vercel — can't reach the capture dir; realistically a local Task Scheduler
+job next to the watchdog) → lot8/field-149 overlay geometry → stall-walk
+index verification.
 Prior: 2026-07-21 — smoke round MOSTLY PASSED (operator); 🛰 Satellite lens
 REWORKED + DEPLOYED same day (georef refit for Esri refresh · plan-orientation
 bearing · unit-number labels · asset-pin layer). Prod = HEAD, **191 tests**.
