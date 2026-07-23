@@ -64,8 +64,10 @@ validated demand: 1–2 external properties want onto the software. New scope
 folded in: SOP codification (A-4) · maintenance requests w/ photos (A-2) ·
 call-in voice agents w/ transcripts (A-3). **Execution order: A-0 secret
 rotation → A-1 COI AI-parse (approved) → A-2 → A-3/A-4 → Phase B multi-tenant
-schema → pilots.** Decision gates D-1..D-5 in the plan await operator picks
-(voice stack · pilot terms · payments timing · accounting posture).
+schema → pilots.** Gates DECIDED (operator "1A 2A 3A 4A"): D-1 Twilio
+ConversationRelay + Claude personas · D-2 free design-partner pilots · D-3
+Stripe ACH now (pairs with Aug 1 ledger go-live) · D-4 QBO sync, no own GL.
+D-5 (name/domain/pricing/entity) parked until Phase B.
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
 **PROD = HEAD as of 2026-07-20 (evening):** all five horizontal layers + B1 vinyls + C1 case
 study + harvest #3 (event-sourced compliance + Size lens) + COI tracking + AI-1 thread

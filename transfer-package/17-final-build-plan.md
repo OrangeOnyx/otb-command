@@ -124,7 +124,17 @@ DRAFT→execute · white-label portals.
 
 ---
 
-## Decision gates (operator picks by number/letter)
+## Decision gates — **ALL DECIDED (operator, 2026-07-22: "1A 2A 3A 4A")**
+
+- **D-1 = A** Twilio ConversationRelay + Claude personas.
+- **D-2 = A** Free 6-month design-partner pilots (testimonial + data rights).
+- **D-3 = A** Stripe ACH on OTB now, paired with the Aug 1 ledger go-live.
+- **D-4 = A** QBO bi-directional sync; no own GL.
+- D-5 (name/domain/pricing/entity) remains parked until Phase B.
+
+Original options preserved below for the record.
+
+### (original gates as presented)
 
 - **D-1 Voice stack (blocks A-3):** **A** Twilio ConversationRelay + our
   Claude personas (recommended — owned transcripts, guardrail intact, one
