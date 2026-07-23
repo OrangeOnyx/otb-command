@@ -16,6 +16,7 @@ import UNITS from "../src/data/units.public.json" with { type: "json" };
 import RECOVERIES from "../src/data/recoveries.json" with { type: "json" };
 import SEED from "./_seed.json" with { type: "json" };
 import { collectCandidates } from "../src/lib/autotrigger.js";
+import { maintTriggerCandidates } from "../src/lib/maintenance.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
@@ -70,6 +71,13 @@ export default async function handler(req, res) {
   const today = new Date().toISOString().slice(0, 10);
   const units = UNITS.units || UNITS;
   const candidates = collectCandidates(units, SEED.unitsPrivate, today);
+
+  /* A-2: aging unassigned work orders → manager thread (idempotent by
+     trigger_source "maint:<id>"; a read failure never blocks the other scans) */
+  try {
+    const open = await rpc("get_open_maintenance", { p_secret: secret });
+    candidates.push(...maintTriggerCandidates(open, today));
+  } catch (e) { console.warn("maint scan:", e.message); }
 
   const summary = { date: today, scanned: candidates.length, opened: 0, skippedExisting: 0, failed: 0, openedSources: [] };
 

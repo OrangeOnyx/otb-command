@@ -7,6 +7,7 @@ import {
   moveAction, dismissAction, addAction, restoreActions, archivedCount, subscribe
 } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
+import { maintActionCards, onMaintChange } from "../lib/maintenance.js";
 import { openDrawer } from "./drawer.js";
 
 const LANES = [
@@ -23,6 +24,7 @@ export const ACTION_KIND = {
   covenant: ["Covenant", "var(--teal)"],
   easement: ["Easement", "var(--slate)"],
   parking: ["Parking", "var(--brass)"],
+  maintenance: ["Work Order", "var(--navy)"],
   task: ["Task", "var(--ink70)"]
 };
 
@@ -67,6 +69,8 @@ function seed() {
     title: "Reconcile parking Δ−10", detail: "Plat striping 314 vs variance 324 — pull file 99-11797 (see reconciliation memo)" });
   c.push({ id: "roof:brief", kind: "compliance", lane: "action", due: null,
     title: "Roof: membrane failure (long bldg) — roofer walk", detail: "Skydio 2025-10-15: failed membrane on long-bldg RTU row (~101-109), open to weather · see docs/roof-condition-brief.md (thermal anomaly RETRACTED - neighbor's roof)" });
+  // A-2: live open work orders (REMOTE cache; empty until it hydrates)
+  maintActionCards().forEach(card => c.push(card));
   return c;
 }
 
@@ -178,4 +182,5 @@ function wire(board) {
 export function initBoard() {
   renderBoard();
   subscribe(type => { if (type === "actions" || type === "comp" || type === "notes" || type === "import") renderBoard(); });
+  onMaintChange(renderBoard); // work-order cards re-seed when the M-1 cache moves
 }

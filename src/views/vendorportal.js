@@ -9,6 +9,7 @@ import { REMOTE, sb } from "../lib/remote.js";
 import { rosterOrder, portalCapable, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog, listVendorCoi, setVendorCoi } from "../lib/vendors.js";
 import { coiStatus, coiBadge } from "../lib/coi.js";
 import { COI_PARSE_MAX_PDF_BYTES, coiParseSummary } from "../lib/coiparse.js";
+import { MR_STATUS, MR_URGENCY, MR_OPEN_STATES, refreshMaint, getMaintCache, addMrEvent, describeMrEvent, listMrPhotos, mrPhotoURL } from "../lib/maintenance.js";
 import { esc } from "../lib/format.js";
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
@@ -182,7 +183,56 @@ async function renderOperator(host) {
   });
 }
 
-/* ---------- vendor face ---------- */
+/* ---------- vendor face: assigned work orders (A-2) ---------- */
+const mrTag = (label, color) =>
+  '<span style="background:' + color + ';color:#fff;border-radius:3px;padding:0 5px;font-size:10px">' + esc(label) + '</span>';
+function vendorWorkHTML(work) {
+  if (!work.length) return "";
+  return '<div class="dw-sec" style="margin-top:18px">Assigned work orders</div>' +
+    work.map(r =>
+      '<div class="card" style="padding:10px 12px;margin:8px 0" data-mr="' + esc(r.id) + '">' +
+      '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
+      '<span class="mono" style="font-weight:600">Unit ' + esc(r.unit) + '</span>' +
+      mrTag(...(MR_STATUS[r.displayStatus] || [r.displayStatus, "#5F6E64"])) +
+      mrTag(...(MR_URGENCY[r.urgency] || MR_URGENCY.routine)) +
+      '<span style="font-weight:600">' + esc(r.title) + '</span></div>' +
+      (r.detail ? '<div style="font-size:12px;margin:4px 0">' + esc(r.detail) + '</div>' : "") +
+      '<div class="mr-photos" style="margin:4px 0"></div>' +
+      '<details style="margin:4px 0"><summary class="mono mute" style="font-size:11px;cursor:pointer">history (' + r.events.length + ')</summary>' +
+      r.events.map(e => { const d = describeMrEvent(e); return '<div class="mono mute" style="font-size:11px">' + esc(d.when + (d.who ? " · " + d.who : "") + " · " + d.line) + '</div>'; }).join("") + '</details>' +
+      '<div style="display:flex;gap:6px;margin-top:6px">' +
+      '<input type="text" class="mr-note" placeholder="Add a note for management… (Enter)" style="flex:1;font-size:12px">' +
+      (MR_OPEN_STATES.includes(r.displayStatus) ? '<button class="chip mr-done">✓ Mark complete</button>' : "") +
+      '</div></div>').join("");
+}
+function wireVendorWork(host, email, rerender) {
+  host.querySelectorAll("[data-mr]").forEach(card => {
+    const id = card.dataset.mr;
+    listMrPhotos(id).then(files => {
+      const el = card.querySelector(".mr-photos");
+      if (!el || !el.isConnected) return;
+      el.innerHTML = files.map(f => '<a class="rec-link mr-photo" data-path="' + esc(f.path) + '" href="#">📷 ' + esc(f.name) + '</a>').join(" ");
+      el.querySelectorAll(".mr-photo").forEach(a => a.onclick = async e => {
+        e.preventDefault();
+        try { window.open(await mrPhotoURL(a.dataset.path), "_blank", "noopener"); }
+        catch (err) { alert("Could not open photo: " + err.message); }
+      });
+    });
+    const note = card.querySelector(".mr-note");
+    if (note) note.onkeydown = async e => {
+      if (e.key !== "Enter" || !note.value.trim()) return;
+      try { await addMrEvent(id, { kind: "note", note: note.value.trim() }, email); rerender(); }
+      catch (err) { alert("Note failed: " + err.message); }
+    };
+    const done = card.querySelector(".mr-done");
+    if (done) done.onclick = async () => {
+      if (!confirm("Mark this work order complete?")) return;
+      try { await addMrEvent(id, { kind: "status", status: "done" }, email); rerender(); }
+      catch (err) { alert("Could not mark complete: " + err.message); }
+    };
+  });
+}
+
 let vendorRenderGen = 0; // L1: drop a stale async render if a newer one started
 async function renderVendor(host, email) {
   const gen = ++vendorRenderGen;
@@ -196,14 +246,17 @@ async function renderVendor(host, email) {
     (coi.state === "expired" ? "<b style=\"color:#C25E33\">expired " + esc(v.coi_expires) + "</b> — please send an updated COI below."
       : "on file through " + esc(v.coi_expires) +
         (coi.state === "critical" || coi.state === "expiring" ? " — renewing soon? Send the updated cert below." : ".")) + '</div>';
-  const files = await listVendorDocs(v.id);
+  const [files] = await Promise.all([listVendorDocs(v.id), refreshMaint()]);
+  const work = getMaintCache(); // RLS scopes this to requests ever assigned to us
   if (gen !== vendorRenderGen) return; // a newer render superseded this one
   host.innerHTML =
     '<div class="safe-cat-head"><span class="safe-cat-name">' + esc(v.company) + '</span>' +
     '<span class="mono mute">documents shared between you and On The Boulevard management</span>' +
     '<button class="chip" id="vpAdd">+ Send a file to management</button><input type="file" id="vpFile" hidden></div>' +
     coiLine +
-    '<div id="vpFiles">' + fileRows(files, false) + '</div>';
+    '<div id="vpFiles">' + fileRows(files, false) + '</div>' +
+    vendorWorkHTML(work);
+  wireVendorWork(host, email, () => renderVendor(host, email));
   host.querySelector("#vpAdd").onclick = () => host.querySelector("#vpFile").click();
   host.querySelector("#vpFile").onchange = async e => {
     const f = e.target.files[0];

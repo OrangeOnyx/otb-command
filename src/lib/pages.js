@@ -15,12 +15,15 @@ export const PAGES = [
   ["dates", "T-1", "Critical Dates"],
   ["board", "W-1", "Action Board"],
   ["dir", "K-1", "Directory"],
+  ["maint", "M-1", "Maintenance"],
   ["vendors", "V-1", "Vendor Portal"]
 ];
 
 /* The one sheet a role-vendor login sees (P3) — everything else is hidden in
    the nav AND sealed at the DB layer (RLS). */
 export const VENDOR_SHEET = "vendors";
+/* Same deal for role-tenant logins (A-2): the maintenance sheet, unit-scoped. */
+export const TENANT_SHEET = "maint";
 
 export const PAGE_IDS = PAGES.map(([id]) => id);
 

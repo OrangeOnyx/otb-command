@@ -7,9 +7,9 @@ import { PAGES, PAGE_IDS, DEFAULT_OWNER_SHEETS } from "../src/lib/pages.js";
    whitelist that was missing spatial (A-2) and safe (S-1), so ticking them
    was a silent no-op — and owners could never see the Owner Safe. */
 
-test("PAGES is the full 12-sheet nav in drawing-set order", () => {
+test("PAGES is the full 13-sheet nav in drawing-set order", () => {
   assert.deepEqual(PAGES.map(p => p[1]), [
-    "D-1", "A-1", "A-2", "R-1", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "V-1"
+    "D-1", "A-1", "A-2", "R-1", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "M-1", "V-1"
   ]);
 });
 

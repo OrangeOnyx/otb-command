@@ -5,7 +5,7 @@ import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushSta
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
-import { PAGES, VENDOR_SHEET } from "./lib/pages.js";
+import { PAGES, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
@@ -20,6 +20,7 @@ import { initDirectory } from "./views/directory.js";
 import { initFinancial } from "./views/financial.js";
 import { initConcierge } from "./views/concierge.js";
 import { initVendorPortal } from "./views/vendorportal.js";
+import { initMaintenance } from "./views/maintenance.js";
 import { closeDrawer } from "./views/drawer.js";
 
 
@@ -208,12 +209,15 @@ function buildShell(account) {
 function applyRole(role) {
   const owner = role === "owner";
   const vendor = role === "vendor";
+  const tenant = role === "tenant";
   document.body.classList.toggle("role-owner", owner);
   document.body.classList.toggle("role-vendor", vendor);
-  if (vendor) {
-    /* vendors get exactly one sheet; RLS seals the rest server-side too */
-    PAGES.forEach(([id]) => { navBtn[id].style.display = id === VENDOR_SHEET ? "" : "none"; });
-    navBtn[VENDOR_SHEET].click();
+  document.body.classList.toggle("role-tenant", tenant);
+  if (vendor || tenant) {
+    /* vendors and tenants get exactly one sheet; RLS seals the rest server-side too */
+    const only = vendor ? VENDOR_SHEET : TENANT_SHEET;
+    PAGES.forEach(([id]) => { navBtn[id].style.display = id === only ? "" : "none"; });
+    navBtn[only].click();
     if (ovWrap) ovWrap.style.display = "none";
     return;
   }
@@ -242,6 +246,7 @@ function initViews(account) {
   initFinancial();
   initConcierge();
   initVendorPortal(account);
+  initMaintenance(account);
   initDashboard(); // last — its Action Queue reads the board's live cards
 }
 

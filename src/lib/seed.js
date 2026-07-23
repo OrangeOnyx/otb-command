@@ -10,6 +10,7 @@ import { sb } from "./remote.js";
 import { installUnitsPrivate } from "../store.js";
 import { installDirectorySeed } from "./directory.js";
 import { installVendors } from "../views/vendorportal.js";
+import { installMaintVendors } from "../views/maintenance.js";
 
 /* Pure: apply a fetched payload to the client-side seams. */
 export function applySeed(payload) {
@@ -17,6 +18,7 @@ export function applySeed(payload) {
   installUnitsPrivate(payload.unitsPrivate);
   installDirectorySeed(payload);
   installVendors(payload.vendors);
+  installMaintVendors(payload.vendors); // M-1 assign dropdown (service kinds only)
 }
 
 /* Fetch + apply. Call BEFORE initViews so rent-roll/financial/directory render
