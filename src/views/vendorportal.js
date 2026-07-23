@@ -8,6 +8,7 @@
 import { REMOTE, sb } from "../lib/remote.js";
 import { rosterOrder, portalCapable, portalFace, addVendorDoc, listVendorDocs, vendorDocURL, removeVendorDoc, listVendorLog, listVendorCoi, setVendorCoi } from "../lib/vendors.js";
 import { coiStatus, coiBadge } from "../lib/coi.js";
+import { COI_PARSE_MAX_PDF_BYTES, coiParseSummary } from "../lib/coiparse.js";
 import { esc } from "../lib/format.js";
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
@@ -102,7 +103,10 @@ async function renderOperator(host) {
     '<input type="date" id="vpCoiDate" value="' + esc((coiMap[v.id] && coiMap[v.id].expires) || "") + '">' +
     '<input type="text" id="vpCoiNote" placeholder="carrier / policy note" value="' + esc((coiMap[v.id] && coiMap[v.id].note) || "") + '" style="flex:1;min-width:160px">' +
     '<button class="chip" id="vpCoiSave">Save COI</button>' +
+    '<button class="chip" id="vpCoiParse" title="Pick (or drop) the cert PDF — AI pre-fills date + note for your confirm">🤖 Parse cert</button>' +
+    '<input type="file" id="vpCoiPdf" accept="application/pdf" hidden>' +
     (v.kind === "service" || (coiMap[v.id] && coiMap[v.id].expires) ? coiTag(v, coiMap).replace(/^ · /, "") : "") + '</div>' +
+    '<div id="vpCoiStatus" class="mono mute" style="font-size:11px;margin:-4px 0 8px"></div>' +
     '<div id="vpFiles">' + fileRows(files, true) + '</div>' +
     '<div class="dw-sec" style="margin-top:18px">Recent access (all vendors)</div><div id="vpLog" class="mute mono" style="font-size:11px"></div>';
   det.querySelector("#vpCoiSave").onclick = async () => {
@@ -111,6 +115,58 @@ async function renderOperator(host) {
       renderOperator(host);
     } catch (err) { alert("COI save failed: " + err.message); }
   };
+  /* A-1 COI AI-parse: file the cert first (it's valuable even if the parse
+     fails), then Haiku pre-fills date + note — nothing saves until the
+     operator clicks Save COI. */
+  const coiStatusEl = det.querySelector("#vpCoiStatus");
+  const parseCoiFile = async f => {
+    try {
+      if (f.type !== "application/pdf" && !/\.pdf$/i.test(f.name)) throw new Error("certificate must be a PDF");
+      if (f.size > COI_PARSE_MAX_PDF_BYTES) throw new Error("PDF too large (max 3 MB)");
+      coiStatusEl.textContent = "Filing cert in the vendor folder…";
+      await addVendorDoc(f, v.id);
+      listVendorDocs(v.id).then(files => {
+        const el = det.querySelector("#vpFiles");
+        if (el) { el.innerHTML = fileRows(files, true); wireFileActions(det, () => renderOperator(host)); }
+      });
+      coiStatusEl.textContent = "Reading cert with AI…";
+      const pdf = await new Promise((ok, bad) => {
+        const rd = new FileReader();
+        rd.onload = () => ok(String(rd.result).split(",")[1] || "");
+        rd.onerror = () => bad(new Error("could not read file"));
+        rd.readAsDataURL(f);
+      });
+      const session = (await sb.auth.getSession()).data.session;
+      if (!session) throw new Error("sign in required");
+      const r = await fetch("/api/coi-parse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + session.access_token },
+        body: JSON.stringify({ filename: f.name, pdf }),
+      });
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(body.error || "HTTP " + r.status);
+      const x = body.extraction;
+      if (x.expires) det.querySelector("#vpCoiDate").value = x.expires;
+      if (x.note) det.querySelector("#vpCoiNote").value = x.note;
+      coiStatusEl.textContent = coiParseSummary(x) + " — review, then Save COI.";
+    } catch (err) {
+      coiStatusEl.textContent = "";
+      alert("COI parse: " + err.message + "\n(If filing succeeded the PDF is already in the vendor folder — set the date manually.)");
+    }
+  };
+  det.querySelector("#vpCoiParse").onclick = () => det.querySelector("#vpCoiPdf").click();
+  det.querySelector("#vpCoiPdf").onchange = e => {
+    const f = e.target.files[0];
+    e.target.value = "";
+    if (f) parseCoiFile(f);
+  };
+  det.ondragover = e => { e.preventDefault(); };
+  det.ondrop = e => {
+    e.preventDefault();
+    const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) parseCoiFile(f);
+  };
+
   det.querySelector("#vpAdd").onclick = () => det.querySelector("#vpFile").click();
   det.querySelector("#vpFile").onchange = async e => {
     const f = e.target.files[0];
