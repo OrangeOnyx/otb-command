@@ -326,10 +326,16 @@ Full portable spec: 16 narrative sections + 10 machine-readable JSONs (features/
 data model/rules/workflows/screens/architecture/agents/reusable assets/open
 questions, stable OTBC-* ids) + **Supabase migration DDL exported verbatim to
 `supabase/migrations/`** (17 files — closes OTBC-Q-001).
-**⚠ NEW SECURITY ITEM: rotate the `auto_trigger` shared secret** — the live
-value transited a chat session during the export (repo copy is redacted).
-Drill: new random hex → SQL `update app_secrets set value=… where
-name='auto_trigger'` → Vercel env `CRON_SECRET` update → redeploy → cron smoke.
+~~⚠ rotate the `auto_trigger` shared secret~~ **CLOSED 2026-07-22 (A-0):**
+rotated end-to-end with the value never touching chat/repo — migration
+`20260723014510_rotate_shared_secret` (secret-gated definer RPC, old secret
+authorizes, 64-hex shape guard) + `tools/rotate-secret.mjs` (pull Vercel env →
+generate → RPC → new value to temp file → `vercel env add` from stdin → delete
+temps). Deployed; smoked: junk secret 401 · rotated secret 200 (full detector
+run: scanned 3 / skippedExisting 3 / brief exists). Advisors: same accepted
+definer-WARN class only. ⚠ Drill lesson: Vercel rejects env values with
+trailing whitespace AT DEPLOY TIME — write the secret file with NO newline.
+The drill is now re-runnable any time (script is committed, secrets are not).
 **DECISION (operator, 2026-07-22): rebuild target = MULTI-PROPERTY PRODUCT**
 (OTBC-Q-002 closed; OTB = tenant #1/reference dataset). Concrete deltas +
 sequencing: transfer-package/14-canonical-architecture.md "Decision addendum".
