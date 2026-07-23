@@ -3,7 +3,25 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-23 — **A-1 COI AI-parse SHIPPED + DEPLOYED** (205 tests).
+Last updated: 2026-07-23 — **A-1 COI AI-parse + A-2 MAINTENANCE both SHIPPED +
+DEPLOYED** (212 tests, now 13 sheets).
+**A-2 (same day):** new **M-1 Maintenance** sheet + migration
+`maintenance_module` (APPLIED): event-sourced work orders — INSERT-only
+`maintenance_requests` + append-only `maintenance_events` (status/assign/note),
+`maintenance-photos` bucket (folder per request id), new **tenant role**
+(magic-link match against operator-managed `tenant_contacts`, tenant lands on
+M-1 scoped to their unit — same lattice as vendors). Operator face: queue ·
+vendor assign (service roster) · status flips · tenant-login roster editor ·
+file-on-behalf. Owner: read-only. **V-1 vendor face now shows assigned work
+orders** (notes + ✓ Mark complete). W-1 seeds live "Work Order" cards
+(mr:<id>, overrides/dismiss work as usual). Cron: `get_open_maintenance`
+(secret-gated, wrong-secret raise verified; body query smoke-tested w/
+rollback) → aging unassigned requests (2d, emergency 1d) open a manager
+thread idempotently (`maint:<id>`). Manual cron run clean. Advisors: same
+accepted definer-WARN class only. Built `(org_id,property_id)`-shaped per plan.
+**Operator smoke: M-1 → submit a test request w/ photo → assign a vendor →
+W-1 shows the card → V-1 (as that vendor) shows the work order.** To onboard a
+real tenant: M-1 → Tenant logins → add email+unit; they magic-link in as usual.
 V-1 operator panel: 🤖 Parse cert (or drop a PDF on the vendor panel) → cert
 files in the vendor folder → `api/coi-parse.js` (operator-only, daily-capped,
 Haiku forced-tool `record_coi`) → seam `src/lib/coiparse.js` normalizes
@@ -11,8 +29,8 @@ Haiku forced-tool `record_coi`) → seam `src/lib/coiparse.js` normalizes
 → pre-fills coi_expires/coi_note → operator clicks Save COI. Prod bundle +
 401/405 endpoint gate verified. **Operator smoke: V-1 → any service vendor →
 🤖 Parse cert with a real ACORD PDF → date/note prefill → Save COI.**
-**NEXT: A-2 maintenance requests w/ photos (build `(org_id,property_id)`-shaped)
-→ A-3 voice (schedule the A-4 SOP operator interview FIRST).**
+**NEXT: A-3 voice (Twilio ConversationRelay, decided) — but schedule the A-4
+SOP capture operator interview FIRST (its triage scripts feed A-3).**
 Prior: 2026-07-22 (night) — **FINAL BUILD PLAN adopted + gates decided
 + A-0 done.** Session: operator confirmed the visual smoke round · market scan
 (Placer.ai = skip, broker-pull instead; PM platforms = keep building, gaps are
@@ -118,10 +136,9 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
    (Interaction smokes still open in punch-list #7: PDF attach on K-1 · 🎥 Reality orbit ·
    lease-package assembly · V-1 vendor-folder upload · leasing-calc question.)
 2. **BUILD QUEUE (plan §Phase A — all approved, work in order):**
-   ~~**A-1 COI AI-parse**~~ **SHIPPED + DEPLOYED 2026-07-23** (see Last-updated
-   block above; smoke = operator with a real ACORD PDF).
-   Next **A-2** maintenance requests w/ photos (build `(org_id,property_id)`-
-   shaped — it becomes the product's work-order module) → **A-3** voice lines
+   ~~**A-1 COI AI-parse**~~ ~~**A-2 maintenance w/ photos**~~ **BOTH SHIPPED +
+   DEPLOYED 2026-07-23** (see Last-updated block above for smokes).
+   Next **A-3** voice lines
    (Twilio ConversationRelay, decided) — but A-3's triage scripts come from
    **A-4 SOP capture**, so schedule that operator interview early → **A-5**
    Stripe ACH (decided: pair with Aug 1 ledger go-live).
