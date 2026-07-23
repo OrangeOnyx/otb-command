@@ -3,7 +3,17 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-22 (night) — **FINAL BUILD PLAN adopted + gates decided
+Last updated: 2026-07-23 — **A-1 COI AI-parse SHIPPED + DEPLOYED** (205 tests).
+V-1 operator panel: 🤖 Parse cert (or drop a PDF on the vendor panel) → cert
+files in the vendor folder → `api/coi-parse.js` (operator-only, daily-capped,
+Haiku forced-tool `record_coi`) → seam `src/lib/coiparse.js` normalizes
+(date shape/plausibility, deterministic note "Carrier · GL $1M/$2M · pol …")
+→ pre-fills coi_expires/coi_note → operator clicks Save COI. Prod bundle +
+401/405 endpoint gate verified. **Operator smoke: V-1 → any service vendor →
+🤖 Parse cert with a real ACORD PDF → date/note prefill → Save COI.**
+**NEXT: A-2 maintenance requests w/ photos (build `(org_id,property_id)`-shaped)
+→ A-3 voice (schedule the A-4 SOP operator interview FIRST).**
+Prior: 2026-07-22 (night) — **FINAL BUILD PLAN adopted + gates decided
 + A-0 done.** Session: operator confirmed the visual smoke round · market scan
 (Placer.ai = skip, broker-pull instead; PM platforms = keep building, gaps are
 payments/GL/CAM-rec/e-sign) · `transfer-package/16-competitive-landscape.md`
@@ -108,11 +118,9 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
    (Interaction smokes still open in punch-list #7: PDF attach on K-1 · 🎥 Reality orbit ·
    lease-package assembly · V-1 vendor-folder upload · leasing-calc question.)
 2. **BUILD QUEUE (plan §Phase A — all approved, work in order):**
-   **A-1 COI AI-parse** — V-1 vendor panel: drop cert PDF → server endpoint
-   (api/_auth gate + Haiku) extracts carrier/limits/expiry → pre-fills
-   coi_expires/coi_note for operator confirm → files PDF in the vendor folder.
-   Seams ready: lib/coi.js · bucketstore · vendors.js · api/_supa.mjs.
-   Then **A-2** maintenance requests w/ photos (build `(org_id,property_id)`-
+   ~~**A-1 COI AI-parse**~~ **SHIPPED + DEPLOYED 2026-07-23** (see Last-updated
+   block above; smoke = operator with a real ACORD PDF).
+   Next **A-2** maintenance requests w/ photos (build `(org_id,property_id)`-
    shaped — it becomes the product's work-order module) → **A-3** voice lines
    (Twilio ConversationRelay, decided) — but A-3's triage scripts come from
    **A-4 SOP capture**, so schedule that operator interview early → **A-5**
