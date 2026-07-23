@@ -24,6 +24,8 @@ rest as needed. Machine-readable mirrors: `*.json` (stable OTBC-* ids).
 | 13 Reusable assets (35) | 13-reusable-assets.md / reusable-assets.json |
 | 14 Canonical architecture | 14-canonical-architecture.md |
 | 15 Build readiness | 15-build-readiness.md |
+| 16 Competitive landscape (2026-07-22) | 16-competitive-landscape.md |
+| 17 Final build plan (2026-07-22) | 17-final-build-plan.md |
 | Manifest / open questions | system-manifest.json / open-questions.json |
 
 ---
