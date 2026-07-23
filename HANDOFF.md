@@ -3,7 +3,19 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-22 — C3-A FULLY ARMED: sampler died a 3rd time (silent,
+Last updated: 2026-07-22 (night) — **FINAL BUILD PLAN adopted + gates decided
++ A-0 done.** Session: operator confirmed the visual smoke round · market scan
+(Placer.ai = skip, broker-pull instead; PM platforms = keep building, gaps are
+payments/GL/CAM-rec/e-sign) · `transfer-package/16-competitive-landscape.md`
+(Pickspace = lane rival; wedge = measured occupancy · guardrail numerics ·
+governed onboarding · voice ops) · `transfer-package/17-final-build-plan.md`
+(Phases A–D; validated demand: 1–2 outside owners want in). **Gates (operator
+"1A 2A 3A 4A"): Twilio ConversationRelay + Claude personas · free
+design-partner pilots · Stripe ACH now (Aug 1 ledger pairing) · QBO sync, no
+own GL.** A-0 secret rotation EXECUTED + smoked (see SYSTEM EXTRACTION note).
+**NEXT: A-1 COI AI-parse (approved, seams ready) → A-2 maintenance w/ photos →
+A-3 voice (needs A-4 SOP capture session — schedule the operator interview).**
+Prior: 2026-07-22 — C3-A FULLY ARMED: sampler died a 3rd time (silent,
 ~02:38, no reboot/crash record) → **Task Scheduler watchdog** now self-heals it
 (OTB-C3-Sampler-Watchdog, at logon + 5 min; tools/sampler-watchdog.ps1 -Register
 to re-register). **Archive backfill discovered + built** (tools/cube-backfill.mjs):
@@ -95,11 +107,18 @@ S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI
    AI-1 📊 Briefs → July → Open 🔒 · A-2 🛰 frozen satellite base.
    (Interaction smokes still open in punch-list #7: PDF attach on K-1 · 🎥 Reality orbit ·
    lease-package assembly · V-1 vendor-folder upload · leasing-calc question.)
-2. **C3 occupancy build is decision-gated (asked 2026-07-20, operator picks by number):**
-   classifier — **1** VLM spot-checks (Haiku on per-stall crops, recommended) · **2**
-   classical CV (background subtraction) · **3** hybrid; scope — **A** storefront 56-space
-   head-on row (recommended) · **B** full main field (requires C2 homography first).
-   Say e.g. "1A" → build. ≈26.3k frames already banked; sampler running.
+2. **BUILD QUEUE (plan §Phase A — all approved, work in order):**
+   **A-1 COI AI-parse** — V-1 vendor panel: drop cert PDF → server endpoint
+   (api/_auth gate + Haiku) extracts carrier/limits/expiry → pre-fills
+   coi_expires/coi_note for operator confirm → files PDF in the vendor folder.
+   Seams ready: lib/coi.js · bucketstore · vendors.js · api/_supa.mjs.
+   Then **A-2** maintenance requests w/ photos (build `(org_id,property_id)`-
+   shaped — it becomes the product's work-order module) → **A-3** voice lines
+   (Twilio ConversationRelay, decided) — but A-3's triage scripts come from
+   **A-4 SOP capture**, so schedule that operator interview early → **A-5**
+   Stripe ACH (decided: pair with Aug 1 ledger go-live).
+   ~~C3 classifier decision~~ RESOLVED (1A) + SHIPPED 07-21/22; next C3 =
+   lot8/field-149 overlay geometry → operator stall walk → weekly rollup.
 3. Twin-marketing status: ~~B1 · A2 · C1~~ **DONE** · B2 microsite DEFERRED (awaits new
    footage) · remaining: B3 fly-through · B4 public scoped leasing bot · C2 sandbox login ·
    C3 LinkedIn series. **Vinyl PRINT is gated on the canonical-domain decision** (punch-list
