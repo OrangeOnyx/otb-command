@@ -9,7 +9,7 @@
    OPERATOR-only (owners are read-only on V-1; vendors never reach this).
    The Anthropic key lives ONLY in the Vercel env. */
 import Anthropic from "@anthropic-ai/sdk";
-import { requireOwnerOrOperator, underDailyCap } from "./_auth.mjs";
+import { requireOwnerOrOperator, underDailyCap, capReply } from "./_auth.mjs";
 import { COI_EXTRACT_TOOL, COI_PARSE_MAX_PDF_BYTES, normalizeCoiExtraction } from "../src/lib/coiparse.js";
 
 export const maxDuration = 60;
@@ -21,8 +21,8 @@ export default async function handler(req, res) {
   const gate = await requireOwnerOrOperator(req);
   if (gate.error) return res.status(gate.status).json({ error: gate.error });
   if (gate.role !== "operator") return res.status(403).json({ error: "operator only" });
-  if (!(await underDailyCap("coiparse", 60, gate.token)))
-    return res.status(429).json({ error: "daily COI-parse limit reached — try again tomorrow" });
+  const cap = capReply(await underDailyCap("coiparse", 60, gate.token), "COI-parse");
+  if (cap) return res.status(cap.status).json({ error: cap.error });
 
   const pdf = req.body?.pdf;
   if (typeof pdf !== "string" || !pdf) return res.status(400).json({ error: "pdf (base64) required" });
