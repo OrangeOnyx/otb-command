@@ -21,7 +21,9 @@ const recoveries = rd("recoveries.json");
 const directory = rd("directory.json");
 const vendors = rd("vendors.json");
 const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ figures
-const out = join(root, NOFIN ? "export-buyer" : "export");
+/* OTB_EXPORT_DIR: test override so the freshness guard can regenerate into a
+   scratch dir without touching the repo's export/ snapshots. */
+const out = process.env.OTB_EXPORT_DIR || join(root, NOFIN ? "export-buyer" : "export");
 mkdirSync(out, { recursive: true });
 
 const DATA_AS_OF = new Date(2026, 5, 10);  // rent-roll SOT issue date

@@ -11,7 +11,7 @@
    payload back in. Both generated files are COMMITTED (same pattern as
    api/_context.mjs). Full src/data/*.json remain the SOT for tools + server. */
 import { readFileSync, writeFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -19,30 +19,41 @@ const rd = f => JSON.parse(readFileSync(join(root, "src/data", f), "utf8"));
 
 // Fields that must NOT ship in the public bundle. Everything else (unit, dba,
 // use, cat, status, start, end, sf) is already marketing-/buyer-grade public.
-const SENSITIVE_UNIT_FIELDS = ["base", "total", "monthly", "legal", "notes"];
+export const SENSITIVE_UNIT_FIELDS = ["base", "total", "monthly", "legal", "notes"];
 
-const units = rd("units.json");
-const publicUnits = units.map(u => {
-  const pub = { ...u };
-  for (const f of SENSITIVE_UNIT_FIELDS) delete pub[f];
-  return pub;
-});
-const unitsPrivate = {};
-for (const u of units) {
-  const priv = {};
-  for (const f of SENSITIVE_UNIT_FIELDS) if (u[f] !== undefined) priv[f] = u[f];
-  unitsPrivate[u.unit] = priv;
+/* Pure derivation — exported so test/generated-freshness can re-derive and
+   diff against the committed outputs (the regen-footgun guard). */
+export function splitUnits(units) {
+  const publicUnits = units.map(u => {
+    const pub = { ...u };
+    for (const f of SENSITIVE_UNIT_FIELDS) delete pub[f];
+    return pub;
+  });
+  const unitsPrivate = {};
+  for (const u of units) {
+    const priv = {};
+    for (const f of SENSITIVE_UNIT_FIELDS) if (u[f] !== undefined) priv[f] = u[f];
+    unitsPrivate[u.unit] = priv;
+  }
+  return { publicUnits, unitsPrivate };
 }
 
-const seed = {
-  unitsPrivate,                       // per-unit { base,total,monthly,legal,notes }
-  contacts: rd("contacts-info.json"), // tenant PII
-  leaseLinks: rd("lease-links.json"), // executed-lease Drive URLs
-  floorplanLinks: rd("floorplan-links.json"),
-  vendors: rd("vendors.json"),        // AP roster (owner/operator only)
-};
+export function deriveSeed() {
+  const { publicUnits, unitsPrivate } = splitUnits(rd("units.json"));
+  const seed = {
+    unitsPrivate,                       // per-unit { base,total,monthly,legal,notes }
+    contacts: rd("contacts-info.json"), // tenant PII
+    leaseLinks: rd("lease-links.json"), // executed-lease Drive URLs
+    floorplanLinks: rd("floorplan-links.json"),
+    vendors: rd("vendors.json"),        // AP roster (owner/operator only)
+  };
+  return { publicUnits, seed };
+}
 
-writeFileSync(join(root, "src/data/units.public.json"), JSON.stringify(publicUnits) + "\n");
-writeFileSync(join(root, "api/_seed.json"), JSON.stringify(seed) + "\n");
-console.log(`units.public.json: ${publicUnits.length} units (stripped ${SENSITIVE_UNIT_FIELDS.join(",")})`);
-console.log(`api/_seed.json: ${Object.keys(unitsPrivate).length} private units · ${Object.keys(seed.contacts).length} contacts · ${seed.vendors.length} vendors`);
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const { publicUnits, seed } = deriveSeed();
+  writeFileSync(join(root, "src/data/units.public.json"), JSON.stringify(publicUnits) + "\n");
+  writeFileSync(join(root, "api/_seed.json"), JSON.stringify(seed) + "\n");
+  console.log(`units.public.json: ${publicUnits.length} units (stripped ${SENSITIVE_UNIT_FIELDS.join(",")})`);
+  console.log(`api/_seed.json: ${Object.keys(seed.unitsPrivate).length} private units · ${Object.keys(seed.contacts).length} contacts · ${seed.vendors.length} vendors`);
+}
