@@ -102,16 +102,16 @@ footage. Multi-space tenants: units stay individual (operator decision; rent-rol
 occupancy / guardrail numerics / governed onboarding / voice ops). Operator
 validated demand: 1–2 external properties want onto the software. New scope
 folded in: SOP codification (A-4) · maintenance requests w/ photos (A-2) ·
-call-in voice agents w/ transcripts (A-3). **Execution order: A-0 secret
-rotation → A-1 COI AI-parse (approved) → A-2 → A-3/A-4 → Phase B multi-tenant
-schema → pilots.** Gates DECIDED (operator "1A 2A 3A 4A"): D-1 Twilio
+call-in voice agents w/ transcripts (A-3). **Execution order: ~~A-0 secret
+rotation~~ → ~~A-1 COI AI-parse~~ → ~~A-2~~ (all DONE 07-22/23) → A-3/A-4 →
+Phase B multi-tenant schema → pilots.** Gates DECIDED (operator "1A 2A 3A 4A"): D-1 Twilio
 ConversationRelay + Claude personas · D-2 free design-partner pilots · D-3
 Stripe ACH now (pairs with Aug 1 ledger go-live) · D-4 QBO sync, no own GL.
 D-5 (name/domain/pricing/entity) parked until Phase B.
 **Live app:** https://otb-command.vercel.app (magic-link; operator = adam@adamabdalla.com).
-**PROD = HEAD as of 2026-07-20 (evening):** all five horizontal layers + B1 vinyls + C1 case
-study + harvest #3 (event-sourced compliance + Size lens) + COI tracking + AI-1 thread
-persistence deployed and bundle-verified. **169 unit tests.**
+**PROD = HEAD as of 2026-07-23:** A-1 COI AI-parse + A-2 maintenance module
+(M-1 sheet, tenant role, work orders, photos, aging cron) deployed and
+bundle-verified on top of everything below. **212 unit tests.**
 **C3 sampler:** RELAUNCHED 2026-07-20 (died with a reboot 07-19 ~17:14; first tick verified
 20:11, 17/17 cams; ≈26.3k frames banked 07-16→07-19). Detached node PID in
 `Drone Footage RAW/OTB-cube-capture/sampler.pid` (300s × 17 cams → that dir, OUTSIDE the
@@ -123,18 +123,22 @@ re-auth path was dead code · no tick stacking · appends `sampler.log` in the c
 ⚠ LAUNCH LESSON: `Start-Process -ArgumentList` splits unquoted space paths — the 07-16
 overnight run wrote 2,890 frames to `Downloads\Drone\` (recovered + merged 2026-07-17; junk
 dir deleted). Always pass the --out path with embedded quotes: `'"C:\...\OTB-cube-capture"'`.
-**State:** 12 sheets, all deployed: D-1 · A-1 (📍 asset pins + 🅿 parking layer + 🎥 CCTV
-layer w/ drag-to-place ✎ Adjust) · A-2 Spatial (4 lenses; Lens B 🏗 Mesh toggle; 🎥 Reality
-clickable + unit overlay) · R-1 · P-1 · C-1 (⏱ event-sourced history) · T-1 · W-1 · K-1 ·
-S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) · V-1 Vendor Portal (COI tracking).
-**169 unit tests.**
+**State:** 13 sheets, all deployed: D-1 · A-1 (📍 asset pins + 🅿 parking layer + 🎥 CCTV
+layer w/ drag-to-place ✎ Adjust + 🚗 Occupancy chip) · A-2 Spatial (4 lenses; Lens B 🏗 Mesh
+toggle; 🎥 Reality clickable + unit overlay; 🛰 frozen sat base) · R-1 · P-1 · C-1 (⏱ event-
+sourced history) · T-1 · W-1 (live work-order cards) · K-1 · **M-1 Maintenance (NEW —
+tenant/operator/owner faces)** · S-1 Safe · AI-1 Agent Desk (voice, thread-persistent) ·
+V-1 Vendor Portal (COI tracking + 🤖 AI cert parse + assigned work orders).
+**212 unit tests.**
 **FIRST MOVES next session:**
 1. ~~Operator smoke round~~ **CONFIRMED 2026-07-22 (operator: "all smoke items appear"):**
    D-1 Parking Occupancy (C3) card · D-1 Network (UniFi) card · A-1 🚗 Occupancy chip ·
    C-1 ⏱ History · A-1 Size lens · V-1 COI date→badge · AI-1 reload-resume ·
    AI-1 📊 Briefs → July → Open 🔒 · A-2 🛰 frozen satellite base.
    (Interaction smokes still open in punch-list #7: PDF attach on K-1 · 🎥 Reality orbit ·
-   lease-package assembly · V-1 vendor-folder upload · leasing-calc question.)
+   lease-package assembly · V-1 vendor-folder upload · leasing-calc question.
+   **NEW smokes pending from 07-23:** V-1 🤖 Parse cert with a real ACORD PDF ·
+   M-1 submit→assign→W-1 card→V-1 vendor work order · add one real tenant login.)
 2. **BUILD QUEUE (plan §Phase A — all approved, work in order):**
    ~~**A-1 COI AI-parse**~~ ~~**A-2 maintenance w/ photos**~~ **BOTH SHIPPED +
    DEPLOYED 2026-07-23** (see Last-updated block above for smokes).

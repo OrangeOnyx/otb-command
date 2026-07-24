@@ -1,10 +1,12 @@
 # OTB Property Command — Project Memory
 
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
-> Current build = **12 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial ·
+> Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial ·
 > R-1 Rent Roll · P-1 Financial · C-1 Compliance · T-1 Critical Dates ·
-> W-1 Action Board · K-1 Directory · S-1 Owner Safe · AI-1 Concierge ·
-> V-1 Vendor Portal) — nav single-source: `src/lib/pages.js`. Persisted layers
+> W-1 Action Board · K-1 Directory · M-1 Maintenance · S-1 Owner Safe ·
+> AI-1 Concierge · V-1 Vendor Portal) — nav single-source: `src/lib/pages.js`.
+> Roles: operator · owner · vendor (V-1 only) · **tenant (M-1 only, unit-scoped
+> via tenant_contacts)** · pending. Persisted layers
 > (registry `src/lib/layers.js`): comp, notes, actions, contacts, documents,
 > financials, ownerSheets, features, cameras (localStorage + Supabase
 > property_state + Export/Import). Images/docs in IndexedDB↔Supabase buckets
