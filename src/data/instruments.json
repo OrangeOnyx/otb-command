@@ -1,0 +1,21 @@
+{
+  "_comment": "Structured instrument/covenant facts — the single source the views derive card prose and dates from (carry-forward fix: no fact literals in render functions). Parking numbers live in geometry.json (parking.variance/totalPlat); this file carries the non-geometric instruments.",
+  "jdBank": {
+    "name": "JD Bank parking easement",
+    "expires": "2034-12-30",
+    "spaces": 13,
+    "monthlyToBelle": 250,
+    "supersedes": "2004-00057697"
+  },
+  "hvac149": {
+    "unit": "149",
+    "tenant": "Jason's Deli",
+    "clause": "§9.01",
+    "contractor": "Butcher Air Conditioning",
+    "requirement": "monthly PM contract must stay active"
+  },
+  "exclusives": [
+    { "unit": "129", "tenant": "HotWorx", "signed": "Mar 2024", "watch": "fitness" },
+    { "unit": "135A", "tenant": "C. Wolf", "signed": "Nov 2024", "watch": "barber" }
+  ]
+}

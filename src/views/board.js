@@ -8,6 +8,7 @@ import {
 } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { maintActionCards, onMaintChange } from "../lib/maintenance.js";
+import { HVAC_149, JD_BANK, factLines } from "../lib/facts.js";
 import { openDrawer } from "./drawer.js";
 
 const LANES = [
@@ -58,15 +59,15 @@ function seed() {
       detail: flagged.join(", ") + " · clear on C-1"
     });
   });
-  // standing covenants / instrument dates
-  c.push({ id: "cov:hvac149", unit: "149", kind: "covenant", lane: "watch", due: null,
-    title: "Verify Jason's Deli HVAC PM", detail: "§9.01 — monthly PM contract with Butcher Air Conditioning must stay active" });
+  // standing covenants / instrument dates — all facts from lib/facts.js (single source)
+  c.push({ id: "cov:hvac149", unit: HVAC_149.unit, kind: "covenant", lane: "watch", due: null,
+    title: "Verify " + HVAC_149.tenant + " HVAC PM", detail: factLines.hvac149() });
   c.push({ id: "cov:excl", kind: "covenant", lane: "watch", due: null,
-    title: "Exclusive-use watch — HotWorx vs C. Wolf", detail: "129 (Mar 2024) vs 135A (Nov 2024) — screen new fitness / barber uses" });
-  c.push({ id: "date:jdbank", kind: "easement", lane: "watch", due: "2034-12-30",
-    title: "JD Bank parking easement expiry", detail: "Belle loses 13 spaces + $250/mo — re-run parking vs variance well before" });
+    title: factLines.exclusivesTitle(), detail: factLines.exclusivesDetail() });
+  c.push({ id: "date:jdbank", kind: "easement", lane: "watch", due: JD_BANK.expires,
+    title: JD_BANK.name + " expiry", detail: factLines.jdBankExpiry() });
   c.push({ id: "park:recon", kind: "parking", lane: "action", due: null,
-    title: "Reconcile parking Δ−10", detail: "Plat striping 314 vs variance 324 — pull file 99-11797 (see reconciliation memo)" });
+    title: factLines.parkingReconTitle(), detail: factLines.parkingRecon() });
   c.push({ id: "roof:brief", kind: "compliance", lane: "action", due: null,
     title: "Roof: membrane failure (long bldg) — roofer walk", detail: "Skydio 2025-10-15: failed membrane on long-bldg RTU row (~101-109), open to weather · see docs/roof-condition-brief.md (thermal anomaly RETRACTED - neighbor's roof)" });
   // A-2: live open work orders (REMOTE cache; empty until it hydrates)

@@ -7,6 +7,7 @@ import { getActionCards, ACTION_KIND } from "./board.js";
 import { REMOTE, getSession, listOccupancy } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
 import { latestByStall, occSummary, occLine } from "../lib/occupancy.js";
+import { PARKING } from "../lib/facts.js";
 import stallMap from "../data/stall-map.json";
 
 let unifiSummary = null; // cached /api/unifi shape; renderKPIs reads it
@@ -66,7 +67,8 @@ function renderKPIs() {
     ["brick", "In Holdover", hold.length, hold.map(u => u.unit).join(" · ")],
     ["brass", "Expiring ≤ 12 mo", exp12.length, exp12.map(u => u.unit).join(" · ") || "none"],
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
-    ["brass", "Parking", "324<small>/344</small>", "legal (var. <b>99-11797</b>) · 314 drawn"]
+    ["brass", "Parking", PARKING.provided + "<small>/" + PARKING.required + "</small>",
+      "legal (var. <b>" + PARKING.entry + "</b>) · " + PARKING.drawn + " drawn"]
   ].concat(unifiKpi()).concat(occKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 

@@ -3,6 +3,7 @@
    event that can change it is a full state import, so we subscribe to that. */
 import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
+import { JD_BANK, factLines } from "../lib/facts.js";
 
 export function renderDates() {
   const ev = [];
@@ -15,9 +16,9 @@ export function renderDates() {
     });
   });
   ev.push({
-    d: new Date(2034, 11, 30), c: "var(--navy)",
-    t: "<b>JD Bank parking easement expires</b> — Belle loses 13 bank spaces; $250/mo income ends",
-    sub: "Re-run parking count vs variance 99-11797 well before this date"
+    d: pDate(JD_BANK.expires), c: "var(--navy)",
+    t: "<b>" + esc(JD_BANK.name) + " expires</b> — " + esc(factLines.jdBankTimeline()),
+    sub: esc(factLines.jdBankTimelineSub())
   });
   ev.sort((a, b) => a.d - b.d);
   let h = "", lastY = null;
