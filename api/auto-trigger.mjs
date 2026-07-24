@@ -17,6 +17,7 @@ import RECOVERIES from "../src/data/recoveries.json" with { type: "json" };
 import SEED from "./_seed.json" with { type: "json" };
 import { collectCandidates } from "../src/lib/autotrigger.js";
 import { maintTriggerCandidates } from "../src/lib/maintenance.js";
+import { c3StaleCandidate } from "../src/lib/occupancy.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
@@ -78,6 +79,15 @@ export default async function handler(req, res) {
     const open = await rpc("get_open_maintenance", { p_secret: secret });
     candidates.push(...maintTriggerCandidates(open, today));
   } catch (e) { console.warn("maint scan:", e.message); }
+
+  /* C3 heartbeat: stale occupancy pipeline → one manager thread per outage
+     (trigger_source keyed by last-sample day). A probe failure is itself
+     logged but never blocks the other scans. */
+  try {
+    const fresh = await rpc("get_occupancy_freshness", { p_secret: secret });
+    const stale = c3StaleCandidate(fresh, new Date().toISOString());
+    if (stale) candidates.push(stale);
+  } catch (e) { console.warn("c3 freshness:", e.message); }
 
   const summary = { date: today, scanned: candidates.length, opened: 0, skippedExisting: 0, failed: 0, openedSources: [] };
 
