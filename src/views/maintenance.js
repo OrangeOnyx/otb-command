@@ -5,7 +5,9 @@
    login roster. OWNER: read-only queue. Vendors never see M-1 — their
    assigned work orders surface on V-1 (vendorportal.js).
    Data/derivation lives in lib/maintenance.js; RLS scopes every query. */
-import { REMOTE, sb } from "../lib/remote.js";
+import { REMOTE, sb, listLedgerEntries } from "../lib/remote.js";
+import { withRunningBalance, DEBIT_TYPES } from "../lib/ledger.js";
+import { fmt$ } from "../lib/format.js";
 import {
   MR_STATUS, MR_URGENCY, MR_OPEN_STATES,
   getMaintCache, refreshMaint, onMaintChange, submitRequest, addMrEvent,
@@ -141,6 +143,30 @@ function wireSubmitForm(host, email, rerender) {
 }
 
 /* ---------- tenant face ---------- */
+
+/* Tenant-portal-lite (harvest #6): the tenant's own ledger trail, read-only.
+   RLS scopes the query to their unit; the balance math is the SAME pure fold
+   the operator drawer uses (src/lib/ledger.js). Fills in async. */
+function loadTenantAccount(el, unit) {
+  listLedgerEntries(unit).then(rows => {
+    if (!el.isConnected) return;
+    const bal = withRunningBalance(rows);
+    const balance = bal.length ? bal[bal.length - 1].runningBalance : 0;
+    const rowsHtml = bal.slice(-8).reverse().map(e => {
+      const debit = DEBIT_TYPES.includes(e.type);
+      return '<div class="led-row"><span class="led-d">' + esc(String(e.date)) + '</span>' +
+        '<span class="led-t">' + esc(e.description || e.type) + '</span>' +
+        '<span class="led-a ' + (debit ? "deb" : "cred") + '">' + (debit ? "" : "−") + fmt$(e.amount) + '</span>' +
+        '<span class="led-b">' + fmt$(e.runningBalance) + '</span></div>';
+    }).join("");
+    el.innerHTML =
+      '<div class="led-head"><span class="led-lbl">Balance</span><b class="' + (balance > 0 ? "owe" : "clear") + '">' +
+      fmt$(Math.abs(balance)) + (balance > 0 ? " owed" : balance < 0 ? " credit" : "") + '</b></div>' +
+      (rowsHtml || '<div class="led-note">No activity yet.</div>') +
+      '<div class="led-note">Questions about a charge or payment? Contact management.</div>';
+  }).catch(() => { el.innerHTML = '<div class="led-note">Account view unavailable right now.</div>'; });
+}
+
 async function renderTenant(host, account) {
   const { data } = await sb.from("tenant_contacts").select("unit,name").limit(1);
   const me = data && data[0];
@@ -150,10 +176,13 @@ async function renderTenant(host, account) {
     '<div class="dw-sec">Unit ' + esc(me.unit) + ' — maintenance</div>' +
     submitFormHTML(me.unit) +
     '<div class="dw-sec" style="margin-top:14px">Your requests</div>' +
-    (mine.length ? mine.map(r => requestCard(r)).join("") : '<div class="safe-empty mute">nothing filed yet</div>');
+    (mine.length ? mine.map(r => requestCard(r)).join("") : '<div class="safe-empty mute">nothing filed yet</div>') +
+    '<div class="dw-sec" style="margin-top:14px">Your account</div>' +
+    '<div class="led" id="mtTenantLedger"><div class="led-note">Loading…</div></div>';
   const rerender = () => renderTenant(host, account);
   wireSubmitForm(host, account.email, rerender);
   wireCardBasics(host, account.email, rerender);
+  loadTenantAccount(host.querySelector("#mtTenantLedger"), me.unit);
 }
 
 /* ---------- operator face ---------- */
