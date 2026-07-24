@@ -1,0 +1,50 @@
+{
+  "version": "2026-07-24",
+  "source": "docs/a4-sop-capture-2026-07.md",
+  "thresholds": {
+    "vendorSpendCapUsd": 500,
+    "twoBidUsd": 5000,
+    "insuranceClaimUsd": 5000
+  },
+  "emergencies": [
+    "active water leak or flood",
+    "electrical hazard (burning smell, sparking, full loss of power to a suite)",
+    "break-in or broken storefront glass",
+    "sewer backup"
+  ],
+  "afterHours": "dispatch_and_notify",
+  "hvacNoCool": "same_day_business_hours",
+  "roster": [
+    { "trade": "hvac", "vendor": "Butcher Air Conditioning", "contact": "Ryan Haydel", "note": "house HVAC; unit 149 excluded (tenant-held PM per lease §9.01)" },
+    { "trade": "plumbing", "vendor": "All Around Plumbing", "contact": "Blaine Ardoin", "note": "" },
+    { "trade": "electrical", "vendor": "A&P Electrical", "contact": "Jeremy", "note": "" },
+    { "trade": "roofing", "vendor": "Grizzley Roofing", "contact": "Clint Baer", "note": "" },
+    { "trade": "glass", "vendor": "Alamo Glass", "contact": "", "note": "storefront glass" },
+    { "trade": "locksmith", "vendor": "AAA Locksmith", "contact": "Joey", "note": "doors and locks" },
+    { "trade": "handyman", "vendor": "Brody Broussard", "contact": "", "note": "general repairs under the spend cap" }
+  ],
+  "collections": {
+    "paymentChannel": "electronic_only",
+    "reminders": "none",
+    "lateFeeWaivers": "operator_only",
+    "partialPayments": "accept_unless_eviction_posture",
+    "graceDays": 5,
+    "lateFeeFlatUsd": 100,
+    "lateFeePerDayUsd": 25
+  },
+  "escalation": {
+    "evictionTimelines": "never_stated_by_agents",
+    "alwaysHandoff": ["attorney or legal notice", "government, inspector, or code enforcement", "leasing prospect for a vacant unit"],
+    "escalatedTenants": "stay_in_script_callback_promise",
+    "breakIn": "tenant_files_police_report_we_secure_and_document"
+  },
+  "leasing": {
+    "intake": ["name", "callback number"],
+    "rateLanguage": "high teens per square foot",
+    "screening": "exclusivity_conflicts_only",
+    "exclusives": ["HotWorx (unit 129) — fitness", "C. Wolf (unit 135A)"],
+    "tours": "adam_only_agent_books_slot"
+  },
+  "moveOut": { "walk": "solo_with_photos", "reconcileDays": 30 },
+  "inspections": { "walk": "monthly_documented", "hvacPm": "semi_annual_spring_fall" }
+}

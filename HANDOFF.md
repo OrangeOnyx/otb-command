@@ -3,7 +3,28 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-24 — **A-4 SOP CAPTURE DONE**
+Last updated: 2026-07-24 (later) — **A-3 VOICE BUILT + DEPLOYED (243 tests);
+operator go-live steps pending.** Two 337 lines (tenant + leasing), Twilio
+ConversationRelay. Architecture: **Fly.io bridge** (`bridge/` — dumb WS↔HTTP
+transport, the system's ONLY always-on process; Vercel can't hold a socket) →
+**`/api/voice-agent` brain** (Bearer VOICE_SECRET fails closed; personas/tools/
+speechify from pure seam `src/lib/voiceagent.js` + `src/data/sop.json` — the
+A-4 capture, single-sourced) → migration **`a3_voice_lines`** APPLIED
+(voice_settings row [windows/greetings] · tour_bookings [unique slot_key =
+conflict gate] · voice_calls→chat_threads map · 5 secret-gated RPCs on NEW
+app_secrets row 'voice_agent'; all five wrong-secret raises verified + full
+body smoke under rollback; advisors = same accepted definer-WARN class only).
+Tenant line files real maintenance_requests (actor voice-agent → M-1/W-1/aging
+cron unchanged); leasing line books tour slots (18h lead, Tue/Thu defaults) +
+transcripts land as voice-tenant/voice-leasing threads. Voice = ElevenLabs
+"Jack John" (same as AI-1; Deepgram fallback documented). Decisions this
+session: Fly.io (1) · two numbers (my call, delegated) · settings-row calendar
+(1) · ElevenLabs (1). **GO-LIVE = OPERATOR RUNBOOK `docs/a3-voice-runbook.md`:
+Twilio CR onboarding (slow — start first) · buy 2 numbers · Fly launch ·
+secret drill (tools/rotate-voice-secret.mjs) · point webhooks · smoke calls.**
+v1 boundaries (deliberate): no SMS-notify on dispatch, no live transfer, no
+daily call cap (set a Twilio usage trigger), settings edits via SQL until a UI.
+Prior: 2026-07-24 — **A-4 SOP CAPTURE DONE**
 (`docs/a4-sop-capture-2026-07.md`): all 7 domains interviewed + locked.
 Headlines: emergencies = leak/electrical/break-in/sewer, dispatch+notify
 after-hours (never wake for permission) · vendor spend cap $500 · 2-bid $5K ·
