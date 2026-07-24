@@ -11,7 +11,7 @@ import cameraRegistry from "../data/cameras.json";
 import { drawableCameras, frustumPath, dwViewUrl, applyOverrides } from "../lib/cameras.js";
 import { getCamOverrides, setCamOverride, clearCamOverride } from "../store.js";
 import stallMap from "../data/stall-map.json";
-import { latestByStall, rowOverlay } from "../lib/occupancy.js";
+import { latestByStall, stallOverlay } from "../lib/occupancy.js";
 import { REMOTE, listOccupancy } from "../lib/remote.js";
 
 let planMode = "status";
@@ -115,7 +115,8 @@ async function paintOcc(layer) {
     if (!layer.isConnected) return; // a newer render replaced us
   }
   const latest = latestByStall(occCache.rows);
-  for (const s of rowOverlay(latest, stallMap)) {
+  const rankLabel = { row56: "Stall", lot8: "Lot 8 stall", "field-149": "149-corner stall" };
+  for (const s of stallOverlay(latest, stallMap)) {
     if (!s.rect || s.state === "stale") continue;
     const r = rect(layer, s.rect.x, s.rect.y, s.rect.w, s.rect.h, {
       fill: s.state === "occupied" ? "#2F6B4F" : s.state === "unclear" ? "#5F6E64" : "none",
@@ -123,7 +124,7 @@ async function paintOcc(layer) {
       stroke: "#2F6B4F", "stroke-width": 0.6, "stroke-opacity": 0.5, rx: 1,
     });
     const tip = document.createElementNS(NS, "title");
-    tip.textContent = "Stall " + s.index + " — " + s.state + " (" + s.id + ")";
+    tip.textContent = (rankLabel[s.rank] || s.rank + " stall") + " " + s.index + " — " + s.state + " (" + s.id + ")";
     r.appendChild(tip);
   }
 }

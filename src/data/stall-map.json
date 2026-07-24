@@ -15,6 +15,33 @@
     "(131 corner return). planX = stall-center plan px (row56 only)."
   ],
   "rowMeta": { "count": 56, "tickX0": 135.66, "pitch": 16.59, "y": 330 },
+  "_zoneRects": [
+    "Plan-px stall rects for the camera-covered non-row56 ranks (A-1 overlay).",
+    "From geometry.json layers.parking tick lines (2026-07-23): lot8 1-5 =",
+    "westmost 5 stalls of the south 10-row (x0 1186.5 pitch 13.05, band",
+    "y 184.87-217.21) — the rank the politics cam overlooks; field-149 1-6 =",
+    "the east-facing 6-stall rank NW of the 149 corner (ticks y 422.4-524.28,",
+    "x band 974.89-1041.54), index 1 = southmost (ADA nearest the 149 door).",
+    "Confidence est-geometric like the indices — operator stall walk corrects;",
+    "KEEP shapes in sync with any geometry.json parking re-trace."
+  ],
+  "zoneRects": {
+    "lot8": {
+      "1": { "x": 1186.5, "y": 184.87, "w": 13.05, "h": 32.34 },
+      "2": { "x": 1199.55, "y": 184.87, "w": 13.05, "h": 32.34 },
+      "3": { "x": 1212.6, "y": 184.87, "w": 13.05, "h": 32.34 },
+      "4": { "x": 1225.65, "y": 184.87, "w": 13.05, "h": 32.34 },
+      "5": { "x": 1238.7, "y": 184.87, "w": 13.05, "h": 32.34 }
+    },
+    "field-149": {
+      "1": { "x": 974.89, "y": 507.3, "w": 66.65, "h": 16.98 },
+      "2": { "x": 974.89, "y": 490.32, "w": 66.65, "h": 16.98 },
+      "3": { "x": 974.89, "y": 473.34, "w": 66.65, "h": 16.98 },
+      "4": { "x": 974.89, "y": 456.36, "w": 66.65, "h": 16.98 },
+      "5": { "x": 974.89, "y": 439.38, "w": 66.65, "h": 16.98 },
+      "6": { "x": 974.89, "y": 422.4, "w": 66.65, "h": 16.98 }
+    }
+  },
   "stalls": {
     "101p-s1": { "rank": "row56", "index": 7, "confidence": "est-geometric" },
     "101p-s2": { "rank": "row56", "index": 8, "confidence": "est-geometric" },
