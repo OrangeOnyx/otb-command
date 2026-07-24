@@ -2,7 +2,8 @@
    PSF breakdown (Base/CAM/Tax/Ins/Total) comes from the SOT rent composition
    (recoveries.json); SF, Monthly, term, status from units.json. */
 import { UNITS } from "../store.js";
-import { fmt$, fmt$0, pDate, fDate, esc } from "../lib/format.js";
+import { fmt$, fmt$0, pDate, fDate, monthsTo, esc } from "../lib/format.js";
+import { expiryBucket, expiryMark, expiryLegend } from "../lib/roll.js";
 import { STATUS_META } from "../lib/colors.js";
 import recoveries from "../data/recoveries.json";
 import { logoUrl } from "../lib/logos.js";
@@ -37,9 +38,12 @@ export function renderRoll() {
   const psf = (v) => (v ? v.toFixed(2) : "—");
 
   let h = '<table><thead><tr>' + cols.map(c => '<th class="' + (c[2] || "") + '" data-k="' + c[0] + '">' + c[1] + (sortKey === c[0] ? (sortDir > 0 ? " ▲" : " ▼") : "") + '</th>').join("") + '</tr></thead><tbody>';
+  let n6 = 0, n12 = 0;
   rows.forEach(u => {
     const sm = STATUS_META[u.status], r = rec(u);
-    h += '<tr data-u="' + u.unit + '"><td class="unitcell">' + u.unit + '</td>' +
+    const bucket = u.status !== "vacant" && u.end ? expiryBucket(monthsTo(pDate(u.end))) : null;
+    if (bucket === "exp6") n6++; else if (bucket === "exp12") n12++;
+    h += '<tr data-u="' + u.unit + '"' + (bucket ? ' class="' + bucket + '"' : "") + '><td class="unitcell">' + u.unit + '</td>' +
       '<td><div class="dba">' + (u.status !== "vacant" && logoUrl(u.unit)
         ? '<img class="dba-logo" src="' + logoUrl(u.unit) + '" alt="" loading="lazy">' : "") +
         esc(u.dba) + '</div><div class="legal">' + esc(u.legal || "") + '</div></td>' +
@@ -50,7 +54,7 @@ export function renderRoll() {
       '<td class="num">' + psf(r.ins) + '</td>' +
       '<td class="num">' + psf(u.total) + '</td>' +
       '<td class="num">' + (u.monthly ? fmt$(u.monthly) : "—") + '</td>' +
-      '<td>' + (u.end ? fDate(pDate(u.end)) : "—") + '</td>' +
+      '<td class="endcell">' + (bucket ? '<span class="expmark">' + expiryMark(bucket) + '</span> ' : "") + (u.end ? fDate(pDate(u.end)) : "—") + '</td>' +
       '<td><span class="pill ' + sm.pill + '"><span class="dot"></span>' + sm.label + '</span></td></tr>';
   });
   h += '</tbody><tfoot><tr><td colspan="2">TOTALS — ' + UNITS.length + ' UNITS</td><td class="num">' + totSF.toLocaleString() + '</td>' +
@@ -64,5 +68,7 @@ export function renderRoll() {
     renderRoll();
   });
   el.querySelectorAll("tbody tr").forEach(tr => tr.onclick = () => openDrawer(tr.dataset.u));
-  document.getElementById("rollStamp").textContent = "Base/CAM/Tax/Ins/Total = $/SF · Source: SOT workbook";
+  const legend = expiryLegend(n6, n12);
+  document.getElementById("rollStamp").textContent =
+    (legend ? legend + " · " : "") + "Base/CAM/Tax/Ins/Total = $/SF · Source: SOT workbook";
 }

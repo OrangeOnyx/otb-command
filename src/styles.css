@@ -182,6 +182,13 @@ tfoot td{padding:11px 12px;font-family:var(--mono);font-weight:600;border-top:2p
 td.unitcell{font-family:var(--mono);font-weight:600}
 /* R-1 carries 11 columns — tighten padding and PSF columns so it fits */
 #rollTable th,#rollTable td{padding-left:8px;padding-right:8px}
+/* R-1 expiry watch (owner ask 2026-07-24): ≤6 mo brick, 6–12 mo amber — T-1's language */
+#rollTable tr.exp6 td{background:rgba(194,94,51,.09)}
+#rollTable tr.exp12 td{background:rgba(201,154,51,.09)}
+#rollTable .endcell{white-space:nowrap}
+#rollTable .expmark{font-weight:700}
+#rollTable tr.exp6 .expmark{color:var(--brick)}
+#rollTable tr.exp12 .expmark{color:#C99A33}
 #rollTable th.num,#rollTable td.num{font-size:11.5px}
 #rollTable th:first-child,#rollTable td:first-child{padding-left:14px}
 
@@ -612,4 +619,19 @@ body.role-vendor .ownerview { display: none !important; }
     color: #1C2B26; border-top: 1.5px solid #1C2B26; padding-top: 3px;
     background: #EDEFE8; text-align: right;
   }
+  /* R-1 one-sheet fit (owner requirement 2026-07-24): 27 rows + totals on a
+     single letter-landscape page — compact type, no logos, expiry tints kept */
+  #pg-roll.on .page-head h1 { font-size: 22px; }
+  #pg-roll.on .page-head { margin-bottom: 6px; }
+  #pg-roll.on table { font-size: 9px; line-height: 1.25; }
+  #pg-roll.on thead th { font-size: 7px; padding: 3px 5px; letter-spacing: .07em; }
+  #pg-roll.on tbody td { padding: 2px 5px; }
+  #pg-roll.on tbody td .dba { font-size: 9px; }
+  #pg-roll.on tbody td .legal { font-size: 7px; }
+  #pg-roll.on .dba-logo { display: none; }
+  #pg-roll.on .pill { font-size: 7px; padding: 0 5px; gap: 3px; }
+  #pg-roll.on .pill .dot { width: 5px; height: 5px; }
+  #pg-roll.on tfoot td { padding: 4px 5px; font-size: 8px; }
+  #pg-roll.on tbody tr { break-inside: avoid; }
+  #pg-roll.on table { break-inside: avoid; }
 }

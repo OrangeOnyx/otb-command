@@ -3,7 +3,15 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-24 (later) — **A-3 VOICE BUILT + DEPLOYED (243 tests);
+Last updated: 2026-07-24 (later still) — **R-1 ONE-SHEET PRINT + EXPIRY WATCH
+(owner request) SHIPPED (247 tests).** ⤓ SHEET on R-1 now fits ONE
+letter-landscape page (print CSS #pg-roll block: 9px table, logos hidden;
+measured 653px of 740 printable, min width 579 of 965) and rows expiring
+≤6 mo carry ▲ brick tint / 6–12 mo △ amber (T-1's color language; pure seam
+`src/lib/roll.js` + legend in the R-1 stamp). Verified in local preview:
+115/117 ▲ (Clothing Loft 9/30/26 — matches SOT), 8 units △, 27 rows.
+**Operator smoke: R-1 → ⤓ SHEET → print preview = one page, flags visible.**
+Prior: 2026-07-24 (later) — **A-3 VOICE BUILT + DEPLOYED (243 tests);
 operator go-live steps pending.** Two 337 lines (tenant + leasing), Twilio
 ConversationRelay. Architecture: **Fly.io bridge** (`bridge/` — dumb WS↔HTTP
 transport, the system's ONLY always-on process; Vercel can't hold a socket) →
