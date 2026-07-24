@@ -7,6 +7,7 @@ import { unitContacts, unitDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
 import { mountLedger } from "../lib/ledgerUI.js";
+import { mountEsign } from "../lib/esignUI.js";
 import { logoUrl } from "../lib/logos.js";
 import hvacData from "../data/hvac.json";
 
@@ -118,11 +119,13 @@ function renderDrawer() {
     '<div class="dw-sec">Documents</div><div class="recs" id="dwDocs"></div>' +
     '<div class="dw-sec">Photos &amp; Plans</div><div class="assets" id="dwAssets"></div>' +
     '<div class="dw-sec">Ledger</div><div class="led" id="dwLedger"></div>' +
+    '<div class="dw-sec">E-Sign</div><div class="led" id="dwEsign"></div>' +
     '<div class="dw-sec">Compliance — click to cycle</div><div class="cl">' + clHtml + '</div>';
 
   mountRecords(body.querySelector("#dwContacts"), "contacts", unitContacts(u.unit), { unit: u.unit }, renderDrawer);
   mountRecords(body.querySelector("#dwDocs"), "documents", unitDocuments(u.unit), { unit: u.unit }, renderDrawer);
   mountLedger(body.querySelector("#dwLedger"), u.unit);
+  mountEsign(body.querySelector("#dwEsign"), u.unit);
   if (assetDispose) assetDispose();
   assetDispose = mountAssets(body.querySelector("#dwAssets"), u.unit);
 

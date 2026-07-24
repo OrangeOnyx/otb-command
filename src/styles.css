@@ -491,6 +491,7 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 .led-age .led-c.owe { color: var(--brick); font-weight: 600; }
 .led-age.tot { border-bottom: 0; font-weight: 600; }
 body.role-owner .led-add, body.role-owner .led-void, body.role-owner .led-sugg { display: none; }
+body.role-owner .es-add, body.role-owner .es-cancel, body.role-owner .es-resend { display: none; }
 
 /* ---- document attach (P1) ---- */
 .rec-attachrow { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
