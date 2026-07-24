@@ -4,6 +4,9 @@ import { computeDeal, compareDeals } from "../src/lib/calc/ner.js";
 import { grossUp } from "../src/lib/calc/grossup.js";
 import { sequenceEviction } from "../src/lib/calc/eviction.js";
 import { computeKpis } from "../src/lib/calc/kpi.js";
+import { checkCapexPlan } from "../src/lib/calc/capex.js";
+import { sequenceClaim } from "../src/lib/calc/insurance.js";
+import { computeOcr } from "../src/lib/calc/ocr.js";
 import { runCalc, calcFallback, CALC_TOOL } from "../src/lib/calc/index.js";
 
 /* ── NER ─────────────────────────────────────────────────────────────── */
@@ -145,5 +148,132 @@ test("calcFallback renders deterministic prose per engine", () => {
 
 test("CALC_TOOL schema names every engine it dispatches", () => {
   assert.deepEqual(CALC_TOOL.input_schema.properties.engine.enum,
-    ["ner_compare", "cam_gross_up", "eviction_sequence", "kpi"]);
+    ["ner_compare", "cam_gross_up", "eviction_sequence", "kpi", "capex_check", "insurance_claim", "occupancy_cost"]);
+});
+
+/* ── Capex reserve-gate (harvest #5) ─────────────────────────────────── */
+
+test("capex: funds $50k from $200k reserve, replenishes in 10 months, coverage 4x", () => {
+  const r = checkCapexPlan({ projectCost: 50000, currentReserveBalance: 200000, annualReserveContribution: 60000 });
+  assert.equal(r.postProjectReserve, 150000);
+  assert.equal(r.fundedFromReserve, true);
+  assert.equal(r.monthsToReplenish, 10);
+  assert.equal(r.reserveCoverage, 4);
+  assert.match(r.recommendation, /Fund from reserve; replenish over 10 months/);
+});
+
+test("capex: reserve shortfall flags staged/top-up recommendation", () => {
+  const r = checkCapexPlan({ projectCost: 150000, currentReserveBalance: 100000, annualReserveContribution: 60000 });
+  assert.equal(r.fundedFromReserve, false);
+  assert.equal(r.postProjectReserve, -50000);
+  assert.equal(r.monthsToReplenish, null);
+  assert.match(r.recommendation, /Reserve short by \$50,000/);
+});
+
+test("capex: EUL urgency bands — replace_now / plan_replacement / monitor", () => {
+  const past = checkCapexPlan({ projectCost: 10000, currentReserveBalance: 50000, annualReserveContribution: 12000,
+    asset: { assetType: "RTU", installYear: 2005, expectedUsefulLifeYears: 15, currentYear: 2026 } });
+  assert.equal(past.asset.assetAge, 21);
+  assert.equal(past.asset.remainingLife, -6);
+  assert.equal(past.asset.pastEul, true);
+  assert.equal(past.asset.urgency, "replace_now");
+  assert.match(past.recommendation, /past its expected useful life/);
+
+  const near = checkCapexPlan({ projectCost: 10000, currentReserveBalance: 50000, annualReserveContribution: 12000,
+    asset: { installYear: 2013, expectedUsefulLifeYears: 15, currentYear: 2026 } });
+  assert.equal(near.asset.urgency, "plan_replacement");
+
+  const ok = checkCapexPlan({ projectCost: 10000, currentReserveBalance: 50000, annualReserveContribution: 12000,
+    asset: { installYear: 2020, expectedUsefulLifeYears: 15, currentYear: 2026 } });
+  assert.equal(ok.asset.remainingLife, 9);
+  assert.equal(ok.asset.urgency, "monitor");
+});
+
+test("capex: zero contribution → null runway + note; guards throw", () => {
+  const r = checkCapexPlan({ projectCost: 10000, currentReserveBalance: 50000, annualReserveContribution: 0 });
+  assert.equal(r.monthsToReplenish, null);
+  assert.ok(r.notes.some(n => /annualReserveContribution/.test(n)));
+  assert.throws(() => checkCapexPlan({ projectCost: 0, currentReserveBalance: 1 }));
+  assert.throws(() => checkCapexPlan({ projectCost: 1, currentReserveBalance: -1 }));
+  // asset block without currentYear is rejected (purity: never Date.now())
+  assert.throws(() => checkCapexPlan({ projectCost: 1, currentReserveBalance: 1, asset: { installYear: 2020 } }));
+});
+
+/* ── Insurance claim timeline (harvest #5) ───────────────────────────── */
+
+test("insurance: default deadlines from 2026-01-01 (30d/60d/24mo)", () => {
+  const r = sequenceClaim({ dateOfLoss: "2026-01-01" });
+  const [mitigate, notice, proof, suit] = r.steps;
+  assert.equal(mitigate.deadlineDate, "2026-01-01");
+  assert.equal(mitigate.daysFromLoss, 0);
+  assert.equal(notice.deadlineDate, "2026-01-31");
+  assert.equal(notice.daysFromLoss, 30);
+  assert.equal(proof.deadlineDate, "2026-03-02");
+  assert.equal(proof.daysFromLoss, 60);
+  assert.equal(suit.deadlineDate, "2028-01-01");
+  assert.deepEqual(r.steps.map(s => s.order), [1, 2, 3, 4]);
+});
+
+test("insurance: custom overrides + month-end clamp (Dec 31 + 2mo → Feb 28)", () => {
+  const r = sequenceClaim({ dateOfLoss: "2026-01-01", promptNoticeDays: 10, proofOfLossDays: 45, suitLimitationMonths: 12 });
+  assert.equal(r.steps[1].deadlineDate, "2026-01-11");
+  assert.equal(r.steps[2].deadlineDate, "2026-02-15");
+  assert.equal(r.steps[3].deadlineDate, "2027-01-01");
+  const clamp = sequenceClaim({ dateOfLoss: "2025-12-31", suitLimitationMonths: 2 });
+  assert.equal(clamp.steps[3].deadlineDate, "2026-02-28");
+});
+
+test("insurance: delayed mitigation warns; invalid dates throw", () => {
+  const r = sequenceClaim({ dateOfLoss: "2026-01-01", mitigationImmediate: false });
+  assert.match(r.steps[0].detail, /NOT immediate/);
+  assert.throws(() => sequenceClaim({ dateOfLoss: "not-a-date" }), /dateOfLoss/);
+  assert.throws(() => sequenceClaim({ dateOfLoss: "2026-02-30" }), /dateOfLoss/);
+  assert.throws(() => sequenceClaim({ dateOfLoss: "2026-01-01", promptNoticeDays: -1 }));
+});
+
+/* ── Occupancy cost ratio (harvest #5) ───────────────────────────────── */
+
+test("OCR: exactly 20% is elevated, NOT atRisk; just over 20% is distress", () => {
+  const edge = computeOcr({ annualBaseRent: 25000, annualCam: 8000, annualTax: 5000, annualInsurance: 2000, annualSales: 200000 });
+  assert.equal(edge.totalOccupancyCost, 40000);
+  assert.equal(edge.ocrPct, 20.0);
+  assert.equal(edge.band, "elevated");
+  assert.equal(edge.atRisk, false);
+  const over = computeOcr({ annualBaseRent: 25000, annualCam: 8000, annualTax: 5000, annualInsurance: 2100, annualSales: 200000 });
+  assert.equal(over.band, "distress");
+  assert.equal(over.atRisk, true);
+  assert.equal(over.salesToReach20Pct, 200500);
+  assert.equal(over.salesGapToHealthy, 500);
+});
+
+test("OCR: healthy / watch bands + percentage rent counts", () => {
+  const healthy = computeOcr({ annualBaseRent: 15000, annualCam: 3000, annualTax: 1500, annualInsurance: 500, annualSales: 200000 });
+  assert.equal(healthy.ocrPct, 10.0);
+  assert.equal(healthy.band, "healthy");
+  const watch = computeOcr({ annualBaseRent: 20000, annualCam: 3000, annualTax: 1500, annualInsurance: 500, annualSales: 200000 });
+  assert.equal(watch.ocrPct, 12.5);
+  assert.equal(watch.band, "watch");
+  const withPct = computeOcr({ annualBaseRent: 20000, annualCam: 3000, annualTax: 1500, annualInsurance: 500, percentageRent: 5000, annualSales: 200000 });
+  assert.equal(withPct.totalOccupancyCost, 30000);
+  assert.ok(withPct.ocr > watch.ocr);
+});
+
+test("OCR: guards throw on zero sales / negative components", () => {
+  assert.throws(() => computeOcr({ annualBaseRent: 1, annualCam: 1, annualTax: 1, annualInsurance: 1, annualSales: 0 }));
+  assert.throws(() => computeOcr({ annualBaseRent: -1, annualCam: 1, annualTax: 1, annualInsurance: 1, annualSales: 100 }));
+});
+
+/* ── run_calc dispatch + fallback for the three new engines ──────────── */
+
+test("runCalc dispatches capex_check / insurance_claim / occupancy_cost; fallbacks render", () => {
+  const capex = runCalc({ engine: "capex_check", capex: { projectCost: 50000, currentReserveBalance: 200000, annualReserveContribution: 60000 } });
+  assert.equal(capex.ok, true);
+  assert.match(calcFallback(capex), /^Verified reserve-gate: Fund from reserve/);
+  const ins = runCalc({ engine: "insurance_claim", insurance: { dateOfLoss: "2026-01-01" } });
+  assert.equal(ins.ok, true);
+  assert.match(calcFallback(ins), /^Verified claim timeline: The claim clock starts/);
+  const ocr = runCalc({ engine: "occupancy_cost", ocr: { annualBaseRent: 25000, annualCam: 8000, annualTax: 5000, annualInsurance: 2000, annualSales: 200000 } });
+  assert.equal(ocr.ok, true);
+  assert.match(calcFallback(ocr), /^Verified OCR: Occupancy cost ratio/);
+  assert.equal(runCalc({ engine: "capex_check", capex: { projectCost: -1, currentReserveBalance: 1 } }).ok, false);
 });
