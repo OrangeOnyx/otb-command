@@ -3,14 +3,21 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-24 (later still) — **R-1 ONE-SHEET PRINT + EXPIRY WATCH
-(owner request) SHIPPED (247 tests).** ⤓ SHEET on R-1 now fits ONE
-letter-landscape page (print CSS #pg-roll block: 9px table, logos hidden;
-measured 653px of 740 printable, min width 579 of 965) and rows expiring
-≤6 mo carry ▲ brick tint / 6–12 mo △ amber (T-1's color language; pure seam
-`src/lib/roll.js` + legend in the R-1 stamp). Verified in local preview:
-115/117 ▲ (Clothing Loft 9/30/26 — matches SOT), 8 units △, 27 rows.
-**Operator smoke: R-1 → ⤓ SHEET → print preview = one page, flags visible.**
+Last updated: 2026-07-24 (rev 2) — **R-1 ONE-SHEET PRINT + EXPIRY WATCH
+(owner request) SHIPPED, then HARDENED after field report "still 2 pages,
+flags louder" (248 tests).** Rev 2: (1) print fit is now MEASURED, not
+estimated — stampPrint applies `.print-fit` (compact layout, rules live
+outside the media query so they're measurable), reads the sheet's real
+height, and sets a zoom via pure `fitZoom()` (budget 590px; engages at 0.95
+today) — shrink beats spill; (2) `html,body{height:auto}` in print — the
+100% height pinned body to exactly one paper height, where a single spilled
+pixel = blank page 2 (likely the field culprit); (3) flags LOUDER: stronger
+tint + 4px inset left bar + bold colored Term-End date + bigger ▲/△.
+Expiry watch: ≤6 mo ▲ brick / 6–12 mo △ amber (seam `src/lib/roll.js`,
+legend in stamp). Verified via full print emulation in preview: 1 page at
+740px budget, zoom 0.95, bars+colors present under print layout; 115/117 ▲
+(Clothing Loft 9/30/26 = SOT), 8 units △.
+**Operator smoke: R-1 → ⤓ SHEET → ONE page, flags unmissable.**
 Prior: 2026-07-24 (later) — **A-3 VOICE BUILT + DEPLOYED (243 tests);
 operator go-live steps pending.** Two 337 lines (tenant + leasing), Twilio
 ConversationRelay. Architecture: **Fly.io bridge** (`bridge/` — dumb WS↔HTTP

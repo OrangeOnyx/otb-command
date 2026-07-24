@@ -13,6 +13,7 @@ import { initSpatial } from "./views/spatial.js";
 import { initSafe } from "./views/safe.js";
 import { initSearch } from "./views/search.js";
 import { printFootText, printDocTitle } from "./lib/printsheet.js";
+import { fitZoom } from "./lib/roll.js";
 import { renderRoll } from "./views/rentroll.js";
 import { initMatrix } from "./views/compliance.js";
 import { initDates } from "./views/dates.js";
@@ -89,11 +90,24 @@ function buildShell(account) {
       printTheme = document.documentElement.dataset.theme;
       delete document.documentElement.dataset.theme;
     }
+    /* R-1 one-page guarantee (owner requirement): apply the compact print
+       layout NOW, measure the real height, and zoom the sheet into budget.
+       Budget 590px = 740px letter-landscape printable minus ~100px structural
+       overhead outside this element (measured via print emulation 2026-07-24)
+       minus safety for browser-margin/font variance — the first ship "fit" at
+       720/740 and still spilled to page 2 in the field. Shrink beats spill. */
+    const roll = document.getElementById("pg-roll");
+    if (roll && roll.classList.contains("on")) {
+      roll.classList.add("print-fit");
+      roll.style.zoom = fitZoom(roll.offsetHeight, 590);
+    }
   };
   window.addEventListener("beforeprint", stampPrint);
   window.addEventListener("afterprint", () => {
     document.title = "OTB Property Command";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
+    const roll = document.getElementById("pg-roll");
+    if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }
   });
   document.getElementById("btnPrintSheet").onclick = () => { stampPrint(); window.print(); };
   document.getElementById("todayStamp").textContent = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();

@@ -26,3 +26,13 @@ export function expiryLegend(n6, n12) {
   if (n12) parts.push("△ " + n12 + " IN 6–12 MO");
   return parts.join(" · ");
 }
+
+/* one-page print guarantee: zoom factor from the sheet's MEASURED compact
+   height vs the printable budget. ≤1 always (never inflate), floored at .5
+   (below that the print is unreadable and something else is wrong), 3-decimal
+   stable so repeated prints don't jitter. availPx already excludes the fixed
+   print footer. */
+export function fitZoom(contentPx, availPx) {
+  if (!contentPx || !availPx || contentPx <= 0 || availPx <= 0) return 1;
+  return Math.max(0.5, Math.min(1, Math.round((availPx / contentPx) * 1000) / 1000));
+}

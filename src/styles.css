@@ -182,13 +182,34 @@ tfoot td{padding:11px 12px;font-family:var(--mono);font-weight:600;border-top:2p
 td.unitcell{font-family:var(--mono);font-weight:600}
 /* R-1 carries 11 columns — tighten padding and PSF columns so it fits */
 #rollTable th,#rollTable td{padding-left:8px;padding-right:8px}
-/* R-1 expiry watch (owner ask 2026-07-24): ≤6 mo brick, 6–12 mo amber — T-1's language */
-#rollTable tr.exp6 td{background:rgba(194,94,51,.09)}
-#rollTable tr.exp12 td{background:rgba(201,154,51,.09)}
+/* R-1 expiry watch (owner ask 2026-07-24, "louder" rev 2): ≤6 mo brick,
+   6–12 mo amber — T-1's language. Row tint + hard left bar + bold colored date. */
+#rollTable tr.exp6 td{background:rgba(194,94,51,.13)}
+#rollTable tr.exp12 td{background:rgba(201,154,51,.13)}
+#rollTable tr.exp6 td:first-child{box-shadow:inset 4px 0 0 var(--brick)}
+#rollTable tr.exp12 td:first-child{box-shadow:inset 4px 0 0 #C99A33}
 #rollTable .endcell{white-space:nowrap}
-#rollTable .expmark{font-weight:700}
+#rollTable tr.exp6 .endcell,#rollTable tr.exp12 .endcell{font-weight:700;font-family:var(--mono)}
+#rollTable tr.exp6 .endcell{color:var(--brick)}
+#rollTable tr.exp12 .endcell{color:#9A7420}
+#rollTable .expmark{font-weight:700;font-size:1.15em}
 #rollTable tr.exp6 .expmark{color:var(--brick)}
 #rollTable tr.exp12 .expmark{color:#C99A33}
+
+/* R-1 one-sheet print fit: applied as .print-fit by main.js at print time so
+   the SAME layout is measured live (fitZoom) and then printed — no estimates.
+   Compact type, logos hidden, expiry flags stay loud. */
+#pg-roll.print-fit .page-head h1{font-size:22px}
+#pg-roll.print-fit .page-head{margin-bottom:6px}
+#pg-roll.print-fit table{font-size:9px;line-height:1.25}
+#pg-roll.print-fit thead th{font-size:7px;padding:3px 5px;letter-spacing:.07em}
+#pg-roll.print-fit tbody td{padding:2px 5px}
+#pg-roll.print-fit tbody td .dba{font-size:9px}
+#pg-roll.print-fit tbody td .legal{font-size:7px}
+#pg-roll.print-fit .dba-logo{display:none}
+#pg-roll.print-fit .pill{font-size:7px;padding:0 5px;gap:3px}
+#pg-roll.print-fit .pill .dot{width:5px;height:5px}
+#pg-roll.print-fit tfoot td{padding:4px 5px;font-size:8px}
 #rollTable th.num,#rollTable td.num{font-size:11.5px}
 #rollTable th:first-child,#rollTable td:first-child{padding-left:14px}
 
@@ -604,6 +625,10 @@ body.role-vendor .ownerview { display: none !important; }
 @page { size: letter landscape; margin: 10mm 12mm; }
 @media print {
   * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  /* html/body height:100% pins body to exactly one paper height in print —
+     one rendered pixel past it spills a blank page 2 (field report 2026-07-24).
+     Content decides height on paper. */
+  html, body { height: auto !important; }
   body, .app { background: #EDEFE8 !important; display: block !important; }
   .topbar, .side, .drawer, .drawer-veil, .gs-results { display: none !important; }
   .main { display: block !important; padding: 0 !important; margin: 0 !important; overflow: visible !important; height: auto !important; }
@@ -619,19 +644,9 @@ body.role-vendor .ownerview { display: none !important; }
     color: #1C2B26; border-top: 1.5px solid #1C2B26; padding-top: 3px;
     background: #EDEFE8; text-align: right;
   }
-  /* R-1 one-sheet fit (owner requirement 2026-07-24): 27 rows + totals on a
-     single letter-landscape page — compact type, no logos, expiry tints kept */
-  #pg-roll.on .page-head h1 { font-size: 22px; }
-  #pg-roll.on .page-head { margin-bottom: 6px; }
-  #pg-roll.on table { font-size: 9px; line-height: 1.25; }
-  #pg-roll.on thead th { font-size: 7px; padding: 3px 5px; letter-spacing: .07em; }
-  #pg-roll.on tbody td { padding: 2px 5px; }
-  #pg-roll.on tbody td .dba { font-size: 9px; }
-  #pg-roll.on tbody td .legal { font-size: 7px; }
-  #pg-roll.on .dba-logo { display: none; }
-  #pg-roll.on .pill { font-size: 7px; padding: 0 5px; gap: 3px; }
-  #pg-roll.on .pill .dot { width: 5px; height: 5px; }
-  #pg-roll.on tfoot td { padding: 4px 5px; font-size: 8px; }
+  /* R-1 one-sheet fit: the .print-fit class (added by stampPrint, rules
+     above outside this block) carries the compact layout; here we only stop
+     the table from splitting so the zoom guarantee is all-or-nothing. */
   #pg-roll.on tbody tr { break-inside: avoid; }
   #pg-roll.on table { break-inside: avoid; }
 }

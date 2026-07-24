@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { expiryBucket, expiryMark, expiryLegend } from "../src/lib/roll.js";
+import { expiryBucket, expiryMark, expiryLegend, fitZoom } from "../src/lib/roll.js";
 
 test("expiryBucket boundaries", () => {
   assert.equal(expiryBucket(2), "exp6");
@@ -23,6 +23,16 @@ test("expiryMark glyphs", () => {
   assert.equal(expiryMark("exp6"), "▲");
   assert.equal(expiryMark("exp12"), "△");
   assert.equal(expiryMark(null), "");
+});
+
+test("fitZoom: never inflates, floors at .5, stable rounding, safe on junk", () => {
+  assert.equal(fitZoom(653, 706), 1);          // fits → untouched
+  assert.equal(fitZoom(706, 706), 1);          // exact fit
+  assert.equal(fitZoom(800, 706), 0.883);      // overflow → measured shrink
+  assert.equal(fitZoom(3000, 706), 0.5);       // floor
+  assert.equal(fitZoom(0, 706), 1);            // junk in → no-op out
+  assert.equal(fitZoom(700, 0), 1);
+  assert.equal(fitZoom(null, 706), 1);
 });
 
 test("expiryLegend mentions only non-empty buckets, with plural grammar", () => {
