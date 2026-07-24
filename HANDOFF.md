@@ -3,7 +3,30 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-23 — **A-1 COI AI-parse + A-2 MAINTENANCE both SHIPPED +
+Last updated: 2026-07-23 (late) — **OPTIMIZATION PASS (4 carry-forwards) + C3
+FOLLOW-ONS SHIPPED + DEPLOYED** (233 tests). Operator-ordered: hardening → C3
+→ verify each. Shipped: **#4 facts single-sourced** (new `src/lib/facts.js` +
+`src/data/instruments.json`; D-1 parking KPI / W-1 covenant cards / T-1 JD
+Bank all derive — no fact literals in views) · **#5 URL hash routing**
+(`src/lib/router.js`; #sheet deep links, back/forward, sealed sheets snap to
+first visible; smoked in preview) · **#8 rate limiter FAILS CLOSED**
+(underDailyCap tri-state allow/limit/outage → 429 vs honest 503 on all three
+paid endpoints) · **#7 staleness guard** (test/generated-freshness re-derives
+units.public.json/_seed.json/_context.mjs from live sources — a forgotten
+`npm run split-seed`/`concierge-context` now FAILS the suite; export-package
+gained OTB_EXPORT_DIR so tests never touch export/) · **C3-1 lot8+field-149
+zone rects** (stall-map.json `zoneRects` from parking ticks; A-1 🚗 now paints
+all three camera-covered ranks; est-geometric until the stall walk) ·
+**C3-2 heartbeat** (migration `c3_heartbeat` APPLIED — secret-gated
+`get_occupancy_freshness`, wrong-secret raise verified; cron opens ONE
+manager thread per outage keyed `c3-stale:<last-sample-day>` at 36h; manual
+cron run clean, no false alert on the healthy pipeline) · **C3-3 weekly
+rollup** (pure `weeklyRollup`/`rollupLine` → D-1 card 7-day sparkline;
+brief-ready figure source). Advisors: same accepted definer-WARN class only.
+**Operator smoke: D-1 Parking card shows "7d ▁▃▅… avg %" tail · A-1 🚗 →
+green/outline rects also at the Lot 8 pocket + 149 corner · URL bar tracks
+sheets (#roll etc.), back button walks them.**
+Prior: 2026-07-23 — **A-1 COI AI-parse + A-2 MAINTENANCE both SHIPPED +
 DEPLOYED** (212 tests, now 13 sheets).
 **A-2 (same day):** new **M-1 Maintenance** sheet + migration
 `maintenance_module` (APPLIED): event-sourced work orders — INSERT-only
