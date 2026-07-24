@@ -3,7 +3,45 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-24 (rev 2) — **R-1 ONE-SHEET PRINT + EXPIRY WATCH
+Last updated: 2026-07-25 — **HARVESTS #5 + #6 SHIPPED + DEPLOYED (269
+tests) — the donor merger queue is COMPLETE; belle-realty-pwa is an archive.**
+**#5 calc engines** (pure seams in `src/lib/calc/`): capex reserve-gate
+(Playbook §9, EUL urgency bands), insurance claim timeline (§12, UTC
+month-clamp date math), occupancy-cost-ratio tripwire (§6). NOTE: donor
+"OCR" = **occupancy cost ratio**, NOT document OCR — all three engines are
+pure, so the old "gated on data surfaces" caveat dissolved. All ride the
+existing run_calc tool + numeric guardrail (AI-1, all personas).
+**#6 e-sign** (migration `esign_requests` APPLIED): token lifecycle
+pending→sent→viewed→signed/declined/expired. Signer page =
+`/api/esign?t=<uuid>` — public, **zero inline JS** (CSP untouched; plain
+HTML form POSTs back to itself, plan-room styled, E-SIGN/LA-UETA consent
+line). Signer transitions ONLY via token-gated definer RPCs
+(esign_get/sign/decline — junk-token raises + full lifecycle asserts
+verified, incl. double-sign and decline-after-sign fail closed). Optional
+doc review link: esign_doc_path + an anon storage policy scoped to docs on
+live requests. Operator face: **unit drawer → E-Sign panel** (create, copy
+link/copy message — the app sends NOTHING, operator's own channel, v1
+boundary — re-token, cancel, signed receipt); owner read-only via CSS.
+**#6 tenant-portal-lite** (migration APPLIED): tenants read their OWN
+unit's ledger via RLS; M-1 tenant face gains **"Your account"** (balance +
+last 8 entries, same pure fold as the operator drawer).
+**A-5 ACH GROUNDWORK** (migration `post_ach_payments` APPLIED,
+wrong-secret raise verified): pure seam `src/lib/ach.js` classifies Stripe
+events → idempotent `ach:<pi_id>` payment rows, or manager threads for
+unmapped/failed payments (`ach-unmapped:`/`ach-fail:` keys). Webhook
+`api/stripe-webhook.mjs` verifies by RE-FETCHING the event from Stripe (no
+raw-body/signature fragility) and is **DORMANT (503) until the operator
+adds STRIPE_SECRET_KEY in Vercel env and points a Stripe webhook at it.**
+Advisors: same accepted definer-WARN class only. Carry-forwards EXAMINED,
+blocked on operator decisions: owner-layer read policy (D-1 owner-default
+renders actions+comp, so per-layer RLS would break owner dashboards — needs
+a decision on the owner-readable layer set) · CAPTCHA (dashboard-only) ·
+auto-deploys (Vercel git link).
+**Operator smoke: any unit drawer → E-Sign → create → Copy link → open
+incognito → sign · M-1 as a tenant → "Your account" · ask 🤝 Leasing
+"should I spend $45K on an RTU replacement with a $120K reserve, $30K/yr
+contributions, installed 2008, 15-yr life?"**
+Prior: 2026-07-24 (rev 2) — **R-1 ONE-SHEET PRINT + EXPIRY WATCH
 (owner request) SHIPPED, then HARDENED after field report "still 2 pages,
 flags louder" (248 tests).** Rev 2: (1) print fit is now MEASURED, not
 estimated — stampPrint applies `.print-fit` (compact layout, rules live
@@ -319,8 +357,8 @@ Operator delegated the wiring decisions → built as recommended (1A drawer+P-1 
   drawer → Ledger → "Payment received". Aug 1 cron seeds the charges.
 - **Uniform-policy assumption stands** unless a lease says otherwise — flag any
   tenant whose lease carries different late terms and the policy goes per-unit.
-**Remaining merger queue:** #5 capex/insurance/OCR engines (gated on data
-surfaces) → #6 e-sign/tenant-portal schemas → donors become archives.
+**Merger queue COMPLETE 2026-07-25:** ~~#5 capex/insurance/OCR engines~~ →
+~~#6 e-sign/tenant-portal schemas~~ — all harvested; donors are archives.
 
 ### SHIPPED 2026-07-21 — 🛰 Satellite lens rework (operator smoke feedback on #8)
 Operator ran the 07-20 smoke round: **mostly passed**; #8 (satellite) flagged —
