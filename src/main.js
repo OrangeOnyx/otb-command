@@ -6,6 +6,7 @@ import { migrateLocalToRemote } from "./lib/assets.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
 import { PAGES, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
+import { pageFromHash, hashFor, resolveRoute } from "./lib/router.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
@@ -69,6 +70,9 @@ function buildShell(account) {
       document.getElementById("pg-" + id).classList.add("on");
       currentPage = id;
       closeDrawer();
+      /* deep link: the hash mirrors the open sheet (pushes a history entry →
+         back/forward walk the sheet trail) */
+      if (pageFromHash(location.hash) !== id) location.hash = hashFor(id);
     };
     navBtn[id] = b;
     nav.appendChild(b);
@@ -233,6 +237,24 @@ function applyRole(role) {
   }
 }
 
+/* Hash router wiring — runs AFTER buildShell + applyRole so nav visibility is
+   final. Navigation always goes through the nav buttons (single code path);
+   a hash naming a sheet this role can't see snaps back without navigating
+   (visibility is UX — RLS seals the data server-side regardless). */
+function initRouter() {
+  const visible = () => PAGES.map(([id]) => id).filter(id => navBtn[id] && navBtn[id].style.display !== "none");
+  const currentId = () => PAGES.map(([id]) => id).find(id => navBtn[id] && navBtn[id].classList.contains("on"));
+  const goHash = () => {
+    const target = resolveRoute(pageFromHash(location.hash), visible());
+    if (!target) return;
+    if (target !== currentId()) navBtn[target].click();
+    else if (pageFromHash(location.hash) !== target)
+      history.replaceState(null, "", hashFor(target)); // normalize bad/sealed hash, no new entry
+  };
+  window.addEventListener("hashchange", goHash);
+  if (pageFromHash(location.hash)) goHash(); // honor a deep link on load; else keep role default
+}
+
 function initViews(account) {
   initPlan();
   initSpatial();
@@ -300,6 +322,7 @@ async function boot() {
     buildShell(account);
     initViews(account);
     applyRole(account.role);
+    initRouter();
     if (account.role === "operator") {
       wireSync();
       if (!localStorage.getItem("otb-assets-migrated")) {
@@ -310,6 +333,7 @@ async function boot() {
   } else {
     buildShell(null);
     initViews(null);
+    initRouter();
   }
 }
 
