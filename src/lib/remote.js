@@ -115,6 +115,17 @@ export async function listOccupancy(hours = 6) {
   return data || [];
 }
 
+/* Trailing-week samples for the D-1 rollup sparkline (~1.5k rows/wk today;
+   revisit as SQL aggregation if coverage grows past the storefront cams). */
+export async function listOccupancyWeek(days = 7) {
+  if (!REMOTE) return [];
+  const since = new Date(Date.now() - days * 86400e3).toISOString();
+  const { data, error } = await sb.from("occupancy_samples")
+    .select("stall,state,ts").gte("ts", since);
+  if (error) throw error;
+  return data || [];
+}
+
 /* ── access management (operator-only; RLS enforces) ─────────────
    Authorize an email BEFORE first sign-in (allowlist consulted by the
    sign-up trigger) and fix anyone already stuck in 'pending'. */

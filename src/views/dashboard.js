@@ -4,14 +4,15 @@
 import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { getActionCards, ACTION_KIND } from "./board.js";
-import { REMOTE, getSession, listOccupancy } from "../lib/remote.js";
+import { REMOTE, getSession, listOccupancy, listOccupancyWeek } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
-import { latestByStall, occSummary, occLine } from "../lib/occupancy.js";
+import { latestByStall, occSummary, occLine, weeklyRollup, rollupLine } from "../lib/occupancy.js";
 import { PARKING } from "../lib/facts.js";
 import stallMap from "../data/stall-map.json";
 
 let unifiSummary = null; // cached /api/unifi shape; renderKPIs reads it
 let occState = null;     // cached occupancy summary; renderKPIs reads it
+let occWeek = "";        // cached 7-day rollup line; renderKPIs reads it
 
 export function renderDashboard() {
   renderKPIs();
@@ -35,6 +36,10 @@ async function fetchOcc() {
     occState = occSummary(latestByStall(rows), stallMap);
     renderKPIs();
   } catch { /* card simply doesn't render */ }
+  try {
+    occWeek = rollupLine(weeklyRollup(await listOccupancyWeek(7), Date.now()));
+    if (occWeek) renderKPIs();
+  } catch { /* sparkline is best-effort on top of the card */ }
 }
 
 /* UniFi Site Manager card — server proxy holds the key; owner/operator only.
@@ -92,7 +97,7 @@ function occKpi() {
   const when = s.asOf ? new Date(s.asOf) : null;
   const note = esc(occLine(s)) + (when && !isNaN(when)
     ? " · as of " + when.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })
-    : "");
+    : "") + (occWeek ? " · " + esc(occWeek) : "");
   return [["ink", "Parking Occupancy (C3)",
     totals.occ + "<small>/" + totals.known + " camera-covered</small>", note]];
 }
