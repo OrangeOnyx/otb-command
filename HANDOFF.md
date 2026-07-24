@@ -3,7 +3,22 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-23 (late) — **OPTIMIZATION PASS (4 carry-forwards) + C3
+Last updated: 2026-07-24 — **A-4 SOP CAPTURE DONE**
+(`docs/a4-sop-capture-2026-07.md`): all 7 domains interviewed + locked.
+Headlines: emergencies = leak/electrical/break-in/sewer, dispatch+notify
+after-hours (never wake for permission) · vendor spend cap $500 · 2-bid $5K ·
+full trade→vendor roster named (Butcher/All Around/A&P/Grizzley/Alamo/AAA/
+Broussard) · **rent is ALL-ELECTRONIC (no checks — supersedes the 07-21
+"log each check" note; de-risks A-5 ACH)** · no rent reminders (deliberate
+non-build) · agents NEVER speak eviction timelines · leasing line: name+number
+only, "high teens PSF" range, books tour slots (**A-3 needs a calendar seam**),
+exclusivity-conflict screening only · COI soft gate (dispatch+chase; GL $1M/$2M
++ Belle addl insured; COI/W-9/license gate at PAYMENT not dispatch) · make-ready
+as-is/deal-driven · move-out solo walk+photos ≤30d · monthly documented walk ·
+house HVAC PM semi-annual (149 excluded). 6 automation candidates + full A-3
+script derivation queued in the doc's "Derived outputs" section.
+**A-3 voice is now UNBLOCKED.** Doc-only session — no code, no deploy needed.
+Prior: 2026-07-23 (late) — **OPTIMIZATION PASS (4 carry-forwards) + C3
 FOLLOW-ONS SHIPPED + DEPLOYED** (233 tests). Operator-ordered: hardening → C3
 → verify each. Shipped: **#4 facts single-sourced** (new `src/lib/facts.js` +
 `src/data/instruments.json`; D-1 parking KPI / W-1 covenant cards / T-1 JD
@@ -52,8 +67,9 @@ Haiku forced-tool `record_coi`) → seam `src/lib/coiparse.js` normalizes
 → pre-fills coi_expires/coi_note → operator clicks Save COI. Prod bundle +
 401/405 endpoint gate verified. **Operator smoke: V-1 → any service vendor →
 🤖 Parse cert with a real ACORD PDF → date/note prefill → Save COI.**
-**NEXT: A-3 voice (Twilio ConversationRelay, decided) — but schedule the A-4
-SOP capture operator interview FIRST (its triage scripts feed A-3).**
+**NEXT: A-3 voice (Twilio ConversationRelay, decided) — ~~A-4 gate~~ CLEARED
+2026-07-24 (SOP capture done; scripts derive from
+docs/a4-sop-capture-2026-07.md §Derived outputs).**
 Prior: 2026-07-22 (night) — **FINAL BUILD PLAN adopted + gates decided
 + A-0 done.** Session: operator confirmed the visual smoke round · market scan
 (Placer.ai = skip, broker-pull instead; PM platforms = keep building, gaps are
