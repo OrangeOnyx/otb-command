@@ -3,7 +3,16 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-25 — **HARVESTS #5 + #6 SHIPPED + DEPLOYED (269
+Last updated: 2026-07-25 (later) — **INVESTOR PITCH PACK SHIPPED (doc-only,
+no deploy):** `docs/pitch/` = feature-value brief (MD canonical + OO-branded
+HTML + PDF via headless Chrome), full operator manual (all 5 roles, sheet-by-
+sheet + rhythms + admin), commercial ("The Instrumented Asset": 90s/30s script
+w/ claims register + self-playing 90s HTML reel, 8 scenes, OO dark brand —
+screen-record for video or loop as-is). Copied to `G:\My Drive\00 OTB\
+pitch-2026-07\`. Voice claims flagged: soften scene 6 if airing before A-3
+go-live. Operator smoke: open the PDF (render unverified locally — no
+poppler) · play commercial.html once through.
+Prior: 2026-07-25 — **HARVESTS #5 + #6 SHIPPED + DEPLOYED (269
 tests) — the donor merger queue is COMPLETE; belle-realty-pwa is an archive.**
 **#5 calc engines** (pure seams in `src/lib/calc/`): capex reserve-gate
 (Playbook §9, EUL urgency bands), insurance claim timeline (§12, UTC
