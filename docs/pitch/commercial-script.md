@@ -4,9 +4,16 @@ Brand: Orange Ocean (Ocean Navy #1C2D4F / Sunset Orange #E8820C, Helvetica).
 Tone per brand doc: an operator speaking, not a software vendor. No buzzwords,
 no "disruption." Every claim in this script is true of the live system.
 
+**VO status: RENDERED** (2026-07-25) — all 8 scenes in the in-app "Jack John"
+voice, embedded in `commercial.html` (▶ PLAY WITH VOICE button; per-scene
+playback stays in sync on manual advance). Re-render after script changes:
+`tools/render-commercial-vo.py` (key drill in its header). With VO the closing
+scene holds 14s → the reel runs 92s total.
+
 Production paths (pick one):
 - **A. Screen-record the HTML piece** (`commercial.html`, this folder) — it
-  self-plays the full 90-second sequence; record at 1080p, add VO + music.
+  self-plays the full sequence **with voice built in**; record at 1080p with
+  system audio, add music.
 - **B. Live-footage cut** — drone footage (golden-hour clips 0008–0016) +
   screen capture of the real app per the shot list below.
 - **C. Present live** — the HTML piece loops; use it as a booth/lobby reel

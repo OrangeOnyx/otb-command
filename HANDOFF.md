@@ -3,7 +3,21 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-25 (later) — **INVESTOR PITCH PACK SHIPPED (doc-only,
+Last updated: 2026-07-25 (later still) — **PITCH PACK ROUND 2 (operator "1
+AND 2"):** (1) **VO RENDERED** — all 8 commercial scenes in the AI-1 "Jack
+John" voice (key via the pull-load-delete drill, never on disk), embedded as
+per-scene data-URIs in commercial.html (▶ PLAY WITH VOICE; per-scene playback
+survives manual advance; scene 8 slot 12→14s — VO ran 12.2s — reel now 92s;
+every scene duration verified ≤ its slot). Re-render tool:
+`tools/render-commercial-vo.py` (keep LINES in sync w/ the script MD).
+Loose MP3s → G:\…\pitch-2026-07\vo-mp3\ for external video assembly.
+(2) **AUDIENCE COVERS** — `tools/brief-variants.py` regenerates
+feature-value-brief-belle.html (owner edition: "what the owner personally
+holds") + -partner.html (design-partner offer: get/ask/won't-do) from the
+master; both PDF'd (Chrome can't write into the repo — render to temp, copy).
+All synced to G:. **Operator smoke: commercial.html → ▶ PLAY WITH VOICE, one
+full loop w/ sound · skim both variant PDFs' covers.**
+Prior: 2026-07-25 (later) — **INVESTOR PITCH PACK SHIPPED (doc-only,
 no deploy):** `docs/pitch/` = feature-value brief (MD canonical + OO-branded
 HTML + PDF via headless Chrome), full operator manual (all 5 roles, sheet-by-
 sheet + rhythms + admin), commercial ("The Instrumented Asset": 90s/30s script
