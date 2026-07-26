@@ -3,7 +3,20 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-25 (night — autonomous `/goal` finish-out) —
+Last updated: 2026-07-25 (night, cont.) — **MOBILE OPTIMIZATION SHIPPED +
+DEPLOYED:** ≤860px the sheet index is an off-canvas drawer behind a topbar
+☰ (veil, auto-close on sheet pick), grids collapse to one column (KPIs
+2-up), search full-width, unit drawer full-screen, `100dvh` viewport,
+coarse-pointer tap targets (matrix cells 38px, always-visible edit/✕).
+Desktop >860px byte-identical behavior; print hides the new chrome.
+Verified at 375×812 via computed-style checks (occluded pane can't
+screenshot — standing lesson): burger/veil/nav lifecycle, zero horizontal
+page scroll, tables scroll inside their cards; desktop regression clean;
+console clean; prod bundle grep-verified (navBurger/nav-burger/dvh/860).
+`.env` was moved aside for the local no-login preview and RESTORED.
+**Operator smoke: open otb-command.vercel.app on your phone → ☰ →
+walk D-1/R-1/M-1 → open a unit drawer (full-screen, ✕ closes).**
+Prior (same night): autonomous `/goal` finish-out —
 **UNIFI OFFLINE AUTO-TRIGGER SHIPPED + DEPLOYED (272 tests):** the deferred
 D-1-card follow-on — `unifiTriggerCandidate` (pure seam, src/lib/unifi.js)
 rides the daily cron; keyed by the OUTAGE SET (not date), so a persistent
