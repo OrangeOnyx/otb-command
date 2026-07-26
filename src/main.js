@@ -70,6 +70,7 @@ function buildShell(account) {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("on"));
       document.getElementById("pg-" + id).classList.add("on");
       currentPage = id;
+      document.body.classList.remove("nav-open");
       closeDrawer();
       /* deep link: the hash mirrors the open sheet (pushes a history entry →
          back/forward walk the sheet trail) */
@@ -79,6 +80,10 @@ function buildShell(account) {
     nav.appendChild(b);
   });
   document.getElementById("pg-dash").classList.add("on");
+
+  /* mobile: the sheet index is off-canvas behind ☰ (≤860px) */
+  document.getElementById("navBurger").onclick = () => document.body.classList.toggle("nav-open");
+  document.getElementById("navVeil").onclick = () => document.body.classList.remove("nav-open");
 
   /* visual sheet export: footer + doc title stamp on print (button or Ctrl+P) */
   let printTheme = null; // paper prints light regardless of screen theme
