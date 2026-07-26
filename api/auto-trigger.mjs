@@ -18,6 +18,7 @@ import SEED from "./_seed.json" with { type: "json" };
 import { collectCandidates } from "../src/lib/autotrigger.js";
 import { maintTriggerCandidates } from "../src/lib/maintenance.js";
 import { c3StaleCandidate } from "../src/lib/occupancy.js";
+import { shapeUnifi, unifiTriggerCandidate } from "../src/lib/unifi.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
@@ -88,6 +89,25 @@ export default async function handler(req, res) {
     const stale = c3StaleCandidate(fresh, new Date().toISOString());
     if (stale) candidates.push(stale);
   } catch (e) { console.warn("c3 freshness:", e.message); }
+
+  /* UniFi: network gear offline → one manager thread per outage set
+     (trigger_source keyed by the down-device set, so a persistent outage
+     alerts once ever and a CHANGED outage opens fresh). Best-effort: no key
+     configured or an api.ui.com failure never blocks the other scans. */
+  const uniKey = process.env.UNIFI_API_KEY;
+  if (uniKey) {
+    try {
+      const opts = { headers: { "X-API-Key": uniKey, Accept: "application/json" } };
+      const [hosts, sites, devices] = await Promise.all(
+        ["/v1/hosts", "/v1/sites", "/v1/devices"].map(p =>
+          fetch("https://api.ui.com" + p, opts).then(r => {
+            if (!r.ok) throw new Error(p + ": HTTP " + r.status);
+            return r.json();
+          })));
+      const uni = unifiTriggerCandidate(shapeUnifi(hosts, sites, devices));
+      if (uni) candidates.push(uni);
+    } catch (e) { console.warn("unifi scan:", e.message); }
+  }
 
   const summary = { date: today, scanned: candidates.length, opened: 0, skippedExisting: 0, failed: 0, openedSources: [] };
 

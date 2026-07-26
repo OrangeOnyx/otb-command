@@ -48,3 +48,39 @@ export function unifiHealthLine(s) {
   if (s.counts.critical > 0) bad.push(s.counts.critical + " critical");
   return bad.length ? bad.join(" · ") : "all systems online";
 }
+
+const slug = (name) => String(name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+/* Offline auto-trigger candidate (deferred item from the D-1 card ship).
+   Keyed by the OUTAGE SET, not the date: the same devices down = the same
+   trigger_source = one manager thread ever (chat_threads unique index); a
+   different device dropping — or one recovering while another stays down —
+   changes the key and opens a fresh thread. The known long-offline unlisted
+   unit therefore alerts exactly once, not daily. Null when healthy. */
+export function unifiTriggerCandidate(s) {
+  if (!s) return null;
+  const down = s.devices.filter(d => d.status !== "online").map(d => d.name).sort();
+  const consoleBad = s.console.state !== "connected";
+  if (!down.length && !s.unlisted && !consoleBad) return null;
+  const key = [
+    consoleBad ? "console" : "",
+    ...down.map(slug),
+    s.unlisted ? s.unlisted + "-unlisted" : "",
+  ].filter(Boolean).join("+") || "unknown";
+  const parts = [];
+  if (consoleBad) parts.push("the UDM console reports \"" + s.console.state + "\"");
+  if (down.length) parts.push("offline: " + down.join(", "));
+  if (s.unlisted) parts.push(s.unlisted + " unit" + (s.unlisted === 1 ? " is" : "s are") +
+    " down so long Site Manager dropped " + (s.unlisted === 1 ? "it" : "them") +
+    " from the device list (unnamed via API — identify in the UniFi console)");
+  return {
+    kind: "unifi",
+    agent: "manager",
+    triggerSource: "unifi:" + key,
+    title: "Network gear offline — " + (down.length + s.unlisted) + " of " + s.counts.total + " devices",
+    detail: "UniFi Site Manager health check: " + parts.join(" · ") + ". " +
+      "Tenant WiFi and the camera uplinks ride this gear — check PoE at the USW Pro Max and " +
+      "power at the suite AP if a single unit, or the UDM/WAN if the console itself is dark. " +
+      "The D-1 Network card shows live status.",
+  };
+}
