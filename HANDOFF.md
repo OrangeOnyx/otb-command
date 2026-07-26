@@ -3,7 +3,22 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-25 (later still) — **PITCH PACK ROUND 2 (operator "1
+Last updated: 2026-07-25 (night — autonomous `/goal` finish-out) —
+**UNIFI OFFLINE AUTO-TRIGGER SHIPPED + DEPLOYED (272 tests):** the deferred
+D-1-card follow-on — `unifiTriggerCandidate` (pure seam, src/lib/unifi.js)
+rides the daily cron; keyed by the OUTAGE SET (not date), so a persistent
+outage alerts once ever, a changed outage opens fresh. Best-effort scan
+(skipped without UNIFI_API_KEY; api.ui.com failure never blocks other
+scans). **Live prod smoke via the pull-load-delete CRON_SECRET drill:
+scanned 4 / opened 1 (`unifi:1-unlisted` — the known dead WiFi unit now
+has a manager thread in AI-1) / failed 0.** Also: **operator runbook
+consolidated** → `docs/operator-runbook-2026-07.md` — EVERY operator-gated
+action with exact steps (Stripe ACH keys/webhook · A-3 Twilio/Fly go-live ·
+CAPTCHA · dead-AP ident · 4 blocked decisions incl. owner-layer RLS set +
+auto-deploy · field walks · open smokes · data gaps). Deliberately NOT done
+unattended (live prod, judgment call): Phase B multi-tenant schema ·
+B3/B4/C2 · per-AP uptime history (still queued).
+Prior: 2026-07-25 (later still) — **PITCH PACK ROUND 2 (operator "1
 AND 2"):** (1) **VO RENDERED** — all 8 commercial scenes in the AI-1 "Jack
 John" voice (key via the pull-load-delete drill, never on disk), embedded as
 per-scene data-URIs in commercial.html (▶ PLAY WITH VOICE; per-scene playback
