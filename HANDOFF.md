@@ -8,10 +8,8 @@ https://orangeoceanatlas.com** (+ www) — operator bought at GoDaddy
 (3yr), Claude attached both to the Vercel project, DNS = A @ 76.76.21.21 +
 CNAME www→cname.vercel-dns.com (GoDaddy's pre-installed parked www CNAME
 had to be EDITED, not added-over). Verified HTTP 200 + SSL + Atlas title
-on both hosts. ⚠ REMAINING CHECK: Supabase → Auth → URL Configuration →
-Redirect URLs must include https://orangeoceanatlas.com/** and
-https://www.orangeoceanatlas.com/** or magic links bounce back to
-otb-command.vercel.app (login still works, wrong domain). ooatlas.com /
+on both hosts. ~~Supabase redirect-URL check~~ **CONFIRMED by operator
+2026-07-26: magic-link login works on the new domain.** ooatlas.com /
 ooatlas.ai still unpurchased (were open). NOTE: this is the PRODUCT
 domain — the OTB tenant-facing canonical-domain decision (ontheblvd vs
 shopontheblvd, gates vinyl QR) is separate and still open.
