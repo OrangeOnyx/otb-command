@@ -1,5 +1,12 @@
 # OTB Property Command — Project Memory
 
+> **PRODUCT NAME (operator-locked 2026-07-26): "Orange Ocean Atlas."** The
+> platform is Orange Ocean Atlas; OTB is its flagship deployment. Always the
+> full composite in market-facing output — never naked "Atlas" (crowded
+> genus: Saunders Atlas / AtlasX / Atlas RE / VISION-ATLAS). Repo/infra names
+> (otb-command, vercel project) unchanged. Module-naming concept available:
+> Atlas (spatial) · Almanac (dates) · Ledger · Desk · Register.
+
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
 > Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial ·
 > R-1 Rent Roll · P-1 Financial · C-1 Compliance · T-1 Critical Dates ·

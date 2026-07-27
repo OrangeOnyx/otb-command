@@ -3,7 +3,27 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-25 (night, cont.) — **MOBILE OPTIMIZATION SHIPPED +
+Last updated: 2026-07-26 — **PRODUCT RENAMED: "ORANGE OCEAN ATLAS"
+(operator-confirmed; billion-dollar client meeting next week) — SWEEP
+SHIPPED + DEPLOYED (272 tests).** Name journey: Asset Command cleared →
+operator chose Atlas; composite-only rule (never naked "Atlas" — crowded:
+Saunders/AtlasX/Atlas RE/VISION-ATLAS); all 5 composite domains OPEN at
+check time (orangeoceanatlas.com · ooatlas.com/.ai · atlasbyorangeocean.com
+· oo-atlas.com, ~$205) — **operator buys; app can live at
+atlas.orangeocean.ai.** Swept: pitch master+variants (PDFs → OO-Atlas-*,
+stale OTB-*.pdf purged incl. on G:), commercial title/end-card + **scene-8
+VO re-rendered** ("Orange Ocean Atlas — built by an operator…", ~10s in the
+14s slot; full 8-scene re-render via the key drill; MP3s → G:\vo-mp3),
+operator-manual header, app titles/login-sub/print-foot ("ORANGE OCEAN
+ATLAS · OTB"), concierge CORE + _context regenerated, export-package/
+proforma attributions. ⚠ TOOL FIX: render-commercial-vo.py marker regex
+was only re-runnable against an EMPTY AUDIO array (data-URIs carry ";");
+now re.S non-greedy. Prod verified (title + bundle). Module-naming concept
+(pitch talking point): Atlas=spatial · Almanac=dates · Ledger · Desk ·
+Register. **Operator smoke: commercial.html ▶ full loop (new scene-8 VO) ·
+skim 3 OO-Atlas PDFs' covers · login page shows "Orange Ocean Atlas —
+sign in".**
+Prior: 2026-07-25 (night, cont.) — **MOBILE OPTIMIZATION SHIPPED +
 DEPLOYED:** ≤860px the sheet index is an off-canvas drawer behind a topbar
 ☰ (veil, auto-close on sheet pick), grids collapse to one column (KPIs
 2-up), search full-width, unit drawer full-screen, `100dvh` viewport,
