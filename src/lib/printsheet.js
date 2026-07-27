@@ -8,7 +8,7 @@ export function printFootText(pages, activeId, dateStr) {
   const row = (pages || []).find(p => p[0] === activeId);
   const sheet = row ? row[1] : "";
   const label = row ? String(row[2] || "").toUpperCase() : "";
-  return ["OTB PROPERTY COMMAND", (sheet + " " + label).trim(), "PRINTED " + dateStr,
+  return ["ORANGE OCEAN ATLAS · OTB", (sheet + " " + label).trim(), "PRINTED " + dateStr,
     "62,883 SF GLA · 27 UNITS"].filter(Boolean).join(" · ");
 }
 

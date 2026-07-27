@@ -36,8 +36,8 @@ LINES = [
     "tour booked. Every call becomes a transcript.",
     "And on the first of the month, the owner receives a brief no one had to remember to write — "
     "and no A I was allowed to embellish.",
-    "One property proved it, end to end. The next twenty are the point. O T B Property Command, by "
-    "Orange Ocean — built by an operator, for the owners of real places.",
+    "One property proved it, end to end. The next twenty are the point. Orange Ocean Atlas — "
+    "built by an operator, for the owners of real places.",
 ]
 
 
@@ -81,7 +81,9 @@ def main():
         print(f"scene {n}: {len(audio):,} bytes")
 
     html = open(HTML, encoding="utf-8").read()
-    marker = re.compile(r"const AUDIO = \[[^;]*\]; /\* VO_INJECT[^*]*\*/")
+    # non-greedy across the (possibly already-filled) array: data-URIs carry
+    # ';' so [^;]* only ever matched the EMPTY array — re-runs need re.S + .*?
+    marker = re.compile(r"const AUDIO = \[.*?\]; /\* VO_INJECT[^*]*\*/", re.S)
     if not marker.search(html):
         sys.exit("VO_INJECT marker not found in commercial.html")
     payload = ("const AUDIO = [\n    '" + "',\n    '".join(uris)

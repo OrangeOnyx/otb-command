@@ -143,7 +143,7 @@ notes=[
  "• Recoverable lines (taxes, insurance, CAM) are seeded at the NNN recovery amount, so net exposure ≈ $0 when pass-throughs match actual spend. Management seeded at 4% of EGI; reserves at $0.15/SF; utilities at $0 (set actual common-area utilities).",
  "• Cap-rate values are illustrative; the 7.5% line is centered, not an appraisal.",
  "• Vacancy/credit-loss line not modeled (property is shown at 100% in-place); add a vacancy allowance if underwriting to stabilized.",
- "• Figures trace to OTB Property Command; regenerate with `npm run proforma`.",
+ "• Figures trace to Orange Ocean Atlas; regenerate with `npm run proforma`.",
 ]
 for i,t in enumerate(notes):
     c=pf.cell(row+i,2,t); c.font=Font(bold=(i==0),size=9,color=(NAVY if i==0 else "6b6450")); c.alignment=Alignment(wrap_text=False)

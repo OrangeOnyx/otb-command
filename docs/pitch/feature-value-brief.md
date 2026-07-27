@@ -1,12 +1,11 @@
-# OTB Property Command — Feature & Decision Brief
+# Orange Ocean Atlas — Feature & Decision Brief
 **Prepared for owners and investors** · Orange Ocean, LLC · July 2026
 Live system: https://otb-command.vercel.app · 13 sheets · 269 automated tests · production since June 2026
 
-> **One sentence:** OTB Property Command is a full operating system for a retail
-> shopping center — every legal fact, dollar, document, camera, and workflow on
-> one governed surface — built and proven on On The Boulevard Shopping Center
-> (62,883 SF, 27 units, Lafayette, LA), and architected to carry outside
-> properties next.
+> **One sentence:** Orange Ocean Atlas puts every legal fact, dollar, document,
+> camera, and workflow of a retail center on one governed surface — built and
+> proven on On The Boulevard Shopping Center (62,883 SF, 27 units, Lafayette,
+> LA), and architected to carry outside properties next.
 
 ---
 

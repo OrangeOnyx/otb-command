@@ -128,7 +128,7 @@ export function buildOwnerSummaryHTML(p, unit, rec, hvacRow, today) {
 <div class="bar"><span class="wm">OWNER LEASE SUMMARY</span><span class="draft">DRAFT · CONFIDENTIAL — OWNER USE ONLY</span></div>
 <div class="page">
 <h1>Suite ${esc(p.unit)} — ${esc(p.tenant_company)}</h1>
-<p class="legal">Prepared ${esc(today)} by OTB Property Command (AI-1 leasing agent) from operator-confirmed terms. Mirrors the Owner Lease Summary Form — verify against the executed lease before filing.</p>
+<p class="legal">Prepared ${esc(today)} by Orange Ocean Atlas (AI-1 leasing agent) from operator-confirmed terms. Mirrors the Owner Lease Summary Form — verify against the executed lease before filing.</p>
 <h2>1 · Parties &amp; Premises</h2>
 <table>
 ${row("Property", "On The Boulevard Shopping Center · 101–149 Arnould Blvd., Lafayette, LA 70506")}

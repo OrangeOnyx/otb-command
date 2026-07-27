@@ -21,7 +21,7 @@ COVER_END = "</div>\n\n  <h2>The doctrine"
 
 VARIANTS = {
     "belle": {
-        "title": "OTB Property Command — Owner Edition · Belle Realty of Lafayette",
+        "title": "Orange Ocean Atlas — Owner Edition · Belle Realty of Lafayette",
         "tag": '<div class="tag">Prepared for Belle Realty of Lafayette, LLC · July 2026</div>',
         "onesent": (
             '<div class="onesent">Your asset, instrumented: every legal fact, dollar, document, '
@@ -50,10 +50,10 @@ VARIANTS = {
 """,
     },
     "partner": {
-        "title": "OTB Property Command — Design-Partner Edition · Orange Ocean",
+        "title": "Orange Ocean Atlas — Design-Partner Edition",
         "tag": '<div class="tag">Prepared for prospective design-partner owners · July 2026</div>',
         "onesent": (
-            '<div class="onesent">A full operating system for retail centers — proven end-to-end on '
+            '<div class="onesent">Orange Ocean Atlas — proven end-to-end on '
             'our own 62,883&nbsp;SF asset with real money and real tenants — now opening to a '
             '<b>small number of design-partner properties</b>.</div>'
         ),

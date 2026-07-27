@@ -1,4 +1,4 @@
-# OTB Property Command — Commercial
+# Orange Ocean Atlas — Commercial
 **"The Instrumented Asset" · 90-second master + 30-second cut**
 Brand: Orange Ocean (Ocean Navy #1C2D4F / Sunset Orange #E8820C, Helvetica).
 Tone per brand doc: an operator speaking, not a software vendor. No buzzwords,
@@ -32,7 +32,7 @@ Production paths (pick one):
 | 5 | 0:42–0:54 | Screen capture: ledger panel — entries appending; a void entry appears *below* its target, nothing deleted; C-1 ⏱ history scrolls. | "Every payment. Every signature. Every compliance change. Recorded forever — corrections are new entries. Nothing is ever erased." | NOTHING IS EVER ERASED. |
 | 6 | 0:54–1:06 | Night exterior still; phone UI ring; transcript thread materializes; a work order card slides onto M-1. | "At 2 a.m., the phone answers with our policies. A leak gets dispatched. A leasing call gets a tour booked. Every call becomes a transcript." | THE PHONE ANSWERS AT 2 A.M. |
 | 7 | 1:06–1:18 | The monthly owner brief scrolls — KPI tiles, expiration table; stamp: DETERMINISTIC. | "And on the first of the month, the owner receives a brief no one had to remember to write — and no AI was allowed to embellish." | THE OWNER SEES EVERYTHING. |
-| 8 | 1:18–1:30 | Cut to navy. Orange rule draws across. OO logo (dark variant). | "One property proved it, end to end. The next twenty are the point. OTB Property Command, by Orange Ocean — built by an operator, for the owners of real places." | ORANGE OCEAN · OTB PROPERTY COMMAND — orangeocean.ai |
+| 8 | 1:18–1:30 | Cut to navy. Orange rule draws across. OO logo (dark variant). | "One property proved it, end to end. The next twenty are the point. Orange Ocean Atlas — built by an operator, for the owners of real places." | ORANGE OCEAN ATLAS — orangeocean.ai |
 
 **Music:** restrained, low pulse; no EDM builds. **VO:** measured, unhurried
 male/neutral read (the ElevenLabs "Jack John" voice already used in-app keeps

@@ -35,7 +35,7 @@ function showLogin(msg) {
   o.innerHTML =
     '<div class="login-card">' +
     '<div class="login-wm">ON THE <span>BOULEVARD</span></div>' +
-    '<div class="login-sub">Property Command — sign in</div>' +
+    '<div class="login-sub">Orange Ocean Atlas — sign in</div>' +
     '<input id="loginEmail" type="email" placeholder="you@email.com" autocomplete="email">' +
     '<button id="loginBtn">Email me a sign-in link</button>' +
     '<div class="login-msg" id="loginMsg">' + (msg || "Owners &amp; operator only. We’ll email you a one-time link.") + '</div>' +
@@ -109,7 +109,7 @@ function buildShell(account) {
   };
   window.addEventListener("beforeprint", stampPrint);
   window.addEventListener("afterprint", () => {
-    document.title = "OTB Property Command";
+    document.title = "Orange Ocean Atlas — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
     if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }

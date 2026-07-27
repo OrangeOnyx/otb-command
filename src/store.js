@@ -355,7 +355,7 @@ export function exportJSON() {
 export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
   if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents && !snap.financials)) {
-    throw new Error("Not an OTB Command export — expected { comp, notes, actions, … }.");
+    throw new Error("Not an Orange Ocean Atlas export — expected { comp, notes, actions, … }.");
   }
   Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);

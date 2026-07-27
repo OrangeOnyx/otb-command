@@ -1,4 +1,4 @@
-# OTB Property Command — Operating Manual
+# Orange Ocean Atlas — Operating Manual (On The Boulevard deployment)
 **Version July 2026 · covers the 13-sheet production build (269 tests)**
 Live app: https://otb-command.vercel.app · Operator: adam@adamabdalla.com
 
