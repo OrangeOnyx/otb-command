@@ -3,7 +3,19 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-26 — **PRODUCT RENAMED: "ORANGE OCEAN ATLAS"
+Last updated: 2026-07-26 (later) — **CUSTOM DOMAIN LIVE:
+https://orangeoceanatlas.com** (+ www) — operator bought at GoDaddy
+(3yr), Claude attached both to the Vercel project, DNS = A @ 76.76.21.21 +
+CNAME www→cname.vercel-dns.com (GoDaddy's pre-installed parked www CNAME
+had to be EDITED, not added-over). Verified HTTP 200 + SSL + Atlas title
+on both hosts. ⚠ REMAINING CHECK: Supabase → Auth → URL Configuration →
+Redirect URLs must include https://orangeoceanatlas.com/** and
+https://www.orangeoceanatlas.com/** or magic links bounce back to
+otb-command.vercel.app (login still works, wrong domain). ooatlas.com /
+ooatlas.ai still unpurchased (were open). NOTE: this is the PRODUCT
+domain — the OTB tenant-facing canonical-domain decision (ontheblvd vs
+shopontheblvd, gates vinyl QR) is separate and still open.
+Prior: 2026-07-26 — **PRODUCT RENAMED: "ORANGE OCEAN ATLAS"
 (operator-confirmed; billion-dollar client meeting next week) — SWEEP
 SHIPPED + DEPLOYED (272 tests).** Name journey: Asset Command cleared →
 operator chose Atlas; composite-only rule (never naked "Atlas" — crowded:
