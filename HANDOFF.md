@@ -3,7 +3,17 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-26 (later) — **CUSTOM DOMAIN LIVE:
+Last updated: 2026-07-28 — **NO-BUILD SESSION (context load + tooling
+only): nothing OTB shipped, prod untouched.** One env change: `higgsfield`
+MCP server added at USER scope (`claude mcp add --transport http --scope
+user higgsfield https://mcp.higgsfield.ai/mcp` → ~/.claude.json) — tools
+appear in NEW sessions only; if it wants OAuth, authenticate via `/mcp`
+in an interactive terminal on first use. Session offered ranks (Aug-1
+ACH readiness · Phase B schema · meeting prep) — operator did not pick;
+the queue below stands exactly as of 07-26. Aug 1 ledger go-live is now
+4 days out — Stripe ACH operator steps (STRIPE_SECRET_KEY + webhook,
+docs/operator-runbook-2026-07.md) are the clock-driven item.
+Prior: 2026-07-26 (later) — **CUSTOM DOMAIN LIVE:
 https://orangeoceanatlas.com** (+ www) — operator bought at GoDaddy
 (3yr), Claude attached both to the Vercel project, DNS = A @ 76.76.21.21 +
 CNAME www→cname.vercel-dns.com (GoDaddy's pre-installed parked www CNAME
