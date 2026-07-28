@@ -3,7 +3,55 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-28 — **NO-BUILD SESSION (context load + tooling
+Last updated: 2026-07-28 (night) — **A-3 VOICE IS LIVE — both lines
+answered real calls and wrote real data.** Numbers (operator bought):
+**(337) 270-7044 = LEASING · (337) 273-0384 = TENANT** (assignment
+delegated→made; 7044's old ElevenLabs webhook overwritten, operator-
+approved). Voice webhooks → `https://otb-voice-bridge.fly.dev/twiml?line=…`
+(operator clicked the two console forms; he ALSO pointed both MESSAGING
+webhooks at the same URL — harmless no-op, inbound SMS just errors in the
+Twilio debugger until a v2 bridge messaging handler; A2P unregistered
+anyway). **Fly bridge:** app `otb-voice-bridge` (dfw, scaled to 1 machine,
+flyctl in ~/.fly/bin authed adam@; operator added the credit card so the
+trial 5-min machine-kills are gone). **⚠ SECRET DRILL LESSON (cost us the
+first smoke round):** piping a secret into `vercel env add` from PowerShell
+appends a newline → brain stored `<secret>\n` → EVERY bridge turn died 401
+("brain call failed: brain HTTP 401" in fly logs; caller hears greeting,
+then apologies). Fix = `cmd /c "npx vercel env add … < file"` (byte-exact);
+drill re-run end-to-end. NEW RULE: a secret drill is not verified until a
+REAL-secret request is accepted (junk-401 alone proved nothing). **Live
+smoke (operator, 21:20/21:23 UTC):** tenant call filed work order
+`vr-20260728212150-6b5e` (AC, 135B, callback captured; agent TRIPLE-filed —
+dupes …2128/…2145 closed via maintenance_events actor `claude-code`) +
+voice-tenant/-leasing transcripts in AI-1. Leasing call captured
+name/units(131+133)/phone and said "locked in" ×5 — **but NEVER called
+book_tour; tour_bookings = 0 rows ever. Hallucinated confirmation = the
+worst leasing failure; fix is queue #1.**
+**NEXT-SESSION BUILD QUEUE (operator: "all four", 2026-07-28):**
+1. **Truthful booking** — persona/tool hardening: never claim booked
+   without an ok:true tool result; call book_tour the moment
+   name+phone+slot exist. 2. **Unbooked-lead cron** — leasing voice_calls
+   with no tour_bookings row → manager thread keyed `voice-lead:<call_sid>`
+   (safety net so no lead silently drops). 3. **Dedupe guard** —
+   voice_file_maintenance returns the existing ticket for same unit+title
+   within 10 min. 4. **Leasing-package v1.5** — hosted public one-pager
+   (131/133) + ready-to-send SMS text inside the leasing manager thread
+   (caller asked for a package ON TAPE; keeps the "app sends nothing"
+   boundary). PLUS: **D-1 Parking Occupancy card "not up" (operator)** —
+   pipeline is HEALTHY (occupancy_samples 5,644 rows, latest 07-27 23:00Z,
+   OTB-C3-Nightly + watchdog tasks Ready) → suspect the card's freshness/
+   render path in the view, diagnose front-end first. PLUS: **operator asked
+   "where does someone onboard a new property" — nowhere; that IS Phase B
+   multi-tenant (schema + onboarding flow), now operator-pulled — schedule
+   it.** Stripe ACH still untouched — **Aug 1 is 4 days out, now the top
+   clock item.** Commercial v2 (feature-forward, via Higgsfield MCP — added
+   user-scope, tools appear in NEW sessions) still wanted; Manus quoted
+   450-600 credits for a full regen, so draft the shot list first.
+**Desktop-control lessons (Windows-MCP):** labels go stale after ANY window
+switch — resnapshot before every click; Manus + Claude-desktop self-front
+and steal clicks/dismiss dropdowns — MINIMIZE the Claude Code browser window
+before driving other windows; `loc` param serializes broken — use `label`.
+Prior: 2026-07-28 — **NO-BUILD SESSION (context load + tooling
 only): nothing OTB shipped, prod untouched.** One env change: `higgsfield`
 MCP server added at USER scope (`claude mcp add --transport http --scope
 user higgsfield https://mcp.higgsfield.ai/mcp` → ~/.claude.json) — tools
