@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { latestByStall, occSummary, rowStallRect, rowOverlay, stallOverlay, zoneStallRect, occLine, c3StaleCandidate, weeklyRollup, rollupLine } from "../src/lib/occupancy.js";
+import { latestByStall, occSummary, rowStallRect, rowOverlay, stallOverlay, zoneStallRect, occLine, occAsOf, c3StaleCandidate, weeklyRollup, rollupLine } from "../src/lib/occupancy.js";
 
 const MAP = {
   rowMeta: { count: 56, tickX0: 135.66, pitch: 16.59, y: 330 },
@@ -169,4 +169,20 @@ test("committed stall-map: 34 stalls, row56 indices unique and in range", () => 
   const zones = JSON.parse(readFileSync(new URL("../docs/c3-stall-zones.json", import.meta.url)));
   const zoneIds = Object.values(zones.cameras).flat().map(s => s.id).sort();
   assert.deepEqual(Object.keys(map.stalls).sort(), zoneIds);
+});
+
+test("occAsOf: time-only when the sample is from today", () => {
+  const label = occAsOf("2026-07-29T14:01:00Z", Date.parse("2026-07-29T19:40:00Z"), { timeZone: "UTC" });
+  assert.equal(label, "2:01 PM");
+});
+
+test("occAsOf: date + time when the sample is from an earlier day", () => {
+  const label = occAsOf("2026-07-28T23:01:00Z", Date.parse("2026-07-29T19:40:00Z"), { timeZone: "UTC" });
+  assert.equal(label, "Jul 28, 11:01 PM");
+});
+
+test("occAsOf: empty string on missing or invalid timestamps", () => {
+  assert.equal(occAsOf("", Date.now()), "");
+  assert.equal(occAsOf(null, Date.now()), "");
+  assert.equal(occAsOf("not-a-date", Date.now()), "");
 });

@@ -6,7 +6,7 @@ import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format
 import { getActionCards, ACTION_KIND } from "./board.js";
 import { REMOTE, getSession, listOccupancy, listOccupancyWeek } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
-import { latestByStall, occSummary, occLine, weeklyRollup, rollupLine } from "../lib/occupancy.js";
+import { latestByStall, occSummary, occLine, occAsOf, weeklyRollup, rollupLine } from "../lib/occupancy.js";
 import { PARKING } from "../lib/facts.js";
 import stallMap from "../data/stall-map.json";
 
@@ -28,10 +28,13 @@ export function initDashboard() {
 }
 
 /* C3 parking occupancy card — Supabase occupancy_samples (RLS owner/operator);
-   best-effort like the UniFi card. Covered stalls only (stall-map.json). */
+   best-effort like the UniFi card. Covered stalls only (stall-map.json).
+   Window = 48h: samples land once nightly (23:45 local), so a short window
+   is empty for most of the business day; the c3-stale heartbeat already
+   raises a manager thread at 36h, so anything older hides honestly. */
 async function fetchOcc() {
   try {
-    const rows = await listOccupancy(6);
+    const rows = await listOccupancy(48);
     if (!rows.length) return; // no recent samples → no card
     occState = occSummary(latestByStall(rows), stallMap);
     renderKPIs();
@@ -94,10 +97,9 @@ function occKpi() {
   const totals = Object.values(s.ranks).reduce(
     (a, r) => ({ occ: a.occ + r.occupied, known: a.known + r.occupied + r.empty }),
     { occ: 0, known: 0 });
-  const when = s.asOf ? new Date(s.asOf) : null;
-  const note = esc(occLine(s)) + (when && !isNaN(when)
-    ? " · as of " + when.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })
-    : "") + (occWeek ? " · " + esc(occWeek) : "");
+  const asOf = occAsOf(s.asOf, Date.now());
+  const note = esc(occLine(s)) + (asOf ? " · as of " + asOf : "") +
+    (occWeek ? " · " + esc(occWeek) : "");
   return [["ink", "Parking Occupancy (C3)",
     totals.occ + "<small>/" + totals.known + " camera-covered</small>", note]];
 }

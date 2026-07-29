@@ -141,6 +141,19 @@ export function rollupLine(rollup) {
   return known ? "7d " + spark + " avg " + Math.round(100 * occ / known) + "%" : "";
 }
 
+/* Date-aware "as of" label for the D-1 card. Samples land once nightly
+   (OTB-C3-Nightly 23:45 local), so by business hours the newest sample is
+   from yesterday — a time-only label would read as today and mislead.
+   Same local day → time only; earlier day → "Jul 28, 11:01 PM"; bad input → "". */
+export function occAsOf(asOfISO, nowMs, { timeZone } = {}) {
+  const t = asOfISO ? Date.parse(asOfISO) : NaN;
+  if (isNaN(t)) return "";
+  const day = ms => new Date(ms).toLocaleDateString("en-CA", { timeZone }); // YYYY-MM-DD
+  const time = new Date(t).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone });
+  if (day(t) === day(nowMs)) return time;
+  return new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone }) + ", " + time;
+}
+
 /* One-line note for the D-1 card. Total known-occupied over known, per rank
    label; unclear/stale folded into a trailing qualifier when present. */
 export function occLine(summary, labels = { row56: "storefront row", lot8: "Lot 8", "field-149": "149 corner" }) {
