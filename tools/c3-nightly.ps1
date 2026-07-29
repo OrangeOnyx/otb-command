@@ -1,8 +1,12 @@
 # c3-nightly.ps1 - daily C3 occupancy: classify banked frames (Haiku, hourly
 # sampling) and upload the results to Supabase. Companion to sampler-watchdog.ps1.
 #
-# Registered as Scheduled Task "OTB-C3-Nightly" (user-level, daily 23:45).
-# Re-register after an OS reinstall with:
+# Registered as Scheduled Tasks "OTB-C3-Nightly" (daily 23:45) and
+# "OTB-C3-Midday" (daily 12:00 — same script; keeps the D-1 card showing
+# same-morning data instead of yesterday's nightly batch. Classify+upload are
+# frame-idempotent, so the nightly pass re-processes nothing the midday pass
+# already did — earlier data, no extra Haiku spend).
+# Re-register both after an OS reinstall with:
 #   powershell -File tools\c3-nightly.ps1 -Register
 #
 # Secrets: ANTHROPIC_API_KEY + CRON_SECRET are pulled from the Vercel prod env
@@ -22,12 +26,13 @@ $Log = Join-Path $CaptureDir "c3-nightly.log"
 if ($Register) {
     $action = New-ScheduledTaskAction -Execute "powershell.exe" `
         -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$Repo\tools\c3-nightly.ps1`""
-    $trigger = New-ScheduledTaskTrigger -Daily -At "23:45"
     $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries `
         -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1)
     Register-ScheduledTask -TaskName "OTB-C3-Nightly" -Action $action `
-        -Trigger $trigger -Settings $settings -Force | Out-Null
-    Write-Output "Registered task OTB-C3-Nightly (daily 23:45)."
+        -Trigger (New-ScheduledTaskTrigger -Daily -At "23:45") -Settings $settings -Force | Out-Null
+    Register-ScheduledTask -TaskName "OTB-C3-Midday" -Action $action `
+        -Trigger (New-ScheduledTaskTrigger -Daily -At "12:00") -Settings $settings -Force | Out-Null
+    Write-Output "Registered tasks OTB-C3-Nightly (daily 23:45) and OTB-C3-Midday (daily 12:00)."
     return
 }
 
