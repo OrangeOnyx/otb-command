@@ -3,7 +3,33 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-28 (night) — **A-3 VOICE IS LIVE — both lines
+Last updated: 2026-07-29 — **D-1 OCCUPANCY CARD FIXED + DEPLOYED (275
+tests) — root cause was CADENCE, not render:** the card gated on a 6h
+freshness window (`listOccupancy(6)`) but C3 uploads land once nightly
+(23:45 local), so the newest sample was 11–19h old all business day and
+the card only existed ~11pm–5am. Fix: 48h window (sits above the 36h
+c3-stale heartbeat, which already threads real outages) + new pure
+`occAsOf()` seam (+3 tests) — as-of label shows date+time for non-today
+samples so yesterday never reads as today. Prod bundle grep-verified
+(en-CA/48). **PLUS operator-picked intraday refresh: NEW Task
+`OTB-C3-Midday` (daily 12:00, same c3-nightly.ps1 — `-Register` now
+registers both).** Live-smoked under the scheduler: 07-28 pass = 0
+requests/0 inserts (816 already present — idempotency proven), 07-29
+pass = 138 Haiku requests / 590 inserted; DB max(ts) went 04:01Z →
+23:45Z (5 min fresh). Nightly re-processes nothing the midday pass did —
+earlier data, no extra spend. **Operator smoke: D-1 mid-day → "Parking
+Occupancy (C3)" card present with dated as-of + 7d sparkline.**
+Also this session: **knowledge graph re-run** (docs/graph/graphify-out —
+1,164 nodes/76 communities; A-3 voice stack, build queue, transfer-package
++ pitch docs now first-class; Obsidian vault 1,238 notes, same registered
+path) · fixed graphify semantic-cache root bug (0-files-cached silently;
+41 files now cached — next update is cheap) · post-commit-hook label
+clobber fixed (labels.json rebuilt, 75 names, survives hook refresh) ·
+fly.toml: committed the flyctl-regenerated file w/ deploy notes restored ·
+NOTE for queue #1 (truthful booking): bridge/server.mjs:50 carries its own
+non-null-safe `esc()` (String(null)→"null" into TwiML welcomeGreeting);
+one-char fix `s ?? ""` next time the bridge is touched.
+Prior: 2026-07-28 (night) — **A-3 VOICE IS LIVE — both lines
 answered real calls and wrote real data.** Numbers (operator bought):
 **(337) 270-7044 = LEASING · (337) 273-0384 = TENANT** (assignment
 delegated→made; 7044's old ElevenLabs webhook overwritten, operator-
