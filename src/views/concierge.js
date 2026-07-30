@@ -9,6 +9,8 @@ import { REMOTE, sb } from "../lib/remote.js";
 import { mdToHtml, mdToSpeech } from "../lib/concierge.js";
 import { extractCards, stripCards } from "../lib/cards.js";
 import { esc } from "../lib/format.js";
+import { smsText, LEASING_URL } from "../lib/leasing.js";
+import { UNITS } from "../store.js";
 
 const AGENTS = {
   concierge: {
@@ -217,6 +219,8 @@ function setAgent(host, agent) {
   current = agent;
   persistAI();
   host.querySelectorAll(".ai-agent").forEach(b => b.classList.toggle("on", b.dataset.agent === agent));
+  const sms = host.querySelector("#aiLeadSms");
+  if (sms) sms.hidden = agent !== "leasing";
   paintThread(host);
 }
 
@@ -232,6 +236,7 @@ export function initConcierge() {
     '<div class="ai-agents">' +
     Object.entries(AGENTS).map(([k, a]) => '<button class="chip ai-agent' + (k === current ? " on" : "") + '" data-agent="' + k + '">' + a.chip + '</button>').join("") +
     '<span style="flex:1"></span>' +
+    '<button class="chip" id="aiLeadSms" title="Copy the ready-to-send lead SMS (leasing one-pager link + tour line) — send from your own phone"' + (current === "leasing" ? "" : " hidden") + '>📦 Lead SMS</button>' +
     '<button class="chip" id="aiNew" title="Start a fresh conversation">+ New</button>' +
     '<button class="chip" id="aiBriefs" title="Monthly owner intelligence briefs">📊 Briefs</button>' +
     '<button class="chip" id="aiHist" title="Past conversations">🗂 History</button></div>' +
@@ -250,6 +255,17 @@ export function initConcierge() {
 
   host.querySelectorAll(".ai-agent").forEach(b => { b.onclick = () => setAgent(host, b.dataset.agent); });
   host.querySelector("#aiNew").onclick = () => { state[current] = { history: [], threadId: null }; persistAI(); paintThread(host); };
+  const leadSms = host.querySelector("#aiLeadSms");
+  leadSms.onclick = async () => {
+    const vacants = UNITS.filter(u => u.status === "vacant").map(u => ({ unit: u.unit, sf: u.sf }));
+    try {
+      await navigator.clipboard.writeText(smsText(vacants, LEASING_URL));
+      leadSms.textContent = "✓ Copied — paste into your SMS";
+    } catch {
+      leadSms.textContent = "✗ Copy blocked";
+    }
+    setTimeout(() => { leadSms.textContent = "📦 Lead SMS"; }, 2200);
+  };
   host.querySelector("#aiHist").onclick = () => {
     const p = host.querySelector("#aiHistory");
     p.hidden = !p.hidden;

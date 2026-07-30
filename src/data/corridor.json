@@ -1,0 +1,272 @@
+{
+  "_comment": "Google Maps Platform snapshot (tools/gmaps-pull.mjs). Ratings/ratings-counts are Google user data — attribute 'Google' wherever displayed. Re-run the tool to refresh; never fetched at runtime.",
+  "asOf": "2026-07-30",
+  "center": {
+    "latitude": 30.201689,
+    "longitude": -92.053983
+  },
+  "centerListing": {
+    "name": "On The Boulevard Shopping Center",
+    "type": "Shopping Mall",
+    "rating": 4.3,
+    "ratings": 184
+  },
+  "inner": {
+    "radiusMeters": 120,
+    "places": [
+      {
+        "name": "Lafayette Music Company",
+        "type": "Store",
+        "rating": 4.6,
+        "ratings": 417
+      },
+      {
+        "name": "Great American Cookies",
+        "type": "Bakery",
+        "rating": 4.1,
+        "ratings": 203
+      },
+      {
+        "name": "Cat Clinic of Lafayette",
+        "type": "Veterinary Care",
+        "rating": 4.8,
+        "ratings": 137
+      },
+      {
+        "name": "The Pink Paisley",
+        "type": "Gift Shop",
+        "rating": 4.9,
+        "ratings": 130
+      },
+      {
+        "name": "Mary Ellen's Tux Shop",
+        "type": "Clothing Store",
+        "rating": 4.8,
+        "ratings": 127
+      },
+      {
+        "name": "Our Savior's Church Midtown Campus",
+        "type": "Church",
+        "rating": 4.9,
+        "ratings": 109
+      },
+      {
+        "name": "Cajun Clean Express Wash",
+        "type": "Car Wash",
+        "rating": 4.5,
+        "ratings": 103
+      },
+      {
+        "name": "Hand Up Thrift",
+        "type": "Thrift Store",
+        "rating": 4.5,
+        "ratings": 100
+      },
+      {
+        "name": "Victoria Nails",
+        "type": "Nail Salon",
+        "rating": 3.7,
+        "ratings": 62
+      },
+      {
+        "name": "Clothing Loft",
+        "type": "Women's Clothing Store",
+        "rating": 4.1,
+        "ratings": 55
+      },
+      {
+        "name": "Magnolia Salon & Parlour",
+        "type": "Beauty Salon",
+        "rating": 4.7,
+        "ratings": 47
+      },
+      {
+        "name": "Painted Bayou",
+        "type": "Educational Institution",
+        "rating": 4.9,
+        "ratings": 36
+      },
+      {
+        "name": "Graze Acadiana- Graze Oil",
+        "type": "Food Store",
+        "rating": 4.8,
+        "ratings": 20
+      },
+      {
+        "name": "JC Kate Boutique",
+        "type": "Clothing Store",
+        "rating": 4.7,
+        "ratings": 14
+      },
+      {
+        "name": "JD Bank",
+        "type": "Bank",
+        "rating": 4.5,
+        "ratings": 11
+      },
+      {
+        "name": "Oil Center Research International LLC",
+        "type": "General Contractor",
+        "rating": 4.8,
+        "ratings": 4
+      },
+      {
+        "name": "Oupac Financial Services",
+        "type": "Banking and Finance",
+        "rating": 4.8,
+        "ratings": 4
+      },
+      {
+        "name": "BERNINA Lafayette",
+        "type": "Store",
+        "rating": 5,
+        "ratings": 2
+      }
+    ]
+  },
+  "outer": {
+    "radiusMeters": 400,
+    "places": [
+      {
+        "name": "Appliances 4 Less",
+        "type": "Home Goods Store",
+        "rating": 4.9,
+        "ratings": 1091
+      },
+      {
+        "name": "El Pollo Loco",
+        "type": "Mexican Restaurant",
+        "rating": 4.4,
+        "ratings": 963
+      },
+      {
+        "name": "SouthStar Urgent Care - Lafayette Midtown",
+        "type": "Medical Clinic",
+        "rating": 4.6,
+        "ratings": 957
+      },
+      {
+        "name": "Jason's Deli",
+        "type": "Restaurant",
+        "rating": 4.5,
+        "ratings": 788
+      },
+      {
+        "name": "Harbor Freight",
+        "type": "Hardware Store",
+        "rating": 4.4,
+        "ratings": 765
+      },
+      {
+        "name": "Taco Sisters",
+        "type": "Restaurant",
+        "rating": 4.6,
+        "ratings": 583
+      },
+      {
+        "name": "Piccadilly",
+        "type": "Restaurant",
+        "rating": 4.1,
+        "ratings": 516
+      },
+      {
+        "name": "La Fonda",
+        "type": "Mexican Restaurant",
+        "rating": 4.2,
+        "ratings": 430
+      },
+      {
+        "name": "Lafayette Music Company",
+        "type": "Store",
+        "rating": 4.6,
+        "ratings": 417
+      },
+      {
+        "name": "Gambino's Bakery",
+        "type": "Bakery",
+        "rating": 4.5,
+        "ratings": 276
+      },
+      {
+        "name": "Great American Cookies",
+        "type": "Bakery",
+        "rating": 4.1,
+        "ratings": 203
+      },
+      {
+        "name": "Charisma Bridal and Formals",
+        "type": "Clothing Store",
+        "rating": 4.1,
+        "ratings": 195
+      },
+      {
+        "name": "Dollar Tree",
+        "type": "Discount Store",
+        "rating": 4,
+        "ratings": 143
+      },
+      {
+        "name": "Golfballs.com Retail Center",
+        "type": "Sporting Goods Store",
+        "rating": 4.4,
+        "ratings": 129
+      },
+      {
+        "name": "Mary Ellen's Tux Shop",
+        "type": "Clothing Store",
+        "rating": 4.8,
+        "ratings": 127
+      },
+      {
+        "name": "Hand Up Thrift",
+        "type": "Thrift Store",
+        "rating": 4.5,
+        "ratings": 100
+      },
+      {
+        "name": "Calvary Thrift",
+        "type": "Discount Store",
+        "rating": 4.5,
+        "ratings": 80
+      },
+      {
+        "name": "Crave Romance Boutique",
+        "type": "Women's Clothing Store",
+        "rating": 4.6,
+        "ratings": 52
+      },
+      {
+        "name": "Asbury United Methodist Church",
+        "type": "Church",
+        "rating": 4.9,
+        "ratings": 36
+      },
+      {
+        "name": "Hancock Whitney Bank",
+        "type": "Bank",
+        "rating": 4,
+        "ratings": 22
+      }
+    ]
+  },
+  "driveTimes": [
+    {
+      "id": "downtown",
+      "name": "Downtown Lafayette",
+      "minutes": 9,
+      "miles": 3
+    },
+    {
+      "id": "ul",
+      "name": "UL Lafayette campus",
+      "minutes": 6,
+      "miles": 2.4
+    },
+    {
+      "id": "i10",
+      "name": "I-10 (Ambassador Caffery)",
+      "minutes": 12,
+      "miles": 4.6
+    }
+  ]
+}
