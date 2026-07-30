@@ -3,7 +3,35 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-29 — **D-1 OCCUPANCY CARD FIXED + DEPLOYED (275
+Last updated: 2026-07-30 — **LEASING-PACKAGE v1.5 (queue #4) SHIPPED +
+DEPLOYED (281 tests) — Google Maps Platform onboarded.** Operator created a
+key (broad Maps-Platform restriction, acceptable) → `~/.otb-gmaps.env`
+(GOOGLE_MAPS_API_KEY, same never-in-chat drill; NOT in Vercel env — key is
+build-time only). `tools/gmaps-pull.mjs` snapshots Places two-ring
+(120 m tenants / 400 m corridor) + Routes drive times →
+`src/data/corridor.json` (committed; re-run to refresh). Pure seam
+`src/lib/leasing.js` (+6 tests): tenant-rating matching vs rent roll
+(token-subset + GOOGLE_NAME_ALIASES — "Mary Ellen's Tux Shop"→123; match
+across BOTH rings, anchor pins sit outside 120 m), driveLine, smsText,
+LEASING_URL. `tools/leasing-package.py` (node seam contract + otb_brand)
+→ **`public/leasing.html` — LIVE on both hosts**
+(orangeoceanatlas.com/leasing.html · otb-command.vercel.app/leasing.html):
+navy/white, zero JS, mobile-clean (375px verified, no h-scroll), 131+133
+cards + combinable 3,179 SF, high-teens $/SF (SOP range only), drive strip
+(9 downtown · 6 UL · 12 I-10), tenant ratings under SOT names (display
+gate ≥4.0★ & ≥10 reviews), neighbor draws, 324 spaces cited, Google
+attribution + as-of. **AI-1 leasing agent → "📦 Lead SMS" chip** (copies
+ready-to-send text w/ package link + (337) 270-7044; app sends NOTHING).
+Prod bundle grep-verified (aiLeadSms/leasing.html). **Aerial View find:**
+Google has a pre-rendered 40s flyover (Apr 2022) →
+`G:\My Drive\00 OTB\OTB-aerial-google-2022.mp4` — operator to judge as B3
+stopgap vs wait for re-fly. Probe tools: gmaps-probe.mjs (Solar returned
+only 11.5K SF slice — needs per-building/dataLayers for full roof; Isochrones
+untested, deferred). **Operator smoke: open orangeoceanatlas.com/leasing.html
+on phone → AI-1 🤝 Leasing → 📦 Lead SMS → paste somewhere · watch the
+aerial MP4.** LEASING_URL swaps when the canonical-domain decision lands
+(then regen page + SMS). Aug-1 ACH still OPEN — 2 days.
+Prior: 2026-07-29 — **D-1 OCCUPANCY CARD FIXED + DEPLOYED (275
 tests) — root cause was CADENCE, not render:** the card gated on a 6h
 freshness window (`listOccupancy(6)`) but C3 uploads land once nightly
 (23:45 local), so the newest sample was 11–19h old all business day and
