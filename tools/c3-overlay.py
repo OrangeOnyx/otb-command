@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""c3-overlay.py — render candidate stall quads over a camera frame for visual
+﻿# -*- coding: utf-8 -*-
+"""c3-overlay.py â€” render candidate stall quads over a camera frame for visual
 zone authoring (companion to c3-stalls.py; same quad convention TL,TR,BR,BL in
 NATIVE px). Reads quads from a scratch JSON (or docs/c3-stall-zones.json with
 --zones) and writes export/_c3_overlay_<cam>.jpg.
@@ -11,7 +11,7 @@ import json, os, sys, glob
 from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAPTURE = r"C:\Users\adam\Downloads\Drone Footage RAW\OTB-cube-capture"
+CAPTURE = r"E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\OTB-cube-capture"
 
 def latest_frame(cam):
     days = sorted(glob.glob(os.path.join(CAPTURE, "20??-??-??")))

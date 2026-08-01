@@ -1,11 +1,11 @@
-# c3-nightly.ps1 - daily C3 occupancy: classify banked frames (Haiku, hourly
+﻿# c3-nightly.ps1 - daily C3 occupancy: classify banked frames (Haiku, hourly
 # sampling) and upload the results to Supabase. Companion to sampler-watchdog.ps1.
 #
 # Registered as Scheduled Tasks "OTB-C3-Nightly" (daily 23:45) and
-# "OTB-C3-Midday" (daily 12:00 — same script; keeps the D-1 card showing
+# "OTB-C3-Midday" (daily 12:00 â€” same script; keeps the D-1 card showing
 # same-morning data instead of yesterday's nightly batch. Classify+upload are
 # frame-idempotent, so the nightly pass re-processes nothing the midday pass
-# already did — earlier data, no extra Haiku spend).
+# already did â€” earlier data, no extra Haiku spend).
 # Re-register both after an OS reinstall with:
 #   powershell -File tools\c3-nightly.ps1 -Register
 #
@@ -19,8 +19,8 @@
 
 param([switch]$Register)
 
-$Repo = "C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command"
-$CaptureDir = "C:\Users\adam\Downloads\Drone Footage RAW\OTB-cube-capture"
+$Repo = "C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command"
+$CaptureDir = "E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\OTB-cube-capture"
 $Log = Join-Path $CaptureDir "c3-nightly.log"
 
 if ($Register) {

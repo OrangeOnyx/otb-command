@@ -1,4 +1,4 @@
-# Pass 3 — relaxed blob filter; fit the west + east diagonal tails.
+﻿# Pass 3 â€” relaxed blob filter; fit the west + east diagonal tails.
 from PIL import Image
 from collections import deque
 
@@ -45,7 +45,7 @@ def fit(pts):
 
 for name, x0, y0 in [("hunt-diag-west-1.png", 600, 1750), ("hunt-diag-east-1.png", 5400, 1700)]:
     print("---", name)
-    all_b = blobs(rf"C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command\reference\{name}", x0, y0)
+    all_b = blobs(rf"C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command\reference\{name}", x0, y0)
     tail = []
     for cx, cy, bw, bh, a, f in all_b:
         kind = "run " if abs(cy - 1845) < 12 and bh <= 20 else "tail"

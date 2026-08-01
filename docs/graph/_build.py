@@ -1,4 +1,4 @@
-import json
+﻿import json
 from pathlib import Path
 
 from graphify.build import build_from_json
@@ -19,7 +19,7 @@ surprises = surprising_connections(G, communities)
 labels = {cid: 'Community ' + str(cid) for cid in communities}
 questions = suggest_questions(G, communities, labels)
 
-INPUT_PATH = r'C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command'
+INPUT_PATH = r'C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command'
 report = generate(G, communities, cohesion, labels, gods, surprises, detection,
                   tokens, INPUT_PATH, suggested_questions=questions)
 Path('graphify-out/GRAPH_REPORT.md').write_text(report, encoding='utf-8')

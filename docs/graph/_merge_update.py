@@ -1,7 +1,7 @@
-"""Merge for the 2026-07-29 incremental update.
+﻿"""Merge for the 2026-07-29 incremental update.
 
 Combines:
-  1. Fresh AST extraction (.graphify_ast.json — all code files)
+  1. Fresh AST extraction (.graphify_ast.json â€” all code files)
   2. New semantic chunks 11-14 (this run's subagents)
   3. Preserved semantic nodes/edges from the OLD graph for unchanged,
      already-covered doc/image files NOT re-extracted this run
@@ -16,7 +16,7 @@ import glob
 import json
 from pathlib import Path
 
-# real token usage from the Agent tool results — fill in after agents return
+# real token usage from the Agent tool results â€” fill in after agents return
 USAGE = {
     '11': 176832, '12': 152449, '13': 150878, '14': 147809,
 }
@@ -107,9 +107,9 @@ print(f"Final extraction: {len(merged_nodes)} nodes, {len(merged['edges'])} edge
 
 # --- seed the semantic cache so the next update hits ---
 # root MUST be the repo (source_file paths are repo-relative); with the
-# default root='.', every path misses and 0 files cache — the silent
+# default root='.', every path misses and 0 files cache â€” the silent
 # failure that left the 07-26 run uncached.
 from graphify.cache import save_semantic_cache
-REPO = Path(r'C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command')
+REPO = Path(r'C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command')
 saved = save_semantic_cache(new_nodes, valid_new_edges, new_hyper, root=REPO)
 print(f'Semantic cache seeded: {saved} files')

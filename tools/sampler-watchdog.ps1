@@ -15,8 +15,8 @@
 
 param([switch]$Register)
 
-$Repo = "C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command"
-$CaptureDir = "C:\Users\adam\Downloads\Drone Footage RAW\OTB-cube-capture"
+$Repo = "C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command"
+$CaptureDir = "E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\OTB-cube-capture"
 $PidFile = Join-Path $CaptureDir "sampler.pid"
 $Log = Join-Path $CaptureDir "sampler.log"
 

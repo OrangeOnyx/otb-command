@@ -1,8 +1,8 @@
-import json
+﻿import json
 from pathlib import Path
 from graphify.detect import detect
 
-repo = Path(r'C:\Users\adam\Downloads\otb-command-claude-code-kit\otb-command')
+repo = Path(r'C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command')
 result = detect(repo)
 
 EXCLUDE_DIRS = {'node_modules', 'dist', '.vercel', '.git', 'marketing', 'public', 'baseline'}

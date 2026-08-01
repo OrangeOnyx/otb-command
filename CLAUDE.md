@@ -129,3 +129,15 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - Validate before delivery: `node --check` each module / `npm run build`.
 - Commit per logical change with imperative messages ("Add geometry.json trace").
 - Rev label in the A-1 title block bumps on every geometry change.
+
+## Paths (canonical as of 2026-08-01)
+
+- **Repo root:** `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
+  Moved from `C:\Users\adam\Downloads\` on 2026-08-01. Any reference to the old
+  Downloads path is stale â€” correct it rather than following it.
+- **Capture data:** `E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\` (external drive).
+  Never commit capture frames, drone footage, or other large binaries to this repo.
+- **Remote:** `https://github.com/OrangeOnyx/otb-command` (private).
+
+Save generated documentation and reports under `docs/` so they are versioned.
+Throwaway scratch output belongs outside the repo entirely.

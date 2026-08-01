@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
-C3-A parking occupancy — stall crops + VLM classification (operator picks: 1 + A).
+C3-A parking occupancy â€” stall crops + VLM classification (operator picks: 1 + A).
 
 Pipeline: the C3 sampler banks frames (300s x 17 cams) in the capture dir
 OUTSIDE the repo. This tool reads docs/c3-stall-zones.json (per-camera stall
 quadrilaterals over the storefront head-on row), perspective-crops each stall,
 and classifies crops occupied/empty with Claude Haiku (operator's classifier
-pick; one request per FRAME with all stalls labeled — not per stall).
+pick; one request per FRAME with all stalls labeled â€” not per stall).
 
 Usage:
   python tools/c3-stalls.py --grid suite-105-parking     # gridded frame for zone authoring
@@ -15,7 +15,7 @@ Usage:
                                                          # classify banked frames -> occupancy JSONL
 
 Classification needs ANTHROPIC_API_KEY in the environment (the app's key lives
-ONLY in Vercel env — export a key locally to run; never commit or paste keys).
+ONLY in Vercel env â€” export a key locally to run; never commit or paste keys).
 Results append to <capture>/occupancy/<date>.jsonl (outside the repo, like the
 frames). Idempotent: a (frame, stall) already in the JSONL is skipped.
 """
@@ -24,7 +24,7 @@ import argparse, base64, io, json, os, re, sys, glob
 from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CAPTURE = r"C:\Users\adam\Downloads\Drone Footage RAW\OTB-cube-capture"
+CAPTURE = r"E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\OTB-cube-capture"
 ZONES_PATH = os.path.join(ROOT, "docs", "c3-stall-zones.json")
 CROP_W, CROP_H = 320, 320
 
@@ -46,7 +46,7 @@ def frames_for(cam, date=None):
 def crop_stall(im, quad):
     # PIL QUAD transform maps the source quadrilateral onto the output rect.
     # PIL's quad order is NW, SW, SE, NE (counter-clockwise from top-left);
-    # config stores TL, TR, BR, BL — reorder here.
+    # config stores TL, TR, BR, BL â€” reorder here.
     tl, tr, br, bl = quad
     return im.transform((CROP_W, CROP_H), Image.QUAD,
                         (tl[0], tl[1], bl[0], bl[1], br[0], br[1], tr[0], tr[1]),
@@ -158,8 +158,8 @@ def cmd_classify(date, every, limit):
                     rec = {"frame": frame, "camera": cam, "stall": s["id"],
                            "ts": ts, "state": verdicts.get(s["id"], "unclear")}
                     out.write(json.dumps(rec) + "\n")
-                print(frame, "→", {s["id"]: verdicts.get(s["id"]) for s in todo})
-    print(f"done: {n_req} Haiku requests → {outpath}")
+                print(frame, "â†’", {s["id"]: verdicts.get(s["id"]) for s in todo})
+    print(f"done: {n_req} Haiku requests â†’ {outpath}")
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     ap.add_argument("--montage", action="store_true")
     ap.add_argument("--classify", action="store_true")
     ap.add_argument("--date")
-    ap.add_argument("--every", type=int, default=12, help="use every Nth frame (12 ≈ hourly at 300s cadence)")
+    ap.add_argument("--every", type=int, default=12, help="use every Nth frame (12 â‰ˆ hourly at 300s cadence)")
     ap.add_argument("--limit", type=int, default=0, help="max frames per camera (0 = all)")
     a = ap.parse_args()
     if a.grid: cmd_grid(a.grid)
