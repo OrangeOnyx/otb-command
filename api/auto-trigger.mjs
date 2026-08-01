@@ -19,6 +19,7 @@ import { collectCandidates } from "../src/lib/autotrigger.js";
 import { maintTriggerCandidates } from "../src/lib/maintenance.js";
 import { c3StaleCandidate } from "../src/lib/occupancy.js";
 import { shapeUnifi, unifiTriggerCandidate } from "../src/lib/unifi.js";
+import { voiceLeadCandidates } from "../src/lib/voiceagent.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
@@ -80,6 +81,14 @@ export default async function handler(req, res) {
     const open = await rpc("get_open_maintenance", { p_secret: secret });
     candidates.push(...maintTriggerCandidates(open, today));
   } catch (e) { console.warn("maint scan:", e.message); }
+
+  /* A-3 queue #2: leasing calls that never reached book_tour → one manager
+     thread each (idempotent by "voice-lead:<call_sid>" — shared with the
+     truthful-booking guard's inline alert, so nothing double-fires). */
+  try {
+    const calls = await rpc("get_unbooked_voice_leads", { p_secret: secret });
+    candidates.push(...voiceLeadCandidates(calls, new Date().toISOString()));
+  } catch (e) { console.warn("voice-lead scan:", e.message); }
 
   /* C3 heartbeat: stale occupancy pipeline → one manager thread per outage
      (trigger_source keyed by last-sample day). A probe failure is itself

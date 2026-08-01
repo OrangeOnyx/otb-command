@@ -119,6 +119,40 @@ export const BOOKING_GUARD_NOTE = `SYSTEM CHECK (the caller did not say this; ne
    because the guard also opens a manager thread */
 export const BOOKING_FALLBACK = "One correction so I'm completely accurate — your tour time is not locked in on my end yet. I do have your details in front of Adam, and he will call you back promptly to confirm the exact time. Thank you for calling On The Boulevard.";
 
+/* ---- unbooked-lead safety net (queue #2, 2026-08-01) ----
+   Every leasing call should end in a tour_bookings row or an operator
+   callback. The daily cron feeds this with leasing voice_calls that have no
+   booking; each becomes an idempotent manager thread keyed voice-lead:<sid>
+   (the SAME key the truthful-booking guard uses, so a call the guard already
+   flagged never double-alerts). Calls under 2h old are skipped — possibly
+   still in progress or being handled same-hour. */
+export function voiceLeadCandidates(calls, nowIso, graceMin = 120) {
+  const now = Date.parse(nowIso || "");
+  if (!Array.isArray(calls) || !Number.isFinite(now)) return [];
+  const out = [];
+  for (const c of calls) {
+    const sid = String(c?.call_sid || "");
+    const started = Date.parse(c?.started_at || "");
+    if (!sid || !Number.isFinite(started)) continue;
+    if (now - started < graceMin * 60000) continue;
+    const digits = normalizePhone(c?.caller);
+    const who = digits
+      ? `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`
+      : (String(c?.caller || "").trim() || "unknown number");
+    const when = new Date(started).toISOString().slice(0, 16).replace("T", " ") + " UTC";
+    out.push({
+      agent: "manager",
+      kind: "voice-lead",
+      title: "Leasing lead without a tour booking",
+      triggerSource: "voice-lead:" + sid,
+      detail: `Leasing call ${sid} from ${who} (${when}) ended without a tour booking. ` +
+        `Read the voice-leasing transcript in AI-1 and call the prospect back to set the tour — ` +
+        `no lead drops silently.`,
+    });
+  }
+  return out;
+}
+
 /* ---- tools ---- */
 export const MAINT_TOOL = {
   name: "file_maintenance_request",

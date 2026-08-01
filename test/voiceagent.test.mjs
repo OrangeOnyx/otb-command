@@ -146,3 +146,40 @@ test("booking guard constants are speakable and non-empty", () => {
   assert.equal(speechify(BOOKING_FALLBACK), BOOKING_FALLBACK);
   assert.ok(!/[*_#`>|\[\]]/.test(BOOKING_FALLBACK));
 });
+
+/* ---- queue #2: unbooked-lead safety net (2026-08-01) ---- */
+import { voiceLeadCandidates } from "../src/lib/voiceagent.js";
+
+test("voiceLeadCandidates: flags leasing calls with no booking, keyed by call_sid", () => {
+  const now = "2026-08-01T12:00:00Z";
+  const calls = [
+    { call_sid: "CA111", caller: "3375551234", started_at: "2026-07-31T20:10:00Z" },
+    { call_sid: "CA222", caller: "", started_at: "2026-08-01T02:00:00Z" },
+  ];
+  const out = voiceLeadCandidates(calls, now);
+  assert.equal(out.length, 2);
+  assert.equal(out[0].agent, "manager");
+  assert.equal(out[0].triggerSource, "voice-lead:CA111");
+  assert.ok(out[0].title.length > 10);
+  assert.ok(out[0].detail.includes("CA111"));
+  assert.ok(out[0].detail.includes("337-555-1234") || out[0].detail.includes("3375551234"));
+  // unknown caller never renders as empty/undefined
+  assert.ok(!/undefined/.test(out[1].detail));
+});
+
+test("voiceLeadCandidates: grace period — fresh calls are not flagged yet", () => {
+  const now = "2026-08-01T12:00:00Z";
+  const calls = [
+    { call_sid: "CAfresh", caller: "x", started_at: "2026-08-01T11:30:00Z" }, // 30 min old
+    { call_sid: "CAripe", caller: "x", started_at: "2026-08-01T09:00:00Z" },  // 3 h old
+  ];
+  const out = voiceLeadCandidates(calls, now);
+  assert.equal(out.length, 1);
+  assert.equal(out[0].triggerSource, "voice-lead:CAripe");
+});
+
+test("voiceLeadCandidates: null-safe on junk input", () => {
+  assert.deepEqual(voiceLeadCandidates(null, "2026-08-01T12:00:00Z"), []);
+  assert.deepEqual(voiceLeadCandidates([], "2026-08-01T12:00:00Z"), []);
+  assert.deepEqual(voiceLeadCandidates([{}], "2026-08-01T12:00:00Z"), []);
+});
