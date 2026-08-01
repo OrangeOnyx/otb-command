@@ -29,7 +29,7 @@ const flag = (name, dflt) => {
   const i = args.indexOf("--" + name);
   return i >= 0 ? args[i + 1] : dflt;
 };
-const OUT = flag("out", "C:\\Users\\adam\\Downloads\\Drone Footage RAW\\OTB-cube-capture");
+const OUT = flag("out", "E:\\OTB-CAPTURE\\Drone-Footage-RAW-2026-07\\OTB-cube-capture");
 const EVERY = +flag("every", 300);
 const FROM = flag("from", null);
 const TO = flag("to", null);

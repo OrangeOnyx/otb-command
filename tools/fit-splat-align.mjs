@@ -20,7 +20,7 @@ import { dirname, join } from "node:path";
 import { qRotate, levelQuat, composeAlign, realityBoxes, TRUE_FT_WORLD } from "../src/lib/splat-align.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const src = process.argv[2] || "C:/Users/adam/Downloads/Drone Footage RAW/OTB-splat-v1.ply";
+const src = process.argv[2] || "E:/OTB-CAPTURE/Drone-Footage-RAW-2026-07/OTB-splat-v1.ply";
 
 /* ── plan footprints in world coords ─────────────────────────── */
 const geometry = JSON.parse(readFileSync(join(root, "src/data/geometry.json"), "utf8"));

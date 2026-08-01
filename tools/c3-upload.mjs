@@ -20,7 +20,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const CAPTURE = "C:\\Users\\adam\\Downloads\\Drone Footage RAW\\OTB-cube-capture";
+const CAPTURE = "E:\\OTB-CAPTURE\\Drone-Footage-RAW-2026-07\\OTB-cube-capture";
 
 const args = process.argv.slice(2);
 const date = args[args.indexOf("--date") + 1];

@@ -5,7 +5,7 @@ import * as GS from "@mkkellogg/gaussian-splats-3d";
 import { readFileSync, writeFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-const src = process.argv[2] || "C:/Users/adam/Downloads/Drone Footage RAW/OTB-splat-v1.ply";
+const src = process.argv[2] || "E:/OTB-CAPTURE/Drone-Footage-RAW-2026-07/OTB-splat-v1.ply";
 const shDegree = Number(process.argv[3] ?? 1); // web default: SH1 (view-dependence without SH3 weight)
 const out = fileURLToPath(new URL("../public/OTB-splat.ksplat", import.meta.url));
 
