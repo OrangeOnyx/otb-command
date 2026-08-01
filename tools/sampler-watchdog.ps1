@@ -1,4 +1,11 @@
-﻿# sampler-watchdog.ps1 - keep the C3 Cube frame sampler alive.
+# RETIRED 2026-08-01 - the live sampler was replaced by archive backfill in
+# c3-nightly.ps1. The Cube keeps >= 55 days (verified), and the classifier only
+# ever read one frame per camera per hour, so sampling every 300s stored ~92%
+# frames nothing consumed. The OTB-C3-Sampler-Watchdog scheduled task has been
+# unregistered. This file is kept for history and for -Register if you ever need
+# a live collector again; it is NOT part of the running pipeline.
+#
+# sampler-watchdog.ps1 - keep the C3 Cube frame sampler alive.
 #
 # The sampler (tools/cube-frames.mjs --loop 300) is a detached node process that
 # has died three times (2x reboot, 1x silent kill 2026-07-22 ~02:38). This script
