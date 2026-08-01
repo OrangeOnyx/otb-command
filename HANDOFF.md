@@ -3,7 +3,39 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-07-30 â€” **LEASING-PACKAGE v1.5 (queue #4) SHIPPED +
+Last updated: 2026-08-01 — **AUG-1 GO-LIVE LANDED + THE 07-28 QUEUE IS
+COMPLETE (all four; 289 tests).** Repo-move check: site was never down —
+operator hit `/leasing` w/o `.html` (404; no-extension redirect NOT built,
+decision open). **A-5 ACH ACTIVATED:** operator dropped a restricted
+rk_live key (events/PI/webhook-endpoint scopes verified 200) →
+STRIPE_SECRET_KEY via the byte-exact `cmd < file` drill → deployed →
+REAL-secret verify: brain re-fetch returned 404-authenticated (not 401).
+Webhook endpoint `we_1TzXByAG3Ua90EF59aSkCLBl` created VIA API
+(operator-approved), enabled, live-mode, both PI events. ⚠ `~/.otb-stripe.key`
+STILL ON DISK — operator to delete (or say the word). First real payment =
+remaining smoke; payment links MUST carry metadata.unit. **LEDGER GO-LIVE
+CONFIRMED:** scheduled cron (11:09Z) posted 24 charges = $90,291.23
+(27 units − 131/133 vacant − 135B owner); manual re-run inserted 0 =
+idempotency proven live. **QUEUE #1 truthful booking SHIPPED + DEPLOYED:**
+persona TRUTH RULE + pure `claimsBooking()` detector (negation/conditional/
+future-aware) + brain guard — unbacked claim → 1 corrective round → honest
+BOOKING_FALLBACK + manager thread `voice-lead:<callSid>`; new RPC
+`voice_call_has_booking` (applied, wrong-secret raise verified) lets callers
+restate REAL bookings cross-turn (bridge history is text-only — that's the
+root enabler). **QUEUE #2 unbooked-lead cron SHIPPED + DEPLOYED:** RPC
+`get_unbooked_voice_leads` (14d window) + `voiceLeadCandidates` seam (2h
+grace) rides auto-trigger; live smoke opened `voice-lead:CA3089…` = exactly
+the 07-28 hallucinated call. Shares the guard's thread key — never
+double-fires. **QUEUE #3 dedupe SHIPPED (DB-only, no deploy needed):**
+`voice_file_maintenance` now returns the existing ticket for same
+unit+title (case/space-blind) within 10 min; rollback smoke passed
+(dedupe ✓ cross-unit ✓ gate ✓, zero rows leaked). **Operator smoke: call
+(337) 270-7044, book a real tour → tour_bookings gets its FIRST row · probe
+call "so I'm booked right?" without picking a slot → agent must refuse the
+claim · AI-1 → voice-lead thread for the 07-28 call is waiting.** Loose:
+40 deleted vendored-skill files uncommitted (plugin supersedes them) ·
+`/leasing` no-extension redirect undecided.
+Prior: 2026-07-30 — **LEASING-PACKAGE v1.5 (queue #4) SHIPPED +
 DEPLOYED (281 tests) â€” Google Maps Platform onboarded.** Operator created a
 key (broad Maps-Platform restriction, acceptable) â†’ `~/.otb-gmaps.env`
 (GOOGLE_MAPS_API_KEY, same never-in-chat drill; NOT in Vercel env â€” key is
