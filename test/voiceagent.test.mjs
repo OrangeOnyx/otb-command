@@ -94,3 +94,55 @@ test("tool schemas are well-formed", () => {
     ["emergency", "urgent", "routine"]);
   assert.ok(MAX_TURNS > 4);
 });
+
+/* ---- queue #1: truthful booking (2026-08-01) ---- */
+import { claimsBooking, BOOKING_GUARD_NOTE, BOOKING_FALLBACK } from "../src/lib/voiceagent.js";
+
+test("claimsBooking: catches unbacked booking-claim language", () => {
+  for (const s of [
+    "Perfect, you're locked in for Tuesday at 10.",
+    "I've booked you for Thursday at 2 PM.",
+    "You're all set for the tour!",
+    "Your tour is confirmed for Tuesday.",
+    "I have you scheduled for Thursday, and Adam will meet you there.",
+    "That slot is reserved for you.",
+    "Great — I penciled you in for Tuesday morning.",
+    "You are booked. See you then.",
+  ]) assert.ok(claimsBooking(s), "should claim: " + s);
+});
+
+test("claimsBooking: ignores offers, questions, negations, and futures", () => {
+  for (const s of [
+    "Would you like to book a tour?",
+    "Let me confirm your callback number.",
+    "I can get you booked for Tuesday if that works.",
+    "Once that's booked, Adam will reach out.",
+    "Nothing is booked until you hear from Adam.",
+    "That's not confirmed yet — Adam will call you.",
+    "I haven't booked anything yet; what time suits you?",
+    "It will be confirmed by Adam shortly.",
+    "We can schedule a time that works for you.",
+    "Which slot should I reserve for you?",
+  ]) assert.ok(!claimsBooking(s), "should NOT claim: " + s);
+});
+
+test("claimsBooking: empty and junk are not claims", () => {
+  assert.ok(!claimsBooking(""));
+  assert.ok(!claimsBooking(null));
+  assert.ok(!claimsBooking("Thanks for calling On The Boulevard."));
+});
+
+test("leasing persona: truth rule wired in", () => {
+  const p = leasingPersona(sop, { nowLine: "Friday 9 AM", slots: [] });
+  assert.ok(p.includes("ok:true"), "persona names the ok:true contract");
+  assert.ok(/never say or imply/i.test(p), "persona bans claim language");
+  assert.ok(/the (?:moment|instant) you have/i.test(p), "persona forces immediate book_tour");
+});
+
+test("booking guard constants are speakable and non-empty", () => {
+  assert.ok(BOOKING_GUARD_NOTE.length > 50);
+  assert.ok(BOOKING_FALLBACK.length > 30);
+  // fallback goes straight to TTS — must survive speechify unchanged
+  assert.equal(speechify(BOOKING_FALLBACK), BOOKING_FALLBACK);
+  assert.ok(!/[*_#`>|\[\]]/.test(BOOKING_FALLBACK));
+});

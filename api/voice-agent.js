@@ -13,6 +13,7 @@ import { rpcSecret } from "./_supa.mjs";
 import {
   tenantPersona, leasingPersona, nextTourSlots, speechify,
   MAINT_TOOL, TOUR_TOOL, MAX_TURNS, DEFAULT_TOUR_WINDOWS, SLOT_MINUTES_DEFAULT,
+  claimsBooking, BOOKING_GUARD_NOTE, BOOKING_FALLBACK,
 } from "../src/lib/voiceagent.js";
 import sop from "../src/data/sop.json" with { type: "json" };
 
@@ -122,22 +123,59 @@ export default async function handler(req, res) {
 
   const anthropic = new Anthropic();
   let reply = "";
-  try {
-    const convo = messages.slice();
-    for (let round = 0; round < 3; round++) {
+  let bookedThisTurn = false;
+  const convo = messages.slice();
+  async function modelRounds(max) {
+    for (let round = 0; round < max; round++) {
       const r = await anthropic.messages.create({
         model: MODEL, max_tokens: 400, system, tools, messages: convo,
       });
       const toolUse = r.content.find(b => b.type === "tool_use");
       const text = r.content.filter(b => b.type === "text").map(b => b.text).join(" ");
-      if (!toolUse) { reply = text; break; }
+      if (!toolUse) { reply = text; return; }
       const result = await runTool(toolUse.name, toolUse.input, callSid, caller);
+      if (toolUse.name === "book_tour" && result.ok) bookedThisTurn = true;
       convo.push({ role: "assistant", content: r.content });
       convo.push({
         role: "user",
         content: [{ type: "tool_result", tool_use_id: toolUse.id, content: JSON.stringify(result) }],
       });
       reply = text; // keep last text in case the loop caps out
+    }
+  }
+  try {
+    await modelRounds(3);
+
+    /* truthful-booking guard (queue #1): a leasing reply may assert a booking
+       ONLY if book_tour succeeded this turn or earlier in this same call
+       (checked in tour_bookings by call_sid — the bridge's text-only history
+       carries no tool evidence). One corrective round, then an honest
+       fallback + a voice-lead manager thread so the lead can't drop. */
+    if (line === "leasing" && claimsBooking(reply) && !bookedThisTurn) {
+      let bookedEarlier = false;
+      try {
+        bookedEarlier = await rpcSecret("voice_call_has_booking",
+          { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid }) === true;
+      } catch (e) { console.error("voice booking check:", e.message); }
+      if (!bookedEarlier) {
+        console.error("voice guard: unbacked booking claim", callSid);
+        convo.push({ role: "assistant", content: reply || "(no reply)" });
+        convo.push({ role: "user", content: BOOKING_GUARD_NOTE });
+        await modelRounds(2);
+        if (claimsBooking(reply) && !bookedThisTurn) {
+          reply = BOOKING_FALLBACK;
+          try {
+            await rpcSecret("open_trigger_thread", {
+              p_secret: process.env.CRON_SECRET, p_agent: "manager",
+              p_title: "Voice lead needs booking follow-up",
+              p_trigger: "voice-lead:" + callSid,
+              p_content: "The leasing agent claimed a booking twice without a book_tour success on call " +
+                callSid + " (caller " + (caller || "unknown") + "). The honest fallback was spoken. " +
+                "Check the voice-leasing transcript in AI-1 and call the prospect back to set the tour.",
+            });
+          } catch (e) { console.error("voice guard thread:", e.message); }
+        }
+      }
     }
   } catch (e) {
     console.error("voice anthropic:", e.message);

@@ -90,6 +90,35 @@ export function normalizePhone(s) {
   return d.length === 10 ? d : "";
 }
 
+/* ---- truthful booking (queue #1, 2026-08-01) ----
+   The bridge replays text-only history, so a hallucinated "you're booked"
+   carries no tool evidence and nothing downstream catches it. claimsBooking
+   is the deterministic backstop: does this reply ASSERT a booking? Claim
+   keywords count only when not negated ("not booked yet"), conditional
+   ("once that's booked"), or future/intent ("I can get you booked"). */
+const CLAIM_RE = /\b(?:booked|locked[ -]?in|penciled(?: \w+)? in|all set|confirmed|reserved|scheduled)\b/g;
+const PRE_BLOCK_RE = /\b(?:not|no|nothing|never|haven'?t|hasn'?t|isn'?t|aren'?t|won'?t|wouldn'?t|can'?t|cannot|couldn'?t|to|will|would|can|could|shall|should|may|might|must|gonna|once|if|until|unless|before|want|like|ready)\s+(?:\w+['’]?\w*\s+){0,2}$/i;
+
+export function claimsBooking(text) {
+  for (const s of String(text || "").toLowerCase().split(/[.!?]+/)) {
+    if (s.includes("?")) continue;
+    CLAIM_RE.lastIndex = 0;
+    let m;
+    while ((m = CLAIM_RE.exec(s))) {
+      if (!PRE_BLOCK_RE.test(s.slice(0, m.index))) return true;
+    }
+  }
+  return false;
+}
+
+/* injected as a user turn when the guard trips — the model gets ONE chance
+   to either actually call book_tour or walk the claim back */
+export const BOOKING_GUARD_NOTE = `SYSTEM CHECK (the caller did not say this; never read it aloud): no tour has been booked in this call — book_tour has not returned ok:true. Your last message claimed a booking, which is false. Reply again, truthfully: if you already have the caller's name, callback number, and a chosen slot from the OPEN TOUR SLOTS list, call book_tour RIGHT NOW. Otherwise, correct yourself plainly and either finish collecting those details or promise a prompt callback from Adam. Do not say booked, confirmed, locked in, all set, or reserved.`;
+
+/* spoken verbatim if the model doubles down — honest, and the lead is safe
+   because the guard also opens a manager thread */
+export const BOOKING_FALLBACK = "One correction so I'm completely accurate — your tour time is not locked in on my end yet. I do have your details in front of Adam, and he will call you back promptly to confirm the exact time. Thank you for calling On The Boulevard.";
+
 /* ---- tools ---- */
 export const MAINT_TOOL = {
   name: "file_maintenance_request",
@@ -175,6 +204,8 @@ SCREENING — the ONLY concept screen you apply: an exclusive-use conflict. The 
 TOURS: Adam shows every space personally. Offer these open slots (read at most two or three aloud, most convenient first):
   ${slots}
 When the caller picks one, confirm name, number, and the slot aloud, then call book_tour with the slot key EXACTLY as listed. If the booking comes back as taken, apologize and offer the next open slot. If no slot suits them, promise a callback from Adam to arrange a time.
+
+TRUTH RULE — this outranks everything else: a tour exists ONLY when the book_tour tool has returned ok:true in this call. Until that exact moment, never say or imply "booked", "confirmed", "locked in", "all set", or "reserved" — not to reassure, not to wrap up the call. The moment you have the caller's name, callback number, and a chosen slot, call book_tour IMMEDIATELY — before any confirmation language, before pleasantries. If the tool fails or you never called it, say plainly that the time is not locked in yet and Adam will confirm — an honest "Adam will confirm the time" keeps the lead; a false "you're booked" loses it.
 
 Every call ends the same way: their details are in front of Adam and he will follow up. Attorneys, government callers: name and number, prompt-callback promise, courteous end.`;
 }
