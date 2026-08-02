@@ -164,8 +164,10 @@ export async function authorizeEmail(email, role = "owner") {
   const me = (await sb.auth.getUser()).data.user;
   const { error } = await sb.from("authorized_emails").upsert({ email: e, role, added_by: me?.email || "", org_id: ctx.org_id });
   if (error) throw error;
-  // if they already signed in and are parked in 'pending', promote in place
-  const { error: e2 } = await sb.from("profiles").update({ role }).eq("email", e).eq("role", "pending");
+  // if they already signed in and are parked in 'pending', promote in place —
+  // the definer RPC syncs profiles.role AND creates the org_members row
+  // (post-Phase-B, membership is the RLS authority)
+  const { error: e2 } = await sb.rpc("promote_authorized", { p_email: e });
   if (e2) console.warn("promote:", e2.message);
 }
 export async function revokeAuthorized(email) {

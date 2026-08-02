@@ -1,0 +1,41 @@
+-- PHASE B-1 step 7 (merge-gate item d) — APPLIED to branch phase-b 2026-08-02
+-- as migrations `membership_migration` + `fix_membership_recursion`.
+--
+-- 1. Backfill: every non-pending profile → org_members (operator org-wide
+--    with full capabilities; owner/vendor/tenant property-scoped; tenant
+--    unit_scope from tenant_contacts, vendor unit_scope from vendors).
+--    Idempotent — at merge it runs against prod profiles.
+-- 2. handle_new_user now ALSO creates the membership at sign-up (vendor →
+--    tenant → allowlist resolution order unchanged); new users are never
+--    RLS-blind.
+-- 3. NEW RPC promote_authorized(p_email) — manage_members-gated definer;
+--    syncs profiles.role AND inserts the membership for users stuck in
+--    'pending' (the trigger only fires at first sign-up). Client
+--    authorizeEmail() calls it (remote.js, same commit).
+-- 4. NEW policy member_manage on org_members (manage_members capability).
+-- 5. LEGACY LEG DROPPED: member_role_in is membership-only. profiles.role
+--    survives ONLY as sign-up landing + client display mirror.
+-- 6. is_operator()/is_owner_or_operator() rewritten to membership
+--    ("operator/owner in any org" — api_usage + profiles admin policies).
+-- 7. DROPPED: zero-arg current_tenant_unit(), current_vendor_id(),
+--    is_tenant(), is_vendor() (unreferenced after the storage port).
+--
+-- fix_membership_recursion (assert-suite catch): member_manage originally
+-- called default_property_id() inside an org_members policy → RLS cycle
+-- (properties prop_read → org_members → member_manage → default_property_id
+-- → properties...) → stack-depth blowup on any authenticated insert using
+-- the tenancy column defaults. Fix: default_org_id()/default_property_id()
+-- are SECURITY DEFINER (deterministic infra config reads), and member_manage
+-- passes the row's property_id straight to member_can (its org-wide leg
+-- already covers null-property rows).
+--
+-- VERIFIED (assert-suite.sql, SUITE_PASS_ROLLBACK 2026-08-02): 5 personas ×
+-- 17 stamped tables — trigger-built memberships (4/4, operator org-wide,
+-- tenant unit 131, vendor folder) · operator full read + money/state writes ·
+-- owner reads surface, money/state writes 42501-blocked, safe_log insert-only
+-- (read-back blind) · tenant own-unit ledger/MR only (unit 105 invisible,
+-- cross-unit file blocked) · vendor assigned-MR only + own row + done-status
+-- write (unassigned write blocked) · authenticated stranger fully blind, all
+-- writes blocked · zero residue after rollback. Advisors: accepted
+-- definer-WARN class only + app_secrets deny-all INFO.
+-- See supabase branch migration history for the executable SQL.

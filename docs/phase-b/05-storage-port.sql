@@ -1,0 +1,17 @@
+-- PHASE B-1 step 5 (merge-gate item b) — APPLIED to branch phase-b 2026-08-02
+-- as migration `storage_membership_port`. All 19 role-gated storage.objects
+-- policies moved off the profiles-era zero-arg helpers onto membership:
+--   is_operator() / is_owner_or_operator()      → member_role_in(default_org_id(), default_property_id(), roles[])
+--   current_tenant_unit() / current_vendor_id() → the property-aware (org, prop) overloads
+-- Tenant photo policies additionally scope the maintenance_requests match by
+-- property_id. The esign signer policy is untouched (token-scoped via
+-- esign_requests state). Verified: 0 zero-arg helper references remain in
+-- storage policies.
+--
+-- FOLDER-PREFIX LAYOUT (<property_id>/...) DEFERRED to multi-property
+-- onboarding: no second property exists; prefixing now would force moving
+-- every existing prod object (merge_branch merges schema, not storage
+-- objects) for zero isolation gain — membership RLS is the security
+-- boundary. When property #2 onboards, new properties get prefixed folders
+-- and these policies extend per-layout. Flagged to operator 2026-08-02.
+-- See supabase branch migration history for the executable SQL.

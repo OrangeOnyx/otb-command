@@ -1,0 +1,21 @@
+-- PHASE B-1 step 6 (merge-gate item c, purges #4 + #6) — APPLIED to branch
+-- phase-b 2026-08-02 as migration `purge_facts_brand`.
+--
+-- purge #4: audit-grade view/AI fact literals → properties.facts jsonb
+--   (7 records for otb: parking-variance 99-11797 324/344/314 · JD Bank
+--   easement 2034-12-30 · church easement §3a liquor waiver · HVAC 149
+--   §9.01 Butcher · exclusives 129 HotWorx + 135A C. Wolf · identity
+--   GLA/units/acres/zoning). Sources: geometry.json parking, instruments.json,
+--   CLAUDE.md audit block. Views + AI keep reading the bundled seams for OTB
+--   (identical values); onboarding wires per-property reads.
+--
+-- purge #6: brand constants → orgs.brand jsonb (source tools/otb_brand.py):
+--   org kit (Orange Ocean navy/orange palette, contact, logos) +
+--   properties.otb tenant-facing kit (strict navy/white, contact,
+--   attribution) until properties grow a brand column.
+--
+-- purge #7 (property_state → typed per-layer tables) HELD for operator
+-- decision — the 9 layer shapes are heterogeneous (dicts of dicts, lane maps,
+-- custom arrays); typing them is product-defining design tied to per-row sync
+-- + realtime (§14/§17 B-5). Ranked options offered 2026-08-02.
+-- See supabase branch migration history for the executable SQL.
