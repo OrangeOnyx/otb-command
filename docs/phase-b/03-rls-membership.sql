@@ -1,0 +1,22 @@
+-- PHASE B-1 step 3 — APPLIED to branch phase-b 2026-08-01 as migration
+-- `rls_membership_rewrite`. All ~45 policies on the 17 stamped tables are in
+-- FINAL scoped form: member_role_in(org_id, property_id, roles[]) reads the
+-- row's tenancy stamp. Transition to membership is confined to
+-- member_role_in()'s legacy leg (profiles.role fallback) — one function to
+-- edit in the "drop-legacy" migration once users migrate to org_members.
+-- Property-aware overloads current_tenant_unit(org,prop) /
+-- current_vendor_id(org,prop) prevent cross-property unit/vendor collisions;
+-- mr_visible_to_vendor() and owns_thread() rescoped internally (signatures
+-- unchanged). Zero-arg helpers KEPT for storage.objects policies until the
+-- storage port. api_usage stays on is_operator() (global table).
+-- Branch smoke (rolled back): operator member sees / stranger blind /
+-- stranger write blocked.
+--
+-- REMAINING before merge gate:
+--  a. Code port: remote.js + RPC writers speak uuid org/property; drop
+--     *_slug_legacy columns; purge #2 (open_trigger_thread created_by).
+--  b. Storage policy port (folder prefixes gain org/property).
+--  c. Purges #4 (fact rows) #6 (brand kit) #7 (typed layer tables).
+--  d. Migrate real users into org_members; drop member_role_in legacy leg.
+--  e. Full RLS assert suite (all 4 roles × tables) → merge_branch + deploy.
+-- See supabase branch migration history for the executable SQL.

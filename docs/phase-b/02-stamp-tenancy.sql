@@ -1,0 +1,14 @@
+-- PHASE B-1 step 2 (purge #1) — APPLIED to branch phase-b 2026-08-01 as
+-- migration `stamp_tenancy`. Every property-scoped row carries uuid
+-- (org_id, property_id). Legacy text columns ('belle'/'otb') renamed to
+-- *_slug_legacy — dropped in the code-port migration; the branch merges only
+-- when app writers speak uuid. default_org_id()/default_property_id() are
+-- the SINGLE-TENANT BRIDGE (dropped when multi-property onboarding lands).
+-- Stamped (17): chat_threads chat_messages compliance_events esign_requests
+--   ledger_entries maintenance_requests maintenance_events occupancy_samples
+--   owner_briefs property_state safe_log tenant_contacts tour_bookings
+--   vendor_log vendors voice_calls voice_settings
+-- Org-only: authorized_emails. Global (unstamped): app_secrets api_usage
+--   profiles. Verified 17/17 on branch; ADD COLUMN defaults fill existing
+--   prod rows at merge time (evaluated once, single-org = correct).
+-- See supabase branch migration history for the executable SQL.
