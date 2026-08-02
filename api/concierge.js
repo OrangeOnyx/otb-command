@@ -20,7 +20,7 @@ import units from "../src/data/units.json" with { type: "json" };
 import recoveries from "../src/data/recoveries.json" with { type: "json" };
 import hvac from "../src/data/hvac.json" with { type: "json" };
 
-import { supaPost, storageUpload, storageSignedUrl } from "./_supa.mjs";
+import { supaPost, storageUpload, storageSignedUrl, tenancyContext } from "./_supa.mjs";
 
 export const maxDuration = 60;
 
@@ -93,8 +93,10 @@ async function runLeaseTool(input, token) {
 async function ensureThread(threadId, agent, firstLine, email, token) {
   if (threadId) return threadId;
   try {
+    const t = await tenancyContext(token);
     const r = await supaPost("/rest/v1/chat_threads", token,
-      { agent, title: String(firstLine || "").slice(0, 80), created_by: email || "" },
+      { agent, title: String(firstLine || "").slice(0, 80), created_by: email || "",
+        ...(t ? { org_id: t.org_id, property_id: t.property_id } : {}) },
       { prefer: "return=representation" });
     const rows = await r.json();
     return Array.isArray(rows) && rows[0]?.id || null;
@@ -103,8 +105,10 @@ async function ensureThread(threadId, agent, firstLine, email, token) {
 async function saveMessages(threadId, rows, token) {
   if (!threadId || !rows.length) return;
   try {
+    const t = await tenancyContext(token);
     await supaPost("/rest/v1/chat_messages", token,
-      rows.map(r => ({ thread_id: threadId, role: r.role, content: r.content })));
+      rows.map(r => ({ thread_id: threadId, role: r.role, content: r.content,
+        ...(t ? { org_id: t.org_id, property_id: t.property_id } : {}) })));
   } catch { /* transcript loss is non-fatal */ }
 }
 
@@ -223,7 +227,9 @@ export default async function handler(req, res) {
 /* Best-effort live-state digest; never blocks an answer. */
 async function liveDigest(token) {
   try {
-    const rows = await supaJson("/rest/v1/property_state?property_id=eq.otb&select=layer,data", token);
+    const t = await tenancyContext(token);
+    if (!t) return "";
+    const rows = await supaJson("/rest/v1/property_state?property_id=eq." + t.property_id + "&select=layer,data", token);
     if (!Array.isArray(rows)) return "";
     const layers = {};
     rows.forEach(r => { layers[r.layer] = r.data; });

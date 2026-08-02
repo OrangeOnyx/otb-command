@@ -1,0 +1,46 @@
+-- PHASE B-1 step 4 (merge-gate item a) — APPLIED to branch phase-b 2026-08-02
+-- as migration `code_port_uuid`. App writers now speak uuid tenancy:
+--
+-- CODE (same commit): src/lib/remote.js gains propertyContext() — resolves
+--   (org_id, property_id) uuids from the 'otb' slug once per session via RLS
+--   prop_read (members only; non-members degrade like an empty RLS read).
+--   All client writes stamp explicitly (property_state upsert · ledger insert ·
+--   compliance_events · esign_requests · maintenance_requests/_events ·
+--   tenant_contacts · authorized_emails org stamp) and property-scoped reads
+--   filter by uuid. api/_supa.mjs gains tenancyContext(token) (warm-instance
+--   cached); api/concierge.js liveDigest + thread/message writers use it
+--   (was `property_state?property_id=eq.otb` — text vs uuid, would 400).
+--
+-- DB (this migration):
+--  1. property_state PK swapped (property_slug_legacy, layer) →
+--     (property_id, layer) — client upserts infer the PK.
+--  2. All 9 *_slug_legacy columns dropped (compliance_events, esign_requests
+--     ×2, ledger_entries, maintenance_requests ×2, property_state,
+--     tenant_contacts ×2).
+--  3. voice_settings unique(property_id) — one settings row per property;
+--     readers go through the stamp, not the text id.
+--  4. get_brief_state reads property_state by default_property_id()
+--     (was the text literal 'otb' — broken against uuid).
+--  5. voice_tour_state: settings + booked list scoped by property stamp.
+--  6. PURGE #2: open_trigger_thread derives created_by from operator
+--     membership (org_members ⋈ auth.users, org-wide or property-scoped),
+--     never the hardcoded literal email; thread + first message carry
+--     explicit (org_id, property_id). Pre-membership (until step d) it
+--     stamps created_by '' — branch-only interim, users migrate before merge.
+--
+-- Writer RPCs (post_rent_charges, post_ach_payments, post_occupancy_samples,
+-- put_owner_brief, voice_file_maintenance, voice_book_tour, voice_log_turn)
+-- deliberately stay on the default_org_id()/default_property_id() column
+-- defaults — the sanctioned single-tenant bridge, dropped when multi-property
+-- onboarding lands (they gain an explicit property parameter then).
+--
+-- Branch smoke 2026-08-02: wrong-secret raise on all 3 rewritten functions ·
+-- real-secret open_trigger_thread under rollback (stamps = defaults,
+-- created_by '' pre-membership, message stamped, SMOKE_PASS_ROLLBACK) ·
+-- get_brief_state '{}' · voice_tour_state settings+booked shape · 0 legacy
+-- columns remain · 0 smoke rows leaked.
+--
+-- REMAINING before merge gate: (b) storage policy port · (c) purges #4/#6/#7
+-- · (d) user migration → drop member_role_in legacy leg · (e) full 4-role
+-- assert suite → merge_branch + simultaneous deploy.
+-- See supabase branch migration history for the executable SQL.

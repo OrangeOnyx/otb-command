@@ -5,7 +5,7 @@
    /api/esign (public, token-gated). Owners see the list read-only via the
    body.role-owner CSS; vendors never reach the drawer. Pure logic lives in
    src/lib/esign.js. REMOTE-only. */
-import { REMOTE, sb } from "./remote.js";
+import { REMOTE, sb, propertyContext } from "./remote.js";
 import {
   ESIGN_STATUS, esignDisplayStatus, canResend, signingMessage, signingUrl, receiptText,
 } from "./esign.js";
@@ -83,8 +83,9 @@ async function paint(el, unit) {
     const email = el.querySelector("#esEmail").value.trim();
     if (!title || !email) { msg.textContent = "Title and signer email are required."; return; }
     try {
+      const ctx = await propertyContext();
       const { error } = await sb.from("esign_requests").insert({
-        id: newId(), unit, title,
+        id: newId(), org_id: ctx.org_id, property_id: ctx.property_id, unit, title,
         signer_email: email.toLowerCase(),
         signer_name: el.querySelector("#esName").value.trim(),
         doc_path: el.querySelector("#esDoc").value.trim(),

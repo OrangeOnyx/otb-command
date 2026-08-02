@@ -47,6 +47,21 @@ export async function rpcUser(name, token, body) {
    the function itself verifies p_secret. Throws on non-2xx. */
 export const rpcSecret = (name, body) => rpcUser(name, null, body);
 
+/* Phase B tenancy: resolve the (org_id, property_id) uuid stamp for the
+   default property slug as the calling user (RLS answers for members only;
+   null for anyone else). The uuids are immutable — cached for the life of a
+   warm serverless instance. */
+const PROPERTY_SLUG = "otb";
+let _tenancy = null;
+export async function tenancyContext(token) {
+  if (_tenancy) return _tenancy;
+  const rows = await supaJson("/rest/v1/properties?slug=eq." + PROPERTY_SLUG + "&select=id,org_id", token);
+  const p = Array.isArray(rows) ? rows[0] : null;
+  if (!p) return null;
+  _tenancy = { property_id: p.id, org_id: p.org_id };
+  return _tenancy;
+}
+
 /* Storage: raw upload (upsert) into a private bucket as the user. */
 export function storageUpload(bucket, path, token, body, contentType) {
   return fetch(`${SUPA}/storage/v1/object/${bucket}/${path}`, {

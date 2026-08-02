@@ -8,7 +8,7 @@
    RLS scopes everything (tenant = own unit, vendor = ever-assigned, owner =
    read, operator = all) — the same listRequests() call serves every face.
    Pure parts tested in test/maintenance.test.mjs. */
-import { REMOTE, sb } from "./remote.js";
+import { REMOTE, sb, propertyContext } from "./remote.js";
 import { createBucketStore } from "./bucketstore.js";
 
 /* ---- status / urgency vocabulary (plan-room palette) ---- */
@@ -133,8 +133,10 @@ export function maintActionCards() {
 }
 
 export async function submitRequest({ unit, title, detail, urgency }, email) {
+  const ctx = await propertyContext();
   const row = {
     id: newRequestId(),
+    org_id: ctx.org_id, property_id: ctx.property_id,
     unit: String(unit),
     title: String(title).slice(0, 120),
     detail: String(detail || "").slice(0, 2000),
@@ -148,8 +150,9 @@ export async function submitRequest({ unit, title, detail, urgency }, email) {
 }
 
 export async function addMrEvent(requestId, { kind, status = null, vendorId = null, note = "" }, actorEmail) {
+  const ctx = await propertyContext();
   const { error } = await sb.from("maintenance_events").insert({
-    request_id: requestId, kind, status, vendor_id: vendorId,
+    request_id: requestId, org_id: ctx.org_id, property_id: ctx.property_id, kind, status, vendor_id: vendorId,
     note: String(note || "").slice(0, 1000), actor: String(actorEmail || ""),
   });
   if (error) throw error;
@@ -163,8 +166,9 @@ export async function listTenantContacts() {
   return data || [];
 }
 export async function upsertTenantContact(email, unit, name = "") {
+  const ctx = await propertyContext();
   const { error } = await sb.from("tenant_contacts")
-    .upsert({ email: String(email).trim().toLowerCase(), unit: String(unit), name, active: true });
+    .upsert({ email: String(email).trim().toLowerCase(), org_id: ctx.org_id, property_id: ctx.property_id, unit: String(unit), name, active: true });
   if (error) throw error;
 }
 export async function deactivateTenantContact(email) {

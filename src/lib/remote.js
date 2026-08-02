@@ -15,7 +15,20 @@ export const sb = REMOTE ? createClient(URL, KEY) : null;
 
 import { LAYER_KEYS as LAYERS } from "./layers.js"; // single source — no twin list
 
-const PROPERTY = "otb";
+const PROPERTY = "otb"; // property slug — resolved to uuid tenancy at first use
+
+/* Phase B tenancy context: resolve (org_id, property_id) uuids from the slug
+   once per session. RLS prop_read only answers for members, so non-members
+   fail here — callers degrade exactly like an empty RLS read always has. */
+let _ctx = null;
+export async function propertyContext() {
+  if (_ctx) return _ctx;
+  const { data, error } = await sb.from("properties").select("id,org_id").eq("slug", PROPERTY).maybeSingle();
+  if (error) throw error;
+  if (!data) throw new Error("no membership grants access to property " + PROPERTY);
+  _ctx = { property_id: data.id, org_id: data.org_id };
+  return _ctx;
+}
 
 export async function getSession() {
   if (!REMOTE) return null;
@@ -40,7 +53,8 @@ export async function signOut() {
 }
 /* load the shared state (one row per layer) → snapshot object */
 export async function loadState() {
-  const { data, error } = await sb.from("property_state").select("layer,data").eq("property_id", PROPERTY);
+  const ctx = await propertyContext();
+  const { data, error } = await sb.from("property_state").select("layer,data").eq("property_id", ctx.property_id);
   if (error) throw error;
   const out = {};
   (data || []).forEach(r => { out[r.layer] = r.data; });
@@ -48,9 +62,10 @@ export async function loadState() {
 }
 /* upsert each known layer from a store snapshot (operator only; RLS enforces) */
 export async function pushState(snapshot) {
+  const ctx = await propertyContext();
   const rows = LAYERS
     .filter(k => k in snapshot)
-    .map(layer => ({ property_id: PROPERTY, layer, data: snapshot[layer], updated_at: new Date().toISOString() }));
+    .map(layer => ({ org_id: ctx.org_id, property_id: ctx.property_id, layer, data: snapshot[layer], updated_at: new Date().toISOString() }));
   if (!rows.length) return { error: null };
   return sb.from("property_state").upsert(rows);
 }
@@ -62,14 +77,17 @@ export async function pushState(snapshot) {
 export async function logCompEvent(row) {
   if (!REMOTE || !row) return;
   try {
+    const ctx = await propertyContext();
     const me = (await sb.auth.getUser()).data.user;
-    await sb.from("compliance_events").insert({ ...row, changed_by: me?.email || "" });
+    await sb.from("compliance_events").insert({ ...row, org_id: ctx.org_id, property_id: ctx.property_id, changed_by: me?.email || "" });
   } catch (e) { console.warn("comp event:", e.message); }
 }
 export async function listCompEvents(limit = 80) {
   if (!REMOTE) return [];
+  const ctx = await propertyContext();
   const { data, error } = await sb.from("compliance_events")
     .select("unit,field,old_state,new_state,changed_by,created_at")
+    .eq("property_id", ctx.property_id)
     .order("created_at", { ascending: false }).limit(limit);
   if (error) throw error;
   return data || [];
@@ -81,8 +99,10 @@ export async function listCompEvents(limit = 80) {
    bookkeeping error the operator must see. */
 export async function listLedgerEntries(unit) {
   if (!REMOTE) return [];
+  const ctx = await propertyContext();
   let q = sb.from("ledger_entries")
     .select("id,unit,type,code,amount,date,due,description,void_of,entered_by,created_at")
+    .eq("property_id", ctx.property_id)
     .order("date").order("id");
   if (unit) q = q.eq("unit", unit);
   const { data, error } = await q;
@@ -91,10 +111,11 @@ export async function listLedgerEntries(unit) {
 }
 export async function addLedgerEntry(row) {
   if (!REMOTE) throw new Error("ledger requires the hosted backend");
+  const ctx = await propertyContext();
   const me = (await sb.auth.getUser()).data.user;
   const rec = {
     id: row.id || "e" + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36),
-    property_id: "otb", unit: row.unit, type: row.type, code: row.code || null,
+    org_id: ctx.org_id, property_id: ctx.property_id, unit: row.unit, type: row.type, code: row.code || null,
     amount: row.amount, date: row.date, due: row.due || null,
     description: row.description || "", void_of: row.voidOf || null,
     entered_by: me?.email || "",
@@ -108,9 +129,10 @@ export async function addLedgerEntry(row) {
    machine via tools/c3-upload.mjs; read = owner/operator RLS) ──── */
 export async function listOccupancy(hours = 6) {
   if (!REMOTE) return [];
+  const ctx = await propertyContext();
   const since = new Date(Date.now() - hours * 3600e3).toISOString();
   const { data, error } = await sb.from("occupancy_samples")
-    .select("stall,state,ts").gte("ts", since);
+    .select("stall,state,ts").eq("property_id", ctx.property_id).gte("ts", since);
   if (error) throw error;
   return data || [];
 }
@@ -119,9 +141,10 @@ export async function listOccupancy(hours = 6) {
    revisit as SQL aggregation if coverage grows past the storefront cams). */
 export async function listOccupancyWeek(days = 7) {
   if (!REMOTE) return [];
+  const ctx = await propertyContext();
   const since = new Date(Date.now() - days * 86400e3).toISOString();
   const { data, error } = await sb.from("occupancy_samples")
-    .select("stall,state,ts").gte("ts", since);
+    .select("stall,state,ts").eq("property_id", ctx.property_id).gte("ts", since);
   if (error) throw error;
   return data || [];
 }
@@ -137,8 +160,9 @@ export async function listAuthorized() {
 export async function authorizeEmail(email, role = "owner") {
   const e = String(email || "").trim().toLowerCase();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) throw new Error("enter a valid email");
+  const ctx = await propertyContext();
   const me = (await sb.auth.getUser()).data.user;
-  const { error } = await sb.from("authorized_emails").upsert({ email: e, role, added_by: me?.email || "" });
+  const { error } = await sb.from("authorized_emails").upsert({ email: e, role, added_by: me?.email || "", org_id: ctx.org_id });
   if (error) throw error;
   // if they already signed in and are parked in 'pending', promote in place
   const { error: e2 } = await sb.from("profiles").update({ role }).eq("email", e).eq("role", "pending");
