@@ -3,7 +3,29 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-01 — **AUG-1 GO-LIVE LANDED + THE 07-28 QUEUE IS
+Last updated: 2026-08-01 (late) — **PHASE B STARTED (operator: "in-place +
+Supabase branch") — B-1 schema is 3 migrations deep on branch `phase-b`
+(project_ref tyhmcfjjhecpphidbuxt, $0.01344/hr, schema-only).** Applied +
+verified ON BRANCH (prod untouched; everything merge-gated): (1)
+`phase_b_foundation` — orgs→properties→org_members(capabilities)→
+property_settings + member_can(); seeded orange-ocean/otb/ledger_start_ym
+2026-08. (2) `stamp_tenancy` — uuid (org_id,property_id) on all 17
+property-scoped tables (legacy text 'belle'/'otb' → *_slug_legacy, dropped
+at code-port; default_org_id()/default_property_id() = single-tenant bridge
+so un-ported writers keep working). (3) `rls_membership_rewrite` — ~45
+policies in FINAL scoped form member_role_in(org_id,property_id,roles[]);
+profiles fallback confined to ONE function leg; property-aware
+current_tenant_unit/current_vendor_id overloads kill cross-property
+unit/vendor collisions; zero-arg helpers kept for storage policies.
+RLS smoke ON BRANCH: operator-member sees / stranger blind / stranger
+write blocked (rolled back). **Merge gate (docs/phase-b/03): code port
+(remote.js+RPCs speak uuid, purge #2 created_by) · storage policies ·
+purges #4/#6/#7 · user migration → drop legacy leg · full 4-role assert
+suite → merge_branch + simultaneous deploy.** Docs: docs/phase-b/01–03.
+Purge #3 (LEDGER_START_YM→settings row) already retired on-branch.
+NOTE: legacy org text was 'belle' — plan says orgs = MANAGEMENT co
+(orange-ocean); Belle = owning entity, becomes a property attribute later.
+Prior (same day): **AUG-1 GO-LIVE LANDED + THE 07-28 QUEUE IS
 COMPLETE (all four; 289 tests).** Repo-move check: site was never down —
 operator hit `/leasing` w/o `.html` (404; no-extension redirect NOT built,
 decision open). **A-5 ACH ACTIVATED:** operator dropped a restricted
