@@ -3,6 +3,9 @@
   "crons": [
     { "path": "/api/auto-trigger", "schedule": "0 11 * * *" }
   ],
+  "rewrites": [
+    { "source": "/leasing", "destination": "/leasing.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
