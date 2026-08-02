@@ -3,9 +3,25 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-02 — **PHASE B MERGE GATE: a/b/d/e DONE + c PARTIAL —
-branch `phase-b` is 7 migrations deep and MERGE-READY pending two operator
-calls (purge #7 · merge go).** Done ON BRANCH this session: **(a) code port**
+Last updated: 2026-08-02 (later) — **PHASE B-1 MERGED TO PROD + DEPLOYED +
+SMOKED (operator "1,2,3").** `merge_branch` applied all 8 Phase B migrations
+to prod (history 20260802014818→163706) · Vercel deploy aliased to
+orangeoceanatlas.com (29s) · **post-merge prod smoke: assert suite
+SUITE_PASS_ROLLBACK on PROD, 0 residue** · 0 legacy columns · **11/11 real
+users backfilled to org_members (adam = operator/org-wide)** · 24 Aug rent
+charges intact · /leasing no-extension = HTTP 200 · prod bundle carries the
+ported code (promote_authorized/propertyContext grep) · **branch phase-b
+DELETED (hourly billing stopped)** · executable DDL exported to
+supabase/migrations/ (8 files, real prod versions). Operator decisions
+LOCKED: **purge #7 typed layer tables = DEFERRED to its own design session
+(per-row sync + realtime foundation, §17 B-5)** · **storage folder prefixes =
+DEFERRED to onboarding** · merge = done. tools/run-hidden.vbs identified:
+inert 2-line hidden-window PS launcher, unreferenced (both C3 tasks use
+-WindowStyle Hidden directly) — delete on operator's word. **Operator smoke:
+log in at orangeoceanatlas.com (magic-link, should look identical) · R-1/P-1
+render · a unit drawer ledger loads · /leasing without .html.**
+Prior (same day): **PHASE B MERGE GATE: a/b/d/e DONE + c PARTIAL —
+branch `phase-b` was 7 migrations deep, merge-gated.** Done ON BRANCH: **(a) code port**
 (migration `code_port_uuid` + commit 8891baf: remote.js propertyContext() /
 api tenancyContext() resolve uuid tenancy from the 'otb' slug, all client
 writers stamp explicitly, property reads filter by uuid; concierge liveDigest
