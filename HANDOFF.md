@@ -3,7 +3,40 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-01 (late) — **PHASE B STARTED (operator: "in-place +
+Last updated: 2026-08-02 — **PHASE B MERGE GATE: a/b/d/e DONE + c PARTIAL —
+branch `phase-b` is 7 migrations deep and MERGE-READY pending two operator
+calls (purge #7 · merge go).** Done ON BRANCH this session: **(a) code port**
+(migration `code_port_uuid` + commit 8891baf: remote.js propertyContext() /
+api tenancyContext() resolve uuid tenancy from the 'otb' slug, all client
+writers stamp explicitly, property reads filter by uuid; concierge liveDigest
+text-eq-uuid 400 fixed; property_state PK → (property_id, layer); all 9
+*_slug_legacy columns DROPPED; purge #2 created_by from membership;
+get_brief_state/voice_tour_state de-literaled) · **(b) storage port**
+(`storage_membership_port`: all 19 role policies → member_role_in/property-
+aware overloads; zero-arg refs in storage = 0; **folder prefixes DEFERRED to
+onboarding** — no 2nd property, prefixing = prod object moves for zero gain;
+operator can veto) · **(c) purges #4+#6** (`purge_facts_brand`: 7 fact rows →
+properties.facts; OO+OTB brand kits → orgs.brand; **#7 typed layer tables
+HELD — operator decision, see ranks in session log**) · **(d) membership**
+(`membership_migration`+`fix_membership_recursion`: profiles→org_members
+backfill; handle_new_user creates memberships; NEW promote_authorized RPC
+(client authorizeEmail uses it); member_manage policy; **member_role_in
+legacy leg DROPPED**; is_operator/is_owner_or_operator → membership; zero-arg
+tenant/vendor helpers dropped; suite caught an RLS recursion — default_org_id/
+default_property_id now SECURITY DEFINER) · **(e) assert suite GREEN**
+(docs/phase-b/assert-suite.sql — 5 personas × 17 tables, SUITE_PASS_ROLLBACK,
+0 residue; re-run against prod post-merge as the smoke). Advisors: accepted
+definer-WARN class only. 289 tests. Docs: docs/phase-b/04–07.
+**⚠ MERGE COUPLING: master (8891baf+) speaks the BRANCH schema — do NOT
+`vercel deploy` until `merge_branch` runs; then deploy immediately (the
+committed /leasing rewrite ships with it).** Loose ends CLOSED: 40 vendored-
+skill files committed deleted (79c96a6) · /leasing→/leasing.html rewrite in
+vercel.json · ~/.otb-stripe.key DELETED (verified). **A-5 links:** NEW
+tools/stripe-payment-links.mjs (ACH-only, sets PI metadata.unit — dashboard
+links can't); operator drops a restricted key (Payment Links/Products/Prices
+Write) → runbook §1. Unknown loose file: tools/run-hidden.vbs (untracked, not
+Claude's — operator to identify).
+Prior: 2026-08-01 (late) — **PHASE B STARTED (operator: "in-place +
 Supabase branch") — B-1 schema is 3 migrations deep on branch `phase-b`
 (project_ref tyhmcfjjhecpphidbuxt, $0.01344/hr, schema-only).** Applied +
 verified ON BRANCH (prod untouched; everything merge-gated): (1)

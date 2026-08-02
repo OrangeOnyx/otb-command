@@ -6,31 +6,30 @@ work is DONE and deployed (269→272 tests; UniFi offline auto-trigger shipped
 
 ---
 
-## 1 · A-5 Stripe ACH activation (pairs with the Aug 1 ledger go-live)
+## 1 · A-5 Stripe ACH — payment links (ACTIVATION DONE 2026-08-01)
 
-The webhook is deployed and DORMANT (returns 503 until configured). Rent is
-all-electronic per the A-4 SOP, so this is the collections rail.
+~~Key · webhook · deploy · verify~~ ALL DONE 2026-08-01 (webhook
+`we_1TzXByAG3Ua90EF59aSkCLBl` live, real-secret verified; old key file
+deleted from disk 2026-08-02). Remaining = the links tenants pay through +
+the first real payment.
 
-1. **Get the key:** dashboard.stripe.com → Developers → API keys → copy the
-   **Secret key** (`sk_live_…`). Never paste it in chat.
-2. **Add to Vercel** (from the repo folder, key via stdin so it never hits
-   shell history — NO trailing newline, Vercel rejects it at deploy):
+1. **Create a NEW restricted key** (the go-live key had events/PI/webhook
+   scopes only — it cannot make links): dashboard.stripe.com → Developers →
+   API keys → Create restricted key → **Payment Links: Write · Products:
+   Write · Prices: Write** → save to `%USERPROFILE%\.otb-stripe2.key`
+   (never in chat).
+2. **Tell Claude "make the payment links"** (or run yourself, once per unit):
    ```
-   npx vercel env add STRIPE_SECRET_KEY production --scope adams-projects-0c52918e
+   node tools/stripe-payment-links.mjs --key %USERPROFILE%\.otb-stripe2.key --unit 131 --amount 5300.00
    ```
-   (paste the key at the prompt)
-3. **Point Stripe at the endpoint:** dashboard.stripe.com → Developers →
-   Webhooks → Add endpoint → URL
-   `https://otb-command.vercel.app/api/stripe-webhook` → events:
-   `payment_intent.succeeded` + `payment_intent.payment_failed`.
-   (No signing-secret needed — the endpoint verifies by re-fetching the event
-   from Stripe, so the dashboard's signing secret can be ignored.)
-4. **Redeploy:** `npx vercel deploy --prod --yes --scope adams-projects-0c52918e`
-5. **Tell Claude "smoke ACH"** — Claude runs the end-to-end verification
-   (test event → ledger row / manager-thread paths).
-6. To map payments to units, the PaymentIntent must carry `metadata.unit`
-   (e.g. `117.5`) — set that in whatever Stripe payment links/invoices you
-   create. Unmapped payments don't get lost: they open a manager thread.
+   The tool creates an ACH-only (us_bank_account) link whose PaymentIntent
+   carries `metadata.unit` — the field the webhook needs to post the ledger
+   row automatically. **Dashboard-made links CANNOT set PI metadata**; a
+   payment through one still lands safely but as an `ach-unmapped` manager
+   thread you map by hand.
+3. **Delete `.otb-stripe2.key`** after the links exist (the tool reminds you).
+4. **First real payment = the remaining smoke:** send one link to yourself or
+   a willing tenant, pay $X, watch the unit's ledger gain `ach:<pi_id>`.
 
 ## 2 · A-3 Voice go-live (full detail: `docs/a3-voice-runbook.md`)
 
