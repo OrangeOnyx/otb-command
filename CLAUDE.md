@@ -15,8 +15,12 @@
 > Roles: operator · owner · vendor (V-1 only) · **tenant (M-1 only, unit-scoped
 > via tenant_contacts)** · pending. Persisted layers
 > (registry `src/lib/layers.js`): comp, notes, actions, contacts, documents,
-> financials, ownerSheets, features, cameras (localStorage + Supabase
-> property_state + Export/Import). Images/docs in IndexedDB↔Supabase buckets
+> financials, ownerSheets, features, cameras — **7 TYPED Supabase tables since
+> 2026-08-04 (purge #7: comp_state · unit_notes · board_state ·
+> directory_state · site_features · camera_overrides · layer_settings;
+> per-row diff sync via src/lib/statesync.js + realtime channel via
+> src/lib/realtime.js; property_state DROPPED)** + localStorage +
+> Export/Import (snapshot shape unchanged). Images/docs in IndexedDB↔Supabase buckets
 > behind seams. Marketing poster generated from the architect's CAD
 > (`Boulev_CLEAN.dxf`, in feet) via `poster.py`. Path B (hosted backend) is
 > LIVE at otb-command.vercel.app. Brand sheet PENDING.

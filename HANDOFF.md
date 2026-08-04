@@ -3,7 +3,51 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-03 (session close) — **SESSION TAIL after the merge:**
+Last updated: 2026-08-04 — **PURGE #7 SHIPPED: TYPED LAYER TABLES + REALTIME
+(Phase B-5) — MERGED TO PROD + DEPLOYED + SMOKED, all autonomous under /goal.**
+`property_state` is GONE; the 9 persisted layers now live in 7 typed tables
+(comp_state 297 rows · unit_notes · board_state · directory_state ·
+site_features · camera_overrides · layer_settings) with per-row diff sync
+(new pure seam `src/lib/statesync.js`, registry row contract in
+`src/lib/layers.js`: toRows/fromRows/ownsRow, round-trip law tested) and a
+**realtime channel per property** (`src/lib/realtime.js`: per-table debounced
+re-pull fold, own-origin echo skip via `origin` col + REPLICA IDENTITY FULL,
+busy-guard defers folds over unpushed local edits, dirty-table recovery on
+failed push). Store/views untouched — snapshot shape frozen; **JSON import now
+syncs** (whole-snapshot push silently skipped it). Rollout was the B-1 drill:
+Supabase branch seeded with a byte-identical prod `property_state` copy (md5
+9/9) → migration `typed_layers` (create+backfill) verified 8/8 layer-equality
+checks against real data → `typed_layers_drop` carries an IN-MIGRATION verify
+that RAISES before the drop (a bad backfill would abort the merge with
+property_state intact) + `get_brief_state` ported (secret = auto_trigger, NOT
+cron_secret — plan error caught in preflight) → assert suite extended to the 7
+tables (5 personas + publication + property_state-absent asserts),
+SUITE_PASS_ROLLBACK on branch → **branch smoke in two browser tabs: boot
+hydration matched DB exactly, C-1 click A→B via realtime ≤2s, SQL-side
+INSERT and DELETE folds landed in tab state, zero console errors** →
+`merge_branch` (async — poll list_branches) → immediate deploy → **prod:
+SUITE_PASS_ROLLBACK, 0 residue, comp 297/149-coi=ok intact, 24 Aug charges
+untouched, bundle grep comp_state/postgres_changes ✓, 0 property_state
+refs** → DDL exported (supabase/migrations/20260804101425+20260804101831) →
+branches deleted (billing stopped). liveDigest (api/concierge.js) reads the
+typed tables via fromRows. Docs: specs docs/phase-b/08 (design) + 09 (plan).
+⚠ Session lessons: Supabase MCP branches are SCHEMA-ONLY (seed real data
+yourself if verification needs it) · preview_start{name} carries a STALE
+Downloads project root — use preview_start{url} + Bash-background vite ·
+Supabase magic-link emails read via Gmail MCP arrive DOUBLE-QP-decoded
+("=78"→"x" eats the token= equals sign; recover the hex, POST
+/auth/v1/verify {type,token_hash} and inject the session into localStorage).
+**Operator smoke (2 min): open orangeoceanatlas.com on phone AND desktop,
+logged in as you — flag a C-1 cell on one, watch it flip on the other without
+reload · unit drawer note edit syncs the same way.**
+Also this session (pre-design housekeeping): dossier data-as-of stamp bumped
+to the July SOT (7/16/2026) + AI-1 grounding regenerated + deployed; export
+re-synced to Drive + zip (parking memo restored after /MIR dropped it);
+tools/run-hidden.vbs deleted. **NEXT MENU: A-5 payment links (operator key →
+tools/stripe-payment-links.mjs, runbook §1) · operator realtime smoke above ·
+Phase B-2/B-3 continuation (property switcher / D-0 portfolio dash — realtime
++ typed rows are now the foundation).**
+Prior: 2026-08-03 (session close) — **SESSION TAIL after the merge:**
 (1) **Property LLM export regenerated** (`npm run export-package` + headless-
 Edge PNG re-render) and synced to the canonical Drive folder
 `G:\My Drive\00 OTB\OTB-LLM-Export\` + zip refreshed (Drive copy had been
