@@ -38,8 +38,12 @@ realtime self-echo suppression).
 | contacts + documents | `directory_state` | (collection, id) | `collection text CHECK IN ('contacts','documents')`, `edit jsonb NULL`, `dismissed bool`, `custom jsonb NULL` |
 | features | `site_features` | (id) | `type text`, `label text`, `note text`, `x numeric`, `y numeric` |
 | cameras | `camera_overrides` | (camera_id) | `x numeric NULL`, `y numeric NULL`, `aim_deg numeric NULL` |
-| financials | `property_settings` key `financials` | (key) | jsonb `{ opex: {...}, capRatePct }` |
-| ownerSheets | `property_settings` key `owner_sheets` | (key) | jsonb string[] |
+| financials | `layer_settings` key `financials` | (key) | `data` jsonb `{ opex: {...}, capRatePct }` |
+| ownerSheets | `layer_settings` key `owner_sheets` | (key) | `data` jsonb string[] |
+
+`layer_settings` is a new 2-row table — **not** `property_settings`, which is
+columnar (one row per property); whole-row upserts there would reintroduce
+cross-key clobber and its write policy is server-side only.
 
 `property_state` is **dropped in the same migration** after backfill +
 in-SQL verification (below). Purge #7 complete — no parallel write paths, no
