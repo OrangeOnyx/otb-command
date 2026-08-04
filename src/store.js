@@ -343,6 +343,22 @@ export function hydrateRemote(snap) {
   persist(); // cache locally too
 }
 
+/* ---------- per-layer access + realtime fold (B-5) ---------- */
+export function getLayerState(key) { return state[key]; } // read-only reference
+
+/* Replace ONE layer with server truth (realtime re-pull). Reset-then-apply:
+   applySnapshot merges INTO existing state, so a remote delete only lands if
+   the layer is first reset to empty. emit carries remote:true so the sync
+   wiring in main.js does not diff-push the server's own change back. */
+export function hydrateLayer(key, layerState, meta = {}) {
+  const defaults = emptyLayers({ comp: baselineComp });
+  if (!(key in defaults)) return;
+  state[key] = defaults[key];
+  if (layerState !== undefined) applySnapshot({ [key]: layerState });
+  persist();
+  emit(key, { remote: true, ...meta });
+}
+
 /* ---------- JSON export / import ---------- */
 export function exportJSON() {
   return JSON.stringify({
