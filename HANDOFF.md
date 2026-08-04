@@ -3,7 +3,42 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-04 — **PURGE #7 SHIPPED: TYPED LAYER TABLES + REALTIME
+Last updated: 2026-08-04 (later) — **PHASE B-3 SHIPPED + DEPLOYED + SMOKED
+(autonomous under /goal): D-0 PORTFOLIO SHEET + PROPERTY SWITCHER PLUMBING
+(323 tests).** Design: docs/phase-b/10. Client-only — no migration, no RLS
+change. (1) **Active property is now a selection**, not a literal: remote.js
+`PROPERTY="otb"` died; localStorage `otb-active-property`, unset = first
+RLS-visible property (created_at order = OTB), stale slug self-heals;
+switching = full reload (seed/hydration/queue/realtime are boot-bound —
+deliberate). (2) **Sidebar property switcher** renders ONLY at >1 visible
+property — today invisible, OTB sidebar pixel-identical. (3) **New D-0
+Portfolio sheet** first in the sheet index (boot default stays D-1 via new
+explicit `DEFAULT_PAGE`): cross-property cards from DB-native rows only
+(pure seam src/lib/portfolio.js, +7 tests) — A/R outstanding (positive unit
+balances over effective ledger entries) + open work orders; "Open →"
+switches property. Scope fences (doc'd): 13 property sheets stay OTB-data-
+bound until Phase C onboarding builds a second data package; api/* still
+resolves 'otb'; no realtime on D-0; comp KPI excluded (diff-vs-baseline
+rows would misread). **Prod smoke:** bundle grep pg-portfolio/otb-active-
+property ✓ · local no-login UI walk (14 sheets, boot lands D-1, #portfolio
+deep-link, console clean) ✓ · **live-data path proven end-to-end: headless
+operator session (OTP → Gmail → /auth/v1/verify; NEW mangle mode — the
+double-QP eats `token=` AND the token's first hex pair when ≥0x80, renders
+�; recovered by probing the 128 candidate pairs against /verify, hit "85",
+wrong guesses don't consume the token) → D-0's exact RLS reads via REST →
+shipped seam fold returned A/R $90,291.23 / 24 units = the Aug-1 ledger
+posting TO THE CENT, WO 0 open (3 heads all closed)**; smoke session
+revoked (logout 204), token artifacts deleted. Note: harness auto-mode
+blocked browser-side session injection this session — REST + seam fold is
+the working substitute for authed browser smokes. **Operator smoke (1 min):
+orangeoceanatlas.com → sheet index shows D-0 above D-1 → open D-0 → OTB
+card, ACTIVE tag, A/R $90,291.23 (24 units — Aug charges, pre-payments) ·
+boot still lands D-1 · no switcher visible (single property = correct).**
+**NEXT MENU: A-5 payment links (operator key → tools/stripe-payment-links
+.mjs, runbook §1) · realtime smoke (phone+desktop C-1 flip) · Phase B-4
+observability or Phase C-1 onboarding funnel (D-0 + switcher now give C-1
+somewhere to land) · voice smokes (07-28 queue).**
+Prior: 2026-08-04 — **PURGE #7 SHIPPED: TYPED LAYER TABLES + REALTIME
 (Phase B-5) — MERGED TO PROD + DEPLOYED + SMOKED, all autonomous under /goal.**
 `property_state` is GONE; the 9 persisted layers now live in 7 typed tables
 (comp_state 297 rows · unit_notes · board_state · directory_state ·
