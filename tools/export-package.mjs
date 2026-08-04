@@ -26,7 +26,7 @@ const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ fig
 const out = process.env.OTB_EXPORT_DIR || join(root, NOFIN ? "export-buyer" : "export");
 mkdirSync(out, { recursive: true });
 
-const DATA_AS_OF = new Date(2026, 5, 10);  // rent-roll SOT issue date
+const DATA_AS_OF = new Date(2026, 6, 16);  // rent-roll SOT issue date (docs/sot-2026-07, adopted 7/16/2026)
 const GENERATED = new Date();               // real generation date (audit M3)
 const TODAY = DATA_AS_OF;                    // figures/expiry windows are as-of the SOT
 /* esc now imported from src/lib/format.js — the old local copy didn't escape
