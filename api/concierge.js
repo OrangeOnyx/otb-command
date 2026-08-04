@@ -13,6 +13,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { CONTEXT } from "./_context.mjs";
 import { requireOwnerOrOperator, supaJson, underDailyCap, capReply } from "./_auth.mjs";
 import { buildMessages, digestState } from "../src/lib/concierge.js";
+import { LAYER_DEFS } from "../src/lib/layers.js";
 import { LEASE_TOOL, buildProposalHTML, buildOwnerSummaryHTML, packageFileName } from "../src/lib/lease.js";
 import { CALC_TOOL, runCalc, calcFallback } from "../src/lib/calc/index.js";
 import { collectKnownNumbers, validateNumbers } from "../src/lib/calc/guardrail.js";
@@ -229,10 +230,18 @@ async function liveDigest(token) {
   try {
     const t = await tenancyContext(token);
     if (!t) return "";
-    const rows = await supaJson("/rest/v1/property_state?property_id=eq." + t.property_id + "&select=layer,data", token);
-    if (!Array.isArray(rows)) return "";
+    const tables = [...new Set(LAYER_DEFS.map(d => d.table))];
+    const results = await Promise.all(tables.map(tb =>
+      supaJson("/rest/v1/" + tb + "?property_id=eq." + t.property_id + "&select=*", token)
+        .catch(() => [])));
+    const byTable = Object.fromEntries(tables.map((tb, i) => [tb, Array.isArray(results[i]) ? results[i] : []]));
     const layers = {};
-    rows.forEach(r => { layers[r.layer] = r.data; });
+    for (const d of LAYER_DEFS) {
+      const rows = byTable[d.table].filter(r => d.ownsRow(r));
+      if (!rows.length) continue;
+      const v = d.fromRows(rows);
+      if (v !== undefined) layers[d.key] = v;
+    }
     return digestState(layers);
   } catch { return ""; }
 }
