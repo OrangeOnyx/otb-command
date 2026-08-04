@@ -3,7 +3,26 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-02 (later) — **PHASE B-1 MERGED TO PROD + DEPLOYED +
+Last updated: 2026-08-03 (session close) — **SESSION TAIL after the merge:**
+(1) **Property LLM export regenerated** (`npm run export-package` + headless-
+Edge PNG re-render) and synced to the canonical Drive folder
+`G:\My Drive\00 OTB\OTB-LLM-Export\` + zip refreshed (Drive copy had been
+stale since Jul 24; proforma now included). Cosmetic: dossier "data as of
+6/10/2026" stamp is a constant in tools/export-package.mjs predating the
+July SOT — figures themselves are current; bump next touch. (2) **NEW
+OPERATOR RULE (CLAUDE.md §Conventions + Claude memory): every export ALSO
+goes to G:\My Drive\00 OTB\ — chat delivery alone ≠ done.** (3) **NEW
+Scheduled Task `OTB-Repo-Backup` (daily 03:00, tools/gdrive-backup.ps1
+-Register):** full-history git bundle → G:\…\00 OTB\repo-backups\ (verify
+logged, keep 10); first bundle written+verified (15 MB, incl. HEAD e54a985).
+Committed-only — commit what matters. (4) Session-state export for a fresh
+LLM: docs/llm-export-2026-08-02.md. **NEXT SESSION MENU: A-5 payment links
+(operator drops restricted key → tools/stripe-payment-links.mjs, runbook §1)
+· voice smokes (real tour booking · booking-refusal probe · 07-28 voice-lead
+thread) · purge #7 typed-layers design session (Phase B-2/B-3 kickoff) ·
+post-merge operator smoke (login/ledger//leasing) · run-hidden.vbs delete on
+word.**
+Prior (same day): **PHASE B-1 MERGED TO PROD + DEPLOYED +
 SMOKED (operator "1,2,3").** `merge_branch` applied all 8 Phase B migrations
 to prod (history 20260802014818→163706) · Vercel deploy aliased to
 orangeoceanatlas.com (29s) · **post-merge prod smoke: assert suite
