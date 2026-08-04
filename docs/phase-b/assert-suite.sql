@@ -45,8 +45,25 @@ begin
   if (select unit_scope from org_members where user_id = uid_ven) <> 'smoke-vendor' then
     raise exception 'FAIL vendor unit_scope'; end if;
 
+  -- typed layers (B-5): property_state must be GONE, the 7 typed tables
+  -- published for realtime, and one representative row seeded in each
+  select count(*) into n from information_schema.tables where table_name = 'property_state';
+  if n <> 0 then raise exception 'FAIL property_state still exists'; end if;
+  select count(*) into n from pg_publication_tables
+   where pubname = 'supabase_realtime' and tablename in
+   ('comp_state','unit_notes','board_state','directory_state','site_features','camera_overrides','layer_settings');
+  if n <> 7 then raise exception 'FAIL realtime publication: % of 7', n; end if;
+
   -- one representative row per stamped table (tenancy stamps via defaults)
-  insert into property_state (layer, data) values ('notes', '{}'::jsonb);
+  insert into comp_state (unit, field, state) values ('131', 'coi', 'flag')
+    on conflict (property_id, unit, field) do update set state = 'flag';
+  insert into unit_notes (unit, text) values ('131', 'suite note');
+  insert into board_state (card_id, lane) values ('smoke-card', 'action');
+  insert into directory_state (collection, id, dismissed) values ('contacts', 'smoke-c', true);
+  insert into site_features (id, type, x, y, pos) values ('sf-suite', 'shutoff', 10, 20, 99);
+  insert into camera_overrides (camera_id, aim_deg) values ('cam-suite', 90);
+  insert into layer_settings (key, data) values ('financials', '{"opex":{},"capRatePct":null}'::jsonb)
+    on conflict (property_id, key) do update set data = excluded.data;
   insert into ledger_entries (id, unit, type, code, amount, date) values
     ('smoke:131', '131', 'charge', 'rent', 100, current_date),
     ('smoke:105', '105', 'charge', 'rent', 200, current_date);
@@ -75,7 +92,13 @@ begin
   execute 'set local role authenticated';
 
   select count(*) into n from ledger_entries;        if n < 2 then raise exception 'FAIL op ledger read %', n; end if;
-  select count(*) into n from property_state;        if n < 1 then raise exception 'FAIL op state read'; end if;
+  select count(*) into n from comp_state;            if n < 1 then raise exception 'FAIL op comp_state read'; end if;
+  select count(*) into n from unit_notes;            if n < 1 then raise exception 'FAIL op unit_notes read'; end if;
+  select count(*) into n from board_state;           if n < 1 then raise exception 'FAIL op board_state read'; end if;
+  select count(*) into n from directory_state;       if n < 1 then raise exception 'FAIL op directory_state read'; end if;
+  select count(*) into n from site_features;         if n < 1 then raise exception 'FAIL op site_features read'; end if;
+  select count(*) into n from camera_overrides;      if n < 1 then raise exception 'FAIL op camera_overrides read'; end if;
+  select count(*) into n from layer_settings;        if n < 1 then raise exception 'FAIL op layer_settings read'; end if;
   select count(*) into n from maintenance_requests;  if n < 1 then raise exception 'FAIL op mr read'; end if;
   select count(*) into n from maintenance_events;    if n < 1 then raise exception 'FAIL op me read'; end if;
   select count(*) into n from esign_requests;        if n < 1 then raise exception 'FAIL op esign read'; end if;
@@ -94,7 +117,9 @@ begin
 
   insert into ledger_entries (id, unit, type, code, amount, date)
     values ('smoke:op', '131', 'payment', 'rent', 100, current_date);
-  insert into property_state (layer, data) values ('actions', '{}'::jsonb);
+  insert into unit_notes (unit, text) values ('105', 'operator write');
+  update comp_state set state = 'ok' where unit = '131' and field = 'coi';
+  delete from camera_overrides where camera_id = 'cam-suite'; -- operator delete allowed
   execute 'reset role';
 
   ------------------------------------------------------------------
@@ -106,7 +131,12 @@ begin
   execute 'set local role authenticated';
 
   select count(*) into n from ledger_entries;     if n < 3 then raise exception 'FAIL owner ledger read %', n; end if;
-  select count(*) into n from property_state;     if n < 2 then raise exception 'FAIL owner state read'; end if;
+  select count(*) into n from comp_state;         if n < 1 then raise exception 'FAIL owner comp_state read'; end if;
+  select count(*) into n from unit_notes;         if n < 2 then raise exception 'FAIL owner unit_notes read %', n; end if;
+  select count(*) into n from board_state;        if n < 1 then raise exception 'FAIL owner board_state read'; end if;
+  select count(*) into n from directory_state;    if n < 1 then raise exception 'FAIL owner directory_state read'; end if;
+  select count(*) into n from site_features;      if n < 1 then raise exception 'FAIL owner site_features read'; end if;
+  select count(*) into n from layer_settings;     if n < 1 then raise exception 'FAIL owner layer_settings read'; end if;
   select count(*) into n from owner_briefs;       if n < 1 then raise exception 'FAIL owner brief read'; end if;
   select count(*) into n from occupancy_samples;  if n < 1 then raise exception 'FAIL owner occ read'; end if;
   select count(*) into n from vendors;            if n < 1 then raise exception 'FAIL owner vendors read'; end if;
@@ -115,9 +145,12 @@ begin
     raise exception 'FAIL owner ledger insert was allowed';
   exception when insufficient_privilege then null; end;
   begin
-    insert into property_state (layer, data) values ('features', '[]'::jsonb);
-    raise exception 'FAIL owner state insert was allowed';
+    insert into unit_notes (unit, text) values ('149', 'owner write');
+    raise exception 'FAIL owner unit_notes insert was allowed';
   exception when insufficient_privilege then null; end;
+  update comp_state set state = 'na' where unit = '131' and field = 'coi';
+  get diagnostics n = row_count; -- owner sees the row; RLS update must hit 0
+  if n <> 0 then raise exception 'FAIL owner comp_state update was allowed'; end if;
   insert into safe_log (action, path) values ('view', 'owner-smoke.pdf'); -- allowed
   select count(*) into n from safe_log;      if n <> 0 then raise exception 'FAIL owner safe read should be blind, got %', n; end if;
   select count(*) into n from vendor_log;    if n <> 0 then raise exception 'FAIL owner vlog read should be blind'; end if;
@@ -137,7 +170,11 @@ begin
   if n < 1 then raise exception 'FAIL tenant blind to own ledger'; end if;
   select count(*) into n from maintenance_requests; if n < 1 then raise exception 'FAIL tenant mr read'; end if;
   select count(*) into n from tenant_contacts;      if n <> 1 then raise exception 'FAIL tenant tcontacts self-read %', n; end if;
-  select count(*) into n from property_state;       if n <> 0 then raise exception 'FAIL tenant sees property_state'; end if;
+  select (select count(*) from comp_state) + (select count(*) from unit_notes)
+       + (select count(*) from board_state) + (select count(*) from directory_state)
+       + (select count(*) from site_features) + (select count(*) from camera_overrides)
+       + (select count(*) from layer_settings) into n;
+  if n <> 0 then raise exception 'FAIL tenant sees typed layers (%)', n; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL tenant sees vendors'; end if;
   select count(*) into n from esign_requests;       if n <> 0 then raise exception 'FAIL tenant sees esign'; end if;
   insert into maintenance_requests (id, unit, title, created_by)
@@ -162,7 +199,11 @@ begin
   if n <> 0 then raise exception 'FAIL vendor sees unassigned mr'; end if;
   select count(*) into n from vendors; if n <> 1 then raise exception 'FAIL vendor own-row read %', n; end if;
   select count(*) into n from ledger_entries;   if n <> 0 then raise exception 'FAIL vendor sees ledger'; end if;
-  select count(*) into n from property_state;   if n <> 0 then raise exception 'FAIL vendor sees property_state'; end if;
+  select (select count(*) from comp_state) + (select count(*) from unit_notes)
+       + (select count(*) from board_state) + (select count(*) from directory_state)
+       + (select count(*) from site_features) + (select count(*) from camera_overrides)
+       + (select count(*) from layer_settings) into n;
+  if n <> 0 then raise exception 'FAIL vendor sees typed layers (%)', n; end if;
   insert into maintenance_events (request_id, kind, status, actor)
     values ('mr-smoke', 'status', 'done', 'smoke-vendor@example.com'); -- allowed: assigned + done
   begin
@@ -180,7 +221,11 @@ begin
   execute 'set local role authenticated';
 
   select count(*) into n from ledger_entries;       if n <> 0 then raise exception 'FAIL stranger ledger'; end if;
-  select count(*) into n from property_state;       if n <> 0 then raise exception 'FAIL stranger state'; end if;
+  select (select count(*) from comp_state) + (select count(*) from unit_notes)
+       + (select count(*) from board_state) + (select count(*) from directory_state)
+       + (select count(*) from site_features) + (select count(*) from camera_overrides)
+       + (select count(*) from layer_settings) into n;
+  if n <> 0 then raise exception 'FAIL stranger sees typed layers (%)', n; end if;
   select count(*) into n from maintenance_requests; if n <> 0 then raise exception 'FAIL stranger mr'; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL stranger vendors'; end if;
   select count(*) into n from tenant_contacts;      if n <> 0 then raise exception 'FAIL stranger tcontacts'; end if;
@@ -193,8 +238,8 @@ begin
     raise exception 'FAIL stranger ledger insert allowed';
   exception when insufficient_privilege then null; end;
   begin
-    insert into property_state (layer, data) values ('cameras', '{}'::jsonb);
-    raise exception 'FAIL stranger state insert allowed';
+    insert into unit_notes (unit, text) values ('105', 'stranger write');
+    raise exception 'FAIL stranger unit_notes insert allowed';
   exception when insufficient_privilege then null; end;
   execute 'reset role';
 
