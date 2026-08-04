@@ -121,6 +121,14 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   stated $16,008.90/mo (−$4.84 vs formula); Cat Clinic 119.5 $0.01 rounding.
 
 ## Conventions
+- **Exports go to Google Drive (operator rule, 2026-08-03):** any generated
+  export/package for the operator is ALSO copied to `G:\My Drive\00 OTB\`
+  (property LLM package → `OTB-LLM-Export\` + refresh `OTB-LLM-Export.zip`).
+  Chat/file delivery alone is not done.
+- **Repo backup:** Scheduled Task `OTB-Repo-Backup` (daily 03:00,
+  `tools/gdrive-backup.ps1 -Register` to re-register) bundles full git
+  history → `G:\My Drive\00 OTB\repo-backups\` (keep 10, verify logged).
+  Uncommitted work is NOT captured — commit anything that matters.
 - **Rent presentation (operator, 2026-07-17):** any bare monthly amount in owner/
   tenant-facing output = TOTAL rent (base + additional). Component economics
   appear only as an explicit PSF breakdown chart: Base · CAM · Tax · Ins →
