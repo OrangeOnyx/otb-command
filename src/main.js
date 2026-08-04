@@ -1,7 +1,10 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
-import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushState, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles } from "./lib/remote.js";
+import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
+import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles } from "./lib/remote.js";
+import { LAYER_DEFS } from "./lib/layers.js";
+import { SyncQueue } from "./lib/statesync.js";
+import { startRealtime } from "./lib/realtime.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
@@ -291,18 +294,52 @@ function initViews(account) {
   initDashboard(); // last — its Action Queue reads the board's live cards
 }
 
-/* push operator edits to the shared backend (debounced) */
+/* push operator edits to the shared backend (per-row diffs, debounced).
+   Layer emit types == registry keys; "import" re-diffs every layer (a JSON
+   import now syncs — under whole-snapshot push it silently didn't).
+   detail.remote marks a realtime fold: already server truth, never re-push. */
+const CLIENT_ORIGIN = crypto.randomUUID(); // per-tab tag for realtime echo skip
+const syncQueue = new SyncQueue();
+const LAYER_BY_KEY = Object.fromEntries(LAYER_DEFS.map(d => [d.key, d]));
+
+const dirtyTables = new Set(); // tables whose last push failed → re-pull + re-diff
+
 function wireSync() {
   let t = null;
-  subscribe(type => {
-    if (type === "selection" || type === "import") return;
-    clearTimeout(t);
-    t = setTimeout(async () => {
+  const flush = async () => {
+    /* Recover failed tables first: the queue cache advanced optimistically at
+       queue-time, so after a failed push it lies about server truth. Re-pull
+       the table, prime with reality, re-diff local state → exact minimal ops. */
+    for (const table of [...dirtyTables]) {
       try {
-        const { error } = await pushState(JSON.parse(exportJSON()));
-        if (error) console.warn("sync push failed:", error.message);
-      } catch (e) { console.warn("sync error:", e); }
-    }, 800);
+        const rows = await fetchLayerRows(table);
+        for (const d of LAYER_DEFS.filter(x => x.table === table)) {
+          syncQueue.prime(d, rows.filter(r => d.ownsRow(r)));
+          syncQueue.queue(d, d.toRows(getLayerState(d.key)));
+        }
+        dirtyTables.delete(table);
+      } catch { /* still unreachable — stays dirty, retried below */ }
+    }
+    const batches = syncQueue.drain();
+    if (batches.length) {
+      try {
+        const { error } = await pushOps(batches, CLIENT_ORIGIN);
+        if (error) throw error;
+      } catch (e) {
+        console.warn("sync push failed:", e.message || e);
+        batches.forEach(b => dirtyTables.add(b.table));
+      }
+    }
+    if (dirtyTables.size) { clearTimeout(t); t = setTimeout(flush, 30000); }
+  };
+  subscribe((type, detail) => {
+    if (type === "selection") return;
+    if (detail && detail.remote) return;
+    const keys = type === "import" ? Object.keys(LAYER_BY_KEY) : (LAYER_BY_KEY[type] ? [type] : []);
+    if (!keys.length) return;
+    for (const k of keys) syncQueue.queue(LAYER_BY_KEY[k], LAYER_BY_KEY[k].toRows(getLayerState(k)));
+    clearTimeout(t);
+    t = setTimeout(flush, 800);
   });
 }
 
@@ -335,13 +372,23 @@ async function boot() {
     try { await loadSeed(); } catch (e) { console.warn("seed:", e); }
     try {
       const remote = await loadState();
+      for (const d of LAYER_DEFS) // prime the sync queue with server truth
+        syncQueue.prime(d, (loadState.lastRows?.[d.table] || []).filter(r => d.ownsRow(r)));
       if (Object.keys(remote).length) hydrateRemote(remote);
-      else if (account.role === "operator") await pushState(JSON.parse(exportJSON())); // seed empty backend from local
+      else if (account.role === "operator") { // seed empty backend from local
+        for (const d of LAYER_DEFS) syncQueue.queue(d, d.toRows(getLayerState(d.key)));
+        await pushOps(syncQueue.drain(), CLIENT_ORIGIN);
+      }
     } catch (e) { console.warn("remote state:", e); }
     buildShell(account);
     initViews(account);
     applyRole(account.role);
     initRouter();
+    if (account.role === "operator" || account.role === "owner")
+      startRealtime({
+        syncQueue, origin: CLIENT_ORIGIN,
+        busy: table => syncQueue.pendingFor(table) || dirtyTables.has(table),
+      }).catch(e => console.warn("realtime:", e));
     if (account.role === "operator") {
       wireSync();
       if (!localStorage.getItem("otb-assets-migrated")) {
