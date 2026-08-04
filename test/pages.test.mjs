@@ -1,16 +1,21 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PAGES, PAGE_IDS, DEFAULT_OWNER_SHEETS } from "../src/lib/pages.js";
+import { PAGES, PAGE_IDS, DEFAULT_PAGE, DEFAULT_OWNER_SHEETS } from "../src/lib/pages.js";
 
 /* Regression guard for the ownerSheets drift bug: main.js rendered
    "Owners can see…" checkboxes for every sheet, but store.js kept its own
    whitelist that was missing spatial (A-2) and safe (S-1), so ticking them
    was a silent no-op — and owners could never see the Owner Safe. */
 
-test("PAGES is the full 13-sheet nav in drawing-set order", () => {
+test("PAGES is the full 14-sheet nav in drawing-set order", () => {
   assert.deepEqual(PAGES.map(p => p[1]), [
-    "D-1", "A-1", "A-2", "R-1", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "M-1", "V-1"
+    "D-0", "D-1", "A-1", "A-2", "R-1", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "M-1", "V-1"
   ]);
+});
+
+test("boot default is D-1, not whatever sits first in the index (D-0)", () => {
+  assert.equal(DEFAULT_PAGE, "dash");
+  assert.ok(PAGE_IDS.includes(DEFAULT_PAGE));
 });
 
 test("PAGE_IDS derives from PAGES — every nav sheet is owner-tickable", () => {

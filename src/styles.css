@@ -714,3 +714,20 @@ body.role-vendor .ownerview { display: none !important; }
   .rec-edit,.rec-del{font-size:15px;padding:6px}
   .dw-x{font-size:24px;padding:8px}
 }
+
+/* ── D-0 Portfolio + property switcher (Phase B-3) ─────────────── */
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pf-card{padding:16px}
+.pf-card.pf-active{border-top:3px solid var(--green)}
+.pf-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.pf-head b{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.02em}
+.pf-tag{font-size:9.5px;letter-spacing:.16em;color:var(--green);border:1px solid var(--green);border-radius:3px;padding:2px 7px}
+.pf-open{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;background:none;border:1px solid var(--line);border-radius:4px;padding:4px 10px;color:var(--ink70);cursor:pointer}
+.pf-open:hover{border-color:var(--brass);color:var(--brass)}
+.pf-addr{font-family:var(--mono);font-size:10.5px;margin-top:3px}
+.pf-kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.pf-kpi .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);margin-bottom:6px}
+.pf-kpi .val{font-family:var(--disp);font-weight:700;font-size:27px;line-height:1}
+.pf-kpi .note{font-family:var(--mono);font-size:10.5px;color:var(--ink50);margin-top:5px}
+.prop-switch{padding:12px 20px;border-top:1px solid var(--line)}
+.prop-switch select{width:100%;font-family:var(--mono);font-size:11.5px;padding:6px 8px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:4px}

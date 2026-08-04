@@ -4,6 +4,7 @@
    so a new sheet added here is automatically owner-tickable — the old split
    lists let A-2/S-1 checkboxes silently no-op). Pure module: unit-testable. */
 export const PAGES = [
+  ["portfolio", "D-0", "Portfolio"],
   ["dash", "D-1", "Dashboard"],
   ["plan", "A-1", "Site Plan"],
   ["spatial", "A-2", "Spatial"],
@@ -26,6 +27,10 @@ export const VENDOR_SHEET = "vendors";
 export const TENANT_SHEET = "maint";
 
 export const PAGE_IDS = PAGES.map(([id]) => id);
+
+/* Boot lands here (D-1 remains the working home sheet — D-0 sits above it in
+   drawing-set order but is a cross-property rollup, not the daily surface). */
+export const DEFAULT_PAGE = "dash";
 
 /* Owner-view defaults (fresh state / reset only — a persisted ownerSheets
    selection always wins). Deliberate calls:

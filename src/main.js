@@ -1,14 +1,14 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
 import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles } from "./lib/remote.js";
+import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty } from "./lib/remote.js";
 import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
-import { PAGES, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
+import { PAGES, DEFAULT_PAGE, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
 import { pageFromHash, hashFor, resolveRoute } from "./lib/router.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
@@ -26,6 +26,7 @@ import { initFinancial } from "./views/financial.js";
 import { initConcierge } from "./views/concierge.js";
 import { initVendorPortal } from "./views/vendorportal.js";
 import { initMaintenance } from "./views/maintenance.js";
+import { initPortfolio } from "./views/portfolio.js";
 import { closeDrawer } from "./views/drawer.js";
 
 
@@ -62,11 +63,11 @@ let navBtn = {}, ovWrap = null;
 function buildShell(account) {
   /* navigation (drawing-set sheet index) */
   const nav = document.getElementById("nav");
-  let currentPage = PAGES[0][0];
-  PAGES.forEach(([id, sheet, label], i) => {
+  let currentPage = DEFAULT_PAGE;
+  PAGES.forEach(([id, sheet, label]) => {
     const b = document.createElement("button");
     b.innerHTML = '<span class="sheet">' + sheet + '</span>' + label;
-    if (i === 0) b.classList.add("on");
+    if (id === DEFAULT_PAGE) b.classList.add("on");
     b.onclick = () => {
       document.querySelectorAll(".nav button").forEach(x => x.classList.remove("on"));
       b.classList.add("on");
@@ -82,7 +83,7 @@ function buildShell(account) {
     navBtn[id] = b;
     nav.appendChild(b);
   });
-  document.getElementById("pg-dash").classList.add("on");
+  document.getElementById("pg-" + DEFAULT_PAGE).classList.add("on");
 
   /* mobile: the sheet index is off-canvas behind ☰ (≤860px) */
   document.getElementById("navBurger").onclick = () => document.body.classList.toggle("nav-open");
@@ -291,6 +292,7 @@ function initViews(account) {
   initConcierge();
   initVendorPortal(account);
   initMaintenance(account);
+  initPortfolio();
   initDashboard(); // last — its Action Queue reads the board's live cards
 }
 
@@ -343,6 +345,27 @@ function wireSync() {
   });
 }
 
+/* Property switcher (Phase B-3, docs/phase-b/10): renders ONLY when the
+   member sees more than one property — today that is nobody, so the OTB
+   sidebar stays pixel-identical. Switching = full reload: seed, layer
+   hydration, queue priming, and the realtime channel are boot-bound to one
+   property context, and reload re-binds them all cleanly. */
+async function initPropertySwitcher() {
+  try {
+    const [props, ctx] = await Promise.all([listProperties(), propertyContext()]);
+    if (props.length < 2) return;
+    const wrap = document.createElement("div");
+    wrap.className = "prop-switch";
+    wrap.innerHTML = '<div class="ix-title">Property</div>' +
+      '<select id="propSel">' + props.map(p =>
+        '<option value="' + esc(p.slug) + '"' + (p.slug === ctx.slug ? " selected" : "") + '>' +
+        esc(p.name) + '</option>').join("") + '</select>';
+    const side = document.querySelector(".side");
+    side.insertBefore(wrap, side.querySelector(".foot"));
+    wrap.querySelector("#propSel").onchange = e => { setActiveProperty(e.target.value); location.reload(); };
+  } catch { /* roster unavailable — the switcher simply doesn't render */ }
+}
+
 function initTheme() {
   const saved = localStorage.getItem("otb-theme") === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = saved;
@@ -384,6 +407,8 @@ async function boot() {
     initViews(account);
     applyRole(account.role);
     initRouter();
+    if (account.role === "operator" || account.role === "owner")
+      initPropertySwitcher();
     if (account.role === "operator" || account.role === "owner")
       startRealtime({
         syncQueue, origin: CLIENT_ORIGIN,

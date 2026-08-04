@@ -15,18 +15,53 @@ export const sb = REMOTE ? createClient(URL, KEY) : null;
 
 import { LAYER_DEFS } from "./layers.js"; // single source — no twin list
 
-const PROPERTY = "otb"; // property slug — resolved to uuid tenancy at first use
+/* Active property (Phase B-3): the selection lives in localStorage; unset
+   means "first RLS-visible property" (created_at order — OTB today). This
+   retires the last client-side property-slug literal. Switching = full page
+   reload (seed, layer hydration, queue priming, and the realtime channel are
+   all boot-bound to one property context — see docs/phase-b/10). */
+const PROP_LS = "otb-active-property";
+export function activeSlug() {
+  try { return localStorage.getItem(PROP_LS) || null; } catch { return null; }
+}
+export function setActiveProperty(slug) {
+  try {
+    if (slug) localStorage.setItem(PROP_LS, slug);
+    else localStorage.removeItem(PROP_LS);
+  } catch { /* private mode — selection just doesn't persist */ }
+}
 
-/* Phase B tenancy context: resolve (org_id, property_id) uuids from the slug
-   once per session. RLS prop_read only answers for members, so non-members
-   fail here — callers degrade exactly like an empty RLS read always has. */
+/* RLS-visible property roster (switcher + D-0). Members see their own. */
+export async function listProperties() {
+  const { data, error } = await sb.from("properties")
+    .select("id,org_id,slug,name,address,facts,created_at").order("created_at");
+  if (error) throw error;
+  return data || [];
+}
+
+/* Phase B tenancy context: resolve (org_id, property_id) uuids once per
+   session. RLS prop_read only answers for members, so non-members fail here —
+   callers degrade exactly like an empty RLS read always has. A stale stored
+   slug (revoked/renamed) self-heals: clear it, fall back to first-visible. */
 let _ctx = null;
 export async function propertyContext() {
   if (_ctx) return _ctx;
-  const { data, error } = await sb.from("properties").select("id,org_id").eq("slug", PROPERTY).maybeSingle();
-  if (error) throw error;
-  if (!data) throw new Error("no membership grants access to property " + PROPERTY);
-  _ctx = { property_id: data.id, org_id: data.org_id };
+  const want = activeSlug();
+  let row = null;
+  if (want) {
+    const { data, error } = await sb.from("properties").select("id,org_id,slug").eq("slug", want).maybeSingle();
+    if (error) throw error;
+    row = data;
+    if (!row) setActiveProperty(null); // stale selection — heal below
+  }
+  if (!row) {
+    const { data, error } = await sb.from("properties")
+      .select("id,org_id,slug").order("created_at").limit(1).maybeSingle();
+    if (error) throw error;
+    row = data;
+  }
+  if (!row) throw new Error("no membership grants access to any property");
+  _ctx = { property_id: row.id, org_id: row.org_id, slug: row.slug };
   return _ctx;
 }
 
@@ -158,6 +193,27 @@ export async function addLedgerEntry(row) {
   const { error } = await sb.from("ledger_entries").insert(rec);
   if (error) throw error;
   return rec;
+}
+
+/* ── D-0 portfolio reads (Phase B-3) ─────────────────────────────
+   Cross-property aggregates: NO property filter — RLS scopes rows to the
+   member's org(s); the client groups by property_id. Column lists stay
+   minimal (folds only need these). */
+export async function listPortfolioLedger() {
+  if (!REMOTE) return [];
+  const { data, error } = await sb.from("ledger_entries")
+    .select("id,property_id,unit,type,amount,void_of");
+  if (error) throw error;
+  return (data || []).map(r => ({ ...r, voidOf: r.void_of }));
+}
+export async function listPortfolioMaintenance() {
+  if (!REMOTE) return { rows: [], events: [] };
+  const [{ data: rows, error: e1 }, { data: events, error: e2 }] = await Promise.all([
+    sb.from("maintenance_requests").select("*"),
+    sb.from("maintenance_events").select("*").order("created_at").order("id"),
+  ]);
+  if (e1 || e2) throw (e1 || e2);
+  return { rows: rows || [], events: events || [] };
 }
 
 /* ── C3 parking occupancy (append-only; uploaded from the capture
