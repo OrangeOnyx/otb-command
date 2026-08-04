@@ -13,7 +13,7 @@ try {
 export const REMOTE = !!(URL && KEY);
 export const sb = REMOTE ? createClient(URL, KEY) : null;
 
-import { LAYER_KEYS as LAYERS } from "./layers.js"; // single source — no twin list
+import { LAYER_DEFS } from "./layers.js"; // single source — no twin list
 
 const PROPERTY = "otb"; // property slug — resolved to uuid tenancy at first use
 
@@ -51,23 +51,58 @@ export async function sendMagicLink(email) {
 export async function signOut() {
   if (REMOTE) await sb.auth.signOut();
 }
-/* load the shared state (one row per layer) → snapshot object */
-export async function loadState() {
+/* ── typed layer state (Phase B-5, purge #7) ─────────────────────
+   One row per diverged item across 7 typed tables; the snapshot shape is
+   reassembled via each layer's fromRows so store/views never changed. */
+export async function fetchLayerRows(table) {
   const ctx = await propertyContext();
-  const { data, error } = await sb.from("property_state").select("layer,data").eq("property_id", ctx.property_id);
+  const { data, error } = await sb.from(table).select("*").eq("property_id", ctx.property_id);
   if (error) throw error;
+  return data || [];
+}
+
+/* load the shared state (typed rows → snapshot object, layers with data only) */
+export async function loadState() {
+  const tables = [...new Set(LAYER_DEFS.map(d => d.table))];
+  const results = await Promise.all(tables.map(t => fetchLayerRows(t)));
+  const byTable = Object.fromEntries(tables.map((t, i) => [t, results[i]]));
+  loadState.lastRows = byTable; // boot primes the sync queue from this
   const out = {};
-  (data || []).forEach(r => { out[r.layer] = r.data; });
+  for (const d of LAYER_DEFS) {
+    const rows = byTable[d.table].filter(r => d.ownsRow(r));
+    if (!rows.length) continue;
+    const v = d.fromRows(rows);
+    if (v !== undefined) out[d.key] = v;
+  }
   return out;
 }
-/* upsert each known layer from a store snapshot (operator only; RLS enforces) */
-export async function pushState(snapshot) {
+
+/* Apply drained SyncQueue batches (operator only; RLS enforces). Upserts go
+   one call per table; deletes grouped — single-col pk via .in(), composite
+   via per-row .match() (deletes are rare: reverts/removals only). */
+export async function pushOps(batches, origin) {
   const ctx = await propertyContext();
-  const rows = LAYERS
-    .filter(k => k in snapshot)
-    .map(layer => ({ org_id: ctx.org_id, property_id: ctx.property_id, layer, data: snapshot[layer], updated_at: new Date().toISOString() }));
-  if (!rows.length) return { error: null };
-  return sb.from("property_state").upsert(rows);
+  for (const { table, pk, upserts, deletes } of batches) {
+    if (upserts.length) {
+      const rows = upserts.map(r => ({ ...r, org_id: ctx.org_id, property_id: ctx.property_id, origin: origin || "" }));
+      const { error } = await sb.from(table).upsert(rows, { onConflict: ["property_id", ...pk].join(",") });
+      if (error) return { error };
+    }
+    if (deletes.length) {
+      if (pk.length === 1) {
+        const { error } = await sb.from(table).delete()
+          .eq("property_id", ctx.property_id).in(pk[0], deletes.map(r => r[pk[0]]));
+        if (error) return { error };
+      } else {
+        for (const r of deletes) {
+          const { error } = await sb.from(table).delete()
+            .eq("property_id", ctx.property_id).match(Object.fromEntries(pk.map(c => [c, r[c]])));
+          if (error) return { error };
+        }
+      }
+    }
+  }
+  return { error: null };
 }
 
 /* ── event-sourced compliance (C-1 audit trail; append-only) ─────
