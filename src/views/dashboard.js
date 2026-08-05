@@ -4,8 +4,9 @@
 import { UNITS, subscribe } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { getActionCards, ACTION_KIND } from "./board.js";
-import { REMOTE, getSession, listOccupancy, listOccupancyWeek } from "../lib/remote.js";
+import { REMOTE, getSession, listOccupancy, listOccupancyWeek, getCronHeartbeat } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
+import { heartbeatKpi } from "../lib/heartbeat.js";
 import { latestByStall, occSummary, occLine, occAsOf, weeklyRollup, rollupLine } from "../lib/occupancy.js";
 import { PARKING } from "../lib/facts.js";
 import stallMap from "../data/stall-map.json";
@@ -13,6 +14,7 @@ import stallMap from "../data/stall-map.json";
 let unifiSummary = null; // cached /api/unifi shape; renderKPIs reads it
 let occState = null;     // cached occupancy summary; renderKPIs reads it
 let occWeek = "";        // cached 7-day rollup line; renderKPIs reads it
+let hbRow = null;        // cached cron heartbeat row; renderKPIs reads it
 
 export function renderDashboard() {
   renderKPIs();
@@ -24,7 +26,7 @@ export function initDashboard() {
   renderDashboard();
   // alerts derive from compliance flags + action-board overrides — refresh on those
   subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
-  if (REMOTE) { fetchUnifi(); fetchOcc(); }
+  if (REMOTE) { fetchUnifi(); fetchOcc(); fetchHeartbeat(); }
 }
 
 /* C3 parking occupancy card — Supabase occupancy_samples (RLS owner/operator);
@@ -43,6 +45,15 @@ async function fetchOcc() {
     occWeek = rollupLine(weeklyRollup(await listOccupancyWeek(7), Date.now()));
     if (occWeek) renderKPIs();
   } catch { /* sparkline is best-effort on top of the card */ }
+}
+
+/* B-4 automation heartbeat card — if the daily cron goes silent, EVERY
+   detector goes dark at once; this card is the tripwire. Best-effort. */
+async function fetchHeartbeat() {
+  try {
+    hbRow = await getCronHeartbeat();
+    if (hbRow) renderKPIs();
+  } catch { /* card simply doesn't render */ }
 }
 
 /* UniFi Site Manager card — server proxy holds the key; owner/operator only.
@@ -77,7 +88,7 @@ function renderKPIs() {
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
     ["brass", "Parking", PARKING.provided + "<small>/" + PARKING.required + "</small>",
       "legal (var. <b>" + PARKING.entry + "</b>) · " + PARKING.drawn + " drawn"]
-  ].concat(unifiKpi()).concat(occKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
+  ].concat(unifiKpi()).concat(occKpi()).concat(hbKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 
 function unifiKpi() {
@@ -102,6 +113,13 @@ function occKpi() {
     (occWeek ? " · " + esc(occWeek) : "");
   return [["ink", "Parking Occupancy (C3)",
     totals.occ + "<small>/" + totals.known + " camera-covered</small>", note]];
+}
+
+function hbKpi() {
+  const k = heartbeatKpi(hbRow, Date.now());
+  if (!k) return [];
+  const [color, label, val, note] = k;
+  return [[color, label, val, esc(note)]];
 }
 
 function renderRunway() {

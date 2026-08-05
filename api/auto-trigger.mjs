@@ -136,5 +136,9 @@ export default async function handler(req, res) {
       else summary.skippedExisting++;
     } catch { summary.failed++; }
   }
+  /* B-4 heartbeat: record the completed run (docs/phase-b/11). Best-effort —
+     a heartbeat outage must never fail the cron it watches. */
+  try { await rpc("post_cron_heartbeat", { p_secret: secret, p_id: "auto-trigger", p_summary: summary }); }
+  catch (e) { console.warn("heartbeat:", e.message); }
   return res.status(200).json(summary);
 }

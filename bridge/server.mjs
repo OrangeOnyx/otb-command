@@ -47,7 +47,7 @@ async function greeting(line) {
   return greetingCache[line] || FALLBACK_GREETING[line];
 }
 
-const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://x");

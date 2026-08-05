@@ -240,6 +240,16 @@ export async function listOccupancyWeek(days = 7) {
   return data || [];
 }
 
+/* ── automation heartbeat (B-4; written by the cron via definer RPC,
+   read owner/operator) — best-effort like the UniFi/C3 cards ────── */
+export async function getCronHeartbeat(id = "auto-trigger") {
+  if (!REMOTE) return null;
+  const { data, error } = await sb.from("cron_heartbeats")
+    .select("id,ran_at,summary").eq("id", id).maybeSingle();
+  if (error) return null; // pre-migration / RLS-blind → card doesn't render
+  return data;
+}
+
 /* ── access management (operator-only; RLS enforces) ─────────────
    Authorize an email BEFORE first sign-in (allowlist consulted by the
    sign-up trigger) and fix anyone already stuck in 'pending'. */

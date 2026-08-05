@@ -3,7 +3,31 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-04 (later) — **PHASE B-3 SHIPPED + DEPLOYED + SMOKED
+Last updated: 2026-08-04 (later still) — **PHASE B-4 OBSERVABILITY SHIPPED +
+DEPLOYED + SMOKED (autonomous under /goal; 328 tests).** Design:
+docs/phase-b/11. Three legs: (1) **CI tripwire** `.github/workflows/ci.yml` —
+npm ci/test/build on every push/PR, env-less (no secrets in CI), deliberately
+NOT auto-deploy (Vercel git-link decision stays operator-open). (2)
+**Automation heartbeat** — migration `cron_heartbeat` (20260805025709,
+additive, applied DIRECT to prod per the additive convention): cron_heartbeats
+table (default_org_id/property_id stamps, member read, writes only via
+secret-gated `post_cron_heartbeat`); auto-trigger cron records each run
+best-effort; NEW D-1 card "Automation (cron)" (pure seam src/lib/heartbeat.js,
++5 tests) — green with last-run age + scan line, **brick STALE past 26h**
+naming the blast radius (maint/voice/C3/UniFi/rent/brief all ride that one
+cron — silence was invisible before this). Wrong-secret raise + rollback body
+smoke (row/stamps/upsert asserts) PASSED, 0 residue; advisors = same accepted
+definer-WARN class only. **Live smoke: manual cron run via the CRON_SECRET
+pull-load-delete drill → {scanned 6, opened 0, rent inserted 0 = idempotency
+re-proven, brief exists} → prod row fresh+stamped ✓ → bundle grep
+Automation(cron)/cron_heartbeats ✓.** (3) **Voice-bridge esc() null-safety**
+(the queued 07-29 one-liner, `s ?? ""`) — Fly deploy + smoke: healthz ok,
+/twiml returns clean TwiML with real greeting. NOT shipped (operator
+decisions, ranked): error-tracking vendor — 1 Sentry free tier · 2 Vercel log
+drains · 3 window.onerror→Supabase table (no vendor); auto-deploy-on-green.
+**Operator smoke (30s): D-1 → "Automation (cron)" card, green OK, age + "last
+scan: 6 candidates · 0 opened".**
+Prior: 2026-08-04 (later) — **PHASE B-3 SHIPPED + DEPLOYED + SMOKED
 (autonomous under /goal): D-0 PORTFOLIO SHEET + PROPERTY SWITCHER PLUMBING
 (323 tests).** Design: docs/phase-b/10. Client-only — no migration, no RLS
 change. (1) **Active property is now a selection**, not a literal: remote.js
