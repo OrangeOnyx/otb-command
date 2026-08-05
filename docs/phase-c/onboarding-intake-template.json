@@ -1,0 +1,35 @@
+{
+  "$comment": "Phase C-1 onboarding intake (docs/phase-c/01). One file = one property. Run: node tools/onboard-property.mjs <this-file> --dry-run first.",
+  "org": {
+    "slug": "example-mgmt",
+    "name": "Example Management, LLC",
+    "brand": {
+      "$comment": "purge-#6 shape — palette/wordmark/contact; may be {} to start"
+    }
+  },
+  "property": {
+    "slug": "example-center",
+    "name": "Example Shopping Center",
+    "address": "100 Example Blvd, Lafayette, LA 70506",
+    "tz": "America/Chicago",
+    "facts": [
+      { "label": "GLA", "value": "50,000 SF", "source": "rent roll 2026-08" },
+      { "label": "Parking", "value": "250 spaces", "source": "site plan" }
+    ]
+  },
+  "settings": {
+    "ledger_start_ym": "2026-09",
+    "renewal_horizon_days": 180,
+    "occupancy_floor": 0.85,
+    "late_grace_days": 5,
+    "late_flat": 100,
+    "late_per_day": 25,
+    "settings": {
+      "$comment": "A-4-style SOP questionnaire answers land here"
+    }
+  },
+  "authorized": [
+    { "email": "operator@example.com", "role": "operator" },
+    { "email": "owner@example.com", "role": "owner" }
+  ]
+}

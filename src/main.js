@@ -6,6 +6,8 @@ import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
 import { migrateLocalToRemote } from "./lib/assets.js";
+import { initErrorLog } from "./lib/errlog.js";
+import { logClientError } from "./lib/remote.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
 import { PAGES, DEFAULT_PAGE, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
@@ -407,6 +409,9 @@ async function boot() {
     initViews(account);
     applyRole(account.role);
     initRouter();
+    /* B-4 error beacon: authed sessions report uncaught errors (deduped,
+       session-capped client-side; hourly-capped server-side). */
+    initErrorLog(logClientError);
     if (account.role === "operator" || account.role === "owner")
       initPropertySwitcher();
     if (account.role === "operator" || account.role === "owner")

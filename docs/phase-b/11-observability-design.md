@@ -36,12 +36,23 @@ under `/goal`, following B-3 (docs/phase-b/10).
    `String(s)` → `String(s ?? "")` (a null greeting rendered "null" into
    TwiML welcomeGreeting). Redeployed to Fly + /twiml smoke.
 
+## Error tracking — no-vendor baseline SHIPPED (same session, follow-up round)
+
+Option 3 (window.onerror → Supabase, no vendor) shipped as the baseline: it
+forecloses nothing — a Sentry-class vendor can replace it later and the
+table just stops growing. Migration `client_error_log`: client_errors table
+(operator-only read), inserts ONLY via `log_client_error` definer RPC —
+authed sessions only, per-user 50/hour cap, 30-day retention sweep on the
+write path, field clamps server-side. Client: `src/lib/errlog.js` (pure
+dedupe + 5-per-session cap, tested) wires window error/unhandledrejection in
+boot; D-1 shows a brick "Client Errors (24h)" card only when the count is
+non-zero — quiet is the normal state. Vendor upgrade (Sentry / log drains)
+remains an operator menu item, now non-blocking.
+
 ## Deliberately not shipped
 
-- **Error tracking (Sentry-class)** — new vendor + DSN + client weight =
-  operator decision. Candidates ranked for the menu: (1) Sentry free tier ·
-  (2) Vercel log drains · (3) window.onerror → a Supabase table (no vendor).
-- **Auto-deploy on green** — same open operator decision as above.
+- **Auto-deploy on green** — the Vercel git-link operator decision stays
+  open; CI remains a tripwire only.
 
 ## Rollout
 

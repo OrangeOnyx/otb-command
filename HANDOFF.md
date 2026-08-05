@@ -3,7 +3,36 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-04 (later still) — **PHASE B-4 OBSERVABILITY SHIPPED +
+Last updated: 2026-08-04 (final round) — **C-1 ONBOARDING RAIL + ERROR-
+TRACKING BASELINE SHIPPED + DEPLOYED (autonomous under /goal; 338 tests).**
+(1) **C-1 onboarding productized** (docs/phase-c/01): intake contract
+(docs/phase-c/onboarding-intake-template.json — org+brand / property+facts /
+settings+SOP-jsonb / authorized emails+roles), pure validation seam
+src/lib/onboard.js (+6 tests, slug/YM regexes match the DB CHECKs), migration
+`onboarding_rpc` (20260805030451, additive + DORMANT): secret-gated
+`onboard_property` — org reused by slug, duplicate property RAISES (never
+clobbers), settings defaulted, authorized_emails upserted (membership rows
+created by the existing first-sign-in lattice), all-or-nothing. Full body
+smoke under rollback PASSED (org/brand/property/facts/settings-defaults/
+authorized/org-reuse/dup-raise), 0 residue. Driver:
+`node tools/onboard-property.mjs <intake.json> --dry-run` (validate+plan) or
+live via the CRON_SECRET drill. Fences: NO data package (13 sheets stay
+OTB-bound until C-2), no storage prefixes (decision still open), no
+self-serve UI. A freshly onboarded property appears on D-0 + the switcher
+appears at >1 property — the B-3 rail lands it. (2) **Error tracking shipped
+as the no-vendor baseline** (B-4 option 3, forecloses nothing): migration
+`client_error_log` (20260805030624): client_errors table (operator-only
+read), inserts ONLY via `log_client_error` RPC — authed-only (unauthed leg
+smoked false/0-rows), 50/user/hour cap, 30-day retention on the write path,
+server-side clamps; client beacon src/lib/errlog.js (pure dedupe +
+5-per-session cap, +4 tests) wired in boot; D-1 brick "Client Errors (24h)"
+card ONLY when count>0 — quiet renders nothing. Bundle grep
+log_client_error/Client Errors ✓. Sentry/log-drain upgrade = open menu item,
+now non-blocking. **STILL OPERATOR-GATED (cannot be done without you):
+A-5 payment links (needs your restricted Stripe key) · phone smokes (voice
+tour/refusal probe + cross-device realtime flip) · C-2 first pilot intake ·
+error-vendor upgrade · auto-deploy decision.**
+Prior: 2026-08-04 (later still) — **PHASE B-4 OBSERVABILITY SHIPPED +
 DEPLOYED + SMOKED (autonomous under /goal; 328 tests).** Design:
 docs/phase-b/11. Three legs: (1) **CI tripwire** `.github/workflows/ci.yml` —
 npm ci/test/build on every push/PR, env-less (no secrets in CI), deliberately

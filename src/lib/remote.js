@@ -250,6 +250,21 @@ export async function getCronHeartbeat(id = "auto-trigger") {
   return data;
 }
 
+/* ── client error beacon (B-4; capped definer RPC, operator read) ─ */
+export async function logClientError({ page, message, stack, ua }) {
+  if (!REMOTE) return;
+  try { await sb.rpc("log_client_error", { p_page: page, p_message: message, p_stack: stack, p_ua: ua }); }
+  catch { /* the beacon never throws into the page it watches */ }
+}
+export async function countClientErrors(hours = 24) {
+  if (!REMOTE) return 0;
+  const since = new Date(Date.now() - hours * 3600e3).toISOString();
+  const { count, error } = await sb.from("client_errors")
+    .select("id", { count: "exact", head: true }).gte("at", since);
+  if (error) return 0; // non-operator / pre-migration → card doesn't render
+  return count || 0;
+}
+
 /* ── access management (operator-only; RLS enforces) ─────────────
    Authorize an email BEFORE first sign-in (allowlist consulted by the
    sign-up trigger) and fix anyone already stuck in 'pending'. */
