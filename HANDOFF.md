@@ -3,7 +3,29 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-04 (final round) — **C-1 ONBOARDING RAIL + ERROR-
+Last updated: 2026-08-05 — **C-2 FUNNEL PROOF RUN LIVE (operator "lets go,
+dummy intake"): property `demo-pilot` onboarded into PROD via the C-1 rail.**
+`docs/phase-c/intake-demo-pilot.json` (org-reuse leg: landed under the
+existing orange-ocean org; authorized=[] on purpose — no live access-config
+mutations for a dummy) → dry-run → live run via the CRON_SECRET drill →
+SQL-verified: 2 properties under orange-ocean (otb 2026-08-02 · demo-pilot
+2026-08-05, ledger_start_ym 2026-09, settings.demo=true, 2 facts) →
+**duplicate re-run RAISED live (P0001, nothing clobbered)**. Consequences
+now visible to all org-wide members: **the property SWITCHER is live in the
+sidebar (first time — B-3 rail proven) and D-0 shows two cards** (demo-pilot
+= $0 A/R · 0 WOs). No financial side effects: rent cron posts to
+default_property_id (OTB) only; api/* still resolve 'otb'. Tool patched:
+post-fetch exits use exitCode (a hard process.exit tripped a libuv teardown
+assert on Windows — cosmetic, but ugly). **TEARDOWN when demo is done
+(operator's word):** `delete from property_settings where property_id =
+(select id from properties where slug='demo-pilot'); delete from properties
+where slug='demo-pilot';` **Operator confirmations this session: D-1
+Automation card ✓ ("looks correct") · phone/realtime/voice smokes ✓
+("already did, was good") · parked decisions accepted (error-vendor upgrade,
+auto-deploy) · A-5 restricted Stripe key COMING TONIGHT → next session:
+tools/stripe-payment-links.mjs per runbook §1, links must carry
+metadata.unit.**
+Prior: 2026-08-04 (final round) — **C-1 ONBOARDING RAIL + ERROR-
 TRACKING BASELINE SHIPPED + DEPLOYED (autonomous under /goal; 338 tests).**
 (1) **C-1 onboarding productized** (docs/phase-c/01): intake contract
 (docs/phase-c/onboarding-intake-template.json — org+brand / property+facts /

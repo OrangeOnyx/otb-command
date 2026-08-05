@@ -52,9 +52,13 @@ const res = await fetch(env.VITE_SUPABASE_URL + "/rest/v1/rpc/onboard_property",
   body: JSON.stringify({ p_secret: secret, p_intake: intake }),
 });
 const body = await res.text();
-if (!res.ok) { console.error("Onboard FAILED (HTTP " + res.status + "):", body); process.exit(1); }
-const out = JSON.parse(body);
-console.log("\nOnboarded ✓  org_id=" + out.org_id + "  property_id=" + out.property_id +
-  "  authorized=" + out.authorized);
-console.log("Next: authorized users magic-link in as usual (membership rows are " +
-  "created on first sign-in); the property appears on D-0 and in the switcher.");
+/* post-fetch paths use exitCode (not process.exit) so undici handles drain —
+   hard exit here trips a libuv teardown assert on Windows */
+if (!res.ok) { console.error("Onboard FAILED (HTTP " + res.status + "):", body); process.exitCode = 1; }
+else {
+  const out = JSON.parse(body);
+  console.log("\nOnboarded ✓  org_id=" + out.org_id + "  property_id=" + out.property_id +
+    "  authorized=" + out.authorized);
+  console.log("Next: authorized users magic-link in as usual (membership rows are " +
+    "created on first sign-in); the property appears on D-0 and in the switcher.");
+}

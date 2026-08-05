@@ -1,0 +1,24 @@
+{
+  "$comment": "C-2 funnel proof (2026-08-05, operator-approved dummy): first LIVE run of the onboarding rail. Property lands under the existing orange-ocean org (exercises the org-reuse leg); teardown SQL in HANDOFF when the demo is done.",
+  "org": {
+    "slug": "orange-ocean",
+    "name": "Orange Ocean, LLC"
+  },
+  "property": {
+    "slug": "demo-pilot",
+    "name": "Demo Pilot Center",
+    "address": "123 Demo St, Lafayette, LA 70506",
+    "tz": "America/Chicago",
+    "facts": [
+      { "label": "GLA", "value": "10,000 SF (demo)", "source": "dummy intake" },
+      { "label": "Status", "value": "C-2 funnel proof — not a real property", "source": "dummy intake" }
+    ]
+  },
+  "settings": {
+    "ledger_start_ym": "2026-09",
+    "renewal_horizon_days": 180,
+    "occupancy_floor": 0.85,
+    "settings": { "demo": true }
+  },
+  "authorized": []
+}
