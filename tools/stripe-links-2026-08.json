@@ -1,0 +1,29 @@
+{
+  "$comment": "A-5 payment-link batch spec, staged 2026-08-08 from the LIVE August ledger charges (24 occupied units; 131/133 vacant, 135B owner-occupied excluded). Amounts = TOTAL monthly rent per the operator rent-presentation rule. Consumed by: node tools/stripe-payment-links.mjs --key %USERPROFILE%\\.otb-stripe2.key --unit <unit> --amount <amount> --name <name>, once per row.",
+  "links": [
+    { "unit": "101",   "amount": "11085.81", "name": "The Pink Paisley" },
+    { "unit": "103",   "amount": "4923.09",  "name": "The Pink Paisley" },
+    { "unit": "105",   "amount": "3231.16",  "name": "Painted Bayou" },
+    { "unit": "107",   "amount": "2541.88",  "name": "Great American Cookies / Hershey's" },
+    { "unit": "109",   "amount": "3808.39",  "name": "JC Kate Boutique" },
+    { "unit": "111",   "amount": "2605.42",  "name": "BERNINA Lafayette (Lola Pink)" },
+    { "unit": "113",   "amount": "4017.58",  "name": "Graze Acadiana" },
+    { "unit": "115",   "amount": "3327.34",  "name": "The Clothing Loft Exchange" },
+    { "unit": "117",   "amount": "3327.34",  "name": "The Clothing Loft Exchange" },
+    { "unit": "117.5", "amount": "2800.92",  "name": "Victoria Nails" },
+    { "unit": "119",   "amount": "2890.42",  "name": "OUPAC Financial" },
+    { "unit": "119.5", "amount": "3035.03",  "name": "Cat Clinic of Lafayette" },
+    { "unit": "121",   "amount": "2527.90",  "name": "Magnolia Salon" },
+    { "unit": "123",   "amount": "5492.96",  "name": "The Tux Shoppe" },
+    { "unit": "125",   "amount": "2674.79",  "name": "Jordan Amanda by Shoetique" },
+    { "unit": "127",   "amount": "3912.75",  "name": "Jordan Amanda by Shoetique" },
+    { "unit": "129",   "amount": "2832.58",  "name": "HotWorx" },
+    { "unit": "135A",  "amount": "2040.83",  "name": "C. Wolf Barber Shop" },
+    { "unit": "137",   "amount": "3165.04",  "name": "Greek Expressions" },
+    { "unit": "139",   "amount": "2955.38",  "name": "Fast Pass Tag & Title" },
+    { "unit": "141",   "amount": "2955.38",  "name": "Fast Pass Tag & Title" },
+    { "unit": "143",   "amount": "3187.01",  "name": "1st Franklin Financial" },
+    { "unit": "145",   "amount": "3187.01",  "name": "Upstream Rehabilitation" },
+    { "unit": "149",   "amount": "7765.22",  "name": "Jason's Deli" }
+  ]
+}
