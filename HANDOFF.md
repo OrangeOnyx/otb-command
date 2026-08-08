@@ -3,7 +3,18 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-08 — **A-5 PAYMENT LINKS DONE — the last A-item is
+Last updated: 2026-08-08 (later) — **A-5 SMOKE IS NOW SELF-ANNOUNCING (340
+tests):** new migration `ach_first_probe` (secret-gated
+`get_first_ach_payment`, wrong-secret raise + insert/verify-under-rollback
+smoked, 0 residue) + pure `achFirstCandidate` seam (src/lib/ach.js, +2
+tests) + cron leg — **the FIRST ach: ledger row ever opens ONE manager
+thread 'ach-first' in AI-1** ("First ACH payment received — A-5 rail
+proven"); success stays silent forever after. Deployed; manual cron run
+clean (probe live, null → no false fire). Nobody has to watch the drawer:
+when the first payment settles (ACH = days), AI-1 announces it. Waiting on
+the world only: first payment (operator sends a link; settlement lag) ·
+C-3 pilot signature.
+Prior: 2026-08-08 — **A-5 PAYMENT LINKS DONE — the last A-item is
 closed.** Operator dropped the restricted key (Payment Links/Products/Prices
 Write → ~/.otb-stripe2.key, never in chat; a background file-watcher caught
 the drop) → canary link (101) verified → **all 24 ACH links created from the

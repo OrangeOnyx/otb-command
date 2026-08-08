@@ -21,6 +21,7 @@ import { c3StaleCandidate } from "../src/lib/occupancy.js";
 import { shapeUnifi, unifiTriggerCandidate } from "../src/lib/unifi.js";
 import { voiceLeadCandidates } from "../src/lib/voiceagent.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
+import { achFirstCandidate } from "../src/lib/ach.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
 import { configured, rpcSecret as rpc } from "./_supa.mjs";
@@ -89,6 +90,15 @@ export default async function handler(req, res) {
     const calls = await rpc("get_unbooked_voice_leads", { p_secret: secret });
     candidates.push(...voiceLeadCandidates(calls, new Date().toISOString()));
   } catch (e) { console.warn("voice-lead scan:", e.message); }
+
+  /* A-5 first-payment milestone: the first ach: ledger row EVER → one
+     manager thread ('ach-first'). Success posts are otherwise silent by
+     design; the smoke that proves the rail shouldn't be. Best-effort. */
+  try {
+    const first = await rpc("get_first_ach_payment", { p_secret: secret });
+    const ach = achFirstCandidate(first);
+    if (ach) candidates.push(ach);
+  } catch (e) { console.warn("ach-first probe:", e.message); }
 
   /* C3 heartbeat: stale occupancy pipeline → one manager thread per outage
      (trigger_source keyed by last-sample day). A probe failure is itself

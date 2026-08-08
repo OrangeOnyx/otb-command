@@ -78,6 +78,22 @@ export function classifyStripeEvent(event, validUnits = null) {
 }
 
 /* One-line webhook summary for logs / the endpoint response. */
+/* A-5 first-payment milestone (2026-08-08): success posts are silent by
+   design (24/mo shouldn't spam), but the FIRST ach: row ever is the smoke
+   that proves the link→webhook→ledger rail end-to-end — announce it once.
+   row: {id, unit, amount, date} from get_first_ach_payment, or null.
+   Idempotent forever: trigger_source 'ach-first' is unique in chat_threads. */
+export function achFirstCandidate(row) {
+  if (!row || !row.id || !row.unit) return null;
+  const amt = round2(+row.amount || 0);
+  return {
+    agent: "manager",
+    triggerSource: "ach-first",
+    title: "First ACH payment received — A-5 rail proven",
+    detail: `The first electronic rent payment has posted itself to the ledger: unit ${row.unit}, $${amt.toLocaleString("en-US", { minimumFractionDigits: 2 })} on ${row.date} (${row.id}).\n\nThe link → Stripe → webhook → ledger rail is now proven end-to-end in production. No action needed — this thread marks the milestone; every future payment posts the same way, silently.`,
+  };
+}
+
 export function achSummary(out) {
   if (!out) return "no result";
   if (out.kind === "payment") return "posted " + out.entry.id + " $" + out.entry.amount.toFixed(2) + " unit " + out.entry.unit;

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { classifyStripeEvent, achSummary, epochToIsoDate } from "../src/lib/ach.js";
+import { classifyStripeEvent, achSummary, epochToIsoDate, achFirstCandidate } from "../src/lib/ach.js";
 
 const succeeded = (over = {}, metaUnit = "131") => ({
   id: "evt_1", type: "payment_intent.succeeded", created: 1785000000, // 2026-07-25 UTC
@@ -49,4 +49,20 @@ test("ach: unrelated events and zero amounts are ignored; date math is UTC", () 
   const zero = classifyStripeEvent(succeeded({ amount_received: 0, amount: 0 }), ["131"]);
   assert.equal(zero.kind, "ignore");
   assert.equal(epochToIsoDate(0), "1970-01-01");
+});
+
+test("achFirstCandidate: milestone thread from the first ach row", () => {
+  const c = achFirstCandidate({ id: "ach:pi_1", unit: "105", amount: 3231.16, date: "2026-08-12" });
+  assert.equal(c.agent, "manager");
+  assert.equal(c.triggerSource, "ach-first");
+  assert.ok(c.title.includes("First ACH payment"));
+  assert.ok(c.detail.includes("unit 105"));
+  assert.ok(c.detail.includes("$3,231.16"));
+  assert.ok(c.detail.includes("2026-08-12"));
+});
+
+test("achFirstCandidate: null-safe before any payment exists", () => {
+  assert.equal(achFirstCandidate(null), null);
+  assert.equal(achFirstCandidate({}), null);
+  assert.equal(achFirstCandidate({ id: "ach:x" }), null);
 });
