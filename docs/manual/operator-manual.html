@@ -1,0 +1,505 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Orange Ocean Atlas — Operating Manual</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
+* { box-sizing: border-box; }
+body { margin:0; background:#EDEFE8; color:#1C2B26;
+  font:15px/1.55 'Public Sans',sans-serif; }
+.wrap { max-width:880px; margin:0 auto; padding:28px 34px 60px; }
+.titleblock { border:2px solid #1C2B26; background:#F6F7F1; padding:14px 20px;
+  margin-bottom:30px; display:flex; justify-content:space-between;
+  align-items:baseline; gap:16px; flex-wrap:wrap; }
+.titleblock .name { font:700 30px 'Big Shoulders Display',sans-serif;
+  letter-spacing:.5px; }
+.titleblock .sheet { font:600 13px 'IBM Plex Mono',monospace; color:#A87E2F; }
+h1 { font:700 26px 'Big Shoulders Display',sans-serif; letter-spacing:.5px;
+  border-bottom:2px solid #1C2B26; padding-bottom:6px; margin:44px 0 14px;
+  break-after:avoid; }
+h2 { font:700 19px 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
+  color:#2F6B4F; margin:30px 0 8px; break-after:avoid; }
+h3 { font:600 15px 'Public Sans',sans-serif; margin:22px 0 6px; }
+p { margin:8px 0; }
+strong { color:#1C2B26; }
+a { color:#2F6B4F; }
+img { max-width:100%; border:1px solid #5F6E64; border-radius:3px;
+  margin:10px 0 4px; break-inside:avoid; }
+table { border-collapse:collapse; font-size:13px; margin:12px 0; width:100%;
+  break-inside:avoid; }
+th, td { border:1px solid #5F6E64; padding:5px 9px; text-align:left;
+  vertical-align:top; }
+th { background:#F6F7F1; font:600 12px 'IBM Plex Mono',monospace;
+  text-transform:uppercase; letter-spacing:.4px; }
+code { font:13px 'IBM Plex Mono',monospace; background:#F6F7F1;
+  padding:1px 5px; border-radius:3px; }
+pre { background:#F6F7F1; border:1px solid #5F6E64; border-radius:3px;
+  padding:12px 14px; overflow-x:auto; break-inside:avoid; }
+pre code { background:none; padding:0; }
+blockquote { border-left:4px solid #A87E2F; margin:10px 0; padding:2px 14px;
+  color:#5F6E64; }
+ul, ol { margin:8px 0; padding-left:26px; }
+li { margin:3px 0; }
+hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
+.confid { color:#C25E33; font:600 12px 'IBM Plex Mono',monospace;
+  letter-spacing:.6px; }
+.foot { margin-top:46px; border-top:2px solid #1C2B26; padding-top:10px;
+  font:11px 'IBM Plex Mono',monospace; color:#5F6E64;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+@page { size: letter; margin: 14mm 12mm; }
+@media print {
+  body { background:#fff; }
+  .wrap { max-width:none; padding:0; }
+  img { border-color:#ccc; }
+}
+</style></head><body><div class="wrap">
+<div class="titleblock">
+  <div><div class="name">ORANGE OCEAN ATLAS · OTB</div>
+  <div style="font:600 13px 'IBM Plex Mono',monospace">OPERATING MANUAL · AUGUST 2026 · <span class=confid>CONFIDENTIAL</span></div></div>
+  <div class="sheet">SHEET M-1 · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
+</div>
+<h1>Orange Ocean Atlas — Operating Manual (On The Boulevard deployment)</h1>
+<p><strong>Version August 2026 · covers the 14-sheet production build (340 tests) · CONFIDENTIAL — contains actual rents</strong>
+Live app: https://orangeoceanatlas.com (also otb-command.vercel.app) · Operator: adam@adamabdalla.com</p>
+<p>This supersedes the July 2026 text-only edition (<code>docs/pitch/operator-manual.md</code>).
+Every screenshot in this manual is a real capture of the production system,
+signed in as the operator, taken August 8, 2026. Part I is orientation, Part II
+is the operator's day, Part III covers each sheet in depth, Part IV is the
+counterparty guides (owner / vendor / tenant / signer), Part V is the monthly
+and periodic rhythms, Part VI is administration and recovery.</p>
+<hr />
+<h1>Part I — Orientation</h1>
+<h2>1.1 Signing in</h2>
+<p><img alt="The sign-in screen" src="img/login.png" /></p>
+<p>There are no passwords. Enter your email on the login screen; a <strong>magic link</strong>
+arrives by email; clicking it signs you in. Your role is resolved
+automatically:</p>
+<table>
+<thead>
+<tr>
+<th>You are…</th>
+<th>How the system knows</th>
+<th>You land on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operator</td>
+<td>adam@adamabdalla.com</td>
+<td>Everything</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>pre-authorized email (see §6.1)</td>
+<td>Read-only, operator-chosen sheets</td>
+</tr>
+<tr>
+<td>Vendor</td>
+<td>email matches the vendor roster</td>
+<td>V-1 Vendor Portal only</td>
+</tr>
+<tr>
+<td>Tenant</td>
+<td>email in the tenant-contacts list</td>
+<td>M-1 Maintenance only, own unit</td>
+</tr>
+<tr>
+<td>Anyone else</td>
+<td>—</td>
+<td>A "pending" holding screen; no data</td>
+</tr>
+</tbody>
+</table>
+<p>If a legitimate person lands in pending, the operator promotes them (§6.1).</p>
+<h2>1.2 The drawing-set metaphor</h2>
+<p>The left sidebar is a <strong>sheet index</strong>, like an architect's drawing set:</p>
+<ul>
+<li><strong>D-0 Portfolio</strong> — cross-property rollup (one card per property)</li>
+<li><strong>D-1 Dashboard</strong> — KPIs, action queue, live cards</li>
+<li><strong>A-1 Site Plan</strong> — the interactive plat</li>
+<li><strong>A-2 Spatial</strong> — iso / 3D / satellite / photoreal lenses</li>
+<li><strong>R-1 Rent Roll</strong> · <strong>P-1 Financial</strong> — money</li>
+<li><strong>C-1 Compliance</strong> · <strong>T-1 Critical Dates</strong> — obligations</li>
+<li><strong>W-1 Action Board</strong> — kanban of everything needing action</li>
+<li><strong>K-1 Directory</strong> — contacts, document register, site imagery</li>
+<li><strong>M-1 Maintenance</strong> — work orders (also the tenant's sheet)</li>
+<li><strong>S-1 Owner Safe</strong> — sealed document vault</li>
+<li><strong>AI-1 Concierge</strong> — the three AI personas</li>
+<li><strong>V-1 Vendor Portal</strong> — vendor roster, COIs, work orders</li>
+</ul>
+<p>The URL tracks the open sheet (<code>#roll</code>, <code>#plan</code>…) — the back button walks your
+history, and links can deep-link a sheet. Boot lands on D-1 (D-0 sits above it
+in drawing-set order but is a rollup, not the daily surface).</p>
+<h2>1.3 The unit drawer — the universal detail surface</h2>
+<p><img alt="The unit drawer opened from the rent roll" src="img/drawer.png" /></p>
+<p>Click any unit anywhere (site plan, rent roll, 3D lens, satellite) and the
+<strong>drawer</strong> opens with everything about that unit: term progress, PSF economics,
+HVAC responsibility, notes, contacts, documents, photos, compliance rows, the
+<strong>Ledger</strong> panel, and the <strong>E-Sign</strong> panel. Most day-to-day work happens here.</p>
+<h2>1.4 Search and shortcuts</h2>
+<ul>
+<li>Press <strong>/</strong> anywhere → omni-search units, contacts, documents; Enter opens
+  the top hit.</li>
+<li><strong>⤓ SHEET</strong> (topbar) or <strong>Ctrl+P</strong> → prints the open sheet as a stamped PDF
+  (drawing-set footer, date, headline figures). R-1 is guaranteed one page.</li>
+<li><strong>Export / Import</strong> (topbar) → full state snapshot as JSON; Import restores
+  it. This is your portable backup (§6.4).</li>
+<li>Theme toggle (sidebar foot): plan-room (default) ↔ dark. Print always
+  reverts to paper.</li>
+</ul>
+<h2>1.5 Phones and tablets</h2>
+<p><img alt="D-1 on a phone" src="img/mobile-dash.png" /> <img alt="The sheet index drawer on a phone" src="img/mobile-nav.png" /></p>
+<p>At phone widths the sheet index becomes an off-canvas drawer behind the ☰
+button, grids collapse to one column, and the unit drawer goes full-screen.
+Everything works; nothing is mobile-only.</p>
+<hr />
+<h1>Part II — The operator's day</h1>
+<p>A normal day touches five surfaces:</p>
+<ol>
+<li><strong>D-1 Dashboard</strong> — scan the KPI row, the live cards, and the Action Queue
+   (§3.2).</li>
+<li><strong>W-1 Action Board</strong> — the kanban seeds <em>itself</em> from live facts
+   (holdovers, renewal windows ≤12 months, vacancies, compliance flags,
+   covenant obligations, open work orders). Drag cards between lanes, dismiss
+   what's handled, add custom cards. You never have to remember to create a
+   card for a lease expiring — it appears on its own.</li>
+<li><strong>AI-1 History</strong> — the daily automated scan (11:00 UTC) may have opened a
+   thread: a renewal window entered 180 days, a holdover appeared, occupancy
+   dipped, the camera pipeline went quiet, a voice lead never booked, or a
+   payment arrived that couldn't be matched. Each condition opens exactly
+   <strong>one</strong> thread, ever — if there's nothing new, there's nothing there.</li>
+<li><strong>M-1 Maintenance</strong> — new tenant requests (from the portal or the phone
+   line) appear in the queue. Triage per §3.10.</li>
+<li><strong>Mail/phone → the system</strong> — anything that arrived outside the system
+   (a signed lease, a COI, a check conversation) gets recorded where it
+   belongs the same day: SOT update (§5.3), vendor folder (§3.13), ledger
+   entry (§3.11).</li>
+</ol>
+<hr />
+<h1>Part III — Sheet-by-sheet instructions</h1>
+<h2>3.1 D-0 Portfolio</h2>
+<p><img alt="D-0 Portfolio" src="img/portfolio.png" /></p>
+<p>One card per property you can see: A/R outstanding (sum of positive unit
+balances over effective ledger entries) and open work orders, with an as-of
+stamp. "Open →" switches the active property. With a single property the
+<strong>property switcher</strong> stays hidden; at two or more it appears in the sidebar
+(see the onboarding manual). Derived — nothing to maintain here.</p>
+<h2>3.2 D-1 Dashboard</h2>
+<p><img alt="D-1 Dashboard" src="img/dash.png" /></p>
+<p>Read-only KPIs derived from live data — nothing to maintain here. Cards:
+occupancy/rent KPIs, parking variance (from the instruments file, not typed),
+<strong>Parking Occupancy (C3)</strong> with 7-day trend (48-hour freshness window; the
+as-of label shows date+time for non-today samples), <strong>Network (UniFi)</strong>
+up/down, <strong>Automation (cron)</strong> — green with last-run age; brick-red STALE past
+26 hours, which matters because maintenance aging, voice leads, C3 heartbeat,
+UniFi, rent posting, and the owner brief all ride that one daily cron —
+<strong>Client Errors (24h)</strong> (renders only when the count is nonzero), and the
+Action Queue (same cards as W-1). If a card shows brick-red, it is telling you
+something needs attention.</p>
+<h2>3.3 A-1 Site Plan</h2>
+<p><img alt="A-1 Site Plan" src="img/plan.png" /></p>
+<p>The recorded plat, interactive. <strong>Chips</strong> toggle overlay layers:
+- <strong>Lenses:</strong> Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.
+- <strong>🅿 Parking</strong> — the 314 drawn stalls by zone.
+- <strong>🎥 Cameras</strong> — 17 mounts with view cones; click one → its live view.
+  <strong>✎ Adjust cams</strong> (operator-only): drag pin to move, drag the brass dot to
+  re-aim, double-click to reset; corrections persist.
+- <strong>🚗 Occupancy</strong> — latest measured stall states painted green/outline over
+  the storefront row, Lot 8 pocket, and the 149 corner.
+- <strong>📍 Pins / ＋ Pin</strong> — drop a pin per water shutoff, meter, bench, column.
+  Pins also appear on the satellite lens.
+- <strong>Overlay → Floor plan</strong> — whole-center floor-plan raster under the unit
+  boxes, with an opacity slider.
+Click any unit → drawer.</p>
+<h2>3.4 A-2 Spatial (four lenses)</h2>
+<p><img alt="A-2 Spatial — iso lens" src="img/spatial.png" /></p>
+<ul>
+<li><strong>Iso</strong> — SVG isometric, real CAD heights; ⇅ toggles true heights;
+  ⤓ SVG exports a standalone file.</li>
+<li><strong>◧ 3D</strong> — orbitable massing; <strong>🏗 Mesh</strong> swaps in the photogrammetry mesh.</li>
+<li><strong>🛰 Satellite</strong> — frozen basemap with georeferenced footprints, unit
+  labels, asset pins; opens plan-oriented (Marie Antoinette top).</li>
+<li><strong>🎥 Reality</strong> — photoreal drone splat; ▦ toggles unit overlays; click a
+  storefront → drawer.
+All lenses share the same selection — pick a unit in one, it's selected in all.</li>
+</ul>
+<h2>3.5 R-1 Rent Roll</h2>
+<p><img alt="R-1 Rent Roll" src="img/roll.png" /></p>
+<p>11 sortable columns; any bare monthly amount is <strong>TOTAL rent</strong> (base +
+additional). The PSF breakdown chart is the only place component economics
+(Base · CAM · Tax · Ins) appear — by design.
+<strong>⤓ SHEET</strong> prints the owner one-pager: guaranteed one page (the layout
+measures itself and shrinks to fit), with expiry flags — ▲ brick ≤6 months,
+△ amber 6–12 months — and a legend in the stamp.</p>
+<h2>3.6 P-1 Financial</h2>
+<p><img alt="P-1 Financial" src="img/fin.png" /></p>
+<p>Income composition, rollover, and concentration charts; the <strong>NOI worksheet</strong>
+(enter opex → NOI → cap-rate value); <strong>Collections &amp; aging</strong> (month
+collected-vs-charged and per-unit FIFO aging from the ledger). The Excel
+proforma (<code>npm run proforma</code>) is the owner-overridable model for underwriting
+conversations.</p>
+<h2>3.7 C-1 Compliance</h2>
+<p><img alt="C-1 Compliance" src="img/comp.png" /></p>
+<p>The 11×27 matrix. <strong>Click a cell to cycle</strong> unknown → ok → flag → n/a
+(food-service-only fields apply only where relevant). Every flip is recorded —
+who, when, from→to — and <strong>⏱ History</strong> shows the trail. You cannot corrupt
+this history; corrections are new flips. Edits sync live between devices —
+flip a cell on your phone and it flips on the desktop without a reload.</p>
+<h2>3.8 T-1 Critical Dates</h2>
+<p><img alt="T-1 Critical Dates" src="img/dates.png" /></p>
+<p>Lease expirations plus instrument deadlines (JD Bank easement end, etc.) on
+one timeline. Derived — nothing to maintain.</p>
+<h2>3.9 W-1 Action Board</h2>
+<p><img alt="W-1 Action Board" src="img/board.png" /></p>
+<p>See Part II. Card types include seeded facts (holdover, renewal, vacancy,
+compliance flag, covenant) and <strong>live work-order cards</strong> (<code>mr:</code> prefixed).
+Overrides (lane moves, dismissals) persist; the seed recomputes every render,
+so a dismissed card returns only if the underlying fact returns.</p>
+<h2>3.10 M-1 Maintenance (operator face)</h2>
+<p><img alt="M-1 Maintenance" src="img/maint.png" /></p>
+<ul>
+<li><strong>Queue:</strong> every request with status, age, unit, photos.</li>
+<li><strong>Assign:</strong> pick a vendor from the service roster → the vendor sees it in
+  V-1 immediately.</li>
+<li><strong>Status flips</strong> and notes are append-only events.</li>
+<li><strong>Tenant logins:</strong> the roster editor (email ↔ unit) controls who may sign in
+  as a tenant. Add email + unit; they magic-link in like everyone else.</li>
+<li><strong>File on behalf:</strong> log a phone-in request yourself.</li>
+<li><strong>Aging alarm:</strong> unassigned requests older than 2 days (1 for emergencies)
+  open a manager thread automatically.
+Tenant-side view: §4.3.</li>
+</ul>
+<h2>3.11 The Ledger (drawer → Ledger)</h2>
+<ul>
+<li>Balance headline + last entries with running balance.</li>
+<li><strong>Monthly rent charges post themselves</strong> (idempotently) on the 1st, since
+  August 2026.</li>
+<li><strong>ACH payments post themselves.</strong> Each unit has a reusable Stripe payment
+  link (ACH only; roster with URLs: <code>docs/stripe-payment-links-2026-08.md</code>,
+  copy on Drive). You send the link through your own channel — the app sends
+  nothing. When the payment settles (ACH takes days), the unit's ledger gains
+  an <code>ach:&lt;payment-intent-id&gt;</code> entry automatically. A payment that can't be
+  matched to a unit, or that fails, opens a manager thread in AI-1
+  (<code>ach-unmapped:</code> / <code>ach-fail:</code>) instead of landing silently.</li>
+<li><strong>"Payment received"</strong> records an out-of-band payment by hand.</li>
+<li>Add charge / credit / adjustment / NSF / write-off as needed.</li>
+<li><strong>Void</strong> = ✕ on an entry → creates a <em>reversing entry</em> (nothing is deleted).</li>
+<li><strong>Late-fee chips:</strong> past the 5-day grace, a suggestion chip appears
+  ($100 + $25/day, the standard schedule). It posts <strong>only when you confirm.</strong>
+  If a lease carries different late terms, flag it — policy goes per-unit.</li>
+<li><strong>Amount changes:</strong> re-run <code>tools/stripe-payment-links.mjs</code> for that unit
+  and retire the old link in the Stripe dashboard.</li>
+</ul>
+<h2>3.12 The E-Sign panel (drawer → E-Sign)</h2>
+<ol>
+<li><strong>Create</strong> a request (optionally attach a document for review).</li>
+<li><strong>Copy link / Copy message</strong> — the app sends nothing; you deliver the link
+   through your own channel (text/email). This is deliberate.</li>
+<li>The signer opens a plain, branded page — no login needed — reviews, and
+   signs or declines (E-SIGN/LA-UETA consent language included).</li>
+<li>You see the live status (sent → viewed → signed/declined/expired), can
+   <strong>re-token</strong> (invalidate + reissue) or <strong>cancel</strong>, and get a signed receipt.
+Tokens are single-lifecycle: double-signing or declining after signing is
+rejected by the database itself.</li>
+</ol>
+<h2>3.13 V-1 Vendor Portal (operator face)</h2>
+<p><img alt="V-1 Vendor Portal" src="img/vendors.png" /></p>
+<ul>
+<li>Roster (service vendors first, green "portal" tag = they can sign in).</li>
+<li>Per-vendor private folder: upload / open / delete, all audited.</li>
+<li><strong>COI tracking:</strong> set expiry + note per vendor → badge auto-classifies
+  (expired / ≤30d / ≤60d / ok; missing is flagged for service vendors).</li>
+<li><strong>🤖 Parse cert:</strong> drop an ACORD PDF → AI pre-fills carrier, limits, expiry,
+  and a normalized note → review → <strong>Save COI</strong>. Always review before saving.</li>
+<li>Assigned work orders appear on the vendor's face automatically (§4.2).</li>
+<li><strong>Inviting a vendor</strong> = telling them to magic-link in with their roster
+  email. Nothing else to configure.</li>
+<li>Policy: COI / W-9 / license are verified at <strong>payment</strong>, not dispatch.</li>
+</ul>
+<h2>3.14 K-1 Directory</h2>
+<p><img alt="K-1 Directory" src="img/dir.png" /></p>
+<p>Property contacts, the document register (rows can carry a real uploaded file
+— 📎 attach → the row's link becomes an "Open 📎" that always serves a fresh
+secure URL), and the site-imagery library.</p>
+<h2>3.15 S-1 Owner Safe</h2>
+<p><img alt="S-1 Owner Safe" src="img/safe.png" /></p>
+<p>Category folders (Proforma / Leases / Tax / Insurance / Banking / Other).
+Upload and open as the operator; owners read-only; vendors/tenants sealed out
+at the database layer. <strong>Recent access</strong> (operator-only) shows every view,
+upload, and delete with who and when.</p>
+<h2>3.16 AI-1 Agent Desk</h2>
+<p><img alt="AI-1 Concierge" src="img/ai.png" /></p>
+<p>Three personas — <strong>🏛 Concierge</strong> (property Q&amp;A), <strong>🤝 Leasing</strong>,
+<strong>🔧 Property Manager</strong> — all grounded in the property dossier + live state.
+- Conversations persist and resume after reload; <strong>🗂 History</strong> reopens any
+  thread; <strong>＋ New</strong> starts fresh.
+- <strong>🎙</strong> mic input and <strong>🔊</strong> spoken replies (Chrome/Edge).
+- <strong>Numbers are guardrailed:</strong> once a calculation is involved, every figure in
+  the reply must trace to the deterministic engines or the reply is replaced
+  with the engines' own summary. Ask the leasing agent things like
+  <em>"compare retaining at $17 vs replacing at $20 with 3 months free and $10
+  TI, 5-yr term, 1,917 SF, 7.5% cap"</em> — or the manager
+  <em>"should I spend $45K on an RTU replacement with a $120K reserve, $30K/yr
+  contributions, installed 2008, 15-yr life?"</em>
+- <strong>📊 Briefs</strong> — the monthly owner-brief archive; Open 🔒 renders any month.
+- <strong>📦 Lead SMS</strong> (leasing persona): copies a ready-to-send text with the
+  public leasing one-pager (orangeoceanatlas.com/leasing.html) and the
+  leasing line number. You paste and send it — the app sends nothing.
+- <strong>Lease packages (operator-only):</strong> ask 🤝 Leasing to assemble a proposal;
+  it collects terms conversationally, then generates a branded DRAFT proposal
+  (and optionally the internal owner summary) as a card with <strong>Open 🔒</strong> and
+  <strong>✉ Email</strong> (pre-filled mailto — you send it; it never auto-sends).
+  Every generated document is DRAFT-stamped, subject to legal review.</p>
+<h2>3.17 The voice lines (LIVE)</h2>
+<ul>
+<li><strong>Tenant line (337) 273-0384:</strong> 24/7; triages per the SOP (emergencies =
+  leak / electrical / break-in / sewer → dispatch + notify after-hours, never
+  wakes you for permission); files real work orders into M-1; never discusses
+  eviction timelines.</li>
+<li><strong>Leasing line (337) 270-7044:</strong> takes name + number, quotes "high-teens
+  PSF" range only, screens against exclusive-use conflicts, books tour slots
+  (18h lead, Tue/Thu defaults; double-booking is impossible). <strong>Truthful
+  booking is enforced:</strong> the agent cannot claim a tour is booked unless the
+  booking tool actually succeeded; an unbacked claim is corrected or replaced
+  with an honest fallback, and a leasing call that ends without a booking
+  opens a <code>voice-lead:</code> manager thread within hours so no lead drops.</li>
+<li>Every call lands as a transcript thread in AI-1 History.</li>
+<li>Go-live steps + secret rotation drill: <code>docs/a3-voice-runbook.md</code>.</li>
+</ul>
+<hr />
+<h1>Part IV — Counterparty guides</h1>
+<h2>4.1 Owners</h2>
+<p>Sign in with your authorized email. You see the sheets the operator has shared
+(dashboard, rent roll, financials, and the Safe are typical), <strong>read-only</strong>.
+The <strong>📊 Briefs</strong> panel in AI-1 holds your monthly intelligence brief — every
+figure deterministic, archived permanently. You may ask the AI desk questions;
+its numbers are guardrailed the same as the operator's.</p>
+<h2>4.2 Vendors</h2>
+<p>Magic-link in with the email the operator has on file. You see one sheet: your
+own folder (your documents + "send a file to management"), your COI status
+with a renewal nudge, and <strong>your assigned work orders</strong> — open each to read
+notes and photos, add notes, and <strong>✓ Mark complete</strong> when done.</p>
+<h2>4.3 Tenants</h2>
+<p>Magic-link in with the email your management added. You see M-1 for <strong>your
+unit only</strong>: file a maintenance request (describe the problem, attach photos),
+watch its status, and <strong>"Your account"</strong> — your current balance and recent
+ledger entries. Rent is paid through the payment link management sends you —
+one link per unit, reusable every month. Emergencies (water leak, electrical
+hazard, break-in, sewer): call the maintenance line rather than filing a
+ticket.</p>
+<h2>4.4 Document signers</h2>
+<p>You'll receive a link from management. It opens a simple page — no account,
+no app. Review the request (and the attached document if one is linked), then
+sign or decline. The signature is recorded with timestamp and consent language
+under the federal E-SIGN Act and Louisiana UETA.</p>
+<hr />
+<h1>Part V — Rhythms</h1>
+<h2>5.1 Daily (mostly automatic)</h2>
+<ul>
+<li>11:00 UTC — proactive scan: renewals/holdovers/occupancy → AI threads;
+  work-order aging; camera-pipeline heartbeat; rent-charge posting;
+  unmatched-ACH threads; unbooked voice leads; UniFi outages. The scan also
+  stamps the <strong>Automation (cron)</strong> card on D-1 — if that card goes brick,
+  every one of those safety nets is silent; treat it as urgent.</li>
+<li>12:00 local + 23:45 local — camera frames classified + uploaded
+  (hands-free; the sampler is watchdog-healed).</li>
+<li>You: the Part II walk — dashboard, board, AI history, maintenance queue.</li>
+</ul>
+<h2>5.2 Monthly</h2>
+<ul>
+<li><strong>1st:</strong> Owner Intelligence Brief generates itself; rent charges post
+  themselves. Skim the brief before the owner does.</li>
+<li>Send (or re-send) payment links through your channel; ACH payments post
+  themselves as they settle; confirm or dismiss late-fee chips after the
+  grace window.</li>
+<li>Documented property walk (per SOP); update C-1 flags as found — the history
+  logs itself.</li>
+</ul>
+<h2>5.3 When a lease is signed / a fact changes (governed SOT update)</h2>
+<ol>
+<li>Update the source pack <code>docs/sot-2026-07/</code> (authority rank 1).</li>
+<li>Apply the change to <code>src/data/units.json</code>.</li>
+<li><code>npm run split-seed</code> &amp;&amp; <code>npm run concierge-context</code> (the test suite fails
+   if you forget — deliberately).</li>
+<li><code>npm test</code> → commit → deploy (§6.3) → verify live.
+Never trust an imported system's dates over signed paper; store stated-rent
+exceptions as exceptions — do not "fix" them to formula.</li>
+</ol>
+<h2>5.4 Periodic</h2>
+<ul>
+<li>COI badges: chase at ≤60 days, escalate at ≤30 (§3.13).</li>
+<li>Semi-annual house HVAC PM (unit 149 excluded — tenant maintains under
+  §9.01 with Butcher Air).</li>
+<li>Move-out: solo walk + photos within 30 days; file to the unit's assets.</li>
+<li>Re-run marketing artifacts when availability changes (<code>npm run poster</code>,
+  leasing one-pager per <code>tools/leasing-package.py</code>).</li>
+</ul>
+<hr />
+<h1>Part VI — Administration &amp; recovery</h1>
+<h2>6.1 Granting and revoking access</h2>
+<ul>
+<li><strong>Owner:</strong> sidebar → "Sign-in access…" → type email → <strong>+ Owner</strong>. Their
+  first magic link lands them as owner. Anyone stuck in pending is listed
+  there with one-click "make owner". Revoke = ✕ (removes pre-authorization;
+  demoting an existing profile is a Supabase console step).</li>
+<li><strong>Vendor:</strong> ensure their email is on the roster; tell them to sign in.</li>
+<li><strong>Tenant:</strong> M-1 → Tenant logins → add email + unit. Remove the row to cut
+  access.</li>
+<li><strong>Owner sheet visibility:</strong> the "Owners can see…" panel controls which
+  sheets owners get.</li>
+</ul>
+<h2>6.2 Quality gates (never skip)</h2>
+<p><code>node --check</code> on changed modules · <code>npm test</code> (340) · <code>npm run build</code> ·
+deploy · <strong>grep the prod bundle for the change</strong> · smoke the live URL.
+Committing is not shipping: <strong>commits do not auto-deploy.</strong></p>
+<h2>6.3 Deploying</h2>
+<pre><code class="language-bash">npx vercel deploy --prod --yes --scope adams-projects-0c52918e
+</code></pre>
+<p>(CLI is logged in as orangeonyx on this machine. <code>.vercelignore</code> governs
+uploads — the 16MB splat + 3MB mesh ride in <code>public/</code>.)</p>
+<h2>6.4 Backup &amp; portability</h2>
+<ul>
+<li>Topbar <strong>Export</strong> → full-state JSON. Take one before risky edits; <strong>Import</strong>
+  restores.</li>
+<li>The repo is the authoritative system; all exports (dossier, buyer set,
+  posters) are disposable and regenerable. Every export also lands on
+  <code>G:\My Drive\00 OTB\</code>.</li>
+<li>A scheduled task (<code>OTB-Repo-Backup</code>, daily 03:00) bundles full git history
+  to Drive. Committed-only — commit anything that matters.</li>
+<li>Local preview without login: dev server on port <strong>5199</strong>; move <code>.env</code> aside
+  temporarily — and restore it after. (Confidential rents do not render in
+  that mode — by design.)</li>
+</ul>
+<h2>6.5 Secrets</h2>
+<p>Keys live <strong>only</strong> in Vercel env — never in chat, repo, or disk. Rotations are
+scripted drills: <code>tools/rotate-secret.mjs</code> (shared cron secret),
+<code>tools/rotate-voice-secret.mjs</code> (voice). One-shot key needs (e.g. the
+restricted Stripe key used to mint payment links) follow the drop-use-delete
+drill: key to a dotfile, tool consumes it, file deleted — never in chat.
+Vercel rejects env values with trailing whitespace at deploy time — the
+scripts handle this; when feeding a secret to a CLI, use <code>cmd /c "… &lt; file"</code>
+(PowerShell pipes append a newline).</p>
+<h2>6.6 The camera (C3) pipeline</h2>
+<p>Fully hands-free: sampler (5-min ticks, watchdog task self-heals it at logon
++ every 5 min) → midday 12:00 + nightly 23:45 classify + upload → app
+surfaces. If it goes quiet 36 hours, a manager thread opens on its own. After
+a machine reboot the watchdog relaunches the sampler; no manual step. Known
+conventions: capture day-directories are UTC-keyed; frames live outside the
+repo.</p>
+<h2>6.7 Known limits (deliberate v1 boundaries)</h2>
+<ul>
+<li>E-sign, lease proposals, and payment links: the operator transmits
+  links/documents; the app sends nothing outbound on its own.</li>
+<li>Voice: no SMS notify on dispatch, no live call transfer, no daily call cap
+  (set a Twilio usage trigger); settings edits via SQL until a UI lands.</li>
+<li>Desktop-first; the phone experience is a responsive web app, not a native
+  app.</li>
+<li>Onboarding a second property is operator-driven (see the onboarding
+  manual); there is no self-serve signup.</li>
+</ul>
+<hr />
+<p><em>Questions the manual doesn't answer: ask the 🏛 Concierge — it is grounded in
+the same governed data this manual describes.</em></p>
+<div class="foot">
+  <span>ORANGE OCEAN ATLAS — instrumented asset management</span>
+  <span>Managed by Orange Ocean, LLC · generated 2026-08-08</span>
+</div>
+</div></body></html>

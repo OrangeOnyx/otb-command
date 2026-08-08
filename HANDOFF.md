@@ -3,7 +3,22 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-08 (later) — **A-5 SMOKE IS NOW SELF-ANNOUNCING (340
+Last updated: 2026-08-08 (later still) — **ILLUSTRATED MANUALS SHIPPED:
+docs/manual/ = operator manual (Aug refresh, supersedes docs/pitch copy) +
+NEW onboarding manual (C-3 rail procedure), both with REAL authed-prod
+screenshots (18 shots, docs/manual/img/), branded HTML + PDF via NEW
+tools/build-manuals.py (re-run after edits); Drive copy
+G:\My Drive\00 OTB\manuals-2026-08\.** Capture rig lessons (scratchpad-only,
+not committed): local no-login preview renders $NaN (C1 split-seed by
+design) — puppeteer CDP-intercepts units.public.json with full SOT for
+local money shots; authed prod shots via the OTP drill BUT skip Gmail
+mangle-forensics entirely — read auth.one_time_tokens.token_hash via
+Supabase MCP SQL, POST /auth/v1/verify {type:'magiclink',token_hash}
+(NO email field — it flips the flow), inject sb-<ref>-auth-token, then
+HARD RELOAD (goto '/'→'/#dash' is same-document; boot won't re-run);
+session revoked after (logout 204). OTP emails rate-limit fast (429);
+auth.refresh_tokens has the fallback (mind the operator's own row).
+Prior: 2026-08-08 (later) — **A-5 SMOKE IS NOW SELF-ANNOUNCING (340
 tests):** new migration `ach_first_probe` (secret-gated
 `get_first_ach_payment`, wrong-secret raise + insert/verify-under-rollback
 smoked, 0 residue) + pure `achFirstCandidate` seam (src/lib/ach.js, +2
