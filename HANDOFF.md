@@ -3,7 +3,21 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-05 (later) — **DEMO TORN DOWN (operator's word) + THE
+Last updated: 2026-08-08 — **A-5 PAYMENT LINKS DONE — the last A-item is
+closed.** Operator dropped the restricted key (Payment Links/Products/Prices
+Write → ~/.otb-stripe2.key, never in chat; a background file-watcher caught
+the drop) → canary link (101) verified → **all 24 ACH links created from the
+staged tools/stripe-links-2026-08.json, every PaymentIntent carries
+metadata.unit (tool-verified per link)** → key file DELETED → roster with
+URLs: `docs/stripe-payment-links-2026-08.md` + Drive copy
+(G:\My Drive\00 OTB\). Distribution = operator's channel (app sends
+nothing); links are reusable monthly; amount changes = re-run the tool for
+that unit + retire the old link in the dashboard. **REMAINING SMOKE (the
+very last A-5 step): first real payment — send a link to yourself/a tenant,
+watch the unit ledger gain `ach:<pi_id>` automatically.** With this, Phase A
+(A-0…A-5) + Phase B (B-1…B-5) + C-1/C-2 are ALL COMPLETE; next big rock =
+C-3 pilot onboarding (real intake) on the proven rail.
+Prior: 2026-08-05 (later) — **DEMO TORN DOWN (operator's word) + THE
 BUG IT CAUGHT FIXED + DEPLOYED (338 tests).** Teardown found demo-pilot's
 typed tables POPULATED (297 comp_state + board/features/cameras/settings):
 **boot's seed-empty-backend leg had pushed the operator's local OTB snapshot
