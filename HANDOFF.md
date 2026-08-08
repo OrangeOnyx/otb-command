@@ -3,7 +3,22 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-05 — **C-2 FUNNEL PROOF RUN LIVE (operator "lets go,
+Last updated: 2026-08-05 (later) — **DEMO TORN DOWN (operator's word) + THE
+BUG IT CAUGHT FIXED + DEPLOYED (338 tests).** Teardown found demo-pilot's
+typed tables POPULATED (297 comp_state + board/features/cameras/settings):
+**boot's seed-empty-backend leg had pushed the operator's local OTB snapshot
+into the fresh property on first switch** — real B-3 bug, would have hit
+pilot #1. Deleted demo children → settings → property; verified: 1 property
+(otb, first-visible), OTB comp_state 297 intact, 0 orphans; switcher
+disappears again (correct at one property). **FIX SHIPPED: seeding leg now
+gated on `(await propertyContext()).slug === BUNDLED_PROPERTY` (new remote.js
+const naming the COMPILED-IN data package — a dataset fact, not a tenancy
+literal).** A fresh property now boots empty as designed; known residual
+fence (doc'd): manual edits made while SWITCHED to a data-less property still
+sync to it — Phase C gives non-bundled properties their own packages.
+Deploy verified by bundle content-hash match (KKFPt_31 local == prod).
+**A-5 Stripe key still expected tonight → runbook §1.**
+Prior: 2026-08-05 — **C-2 FUNNEL PROOF RUN LIVE (operator "lets go,
 dummy intake"): property `demo-pilot` onboarded into PROD via the C-1 rail.**
 `docs/phase-c/intake-demo-pilot.json` (org-reuse leg: landed under the
 existing orange-ocean org; authorized=[] on purpose — no live access-config

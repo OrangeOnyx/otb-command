@@ -21,6 +21,10 @@ import { LAYER_DEFS } from "./layers.js"; // single source — no twin list
    reload (seed, layer hydration, queue priming, and the realtime channel are
    all boot-bound to one property context — see docs/phase-b/10). */
 const PROP_LS = "otb-active-property";
+/* The property whose data package (units.json, geometry, seeds…) is compiled
+   into this bundle. NOT a tenancy literal — it names the shipped dataset, so
+   boot knows which property may be seeded from local state. */
+export const BUNDLED_PROPERTY = "otb";
 export function activeSlug() {
   try { return localStorage.getItem(PROP_LS) || null; } catch { return null; }
 }

@@ -1,7 +1,7 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
 import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty } from "./lib/remote.js";
+import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY } from "./lib/remote.js";
 import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
@@ -400,7 +400,11 @@ async function boot() {
       for (const d of LAYER_DEFS) // prime the sync queue with server truth
         syncQueue.prime(d, (loadState.lastRows?.[d.table] || []).filter(r => d.ownsRow(r)));
       if (Object.keys(remote).length) hydrateRemote(remote);
-      else if (account.role === "operator") { // seed empty backend from local
+      else if (account.role === "operator" && (await propertyContext()).slug === BUNDLED_PROPERTY) {
+        /* seed an empty backend from local — ONLY for the bundled property.
+           The local snapshot derives from the bundled OTB data package;
+           pushing it into a freshly onboarded property mirrors OTB state
+           there (caught live by the C-2 demo teardown, 2026-08-05). */
         for (const d of LAYER_DEFS) syncQueue.queue(d, d.toRows(getLayerState(d.key)));
         await pushOps(syncQueue.drain(), CLIENT_ORIGIN);
       }
