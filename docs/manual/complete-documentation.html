@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset="utf-8">
-<title>Orange Ocean Atlas — Operating Manual</title>
+<title>Orange Ocean Atlas — Complete Program Documentation</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
 * { box-sizing: border-box; }
@@ -53,10 +53,14 @@ hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
 </style></head><body><div class="wrap">
 <div class="titleblock">
   <div><div class="name">ORANGE OCEAN ATLAS · OTB</div>
-  <div style="font:600 13px 'IBM Plex Mono',monospace">OPERATING MANUAL · AUGUST 2026</div></div>
-  <div class="sheet">SHEET M-1 · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
+  <div style="font:600 13px 'IBM Plex Mono',monospace">COMPLETE PROGRAM DOCUMENTATION · AUGUST 2026</div></div>
+  <div class="sheet">SHEET M-0 · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
 </div>
-<h1>Orange Ocean Atlas — Operating Manual (On The Boulevard deployment)</h1>
+<p style="font-size:14px;color:#5F6E64">One document, every part of the program:</p><ul><li>BOOK I — OPERATING MANUAL</li><li>BOOK II — PROPERTY ONBOARDING</li></ul>
+<div style="border:2px solid #1C2B26; background:#F6F7F1;
+  padding:18px 22px; margin:52px 0 30px; 
+  font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
+  BOOK I — OPERATING MANUAL</div><h1>Orange Ocean Atlas — Operating Manual (On The Boulevard deployment)</h1>
 <p><strong>Version August 2026 · covers the 14-sheet production build (340 tests)</strong>
 Live app: https://orangeoceanatlas.com (also otb-command.vercel.app) · Operator: adam@adamabdalla.com</p>
 <p>This supersedes the July 2026 text-only edition (<code>docs/pitch/operator-manual.md</code>).
@@ -495,6 +499,235 @@ repo.</p>
 <hr />
 <p><em>Questions the manual doesn't answer: ask the 🏛 Concierge — it is grounded in
 the same governed data this manual describes.</em></p>
+<div style="border:2px solid #1C2B26; background:#F6F7F1;
+  padding:18px 22px; margin:52px 0 30px; break-before:page;
+  font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
+  BOOK II — PROPERTY ONBOARDING</div><h1>Orange Ocean Atlas — Property Onboarding Manual</h1>
+<p><strong>Version August 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run</strong>
+Operator-driven by design — there is no self-serve signup. One intake file =
+one property.</p>
+<p>This is the complete procedure for bringing a new property onto the platform:
+what to collect, how to build the intake file, how to run it (dry, then live),
+how to verify the result, and what the new property's people do next. It ends
+with the deliberate v1 fences and the teardown procedure.</p>
+<hr />
+<h1>1. What onboarding does</h1>
+<p>A successful run creates, in one all-or-nothing transaction:</p>
+<ol>
+<li><strong>The organization</strong> (management company) — or reuses it by slug if it
+   already exists, so a second property lands under the same org.</li>
+<li><strong>The property</strong> — slug, name, address, timezone, plus a <code>facts</code> list
+   (label/value/source rows that dashboard-class cards derive from).</li>
+<li><strong>The property settings row</strong> — ledger start month, renewal horizon,
+   occupancy floor, late-fee schedule, and a free-form SOP settings object.</li>
+<li><strong>The authorized-email list</strong> — email + role rows. No user accounts are
+   forged: each person becomes real the first time they magic-link in, and
+   the membership lattice assigns their role automatically.</li>
+</ol>
+<p>The moment it lands, the property appears as a card on <strong>D-0 Portfolio</strong>, and
+— at two or more visible properties — the <strong>property switcher</strong> appears in
+the sidebar for every org-wide member. Nothing else changes: rent posting and
+API surfaces keep serving the default property until the new one is
+deliberately activated.</p>
+<p><img alt="D-0 Portfolio — each onboarded property is a card" src="img/portfolio.png" /></p>
+<h1>2. What to collect before you start (intake checklist)</h1>
+<p><strong>Org (management company)</strong>
+- Slug (lowercase, hyphens — permanent, choose once) and display name.
+- Brand kit if available (palette / wordmark / contact block) — may start
+  empty <code>{}</code>.</p>
+<p><strong>Property</strong>
+- Slug (permanent), display name, street address, IANA timezone
+  (e.g. <code>America/Chicago</code>).
+- Facts worth surfacing: GLA, unit count, parking (with source citations —
+  "rent roll 2026-08", "site plan"…). Facts are display rows, not schema;
+  add what the owner will want to see.</p>
+<p><strong>Settings</strong>
+- <code>ledger_start_ym</code> (<code>YYYY-MM</code>) — the first month rent charges will post.
+  Choose the first FULL month on the platform; historical balances are a
+  data-package concern, not an onboarding concern.
+- <code>renewal_horizon_days</code> (default 180), <code>occupancy_floor</code> (default 0.85),
+  late-fee schedule (<code>late_grace_days</code> / <code>late_flat</code> / <code>late_per_day</code>).
+- SOP answers (emergency policy, vendor rules …) — free jsonb under
+  <code>settings.settings</code>.</p>
+<p><strong>People</strong>
+- Every email that should have access on day one, each tagged with a role:
+  <code>operator</code> (full control) or <code>owner</code> (read-only, operator-curated sheets).
+  Vendors and tenants are NOT onboarding rows — they come later through the
+  vendor roster and tenant-login editor inside the app.</p>
+<h1>3. Build the intake file</h1>
+<h2>The easy way — the intake form (no technical knowledge needed)</h2>
+<p><img alt="The fill-in-the-blank intake form" src="img/intake-form.png" /></p>
+<p>Send the new property's manager <strong><code>docs/phase-c/intake-form.html</code></strong> (email the
+file, or a Drive link — it opens in any browser and needs no internet). They
+answer plain-English questions — company name, property name and address,
+first billing month, late-fee schedule, who gets access — then click
+<strong>⤓ Download intake file</strong> and send back the resulting
+<code>intake-&lt;property&gt;.json</code>. The form checks its own answers as they go
+(problems appear in plain English), auto-derives the permanent slugs from the
+names, and cannot produce a file the validator would reject. It only prepares
+the file — nothing is created until you run the rail in §4–5.</p>
+<p>Anything they skip (facts, notes) you can add to the JSON afterward; their
+free-text notes arrive under <code>settings.settings.intake_notes</code> for you to
+translate into real SOP settings.</p>
+<h2>The technical way — edit the JSON directly</h2>
+<p>Copy the template and fill it in:</p>
+<pre><code>docs/phase-c/onboarding-intake-template.json   →   docs/phase-c/intake-&lt;slug&gt;.json
+</code></pre>
+<pre><code class="language-json">{
+  &quot;org&quot;: {
+    &quot;slug&quot;: &quot;example-mgmt&quot;,
+    &quot;name&quot;: &quot;Example Management, LLC&quot;,
+    &quot;brand&quot;: {}
+  },
+  &quot;property&quot;: {
+    &quot;slug&quot;: &quot;example-center&quot;,
+    &quot;name&quot;: &quot;Example Shopping Center&quot;,
+    &quot;address&quot;: &quot;100 Example Blvd, Lafayette, LA 70506&quot;,
+    &quot;tz&quot;: &quot;America/Chicago&quot;,
+    &quot;facts&quot;: [
+      { &quot;label&quot;: &quot;GLA&quot;, &quot;value&quot;: &quot;50,000 SF&quot;, &quot;source&quot;: &quot;rent roll 2026-08&quot; },
+      { &quot;label&quot;: &quot;Parking&quot;, &quot;value&quot;: &quot;250 spaces&quot;, &quot;source&quot;: &quot;site plan&quot; }
+    ]
+  },
+  &quot;settings&quot;: {
+    &quot;ledger_start_ym&quot;: &quot;2026-09&quot;,
+    &quot;renewal_horizon_days&quot;: 180,
+    &quot;occupancy_floor&quot;: 0.85,
+    &quot;late_grace_days&quot;: 5,
+    &quot;late_flat&quot;: 100,
+    &quot;late_per_day&quot;: 25,
+    &quot;settings&quot;: {}
+  },
+  &quot;authorized&quot;: [
+    { &quot;email&quot;: &quot;operator@example.com&quot;, &quot;role&quot;: &quot;operator&quot; },
+    { &quot;email&quot;: &quot;owner@example.com&quot;, &quot;role&quot;: &quot;owner&quot; }
+  ]
+}
+</code></pre>
+<p>Rules the validator enforces (the tool refuses to touch the database on any
+error): slug shape, timezone shape, <code>YYYY-MM</code> ledger start, role whitelist,
+fact and authorized row shapes. Reusing an existing org slug is legitimate
+(that is how a portfolio grows); reusing an existing <strong>property</strong> slug under
+the same org is refused.</p>
+<h1>4. Dry-run</h1>
+<pre><code class="language-bash">node tools/onboard-property.mjs docs/phase-c/intake-&lt;slug&gt;.json --dry-run
+</code></pre>
+<p>Validates the file and prints the full plan — org reuse vs create, the
+property row, settings, and authorized emails — without any database contact.
+Fix anything wrong and re-run until the plan reads exactly like the deal.</p>
+<h1>5. Live run</h1>
+<p>The live run uses the standard CRON_SECRET pull-load-delete drill (the secret
+is pulled from Vercel env for the moment of use — never typed into chat,
+never left on disk):</p>
+<pre><code class="language-bash">node tools/onboard-property.mjs docs/phase-c/intake-&lt;slug&gt;.json
+</code></pre>
+<p>The RPC is all-or-nothing: any failure rolls the entire intake back. A
+<strong>duplicate property raises</strong> (<code>P0001</code>) and clobbers nothing — this is the
+protection, not an error to work around.</p>
+<h1>6. Verify (two minutes)</h1>
+<p><strong>In the app</strong> (as an org-wide member):
+1. <strong>D-0 Portfolio</strong> shows the new property's card ($0 A/R, 0 work orders —
+   correct for an empty property).
+2. The <strong>property switcher</strong> now renders in the sidebar (it appears only at
+   two or more visible properties).
+3. Switch to the new property — every sheet boots <strong>empty</strong>. That is
+   correct: a fresh property has no data package (§8).</p>
+<p><strong>In SQL</strong> (Supabase console), if you want belt-and-suspenders:</p>
+<pre><code class="language-sql">select p.slug, p.name, p.created_at, s.ledger_start_ym
+from properties p join property_settings s on s.property_id = p.id
+order by p.created_at;
+
+select email, role from authorized_emails order by email;
+</code></pre>
+<p><strong>Financial isolation:</strong> the rent cron posts only to the default property;
+<code>api/*</code> still resolves the flagship. A newly onboarded property cannot create
+financial side effects until it is deliberately given a data package and
+activated.</p>
+<h1>7. First sign-ins</h1>
+<p>Send each authorized person to the login page — they enter their email and
+click the magic link; their membership row and role materialize on first
+sign-in. Nothing to provision, no passwords to distribute.</p>
+<p><img alt="The sign-in screen every counterparty uses" src="img/login.png" /></p>
+<ul>
+<li>The new <strong>operator</strong> lands with full control of their (empty) property.</li>
+<li><strong>Owners</strong> land read-only on the operator-curated sheet set.</li>
+<li>Anyone not on the authorized list lands on the pending screen with no
+  data access — promote or ignore from the sidebar's access panel.</li>
+</ul>
+<h1>8. The v1 fences (deliberate — do not fight them)</h1>
+<ol>
+<li><strong>No data package.</strong> Onboarding creates the container, not the contents:
+   units, geometry, rent roll, and seeds are the site-plan-tier premium step
+   (Phase C data-package pipeline). Until that lands for the new property,
+   the 13 property sheets remain bound to the flagship's bundled data — the
+   new property renders correctly on D-0 and boots its own sheets empty.</li>
+<li><strong>Known residual while switched:</strong> manual edits made while you are
+   actively switched INTO a data-less property will sync to that property.
+   Don't do data entry on a property that hasn't had its package built.</li>
+<li><strong>No storage folder prefixes yet</strong> — the decision is deferred until the
+   first real pilot's document volume makes the shape obvious.</li>
+<li><strong>No self-serve UI.</strong> Governed, operator-driven onboarding is the
+   deliberate wedge; a UI can wrap this rail later without changing it.</li>
+</ol>
+<h1>9. Teardown (removing a property)</h1>
+<p>The C-2 proof property was created and torn down cleanly with this exact
+pattern. Order matters (children first), and this is irreversible — read
+twice, run once:</p>
+<pre><code class="language-sql">-- any typed-layer/child rows first (comp_state, board_state, …), then:
+delete from property_settings
+ where property_id = (select id from properties where slug = '&lt;slug&gt;');
+delete from properties where slug = '&lt;slug&gt;';
+</code></pre>
+<p>Then verify: D-0 shows one card fewer; the switcher disappears if only one
+property remains; the flagship's data is untouched.</p>
+<h1>10. Troubleshooting</h1>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Meaning</th>
+<th>Do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Validator errors on dry-run</td>
+<td>Intake file shape is wrong</td>
+<td>Fix the listed fields; nothing was sent</td>
+</tr>
+<tr>
+<td><code>P0001</code> duplicate raise on live run</td>
+<td>Property slug already exists under that org</td>
+<td>This is the no-clobber guard. Pick a new slug, or tear down the old property first</td>
+</tr>
+<tr>
+<td>New property card missing on D-0</td>
+<td>Viewer is not an org-wide member</td>
+<td>Check the viewer's membership; org-wide members see all properties</td>
+</tr>
+<tr>
+<td>Switcher not visible</td>
+<td>Only one property is visible to you</td>
+<td>Correct at one property — it renders at two or more</td>
+</tr>
+<tr>
+<td>Sheets look like the flagship after switching</td>
+<td>You are looking at bundled flagship data</td>
+<td>Expected until the property's own data package exists (§8)</td>
+</tr>
+<tr>
+<td>Someone stuck on "pending"</td>
+<td>Email wasn't in <code>authorized</code>, or typo'd</td>
+<td>Add/fix via the sidebar access panel; they re-click a fresh magic link</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Provenance: intake contract and rail design <code>docs/phase-c/01-onboarding-design.md</code>;
+validation seam <code>src/lib/onboard.js</code>; RPC migration <code>onboarding_rpc</code>; driver
+<code>tools/onboard-property.mjs</code>. The rail was smoke-tested under rollback on
+prod and funnel-proven live by the C-2 run (property created via the rail,
+verified, then torn down).</em></p>
 <div class="foot">
   <span>ORANGE OCEAN ATLAS — instrumented asset management</span>
   <span>Managed by Orange Ocean, LLC · generated 2026-08-10</span>

@@ -5,6 +5,8 @@ Re-run after editing either manual:  python tools/build-manuals.py
 Outputs (next to the sources, image refs stay relative to img/):
     docs/manual/operator-manual.html   + OO-Atlas-Operator-Manual.pdf
     docs/manual/onboarding-manual.html + OO-Atlas-Onboarding-Manual.pdf
+    docs/manual/complete-documentation.html + OO-Atlas-Complete-Documentation.pdf
+      (Book I operating manual + Book II onboarding, one file)
 PDFs render via headless Chrome (write to temp, copy in — Chrome can't write
 into the repo tree). Plan-room palette from otb_brand; screenshots are REAL
 prod captures in docs/manual/img/ (regen rig lives with the session notes)."""
@@ -24,6 +26,10 @@ MANUALS = [
      "OPERATING MANUAL", "M-1"),
     ("onboarding-manual.md", "onboarding-manual.html", "OO-Atlas-Onboarding-Manual.pdf",
      "ONBOARDING MANUAL", "M-2"),
+    ([("BOOK I — OPERATING MANUAL", "operator-manual.md"),
+      ("BOOK II — PROPERTY ONBOARDING", "onboarding-manual.md")],
+     "complete-documentation.html", "OO-Atlas-Complete-Documentation.pdf",
+     "COMPLETE PROGRAM DOCUMENTATION", "M-0"),
 ]
 
 CSS = f"""
@@ -79,10 +85,30 @@ hr {{ border:none; border-top:1px solid {SAGE}; margin:26px 0; }}
 """
 
 
+BOOK_DIVIDER = """<div style="border:2px solid #1C2B26; background:#F6F7F1;
+  padding:18px 22px; margin:52px 0 30px; break-before:page;
+  font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
+  {title}</div>"""
+
+
 def build(md_name, html_name, pdf_name, doc_title, sheet_code):
-    md_path = os.path.join(SRC, md_name)
-    text = open(md_path, encoding="utf-8").read()
-    body = markdown.markdown(text, extensions=["tables", "fenced_code"])
+    if isinstance(md_name, list):  # combined: [(book title, md file), ...]
+        text, parts = "", []
+        toc = "".join(f"<li>{esc(t)}</li>" for t, _ in md_name)
+        parts.append('<p style="font-size:14px;color:#5F6E64">One document, '
+                     f"every part of the program:</p><ul>{toc}</ul>")
+        for i, (book_title, f) in enumerate(md_name):
+            src = open(os.path.join(SRC, f), encoding="utf-8").read()
+            text += src
+            div = BOOK_DIVIDER.format(title=esc(book_title))
+            if i == 0:
+                div = div.replace("break-before:page;", "")
+            parts.append(div + markdown.markdown(src, extensions=["tables", "fenced_code"]))
+        body = "\n".join(parts)
+    else:
+        md_path = os.path.join(SRC, md_name)
+        text = open(md_path, encoding="utf-8").read()
+        body = markdown.markdown(text, extensions=["tables", "fenced_code"])
     # First line of the MD is the doc H1 — the title block carries branding.
     confid = "CONFIDENTIAL" in text[:400]
     html_doc = f"""<!doctype html><html><head><meta charset="utf-8">

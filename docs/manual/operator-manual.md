@@ -1,10 +1,11 @@
 # Orange Ocean Atlas — Operating Manual (On The Boulevard deployment)
-**Version August 2026 · covers the 14-sheet production build (340 tests) · CONFIDENTIAL — contains actual rents**
+**Version August 2026 · covers the 14-sheet production build (340 tests)**
 Live app: https://orangeoceanatlas.com (also otb-command.vercel.app) · Operator: adam@adamabdalla.com
 
 This supersedes the July 2026 text-only edition (`docs/pitch/operator-manual.md`).
-Every screenshot in this manual is a real capture of the production system,
-signed in as the operator, taken August 8, 2026. Part I is orientation, Part II
+Every screenshot is a real capture of the running system. **Tenant names and
+dollar figures shown are representative sample data, not actual tenancy or
+economics.** Part I is orientation, Part II
 is the operator's day, Part III covers each sheet in depth, Part IV is the
 counterparty guides (owner / vendor / tenant / signer), Part V is the monthly
 and periodic rhythms, Part VI is administration and recovery.
@@ -109,8 +110,6 @@ A normal day touches five surfaces:
 
 ## 3.1 D-0 Portfolio
 
-![D-0 Portfolio](img/portfolio.png)
-
 One card per property you can see: A/R outstanding (sum of positive unit
 balances over effective ledger entries) and open work orders, with an as-of
 stamp. "Open →" switches the active property. With a single property the
@@ -212,8 +211,6 @@ so a dismissed card returns only if the underlying fact returns.
 
 ## 3.10 M-1 Maintenance (operator face)
 
-![M-1 Maintenance](img/maint.png)
-
 - **Queue:** every request with status, age, unit, photos.
 - **Assign:** pick a vendor from the service roster → the vendor sees it in
   V-1 immediately.
@@ -258,8 +255,6 @@ rejected by the database itself.
 
 ## 3.13 V-1 Vendor Portal (operator face)
 
-![V-1 Vendor Portal](img/vendors.png)
-
 - Roster (service vendors first, green "portal" tag = they can sign in).
 - Per-vendor private folder: upload / open / delete, all audited.
 - **COI tracking:** set expiry + note per vendor → badge auto-classifies
@@ -280,8 +275,6 @@ Property contacts, the document register (rows can carry a real uploaded file
 secure URL), and the site-imagery library.
 
 ## 3.15 S-1 Owner Safe
-
-![S-1 Owner Safe](img/safe.png)
 
 Category folders (Proforma / Leases / Tax / Insurance / Banking / Other).
 Upload and open as the operator; owners read-only; vendors/tenants sealed out
@@ -319,8 +312,8 @@ Three personas — **🏛 Concierge** (property Q&A), **🤝 Leasing**,
   leak / electrical / break-in / sewer → dispatch + notify after-hours, never
   wakes you for permission); files real work orders into M-1; never discusses
   eviction timelines.
-- **Leasing line (337) 270-7044:** takes name + number, quotes "high-teens
-  PSF" range only, screens against exclusive-use conflicts, books tour slots
+- **Leasing line (337) 270-7044:** takes name + number, quotes the approved
+  rate range only, screens against exclusive-use conflicts, books tour slots
   (18h lead, Tue/Thu defaults; double-booking is impossible). **Truthful
   booking is enforced:** the agent cannot claim a tour is booked unless the
   booking tool actually succeeded; an unbacked claim is corrected or replaced
@@ -395,8 +388,8 @@ exceptions as exceptions — do not "fix" them to formula.
 
 ## 5.4 Periodic
 - COI badges: chase at ≤60 days, escalate at ≤30 (§3.13).
-- Semi-annual house HVAC PM (unit 149 excluded — tenant maintains under
-  §9.01 with Butcher Air).
+- Semi-annual house HVAC PM (the anchor unit is excluded — its lease requires
+  the tenant to maintain its own HVAC with the designated contractor).
 - Move-out: solo walk + photos within 30 days; file to the unit's assets.
 - Re-run marketing artifacts when availability changes (`npm run poster`,
   leasing one-pager per `tools/leasing-package.py`).
