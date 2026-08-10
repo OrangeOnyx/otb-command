@@ -109,6 +109,21 @@ deliberately activated.</p>
   Vendors and tenants are NOT onboarding rows — they come later through the
   vendor roster and tenant-login editor inside the app.</p>
 <h1>3. Build the intake file</h1>
+<h2>The easy way — the intake form (no technical knowledge needed)</h2>
+<p><img alt="The fill-in-the-blank intake form" src="img/intake-form.png" /></p>
+<p>Send the new property's manager <strong><code>docs/phase-c/intake-form.html</code></strong> (email the
+file, or a Drive link — it opens in any browser and needs no internet). They
+answer plain-English questions — company name, property name and address,
+first billing month, late-fee schedule, who gets access — then click
+<strong>⤓ Download intake file</strong> and send back the resulting
+<code>intake-&lt;property&gt;.json</code>. The form checks its own answers as they go
+(problems appear in plain English), auto-derives the permanent slugs from the
+names, and cannot produce a file the validator would reject. It only prepares
+the file — nothing is created until you run the rail in §4–5.</p>
+<p>Anything they skip (facts, notes) you can add to the JSON afterward; their
+free-text notes arrive under <code>settings.settings.intake_notes</code> for you to
+translate into real SOP settings.</p>
+<h2>The technical way — edit the JSON directly</h2>
 <p>Copy the template and fill it in:</p>
 <pre><code>docs/phase-c/onboarding-intake-template.json   →   docs/phase-c/intake-&lt;slug&gt;.json
 </code></pre>
@@ -269,6 +284,6 @@ prod and funnel-proven live by the C-2 run (property created via the rail,
 verified, then torn down).</em></p>
 <div class="foot">
   <span>ORANGE OCEAN ATLAS — instrumented asset management</span>
-  <span>Managed by Orange Ocean, LLC · generated 2026-08-08</span>
+  <span>Managed by Orange Ocean, LLC · generated 2026-08-10</span>
 </div>
 </div></body></html>

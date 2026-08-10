@@ -63,6 +63,26 @@ deliberately activated.
 
 # 3. Build the intake file
 
+## The easy way — the intake form (no technical knowledge needed)
+
+![The fill-in-the-blank intake form](img/intake-form.png)
+
+Send the new property's manager **`docs/phase-c/intake-form.html`** (email the
+file, or a Drive link — it opens in any browser and needs no internet). They
+answer plain-English questions — company name, property name and address,
+first billing month, late-fee schedule, who gets access — then click
+**⤓ Download intake file** and send back the resulting
+`intake-<property>.json`. The form checks its own answers as they go
+(problems appear in plain English), auto-derives the permanent slugs from the
+names, and cannot produce a file the validator would reject. It only prepares
+the file — nothing is created until you run the rail in §4–5.
+
+Anything they skip (facts, notes) you can add to the JSON afterward; their
+free-text notes arrive under `settings.settings.intake_notes` for you to
+translate into real SOP settings.
+
+## The technical way — edit the JSON directly
+
 Copy the template and fill it in:
 
 ```
