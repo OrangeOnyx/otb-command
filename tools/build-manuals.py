@@ -150,11 +150,14 @@ def publish():
     html_doc = open(os.path.join(SRC, "complete-documentation.html"), encoding="utf-8").read()
     banner = ('<p style="font:12px \'IBM Plex Mono\',monospace;margin:0 0 14px">'
               '<a href="OO-Atlas-Complete-Documentation.pdf">⤓ Download as PDF</a>'
+              ' · <a href="intake-form.html">property intake form</a>'
               ' · <a href="/">back to the app</a></p>')
     html_doc = html_doc.replace('<div class="wrap">', '<div class="wrap">' + banner, 1)
     open(os.path.join(pub, "index.html"), "w", encoding="utf-8").write(html_doc)
     shutil.copyfile(os.path.join(SRC, "OO-Atlas-Complete-Documentation.pdf"),
                     os.path.join(pub, "OO-Atlas-Complete-Documentation.pdf"))
+    shutil.copyfile(os.path.join(ROOT, "docs", "phase-c", "intake-form.html"),
+                    os.path.join(pub, "intake-form.html"))
     img_dst = os.path.join(pub, "img")
     shutil.rmtree(img_dst, ignore_errors=True)
     shutil.copytree(os.path.join(SRC, "img"), img_dst)

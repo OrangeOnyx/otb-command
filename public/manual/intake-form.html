@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orange Ocean Atlas — Property Intake Form</title>
+<!-- Self-contained fill-in-the-blank intake builder (Phase C-1).
+     A non-technical person opens this file in any browser, answers the
+     questions, and clicks "Download intake file" — the result is a valid
+     intake-<slug>.json for tools/onboard-property.mjs. No network, no
+     database contact; the operator still runs the rail. Rules mirror
+     src/lib/onboard.js (SLUG_RE / YM_RE / roles). -->
+<style>
+  :root { --ink:#1C2B26; --paper:#EDEFE8; --card:#F6F7F1; --brass:#A87E2F;
+          --sage:#5F6E64; --green:#2F6B4F; --brick:#C25E33; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:15px/1.5 'Public Sans','Segoe UI',sans-serif; }
+  .wrap { max-width:760px; margin:0 auto; padding:24px 20px 80px; }
+  .titleblock { border:2px solid var(--ink); background:var(--card);
+    padding:12px 18px; margin-bottom:8px; }
+  .titleblock .name { font:700 24px 'Big Shoulders Display','Arial Narrow',sans-serif;
+    letter-spacing:.5px; }
+  .titleblock .sub { font:600 12px 'IBM Plex Mono',Consolas,monospace;
+    color:var(--brass); margin-top:2px; }
+  .lede { color:var(--sage); font-size:14px; margin:14px 2px 22px; }
+  fieldset { border:1px solid var(--sage); border-radius:4px;
+    background:var(--card); margin:0 0 18px; padding:14px 16px 16px; }
+  legend { font:700 16px 'Big Shoulders Display','Arial Narrow',sans-serif;
+    letter-spacing:.4px; color:var(--green); padding:0 6px; }
+  label { display:block; font-weight:600; font-size:13px; margin:12px 0 3px; }
+  .hint { font-weight:400; color:var(--sage); font-size:12px; margin-top:2px; }
+  input[type=text], input[type=email], input[type=month], input[type=number],
+  select, textarea {
+    width:100%; padding:8px 10px; border:1px solid var(--sage);
+    border-radius:3px; background:#fff; color:var(--ink);
+    font:14px 'Public Sans','Segoe UI',sans-serif; }
+  input:focus, select:focus, textarea:focus { outline:2px solid var(--brass); }
+  .row { display:flex; gap:10px; }
+  .row > div { flex:1; }
+  table { width:100%; border-collapse:collapse; margin-top:6px; }
+  th { text-align:left; font:600 11px 'IBM Plex Mono',Consolas,monospace;
+    text-transform:uppercase; letter-spacing:.4px; color:var(--sage);
+    padding:4px 6px 2px; }
+  td { padding:3px 3px; vertical-align:top; }
+  td input, td select { width:100%; }
+  .del { background:none; border:none; color:var(--brick); font-size:16px;
+    cursor:pointer; padding:6px 4px; }
+  .add { background:none; border:1px dashed var(--sage); border-radius:3px;
+    color:var(--green); font:600 13px 'Public Sans',sans-serif;
+    padding:6px 12px; cursor:pointer; margin-top:8px; }
+  .add:hover { border-color:var(--green); }
+  details { margin-top:12px; }
+  summary { cursor:pointer; font-weight:600; font-size:13px; color:var(--sage); }
+  .actions { display:flex; gap:10px; margin-top:22px; flex-wrap:wrap; }
+  .btn { border:2px solid var(--ink); border-radius:3px; padding:10px 18px;
+    font:700 14px 'Public Sans',sans-serif; cursor:pointer; }
+  .btn.primary { background:var(--green); border-color:var(--green); color:#fff; }
+  .btn.ghost { background:#fff; color:var(--ink); }
+  .problems { border-left:4px solid var(--brick); background:var(--card);
+    padding:10px 14px; margin-top:16px; display:none; }
+  .problems.show { display:block; }
+  .problems div { color:var(--brick); font-size:13px; margin:2px 0; }
+  .ok { border-left:4px solid var(--green); background:var(--card);
+    padding:10px 14px; margin-top:16px; display:none; font-size:13px; }
+  .ok.show { display:block; }
+  .foot { margin-top:36px; border-top:1px solid var(--sage); padding-top:8px;
+    font:11px 'IBM Plex Mono',Consolas,monospace; color:var(--sage); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="titleblock">
+    <div class="name">ORANGE OCEAN ATLAS · PROPERTY INTAKE</div>
+    <div class="sub">FILL IN · CLICK "DOWNLOAD INTAKE FILE" · SEND THE FILE TO YOUR ONBOARDING CONTACT</div>
+  </div>
+  <p class="lede">Answer what you know — anything marked <b>optional</b> can be
+  left blank and added later. Nothing here touches any system; this page only
+  prepares a file. It works without internet.</p>
+
+  <fieldset>
+    <legend>1 · Management company</legend>
+    <label>Company name
+      <div class="hint">The management company that will operate the property — e.g. "Example Management, LLC"</div>
+    </label>
+    <input type="text" id="orgName" placeholder="Example Management, LLC">
+  </fieldset>
+
+  <fieldset>
+    <legend>2 · The property</legend>
+    <label>Property name</label>
+    <input type="text" id="propName" placeholder="Example Shopping Center">
+    <label>Street address</label>
+    <input type="text" id="propAddr" placeholder="100 Example Blvd, Lafayette, LA 70506">
+    <label>Time zone</label>
+    <select id="propTz">
+      <option value="America/Chicago" selected>Central (Louisiana, Texas…)</option>
+      <option value="America/New_York">Eastern</option>
+      <option value="America/Denver">Mountain</option>
+      <option value="America/Phoenix">Arizona</option>
+      <option value="America/Los_Angeles">Pacific</option>
+    </select>
+    <label>Property facts <span class="hint" style="display:inline">(optional — the figures the owner should see on the dashboard; say where each number comes from)</span></label>
+    <table id="factsTable">
+      <thead><tr><th style="width:26%">What</th><th style="width:34%">Value</th><th>Where it comes from</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <button type="button" class="add" onclick="addFact()">+ add a fact</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>3 · Money rules</legend>
+    <div class="row">
+      <div>
+        <label>First month of rent billing
+          <div class="hint">The first FULL month on the platform</div>
+        </label>
+        <input type="month" id="ledgerYm">
+      </div>
+      <div>
+        <label>Late-fee grace (days)</label>
+        <input type="number" id="lateGrace" value="5" min="0" step="1">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Late fee — one time ($)</label>
+        <input type="number" id="lateFlat" value="100" min="0">
+      </div>
+      <div>
+        <label>Late fee — per day after ($)</label>
+        <input type="number" id="latePerDay" value="25" min="0">
+      </div>
+    </div>
+    <details>
+      <summary>Advanced (fine to leave as-is)</summary>
+      <div class="row">
+        <div>
+          <label>Renewal watch window (days)
+            <div class="hint">How far ahead lease renewals raise a flag</div>
+          </label>
+          <input type="number" id="renewalDays" value="180" min="0" step="1">
+        </div>
+        <div>
+          <label>Occupancy floor
+            <div class="hint">Below this share of leased space, the dashboard flags occupancy (0.85 = 85%)</div>
+          </label>
+          <input type="number" id="occFloor" value="0.85" min="0" max="1" step="0.01">
+        </div>
+      </div>
+    </details>
+  </fieldset>
+
+  <fieldset>
+    <legend>4 · Who gets access on day one</legend>
+    <p class="hint" style="margin:4px 0 0">Each person signs in with their email —
+    no passwords to set up. <b>Operator</b> = runs the property, full control.
+    <b>Owner</b> = read-only view of the sheets the operator shares.
+    Vendors and tenants are added later, inside the app.</p>
+    <table id="peopleTable">
+      <thead><tr><th style="width:55%">Email</th><th>Role</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <button type="button" class="add" onclick="addPerson()">+ add a person</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>5 · Anything else</legend>
+    <label>Notes for onboarding <span class="hint" style="display:inline">(optional — house rules, emergency policy, anything your onboarding contact should know)</span></label>
+    <textarea id="sopNotes" rows="3" placeholder="e.g. After-hours emergencies go to the answering service first…"></textarea>
+  </fieldset>
+
+  <div class="actions">
+    <button type="button" class="btn primary" onclick="download()">⤓ Download intake file</button>
+    <button type="button" class="btn ghost" onclick="copyJson()">Copy as text instead</button>
+  </div>
+  <div class="problems" id="problems"></div>
+  <div class="ok" id="okmsg"></div>
+
+  <div class="foot">ORANGE OCEAN ATLAS · PHASE C-1 INTAKE · this form only
+  prepares a file — onboarding itself is run by your Orange Ocean contact</div>
+</div>
+
+<script>
+/* Rules mirror src/lib/onboard.js — keep in sync. */
+const SLUG_RE = /^[a-z0-9-]{2,40}$/;
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+const FACT_STARTERS = [
+  ["GLA", "", "rent roll"],
+  ["Units", "", "rent roll"],
+  ["Parking", "", "site plan"],
+];
+
+function addFact(label, value, source) {
+  const tb = document.querySelector("#factsTable tbody");
+  const tr = document.createElement("tr");
+  tr.innerHTML =
+    '<td><input type="text" class="f-label" placeholder="GLA"></td>' +
+    '<td><input type="text" class="f-value" placeholder="50,000 SF"></td>' +
+    '<td><input type="text" class="f-source" placeholder="rent roll"></td>' +
+    '<td><button type="button" class="del" title="remove" onclick="this.closest(\'tr\').remove()">✕</button></td>';
+  if (typeof label === "string") tr.querySelector(".f-label").value = label;
+  if (typeof value === "string") tr.querySelector(".f-value").value = value;
+  if (typeof source === "string") tr.querySelector(".f-source").value = source;
+  tb.appendChild(tr);
+}
+
+function addPerson(email, role) {
+  const tb = document.querySelector("#peopleTable tbody");
+  const tr = document.createElement("tr");
+  tr.innerHTML =
+    '<td><input type="email" class="p-email" placeholder="name@example.com"></td>' +
+    '<td><select class="p-role"><option value="operator">Operator — full control</option>' +
+    '<option value="owner">Owner — read-only</option></select></td>' +
+    '<td><button type="button" class="del" title="remove" onclick="this.closest(\'tr\').remove()">✕</button></td>';
+  if (typeof email === "string") tr.querySelector(".p-email").value = email;
+  if (typeof role === "string") tr.querySelector(".p-role").value = role;
+  tb.appendChild(tr);
+}
+
+/* Name -> slug the DB will accept: lowercase, spaces/punct -> dashes,
+   strip the rest, clamp to 40, no leading/trailing/double dashes. */
+function slugify(name) {
+  return String(name || "").toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-")
+    .slice(0, 40)
+    .replace(/-+$/g, "");
+}
+
+function val(id) { return document.getElementById(id).value.trim(); }
+
+function buildIntake() {
+  const problems = [];
+  const orgName = val("orgName");
+  const propName = val("propName");
+  if (!orgName) problems.push("Section 1: the management company name is required.");
+  if (!propName) problems.push("Section 2: the property name is required.");
+
+  const orgSlug = slugify(orgName), propSlug = slugify(propName);
+  if (orgName && !SLUG_RE.test(orgSlug))
+    problems.push("Section 1: the company name needs at least 2 letters or numbers.");
+  if (propName && !SLUG_RE.test(propSlug))
+    problems.push("Section 2: the property name needs at least 2 letters or numbers.");
+
+  const ym = val("ledgerYm");
+  if (!ym) problems.push("Section 3: pick the first month of rent billing.");
+
+  const facts = [];
+  document.querySelectorAll("#factsTable tbody tr").forEach(tr => {
+    const label = tr.querySelector(".f-label").value.trim();
+    const value = tr.querySelector(".f-value").value.trim();
+    const source = tr.querySelector(".f-source").value.trim();
+    if (!value) return;                        // no value = not provided — skip quietly
+    if (!label) { problems.push('Section 2: the fact with value "' + value + '" needs a name in the "What" column.'); return; }
+    const f = { label, value };
+    if (source) f.source = source;
+    facts.push(f);
+  });
+
+  const authorized = [];
+  const seen = new Set();
+  document.querySelectorAll("#peopleTable tbody tr").forEach(tr => {
+    const email = tr.querySelector(".p-email").value.trim().toLowerCase();
+    const role = tr.querySelector(".p-role").value;
+    if (!email) return;
+    if (!EMAIL_RE.test(email)) { problems.push('Section 4: "' + email + '" doesn’t look like an email address.'); return; }
+    if (seen.has(email)) { problems.push('Section 4: "' + email + '" is listed twice.'); return; }
+    seen.add(email);
+    authorized.push({ email, role });
+  });
+  if (!authorized.some(p => p.role === "operator"))
+    problems.push("Section 4: add at least one Operator — someone has to run the property.");
+
+  const num = id => { const v = val(id); return v === "" ? undefined : Number(v); };
+  const settings = {
+    ledger_start_ym: ym || undefined,
+    renewal_horizon_days: num("renewalDays"),
+    occupancy_floor: num("occFloor"),
+    late_grace_days: num("lateGrace"),
+    late_flat: num("lateFlat"),
+    late_per_day: num("latePerDay"),
+  };
+  Object.keys(settings).forEach(k => settings[k] === undefined && delete settings[k]);
+  const notes = val("sopNotes");
+  settings.settings = notes ? { intake_notes: notes } : {};
+
+  const intake = {
+    org: { slug: orgSlug, name: orgName, brand: {} },
+    property: { slug: propSlug, name: propName,
+      address: val("propAddr") || undefined, tz: val("propTz"), facts },
+    settings,
+    authorized,
+  };
+  if (!intake.property.address) delete intake.property.address;
+  return { intake, problems, propSlug };
+}
+
+function report(problems) {
+  const box = document.getElementById("problems"), ok = document.getElementById("okmsg");
+  ok.classList.remove("show");
+  if (problems.length) {
+    box.innerHTML = problems.map(p => "<div>" + p + "</div>").join("");
+    box.classList.add("show");
+    return false;
+  }
+  box.classList.remove("show");
+  return true;
+}
+
+function okMsg(text) {
+  const ok = document.getElementById("okmsg");
+  ok.textContent = text;
+  ok.classList.add("show");
+}
+
+function download() {
+  const { intake, problems, propSlug } = buildIntake();
+  if (!report(problems)) return;
+  const blob = new Blob([JSON.stringify(intake, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "intake-" + propSlug + ".json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  okMsg("Saved as intake-" + propSlug + ".json (check your Downloads folder). Send that file to your onboarding contact — you're done.");
+}
+
+async function copyJson() {
+  const { intake, problems } = buildIntake();
+  if (!report(problems)) return;
+  const text = JSON.stringify(intake, null, 2);
+  try { await navigator.clipboard.writeText(text); okMsg("Copied. Paste it into an email or message to your onboarding contact."); }
+  catch { window.prompt("Copy the text below:", text); }
+}
+
+/* Starter rows */
+FACT_STARTERS.forEach(f => addFact(...f));
+addPerson();
+addPerson("", "owner");
+/* Default billing month: the first day of NEXT month. */
+(function () {
+  const d = new Date(); d.setMonth(d.getMonth() + 1);
+  document.getElementById("ledgerYm").value =
+    d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+})();
+</script>
+</body>
+</html>
