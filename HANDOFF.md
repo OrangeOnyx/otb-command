@@ -3,7 +3,13 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-10 — **MANUALS GENERICIZED + COMBINED (operator ask):
+Last updated: 2026-08-10 (later) — **DOCUMENTATION HOSTED IN-APP + DEPLOYED:
+orangeoceanatlas.com/manual/ serves the generic complete documentation
+(HTML + ⤓ PDF + images from public/manual/, auto-refreshed by
+tools/build-manuals.py publish()); sidebar foot gains a 📖 "User manual"
+link (index.html, all roles — static page, no auth). 340 tests, prod
+smoke: /manual/ + PDF + img all 200, shell grep "User manual" ✓.**
+Prior: 2026-08-10 — **MANUALS GENERICIZED + COMBINED (operator ask):
 all manual screenshots now show FICTIONAL tenants/rents (capture rig
 intercepts every /src/data/*.json module: name map incl. UPPERCASE +
 curly-apostrophe variants, synthesized legal entities — real ones are
