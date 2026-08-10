@@ -141,6 +141,28 @@ def build(md_name, html_name, pdf_name, doc_title, sheet_code):
           f"({round(os.path.getsize(os.path.join(SRC, pdf_name)) / 1048576, 1)} MB)")
 
 
+def publish():
+    """In-app copy: public/manual/ serves at orangeoceanatlas.com/manual/
+    (sidebar 📖 User manual link, every role). Generic edition only — the
+    combined doc carries fictional sample data by construction."""
+    pub = os.path.join(ROOT, "public", "manual")
+    os.makedirs(pub, exist_ok=True)
+    html_doc = open(os.path.join(SRC, "complete-documentation.html"), encoding="utf-8").read()
+    banner = ('<p style="font:12px \'IBM Plex Mono\',monospace;margin:0 0 14px">'
+              '<a href="OO-Atlas-Complete-Documentation.pdf">⤓ Download as PDF</a>'
+              ' · <a href="/">back to the app</a></p>')
+    html_doc = html_doc.replace('<div class="wrap">', '<div class="wrap">' + banner, 1)
+    open(os.path.join(pub, "index.html"), "w", encoding="utf-8").write(html_doc)
+    shutil.copyfile(os.path.join(SRC, "OO-Atlas-Complete-Documentation.pdf"),
+                    os.path.join(pub, "OO-Atlas-Complete-Documentation.pdf"))
+    img_dst = os.path.join(pub, "img")
+    shutil.rmtree(img_dst, ignore_errors=True)
+    shutil.copytree(os.path.join(SRC, "img"), img_dst)
+    n = len(os.listdir(img_dst))
+    print(f"published -> public/manual/ (index.html + PDF + {n} images)")
+
+
 if __name__ == "__main__":
     for spec in MANUALS:
         build(*spec)
+    publish()
