@@ -3,7 +3,18 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-08 (later still) — **ILLUSTRATED MANUALS SHIPPED:
+Last updated: 2026-08-10 — **MANUALS GENERICIZED + COMBINED (operator ask):
+all manual screenshots now show FICTIONAL tenants/rents (capture rig
+intercepts every /src/data/*.json module: name map incl. UPPERCASE +
+curly-apostrophe variants, synthesized legal entities — real ones are
+unrelated holding cos, never string-map them, banded fake PSFs, logo-thumbs
+→ []); D-0/M-1/S-1/V-1 are backend-bound = text-only sections; NEW
+OO-Atlas-Complete-Documentation.pdf (Book I operating + Book II onboarding,
+36pp) via tools/build-manuals.py third spec; leak-scan of all 3 PDFs CLEAN;
+NEW docs/phase-c/intake-form.html = fill-in-the-blank intake builder for
+non-technical pilots (output dry-run-verified "Intake valid"). The
+CONFIDENTIAL real-data edition exists only in git history (e33b6d2).**
+Prior: 2026-08-08 (later still) — **ILLUSTRATED MANUALS SHIPPED:
 docs/manual/ = operator manual (Aug refresh, supersedes docs/pitch copy) +
 NEW onboarding manual (C-3 rail procedure), both with REAL authed-prod
 screenshots (18 shots, docs/manual/img/), branded HTML + PDF via NEW
