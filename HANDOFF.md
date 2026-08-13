@@ -3,7 +3,25 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-10 (later) — **DOCUMENTATION HOSTED IN-APP + DEPLOYED:
+Last updated: 2026-08-10 (session close) — **SESSION TAIL:** (1) intake form
+HOSTED + linked from the manual page banner
+(orangeoceanatlas.com/manual/intake-form.html — onboarding manual §3 now
+leads with the URL; publish() copies it from docs/phase-c/ each rebuild;
+deployed, smoked 200 + content greps). Onboarding a pilot now starts with
+sending ONE link. (2) **dickeydupuis@icloud.com pre-authorized as OWNER**
+(authorized_emails row, org orange-ocean, added_by stamped "via Claude
+session 2026-08-10"; operator-corrected spelling — the 'dupuid' typo was
+never inserted). Signs in via magic link like every owner; read-only by
+construction. **⚠ OPEN FLAG raised to operator, no answer yet:
+layer_settings owner_sheets currently exposes ALL 13 sheets to owners
+(incl. comp/board/maint/vendors/ai) — global to all owners, not
+per-person. Operator may want the classic set (dash/plan/roll/fin/safe)
+before Dickey's first sign-in — ASK before trimming.** Operator smokes
+outstanding: sidebar 📖 User manual link on phone · /manual/ page skim ·
+intake form fill-through. All committed (…a0ab0d1) + Drive synced
+(manuals-2026-08). Still waiting on the world: first ACH payment
+(self-announcing) · C-3 pilot signature.
+Prior: 2026-08-10 (later) — **DOCUMENTATION HOSTED IN-APP + DEPLOYED:
 orangeoceanatlas.com/manual/ serves the generic complete documentation
 (HTML + ⤓ PDF + images from public/manual/, auto-refreshed by
 tools/build-manuals.py publish()); sidebar foot gains a 📖 "User manual"
