@@ -3,7 +3,39 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-10 (session close) — **SESSION TAIL:** (1) intake form
+Last updated: 2026-08-23 — **LEASE ASSEMBLER SHIPPED + DEPLOYED (387
+tests, squash-merged d731a17, prod bundle + hashed lease-template.docx
+asset both verified 200).** Executable-lease generation from the v2.2
+Louisiana house form: `tools/lease-template.mjs` (run ONCE per master
+change; reads the RAW master from OneDrive Desktop — NEVER commit it;
+PII pattern-scrubbed via base64 needles, DRAFT-stamped into the docx
+body, whole-zip forbidden-string + token-location scans) emits committed
+`src/data/lease-template.docx` + `lease-manifest.json` (33 tokens) +
+`lease-body.json` (single source for HTML — docx/HTML can't drift). Pure
+engine `src/lib/leasedoc.js` (token map · Schedule G auto-compute, step
+PSF rounded to cents THEN monthly derived · validation incl. integer
+term, free-months ≤ term, date-span-vs-term warning, NNN ≥ 0 with
+zero-NNN warning · issuance checklist: exclusives/counsel-flags/
+attachments). Renderers: `leasedocx.js` (fflate merge, throws on any
+unmerged token) · `leasedochtml.js` (signer copy vs operator copy —
+checklist NEVER in signer copy, print-hidden). Unit drawer gains
+operator-only **Lease panel** (above E-Sign; hidden entirely for
+owner/tenant/vendor): repo-locked facts, **editable CAM/Tax/Ins for
+vacant units** (131/133 have $0 recoveries — operator enters deal NNN,
+CAM defaults 2.1), ⤓ DOCX · ⤓ HTML · → E-Sign (uploads signer HTML to
+documents bucket + creates esign_requests row; link still copied from
+the E-Sign panel — app sends nothing). Local no-login browser walk
+PASSED (empty-form errors render; full form → checklist; console clean).
+V2 seams documented in spec (docs/superpowers/specs/2026-08-22-…):
+AI-1 caller, custom Schedule G tables, real plat/ACH attachments,
+amendments at first renewal. **Operator smoke (2 min): any unit drawer →
+Lease → fill a dummy deal on 131 → ⤓ DOCX opens in Word (DRAFT stamp
+top, Schedule G rows) · ⤓ HTML (checklist box) · → E-Sign creates a row
+in the panel below (cancel it after).** Design/plan committed under
+docs/superpowers/. Feature branch deleted (pre-fix history carried PII
+in tool source; squash-merge kept master clean — never push old branch
+refs).
+Prior: 2026-08-10 (session close) — **SESSION TAIL:** (1) intake form
 HOSTED + linked from the manual page banner
 (orangeoceanatlas.com/manual/intake-form.html — onboarding manual §3 now
 leads with the URL; publish() copies it from docs/phase-c/ each rebuild;
