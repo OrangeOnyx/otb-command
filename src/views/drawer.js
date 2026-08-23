@@ -8,6 +8,7 @@ import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
 import { mountLedger } from "../lib/ledgerUI.js";
 import { mountEsign } from "../lib/esignUI.js";
+import { mountLease } from "../lib/leaseUI.js";
 import { logoUrl } from "../lib/logos.js";
 import hvacData from "../data/hvac.json";
 
@@ -109,6 +110,13 @@ function renderDrawer() {
     return '<div class="cl-row ' + cls + '" data-u="' + u.unit + '" data-k="' + k + '"><span class="st">' + mark + '</span><span class="nm">' + label + '</span><span class="stt">' + stt + '</span></div>';
   }).join("");
 
+  // Lease assembly is operator-only (drafts an executable lease) — unlike
+  // Ledger/E-Sign, owners/tenants/vendors get no read-only view of it at all,
+  // so the section (header AND panel) must not render for them (same
+  // body.role-* check leaseUI.js/plan.js already use for role gating).
+  const nonOperator = document.body.classList.contains("role-owner") ||
+    document.body.classList.contains("role-tenant") || document.body.classList.contains("role-vendor");
+
   const body = document.getElementById("dwBody");
   body.innerHTML =
     '<div class="facts">' + facts + '</div>' +
@@ -119,12 +127,14 @@ function renderDrawer() {
     '<div class="dw-sec">Documents</div><div class="recs" id="dwDocs"></div>' +
     '<div class="dw-sec">Photos &amp; Plans</div><div class="assets" id="dwAssets"></div>' +
     '<div class="dw-sec">Ledger</div><div class="led" id="dwLedger"></div>' +
+    (nonOperator ? "" : '<div class="dw-sec">Lease</div><div class="led" id="dwLease"></div>') +
     '<div class="dw-sec">E-Sign</div><div class="led" id="dwEsign"></div>' +
     '<div class="dw-sec">Compliance — click to cycle</div><div class="cl">' + clHtml + '</div>';
 
   mountRecords(body.querySelector("#dwContacts"), "contacts", unitContacts(u.unit), { unit: u.unit }, renderDrawer);
   mountRecords(body.querySelector("#dwDocs"), "documents", unitDocuments(u.unit), { unit: u.unit }, renderDrawer);
   mountLedger(body.querySelector("#dwLedger"), u.unit);
+  mountLease(body.querySelector("#dwLease"), u.unit);
   mountEsign(body.querySelector("#dwEsign"), u.unit);
   if (assetDispose) assetDispose();
   assetDispose = mountAssets(body.querySelector("#dwAssets"), u.unit);
