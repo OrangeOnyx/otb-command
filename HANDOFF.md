@@ -10,8 +10,16 @@ usage-driven harvest; the never-deployed NestJS `orange-ocean-atlas` repo
 is archived.** Basis: AC prod audit 2026-08-25 — live organs are voice
 intake (43/30d) · work orders (24/30d) · SOPs (506 rows, in daily use),
 plus 13 months / $1.13M of rent_payments history; CAM/QBO/governance are
-0-row shells (nothing to port). Harvest waves: H1 voice-line + work-order
-+ SOP-module cutovers → H2 history import → H3 AC decommission. 8/27:
+0-row shells (rebuild clean — no data migration owed). **Operator scope
+ruling (2026-08-25, same day): ALL AC features transfer in some form —
+zero usage changes shape/sequencing, never inclusion.** Decision doc now
+carries a 25-row capability-transfer register + single-pane north star
+("open Atlas, never open another program"): N-1 Matters & Planning
+module (e.g. Lot 7 rezoning: planning docs + meeting notes + deadlines) ·
+N-2 meeting-notes ingestion · N-3 accounting home. Harvest: H1 organ
+cutovers → H2 history import → H2.5 parity rebuilds (Money/Accounting ·
+Tenant/Leasing · Documents/Matters · Intelligence/Comms) → H3
+decommission GATED on the register going green. 8/27:
 cancel Manus; AC scheduler NOT blanket-enabled (per-job runbook lives in
 the Asset Command project folder, `RUNBOOK-2026-08-27-manus-and-
 scheduler.md`). **New rock for THIS repo: SOP module port** (5 typed
