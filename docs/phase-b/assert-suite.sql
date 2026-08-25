@@ -14,7 +14,7 @@ declare
   uid_ven uuid := gen_random_uuid();
   uid_ten uuid := gen_random_uuid();
   uid_str uuid := gen_random_uuid();
-  n int; v_thread uuid;
+  n int; v_thread uuid; v_sop_link text;
 begin
   ------------------------------------------------------------------
   -- SETUP (privileged): role sources, then users (trigger fires), then data
@@ -75,7 +75,8 @@ begin
     values ('es-smoke', '131', 'Smoke doc', 'smoke-tenant@example.com', now() + interval '7 days');
   insert into compliance_events (unit, field, old_state, new_state) values ('131', 'coi', 'na', 'ok');
   insert into occupancy_samples (frame, camera, stall, ts, state) values ('smoke-frame', 'cam', 's1', now(), 'occupied');
-  insert into owner_briefs (month, html, model) values ('2026-07', '<p>smoke</p>', '{}'::jsonb);
+  insert into owner_briefs (month, html, model) values ('2026-07', '<p>smoke</p>', '{}'::jsonb)
+    on conflict (month) do update set html = excluded.html; -- prod holds a real July brief now; rolled back regardless
   insert into chat_threads (agent, title, created_by) values ('manager', 'smoke thread', 'smoke-op@example.com')
     returning id into v_thread;
   insert into chat_messages (thread_id, role, content) values (v_thread, 'assistant', 'smoke');
@@ -83,6 +84,16 @@ begin
   insert into voice_calls (call_sid, line) values ('CAsmoke', 'leasing');
   insert into safe_log (action, path) values ('view', 'smoke.pdf');
   insert into vendor_log (action, path) values ('upload', 'smoke-vendor/coi.pdf');
+  -- SOP module (H1.3): representative rows across the 5 typed tables
+  insert into sop_categories (id, name) values ('smoke-sop-cat', 'Smoke SOP Category');
+  insert into sop_procedures (id, category_id, title, frequency)
+    values ('smoke-sop-proc', 'smoke-sop-cat', 'Smoke Procedure', 'daily');
+  insert into sop_steps (id, procedure_id, step_number, title)
+    values ('smoke-sop-step', 'smoke-sop-proc', 1, 'Smoke step');
+  insert into sop_assignments (id, procedure_id, due_on)
+    values ('smoke-sop-asg', 'smoke-sop-proc', current_date);
+  insert into sop_completions (id, procedure_id, assignment_id, completed_by)
+    values ('smoke-sop-comp', 'smoke-sop-proc', 'smoke-sop-asg', 'smoke-op@example.com');
 
   ------------------------------------------------------------------
   -- OPERATOR: sees everything; writes money + state
@@ -114,12 +125,33 @@ begin
   select count(*) into n from vendor_log;            if n < 1 then raise exception 'FAIL op vlog read'; end if;
   select count(*) into n from vendors;               if n < 1 then raise exception 'FAIL op vendors read'; end if;
   select count(*) into n from tenant_contacts;       if n < 1 then raise exception 'FAIL op tcontacts read'; end if;
+  select count(*) into n from sop_categories;        if n < 1 then raise exception 'FAIL op sop_categories read'; end if;
+  select count(*) into n from sop_procedures;        if n < 1 then raise exception 'FAIL op sop_procedures read'; end if;
+  select count(*) into n from sop_steps;             if n < 1 then raise exception 'FAIL op sop_steps read'; end if;
+  select count(*) into n from sop_assignments;       if n < 1 then raise exception 'FAIL op sop_assignments read'; end if;
+  select count(*) into n from sop_completions;       if n < 1 then raise exception 'FAIL op sop_completions read'; end if;
 
   insert into ledger_entries (id, unit, type, code, amount, date)
     values ('smoke:op', '131', 'payment', 'rent', 100, current_date);
   insert into unit_notes (unit, text) values ('105', 'operator write');
   update comp_state set state = 'ok' where unit = '131' and field = 'coi';
   delete from camera_overrides where camera_id = 'cam-suite'; -- operator delete allowed
+  -- SOP: operator edits content, logs completions; the completion trail is
+  -- append-only even for the operator (no update/delete policy → 0 rows hit)
+  update sop_procedures set description = 'edited' where id = 'smoke-sop-proc';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op sop_procedures update hit %', n; end if;
+  insert into sop_completions (id, procedure_id, completed_by)
+    values ('smoke-sop-comp-2', 'smoke-sop-proc', 'smoke-op@example.com');
+  delete from sop_assignments where id = 'smoke-sop-asg'; -- occurrence hygiene allowed
+  select assignment_id into strict v_sop_link from sop_completions where id = 'smoke-sop-comp';
+  if v_sop_link is not null then raise exception 'FAIL sop completion link should set-null on occurrence delete'; end if;
+  update sop_completions set notes = 'tamper' where id = 'smoke-sop-comp';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL op sop_completions update was allowed'; end if;
+  delete from sop_completions where id = 'smoke-sop-comp';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL op sop_completions delete was allowed'; end if;
   execute 'reset role';
 
   ------------------------------------------------------------------
@@ -140,6 +172,16 @@ begin
   select count(*) into n from owner_briefs;       if n < 1 then raise exception 'FAIL owner brief read'; end if;
   select count(*) into n from occupancy_samples;  if n < 1 then raise exception 'FAIL owner occ read'; end if;
   select count(*) into n from vendors;            if n < 1 then raise exception 'FAIL owner vendors read'; end if;
+  select count(*) into n from sop_procedures;     if n < 1 then raise exception 'FAIL owner sop read'; end if;
+  select count(*) into n from sop_completions;    if n < 1 then raise exception 'FAIL owner sop completions read'; end if;
+  begin
+    insert into sop_completions (id, procedure_id, completed_by)
+      values ('smoke-sop-owner', 'smoke-sop-proc', 'smoke-owner@example.com');
+    raise exception 'FAIL owner sop completion insert was allowed';
+  exception when insufficient_privilege then null; end;
+  update sop_procedures set description = 'owner edit' where id = 'smoke-sop-proc';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL owner sop_procedures update was allowed'; end if;
   begin
     insert into ledger_entries (id, unit, type, date) values ('smoke:bad', '131', 'charge', current_date);
     raise exception 'FAIL owner ledger insert was allowed';
@@ -175,6 +217,10 @@ begin
        + (select count(*) from site_features) + (select count(*) from camera_overrides)
        + (select count(*) from layer_settings) into n;
   if n <> 0 then raise exception 'FAIL tenant sees typed layers (%)', n; end if;
+  select (select count(*) from sop_categories) + (select count(*) from sop_procedures)
+       + (select count(*) from sop_steps) + (select count(*) from sop_assignments)
+       + (select count(*) from sop_completions) into n;
+  if n <> 0 then raise exception 'FAIL tenant sees sop tables (%)', n; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL tenant sees vendors'; end if;
   select count(*) into n from esign_requests;       if n <> 0 then raise exception 'FAIL tenant sees esign'; end if;
   insert into maintenance_requests (id, unit, title, created_by)
@@ -204,6 +250,10 @@ begin
        + (select count(*) from site_features) + (select count(*) from camera_overrides)
        + (select count(*) from layer_settings) into n;
   if n <> 0 then raise exception 'FAIL vendor sees typed layers (%)', n; end if;
+  select (select count(*) from sop_categories) + (select count(*) from sop_procedures)
+       + (select count(*) from sop_steps) + (select count(*) from sop_assignments)
+       + (select count(*) from sop_completions) into n;
+  if n <> 0 then raise exception 'FAIL vendor sees sop tables (%)', n; end if;
   insert into maintenance_events (request_id, kind, status, actor)
     values ('mr-smoke', 'status', 'done', 'smoke-vendor@example.com'); -- allowed: assigned + done
   begin
@@ -226,6 +276,10 @@ begin
        + (select count(*) from site_features) + (select count(*) from camera_overrides)
        + (select count(*) from layer_settings) into n;
   if n <> 0 then raise exception 'FAIL stranger sees typed layers (%)', n; end if;
+  select (select count(*) from sop_categories) + (select count(*) from sop_procedures)
+       + (select count(*) from sop_steps) + (select count(*) from sop_assignments)
+       + (select count(*) from sop_completions) into n;
+  if n <> 0 then raise exception 'FAIL stranger sees sop tables (%)', n; end if;
   select count(*) into n from maintenance_requests; if n <> 0 then raise exception 'FAIL stranger mr'; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL stranger vendors'; end if;
   select count(*) into n from tenant_contacts;      if n <> 0 then raise exception 'FAIL stranger tcontacts'; end if;
