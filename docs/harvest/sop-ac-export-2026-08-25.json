@@ -1,0 +1,5078 @@
+{
+ "exported_at": "2026-08-25",
+ "source": "asset-command-prod (pegmtfjexdzuupubgggv) sop_* tables",
+ "mapping": "camelCase→snake_case; userId 1→adam@adamabdalla.com; dueAt→due_on (date); ac_status kept for provenance only (Atlas derives status); Manus scheduler columns dropped",
+ "counts": {
+  "categories": 18,
+  "procedures": 88,
+  "steps": 320,
+  "assignments": 71,
+  "completions": 9
+ },
+ "checksums": {
+  "categories": "02d67799f554b5945cce4e61b11e1573",
+  "procedures": "c7e12b647489b0dbce2df93798b64c2f",
+  "steps": "a51c6afecfa856284157ba7f8f72a303",
+  "assignments": "b463ad764a18d4486e53beae726d556c",
+  "completions": "1f1ad4d604ed775ab34206bdfd247be4"
+ },
+ "categories": [
+  {
+   "id": "cat-compliance",
+   "icon": "📋",
+   "name": "Compliance & Inspections",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 9,
+   "description": "Regulatory compliance, permits, inspections, and documentation"
+  },
+  {
+   "id": "cat-daily-ops",
+   "icon": "sun",
+   "name": "Daily Operations",
+   "created_at": "2026-07-29T19:38:28",
+   "sort_order": 1,
+   "description": "End-of-day and opening procedures"
+  },
+  {
+   "id": "cat-emergency",
+   "icon": "alert",
+   "name": "Emergency",
+   "created_at": "2026-07-29T19:38:28",
+   "sort_order": 5,
+   "description": "Emergency response procedures"
+  },
+  {
+   "id": "cat-financial",
+   "icon": "💰",
+   "name": "Financial & Reporting",
+   "created_at": "2026-07-29T22:44:29",
+   "sort_order": 7,
+   "description": "Rent collection, reconciliation, and owner reporting"
+  },
+  {
+   "id": "cat-food-tenants",
+   "icon": "🍽️",
+   "name": "Food Tenant Requirements",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 17,
+   "description": "Grease traps, hood cleaning, health inspections, pest control for food tenants"
+  },
+  {
+   "id": "cat-insurance",
+   "icon": "🛡️",
+   "name": "Insurance & Risk",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 18,
+   "description": "COI tracking, claims, liability, and risk mitigation"
+  },
+  {
+   "id": "cat-landscaping",
+   "icon": "🌳",
+   "name": "Landscaping & Exterior",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 11,
+   "description": "Grounds maintenance, irrigation, and curb appeal"
+  },
+  {
+   "id": "cat-leasing",
+   "icon": "clipboard",
+   "name": "Leasing",
+   "created_at": "2026-07-29T19:38:28",
+   "sort_order": 3,
+   "description": "Tenant onboarding and lease administration"
+  },
+  {
+   "id": "cat-maintenance",
+   "icon": "wrench",
+   "name": "Maintenance",
+   "created_at": "2026-07-29T19:38:28",
+   "sort_order": 2,
+   "description": "Recurring maintenance tasks and inspections"
+  },
+  {
+   "id": "cat-parking",
+   "icon": "🅿️",
+   "name": "Parking & Traffic",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 16,
+   "description": "Parking management, striping, towing, and traffic flow"
+  },
+  {
+   "id": "cat-seasonal",
+   "icon": "🌀",
+   "name": "Seasonal & Weather",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 15,
+   "description": "Hurricane prep, holiday decorations, seasonal maintenance"
+  },
+  {
+   "id": "cat-security",
+   "icon": "🔒",
+   "name": "Security & Access Control",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 10,
+   "description": "Security systems, access management, and incident response"
+  },
+  {
+   "id": "cat-signage",
+   "icon": "🪧",
+   "name": "Signage & Wayfinding",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 12,
+   "description": "Tenant signs, pylon, directories, and wayfinding"
+  },
+  {
+   "id": "cat-tenant-comms",
+   "icon": "📨",
+   "name": "Tenant Communications",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 14,
+   "description": "Notices, newsletters, meetings, and relationship management"
+  },
+  {
+   "id": "cat-tenant-lifecycle",
+   "icon": "🏪",
+   "name": "Tenant Lifecycle",
+   "created_at": "2026-07-29T22:44:29",
+   "sort_order": 8,
+   "description": "Move-in, move-out, and ongoing tenant relations"
+  },
+  {
+   "id": "cat-utilities",
+   "icon": "⚡",
+   "name": "Utilities & Infrastructure",
+   "created_at": "2026-07-31T09:14:42",
+   "sort_order": 13,
+   "description": "Electrical, plumbing, gas, water, and telecom systems"
+  },
+  {
+   "id": "cat-vendor",
+   "icon": "handshake",
+   "name": "Vendor Management",
+   "created_at": "2026-07-29T19:38:28",
+   "sort_order": 4,
+   "description": "How vendors get paid and evaluated"
+  },
+  {
+   "id": "cat-weekly-ops",
+   "icon": "📅",
+   "name": "Weekly Operations",
+   "created_at": "2026-07-29T22:44:29",
+   "sort_order": 6,
+   "description": "Recurring weekly inspections and upkeep tasks"
+  }
+ ],
+ "procedures": [
+  {
+   "id": "proc-ada-audit",
+   "title": "ADA Compliance Walkthrough",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:14:55",
+   "category_id": "cat-compliance",
+   "description": "Inspect all handicap parking, ramps, door widths, restroom grab bars, and signage for ADA compliance. Document deficiencies and schedule corrections.",
+   "estimated_minutes": 90
+  },
+  {
+   "id": "proc-after-hours-response",
+   "title": "After-Hours Security Incident Response",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-security",
+   "description": "Respond to alarm activation or security call. Assess threat level, contact police if needed, document incident, notify affected tenants, review camera footage.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-annual-insurance-review",
+   "title": "Annual Insurance Policy Review",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-insurance",
+   "description": "Review property insurance 90 days before renewal. Verify replacement cost values. Check flood zone. Compare 3 quotes. Verify endorsements.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-backflow-test",
+   "title": "Backflow Preventer Testing",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:14:55",
+   "category_id": "cat-compliance",
+   "description": "Schedule certified backflow tester for annual testing of all backflow prevention devices. Submit results to LUS within 30 days.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-budget-plan",
+   "title": "Annual Budget & CAM Reconciliation",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-financial",
+   "description": "Reconcile actual CAM/tax/insurance vs estimates. Calculate over/under for each tenant. Set next year budget. Send reconciliation letters.",
+   "estimated_minutes": 480
+  },
+  {
+   "id": "proc-cam-reconcile",
+   "title": "CAM/NNN Expense Tracking",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-financial",
+   "description": "Log all common area expenses. Categorize by CAM, tax, or insurance. Update running total for year-end reconciliation.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-cam-reconciliation-letter",
+   "title": "CAM Reconciliation Letter",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-tenant-comms",
+   "description": "Prepare annual CAM reconciliation statement. Show estimated vs actual NNN. Calculate over/under payment. Draft letter.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-camera-check",
+   "title": "Security Camera System Check",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-security",
+   "description": "Verify all cameras recording, check storage capacity, clean lenses, verify night vision, test remote access. Replace any non-functioning cameras.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-coi-tracking",
+   "title": "Certificate of Insurance Tracking",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-insurance",
+   "description": "Review all tenant COIs for expiration dates. Send 30-day reminders. Verify coverage meets lease minimums. Flag non-compliant.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-common-area-tidy",
+   "title": "Common Area Quick Tidy",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "daily",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-daily-ops",
+   "description": "Empty trash cans, wipe benches, check restroom supplies, sweep breezeway.",
+   "estimated_minutes": 20
+  },
+  {
+   "id": "proc-common-deep-clean",
+   "title": "Common Area Deep Clean",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-weekly-ops",
+   "description": "Mop breezeway, clean restroom fixtures, wipe all glass doors, detail benches and planters.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-directory-update",
+   "title": "Directory and Wayfinding Update",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-signage",
+   "description": "Update tenant directory board with current tenants. Remove departed tenants. Add new tenants. Verify suite numbers match.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-dumpster-area",
+   "title": "Dumpster Enclosure & Waste Management",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-weekly-ops",
+   "description": "Inspect dumpster enclosure gates, verify no overflow, check for illegal dumping, confirm grease trap area is clean.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-dumpster-food-tenant",
+   "title": "Food Tenant Dumpster and Grease Bin Management",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-food-tenants",
+   "description": "Inspect dumpster area for overflow, grease spills, odor. Verify grease recycling bin not overflowing. Schedule extra pickup if needed.",
+   "estimated_minutes": 20
+  },
+  {
+   "id": "proc-electrical-emergency",
+   "title": "Electrical Emergency Response",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-emergency",
+   "description": "Identify affected circuits, check main panels, call A&P Electrical (337-856-8383), notify affected tenants, document outage duration.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-electrical-panel-check",
+   "title": "Electrical Panel Inspection",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-utilities",
+   "description": "Open each electrical panel. Check for tripped breakers, signs of heat damage, loose wiring, or corrosion. Verify panel schedules are current and legible.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-elevator-cert",
+   "title": "Elevator/Lift Certification",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:14:55",
+   "category_id": "cat-compliance",
+   "description": "Schedule annual elevator inspection with state-certified inspector. Post current certificate in cab. Address any deficiencies within 30 days.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-emergency-notification",
+   "title": "Emergency Mass Notification",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-tenant-comms",
+   "description": "Send urgent notification to all tenants via text, email, and posted notice. Include nature of emergency, actions required, timeline.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-emergency-plumber",
+   "title": "Emergency Plumbing Response",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-emergency",
+   "description": "Locate shutoff valve, contain water, call emergency plumber, notify affected tenants, document damage, file insurance claim if needed.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-fire-ext",
+   "title": "Fire Extinguisher Inspection",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-maintenance",
+   "description": "Verify all fire extinguishers are charged, accessible, and have current inspection tags.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-fire-lane-enforcement",
+   "title": "Fire Lane Compliance Check",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-parking",
+   "description": "Walk all fire lanes. Verify no vehicles parked, no obstructions, paint visible, signs posted. Issue warnings to violators.",
+   "estimated_minutes": 20
+  },
+  {
+   "id": "proc-fire-marshal",
+   "title": "Fire Marshal Inspection Prep",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:14:55",
+   "category_id": "cat-compliance",
+   "description": "Prepare for annual fire marshal inspection. Verify all fire extinguishers current, exit signs lit, sprinkler access clear, electrical panels accessible, no blocked exits.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-food-pest-control",
+   "title": "Food Tenant Pest Control Coordination",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-food-tenants",
+   "description": "Coordinate pest control for food tenants and adjacent units. Verify monthly service reports. Address infestations within 24 hours.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-freeze-prep",
+   "title": "Hard Freeze Preparation",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-seasonal",
+   "description": "When temps below 28F forecast: drip all exposed faucets, open cabinet doors, insulate exposed pipes, disconnect hoses, set HVAC to minimum 55F in vacant units.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-gas-leak-check",
+   "title": "Gas Line Leak Detection",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-utilities",
+   "description": "Walk gas meter area. Check for rotten egg smell. Use leak detection solution on visible fittings. Report any leaks immediately.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-grease-trap-pump",
+   "title": "Grease Trap Pumping Verification",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-food-tenants",
+   "description": "Verify food tenants have grease trap pumped per lease requirements (quarterly). Collect pump receipts. Issue violation notice if overdue.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-handicap-enforcement",
+   "title": "Handicap Parking Enforcement",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "daily",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-parking",
+   "description": "Check all handicap spaces for proper signage, clear access aisles, no unauthorized vehicles. Report violations to Lafayette PD.",
+   "estimated_minutes": 10
+  },
+  {
+   "id": "proc-health-dept-prep",
+   "title": "Health Department Inspection Prep",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-food-tenants",
+   "description": "Before health inspections: verify dumpster cleanliness, no standing water near food tenants, pest control current, exterior grease containment clean.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-holiday-decorations",
+   "title": "Holiday Decoration Installation",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-seasonal",
+   "description": "Install seasonal decorations per approved plan. Check all electrical connections, verify timer settings, ensure ADA path clearance. Remove by January 15.",
+   "estimated_minutes": 180
+  },
+  {
+   "id": "proc-hood-ansul-inspect",
+   "title": "Hood and Ansul System Inspection",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-food-tenants",
+   "description": "Verify all food tenants have current hood cleaning certificate and Ansul fire suppression inspection. Collect certificates.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-hurricane",
+   "title": "Hurricane Preparation Procedure",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-emergency",
+   "description": "Secure loose items, board windows if Cat 3+, notify tenants, verify insurance, backup systems.",
+   "estimated_minutes": 480
+  },
+  {
+   "id": "proc-hurricane-prep",
+   "title": "Hurricane Preparation Checklist",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-seasonal",
+   "description": "When storm enters Gulf: secure loose items, board vacant units, sandbag low areas, photograph all exteriors, verify insurance docs, send tenant prep notice, fill generator.",
+   "estimated_minutes": 240
+  },
+  {
+   "id": "proc-hurricane-recovery",
+   "title": "Post-Hurricane Damage Assessment",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-seasonal",
+   "description": "After all-clear: photograph all damage, check roof, verify structural integrity, check utilities, clear parking lot, notify insurance, contact tenants.",
+   "estimated_minutes": 180
+  },
+  {
+   "id": "proc-hvac",
+   "title": "HVAC Filter Inspection and Replacement",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-maintenance",
+   "description": "Inspect all rooftop HVAC units. Replace filters as needed. Log unit condition.",
+   "estimated_minutes": 90
+  },
+  {
+   "id": "proc-hvac-pm",
+   "title": "HVAC Preventive Maintenance Service (Butcher AC)",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-maintenance",
+   "description": "Coordinate with Butcher Air Conditioning for quarterly PM on all rooftop units. Verify completion report, log any repair recommendations.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-incident-report",
+   "title": "Incident Report and Documentation",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-insurance",
+   "description": "For any injury or property damage: photograph scene, collect witness info, complete incident report, notify insurance within 24 hours.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-insurance-audit",
+   "title": "Tenant Insurance Certificate Audit",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-financial",
+   "description": "Pull all tenant COI expiration dates. Send 30-day renewal notices. Flag any lapsed policies. Update compliance tracker.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-invoice",
+   "title": "Vendor Invoice Processing",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-vendor",
+   "description": "Receive invoice, verify work completion, match to PO/contract, approve for payment.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-irrigation-check",
+   "title": "Irrigation System Inspection",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-landscaping",
+   "description": "Run each zone manually. Check for broken heads, misaligned spray, dry spots, and leaks. Adjust timer for season. Replace damaged heads.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-key-audit",
+   "title": "Key and Access Audit",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-security",
+   "description": "Reconcile master key log with issued keys. Verify all tenant keys match current occupancy. Re-key any units with unaccounted keys. Update lockbox codes.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-landscaping-check",
+   "title": "Landscaping & Grounds Inspection",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-weekly-ops",
+   "description": "Inspect all landscaped areas, irrigation heads, tree limbs, flower beds. Note any dead plants, overgrowth, or irrigation leaks for vendor.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-lease-pipeline",
+   "title": "Annual Lease Renewal Pipeline Review",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-leasing",
+   "description": "Review all leases expiring in next 12 months. Determine renewal strategy for each. Set market rate comps. Begin outreach 180 days out.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-lease-violation",
+   "title": "Lease Violation Notice Process",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-leasing",
+   "description": "Document violation with photos, identify lease clause, draft cure notice, deliver per lease requirements (certified mail + hand delivery), set cure deadline, follow up.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-lighting-audit",
+   "title": "Parking Lot Lighting Audit",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-security",
+   "description": "Walk entire lot after dark. Map all light fixtures. Note any burned out, flickering, or dim fixtures. Measure foot-candles at key points. Schedule replacements.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-lockup",
+   "title": "Evening Lock-Up Procedure",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "daily",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-daily-ops",
+   "description": "Secure all common areas, verify tenant spaces are locked, arm security system.",
+   "estimated_minutes": 20
+  },
+  {
+   "id": "proc-lot-restriping",
+   "title": "Parking Lot Restriping",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-parking",
+   "description": "Schedule full lot restriping every 2-3 years. Get 3 quotes. Schedule overnight work. Notify tenants 72 hours ahead. Verify ADA compliance after.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-monthly-newsletter",
+   "title": "Monthly Tenant Newsletter",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-tenant-comms",
+   "description": "Draft and send monthly newsletter covering upcoming maintenance, center events, new tenants, policy reminders, seasonal tips.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-monthly-report",
+   "title": "Monthly Owner Report",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-financial",
+   "description": "Compile income/expense summary, occupancy status, maintenance log, delinquency report, and upcoming lease events. Send to owner by the 10th.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-morning",
+   "title": "Morning Opening Walkthrough",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "daily",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-daily-ops",
+   "description": "Inspect parking lot, check for overnight damage, verify signage, unlock common areas.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-movein",
+   "title": "New Tenant Move-In Checklist",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-leasing",
+   "description": "Complete all steps for tenant move-in: keys, signage, utility transfers, welcome packet.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-moveout",
+   "title": "Tenant Move-Out Procedure",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-tenant-lifecycle",
+   "description": "Final walkthrough, document condition, return deposit calculation, key collection, utility transfer, signage removal, unit prep for next tenant.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-mowing",
+   "title": "Lawn Mowing and Edging",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-landscaping",
+   "description": "Mow all grass areas, edge sidewalks and curbs, blow clippings from walkways and parking areas. Trim around signs and light poles.",
+   "estimated_minutes": 90
+  },
+  {
+   "id": "proc-mulch-refresh",
+   "title": "Mulch and Bed Refresh",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-landscaping",
+   "description": "Remove weeds from all landscape beds. Add fresh mulch to 3-inch depth. Replace dead plants. Trim hedges to uniform height. Edge bed borders.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-occupational-license",
+   "title": "Tenant Occupational License Verification",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:14:55",
+   "category_id": "cat-compliance",
+   "description": "Verify each tenant has current City of Lafayette occupational license on file. Send reminder notices 60 days before expiration.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-parking-restripe",
+   "title": "Parking Lot Restriping",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-maintenance",
+   "description": "Inspect all striping, handicap markings, fire lanes, directional arrows. Get bids from 2 vendors. Schedule for lowest-traffic period.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-parking-sweep",
+   "title": "Parking Lot Sweep & Safety Check",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "daily",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-daily-ops",
+   "description": "Walk or drive the entire parking field. Remove debris, check for potholes, verify handicap signage, note any vehicle issues.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-pest-check",
+   "title": "Pest Control Verification",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-maintenance",
+   "description": "Verify pest control vendor completed monthly service. Check bait stations, inspect dumpster area, and note any tenant pest complaints.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-pothole-repair",
+   "title": "Pothole and Asphalt Repair",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-parking",
+   "description": "Identify potholes or cracking. Mark with spray paint. Get 2 quotes. Schedule during low-traffic hours. Inspect after completion.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-pressure",
+   "title": "Pressure Wash Sidewalks and Common Areas",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-maintenance",
+   "description": "Pressure wash all sidewalks, storefront aprons, and drive lanes. Schedule around business hours.",
+   "estimated_minutes": 240
+  },
+  {
+   "id": "proc-pressure-wash-sidewalks",
+   "title": "Sidewalk and Curb Pressure Washing",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-landscaping",
+   "description": "Pressure wash all common-area sidewalks, curbs, and dumpster pads. Remove gum, stains, and mildew. Start early morning before tenant hours.",
+   "estimated_minutes": 180
+  },
+  {
+   "id": "proc-pylon-maintenance",
+   "title": "Pylon Sign Maintenance",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-signage",
+   "description": "Inspect pylon sign structure, check all tenant panels for fading or damage, verify illumination, clean panels, check timer settings.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-renewal",
+   "title": "Lease Renewal Process",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-leasing",
+   "description": "90-day advance notice, market rate analysis, renewal letter, negotiate terms.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-rent-collection",
+   "title": "Rent Collection & Delinquency Follow-Up",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-financial",
+   "description": "Verify all rents received by the 5th. Send late notices on the 6th. Call delinquent tenants by the 10th. Escalate to demand letter by the 15th.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-rent-increase-notice",
+   "title": "Rent Increase Notice Process",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-tenant-comms",
+   "description": "Draft notice per lease terms. Include effective date, new amount, breakdown of base + NNN. Send certified mail + email.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-roof-leak",
+   "title": "Roof Leak Emergency Response",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-emergency",
+   "description": "Place containment, identify leak source from inside, access roof if safe, call roofer, notify tenant, document damage with photos/video.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-roof-pro",
+   "title": "Annual Professional Roof Inspection",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-maintenance",
+   "description": "Schedule professional roofer for full membrane inspection. Get written report with photos. Budget any recommended repairs.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-roof-visual",
+   "title": "Roof Visual Inspection",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "monthly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-maintenance",
+   "description": "Access roof via Unit 135B ladder. Walk membrane, check around RTUs for ponding, tears, or flashing separation. Photograph any issues.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-safety-walk",
+   "title": "Safety & ADA Compliance Walk",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-maintenance",
+   "description": "Inspect all ADA ramps, handrails, trip hazards, parking lot condition, and emergency exit paths. Document deficiencies with photos.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-sewer-cleanout",
+   "title": "Sewer Line Camera and Cleanout",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-utilities",
+   "description": "Schedule plumber to camera main sewer lines. Identify root intrusion, grease buildup, or damage. Jet-clean as needed.",
+   "estimated_minutes": 120
+  },
+  {
+   "id": "proc-sign-violation",
+   "title": "Unauthorized Sign Removal",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-signage",
+   "description": "Identify unauthorized signs. Issue notice to tenant. Remove if not corrected in 48 hours.",
+   "estimated_minutes": 20
+  },
+  {
+   "id": "proc-signage-inspection",
+   "title": "Signage & Lighting Inspection",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-weekly-ops",
+   "description": "Walk all tenant signs, pylon sign, directional signs, and parking lot lights. Note any burned-out bulbs, damaged panels, or non-compliant signs.",
+   "estimated_minutes": 25
+  },
+  {
+   "id": "proc-slip-fall-response",
+   "title": "Slip and Fall Response Protocol",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-insurance",
+   "description": "Assist injured party. Call 911 if needed. Photograph location and conditions. Identify witnesses. Do NOT admit fault. Notify insurance same day.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-spring-cleanup",
+   "title": "Spring Deep Clean and Refresh",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-seasonal",
+   "description": "Annual spring refresh: pressure wash all surfaces, repaint curbs, refresh mulch, clean gutters, service HVAC, deep clean common areas, touch up paint.",
+   "estimated_minutes": 480
+  },
+  {
+   "id": "proc-striping",
+   "title": "Parking Lot Striping and Signage Check",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-maintenance",
+   "description": "Inspect parking lot striping, handicap markings, and directional signage. Schedule restriping if faded.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-tax-prep",
+   "title": "Property Tax Assessment Review",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-financial",
+   "description": "Review annual tax assessment. Compare to market value. Determine if protest is warranted. File protest by deadline if applicable.",
+   "estimated_minutes": 90
+  },
+  {
+   "id": "proc-telecom-audit",
+   "title": "Telecom and Internet Infrastructure Audit",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-utilities",
+   "description": "Inspect telecom closet, verify all patch panels labeled, check for unauthorized equipment, confirm fiber/cable runs documented.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-tenant-complaint",
+   "title": "Tenant Complaint Resolution",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-tenant-lifecycle",
+   "description": "Log complaint, acknowledge within 2 hours, investigate, determine responsibility (landlord vs tenant), resolve or escalate, follow up within 48 hours.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-tenant-sign-install",
+   "title": "New Tenant Sign Installation Approval",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-signage",
+   "description": "Review sign application against lease sign criteria. Verify city permit obtained. Schedule installer. Inspect after install.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-tenant-walkby",
+   "title": "Tenant Storefront Walk-By",
+   "version": 1,
+   "assignee": "adam@adamabdalla.com",
+   "frequency": "weekly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:44:50",
+   "category_id": "cat-weekly-ops",
+   "description": "Walk every storefront. Check for lease violations (unapproved signage, merchandise outside, window condition). Document with photos.",
+   "estimated_minutes": 20
+  },
+  {
+   "id": "proc-tenant-welcome-packet",
+   "title": "New Tenant Welcome Packet",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-tenant-comms",
+   "description": "Prepare welcome packet: property rules, emergency contacts, vendor list, trash schedule, HVAC requirements, sign criteria, insurance requirements, parking map.",
+   "estimated_minutes": 60
+  },
+  {
+   "id": "proc-towing-enforcement",
+   "title": "Unauthorized Vehicle Towing",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-parking",
+   "description": "Identify unauthorized vehicles. Photograph, place warning sticker, wait 24 hours, then call tow company. Document everything.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-tree-trim",
+   "title": "Tree Trimming and Canopy Management",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-landscaping",
+   "description": "Inspect all trees for dead limbs, overgrowth blocking signs or lights, root damage to sidewalks. Schedule arborist for major work. Clear limbs from roof.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-trespass-warning",
+   "title": "Trespass Warning Issuance",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:15:20",
+   "category_id": "cat-security",
+   "description": "Identify trespasser, issue verbal then written warning, document with photos, file with Lafayette PD if repeat offender, notify tenants of known trespassers.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-vendor-coi-verify",
+   "title": "Vendor COI Verification",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-insurance",
+   "description": "Before any vendor starts work: verify current COI with adequate limits, workers comp, auto liability. Belle Realty listed as additional insured.",
+   "estimated_minutes": 15
+  },
+  {
+   "id": "proc-vendor-onboard",
+   "title": "New Vendor Onboarding",
+   "version": 1,
+   "assignee": "",
+   "frequency": "as_needed",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-vendor",
+   "description": "Collect W-9, verify insurance, execute vendor agreement, set up in payment system, provide property access instructions and emergency contacts.",
+   "estimated_minutes": 30
+  },
+  {
+   "id": "proc-vendor-review",
+   "title": "Annual Vendor Performance Review",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-29T19:38:45",
+   "category_id": "cat-vendor",
+   "description": "Evaluate all recurring vendors on quality, responsiveness, pricing, and reliability.",
+   "estimated_minutes": 180
+  },
+  {
+   "id": "proc-vendor-scorecard",
+   "title": "Quarterly Vendor Scorecard",
+   "version": 1,
+   "assignee": "",
+   "frequency": "quarterly",
+   "is_active": true,
+   "created_at": "2026-07-29T22:45:17",
+   "category_id": "cat-vendor",
+   "description": "Rate each active vendor on response time, quality, pricing, and communication. Document issues. Identify any vendors to replace.",
+   "estimated_minutes": 45
+  },
+  {
+   "id": "proc-water-shutoff-test",
+   "title": "Water Shutoff Valve Test",
+   "version": 1,
+   "assignee": "",
+   "frequency": "annually",
+   "is_active": true,
+   "created_at": "2026-07-31T09:16:06",
+   "category_id": "cat-utilities",
+   "description": "Locate and exercise all water shutoff valves. Verify they turn freely and seal properly. Label any unlabeled valves.",
+   "estimated_minutes": 90
+  }
+ ],
+ "steps": [
+  {
+   "id": "step-ada-01",
+   "title": "Check handicap parking",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 1,
+   "instructions": "Count spaces (1 per 25 required). Verify proper signage height (60 inches to bottom). Check van-accessible spaces have 8-foot aisle.",
+   "procedure_id": "proc-ada-audit",
+   "warning_note": "ADA violations carry heavy fines — take seriously",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-ada-02",
+   "title": "Inspect ramps and curb cuts",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 2,
+   "instructions": "Check all ramps: maximum 1:12 slope, handrails on both sides if over 6 inches rise, non-slip surface, no obstructions.",
+   "procedure_id": "proc-ada-audit",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-ada-03",
+   "title": "Measure door widths",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 3,
+   "instructions": "All public doors must provide 32-inch clear opening. Check door hardware operable with one hand. Verify door closers allow 5 seconds.",
+   "procedure_id": "proc-ada-audit",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-ada-04",
+   "title": "Check restroom compliance",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 4,
+   "instructions": "Verify grab bars secure, toilet height 17-19 inches, clear floor space, accessible sink, mirror at 40 inches max, door swings out.",
+   "procedure_id": "proc-ada-audit",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-ada-05",
+   "title": "Document and prioritize",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 5,
+   "instructions": "Photograph all deficiencies. Prioritize by immediate safety hazard, high-traffic areas, complaint-driven. Get quotes. Create timeline.",
+   "procedure_id": "proc-ada-audit",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-budget-01",
+   "title": "Compile actual expenses",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 1,
+   "instructions": "Pull all expenses for the year by category: CAM, tax, insurance, repairs, capital, admin. Compare to budget.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-budget-02",
+   "title": "Calculate per-tenant reconciliation",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 2,
+   "instructions": "For each tenant, calculate: estimated NNN paid vs actual pro-rata share. Determine over/under payment.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-budget-03",
+   "title": "Draft reconciliation letters",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 3,
+   "instructions": "Prepare individual reconciliation letters showing calculation. Include supporting documentation for any increases.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "Must be sent within 120 days of year-end per most leases",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-budget-04",
+   "title": "Set next year estimates",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 4,
+   "instructions": "Project next years CAM, tax, and insurance based on trends, known increases, and planned capital work.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-budget-05",
+   "title": "Review with owner",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 5,
+   "instructions": "Present budget to owner. Discuss: expected income, planned capital expenditures, reserve contributions, and any rent adjustments.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-budget-06",
+   "title": "Send tenant notices",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 6,
+   "instructions": "Send NNN estimate adjustment letters to all tenants. Must provide 30-day notice before new rates take effect.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-budget-07",
+   "title": "Update billing system",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 7,
+   "instructions": "Update DoorLoop with new monthly NNN amounts for each tenant effective January 1.",
+   "procedure_id": "proc-budget-plan",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-cam-01",
+   "title": "Categorize monthly expenses",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 1,
+   "instructions": "Review all invoices paid this month. Categorize each as: CAM (maintenance, landscaping, cleaning), Tax, or Insurance.",
+   "procedure_id": "proc-cam-reconcile",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-cam-02",
+   "title": "Update running totals",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 2,
+   "instructions": "Add this months expenses to the YTD tracking spreadsheet. Compare to budget projections.",
+   "procedure_id": "proc-cam-reconcile",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-cam-03",
+   "title": "Flag variances",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 3,
+   "instructions": "If any category is trending 15%+ over budget, flag for owner review. Identify cause and recommend adjustment.",
+   "procedure_id": "proc-cam-reconcile",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-cam-04",
+   "title": "File receipts",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 4,
+   "instructions": "Scan and file all receipts/invoices in the property drive under the correct month folder.",
+   "procedure_id": "proc-cam-reconcile",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-camera-01",
+   "title": "Log into DVR/NVR system",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 1,
+   "instructions": "Access the recording system. Verify system is recording. Check storage — should have minimum 30 days retention. Note any error messages.",
+   "procedure_id": "proc-camera-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-camera-02",
+   "title": "Check each camera feed",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 2,
+   "instructions": "View each camera live. Verify image is clear, properly aimed, and recording. Note any cameras showing black screen, static, or wrong angle.",
+   "procedure_id": "proc-camera-check",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-camera-03",
+   "title": "Test night vision",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 3,
+   "instructions": "After dark, verify infrared/night vision is activating on all exterior cameras. Image should be clear enough to identify faces at 20 feet.",
+   "procedure_id": "proc-camera-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-camera-04",
+   "title": "Clean camera lenses",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 4,
+   "instructions": "Use microfiber cloth to clean all accessible camera lenses. Remove spider webs, dirt, and water spots.",
+   "procedure_id": "proc-camera-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-camera-05",
+   "title": "Test remote access",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 5,
+   "instructions": "Verify you can access camera feeds from mobile app and remote desktop. Test both live view and playback.",
+   "procedure_id": "proc-camera-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-coi-01",
+   "title": "Pull expiration report",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 1,
+   "instructions": "Generate list of all tenant COIs expiring in next 60 days from DoorLoop or tracking spreadsheet.",
+   "procedure_id": "proc-coi-tracking",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-coi-02",
+   "title": "Send 30-day reminder",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 2,
+   "instructions": "Email tenants whose COI expires within 30 days. Include expiration date, required coverage amounts, requirement to list Belle Realty as additional insured.",
+   "procedure_id": "proc-coi-tracking",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-coi-03",
+   "title": "Verify received COIs",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 3,
+   "instructions": "For each renewed COI: verify policy dates, coverage amounts ($1M/$2M minimum), Belle Realty of Lafayette LLC listed as additional insured, property address correct.",
+   "procedure_id": "proc-coi-tracking",
+   "warning_note": "Do not accept COIs without additional insured endorsement",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-coi-04",
+   "title": "Issue non-compliance notice",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 4,
+   "instructions": "For tenants 15+ days past expiration without renewal: send formal lease violation notice. Note that operating without insurance is a material lease default.",
+   "procedure_id": "proc-coi-tracking",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-coi-05",
+   "title": "Update records",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 5,
+   "instructions": "File new COIs. Update expiration tracking. Set calendar reminders for next cycle.",
+   "procedure_id": "proc-coi-tracking",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-comp-01",
+   "title": "Log complaint",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Record: tenant name/unit, date/time, nature of complaint, and how it was received (phone, email, in-person, app).",
+   "procedure_id": "proc-tenant-complaint",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-comp-02",
+   "title": "Acknowledge within 2 hours",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "Respond to tenant confirming receipt of complaint. Provide expected timeline for investigation/resolution.",
+   "procedure_id": "proc-tenant-complaint",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-comp-03",
+   "title": "Investigate",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "Visit the site. Verify the issue. Determine: is this a landlord responsibility, tenant responsibility, or neighbor dispute?",
+   "procedure_id": "proc-tenant-complaint",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-comp-04",
+   "title": "Determine resolution",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "Based on investigation: schedule repair, issue notice to offending party, mediate between tenants, or explain why no action is warranted.",
+   "procedure_id": "proc-tenant-complaint",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-comp-05",
+   "title": "Resolve or escalate",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "If straightforward: fix it. If complex or requires owner decision: brief owner with facts and recommendation.",
+   "procedure_id": "proc-tenant-complaint",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-comp-06",
+   "title": "Follow up within 48 hours",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 6,
+   "instructions": "Contact tenant to confirm resolution is satisfactory. If not resolved yet, provide updated timeline. Document outcome.",
+   "procedure_id": "proc-tenant-complaint",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-deep-01",
+   "title": "Mop breezeway floor",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 1,
+   "instructions": "Wet mop entire breezeway with commercial cleaner. Pay attention to corners and edges. Allow to dry before foot traffic.",
+   "procedure_id": "proc-common-deep-clean",
+   "warning_note": "Place wet floor signs during mopping",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-deep-02",
+   "title": "Clean all glass doors",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 2,
+   "instructions": "Clean both sides of all common area glass doors with glass cleaner. Check for scratches or seal damage.",
+   "procedure_id": "proc-common-deep-clean",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-deep-03",
+   "title": "Deep clean restrooms",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 3,
+   "instructions": "Scrub toilets, sinks, and floors. Disinfect all surfaces. Check caulking and grout. Restock all supplies. Check for leaks under sinks.",
+   "procedure_id": "proc-common-deep-clean",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-deep-04",
+   "title": "Detail benches and planters",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 4,
+   "instructions": "Scrub benches with appropriate cleaner. Remove gum or stains. Clean planter edges. Remove weeds from planter beds.",
+   "procedure_id": "proc-common-deep-clean",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-deep-05",
+   "title": "Clean light fixtures",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 5,
+   "instructions": "Wipe down accessible light fixture covers. Remove bugs and debris. Note any fixtures needing bulb replacement.",
+   "procedure_id": "proc-common-deep-clean",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-deep-06",
+   "title": "Inspect and report",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 6,
+   "instructions": "Document condition of all common areas. Note any repairs needed (cracked tile, peeling paint, damaged fixtures). Submit work orders.",
+   "procedure_id": "proc-common-deep-clean",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-dump-01",
+   "title": "Inspect enclosure gates",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 1,
+   "instructions": "Verify both gates open/close properly. Check hinges, latches, and lock. Gates must be closed when not in use per city ordinance.",
+   "procedure_id": "proc-dumpster-area",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-dump-02",
+   "title": "Check for overflow",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 2,
+   "instructions": "If dumpster is more than 80% full, call waste vendor for extra pickup. Do not allow overflow — attracts pests and violates code.",
+   "procedure_id": "proc-dumpster-area",
+   "warning_note": "Overflow = code violation + pest risk",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-dump-03",
+   "title": "Check for illegal dumping",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 3,
+   "instructions": "Look for furniture, appliances, construction debris, or items from non-tenants. Photograph and report. Check security camera footage if available.",
+   "procedure_id": "proc-dumpster-area",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-dump-04",
+   "title": "Inspect grease trap area",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 4,
+   "instructions": "Check grease trap for overflow or odor. Verify food tenants (107, 113, 149) are using grease trap properly. Schedule pumping if needed.",
+   "procedure_id": "proc-dumpster-area",
+   "warning_note": "Grease trap overflow = environmental violation — urgent",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-dump-05",
+   "title": "Clean surrounding area",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 5,
+   "instructions": "Sweep around dumpster enclosure. Remove any loose trash or cardboard that blew out. Hose down if grease or food residue present.",
+   "procedure_id": "proc-dumpster-area",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elec-01",
+   "title": "Assess scope",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Determine if outage is: single unit, multiple units, entire property, or neighborhood-wide. Check LUS outage map.",
+   "procedure_id": "proc-electrical-emergency",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elec-02",
+   "title": "Check breaker panels",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "If property-specific, check main panels (located at rear of each building section). Look for tripped breakers. Do NOT reset if burning smell or visible damage.",
+   "procedure_id": "proc-electrical-emergency",
+   "warning_note": "Do NOT touch panels if water present or burning smell detected — call electrician immediately",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elec-03",
+   "title": "Call electrician",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "Call A&P Electrical Service (337-856-8383). Describe symptoms: which units affected, any sounds/smells, and panel condition.",
+   "procedure_id": "proc-electrical-emergency",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-elec-04",
+   "title": "Notify affected tenants",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "Alert tenants of the issue and estimated repair time. Advise them to unplug sensitive equipment to prevent surge damage on restoration.",
+   "procedure_id": "proc-electrical-emergency",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elec-05",
+   "title": "Document and follow up",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "Record: time of outage, cause (if known), duration, affected units, and repair performed. Update maintenance log.",
+   "procedure_id": "proc-electrical-emergency",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elecpanel-01",
+   "title": "Access all panels safely",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 1,
+   "instructions": "Wear rubber-soled shoes. Use insulated tools only. Open each panel cover carefully. Never touch bus bars or live connections.",
+   "procedure_id": "proc-electrical-panel-check",
+   "warning_note": "Electrical work is dangerous — if unsure, call electrician",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elecpanel-02",
+   "title": "Visual inspection",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 2,
+   "instructions": "Look for discolored/melted wires, burn marks, corrosion, loose connections, signs of water intrusion, pest damage, missing knockouts.",
+   "procedure_id": "proc-electrical-panel-check",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-elecpanel-03",
+   "title": "Check breaker status",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 3,
+   "instructions": "Note any tripped breakers. Reset if appropriate. If breaker trips again immediately, do not reset — call electrician.",
+   "procedure_id": "proc-electrical-panel-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elecpanel-04",
+   "title": "Verify panel schedules",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 4,
+   "instructions": "Check that panel directory is legible and accurate. Each breaker should be labeled with what it controls. Update labels if incorrect.",
+   "procedure_id": "proc-electrical-panel-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-elecpanel-05",
+   "title": "Check GFCI outlets",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 5,
+   "instructions": "Test all GFCI outlets in common areas and exterior locations. Press test button, verify power cuts, press reset. Replace any that fail.",
+   "procedure_id": "proc-electrical-panel-check",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-fe-1",
+   "title": "Locate all extinguishers",
+   "created_at": "2026-07-29T19:39:18",
+   "step_number": 1,
+   "instructions": "Verify all 14 extinguisher locations match the site map. Report any missing units immediately.",
+   "procedure_id": "proc-fire-ext",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-fe-2",
+   "title": "Check pressure gauge",
+   "created_at": "2026-07-29T19:39:18",
+   "step_number": 2,
+   "instructions": "Gauge needle must be in the green zone. If in red, unit needs recharge or replacement.",
+   "procedure_id": "proc-fire-ext",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-fe-3",
+   "title": "Inspect physical condition",
+   "created_at": "2026-07-29T19:39:18",
+   "step_number": 3,
+   "instructions": "Check for dents, rust, cracked hose, missing pin, or broken tamper seal.",
+   "procedure_id": "proc-fire-ext",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-fe-4",
+   "title": "Verify inspection tag",
+   "created_at": "2026-07-29T19:39:18",
+   "step_number": 4,
+   "instructions": "Current year tag must be attached. If expired, schedule professional inspection.",
+   "procedure_id": "proc-fire-ext",
+   "warning_note": "Annual professional inspection required by fire code",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-fe-5",
+   "title": "Test accessibility",
+   "created_at": "2026-07-29T19:39:18",
+   "step_number": 5,
+   "instructions": "Confirm nothing is blocking access. Extinguisher must be within 75 feet of any point in the building.",
+   "procedure_id": "proc-fire-ext",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-fe-6",
+   "title": "Initial and date tag",
+   "created_at": "2026-07-29T19:39:18",
+   "step_number": 6,
+   "instructions": "Sign and date the monthly inspection tag. Photograph for compliance records.",
+   "procedure_id": "proc-fire-ext",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-firemarshal-01",
+   "title": "Check all fire extinguishers",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 1,
+   "instructions": "Walk every unit and common area. Verify each extinguisher has current annual inspection tag, pressure gauge in green zone, pin intact, no physical damage.",
+   "procedure_id": "proc-fire-marshal",
+   "warning_note": "Expired extinguishers must be replaced before inspection",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-firemarshal-02",
+   "title": "Verify exit signs and emergency lighting",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 2,
+   "instructions": "Test all exit signs (illuminated and battery backup). Press test button on emergency lights — must stay lit 90 seconds minimum.",
+   "procedure_id": "proc-fire-marshal",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-firemarshal-03",
+   "title": "Clear electrical panel access",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 3,
+   "instructions": "Ensure 36-inch clearance in front of all electrical panels. Remove any stored items. Verify panel covers are on and labeled.",
+   "procedure_id": "proc-fire-marshal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-firemarshal-04",
+   "title": "Check fire lanes and exits",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 4,
+   "instructions": "Walk all fire lanes — no vehicles, no obstructions, paint visible. All exit doors must open freely without keys from inside.",
+   "procedure_id": "proc-fire-marshal",
+   "warning_note": "Blocked exits are immediate violations",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-firemarshal-05",
+   "title": "Verify sprinkler clearance",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 5,
+   "instructions": "Check 18-inch clearance below all sprinkler heads. No storage, shelving, or decorations within clearance zone.",
+   "procedure_id": "proc-fire-marshal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-firemarshal-06",
+   "title": "Document and schedule corrections",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 6,
+   "instructions": "Photograph any deficiencies found. Create work orders for corrections. Schedule corrections before inspection date.",
+   "procedure_id": "proc-fire-marshal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-freeze-01",
+   "title": "Monitor forecast",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 1,
+   "instructions": "When temps below 28F forecast for 4+ hours: activate freeze protocol 24 hours before expected freeze.",
+   "procedure_id": "proc-freeze-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-freeze-02",
+   "title": "Insulate exposed pipes",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 2,
+   "instructions": "Wrap all exposed water pipes with foam insulation. Focus on exterior hose bibs, pipes in unheated spaces, irrigation backflow preventers.",
+   "procedure_id": "proc-freeze-prep",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-freeze-03",
+   "title": "Drip faucets in vacant units",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 3,
+   "instructions": "Open faucets to a slow drip in all vacant units — both hot and cold lines. This prevents pressure buildup from freezing.",
+   "procedure_id": "proc-freeze-prep",
+   "warning_note": "Frozen pipes in vacant units cause major damage",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-freeze-04",
+   "title": "Set HVAC minimums",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 4,
+   "instructions": "Set thermostats in all vacant units to minimum 55F. Verify HVAC units are running. Check that no units are set to off or cool only.",
+   "procedure_id": "proc-freeze-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-freeze-05",
+   "title": "Disconnect hoses and shut irrigation",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 5,
+   "instructions": "Disconnect all garden hoses. Shut off irrigation system. Drain irrigation lines if extended freeze expected.",
+   "procedure_id": "proc-freeze-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-freeze-06",
+   "title": "Notify tenants",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 6,
+   "instructions": "Send freeze advisory to all tenants: drip faucets, open cabinet doors under sinks, report pipe issues immediately, keep heat on overnight.",
+   "procedure_id": "proc-freeze-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-grease-01",
+   "title": "Check pump schedule",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 1,
+   "instructions": "Review lease requirements for each food tenant grease trap pumping frequency. Typically every 90 days. Check last pump date in records.",
+   "procedure_id": "proc-grease-trap-pump",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-grease-02",
+   "title": "Request pump receipts",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 2,
+   "instructions": "Contact each food tenant. Request copy of most recent pump receipt showing date, volume removed, and disposal manifest.",
+   "procedure_id": "proc-grease-trap-pump",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-grease-03",
+   "title": "Inspect trap condition",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 3,
+   "instructions": "Visually inspect grease trap access covers. Check for overflow, odor, or grease on ground surface around trap.",
+   "procedure_id": "proc-grease-trap-pump",
+   "warning_note": "Overflowing trap is environmental violation — address immediately",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-grease-04",
+   "title": "Issue violation if overdue",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 4,
+   "instructions": "If tenant is more than 7 days past due on pumping, issue written notice with 48-hour cure period. Schedule emergency pump at tenant expense if not cured.",
+   "procedure_id": "proc-grease-trap-pump",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-grease-05",
+   "title": "File receipts",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 5,
+   "instructions": "File all pump receipts in tenant compliance folder. Update tracking spreadsheet with dates. Set reminder for next due date.",
+   "procedure_id": "proc-grease-trap-pump",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurr-01",
+   "title": "Monitor storm (72 hours out)",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Track storm path via NWS. If Lafayette is in cone of uncertainty, begin preparations. Notify owner and all tenants.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurr-02",
+   "title": "Secure loose items (48 hours)",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "Remove or secure: outdoor furniture, planters, trash cans, signage, and any loose materials. Store inside if possible.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurr-03",
+   "title": "Board windows if Cat 3+",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "If Category 3 or higher projected, install plywood on all storefront windows. Pre-cut boards stored in Unit 135B utility room.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "Only board for Cat 3+ — boarding for Cat 1-2 causes more damage from trapped moisture",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurr-04",
+   "title": "Notify all tenants",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "Send formal notification: recommended closure timeline, insurance reminder, secure their inventory, and emergency contacts.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurr-05",
+   "title": "Verify insurance",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "Confirm property insurance is current. Review deductible and coverage limits. Document pre-storm condition with photos/video.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurr-06",
+   "title": "Backup systems",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 6,
+   "instructions": "Download all digital records. Ensure cloud backups are current. Print emergency contact list. Charge all devices.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurr-07",
+   "title": "Shut down utilities",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 7,
+   "instructions": "If evacuation ordered: shut off water main, secure electrical panels, turn off HVAC systems. Do NOT shut off gas (utility company handles).",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "Do NOT shut off natural gas yourself — call LUS",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurr-08",
+   "title": "Post-storm inspection",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 8,
+   "instructions": "After storm passes, inspect property BEFORE allowing tenants to return. Check: roof, structural, electrical, water intrusion, trees/debris.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "Do not enter if structural damage suspected — call engineer",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurr-09",
+   "title": "Document damage",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 9,
+   "instructions": "Photograph and video ALL damage before any cleanup. This is critical for insurance claims. Note date/time on all documentation.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurr-10",
+   "title": "File insurance claim",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 10,
+   "instructions": "Contact insurance carrier within 24 hours of storm. Provide initial damage report. Schedule adjuster visit. Begin emergency repairs only.",
+   "procedure_id": "proc-hurricane",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurricane-01",
+   "title": "Monitor storm and activate plan",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 1,
+   "instructions": "When tropical system enters Gulf with OTB in cone: activate hurricane plan. Begin 72-hour countdown checklist.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurricane-02",
+   "title": "Secure loose exterior items",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 2,
+   "instructions": "Remove or secure all A-frame signs, planters, trash cans, patio furniture, and loose items that could become projectiles.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurricane-03",
+   "title": "Board vacant units",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 3,
+   "instructions": "Install plywood over windows of all vacant units. Secure doors. Verify no water entry points.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurricane-04",
+   "title": "Photograph all exteriors",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 4,
+   "instructions": "Take timestamped photos of every building face, roof, parking lot, and sign. This is your pre-storm baseline for insurance claims.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "Critical for insurance — do not skip",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurricane-05",
+   "title": "Sandbag vulnerable areas",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 5,
+   "instructions": "Place sandbags at any known water intrusion points, low doorways, and drainage problem areas.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurricane-06",
+   "title": "Send tenant notification",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 6,
+   "instructions": "Email and text all tenants: storm timeline, recommended actions, property closure plan, emergency contacts, post-storm communication plan.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hurricane-07",
+   "title": "Verify insurance and contacts",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 7,
+   "instructions": "Confirm insurance policy numbers accessible offline. Save adjuster contact info. Download property inventory to phone.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hurricane-08",
+   "title": "Fill generator and prep utilities",
+   "created_at": "2026-07-31T09:16:35",
+   "step_number": 8,
+   "instructions": "Fill generator fuel tank. Test generator. Locate all utility shutoffs. Consider preemptive gas shutoff if Cat 3+.",
+   "procedure_id": "proc-hurricane-prep",
+   "warning_note": "Only shut off gas for Cat 3+ storms",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hv-1",
+   "title": "Access rooftop units",
+   "created_at": "2026-07-29T19:39:08",
+   "step_number": 1,
+   "instructions": "Use roof ladder at Unit 135B. Bring replacement filters (sizes listed on each unit). Safety harness required.",
+   "procedure_id": "proc-hvac",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hv-2",
+   "title": "Inspect each unit filter",
+   "created_at": "2026-07-29T19:39:08",
+   "step_number": 2,
+   "instructions": "Remove filter, check for excessive dirt/damage. Photograph condition before replacement.",
+   "procedure_id": "proc-hvac",
+   "warning_note": "Turn off unit before opening filter compartment",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hv-3",
+   "title": "Replace if needed",
+   "created_at": "2026-07-29T19:39:08",
+   "step_number": 3,
+   "instructions": "Install new filter with airflow arrow pointing toward blower. Record filter size and unit number.",
+   "procedure_id": "proc-hvac",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hv-4",
+   "title": "Check condensate drain",
+   "created_at": "2026-07-29T19:39:08",
+   "step_number": 4,
+   "instructions": "Verify drain line is clear. Pour small amount of water to test flow. Clear any algae buildup.",
+   "procedure_id": "proc-hvac",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hv-5",
+   "title": "Log unit condition",
+   "created_at": "2026-07-29T19:39:08",
+   "step_number": 5,
+   "instructions": "Note any unusual sounds, rust, refrigerant smell, or visible damage. Flag for HVAC tech if needed.",
+   "procedure_id": "proc-hvac",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hv-6",
+   "title": "Update maintenance log",
+   "created_at": "2026-07-29T19:39:08",
+   "step_number": 6,
+   "instructions": "Record date, units serviced, filters replaced, and any issues flagged in the system.",
+   "procedure_id": "proc-hvac",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hvacpm-01",
+   "title": "Schedule with Butcher AC",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 1,
+   "instructions": "Call Butcher Air Conditioning to schedule quarterly PM. Confirm date and time. Provide roof access instructions.",
+   "procedure_id": "proc-hvac-pm",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hvacpm-02",
+   "title": "Notify affected tenants",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 2,
+   "instructions": "Email tenants that HVAC service is scheduled. Units may be off for 15-30 minutes during service. Schedule during mild weather if possible.",
+   "procedure_id": "proc-hvac-pm",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hvacpm-03",
+   "title": "Provide roof access",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 3,
+   "instructions": "Meet vendor on-site. Provide ladder/roof access. Ensure they have the unit map showing which RTU serves which tenant.",
+   "procedure_id": "proc-hvac-pm",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hvacpm-04",
+   "title": "Review completion report",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 4,
+   "instructions": "Get written report from vendor listing: each unit serviced, refrigerant levels, filter condition, any repairs recommended.",
+   "procedure_id": "proc-hvac-pm",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-hvacpm-05",
+   "title": "Determine repair responsibility",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 5,
+   "instructions": "For any recommended repairs, check HVAC responsibility matrix. Determine if landlord or tenant responsibility per lease terms.",
+   "procedure_id": "proc-hvac-pm",
+   "warning_note": "Reference HVAC tier data in property data — repair/replace thresholds vary by unit",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-hvacpm-06",
+   "title": "Schedule repairs and update records",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 6,
+   "instructions": "Schedule any needed repairs. Update HVAC maintenance log. File vendor report in property records.",
+   "procedure_id": "proc-hvac-pm",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-incident-01",
+   "title": "Secure the scene",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 1,
+   "instructions": "Ensure safety of all persons. Call 911 if medical attention needed. Rope off area if hazard exists. Do not disturb evidence.",
+   "procedure_id": "proc-incident-report",
+   "warning_note": "Life safety first — always",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-incident-02",
+   "title": "Photograph everything",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 2,
+   "instructions": "Take photos from multiple angles: wide shot of area, close-up of hazard/damage, any contributing conditions. Include timestamps.",
+   "procedure_id": "proc-incident-report",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-incident-03",
+   "title": "Collect witness information",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 3,
+   "instructions": "Get names, phone numbers, and brief statements from any witnesses. Ask what they saw, heard, and when. Do not coach answers.",
+   "procedure_id": "proc-incident-report",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-incident-04",
+   "title": "Complete incident report form",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 4,
+   "instructions": "Fill out: date/time, exact location, persons involved, description of incident, weather/conditions, actions taken, witnesses. Be factual only.",
+   "procedure_id": "proc-incident-report",
+   "warning_note": "NEVER admit fault or liability in any documentation",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-incident-05",
+   "title": "Notify insurance carrier",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 5,
+   "instructions": "Report to insurance carrier within 24 hours. Provide incident report, photos, and witness info. Get claim number.",
+   "procedure_id": "proc-incident-report",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-incident-06",
+   "title": "Correct the hazard",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 6,
+   "instructions": "Fix the condition that caused the incident. Document the repair with before/after photos.",
+   "procedure_id": "proc-incident-report",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-ins-01",
+   "title": "Pull all COI expiration dates",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 1,
+   "instructions": "Export current COI records from compliance tracker. List each tenant, policy number, and expiration date.",
+   "procedure_id": "proc-insurance-audit",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-ins-02",
+   "title": "Identify expiring policies",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 2,
+   "instructions": "Flag any COIs expiring in the next 90 days. These tenants need renewal reminders.",
+   "procedure_id": "proc-insurance-audit",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-ins-03",
+   "title": "Send renewal notices",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 3,
+   "instructions": "Email tenants with expiring COIs. Request updated certificate naming Belle Realty of Lafayette, LLC as additional insured. Set 30-day deadline.",
+   "procedure_id": "proc-insurance-audit",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-ins-04",
+   "title": "Follow up on lapsed policies",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 4,
+   "instructions": "For any currently lapsed COIs, send formal notice citing lease requirement. Give 10-day cure period.",
+   "procedure_id": "proc-insurance-audit",
+   "warning_note": "Lapsed insurance = lease default — document carefully",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-ins-05",
+   "title": "Verify coverage amounts",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 5,
+   "instructions": "Confirm each COI meets minimum requirements: $1M general liability, $2M aggregate, property damage per lease.",
+   "procedure_id": "proc-insurance-audit",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-ins-06",
+   "title": "Update compliance tracker",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 6,
+   "instructions": "Mark all verified COIs as ok in the compliance system. Flag any outstanding as flag with notes.",
+   "procedure_id": "proc-insurance-audit",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-inv-01",
+   "title": "Receive and log invoice",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 1,
+   "instructions": "Enter invoice in tracking system: vendor name, date, amount, description of work, and which property area.",
+   "procedure_id": "proc-invoice",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-inv-02",
+   "title": "Verify work completion",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 2,
+   "instructions": "Confirm the work was actually completed satisfactorily. Check against work order or contract scope. Get on-site verification if needed.",
+   "procedure_id": "proc-invoice",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-inv-03",
+   "title": "Match to contract/PO",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 3,
+   "instructions": "Verify invoice amount matches contract rate or approved estimate. Flag any overages for review before payment.",
+   "procedure_id": "proc-invoice",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-inv-04",
+   "title": "Categorize expense",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 4,
+   "instructions": "Code to correct category: CAM, repair, capital improvement, insurance claim, or tenant-billable. This affects NNN reconciliation.",
+   "procedure_id": "proc-invoice",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-inv-05",
+   "title": "Approve and schedule payment",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 5,
+   "instructions": "Approve for payment. Schedule per vendor terms (Net 15, Net 30). Process through accounting system.",
+   "procedure_id": "proc-invoice",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-inv-06",
+   "title": "File documentation",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 6,
+   "instructions": "Scan invoice and any supporting photos/reports. File in property drive under vendor folder and month.",
+   "procedure_id": "proc-invoice",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-irrigation-01",
+   "title": "Run each zone manually",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 1,
+   "instructions": "At controller, run each zone for 2 minutes. Walk the zone while running. Note any heads not popping up or spraying wrong direction.",
+   "procedure_id": "proc-irrigation-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-irrigation-02",
+   "title": "Check for leaks and breaks",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 2,
+   "instructions": "Look for geysers (broken head), pooling water (underground leak), dry spots (clogged nozzle), overspray onto buildings or parking lot.",
+   "procedure_id": "proc-irrigation-check",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-irrigation-03",
+   "title": "Adjust heads and nozzles",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 3,
+   "instructions": "Realign any misdirected heads. Clear clogged nozzles. Adjust arc and radius to avoid watering pavement. Replace broken heads.",
+   "procedure_id": "proc-irrigation-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-irrigation-04",
+   "title": "Update timer schedule",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 4,
+   "instructions": "Adjust run times for current season. Summer: 3x/week early morning. Winter: 1x/week. Verify rain sensor working.",
+   "procedure_id": "proc-irrigation-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-irrigation-05",
+   "title": "Document and report",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 5,
+   "instructions": "Note any repairs needed beyond basic adjustment. Get quotes for major repairs. Update irrigation map if heads were added or moved.",
+   "procedure_id": "proc-irrigation-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-land-01",
+   "title": "Inspect front landscaping (Arnould side)",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 1,
+   "instructions": "Walk the Arnould Blvd frontage. Check shrubs, mulch beds, and entrance plantings. Note any dead or overgrown plants.",
+   "procedure_id": "proc-landscaping-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-land-02",
+   "title": "Check irrigation system",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 2,
+   "instructions": "Run each zone for 2 minutes. Look for broken heads, misaligned spray, or dry spots. Note any leaks or pooling water.",
+   "procedure_id": "proc-landscaping-check",
+   "warning_note": "Do not run irrigation during business hours — early morning only",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-land-03",
+   "title": "Inspect tree canopy",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 3,
+   "instructions": "Check all trees for dead limbs, low-hanging branches (must be 8ft+ clearance over walkways), or root damage to sidewalks.",
+   "procedure_id": "proc-landscaping-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-land-04",
+   "title": "Check Patricia St side",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 4,
+   "instructions": "Walk the Patricia St boundary. Verify fence line is clear, no overgrowth from neighboring property, drainage swale is clear.",
+   "procedure_id": "proc-landscaping-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-land-05",
+   "title": "Inspect Johnston St corner",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 5,
+   "instructions": "Check pylon sign landscaping, corner visibility triangle (no plantings above 30 inches), and monument sign bed.",
+   "procedure_id": "proc-landscaping-check",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-land-06",
+   "title": "Document and notify vendor",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 6,
+   "instructions": "Photograph any issues. Email landscaping vendor with work order if action needed. Set follow-up date.",
+   "procedure_id": "proc-landscaping-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-leak-01",
+   "title": "Place containment",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Put buckets or tarps under active leak. Protect tenant inventory and flooring. Move any electronics away from water.",
+   "procedure_id": "proc-roof-leak",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-leak-02",
+   "title": "Identify source from inside",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "Look at ceiling for water trail direction. Water often travels along rafters before dripping — source may not be directly above the drip.",
+   "procedure_id": "proc-roof-leak",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-leak-03",
+   "title": "Access roof if safe",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "If rain has stopped and roof is safe to access, go up and look for obvious damage: torn membrane, displaced flashing, clogged drain causing ponding.",
+   "procedure_id": "proc-roof-leak",
+   "warning_note": "Do NOT access roof during active rain or lightning",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-leak-04",
+   "title": "Emergency patch if possible",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "If small tear or gap visible, apply roof sealant or emergency patch tape as temporary fix. This is NOT a permanent repair.",
+   "procedure_id": "proc-roof-leak",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-leak-05",
+   "title": "Call roofer",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "Contact roofing contractor for permanent repair. Provide: location, photos, and description of damage. Request next-day service.",
+   "procedure_id": "proc-roof-leak",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-leak-06",
+   "title": "Notify tenant and document",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 6,
+   "instructions": "Inform tenant of repair timeline. Photograph all damage (ceiling, walls, floor, inventory). File insurance claim if damage is significant.",
+   "procedure_id": "proc-roof-leak",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-lu-1",
+   "title": "Walk the parking lot",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 1,
+   "instructions": "Check for abandoned vehicles, debris, or safety hazards. Note any issues for morning follow-up.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-lu-2",
+   "title": "Verify all tenant spaces are closed",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 2,
+   "instructions": "Walk the storefront corridor. Confirm each tenant has closed and locked their door. Note any open units.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-lu-3",
+   "title": "Lock common area restrooms",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 3,
+   "instructions": "Lock both restroom doors. Verify no one is inside before locking.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-lu-4",
+   "title": "Check dumpster enclosure",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 4,
+   "instructions": "Ensure dumpster gates are closed and latched. Report overflow to waste vendor.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-lu-5",
+   "title": "Arm security system",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 5,
+   "instructions": "Enter code at main panel (location: Unit 135B utility closet). Verify green armed indicator.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-lu-6",
+   "title": "Lock main breezeway gates",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 6,
+   "instructions": "Lock both east and west breezeway gates. Test each lock.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-lu-7",
+   "title": "Final perimeter check",
+   "created_at": "2026-07-29T19:38:57",
+   "step_number": 7,
+   "instructions": "Drive perimeter once. Check exterior lighting is operational. Report any outages.",
+   "procedure_id": "proc-lockup",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-morning-01",
+   "title": "Drive the perimeter",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 1,
+   "instructions": "Enter from Arnould Blvd. Drive slowly around the entire property perimeter. Check fencing, curbs, and exterior walls for overnight damage or graffiti.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-morning-02",
+   "title": "Inspect parking lot",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 2,
+   "instructions": "Look for potholes, debris, abandoned vehicles, or fluid spills. Check handicap spaces are clear and properly marked. Note any issues.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-morning-03",
+   "title": "Check overnight damage",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 3,
+   "instructions": "Walk the storefront corridor. Look for broken glass, forced entry signs, water damage, or vandalism. Photograph anything unusual.",
+   "procedure_id": "proc-morning",
+   "warning_note": "If break-in suspected, do NOT enter — call 911 first",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-morning-04",
+   "title": "Verify exterior lighting",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 4,
+   "instructions": "Confirm all parking lot lights turned off (photocell). Note any fixtures that stayed on (stuck relay) or appear damaged.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-morning-05",
+   "title": "Unlock common areas",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 5,
+   "instructions": "Unlock breezeway gates (east and west), restrooms, and any shared utility rooms. Disarm security system at Unit 135B panel.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-morning-06",
+   "title": "Check signage",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 6,
+   "instructions": "Verify pylon sign is illuminated (if before sunrise). Check that all tenant signs are intact and no panels are missing or damaged.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-morning-07",
+   "title": "Empty overnight trash",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 7,
+   "instructions": "Empty any overflowing exterior trash cans. Check dumpster area for overnight illegal dumping.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-morning-08",
+   "title": "Log and report",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 8,
+   "instructions": "Enter any issues found into the maintenance request system. Flag urgent items for immediate attention. Send morning status to owner if issues found.",
+   "procedure_id": "proc-morning",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-movein-01",
+   "title": "Verify lease execution",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 1,
+   "instructions": "Confirm fully executed lease is on file. Verify all deposits received. Check that all lease conditions precedent are met.",
+   "procedure_id": "proc-movein",
+   "warning_note": "Do NOT hand over keys without executed lease + deposit",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-movein-02",
+   "title": "Collect required documents",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 2,
+   "instructions": "Obtain: Certificate of Insurance (naming Belle Realty as additional insured), W-9, occupational license application, ACH authorization.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-movein-03",
+   "title": "Conduct move-in walkthrough",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 3,
+   "instructions": "Walk the unit with tenant. Document existing condition with photos/video. Both parties sign condition report. Note any pre-existing damage.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-movein-04",
+   "title": "Transfer utilities",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 4,
+   "instructions": "Provide tenant with LUS account setup instructions. Verify they have transferred electric to their name. Confirm meter number.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-movein-05",
+   "title": "Provide keys and access",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 5,
+   "instructions": "Issue keys: front door, rear door (if applicable), restroom, dumpster. Record all key numbers. Get signed key receipt.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-movein-06",
+   "title": "Signage coordination",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 6,
+   "instructions": "Review tenants proposed signage against sign criteria. Approve or request modifications. Coordinate installation timeline.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-movein-07",
+   "title": "Welcome packet",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 7,
+   "instructions": "Provide: emergency contacts, maintenance request process, operating hours, trash/recycling schedule, parking rules, neighbor introduction.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-movein-08",
+   "title": "Update systems",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 8,
+   "instructions": "Add tenant to: DoorLoop, communication list, pylon sign (if applicable), directory, and compliance tracker. Set up recurring billing.",
+   "procedure_id": "proc-movein",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-moveout-01",
+   "title": "Confirm move-out date",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 1,
+   "instructions": "Verify lease expiration or early termination terms. Confirm tenants intended move-out date in writing.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-02",
+   "title": "Send move-out requirements",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 2,
+   "instructions": "Email tenant the move-out checklist: remove all personal property, patch holes, clean unit, return to original condition per lease.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-03",
+   "title": "Schedule final walkthrough",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 3,
+   "instructions": "Schedule walkthrough for move-out day or day after. Both parties should attend. Bring move-in condition report for comparison.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-04",
+   "title": "Conduct walkthrough",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 4,
+   "instructions": "Document unit condition with photos/video. Compare to move-in report. Note any damage beyond normal wear and tear. Both parties sign.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-moveout-05",
+   "title": "Collect keys",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 5,
+   "instructions": "Collect ALL keys issued. Check against key receipt from move-in. Re-key locks if any keys unaccounted for.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-06",
+   "title": "Remove signage",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 6,
+   "instructions": "Remove tenant signage from storefront and pylon sign. Patch any holes. Install Available or Coming Soon signage.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-07",
+   "title": "Calculate deposit return",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 7,
+   "instructions": "Itemize any deductions: damage repairs, cleaning, unpaid rent, signage removal. Return balance within 30 days per Louisiana law.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "Louisiana law: deposit must be returned within 30 days with itemized deductions",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-moveout-08",
+   "title": "Transfer utilities back",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 8,
+   "instructions": "Transfer electric back to landlord name. Verify final meter reading. Check for any utility balance owed by tenant.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-09",
+   "title": "Prep unit for market",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 9,
+   "instructions": "Clean unit, make repairs, paint if needed, verify HVAC working. Take marketing photos. List on available inventory.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-moveout-10",
+   "title": "Update systems",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 10,
+   "instructions": "Remove tenant from: DoorLoop, communication list, pylon sign, directory, compliance tracker. Update vacancy records.",
+   "procedure_id": "proc-moveout",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-newsletter-01",
+   "title": "Gather content",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 1,
+   "instructions": "Collect: upcoming maintenance schedules, new tenant announcements, center events, policy reminders, seasonal tips, construction updates.",
+   "procedure_id": "proc-monthly-newsletter",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-newsletter-02",
+   "title": "Draft newsletter",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 2,
+   "instructions": "Write in friendly, professional tone. Keep to 1 page equivalent. Include greeting, 2-3 main items, important dates, contact reminder.",
+   "procedure_id": "proc-monthly-newsletter",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-newsletter-03",
+   "title": "Review and send",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 3,
+   "instructions": "Proofread for accuracy. Verify all dates and names correct. Send via email to all tenant primary contacts. BCC management.",
+   "procedure_id": "proc-monthly-newsletter",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-park-01",
+   "title": "Walk main parking field",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 1,
+   "instructions": "Start at the Arnould Blvd entrance. Walk all rows checking for trash, broken glass, nails, or trip hazards. Pick up debris as you go.",
+   "procedure_id": "proc-parking-sweep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-park-02",
+   "title": "Check handicap spaces",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 2,
+   "instructions": "Verify all 6 handicap spaces are properly signed, striped, and unobstructed. Check that access aisles are clear.",
+   "procedure_id": "proc-parking-sweep",
+   "warning_note": "ADA violation if blocked — address immediately",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-park-03",
+   "title": "Inspect drive lanes",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 3,
+   "instructions": "Check for potholes, cracking, or standing water. Note any areas where striping is faded beyond readability.",
+   "procedure_id": "proc-parking-sweep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-park-04",
+   "title": "Check Lot 8 (rear)",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 4,
+   "instructions": "Walk the rear parking area behind the long building. Check for abandoned vehicles (48-hour rule), illegal parking, or dumping.",
+   "procedure_id": "proc-parking-sweep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-park-05",
+   "title": "Note vehicle issues",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 5,
+   "instructions": "Record any vehicles parked overnight without authorization, vehicles with flat tires (abandoned), or commercial vehicles in non-designated areas.",
+   "procedure_id": "proc-parking-sweep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-park-06",
+   "title": "Log findings",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 6,
+   "instructions": "Enter any maintenance needs into the system. If pothole or safety hazard found, place cone and schedule repair within 24 hours.",
+   "procedure_id": "proc-parking-sweep",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-pest-01",
+   "title": "Verify vendor service completed",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 1,
+   "instructions": "Check pest control service log. Vendor should have serviced this month. If not, call to schedule immediately.",
+   "procedure_id": "proc-pest-check",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-pest-02",
+   "title": "Check exterior bait stations",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 2,
+   "instructions": "Walk perimeter and verify all bait stations are intact, properly positioned, and not disturbed.",
+   "procedure_id": "proc-pest-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pest-03",
+   "title": "Inspect dumpster area",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 3,
+   "instructions": "Check for rodent activity near dumpster (droppings, gnaw marks, burrows). Report to vendor if found.",
+   "procedure_id": "proc-pest-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pest-04",
+   "title": "Review tenant complaints",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 4,
+   "instructions": "Check if any tenants reported pest issues this month. Coordinate with vendor for targeted treatment if needed.",
+   "procedure_id": "proc-pest-check",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pipe-01",
+   "title": "Pull expiration report",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 1,
+   "instructions": "List all leases expiring in the next 12 months. Include: unit, tenant, expiration date, current rate, and renewal option terms.",
+   "procedure_id": "proc-lease-pipeline",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pipe-02",
+   "title": "Research market rates",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 2,
+   "instructions": "Pull comparable lease rates from LoopNet, CoStar, or local broker contacts. Current market: $10-17/SF/yr NNN for this submarket.",
+   "procedure_id": "proc-lease-pipeline",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pipe-03",
+   "title": "Determine renewal strategy",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 3,
+   "instructions": "For each expiring lease, decide: renew at market, renew below market (strategic tenant), let expire, or non-renew.",
+   "procedure_id": "proc-lease-pipeline",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-pipe-04",
+   "title": "Begin outreach (180 days)",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 4,
+   "instructions": "Contact tenants 180 days before expiration. Gauge interest in renewal. Present proposed terms.",
+   "procedure_id": "proc-lease-pipeline",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pipe-05",
+   "title": "Negotiate and document",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 5,
+   "instructions": "Negotiate renewal terms. Document all conversations. Get signed renewal or amendment 90 days before expiration.",
+   "procedure_id": "proc-lease-pipeline",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pipe-06",
+   "title": "Plan for non-renewals",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 6,
+   "instructions": "For any tenant not renewing, begin marketing the space immediately. Start move-out planning 60 days out.",
+   "procedure_id": "proc-lease-pipeline",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-plumb-01",
+   "title": "Locate and close shutoff valve",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Main water shutoff is at the meter near Arnould Blvd entrance. Individual unit shutoffs are in the rear utility chase. Close the nearest valve to stop flow.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "If you cannot locate shutoff, call LUS emergency: 337-291-8280",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-plumb-02",
+   "title": "Contain water",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "Place buckets, towels, or barriers to prevent water from spreading to adjacent units. Move any inventory or equipment away from water.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-plumb-03",
+   "title": "Call emergency plumber",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "Call All Around Plumbing (337-988-1570) or Almost There Plumbing (337-896-3198). Describe issue and location. Request ETA.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-plumb-04",
+   "title": "Notify affected tenants",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "Alert any tenants whose units are affected or whose water will be shut off. Provide estimated timeline for repair.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-plumb-05",
+   "title": "Document damage",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "Photograph all water damage before and during cleanup. Note: source of leak, affected areas, tenant inventory damaged, and timeline.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-plumb-06",
+   "title": "Determine responsibility",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 6,
+   "instructions": "Review lease: landlord responsible for main lines and common plumbing. Tenant responsible for fixtures and drain lines within their unit.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-plumb-07",
+   "title": "File insurance if needed",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 7,
+   "instructions": "If damage exceeds $5,000, file property insurance claim. Provide photos, plumber report, and repair estimates.",
+   "procedure_id": "proc-emergency-plumber",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-01",
+   "title": "Schedule with tenants",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 1,
+   "instructions": "Notify all tenants 48 hours in advance. Schedule for early morning (before 8 AM) or after close. Avoid food tenant hours.",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-02",
+   "title": "Prep the area",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 2,
+   "instructions": "Move any outdoor furniture, planters, or merchandise. Cover electrical outlets and any sensitive equipment near wash zones.",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-03",
+   "title": "Wash sidewalks",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 3,
+   "instructions": "Pressure wash all sidewalks from building face outward. Pay attention to gum spots, grease stains, and high-traffic areas.",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-04",
+   "title": "Wash storefront aprons",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 4,
+   "instructions": "Clean the 4-foot apron in front of each unit. Remove any staining or discoloration.",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-05",
+   "title": "Wash drive lanes",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 5,
+   "instructions": "Clean drive lanes in front of the building, focusing on grease spots near food tenants (107, 113, 149).",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-06",
+   "title": "Wash dumpster pad",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 6,
+   "instructions": "Pressure wash the concrete pad around the dumpster enclosure. Use degreaser if needed.",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-press-07",
+   "title": "Final inspection",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 7,
+   "instructions": "Walk the entire washed area. Touch up any missed spots. Verify no damage to surfaces or tenant property. Replace moved items.",
+   "procedure_id": "proc-pressure",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-pylon-01",
+   "title": "Inspect structure",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 1,
+   "instructions": "Check pylon base for cracks, rust, or leaning. Inspect all mounting hardware. Look for loose panels or damaged frames.",
+   "procedure_id": "proc-pylon-maintenance",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pylon-02",
+   "title": "Check illumination",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 2,
+   "instructions": "After dark, verify all panels are evenly lit. Note any dark spots, flickering, or panels not illuminating. Check timer matches sunset/sunrise.",
+   "procedure_id": "proc-pylon-maintenance",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-pylon-03",
+   "title": "Clean panels",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 3,
+   "instructions": "Use soft cloth and mild cleaner on all sign faces. Remove dirt, bird droppings, and insect buildup. Do not use abrasive cleaners on acrylic.",
+   "procedure_id": "proc-pylon-maintenance",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pylon-04",
+   "title": "Update tenant panels",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 4,
+   "instructions": "Verify all panels show current tenants. Remove departed tenant panels. Schedule new panels for incoming tenants. Keep blank panels clean.",
+   "procedure_id": "proc-pylon-maintenance",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-pylon-05",
+   "title": "Document condition",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 5,
+   "instructions": "Photograph pylon from all sides. Note any needed repairs in maintenance log. Get quotes for structural or electrical issues.",
+   "procedure_id": "proc-pylon-maintenance",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-renew-01",
+   "title": "Identify renewal candidates",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 1,
+   "instructions": "Pull leases expiring in 6-9 months. Check for renewal option clauses. Note any tenants with known issues.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-renew-02",
+   "title": "Research market rates",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 2,
+   "instructions": "Pull current market comps for similar space in Lafayette. Current range: $10-17/SF/yr NNN depending on size and condition.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-renew-03",
+   "title": "Determine renewal terms",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 3,
+   "instructions": "Set proposed rate (at or above market), term length (3-5 years preferred), and any lease modifications needed.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-renew-04",
+   "title": "Send renewal letter",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 4,
+   "instructions": "Send formal renewal offer letter 180 days before expiration. Include: proposed rate, term, any changes to NNN estimates, and response deadline.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-renew-05",
+   "title": "Negotiate if needed",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 5,
+   "instructions": "If tenant counters, evaluate: tenant quality, market conditions, cost to re-tenant, and downtime risk. Get owner approval for any concessions.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-renew-06",
+   "title": "Execute renewal amendment",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 6,
+   "instructions": "Draft lease renewal amendment. Both parties sign. Update rent roll, billing system, and compliance tracker with new terms.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-renew-07",
+   "title": "Update COI requirements",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 7,
+   "instructions": "Request updated COI reflecting new lease term. Verify coverage amounts still meet requirements.",
+   "procedure_id": "proc-renewal",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-rent-01",
+   "title": "Verify payments received (by 5th)",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 1,
+   "instructions": "Check DoorLoop/bank for all tenant payments. Mark received in tracking system. Note any partial payments.",
+   "procedure_id": "proc-rent-collection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-rent-02",
+   "title": "Send late notices (6th)",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 2,
+   "instructions": "For any tenant not paid by the 5th, send formal late notice per lease terms. Include late fee calculation. Send via email AND certified mail.",
+   "procedure_id": "proc-rent-collection",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-rent-03",
+   "title": "Phone follow-up (10th)",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 3,
+   "instructions": "Call any tenant still delinquent. Document conversation. Offer payment plan only with owner approval. Note any disputes.",
+   "procedure_id": "proc-rent-collection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-rent-04",
+   "title": "Demand letter (15th)",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 4,
+   "instructions": "If still unpaid by the 15th, issue formal demand letter. Reference lease clause, state cure period, and consequences of non-payment.",
+   "procedure_id": "proc-rent-collection",
+   "warning_note": "Demand letter triggers legal clock — ensure proper delivery method",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-rent-05",
+   "title": "Escalate to owner (20th)",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 5,
+   "instructions": "If still unresolved, brief owner with full timeline, amounts owed, and recommended next steps (payment plan, eviction, or negotiation).",
+   "procedure_id": "proc-rent-collection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-rent-06",
+   "title": "Update records",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 6,
+   "instructions": "Record all collection activity in tenant file. Update delinquency report. Calculate late fees accrued.",
+   "procedure_id": "proc-rent-collection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-report-01",
+   "title": "Pull income summary",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 1,
+   "instructions": "Export rent roll from DoorLoop. Summarize: total collected, outstanding, late fees, and any credits applied.",
+   "procedure_id": "proc-monthly-report",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-report-02",
+   "title": "Compile expense summary",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 2,
+   "instructions": "List all property expenses for the month: maintenance, utilities, insurance, taxes, vendor payments, capital improvements.",
+   "procedure_id": "proc-monthly-report",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-report-03",
+   "title": "Occupancy status",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 3,
+   "instructions": "Report current occupancy rate, any move-ins/move-outs, lease renewals completed, and vacancy marketing status.",
+   "procedure_id": "proc-monthly-report",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-report-04",
+   "title": "Maintenance summary",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 4,
+   "instructions": "List all maintenance requests: opened, completed, and pending. Note any major repairs or capital items.",
+   "procedure_id": "proc-monthly-report",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-report-05",
+   "title": "Upcoming lease events",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 5,
+   "instructions": "List any leases expiring in next 90 days, renewal status, and any tenant issues requiring owner decision.",
+   "procedure_id": "proc-monthly-report",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-report-06",
+   "title": "Send report",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 6,
+   "instructions": "Compile into standard format. Send to owner by the 10th of each month. Flag any items requiring owner decision or approval.",
+   "procedure_id": "proc-monthly-report",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-restripe-01",
+   "title": "Assess condition",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 1,
+   "instructions": "Walk entire lot. Photograph all faded areas. Determine if full restripe or partial touch-up is needed.",
+   "procedure_id": "proc-parking-restripe",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-restripe-02",
+   "title": "Get competitive bids",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 2,
+   "instructions": "Contact at least 2 striping vendors. Specify: 314 spaces per plat, 6 handicap, fire lanes, directional arrows, and lot numbers.",
+   "procedure_id": "proc-parking-restripe",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-restripe-03",
+   "title": "Schedule work",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 3,
+   "instructions": "Schedule for lowest-traffic day (Tuesday or Wednesday). Require overnight cure time. Notify all tenants 1 week in advance.",
+   "procedure_id": "proc-parking-restripe",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-restripe-04",
+   "title": "Coordinate tenant parking",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 4,
+   "instructions": "Provide alternate parking plan during striping. Lot 7 and Lot 8 available for overflow. Post temporary signage.",
+   "procedure_id": "proc-parking-restripe",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-restripe-05",
+   "title": "Inspect completed work",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 5,
+   "instructions": "Walk entire lot after cure. Verify all markings are straight, correct color, and properly spaced. Check handicap compliance.",
+   "procedure_id": "proc-parking-restripe",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-roof-01",
+   "title": "Access roof safely",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 1,
+   "instructions": "Use fixed ladder at Unit 135B rear. Wear non-slip shoes. Do not access in rain, high wind, or lightning.",
+   "procedure_id": "proc-roof-visual",
+   "warning_note": "Never access roof alone — always have someone aware you are up there",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roof-02",
+   "title": "Walk long building membrane",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 2,
+   "instructions": "Walk the entire long building roof. Look for: ponding water, blisters, tears, exposed substrate, or debris accumulation.",
+   "procedure_id": "proc-roof-visual",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roof-03",
+   "title": "Check around RTUs",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 3,
+   "instructions": "Inspect flashing and curbs around each rooftop HVAC unit. These are the most common leak points. Note any separation or rust.",
+   "procedure_id": "proc-roof-visual",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-roof-04",
+   "title": "Check Patricia building",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 4,
+   "instructions": "Walk the Patricia St building roof. Same inspection criteria. Pay attention to the Jasons Deli section (heaviest equipment).",
+   "procedure_id": "proc-roof-visual",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roof-05",
+   "title": "Check drains and scuppers",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 5,
+   "instructions": "Verify all roof drains are clear of debris. Check scuppers for blockage. Clear any leaves or buildup.",
+   "procedure_id": "proc-roof-visual",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roof-06",
+   "title": "Document and report",
+   "created_at": "2026-07-29T22:46:59",
+   "step_number": 6,
+   "instructions": "Photograph any concerns. Compare to last months photos. If new damage found, call roofer within 48 hours.",
+   "procedure_id": "proc-roof-visual",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-roofpro-01",
+   "title": "Schedule professional roofer",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 1,
+   "instructions": "Contact 2-3 commercial roofing companies. Get quotes for full inspection with written report. Schedule for dry weather.",
+   "procedure_id": "proc-roof-pro",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roofpro-02",
+   "title": "Provide property info",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 2,
+   "instructions": "Give roofer: building dimensions, roof type (modified bitumen/TPO), last repair dates, known problem areas from monthly inspections.",
+   "procedure_id": "proc-roof-pro",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roofpro-03",
+   "title": "Accompany inspector",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 3,
+   "instructions": "Be on-site during inspection. Point out areas of concern. Ask about remaining useful life and maintenance recommendations.",
+   "procedure_id": "proc-roof-pro",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roofpro-04",
+   "title": "Review written report",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 4,
+   "instructions": "Get detailed written report with photos. Should include: overall condition rating, problem areas, repair recommendations, and estimated costs.",
+   "procedure_id": "proc-roof-pro",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-roofpro-05",
+   "title": "Budget repairs",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 5,
+   "instructions": "Add recommended repairs to capital budget. Prioritize by urgency. Get repair bids if immediate work needed.",
+   "procedure_id": "proc-roof-pro",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-roofpro-06",
+   "title": "File and compare",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 6,
+   "instructions": "File report in property records. Compare to previous year. Track deterioration trends. Update reserve study if needed.",
+   "procedure_id": "proc-roof-pro",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-safe-01",
+   "title": "Check ADA ramps and curb cuts",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 1,
+   "instructions": "Inspect all wheelchair ramps and curb cuts. Verify proper slope, no cracks, and detectable warning surfaces intact.",
+   "procedure_id": "proc-safety-walk",
+   "warning_note": "ADA non-compliance = federal liability",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-safe-02",
+   "title": "Inspect trip hazards",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 2,
+   "instructions": "Walk all sidewalks checking for raised joints, cracked concrete, or uneven surfaces greater than 1/4 inch. Mark with paint if found.",
+   "procedure_id": "proc-safety-walk",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-safe-03",
+   "title": "Check handrails",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 3,
+   "instructions": "Verify all handrails are secure, proper height (34-38 inches), and extend properly at top and bottom of stairs/ramps.",
+   "procedure_id": "proc-safety-walk",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-safe-04",
+   "title": "Verify emergency exits",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 4,
+   "instructions": "Check all emergency exit doors open freely, are not blocked, and exit signs are illuminated.",
+   "procedure_id": "proc-safety-walk",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-safe-05",
+   "title": "Check parking lot safety",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 5,
+   "instructions": "Verify speed bumps visible, stop signs in place, pedestrian crossings marked, and sight lines clear at intersections.",
+   "procedure_id": "proc-safety-walk",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-safe-06",
+   "title": "Document and prioritize",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 6,
+   "instructions": "Photograph all deficiencies. Prioritize: immediate safety hazard (24hr fix), ADA issue (1 week), cosmetic (30 days).",
+   "procedure_id": "proc-safety-walk",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-score-01",
+   "title": "List all active vendors",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 1,
+   "instructions": "Pull the current vendor list. Include: landscaping, HVAC, plumbing, electrical, pest control, waste, cleaning, roofing.",
+   "procedure_id": "proc-vendor-scorecard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-score-02",
+   "title": "Rate each vendor (1-5)",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 2,
+   "instructions": "Score each vendor on: Response time, Work quality, Pricing fairness, Communication, Reliability. Use specific examples.",
+   "procedure_id": "proc-vendor-scorecard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-score-03",
+   "title": "Document issues",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 3,
+   "instructions": "Note any missed appointments, callbacks needed, billing disputes, or quality complaints from this quarter.",
+   "procedure_id": "proc-vendor-scorecard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-score-04",
+   "title": "Identify replacements needed",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 4,
+   "instructions": "Any vendor scoring below 3.0 average should be flagged for replacement. Get 2 competitive bids.",
+   "procedure_id": "proc-vendor-scorecard",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-score-05",
+   "title": "Update vendor records",
+   "created_at": "2026-07-29T22:47:39",
+   "step_number": 5,
+   "instructions": "Record scores in vendor management system. Note any contract renewal dates approaching.",
+   "procedure_id": "proc-vendor-scorecard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-sign-01",
+   "title": "Check pylon sign",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 1,
+   "instructions": "Verify all 14 panels are lit and readable. Note any burned-out bulbs, faded panels, or physical damage. Check timer is set correctly.",
+   "procedure_id": "proc-signage-inspection",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-sign-02",
+   "title": "Walk tenant storefront signs",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 2,
+   "instructions": "Check each tenant sign for: illumination working, no missing letters, clean condition, matches approved sign plan.",
+   "procedure_id": "proc-signage-inspection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-sign-03",
+   "title": "Check directional signage",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 3,
+   "instructions": "Verify all directional signs (entrance, exit, one-way, speed limit, handicap) are visible, not faded, and properly mounted.",
+   "procedure_id": "proc-signage-inspection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-sign-04",
+   "title": "Inspect parking lot lights",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 4,
+   "instructions": "Check all pole-mounted lights. Note any that are out, flickering, or have damaged fixtures. Check photocell operation (on at dusk, off at dawn).",
+   "procedure_id": "proc-signage-inspection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-sign-05",
+   "title": "Check building-mounted lights",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 5,
+   "instructions": "Walk under the canopy/soffit. Verify all recessed and wall-mounted lights are working. Note any water intrusion around fixtures.",
+   "procedure_id": "proc-signage-inspection",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-sign-06",
+   "title": "Submit work orders",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 6,
+   "instructions": "Create maintenance requests for any lighting or signage issues. Priority: safety lighting (24hr), tenant signs (72hr), cosmetic (1 week).",
+   "procedure_id": "proc-signage-inspection",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-slip-01",
+   "title": "Assist the injured person",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 1,
+   "instructions": "Ask if they need medical attention. Call 911 if injury appears serious. Do NOT move them if back/neck injury suspected.",
+   "procedure_id": "proc-slip-fall-response",
+   "warning_note": "NEVER say I am sorry this happened or we should have fixed that",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-slip-02",
+   "title": "Secure the area",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 2,
+   "instructions": "Place cones or barriers around the area. If wet floor caused it, mop immediately but photograph FIRST. Prevent others from same hazard.",
+   "procedure_id": "proc-slip-fall-response",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-slip-03",
+   "title": "Document the scene",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 3,
+   "instructions": "Photograph exact spot of fall, surrounding conditions, footwear of person, any contributing factors. Wide and close shots.",
+   "procedure_id": "proc-slip-fall-response",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-slip-04",
+   "title": "Collect information",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 4,
+   "instructions": "Get from injured: full name, phone, address, description of what happened. Get from witnesses: name, phone, what they saw.",
+   "procedure_id": "proc-slip-fall-response",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-slip-05",
+   "title": "Notify insurance immediately",
+   "created_at": "2026-07-31T09:18:10",
+   "step_number": 5,
+   "instructions": "Call insurance carrier same day. Provide all documentation. Get claim number. Do not discuss with injured party beyond initial assistance.",
+   "procedure_id": "proc-slip-fall-response",
+   "warning_note": "Report within 24 hours — late reporting can void coverage",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-stripe-01",
+   "title": "Walk all parking rows",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 1,
+   "instructions": "Inspect every striped line in the main field. Note any that are faded beyond 50% visibility.",
+   "procedure_id": "proc-striping",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-stripe-02",
+   "title": "Check handicap markings",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 2,
+   "instructions": "Verify all handicap symbols, access aisles, and Van Accessible markings are clearly visible. These are highest priority.",
+   "procedure_id": "proc-striping",
+   "warning_note": "Faded handicap markings = ADA liability",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-stripe-03",
+   "title": "Check fire lanes",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 3,
+   "instructions": "Verify fire lane markings and No Parking - Fire Lane text are clearly visible. Check curb paint.",
+   "procedure_id": "proc-striping",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-stripe-04",
+   "title": "Check directional arrows",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 4,
+   "instructions": "Verify all directional arrows and lane markings are visible. Check stop bars at intersections.",
+   "procedure_id": "proc-striping",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-stripe-05",
+   "title": "Document and bid",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 5,
+   "instructions": "If restriping needed, photograph problem areas. Get bids from 2 vendors. Schedule for lowest-traffic period (typically Tuesday/Wednesday).",
+   "procedure_id": "proc-striping",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tax-01",
+   "title": "Receive assessment notice",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 1,
+   "instructions": "Review annual property tax assessment from Lafayette Parish Assessor. Note assessed value and any changes from prior year.",
+   "procedure_id": "proc-tax-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tax-02",
+   "title": "Compare to market value",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 2,
+   "instructions": "Compare assessed value to: recent comparable sales, income approach (NOI / cap rate), and replacement cost. Document analysis.",
+   "procedure_id": "proc-tax-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tax-03",
+   "title": "Determine protest merit",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 3,
+   "instructions": "If assessed value exceeds reasonable market value by 15%+, protest is warranted. Prepare supporting evidence.",
+   "procedure_id": "proc-tax-prep",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-tax-04",
+   "title": "File protest if applicable",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 4,
+   "instructions": "File protest with Lafayette Parish Board of Review by deadline. Include: comparable sales, income analysis, and any physical condition issues.",
+   "procedure_id": "proc-tax-prep",
+   "warning_note": "Protest deadline is strict — miss it and you wait another year",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tax-05",
+   "title": "Update tenant NNN estimates",
+   "created_at": "2026-07-29T22:48:22",
+   "step_number": 5,
+   "instructions": "Once final tax amount is known, update tenant pro-rata tax estimates for next billing cycle.",
+   "procedure_id": "proc-tax-prep",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tidy-01",
+   "title": "Empty all exterior trash cans",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 1,
+   "instructions": "Replace bags in all 8 exterior trash receptacles. Wipe down lids if sticky or dirty.",
+   "procedure_id": "proc-common-area-tidy",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tidy-02",
+   "title": "Sweep breezeway",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 2,
+   "instructions": "Sweep the covered breezeway from east to west. Remove leaves, cigarette butts, and any litter.",
+   "procedure_id": "proc-common-area-tidy",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tidy-03",
+   "title": "Check restrooms",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 3,
+   "instructions": "Verify soap, paper towels, and toilet paper are stocked. Check for plumbing issues. Wipe counters. Mop if visibly dirty.",
+   "procedure_id": "proc-common-area-tidy",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tidy-04",
+   "title": "Wipe benches and surfaces",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 4,
+   "instructions": "Wipe down all outdoor benches and any shared surfaces with disinfectant.",
+   "procedure_id": "proc-common-area-tidy",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tidy-05",
+   "title": "Check planters",
+   "created_at": "2026-07-29T22:45:53",
+   "step_number": 5,
+   "instructions": "Remove any trash from planters. Note dead plants for landscaping vendor.",
+   "procedure_id": "proc-common-area-tidy",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tow-01",
+   "title": "Identify unauthorized vehicle",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 1,
+   "instructions": "Note: no tenant permit, parked 48+ hours, blocking fire lane, in reserved/handicap without placard, or abandoned (flat tires, expired tags).",
+   "procedure_id": "proc-towing-enforcement",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tow-02",
+   "title": "Photograph and document",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 2,
+   "instructions": "Photograph vehicle from 4 angles showing license plate, location, any damage, parking violation. Note date, time, and specific violation.",
+   "procedure_id": "proc-towing-enforcement",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-tow-03",
+   "title": "Place warning sticker",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 3,
+   "instructions": "Apply 24-hour warning sticker to driver window. Sticker must state violation, deadline to move, tow company info, property management contact.",
+   "procedure_id": "proc-towing-enforcement",
+   "warning_note": "Fire lane violations can be towed immediately — no warning required",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-tow-04",
+   "title": "Call tow company after deadline",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 4,
+   "instructions": "If vehicle still present after 24 hours (or immediately for fire lane): call contracted tow company. Stay on-site until towed.",
+   "procedure_id": "proc-towing-enforcement",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-tow-05",
+   "title": "Log the tow",
+   "created_at": "2026-07-31T09:17:46",
+   "step_number": 5,
+   "instructions": "Record in tow log: date, time, vehicle info, violation type, tow company, where towed to. Keep copy of tow receipt.",
+   "procedure_id": "proc-towing-enforcement",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-viol-01",
+   "title": "Document the violation",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Photograph or video the violation. Note: date, time, specific lease clause violated, and how long it has been occurring.",
+   "procedure_id": "proc-lease-violation",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-viol-02",
+   "title": "Identify lease clause",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "Pull the tenants lease. Identify the specific section being violated. Note the cure period specified in the lease (typically 10-30 days).",
+   "procedure_id": "proc-lease-violation",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-viol-03",
+   "title": "Draft cure notice",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "Write formal notice citing: specific violation, lease clause, required corrective action, and deadline to cure.",
+   "procedure_id": "proc-lease-violation",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-viol-04",
+   "title": "Deliver notice properly",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "Deliver per lease requirements: typically certified mail AND hand delivery (or posting on door). Get proof of delivery.",
+   "procedure_id": "proc-lease-violation",
+   "warning_note": "Improper delivery can invalidate the notice — follow lease delivery requirements exactly",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-viol-05",
+   "title": "Monitor cure period",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "Check daily whether tenant has corrected the violation. Document progress or continued non-compliance.",
+   "procedure_id": "proc-lease-violation",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-viol-06",
+   "title": "Follow up or escalate",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 6,
+   "instructions": "If cured: document and close. If not cured by deadline: consult with owner on next steps (second notice, lease termination, or legal action).",
+   "procedure_id": "proc-lease-violation",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-vonb-01",
+   "title": "Collect W-9",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 1,
+   "instructions": "Request completed W-9 form. Verify legal name and tax ID match. File for year-end 1099 reporting.",
+   "procedure_id": "proc-vendor-onboard",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-vonb-02",
+   "title": "Verify insurance",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 2,
+   "instructions": "Request COI showing: general liability ($1M minimum), workers comp (if applicable), and auto insurance. Belle Realty as additional insured.",
+   "procedure_id": "proc-vendor-onboard",
+   "warning_note": "Do NOT allow work to begin without verified insurance",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-vonb-03",
+   "title": "Execute vendor agreement",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 3,
+   "instructions": "Have vendor sign standard service agreement covering: scope, rates, payment terms, insurance requirements, and termination clause.",
+   "procedure_id": "proc-vendor-onboard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vonb-04",
+   "title": "Set up in payment system",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 4,
+   "instructions": "Add vendor to accounting system with: legal name, address, payment terms, and preferred payment method (check or ACH).",
+   "procedure_id": "proc-vendor-onboard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vonb-05",
+   "title": "Provide property access",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 5,
+   "instructions": "Issue any needed keys, gate codes, or access instructions. Provide: property map, emergency contacts, and after-hours procedures.",
+   "procedure_id": "proc-vendor-onboard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vonb-06",
+   "title": "Add to vendor directory",
+   "created_at": "2026-07-29T22:50:08",
+   "step_number": 6,
+   "instructions": "Enter vendor in the property management system with: company name, contact, phone, email, service type, and contract details.",
+   "procedure_id": "proc-vendor-onboard",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vrev-01",
+   "title": "Compile vendor list",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 1,
+   "instructions": "List all vendors used in the past year: name, service type, total spend, number of service calls, and contract status.",
+   "procedure_id": "proc-vendor-review",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vrev-02",
+   "title": "Score each vendor",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 2,
+   "instructions": "Rate 1-5 on: response time, work quality, pricing, communication, reliability, and professionalism. Use specific examples from the year.",
+   "procedure_id": "proc-vendor-review",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vrev-03",
+   "title": "Review pricing competitiveness",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 3,
+   "instructions": "Compare each vendors rates to market. Get 1-2 competitive quotes for your highest-spend categories.",
+   "procedure_id": "proc-vendor-review",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vrev-04",
+   "title": "Identify issues and wins",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 4,
+   "instructions": "Document: any callbacks, disputes, missed appointments, or quality issues. Also note exceptional service worth rewarding.",
+   "procedure_id": "proc-vendor-review",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-vrev-05",
+   "title": "Make retention decisions",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 5,
+   "instructions": "For each vendor: retain, renegotiate, or replace. Get owner approval for any vendor changes.",
+   "procedure_id": "proc-vendor-review",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-vrev-06",
+   "title": "Execute changes",
+   "created_at": "2026-07-29T22:49:08",
+   "step_number": 6,
+   "instructions": "For replacements: onboard new vendor, transition work, terminate old contract per terms. For renegotiations: present data and propose new terms.",
+   "procedure_id": "proc-vendor-review",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-walkby-01",
+   "title": "Start at Unit 101 (Johnston end)",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 1,
+   "instructions": "Begin at the western end of the long building. Walk east, checking each storefront systematically.",
+   "procedure_id": "proc-tenant-walkby",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-walkby-02",
+   "title": "Check window displays",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 2,
+   "instructions": "Verify windows are clean, displays are professional, no unapproved signage taped to glass. Note any violations.",
+   "procedure_id": "proc-tenant-walkby",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-walkby-03",
+   "title": "Check exterior merchandise",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 3,
+   "instructions": "No merchandise, racks, or displays outside the lease line without written approval. Photograph any violations.",
+   "procedure_id": "proc-tenant-walkby",
+   "warning_note": "Exterior merchandise without approval = lease violation",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-walkby-04",
+   "title": "Verify signage compliance",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 4,
+   "instructions": "Each tenant sign must match the approved sign criteria. No temporary signs, banners, or A-frames without approval.",
+   "procedure_id": "proc-tenant-walkby",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-walkby-05",
+   "title": "Check Patricia building",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 5,
+   "instructions": "Continue to the Patricia St building (135A through 149). Same inspection criteria for each unit.",
+   "procedure_id": "proc-tenant-walkby",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-walkby-06",
+   "title": "Document and follow up",
+   "created_at": "2026-07-29T22:46:26",
+   "step_number": 6,
+   "instructions": "Photograph all violations. Send friendly reminder email for first offense. Formal notice for repeat violations. Log in system.",
+   "procedure_id": "proc-tenant-walkby",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-welcome-01",
+   "title": "Compile property rules document",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 1,
+   "instructions": "Include operating hours, noise policy, signage criteria, parking rules, trash/recycling schedule, common area use, pet policy, smoking policy.",
+   "procedure_id": "proc-tenant-welcome-packet",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-welcome-02",
+   "title": "Add emergency contacts",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 2,
+   "instructions": "Include management office, after-hours emergency line, fire department, police non-emergency, utility companies (LUS), preferred vendors.",
+   "procedure_id": "proc-tenant-welcome-packet",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-welcome-03",
+   "title": "Include maintenance requirements",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 3,
+   "instructions": "Detail tenant responsibilities: HVAC filter changes monthly, grease trap pumping if food, pest control, storefront cleanliness, sign maintenance.",
+   "procedure_id": "proc-tenant-welcome-packet",
+   "warning_note": "",
+   "is_checkpoint": true
+  },
+  {
+   "id": "step-welcome-04",
+   "title": "Add insurance and compliance requirements",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 4,
+   "instructions": "List COI requirements and deadline, occupational license, W-9, ACH form for rent payment, any industry-specific permits needed.",
+   "procedure_id": "proc-tenant-welcome-packet",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-welcome-05",
+   "title": "Include parking map and unit info",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 5,
+   "instructions": "Provide property map with their unit highlighted, assigned parking if any, dumpster location, utility meter locations, key/access information.",
+   "procedure_id": "proc-tenant-welcome-packet",
+   "warning_note": "",
+   "is_checkpoint": false
+  },
+  {
+   "id": "step-welcome-06",
+   "title": "Deliver and confirm receipt",
+   "created_at": "2026-07-31T09:17:10",
+   "step_number": 6,
+   "instructions": "Deliver packet in person during move-in walkthrough. Have tenant sign acknowledgment of receipt. File signed copy.",
+   "procedure_id": "proc-tenant-welcome-packet",
+   "warning_note": "",
+   "is_checkpoint": true
+  }
+ ],
+ "assignments": [
+  {
+   "id": "020ac722-6d61-41dd-a97a-ca4bc269ddc0",
+   "due_on": "2026-08-08",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-08T14:03:09",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "047385ee-93bb-4816-b845-7b084d926c66",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-07T14:02:55",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "060437c1-9ddf-4a75-afb8-3581452cc74e",
+   "due_on": "2026-08-05",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-05T14:06:37",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "157b2c0b-53db-4642-aebb-86de2c772c3a",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-07T14:02:55",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "15d1ed2e-baec-44f8-b274-ecf1b0e52938",
+   "due_on": "2026-08-02",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-02T14:01:39",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "16e4159e-dddf-493d-ade5-ccc05898ea5a",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-mowing"
+  },
+  {
+   "id": "191d5300-47c8-4c0f-9e61-99e530deedfd",
+   "due_on": "2026-08-06",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-06T14:01:32",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "19f3ae65-b45b-4d13-8322-7e48a55b24a6",
+   "due_on": "2026-07-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-31T14:02:26",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "1e9f0833-64a7-4414-9757-c5a5d0ce7963",
+   "due_on": "2026-08-03",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:05:08",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "25e67256-d9e3-4254-b208-d0be29d83bae",
+   "due_on": "2026-08-05",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-05T14:06:37",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "286a1a7c-a5a9-4a0c-bb11-c831f365ef34",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-irrigation-check"
+  },
+  {
+   "id": "29fafc23-47f5-4c54-9644-0a2f11fafd3b",
+   "due_on": "2026-08-04",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-04T14:03:44",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "2e69baa6-f2e2-4768-a698-523c22556fb0",
+   "due_on": "2026-08-02",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-02T14:01:39",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "2eaa0d3d-6bfc-4e58-b438-742c1cb9cd77",
+   "due_on": "2026-08-04",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-04T14:03:44",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "30eee1af-9585-4abf-9c39-e557a04618fe",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-cam-reconcile"
+  },
+  {
+   "id": "32185932-6157-493f-8b4e-9a33d433aa42",
+   "due_on": "2026-08-04",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-04T14:03:44",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "3440b833-3f39-4de1-a640-c041f9d91c17",
+   "due_on": "2026-08-01",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-01T14:01:22",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "38030306-af6f-49c3-a2cc-cdd8da7502cb",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-dumpster-area"
+  },
+  {
+   "id": "3946d0a8-7a24-4050-9160-65151fda3bab",
+   "due_on": "2026-08-01",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-01T14:01:22",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "3bb8678c-5b0c-480d-8bee-3ea010780be4",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-07T14:02:55",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "4736efcb-7fea-4145-b6d4-55c631ef1222",
+   "due_on": "2026-08-04",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-04T14:03:44",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "47aa00e7-c7d7-4a2a-95d1-e7d6bb4633b7",
+   "due_on": "2026-08-01",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-01T14:01:22",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "49c3caba-06a6-44d9-a5e9-8878fee74262",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-hvac"
+  },
+  {
+   "id": "541dcd07-ae01-40ae-811b-36bea12df137",
+   "due_on": "2026-07-30",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-30T14:01:17",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "54c20d47-c5f9-42d3-87cb-1b7774ef20ab",
+   "due_on": "2026-08-05",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-05T14:06:37",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "5608db5a-1fe3-4cc3-b494-e3aea6a85301",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-common-deep-clean"
+  },
+  {
+   "id": "5ed7a8ff-f6bf-47d4-a521-660191839c0b",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:58",
+   "procedure_id": "proc-pest-check"
+  },
+  {
+   "id": "63218133-5d23-4ce2-a5e2-c84cb04916ea",
+   "due_on": "2026-08-08",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-08T14:03:09",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "641074af-990c-4404-9220-5598e5291912",
+   "due_on": "2026-08-02",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-02T14:01:39",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "6613f1b2-1434-4527-aed1-f295703611a3",
+   "due_on": "2026-08-01",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-01T14:01:22",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "763d722c-db71-4f05-a2ce-107184138c22",
+   "due_on": "2026-08-05",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-05T14:06:37",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "78260358-294f-42e6-beee-a9606934058e",
+   "due_on": "2026-07-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-31T14:02:26",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "7b136f3c-65ed-4d33-95b1-46ae8340aadc",
+   "due_on": "2026-08-06",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-06T14:01:32",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "7b25d07f-b1fe-4f79-840a-8bb39a06014a",
+   "due_on": "2026-08-03",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:05:08",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "7c03641e-b0f9-4f30-bb45-56f2d465960a",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-07T14:02:55",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "82137227-8616-4b51-bc25-812c67fcc323",
+   "due_on": "2026-08-02",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-02T14:01:39",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "8520c7da-10db-47d0-807f-c600518edb07",
+   "due_on": "2026-07-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-31T14:02:26",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "8809f77a-d834-4916-88b5-838c417681a2",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-monthly-newsletter"
+  },
+  {
+   "id": "8a07c2a3-2a13-465f-8a69-162f8ee9d4ce",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-tenant-walkby"
+  },
+  {
+   "id": "8d7fac57-fbe8-4b0d-967c-9a0bf1db73c4",
+   "due_on": "2026-08-03",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:05:08",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "8f0f216a-8ba1-4775-8214-fb6eaaef2839",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-dumpster-food-tenant"
+  },
+  {
+   "id": "909a84a0-f5a6-4e31-91d5-cdfd1bfc90ca",
+   "due_on": "2026-08-04",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-04T14:03:44",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "971eb70b-f47e-474c-8ea6-4da86c0d0a5f",
+   "due_on": "2026-07-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-31T14:02:26",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "9d324f78-c672-4b4a-932c-c6065a3bbb62",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-landscaping-check"
+  },
+  {
+   "id": "9ebda975-97f2-4dfa-873b-502dde824fc8",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-signage-inspection"
+  },
+  {
+   "id": "9ee5444d-1352-428c-9a6b-98e984777258",
+   "due_on": "2026-08-06",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-06T14:01:32",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "a2d5fbed-b62b-434a-98fe-5a0a505936b0",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-07T14:02:55",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "a407b367-67a8-4382-9eef-2d78e7636569",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:33",
+   "procedure_id": "proc-camera-check"
+  },
+  {
+   "id": "ab8096aa-da23-4748-872b-4b1427bc43b5",
+   "due_on": "2026-08-07",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:02:34",
+   "procedure_id": "proc-fire-lane-enforcement"
+  },
+  {
+   "id": "af44a77f-f2a5-4e95-b8ad-7899bb9f35af",
+   "due_on": "2026-08-01",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-01T14:01:22",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "b102f483-cd2a-44da-abc4-cfb515611abb",
+   "due_on": "2026-08-08",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-08T14:03:09",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "b44858e6-ddff-4e95-bfd7-25498b3a7800",
+   "due_on": "2026-08-08",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-08T14:03:10",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "b9fca7cc-3b61-4894-abff-bf5dab268fdc",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-food-pest-control"
+  },
+  {
+   "id": "bf3a43a2-4bdf-4595-b5be-10fc547635d3",
+   "due_on": "2026-08-06",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-06T14:01:31",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "c1db77e1-1924-4989-a233-ebdcd691d1c9",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:58",
+   "procedure_id": "proc-pressure-wash-sidewalks"
+  },
+  {
+   "id": "c7ce6a15-9c3a-4cbe-b8a8-36c43419b60a",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:58",
+   "procedure_id": "proc-roof-visual"
+  },
+  {
+   "id": "c988dc46-dffc-4a15-9009-c274ddf74326",
+   "due_on": "2026-07-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-31T14:01:13",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "cc603085-c547-4b71-b34b-6f812d3365f6",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:58",
+   "procedure_id": "proc-pylon-maintenance"
+  },
+  {
+   "id": "cd480b2e-910f-4523-90c7-759367d6981f",
+   "due_on": "2026-07-30",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-30T14:01:17",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "ce45a492-7d53-4aa6-9471-02926260e694",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:58",
+   "procedure_id": "proc-monthly-report"
+  },
+  {
+   "id": "cefc8951-d29e-488e-86b0-79d25b010899",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-lighting-audit"
+  },
+  {
+   "id": "d6088805-676b-4b05-ab61-a87727712053",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:57",
+   "procedure_id": "proc-coi-tracking"
+  },
+  {
+   "id": "e3f5791b-ceba-4193-b0ac-fdb8dc382030",
+   "due_on": "2026-08-08",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-08T14:03:09",
+   "procedure_id": "proc-morning"
+  },
+  {
+   "id": "e5bc99fd-e5db-4623-aea7-254bd2de538c",
+   "due_on": "2026-08-31",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "pending",
+   "created_at": "2026-08-01T14:00:58",
+   "procedure_id": "proc-rent-collection"
+  },
+  {
+   "id": "e8edd040-f742-4171-a3c8-0191af962a20",
+   "due_on": "2026-08-03",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:05:08",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "efa7f95a-2a54-4526-ba9c-1ae6adf62b71",
+   "due_on": "2026-08-06",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-06T14:01:31",
+   "procedure_id": "proc-handicap-enforcement"
+  },
+  {
+   "id": "f1dbe389-ffde-48c6-87c5-4c22c4423fcc",
+   "due_on": "2026-07-30",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-30T14:01:17",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "f21d26d6-2f7e-42fd-8c4e-120a12345c56",
+   "due_on": "2026-08-03",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-03T14:05:08",
+   "procedure_id": "proc-common-area-tidy"
+  },
+  {
+   "id": "f3206b92-9631-472a-8b45-52d6156f0e04",
+   "due_on": "2026-07-30",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "completed",
+   "created_at": "2026-07-30T14:01:17",
+   "procedure_id": "proc-parking-sweep"
+  },
+  {
+   "id": "f38869ec-9a6b-4744-b53b-528d6fa0f68e",
+   "due_on": "2026-08-05",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-05T14:06:37",
+   "procedure_id": "proc-lockup"
+  },
+  {
+   "id": "fb068434-f873-4df0-a169-866c509895fd",
+   "due_on": "2026-08-02",
+   "assignee": "adam@adamabdalla.com",
+   "ac_status": "overdue",
+   "created_at": "2026-08-02T14:01:39",
+   "procedure_id": "proc-morning"
+  }
+ ],
+ "completions": [
+  {
+   "id": "11ebe300-cbf5-4ce4-971c-f8671dfd890f",
+   "notes": "",
+   "completed_at": "2026-08-01T19:03:53",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-parking-sweep",
+   "assignment_id": "78260358-294f-42e6-beee-a9606934058e",
+   "duration_minutes": null
+  },
+  {
+   "id": "1814de03-10a1-4844-a224-062cf0c034d8",
+   "notes": "",
+   "completed_at": "2026-08-01T19:03:44",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-lockup",
+   "assignment_id": "19f3ae65-b45b-4d13-8322-7e48a55b24a6",
+   "duration_minutes": null
+  },
+  {
+   "id": "34b458b3-b9f4-4355-80cc-c20baf74d9a0",
+   "notes": "",
+   "completed_at": "2026-08-01T19:03:57",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-common-area-tidy",
+   "assignment_id": "8520c7da-10db-47d0-807f-c600518edb07",
+   "duration_minutes": null
+  },
+  {
+   "id": "586a8e4c-3a3a-4b85-9bdb-9d7ae8527fb8",
+   "notes": "",
+   "completed_at": "2026-08-01T00:17:24",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-morning",
+   "assignment_id": "541dcd07-ae01-40ae-811b-36bea12df137",
+   "duration_minutes": null
+  },
+  {
+   "id": "86bc8f70-b284-4891-8a46-f862580479ad",
+   "notes": "",
+   "completed_at": "2026-08-01T19:04:09",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-morning",
+   "assignment_id": "971eb70b-f47e-474c-8ea6-4da86c0d0a5f",
+   "duration_minutes": null
+  },
+  {
+   "id": "ab5e5d5a-4baf-4239-af3f-1d5a83c3cff8",
+   "notes": "",
+   "completed_at": "2026-08-01T00:17:31",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-common-area-tidy",
+   "assignment_id": "f1dbe389-ffde-48c6-87c5-4c22c4423fcc",
+   "duration_minutes": null
+  },
+  {
+   "id": "ba88af88-d9c8-4763-817d-37bf440af561",
+   "notes": "",
+   "completed_at": "2026-08-01T00:17:34",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-parking-sweep",
+   "assignment_id": "f3206b92-9631-472a-8b45-52d6156f0e04",
+   "duration_minutes": null
+  },
+  {
+   "id": "bde6c9e6-5338-471a-af5a-6f10b0703052",
+   "notes": "",
+   "completed_at": "2026-08-01T00:17:26",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-lockup",
+   "assignment_id": "cd480b2e-910f-4523-90c7-759367d6981f",
+   "duration_minutes": null
+  },
+  {
+   "id": "d44a8ce6-0646-48cc-9af7-8d7c55110c07",
+   "notes": "",
+   "completed_at": "2026-08-01T19:04:35",
+   "completed_by": "adam@adamabdalla.com",
+   "procedure_id": "proc-handicap-enforcement",
+   "assignment_id": "c988dc46-dffc-4a15-9009-c274ddf74326",
+   "duration_minutes": null
+  }
+ ]
+}
