@@ -17,6 +17,7 @@ export const PAGES = [
   ["board", "W-1", "Action Board"],
   ["dir", "K-1", "Directory"],
   ["maint", "M-1", "Maintenance"],
+  ["sop", "O-1", "Operations"],
   ["vendors", "V-1", "Vendor Portal"]
 ];
 

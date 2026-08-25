@@ -20,6 +20,7 @@ import { maintTriggerCandidates } from "../src/lib/maintenance.js";
 import { c3StaleCandidate } from "../src/lib/occupancy.js";
 import { shapeUnifi, unifiTriggerCandidate } from "../src/lib/unifi.js";
 import { voiceLeadCandidates } from "../src/lib/voiceagent.js";
+import { sopNewOccurrences, sopOverdueCandidate } from "../src/lib/sop.js";
 import { buildBriefModel, momDeltas, briefHTML, prevMonthKey } from "../src/lib/brief.js";
 import { achFirstCandidate } from "../src/lib/ach.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
@@ -91,6 +92,25 @@ export default async function handler(req, res) {
     candidates.push(...voiceLeadCandidates(calls, new Date().toISOString()));
   } catch (e) { console.warn("voice-lead scan:", e.message); }
 
+  /* H1.3 SOP reminders (replaces AC's dead Manus scheduler): materialize the
+     current period's occurrence per scheduled procedure (deterministic ids +
+     on-conflict-do-nothing — re-runs insert 0, the rent-charges idiom), then
+     digest the whole overdue set into ONE manager thread keyed by the newest
+     lapse (a static backlog never re-fires). Best-effort. */
+  let sopSummary = null;
+  try {
+    const sched = await rpc("get_sop_schedule", { p_secret: secret });
+    const rows = sopNewOccurrences(sched.procedures, sched.occurrences, today);
+    const materialized = rows.length
+      ? await rpc("post_sop_occurrences", { p_secret: secret, p_rows: rows }) : 0;
+    const cand = sopOverdueCandidate(sched.procedures, sched.occurrences, today);
+    if (cand) candidates.push(cand);
+    sopSummary = {
+      materialized,
+      overdue: (sched.occurrences || []).filter(o => !o.done && o.due_on < today).length,
+    };
+  } catch (e) { console.warn("sop scan:", e.message); }
+
   /* A-5 first-payment milestone: the first ach: ledger row EVER → one
      manager thread ('ach-first'). Success posts are otherwise silent by
      design; the smoke that proves the rail shouldn't be. Best-effort. */
@@ -129,6 +149,7 @@ export default async function handler(req, res) {
   }
 
   const summary = { date: today, scanned: candidates.length, opened: 0, skippedExisting: 0, failed: 0, openedSources: [] };
+  if (sopSummary) summary.sop = sopSummary;
 
   await ensureMonthlyRent(units, secret, today, summary);
   const briefLine = await ensureMonthlyBrief(units, secret, today, summary);
