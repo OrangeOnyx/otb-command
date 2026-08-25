@@ -3,7 +3,23 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-23 — **LEASE ASSEMBLER SHIPPED + DEPLOYED (387
+Last updated: 2026-08-25 — **PLATFORM CONSOLIDATION DECISION ADOPTED
+(docs/platform-consolidation-decision-2026-08-25.md): otb-command IS the
+surviving platform; AC (assetcommand.orangeocean.com) retires via
+usage-driven harvest; the never-deployed NestJS `orange-ocean-atlas` repo
+is archived.** Basis: AC prod audit 2026-08-25 — live organs are voice
+intake (43/30d) · work orders (24/30d) · SOPs (506 rows, in daily use),
+plus 13 months / $1.13M of rent_payments history; CAM/QBO/governance are
+0-row shells (nothing to port). Harvest waves: H1 voice-line + work-order
++ SOP-module cutovers → H2 history import → H3 AC decommission. 8/27:
+cancel Manus; AC scheduler NOT blanket-enabled (per-job runbook lives in
+the Asset Command project folder, `RUNBOOK-2026-08-27-manus-and-
+scheduler.md`). **New rock for THIS repo: SOP module port** (5 typed
+tables + RLS + sheet + auto-trigger reminder leg + 506-row import) — the
+one AC feature with real adoption and no otb equivalent. Open operator
+decisions H-1/H-2/H-3 (rent-history shape · phone-number strategy · AC
+user role mapping) listed in the decision doc.
+Prior: 2026-08-23 — **LEASE ASSEMBLER SHIPPED + DEPLOYED (387
 tests, squash-merged d731a17, prod bundle + hashed lease-template.docx
 asset both verified 200).** Executable-lease generation from the v2.2
 Louisiana house form: `tools/lease-template.mjs` (run ONCE per master
