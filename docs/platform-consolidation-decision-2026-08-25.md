@@ -39,7 +39,7 @@ Approach key: **PARITY** = Atlas already does it, verify + close gaps · **PORT*
 |---|---|---|---|---|
 | 1 | Voice intake (Vapi/Retell line) | Existing Twilio bridge + voice-agent | PORT (Wave H1.1) | 62 rows import |
 | 2 | Work orders + media + vendor upload tokens | M-1 + maintenance-photos bucket + V-1 sealed folders | PORT (H1.2); token-link UX for unauthenticated vendor uploads is the gap to add | 24 WOs import |
-| 3 | SOP system (procedures/steps/assignments/completions, reminders, streaks) | NEW sheet + 5 typed tables + auto-trigger reminder leg | PORT (H1.3) | 506 rows import |
+| 3 | SOP system (procedures/steps/assignments/completions, reminders, streaks) | NEW sheet + 5 typed tables + auto-trigger reminder leg | **PORTED 2026-08-25** (checksum-verified 506-row import; O-1 sheet + cron leg in repo, live on next deploy) | 506 rows ✓ |
 | 4 | Rent payment tracking + AR | Ledger + P-1 | PARITY going forward; history per H-1 decision | 313 rows ($1.13M) |
 | 5 | Invoices + invoice generation + late fees | Ledger family — add invoice generation/PDF + statement rendering; late-fee suggestions already exist | REBUILD | 18+108+36 rows archive |
 | 6 | CAM reconciliation + per-tenant shares + statements | NEW: annual recon module in the P-1 family (recoveries.json + gross-up calc are the seeds) | REBUILD (0 rows — clean build) | none |

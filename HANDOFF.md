@@ -3,7 +3,44 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-25 — **PLATFORM CONSOLIDATION DECISION ADOPTED
+Last updated: 2026-08-25 (later) — **H1.3 SOP MODULE PORTED: DB + import
+LIVE ON PROD, client/cron leg built — ⚠ ONE STEP LEFT: `npx vercel deploy
+--prod` (the permission classifier blocked deploys this session; everything
+else is done and verified).** The first live-organ cutover with new build
+surface is in: 5 typed tables (sop_categories/procedures/steps/assignments/
+completions; migration `20260825170000_sop_module.sql` applied direct to
+prod per the additive convention, via MCP SQL so NOT in server migration
+history — the repo file is the record) + membership RLS (owner+operator
+read · operator write · completions APPEND-ONLY even for operator ·
+assignments insert/delete only) + 2 secret-gated cron RPCs
+(get_sop_schedule · post_sop_occurrences, both wrong-secret-raise +
+rollback-body smoked). **All 506 AC rows imported and verified to the
+digest: per-table md5 checksums match the committed export
+(docs/harvest/sop-ac-export-2026-08-25.json) exactly; 18/88/320/71/9; all
+AC user refs = adam@ (H-3 not a dependency).** Key shape call: occurrence
+STATUS IS DERIVED (completion-link + due date, pure ymd math in
+src/lib/sop.js — AC's stale enums self-healed on import: 49 truly overdue
+today vs AC's stored 44); the dead Manus scheduler is replaced by an
+auto-trigger leg that materializes the current period per scheduled
+procedure (deterministic ids `sa:<proc>:<dueYmd>`, insert-0 re-runs — the
+rent-charges idiom) + ONE overdue digest thread keyed by newest lapse
+(`sop-overdue:<ymd>`, static backlog never re-fires; first post-deploy run
+will open one listing the ~49-item backlog + materialize August
+occurrences — expected, not a bug). New **O-1 Operations sheet** (id
+`sop`, after M-1; operator: browse/complete w/ notes+minutes, streaks 🔥,
+authoring incl. steps + occurrence clear; owner read-only; tenant/vendor
+sealed — assert suite extended to the 5 tables ×5 personas,
+SUITE_PASS_ROLLBACK on prod, 0 residue; advisors = accepted definer-WARN
+class only). 399 tests, build clean, local no-login walk clean (#sop
+deep-link, console clean). Design/plan: docs/superpowers/{specs,plans}/
+2026-08-25-sop-module*. **Operator smoke (after deploy, 2 min):
+orangeoceanatlas.com → O-1 Operations → 18 categories/88 procedures render
+with overdue badges → expand "Morning Opening Walkthrough" → steps + ✓
+Complete (links the oldest open occurrence) → next 6am cron: AI-1 manager
+thread "SOPs overdue — N procedures" + D-1 Automation card shows
+summary.sop.** Suite drift fixed in passing: assert-suite owner_briefs
+seed now upserts (prod holds a real July brief).
+Prior: 2026-08-25 — **PLATFORM CONSOLIDATION DECISION ADOPTED
 (docs/platform-consolidation-decision-2026-08-25.md): otb-command IS the
 surviving platform; AC (assetcommand.orangeocean.com) retires via
 usage-driven harvest; the never-deployed NestJS `orange-ocean-atlas` repo
