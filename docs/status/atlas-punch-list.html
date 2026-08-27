@@ -1,0 +1,539 @@
+<title>Atlas Punch List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#EDEFE8; --card:#F6F7F1; --ink:#1C2B26; --soft:#5F6E64;
+    --line:#C7CDC1; --rule:#1C2B26;
+    --brass:#A87E2F; --green:#2F6B4F; --anchor:#1E4F3C; --brick:#C25E33;
+    --green-tint:rgba(47,107,79,.10); --brass-tint:rgba(168,126,47,.12);
+    --brick-tint:rgba(194,94,51,.10); --slate-tint:rgba(95,110,100,.10);
+    --hatch:rgba(28,43,38,.28);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#151B18; --card:#1C2420; --ink:#E7EAE0; --soft:#9AA79E;
+      --line:#2E3833; --rule:#9AA79E;
+      --brass:#C99C50; --green:#6FA98A; --anchor:#8CC3A8; --brick:#D8815B;
+      --green-tint:rgba(111,169,138,.14); --brass-tint:rgba(201,156,80,.14);
+      --brick-tint:rgba(216,129,91,.13); --slate-tint:rgba(154,167,158,.10);
+      --hatch:rgba(231,234,224,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#151B18; --card:#1C2420; --ink:#E7EAE0; --soft:#9AA79E;
+    --line:#2E3833; --rule:#9AA79E;
+    --brass:#C99C50; --green:#6FA98A; --anchor:#8CC3A8; --brick:#D8815B;
+    --green-tint:rgba(111,169,138,.14); --brass-tint:rgba(201,156,80,.14);
+    --brick-tint:rgba(216,129,91,.13); --slate-tint:rgba(154,167,158,.10);
+    --hatch:rgba(231,234,224,.25);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:400 16px/1.6 "Public Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; padding:clamp(12px,3vw,40px);
+  }
+  .sheet{
+    position:relative; max-width:1060px; margin:0 auto;
+    border:2px solid var(--rule); background:var(--paper);
+    padding:clamp(20px,4vw,52px);
+  }
+  .sheet::before{
+    content:""; position:absolute; inset:7px; border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--brass); font-weight:500;
+  }
+  header.masthead{border-bottom:2px solid var(--rule); padding-bottom:22px; margin-bottom:26px;}
+  .mast-row{display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; justify-content:space-between;}
+  h1{
+    font-family:"Big Shoulders Display",sans-serif; font-weight:700;
+    font-size:clamp(46px,8vw,84px); line-height:.95; letter-spacing:.01em;
+    margin:10px 0 8px; text-transform:uppercase; text-wrap:balance;
+  }
+  .mast-date{color:var(--soft); font-size:12px; letter-spacing:.1em; text-transform:uppercase;}
+  .lede{max-width:62ch; color:var(--soft); margin:0; font-size:15.5px;}
+
+  /* KPI strip */
+  .kpis{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));
+    gap:0; border:1px solid var(--rule); margin:26px 0 8px; background:var(--card);
+  }
+  .kpi{padding:16px 18px 14px; border-right:1px solid var(--line);}
+  .kpi:last-child{border-right:0}
+  .kpi b{
+    display:block; font-family:"Big Shoulders Display",sans-serif; font-weight:600;
+    font-size:38px; line-height:1; margin:4px 0 2px; font-variant-numeric:tabular-nums;
+  }
+  .kpi small{color:var(--soft); font-size:12.5px; line-height:1.4; display:block;}
+  @media (max-width:640px){ .kpi{border-right:0; border-bottom:1px solid var(--line);} .kpi:last-child{border-bottom:0} }
+
+  section{margin-top:44px;}
+  .schedule-label{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--rule); padding-bottom:8px; margin-bottom:18px;}
+  h2{
+    font-family:"Big Shoulders Display",sans-serif; font-weight:600; font-size:30px;
+    letter-spacing:.02em; text-transform:uppercase; margin:0;
+  }
+  .sched-count{margin-left:auto; color:var(--soft); font-size:12px; letter-spacing:.08em;}
+
+  .chip{
+    display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:10.5px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    padding:3px 9px 2px; border:1px solid currentColor; white-space:nowrap;
+  }
+  .chip.done{color:var(--green); background:var(--green-tint);}
+  .chip.open{color:var(--brass); background:var(--brass-tint);}
+  .chip.hot{color:var(--brick); background:var(--brick-tint);}
+  .chip.wait{color:var(--soft); background:var(--slate-tint);}
+
+  .card{background:var(--card); border:1px solid var(--line); padding:20px 22px;}
+  .card p{margin:.5em 0; max-width:72ch;}
+  .card p:first-child{margin-top:0}
+  code{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.88em;
+    background:var(--slate-tint); padding:1px 5px; border:1px solid var(--line);
+  }
+  ol.steps{margin:.6em 0 0; padding-left:1.3em;}
+  ol.steps li{margin:.35em 0; max-width:70ch;}
+
+  /* Smoke checklist */
+  .smokes{display:flex; flex-direction:column; gap:10px;}
+  .smoke{
+    display:flex; gap:14px; align-items:flex-start; background:var(--card);
+    border:1px solid var(--line); padding:14px 18px; transition:opacity .25s;
+  }
+  .smoke input{
+    width:19px; height:19px; margin-top:4px; flex:none; accent-color:var(--green); cursor:pointer;
+  }
+  .smoke input:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
+  .smoke .body{flex:1; min-width:0;}
+  .smoke .head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; margin-bottom:2px;}
+  .smoke .name{font-weight:600; font-size:15.5px; cursor:pointer;}
+  .smoke .desc{color:var(--soft); font-size:14px; margin:0; max-width:76ch;}
+  .smoke:has(input:checked){opacity:.5;}
+  .smoke:has(input:checked) .name{text-decoration:line-through; text-decoration-thickness:1px;}
+  .smoke-note{color:var(--soft); font-size:12px; margin-top:10px;}
+
+  /* Wave rail */
+  .waves{border-left:2px solid var(--rule); margin-left:8px; padding-left:0;}
+  .wave{position:relative; padding:0 0 26px 26px;}
+  .wave:last-child{padding-bottom:4px;}
+  .wave::before{
+    content:""; position:absolute; left:-6px; top:8px; width:10px; height:10px;
+    background:var(--paper); border:2px solid var(--soft); border-radius:50%;
+  }
+  .wave.done::before{background:var(--green); border-color:var(--green);}
+  .wave.hot::before{background:var(--brick); border-color:var(--brick);}
+  .wave.gated::before{background:var(--paper); border-color:var(--brick);}
+  .wave .head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline;}
+  .wave .wid{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:13px; letter-spacing:.06em;}
+  .wave .wname{font-weight:600; font-size:16px;}
+  .wave p{color:var(--soft); font-size:14.5px; margin:4px 0 0; max-width:74ch;}
+  .wave .data{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--soft);
+    margin-top:6px; letter-spacing:.02em;
+  }
+
+  /* Decisions */
+  .decisions{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px;}
+  .decision{background:var(--card); border:1px solid var(--line); border-top:3px solid var(--brick); padding:16px 18px;}
+  .decision .head{display:flex; gap:10px; align-items:baseline; margin-bottom:6px;}
+  .decision .did{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; font-weight:500;
+    color:var(--brick); letter-spacing:.08em;
+  }
+  .decision .q{font-weight:600; font-size:15.5px;}
+  .decision p{color:var(--soft); font-size:14px; margin:.4em 0;}
+  .decision .unblocks{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
+    color:var(--anchor); letter-spacing:.04em; margin-top:10px;
+  }
+  .parked{margin-top:14px; color:var(--soft); font-size:13.5px; max-width:76ch;}
+
+  /* Register grid */
+  .reg-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr));
+    gap:6px; margin-bottom:14px;
+  }
+  .cell{
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px; font-weight:500;
+    border:1px solid var(--line); color:var(--ink); background:var(--card); cursor:default;
+  }
+  .cell.done{background:var(--green); border-color:var(--green); color:var(--card); font-weight:500;}
+  .cell.parity{border:2px solid var(--green); color:var(--green); background:var(--green-tint);}
+  .cell.port{border:2px solid var(--brass); color:var(--brass); background:var(--brass-tint);}
+  .cell.rebuild{background:var(--slate-tint); color:var(--soft);}
+  .cell.ref{
+    color:var(--soft);
+    background:repeating-linear-gradient(45deg,transparent 0 4px,var(--hatch) 4px 5px);
+  }
+  .legend{display:flex; flex-wrap:wrap; gap:10px 22px; font-size:12.5px; color:var(--soft); margin-bottom:14px;}
+  .legend span{display:inline-flex; align-items:center; gap:7px;}
+  .sw{width:14px; height:14px; flex:none; border:1px solid var(--line); background:var(--card);}
+  .sw.done{background:var(--green); border-color:var(--green);}
+  .sw.parity{border:2px solid var(--green); background:var(--green-tint);}
+  .sw.port{border:2px solid var(--brass); background:var(--brass-tint);}
+  .sw.rebuild{background:var(--slate-tint);}
+  .sw.ref{background:repeating-linear-gradient(45deg,transparent 0 4px,var(--hatch) 4px 5px);}
+  details.reg-index{border:1px solid var(--line); background:var(--card);}
+  details.reg-index summary{
+    cursor:pointer; padding:10px 16px; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass);
+  }
+  details.reg-index summary:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .reg-list{
+    columns:2; column-gap:36px; padding:4px 18px 16px; margin:0; list-style:none;
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9;
+  }
+  .reg-list li{break-inside:avoid; color:var(--soft);}
+  .reg-list b{color:var(--ink); font-weight:500;}
+  .reg-list .st{float:right; font-size:10.5px; letter-spacing:.08em;}
+  .st.g{color:var(--green)} .st.b{color:var(--brass)} .st.s{color:var(--soft)}
+  @media (max-width:640px){ .reg-list{columns:1} }
+
+  /* Notes + title block */
+  .notes ol{margin:0; padding-left:1.5em; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9; color:var(--soft);}
+  .notes li{margin:.3em 0; max-width:80ch;}
+  .titleblock{
+    margin-top:48px; border:2px solid var(--rule); display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); background:var(--card);
+  }
+  .tb{padding:10px 14px 12px; border-right:1px solid var(--line);}
+  .tb:last-child{border-right:0}
+  .tb .lab{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:9.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--soft); display:block; margin-bottom:2px;
+  }
+  .tb .val{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; font-weight:500;}
+  @media (max-width:640px){ .tb{border-right:0; border-bottom:1px solid var(--line);} .tb:last-child{border-bottom:0} }
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+</style>
+
+<div class="sheet">
+  <header class="masthead">
+    <div class="mast-row">
+      <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
+      <span class="mono mast-date">Snapshot &middot; Aug 27, 2026 &middot; Rev 1</span>
+    </div>
+    <h1>Punch List</h1>
+    <p class="lede">Everything still open across the Atlas build, on one sheet: the deploy gate,
+    the smokes on your desk, the harvest waves, and the decisions only you can make.
+    Compiled from <span class="mono">HANDOFF.md</span> and the Aug 25 consolidation decision.</p>
+
+    <div class="kpis mono">
+      <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>1 / 3</b><small>SOP live &middot; voice line + work orders open</small></div>
+      <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small>open &middot; ~10 min active time total</small></div>
+      <div class="kpi"><span class="eyebrow">Decisions on desk</span><b>4</b><small>+ 2 parked, non-blocking</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>2 / 25</b><small>AC retires only at 25 / 25 green</small></div>
+    </div>
+  </header>
+
+  <section id="gate">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule A</span>
+      <h2>Deploy Gate</h2>
+      <span class="chip open" style="margin-left:auto">Landed &middot; unverified</span>
+    </div>
+    <div class="card">
+      <p>Deploys and <code>git push</code> have been operator-gated all month: the auto-mode
+      classifier blocks Claude from running them &mdash; and, as of Aug 26, from writing its own
+      allow rules. <strong>The handoff&rsquo;s &ldquo;&#9888; UNGATE INCOMPLETE&rdquo; flag is now stale:</strong>
+      <code>.claude/settings.json</code> exists in the repo with all four allow rules
+      (<code>npx vercel deploy --prod</code> and <code>git push origin master</code>, Bash and
+      PowerShell forms). Two steps close this item:</p>
+      <ol class="steps">
+        <li>Next session, have Claude run <code>npx vercel deploy --prod</code> itself &mdash; the first
+        Claude-run deploy that goes through proves the ungate end to end.</li>
+        <li>Commit the file. It is untracked today; until it&rsquo;s committed, a fresh clone re-gates everything.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="smokes">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule B</span>
+      <h2>Operator Smokes</h2>
+      <span class="mono sched-count" id="smoke-count">0 / 5 checked</span>
+    </div>
+    <div class="smokes">
+      <label class="smoke">
+        <input type="checkbox" id="smk-1">
+        <span class="body">
+          <span class="head"><span class="mono eyebrow">SMK-1</span><span class="name">O-1 Operations sheet</span><span class="chip open">2 min</span></span>
+          <p class="desc">orangeoceanatlas.com &rarr; O-1 Operations &rarr; 18 categories / 88 procedures render
+          with overdue badges &rarr; expand &ldquo;Morning Opening Walkthrough&rdquo; &rarr; steps show &rarr;
+          &#10003; Complete links the oldest open occurrence.</p>
+        </span>
+      </label>
+      <label class="smoke">
+        <input type="checkbox" id="smk-2">
+        <span class="body">
+          <span class="head"><span class="mono eyebrow">SMK-2</span><span class="name">First 6 AM cron</span><span class="chip wait">Passive watch</span></span>
+          <p class="desc">Expect ONE AI-1 manager thread &ldquo;SOPs overdue &mdash; N procedures&rdquo; listing the
+          ~49-item backlog, August occurrences materialized, and the D-1 Automation card showing
+          <code>summary.sop</code>. Expected behavior, not a bug.</p>
+        </span>
+      </label>
+      <label class="smoke">
+        <input type="checkbox" id="smk-3">
+        <span class="body">
+          <span class="head"><span class="mono eyebrow">SMK-3</span><span class="name">Lease assembler</span><span class="chip open">2 min</span></span>
+          <p class="desc">Any unit drawer &rarr; Lease &rarr; fill a dummy deal on 131 &rarr; &#10515; DOCX opens in Word
+          (DRAFT stamp on top, Schedule G rows) &middot; &#10515; HTML shows the issuance checklist &middot;
+          &rarr; E-Sign creates a request row in the panel below (cancel it after).</p>
+        </span>
+      </label>
+      <label class="smoke">
+        <input type="checkbox" id="smk-4">
+        <span class="body">
+          <span class="head"><span class="mono eyebrow">SMK-4</span><span class="name">Manuals + intake form</span><span class="chip open">5 min</span></span>
+          <p class="desc">On the phone: sidebar &#128214; User manual link works &rarr; skim
+          <code>/manual/</code> &rarr; run one fill-through of the hosted intake form
+          (<code>/manual/intake-form.html</code>).</p>
+        </span>
+      </label>
+      <label class="smoke">
+        <input type="checkbox" id="smk-5">
+        <span class="body">
+          <span class="head"><span class="mono eyebrow">SMK-5</span><span class="name">First ACH payment</span><span class="chip wait">Waiting on the world</span></span>
+          <p class="desc">Send a payment link to yourself or a tenant. The unit ledger gains
+          <code>ach:&lt;pi_id&gt;</code> automatically and AI-1 self-announces &ldquo;First ACH payment
+          received &mdash; A-5 rail proven.&rdquo; Nothing to watch; ACH settles in days.</p>
+        </span>
+      </label>
+    </div>
+    <p class="smoke-note mono">Checkmarks save to this device only &mdash; they do not write back to the repo.</p>
+  </section>
+
+  <section id="waves">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule C</span>
+      <h2>Harvest Waves</h2>
+    </div>
+    <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 20px;">
+      Asset Command retires into Atlas by usage-driven harvest &mdash; live organs first, history second,
+      clean rebuilds third. Order below is operational risk. Nothing is dropped (operator ruling, Aug&nbsp;25).</p>
+    <div class="waves">
+      <div class="wave hot">
+        <div class="head"><span class="wid">H0</span><span class="wname">Runbook housekeeping</span><span class="chip hot">Due this week</span></div>
+        <p>Cancel Manus before the Aug 27 renewal &mdash; <strong>that date is today; verify it&rsquo;s executed.</strong>
+        Do not blanket-enable AC&rsquo;s scheduler (nine jobs, several unwanted &mdash; per-job runbook in the
+        Asset Command folder). Rotate AC&rsquo;s 9 exposed secrets: AC holds live data through the whole
+        harvest, so its security debt stays urgent until decommission.</p>
+      </div>
+      <div class="wave">
+        <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Open</span></div>
+        <p>Pick the single phone stack &mdash; Atlas&rsquo; Twilio bridge is the keeper (truthful-booking guard,
+        tested). Repoint or port the number AC&rsquo;s Vapi/Retell agent answers; AC&rsquo;s voice-intake history
+        imports as reference.</p>
+        <div class="data">62 rows import &middot; blocked by decision H-2</div>
+      </div>
+      <div class="wave">
+        <div class="head"><span class="wid">H1.2</span><span class="wname">Work orders</span><span class="chip open">Open</span></div>
+        <p>Import AC&rsquo;s active work orders into <code>maintenance_requests</code> + events (timestamps
+        preserved as note events). One gap to build: token-link UX for unauthenticated vendor uploads.</p>
+        <div class="data">24 WOs import &middot; tenants/vendors move to M-1</div>
+      </div>
+      <div class="wave done">
+        <div class="head"><span class="wid">H1.3</span><span class="wname">SOP module</span><span class="chip done">Done &middot; live on prod</span></div>
+        <p>5 typed tables + RLS, the O-1 Operations sheet, and the auto-trigger reminder leg.
+        Deployed and verified Aug 27; remaining follow-through is SMK-1 and SMK-2 above.</p>
+        <div class="data">506 rows imported checksum-clean &middot; 18 / 88 / 320 / 71 / 9</div>
+      </div>
+      <div class="wave">
+        <div class="head"><span class="wid">H2</span><span class="wname">History import</span><span class="chip open">Open</span></div>
+        <p>The predecessor record moves over: rent payments (shape per H-1), compliance events with a
+        <code>source:'ac'</code> marker, documents + floor plans into the K-1 register, escalations and
+        abstractions as lease-assembler reference data, late-fee/invoice history as a flat archive in
+        S-1, and the ~12 real AC users invited per H-3.</p>
+        <div class="data">313 payments / $1.13M &middot; 698 compliance &middot; 247 docs + 57 plans &middot; 83 + 24 lease rows</div>
+      </div>
+      <div class="wave">
+        <div class="head"><span class="wid">H2.5</span><span class="wname">Parity rebuilds &mdash; four groups</span><span class="chip open">Open</span></div>
+        <p>Clean builds in Atlas idiom, shipped independently in value order:
+        <strong>Money &amp; Accounting</strong> (invoices &middot; CAM recon &middot; accounting/QBO) &rarr;
+        <strong>Tenant &amp; Leasing</strong> (tenant portal &middot; abstraction &middot; deal pipeline) &rarr;
+        <strong>Documents &amp; Matters</strong> (expiry scans &middot; governance &middot; N-1 Matters &middot; N-2 meeting notes) &rarr;
+        <strong>Intelligence &amp; Comms</strong> (board reports &middot; tenant health &middot; communications hub).</p>
+      </div>
+      <div class="wave gated">
+        <div class="head"><span class="wid">H3</span><span class="wname">Decommission AC</span><span class="chip hot">Gated on register</span></div>
+        <p>AC does not retire until every register row below is parity-verified, ported, or rebuilt.
+        Then: per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset
+        assetcommand.orangeocean.com &rarr; archive both repos.
+        <code>orangeoceanassetcommand.com</code> lapses at its Sep 26, 2026 transfer date.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="decisions">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule D</span>
+      <h2>Decisions Required</h2>
+    </div>
+    <div class="decisions">
+      <div class="decision">
+        <div class="head"><span class="did">H-1</span><span class="q">Rent-history shape</span></div>
+        <p>13 months / $1.13M of AC rent payments: <strong>(a)</strong> import as pre-Aug archival
+        ledger entries, or <strong>(b)</strong> a read-only <code>payment_history</code> table surfaced
+        in the unit drawer. The decision doc leans (b) &mdash; the append-only ledger stays born-clean.</p>
+        <div class="unblocks">&rarr; unblocks H2 rent import</div>
+      </div>
+      <div class="decision">
+        <div class="head"><span class="did">H-2</span><span class="q">Phone-number strategy</span></div>
+        <p>Port the number AC&rsquo;s agent answers over to the Twilio bridge, or publish the bridge&rsquo;s
+        number and retire AC&rsquo;s. Turns entirely on which number tenants actually have saved.</p>
+        <div class="unblocks">&rarr; unblocks H1.1 voice cutover</div>
+      </div>
+      <div class="decision">
+        <div class="head"><span class="did">H-3</span><span class="q">AC user role mapping</span></div>
+        <p>Which of AC&rsquo;s 9 real <code>user</code>-role accounts map to owner / vendor / tenant in
+        <code>org_members</code>. (The 64 synthetic &ldquo;owner&rdquo; accounts are noise &mdash; not invited.)</p>
+        <div class="unblocks">&rarr; unblocks H2 user invitations</div>
+      </div>
+      <div class="decision">
+        <div class="head"><span class="did">OWN-1</span><span class="q">Owner sheet set</span></div>
+        <p>Owners currently see ALL 13 sheets (including comp, board, maintenance, vendors, AI) &mdash;
+        a global setting, not per-person. Trim to the classic five (dash &middot; plan &middot; roll &middot;
+        fin &middot; safe) before Dickey&rsquo;s first sign-in? Raised Aug 10; unanswered.</p>
+        <div class="unblocks">&rarr; unblocks nothing, but gates his first impression</div>
+      </div>
+    </div>
+    <p class="parked"><strong>Parked, non-blocking:</strong> error-vendor upgrade (the no-vendor baseline
+    is live &mdash; Sentry / log drains remain menu items) &middot; auto-deploy-on-green-CI.</p>
+  </section>
+
+  <section id="register">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule E</span>
+      <h2>Capability Register</h2>
+      <span class="mono sched-count">the H3 gate &middot; 2 / 25 green</span>
+    </div>
+    <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
+      Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
+      each goes green by parity verification, port, or rebuild.</p>
+    <div class="reg-grid">
+      <div class="cell port"    title="1 · Voice intake → Twilio bridge (PORT, H1.1)">1</div>
+      <div class="cell port"    title="2 · Work orders + vendor uploads → M-1 / V-1 (PORT, H1.2)">2</div>
+      <div class="cell done"    title="3 · SOP system → O-1 Operations (PORTED Aug 25)">3</div>
+      <div class="cell parity"  title="4 · Rent tracking + AR → Ledger + P-1 (PARITY, history per H-1)">4</div>
+      <div class="cell rebuild" title="5 · Invoices + late fees → Ledger family (REBUILD)">5</div>
+      <div class="cell rebuild" title="6 · CAM reconciliation → P-1 family (REBUILD)">6</div>
+      <div class="cell rebuild" title="7 · Accounting / QBO → new accounting layer (REBUILD)">7</div>
+      <div class="cell rebuild" title="8 · Governance → S-1 + T-1 (REBUILD)">8</div>
+      <div class="cell rebuild" title="9 · Tenant portal → expanded tenant role (REBUILD)">9</div>
+      <div class="cell port"    title="10 · Lease abstraction + escalations → Lease panel (PORT)">10</div>
+      <div class="cell rebuild" title="11 · Deal pipeline → W-1 family + AI-1 (REBUILD)">11</div>
+      <div class="cell rebuild" title="12 · Board reports → owner_briefs family (REBUILD)">12</div>
+      <div class="cell parity"  title="13 · NOI + tenant health → P-1 + run_calc (PARITY + gap)">13</div>
+      <div class="cell rebuild" title="14 · Communications hub → new (REBUILD)">14</div>
+      <div class="cell parity"  title="15 · NL query → AI-1 grounded digest (PARITY in some form)">15</div>
+      <div class="cell rebuild" title="16 · Document expiry scans → K-1 generalized (REBUILD)">16</div>
+      <div class="cell port"    title="17 · Documents / register → K-1 + bucket (PORT)">17</div>
+      <div class="cell rebuild" title="18 · HVAC + predictive maintenance → typed table + T-1 (REBUILD)">18</div>
+      <div class="cell parity"  title="19 · Spatial datasets → A-1 / A-2 / K-1 (PARITY, reconcile)">19</div>
+      <div class="cell parity"  title="20 · Marketing assets → K-1 + brand kit (PARITY + gap)">20</div>
+      <div class="cell done"    title="21 · UniFi network card → D-1 (PARITY, done)">21</div>
+      <div class="cell ref"     title="22 · SaaS billing → deferred to pilot monetization (REF)">22</div>
+      <div class="cell parity"  title="23 · SOT import tooling → intake rail (PARITY + gap)">23</div>
+      <div class="cell parity"  title="24 · Allowlist / superadmin / audit → membership lattice (PARITY)">24</div>
+      <div class="cell ref"     title="25 · Predecessor depth (notices, 1099s, workflow) → build on demand (REF)">25</div>
+    </div>
+    <div class="legend">
+      <span><span class="sw done"></span> done</span>
+      <span><span class="sw parity"></span> parity &mdash; verify &amp; close gaps</span>
+      <span><span class="sw port"></span> port &mdash; mechanism + data</span>
+      <span><span class="sw rebuild"></span> rebuild in Atlas idiom</span>
+      <span><span class="sw ref"></span> reference only</span>
+    </div>
+    <details class="reg-index">
+      <summary>Register index &mdash; all 25 rows</summary>
+      <ul class="reg-list">
+        <li><b>1</b> Voice intake <span class="st b">PORT</span></li>
+        <li><b>2</b> Work orders + vendor uploads <span class="st b">PORT</span></li>
+        <li><b>3</b> SOP system <span class="st g">DONE</span></li>
+        <li><b>4</b> Rent tracking + AR <span class="st g">PARITY</span></li>
+        <li><b>5</b> Invoices + late fees <span class="st s">REBUILD</span></li>
+        <li><b>6</b> CAM reconciliation <span class="st s">REBUILD</span></li>
+        <li><b>7</b> Accounting / QuickBooks <span class="st s">REBUILD</span></li>
+        <li><b>8</b> Governance suite <span class="st s">REBUILD</span></li>
+        <li><b>9</b> Tenant portal <span class="st s">REBUILD</span></li>
+        <li><b>10</b> Lease abstraction + escalations <span class="st b">PORT</span></li>
+        <li><b>11</b> Deal pipeline + waitlist <span class="st s">REBUILD</span></li>
+        <li><b>12</b> Board + stakeholder reports <span class="st s">REBUILD</span></li>
+        <li><b>13</b> NOI valuation + tenant health <span class="st g">PARITY</span></li>
+        <li><b>14</b> Communications hub <span class="st s">REBUILD</span></li>
+        <li><b>15</b> NL query <span class="st g">PARITY</span></li>
+        <li><b>16</b> Document expiry scanning <span class="st s">REBUILD</span></li>
+        <li><b>17</b> Documents + register categories <span class="st b">PORT</span></li>
+        <li><b>18</b> HVAC + predictive maintenance <span class="st s">REBUILD</span></li>
+        <li><b>19</b> Spatial datasets <span class="st g">PARITY</span></li>
+        <li><b>20</b> Marketing assets <span class="st g">PARITY</span></li>
+        <li><b>21</b> UniFi network card <span class="st g">DONE</span></li>
+        <li><b>22</b> SaaS billing <span class="st s">REF</span></li>
+        <li><b>23</b> SOT import tooling <span class="st g">PARITY</span></li>
+        <li><b>24</b> Allowlist / superadmin / audit <span class="st g">PARITY</span></li>
+        <li><b>25</b> Predecessor depth (notices, 1099s) <span class="st s">REF</span></li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="notes" class="notes">
+    <div class="schedule-label">
+      <span class="eyebrow">General Notes</span>
+      <h2>Notes</h2>
+    </div>
+    <ol>
+      <li>Source of truth: HANDOFF.md + docs/platform-consolidation-decision-2026-08-25.md,
+      read 2026-08-27. The repo supersedes this sheet the moment either changes.</li>
+      <li>Waiting on the world, no action owed: first ACH payment (self-announcing in AI-1)
+      &middot; C-3 pilot signature.</li>
+      <li>The first 6 AM cron after the SOP deploy opens the ~49-item overdue digest and
+      materializes August occurrences &mdash; expected, not a bug.</li>
+      <li>Build health at snapshot: 399 tests green &middot; prod bundle content-hash verified
+      against the deployed commit.</li>
+      <li>New-capability north star: &ldquo;open Atlas, never open another program&rdquo; &mdash;
+      N-1 Matters &amp; Planning, N-2 meeting-notes ingestion, N-3 accounting home ride Wave H2.5.</li>
+    </ol>
+  </section>
+
+  <footer class="titleblock">
+    <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
+    <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-08-27</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">1</span></div>
+    <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
+    <div class="tb"><span class="lab">Approved</span><span class="val">&mdash;</span></div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY = 'atlas-punch-g1-smokes';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.smoke input[type=checkbox]'));
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    var count = document.getElementById('smoke-count');
+    var kpi = document.getElementById('kpi-smokes');
+    if (count) count.textContent = done + ' / ' + boxes.length + ' checked';
+    if (kpi) kpi.textContent = String(boxes.length - done);
+  }
+  boxes.forEach(function(cb){
+    if (state[cb.id]) cb.checked = true;
+    cb.addEventListener('change', function(){
+      state[cb.id] = cb.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+      render();
+    });
+  });
+  render();
+})();
+</script>
