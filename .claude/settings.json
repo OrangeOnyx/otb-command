@@ -1,0 +1,14 @@
+﻿{
+  "permissions": {
+    "allow": [
+      "Bash(npx vercel deploy --prod)",
+      "Bash(npx vercel deploy --prod:*)",
+      "Bash(git push origin master)",
+      "Bash(git push origin master:*)",
+      "PowerShell(npx vercel deploy --prod)",
+      "PowerShell(npx vercel deploy --prod:*)",
+      "PowerShell(git push origin master)",
+      "PowerShell(git push origin master:*)"
+    ]
+  }
+}
