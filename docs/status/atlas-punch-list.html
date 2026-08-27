@@ -303,22 +303,27 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule A</span>
       <h2>Deploy Gate</h2>
-      <span class="chip open" id="gate-chip" style="margin-left:auto">Landed &middot; unverified</span>
+      <span class="chip open" id="gate-chip" style="margin-left:auto">Auto gated &middot; file in place</span>
     </div>
     <div class="card">
-      <p>Deploys and <code>git push</code> have been operator-gated all month: the auto-mode
-      classifier blocks Claude from running them &mdash; and, as of Aug 26, from writing its own
-      allow rules. <strong>The handoff&rsquo;s &ldquo;&#9888; UNGATE INCOMPLETE&rdquo; flag is now stale:</strong>
-      <code>.claude/settings.json</code> exists in the repo with all four allow rules
-      (<code>npx vercel deploy --prod</code> and <code>git push origin master</code>, Bash and
-      PowerShell forms). Two steps close this item &mdash; check them off as they land:</p>
+      <p><strong>Your part is done:</strong> <code>.claude/settings.json</code> exists with all
+      four allow rules (<code>npx vercel deploy --prod</code> and <code>git push origin
+      master</code>, Bash and PowerShell forms) &mdash; the step the handoff asked for. This gate
+      is about un-gating <em>Claude</em> to deploy and push going forward; the H1.3 prod deploy
+      itself is DONE (Schedule C).</p>
+      <p><strong>Tested live Aug 27 (auto-mode session):</strong> the classifier still blocked
+      even a zero-effect <code>git push --dry-run</code>, and separately blocked Claude
+      committing the settings file (it can&rsquo;t persist its own permission grants, by any
+      route). So auto-mode sessions stay operator-gated regardless of the file. The rules
+      should still let regular interactive sessions run these without prompting &mdash;
+      unproven until one lands. Two steps remain:</p>
       <div class="tasks">
         <div class="task" data-task="g-1">
           <div class="seg" role="group" aria-label="Gate step 1">
             <button type="button" class="b-open" data-tsk="g-1" data-set="open" aria-pressed="true">Open</button>
             <button type="button" class="b-pass" data-tsk="g-1" data-set="done" aria-pressed="false">Done</button>
           </div>
-          <span class="tname">Claude-run <code>npx vercel deploy --prod</code> goes through &mdash; ungate proven end to end</span>
+          <span class="tname">You commit <code>.claude/settings.json</code> &mdash; Claude is classifier-blocked from committing it</span>
           <span class="stamp" data-tstamp="g-1"></span>
         </div>
         <div class="task" data-task="g-2">
@@ -326,7 +331,7 @@ const BODY = `
             <button type="button" class="b-open" data-tsk="g-2" data-set="open" aria-pressed="true">Open</button>
             <button type="button" class="b-pass" data-tsk="g-2" data-set="done" aria-pressed="false">Done</button>
           </div>
-          <span class="tname">Commit <code>.claude/settings.json</code> so the rules survive a fresh clone</span>
+          <span class="tname">First Claude-run deploy or push goes through in a regular (non-auto) session</span>
           <span class="stamp" data-tstamp="g-2"></span>
         </div>
       </div>
@@ -878,7 +883,7 @@ function decorate(){
   if (gateChip) {
     var gateDone = state.tasks["g-1"].s === "done" && state.tasks["g-2"].s === "done";
     gateChip.className = "chip " + (gateDone ? "done" : "open");
-    gateChip.textContent = gateDone ? "Closed · verified" : "Landed · unverified";
+    gateChip.textContent = gateDone ? "Closed · verified" : "Auto gated · file in place";
   }
   var h0Chip = document.getElementById("h0-chip");
   var h0Wave = document.querySelector('[data-wave="h0"]');
