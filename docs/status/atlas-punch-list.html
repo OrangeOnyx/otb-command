@@ -1,7 +1,19 @@
 <title>Atlas Punch List</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
-<style>
+<style>body{margin:0;background:#EDEFE8}@media (prefers-color-scheme:dark){body{background:#151B18}}</style>
+<div id="root"></div>
+<script id="app">
+"use strict";
+/* Atlas Punch List — rev 2 (interactive Schedule B).
+   Canonical source lives in this script: CSS + BODY constants + fullDoc().
+   Smoke state is embedded between the markers below and rewritten on save. */
+const STATE = /*__STATE__*/{"rev":0,"saved":null,"smokes":{}}/*__END__*/;
+
+const APP_EL = document.currentScript;
+const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5"];
+const DRAFT_KEY = "atlas-punch-draft-r2";
+
+const CSS = `
   :root{
     --paper:#EDEFE8; --card:#F6F7F1; --ink:#1C2B26; --soft:#5F6E64;
     --line:#C7CDC1; --rule:#1C2B26;
@@ -58,8 +70,6 @@
   }
   .mast-date{color:var(--soft); font-size:12px; letter-spacing:.1em; text-transform:uppercase;}
   .lede{max-width:62ch; color:var(--soft); margin:0; font-size:15.5px;}
-
-  /* KPI strip */
   .kpis{
     display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));
     gap:0; border:1px solid var(--rule); margin:26px 0 8px; background:var(--card);
@@ -72,15 +82,13 @@
   }
   .kpi small{color:var(--soft); font-size:12.5px; line-height:1.4; display:block;}
   @media (max-width:640px){ .kpi{border-right:0; border-bottom:1px solid var(--line);} .kpi:last-child{border-bottom:0} }
-
   section{margin-top:44px;}
-  .schedule-label{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--rule); padding-bottom:8px; margin-bottom:18px;}
+  .schedule-label{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; border-bottom:1px solid var(--rule); padding-bottom:8px; margin-bottom:18px;}
   h2{
     font-family:"Big Shoulders Display",sans-serif; font-weight:600; font-size:30px;
     letter-spacing:.02em; text-transform:uppercase; margin:0;
   }
   .sched-count{margin-left:auto; color:var(--soft); font-size:12px; letter-spacing:.08em;}
-
   .chip{
     display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:10.5px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
@@ -90,7 +98,6 @@
   .chip.open{color:var(--brass); background:var(--brass-tint);}
   .chip.hot{color:var(--brick); background:var(--brick-tint);}
   .chip.wait{color:var(--soft); background:var(--slate-tint);}
-
   .card{background:var(--card); border:1px solid var(--line); padding:20px 22px;}
   .card p{margin:.5em 0; max-width:72ch;}
   .card p:first-child{margin-top:0}
@@ -100,26 +107,59 @@
   }
   ol.steps{margin:.6em 0 0; padding-left:1.3em;}
   ol.steps li{margin:.35em 0; max-width:70ch;}
-
-  /* Smoke checklist */
   .smokes{display:flex; flex-direction:column; gap:10px;}
   .smoke{
-    display:flex; gap:14px; align-items:flex-start; background:var(--card);
-    border:1px solid var(--line); padding:14px 18px; transition:opacity .25s;
+    background:var(--card); border:1px solid var(--line);
+    border-left:3px solid transparent; padding:14px 18px;
   }
-  .smoke input{
-    width:19px; height:19px; margin-top:4px; flex:none; accent-color:var(--green); cursor:pointer;
-  }
-  .smoke input:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
-  .smoke .body{flex:1; min-width:0;}
+  .smoke[data-s="pass"]{border-left-color:var(--green);}
+  .smoke[data-s="pass"] .name, .smoke[data-s="pass"] .desc{opacity:.6;}
+  .smoke[data-s="fail"]{border-left-color:var(--brick); background:var(--brick-tint);}
   .smoke .head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; margin-bottom:2px;}
-  .smoke .name{font-weight:600; font-size:15.5px; cursor:pointer;}
+  .smoke .name{font-weight:600; font-size:15.5px;}
   .smoke .desc{color:var(--soft); font-size:14px; margin:0; max-width:76ch;}
-  .smoke:has(input:checked){opacity:.5;}
-  .smoke:has(input:checked) .name{text-decoration:line-through; text-decoration-thickness:1px;}
-  .smoke-note{color:var(--soft); font-size:12px; margin-top:10px;}
-
-  /* Wave rail */
+  .smoke .ctrl{display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin-top:12px;}
+  .seg{display:inline-flex; border:1px solid var(--line); background:var(--card);}
+  .seg button{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; padding:6px 13px 5px;
+    background:transparent; color:var(--soft); border:0; border-right:1px solid var(--line);
+    cursor:pointer; transition:background .15s,color .15s;
+  }
+  .seg button:last-child{border-right:0}
+  .seg button:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .seg button[aria-pressed="true"].b-open{background:var(--slate-tint); color:var(--ink);}
+  .seg button[aria-pressed="true"].b-pass{background:var(--green); color:var(--card);}
+  .seg button[aria-pressed="true"].b-fail{background:var(--brick); color:var(--card);}
+  .seg button:disabled{cursor:default; opacity:.55}
+  .stamp{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--soft);}
+  .stamp.pass{color:var(--green);} .stamp.fail{color:var(--brick);}
+  .note{
+    flex:1; min-width:min(240px,100%); font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12.5px; color:var(--ink); background:transparent; border:0;
+    border-bottom:1px dashed var(--line); padding:5px 2px;
+  }
+  .note:focus{outline:none; border-bottom:1px solid var(--brass);}
+  .note::placeholder{color:var(--soft); opacity:.75}
+  .note:disabled{opacity:.55}
+  .smoke-note{color:var(--soft); font-size:12px; margin-top:10px; max-width:80ch;}
+  .savebar{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:18px; z-index:20;
+    display:none; align-items:center; gap:8px 14px; flex-wrap:wrap;
+    background:var(--ink); color:var(--paper); border:1px solid var(--rule);
+    padding:10px 12px 10px 18px; max-width:min(92vw,640px);
+    box-shadow:0 8px 28px rgba(0,0,0,.28);
+  }
+  .savebar.on{display:flex}
+  .savebar .msg{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; letter-spacing:.03em;}
+  .savebar button{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--paper);
+    background:transparent; color:var(--paper); padding:7px 14px 6px; cursor:pointer;
+  }
+  .savebar button.primary{background:var(--brass); border-color:var(--brass); color:#fff;}
+  .savebar button:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
+  .savebar button:disabled{opacity:.6; cursor:default}
   .waves{border-left:2px solid var(--rule); margin-left:8px; padding-left:0;}
   .wave{position:relative; padding:0 0 26px 26px;}
   .wave:last-child{padding-bottom:4px;}
@@ -138,8 +178,6 @@
     font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--soft);
     margin-top:6px; letter-spacing:.02em;
   }
-
-  /* Decisions */
   .decisions{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px;}
   .decision{background:var(--card); border:1px solid var(--line); border-top:3px solid var(--brick); padding:16px 18px;}
   .decision .head{display:flex; gap:10px; align-items:baseline; margin-bottom:6px;}
@@ -154,8 +192,6 @@
     color:var(--anchor); letter-spacing:.04em; margin-top:10px;
   }
   .parked{margin-top:14px; color:var(--soft); font-size:13.5px; max-width:76ch;}
-
-  /* Register grid */
   .reg-grid{
     display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr));
     gap:6px; margin-bottom:14px;
@@ -165,7 +201,7 @@
     font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px; font-weight:500;
     border:1px solid var(--line); color:var(--ink); background:var(--card); cursor:default;
   }
-  .cell.done{background:var(--green); border-color:var(--green); color:var(--card); font-weight:500;}
+  .cell.done{background:var(--green); border-color:var(--green); color:var(--card);}
   .cell.parity{border:2px solid var(--green); color:var(--green); background:var(--green-tint);}
   .cell.port{border:2px solid var(--brass); color:var(--brass); background:var(--brass-tint);}
   .cell.rebuild{background:var(--slate-tint); color:var(--soft);}
@@ -196,13 +232,11 @@
   .reg-list .st{float:right; font-size:10.5px; letter-spacing:.08em;}
   .st.g{color:var(--green)} .st.b{color:var(--brass)} .st.s{color:var(--soft)}
   @media (max-width:640px){ .reg-list{columns:1} }
-
-  /* Notes + title block */
   .notes ol{margin:0; padding-left:1.5em; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9; color:var(--soft);}
   .notes li{margin:.3em 0; max-width:80ch;}
   .titleblock{
     margin-top:48px; border:2px solid var(--rule); display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); background:var(--card);
+    grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); background:var(--card);
   }
   .tb{padding:10px 14px 12px; border-right:1px solid var(--line);}
   .tb:last-child{border-right:0}
@@ -213,22 +247,24 @@
   .tb .val{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; font-weight:500;}
   @media (max-width:640px){ .tb{border-right:0; border-bottom:1px solid var(--line);} .tb:last-child{border-bottom:0} }
   @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
-</style>
+`;
 
+const BODY = `
 <div class="sheet">
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Snapshot &middot; Aug 27, 2026 &middot; Rev 1</span>
+      <span class="mono mast-date">Content &middot; Aug 27, 2026 &middot; Rev 2</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one sheet: the deploy gate,
     the smokes on your desk, the harvest waves, and the decisions only you can make.
-    Compiled from <span class="mono">HANDOFF.md</span> and the Aug 25 consolidation decision.</p>
+    Schedule B is live &mdash; mark each smoke Pass or Fail, add a note, and Save: the sheet
+    records it where Claude can read it.</p>
 
     <div class="kpis mono">
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>1 / 3</b><small>SOP live &middot; voice line + work orders open</small></div>
-      <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small>open &middot; ~10 min active time total</small></div>
+      <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b>4</b><small>+ 2 parked, non-blocking</small></div>
       <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>2 / 25</b><small>AC retires only at 25 / 25 green</small></div>
     </div>
@@ -259,56 +295,82 @@
     <div class="schedule-label">
       <span class="eyebrow">Schedule B</span>
       <h2>Operator Smokes</h2>
-      <span class="mono sched-count" id="smoke-count">0 / 5 checked</span>
+      <span class="chip open" id="live-chip">Live &mdash; marks save to this sheet</span>
+      <span class="mono sched-count" id="smoke-count">no marks yet</span>
     </div>
     <div class="smokes">
-      <label class="smoke">
-        <input type="checkbox" id="smk-1">
-        <span class="body">
-          <span class="head"><span class="mono eyebrow">SMK-1</span><span class="name">O-1 Operations sheet</span><span class="chip open">2 min</span></span>
-          <p class="desc">orangeoceanatlas.com &rarr; O-1 Operations &rarr; 18 categories / 88 procedures render
-          with overdue badges &rarr; expand &ldquo;Morning Opening Walkthrough&rdquo; &rarr; steps show &rarr;
-          &#10003; Complete links the oldest open occurrence.</p>
-        </span>
-      </label>
-      <label class="smoke">
-        <input type="checkbox" id="smk-2">
-        <span class="body">
-          <span class="head"><span class="mono eyebrow">SMK-2</span><span class="name">First 6 AM cron</span><span class="chip wait">Passive watch</span></span>
-          <p class="desc">Expect ONE AI-1 manager thread &ldquo;SOPs overdue &mdash; N procedures&rdquo; listing the
-          ~49-item backlog, August occurrences materialized, and the D-1 Automation card showing
-          <code>summary.sop</code>. Expected behavior, not a bug.</p>
-        </span>
-      </label>
-      <label class="smoke">
-        <input type="checkbox" id="smk-3">
-        <span class="body">
-          <span class="head"><span class="mono eyebrow">SMK-3</span><span class="name">Lease assembler</span><span class="chip open">2 min</span></span>
-          <p class="desc">Any unit drawer &rarr; Lease &rarr; fill a dummy deal on 131 &rarr; &#10515; DOCX opens in Word
-          (DRAFT stamp on top, Schedule G rows) &middot; &#10515; HTML shows the issuance checklist &middot;
-          &rarr; E-Sign creates a request row in the panel below (cancel it after).</p>
-        </span>
-      </label>
-      <label class="smoke">
-        <input type="checkbox" id="smk-4">
-        <span class="body">
-          <span class="head"><span class="mono eyebrow">SMK-4</span><span class="name">Manuals + intake form</span><span class="chip open">5 min</span></span>
-          <p class="desc">On the phone: sidebar &#128214; User manual link works &rarr; skim
-          <code>/manual/</code> &rarr; run one fill-through of the hosted intake form
-          (<code>/manual/intake-form.html</code>).</p>
-        </span>
-      </label>
-      <label class="smoke">
-        <input type="checkbox" id="smk-5">
-        <span class="body">
-          <span class="head"><span class="mono eyebrow">SMK-5</span><span class="name">First ACH payment</span><span class="chip wait">Waiting on the world</span></span>
-          <p class="desc">Send a payment link to yourself or a tenant. The unit ledger gains
-          <code>ach:&lt;pi_id&gt;</code> automatically and AI-1 self-announces &ldquo;First ACH payment
-          received &mdash; A-5 rail proven.&rdquo; Nothing to watch; ACH settles in days.</p>
-        </span>
-      </label>
+      <div class="smoke" data-smoke="smk-1">
+        <div class="head"><span class="mono eyebrow">SMK-1</span><span class="name">O-1 Operations sheet</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-1"></span></div>
+        <p class="desc">orangeoceanatlas.com &rarr; O-1 Operations &rarr; 18 categories / 88 procedures render
+        with overdue badges &rarr; expand &ldquo;Morning Opening Walkthrough&rdquo; &rarr; steps show &rarr;
+        &#10003; Complete links the oldest open occurrence.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-1 result">
+            <button type="button" class="b-open" data-smk="smk-1" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-1" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-1" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-1" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-2">
+        <div class="head"><span class="mono eyebrow">SMK-2</span><span class="name">First 6 AM cron</span><span class="chip wait">Passive watch</span><span class="stamp" data-stamp="smk-2"></span></div>
+        <p class="desc">Expect ONE AI-1 manager thread &ldquo;SOPs overdue &mdash; N procedures&rdquo; listing the
+        ~49-item backlog, August occurrences materialized, and the D-1 Automation card showing
+        <code>summary.sop</code>. Expected behavior, not a bug.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-2 result">
+            <button type="button" class="b-open" data-smk="smk-2" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-2" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-2" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-2" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-3">
+        <div class="head"><span class="mono eyebrow">SMK-3</span><span class="name">Lease assembler</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-3"></span></div>
+        <p class="desc">Any unit drawer &rarr; Lease &rarr; fill a dummy deal on 131 &rarr; &#10515; DOCX opens in Word
+        (DRAFT stamp on top, Schedule G rows) &middot; &#10515; HTML shows the issuance checklist &middot;
+        &rarr; E-Sign creates a request row in the panel below (cancel it after).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-3 result">
+            <button type="button" class="b-open" data-smk="smk-3" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-3" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-3" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-3" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-4">
+        <div class="head"><span class="mono eyebrow">SMK-4</span><span class="name">Manuals + intake form</span><span class="chip open">5 min</span><span class="stamp" data-stamp="smk-4"></span></div>
+        <p class="desc">On the phone: sidebar &#128214; User manual link works &rarr; skim
+        <code>/manual/</code> &rarr; run one fill-through of the hosted intake form
+        (<code>/manual/intake-form.html</code>).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-4 result">
+            <button type="button" class="b-open" data-smk="smk-4" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-4" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-4" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-4" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-5">
+        <div class="head"><span class="mono eyebrow">SMK-5</span><span class="name">First ACH payment</span><span class="chip wait">Waiting on the world</span><span class="stamp" data-stamp="smk-5"></span></div>
+        <p class="desc">Send a payment link to yourself or a tenant. The unit ledger gains
+        <code>ach:&lt;pi_id&gt;</code> automatically and AI-1 self-announces &ldquo;First ACH payment
+        received &mdash; A-5 rail proven.&rdquo; Nothing to watch; ACH settles in days.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-5 result">
+            <button type="button" class="b-open" data-smk="smk-5" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-5" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-5" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-5" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
     </div>
-    <p class="smoke-note mono">Checkmarks save to this device only &mdash; they do not write back to the repo.</p>
+    <p class="smoke-note mono" id="save-stamp">No revision saved yet &mdash; marks publish to the sheet when you hit Save.</p>
   </section>
 
   <section id="waves">
@@ -419,31 +481,31 @@
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
       each goes green by parity verification, port, or rebuild.</p>
     <div class="reg-grid">
-      <div class="cell port"    title="1 · Voice intake → Twilio bridge (PORT, H1.1)">1</div>
-      <div class="cell port"    title="2 · Work orders + vendor uploads → M-1 / V-1 (PORT, H1.2)">2</div>
-      <div class="cell done"    title="3 · SOP system → O-1 Operations (PORTED Aug 25)">3</div>
-      <div class="cell parity"  title="4 · Rent tracking + AR → Ledger + P-1 (PARITY, history per H-1)">4</div>
-      <div class="cell rebuild" title="5 · Invoices + late fees → Ledger family (REBUILD)">5</div>
-      <div class="cell rebuild" title="6 · CAM reconciliation → P-1 family (REBUILD)">6</div>
-      <div class="cell rebuild" title="7 · Accounting / QBO → new accounting layer (REBUILD)">7</div>
-      <div class="cell rebuild" title="8 · Governance → S-1 + T-1 (REBUILD)">8</div>
-      <div class="cell rebuild" title="9 · Tenant portal → expanded tenant role (REBUILD)">9</div>
-      <div class="cell port"    title="10 · Lease abstraction + escalations → Lease panel (PORT)">10</div>
-      <div class="cell rebuild" title="11 · Deal pipeline → W-1 family + AI-1 (REBUILD)">11</div>
-      <div class="cell rebuild" title="12 · Board reports → owner_briefs family (REBUILD)">12</div>
-      <div class="cell parity"  title="13 · NOI + tenant health → P-1 + run_calc (PARITY + gap)">13</div>
-      <div class="cell rebuild" title="14 · Communications hub → new (REBUILD)">14</div>
-      <div class="cell parity"  title="15 · NL query → AI-1 grounded digest (PARITY in some form)">15</div>
-      <div class="cell rebuild" title="16 · Document expiry scans → K-1 generalized (REBUILD)">16</div>
-      <div class="cell port"    title="17 · Documents / register → K-1 + bucket (PORT)">17</div>
-      <div class="cell rebuild" title="18 · HVAC + predictive maintenance → typed table + T-1 (REBUILD)">18</div>
-      <div class="cell parity"  title="19 · Spatial datasets → A-1 / A-2 / K-1 (PARITY, reconcile)">19</div>
-      <div class="cell parity"  title="20 · Marketing assets → K-1 + brand kit (PARITY + gap)">20</div>
-      <div class="cell done"    title="21 · UniFi network card → D-1 (PARITY, done)">21</div>
-      <div class="cell ref"     title="22 · SaaS billing → deferred to pilot monetization (REF)">22</div>
-      <div class="cell parity"  title="23 · SOT import tooling → intake rail (PARITY + gap)">23</div>
-      <div class="cell parity"  title="24 · Allowlist / superadmin / audit → membership lattice (PARITY)">24</div>
-      <div class="cell ref"     title="25 · Predecessor depth (notices, 1099s, workflow) → build on demand (REF)">25</div>
+      <div class="cell port"    title="1 &middot; Voice intake &rarr; Twilio bridge (PORT, H1.1)">1</div>
+      <div class="cell port"    title="2 &middot; Work orders + vendor uploads &rarr; M-1 / V-1 (PORT, H1.2)">2</div>
+      <div class="cell done"    title="3 &middot; SOP system &rarr; O-1 Operations (PORTED Aug 25)">3</div>
+      <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY, history per H-1)">4</div>
+      <div class="cell rebuild" title="5 &middot; Invoices + late fees &rarr; Ledger family (REBUILD)">5</div>
+      <div class="cell rebuild" title="6 &middot; CAM reconciliation &rarr; P-1 family (REBUILD)">6</div>
+      <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
+      <div class="cell rebuild" title="8 &middot; Governance &rarr; S-1 + T-1 (REBUILD)">8</div>
+      <div class="cell rebuild" title="9 &middot; Tenant portal &rarr; expanded tenant role (REBUILD)">9</div>
+      <div class="cell port"    title="10 &middot; Lease abstraction + escalations &rarr; Lease panel (PORT)">10</div>
+      <div class="cell rebuild" title="11 &middot; Deal pipeline &rarr; W-1 family + AI-1 (REBUILD)">11</div>
+      <div class="cell rebuild" title="12 &middot; Board reports &rarr; owner_briefs family (REBUILD)">12</div>
+      <div class="cell parity"  title="13 &middot; NOI + tenant health &rarr; P-1 + run_calc (PARITY + gap)">13</div>
+      <div class="cell rebuild" title="14 &middot; Communications hub &rarr; new (REBUILD)">14</div>
+      <div class="cell parity"  title="15 &middot; NL query &rarr; AI-1 grounded digest (PARITY in some form)">15</div>
+      <div class="cell rebuild" title="16 &middot; Document expiry scans &rarr; K-1 generalized (REBUILD)">16</div>
+      <div class="cell port"    title="17 &middot; Documents / register &rarr; K-1 + bucket (PORT)">17</div>
+      <div class="cell rebuild" title="18 &middot; HVAC + predictive maintenance &rarr; typed table + T-1 (REBUILD)">18</div>
+      <div class="cell parity"  title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (PARITY, reconcile)">19</div>
+      <div class="cell parity"  title="20 &middot; Marketing assets &rarr; K-1 + brand kit (PARITY + gap)">20</div>
+      <div class="cell done"    title="21 &middot; UniFi network card &rarr; D-1 (PARITY, done)">21</div>
+      <div class="cell ref"     title="22 &middot; SaaS billing &rarr; deferred to pilot monetization (REF)">22</div>
+      <div class="cell parity"  title="23 &middot; SOT import tooling &rarr; intake rail (PARITY + gap)">23</div>
+      <div class="cell parity"  title="24 &middot; Allowlist / superadmin / audit &rarr; membership lattice (PARITY)">24</div>
+      <div class="cell ref"     title="25 &middot; Predecessor depth (notices, 1099s, workflow) &rarr; build on demand (REF)">25</div>
     </div>
     <div class="legend">
       <span><span class="sw done"></span> done</span>
@@ -496,6 +558,9 @@
       &middot; C-3 pilot signature.</li>
       <li>The first 6 AM cron after the SOP deploy opens the ~49-item overdue digest and
       materializes August occurrences &mdash; expected, not a bug.</li>
+      <li>Schedule B marks publish a new revision of this sheet itself &mdash; every viewer sees
+      them, and Claude reads them. After saving, tell any Claude session &ldquo;read the punch
+      list&rdquo;; a session already watching this sheet is notified the moment you save.</li>
       <li>Build health at snapshot: 399 tests green &middot; prod bundle content-hash verified
       against the deployed commit.</li>
       <li>New-capability north star: &ldquo;open Atlas, never open another program&rdquo; &mdash;
@@ -507,33 +572,237 @@
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-08-27</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">1</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">2</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
-    <div class="tb"><span class="lab">Approved</span><span class="val">&mdash;</span></div>
+    <div class="tb"><span class="lab">Smoke state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
 </div>
 
-<script>
-(function(){
-  var KEY = 'atlas-punch-g1-smokes';
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('.smoke input[type=checkbox]'));
-  var state = {};
-  try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
-  function render(){
-    var done = boxes.filter(function(b){ return b.checked; }).length;
-    var count = document.getElementById('smoke-count');
-    var kpi = document.getElementById('kpi-smokes');
-    if (count) count.textContent = done + ' / ' + boxes.length + ' checked';
-    if (kpi) kpi.textContent = String(boxes.length - done);
+<div class="savebar" id="savebar">
+  <span class="msg" id="save-msg" aria-live="polite">Unsaved marks</span>
+  <button type="button" id="btn-discard">Discard</button>
+  <button type="button" class="primary" id="btn-save">Save to sheet</button>
+</div>
+`;
+
+/* ------------------------------------------------------------------ */
+
+function ensureAssets(){
+  if (!document.getElementById("punch-css")) {
+    var l1 = document.createElement("link"); l1.rel = "preconnect"; l1.href = "https://fonts.googleapis.com";
+    var l2 = document.createElement("link"); l2.rel = "stylesheet"; l2.href = FONTS;
+    var st = document.createElement("style"); st.id = "punch-css"; st.textContent = CSS;
+    document.head.appendChild(l1); document.head.appendChild(l2); document.head.appendChild(st);
   }
-  boxes.forEach(function(cb){
-    if (state[cb.id]) cb.checked = true;
-    cb.addEventListener('change', function(){
-      state[cb.id] = cb.checked;
-      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
-      render();
+}
+
+function fullDoc(appSrc){
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '<title>Atlas Punch List</title>\n' +
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
+    '<link rel="stylesheet" href="' + FONTS + '">\n' +
+    '<style>body{margin:0;background:#EDEFE8}@media (prefers-color-scheme:dark){body{background:#151B18}}</style>\n' +
+    '<style id="punch-css">' + CSS + '</style>\n' +
+    '</head>\n<body>\n<div id="root"></div>\n' +
+    '<script id="app">' + appSrc + '<\/scr' + 'ipt>\n</body>\n</html>';
+}
+
+var MARK_S = "/*__STATE" + "__*/", MARK_E = "/*__END" + "__*/";
+function withState(src, st){
+  var json = JSON.stringify(st).replace(/</g, "\\u003c");
+  var i = src.indexOf(MARK_S), j = src.indexOf(MARK_E);
+  if (i < 0 || j < 0) throw new Error("state markers missing");
+  return src.slice(0, i + MARK_S.length) + json + src.slice(j);
+}
+
+function normSmokes(smokes){
+  var out = {};
+  SMOKE_IDS.forEach(function(id){
+    var e = (smokes && smokes[id]) || {};
+    out[id] = { s: e.s === "pass" || e.s === "fail" ? e.s : "open", note: e.note || "", at: e.at || "" };
+  });
+  return out;
+}
+
+var state = { rev: STATE.rev || 0, saved: STATE.saved || null, smokes: normSmokes(STATE.smokes) };
+var baseline = JSON.stringify(state.smokes);
+var readOnly = false, busy = false;
+var capPromise = (window.claude && window.claude.use)
+  ? window.claude.use("artifact").then(function(ns){ return ns || window.claude.use("self"); })
+  : Promise.resolve(null);
+
+function fmtDay(iso){
+  try { return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" }); }
+  catch (e) { return ""; }
+}
+function fmtWhen(iso){
+  try { return new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); }
+  catch (e) { return ""; }
+}
+
+function decorate(){
+  SMOKE_IDS.forEach(function(id){
+    var e = state.smokes[id];
+    var row = document.querySelector('[data-smoke="' + id + '"]');
+    if (!row) return;
+    row.setAttribute("data-s", e.s);
+    row.querySelectorAll('[data-smk="' + id + '"]').forEach(function(btn){
+      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-set") === e.s));
+      btn.disabled = readOnly;
+    });
+    var note = row.querySelector('[data-note="' + id + '"]');
+    if (note && note.value !== e.note) note.value = e.note;
+    if (note) note.disabled = readOnly;
+    var stamp = row.querySelector('[data-stamp="' + id + '"]');
+    if (stamp) {
+      stamp.className = "stamp" + (e.s !== "open" ? " " + e.s : "");
+      stamp.textContent = e.s === "open" ? "" : e.s.toUpperCase() + (e.at ? " · " + e.at : "");
+    }
+  });
+  var pass = 0, fail = 0, open = 0;
+  SMOKE_IDS.forEach(function(id){
+    var s = state.smokes[id].s;
+    if (s === "pass") pass++; else if (s === "fail") fail++; else open++;
+  });
+  var count = document.getElementById("smoke-count");
+  if (count) count.textContent = pass + " pass · " + fail + " fail · " + open + " open";
+  var kpi = document.getElementById("kpi-smokes");
+  var sub = document.getElementById("kpi-smokes-sub");
+  if (kpi) kpi.textContent = String(open + fail);
+  if (sub) sub.textContent = fail > 0
+    ? "unresolved · " + fail + " FAILED · " + pass + " passed"
+    : (pass > 0 ? "open · " + pass + " passed" : "open · none marked yet");
+  var stampLine = document.getElementById("save-stamp");
+  if (stampLine) stampLine.textContent = state.saved
+    ? "Smoke state r" + state.rev + " · saved " + fmtWhen(state.saved) + " · marks publish to the sheet when you hit Save."
+    : "No revision saved yet — marks publish to the sheet when you hit Save.";
+  var tb = document.getElementById("tb-state");
+  if (tb) tb.textContent = state.saved ? "r" + state.rev + " · " + fmtDay(state.saved) : "r0 · unsaved";
+  syncSavebar();
+}
+
+function dirty(){ return JSON.stringify(state.smokes) !== baseline; }
+
+function syncSavebar(msg){
+  var bar = document.getElementById("savebar");
+  var m = document.getElementById("save-msg");
+  var save = document.getElementById("btn-save");
+  var disc = document.getElementById("btn-discard");
+  if (!bar) return;
+  if (readOnly) {
+    bar.classList.add("on");
+    m.textContent = "This view is read-only — marks here can’t be saved to the sheet.";
+    save.style.display = "none"; disc.style.display = "none";
+    return;
+  }
+  bar.classList.toggle("on", dirty() || busy || !!msg);
+  m.textContent = msg || (busy ? "Saving…" : "Unsaved marks — Save publishes them for every viewer, and for Claude.");
+  save.disabled = busy; disc.disabled = busy;
+  save.textContent = busy ? "Saving…" : "Save to sheet";
+}
+
+function stashDraft(){
+  try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(state.smokes)); } catch (e) {}
+}
+function clearDraft(){
+  try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) {}
+}
+function restoreDraft(){
+  var raw = null;
+  try { raw = sessionStorage.getItem(DRAFT_KEY); } catch (e) {}
+  if (!raw) return;
+  if (raw === baseline) { clearDraft(); return; }
+  try {
+    state.smokes = normSmokes(JSON.parse(raw));
+    decorate();
+    syncSavebar("Restored unsaved marks from before the last reload — Save to keep them.");
+  } catch (e) { clearDraft(); }
+}
+
+async function doSave(){
+  if (busy || readOnly) return;
+  busy = true; syncSavebar();
+  stashDraft();
+  var cap = null;
+  try { cap = await capPromise; } catch (e) { cap = null; }
+  if (!cap) {
+    busy = false;
+    syncSavebar("Saving isn’t available in this view — open the sheet in the Claude artifact viewer to save.");
+    return;
+  }
+  var next = { rev: state.rev + 1, saved: new Date().toISOString(), smokes: state.smokes };
+  try {
+    await cap.publish(fullDoc(withState(APP_EL.textContent, next)));
+    /* success: the shell reloads this view to the new revision */
+  } catch (err) {
+    busy = false;
+    var code = err && err.code;
+    if (code === "conflict") {
+      syncSavebar("Someone saved a newer revision first — reloading to it. Your marks were kept and will be offered back.");
+    } else if (code === "not_writer" || code === "not_granted" || code === "consent_required") {
+      readOnly = true; decorate();
+    } else if (code === "rate_limited") {
+      syncSavebar("Saving too often — give it a moment, then Save again.");
+    } else if (code === "not_declared" || code === "capability_disabled" || code === "capability_removed") {
+      syncSavebar("This sheet’s saving is switched off in this view — marks stay on screen only.");
+    } else {
+      syncSavebar("Save didn’t land (service hiccup) — try once more.");
+    }
+  }
+}
+
+function bind(){
+  document.querySelectorAll(".seg button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (readOnly) return;
+      var id = btn.getAttribute("data-smk"), v = btn.getAttribute("data-set");
+      var e = state.smokes[id];
+      if (e.s === v) return;
+      e.s = v;
+      e.at = v === "open" ? "" : new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      decorate();
     });
   });
-  render();
-})();
+  document.querySelectorAll(".note").forEach(function(inp){
+    inp.addEventListener("input", function(){
+      if (readOnly) return;
+      state.smokes[inp.getAttribute("data-note")].note = inp.value;
+      syncSavebar();
+    });
+  });
+  document.getElementById("btn-save").addEventListener("click", doSave);
+  document.getElementById("btn-discard").addEventListener("click", function(){
+    state.smokes = normSmokes(JSON.parse(baseline));
+    clearDraft(); decorate();
+  });
+}
+
+function boot(){
+  ensureAssets();
+  var root = document.getElementById("root");
+  if (root && !root.firstElementChild) root.innerHTML = BODY;
+  bind();
+  decorate();
+  if (baseline === JSON.stringify(normSmokes(STATE.smokes)) && state.saved) {
+    var raw = null;
+    try { raw = sessionStorage.getItem(DRAFT_KEY); } catch (e) {}
+    if (raw && raw === JSON.stringify(state.smokes)) { clearDraft(); syncSavebar("Saved — this sheet is now revision r" + state.rev + "."); setTimeout(syncSavebar, 4000); }
+  }
+  restoreDraft();
+  capPromise.then(function(cap){
+    if (!cap) {
+      var chip = document.getElementById("live-chip");
+      if (chip) { chip.className = "chip wait"; chip.textContent = "Static view — saving unavailable here"; }
+    }
+  });
+}
+
+/* verification hook: lets a driving session generate the exact document a
+   Save would publish, without publishing */
+window.__punch = { doc: function(st){ return fullDoc(withState(APP_EL.textContent, st)); },
+                   state: function(){ return JSON.parse(JSON.stringify(state)); } };
+
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+else boot();
 </script>
