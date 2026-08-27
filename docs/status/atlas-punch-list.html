@@ -3,15 +3,22 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Atlas Punch List — rev 2 (interactive Schedule B).
+/* Atlas Punch List — rev 3 (fully interactive: gate tasks, smokes, wave
+   priorities, decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
-   Smoke state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":0,"saved":null,"smokes":{}}/*__END__*/;
+   Operator state is embedded between the markers below and rewritten on save. */
+const STATE = /*__STATE__*/{"rev":0,"saved":null}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
 const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5"];
-const DRAFT_KEY = "atlas-punch-draft-r2";
+const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
+const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
+const PRIO_WAVES = ["h11","h12","h2","h25"];
+const DEC_IDS = ["h1","h2","h3","own1"];
+const DEC_OPTS = { h1:["a","b"], h2:["port","publish"], h3:["decided"], own1:["trim","keep"] };
+const DEC_TAG = { a:"(A)", b:"(B)", port:"PORT", publish:"PUBLISH", decided:"", trim:"TRIM", keep:"KEEP ALL" };
+const DRAFT_KEY = "atlas-punch-draft-r3";
 
 const CSS = `
   :root{
@@ -105,8 +112,10 @@ const CSS = `
     font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.88em;
     background:var(--slate-tint); padding:1px 5px; border:1px solid var(--line);
   }
-  ol.steps{margin:.6em 0 0; padding-left:1.3em;}
-  ol.steps li{margin:.35em 0; max-width:70ch;}
+  .tasks{margin-top:12px; border-top:1px dashed var(--line);}
+  .task{display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; padding:10px 0; border-bottom:1px dashed var(--line);}
+  .task .tname{font-weight:500; font-size:14.5px; flex:1; min-width:min(260px,100%);}
+  .task[data-s="done"] .tname{opacity:.55; text-decoration:line-through; text-decoration-thickness:1px;}
   .smokes{display:flex; flex-direction:column; gap:10px;}
   .smoke{
     background:var(--card); border:1px solid var(--line);
@@ -118,22 +127,30 @@ const CSS = `
   .smoke .head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; margin-bottom:2px;}
   .smoke .name{font-weight:600; font-size:15.5px;}
   .smoke .desc{color:var(--soft); font-size:14px; margin:0; max-width:76ch;}
-  .smoke .ctrl{display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin-top:12px;}
+  .ctrl{display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin-top:12px;}
   .seg{display:inline-flex; border:1px solid var(--line); background:var(--card);}
-  .seg button{
+  .seg button, .pick button{
     font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; font-weight:500;
     letter-spacing:.1em; text-transform:uppercase; padding:6px 13px 5px;
     background:transparent; color:var(--soft); border:0; border-right:1px solid var(--line);
     cursor:pointer; transition:background .15s,color .15s;
   }
   .seg button:last-child{border-right:0}
-  .seg button:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .seg button:focus-visible, .pick button:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
   .seg button[aria-pressed="true"].b-open{background:var(--slate-tint); color:var(--ink);}
   .seg button[aria-pressed="true"].b-pass{background:var(--green); color:var(--card);}
   .seg button[aria-pressed="true"].b-fail{background:var(--brick); color:var(--card);}
-  .seg button:disabled{cursor:default; opacity:.55}
+  .seg button[aria-pressed="true"].b-next{background:var(--brass); color:#fff;}
+  .seg button[aria-pressed="true"].b-q{background:var(--slate-tint); color:var(--ink);}
+  .seg button[aria-pressed="true"].b-hold{background:var(--soft); color:var(--card);}
+  .seg button:disabled, .pick button:disabled{cursor:default; opacity:.55}
+  .pick{display:inline-flex; flex-wrap:wrap; border:1px solid var(--line); background:var(--card); max-width:100%;}
+  .pick button{text-transform:none; letter-spacing:.03em; font-size:12px; padding:7px 13px 6px;}
+  .pick button:last-child{border-right:0}
+  .pick button[aria-pressed="true"]{background:var(--green); color:var(--card);}
+  .pick button[aria-pressed="true"].b-und{background:var(--slate-tint); color:var(--ink);}
   .stamp{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--soft);}
-  .stamp.pass{color:var(--green);} .stamp.fail{color:var(--brick);}
+  .stamp.pass, .stamp.done{color:var(--green);} .stamp.fail{color:var(--brick);}
   .note{
     flex:1; min-width:min(240px,100%); font-family:"IBM Plex Mono",ui-monospace,monospace;
     font-size:12.5px; color:var(--ink); background:transparent; border:0;
@@ -142,6 +159,14 @@ const CSS = `
   .note:focus{outline:none; border-bottom:1px solid var(--brass);}
   .note::placeholder{color:var(--soft); opacity:.75}
   .note:disabled{opacity:.55}
+  .memo{
+    width:100%; min-height:120px; resize:vertical;
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px; line-height:1.7;
+    color:var(--ink); background:var(--card); border:1px solid var(--line); padding:14px 16px;
+  }
+  .memo:focus{outline:none; border-color:var(--brass);}
+  .memo::placeholder{color:var(--soft); opacity:.75}
+  .memo:disabled{opacity:.55}
   .smoke-note{color:var(--soft); font-size:12px; margin-top:10px; max-width:80ch;}
   .savebar{
     position:fixed; left:50%; transform:translateX(-50%); bottom:18px; z-index:20;
@@ -180,13 +205,17 @@ const CSS = `
   }
   .decisions{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px;}
   .decision{background:var(--card); border:1px solid var(--line); border-top:3px solid var(--brick); padding:16px 18px;}
-  .decision .head{display:flex; gap:10px; align-items:baseline; margin-bottom:6px;}
+  .decision[data-decided="1"]{border-top-color:var(--green);}
+  .decision[data-decided="1"] .did{color:var(--green);}
+  .decision .head{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:baseline; margin-bottom:6px;}
+  .decision .head .stamp{margin-left:auto}
   .decision .did{
     font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; font-weight:500;
     color:var(--brick); letter-spacing:.08em;
   }
   .decision .q{font-weight:600; font-size:15.5px;}
   .decision p{color:var(--soft); font-size:14px; margin:.4em 0;}
+  .decision .ctrl{margin-top:12px;}
   .decision .unblocks{
     font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
     color:var(--anchor); letter-spacing:.04em; margin-top:10px;
@@ -254,18 +283,18 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Aug 27, 2026 &middot; Rev 2</span>
+      <span class="mono mast-date">Content &middot; Aug 27, 2026 &middot; Rev 3</span>
     </div>
     <h1>Punch List</h1>
-    <p class="lede">Everything still open across the Atlas build, on one sheet: the deploy gate,
-    the smokes on your desk, the harvest waves, and the decisions only you can make.
-    Schedule B is live &mdash; mark each smoke Pass or Fail, add a note, and Save: the sheet
-    records it where Claude can read it.</p>
+    <p class="lede">Everything still open across the Atlas build, on one working sheet.
+    Schedules A&ndash;D and the transmittal are live: check off gate steps and runbook items,
+    mark smokes Pass or Fail, set wave priorities, record decisions, and leave Claude a memo
+    &mdash; one Save publishes it all where every viewer and every Claude session can read it.</p>
 
     <div class="kpis mono">
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>1 / 3</b><small>SOP live &middot; voice line + work orders open</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
-      <div class="kpi"><span class="eyebrow">Decisions on desk</span><b>4</b><small>+ 2 parked, non-blocking</small></div>
+      <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">4</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
       <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>2 / 25</b><small>AC retires only at 25 / 25 green</small></div>
     </div>
   </header>
@@ -274,7 +303,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule A</span>
       <h2>Deploy Gate</h2>
-      <span class="chip open" style="margin-left:auto">Landed &middot; unverified</span>
+      <span class="chip open" id="gate-chip" style="margin-left:auto">Landed &middot; unverified</span>
     </div>
     <div class="card">
       <p>Deploys and <code>git push</code> have been operator-gated all month: the auto-mode
@@ -282,12 +311,25 @@ const BODY = `
       allow rules. <strong>The handoff&rsquo;s &ldquo;&#9888; UNGATE INCOMPLETE&rdquo; flag is now stale:</strong>
       <code>.claude/settings.json</code> exists in the repo with all four allow rules
       (<code>npx vercel deploy --prod</code> and <code>git push origin master</code>, Bash and
-      PowerShell forms). Two steps close this item:</p>
-      <ol class="steps">
-        <li>Next session, have Claude run <code>npx vercel deploy --prod</code> itself &mdash; the first
-        Claude-run deploy that goes through proves the ungate end to end.</li>
-        <li>Commit the file. It is untracked today; until it&rsquo;s committed, a fresh clone re-gates everything.</li>
-      </ol>
+      PowerShell forms). Two steps close this item &mdash; check them off as they land:</p>
+      <div class="tasks">
+        <div class="task" data-task="g-1">
+          <div class="seg" role="group" aria-label="Gate step 1">
+            <button type="button" class="b-open" data-tsk="g-1" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-tsk="g-1" data-set="done" aria-pressed="false">Done</button>
+          </div>
+          <span class="tname">Claude-run <code>npx vercel deploy --prod</code> goes through &mdash; ungate proven end to end</span>
+          <span class="stamp" data-tstamp="g-1"></span>
+        </div>
+        <div class="task" data-task="g-2">
+          <div class="seg" role="group" aria-label="Gate step 2">
+            <button type="button" class="b-open" data-tsk="g-2" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-tsk="g-2" data-set="done" aria-pressed="false">Done</button>
+          </div>
+          <span class="tname">Commit <code>.claude/settings.json</code> so the rules survive a fresh clone</span>
+          <span class="stamp" data-tstamp="g-2"></span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -377,59 +419,121 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule C</span>
       <h2>Harvest Waves</h2>
+      <span class="mono sched-count">set priority on open waves</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 20px;">
       Asset Command retires into Atlas by usage-driven harvest &mdash; live organs first, history second,
-      clean rebuilds third. Order below is operational risk. Nothing is dropped (operator ruling, Aug&nbsp;25).</p>
+      clean rebuilds third. Order below is operational risk; your priority marks tell Claude what to
+      build next. Nothing is dropped (operator ruling, Aug&nbsp;25).</p>
     <div class="waves">
-      <div class="wave hot">
-        <div class="head"><span class="wid">H0</span><span class="wname">Runbook housekeeping</span><span class="chip hot">Due this week</span></div>
-        <p>Cancel Manus before the Aug 27 renewal &mdash; <strong>that date is today; verify it&rsquo;s executed.</strong>
+      <div class="wave hot" data-wave="h0">
+        <div class="head"><span class="wid">H0</span><span class="wname">Runbook housekeeping</span><span class="chip hot" id="h0-chip">Due this week</span></div>
+        <p>Cancel Manus before the Aug 27 renewal &mdash; <strong>that date is today.</strong>
         Do not blanket-enable AC&rsquo;s scheduler (nine jobs, several unwanted &mdash; per-job runbook in the
         Asset Command folder). Rotate AC&rsquo;s 9 exposed secrets: AC holds live data through the whole
-        harvest, so its security debt stays urgent until decommission.</p>
+        harvest, so its security debt stays urgent until decommission. Check each off as it lands:</p>
+        <div class="tasks">
+          <div class="task" data-task="h0-1">
+            <div class="seg" role="group" aria-label="H0 item 1">
+              <button type="button" class="b-open" data-tsk="h0-1" data-set="open" aria-pressed="true">Open</button>
+              <button type="button" class="b-pass" data-tsk="h0-1" data-set="done" aria-pressed="false">Done</button>
+            </div>
+            <span class="tname">Manus canceled before the Aug 27 renewal</span>
+            <span class="stamp" data-tstamp="h0-1"></span>
+          </div>
+          <div class="task" data-task="h0-2">
+            <div class="seg" role="group" aria-label="H0 item 2">
+              <button type="button" class="b-open" data-tsk="h0-2" data-set="open" aria-pressed="true">Open</button>
+              <button type="button" class="b-pass" data-tsk="h0-2" data-set="done" aria-pressed="false">Done</button>
+            </div>
+            <span class="tname">AC scheduler kept per-job (runbook applied, never blanket-enabled)</span>
+            <span class="stamp" data-tstamp="h0-2"></span>
+          </div>
+          <div class="task" data-task="h0-3">
+            <div class="seg" role="group" aria-label="H0 item 3">
+              <button type="button" class="b-open" data-tsk="h0-3" data-set="open" aria-pressed="true">Open</button>
+              <button type="button" class="b-pass" data-tsk="h0-3" data-set="done" aria-pressed="false">Done</button>
+            </div>
+            <span class="tname">AC&rsquo;s 9 exposed secrets rotated</span>
+            <span class="stamp" data-tstamp="h0-3"></span>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-wnote="h0" maxlength="280" placeholder="Note for Claude on H0 (optional)"></div>
       </div>
-      <div class="wave">
+      <div class="wave" data-wave="h11">
         <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Open</span></div>
         <p>Pick the single phone stack &mdash; Atlas&rsquo; Twilio bridge is the keeper (truthful-booking guard,
         tested). Repoint or port the number AC&rsquo;s Vapi/Retell agent answers; AC&rsquo;s voice-intake history
         imports as reference.</p>
         <div class="data">62 rows import &middot; blocked by decision H-2</div>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="H1.1 priority">
+            <button type="button" class="b-next" data-wav="h11" data-set="next" aria-pressed="false">Next up</button>
+            <button type="button" class="b-q" data-wav="h11" data-set="queued" aria-pressed="true">Queued</button>
+            <button type="button" class="b-hold" data-wav="h11" data-set="hold" aria-pressed="false">Hold</button>
+          </div>
+          <input class="note" data-wnote="h11" maxlength="280" placeholder="Note for Claude on this wave (optional)">
+        </div>
       </div>
-      <div class="wave">
+      <div class="wave" data-wave="h12">
         <div class="head"><span class="wid">H1.2</span><span class="wname">Work orders</span><span class="chip open">Open</span></div>
         <p>Import AC&rsquo;s active work orders into <code>maintenance_requests</code> + events (timestamps
         preserved as note events). One gap to build: token-link UX for unauthenticated vendor uploads.</p>
         <div class="data">24 WOs import &middot; tenants/vendors move to M-1</div>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="H1.2 priority">
+            <button type="button" class="b-next" data-wav="h12" data-set="next" aria-pressed="false">Next up</button>
+            <button type="button" class="b-q" data-wav="h12" data-set="queued" aria-pressed="true">Queued</button>
+            <button type="button" class="b-hold" data-wav="h12" data-set="hold" aria-pressed="false">Hold</button>
+          </div>
+          <input class="note" data-wnote="h12" maxlength="280" placeholder="Note for Claude on this wave (optional)">
+        </div>
       </div>
-      <div class="wave done">
+      <div class="wave done" data-wave="h13">
         <div class="head"><span class="wid">H1.3</span><span class="wname">SOP module</span><span class="chip done">Done &middot; live on prod</span></div>
         <p>5 typed tables + RLS, the O-1 Operations sheet, and the auto-trigger reminder leg.
         Deployed and verified Aug 27; remaining follow-through is SMK-1 and SMK-2 above.</p>
         <div class="data">506 rows imported checksum-clean &middot; 18 / 88 / 320 / 71 / 9</div>
       </div>
-      <div class="wave">
+      <div class="wave" data-wave="h2">
         <div class="head"><span class="wid">H2</span><span class="wname">History import</span><span class="chip open">Open</span></div>
         <p>The predecessor record moves over: rent payments (shape per H-1), compliance events with a
         <code>source:'ac'</code> marker, documents + floor plans into the K-1 register, escalations and
         abstractions as lease-assembler reference data, late-fee/invoice history as a flat archive in
         S-1, and the ~12 real AC users invited per H-3.</p>
         <div class="data">313 payments / $1.13M &middot; 698 compliance &middot; 247 docs + 57 plans &middot; 83 + 24 lease rows</div>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="H2 priority">
+            <button type="button" class="b-next" data-wav="h2" data-set="next" aria-pressed="false">Next up</button>
+            <button type="button" class="b-q" data-wav="h2" data-set="queued" aria-pressed="true">Queued</button>
+            <button type="button" class="b-hold" data-wav="h2" data-set="hold" aria-pressed="false">Hold</button>
+          </div>
+          <input class="note" data-wnote="h2" maxlength="280" placeholder="Note for Claude on this wave (optional)">
+        </div>
       </div>
-      <div class="wave">
+      <div class="wave" data-wave="h25">
         <div class="head"><span class="wid">H2.5</span><span class="wname">Parity rebuilds &mdash; four groups</span><span class="chip open">Open</span></div>
         <p>Clean builds in Atlas idiom, shipped independently in value order:
         <strong>Money &amp; Accounting</strong> (invoices &middot; CAM recon &middot; accounting/QBO) &rarr;
         <strong>Tenant &amp; Leasing</strong> (tenant portal &middot; abstraction &middot; deal pipeline) &rarr;
         <strong>Documents &amp; Matters</strong> (expiry scans &middot; governance &middot; N-1 Matters &middot; N-2 meeting notes) &rarr;
         <strong>Intelligence &amp; Comms</strong> (board reports &middot; tenant health &middot; communications hub).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="H2.5 priority">
+            <button type="button" class="b-next" data-wav="h25" data-set="next" aria-pressed="false">Next up</button>
+            <button type="button" class="b-q" data-wav="h25" data-set="queued" aria-pressed="true">Queued</button>
+            <button type="button" class="b-hold" data-wav="h25" data-set="hold" aria-pressed="false">Hold</button>
+          </div>
+          <input class="note" data-wnote="h25" maxlength="280" placeholder="Note for Claude &mdash; e.g. reorder the four groups (optional)">
+        </div>
       </div>
-      <div class="wave gated">
+      <div class="wave gated" data-wave="h3">
         <div class="head"><span class="wid">H3</span><span class="wname">Decommission AC</span><span class="chip hot">Gated on register</span></div>
         <p>AC does not retire until every register row below is parity-verified, ported, or rebuilt.
         Then: per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset
         assetcommand.orangeocean.com &rarr; archive both repos.
         <code>orangeoceanassetcommand.com</code> lapses at its Sep 26, 2026 transfer date.</p>
+        <div class="ctrl"><input class="note" data-wnote="h3" maxlength="280" placeholder="Note for Claude on decommission (optional)"></div>
       </div>
     </div>
   </section>
@@ -438,32 +542,68 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule D</span>
       <h2>Decisions Required</h2>
+      <span class="mono sched-count" id="dec-count">0 / 4 decided</span>
     </div>
+    <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
+      Pick an option and Save &mdash; the sheet records it with the date, and Claude treats a saved
+      pick as the confirmed decision (never relitigated). Undecided is a valid state.</p>
     <div class="decisions">
-      <div class="decision">
-        <div class="head"><span class="did">H-1</span><span class="q">Rent-history shape</span></div>
+      <div class="decision" data-dec-card="h1">
+        <div class="head"><span class="did">H-1</span><span class="q">Rent-history shape</span><span class="stamp" data-dstamp="h1"></span></div>
         <p>13 months / $1.13M of AC rent payments: <strong>(a)</strong> import as pre-Aug archival
         ledger entries, or <strong>(b)</strong> a read-only <code>payment_history</code> table surfaced
         in the unit drawer. The decision doc leans (b) &mdash; the append-only ledger stays born-clean.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="H-1 decision">
+            <button type="button" data-dec="h1" data-set="a" aria-pressed="false">(a) Archival ledger</button>
+            <button type="button" data-dec="h1" data-set="b" aria-pressed="false">(b) payment_history</button>
+            <button type="button" class="b-und" data-dec="h1" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="h1" maxlength="400" placeholder="Context for the decision (optional)"></div>
         <div class="unblocks">&rarr; unblocks H2 rent import</div>
       </div>
-      <div class="decision">
-        <div class="head"><span class="did">H-2</span><span class="q">Phone-number strategy</span></div>
+      <div class="decision" data-dec-card="h2">
+        <div class="head"><span class="did">H-2</span><span class="q">Phone-number strategy</span><span class="stamp" data-dstamp="h2"></span></div>
         <p>Port the number AC&rsquo;s agent answers over to the Twilio bridge, or publish the bridge&rsquo;s
         number and retire AC&rsquo;s. Turns entirely on which number tenants actually have saved.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="H-2 decision">
+            <button type="button" data-dec="h2" data-set="port" aria-pressed="false">Port AC&rsquo;s number</button>
+            <button type="button" data-dec="h2" data-set="publish" aria-pressed="false">Publish bridge number</button>
+            <button type="button" class="b-und" data-dec="h2" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="h2" maxlength="400" placeholder="Context &mdash; e.g. which number tenants actually call (optional)"></div>
         <div class="unblocks">&rarr; unblocks H1.1 voice cutover</div>
       </div>
-      <div class="decision">
-        <div class="head"><span class="did">H-3</span><span class="q">AC user role mapping</span></div>
+      <div class="decision" data-dec-card="h3">
+        <div class="head"><span class="did">H-3</span><span class="q">AC user role mapping</span><span class="stamp" data-dstamp="h3"></span></div>
         <p>Which of AC&rsquo;s 9 real <code>user</code>-role accounts map to owner / vendor / tenant in
-        <code>org_members</code>. (The 64 synthetic &ldquo;owner&rdquo; accounts are noise &mdash; not invited.)</p>
+        <code>org_members</code>. (The 64 synthetic &ldquo;owner&rdquo; accounts are noise &mdash; not invited.)
+        Write the mapping in the note, then mark it decided.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="H-3 decision">
+            <button type="button" data-dec="h3" data-set="decided" aria-pressed="false">Mapping decided &mdash; see note</button>
+            <button type="button" class="b-und" data-dec="h3" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="h3" maxlength="400" placeholder="The mapping &mdash; who becomes owner / vendor / tenant"></div>
         <div class="unblocks">&rarr; unblocks H2 user invitations</div>
       </div>
-      <div class="decision">
-        <div class="head"><span class="did">OWN-1</span><span class="q">Owner sheet set</span></div>
+      <div class="decision" data-dec-card="own1">
+        <div class="head"><span class="did">OWN-1</span><span class="q">Owner sheet set</span><span class="stamp" data-dstamp="own1"></span></div>
         <p>Owners currently see ALL 13 sheets (including comp, board, maintenance, vendors, AI) &mdash;
         a global setting, not per-person. Trim to the classic five (dash &middot; plan &middot; roll &middot;
         fin &middot; safe) before Dickey&rsquo;s first sign-in? Raised Aug 10; unanswered.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="OWN-1 decision">
+            <button type="button" data-dec="own1" data-set="trim" aria-pressed="false">Trim to classic five</button>
+            <button type="button" data-dec="own1" data-set="keep" aria-pressed="false">Keep all 13</button>
+            <button type="button" class="b-und" data-dec="own1" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="own1" maxlength="400" placeholder="Context (optional)"></div>
         <div class="unblocks">&rarr; unblocks nothing, but gates his first impression</div>
       </div>
     </div>
@@ -479,7 +619,8 @@ const BODY = `
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
-      each goes green by parity verification, port, or rebuild.</p>
+      each goes green by parity verification, port, or rebuild. Rows go green by build work, not
+      marks &mdash; this schedule stays read-only.</p>
     <div class="reg-grid">
       <div class="cell port"    title="1 &middot; Voice intake &rarr; Twilio bridge (PORT, H1.1)">1</div>
       <div class="cell port"    title="2 &middot; Work orders + vendor uploads &rarr; M-1 / V-1 (PORT, H1.2)">2</div>
@@ -546,21 +687,35 @@ const BODY = `
     </details>
   </section>
 
+  <section id="transmittal">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule F</span>
+      <h2>Transmittal</h2>
+      <span class="mono sched-count" id="memo-stamp"></span>
+    </div>
+    <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 14px;">
+      Memo to Claude &mdash; anything the schedules above don&rsquo;t capture: priorities, corrections,
+      things you noticed, what to tackle next session. Saved with the sheet, read every session.</p>
+    <textarea class="memo" data-memo maxlength="2000" placeholder="Write it like a site memo &mdash; short lines, plain words. Example: 'Prioritize work orders over voice. The Butcher Air PM invoice looked wrong this month &mdash; check it against &sect;9.01 next session.'"></textarea>
+  </section>
+
   <section id="notes" class="notes">
     <div class="schedule-label">
       <span class="eyebrow">General Notes</span>
       <h2>Notes</h2>
     </div>
     <ol>
-      <li>Source of truth: HANDOFF.md + docs/platform-consolidation-decision-2026-08-25.md,
-      read 2026-08-27. The repo supersedes this sheet the moment either changes.</li>
+      <li>Source of truth for content: HANDOFF.md + docs/platform-consolidation-decision-2026-08-25.md,
+      read 2026-08-27. The repo supersedes the printed facts the moment either changes.</li>
       <li>Waiting on the world, no action owed: first ACH payment (self-announcing in AI-1)
       &middot; C-3 pilot signature.</li>
       <li>The first 6 AM cron after the SOP deploy opens the ~49-item overdue digest and
       materializes August occurrences &mdash; expected, not a bug.</li>
-      <li>Schedule B marks publish a new revision of this sheet itself &mdash; every viewer sees
-      them, and Claude reads them. After saving, tell any Claude session &ldquo;read the punch
-      list&rdquo;; a session already watching this sheet is notified the moment you save.</li>
+      <li>Everything you mark &mdash; gate steps, smokes, wave priorities, decisions, the memo &mdash;
+      publishes as a new revision of this sheet, dated and shared. After saving, tell any Claude
+      session &ldquo;read the punch list&rdquo;; a session already watching is notified the moment you save.</li>
+      <li>A saved decision pick is treated as confirmed &mdash; Claude acts on it without relitigating.
+      To reopen one, set it back to Undecided and Save.</li>
       <li>Build health at snapshot: 399 tests green &middot; prod bundle content-hash verified
       against the deployed commit.</li>
       <li>New-capability north star: &ldquo;open Atlas, never open another program&rdquo; &mdash;
@@ -572,9 +727,9 @@ const BODY = `
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-08-27</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">2</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">3</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
-    <div class="tb"><span class="lab">Smoke state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
+    <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
 </div>
 
@@ -616,73 +771,169 @@ function withState(src, st){
   return src.slice(0, i + MARK_S.length) + json + src.slice(j);
 }
 
-function normSmokes(smokes){
+function normSmokes(v){
   var out = {};
   SMOKE_IDS.forEach(function(id){
-    var e = (smokes && smokes[id]) || {};
-    out[id] = { s: e.s === "pass" || e.s === "fail" ? e.s : "open", note: e.note || "", at: e.at || "" };
+    var e = (v && v[id]) || {};
+    out[id] = { s: e.s === "pass" || e.s === "fail" ? e.s : "open", note: String(e.note || ""), at: String(e.at || "") };
   });
   return out;
 }
+function normTasks(v){
+  var out = {};
+  TASK_IDS.forEach(function(id){
+    var e = (v && v[id]) || {};
+    out[id] = { s: e.s === "done" ? "done" : "open", at: String(e.at || "") };
+  });
+  return out;
+}
+function normWaves(v){
+  var out = {};
+  WAVE_IDS.forEach(function(id){
+    var e = (v && v[id]) || {};
+    out[id] = { p: e.p === "next" || e.p === "hold" ? e.p : "queued", note: String(e.note || "") };
+  });
+  return out;
+}
+function normDecisions(v){
+  var out = {};
+  DEC_IDS.forEach(function(id){
+    var e = (v && v[id]) || {};
+    out[id] = { pick: DEC_OPTS[id].indexOf(e.pick) >= 0 ? e.pick : "", note: String(e.note || ""), at: String(e.at || "") };
+  });
+  return out;
+}
+function normMemo(v){
+  var e = v || {};
+  return { text: String(e.text || ""), at: String(e.at || "") };
+}
+function bundle(st){
+  return { smokes: st.smokes, tasks: st.tasks, waves: st.waves, decisions: st.decisions, memo: st.memo };
+}
 
-var state = { rev: STATE.rev || 0, saved: STATE.saved || null, smokes: normSmokes(STATE.smokes) };
-var baseline = JSON.stringify(state.smokes);
+var state = {
+  rev: STATE.rev || 0, saved: STATE.saved || null,
+  smokes: normSmokes(STATE.smokes), tasks: normTasks(STATE.tasks),
+  waves: normWaves(STATE.waves), decisions: normDecisions(STATE.decisions),
+  memo: normMemo(STATE.memo)
+};
+var baseline = JSON.stringify(bundle(state));
 var readOnly = false, busy = false;
 var capPromise = (window.claude && window.claude.use)
   ? window.claude.use("artifact").then(function(ns){ return ns || window.claude.use("self"); })
   : Promise.resolve(null);
 
-function fmtDay(iso){
-  try { return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" }); }
-  catch (e) { return ""; }
+function today(){ return new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" }); }
+function fmtDay(iso){ try { return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" }); } catch (e) { return ""; } }
+function fmtWhen(iso){ try { return new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); } catch (e) { return ""; } }
+
+function setSeg(sel, id, value, attr){
+  document.querySelectorAll('[' + attr + '="' + id + '"]').forEach(function(btn){
+    btn.setAttribute("aria-pressed", String(btn.getAttribute("data-set") === value));
+    btn.disabled = readOnly;
+  });
 }
-function fmtWhen(iso){
-  try { return new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }); }
-  catch (e) { return ""; }
+function setNoteInput(attr, id, value){
+  var inp = document.querySelector('[' + attr + '="' + id + '"]');
+  if (inp) { if (inp.value !== value) inp.value = value; inp.disabled = readOnly; }
 }
 
 function decorate(){
+  /* smokes */
+  var pass = 0, fail = 0, open = 0;
   SMOKE_IDS.forEach(function(id){
     var e = state.smokes[id];
     var row = document.querySelector('[data-smoke="' + id + '"]');
-    if (!row) return;
-    row.setAttribute("data-s", e.s);
-    row.querySelectorAll('[data-smk="' + id + '"]').forEach(function(btn){
-      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-set") === e.s));
-      btn.disabled = readOnly;
-    });
-    var note = row.querySelector('[data-note="' + id + '"]');
-    if (note && note.value !== e.note) note.value = e.note;
-    if (note) note.disabled = readOnly;
-    var stamp = row.querySelector('[data-stamp="' + id + '"]');
+    if (row) row.setAttribute("data-s", e.s);
+    setSeg(null, id, e.s, "data-smk");
+    setNoteInput("data-note", id, e.note);
+    var stamp = document.querySelector('[data-stamp="' + id + '"]');
     if (stamp) {
       stamp.className = "stamp" + (e.s !== "open" ? " " + e.s : "");
       stamp.textContent = e.s === "open" ? "" : e.s.toUpperCase() + (e.at ? " · " + e.at : "");
     }
-  });
-  var pass = 0, fail = 0, open = 0;
-  SMOKE_IDS.forEach(function(id){
-    var s = state.smokes[id].s;
-    if (s === "pass") pass++; else if (s === "fail") fail++; else open++;
+    if (e.s === "pass") pass++; else if (e.s === "fail") fail++; else open++;
   });
   var count = document.getElementById("smoke-count");
   if (count) count.textContent = pass + " pass · " + fail + " fail · " + open + " open";
-  var kpi = document.getElementById("kpi-smokes");
-  var sub = document.getElementById("kpi-smokes-sub");
+  var kpi = document.getElementById("kpi-smokes"), sub = document.getElementById("kpi-smokes-sub");
   if (kpi) kpi.textContent = String(open + fail);
   if (sub) sub.textContent = fail > 0
     ? "unresolved · " + fail + " FAILED · " + pass + " passed"
     : (pass > 0 ? "open · " + pass + " passed" : "open · none marked yet");
+
+  /* tasks (gate + H0) */
+  TASK_IDS.forEach(function(id){
+    var e = state.tasks[id];
+    var row = document.querySelector('[data-task="' + id + '"]');
+    if (row) row.setAttribute("data-s", e.s);
+    setSeg(null, id, e.s, "data-tsk");
+    var stamp = document.querySelector('[data-tstamp="' + id + '"]');
+    if (stamp) {
+      stamp.className = "stamp" + (e.s === "done" ? " done" : "");
+      stamp.textContent = e.s === "done" ? "DONE" + (e.at ? " · " + e.at : "") : "";
+    }
+  });
+  var gateChip = document.getElementById("gate-chip");
+  if (gateChip) {
+    var gateDone = state.tasks["g-1"].s === "done" && state.tasks["g-2"].s === "done";
+    gateChip.className = "chip " + (gateDone ? "done" : "open");
+    gateChip.textContent = gateDone ? "Closed · verified" : "Landed · unverified";
+  }
+  var h0Chip = document.getElementById("h0-chip");
+  var h0Wave = document.querySelector('[data-wave="h0"]');
+  if (h0Chip && h0Wave) {
+    var h0Done = state.tasks["h0-1"].s === "done" && state.tasks["h0-2"].s === "done" && state.tasks["h0-3"].s === "done";
+    h0Chip.className = "chip " + (h0Done ? "done" : "hot");
+    h0Chip.textContent = h0Done ? "Done" : "Due this week";
+    h0Wave.className = "wave " + (h0Done ? "done" : "hot");
+  }
+
+  /* waves */
+  WAVE_IDS.forEach(function(id){
+    var e = state.waves[id];
+    if (PRIO_WAVES.indexOf(id) >= 0) setSeg(null, id, e.p, "data-wav");
+    setNoteInput("data-wnote", id, e.note);
+  });
+
+  /* decisions */
+  var decided = 0;
+  DEC_IDS.forEach(function(id){
+    var e = state.decisions[id];
+    var card = document.querySelector('[data-dec-card="' + id + '"]');
+    if (card) card.setAttribute("data-decided", e.pick ? "1" : "0");
+    setSeg(null, id, e.pick, "data-dec");
+    setNoteInput("data-dnote", id, e.note);
+    var stamp = document.querySelector('[data-dstamp="' + id + '"]');
+    if (stamp) {
+      stamp.className = "stamp" + (e.pick ? " done" : "");
+      stamp.textContent = e.pick ? ("DECIDED " + (DEC_TAG[e.pick] || "")).trim() + (e.at ? " · " + e.at : "") : "";
+    }
+    if (e.pick) decided++;
+  });
+  var dc = document.getElementById("dec-count");
+  if (dc) dc.textContent = decided + " / 4 decided";
+  var kd = document.getElementById("kpi-dec"), kds = document.getElementById("kpi-dec-sub");
+  if (kd) kd.textContent = String(DEC_IDS.length - decided);
+  if (kds) kds.textContent = decided > 0 ? "undecided · " + decided + " decided · + 2 parked" : "undecided · + 2 parked";
+
+  /* memo */
+  var memo = document.querySelector("[data-memo]");
+  if (memo) { if (memo.value !== state.memo.text) memo.value = state.memo.text; memo.disabled = readOnly; }
+  var ms = document.getElementById("memo-stamp");
+  if (ms) ms.textContent = state.memo.text ? (state.memo.at ? "memo · " + state.memo.at : "memo drafted") : "empty";
+
+  /* footer + stamp line */
   var stampLine = document.getElementById("save-stamp");
   if (stampLine) stampLine.textContent = state.saved
-    ? "Smoke state r" + state.rev + " · saved " + fmtWhen(state.saved) + " · marks publish to the sheet when you hit Save."
+    ? "Operator state r" + state.rev + " · saved " + fmtWhen(state.saved) + " · marks publish to the sheet when you hit Save."
     : "No revision saved yet — marks publish to the sheet when you hit Save.";
   var tb = document.getElementById("tb-state");
   if (tb) tb.textContent = state.saved ? "r" + state.rev + " · " + fmtDay(state.saved) : "r0 · unsaved";
   syncSavebar();
 }
 
-function dirty(){ return JSON.stringify(state.smokes) !== baseline; }
+function dirty(){ return JSON.stringify(bundle(state)) !== baseline; }
 
 function syncSavebar(msg){
   var bar = document.getElementById("savebar");
@@ -702,11 +953,12 @@ function syncSavebar(msg){
   save.textContent = busy ? "Saving…" : "Save to sheet";
 }
 
-function stashDraft(){
-  try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(state.smokes)); } catch (e) {}
-}
-function clearDraft(){
-  try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) {}
+function stashDraft(){ try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(bundle(state))); } catch (e) {} }
+function clearDraft(){ try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+function applyBundle(b){
+  state.smokes = normSmokes(b.smokes); state.tasks = normTasks(b.tasks);
+  state.waves = normWaves(b.waves); state.decisions = normDecisions(b.decisions);
+  state.memo = normMemo(b.memo);
 }
 function restoreDraft(){
   var raw = null;
@@ -714,7 +966,7 @@ function restoreDraft(){
   if (!raw) return;
   if (raw === baseline) { clearDraft(); return; }
   try {
-    state.smokes = normSmokes(JSON.parse(raw));
+    applyBundle(JSON.parse(raw));
     decorate();
     syncSavebar("Restored unsaved marks from before the last reload — Save to keep them.");
   } catch (e) { clearDraft(); }
@@ -731,7 +983,9 @@ async function doSave(){
     syncSavebar("Saving isn’t available in this view — open the sheet in the Claude artifact viewer to save.");
     return;
   }
-  var next = { rev: state.rev + 1, saved: new Date().toISOString(), smokes: state.smokes };
+  var next = { rev: state.rev + 1, saved: new Date().toISOString(),
+               smokes: state.smokes, tasks: state.tasks, waves: state.waves,
+               decisions: state.decisions, memo: state.memo };
   try {
     await cap.publish(fullDoc(withState(APP_EL.textContent, next)));
     /* success: the shell reloads this view to the new revision */
@@ -753,27 +1007,71 @@ async function doSave(){
 }
 
 function bind(){
-  document.querySelectorAll(".seg button").forEach(function(btn){
+  document.querySelectorAll("[data-smk]").forEach(function(btn){
     btn.addEventListener("click", function(){
       if (readOnly) return;
-      var id = btn.getAttribute("data-smk"), v = btn.getAttribute("data-set");
-      var e = state.smokes[id];
+      var e = state.smokes[btn.getAttribute("data-smk")], v = btn.getAttribute("data-set");
       if (e.s === v) return;
-      e.s = v;
-      e.at = v === "open" ? "" : new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      e.s = v; e.at = v === "open" ? "" : today();
       decorate();
     });
   });
-  document.querySelectorAll(".note").forEach(function(inp){
+  document.querySelectorAll("[data-tsk]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (readOnly) return;
+      var e = state.tasks[btn.getAttribute("data-tsk")], v = btn.getAttribute("data-set");
+      if (e.s === v) return;
+      e.s = v; e.at = v === "done" ? today() : "";
+      decorate();
+    });
+  });
+  document.querySelectorAll("[data-wav]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (readOnly) return;
+      var e = state.waves[btn.getAttribute("data-wav")], v = btn.getAttribute("data-set");
+      if (e.p === v) return;
+      e.p = v;
+      decorate();
+    });
+  });
+  document.querySelectorAll("[data-dec]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (readOnly) return;
+      var e = state.decisions[btn.getAttribute("data-dec")], v = btn.getAttribute("data-set");
+      if (e.pick === v) return;
+      e.pick = v; e.at = v ? today() : "";
+      decorate();
+    });
+  });
+  document.querySelectorAll("[data-note]").forEach(function(inp){
     inp.addEventListener("input", function(){
       if (readOnly) return;
-      state.smokes[inp.getAttribute("data-note")].note = inp.value;
-      syncSavebar();
+      state.smokes[inp.getAttribute("data-note")].note = inp.value; syncSavebar();
     });
+  });
+  document.querySelectorAll("[data-wnote]").forEach(function(inp){
+    inp.addEventListener("input", function(){
+      if (readOnly) return;
+      state.waves[inp.getAttribute("data-wnote")].note = inp.value; syncSavebar();
+    });
+  });
+  document.querySelectorAll("[data-dnote]").forEach(function(inp){
+    inp.addEventListener("input", function(){
+      if (readOnly) return;
+      state.decisions[inp.getAttribute("data-dnote")].note = inp.value; syncSavebar();
+    });
+  });
+  var memo = document.querySelector("[data-memo]");
+  if (memo) memo.addEventListener("input", function(){
+    if (readOnly) return;
+    state.memo.text = memo.value; state.memo.at = today();
+    var ms = document.getElementById("memo-stamp");
+    if (ms) ms.textContent = state.memo.text ? "memo drafted — unsaved" : "empty";
+    syncSavebar();
   });
   document.getElementById("btn-save").addEventListener("click", doSave);
   document.getElementById("btn-discard").addEventListener("click", function(){
-    state.smokes = normSmokes(JSON.parse(baseline));
+    applyBundle(JSON.parse(baseline));
     clearDraft(); decorate();
   });
 }
@@ -784,10 +1082,10 @@ function boot(){
   if (root && !root.firstElementChild) root.innerHTML = BODY;
   bind();
   decorate();
-  if (baseline === JSON.stringify(normSmokes(STATE.smokes)) && state.saved) {
+  if (state.saved) {
     var raw = null;
     try { raw = sessionStorage.getItem(DRAFT_KEY); } catch (e) {}
-    if (raw && raw === JSON.stringify(state.smokes)) { clearDraft(); syncSavebar("Saved — this sheet is now revision r" + state.rev + "."); setTimeout(syncSavebar, 4000); }
+    if (raw && raw === baseline) { clearDraft(); syncSavebar("Saved — this sheet is now revision r" + state.rev + "."); setTimeout(function(){ syncSavebar(); }, 4000); }
   }
   restoreDraft();
   capPromise.then(function(cap){
