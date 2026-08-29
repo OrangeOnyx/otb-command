@@ -31,8 +31,8 @@
 param([switch]$Register)
 
 $Repo       = "C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command"
-$CaptureDir = "E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\OTB-cube-capture"
-$Log        = Join-Path $CaptureDir "c3-nightly.log"
+$CaptureRel = "OTB-CAPTURE\Drone-Footage-RAW-2026-07\OTB-cube-capture"
+$CaptureDir = "E:\$CaptureRel"
 
 $BackfillDays = 2     # local days re-pulled each run (today + yesterday)
 $EverySec     = 3600  # one frame per camera per hour - what the classifier reads
@@ -50,6 +50,24 @@ if ($Register) {
     Write-Output "Registered tasks OTB-C3-Nightly (daily 23:45) and OTB-C3-Midday (daily 12:00)."
     return
 }
+
+# The capture drive is external and can be unplugged or re-lettered; under the
+# Windows PowerShell 5.1 that Task Scheduler runs, Join-Path on a missing drive
+# throws, $Log stays null, and every later Log() errors until the 1h kill limit.
+# Bail out fast instead. E: stays canonical (c3-upload.mjs hard-codes it) - a
+# tree found on another letter means re-letter the drive, not adopt the letter.
+if (-not (Test-Path $CaptureDir)) {
+    $elsewhere = Get-PSDrive -PSProvider FileSystem | ForEach-Object { Join-Path $_.Root $CaptureRel } |
+        Where-Object { Test-Path $_ } | Select-Object -First 1
+    $detail = if ($elsewhere) { "capture tree found at $elsewhere - re-letter that drive to E:" }
+              else { "capture drive offline - reconnect it" }
+    $fallback = Join-Path $env:LOCALAPPDATA "OTB\c3-nightly.log"
+    New-Item -ItemType Directory -Force (Split-Path $fallback) | Out-Null
+    Add-Content $fallback "[$(Get-Date)] SKIP: $detail (archive keeps ~55d; raise `$BackfillDays to recover once mounted)"
+    Write-Output "SKIP: $detail - logged to $fallback"
+    exit 1
+}
+$Log = Join-Path $CaptureDir "c3-nightly.log"
 
 function Log($msg) { Add-Content $Log "[$(Get-Date)] $msg" }
 

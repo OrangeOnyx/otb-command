@@ -3,8 +3,20 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-27 — **H1.3 DEPLOY DONE + VERIFIED: the SOP module
-is fully LIVE.** Operator ran the gated `npx vercel deploy --prod` from his
+Last updated: 2026-08-29 — **C3 CAPTURE DRIVE OFFLINE; nightly/midday now
+guarded.** The E: capture drive is disconnected (no OTB-CAPTURE tree on any
+mounted volume; D: is the unrelated "My Passport" backup). Under Task
+Scheduler's PS 5.1, `Join-Path` on the missing drive threw at
+c3-nightly.ps1:35, `$Log` nulled, every `Log()` cascaded errors, and both C3
+tasks died at the 1h kill limit (LastResult 267014; both runs since 8/28
+23:45 failed). Fixed: early guard — drive offline = clean SKIP + exit 1 in
+<1s, logged to `%LOCALAPPDATA%\OTB\c3-nightly.log`, message distinguishes
+unplugged vs re-lettered (E: stays canonical; c3-upload.mjs hard-codes it);
+`-Register` no longer needs the drive. **OPERATOR ACTION: reconnect the
+capture drive (re-letter to E: if Windows mounts it elsewhere), then one
+manual run with a wider `$BackfillDays` recovers the gap — archive holds
+~55d, so nothing is lost yet.** Prior: 2026-08-27 — **H1.3 DEPLOY DONE +
+VERIFIED: the SOP module is fully LIVE.** Operator ran the gated `npx vercel deploy --prod` from his
 own terminal (auto-mode classifier blocks deploys/pushes for Claude — now
 confirmed to also block Claude *writing its own allow rules*, any route).
 Verification: prod serves bundle `index-C1zfbpcN.js` = exact content-hash
