@@ -9,6 +9,7 @@ import { REMOTE, listLedgerEntries } from "../lib/remote.js";
 import { aging, effectiveEntries, CREDIT_TYPES } from "../lib/ledger.js";
 import { getPayHistory, payHistoryLoaded, refreshPayHistory, payHistoryStats, portfolioPayTotals } from "../lib/payhistory.js";
 import { tenantHealth, healthColor, periodTotals } from "../lib/tenanthealth.js";
+import { reconModel, reconCaveats } from "../lib/camrecon.js";
 import recoveries from "../data/recoveries.json";
 
 const annual = u => (u.monthly || 0) * 12;
@@ -66,6 +67,10 @@ function rollover() {
   const order = (buckets.Holdover ? ["Holdover"] : []).concat(years);
   return order.map(k => ({ k, ...buckets[k] }));
 }
+
+/* CAM-recon what-if gross-up (%) — session-local draft input, deliberately
+   not persisted (register row #6 is a DRAFT surface, not a billing engine). */
+let camGrossUpPct = 0;
 
 const bar = (label, val, max, color, right) =>
   '<div class="fbar-row"><span class="fbar-l">' + esc(label) + '</span>' +
@@ -141,6 +146,39 @@ export function renderFinancial() {
       hint + "</div>";
   }).join("");
 
+  // CAM/NNN reconciliation draft (register row #6) — pure model in lib/camrecon.js;
+  // all inputs local (UNITS + recoveries + worksheet actuals), painted synchronously.
+  const recon = reconModel(UNITS, recoveries,
+    { cam: fin.opex.cam || 0, taxes: fin.opex.taxes || 0, insurance: fin.opex.insurance || 0 },
+    { grossUpPct: camGrossUpPct });
+  let reconHtml;
+  if (!recon) {
+    reconHtml = '<div class="led-note">Enter CAM / Taxes / Insurance actuals in the NOI worksheet to draft a reconciliation.</div>';
+  } else {
+    const rDelta = d => '<b style="color:' + (d >= 0 ? "var(--green)" : "var(--brick)") + '">' +
+      (d >= 0 ? "+" : "−") + fmt$0(Math.abs(d)) + '</b>';
+    const RC = [["cam", "CAM", "var(--slate)"], ["tax", "Taxes", "var(--navy)"], ["ins", "Insurance", "var(--plum)"]];
+    const rMax = Math.max(...RC.map(([k]) => Math.max(recon.components[k].billed, recon.components[k].grossed)));
+    const reconBars = RC.map(([k, label, color]) => {
+      const c = recon.components[k];
+      return bar(label, c.billed, rMax, color, fmt$0(c.billed) + " vs " + fmt$0(c.grossed) + " · " + rDelta(c.delta));
+    }).join("");
+    const worst = recon.units.slice(0, 8).map(r =>
+      '<div style="display:flex;align-items:baseline;gap:8px;font-family:var(--mono)">' +
+        '<span class="uchip">' + esc(r.unit) + '</span>' +
+        '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' +
+          fmt$0(r.billed) + ' billed · ' + (r.share * 100).toFixed(1) + '% share</span>' +
+        '<span class="fbar-v">' + rDelta(r.delta) + '</span>' +
+      '</div>').join("");
+    reconHtml =
+      '<div class="led-month"><input id="camGrossUp" type="number" min="0" step="5" value="' + camGrossUpPct + '" style="width:56px"> % gross-up · billed vs grossed actuals · Δ + = over-collected</div>' +
+      reconBars +
+      '<div class="led-note">Vacancy shortfall ' + fmt$0(recon.vacancyShortfall) + ' — grossed actuals on ' +
+        recon.vacantSf.toLocaleString() + ' vacant SF no tenant reimburses (landlord absorbs).</div>' +
+      worst +
+      reconCaveats().map(c => '<div class="led-note">' + esc(c) + '</div>').join("");
+  }
+
   root.querySelector(".fin-body").innerHTML =
     '<div class="kpis fin-kpis">' + kpis + '</div>' +
     '<div class="fin-grid">' +
@@ -151,6 +189,7 @@ export function renderFinancial() {
       (REMOTE ? '<div class="card"><div class="panel-h"><h2>Collections &amp; aging</h2><div class="sub">LEDGER-LITE · OPEN BALANCES BY AGE</div></div><div class="fbars" id="finLedger">Loading…</div></div>' : '') +
       (REMOTE ? '<div class="card"><div class="panel-h"><h2>Payment history</h2><div class="sub">PREDECESSOR RECORD · JUL 2025 – JUL 2026</div></div><div class="fbars" id="finPayHist">Loading…</div></div>' : '') +
       (REMOTE ? '<div class="card"><div class="panel-h"><h2>Tenant health</h2><div class="sub">SCORED 0–100 · PAYMENT RECORD + TERM</div></div><div class="fbars" id="finHealth">Loading…</div></div>' : '') +
+      '<div class="card"><div class="panel-h"><h2>CAM / NNN reconciliation — draft</h2><div class="sub">WORKSHEET ACTUALS vs BILLED RECOVERIES · ANNUAL</div></div><div class="fbars" id="finCamRecon">' + reconHtml + '</div></div>' +
       '<div class="card noi-card"><div class="panel-h"><h2>NOI worksheet</h2><div class="sub">ENTER ANNUAL OPERATING EXPENSES</div></div>' +
         '<div class="noi-line"><span>In-place rent (income)</span><b>' + fmt$0(inc.annualRent) + '</b></div>' +
         '<div class="opex">' + opexRows + '</div>' +
@@ -166,6 +205,8 @@ export function renderFinancial() {
     i.onchange = () => setOpex(i.dataset.opex, i.value));
   const cap = root.querySelector("#capRate");
   if (cap) cap.onchange = () => setCapRate(cap.value);
+  const gu = root.querySelector("#camGrossUp");
+  if (gu) gu.onchange = () => { camGrossUpPct = Math.max(0, +gu.value || 0); renderFinancial(); };
   if (REMOTE) { paintCollections(); paintPayHistory(); paintTenantHealth(); }
 }
 

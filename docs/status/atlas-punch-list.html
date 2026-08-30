@@ -3,15 +3,17 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Atlas Punch List — rev 3 (fully interactive: gate tasks, smokes, wave
-   priorities, decision pickers, transmittal memo).
+/* Atlas Punch List — rev 4 (content refresh 2026-08-29: Waves H1.2 data leg +
+   H2 imports landed, H2.5 build waves 1-2 shipped, register recount; operator
+   state r1 carried forward. Interactive: gate tasks, smokes, wave priorities,
+   decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":0,"saved":null}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":1,"saved":"2026-08-27T22:28:08.882Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"open","note":"","at":""},"smk-3":{"s":"open","note":"","at":""},"smk-4":{"s":"open","note":"","at":""},"smk-5":{"s":"open","note":"","at":""}},"tasks":{"g-1":{"s":"open","at":""},"g-2":{"s":"open","at":""},"h0-1":{"s":"open","at":""},"h0-2":{"s":"open","at":""},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"queued","note":""},"h12":{"p":"queued","note":""},"h2":{"p":"queued","note":""},"h25":{"p":"queued","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"","note":"","at":""},"h2":{"pick":"","note":"","at":""},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"","note":"","at":""}},"memo":{"text":"","at":""}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -283,7 +285,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Aug 27, 2026 &middot; Rev 3</span>
+      <span class="mono mast-date">Content &middot; Aug 29, 2026 &middot; Rev 4</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one working sheet.
@@ -292,10 +294,10 @@ const BODY = `
     &mdash; one Save publishes it all where every viewer and every Claude session can read it.</p>
 
     <div class="kpis mono">
-      <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>1 / 3</b><small>SOP live &middot; voice line + work orders open</small></div>
+      <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; voice cutover waits on H-2</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">4</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
-      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>2 / 25</b><small>AC retires only at 25 / 25 green</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>7 / 25</b><small>AC retires only at 25 / 25 green</small></div>
     </div>
   </header>
 
@@ -416,6 +418,21 @@ const BODY = `
           <input class="note" data-note="smk-5" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
+      <div class="smoke" data-smoke="smk-6">
+        <div class="head"><span class="mono eyebrow">SMK-6</span><span class="name">Harvest sheets (after next deploy)</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-6"></span></div>
+        <p class="desc">orangeoceanatlas.com &rarr; L-1 Comm Log shows the 62 imported voice rows &rarr;
+        N-1 open a test matter + log a meeting note &rarr; unit 101 drawer: Prior payments shows 13
+        months and Lease abstract renders &rarr; P-1: Collections history + Tenant health cards &rarr;
+        W-1: pipeline strip &rarr; unit drawer Ledger: &#10515; Statement opens.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-6 result">
+            <button type="button" class="b-open" data-smk="smk-6" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-6" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-6" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-6" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
     </div>
     <p class="smoke-note mono" id="save-stamp">No revision saved yet &mdash; marks publish to the sheet when you hit Save.</p>
   </section>
@@ -468,9 +485,9 @@ const BODY = `
       <div class="wave" data-wave="h11">
         <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Open</span></div>
         <p>Pick the single phone stack &mdash; Atlas&rsquo; Twilio bridge is the keeper (truthful-booking guard,
-        tested). Repoint or port the number AC&rsquo;s Vapi/Retell agent answers; AC&rsquo;s voice-intake history
-        imports as reference.</p>
-        <div class="data">62 rows import &middot; blocked by decision H-2</div>
+        tested). Repoint or port the number AC&rsquo;s Vapi/Retell agent answers. The history leg is DONE:
+        all 62 voice-intake rows live in the new L-1 Comm Log (<code>source:'ac'</code>).</p>
+        <div class="data">62 rows imported Aug 29 &middot; number cutover blocked by decision H-2</div>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H1.1 priority">
             <button type="button" class="b-next" data-wav="h11" data-set="next" aria-pressed="false">Next up</button>
@@ -481,10 +498,12 @@ const BODY = `
         </div>
       </div>
       <div class="wave" data-wave="h12">
-        <div class="head"><span class="wid">H1.2</span><span class="wname">Work orders</span><span class="chip open">Open</span></div>
-        <p>Import AC&rsquo;s active work orders into <code>maintenance_requests</code> + events (timestamps
-        preserved as note events). One gap to build: token-link UX for unauthenticated vendor uploads.</p>
-        <div class="data">24 WOs import &middot; tenants/vendors move to M-1</div>
+        <div class="head"><span class="wid">H1.2</span><span class="wname">Work orders</span><span class="chip open">Data leg done</span></div>
+        <p>Import DONE Aug 29: of AC&rsquo;s 24 work orders, 23 were cancelled test tickets (&ldquo;Test
+        Tenant&rdquo; burst-pipe loop) &mdash; archived only; the ONE real order (Pothole Repair, common
+        area, open since Jul 27) is live in M-1 with its timestamp preserved. Remaining gap:
+        token-link UX for unauthenticated vendor uploads.</p>
+        <div class="data">1 real WO live &middot; 24 archived &middot; vendor upload-link UX open</div>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H1.2 priority">
             <button type="button" class="b-next" data-wav="h12" data-set="next" aria-pressed="false">Next up</button>
@@ -501,12 +520,15 @@ const BODY = `
         <div class="data">506 rows imported checksum-clean &middot; 18 / 88 / 320 / 71 / 9</div>
       </div>
       <div class="wave" data-wave="h2">
-        <div class="head"><span class="wid">H2</span><span class="wname">History import</span><span class="chip open">Open</span></div>
-        <p>The predecessor record moves over: rent payments (shape per H-1), compliance events with a
-        <code>source:'ac'</code> marker, documents + floor plans into the K-1 register, escalations and
-        abstractions as lease-assembler reference data, late-fee/invoice history as a flat archive in
-        S-1, and the ~12 real AC users invited per H-3.</p>
-        <div class="data">313 payments / $1.13M &middot; 698 compliance &middot; 247 docs + 57 plans &middot; 83 + 24 lease rows</div>
+        <div class="head"><span class="wid">H2</span><span class="wname">History import</span><span class="chip done">Imported Aug 29</span></div>
+        <p>DONE Aug 29 under <code>/goal</code>: <strong>313 payments / $1,133,492.20 verified to the
+        cent</strong> into read-only <code>payment_history</code> (interim shape (b) &mdash; see H-1);
+        37 real compliance events merged (661 were an automated &ldquo;Test User&rdquo; COI loop &mdash;
+        archived only); 24 lease abstracts + 83 escalations as assembler reference; 28 HVAC rows; all
+        39 AC tables flat-archived to <code>docs/harvest/ac-archive-2026-08-29</code> + Drive.
+        Residue: document/floor-plan binaries need a keyed AC-storage copy (H3-gate step) &middot;
+        user invitations wait on H-3.</p>
+        <div class="data">313 payments &middot; 37 + 661-archived compliance &middot; 24 + 83 lease rows &middot; 28 HVAC &middot; 2,622 audit rows archived</div>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H2 priority">
             <button type="button" class="b-next" data-wav="h2" data-set="next" aria-pressed="false">Next up</button>
@@ -518,11 +540,13 @@ const BODY = `
       </div>
       <div class="wave" data-wave="h25">
         <div class="head"><span class="wid">H2.5</span><span class="wname">Parity rebuilds &mdash; four groups</span><span class="chip open">Open</span></div>
-        <p>Clean builds in Atlas idiom, shipped independently in value order:
-        <strong>Money &amp; Accounting</strong> (invoices &middot; CAM recon &middot; accounting/QBO) &rarr;
-        <strong>Tenant &amp; Leasing</strong> (tenant portal &middot; abstraction &middot; deal pipeline) &rarr;
-        <strong>Documents &amp; Matters</strong> (expiry scans &middot; governance &middot; N-1 Matters &middot; N-2 meeting notes) &rarr;
-        <strong>Intelligence &amp; Comms</strong> (board reports &middot; tenant health &middot; communications hub).</p>
+        <p><strong>Build waves 1&ndash;2 LANDED Aug 29 (in repo, deploy pending):</strong> two new sheets
+        &mdash; L-1 Comm Log (#14, + N-2 meeting notes v1) and N-1 Matters &mdash; plus drawer
+        Prior-payments + Lease-abstract panels, W-1 deal pipeline (#11), K-1 document expiry (#16),
+        P-1 collections history + tenant health (#13), per-unit statements (#5 v1), S-1 quarterly
+        board report (#12 v1), CAM recon draft (#6 v1). T-1 now carries matter deadlines + rent
+        steps. Still open in this wave: accounting/QBO (#7) &middot; tenant portal (#9) &middot;
+        governance (#8) &middot; vendor upload links (#2 gap).</p>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H2.5 priority">
             <button type="button" class="b-next" data-wav="h25" data-set="next" aria-pressed="false">Next up</button>
@@ -557,7 +581,10 @@ const BODY = `
         <div class="head"><span class="did">H-1</span><span class="q">Rent-history shape</span><span class="stamp" data-dstamp="h1"></span></div>
         <p>13 months / $1.13M of AC rent payments: <strong>(a)</strong> import as pre-Aug archival
         ledger entries, or <strong>(b)</strong> a read-only <code>payment_history</code> table surfaced
-        in the unit drawer. The decision doc leans (b) &mdash; the append-only ledger stays born-clean.</p>
+        in the unit drawer. The decision doc leans (b) &mdash; the append-only ledger stays born-clean.
+        <strong>Interim (Aug 29):</strong> Claude implemented (b) under <code>/goal</code> &mdash;
+        additive and reversible (flip to (a) = drop the table, re-import from the archive). Pick (b)
+        to ratify or (a) to reverse.</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="H-1 decision">
             <button type="button" data-dec="h1" data-set="a" aria-pressed="false">(a) Archival ledger</button>
@@ -620,31 +647,31 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule E</span>
       <h2>Capability Register</h2>
-      <span class="mono sched-count">the H3 gate &middot; 2 / 25 green</span>
+      <span class="mono sched-count">the H3 gate &middot; 7 / 25 green</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
       each goes green by parity verification, port, or rebuild. Rows go green by build work, not
       marks &mdash; this schedule stays read-only.</p>
     <div class="reg-grid">
-      <div class="cell port"    title="1 &middot; Voice intake &rarr; Twilio bridge (PORT, H1.1)">1</div>
-      <div class="cell port"    title="2 &middot; Work orders + vendor uploads &rarr; M-1 / V-1 (PORT, H1.2)">2</div>
+      <div class="cell port"    title="1 &middot; Voice intake &rarr; history in L-1 (62 rows); number cutover waits on H-2">1</div>
+      <div class="cell port"    title="2 &middot; Work orders &rarr; data in M-1; vendor upload-link UX open">2</div>
       <div class="cell done"    title="3 &middot; SOP system &rarr; O-1 Operations (PORTED Aug 25)">3</div>
       <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY, history per H-1)">4</div>
-      <div class="cell rebuild" title="5 &middot; Invoices + late fees &rarr; Ledger family (REBUILD)">5</div>
-      <div class="cell rebuild" title="6 &middot; CAM reconciliation &rarr; P-1 family (REBUILD)">6</div>
+      <div class="cell port"    title="5 &middot; Invoices + late fees &rarr; statements v1 LIVE in repo; invoice generation open">5</div>
+      <div class="cell port"    title="6 &middot; CAM reconciliation &rarr; P-1 recon draft v1 in repo; caps/base-year open">6</div>
       <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
       <div class="cell rebuild" title="8 &middot; Governance &rarr; S-1 + T-1 (REBUILD)">8</div>
       <div class="cell rebuild" title="9 &middot; Tenant portal &rarr; expanded tenant role (REBUILD)">9</div>
-      <div class="cell port"    title="10 &middot; Lease abstraction + escalations &rarr; Lease panel (PORT)">10</div>
-      <div class="cell rebuild" title="11 &middot; Deal pipeline &rarr; W-1 family + AI-1 (REBUILD)">11</div>
-      <div class="cell rebuild" title="12 &middot; Board reports &rarr; owner_briefs family (REBUILD)">12</div>
-      <div class="cell parity"  title="13 &middot; NOI + tenant health &rarr; P-1 + run_calc (PARITY + gap)">13</div>
-      <div class="cell rebuild" title="14 &middot; Communications hub &rarr; new (REBUILD)">14</div>
+      <div class="cell done"    title="10 &middot; Lease abstraction + escalations &rarr; PORTED Aug 29 (24 + 83 rows, drawer panel + T-1)">10</div>
+      <div class="cell done"    title="11 &middot; Deal pipeline &rarr; W-1 pipeline strip LIVE in repo (3 AC rows imported)">11</div>
+      <div class="cell port"    title="12 &middot; Board reports &rarr; S-1 quarterly report v1 in repo; stakeholder variants open">12</div>
+      <div class="cell done"    title="13 &middot; NOI + tenant health &rarr; scoring shipped Aug 29 over 13-mo record">13</div>
+      <div class="cell done"    title="14 &middot; Communications hub &rarr; L-1 Comm Log LIVE in repo (62 AC rows imported)">14</div>
       <div class="cell parity"  title="15 &middot; NL query &rarr; AI-1 grounded digest (PARITY in some form)">15</div>
-      <div class="cell rebuild" title="16 &middot; Document expiry scans &rarr; K-1 generalized (REBUILD)">16</div>
-      <div class="cell port"    title="17 &middot; Documents / register &rarr; K-1 + bucket (PORT)">17</div>
-      <div class="cell rebuild" title="18 &middot; HVAC + predictive maintenance &rarr; typed table + T-1 (REBUILD)">18</div>
+      <div class="cell done"    title="16 &middot; Document expiry scans &rarr; K-1 generalized Aug 29 (coi.js reused)">16</div>
+      <div class="cell port"    title="17 &middot; Documents / register &rarr; metadata archived; binaries need keyed storage copy">17</div>
+      <div class="cell port"    title="18 &middot; HVAC &rarr; typed table imported (28 rows); PM tracking + T-1 deadlines open">18</div>
       <div class="cell parity"  title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (PARITY, reconcile)">19</div>
       <div class="cell parity"  title="20 &middot; Marketing assets &rarr; K-1 + brand kit (PARITY + gap)">20</div>
       <div class="cell done"    title="21 &middot; UniFi network card &rarr; D-1 (PARITY, done)">21</div>
@@ -667,20 +694,20 @@ const BODY = `
         <li><b>2</b> Work orders + vendor uploads <span class="st b">PORT</span></li>
         <li><b>3</b> SOP system <span class="st g">DONE</span></li>
         <li><b>4</b> Rent tracking + AR <span class="st g">PARITY</span></li>
-        <li><b>5</b> Invoices + late fees <span class="st s">REBUILD</span></li>
-        <li><b>6</b> CAM reconciliation <span class="st s">REBUILD</span></li>
+        <li><b>5</b> Invoices + late fees <span class="st b">V1 LIVE</span></li>
+        <li><b>6</b> CAM reconciliation <span class="st b">V1 LIVE</span></li>
         <li><b>7</b> Accounting / QuickBooks <span class="st s">REBUILD</span></li>
         <li><b>8</b> Governance suite <span class="st s">REBUILD</span></li>
         <li><b>9</b> Tenant portal <span class="st s">REBUILD</span></li>
-        <li><b>10</b> Lease abstraction + escalations <span class="st b">PORT</span></li>
-        <li><b>11</b> Deal pipeline + waitlist <span class="st s">REBUILD</span></li>
-        <li><b>12</b> Board + stakeholder reports <span class="st s">REBUILD</span></li>
-        <li><b>13</b> NOI valuation + tenant health <span class="st g">PARITY</span></li>
-        <li><b>14</b> Communications hub <span class="st s">REBUILD</span></li>
+        <li><b>10</b> Lease abstraction + escalations <span class="st g">DONE</span></li>
+        <li><b>11</b> Deal pipeline + waitlist <span class="st g">DONE</span></li>
+        <li><b>12</b> Board + stakeholder reports <span class="st b">V1 LIVE</span></li>
+        <li><b>13</b> NOI valuation + tenant health <span class="st g">DONE</span></li>
+        <li><b>14</b> Communications hub <span class="st g">DONE</span></li>
         <li><b>15</b> NL query <span class="st g">PARITY</span></li>
-        <li><b>16</b> Document expiry scanning <span class="st s">REBUILD</span></li>
+        <li><b>16</b> Document expiry scanning <span class="st g">DONE</span></li>
         <li><b>17</b> Documents + register categories <span class="st b">PORT</span></li>
-        <li><b>18</b> HVAC + predictive maintenance <span class="st s">REBUILD</span></li>
+        <li><b>18</b> HVAC + predictive maintenance <span class="st b">V1 LIVE</span></li>
         <li><b>19</b> Spatial datasets <span class="st g">PARITY</span></li>
         <li><b>20</b> Marketing assets <span class="st g">PARITY</span></li>
         <li><b>21</b> UniFi network card <span class="st g">DONE</span></li>
@@ -721,8 +748,13 @@ const BODY = `
       session &ldquo;read the punch list&rdquo;; a session already watching is notified the moment you save.</li>
       <li>A saved decision pick is treated as confirmed &mdash; Claude acts on it without relitigating.
       To reopen one, set it back to Undecided and Save.</li>
-      <li>Build health at snapshot: 399 tests green &middot; prod bundle content-hash verified
-      against the deployed commit.</li>
+      <li>Build health at snapshot: 463 tests green &middot; 5-persona assert suite over 29 tables
+      ran on PROD Aug 29: SUITE_PASS_ROLLBACK, 0 residue &middot; payment_history verified
+      $1,133,492.20 to the cent. Everything above marked &ldquo;in repo&rdquo; awaits the next
+      deploy.</li>
+      <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
+      <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
+      <code>G:\My Drive\00 OTB\</code>. Rebuild drill documented in the spec.</li>
       <li>New-capability north star: &ldquo;open Atlas, never open another program&rdquo; &mdash;
       N-1 Matters &amp; Planning, N-2 meeting-notes ingestion, N-3 accounting home ride Wave H2.5.</li>
     </ol>
@@ -731,8 +763,8 @@ const BODY = `
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-08-27</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">3</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-08-29</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">4</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>

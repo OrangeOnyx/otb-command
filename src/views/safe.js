@@ -4,6 +4,7 @@
    safe_log). Owners get read/open only — operator controls are hidden by the
    existing body.role-owner CSS AND enforced server-side by RLS. */
 import { SAFE_CATEGORIES, addSafeDoc, listSafe, safeURL, removeSafeDoc, listLog } from "../lib/safe.js";
+import { openBoardReport } from "../lib/boardreport.js";
 import { esc } from "../lib/format.js";
 
 const fmtSize = n => !n ? "" : n > 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB";
@@ -31,7 +32,25 @@ async function render() {
           '<button class="safe-del" title="Remove">✕</button></div>').join("")
         : '<div class="safe-empty mute">nothing filed</div>') +
       '</div>';
-  }).join("");
+  }).join("") +
+    /* Quarterly board report (register row #12): composes the stored monthly
+       owner-brief models. Operator AND owner — RLS scopes the reads. */
+    '<div class="safe-cat">' +
+    '<div class="safe-cat-head"><span class="safe-cat-name">Board report</span>' +
+    '<button class="chip" id="safeBoardRpt">⤓ Last quarter</button>' +
+    '<span class="led-note mute" id="safeBoardNote"></span></div></div>';
+
+  const rptBtn = host.querySelector("#safeBoardRpt");
+  if (rptBtn) rptBtn.onclick = async () => {
+    const note = host.querySelector("#safeBoardNote");
+    rptBtn.disabled = true;
+    try {
+      const q = await openBoardReport(new Date().toISOString().slice(0, 7));
+      if (note) note.textContent = "Opened " + q + ".";
+    } catch (err) {
+      if (note) note.textContent = err.message; // incl. "hosted backend required" in local mode
+    } finally { rptBtn.disabled = false; }
+  };
 
   host.querySelectorAll(".safe-add").forEach(btn => {
     btn.onclick = () => host.querySelector('.safe-file[data-cat="' + btn.dataset.cat + '"]').click();

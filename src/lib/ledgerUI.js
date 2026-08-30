@@ -6,6 +6,8 @@
    late-fee SUGGESTIONS the operator confirms per-fee (decision 3A). */
 import { REMOTE, listLedgerEntries, addLedgerEntry } from "./remote.js";
 import { withRunningBalance, suggestLateFees, DEBIT_TYPES, round2 } from "./ledger.js";
+import { statementModel, statementHTML, statementMonths, monthLabel } from "./statement.js";
+import { byUnit } from "../store.js";
 import { fmt$, esc, TODAY } from "./format.js";
 
 const today = () => TODAY.toISOString ? TODAY.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10);
@@ -55,6 +57,15 @@ async function paint(el, unit) {
       '<input id="ledDate" type="date" value="' + today() + '">' +
       '<input id="ledDesc" type="text" placeholder="memo (e.g. check #1042)">' +
       '<button class="chip on" id="ledSave">Add</button>' +
+    '</div>' +
+    /* Statement row — deliberately OUTSIDE .led-add: owners keep it (read-only
+       doc export is owner-safe; role CSS hides .led-add/.led-void/.led-sugg). */
+    '<div class="led-stmt">' + (rows.length
+      ? '<select id="ledStmtYm">' +
+          statementMonths(rows, today().slice(0, 7)).map(m =>
+            '<option value="' + m + '">' + esc(monthLabel(m)) + "</option>").join("") +
+        '</select><button class="chip" id="ledStmt">⤓ Statement</button>'
+      : '<span class="led-note">Statement export unlocks once the first entry posts.</span>') +
     '</div><div class="led-note" id="ledMsg"></div>';
 
   const msg = el.querySelector("#ledMsg");
@@ -85,4 +96,12 @@ async function paint(el, unit) {
       paint(el, unit);
     } catch (e) { msg.textContent = "void failed: " + e.message; }
   });
+  const stmtBtn = el.querySelector("#ledStmt");
+  if (stmtBtn) stmtBtn.onclick = () => {
+    const ym = el.querySelector("#ledStmtYm").value;
+    const html = statementHTML(statementModel(rows, unit, ym), byUnit[unit], { issuedISO: today() });
+    const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    window.open(url, "_blank", "noopener");
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
+  };
 }
