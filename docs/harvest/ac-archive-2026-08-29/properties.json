@@ -1,0 +1,91 @@
+[
+ {
+  "id": "c92269d6-0905-4ed2-98a1-94273cf99bda",
+  "name": "Republic Avenue Shopping Center",
+  "legalEntity": "Art Vandeley Industries",
+  "managedBy": "East Side Enterprises",
+  "streetAddress": "112/200 Republic Ave",
+  "metadata": null,
+  "disabledWorkspaces": null,
+  "setupComplete": false,
+  "createdAt": "2026-07-28T20:40:45",
+  "updatedAt": "2026-07-28T20:40:45"
+ },
+ {
+  "id": "e61b10af-2f9c-4c11-b624-78634f125313",
+  "name": "Example Property",
+  "legalEntity": "Ya boy, llc",
+  "managedBy": "Day guy mgt",
+  "streetAddress": "1234 main",
+  "metadata": null,
+  "disabledWorkspaces": [
+   "pylon"
+  ],
+  "setupComplete": true,
+  "createdAt": "2026-07-31T22:40:07",
+  "updatedAt": "2026-08-01T06:41:15"
+ },
+ {
+  "id": "otb-prop-1",
+  "name": "On The Boulevard Shopping Center",
+  "legalEntity": "Belle Realty of Lafayette, LLC",
+  "managedBy": "Orange Ocean, LLC",
+  "streetAddress": "101-149 Arnould Blvd, Lafayette, LA 70506",
+  "metadata": {
+   "source": "Deed + ALTA/ACSM Plat (Montagnet & Domingue, last revised July 19, 2019)",
+   "zoning": {
+    "code": "CH",
+    "label": "Commercial Heavy",
+    "heightLimit": "None",
+    "rearSetback": "None",
+    "sideSetback": "None",
+    "frontSetback": "20 ft",
+    "greenAreaReq": "20%",
+    "parkingDeficit": 20,
+    "parkingProvided": 324,
+    "parkingRequired": 344,
+    "parkingVarianceNote": "Zoning variance recorded under Entry No. 99-11797 permits the 20-stall deficit. Variance is configuration-dependent — material changes to stall count or use mix may trigger re-review.",
+    "parkingVarianceEntry": "99-11797",
+    "floorSpaceRestriction": "Limited to available parking spaces"
+   },
+   "surveyor": {
+    "addr": "136 Clara Von Drive, Lafayette, Louisiana 70503",
+    "firm": "Montagnet and Domingue, Inc.",
+    "name": "Andre E. Montagnet, P.L.S. No. 4484, C.E. No. 18687",
+    "type": "ALTA/ACSM Survey for Belle Realty of Lafayette, LLC",
+    "phone": "(337) 981-2130",
+    "scale": "1\"=30'",
+    "floodNote": "Surveyor found that subject property DOES NOT lie in a Special Flood Hazard Area.",
+    "lastRevised": "July 19, 2019",
+    "originalDate": "May 20, 1994"
+   },
+   "managedBy": "Orange Ocean, LLC",
+   "utilities": {
+    "sewer": "LUS",
+    "water": "LUS",
+    "roadway": "Existing asphalt",
+    "drainage": "Open Ditch (existing)",
+    "electric": "LUS",
+    "telephone": "Bell South"
+   },
+   "legalEntity": "Belle Realty of Lafayette, LLC",
+   "titleInsurance": {
+    "fileNo": "ATC 2007054432",
+    "company": "Fidelity National Title Insurance Company"
+   },
+   "developmentTotals": {
+    "note": "Plat (rev. 2019) lists 2 buildings / 62,883 sf. The east-corner bank building has since been sold to JD Bank. Belle now retains the long retail building only.",
+    "minFrontage": 75,
+    "totalBuildings": 2,
+    "totalBuildingSF": 62883,
+    "parkingSpacesTotal": 324,
+    "totalDevelopmentSF": 210830,
+    "totalDevelopmentAcres": 4.84
+   }
+  },
+  "disabledWorkspaces": null,
+  "setupComplete": true,
+  "createdAt": "2026-06-10T03:17:31",
+  "updatedAt": "2026-06-10T03:17:31"
+ }
+]

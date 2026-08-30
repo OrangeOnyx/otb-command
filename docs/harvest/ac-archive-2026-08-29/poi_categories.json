@@ -1,0 +1,338 @@
+[
+ {
+  "id": "ada-ramp",
+  "label": "ADA Ramp",
+  "icon": "♿",
+  "color": "#3498DB",
+  "groupName": "Site",
+  "sortOrder": 32
+ },
+ {
+  "id": "aed",
+  "label": "AED",
+  "icon": "❤",
+  "color": "#CB4335",
+  "groupName": "Life Safety",
+  "sortOrder": 21
+ },
+ {
+  "id": "ash-receptacle",
+  "label": "Ash Receptacle",
+  "icon": "A",
+  "color": "#34495E",
+  "groupName": "Site",
+  "sortOrder": 28
+ },
+ {
+  "id": "backflow-preventer",
+  "label": "Backflow Preventer",
+  "icon": "B",
+  "color": "#1F618D",
+  "groupName": "Utilities",
+  "sortOrder": 3
+ },
+ {
+  "id": "bench",
+  "label": "Bench",
+  "icon": "≡",
+  "color": "#8E44AD",
+  "groupName": "Site",
+  "sortOrder": 26
+ },
+ {
+  "id": "bollard",
+  "label": "Bollard",
+  "icon": "•",
+  "color": "#212F3C",
+  "groupName": "Site",
+  "sortOrder": 31
+ },
+ {
+  "id": "catch-basin",
+  "label": "Catch Basin",
+  "icon": "▽",
+  "color": "#5D6D7E",
+  "groupName": "Plumbing",
+  "sortOrder": 13
+ },
+ {
+  "id": "downspout",
+  "label": "Downspout",
+  "icon": "↓",
+  "color": "#85929E",
+  "groupName": "Plumbing",
+  "sortOrder": 14
+ },
+ {
+  "id": "dumpster",
+  "label": "Dumpster",
+  "icon": "□",
+  "color": "#7F8C8D",
+  "groupName": "Site",
+  "sortOrder": 23
+ },
+ {
+  "id": "electric-disconnect",
+  "label": "Electric Disconnect",
+  "icon": "D",
+  "color": "#9A7D0A",
+  "groupName": "Utilities",
+  "sortOrder": 8
+ },
+ {
+  "id": "electric-meter",
+  "label": "Electric Meter",
+  "icon": "E",
+  "color": "#F1C40F",
+  "groupName": "Utilities",
+  "sortOrder": 6
+ },
+ {
+  "id": "electric-panel",
+  "label": "Electric Panel",
+  "icon": "⚡",
+  "color": "#D4AC0D",
+  "groupName": "Utilities",
+  "sortOrder": 7
+ },
+ {
+  "id": "emergency-exit",
+  "label": "Emergency Exit",
+  "icon": "↗",
+  "color": "#1E8449",
+  "groupName": "Building",
+  "sortOrder": 35
+ },
+ {
+  "id": "emergency-light",
+  "label": "Emergency Light",
+  "icon": "L",
+  "color": "#229954",
+  "groupName": "Life Safety",
+  "sortOrder": 22
+ },
+ {
+  "id": "ev-charger",
+  "label": "EV Charger",
+  "icon": "⚡E",
+  "color": "#16A085",
+  "groupName": "Site",
+  "sortOrder": 33
+ },
+ {
+  "id": "exit-sign",
+  "label": "Exit Sign",
+  "icon": "→",
+  "color": "#27AE60",
+  "groupName": "Life Safety",
+  "sortOrder": 20
+ },
+ {
+  "id": "fdc",
+  "label": "FDC",
+  "icon": "F",
+  "color": "#922B21",
+  "groupName": "Life Safety",
+  "sortOrder": 16
+ },
+ {
+  "id": "fire-extinguisher",
+  "label": "Fire Extinguisher",
+  "icon": "🧯",
+  "color": "#E74C3C",
+  "groupName": "Life Safety",
+  "sortOrder": 19
+ },
+ {
+  "id": "fire-hydrant",
+  "label": "Fire Hydrant",
+  "icon": "🔥",
+  "color": "#C0392B",
+  "groupName": "Life Safety",
+  "sortOrder": 15
+ },
+ {
+  "id": "fire-riser",
+  "label": "Fire Riser",
+  "icon": "FR",
+  "color": "#7B241C",
+  "groupName": "Life Safety",
+  "sortOrder": 17
+ },
+ {
+  "id": "gas-meter",
+  "label": "Gas Meter",
+  "icon": "G",
+  "color": "#E67E22",
+  "groupName": "Utilities",
+  "sortOrder": 4
+ },
+ {
+  "id": "gas-shutoff",
+  "label": "Gas Shutoff",
+  "icon": "g",
+  "color": "#A04000",
+  "groupName": "Utilities",
+  "sortOrder": 5
+ },
+ {
+  "id": "generic",
+  "label": "Generic / Custom",
+  "icon": "?",
+  "color": "#7F8C8D",
+  "groupName": "Other",
+  "sortOrder": 38
+ },
+ {
+  "id": "grease-bin",
+  "label": "Grease Bin",
+  "icon": "GB",
+  "color": "#935116",
+  "groupName": "Site",
+  "sortOrder": 24
+ },
+ {
+  "id": "grease-trap",
+  "label": "Grease Trap",
+  "icon": "GT",
+  "color": "#7B6A4E",
+  "groupName": "Plumbing",
+  "sortOrder": 11
+ },
+ {
+  "id": "hvac-rtu",
+  "label": "HVAC RTU (Rooftop)",
+  "icon": "❄",
+  "color": "#1ABC9C",
+  "groupName": "HVAC",
+  "sortOrder": 9
+ },
+ {
+  "id": "hvac-thermostat",
+  "label": "Thermostat",
+  "icon": "T",
+  "color": "#16A085",
+  "groupName": "HVAC",
+  "sortOrder": 10
+ },
+ {
+  "id": "knox-box",
+  "label": "Knox Box",
+  "icon": "K",
+  "color": "#641E16",
+  "groupName": "Life Safety",
+  "sortOrder": 18
+ },
+ {
+  "id": "light-pole",
+  "label": "Light Pole",
+  "icon": "💡",
+  "color": "#F4D03F",
+  "groupName": "Site",
+  "sortOrder": 30
+ },
+ {
+  "id": "loading-door",
+  "label": "Loading Door",
+  "icon": "↕",
+  "color": "#212F3C",
+  "groupName": "Building",
+  "sortOrder": 34
+ },
+ {
+  "id": "network-switch",
+  "label": "Network Switch",
+  "icon": "⬡",
+  "color": "#0E6EB8",
+  "groupName": "Network",
+  "sortOrder": 102
+ },
+ {
+  "id": "planter",
+  "label": "Planter / Landscape",
+  "icon": "🌿",
+  "color": "#229954",
+  "groupName": "Site",
+  "sortOrder": 29
+ },
+ {
+  "id": "recycling",
+  "label": "Recycling Bin",
+  "icon": "♻",
+  "color": "#28B463",
+  "groupName": "Site",
+  "sortOrder": 25
+ },
+ {
+  "id": "roof-access",
+  "label": "Roof Access",
+  "icon": "↑",
+  "color": "#5D6D7E",
+  "groupName": "Building",
+  "sortOrder": 36
+ },
+ {
+  "id": "security-camera",
+  "label": "Security Camera",
+  "icon": "📷",
+  "color": "#212F3C",
+  "groupName": "Building",
+  "sortOrder": 37
+ },
+ {
+  "id": "sewer-cleanout",
+  "label": "Sewer Cleanout",
+  "icon": "S",
+  "color": "#5D4E37",
+  "groupName": "Plumbing",
+  "sortOrder": 12
+ },
+ {
+  "id": "structural-column",
+  "label": "Structural Column",
+  "icon": "▮",
+  "color": "#5D6D7E",
+  "groupName": "Building",
+  "sortOrder": 100
+ },
+ {
+  "id": "trash-can",
+  "label": "Trash Can",
+  "icon": "🗑",
+  "color": "#566573",
+  "groupName": "Site",
+  "sortOrder": 27
+ },
+ {
+  "id": "unifi-ap",
+  "label": "UniFi Access Point",
+  "icon": "📶",
+  "color": "#0559C9",
+  "groupName": "Network",
+  "sortOrder": 101
+ },
+ {
+  "id": "water-meter",
+  "label": "Water Meter",
+  "icon": "W",
+  "color": "#3498DB",
+  "groupName": "Utilities",
+  "sortOrder": 0
+ },
+ {
+  "id": "water-shutoff-main",
+  "label": "Water Shutoff (Main)",
+  "icon": "★",
+  "color": "#2874A6",
+  "groupName": "Utilities",
+  "sortOrder": 1
+ },
+ {
+  "id": "water-shutoff-unit",
+  "label": "Water Shutoff (Unit)",
+  "icon": "w",
+  "color": "#5DADE2",
+  "groupName": "Utilities",
+  "sortOrder": 2
+ }
+]

@@ -1,0 +1,252 @@
+[
+ {
+  "id": "12509159-4c40-40f1-83d9-2a3f55dac44e",
+  "propertyId": "otb-prop-1",
+  "groupName": "Entity & Legal",
+  "label": "Owner EIN",
+  "value": null,
+  "sortOrder": 2,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "188e0c31-7cf6-47eb-8fc6-1d74c53b51fd",
+  "propertyId": "otb-prop-1",
+  "groupName": "Title",
+  "label": "Owner policy status",
+  "value": "MISSING — order needed",
+  "sortOrder": 17,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "374ae497-bb8e-4018-8780-ae65211ecf9d",
+  "propertyId": "otb-prop-1",
+  "groupName": "Insurance",
+  "label": "Policy number(s)",
+  "value": "Hartford 43SBMAL3XX2 (GL/Umbrella); Lloyd's property # to obtain; LWCC # to obtain",
+  "sortOrder": 13,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T11:01:51"
+ },
+ {
+  "id": "3934413d-e19f-4149-9441-d2e1218adc37",
+  "propertyId": "otb-prop-1",
+  "groupName": "Tax & Parcel",
+  "label": "Lafayette Parish Assessor account",
+  "value": null,
+  "sortOrder": 6,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "3bc7e3cc-ebf7-47e2-b03f-8135f08ab658",
+  "propertyId": "otb-prop-1",
+  "groupName": "Technology",
+  "label": "PM platform",
+  "value": "DoorLoop",
+  "sortOrder": 21,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "3cb30162-0d16-40d5-ad7e-8bae0e4e1410",
+  "propertyId": "otb-prop-1",
+  "groupName": "Technology",
+  "label": "Google Business Profile",
+  "value": null,
+  "sortOrder": 24,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "40f5c76b-dcfc-49ae-9c58-52bb26356b61",
+  "propertyId": "otb-prop-1",
+  "groupName": "Loan",
+  "label": "Lender",
+  "value": "Investar Bank",
+  "sortOrder": 8,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "4a4494ff-c5a9-4526-a67c-b84503a52076",
+  "propertyId": "otb-prop-1",
+  "groupName": "Tax & Parcel",
+  "label": "Tax Parcel ID(s)",
+  "value": null,
+  "sortOrder": 5,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "4bef1bfc-3f65-4083-a2ff-f94c11141e76",
+  "propertyId": "otb-prop-1",
+  "groupName": "Utilities",
+  "label": "SLEMCO account (if any)",
+  "value": null,
+  "sortOrder": 19,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "5541c39d-8717-4e7d-ab7a-54ace8b1f946",
+  "propertyId": "otb-prop-1",
+  "groupName": "Entity & Legal",
+  "label": "Property Manager (contract)",
+  "value": "Abdalla Enterprises, LLC (via Belle Realty)",
+  "sortOrder": 1,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "63b37e2d-cf6f-482f-8d55-e03a93b035d7",
+  "propertyId": "otb-prop-1",
+  "groupName": "Tax & Parcel",
+  "label": "LAT-5 personal property acct",
+  "value": null,
+  "sortOrder": 7,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "67196655-45ce-4912-b8af-63c204fb97bd",
+  "propertyId": "otb-prop-1",
+  "groupName": "Entity & Legal",
+  "label": "Owner Entity (Legal Name)",
+  "value": "On The Boulevard, LLC",
+  "sortOrder": 0,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-31T10:09:40"
+ },
+ {
+  "id": "69b06425-3c14-45d6-9b1b-7c3e23d18e1c",
+  "propertyId": "otb-prop-1",
+  "groupName": "Entity & Legal",
+  "label": "LA SOS Charter / Registered Agent",
+  "value": null,
+  "sortOrder": 3,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "7a853666-935f-436a-9560-0a5a381d96c8",
+  "propertyId": "otb-prop-1",
+  "groupName": "Utilities",
+  "label": "LUS account (water/sewer/electric)",
+  "value": null,
+  "sortOrder": 18,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "7d454f18-246b-49ee-84ce-1fe96cf20d39",
+  "propertyId": "otb-prop-1",
+  "groupName": "Insurance",
+  "label": "Carrier (current)",
+  "value": "The Hartford (GL/Umbrella) + Lloyd's of London (Property) + LWCC (WC)",
+  "sortOrder": 12,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T11:01:51"
+ },
+ {
+  "id": "90896d41-8944-4cc2-8f8b-bf27ce91f5a6",
+  "propertyId": "otb-prop-1",
+  "groupName": "Insurance",
+  "label": "Agent / broker (TSL)",
+  "value": "TSL Insurance Group — Ryan Thomson (337) 889-0717, rthomson@tslins.com; AM Angela Viator (337) 889-0734",
+  "sortOrder": 14,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T11:01:51"
+ },
+ {
+  "id": "9b2cc893-6cad-495d-a68b-1053c097fb8c",
+  "propertyId": "otb-prop-1",
+  "groupName": "Entity & Legal",
+  "label": "BOI (FinCEN) filing status",
+  "value": null,
+  "sortOrder": 4,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "9c6b730e-02cc-4780-8e63-09fe7db235c5",
+  "propertyId": "otb-prop-1",
+  "groupName": "Loan",
+  "label": "Loan amount / balance",
+  "value": "$1,500,000 (orig.)",
+  "sortOrder": 9,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "9eb4eabe-6318-4d2a-ba44-9475a1fe3a65",
+  "propertyId": "otb-prop-1",
+  "groupName": "Technology",
+  "label": "DoorLoop property ID",
+  "value": null,
+  "sortOrder": 22,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "b2574962-7e29-47d2-8c11-20d7966cf697",
+  "propertyId": "otb-prop-1",
+  "groupName": "Loan",
+  "label": "Loan / account number",
+  "value": null,
+  "sortOrder": 11,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "cb78cfe5-f541-40b5-bd54-01e3867f72b3",
+  "propertyId": "otb-prop-1",
+  "groupName": "Technology",
+  "label": "Domain",
+  "value": "orangeoceanassetcommand.com",
+  "sortOrder": 23,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-31T20:24:49"
+ },
+ {
+  "id": "cea24f4f-6e53-41fb-8cb2-9271699575b7",
+  "propertyId": "otb-prop-1",
+  "groupName": "Insurance",
+  "label": "Flood policy (NFIP/private)",
+  "value": "NONE in program — flood excluded on property policy; NFIP/private decision needed",
+  "sortOrder": 15,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T11:01:51"
+ },
+ {
+  "id": "d48dfc7c-273a-45bb-a185-ced85dc0f07c",
+  "propertyId": "otb-prop-1",
+  "groupName": "Loan",
+  "label": "Maturity date",
+  "value": "2030-04-30",
+  "sortOrder": 10,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "d8307147-33fe-4d47-b574-b07bcb789e95",
+  "propertyId": "otb-prop-1",
+  "groupName": "Utilities",
+  "label": "Atmos / gas account",
+  "value": null,
+  "sortOrder": 20,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ },
+ {
+  "id": "dc12687e-427f-4531-8664-b674241ac14a",
+  "propertyId": "otb-prop-1",
+  "groupName": "Title",
+  "label": "Title company (2007 policy)",
+  "value": "Fidelity National Title",
+  "sortOrder": 16,
+  "createdAt": "2026-07-02T08:23:27",
+  "updatedAt": "2026-07-02T08:23:27"
+ }
+]

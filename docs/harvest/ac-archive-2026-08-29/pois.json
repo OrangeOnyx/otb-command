@@ -1,0 +1,23 @@
+[
+ {
+  "id": "3291fbdf-3703-4253-9a3f-eef588995f7a",
+  "propertyId": "otb-prop-1",
+  "categoryId": "water-meter",
+  "scope": "unit",
+  "viewId": null,
+  "unitId": "u1175",
+  "floorPlanId": "2e086121-6303-44fa-8840-d418be3485a7",
+  "x": 245,
+  "y": 632,
+  "name": null,
+  "status": "operational",
+  "lastService": null,
+  "nextDue": null,
+  "vendor": null,
+  "photoUrl": null,
+  "photoKey": null,
+  "notes": null,
+  "createdAt": "2026-06-10T15:09:12",
+  "updatedAt": "2026-06-10T15:09:12"
+ }
+]

@@ -1,0 +1,119 @@
+[
+ {
+  "id": "097ff137-9ec0-453c-be6c-237856bf07f1",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "2004-00057697",
+  "title": "Reciprocal Access & Parking Easement — Belle↔Whitney National Bank",
+  "titleExceptionNo": 28,
+  "status": "SUPERSEDED by 2020 JD Bank agreement",
+  "sortOrder": 3
+ },
+ {
+  "id": "0a5bb753-4e31-49d6-b391-0e8ecd96bb6e",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "98-18247",
+  "title": "Zoning Variance (Parking) — original",
+  "titleExceptionNo": 23,
+  "status": "Applies; revised by #24",
+  "sortOrder": 4
+ },
+ {
+  "id": "0f8b917d-8545-473c-9e05-ac82d99ebcdd",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "99-11797",
+  "title": "Zoning Variance (Parking) — revised",
+  "titleExceptionNo": 24,
+  "status": "Applies — current variance of record",
+  "sortOrder": 5
+ },
+ {
+  "id": "116e9a0c-7e1a-4889-be31-ac9875a6d434",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "03-060864",
+  "title": "Cross Easement and Servitude Agreement",
+  "titleExceptionNo": 27,
+  "status": "Applies",
+  "sortOrder": 2
+ },
+ {
+  "id": "1c826569-3859-46ef-a0bf-5fe68fbc65e5",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "286167",
+  "title": "Title exception #11 (Church property plat reference)",
+  "titleExceptionNo": 11,
+  "status": "Applies",
+  "sortOrder": 8
+ },
+ {
+  "id": "2e181d66-3071-44dc-8235-a47b0c196d28",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "577566",
+  "title": "10' City of Lafayette Electric Easement (#14)",
+  "titleExceptionNo": 14,
+  "status": "Applies",
+  "sortOrder": 10
+ },
+ {
+  "id": "377d0aba-add2-4ab6-8108-1bb4e385f7c4",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "77-0783",
+  "title": "15' Temporary Drainage Easement (Marie Antoinette side)",
+  "titleExceptionNo": null,
+  "status": "Expired",
+  "sortOrder": 12
+ },
+ {
+  "id": "4ff291e5-6907-4e73-a1d1-b33625c80ee3",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "(2020 executed)",
+  "title": "Reciprocal Access & Parking Easement — JD Bank ($250/mo to Belle, exp 2034, supersedes 2004 Whitney agmt; Belle gains 13 bank spaces)",
+  "titleExceptionNo": null,
+  "status": "Active — on file",
+  "sortOrder": 1
+ },
+ {
+  "id": "617eb6f2-a2aa-4de0-a856-d9a949faf809",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "97-012420",
+  "title": "Title exception #20",
+  "titleExceptionNo": 20,
+  "status": "Applies",
+  "sortOrder": 7
+ },
+ {
+  "id": "9151b90a-9b3e-4a31-9d8a-37f3b9e0c403",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "99-041054",
+  "title": "Zoning (Signage)",
+  "titleExceptionNo": 25,
+  "status": "Applies",
+  "sortOrder": 6
+ },
+ {
+  "id": "9f29c6b0-0610-449d-816b-0b110343172f",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "(2019 executed)",
+  "title": "Access & Parking Easement — Our Savior's Church ($350/mo, 25-yr, supersedes 2015 agmt; incl. liquor waiver §3a)",
+  "titleExceptionNo": null,
+  "status": "Active — on file",
+  "sortOrder": 0
+ },
+ {
+  "id": "bb2abd41-3d2c-4261-b203-340a46f09a90",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "445327",
+  "title": "Title exception #13",
+  "titleExceptionNo": 13,
+  "status": "Applies",
+  "sortOrder": 9
+ },
+ {
+  "id": "e189024e-b201-4d71-88e9-bc2a22bc17ad",
+  "propertyId": "otb-prop-1",
+  "entryNumber": "77-000785",
+  "title": "15' Temporary Drainage Easement",
+  "titleExceptionNo": null,
+  "status": "Expired",
+  "sortOrder": 11
+ }
+]

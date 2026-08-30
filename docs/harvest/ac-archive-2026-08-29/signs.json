@@ -1,0 +1,50 @@
+[
+ {
+  "id": "98188b1e-63af-4a73-9f54-7bbfd66c011d",
+  "propertyId": "otb-prop-1",
+  "type": "exterior",
+  "name": null,
+  "x": 1087,
+  "y": 435,
+  "photoUrl": null,
+  "photoKey": null,
+  "linkedUnitId": "u101",
+  "approvalStatus": "pending",
+  "approvalDate": null,
+  "notes": null,
+  "createdAt": "2026-06-10T15:10:50",
+  "updatedAt": "2026-06-10T15:10:50"
+ },
+ {
+  "id": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "propertyId": "e61b10af-2f9c-4c11-b624-78634f125313",
+  "type": "pylon",
+  "name": "On The Blvd Pylon",
+  "x": 0,
+  "y": 0,
+  "photoUrl": null,
+  "photoKey": null,
+  "linkedUnitId": null,
+  "approvalStatus": "pending",
+  "approvalDate": null,
+  "notes": null,
+  "createdAt": "2026-07-31T23:59:30",
+  "updatedAt": "2026-07-31T23:59:30"
+ },
+ {
+  "id": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "propertyId": "otb-prop-1",
+  "type": "pylon",
+  "name": "On The Blvd Pylon",
+  "x": 0,
+  "y": 0,
+  "photoUrl": "/files/signs/OTB_Pylon_Final_v2_9a41c3.png",
+  "photoKey": "signs/OTB_Pylon_Final_v2_9a41c3.png",
+  "linkedUnitId": null,
+  "approvalStatus": "pending",
+  "approvalDate": null,
+  "notes": null,
+  "createdAt": "2026-06-10T15:48:57",
+  "updatedAt": "2026-08-10T18:25:24.417993"
+ }
+]

@@ -1,0 +1,17 @@
+[
+ {
+  "id": "a3b09992-306c-4de3-b54b-14062f29c2a4",
+  "propertyId": "otb-prop-1",
+  "lotId": null,
+  "label": null,
+  "status": "open",
+  "reservedFor": null,
+  "shapeX": 802,
+  "shapeY": 508,
+  "shapeW": 28,
+  "shapeH": 48,
+  "notes": null,
+  "createdAt": "2026-06-10T15:10:35",
+  "updatedAt": "2026-06-10T15:10:35"
+ }
+]

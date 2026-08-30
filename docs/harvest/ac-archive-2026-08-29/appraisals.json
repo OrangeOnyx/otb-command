@@ -1,0 +1,28 @@
+[
+ {
+  "id": "003b088b-8ea5-4e87-9ef5-dc22e24c888c",
+  "propertyId": "otb-prop-1",
+  "title": "2019 Appraisal — 101-149 Arnould Blvd",
+  "appraiser": "Terry J. Broussard, MAI, CCIM, MRICS",
+  "appraiserLicense": "LA State Certified General #G0454",
+  "firm": "Broussard Appraisal Services",
+  "effectiveDate": "October 1, 2019 (As-Is); August 31, 2020 (As-Developed & Stabilized)",
+  "propertyRights": "Leased Fee & Fee Simple",
+  "asIsValue": 6000000,
+  "asDevelopedValue": 6700000,
+  "incomeApproachValue": 6712000,
+  "salesComparisonValue": 6725000,
+  "costApproachValue": 6535000,
+  "landValue": 2160000,
+  "noi": 570498,
+  "capRate": "8.50%",
+  "buildingSf": 62749,
+  "landSf": 210830,
+  "fileName": "2019Appraisal-101-149ArnouldBlvd.pdf",
+  "fileUrl": "/manus-storage/2019Appraisal-101-149ArnouldBlvd_953afecd.pdf",
+  "fileKey": "2019Appraisal-101-149ArnouldBlvd_953afecd.pdf",
+  "notes": "Prospective market value of the Leased Fee interest, as developed & stabilized, concluded at $6,700,000 (primary weight to the Income Approach). Land valued at $10.26/SF on ±210,830 SF. 2019 property tax $54,176 (102.05 mills). Owner of record: Belle Realty of Lafayette, LLC. NOTE: figures reflect the appraiser's 2019 stabilized projections and are historical reference only — not current rent-roll actuals.",
+  "createdAt": "2026-06-10T22:05:22",
+  "updatedAt": "2026-06-10T22:05:22"
+ }
+]

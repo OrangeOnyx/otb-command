@@ -1,0 +1,3218 @@
+[
+ {
+  "id": "0090a9ce-d2d3-469d-b93d-09ee81d92d13",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.5",
+  "title": "Zoning, Land Use & Entitlements",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Current zoning classification — written verification"
+   },
+   {
+    "done": false,
+    "text": "Zoning compliance letter / zoning verification letter"
+   },
+   {
+    "done": false,
+    "text": "Permitted uses under current zoning"
+   },
+   {
+    "done": false,
+    "text": "Variances, special exceptions, conditional use permits granted"
+   },
+   {
+    "done": false,
+    "text": "Site plan approvals (original and amendments)"
+   },
+   {
+    "done": false,
+    "text": "Setback, height, parking ratio, FAR requirements vs actual"
+   },
+   {
+    "done": false,
+    "text": "Non-conforming use status (grandfathered uses)"
+   },
+   {
+    "done": false,
+    "text": "Pending zoning changes that could affect property"
+   },
+   {
+    "done": false,
+    "text": "Adjacent zoning and pending changes [LFT: check Lafayette Consolidated Government]"
+   },
+   {
+    "done": false,
+    "text": "Comprehensive plan / future land use designation"
+   },
+   {
+    "done": false,
+    "text": "Historic designation status (none expected for typical retail strip)"
+   },
+   {
+    "done": false,
+    "text": "Tax Increment Financing (TIF) district participation"
+   },
+   {
+    "done": false,
+    "text": "Economic development incentive agreements [LA: ITEP, RTA, Quality Jobs]"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 4,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "09c4d24b-b683-45c6-971c-460b5a542250",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.6",
+  "title": "Environmental",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Phase I Environmental Site Assessment (within 12 months for lender)"
+   },
+   {
+    "done": false,
+    "text": "Phase II ESA if Phase I identified recognized environmental conditions"
+   },
+   {
+    "done": false,
+    "text": "Historical use research (gas stations, dry cleaners, auto repair on site or adjacent)"
+   },
+   {
+    "done": false,
+    "text": "Underground storage tank (UST) registration and status"
+   },
+   {
+    "done": false,
+    "text": "Above-ground storage tank documentation"
+   },
+   {
+    "done": false,
+    "text": "Asbestos-containing materials (ACM) survey [pre-1981 buildings]"
+   },
+   {
+    "done": false,
+    "text": "Lead-based paint survey (commercial use exempt but tenants may trigger)"
+   },
+   {
+    "done": false,
+    "text": "Mold remediation history"
+   },
+   {
+    "done": false,
+    "text": "Radon testing results"
+   },
+   {
+    "done": false,
+    "text": "Stormwater Pollution Prevention Plan (SWPPP) if construction-active"
+   },
+   {
+    "done": false,
+    "text": "Spill Prevention Control and Countermeasures (SPCC) plan if applicable"
+   },
+   {
+    "done": false,
+    "text": "Wetlands delineation [LA: heightened relevance given Acadiana hydrology]"
+   },
+   {
+    "done": false,
+    "text": "FEMA flood zone designation and current Flood Insurance Rate Map (FIRM)"
+   },
+   {
+    "done": false,
+    "text": "Elevation certificate(s) for each building"
+   },
+   {
+    "done": false,
+    "text": "Letter of Map Amendment / Revision (LOMA / LOMR) if applicable"
+   },
+   {
+    "done": false,
+    "text": "Hurricane / windstorm damage history and repair records [LA]"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 5,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "0b7b77d6-4ef9-4552-ae97-e0847cf43bfb",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 5,
+  "phaseTitle": "Phase 5 — Legal File Handover",
+  "sectionNo": "5.1",
+  "title": "Counsel Relationships",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Outgoing counsel introduction call / file transfer letter"
+   },
+   {
+    "done": false,
+    "text": "Incoming counsel engagement letter executed"
+   },
+   {
+    "done": false,
+    "text": "Conflict check completed"
+   },
+   {
+    "done": false,
+    "text": "Confidential files transferred under joint engagement / waiver letter"
+   },
+   {
+    "done": false,
+    "text": "Active matter status memo from outgoing counsel"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 37,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "0b7c9db2-2748-4e0c-b84e-928d9edd8739",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 3,
+  "phaseTitle": "Phase 3 — Property Management Handover",
+  "sectionNo": "3.3",
+  "title": "Property Management Software",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Platform selected / continued (DoorLoop, AppFolio, Yardi, MRI, etc.)"
+   },
+   {
+    "done": false,
+    "text": "Subscription transferred or new account provisioned"
+   },
+   {
+    "done": false,
+    "text": "Historical data migration completed and verified"
+   },
+   {
+    "done": false,
+    "text": "Rent roll matches accounting system"
+   },
+   {
+    "done": false,
+    "text": "Tenant ledgers reconciled"
+   },
+   {
+    "done": false,
+    "text": "Vendor records imported"
+   },
+   {
+    "done": false,
+    "text": "Property profile, units, square footage configured"
+   },
+   {
+    "done": false,
+    "text": "Lease abstracts entered (all critical dates, options, escalations)"
+   },
+   {
+    "done": false,
+    "text": "Automated rent statements / invoices configured"
+   },
+   {
+    "done": false,
+    "text": "Late fee rules configured per lease"
+   },
+   {
+    "done": false,
+    "text": "Tenant portal access provisioned and welcome emails sent"
+   },
+   {
+    "done": false,
+    "text": "Owner portal access for ownership reporting"
+   },
+   {
+    "done": false,
+    "text": "User roles / permissions configured (PM, accounting, owner, leasing)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 26,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "16c9401d-bf12-4d02-a074-e2f21845c085",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.10",
+  "title": "Mail, Address & Public-Facing Items",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "USPS mail forwarding from prior owner address (if different)"
+   },
+   {
+    "done": false,
+    "text": "Property mailing address confirmed (suite for management office)"
+   },
+   {
+    "done": false,
+    "text": "Registered agent updated [LA: Sec of State filing]"
+   },
+   {
+    "done": false,
+    "text": "Property website / domain transferred or redirected"
+   },
+   {
+    "done": false,
+    "text": "Google Business Profile claimed / transferred"
+   },
+   {
+    "done": false,
+    "text": "Social media account access transferred or new accounts created"
+   },
+   {
+    "done": false,
+    "text": "On-site signage updated (management contact, leasing inquiries)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 23,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "18ef91dc-4eba-499c-9062-cce858779bd9",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.8",
+  "title": "Lease Files & Tenant Documentation",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Original lease (fully executed)"
+   },
+   {
+    "done": false,
+    "text": "All amendments, addenda, side letters in chronological order"
+   },
+   {
+    "done": false,
+    "text": "Renewal / extension exercises (written notices and acknowledgments)"
+   },
+   {
+    "done": false,
+    "text": "Letter of Intent (LOI) and original term sheet"
+   },
+   {
+    "done": false,
+    "text": "Guaranty agreements (corporate and personal)"
+   },
+   {
+    "done": false,
+    "text": "Guarantor financial statements and credit reports"
+   },
+   {
+    "done": false,
+    "text": "Tenant financial statements (most recent available)"
+   },
+   {
+    "done": false,
+    "text": "Tenant sales reports (if percentage rent or required reporting)"
+   },
+   {
+    "done": false,
+    "text": "Estoppel certificate — current within 30 days of closing"
+   },
+   {
+    "done": false,
+    "text": "Subordination, Non-Disturbance and Attornment Agreement (SNDA)"
+   },
+   {
+    "done": false,
+    "text": "Memorandum of Lease (recorded, if any)"
+   },
+   {
+    "done": false,
+    "text": "Tenant Improvement (TI) / Build-Out agreement and completion certificates"
+   },
+   {
+    "done": false,
+    "text": "TI allowance reconciliation — amounts paid and remaining"
+   },
+   {
+    "done": false,
+    "text": "Commencement Date Confirmation / Delivery Memo"
+   },
+   {
+    "done": false,
+    "text": "Punch list and resolution documentation"
+   },
+   {
+    "done": false,
+    "text": "Certificate of Occupancy for tenant space"
+   },
+   {
+    "done": false,
+    "text": "Certificate of Insurance (COI) — current, with landlord as additional insured"
+   },
+   {
+    "done": false,
+    "text": "Tenant W-9 (rare — typically reverse: landlord W-9 to tenant)"
+   },
+   {
+    "done": false,
+    "text": "Security deposit ledger (amount, form, holding location)"
+   },
+   {
+    "done": false,
+    "text": "Letter of Credit (if used as deposit) — original physical document and renewal status"
+   },
+   {
+    "done": false,
+    "text": "Prepaid rent ledger"
+   },
+   {
+    "done": false,
+    "text": "Default notices issued, cure status, and current standing"
+   },
+   {
+    "done": false,
+    "text": "Co-tenancy clause inventory and compliance status"
+   },
+   {
+    "done": false,
+    "text": "Exclusive use clause inventory (use restrictions binding other tenants)"
+   },
+   {
+    "done": false,
+    "text": "Radius restriction inventory (tenant cannot operate within X miles)"
+   },
+   {
+    "done": false,
+    "text": "Option to expand / contract / terminate inventory with trigger dates"
+   },
+   {
+    "done": false,
+    "text": "Right of First Refusal / First Offer on adjacent space"
+   },
+   {
+    "done": false,
+    "text": "Assignment / sublease history and consents"
+   },
+   {
+    "done": false,
+    "text": "Tenant operating hours requirements"
+   },
+   {
+    "done": false,
+    "text": "Signage rights documentation (pylon position, monument, façade)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 7,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "4f5ba9fa-eb9b-45e3-966c-1a5c269bdb6c",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.6",
+  "title": "Reporting Cadence",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Monthly owner package contents defined (P&L, BS, rent roll, variance, AR aging)"
+   },
+   {
+    "done": false,
+    "text": "Quarterly reporting requirements (lender, investors)"
+   },
+   {
+    "done": false,
+    "text": "Annual budget process timeline"
+   },
+   {
+    "done": false,
+    "text": "Annual audit / review / compilation — preparer and timeline"
+   },
+   {
+    "done": false,
+    "text": "Lender-required reporting (covenant compliance, T-12, rent roll)"
+   },
+   {
+    "done": false,
+    "text": "Investor reporting if syndicated"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 35,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "19c62f65-b596-4088-8515-6045ed4a7677",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 8,
+  "phaseTitle": "Phase 8 — First 30 / 60 / 90 Day Action Items",
+  "sectionNo": "8.3",
+  "title": "Days 61–90",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "CAM reconciliation methodology validated through closing-period reconciliation"
+   },
+   {
+    "done": false,
+    "text": "Post-closing prorations true-up with seller (typical 90-day deadline)"
+   },
+   {
+    "done": false,
+    "text": "Annual budget review and updates for new ownership assumptions"
+   },
+   {
+    "done": false,
+    "text": "Capital plan reviewed (roof, parking, HVAC replacement schedule)"
+   },
+   {
+    "done": false,
+    "text": "Lease abstracts spot-audited against source documents"
+   },
+   {
+    "done": false,
+    "text": "Tenant COIs audited — all current, additional insured correct"
+   },
+   {
+    "done": false,
+    "text": "Vendor COIs audited — all current"
+   },
+   {
+    "done": false,
+    "text": "Insurance review with broker — coverage gaps, claims trends, premium opportunities"
+   },
+   {
+    "done": false,
+    "text": "Property tax appeal consideration before deadline [LFT: Aug-Sep timeframe typical]"
+   },
+   {
+    "done": false,
+    "text": "First quarterly lender reporting (if applicable) delivered on time"
+   },
+   {
+    "done": false,
+    "text": "90-day acknowledgment — sign-off page in this document"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 53,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "1bf4805b-08d6-467c-90fc-97e3c8c6cb2b",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 8,
+  "phaseTitle": "Phase 8 — First 30 / 60 / 90 Day Action Items",
+  "sectionNo": "8.2",
+  "title": "Days 31–60",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "First full monthly close in new GL — review with bookkeeper"
+   },
+   {
+    "done": false,
+    "text": "First monthly owner package delivered"
+   },
+   {
+    "done": false,
+    "text": "CAM billing reviewed for first month under new ownership"
+   },
+   {
+    "done": false,
+    "text": "Tenant satisfaction survey or check-in calls"
+   },
+   {
+    "done": false,
+    "text": "Service request volume and response time baseline established"
+   },
+   {
+    "done": false,
+    "text": "Vendor performance review — confirm or replace"
+   },
+   {
+    "done": false,
+    "text": "Active LOI / lease progression"
+   },
+   {
+    "done": false,
+    "text": "Marketing materials updated with new ownership / PM contact"
+   },
+   {
+    "done": false,
+    "text": "Website / listing platforms refreshed"
+   },
+   {
+    "done": false,
+    "text": "Roof and HVAC PM scheduled in calendar"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 52,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "1ca8eedd-3f69-4fae-9af7-113bcf728d58",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.2",
+  "title": "Accounts Receivable",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "AR aging at closing — by tenant"
+   },
+   {
+    "done": false,
+    "text": "Disputed / contested charges identified and flagged"
+   },
+   {
+    "done": false,
+    "text": "Pre-closing AR retained by seller or sold/assigned to buyer (per PSA)"
+   },
+   {
+    "done": false,
+    "text": "Collection actions in progress and post-closing responsibility"
+   },
+   {
+    "done": false,
+    "text": "Write-off policy for uncollectible accounts"
+   },
+   {
+    "done": false,
+    "text": "Bad debt reserve methodology"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 31,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "203dcdc9-0ef1-4a63-b649-85bb128e548b",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.7",
+  "title": "Security / IT",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "CCTV camera inventory and DVR/NVR access"
+   },
+   {
+    "done": false,
+    "text": "Access control / card reader inventory"
+   },
+   {
+    "done": false,
+    "text": "Alarm system zones and account info"
+   },
+   {
+    "done": false,
+    "text": "Common area Wi-Fi (if provided)"
+   },
+   {
+    "done": false,
+    "text": "Management office network / phones"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 47,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "21648a60-6afb-4b4e-8eb3-e02931752686",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 3,
+  "phaseTitle": "Phase 3 — Property Management Handover",
+  "sectionNo": "3.1",
+  "title": "Tenant Directory & Contacts",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Full tenant contact list — primary, secondary, after-hours, emergency"
+   },
+   {
+    "done": false,
+    "text": "Tenant corporate / regional contacts (for national chains)"
+   },
+   {
+    "done": false,
+    "text": "Tenant accounting AP contacts (for rent / CAM billing)"
+   },
+   {
+    "done": false,
+    "text": "Tenant facilities contacts (for service requests)"
+   },
+   {
+    "done": false,
+    "text": "Tenant insurance broker / agent contacts"
+   },
+   {
+    "done": false,
+    "text": "Tenant legal counsel (where known)"
+   },
+   {
+    "done": false,
+    "text": "Co-tenancy / anchor tenant special escalation paths"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 24,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "222d153f-898e-4258-8522-e1b986a9b73c",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.4",
+  "title": "Electrical",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Service entrance location and capacity per building"
+   },
+   {
+    "done": false,
+    "text": "Meter base inventory (utility meters per tenant + landlord)"
+   },
+   {
+    "done": false,
+    "text": "Main distribution panel locations"
+   },
+   {
+    "done": false,
+    "text": "Subpanel locations per tenant"
+   },
+   {
+    "done": false,
+    "text": "Site lighting panel(s) and controls"
+   },
+   {
+    "done": false,
+    "text": "Emergency / exit lighting inventory"
+   },
+   {
+    "done": false,
+    "text": "Generator (if any) — size, fuel, transfer switch"
+   },
+   {
+    "done": false,
+    "text": "Solar / on-site generation (none expected but verify)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 44,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "290b86d6-6722-4568-b26b-b77dd8e7d056",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.2",
+  "title": "Roof Systems",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Roof type per building (TPO, EPDM, modified bitumen, metal, etc.)"
+   },
+   {
+    "done": false,
+    "text": "Roof age and remaining warranty per building"
+   },
+   {
+    "done": false,
+    "text": "Roof warranty documents (NDL, manufacturer, contractor)"
+   },
+   {
+    "done": false,
+    "text": "Roof inspection reports (last 24 months)"
+   },
+   {
+    "done": false,
+    "text": "Penetration inventory (HVAC curbs, vents, drains, skylights)"
+   },
+   {
+    "done": false,
+    "text": "Roof access points and safety equipment"
+   },
+   {
+    "done": false,
+    "text": "Drainage system (internal drains, scuppers, downspouts)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 42,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "2a45889d-cf4c-4ab4-b051-02632556da24",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.4",
+  "title": "CAM Reconciliation Status",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Most recent prior-year CAM reconciliation completed and delivered to tenants"
+   },
+   {
+    "done": false,
+    "text": "Current year CAM estimates (monthly billing) reviewed"
+   },
+   {
+    "done": false,
+    "text": "Mid-year reconciliation for closing prorations"
+   },
+   {
+    "done": false,
+    "text": "Tenant CAM credits owed — list and amounts"
+   },
+   {
+    "done": false,
+    "text": "Tenant CAM billbacks owed — list and amounts"
+   },
+   {
+    "done": false,
+    "text": "CAM caps / stops tracking documented"
+   },
+   {
+    "done": false,
+    "text": "Methodology documentation transferred (gross-up, exclusions)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 33,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "369918ea-8984-4fba-81a5-b69351099a59",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.3",
+  "title": "HVAC / Mechanical",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "RTU inventory per suite (manufacturer, model, serial, tonnage, age)"
+   },
+   {
+    "done": false,
+    "text": "Split system inventory (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Tenant vs landlord HVAC responsibility per lease — matrix"
+   },
+   {
+    "done": false,
+    "text": "Thermostat / BMS access"
+   },
+   {
+    "done": false,
+    "text": "Refrigerant type per unit (R-22 phase-out implications)"
+   },
+   {
+    "done": false,
+    "text": "PM service records last 24 months"
+   },
+   {
+    "done": false,
+    "text": "Make-up air / exhaust systems (food tenants)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 43,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "3c18e597-9cc9-466d-b3db-dcc1d92d4bda",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.12",
+  "title": "Litigation, Disputes & Claims",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Active litigation as plaintiff (collection actions, evictions)"
+   },
+   {
+    "done": false,
+    "text": "Active litigation as defendant"
+   },
+   {
+    "done": false,
+    "text": "Threatened claims or demand letters (last 24 months)"
+   },
+   {
+    "done": false,
+    "text": "Insurance claims history (last 5 years) with loss runs"
+   },
+   {
+    "done": false,
+    "text": "Workers' compensation claims (if employees)"
+   },
+   {
+    "done": false,
+    "text": "ADA complaints or DOJ investigations"
+   },
+   {
+    "done": false,
+    "text": "Tenant disputes — log of unresolved issues"
+   },
+   {
+    "done": false,
+    "text": "Mechanics liens / privileges [LA: Private Works Act privileges]"
+   },
+   {
+    "done": false,
+    "text": "Notice of construction filings [LA: required for many projects]"
+   },
+   {
+    "done": false,
+    "text": "Code enforcement notices / violations"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 11,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-31T10:09:40"
+ },
+ {
+  "id": "40c494de-ea3a-4f3b-9000-63bfeb40553c",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.13",
+  "title": "Insurance Policies & Loss History",
+  "status": "have",
+  "priority": "critical",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Commercial property policy declarations (current and prior 3 years)"
+   },
+   {
+    "done": false,
+    "text": "Replacement cost / building valuation (RCV) appraisal"
+   },
+   {
+    "done": false,
+    "text": "Commercial general liability policy"
+   },
+   {
+    "done": false,
+    "text": "Umbrella / excess liability policy"
+   },
+   {
+    "done": false,
+    "text": "Flood insurance policy [LA: critical, NFIP and/or private]"
+   },
+   {
+    "done": false,
+    "text": "Windstorm / named peril coverage — verify hurricane deductible [LA]"
+   },
+   {
+    "done": false,
+    "text": "Earthquake (low priority LA but verify)"
+   },
+   {
+    "done": false,
+    "text": "Boiler & machinery / equipment breakdown"
+   },
+   {
+    "done": false,
+    "text": "Business income / rental income loss"
+   },
+   {
+    "done": false,
+    "text": "Ordinance or law coverage"
+   },
+   {
+    "done": false,
+    "text": "Pollution legal liability (if environmental concerns)"
+   },
+   {
+    "done": false,
+    "text": "Cyber liability (if collecting tenant data / online payments)"
+   },
+   {
+    "done": false,
+    "text": "Crime / employee dishonesty / fidelity bond"
+   },
+   {
+    "done": false,
+    "text": "D&O / EPLI if entity has board / employees"
+   },
+   {
+    "done": false,
+    "text": "Loss runs — 5 years from each carrier"
+   },
+   {
+    "done": false,
+    "text": "Claims status — open and closed"
+   },
+   {
+    "done": false,
+    "text": "Pending / unrepaired insurance claim work"
+   },
+   {
+    "done": false,
+    "text": "Certificate holder list (lenders, REA parties)"
+   }
+  ],
+  "notes": "26–27 program documented from TSL proposal (Revised 3): Property (Lloyd's) $7.99M building; GL/Umbrella (Hartford 43SBMAL3XX2) $1M/$2M/$5M; WC (LWCC) $500K EL. Total $78,695.58. Still to file: bound Lloyd's property policy #, WC policy #, and prior-year loss runs. Open decisions: flood (none in program) + FPE panel at Pink Paisley.",
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 12,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T11:02:03"
+ },
+ {
+  "id": "420d6ceb-0e11-480b-83c5-cceba33f5a4a",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.10",
+  "title": "CAM, Tax & Insurance Reconciliations",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "CAM pool methodology documentation (gross-up, exclusions, caps)"
+   },
+   {
+    "done": false,
+    "text": "Pro-rata share calculations per tenant"
+   },
+   {
+    "done": false,
+    "text": "CAM reconciliations — last 3 years per tenant"
+   },
+   {
+    "done": false,
+    "text": "Real estate tax reconciliations — last 3 years"
+   },
+   {
+    "done": false,
+    "text": "Insurance pass-through reconciliations — last 3 years"
+   },
+   {
+    "done": false,
+    "text": "Tenant CAM dispute log and resolution status"
+   },
+   {
+    "done": false,
+    "text": "Outstanding CAM credits / billbacks to tenants"
+   },
+   {
+    "done": false,
+    "text": "Administrative fee / management fee inclusion in CAM"
+   },
+   {
+    "done": false,
+    "text": "Capital expenditures historically passed through (with tenant consent doc)"
+   },
+   {
+    "done": false,
+    "text": "CAM cap / stop calculations per tenant"
+   },
+   {
+    "done": false,
+    "text": "Audit rights exercised by tenants — copies and resolutions"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 9,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "47245689-cbdb-499b-b185-307ed1d6546a",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.11",
+  "title": "Vendor & Service Contracts",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Property management agreement (current)"
+   },
+   {
+    "done": false,
+    "text": "Leasing agreement / commission schedule (current and unpaid commissions)"
+   },
+   {
+    "done": false,
+    "text": "Landscaping / grounds maintenance contract"
+   },
+   {
+    "done": false,
+    "text": "Janitorial / common area cleaning contract"
+   },
+   {
+    "done": false,
+    "text": "Trash / waste removal contract"
+   },
+   {
+    "done": false,
+    "text": "Pest control contract"
+   },
+   {
+    "done": false,
+    "text": "HVAC service / preventive maintenance contract"
+   },
+   {
+    "done": false,
+    "text": "Roof maintenance / inspection contract"
+   },
+   {
+    "done": false,
+    "text": "Parking lot maintenance (striping, sealcoat, repairs)"
+   },
+   {
+    "done": false,
+    "text": "Parking lot sweeping contract"
+   },
+   {
+    "done": false,
+    "text": "Security service / patrol contract"
+   },
+   {
+    "done": false,
+    "text": "Security camera / alarm monitoring contract"
+   },
+   {
+    "done": false,
+    "text": "Fire alarm monitoring contract"
+   },
+   {
+    "done": false,
+    "text": "Fire sprinkler inspection contract (annual / quarterly)"
+   },
+   {
+    "done": false,
+    "text": "Fire extinguisher service contract"
+   },
+   {
+    "done": false,
+    "text": "Backflow preventer testing contract"
+   },
+   {
+    "done": false,
+    "text": "Elevator maintenance contract (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Generator maintenance contract (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Pylon / monument sign maintenance and electricity"
+   },
+   {
+    "done": false,
+    "text": "Window cleaning contract (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Snow removal — N/A in Acadiana but verify no legacy contracts"
+   },
+   {
+    "done": false,
+    "text": "Utility accounts inventory (electric, gas, water/sewer, telecom)"
+   },
+   {
+    "done": false,
+    "text": "Cable / internet contracts for management office or common areas"
+   },
+   {
+    "done": false,
+    "text": "Software subscriptions (PM platform, accounting, CRM)"
+   },
+   {
+    "done": false,
+    "text": "Vendor W-9s on file for all 1099-eligible vendors"
+   },
+   {
+    "done": false,
+    "text": "Vendor COIs current — all with landlord as additional insured"
+   },
+   {
+    "done": false,
+    "text": "Outstanding vendor invoices / aging payables"
+   },
+   {
+    "done": false,
+    "text": "Vendor contract assignability review (which require consent)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 10,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "4eb37110-e3d8-498d-85ee-5ddfa016e3b9",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 3,
+  "phaseTitle": "Phase 3 — Property Management Handover",
+  "sectionNo": "3.2",
+  "title": "Emergency Procedures",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "24/7 emergency contact line established"
+   },
+   {
+    "done": false,
+    "text": "Emergency response SOP (water leak, fire, electrical, gas, sewer backup)"
+   },
+   {
+    "done": false,
+    "text": "Hurricane / severe weather SOP [LA: critical — pre-season checklist]"
+   },
+   {
+    "done": false,
+    "text": "Tornado / wind event protocol"
+   },
+   {
+    "done": false,
+    "text": "Active shooter / security incident protocol"
+   },
+   {
+    "done": false,
+    "text": "Power outage protocol — sequence of restoration calls"
+   },
+   {
+    "done": false,
+    "text": "Tenant evacuation / shelter-in-place plans"
+   },
+   {
+    "done": false,
+    "text": "Emergency vendor list with after-hours numbers verified"
+   },
+   {
+    "done": false,
+    "text": "Local first responder contacts [LFT: LPD, LFD, LPSO, EMS]"
+   },
+   {
+    "done": false,
+    "text": "Property manager on-call rotation"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 25,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "4f067be8-6e6c-41cd-994b-c08f19ab8ec4",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 7,
+  "phaseTitle": "Phase 7 — Compliance & Regulatory (LA / Lafayette)",
+  "sectionNo": "7.2",
+  "title": "Lafayette Parish / Lafayette Consolidated Government",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Occupational license — owner entity"
+   },
+   {
+    "done": false,
+    "text": "Occupational license verification — each tenant"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Parish Assessor — real property records up to date"
+   },
+   {
+    "done": false,
+    "text": "Personal property declaration (LAT-5) filed"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Parish Sheriff's Office — property tax payment status"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Consolidated Government — building / zoning compliance"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Utilities System (LUS) account status"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Fire Department — pre-plan / Knox box on file"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Police Department / LPSO — patrol coordination"
+   },
+   {
+    "done": false,
+    "text": "Lafayette Parish Health Unit — food establishment permits per tenant"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 49,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "5b590b44-3dd5-4cf2-9262-e2324497ffed",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 3,
+  "phaseTitle": "Phase 3 — Property Management Handover",
+  "sectionNo": "3.5",
+  "title": "Leasing Pipeline & Marketing",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Active LOIs in progress — status and next steps"
+   },
+   {
+    "done": false,
+    "text": "Drafted leases pending execution"
+   },
+   {
+    "done": false,
+    "text": "Prospect pipeline log (CRM / spreadsheet)"
+   },
+   {
+    "done": false,
+    "text": "Broker relationships and current listing agreements"
+   },
+   {
+    "done": false,
+    "text": "Listing on LoopNet, CoStar, Crexi, etc. — transfer or relist"
+   },
+   {
+    "done": false,
+    "text": "Property marketing brochure / flyer (editable source files)"
+   },
+   {
+    "done": false,
+    "text": "Site plan / availability plan (editable)"
+   },
+   {
+    "done": false,
+    "text": "Photos (interior, exterior, drone) — high-res, transferable license"
+   },
+   {
+    "done": false,
+    "text": "Demographic / trade area study (current within 2 years)"
+   },
+   {
+    "done": false,
+    "text": "Co-tenancy / use restriction matrix for leasing reference"
+   },
+   {
+    "done": false,
+    "text": "Standard form lease (most recent version with attorney review date)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 28,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "5c570f77-3a23-496b-a346-6c0e816ce78a",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.3",
+  "title": "Loan, Mortgage & Lender Documents",
+  "status": "partial",
+  "priority": "critical",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "All current notes (promissory notes) on the property"
+   },
+   {
+    "done": false,
+    "text": "Mortgage / Deed of Trust / [LA: Act of Mortgage] for each loan"
+   },
+   {
+    "done": false,
+    "text": "Loan agreement and any modifications / extensions"
+   },
+   {
+    "done": false,
+    "text": "Most recent loan payoff statement (good for 30 days)"
+   },
+   {
+    "done": false,
+    "text": "Current loan amortization schedule"
+   },
+   {
+    "done": false,
+    "text": "Lender escrow analysis (tax, insurance, reserves)"
+   },
+   {
+    "done": false,
+    "text": "Reserve account balances (replacement, TI/LC, debt service)"
+   },
+   {
+    "done": false,
+    "text": "Lender estoppel / consent to transfer (if assumable loan)"
+   },
+   {
+    "done": false,
+    "text": "Defeasance or prepayment penalty quote (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "UCC-1 filings by lender — review and prepare termination if paying off"
+   },
+   {
+    "done": false,
+    "text": "Cross-collateralization documents (if loan covers other properties)"
+   },
+   {
+    "done": false,
+    "text": "Loan covenants compliance certificates (DSCR, occupancy, etc.)"
+   },
+   {
+    "done": false,
+    "text": "Lender-required reports (operating statements, rent rolls submitted)"
+   },
+   {
+    "done": false,
+    "text": "Guaranty agreements and current status of guarantors"
+   }
+  ],
+  "notes": "Investar loan docs on file ($1.5M, matures 4/30/2030); 2007 payoff/UCC not confirmed. See Vault > Documents.",
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 2,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:23:07"
+ },
+ {
+  "id": "68cecde9-8bdc-491f-9088-fac7e99a5a01",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.5",
+  "title": "Insurance Transfer",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "New owner insurance bound effective at closing — binder delivered"
+   },
+   {
+    "done": false,
+    "text": "Lender named as mortgagee / loss payee on new policy"
+   },
+   {
+    "done": false,
+    "text": "REA-required certificate holders added"
+   },
+   {
+    "done": false,
+    "text": "Tenant additional-insured status preserved or replaced"
+   },
+   {
+    "done": false,
+    "text": "Existing policy cancellation effective at closing"
+   },
+   {
+    "done": false,
+    "text": "Pending claims — clarified who controls (typically seller)"
+   },
+   {
+    "done": false,
+    "text": "Tail coverage / extended reporting period (if required)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 18,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "6f0e73a7-720e-41b9-ab1c-17d2706ceb30",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.14",
+  "title": "Permits, Licenses & Certificates",
+  "status": "missing",
+  "priority": "critical",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Certificate of Occupancy — shell and core"
+   },
+   {
+    "done": false,
+    "text": "Certificate of Occupancy — each tenant suite"
+   },
+   {
+    "done": false,
+    "text": "Building permits — last 10 years (open and closed)"
+   },
+   {
+    "done": false,
+    "text": "Open / un-closed permits — must be resolved before closing"
+   },
+   {
+    "done": false,
+    "text": "Fire marshal inspection certificates [LA: State Fire Marshal]"
+   },
+   {
+    "done": false,
+    "text": "Health department permits (if food tenants) [LA: Dept of Health]"
+   },
+   {
+    "done": false,
+    "text": "Alcoholic Beverage Outlet (ABO) permits [LA: ATC]"
+   },
+   {
+    "done": false,
+    "text": "Sign permits"
+   },
+   {
+    "done": false,
+    "text": "Occupational licenses [LFT: Lafayette Consolidated Government]"
+   },
+   {
+    "done": false,
+    "text": "Sales tax registration [LA: state + parish/local separate registrations]"
+   },
+   {
+    "done": false,
+    "text": "Stormwater discharge permit (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Sprinkler / fire suppression certificates"
+   },
+   {
+    "done": false,
+    "text": "Elevator operating permits"
+   },
+   {
+    "done": false,
+    "text": "Generator air permits (if applicable)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 13,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "6f4be552-c705-441a-a596-7008e9cfba15",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.1",
+  "title": "Chart of Accounts & GL",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Chart of accounts adopted (or migrated and mapped from seller)"
+   },
+   {
+    "done": false,
+    "text": "Property-level class / location / department coding"
+   },
+   {
+    "done": false,
+    "text": "Trial balance as of closing date — reviewed and accepted"
+   },
+   {
+    "done": false,
+    "text": "Opening balance sheet — buyer entity"
+   },
+   {
+    "done": false,
+    "text": "Closing balance sheet — seller entity"
+   },
+   {
+    "done": false,
+    "text": "GL system selected (QuickBooks Online, Sage Intacct, etc.)"
+   },
+   {
+    "done": false,
+    "text": "Integration with PM platform configured (rent roll → GL sync)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 30,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "718e3376-5b90-4158-acf1-bf445d119eca",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.5",
+  "title": "Plumbing",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Water service entrance and meter inventory"
+   },
+   {
+    "done": false,
+    "text": "Backflow preventer inventory and test history"
+   },
+   {
+    "done": false,
+    "text": "Domestic hot water heaters (landlord vs tenant)"
+   },
+   {
+    "done": false,
+    "text": "Common area restroom fixtures and condition"
+   },
+   {
+    "done": false,
+    "text": "Grease trap / interceptor inventory (food tenants)"
+   },
+   {
+    "done": false,
+    "text": "Sewer cleanout locations"
+   },
+   {
+    "done": false,
+    "text": "Irrigation backflow / RPZ"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 45,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "71d3f771-bc73-4012-a66a-f7aa0083412a",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.6",
+  "title": "Fire & Life Safety",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Sprinkler system type per building (wet, dry, pre-action)"
+   },
+   {
+    "done": false,
+    "text": "Fire pump (if applicable) — service records"
+   },
+   {
+    "done": false,
+    "text": "FDC (Fire Department Connection) inventory and access"
+   },
+   {
+    "done": false,
+    "text": "Fire alarm panel — make, model, age, monitoring company"
+   },
+   {
+    "done": false,
+    "text": "Pull stations, horn-strobes, smoke / heat detector inventory"
+   },
+   {
+    "done": false,
+    "text": "Fire extinguisher inventory (location, type, last service)"
+   },
+   {
+    "done": false,
+    "text": "Kitchen hood / Ansul systems (food tenants)"
+   },
+   {
+    "done": false,
+    "text": "Knox box location and key inventory [verify with LFD]"
+   },
+   {
+    "done": false,
+    "text": "Emergency exit signage inventory"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 46,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "7b2a3995-10e6-4fe7-a745-b73092cd88fd",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.3",
+  "title": "Accounts Payable",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "AP aging at closing — by vendor"
+   },
+   {
+    "done": false,
+    "text": "Unbilled work / accrued services identified"
+   },
+   {
+    "done": false,
+    "text": "Pre-closing AP retained by seller (typical) — list documented"
+   },
+   {
+    "done": false,
+    "text": "Stop-payment / wind-down on seller AP"
+   },
+   {
+    "done": false,
+    "text": "Mechanics liens / privileges potential — lien waivers from active contractors [LA: PWA]"
+   },
+   {
+    "done": false,
+    "text": "Outstanding commission obligations to brokers"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 32,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "8387f5aa-c2ec-4994-aa89-6b3fc5927d7e",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.9",
+  "title": "Utility Transfer",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Electric — common areas, parking lot lighting, signage [LFT: LUS or SLEMCO]"
+   },
+   {
+    "done": false,
+    "text": "Natural gas (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Water / sewer — landlord meters [LFT: Lafayette Utilities System]"
+   },
+   {
+    "done": false,
+    "text": "Trash service (if landlord-paid)"
+   },
+   {
+    "done": false,
+    "text": "Telecom / internet for management office"
+   },
+   {
+    "done": false,
+    "text": "Irrigation water (if separate meter)"
+   },
+   {
+    "done": false,
+    "text": "Final meter readings recorded"
+   },
+   {
+    "done": false,
+    "text": "Deposit refunds requested where applicable"
+   },
+   {
+    "done": false,
+    "text": "New accounts opened in buyer entity name"
+   },
+   {
+    "done": false,
+    "text": "Autopay configured"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 22,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "84a9738b-e866-4b41-9b07-3f4fd4c0c1e1",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 8,
+  "phaseTitle": "Phase 8 — First 30 / 60 / 90 Day Action Items",
+  "sectionNo": "8.1",
+  "title": "Days 1–30",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Property walk with outgoing PM — full property tour, every suite exterior"
+   },
+   {
+    "done": false,
+    "text": "Introductory in-person meeting with each tenant (or call for absent operators)"
+   },
+   {
+    "done": false,
+    "text": "Confirm rent received from each tenant in new account"
+   },
+   {
+    "done": false,
+    "text": "Verify ACH / payment portal working for each auto-pay tenant"
+   },
+   {
+    "done": false,
+    "text": "Confirm utility transfers complete with no service interruption"
+   },
+   {
+    "done": false,
+    "text": "Validate insurance binder converted to full policy with all endorsements"
+   },
+   {
+    "done": false,
+    "text": "Validate lender escrow / reserve transfers reconciled"
+   },
+   {
+    "done": false,
+    "text": "Vendor confirmation calls — service continuing without disruption"
+   },
+   {
+    "done": false,
+    "text": "Emergency contact line tested"
+   },
+   {
+    "done": false,
+    "text": "After-hours response drill (water leak / lockout simulation)"
+   },
+   {
+    "done": false,
+    "text": "Photograph every suite exterior and common area for baseline"
+   },
+   {
+    "done": false,
+    "text": "Hurricane season readiness check [LA: June 1 – Nov 30]"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 51,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "887be708-7c54-4194-92ae-394288452a18",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 7,
+  "phaseTitle": "Phase 7 — Compliance & Regulatory (LA / Lafayette)",
+  "sectionNo": "7.3",
+  "title": "Federal",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "EIN current and entity classification confirmed"
+   },
+   {
+    "done": false,
+    "text": "Beneficial Ownership Information (BOI) report to FinCEN — filed and current"
+   },
+   {
+    "done": false,
+    "text": "Form 1099 filings for prior year (vendor 1099-NEC, rent 1099-MISC for any landlord status)"
+   },
+   {
+    "done": false,
+    "text": "ADA Title III compliance documentation"
+   },
+   {
+    "done": false,
+    "text": "OSHA compliance (if any landlord employees on site)"
+   },
+   {
+    "done": false,
+    "text": "FEMA flood compliance and current flood insurance per lender"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 50,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "8c130523-1b41-4888-820f-a2e138237249",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.5",
+  "title": "Tax Calendar & Filings",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Federal income tax filing deadlines and preparer identified"
+   },
+   {
+    "done": false,
+    "text": "Louisiana corporate / partnership tax deadlines [LA: LDR]"
+   },
+   {
+    "done": false,
+    "text": "Quarterly estimated tax payments scheduled"
+   },
+   {
+    "done": false,
+    "text": "Sales/use tax filing — landlord rare but required if any direct retail [LA: parish + state]"
+   },
+   {
+    "done": false,
+    "text": "Personal property / business tangible tax [LFT: Lafayette Parish Assessor LAT-5]"
+   },
+   {
+    "done": false,
+    "text": "Real estate tax payment cycle [LFT: Lafayette Parish Sheriff's Office / Assessor]"
+   },
+   {
+    "done": false,
+    "text": "Real estate tax appeal status / deadlines"
+   },
+   {
+    "done": false,
+    "text": "Annual report filing [LA: Sec of State, due each anniversary]"
+   },
+   {
+    "done": false,
+    "text": "Occupational license renewal [LFT: LCG, typically annual]"
+   },
+   {
+    "done": false,
+    "text": "1099 filing process for vendors (Jan 31 deadline)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 34,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "8f766e78-7da7-4ad0-8ac8-7f7f42b04cfe",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.9",
+  "title": "Rent Roll & Financial History",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Certified rent roll as of due diligence date"
+   },
+   {
+    "done": false,
+    "text": "Aged delinquency report (current, 30, 60, 90+ days)"
+   },
+   {
+    "done": false,
+    "text": "Trailing 12 months rent roll (month by month)"
+   },
+   {
+    "done": false,
+    "text": "Historical occupancy — last 5 years monthly"
+   },
+   {
+    "done": false,
+    "text": "Operating statements — last 3 fiscal years"
+   },
+   {
+    "done": false,
+    "text": "Trailing 12 months operating statement (T-12)"
+   },
+   {
+    "done": false,
+    "text": "Year-to-date operating statement"
+   },
+   {
+    "done": false,
+    "text": "Trailing 3 months operating statement (T-3)"
+   },
+   {
+    "done": false,
+    "text": "Annual budget — current year"
+   },
+   {
+    "done": false,
+    "text": "Capital expenditure budget and history (5 years)"
+   },
+   {
+    "done": false,
+    "text": "General Ledger — current year and prior year"
+   },
+   {
+    "done": false,
+    "text": "Bank statements — last 12 months for all property accounts"
+   },
+   {
+    "done": false,
+    "text": "Tenant ledger (statement of charges and payments) per tenant"
+   },
+   {
+    "done": false,
+    "text": "List of one-time / non-recurring income and expenses"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 8,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "90ae1c0d-44e3-4ea2-9f15-eea9fd907adf",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.3",
+  "title": "Tenant Notification & Rent Direction",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Joint tenant notification letter (seller + buyer) — signed and mailed"
+   },
+   {
+    "done": false,
+    "text": "Rent direction letter — new payee, address, ACH info, payment portal"
+   },
+   {
+    "done": false,
+    "text": "New W-9 for buyer entity delivered to all tenants"
+   },
+   {
+    "done": false,
+    "text": "ACH change instructions for tenants on auto-pay"
+   },
+   {
+    "done": false,
+    "text": "New COI requirements / additional insured update letter"
+   },
+   {
+    "done": false,
+    "text": "Welcome packet to tenants from new owner / PM"
+   },
+   {
+    "done": false,
+    "text": "Property manager introduction (name, phone, email, emergency line)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 16,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "927c594f-2a64-4a8e-8e89-12dc754bb102",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.4",
+  "title": "Estoppels & SNDAs",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Estoppel certificate from each tenant — dated within 30 days of closing"
+   },
+   {
+    "done": false,
+    "text": "Discrepancies between estoppel and lease — resolved or carved out"
+   },
+   {
+    "done": false,
+    "text": "Anchor tenant estoppels — extra scrutiny on co-tenancy / continuous op"
+   },
+   {
+    "done": false,
+    "text": "REA party estoppels (if required)"
+   },
+   {
+    "done": false,
+    "text": "SNDAs from lender to tenants (if new financing)"
+   },
+   {
+    "done": false,
+    "text": "Subordination requirements re-confirmed"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 17,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "c55f8afd-69ec-4443-959f-62d9730b061d",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 3,
+  "phaseTitle": "Phase 3 — Property Management Handover",
+  "sectionNo": "3.6",
+  "title": "Operating Procedures & Policies",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Rent collection policy (grace period, late fees, NSF fees)"
+   },
+   {
+    "done": false,
+    "text": "Default / cure / eviction SOP [LA: civil law process via Justice of the Peace or City Court]"
+   },
+   {
+    "done": false,
+    "text": "Service request intake and dispatch SOP"
+   },
+   {
+    "done": false,
+    "text": "Vendor onboarding requirements (W-9, COI, MSA)"
+   },
+   {
+    "done": false,
+    "text": "Approval matrix (PM authority, owner approval thresholds)"
+   },
+   {
+    "done": false,
+    "text": "Capital expenditure approval workflow"
+   },
+   {
+    "done": false,
+    "text": "Lease execution authority and signing protocols"
+   },
+   {
+    "done": false,
+    "text": "Tenant relations / complaint resolution SOP"
+   },
+   {
+    "done": false,
+    "text": "Rules and Regulations document (typically attached to lease)"
+   },
+   {
+    "done": false,
+    "text": "Document retention policy"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 29,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "9412bed5-710b-408f-aa14-2146ad2a766b",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 7,
+  "phaseTitle": "Phase 7 — Compliance & Regulatory (LA / Lafayette)",
+  "sectionNo": "7.1",
+  "title": "State of Louisiana",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Secretary of State annual report — filing date and status"
+   },
+   {
+    "done": false,
+    "text": "Registered agent of record — verified"
+   },
+   {
+    "done": false,
+    "text": "LA Department of Revenue — entity tax registration"
+   },
+   {
+    "done": false,
+    "text": "Sales and use tax registration (if collecting any direct sales tax)"
+   },
+   {
+    "done": false,
+    "text": "Workers' compensation coverage [LA: required for any employees]"
+   },
+   {
+    "done": false,
+    "text": "Louisiana Workforce Commission registration (if employees)"
+   },
+   {
+    "done": false,
+    "text": "State Fire Marshal annual inspection records"
+   },
+   {
+    "done": false,
+    "text": "Louisiana Office of Alcohol and Tobacco Control — landlord disclosures for ABO tenants"
+   },
+   {
+    "done": false,
+    "text": "LA Real Estate Commission — broker / PM licensing if managing for others"
+   },
+   {
+    "done": false,
+    "text": "Notarial / authentic act recording verification for major property documents [LA civil law specifics]"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 48,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "966921c7-9b98-41b1-a877-061d507cb4d2",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 5,
+  "phaseTitle": "Phase 5 — Legal File Handover",
+  "sectionNo": "5.4",
+  "title": "Corporate Governance Calendar",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Annual member / shareholder meeting"
+   },
+   {
+    "done": false,
+    "text": "Annual report filing date [LA: SOS]"
+   },
+   {
+    "done": false,
+    "text": "Registered agent renewal"
+   },
+   {
+    "done": false,
+    "text": "Operating agreement review cycle"
+   },
+   {
+    "done": false,
+    "text": "Board / member resolutions log"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 40,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "9f159588-34f5-43c8-b404-33ca8c59ecbe",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 5,
+  "phaseTitle": "Phase 5 — Legal File Handover",
+  "sectionNo": "5.2",
+  "title": "Active Legal Matters",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Eviction / collection actions — court, docket, status, next hearing"
+   },
+   {
+    "done": false,
+    "text": "Tenant disputes / arbitrations — status, position memos"
+   },
+   {
+    "done": false,
+    "text": "REA disputes — status and party positions"
+   },
+   {
+    "done": false,
+    "text": "Insurance claims under counsel"
+   },
+   {
+    "done": false,
+    "text": "Code enforcement matters"
+   },
+   {
+    "done": false,
+    "text": "Mechanics lien / privilege defenses [LA: PWA timelines critical]"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 38,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "a5a186ed-1322-4324-89f4-c683061ede81",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.1",
+  "title": "Prorations & Closing Statement",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Rent prorations — current month, by tenant"
+   },
+   {
+    "done": false,
+    "text": "Prepaid rent transfer to buyer"
+   },
+   {
+    "done": false,
+    "text": "Real estate tax proration [LA: parish assessor cycle — verify]"
+   },
+   {
+    "done": false,
+    "text": "Insurance proration / cancellation refund"
+   },
+   {
+    "done": false,
+    "text": "CAM, tax, insurance reconciliations — final true-up at closing or 90 days post"
+   },
+   {
+    "done": false,
+    "text": "Utility prorations and final meter readings"
+   },
+   {
+    "done": false,
+    "text": "Vendor accruals — outstanding work / unbilled services"
+   },
+   {
+    "done": false,
+    "text": "Management fee / leasing commissions accrual"
+   },
+   {
+    "done": false,
+    "text": "Outstanding TI / LC obligations assumed by buyer"
+   },
+   {
+    "done": false,
+    "text": "Lender escrow balance transfer or refund"
+   },
+   {
+    "done": false,
+    "text": "Reserve account transfer"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 14,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "a69dc2b2-fda9-488d-8c4f-73b7dc87ab9e",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.7",
+  "title": "Vendor Assignment & Notification",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Service contracts assigned (consents obtained where required)"
+   },
+   {
+    "done": false,
+    "text": "Vendors notified of ownership change in writing"
+   },
+   {
+    "done": false,
+    "text": "New billing addresses provided to each vendor"
+   },
+   {
+    "done": false,
+    "text": "New W-9 from buyer to vendors who owe 1099 reporting"
+   },
+   {
+    "done": false,
+    "text": "Replacement vendors selected where seller relationship not transferable"
+   },
+   {
+    "done": false,
+    "text": "Emergency vendor list distributed (24/7 plumbing, electrical, roof, glass, locksmith)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 20,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "ad2a78c0-e638-4f41-af2d-ff7b7a228fa0",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 4,
+  "phaseTitle": "Phase 4 — Bookkeeping & Accounting Handover",
+  "sectionNo": "4.7",
+  "title": "Software Access",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Accounting platform — admin credentials"
+   },
+   {
+    "done": false,
+    "text": "Bank portal access for AP / treasury function"
+   },
+   {
+    "done": false,
+    "text": "Bill.com or equivalent AP platform"
+   },
+   {
+    "done": false,
+    "text": "Payroll platform if any employees"
+   },
+   {
+    "done": false,
+    "text": "Tax preparation software / portal"
+   },
+   {
+    "done": false,
+    "text": "Document management / secure file share"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 36,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "b4e9c91f-7163-42b8-88ff-7ef9e0d7fd7b",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 5,
+  "phaseTitle": "Phase 5 — Legal File Handover",
+  "sectionNo": "5.3",
+  "title": "Legal Document Library",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Standard form lease (current attorney-approved version)"
+   },
+   {
+    "done": false,
+    "text": "LOI template"
+   },
+   {
+    "done": false,
+    "text": "Lease amendment template"
+   },
+   {
+    "done": false,
+    "text": "Estoppel template"
+   },
+   {
+    "done": false,
+    "text": "SNDA template"
+   },
+   {
+    "done": false,
+    "text": "Guaranty template"
+   },
+   {
+    "done": false,
+    "text": "Default notice templates (3-day, 5-day, 30-day per LA law)"
+   },
+   {
+    "done": false,
+    "text": "Vendor MSA template"
+   },
+   {
+    "done": false,
+    "text": "NDA template"
+   },
+   {
+    "done": false,
+    "text": "Demand letter templates"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 39,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "badf65b0-0bb0-4bd5-a325-5b0bab962167",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.7",
+  "title": "Engineering, Structural & ADA",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Property Condition Assessment (PCA) / Property Condition Report"
+   },
+   {
+    "done": false,
+    "text": "Structural engineer reports (any in last 5 years)"
+   },
+   {
+    "done": false,
+    "text": "Roof inspection reports and remaining useful life estimates"
+   },
+   {
+    "done": false,
+    "text": "HVAC inventory and condition assessment per unit"
+   },
+   {
+    "done": false,
+    "text": "Parking lot condition assessment (pavement, striping, lighting)"
+   },
+   {
+    "done": false,
+    "text": "Drainage / stormwater system condition"
+   },
+   {
+    "done": false,
+    "text": "ADA Title III accessibility audit"
+   },
+   {
+    "done": false,
+    "text": "ADA transition plan / remediation schedule"
+   },
+   {
+    "done": false,
+    "text": "Fire suppression system inspection (sprinklers, hoods)"
+   },
+   {
+    "done": false,
+    "text": "Backflow preventer test reports"
+   },
+   {
+    "done": false,
+    "text": "Elevator inspection certificates (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Generator load-bank test reports (if applicable)"
+   },
+   {
+    "done": false,
+    "text": "Geotechnical / soils report (original construction)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 6,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "bc38ff91-f5d4-49ab-bde3-927601630d76",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.8",
+  "title": "Keys, Access Codes, Locks",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Master key inventory — physical handover"
+   },
+   {
+    "done": false,
+    "text": "Sub-master / submaster keys per building / area"
+   },
+   {
+    "done": false,
+    "text": "Suite keys (where landlord retains spares per lease)"
+   },
+   {
+    "done": false,
+    "text": "Mechanical / electrical / roof / janitorial closet keys"
+   },
+   {
+    "done": false,
+    "text": "Alarm codes — main and per suite"
+   },
+   {
+    "done": false,
+    "text": "Gate / dumpster enclosure codes"
+   },
+   {
+    "done": false,
+    "text": "Management office locks rekeyed at closing"
+   },
+   {
+    "done": false,
+    "text": "Common area door / restroom keys"
+   },
+   {
+    "done": false,
+    "text": "Roof access keys / hatch codes"
+   },
+   {
+    "done": false,
+    "text": "Sign / monument access keys"
+   },
+   {
+    "done": false,
+    "text": "Key log with chain of custody"
+   },
+   {
+    "done": false,
+    "text": "Decision: rekey master after closing (recommended)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 21,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "c5ae345c-ca92-413f-b253-f2e399a0a815",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.1",
+  "title": "Entity & Corporate Documents",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Articles of Organization / Incorporation for owner entity (certified copy)"
+   },
+   {
+    "done": false,
+    "text": "Operating Agreement / Bylaws (current, fully executed, with all amendments)"
+   },
+   {
+    "done": false,
+    "text": "Certificate of Good Standing from Secretary of State [LA: louisiana.gov/SOS]"
+   },
+   {
+    "done": false,
+    "text": "EIN confirmation letter (IRS CP-575 or equivalent)"
+   },
+   {
+    "done": false,
+    "text": "Federal tax returns — prior 3 years (Form 1065 / 1120 / 1040-Sch E)"
+   },
+   {
+    "done": false,
+    "text": "State tax returns — prior 3 years"
+   },
+   {
+    "done": false,
+    "text": "Authorized signer resolution / consent for sale or transfer"
+   },
+   {
+    "done": false,
+    "text": "List of all members / shareholders with ownership percentages"
+   },
+   {
+    "done": false,
+    "text": "Capital account ledger / member contribution history"
+   },
+   {
+    "done": false,
+    "text": "Prior K-1s for all members (3 years)"
+   },
+   {
+    "done": false,
+    "text": "Any side letters, buy-sell agreements, or transfer restrictions"
+   },
+   {
+    "done": false,
+    "text": "UCC search on entity name (no liens against owner entity)"
+   },
+   {
+    "done": false,
+    "text": "Litigation search — entity as plaintiff or defendant"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 0,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "cc5bfafc-5d8b-487d-bf7d-a2cd29e3327d",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.6",
+  "title": "Banking & Cash Management",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Operating bank account opened in buyer entity name"
+   },
+   {
+    "done": false,
+    "text": "Security deposit trust account opened (separate from operating) [LA: best practice]"
+   },
+   {
+    "done": false,
+    "text": "Reserve account opened (replacement reserves, TI/LC)"
+   },
+   {
+    "done": false,
+    "text": "Bank signatories filed (managing member, PM, controller as applicable)"
+   },
+   {
+    "done": false,
+    "text": "Wire and ACH instructions documented and distributed internally"
+   },
+   {
+    "done": false,
+    "text": "Lockbox / PO box established for rent receipts (if used)"
+   },
+   {
+    "done": false,
+    "text": "Online banking access provisioned to PM, bookkeeper, owner"
+   },
+   {
+    "done": false,
+    "text": "Positive pay / fraud controls enabled"
+   },
+   {
+    "done": false,
+    "text": "Tenant payment portal configured (DoorLoop, AppFolio, or equivalent)"
+   },
+   {
+    "done": false,
+    "text": "Credit card processing / merchant account established"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 19,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "d2afda77-1e8c-4588-825f-3df9d8acd2f7",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 2,
+  "phaseTitle": "Phase 2 — Closing & Day-One Transition",
+  "sectionNo": "2.2",
+  "title": "Security Deposits & Letters of Credit",
+  "status": "missing",
+  "priority": "high",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Security deposit reconciliation per tenant"
+   },
+   {
+    "done": false,
+    "text": "Cash deposit transfer to buyer's account (or credit at closing)"
+   },
+   {
+    "done": false,
+    "text": "LOC originals delivered to buyer"
+   },
+   {
+    "done": false,
+    "text": "LOC amendments / new LOCs in buyer's name (if required)"
+   },
+   {
+    "done": false,
+    "text": "Buyer assumes obligation to account / refund per lease terms"
+   },
+   {
+    "done": false,
+    "text": "Tenant notification of deposit transfer"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 15,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "d540c5ce-b5c1-4908-a4ca-f9bfdddadccd",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.4",
+  "title": "Easements, REAs, CC&Rs & Operating Covenants",
+  "status": "missing",
+  "priority": "critical",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Reciprocal Easement Agreement(s) — full executed copy with all amendments"
+   },
+   {
+    "done": false,
+    "text": "Operating Easement Agreement (OEA) if separate from REA"
+   },
+   {
+    "done": false,
+    "text": "Declaration of Covenants, Conditions & Restrictions (CC&Rs)"
+   },
+   {
+    "done": false,
+    "text": "Cross-parking easements"
+   },
+   {
+    "done": false,
+    "text": "Access / ingress-egress easements"
+   },
+   {
+    "done": false,
+    "text": "Utility easements (water, sewer, gas, electric, telecom, drainage)"
+   },
+   {
+    "done": false,
+    "text": "Stormwater / detention easements"
+   },
+   {
+    "done": false,
+    "text": "Sign easements (pylon, monument, off-premise)"
+   },
+   {
+    "done": false,
+    "text": "Anchor tenant operating covenants (continuous operation, hours, use)"
+   },
+   {
+    "done": false,
+    "text": "Co-tenancy and dark-store clauses affecting property obligations"
+   },
+   {
+    "done": false,
+    "text": "Common area maintenance obligations across multiple parcels"
+   },
+   {
+    "done": false,
+    "text": "REA-mandated insurance requirements and current compliance"
+   },
+   {
+    "done": false,
+    "text": "Approval rights — who must consent to leases, alterations, redevelopment"
+   },
+   {
+    "done": false,
+    "text": "Right of first refusal (ROFR) / right of first offer (ROFO) holders"
+   },
+   {
+    "done": false,
+    "text": "Schedule of all parties with REA approval rights"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 3,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "e654a64c-a58b-437e-8a3c-2b67e372a9f3",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 3,
+  "phaseTitle": "Phase 3 — Property Management Handover",
+  "sectionNo": "3.4",
+  "title": "Maintenance Schedules",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "HVAC PM schedule by unit (quarterly filter changes, semi-annual service)"
+   },
+   {
+    "done": false,
+    "text": "Roof inspection schedule (semi-annual, after major storms)"
+   },
+   {
+    "done": false,
+    "text": "Gutter / drain cleaning schedule"
+   },
+   {
+    "done": false,
+    "text": "Parking lot striping schedule (typically 2-3 years)"
+   },
+   {
+    "done": false,
+    "text": "Parking lot sealcoating schedule (typically 3-5 years)"
+   },
+   {
+    "done": false,
+    "text": "Parking lot light pole inspection and lamp replacement"
+   },
+   {
+    "done": false,
+    "text": "Pylon / monument sign light replacement schedule"
+   },
+   {
+    "done": false,
+    "text": "Fire sprinkler inspection (quarterly, annual, 5-year per NFPA 25)"
+   },
+   {
+    "done": false,
+    "text": "Fire alarm inspection (annual)"
+   },
+   {
+    "done": false,
+    "text": "Fire extinguisher service (annual, 6-year, 12-year hydrostatic)"
+   },
+   {
+    "done": false,
+    "text": "Backflow preventer test (annual per local water authority)"
+   },
+   {
+    "done": false,
+    "text": "Hood / grease trap cleaning (food tenants — verify tenant or landlord responsibility)"
+   },
+   {
+    "done": false,
+    "text": "Pest control treatment schedule"
+   },
+   {
+    "done": false,
+    "text": "Landscape mowing / mulch / seasonal schedule"
+   },
+   {
+    "done": false,
+    "text": "Pressure washing schedule (sidewalks, parking lot, dumpster areas)"
+   },
+   {
+    "done": false,
+    "text": "Window cleaning schedule (if applicable)"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 27,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ },
+ {
+  "id": "ebf6749a-6ad3-4315-8d39-c04583eee0cf",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 1,
+  "phaseTitle": "Phase 1 — Pre-Closing Due Diligence",
+  "sectionNo": "1.2",
+  "title": "Title, Survey & Real Property",
+  "status": "partial",
+  "priority": "critical",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Vesting deed (most recent recorded conveyance to current owner)"
+   },
+   {
+    "done": false,
+    "text": "Chain of title — back 20+ years or to subdivision plat"
+   },
+   {
+    "done": false,
+    "text": "Current title commitment / preliminary title report"
+   },
+   {
+    "done": false,
+    "text": "Owner's title insurance policy (existing)"
+   },
+   {
+    "done": false,
+    "text": "All recorded exceptions to title — copies of each"
+   },
+   {
+    "done": false,
+    "text": "ALTA / NSPS Land Title Survey (recent — within 12 months ideal)"
+   },
+   {
+    "done": false,
+    "text": "Topographic survey if available"
+   },
+   {
+    "done": false,
+    "text": "As-built site plan"
+   },
+   {
+    "done": false,
+    "text": "Boundary survey with bearings / distances"
+   },
+   {
+    "done": false,
+    "text": "Legal description (metes & bounds) — verify matches deed"
+   },
+   {
+    "done": false,
+    "text": "Plat / subdivision map showing parcel(s)"
+   },
+   {
+    "done": false,
+    "text": "Mineral rights status [LA: critical — minerals often severed from surface]"
+   },
+   {
+    "done": false,
+    "text": "Servitudes of passage / utility servitudes [LA civil law term for easements]"
+   },
+   {
+    "done": false,
+    "text": "Air rights / subsurface rights documentation if applicable"
+   }
+  ],
+  "notes": "2007 Fidelity LENDER policy on file (wrong lender, Protective Life). No current owner policy, no Investar lender policy. See Vault risk register.",
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 1,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:23:07"
+ },
+ {
+  "id": "edb6c82a-a06f-4ffc-9a6d-609f310fcab3",
+  "propertyId": "otb-prop-1",
+  "phaseNo": 6,
+  "phaseTitle": "Phase 6 — Physical Plant & Building Systems",
+  "sectionNo": "6.1",
+  "title": "Site & Exterior",
+  "status": "missing",
+  "priority": "normal",
+  "lineItems": [
+   {
+    "done": false,
+    "text": "Site plan / parking layout with stall count"
+   },
+   {
+    "done": false,
+    "text": "ADA parking stalls count and signage compliance"
+   },
+   {
+    "done": false,
+    "text": "Parking lot lighting inventory (poles, fixtures, controls, photocells)"
+   },
+   {
+    "done": false,
+    "text": "Bollards, wheel stops, curbing inventory and condition"
+   },
+   {
+    "done": false,
+    "text": "Landscape inventory (trees, beds, irrigation zones)"
+   },
+   {
+    "done": false,
+    "text": "Irrigation controller location and zone map"
+   },
+   {
+    "done": false,
+    "text": "Stormwater inlets / detention basin location and condition"
+   },
+   {
+    "done": false,
+    "text": "Dumpster enclosures (number, condition, capacity)"
+   },
+   {
+    "done": false,
+    "text": "Loading dock / service area inventory"
+   },
+   {
+    "done": false,
+    "text": "Exterior building photographs — all elevations"
+   },
+   {
+    "done": false,
+    "text": "Pylon sign — height, structure, electrical, tenant panels inventory"
+   },
+   {
+    "done": false,
+    "text": "Monument signs — same as above"
+   },
+   {
+    "done": false,
+    "text": "Directional / wayfinding signage inventory"
+   }
+  ],
+  "notes": null,
+  "fileKey": null,
+  "fileUrl": null,
+  "sortOrder": 41,
+  "createdAt": "2026-07-02T08:22:44",
+  "updatedAt": "2026-07-02T08:22:44"
+ }
+]

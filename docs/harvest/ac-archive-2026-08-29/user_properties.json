@@ -1,0 +1,86 @@
+[
+ {
+  "id": 1,
+  "userId": 1,
+  "propertyId": "otb-prop-1",
+  "role": "owner",
+  "createdAt": "2026-07-12T23:11:58"
+ },
+ {
+  "id": 30001,
+  "userId": 120022,
+  "propertyId": "otb-prop-1",
+  "role": "manager",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30002,
+  "userId": 120035,
+  "propertyId": "otb-prop-1",
+  "role": "viewer",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30003,
+  "userId": 300053,
+  "propertyId": "otb-prop-1",
+  "role": "manager",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30004,
+  "userId": 4110001,
+  "propertyId": "otb-prop-1",
+  "role": "viewer",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30005,
+  "userId": 18000002,
+  "propertyId": "otb-prop-1",
+  "role": "manager",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30006,
+  "userId": 18000004,
+  "propertyId": "otb-prop-1",
+  "role": "manager",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30007,
+  "userId": 21300002,
+  "propertyId": "otb-prop-1",
+  "role": "viewer",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 30008,
+  "userId": 31470047,
+  "propertyId": "otb-prop-1",
+  "role": "viewer",
+  "createdAt": "2026-07-27T23:31:24"
+ },
+ {
+  "id": 60001,
+  "userId": 72600001,
+  "propertyId": "c92269d6-0905-4ed2-98a1-94273cf99bda",
+  "role": "owner",
+  "createdAt": "2026-07-28T20:40:45"
+ },
+ {
+  "id": 90001,
+  "userId": 1,
+  "propertyId": "e61b10af-2f9c-4c11-b624-78634f125313",
+  "role": "owner",
+  "createdAt": "2026-07-31T22:40:07"
+ },
+ {
+  "id": 120001,
+  "userId": 82350004,
+  "propertyId": "otb-prop-1",
+  "role": "viewer",
+  "createdAt": "2026-08-08T11:19:47"
+ }
+]

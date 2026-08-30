@@ -1,0 +1,3178 @@
+[
+ {
+  "id": "09b3ce89-b1a3-4780-bd41-78af84927994",
+  "unitId": "u107",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "82a965a5-27d1-44c9-b5e2-65f7d5536ce6",
+  "commencementDate": "2022-04-01",
+  "expirationDate": "2027-09-30",
+  "originalTerm": "5 years and 6 months",
+  "baseRent": 1960.88,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Lease months 1-6",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-04-01",
+    "increaseValue": "$13.50 psf",
+    "newMonthlyRent": 1960.88
+   },
+   {
+    "note": "Lease months 7-9 (Rent Abatement)",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-10-01",
+    "increaseValue": "$0.00 psf",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Lease months 10-15",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-01-01",
+    "increaseValue": "$6.75 psf",
+    "newMonthlyRent": 980.44
+   },
+   {
+    "note": "Lease months 16-66",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-07-01",
+    "increaseValue": "$13.50 psf",
+    "newMonthlyRent": 1960.88
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+    "noticeRequired": "60 days"
+   },
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+    "noticeRequired": "60 days"
+   },
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": "Lessee may terminate if a competing 'Conflicting Use' tenant operates for 6 months and Lessor fails to remedy, upon written notice.",
+  "securityDeposit": 0,
+  "camResponsibility": "NNN - Lessee pays Pro Rata Portion of all costs and expenses for operation and maintenance of Common Area",
+  "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments",
+  "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's insurance; Lessee also maintains own comprehensive general liability insurance",
+  "hvacResponsibility": "Lessee is responsible for repairs and replacement; Lessee pays first $750.00 for each repair visit and first $1,500.00 toward replacement of any component; must maintain contract with Butcher Air Conditioning",
+  "permittedUse": "Operation of a Great American Cookie Franchise and a Hershey's Ice Cream Franchise including retail sale of desserts, ice cream, and cookie cakes",
+  "exclusiveUse": "Lessor shall not lease or permit the leasing or subleasing of or sell any space in the Boulevard Shopping Center Property during the term of this Lease and any extensions thereof to any person or entity which will utilize the space, or any part thereof, for a Nothing Bundt Cakes store or whose primary business is selling cookies, cookie cakes, ice cream or other frozen desserts",
+  "coTenancy": null,
+  "personalGuaranty": null,
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $2,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front wall/canopy of the Premises subject to Lessor approval and Schedule D criteria",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Holdover rent is 150% of monthly rent. Conflicting use by another tenant allows for 50% rent abatement or termination.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 1960.88,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Lease months 1-6",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-04-01",
+     "increaseValue": "$13.50 psf",
+     "newMonthlyRent": 1960.88
+    },
+    {
+     "note": "Lease months 7-9 (Rent Abatement)",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-10-01",
+     "increaseValue": "$0.00 psf",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Lease months 10-15",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-01-01",
+     "increaseValue": "$6.75 psf",
+     "newMonthlyRent": 980.44
+    },
+    {
+     "note": "Lease months 16-66",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-07-01",
+     "increaseValue": "$13.50 psf",
+     "newMonthlyRent": 1960.88
+    }
+   ],
+   "exclusiveUse": "Lessor shall not lease or permit the leasing or subleasing of or sell any space in the Boulevard Shopping Center Property during the term of this Lease and any extensions thereof to any person or entity which will utilize the space, or any part thereof, for a Nothing Bundt Cakes store or whose primary business is selling cookies, cookie cakes, ice cream or other frozen desserts",
+   "originalTerm": "5 years and 6 months",
+   "permittedUse": "Operation of a Great American Cookie Franchise and a Hershey's Ice Cream Franchise including retail sale of desserts, ice cream, and cookie cakes",
+   "guarantorName": null,
+   "signageRights": "Lessee has the right to place an exterior sign on the front wall/canopy of the Premises subject to Lessor approval and Schedule D criteria",
+   "expirationDate": "2027-09-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+     "noticeRequired": "60 days"
+    },
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+     "noticeRequired": "60 days"
+    },
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 0,
+   "commencementDate": "2022-04-01",
+   "earlyTermination": "Lessee may terminate if a competing 'Conflicting Use' tenant operates for 6 months and Lessor fails to remedy, upon written notice.",
+   "personalGuaranty": null,
+   "camResponsibility": "NNN - Lessee pays Pro Rata Portion of all costs and expenses for operation and maintenance of Common Area",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $2,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Holdover rent is 150% of monthly rent. Conflicting use by another tenant allows for 50% rent abatement or termination.",
+   "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments",
+   "hvacResponsibility": "Lessee is responsible for repairs and replacement; Lessee pays first $750.00 for each repair visit and first $1,500.00 toward replacement of any component; must maintain contract with Butcher Air Conditioning",
+   "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's insurance; Lessee also maintains own comprehensive general liability insurance"
+  },
+  "createdAt": "2026-07-11T17:30:51",
+  "updatedAt": "2026-07-11T17:30:51"
+ },
+ {
+  "id": "1b664534-23da-42bb-8e34-2fda9f9be66b",
+  "unitId": "u143",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "56276c92-2e9b-465b-bd74-6d083357671b",
+  "commencementDate": "2015-09-01",
+  "expirationDate": "2031-01-31",
+  "originalTerm": "5 years and 5 months",
+  "baseRent": 2556,
+  "rentPsf": 16,
+  "escalations": [
+   {
+    "note": "Months 1-5 of Initial Term are rent-free",
+    "increaseType": "fixed",
+    "effectiveDate": "2015-09-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Months 6-65 of Initial Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2016-02-01",
+    "increaseValue": "$16.00 PSF",
+    "newMonthlyRent": 2556
+   },
+   {
+    "note": "First Renewal Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2021-02-01",
+    "increaseValue": "$16.00 PSF",
+    "newMonthlyRent": 2556
+   },
+   {
+    "note": "Second Renewal Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2026-02-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 2556
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "Negotiated market rate not to exceed a 10% increase over current base monthly rental rate",
+    "noticeRequired": "60 days"
+   },
+   {
+    "term": "5 years",
+    "rentBasis": "Monthly base rent increase not to exceed 10%",
+    "noticeRequired": "60 days"
+   },
+   {
+    "term": "Up to 5 years",
+    "rentBasis": "Monthly Base Rent shall not exceed 10% of the current base monthly rental rate",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": "Section 38.01: Tenant may terminate if banking/financial laws change or licenses are not received, with 90 days notice and payment of a termination fee equal to 180 days of rent.",
+  "securityDeposit": null,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments levied against the Premises.",
+  "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's casualty and liability insurance; Lessee also maintains own general liability and fire legal insurance.",
+  "hvacResponsibility": "Lessee responsible for maintenance, repair, and replacement; Lessee pays first $750.00 (per First Addendum) for each repair visit and must maintain a service contract.",
+  "permittedUse": "offices for a consumer finance company",
+  "exclusiveUse": null,
+  "coTenancy": null,
+  "personalGuaranty": null,
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $2,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall above the front canopy, subject to Lessor approval and Schedule D criteria.",
+  "keyClausesSummary": "CAM cap of 4% annually beginning in the second year. Late fee of $100.00 plus $25.00 per day. Lessee must use Butcher Air Conditioning for HVAC and Magnon Electric for electrical maintenance.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 16,
+   "baseRent": 2556,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Months 1-5 of Initial Term are rent-free",
+     "increaseType": "fixed",
+     "effectiveDate": "2015-09-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Months 6-65 of Initial Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2016-02-01",
+     "increaseValue": "$16.00 PSF",
+     "newMonthlyRent": 2556
+    },
+    {
+     "note": "First Renewal Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2021-02-01",
+     "increaseValue": "$16.00 PSF",
+     "newMonthlyRent": 2556
+    },
+    {
+     "note": "Second Renewal Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2026-02-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 2556
+    }
+   ],
+   "exclusiveUse": null,
+   "originalTerm": "5 years and 5 months",
+   "permittedUse": "offices for a consumer finance company",
+   "guarantorName": null,
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall above the front canopy, subject to Lessor approval and Schedule D criteria.",
+   "expirationDate": "2031-01-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "Negotiated market rate not to exceed a 10% increase over current base monthly rental rate",
+     "noticeRequired": "60 days"
+    },
+    {
+     "term": "5 years",
+     "rentBasis": "Monthly base rent increase not to exceed 10%",
+     "noticeRequired": "60 days"
+    },
+    {
+     "term": "Up to 5 years",
+     "rentBasis": "Monthly Base Rent shall not exceed 10% of the current base monthly rental rate",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": null,
+   "commencementDate": "2015-09-01",
+   "earlyTermination": "Section 38.01: Tenant may terminate if banking/financial laws change or licenses are not received, with 90 days notice and payment of a termination fee equal to 180 days of rent.",
+   "personalGuaranty": null,
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $2,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "CAM cap of 4% annually beginning in the second year. Late fee of $100.00 plus $25.00 per day. Lessee must use Butcher Air Conditioning for HVAC and Magnon Electric for electrical maintenance.",
+   "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments levied against the Premises.",
+   "hvacResponsibility": "Lessee responsible for maintenance, repair, and replacement; Lessee pays first $750.00 (per First Addendum) for each repair visit and must maintain a service contract.",
+   "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's casualty and liability insurance; Lessee also maintains own general liability and fire legal insurance."
+  },
+  "createdAt": "2026-07-11T17:22:29",
+  "updatedAt": "2026-07-11T17:22:29"
+ },
+ {
+  "id": "214c1c32-da10-49bf-978c-062d709d61bf",
+  "unitId": "u105",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "ce147155-a6f9-40da-9e29-d8d917fb2776",
+  "commencementDate": "2022-12-01",
+  "expirationDate": "2026-03-31",
+  "originalTerm": "40 months",
+  "baseRent": 2499.75,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Rent abatement for months 1-3",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-12-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Standard base rent begins month 4",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-03-01",
+    "increaseValue": "2499.75",
+    "newMonthlyRent": 2499.75
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2499.75,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Tenant responsible for Pro Rata Portion of all real property taxes and assessments",
+  "insuranceResponsibility": "Tenant responsible for Pro Rata Portion of insurance coverage for the Boulevard Shopping Center Property; Tenant must maintain own liability insurance",
+  "hvacResponsibility": "Shared: Tenant pays for maintenance contract and first 1,000.00 of each repair visit and first 1,500.00 toward replacement cost; Lessor responsible for balance",
+  "permittedUse": "operation of a painting gift store selling pottery, clay, ceramics classes and related items",
+  "exclusiveUse": "In the event Lessor is considering executing a lease agreement for space in the Boulevard Shopping Center Property with a potential tenant whose primary business in the sale of gifts similar to those sold by Lessee would be in competition with Lessee, as determined in Lessor's reasonable discretion, Lessor shall give verbal notice to Lessee and agrees to discuss the same with Lessee prior to executing any such Lease Agreement.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100,000.00 fire legal liability",
+   "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall of the Premises above the front canopy; subject to Lessor approval and specific design criteria in Schedule D",
+  "keyClausesSummary": "Late fees: 100.00 plus 25.00 per day after the 5th of the month. CAM/Tax/Insurance increases capped at 5% over prior calendar year actuals. Tenant must use Hubbard Sign Company for walkway signs and Butcher Air Conditioning for HVAC maintenance.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 2499.75,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Rent abatement for months 1-3",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-12-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Standard base rent begins month 4",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-03-01",
+     "increaseValue": "2499.75",
+     "newMonthlyRent": 2499.75
+    }
+   ],
+   "exclusiveUse": "In the event Lessor is considering executing a lease agreement for space in the Boulevard Shopping Center Property with a potential tenant whose primary business in the sale of gifts similar to those sold by Lessee would be in competition with Lessee, as determined in Lessor's reasonable discretion, Lessor shall give verbal notice to Lessee and agrees to discuss the same with Lessee prior to executing any such Lease Agreement.",
+   "originalTerm": "40 months",
+   "permittedUse": "operation of a painting gift store selling pottery, clay, ceramics classes and related items",
+   "guarantorName": null,
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall of the Premises above the front canopy; subject to Lessor approval and specific design criteria in Schedule D",
+   "expirationDate": "2026-03-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 2499.75,
+   "commencementDate": "2022-12-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100,000.00 fire legal liability",
+    "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "Late fees: 100.00 plus 25.00 per day after the 5th of the month. CAM/Tax/Insurance increases capped at 5% over prior calendar year actuals. Tenant must use Hubbard Sign Company for walkway signs and Butcher Air Conditioning for HVAC maintenance.",
+   "taxResponsibility": "Tenant responsible for Pro Rata Portion of all real property taxes and assessments",
+   "hvacResponsibility": "Shared: Tenant pays for maintenance contract and first 1,000.00 of each repair visit and first 1,500.00 toward replacement cost; Lessor responsible for balance",
+   "insuranceResponsibility": "Tenant responsible for Pro Rata Portion of insurance coverage for the Boulevard Shopping Center Property; Tenant must maintain own liability insurance"
+  },
+  "createdAt": "2026-07-11T17:30:33",
+  "updatedAt": "2026-07-11T17:30:33"
+ },
+ {
+  "id": "341c7699-a5af-4a6c-a4f5-77ae581d544c",
+  "unitId": "u127",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "5991feb2-aa89-4d70-bc9a-0c70f7869cdb",
+  "commencementDate": "2024-05-01",
+  "expirationDate": "2029-08-31",
+  "originalTerm": "64 months",
+  "baseRent": 4807.13,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Rent abatement for months 1-4 of the initial term",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-05-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Base rent commences in month 5",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-09-01",
+    "increaseValue": "$4,807.13",
+    "newMonthlyRent": 4807.13
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "Negotiated by the Lessor and the Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2500,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of annual charges for insurance coverage",
+  "hvacResponsibility": "Lessee responsible for repair and replacement; provided that (i) Lessee pays first $1,500.00 for each repair visit and 50% toward replacement cost and (ii) Lessee maintains a monthly maintenance contract.",
+  "permittedUse": "clothing boutique specializing in the sale of women's clothing and fashion accessories",
+  "exclusiveUse": null,
+  "coTenancy": null,
+  "personalGuaranty": "Yes",
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100,000.00",
+   "generalLiability": "1,000,000.00"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall of the Premises above the front canopy, subject to Lessor approval and Schedule D criteria.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. CAM, Tax, and Insurance increases capped at 5% over prior calendar year actuals starting in the second year. Holdover rent is 200% of monthly rental amount. Business must be open at least 5 days a week from 10:00 AM to 5:00 PM.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 4807.13,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Rent abatement for months 1-4 of the initial term",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-05-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Base rent commences in month 5",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-09-01",
+     "increaseValue": "$4,807.13",
+     "newMonthlyRent": 4807.13
+    }
+   ],
+   "exclusiveUse": null,
+   "originalTerm": "64 months",
+   "permittedUse": "clothing boutique specializing in the sale of women's clothing and fashion accessories",
+   "guarantorName": null,
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall of the Premises above the front canopy, subject to Lessor approval and Schedule D criteria.",
+   "expirationDate": "2029-08-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "Negotiated by the Lessor and the Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 2500,
+   "commencementDate": "2024-05-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Yes",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100,000.00",
+    "generalLiability": "1,000,000.00"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. CAM, Tax, and Insurance increases capped at 5% over prior calendar year actuals starting in the second year. Holdover rent is 200% of monthly rental amount. Business must be open at least 5 days a week from 10:00 AM to 5:00 PM.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments",
+   "hvacResponsibility": "Lessee responsible for repair and replacement; provided that (i) Lessee pays first $1,500.00 for each repair visit and 50% toward replacement cost and (ii) Lessee maintains a monthly maintenance contract.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of annual charges for insurance coverage"
+  },
+  "createdAt": "2026-07-11T17:23:42",
+  "updatedAt": "2026-07-11T17:23:42"
+ },
+ {
+  "id": "40848355-3a88-4107-91f2-5c655da29a24",
+  "unitId": "u1195",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "5702c489-26d5-4dc1-94c3-f44427718bd0",
+  "commencementDate": "2019-10-01",
+  "expirationDate": "2026-02-28",
+  "originalTerm": "41 months",
+  "baseRent": 2303,
+  "rentPsf": 14,
+  "escalations": [
+   {
+    "note": "Lease Month 1",
+    "increaseType": "fixed",
+    "effectiveDate": "2019-10-01",
+    "increaseValue": "$0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Lease Months 2-5",
+    "increaseType": "fixed",
+    "effectiveDate": "2019-11-01",
+    "increaseValue": "$0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Lease Months 6-29",
+    "increaseType": "fixed",
+    "effectiveDate": "2020-03-01",
+    "increaseValue": "$12.50 PSF",
+    "newMonthlyRent": 2056.25
+   },
+   {
+    "note": "Lease Months 30-41",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-03-01",
+    "increaseValue": "$13.00 PSF",
+    "newMonthlyRent": 2138.5
+   },
+   {
+    "note": "Third Extension Term Months 1-36",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-03-01",
+    "increaseValue": "$14.00 PSF",
+    "newMonthlyRent": 2303
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2706.03,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays pro-rata portion",
+  "insuranceResponsibility": "Lessee pays pro-rata portion",
+  "hvacResponsibility": "Lessee responsible for maintenance contract and first $750 of repairs and first $2,500 of replacement; Lessor responsible for balance.",
+  "permittedUse": "Veterinary clinic for cats",
+  "exclusiveUse": "Lessor agrees that it shall not enter into any agreement giving a third party the right to operate in the Shopping Center a business whose primary use is as a veterinary clinic for the care and treatment of cats.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Jasmine C. Champagne",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100000.00",
+   "generalLiability": "1000000.00"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the Premises advertising its business. Subject to Lessor approval and specific design criteria in Schedule D.",
+  "keyClausesSummary": "The lease includes a confidentiality clause prohibiting disclosure of terms to other tenants. The Third Extension Term runs from 2023-03-01 to 2026-02-28. Lessee is prohibited from operating as a delicatessen or restaurant similar to Jason's Deli.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 14,
+   "baseRent": 2303,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Lease Month 1",
+     "increaseType": "fixed",
+     "effectiveDate": "2019-10-01",
+     "increaseValue": "$0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Lease Months 2-5",
+     "increaseType": "fixed",
+     "effectiveDate": "2019-11-01",
+     "increaseValue": "$0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Lease Months 6-29",
+     "increaseType": "fixed",
+     "effectiveDate": "2020-03-01",
+     "increaseValue": "$12.50 PSF",
+     "newMonthlyRent": 2056.25
+    },
+    {
+     "note": "Lease Months 30-41",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-03-01",
+     "increaseValue": "$13.00 PSF",
+     "newMonthlyRent": 2138.5
+    },
+    {
+     "note": "Third Extension Term Months 1-36",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-03-01",
+     "increaseValue": "$14.00 PSF",
+     "newMonthlyRent": 2303
+    }
+   ],
+   "exclusiveUse": "Lessor agrees that it shall not enter into any agreement giving a third party the right to operate in the Shopping Center a business whose primary use is as a veterinary clinic for the care and treatment of cats.",
+   "originalTerm": "41 months",
+   "permittedUse": "Veterinary clinic for cats",
+   "guarantorName": "Jasmine C. Champagne",
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the Premises advertising its business. Subject to Lessor approval and specific design criteria in Schedule D.",
+   "expirationDate": "2026-02-28",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 2706.03,
+   "commencementDate": "2019-10-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100000.00",
+    "generalLiability": "1000000.00"
+   },
+   "keyClausesSummary": "The lease includes a confidentiality clause prohibiting disclosure of terms to other tenants. The Third Extension Term runs from 2023-03-01 to 2026-02-28. Lessee is prohibited from operating as a delicatessen or restaurant similar to Jason's Deli.",
+   "taxResponsibility": "Lessee pays pro-rata portion",
+   "hvacResponsibility": "Lessee responsible for maintenance contract and first $750 of repairs and first $2,500 of replacement; Lessor responsible for balance.",
+   "insuranceResponsibility": "Lessee pays pro-rata portion"
+  },
+  "createdAt": "2026-07-11T17:25:29",
+  "updatedAt": "2026-07-11T17:25:29"
+ },
+ {
+  "id": "40aba2e5-f9cb-4a26-9709-e0895d4ca6e6",
+  "unitId": "u109",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "0028c73f-f99a-4fb1-9b70-b79900fcbddf",
+  "commencementDate": "2020-08-01",
+  "expirationDate": "2025-09-30",
+  "originalTerm": "62 months",
+  "baseRent": 2758.17,
+  "rentPsf": 13,
+  "escalations": [
+   {
+    "note": "Lease Months 1-2: Rent abatement period",
+    "increaseType": "fixed",
+    "effectiveDate": "2020-08-01",
+    "increaseValue": "$0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Lease Months 3-12",
+    "increaseType": "fixed",
+    "effectiveDate": "2020-10-01",
+    "increaseValue": "$13.00",
+    "newMonthlyRent": 2758.17
+   },
+   {
+    "note": "Lease Months 13-36",
+    "increaseType": "fixed",
+    "effectiveDate": "2021-08-01",
+    "increaseValue": "$13.50",
+    "newMonthlyRent": 2864.25
+   },
+   {
+    "note": "Lease Months 37-62",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-08-01",
+    "increaseValue": "$14.00",
+    "newMonthlyRent": 2970.33
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Monthly Rental Amount shall be negotiated by the Lessor and the Lessee",
+    "noticeRequired": "not less than sixty (60) days prior to the expiration of the Initial Term"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2758.17,
+  "camResponsibility": "NNN (Lessee's Pro Rata Portion)",
+  "taxResponsibility": "Lessee's Pro Rata Portion",
+  "insuranceResponsibility": "Lessee's Pro Rata Portion",
+  "hvacResponsibility": "Lessee is responsible for maintenance contract and repairs; Lessor is responsible for replacement provided that Lessee pays the first $750.00 for each repair/replacement visit.",
+  "permittedUse": "retail boutique for the sale of infant and children's clothing",
+  "exclusiveUse": null,
+  "coTenancy": null,
+  "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due... and the full and prompt performance by the Lessee of all of its obligations pursuant to the terms and conditions of the Lease.\"",
+  "guarantorName": "Jeanne Guilbeaux Desormeaux and Coby John Desormeaux",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000 fire legal liability",
+   "generalLiability": "$1,000,000 per occurrence / $1,000,000 aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front wall above the front canopy, subject to Lessor approval and specific design criteria in Schedule D.",
+  "keyClausesSummary": "Prohibited uses include restaurants similar to Jason's Deli and veterinary clinics. Late fees are $100 plus $25 per day after the 5th of the month. CAM and Tax/Insurance increases are capped at 5% over the prior calendar year actuals starting in the second year.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13,
+   "baseRent": 2758.17,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Lease Months 1-2: Rent abatement period",
+     "increaseType": "fixed",
+     "effectiveDate": "2020-08-01",
+     "increaseValue": "$0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Lease Months 3-12",
+     "increaseType": "fixed",
+     "effectiveDate": "2020-10-01",
+     "increaseValue": "$13.00",
+     "newMonthlyRent": 2758.17
+    },
+    {
+     "note": "Lease Months 13-36",
+     "increaseType": "fixed",
+     "effectiveDate": "2021-08-01",
+     "increaseValue": "$13.50",
+     "newMonthlyRent": 2864.25
+    },
+    {
+     "note": "Lease Months 37-62",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-08-01",
+     "increaseValue": "$14.00",
+     "newMonthlyRent": 2970.33
+    }
+   ],
+   "exclusiveUse": null,
+   "originalTerm": "62 months",
+   "permittedUse": "retail boutique for the sale of infant and children's clothing",
+   "guarantorName": "Jeanne Guilbeaux Desormeaux and Coby John Desormeaux",
+   "signageRights": "Lessee has the right to place an exterior sign on the front wall above the front canopy, subject to Lessor approval and specific design criteria in Schedule D.",
+   "expirationDate": "2025-09-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Monthly Rental Amount shall be negotiated by the Lessor and the Lessee",
+     "noticeRequired": "not less than sixty (60) days prior to the expiration of the Initial Term"
+    }
+   ],
+   "securityDeposit": 2758.17,
+   "commencementDate": "2020-08-01",
+   "earlyTermination": null,
+   "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due... and the full and prompt performance by the Lessee of all of its obligations pursuant to the terms and conditions of the Lease.\"",
+   "camResponsibility": "NNN (Lessee's Pro Rata Portion)",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000 fire legal liability",
+    "generalLiability": "$1,000,000 per occurrence / $1,000,000 aggregate"
+   },
+   "keyClausesSummary": "Prohibited uses include restaurants similar to Jason's Deli and veterinary clinics. Late fees are $100 plus $25 per day after the 5th of the month. CAM and Tax/Insurance increases are capped at 5% over the prior calendar year actuals starting in the second year.",
+   "taxResponsibility": "Lessee's Pro Rata Portion",
+   "hvacResponsibility": "Lessee is responsible for maintenance contract and repairs; Lessor is responsible for replacement provided that Lessee pays the first $750.00 for each repair/replacement visit.",
+   "insuranceResponsibility": "Lessee's Pro Rata Portion"
+  },
+  "createdAt": "2026-07-11T17:31:15",
+  "updatedAt": "2026-07-11T17:31:15"
+ },
+ {
+  "id": "4d1aa4a7-bbda-4794-b462-72decd5afeda",
+  "unitId": "u149",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "f28e3318-f105-4f26-b6cd-bc42dca69a6a",
+  "commencementDate": "2000-11-01",
+  "expirationDate": "2030-10-31",
+  "originalTerm": "120 months",
+  "baseRent": 4228.6,
+  "rentPsf": 11,
+  "escalations": [
+   {
+    "note": "Year 6 of Initial Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2005-11-01",
+    "increaseValue": "$384.40",
+    "newMonthlyRent": 4613
+   },
+   {
+    "note": "First Renewal Term Months 1-12; includes $1,875/mo abatement",
+    "increaseType": "fixed",
+    "effectiveDate": "2010-11-01",
+    "increaseValue": "null",
+    "newMonthlyRent": 3122.4
+   },
+   {
+    "note": "First Renewal Term Months 13-60",
+    "increaseType": "fixed",
+    "effectiveDate": "2011-11-01",
+    "increaseValue": "$1,875.00",
+    "newMonthlyRent": 4997.4
+   },
+   {
+    "note": "First Renewal Term Months 61-120",
+    "increaseType": "fixed",
+    "effectiveDate": "2015-11-01",
+    "increaseValue": "$384.40",
+    "newMonthlyRent": 5381.8
+   },
+   {
+    "note": "Second Extension Term Months 1-60",
+    "increaseType": "fixed",
+    "effectiveDate": "2020-11-01",
+    "increaseValue": "$864.97",
+    "newMonthlyRent": 6246.77
+   },
+   {
+    "note": "Third Extension Term Months 1-60",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-11-01",
+    "increaseValue": "$384.42",
+    "newMonthlyRent": 6631.19
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "120 months",
+    "rentBasis": "Fixed steps ($4,997.40 and $5,381.80)",
+    "noticeRequired": "60 days"
+   },
+   {
+    "term": "60 months",
+    "rentBasis": "Fixed ($6,246.77)",
+    "noticeRequired": null
+   },
+   {
+    "term": "60 months",
+    "rentBasis": "Fixed ($6,631.19)",
+    "noticeRequired": null
+   },
+   {
+    "term": "60 months",
+    "rentBasis": "Fixed ($7,161.69)",
+    "noticeRequired": null
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": "If occupancy in the Shopping Center falls below 70% after the initial 12 months, Tenant may cancel upon 30 days notice.",
+  "securityDeposit": null,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Tenant",
+  "insuranceResponsibility": "Tenant",
+  "hvacResponsibility": "Shared",
+  "permittedUse": "full service deli restaurant to include the serving and sale of soups, salads, sandwiches, heart healthy food items, alcoholic and non alcoholic beverages",
+  "exclusiveUse": "Landlord agrees that Landlord shall not lease or permit the leasing or subleasing of or sell any space in the Shopping Center... as a delicatessen or other restaurant whose operations are the same or similar to Tenant's operations or whose primary menu items are salads, soups, sandwiches, and baked potatoes",
+  "coTenancy": "if at any time during the Term of this Lease after the initial twelve (12) month period... less than seventy percent (70%) of the gross leasable space... is fully occupied and open for business, then Tenant shall have the right to cancel this Lease",
+  "personalGuaranty": null,
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": "2000000",
+   "workersComp": null,
+   "propertyDamage": "100000",
+   "generalLiability": "1000000"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall and space on the existing pylon sign.",
+  "keyClausesSummary": "Premises expanded from 4,500 to 4,613 SF via addendum. Lessor provided $60,000 initial finish allowance and $22,500 subsequent renovation contribution. HVAC responsibility includes a $500.00 Lessor deductible per repair visit. 5th Addendum extends term to 2030 with a further 5-year option to 2035.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 11,
+   "baseRent": 4228.6,
+   "coTenancy": "if at any time during the Term of this Lease after the initial twelve (12) month period... less than seventy percent (70%) of the gross leasable space... is fully occupied and open for business, then Tenant shall have the right to cancel this Lease",
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Year 6 of Initial Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2005-11-01",
+     "increaseValue": "$384.40",
+     "newMonthlyRent": 4613
+    },
+    {
+     "note": "First Renewal Term Months 1-12; includes $1,875/mo abatement",
+     "increaseType": "fixed",
+     "effectiveDate": "2010-11-01",
+     "increaseValue": "null",
+     "newMonthlyRent": 3122.4
+    },
+    {
+     "note": "First Renewal Term Months 13-60",
+     "increaseType": "fixed",
+     "effectiveDate": "2011-11-01",
+     "increaseValue": "$1,875.00",
+     "newMonthlyRent": 4997.4
+    },
+    {
+     "note": "First Renewal Term Months 61-120",
+     "increaseType": "fixed",
+     "effectiveDate": "2015-11-01",
+     "increaseValue": "$384.40",
+     "newMonthlyRent": 5381.8
+    },
+    {
+     "note": "Second Extension Term Months 1-60",
+     "increaseType": "fixed",
+     "effectiveDate": "2020-11-01",
+     "increaseValue": "$864.97",
+     "newMonthlyRent": 6246.77
+    },
+    {
+     "note": "Third Extension Term Months 1-60",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-11-01",
+     "increaseValue": "$384.42",
+     "newMonthlyRent": 6631.19
+    }
+   ],
+   "exclusiveUse": "Landlord agrees that Landlord shall not lease or permit the leasing or subleasing of or sell any space in the Shopping Center... as a delicatessen or other restaurant whose operations are the same or similar to Tenant's operations or whose primary menu items are salads, soups, sandwiches, and baked potatoes",
+   "originalTerm": "120 months",
+   "permittedUse": "full service deli restaurant to include the serving and sale of soups, salads, sandwiches, heart healthy food items, alcoholic and non alcoholic beverages",
+   "guarantorName": null,
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall and space on the existing pylon sign.",
+   "expirationDate": "2030-10-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "120 months",
+     "rentBasis": "Fixed steps ($4,997.40 and $5,381.80)",
+     "noticeRequired": "60 days"
+    },
+    {
+     "term": "60 months",
+     "rentBasis": "Fixed ($6,246.77)",
+     "noticeRequired": null
+    },
+    {
+     "term": "60 months",
+     "rentBasis": "Fixed ($6,631.19)",
+     "noticeRequired": null
+    },
+    {
+     "term": "60 months",
+     "rentBasis": "Fixed ($7,161.69)",
+     "noticeRequired": null
+    }
+   ],
+   "securityDeposit": null,
+   "commencementDate": "2000-11-01",
+   "earlyTermination": "If occupancy in the Shopping Center falls below 70% after the initial 12 months, Tenant may cancel upon 30 days notice.",
+   "personalGuaranty": null,
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": "2000000",
+    "workersComp": null,
+    "propertyDamage": "100000",
+    "generalLiability": "1000000"
+   },
+   "keyClausesSummary": "Premises expanded from 4,500 to 4,613 SF via addendum. Lessor provided $60,000 initial finish allowance and $22,500 subsequent renovation contribution. HVAC responsibility includes a $500.00 Lessor deductible per repair visit. 5th Addendum extends term to 2030 with a further 5-year option to 2035.",
+   "taxResponsibility": "Tenant",
+   "hvacResponsibility": "Shared",
+   "insuranceResponsibility": "Tenant"
+  },
+  "createdAt": "2026-07-11T17:26:50",
+  "updatedAt": "2026-07-11T17:26:50"
+ },
+ {
+  "id": "547f25f8-9356-4e88-b28a-570e066564e2",
+  "unitId": "u141",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "96935f88-766a-45e2-b165-d76f688f21e5",
+  "commencementDate": "2023-07-01",
+  "expirationDate": "2026-07-31",
+  "originalTerm": "3 years and 1 month",
+  "baseRent": 4313.25,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Month 1 is rent-free for Base Rent, CAM, Taxes, and Insurance.",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-07-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Base rent for months 2 through 37.",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-08-01",
+    "increaseValue": "4313.25",
+    "newMonthlyRent": 4313.25
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated between Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 4313.25,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage; Lessor maintains fire/casualty policy.",
+  "hvacResponsibility": "Lessee pays first $1,500 for each repair visit and 50% of replacement costs; Lessee must maintain a monthly maintenance contract with Bernhard MCC, LLC or Butcher Air Conditioning.",
+  "permittedUse": "public tag agency authorized by the Louisiana Office of Motor Vehicles providing motor vehicle registration, transfers and titling, driver license and identification duplicates and renewals, and boat and watercraft registration, title support, renewals, or other designations provided to public tag agencies",
+  "exclusiveUse": "Lessee shall have the exclusive right to conduct any portion of Lessee's Primary Business (as defined above), and all other tenants or occupants of any portion of the shopping center shall be prohibited from engaging in any portion of Lessee's Primary Business. Further, Lessor covenants that it will not lease any space in the shopping center to tenants whose primary use is or has vested interest in companies with substantially similar to Lessee's Primary Business.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Alliance Safety Council",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee, at its cost, shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business conducted on the Premises. Such sign shall be located on the front exterior wall of the Premises above the front canopy extending from the front wall.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. CAM/Tax/Insurance increases capped at 5% over the prior calendar year actuals beginning in the second year. Holdover rent is 200% of the monthly rental amount.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 4313.25,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Month 1 is rent-free for Base Rent, CAM, Taxes, and Insurance.",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-07-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Base rent for months 2 through 37.",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-08-01",
+     "increaseValue": "4313.25",
+     "newMonthlyRent": 4313.25
+    }
+   ],
+   "exclusiveUse": "Lessee shall have the exclusive right to conduct any portion of Lessee's Primary Business (as defined above), and all other tenants or occupants of any portion of the shopping center shall be prohibited from engaging in any portion of Lessee's Primary Business. Further, Lessor covenants that it will not lease any space in the shopping center to tenants whose primary use is or has vested interest in companies with substantially similar to Lessee's Primary Business.",
+   "originalTerm": "3 years and 1 month",
+   "permittedUse": "public tag agency authorized by the Louisiana Office of Motor Vehicles providing motor vehicle registration, transfers and titling, driver license and identification duplicates and renewals, and boat and watercraft registration, title support, renewals, or other designations provided to public tag agencies",
+   "guarantorName": "Alliance Safety Council",
+   "signageRights": "Lessee, at its cost, shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business conducted on the Premises. Such sign shall be located on the front exterior wall of the Premises above the front canopy extending from the front wall.",
+   "expirationDate": "2026-07-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated between Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 4313.25,
+   "commencementDate": "2023-07-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. CAM/Tax/Insurance increases capped at 5% over the prior calendar year actuals beginning in the second year. Holdover rent is 200% of the monthly rental amount.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+   "hvacResponsibility": "Lessee pays first $1,500 for each repair visit and 50% of replacement costs; Lessee must maintain a monthly maintenance contract with Bernhard MCC, LLC or Butcher Air Conditioning.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage; Lessor maintains fire/casualty policy."
+  },
+  "createdAt": "2026-07-11T17:28:29",
+  "updatedAt": "2026-07-11T17:28:29"
+ },
+ {
+  "id": "56b9227a-a344-46c4-9796-f8fceabdffb6",
+  "unitId": "u139",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "4fbd78fb-6156-4831-9343-83d14aeba38c",
+  "commencementDate": "2023-07-01",
+  "expirationDate": "2026-07-31",
+  "originalTerm": "37 months",
+  "baseRent": 4313.25,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Month 1 is rent-free (Base and Additional Rent)",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-07-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Base rent for months 2 through 37",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-08-01",
+    "increaseValue": "4313.25",
+    "newMonthlyRent": 4313.25
+   },
+   {
+    "note": "Lessor may increase CAM, Taxes, and Insurance charges annually, capped at 5% over the prior calendar year actuals",
+    "increaseType": "percentage",
+    "effectiveDate": "2024-07-01",
+    "increaseValue": "5% cap",
+    "newMonthlyRent": null
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 4313.25,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "NNN",
+  "insuranceResponsibility": "NNN",
+  "hvacResponsibility": "Lessee is responsible for maintenance, repair, and replacement; provided that Lessee pays the first $1,500.00 for each repair visit and 50% toward replacement cost. Lessee must maintain a monthly maintenance contract with Bernhard MCC, LLC.",
+  "permittedUse": "public tag agency authorized by the Louisiana Office of Motor Vehicles providing the following services: motor vehicle registration, transfers and titling, driver license and identification duplicates and renewals, and boat and watercraft registration, title support, renewals, or other designations provided to public tag agencies authorized by the Louisiana Office of Motor Vehicles",
+  "exclusiveUse": "Lessee shall have the exclusive right to conduct any portion of Lessee's Primary Business (as defined above), and all other tenants or occupants of any portion of the shopping center shall be prohibited from engaging in any portion of Lessee's Primary Business. Further, Lessor covenants that it will not lease any space in the shopping center to tenants whose primary use is or has vested interest in companies with substantially similar to Lessee's Primary Business.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Alliance Safety Council",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front exterior wall above the front canopy, subject to Lessor's prior approval of design and placement. Under-walkway signs must be erected by Hubbard Sign Company.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Lease prohibits use as a delicatessen/restaurant similar to Jason's Deli, a veterinary clinic for cats, or a retail boutique for clothing/jewelry. Lessee must provide security lighting on the rear door illuminated all night.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 4313.25,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Month 1 is rent-free (Base and Additional Rent)",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-07-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Base rent for months 2 through 37",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-08-01",
+     "increaseValue": "4313.25",
+     "newMonthlyRent": 4313.25
+    },
+    {
+     "note": "Lessor may increase CAM, Taxes, and Insurance charges annually, capped at 5% over the prior calendar year actuals",
+     "increaseType": "percentage",
+     "effectiveDate": "2024-07-01",
+     "increaseValue": "5% cap",
+     "newMonthlyRent": null
+    }
+   ],
+   "exclusiveUse": "Lessee shall have the exclusive right to conduct any portion of Lessee's Primary Business (as defined above), and all other tenants or occupants of any portion of the shopping center shall be prohibited from engaging in any portion of Lessee's Primary Business. Further, Lessor covenants that it will not lease any space in the shopping center to tenants whose primary use is or has vested interest in companies with substantially similar to Lessee's Primary Business.",
+   "originalTerm": "37 months",
+   "permittedUse": "public tag agency authorized by the Louisiana Office of Motor Vehicles providing the following services: motor vehicle registration, transfers and titling, driver license and identification duplicates and renewals, and boat and watercraft registration, title support, renewals, or other designations provided to public tag agencies authorized by the Louisiana Office of Motor Vehicles",
+   "guarantorName": "Alliance Safety Council",
+   "signageRights": "Lessee has the right to place an exterior sign on the front exterior wall above the front canopy, subject to Lessor's prior approval of design and placement. Under-walkway signs must be erected by Hubbard Sign Company.",
+   "expirationDate": "2026-07-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 4313.25,
+   "commencementDate": "2023-07-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Lease prohibits use as a delicatessen/restaurant similar to Jason's Deli, a veterinary clinic for cats, or a retail boutique for clothing/jewelry. Lessee must provide security lighting on the rear door illuminated all night.",
+   "taxResponsibility": "NNN",
+   "hvacResponsibility": "Lessee is responsible for maintenance, repair, and replacement; provided that Lessee pays the first $1,500.00 for each repair visit and 50% toward replacement cost. Lessee must maintain a monthly maintenance contract with Bernhard MCC, LLC.",
+   "insuranceResponsibility": "NNN"
+  },
+  "createdAt": "2026-07-11T17:28:11",
+  "updatedAt": "2026-07-11T17:28:11"
+ },
+ {
+  "id": "57633441-6204-4868-b6e8-6dc7e6927125",
+  "unitId": "u113",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "d3434d21-74e0-4752-99d6-6f43296f89a4",
+  "commencementDate": "2021-01-01",
+  "expirationDate": "2024-04-30",
+  "originalTerm": "40 months",
+  "baseRent": 2823.17,
+  "rentPsf": 13,
+  "escalations": [
+   {
+    "note": "End of free rent period; transition from $0.00 to $13.00 PSF annual rate.",
+    "increaseType": "fixed",
+    "effectiveDate": "2021-05-01",
+    "increaseValue": "$2,823.17",
+    "newMonthlyRent": 2823.17
+   },
+   {
+    "note": "Beginning in the second year, Lessor may increase Taxes, Insurance, and CAM charges by no more than 5% over the prior calendar year actuals.",
+    "increaseType": "other",
+    "effectiveDate": "2022-01-01",
+    "increaseValue": "up to 5%",
+    "newMonthlyRent": null
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Monthly Rental Amount shall be negotiated by the Lessor and the Lessee",
+    "noticeRequired": "not less than 60 days prior to expiration"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 3680.96,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments",
+  "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's insurance and maintains own liability insurance",
+  "hvacResponsibility": "Lessee responsible for regular maintenance ( Butcher Air Conditioning contract required); Lessee pays first $750.00 of each repair/replacement visit.",
+  "permittedUse": "retail specialty food company selling pre prepared cheese, cheese boards and related products and services and general office space",
+  "exclusiveUse": null,
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Tracey Lindberg",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 in fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee, at its cost, shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business... located on the front exterior wall of the Premises above the front canopy.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00/day after the 5th of the month. Holdover rent is 200% of the monthly rental amount. Lessor is responsible for roof, exterior walls, and structural foundation repairs.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13,
+   "baseRent": 2823.17,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "End of free rent period; transition from $0.00 to $13.00 PSF annual rate.",
+     "increaseType": "fixed",
+     "effectiveDate": "2021-05-01",
+     "increaseValue": "$2,823.17",
+     "newMonthlyRent": 2823.17
+    },
+    {
+     "note": "Beginning in the second year, Lessor may increase Taxes, Insurance, and CAM charges by no more than 5% over the prior calendar year actuals.",
+     "increaseType": "other",
+     "effectiveDate": "2022-01-01",
+     "increaseValue": "up to 5%",
+     "newMonthlyRent": null
+    }
+   ],
+   "exclusiveUse": null,
+   "originalTerm": "40 months",
+   "permittedUse": "retail specialty food company selling pre prepared cheese, cheese boards and related products and services and general office space",
+   "guarantorName": "Tracey Lindberg",
+   "signageRights": "Lessee, at its cost, shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business... located on the front exterior wall of the Premises above the front canopy.",
+   "expirationDate": "2024-04-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Monthly Rental Amount shall be negotiated by the Lessor and the Lessee",
+     "noticeRequired": "not less than 60 days prior to expiration"
+    }
+   ],
+   "securityDeposit": 3680.96,
+   "commencementDate": "2021-01-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 in fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00/day after the 5th of the month. Holdover rent is 200% of the monthly rental amount. Lessor is responsible for roof, exterior walls, and structural foundation repairs.",
+   "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments",
+   "hvacResponsibility": "Lessee responsible for regular maintenance ( Butcher Air Conditioning contract required); Lessee pays first $750.00 of each repair/replacement visit.",
+   "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's insurance and maintains own liability insurance"
+  },
+  "createdAt": "2026-07-11T17:25:12",
+  "updatedAt": "2026-07-11T17:25:12"
+ },
+ {
+  "id": "5af0e043-62b7-400c-8cad-f235b35557ad",
+  "unitId": "u137",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "6a7cd290-a19e-4db4-9d5e-08956a6d6747",
+  "commencementDate": "2025-10-01",
+  "expirationDate": "2030-09-30",
+  "originalTerm": "5 years",
+  "baseRent": 1637.79,
+  "rentPsf": 9.57,
+  "escalations": [
+   {
+    "note": "Months 3-5 of Initial Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-12-01",
+    "increaseValue": "$854.50",
+    "newMonthlyRent": 854.5
+   },
+   {
+    "note": "Year 1 (Months 6-12)",
+    "increaseType": "fixed",
+    "effectiveDate": "2026-03-01",
+    "increaseValue": "$1,637.79",
+    "newMonthlyRent": 1637.79
+   },
+   {
+    "note": "Year 2",
+    "increaseType": "fixed",
+    "effectiveDate": "2026-10-01",
+    "increaseValue": "$1,780.21",
+    "newMonthlyRent": 1780.21
+   },
+   {
+    "note": "Year 3",
+    "increaseType": "fixed",
+    "effectiveDate": "2027-10-01",
+    "increaseValue": "$1,922.63",
+    "newMonthlyRent": 1922.63
+   },
+   {
+    "note": "Year 4",
+    "increaseType": "fixed",
+    "effectiveDate": "2028-10-01",
+    "increaseValue": "$2,065.04",
+    "newMonthlyRent": 2065.04
+   },
+   {
+    "note": "Year 5",
+    "increaseType": "fixed",
+    "effectiveDate": "2029-10-01",
+    "increaseValue": "$2,207.46",
+    "newMonthlyRent": 2207.46
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 1922.63,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments ($0.95/sqft annually initially).",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage ($1.95/sqft annually initially).",
+  "hvacResponsibility": "Lessee responsible for all repairs except roof/exterior/structure; specifically for HVAC, Lessee pays first $750.00 for each repair visit and 15% toward replacement cost; must maintain contract with Butcher Air Conditioning.",
+  "permittedUse": "Retail sale of clothing and related items including manufacturing, custom and pre-made sorority and fraternity merchandise, apparel, accessories, gifts, and novelty items; custom embroidery, screen printing, heat-press, vinyl, or monogramming services on-site.",
+  "exclusiveUse": "\"Greek Expressions shall NOT be permitted to use the premises for: i. A delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli... ii. A veterinary clinic... iii. A retail boutique whose primary business is the sale of items including home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.\"",
+  "coTenancy": null,
+  "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all... amounts due under the Lease.\"",
+  "guarantorName": "Nicole Trahan",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front canopy extending from the front wall, subject to Lessor approval and design criteria in Schedule D.",
+  "keyClausesSummary": "Lease includes a 'Limited Waiver of Exclusive Use Rights' with existing tenant The Pink Paisley, LLC. Base rent is abated for the first two months. Late fees are $100.00 fixed plus $25.00 per day. Lessee must use Butcher Air Conditioning for HVAC maintenance.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 9.57,
+   "baseRent": 1637.79,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Months 3-5 of Initial Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-12-01",
+     "increaseValue": "$854.50",
+     "newMonthlyRent": 854.5
+    },
+    {
+     "note": "Year 1 (Months 6-12)",
+     "increaseType": "fixed",
+     "effectiveDate": "2026-03-01",
+     "increaseValue": "$1,637.79",
+     "newMonthlyRent": 1637.79
+    },
+    {
+     "note": "Year 2",
+     "increaseType": "fixed",
+     "effectiveDate": "2026-10-01",
+     "increaseValue": "$1,780.21",
+     "newMonthlyRent": 1780.21
+    },
+    {
+     "note": "Year 3",
+     "increaseType": "fixed",
+     "effectiveDate": "2027-10-01",
+     "increaseValue": "$1,922.63",
+     "newMonthlyRent": 1922.63
+    },
+    {
+     "note": "Year 4",
+     "increaseType": "fixed",
+     "effectiveDate": "2028-10-01",
+     "increaseValue": "$2,065.04",
+     "newMonthlyRent": 2065.04
+    },
+    {
+     "note": "Year 5",
+     "increaseType": "fixed",
+     "effectiveDate": "2029-10-01",
+     "increaseValue": "$2,207.46",
+     "newMonthlyRent": 2207.46
+    }
+   ],
+   "exclusiveUse": "\"Greek Expressions shall NOT be permitted to use the premises for: i. A delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli... ii. A veterinary clinic... iii. A retail boutique whose primary business is the sale of items including home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.\"",
+   "originalTerm": "5 years",
+   "permittedUse": "Retail sale of clothing and related items including manufacturing, custom and pre-made sorority and fraternity merchandise, apparel, accessories, gifts, and novelty items; custom embroidery, screen printing, heat-press, vinyl, or monogramming services on-site.",
+   "guarantorName": "Nicole Trahan",
+   "signageRights": "Lessee has the right to place an exterior sign on the front canopy extending from the front wall, subject to Lessor approval and design criteria in Schedule D.",
+   "expirationDate": "2030-09-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 1922.63,
+   "commencementDate": "2025-10-01",
+   "earlyTermination": null,
+   "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all... amounts due under the Lease.\"",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Lease includes a 'Limited Waiver of Exclusive Use Rights' with existing tenant The Pink Paisley, LLC. Base rent is abated for the first two months. Late fees are $100.00 fixed plus $25.00 per day. Lessee must use Butcher Air Conditioning for HVAC maintenance.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments ($0.95/sqft annually initially).",
+   "hvacResponsibility": "Lessee responsible for all repairs except roof/exterior/structure; specifically for HVAC, Lessee pays first $750.00 for each repair visit and 15% toward replacement cost; must maintain contract with Butcher Air Conditioning.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage ($1.95/sqft annually initially)."
+  },
+  "createdAt": "2026-07-11T17:27:42",
+  "updatedAt": "2026-07-11T17:27:42"
+ },
+ {
+  "id": "6f76de6e-4e5a-4cb2-a1e9-06b63bfb8f86",
+  "unitId": "u129",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "eef485c8-b721-468d-931d-73dbad996b7d",
+  "commencementDate": "2024-03-01",
+  "expirationDate": "2029-08-31",
+  "originalTerm": "66 months",
+  "baseRent": 2087.17,
+  "rentPsf": 14,
+  "escalations": [
+   {
+    "note": "Rent abatement for months 1-4",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-03-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Base rent is $0 for months 5-6, but Tenant pays CAM, Tax, and Insurance",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-07-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Full rent commences in month 7",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-09-01",
+    "increaseValue": "2087.17",
+    "newMonthlyRent": 2087.17
+   },
+   {
+    "note": "Abated base rent for month 19",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-09-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Abated base rent for month 31",
+    "increaseType": "fixed",
+    "effectiveDate": "2026-09-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Abated base rent for month 43",
+    "increaseType": "fixed",
+    "effectiveDate": "2027-09-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Abated base rent for month 55",
+    "increaseType": "fixed",
+    "effectiveDate": "2028-09-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "4 terms of 5 years each",
+    "rentBasis": "Negotiated, but Base Rent shall not increase more than 5% in each option period.",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2832.58,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Tenant pays pro-rata portion ($0.95 PSF initially)",
+  "insuranceResponsibility": "Tenant pays pro-rata portion ($1.95 PSF initially)",
+  "hvacResponsibility": "Tenant responsible for repair and replacement; must maintain a monthly maintenance contract with Butcher Air Conditioning.",
+  "permittedUse": "24 hour Infrared Sauna Hot Exercise studio featuring infrared heat and virtual instruction with ancillary high intensity interval training sessions and other ancillary purposes such as the retail sale of fitness related products.",
+  "exclusiveUse": "Lessor agrees that it shall not voluntarily enter into any lease agreement giving a third party the right to operate in the Boulevard Shopping Center Property, a business whose primary business would be a sauna studio, sweat studio, hot yoga or Pilates programs... 5,000 square feet or less in size.",
+  "coTenancy": "Restricted uses in center include delicatessens/restaurants similar to Jason's Deli, veterinary clinics, or certain retail boutiques.",
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released...",
+  "guarantorName": "Alexis Richard and Dennis Richard",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100,000.00 fire legal liability",
+   "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+  },
+  "signageRights": "Right to place and maintain an exterior sign on the front exterior wall above the front canopy. Must comply with Schedule D design criteria (Individual Channel Illuminated letters).",
+  "keyClausesSummary": "Lease includes a Franchisor Rider (Schedule E) giving Hotworx Franchising, LLC rights to notice of default and the option to assume the lease. Late fees are $100.00 plus $25.00 per day after the 5th of the month.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 14,
+   "baseRent": 2087.17,
+   "coTenancy": "Restricted uses in center include delicatessens/restaurants similar to Jason's Deli, veterinary clinics, or certain retail boutiques.",
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Rent abatement for months 1-4",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-03-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Base rent is $0 for months 5-6, but Tenant pays CAM, Tax, and Insurance",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-07-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Full rent commences in month 7",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-09-01",
+     "increaseValue": "2087.17",
+     "newMonthlyRent": 2087.17
+    },
+    {
+     "note": "Abated base rent for month 19",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-09-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Abated base rent for month 31",
+     "increaseType": "fixed",
+     "effectiveDate": "2026-09-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Abated base rent for month 43",
+     "increaseType": "fixed",
+     "effectiveDate": "2027-09-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Abated base rent for month 55",
+     "increaseType": "fixed",
+     "effectiveDate": "2028-09-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    }
+   ],
+   "exclusiveUse": "Lessor agrees that it shall not voluntarily enter into any lease agreement giving a third party the right to operate in the Boulevard Shopping Center Property, a business whose primary business would be a sauna studio, sweat studio, hot yoga or Pilates programs... 5,000 square feet or less in size.",
+   "originalTerm": "66 months",
+   "permittedUse": "24 hour Infrared Sauna Hot Exercise studio featuring infrared heat and virtual instruction with ancillary high intensity interval training sessions and other ancillary purposes such as the retail sale of fitness related products.",
+   "guarantorName": "Alexis Richard and Dennis Richard",
+   "signageRights": "Right to place and maintain an exterior sign on the front exterior wall above the front canopy. Must comply with Schedule D design criteria (Individual Channel Illuminated letters).",
+   "expirationDate": "2029-08-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "4 terms of 5 years each",
+     "rentBasis": "Negotiated, but Base Rent shall not increase more than 5% in each option period.",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 2832.58,
+   "commencementDate": "2024-03-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released...",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100,000.00 fire legal liability",
+    "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "Lease includes a Franchisor Rider (Schedule E) giving Hotworx Franchising, LLC rights to notice of default and the option to assume the lease. Late fees are $100.00 plus $25.00 per day after the 5th of the month.",
+   "taxResponsibility": "Tenant pays pro-rata portion ($0.95 PSF initially)",
+   "hvacResponsibility": "Tenant responsible for repair and replacement; must maintain a monthly maintenance contract with Butcher Air Conditioning.",
+   "insuranceResponsibility": "Tenant pays pro-rata portion ($1.95 PSF initially)"
+  },
+  "createdAt": "2026-07-11T17:32:28",
+  "updatedAt": "2026-07-11T17:32:28"
+ },
+ {
+  "id": "7dd5fdd5-81e6-4f40-8472-f82c7309a58b",
+  "unitId": "u119",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "75dabcba-29a4-4f75-8f50-7b323218fdd0",
+  "commencementDate": "2021-03-01",
+  "expirationDate": "2024-02-29",
+  "originalTerm": "3 years",
+  "baseRent": 0,
+  "rentPsf": 0,
+  "escalations": [
+   {
+    "note": "Lease Months 4-15",
+    "increaseType": "fixed",
+    "effectiveDate": "2021-06-01",
+    "increaseValue": "$12.50 per square foot annually",
+    "newMonthlyRent": 2064.58
+   },
+   {
+    "note": "Lease Months 16-39",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-06-01",
+    "increaseValue": "$13.50 per square foot annually",
+    "newMonthlyRent": 2229.75
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "negotiated by the Lessor and the Lessee",
+    "noticeRequired": "not less than sixty (60) days prior to the expiration of the Initial Term"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2985.4,
+  "camResponsibility": "NNN (Pro Rata Portion of Common Area Maintenance Charges)",
+  "taxResponsibility": "Pro Rata Portion of all real property taxes and assessments",
+  "insuranceResponsibility": "Pro Rata Portion of insurance coverage; Lessee also maintains own liability insurance",
+  "hvacResponsibility": "Lessee responsible for all repairs/maintenance; Lessor responsible for replacement if not covered by insurance, provided Lessee pays first $750 per repair visit and first $1500 toward replacement cost. Lessee must maintain service contract with Butcher Air Conditioning.",
+  "permittedUse": "general office for a consumer finance company",
+  "exclusiveUse": "\"The Premises shall be not be used during the Initial Term or any Renewal Term hereof as a delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli or whose primary menu items are salads, soups, sandwiches, and baked potatoes or any one or more of said items; and (ii) The Premises shall not be used during the Initial Term or any Renewal Term hereof as a veterinary clinic engaged primarily in the care and treatment of cats.\"",
+  "coTenancy": null,
+  "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.\"",
+  "guarantorName": "David Link",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": null,
+   "generalLiability": "$1,000,000.00 per occurrence / $5,000,000.00 general aggregate"
+  },
+  "signageRights": "\"Lessee, at its cost, shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business conducted on the Premises. Such sign shall be located on the front exterior wall of the Premises above the front canopy extending from the front wall.\"",
+  "keyClausesSummary": "Late fee of $100 plus $25/day after 5th of month. Holdover rent at 200%. CAM/Tax/Insurance increases capped at 5% over prior year actuals. Lessee must maintain service contract with Butcher Air Conditioning. Insurance also requires $100,000 fire legal liability and $5,000 medical payments.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "medium",
+  "rawResponse": {
+   "rentPsf": 0,
+   "baseRent": 0,
+   "coTenancy": null,
+   "confidence": "medium",
+   "escalations": [
+    {
+     "note": "Lease Months 4-15",
+     "increaseType": "fixed",
+     "effectiveDate": "2021-06-01",
+     "increaseValue": "$12.50 per square foot annually",
+     "newMonthlyRent": 2064.58
+    },
+    {
+     "note": "Lease Months 16-39",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-06-01",
+     "increaseValue": "$13.50 per square foot annually",
+     "newMonthlyRent": 2229.75
+    }
+   ],
+   "exclusiveUse": "\"The Premises shall be not be used during the Initial Term or any Renewal Term hereof as a delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli or whose primary menu items are salads, soups, sandwiches, and baked potatoes or any one or more of said items; and (ii) The Premises shall not be used during the Initial Term or any Renewal Term hereof as a veterinary clinic engaged primarily in the care and treatment of cats.\"",
+   "originalTerm": "3 years",
+   "permittedUse": "general office for a consumer finance company",
+   "guarantorName": "David Link",
+   "signageRights": "\"Lessee, at its cost, shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business conducted on the Premises. Such sign shall be located on the front exterior wall of the Premises above the front canopy extending from the front wall.\"",
+   "expirationDate": "2024-02-29",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "negotiated by the Lessor and the Lessee",
+     "noticeRequired": "not less than sixty (60) days prior to the expiration of the Initial Term"
+    }
+   ],
+   "securityDeposit": 2985.4,
+   "commencementDate": "2021-03-01",
+   "earlyTermination": null,
+   "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.\"",
+   "camResponsibility": "NNN (Pro Rata Portion of Common Area Maintenance Charges)",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": null,
+    "generalLiability": "$1,000,000.00 per occurrence / $5,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100 plus $25/day after 5th of month. Holdover rent at 200%. CAM/Tax/Insurance increases capped at 5% over prior year actuals. Lessee must maintain service contract with Butcher Air Conditioning. Insurance also requires $100,000 fire legal liability and $5,000 medical payments.",
+   "taxResponsibility": "Pro Rata Portion of all real property taxes and assessments",
+   "hvacResponsibility": "Lessee responsible for all repairs/maintenance; Lessor responsible for replacement if not covered by insurance, provided Lessee pays first $750 per repair visit and first $1500 toward replacement cost. Lessee must maintain service contract with Butcher Air Conditioning.",
+   "insuranceResponsibility": "Pro Rata Portion of insurance coverage; Lessee also maintains own liability insurance"
+  },
+  "createdAt": "2026-07-11T17:26:01",
+  "updatedAt": "2026-07-11T17:26:01"
+ },
+ {
+  "id": "7fadb46b-7fef-4946-a106-27509f115043",
+  "unitId": "u123",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "4576c3fb-aa3d-4714-b7f5-a77482a95de2",
+  "commencementDate": "2024-05-01",
+  "expirationDate": "2029-04-30",
+  "originalTerm": "5 years",
+  "baseRent": 4008.38,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Months 1-2: Rent abatement period",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-05-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Months 3-7: Base rent is $0, but Additional Rent (CAM/Tax/Ins) of $1,484.58 begins",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-07-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Months 8-12: Base rent at $7.00/SF",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-12-01",
+    "increaseValue": "2078.42",
+    "newMonthlyRent": 2078.42
+   },
+   {
+    "note": "Months 13-70: Base rent at $13.50/SF. Note: Lease text expires 2029-04-30 despite table showing 2030.",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-05-01",
+    "increaseValue": "4008.38",
+    "newMonthlyRent": 4008.38
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "Three (3) additional terms of five (5) years each",
+    "rentBasis": "Negotiated by the Lessor and the Lessee",
+    "noticeRequired": "Not less than sixty (60) days prior to the expiration of the Initial Term"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 4008.38,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pro-rata portion of all real property taxes and assessments",
+  "insuranceResponsibility": "Lessee pro-rata portion of annual charges for insurance coverage",
+  "hvacResponsibility": "Lessee responsible for maintenance and repairs; Lessee pays first $2,000.00 for each repair visit and 50% toward replacement cost; must maintain monthly maintenance contract.",
+  "permittedUse": "specialty clothing store specializing in the sale and rental of Tuxedos and related fashion accessories",
+  "exclusiveUse": null,
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due",
+  "guarantorName": "Kirtley A. Boudreaux III and Luke A. Benton",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100,000.00 fire legal liability",
+   "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business conducted on the Premises... subject to Lessor's prior written approval.",
+  "keyClausesSummary": "CAM/Tax/Insurance increases capped at 5% over prior year actuals starting in the second year. Late fee of $100 plus $25 per day starting on the 6th of the month. Lessee has option to attach a small workshop style building to the exterior of Unit 123 at sole cost.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 4008.38,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Months 1-2: Rent abatement period",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-05-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Months 3-7: Base rent is $0, but Additional Rent (CAM/Tax/Ins) of $1,484.58 begins",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-07-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Months 8-12: Base rent at $7.00/SF",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-12-01",
+     "increaseValue": "2078.42",
+     "newMonthlyRent": 2078.42
+    },
+    {
+     "note": "Months 13-70: Base rent at $13.50/SF. Note: Lease text expires 2029-04-30 despite table showing 2030.",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-05-01",
+     "increaseValue": "4008.38",
+     "newMonthlyRent": 4008.38
+    }
+   ],
+   "exclusiveUse": null,
+   "originalTerm": "5 years",
+   "permittedUse": "specialty clothing store specializing in the sale and rental of Tuxedos and related fashion accessories",
+   "guarantorName": "Kirtley A. Boudreaux III and Luke A. Benton",
+   "signageRights": "Lessee shall have the right to place, construct and maintain an exterior sign on the Premises advertising its business conducted on the Premises... subject to Lessor's prior written approval.",
+   "expirationDate": "2029-04-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "Three (3) additional terms of five (5) years each",
+     "rentBasis": "Negotiated by the Lessor and the Lessee",
+     "noticeRequired": "Not less than sixty (60) days prior to the expiration of the Initial Term"
+    }
+   ],
+   "securityDeposit": 4008.38,
+   "commencementDate": "2024-05-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100,000.00 fire legal liability",
+    "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "CAM/Tax/Insurance increases capped at 5% over prior year actuals starting in the second year. Late fee of $100 plus $25 per day starting on the 6th of the month. Lessee has option to attach a small workshop style building to the exterior of Unit 123 at sole cost.",
+   "taxResponsibility": "Lessee pro-rata portion of all real property taxes and assessments",
+   "hvacResponsibility": "Lessee responsible for maintenance and repairs; Lessee pays first $2,000.00 for each repair visit and 50% toward replacement cost; must maintain monthly maintenance contract.",
+   "insuranceResponsibility": "Lessee pro-rata portion of annual charges for insurance coverage"
+  },
+  "createdAt": "2026-07-11T17:32:06",
+  "updatedAt": "2026-07-11T17:32:06"
+ },
+ {
+  "id": "8093860f-2231-4a17-9467-f201a344436e",
+  "unitId": "u103",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "3b9c7589-3e2b-475e-b107-6af523bdebe6",
+  "commencementDate": "2022-07-01",
+  "expirationDate": "2027-02-28",
+  "originalTerm": "4 years 8 months",
+  "baseRent": 12699.57,
+  "rentPsf": 15.35,
+  "escalations": [
+   {
+    "note": "Lease Months 1-8",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-07-01",
+    "increaseValue": "$0.00",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Lease Months 9-68",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-03-01",
+    "increaseValue": "$15.35 PSF",
+    "newMonthlyRent": 12699.57
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "$16.88 PSF",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 12699.57,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays Pro Rata Portion",
+  "insuranceResponsibility": "Lessee pays Pro Rata Portion",
+  "hvacResponsibility": "Lessee responsible for maintenance and repairs; repair costs limited to the first $1,000.00 per visit per unit.",
+  "permittedUse": "Retail boutique for the sale of items including clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+  "exclusiveUse": "Lessor agrees that it shall not voluntarily enter into any lease agreement giving a third party the right to operate in the Boulevard Shopping Center Property, a business whose primary business would be a retail gift store selling items which are the same or similar to that of The Pink Paisley.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Amy Lemoine",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$500,000 fire legal liability",
+   "generalLiability": "$1,000,000 per occurrence / $5,000,000 aggregate"
+  },
+  "signageRights": "Lessee has the right to place exterior channel lettering, signage under walkways, vinyl signage, and blade signs, subject to Lessor approval and design criteria in Schedule D.",
+  "keyClausesSummary": "Lease covers Unit 101 and Unit 103 collectively. Includes a 5% cap on annual increases for CAM, Taxes, and Insurance starting in the second year. Late fee of $100 plus $25/day after the 5th of the month. Lessee must maintain a monthly maintenance contract for HVAC.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 15.35,
+   "baseRent": 12699.57,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Lease Months 1-8",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-07-01",
+     "increaseValue": "$0.00",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Lease Months 9-68",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-03-01",
+     "increaseValue": "$15.35 PSF",
+     "newMonthlyRent": 12699.57
+    }
+   ],
+   "exclusiveUse": "Lessor agrees that it shall not voluntarily enter into any lease agreement giving a third party the right to operate in the Boulevard Shopping Center Property, a business whose primary business would be a retail gift store selling items which are the same or similar to that of The Pink Paisley.",
+   "originalTerm": "4 years 8 months",
+   "permittedUse": "Retail boutique for the sale of items including clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+   "guarantorName": "Amy Lemoine",
+   "signageRights": "Lessee has the right to place exterior channel lettering, signage under walkways, vinyl signage, and blade signs, subject to Lessor approval and design criteria in Schedule D.",
+   "expirationDate": "2027-02-28",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "$16.88 PSF",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 12699.57,
+   "commencementDate": "2022-07-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$500,000 fire legal liability",
+    "generalLiability": "$1,000,000 per occurrence / $5,000,000 aggregate"
+   },
+   "keyClausesSummary": "Lease covers Unit 101 and Unit 103 collectively. Includes a 5% cap on annual increases for CAM, Taxes, and Insurance starting in the second year. Late fee of $100 plus $25/day after the 5th of the month. Lessee must maintain a monthly maintenance contract for HVAC.",
+   "taxResponsibility": "Lessee pays Pro Rata Portion",
+   "hvacResponsibility": "Lessee responsible for maintenance and repairs; repair costs limited to the first $1,000.00 per visit per unit.",
+   "insuranceResponsibility": "Lessee pays Pro Rata Portion"
+  },
+  "createdAt": "2026-07-11T17:30:15",
+  "updatedAt": "2026-07-11T17:30:15"
+ },
+ {
+  "id": "8e0d8700-bfa2-45e3-87b3-1c743fe26cdf",
+  "unitId": "u135A",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "35cb89eb-f8b8-4c93-94e3-b93e368d14a9",
+  "commencementDate": "2025-01-01",
+  "expirationDate": "2031-05-31",
+  "originalTerm": "6 years and 5 months",
+  "baseRent": 691.25,
+  "rentPsf": 10.5,
+  "escalations": [
+   {
+    "note": "Months 1-6 have $0.00 base rent; total monthly payment of $658.33 includes CAM, Taxes, and Insurance.",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-11-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Month 7 base rent at $5.25 PSF.",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-05-01",
+    "increaseValue": "5.25",
+    "newMonthlyRent": 691.25
+   },
+   {
+    "note": "Months 8-31 base rent at $10.50 PSF.",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-06-01",
+    "increaseValue": "10.50",
+    "newMonthlyRent": 1382.5
+   },
+   {
+    "note": "Months 32-55 base rent at $11.50 PSF.",
+    "increaseType": "fixed",
+    "effectiveDate": "2027-04-01",
+    "increaseValue": "11.50",
+    "newMonthlyRent": 1514.17
+   },
+   {
+    "note": "Months 56-79 base rent at $12.50 PSF.",
+    "increaseType": "fixed",
+    "effectiveDate": "2029-02-01",
+    "increaseValue": "12.50",
+    "newMonthlyRent": 1645.83
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": "Lessee may terminate during the 1st three months of the Initial Term by providing Lessor with written notice of no less than 15 days prior to the desired termination date. Termination Fee: one (1) months' rent.",
+  "securityDeposit": 1580,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of annual insurance charges.",
+  "hvacResponsibility": "Lessee shall pay the first $1,000.00 for each repair visit and the first $1,000.00 toward the replacement cost. Lessor responsible for repair and replacement if determined necessary by provider, subject to Lessee's $1,000 contribution.",
+  "permittedUse": "Barber Shop along with related services, products and general office space",
+  "exclusiveUse": "The Premises shall be not be used during the Initial Term or any Renewal Term hereof as a delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli... as a veterinary clinic engaged primarily in the care and treatment of cats... retail boutique for the sale of items including, but not limited to clothing, gifts, accessories... 24 hour Infrared Sauna Hot Exercise studio",
+  "coTenancy": null,
+  "personalGuaranty": "Not explicitly stated in provided text, though signed by Chris Sons as Sole Member LLC.",
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee may place current hanging sign outside the Premises and exterior signage affixed to the building brick facade and front canopy, subject to Lessor approval and specific design criteria in Schedule D.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day. Holdover rent is 200% of the monthly rental amount. Lessee responsible for all utilities and janitorial services. Lessor has a lien on all property of Lessee on the premises for payment of rent.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 10.5,
+   "baseRent": 691.25,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Months 1-6 have $0.00 base rent; total monthly payment of $658.33 includes CAM, Taxes, and Insurance.",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-11-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Month 7 base rent at $5.25 PSF.",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-05-01",
+     "increaseValue": "5.25",
+     "newMonthlyRent": 691.25
+    },
+    {
+     "note": "Months 8-31 base rent at $10.50 PSF.",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-06-01",
+     "increaseValue": "10.50",
+     "newMonthlyRent": 1382.5
+    },
+    {
+     "note": "Months 32-55 base rent at $11.50 PSF.",
+     "increaseType": "fixed",
+     "effectiveDate": "2027-04-01",
+     "increaseValue": "11.50",
+     "newMonthlyRent": 1514.17
+    },
+    {
+     "note": "Months 56-79 base rent at $12.50 PSF.",
+     "increaseType": "fixed",
+     "effectiveDate": "2029-02-01",
+     "increaseValue": "12.50",
+     "newMonthlyRent": 1645.83
+    }
+   ],
+   "exclusiveUse": "The Premises shall be not be used during the Initial Term or any Renewal Term hereof as a delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli... as a veterinary clinic engaged primarily in the care and treatment of cats... retail boutique for the sale of items including, but not limited to clothing, gifts, accessories... 24 hour Infrared Sauna Hot Exercise studio",
+   "originalTerm": "6 years and 5 months",
+   "permittedUse": "Barber Shop along with related services, products and general office space",
+   "guarantorName": null,
+   "signageRights": "Lessee may place current hanging sign outside the Premises and exterior signage affixed to the building brick facade and front canopy, subject to Lessor approval and specific design criteria in Schedule D.",
+   "expirationDate": "2031-05-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 1580,
+   "commencementDate": "2025-01-01",
+   "earlyTermination": "Lessee may terminate during the 1st three months of the Initial Term by providing Lessor with written notice of no less than 15 days prior to the desired termination date. Termination Fee: one (1) months' rent.",
+   "personalGuaranty": "Not explicitly stated in provided text, though signed by Chris Sons as Sole Member LLC.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day. Holdover rent is 200% of the monthly rental amount. Lessee responsible for all utilities and janitorial services. Lessor has a lien on all property of Lessee on the premises for payment of rent.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+   "hvacResponsibility": "Lessee shall pay the first $1,000.00 for each repair visit and the first $1,000.00 toward the replacement cost. Lessor responsible for repair and replacement if determined necessary by provider, subject to Lessee's $1,000 contribution.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of annual insurance charges."
+  },
+  "createdAt": "2026-07-11T17:23:19",
+  "updatedAt": "2026-07-11T17:23:19"
+ },
+ {
+  "id": "905e9ed2-0fa2-4e79-aabc-59b231626937",
+  "unitId": "u101",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "cb71c380-3a2f-46b7-9b46-07d1309136e4",
+  "commencementDate": "2022-07-01",
+  "expirationDate": "2027-02-28",
+  "originalTerm": "4 years 8 months",
+  "baseRent": 12699.57,
+  "rentPsf": 15.35,
+  "escalations": [
+   {
+    "note": "Rent abatement for lease months 1-8",
+    "increaseType": "fixed",
+    "effectiveDate": "2022-07-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Base rent for months 9-68",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-03-01",
+    "increaseValue": "$12,699.57",
+    "newMonthlyRent": 12699.57
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "$16.88 PSF",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 12699.57,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage; Lessee must also maintain own liability insurance.",
+  "hvacResponsibility": "Lessee responsible for repair and replacement, limited to the first $1,000.00 for each repair visit or replacement cost.",
+  "permittedUse": "retail boutique for the sale of items including, but not limited to clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+  "exclusiveUse": "Lessor agrees that it shall not voluntarily enter into any lease agreement giving a third party the right to operate in the Boulevard Shopping Center Property, a business whose primary business would be a retail gift store selling items which are the same or similar to that of The Pink Paisley and which includes the sale of clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Amy Lemoine",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$500,000 (fire legal liability)",
+   "generalLiability": "$1,000,000 per occurrence / $5,000,000 aggregate"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain exterior signage in specific designated areas (Arnould Blvd, Johnston St, Marie Antoinette) subject to Lessor approval and Design Criteria in Schedule D.",
+  "keyClausesSummary": "CAM and Tax/Insurance charges are capped at a 5% increase over the prior calendar year actuals starting in the second year. Rent for Unit 101 and 103 is combined. Late fees are $100 plus $25 per day after the 5th of the month.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 15.35,
+   "baseRent": 12699.57,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Rent abatement for lease months 1-8",
+     "increaseType": "fixed",
+     "effectiveDate": "2022-07-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Base rent for months 9-68",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-03-01",
+     "increaseValue": "$12,699.57",
+     "newMonthlyRent": 12699.57
+    }
+   ],
+   "exclusiveUse": "Lessor agrees that it shall not voluntarily enter into any lease agreement giving a third party the right to operate in the Boulevard Shopping Center Property, a business whose primary business would be a retail gift store selling items which are the same or similar to that of The Pink Paisley and which includes the sale of clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+   "originalTerm": "4 years 8 months",
+   "permittedUse": "retail boutique for the sale of items including, but not limited to clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+   "guarantorName": "Amy Lemoine",
+   "signageRights": "Lessee has the right to place, construct and maintain exterior signage in specific designated areas (Arnould Blvd, Johnston St, Marie Antoinette) subject to Lessor approval and Design Criteria in Schedule D.",
+   "expirationDate": "2027-02-28",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "$16.88 PSF",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 12699.57,
+   "commencementDate": "2022-07-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$500,000 (fire legal liability)",
+    "generalLiability": "$1,000,000 per occurrence / $5,000,000 aggregate"
+   },
+   "keyClausesSummary": "CAM and Tax/Insurance charges are capped at a 5% increase over the prior calendar year actuals starting in the second year. Rent for Unit 101 and 103 is combined. Late fees are $100 plus $25 per day after the 5th of the month.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+   "hvacResponsibility": "Lessee responsible for repair and replacement, limited to the first $1,000.00 for each repair visit or replacement cost.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage; Lessee must also maintain own liability insurance."
+  },
+  "createdAt": "2026-07-11T17:30:07",
+  "updatedAt": "2026-07-11T17:30:07"
+ },
+ {
+  "id": "a2c57921-328e-4c68-90cb-42f282659ea9",
+  "unitId": "u145",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "88019422-f711-448e-83ce-4646eb6b3809",
+  "commencementDate": null,
+  "expirationDate": null,
+  "originalTerm": "60 full calendar months",
+  "baseRent": 2236.5,
+  "rentPsf": 14,
+  "escalations": [
+   {
+    "note": "Rent commences at $14.00 PSF after a 6-month abatement period.",
+    "increaseType": "fixed",
+    "effectiveDate": "Month 7",
+    "increaseValue": "$2,236.50",
+    "newMonthlyRent": 2236.5
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "$15.40 PSF ($2,460.15 per month)",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": "Lessee may terminate if Lessor's Work is not delivered within 30 days of execution; also includes standard termination for casualty or uncured Lessor default.",
+  "securityDeposit": 0,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments.",
+  "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's insurance premiums and maintains own liability/property insurance.",
+  "hvacResponsibility": "Shared: Lessor responsible for repair and replacement; Lessee pays first $750 of each repair visit and $1,500 toward replacement cost; Lessee must maintain a monthly service contract.",
+  "permittedUse": "Outpatient rehabilitation services (including, but not limited to, physical, occupational, speech and vestibular therapy).",
+  "exclusiveUse": "Lessor hereby grants to Lessee an exclusive right within the Boulevard Shopping Center Property to use the Premises for outpatient rehabilitation services (including, but not limited to, physical, occupational, speech and vestibular therapy). Lessor shall not lease or permit any other tenant within the Boulevard Shopping Center Property to operate a business providing any such outpatient rehabilitation services during the term of this Lease and any renewal thereof.",
+  "coTenancy": null,
+  "personalGuaranty": "NA",
+  "guarantorName": null,
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100% of replacement cost value",
+   "generalLiability": "$1,000,000 per occurrence / $2,000,000 aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front wall and pylon panel rights on both sides of the shopping center sign, subject to Lessor's approval and design criteria.",
+  "keyClausesSummary": "Includes a 6-month base rent abatement; CAM/Tax/Insurance increases are capped at 5% over the prior year's actual costs; Lessee has audit rights for additional rent records.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "medium",
+  "rawResponse": {
+   "rentPsf": 14,
+   "baseRent": 2236.5,
+   "coTenancy": null,
+   "confidence": "medium",
+   "escalations": [
+    {
+     "note": "Rent commences at $14.00 PSF after a 6-month abatement period.",
+     "increaseType": "fixed",
+     "effectiveDate": "Month 7",
+     "increaseValue": "$2,236.50",
+     "newMonthlyRent": 2236.5
+    }
+   ],
+   "exclusiveUse": "Lessor hereby grants to Lessee an exclusive right within the Boulevard Shopping Center Property to use the Premises for outpatient rehabilitation services (including, but not limited to, physical, occupational, speech and vestibular therapy). Lessor shall not lease or permit any other tenant within the Boulevard Shopping Center Property to operate a business providing any such outpatient rehabilitation services during the term of this Lease and any renewal thereof.",
+   "originalTerm": "60 full calendar months",
+   "permittedUse": "Outpatient rehabilitation services (including, but not limited to, physical, occupational, speech and vestibular therapy).",
+   "guarantorName": null,
+   "signageRights": "Lessee has the right to place an exterior sign on the front wall and pylon panel rights on both sides of the shopping center sign, subject to Lessor's approval and design criteria.",
+   "expirationDate": null,
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "$15.40 PSF ($2,460.15 per month)",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 0,
+   "commencementDate": null,
+   "earlyTermination": "Lessee may terminate if Lessor's Work is not delivered within 30 days of execution; also includes standard termination for casualty or uncured Lessor default.",
+   "personalGuaranty": "NA",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100% of replacement cost value",
+    "generalLiability": "$1,000,000 per occurrence / $2,000,000 aggregate"
+   },
+   "keyClausesSummary": "Includes a 6-month base rent abatement; CAM/Tax/Insurance increases are capped at 5% over the prior year's actual costs; Lessee has audit rights for additional rent records.",
+   "taxResponsibility": "Lessee pays Pro Rata Portion of all real property taxes and assessments.",
+   "hvacResponsibility": "Shared: Lessor responsible for repair and replacement; Lessee pays first $750 of each repair visit and $1,500 toward replacement cost; Lessee must maintain a monthly service contract.",
+   "insuranceResponsibility": "Lessee pays Pro Rata Portion of Lessor's insurance premiums and maintains own liability/property insurance."
+  },
+  "createdAt": "2026-07-11T17:27:13",
+  "updatedAt": "2026-07-11T17:27:13"
+ },
+ {
+  "id": "b7f2f3c8-3e21-4b6f-8f34-69c389b1d3ed",
+  "unitId": "u117",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "ae145bed-b07a-428b-b29c-aa69a0ba249a",
+  "commencementDate": "2023-08-01",
+  "expirationDate": "2026-09-30",
+  "originalTerm": "38 months",
+  "baseRent": 2441.25,
+  "rentPsf": 6.75,
+  "escalations": [
+   {
+    "note": "Rent increase from $6.75 PSF to $11.50 PSF starting month 3",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-10-01",
+    "increaseValue": "$1,717.91",
+    "newMonthlyRent": 4159.16
+   },
+   {
+    "note": "Rent increase from $11.50 PSF to $12.50 PSF starting month 13",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-08-01",
+    "increaseValue": "$361.67",
+    "newMonthlyRent": 4520.83
+   },
+   {
+    "note": "Rent increase from $12.50 PSF to $13.50 PSF starting month 25",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-08-01",
+    "increaseValue": "$361.67",
+    "newMonthlyRent": 4882.5
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "negotiated by the Lessor and the Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 4941.37,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for pro-rata portion of all real property taxes",
+  "insuranceResponsibility": "Lessee responsible for pro-rata portion of annual insurance coverage",
+  "hvacResponsibility": "Lessee responsible for maintenance and first $750.00 of each repair visit and first $2,500.00 toward replacement cost; Lessor responsible for balance of repair/replacement",
+  "permittedUse": "retail and resale store selling clothing, shoes, and fashion accessories as well as related services and products and general office space",
+  "exclusiveUse": "In the event Lessor is considering executing a lease agreement for space in the Boulevard Shopping Center Property with a potential tenant whose primary business in the sale of gifts similar to those sold by Lessee would be in competition with Lessee, as determined in Lessor's reasonable discretion, Lessor shall give verbal notice to Lessee and agrees to discuss the same with Lessee prior to executing any such Lease Agreement.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease. (b) The prompt performance of or compliance with any covenant or agreement contained in the Lease by the Lessee and the prompt performance by the Lessee of all of its obligations pursuant to the terms and conditions of the Lease.",
+  "guarantorName": "Trent Jabbia",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100000.00",
+   "generalLiability": "1000000.00"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall above the front canopy; subject to Lessor approval and specific design criteria in Schedule D",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Holdover rent set at 200% of the monthly rental amount. Lessee must maintain a maintenance contract with Butcher Air Conditioning.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 6.75,
+   "baseRent": 2441.25,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Rent increase from $6.75 PSF to $11.50 PSF starting month 3",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-10-01",
+     "increaseValue": "$1,717.91",
+     "newMonthlyRent": 4159.16
+    },
+    {
+     "note": "Rent increase from $11.50 PSF to $12.50 PSF starting month 13",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-08-01",
+     "increaseValue": "$361.67",
+     "newMonthlyRent": 4520.83
+    },
+    {
+     "note": "Rent increase from $12.50 PSF to $13.50 PSF starting month 25",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-08-01",
+     "increaseValue": "$361.67",
+     "newMonthlyRent": 4882.5
+    }
+   ],
+   "exclusiveUse": "In the event Lessor is considering executing a lease agreement for space in the Boulevard Shopping Center Property with a potential tenant whose primary business in the sale of gifts similar to those sold by Lessee would be in competition with Lessee, as determined in Lessor's reasonable discretion, Lessor shall give verbal notice to Lessee and agrees to discuss the same with Lessee prior to executing any such Lease Agreement.",
+   "originalTerm": "38 months",
+   "permittedUse": "retail and resale store selling clothing, shoes, and fashion accessories as well as related services and products and general office space",
+   "guarantorName": "Trent Jabbia",
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall above the front canopy; subject to Lessor approval and specific design criteria in Schedule D",
+   "expirationDate": "2026-09-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "negotiated by the Lessor and the Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 4941.37,
+   "commencementDate": "2023-08-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease. (b) The prompt performance of or compliance with any covenant or agreement contained in the Lease by the Lessee and the prompt performance by the Lessee of all of its obligations pursuant to the terms and conditions of the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100000.00",
+    "generalLiability": "1000000.00"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Holdover rent set at 200% of the monthly rental amount. Lessee must maintain a maintenance contract with Butcher Air Conditioning.",
+   "taxResponsibility": "Lessee responsible for pro-rata portion of all real property taxes",
+   "hvacResponsibility": "Lessee responsible for maintenance and first $750.00 of each repair visit and first $2,500.00 toward replacement cost; Lessor responsible for balance of repair/replacement",
+   "insuranceResponsibility": "Lessee responsible for pro-rata portion of annual insurance coverage"
+  },
+  "createdAt": "2026-07-11T17:24:01",
+  "updatedAt": "2026-07-11T17:24:01"
+ },
+ {
+  "id": "bc9be6ea-f4fa-43ac-a3f1-32f03acafe39",
+  "unitId": "u121",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "c3de1972-218a-4b3a-a909-47c3da694390",
+  "commencementDate": "2025-07-01",
+  "expirationDate": "2031-12-31",
+  "originalTerm": "6 years 6 months",
+  "baseRent": 1815.81,
+  "rentPsf": 12.75,
+  "escalations": [
+   {
+    "note": "Rent abatement for months 1-3",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-07-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Rent abatement for months 4-6",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-10-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Year 1 Base Rent",
+    "increaseType": "fixed",
+    "effectiveDate": "2026-01-01",
+    "increaseValue": "1815.81",
+    "newMonthlyRent": 1815.81
+   },
+   {
+    "note": "Year 2 Base Rent",
+    "increaseType": "fixed",
+    "effectiveDate": "2027-01-01",
+    "increaseValue": "1887.02",
+    "newMonthlyRent": 1887.02
+   },
+   {
+    "note": "Year 3 Base Rent",
+    "increaseType": "fixed",
+    "effectiveDate": "2028-01-01",
+    "increaseValue": "1958.23",
+    "newMonthlyRent": 1958.23
+   },
+   {
+    "note": "Year 4 Base Rent",
+    "increaseType": "fixed",
+    "effectiveDate": "2029-01-01",
+    "increaseValue": "1993.83",
+    "newMonthlyRent": 1993.83
+   },
+   {
+    "note": "Year 5 Base Rent",
+    "increaseType": "fixed",
+    "effectiveDate": "2030-01-01",
+    "increaseValue": "2029.44",
+    "newMonthlyRent": 2029.44
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 1958.23,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes ($0.95/SF initially).",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage ($1.95/SF initially) and must maintain comprehensive general liability insurance.",
+  "hvacResponsibility": "Lessor responsible for repair/replacement, provided Lessee pays first $1,500.00 for each repair visit and 50% toward replacement cost. Lessee must maintain monthly maintenance contract.",
+  "permittedUse": "full-service hair salon offering services such as haircuts, coloring, styling, shampooing, blow-drying, and other customary hair care services, as well as the incidental retail sale of hair care products and accessories directly related to the services.",
+  "exclusiveUse": null,
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Alicia L. Robertson",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100,000.00 fire legal liability",
+   "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front exterior wall above the canopy, subject to Lessor approval and specific design criteria in Schedule D.",
+  "keyClausesSummary": "Base rent abated for first 6 months. Operating expense (CAM/Tax/Ins) increases capped at 5% annually beginning in year 2. Holdover rent set at 200%. Late fees of $100 plus $25 per day after the 5th of the month.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 12.75,
+   "baseRent": 1815.81,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Rent abatement for months 1-3",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-07-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Rent abatement for months 4-6",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-10-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Year 1 Base Rent",
+     "increaseType": "fixed",
+     "effectiveDate": "2026-01-01",
+     "increaseValue": "1815.81",
+     "newMonthlyRent": 1815.81
+    },
+    {
+     "note": "Year 2 Base Rent",
+     "increaseType": "fixed",
+     "effectiveDate": "2027-01-01",
+     "increaseValue": "1887.02",
+     "newMonthlyRent": 1887.02
+    },
+    {
+     "note": "Year 3 Base Rent",
+     "increaseType": "fixed",
+     "effectiveDate": "2028-01-01",
+     "increaseValue": "1958.23",
+     "newMonthlyRent": 1958.23
+    },
+    {
+     "note": "Year 4 Base Rent",
+     "increaseType": "fixed",
+     "effectiveDate": "2029-01-01",
+     "increaseValue": "1993.83",
+     "newMonthlyRent": 1993.83
+    },
+    {
+     "note": "Year 5 Base Rent",
+     "increaseType": "fixed",
+     "effectiveDate": "2030-01-01",
+     "increaseValue": "2029.44",
+     "newMonthlyRent": 2029.44
+    }
+   ],
+   "exclusiveUse": null,
+   "originalTerm": "6 years 6 months",
+   "permittedUse": "full-service hair salon offering services such as haircuts, coloring, styling, shampooing, blow-drying, and other customary hair care services, as well as the incidental retail sale of hair care products and accessories directly related to the services.",
+   "guarantorName": "Alicia L. Robertson",
+   "signageRights": "Lessee has the right to place an exterior sign on the front exterior wall above the canopy, subject to Lessor approval and specific design criteria in Schedule D.",
+   "expirationDate": "2031-12-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 1958.23,
+   "commencementDate": "2025-07-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100,000.00 fire legal liability",
+    "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "Base rent abated for first 6 months. Operating expense (CAM/Tax/Ins) increases capped at 5% annually beginning in year 2. Holdover rent set at 200%. Late fees of $100 plus $25 per day after the 5th of the month.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes ($0.95/SF initially).",
+   "hvacResponsibility": "Lessor responsible for repair/replacement, provided Lessee pays first $1,500.00 for each repair visit and 50% toward replacement cost. Lessee must maintain monthly maintenance contract.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of insurance coverage ($1.95/SF initially) and must maintain comprehensive general liability insurance."
+  },
+  "createdAt": "2026-07-11T17:31:42",
+  "updatedAt": "2026-07-11T17:31:42"
+ },
+ {
+  "id": "c59f2bac-6c5f-4aa7-987d-357e0480cf20",
+  "unitId": "u111",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "98416d55-89dd-4070-9fde-3cdc1e7599d6",
+  "commencementDate": "2024-01-01",
+  "expirationDate": "2027-01-31",
+  "originalTerm": "37 months",
+  "baseRent": 1901.25,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Month 1 rent abatement",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-01-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Base rent for months 2 through 37",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-02-01",
+    "increaseValue": "1901.25",
+    "newMonthlyRent": 1901.25
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by the Lessor and the Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 1901.25,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee's Pro Rata Portion",
+  "insuranceResponsibility": "Lessee's Pro Rata Portion",
+  "hvacResponsibility": "Lessee pays first $750.00 for each repair visit and 50% of the replacement cost; Lessor responsible for major repair and replacement.",
+  "permittedUse": "sales and repair business for sewing machines and related items and general office space",
+  "exclusiveUse": "\"The Premises shall be not be used during the Initial Term or any Renewal Term hereof as: i) A delicatessen or other restaurant whose operations are the same or similar to a Jason’s Deli or whose primary menu items are salads, soups, sandwiches, and baked potatoes or any one or more of said items. ii) A veterinary clinic engaged primarily in the care and treatment of cats. iii) A retail boutique for the sale of items including, but not limited to clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.\"",
+  "coTenancy": null,
+  "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.\"",
+  "guarantorName": "JENNIFER HERRICK and JANET THOMAS",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front exterior wall above the front canopy, subject to Lessor approval and compliance with Schedule D.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00/day after the 5th of the month. Holdover rent is 200% of the monthly rental amount. CAM, Tax, and Insurance increases are capped at 5% over the prior calendar year actuals starting in the second year.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 1901.25,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Month 1 rent abatement",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-01-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Base rent for months 2 through 37",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-02-01",
+     "increaseValue": "1901.25",
+     "newMonthlyRent": 1901.25
+    }
+   ],
+   "exclusiveUse": "\"The Premises shall be not be used during the Initial Term or any Renewal Term hereof as: i) A delicatessen or other restaurant whose operations are the same or similar to a Jason’s Deli or whose primary menu items are salads, soups, sandwiches, and baked potatoes or any one or more of said items. ii) A veterinary clinic engaged primarily in the care and treatment of cats. iii) A retail boutique for the sale of items including, but not limited to clothing, gifts, accessories, home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.\"",
+   "originalTerm": "37 months",
+   "permittedUse": "sales and repair business for sewing machines and related items and general office space",
+   "guarantorName": "JENNIFER HERRICK and JANET THOMAS",
+   "signageRights": "Lessee has the right to place an exterior sign on the front exterior wall above the front canopy, subject to Lessor approval and compliance with Schedule D.",
+   "expirationDate": "2027-01-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by the Lessor and the Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 1901.25,
+   "commencementDate": "2024-01-01",
+   "earlyTermination": null,
+   "personalGuaranty": "\"Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.\"",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00/day after the 5th of the month. Holdover rent is 200% of the monthly rental amount. CAM, Tax, and Insurance increases are capped at 5% over the prior calendar year actuals starting in the second year.",
+   "taxResponsibility": "Lessee's Pro Rata Portion",
+   "hvacResponsibility": "Lessee pays first $750.00 for each repair visit and 50% of the replacement cost; Lessor responsible for major repair and replacement.",
+   "insuranceResponsibility": "Lessee's Pro Rata Portion"
+  },
+  "createdAt": "2026-07-11T17:26:22",
+  "updatedAt": "2026-07-11T17:26:22"
+ },
+ {
+  "id": "ef86d225-c557-4c5c-9050-e7442df0400b",
+  "unitId": "u1175",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "951351ae-a8fa-40a3-8548-31de47ebad00",
+  "commencementDate": "2017-03-01",
+  "expirationDate": "2029-02-28",
+  "originalTerm": "36 months",
+  "baseRent": 2063.83,
+  "rentPsf": 14,
+  "escalations": [
+   {
+    "note": "Base rent remains flat at $14.00 PSF for the duration of the Fourth Extension Term (2026-2029).",
+    "increaseType": "fixed",
+    "effectiveDate": "2026-03-01",
+    "increaseValue": "0%",
+    "newMonthlyRent": 2063.83
+   },
+   {
+    "note": "Beginning in the second year of the term, Landlord may increase CAM, Tax, and Insurance charges by up to 5% over the prior calendar year actuals.",
+    "increaseType": "percentage",
+    "effectiveDate": "2027-01-01",
+    "increaseValue": "5%",
+    "newMonthlyRent": null
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 1842.71,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+  "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of Lessor's insurance costs; Lessee must also maintain own liability insurance.",
+  "hvacResponsibility": "Lessee is responsible for all maintenance and repairs. Lessee pays the first $500.00 for each repair visit and the first $500.00 toward replacement costs, provided a monthly maintenance contract is maintained with a provider approved by Lessor.",
+  "permittedUse": "nail salon and general office space",
+  "exclusiveUse": "The Premises shall not be used by Lessee as: 1) a delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli or whose primary menu items are salads, soups, sandwiches, and backed potatoes or any one or more of said items.",
+  "coTenancy": null,
+  "personalGuaranty": "Thuy T. Nguyen signed the original lease agreement individually.",
+  "guarantorName": "Thuy T. Nguyen",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $2,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee has the right to place an exterior sign on the front canopy. Signs must be white neon, non-blinking, and manufactured by Universal Sign Company. All signage requires prior written approval from Lessor.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Confidentiality clause restricts disclosure of lease terms. Lessee must install and utilize a nightly manual shut-off valve for pedicure chair water supply. Lessor responsible for roof, exterior walls, and structural foundations.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 14,
+   "baseRent": 2063.83,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Base rent remains flat at $14.00 PSF for the duration of the Fourth Extension Term (2026-2029).",
+     "increaseType": "fixed",
+     "effectiveDate": "2026-03-01",
+     "increaseValue": "0%",
+     "newMonthlyRent": 2063.83
+    },
+    {
+     "note": "Beginning in the second year of the term, Landlord may increase CAM, Tax, and Insurance charges by up to 5% over the prior calendar year actuals.",
+     "increaseType": "percentage",
+     "effectiveDate": "2027-01-01",
+     "increaseValue": "5%",
+     "newMonthlyRent": null
+    }
+   ],
+   "exclusiveUse": "The Premises shall not be used by Lessee as: 1) a delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli or whose primary menu items are salads, soups, sandwiches, and backed potatoes or any one or more of said items.",
+   "originalTerm": "36 months",
+   "permittedUse": "nail salon and general office space",
+   "guarantorName": "Thuy T. Nguyen",
+   "signageRights": "Lessee has the right to place an exterior sign on the front canopy. Signs must be white neon, non-blinking, and manufactured by Universal Sign Company. All signage requires prior written approval from Lessor.",
+   "expirationDate": "2029-02-28",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 1842.71,
+   "commencementDate": "2017-03-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Thuy T. Nguyen signed the original lease agreement individually.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $2,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Confidentiality clause restricts disclosure of lease terms. Lessee must install and utilize a nightly manual shut-off valve for pedicure chair water supply. Lessor responsible for roof, exterior walls, and structural foundations.",
+   "taxResponsibility": "Lessee responsible for Pro Rata Portion of all real property taxes and assessments.",
+   "hvacResponsibility": "Lessee is responsible for all maintenance and repairs. Lessee pays the first $500.00 for each repair visit and the first $500.00 toward replacement costs, provided a monthly maintenance contract is maintained with a provider approved by Lessor.",
+   "insuranceResponsibility": "Lessee responsible for Pro Rata Portion of Lessor's insurance costs; Lessee must also maintain own liability insurance."
+  },
+  "createdAt": "2026-07-11T17:24:46",
+  "updatedAt": "2026-07-11T17:24:46"
+ },
+ {
+  "id": "f2b06dda-5655-4859-8f8f-088efcdd8824",
+  "unitId": "u115",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "cc209e76-8e6f-4390-bf0f-25815cccf6c8",
+  "commencementDate": "2023-08-01",
+  "expirationDate": "2026-09-30",
+  "originalTerm": "38 months",
+  "baseRent": 2441.25,
+  "rentPsf": 6.75,
+  "escalations": [
+   {
+    "note": "Month 3-12 of the Initial Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2023-10-01",
+    "increaseValue": "$11.50 PSF",
+    "newMonthlyRent": 4159.16
+   },
+   {
+    "note": "Month 13-24 of the Initial Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-08-01",
+    "increaseValue": "$12.50 PSF",
+    "newMonthlyRent": 4520.83
+   },
+   {
+    "note": "Month 25-38 of the Initial Term",
+    "increaseType": "fixed",
+    "effectiveDate": "2025-08-01",
+    "increaseValue": "$13.50 PSF",
+    "newMonthlyRent": 4882.5
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "3 years",
+    "rentBasis": "Negotiated by Lessor and Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 4941.37,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays pro-rata share of all real property taxes and assessments",
+  "insuranceResponsibility": "Lessee pays pro-rata share of insurance coverage for the property",
+  "hvacResponsibility": "Lessee pays first $750.00 for each repair visit and first $2,500.00 toward replacement cost; Lessor responsible for repair and replacement beyond those amounts. Lessee must maintain a service contract with Butcher Air Conditioning.",
+  "permittedUse": "retail and resale store selling clothing, shoes, and fashion accessories as well as related services and products and general office space",
+  "exclusiveUse": "In the event Lessor is considering executing a lease agreement for space in the Boulevard Shopping Center Property with a potential tenant whose primary business in the sale of gifts similar to those sold by Lessee would be in competition with Lessee, as determined in Lessor's reasonable discretion, Lessor shall give verbal notice to Lessee and agrees to discuss the same with Lessee prior to executing any such Lease Agreement.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+  "guarantorName": "Trent Jabbia",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "$100,000.00 fire legal liability",
+   "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 aggregate"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall above the front canopy, subject to Lessor approval and criteria in Schedule D.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day. Prohibited uses include delicatessen/restaurants similar to Jason's Deli or veterinary clinics for cats. CAM/Tax/Insurance increases capped at 5% over prior calendar year actuals.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 6.75,
+   "baseRent": 2441.25,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Month 3-12 of the Initial Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2023-10-01",
+     "increaseValue": "$11.50 PSF",
+     "newMonthlyRent": 4159.16
+    },
+    {
+     "note": "Month 13-24 of the Initial Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-08-01",
+     "increaseValue": "$12.50 PSF",
+     "newMonthlyRent": 4520.83
+    },
+    {
+     "note": "Month 25-38 of the Initial Term",
+     "increaseType": "fixed",
+     "effectiveDate": "2025-08-01",
+     "increaseValue": "$13.50 PSF",
+     "newMonthlyRent": 4882.5
+    }
+   ],
+   "exclusiveUse": "In the event Lessor is considering executing a lease agreement for space in the Boulevard Shopping Center Property with a potential tenant whose primary business in the sale of gifts similar to those sold by Lessee would be in competition with Lessee, as determined in Lessor's reasonable discretion, Lessor shall give verbal notice to Lessee and agrees to discuss the same with Lessee prior to executing any such Lease Agreement.",
+   "originalTerm": "38 months",
+   "permittedUse": "retail and resale store selling clothing, shoes, and fashion accessories as well as related services and products and general office space",
+   "guarantorName": "Trent Jabbia",
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall above the front canopy, subject to Lessor approval and criteria in Schedule D.",
+   "expirationDate": "2026-09-30",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "3 years",
+     "rentBasis": "Negotiated by Lessor and Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 4941.37,
+   "commencementDate": "2023-08-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "$100,000.00 fire legal liability",
+    "generalLiability": "$1,000,000.00 per occurrence / $1,000,000.00 aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day. Prohibited uses include delicatessen/restaurants similar to Jason's Deli or veterinary clinics for cats. CAM/Tax/Insurance increases capped at 5% over prior calendar year actuals.",
+   "taxResponsibility": "Lessee pays pro-rata share of all real property taxes and assessments",
+   "hvacResponsibility": "Lessee pays first $750.00 for each repair visit and first $2,500.00 toward replacement cost; Lessor responsible for repair and replacement beyond those amounts. Lessee must maintain a service contract with Butcher Air Conditioning.",
+   "insuranceResponsibility": "Lessee pays pro-rata share of insurance coverage for the property"
+  },
+  "createdAt": "2026-07-11T17:24:17",
+  "updatedAt": "2026-07-11T17:24:17"
+ },
+ {
+  "id": "f7e5fec8-765b-49bf-98a1-09041d6a42b2",
+  "unitId": "u125",
+  "propertyId": "otb-prop-1",
+  "sourceDocId": "d8854729-9ae0-484f-a8e4-661664ecdef9",
+  "commencementDate": "2024-05-01",
+  "expirationDate": "2029-08-31",
+  "originalTerm": "64 months",
+  "baseRent": 4807.13,
+  "rentPsf": 13.5,
+  "escalations": [
+   {
+    "note": "Months 1-3: Free Base Rent and Additional Rent (CAM, Taxes, Insurance)",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-05-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Month 4: Free Base Rent; Additional Rent (CAM, Taxes, Insurance) commences at $1,780.42 total",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-08-01",
+    "increaseValue": "0",
+    "newMonthlyRent": 0
+   },
+   {
+    "note": "Months 5-64: Full Base Rent commences at $4,807.13 per month",
+    "increaseType": "fixed",
+    "effectiveDate": "2024-09-01",
+    "increaseValue": "4807.13",
+    "newMonthlyRent": 4807.13
+   }
+  ],
+  "renewalOptions": [
+   {
+    "term": "5 years",
+    "rentBasis": "Negotiated by the Lessor and the Lessee",
+    "noticeRequired": "60 days"
+   }
+  ],
+  "purchaseOption": null,
+  "earlyTermination": null,
+  "securityDeposit": 2500,
+  "camResponsibility": "NNN",
+  "taxResponsibility": "Lessee pays Pro Rata Portion",
+  "insuranceResponsibility": "Lessee pays Pro Rata Portion",
+  "hvacResponsibility": "Lessee responsible for repair and replacement; Lessee pays first $1,500.00 for each repair visit and 50% toward replacement cost; must maintain contract with Butcher Air Conditioning",
+  "permittedUse": "clothing boutique specializing in the sale of women's clothing and fashion accessories",
+  "exclusiveUse": "The Premises shall not be used during the Initial Term or any Renewal Term hereof as: i) A delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli... ii) A veterinary clinic engaged primarily in the care and treatment of cats. iii) A retail boutique whose primary business is the sale of items including home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+  "coTenancy": null,
+  "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease. (b) The prompt performance of or compliance with any covenant or agreement contained in the Lease by the Lessee of all of its obligations pursuant to the terms and conditions of the Lease.",
+  "guarantorName": "Jordan A. Broussard",
+  "insuranceMinimums": {
+   "umbrella": null,
+   "workersComp": null,
+   "propertyDamage": "100,000.00 fire legal liability",
+   "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 general aggregate"
+  },
+  "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall and front canopy subject to Lessor approval; must be erected by Hubbard Sign Company.",
+  "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Annual CAM/Tax/Insurance increases capped at 5% of prior year actuals starting in year 2. Premises leased AS-IS. Assignment and subletting require Lessor's prior written consent.",
+  "extractionModel": "gemini-3-flash-preview",
+  "abstractionConfidence": "high",
+  "rawResponse": {
+   "rentPsf": 13.5,
+   "baseRent": 4807.13,
+   "coTenancy": null,
+   "confidence": "high",
+   "escalations": [
+    {
+     "note": "Months 1-3: Free Base Rent and Additional Rent (CAM, Taxes, Insurance)",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-05-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Month 4: Free Base Rent; Additional Rent (CAM, Taxes, Insurance) commences at $1,780.42 total",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-08-01",
+     "increaseValue": "0",
+     "newMonthlyRent": 0
+    },
+    {
+     "note": "Months 5-64: Full Base Rent commences at $4,807.13 per month",
+     "increaseType": "fixed",
+     "effectiveDate": "2024-09-01",
+     "increaseValue": "4807.13",
+     "newMonthlyRent": 4807.13
+    }
+   ],
+   "exclusiveUse": "The Premises shall not be used during the Initial Term or any Renewal Term hereof as: i) A delicatessen or other restaurant whose operations are the same or similar to a Jason's Deli... ii) A veterinary clinic engaged primarily in the care and treatment of cats. iii) A retail boutique whose primary business is the sale of items including home goods, monogrammed and/or personalized items, candles, home decorations, drinkware, and jewelry.",
+   "originalTerm": "64 months",
+   "permittedUse": "clothing boutique specializing in the sale of women's clothing and fashion accessories",
+   "guarantorName": "Jordan A. Broussard",
+   "signageRights": "Lessee has the right to place, construct and maintain an exterior sign on the front exterior wall and front canopy subject to Lessor approval; must be erected by Hubbard Sign Company.",
+   "expirationDate": "2029-08-31",
+   "purchaseOption": null,
+   "renewalOptions": [
+    {
+     "term": "5 years",
+     "rentBasis": "Negotiated by the Lessor and the Lessee",
+     "noticeRequired": "60 days"
+    }
+   ],
+   "securityDeposit": 2500,
+   "commencementDate": "2024-05-01",
+   "earlyTermination": null,
+   "personalGuaranty": "Guarantor hereby absolutely, unconditionally and irrevocably guarantees to Lessor the full and prompt payment when due, whether at maturity or earlier, and at all times until this Guaranty is terminated or released under the terms hereof, and the full and prompt performance when due, of all of the following: (a) The payment, by the Lessee, when due, of all amounts due under the Lease. (b) The prompt performance of or compliance with any covenant or agreement contained in the Lease by the Lessee of all of its obligations pursuant to the terms and conditions of the Lease.",
+   "camResponsibility": "NNN",
+   "insuranceMinimums": {
+    "umbrella": null,
+    "workersComp": null,
+    "propertyDamage": "100,000.00 fire legal liability",
+    "generalLiability": "1,000,000.00 per occurrence / 1,000,000.00 general aggregate"
+   },
+   "keyClausesSummary": "Late fee of $100.00 plus $25.00 per day after the 5th of the month. Annual CAM/Tax/Insurance increases capped at 5% of prior year actuals starting in year 2. Premises leased AS-IS. Assignment and subletting require Lessor's prior written consent.",
+   "taxResponsibility": "Lessee pays Pro Rata Portion",
+   "hvacResponsibility": "Lessee responsible for repair and replacement; Lessee pays first $1,500.00 for each repair visit and 50% toward replacement cost; must maintain contract with Butcher Air Conditioning",
+   "insuranceResponsibility": "Lessee pays Pro Rata Portion"
+  },
+  "createdAt": "2026-07-11T17:22:55",
+  "updatedAt": "2026-07-11T17:22:55"
+ }
+]

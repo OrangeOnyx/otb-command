@@ -1,0 +1,1082 @@
+[
+ {
+  "id": "000ab059-71f8-4fb4-96d7-ccafbdcf1a47",
+  "invoiceId": "e0267866-1660-4662-bae6-1d9b1f031ef2",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 254.5,
+  "amount": 254.5,
+  "sortOrder": 3
+ },
+ {
+  "id": "0449e7af-1f69-4ea4-9a58-9f5a93d7e450",
+  "invoiceId": "37152795-9f61-4fca-b4d2-a0ccdfb08aa9",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "060f116e-1e7a-4957-a966-0f54323e5722",
+  "invoiceId": "0668bff6-f62d-4e81-8285-a2f7de6eac96",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 345.45,
+  "amount": 345.45,
+  "sortOrder": 1
+ },
+ {
+  "id": "08330efc-c17a-4d65-be53-595eaa753e57",
+  "invoiceId": "218b0e47-084a-4e2b-8d4b-bad09a56016f",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2855.25,
+  "amount": 2855.25,
+  "sortOrder": 0
+ },
+ {
+  "id": "09888e9f-2f3d-4356-a170-2888762637d2",
+  "invoiceId": "0668bff6-f62d-4e81-8285-a2f7de6eac96",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 189.18,
+  "amount": 189.18,
+  "sortOrder": 3
+ },
+ {
+  "id": "0b4e1737-d44d-46e4-97f9-8f9170d1f595",
+  "invoiceId": "28e494f7-8a62-4c0d-8e96-93e5e2b8baf4",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "0cd9cf7c-341e-43b7-8c27-c35c0d230a72",
+  "invoiceId": "b5c93462-e4c7-41c5-ac8d-89f9f5301dbd",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 313.08,
+  "amount": 313.08,
+  "sortOrder": 1
+ },
+ {
+  "id": "10b0b876-1009-4c1b-9ac7-b0e9f8a7376e",
+  "invoiceId": "6e0c6930-b7d3-43b1-990a-146dea3ed20c",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 256.75,
+  "amount": 256.75,
+  "sortOrder": 3
+ },
+ {
+  "id": "132130e1-f31d-4cb3-a66c-6c4e8c445ee9",
+  "invoiceId": "5c4f40ee-29cc-4c68-9c82-651f2915d3ef",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 335.48,
+  "amount": 335.48,
+  "sortOrder": 1
+ },
+ {
+  "id": "1a96bb8e-d5ff-4f79-96fc-9c8245208f43",
+  "invoiceId": "65cfe8fb-a4bb-4d2f-81f3-7d41b94f6f06",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "1cb8e395-5f61-4d96-b461-4acd8c7209be",
+  "invoiceId": "0668bff6-f62d-4e81-8285-a2f7de6eac96",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "1d08cdda-1f98-456f-a357-52e914d5be90",
+  "invoiceId": "33b5c931-1d19-4504-9af3-690c1f6837e1",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 281.94,
+  "amount": 281.94,
+  "sortOrder": 3
+ },
+ {
+  "id": "21629830-4a0d-4dad-ba65-07aa43074ae9",
+  "invoiceId": "b5c93462-e4c7-41c5-ac8d-89f9f5301dbd",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 290.71,
+  "amount": 290.71,
+  "sortOrder": 3
+ },
+ {
+  "id": "22367bfe-7e87-409d-8e0f-989da09914ab",
+  "invoiceId": "1f648f91-003e-4b37-a846-ba7a086c87aa",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "2edccd8f-3c7e-4008-bd4a-7bc61035fd30",
+  "invoiceId": "e591da19-b3b8-4b40-b89b-dd5481bc247f",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1815.81,
+  "amount": 1815.81,
+  "sortOrder": 0
+ },
+ {
+  "id": "328e3ee2-e111-4c13-ab8f-d957ca6d3ace",
+  "invoiceId": "37152795-9f61-4fca-b4d2-a0ccdfb08aa9",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 623.53,
+  "amount": 623.53,
+  "sortOrder": 1
+ },
+ {
+  "id": "33637bcb-e8b2-411f-9bb7-912d798a8f16",
+  "invoiceId": "e0267866-1660-4662-bae6-1d9b1f031ef2",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 3906.58,
+  "amount": 3906.58,
+  "sortOrder": 0
+ },
+ {
+  "id": "33e46972-81ff-4b00-8b23-afec73ccc5eb",
+  "invoiceId": "bd2f331a-e0df-4cdb-b053-64d733fac7ef",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "3431fd92-6615-4545-8343-423401f8e79d",
+  "invoiceId": "bd2f331a-e0df-4cdb-b053-64d733fac7ef",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 335.48,
+  "amount": 335.48,
+  "sortOrder": 1
+ },
+ {
+  "id": "358574d7-22bd-4da4-8592-8ee8d10fe85c",
+  "invoiceId": "bd2f331a-e0df-4cdb-b053-64d733fac7ef",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2156.63,
+  "amount": 2156.63,
+  "sortOrder": 0
+ },
+ {
+  "id": "3767877e-3274-4c32-9e30-1c3eb764ee6f",
+  "invoiceId": "5c4f40ee-29cc-4c68-9c82-651f2915d3ef",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "38648e5d-1046-49b7-96f7-81d6faf4692b",
+  "invoiceId": "65cfe8fb-a4bb-4d2f-81f3-7d41b94f6f06",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 423.48,
+  "amount": 423.48,
+  "sortOrder": 3
+ },
+ {
+  "id": "38aa0939-8006-4621-bea7-d97e6e71e8af",
+  "invoiceId": "a34aadb9-0460-43b5-8c49-a28cdddbaf02",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "3d2930d7-043e-4a16-8b33-731dd93bb414",
+  "invoiceId": "1a7dd35e-e603-42d0-b2e6-11092a50a14f",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 151.76,
+  "amount": 151.76,
+  "sortOrder": 2
+ },
+ {
+  "id": "3e958937-1a30-4826-9474-bfa97e64dbfd",
+  "invoiceId": "b5c93462-e4c7-41c5-ac8d-89f9f5301dbd",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2087.17,
+  "amount": 2087.17,
+  "sortOrder": 0
+ },
+ {
+  "id": "40ac93d5-228f-4a8b-9572-d5a32e504cff",
+  "invoiceId": "e591da19-b3b8-4b40-b89b-dd5481bc247f",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 135.3,
+  "amount": 135.3,
+  "sortOrder": 2
+ },
+ {
+  "id": "40ce4cfc-113c-4216-a544-9aaa757d99ac",
+  "invoiceId": "e591da19-b3b8-4b40-b89b-dd5481bc247f",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "43bd0e54-c78a-4737-a456-4f9fae262f0c",
+  "invoiceId": "bd2f331a-e0df-4cdb-b053-64d733fac7ef",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "44ecf650-5ae1-4308-9bb6-febcc55594a4",
+  "invoiceId": "b23357b0-4a67-4d9a-ac72-0d90504d9e66",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "4798fe8c-f30c-41f8-9abd-0a2f275f757f",
+  "invoiceId": "28e494f7-8a62-4c0d-8e96-93e5e2b8baf4",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 274.63,
+  "amount": 274.63,
+  "sortOrder": 3
+ },
+ {
+  "id": "4df7abee-7885-4f2c-9ca6-961ea20f4db6",
+  "invoiceId": "b23357b0-4a67-4d9a-ac72-0d90504d9e66",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 515.78,
+  "amount": 515.78,
+  "sortOrder": 2
+ },
+ {
+  "id": "51885806-7d0f-4647-a0c0-fe2723c9f7c0",
+  "invoiceId": "e591da19-b3b8-4b40-b89b-dd5481bc247f",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "51eac468-e37c-480c-86c1-c2e1a398a175",
+  "invoiceId": "a34aadb9-0460-43b5-8c49-a28cdddbaf02",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1637.27,
+  "amount": 1637.27,
+  "sortOrder": 0
+ },
+ {
+  "id": "54aa3941-466c-412e-a546-56055104dbf3",
+  "invoiceId": "6e0c6930-b7d3-43b1-990a-146dea3ed20c",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "54b49197-d3b0-418c-ba87-3162c561d392",
+  "invoiceId": "a1a0517a-485b-4351-9927-4d1d5bf52b81",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 379.75,
+  "amount": 379.75,
+  "sortOrder": 1
+ },
+ {
+  "id": "5697995c-47a8-4ff1-8979-d4a613b82041",
+  "invoiceId": "bd2f331a-e0df-4cdb-b053-64d733fac7ef",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 311.51,
+  "amount": 311.51,
+  "sortOrder": 3
+ },
+ {
+  "id": "57238116-1392-4bbc-952b-88c914e94311",
+  "invoiceId": "e591da19-b3b8-4b40-b89b-dd5481bc247f",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 299.08,
+  "amount": 299.08,
+  "sortOrder": 1
+ },
+ {
+  "id": "59653735-5ff4-41c5-a675-3beb5d7643c2",
+  "invoiceId": "a1a0517a-485b-4351-9927-4d1d5bf52b81",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "5e812056-02e4-46a2-b480-a3c18a6f5f50",
+  "invoiceId": "28e494f7-8a62-4c0d-8e96-93e5e2b8baf4",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "5f4590b8-11ae-45af-b44b-cd3c839380e9",
+  "invoiceId": "37152795-9f61-4fca-b4d2-a0ccdfb08aa9",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "67da61f1-ff76-4ffe-b1de-2d04171512bf",
+  "invoiceId": "a34aadb9-0460-43b5-8c49-a28cdddbaf02",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "74d59953-0494-46f6-9628-2bd8d74ff418",
+  "invoiceId": "218b0e47-084a-4e2b-8d4b-bad09a56016f",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 412.42,
+  "amount": 412.42,
+  "sortOrder": 3
+ },
+ {
+  "id": "756dcd30-5690-47c6-82db-f2b985a75fe4",
+  "invoiceId": "33b5c931-1d19-4504-9af3-690c1f6837e1",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1951.88,
+  "amount": 1951.88,
+  "sortOrder": 0
+ },
+ {
+  "id": "7718870e-cdc4-4d38-8c65-c084ff708bb3",
+  "invoiceId": "b23357b0-4a67-4d9a-ac72-0d90504d9e66",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 573.08,
+  "amount": 573.08,
+  "sortOrder": 3
+ },
+ {
+  "id": "77348a32-82da-4b1d-b31e-cc887b837246",
+  "invoiceId": "28e494f7-8a62-4c0d-8e96-93e5e2b8baf4",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1901.25,
+  "amount": 1901.25,
+  "sortOrder": 0
+ },
+ {
+  "id": "78b062a9-85be-40ec-b9c8-7fe11ec5d1f5",
+  "invoiceId": "218b0e47-084a-4e2b-8d4b-bad09a56016f",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "7a531e5f-1fef-4fcc-9159-87fa38ea0c0f",
+  "invoiceId": "b23357b0-4a67-4d9a-ac72-0d90504d9e66",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "7a5e8a2b-4b1e-4479-9d9a-0490b517fd9d",
+  "invoiceId": "1a7dd35e-e603-42d0-b2e6-11092a50a14f",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 335.48,
+  "amount": 335.48,
+  "sortOrder": 1
+ },
+ {
+  "id": "7ad2a2c9-12dd-4702-8873-af9cde20c62a",
+  "invoiceId": "5c4f40ee-29cc-4c68-9c82-651f2915d3ef",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 151.76,
+  "amount": 151.76,
+  "sortOrder": 2
+ },
+ {
+  "id": "7be62f79-b8e9-434f-b651-a1568b1a8254",
+  "invoiceId": "e0267866-1660-4662-bae6-1d9b1f031ef2",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 229.05,
+  "amount": 229.05,
+  "sortOrder": 2
+ },
+ {
+  "id": "7c54ca72-12a8-460a-9f3f-c5e087e1a95b",
+  "invoiceId": "37152795-9f61-4fca-b4d2-a0ccdfb08aa9",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 4008.38,
+  "amount": 4008.38,
+  "sortOrder": 0
+ },
+ {
+  "id": "805126f6-6e95-4697-9d9b-1d9163c4854c",
+  "invoiceId": "6e0c6930-b7d3-43b1-990a-146dea3ed20c",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1382.5,
+  "amount": 1382.5,
+  "sortOrder": 0
+ },
+ {
+  "id": "80e96790-04a9-47ad-914a-7bb5d856e4bf",
+  "invoiceId": "b5c93462-e4c7-41c5-ac8d-89f9f5301dbd",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 141.63,
+  "amount": 141.63,
+  "sortOrder": 2
+ },
+ {
+  "id": "8304d1c7-59f1-4fe4-b353-31d426a404d7",
+  "invoiceId": "b5c93462-e4c7-41c5-ac8d-89f9f5301dbd",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "86948fbe-4e7a-4315-97e0-0af16a0907da",
+  "invoiceId": "4a9e8e79-7330-4f07-b2ee-613a29922cfa",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "8741c337-4d9e-42ae-9d43-5a836bd99238",
+  "invoiceId": "33b5c931-1d19-4504-9af3-690c1f6837e1",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "87736012-af26-4668-a99c-9879d37f90bd",
+  "invoiceId": "5c4f40ee-29cc-4c68-9c82-651f2915d3ef",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2156.63,
+  "amount": 2156.63,
+  "sortOrder": 0
+ },
+ {
+  "id": "8832e693-9411-4092-9561-c1ef383dd580",
+  "invoiceId": "a1a0517a-485b-4351-9927-4d1d5bf52b81",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 171.79,
+  "amount": 171.79,
+  "sortOrder": 2
+ },
+ {
+  "id": "8a447424-1cb5-4080-8e28-c88a3dbf97c6",
+  "invoiceId": "28e494f7-8a62-4c0d-8e96-93e5e2b8baf4",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 295.75,
+  "amount": 295.75,
+  "sortOrder": 1
+ },
+ {
+  "id": "8cbdb912-92a7-46b8-be9f-cdf53a90c58e",
+  "invoiceId": "b5c93462-e4c7-41c5-ac8d-89f9f5301dbd",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "8e844bfd-7b1c-45fb-ae3d-e8dfa59d5c0b",
+  "invoiceId": "a34aadb9-0460-43b5-8c49-a28cdddbaf02",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 359.28,
+  "amount": 359.28,
+  "sortOrder": 1
+ },
+ {
+  "id": "8f46b444-3664-47e1-84d1-3b7c7ffbb9c9",
+  "invoiceId": "0668bff6-f62d-4e81-8285-a2f7de6eac96",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 197.4,
+  "amount": 197.4,
+  "sortOrder": 2
+ },
+ {
+  "id": "9118b09d-2184-4c33-ae3c-77fc8ee10e7f",
+  "invoiceId": "6e0c6930-b7d3-43b1-990a-146dea3ed20c",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 276.5,
+  "amount": 276.5,
+  "sortOrder": 1
+ },
+ {
+  "id": "93319c60-ef31-44c7-9e96-640255c2c86e",
+  "invoiceId": "b23357b0-4a67-4d9a-ac72-0d90504d9e66",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 1203.48,
+  "amount": 1203.48,
+  "sortOrder": 1
+ },
+ {
+  "id": "937a38d1-742d-4e74-8d43-068fd6f9f0a7",
+  "invoiceId": "1f648f91-003e-4b37-a846-ba7a086c87aa",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "96d7c22c-c23e-4b56-9b5f-86eb58d01979",
+  "invoiceId": "a1a0517a-485b-4351-9927-4d1d5bf52b81",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1220.63,
+  "amount": 1220.63,
+  "sortOrder": 0
+ },
+ {
+  "id": "98da7c61-31a2-490f-85ed-aad1c39e92e4",
+  "invoiceId": "4a9e8e79-7330-4f07-b2ee-613a29922cfa",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 334.54,
+  "amount": 334.54,
+  "sortOrder": 3
+ },
+ {
+  "id": "991f7cd8-7f9b-4818-b178-ead64d8861cf",
+  "invoiceId": "1f648f91-003e-4b37-a846-ba7a086c87aa",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 145.25,
+  "amount": 145.25,
+  "sortOrder": 3
+ },
+ {
+  "id": "9c43b81b-c5e7-4865-a395-bcd56b39b6e9",
+  "invoiceId": "218b0e47-084a-4e2b-8d4b-bad09a56016f",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 444.15,
+  "amount": 444.15,
+  "sortOrder": 1
+ },
+ {
+  "id": "9c7b0c77-e028-4ff5-a2ad-6e660885b592",
+  "invoiceId": "37152795-9f61-4fca-b4d2-a0ccdfb08aa9",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 578.99,
+  "amount": 578.99,
+  "sortOrder": 3
+ },
+ {
+  "id": "9df51b49-323e-482d-9838-c52ff213469c",
+  "invoiceId": "37152795-9f61-4fca-b4d2-a0ccdfb08aa9",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 282.07,
+  "amount": 282.07,
+  "sortOrder": 2
+ },
+ {
+  "id": "9f78776d-e854-44b6-891d-6fdb105b43c3",
+  "invoiceId": "28e494f7-8a62-4c0d-8e96-93e5e2b8baf4",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 133.79,
+  "amount": 133.79,
+  "sortOrder": 2
+ },
+ {
+  "id": "a2369c8e-15ce-4930-a0ae-372621051369",
+  "invoiceId": "e0267866-1660-4662-bae6-1d9b1f031ef2",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "ae7f194b-c8e3-46b2-a1eb-01a80c4a5bd8",
+  "invoiceId": "e0267866-1660-4662-bae6-1d9b1f031ef2",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 534.45,
+  "amount": 534.45,
+  "sortOrder": 1
+ },
+ {
+  "id": "af098d22-60b8-4343-a190-8e790ff8b0a7",
+  "invoiceId": "65cfe8fb-a4bb-4d2f-81f3-7d41b94f6f06",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2823.17,
+  "amount": 2823.17,
+  "sortOrder": 0
+ },
+ {
+  "id": "b3f74278-bb79-4314-a508-e181befb70f2",
+  "invoiceId": "6e0c6930-b7d3-43b1-990a-146dea3ed20c",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 125.08,
+  "amount": 125.08,
+  "sortOrder": 2
+ },
+ {
+  "id": "b631ebbd-c65e-4d9a-b360-67e4b059d486",
+  "invoiceId": "65cfe8fb-a4bb-4d2f-81f3-7d41b94f6f06",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 206.31,
+  "amount": 206.31,
+  "sortOrder": 2
+ },
+ {
+  "id": "b7bec354-ef88-4348-9e3f-fe76ab8ae7f9",
+  "invoiceId": "a34aadb9-0460-43b5-8c49-a28cdddbaf02",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 162.53,
+  "amount": 162.53,
+  "sortOrder": 2
+ },
+ {
+  "id": "b91c7390-fccf-4087-a6ab-ca3da0d2b4a9",
+  "invoiceId": "4a9e8e79-7330-4f07-b2ee-613a29922cfa",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1220.63,
+  "amount": 1220.63,
+  "sortOrder": 0
+ },
+ {
+  "id": "b9213200-0e0c-4e1f-bc3c-a49999915d3e",
+  "invoiceId": "5c4f40ee-29cc-4c68-9c82-651f2915d3ef",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "ba59be01-2d9a-4805-93b2-bbc764e3d00a",
+  "invoiceId": "33b5c931-1d19-4504-9af3-690c1f6837e1",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 137.35,
+  "amount": 137.35,
+  "sortOrder": 2
+ },
+ {
+  "id": "bbf4521c-b1ae-4215-b5fb-18885d256453",
+  "invoiceId": "1a7dd35e-e603-42d0-b2e6-11092a50a14f",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 311.51,
+  "amount": 311.51,
+  "sortOrder": 3
+ },
+ {
+  "id": "be9249f4-0077-4f1f-b17a-5fe6cf3786a4",
+  "invoiceId": "4a9e8e79-7330-4f07-b2ee-613a29922cfa",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 171.79,
+  "amount": 171.79,
+  "sortOrder": 2
+ },
+ {
+  "id": "bf1db44a-a021-4cb4-a399-0feb7e240d6f",
+  "invoiceId": "a34aadb9-0460-43b5-8c49-a28cdddbaf02",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 333.61,
+  "amount": 333.61,
+  "sortOrder": 3
+ },
+ {
+  "id": "c05d1f11-b994-4539-b14d-ce3a90ac2d3c",
+  "invoiceId": "e591da19-b3b8-4b40-b89b-dd5481bc247f",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 277.71,
+  "amount": 277.71,
+  "sortOrder": 3
+ },
+ {
+  "id": "c1d810d0-fbf5-4544-be80-0b41d0c1f69e",
+  "invoiceId": "a1a0517a-485b-4351-9927-4d1d5bf52b81",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "c3f1a4ca-d4b1-47d4-9101-daba637c7195",
+  "invoiceId": "bd2f331a-e0df-4cdb-b053-64d733fac7ef",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 151.76,
+  "amount": 151.76,
+  "sortOrder": 2
+ },
+ {
+  "id": "c9450ee7-1634-46da-a17a-9de7639ddcad",
+  "invoiceId": "e0267866-1660-4662-bae6-1d9b1f031ef2",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "ccfc9658-8882-4b9f-966d-83a7c37f7dea",
+  "invoiceId": "33b5c931-1d19-4504-9af3-690c1f6837e1",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 303.63,
+  "amount": 303.63,
+  "sortOrder": 1
+ },
+ {
+  "id": "cd783414-a254-4159-b55a-bc722a8b3cc4",
+  "invoiceId": "0668bff6-f62d-4e81-8285-a2f7de6eac96",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "d15746ad-0abf-42a9-a18c-2b0467ba92cd",
+  "invoiceId": "65cfe8fb-a4bb-4d2f-81f3-7d41b94f6f06",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "d7d3e427-1c36-460d-aed3-06722d19465a",
+  "invoiceId": "33b5c931-1d19-4504-9af3-690c1f6837e1",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "e09d0bb9-bd62-49fb-aaf5-44cc2926b027",
+  "invoiceId": "a1a0517a-485b-4351-9927-4d1d5bf52b81",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 334.54,
+  "amount": 334.54,
+  "sortOrder": 3
+ },
+ {
+  "id": "e0d59483-6348-43ab-a50f-8c1008830605",
+  "invoiceId": "1a7dd35e-e603-42d0-b2e6-11092a50a14f",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2236.5,
+  "amount": 2236.5,
+  "sortOrder": 0
+ },
+ {
+  "id": "e298cb6d-3765-496f-a147-9e7e20cefc08",
+  "invoiceId": "5c4f40ee-29cc-4c68-9c82-651f2915d3ef",
+  "chargeCode": "insurance",
+  "description": "Insurance",
+  "quantity": 1,
+  "unitPrice": 311.51,
+  "amount": 311.51,
+  "sortOrder": 3
+ },
+ {
+  "id": "e3d82ebb-d9d2-441f-a203-8ffa6056a47f",
+  "invoiceId": "4a9e8e79-7330-4f07-b2ee-613a29922cfa",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "e40cb833-a25e-440c-a04c-1db6a0d596e2",
+  "invoiceId": "218b0e47-084a-4e2b-8d4b-bad09a56016f",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "e464cdad-1caf-4565-a095-8d5f329522db",
+  "invoiceId": "1a7dd35e-e603-42d0-b2e6-11092a50a14f",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 6 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "e9c6ea38-4136-452b-8cba-3109945a5451",
+  "invoiceId": "218b0e47-084a-4e2b-8d4b-bad09a56016f",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 200.93,
+  "amount": 200.93,
+  "sortOrder": 2
+ },
+ {
+  "id": "edfdb313-2a36-4160-8019-2b634d0a5150",
+  "invoiceId": "0668bff6-f62d-4e81-8285-a2f7de6eac96",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 2303,
+  "amount": 2303,
+  "sortOrder": 0
+ },
+ {
+  "id": "f0e1e64d-75c0-4cad-b664-797eaa98ba37",
+  "invoiceId": "65cfe8fb-a4bb-4d2f-81f3-7d41b94f6f06",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 456.05,
+  "amount": 456.05,
+  "sortOrder": 1
+ },
+ {
+  "id": "f3807681-5c49-4170-b0f0-5270dbafefd9",
+  "invoiceId": "4a9e8e79-7330-4f07-b2ee-613a29922cfa",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 379.75,
+  "amount": 379.75,
+  "sortOrder": 1
+ },
+ {
+  "id": "f87bc7a1-43f7-4549-8a37-7f4016ca6984",
+  "invoiceId": "1f648f91-003e-4b37-a846-ba7a086c87aa",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 1960.88,
+  "amount": 1960.88,
+  "sortOrder": 0
+ },
+ {
+  "id": "fa457a0f-a145-465d-a931-6be974828d6a",
+  "invoiceId": "1f648f91-003e-4b37-a846-ba7a086c87aa",
+  "chargeCode": "tax",
+  "description": "Property Tax",
+  "quantity": 1,
+  "unitPrice": 130.73,
+  "amount": 130.73,
+  "sortOrder": 2
+ },
+ {
+  "id": "fc1fec15-8378-40b8-9624-d3d084b76a45",
+  "invoiceId": "b23357b0-4a67-4d9a-ac72-0d90504d9e66",
+  "chargeCode": "base_rent",
+  "description": "Base Rent",
+  "quantity": 1,
+  "unitPrice": 8796.83,
+  "amount": 8796.83,
+  "sortOrder": 0
+ },
+ {
+  "id": "fcee9376-b689-4f38-b664-eb23d29957b2",
+  "invoiceId": "6e0c6930-b7d3-43b1-990a-146dea3ed20c",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "fd37dade-cc2a-4014-b17b-bfb7272ef181",
+  "invoiceId": "1a7dd35e-e603-42d0-b2e6-11092a50a14f",
+  "chargeCode": "late_fee",
+  "description": "Late Fee — 7 days past due (5d grace)",
+  "quantity": 1,
+  "unitPrice": 50,
+  "amount": 50,
+  "sortOrder": 99
+ },
+ {
+  "id": "fe075f2a-6516-436d-a594-ddf127cd6cb9",
+  "invoiceId": "1f648f91-003e-4b37-a846-ba7a086c87aa",
+  "chargeCode": "cam",
+  "description": "CAM Estimate",
+  "quantity": 1,
+  "unitPrice": 305.03,
+  "amount": 305.03,
+  "sortOrder": 1
+ }
+]

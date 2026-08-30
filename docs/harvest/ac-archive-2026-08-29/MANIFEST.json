@@ -1,0 +1,164 @@
+{
+  "source": "asset-command-prod (pegmtfjexdzuupubgggv)",
+  "exported": "2026-08-29",
+  "via": "Supabase MCP execute_sql",
+  "note": "users.passwordHash stripped; auth_tokens excluded; tenant_access_tokens ids only (token values excluded).",
+  "tables": {
+    "access_allowlist": {
+      "rows": 6,
+      "md5": "e3b229b7a90395eebc3c489dcb091438"
+    },
+    "appraisals": {
+      "rows": 1,
+      "md5": "a5c495db881ad2bb9a8f8e2cc1273daf"
+    },
+    "audit_log": {
+      "rows": 2622,
+      "md5": "f4654da0e6799bd47f777fbceb2de755"
+    },
+    "compliance_events": {
+      "rows": 698,
+      "md5": "ab2c59249609af36255ba9752839cb82"
+    },
+    "deals": {
+      "rows": 2,
+      "md5": "4ccdbdc48e4357ae5101e2f49155a70b"
+    },
+    "documents": {
+      "rows": 247,
+      "md5": "7692c68d3254e1bc6d575982215cad76"
+    },
+    "floor_plans": {
+      "rows": 57,
+      "md5": "4f5c94901c4b1e95b0bc487508f92d67"
+    },
+    "hvac_units": {
+      "rows": 28,
+      "md5": "5df234237eefb9a5462912eb8ede1489"
+    },
+    "insurance_contacts": {
+      "rows": 2,
+      "md5": "2f49d18138b7e9d71e3dbb2fb9d078ea"
+    },
+    "invoice_line_items": {
+      "rows": 108,
+      "md5": "54e445992f44d74717ece6de4cac2b6b"
+    },
+    "invoices": {
+      "rows": 18,
+      "md5": "d73ea571ce8030f5d18a58ccb29a82d4"
+    },
+    "late_fee_assessments": {
+      "rows": 36,
+      "md5": "b736c490e6ba0fb7c552ffbabf1d62fc"
+    },
+    "late_fee_runs": {
+      "rows": 12,
+      "md5": "5f9f20b7709099ae11d78fcf64fb8e27"
+    },
+    "lease_abstractions": {
+      "rows": 24,
+      "md5": "c1cdc7b983d5b2c86c57fecb69e74376"
+    },
+    "ledger_entries": {
+      "rows": 108,
+      "md5": "27546f605dbcf5e488ed76e8c47bf266"
+    },
+    "licenses": {
+      "rows": 2,
+      "md5": "d37d00d1c81395d6e936fde0925013e4"
+    },
+    "lots": {
+      "rows": 3,
+      "md5": "d204103d72ddb7c0044f252d28323664"
+    },
+    "parcels": {
+      "rows": 2,
+      "md5": "e47a4949467c6bab70d5bad72c638f89"
+    },
+    "parking_stalls": {
+      "rows": 1,
+      "md5": "5e2bfb86a4721dd84543c7b361cc783c"
+    },
+    "poi_categories": {
+      "rows": 42,
+      "md5": "eb8ee662a3eeb00ddfb7f49ab1ab61bd"
+    },
+    "pois": {
+      "rows": 1,
+      "md5": "afa6f287757f91fadfdda1c0e3dfae23"
+    },
+    "properties": {
+      "rows": 3,
+      "md5": "334ae43bed84c8b52691f066da8e4ccc"
+    },
+    "property_documents": {
+      "rows": 6,
+      "md5": "c6c3393f3423e191b3037b56270ded78"
+    },
+    "property_identifiers": {
+      "rows": 25,
+      "md5": "4af6f163ddd3dc32358036889e3f8897"
+    },
+    "property_register_categories": {
+      "rows": 54,
+      "md5": "68b0da8fcea8169455eea425bc131ff9"
+    },
+    "pylon_slots": {
+      "rows": 28,
+      "md5": "70344a776aa83edb07599801bbf5e93e"
+    },
+    "recorded_agreements": {
+      "rows": 13,
+      "md5": "ed31a14db29f953a39d164e21f82c203"
+    },
+    "rent_escalations": {
+      "rows": 83,
+      "md5": "0bf67144ede48e5858a6c1e7c966fa73"
+    },
+    "rent_payments": {
+      "rows": 313,
+      "md5": "38b3e97fdd71ff8e147cc61fefe08a63"
+    },
+    "signs": {
+      "rows": 3,
+      "md5": "e0c53477360d4ccfecbf5bc1ce35b1de"
+    },
+    "tenant_access_tokens": {
+      "rows": 4,
+      "md5": "90ff1b77e1afaa90a3681daec639d3ec"
+    },
+    "units": {
+      "rows": 27,
+      "md5": "3385d846ca49dfee86cf6aec786e3f42"
+    },
+    "user_properties": {
+      "rows": 12,
+      "md5": "d691d4b69d7d87989e58db0f3d1ec415"
+    },
+    "users": {
+      "rows": 76,
+      "md5": "8014325777de134b68cffd5a72a61212"
+    },
+    "vendors": {
+      "rows": 69,
+      "md5": "20d75ef659a84303c5ad9343376a974e"
+    },
+    "views": {
+      "rows": 7,
+      "md5": "e1d06a02253f3a0bd5415889d8936558"
+    },
+    "voice_intake": {
+      "rows": 62,
+      "md5": "f707273dde891a91b6ed03861de51149"
+    },
+    "waitlist_prospects": {
+      "rows": 1,
+      "md5": "fcc3d6635c4410ddbe468ea71d78d45e"
+    },
+    "work_orders": {
+      "rows": 24,
+      "md5": "323de7cb73b364fe37f31d91822c00bb"
+    }
+  }
+}

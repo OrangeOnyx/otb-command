@@ -1,0 +1,85 @@
+[
+ {
+  "id": "lic1",
+  "propertyId": "otb-prop-1",
+  "name": "Our Savior's Church",
+  "legalEntity": "Our Savior's Church, a Louisiana non-profit religious corporation",
+  "agreementType": "Access & Parking Easement and Servitude",
+  "monthlyFee": 350,
+  "feeBasis": "Maintenance/repair cost-offset (not rent)",
+  "effectiveDate": "2019-12-06",
+  "termYears": 25,
+  "termEnd": null,
+  "terminationNotice": "45 days' written notice, either party, any reason (not retroactive)",
+  "supersedes": "Prior Agreement dated 2015-12-17",
+  "nonExclusive": true,
+  "reciprocal": false,
+  "spacesGranted": null,
+  "zoneFillOrder": "A → B → C → D (Exhibit D); Zone A first",
+  "useWindows": [
+   "Sundays: 30 min before first service to 30 min after last service",
+   "Any day 6:00 PM – 12:00 AM (church meetings/activities)",
+   "Otherwise: written permission of Belle required"
+  ],
+  "restrictions": [
+   "No parking in first row along storefronts",
+   "No parking in rear of center (reserved for tenant loading)",
+   "Must not park in front of any open business",
+   "Tenant special events take priority over church use"
+  ],
+  "maintenanceSplit": null,
+  "liquorWaiver": "Church grants written waiver of opposition to alcohol permits for any restaurant on Belle Property (LA City-Parish Code §6-36(a), 175-ft rule). SURVIVES TERMINATION; binds successors/assigns. (Section 3a)",
+  "insuranceReq": "$1M/occurrence GL, $1M aggregate, Belle named additional insured; 30-day cancellation notice",
+  "counterpartyContact": "Don Norman, Chief Administrative Officer",
+  "counterpartyAddress": "101 Marie Antoinette, Lafayette, LA 70506",
+  "belleNoticeContact": null,
+  "contactName": "Don Norman",
+  "contactPhone": "",
+  "contactEmail": "",
+  "appliesToLots": [
+   "lot1",
+   "lot3"
+  ],
+  "notes": "Executed easement on file. $350/mo characterized as maintenance offset, payable to 101 Arnould Blvd or via ACH at Belle's option. Church owns Lots 1-4 Block M (Arnould Hts Ext 1) + Lot 4 Block A (Pierret Subd).",
+  "createdAt": "2026-06-10T03:17:32",
+  "updatedAt": "2026-06-10T03:17:32"
+ },
+ {
+  "id": "lic2",
+  "propertyId": "otb-prop-1",
+  "name": "JD Bank",
+  "legalEntity": "JD Bank, a national banking association (successor to Whitney National Bank)",
+  "agreementType": "Reciprocal Access & Parking Easement and Servitude",
+  "monthlyFee": 250,
+  "feeBasis": "JD Bank pays Belle for Belle Servitude Area easement (Belle receives payment)",
+  "effectiveDate": "2020-03-19",
+  "termYears": null,
+  "termEnd": "2034-12-30",
+  "terminationNotice": "Belle may cancel the Belle→JD Bank easement on written notice if JD Bank changes use (no longer a bank branch) OR sells its property. Covenant otherwise runs with the land through 2034-12-30.",
+  "supersedes": "Belle↔Whitney National Bank Reciprocal Agreement dated 2004-12-30 (Entry 2004-00057697)",
+  "nonExclusive": true,
+  "reciprocal": true,
+  "spacesGranted": 13,
+  "zoneFillOrder": "",
+  "useWindows": [],
+  "restrictions": [
+   "Belle Servitude Area = Belle parking spaces + Right of Passage to Johnston/Arnould/Marie Antoinette (Exhibit A-1)",
+   "JD Bank grants Belle 13 bank parking spaces (Exhibit B-1, marked with X's)"
+  ],
+  "maintenanceSplit": "50/50 on Right of Passage Area (repair, cleaning, liability insurance). Belle selects LA-licensed contractor; JD Bank has 5 days to approve estimate (silence=approval); remits half within 10 days of invoice.",
+  "liquorWaiver": "",
+  "insuranceReq": "Each party maintains comprehensive GL, names the other as additional insured, provides certificates",
+  "counterpartyContact": "Paul E. Brummett, II, CFO — 1611 Elton Road, Jennings, LA 70546 (copy: George Shafer, In-house Counsel, same address)",
+  "counterpartyAddress": "3600 Johnston Street, Lafayette, LA",
+  "belleNoticeContact": "Edward E. Abdalla, IV — 101 Arnould Blvd (copy: Katherine E. Currie, Esq., Becker & Associates, 201 Rue Beauregard, Lafayette LA 70508)",
+  "contactName": "Karen Nelands (JD Bank AP)",
+  "contactPhone": "337-246-5415",
+  "contactEmail": "Karen.nelands@jdbank.com",
+  "appliesToLots": [
+   "lot1"
+  ],
+  "notes": "Executed reciprocal easement on file (March 19, 2020). JD Bank OWNS its corner parcel at 3600 Johnston St. TRUE RECIPROCAL: JD Bank pays Belle $250/mo; Belle gets use of 13 JD Bank spaces. Both easements expire 2034-12-30. NOT a building tenant; NOT on rent roll.",
+  "createdAt": "2026-06-10T03:17:32",
+  "updatedAt": "2026-06-10T03:17:32"
+ }
+]

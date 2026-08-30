@@ -1,0 +1,36 @@
+[
+ {
+  "id": "615adf9c-1259-4dfb-a962-6a742c8eac7d",
+  "propertyId": "otb-prop-1",
+  "dba": "HotWorx",
+  "carrier": "Certain Underwriters at Lloyd's, London",
+  "policyNumber": "HXG-000232-00",
+  "policyType": "GL / Property / WC / Professional",
+  "coverageNotes": null,
+  "agencyName": "Lockton Affinity, LLC (HOTWORX Insurance Program)",
+  "agentName": null,
+  "agentPhone": "844-401-9446",
+  "agentEmail": null,
+  "notes": "Property policy HXP-000232-00; WC SWC1589711; Insured: HW Settlers Trace LLC / Lexi Investments. Fax 913-652-7599.",
+  "createdBy": "n",
+  "createdAt": "2026-06-29T14:28:33",
+  "updatedAt": "2026-06-29T14:28:33"
+ },
+ {
+  "id": "9a664b18-fdc3-4055-be30-5e423ebd6d35",
+  "propertyId": "otb-prop-1",
+  "dba": "Upstream Rehabilitation",
+  "carrier": "TDC Specialty Insurance Company",
+  "policyNumber": "MFP-02533-25-01",
+  "policyType": "GL / Auto / Umbrella / WC",
+  "coverageNotes": null,
+  "agencyName": "Lockton Companies (Lockton Insurance Brokers, LLC)",
+  "agentName": null,
+  "agentPhone": "816-960-9000",
+  "agentEmail": null,
+  "notes": "Belle Realty of Lafayette named additional insured (Clinic #2577). Insured: Upstream Rollco/Rehabilitation, Benchmark Growth Partners. Umbrella 005AL000048252; WC 37WEID1080.",
+  "createdBy": "n",
+  "createdAt": "2026-06-29T14:28:33",
+  "updatedAt": "2026-06-29T14:28:33"
+ }
+]

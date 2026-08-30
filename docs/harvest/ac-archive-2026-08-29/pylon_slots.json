@@ -1,0 +1,254 @@
+[
+ {
+  "id": "0032d631-bfa1-4013-b822-1e2008333e9a",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 1,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "04a8d84b-8a0d-40f1-baed-746d7b62c135",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 3,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "06e9c53a-cf0e-4566-98d2-d6be7b80efcd",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 9,
+  "tenantName": "Cat Clinic of Lafayette",
+  "linkedUnitId": "u1195",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "100565a0-8e51-4bf7-809c-97c10a4647e3",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 2,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "1ea183a4-8a3e-446c-b90c-2227d9f1cda0",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 9,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "25b76003-52ee-402b-9f66-be93a1e72b26",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 13,
+  "tenantName": "Upstream Rehabilitation",
+  "linkedUnitId": "u145",
+  "status": "occupied",
+  "notes": "Boulevard Nutrition closed; space taken by Upstream Rehabilitation (Unit 145). PHYSICAL PANEL STILL READS \"Boulevard Nutrition\" — reprint needed."
+ },
+ {
+  "id": "2c80c6f4-544e-428b-acdd-a069c139bbf5",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 4,
+  "tenantName": "FastPass Tag & Title",
+  "linkedUnitId": "u139",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "320a9c7f-e1c7-41f9-bcf3-6a9abd0f8a68",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 6,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "41a11a2f-8c48-4ac7-adc9-87f78264c128",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 7,
+  "tenantName": "The Clothing Loft",
+  "linkedUnitId": "u115",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "4776111c-9717-4c23-94f0-ac4393cff3ce",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 2,
+  "tenantName": "Jason's Deli",
+  "linkedUnitId": "u149",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "4c3609c7-d94f-434f-91f4-818362c498fd",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 10,
+  "tenantName": "BERNINA Lafayette Sewing Center",
+  "linkedUnitId": "u111",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "4dcc52cc-de27-4b41-b5bc-3e2a99f9263e",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 1,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "591eaf38-3ef7-4394-b378-390e673ceb02",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 10,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "5f706cc0-dd66-4517-8087-22525ab60690",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 14,
+  "tenantName": "OUPAC Loans",
+  "linkedUnitId": "u119",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "6636c7ef-9b05-42b3-9d15-d562b28e7301",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 5,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "69bc4f93-6b27-459e-9ffa-146434dc8001",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 12,
+  "tenantName": "Victoria Nails",
+  "linkedUnitId": "u1175",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "69ebeb3b-1ba8-4193-8631-318a57a9dc28",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 8,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "961941d6-d3d8-467b-85a2-0f69fd6adc12",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 4,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "99fce5e4-23b3-4a86-892c-c762e52aef84",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 6,
+  "tenantName": "Jordan Amanda by Shoetique",
+  "linkedUnitId": "u125",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "c2204315-618a-4524-bc0d-464c32da0a8b",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 5,
+  "tenantName": "J.C. Kate Boutique",
+  "linkedUnitId": "u109",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "cdba2e7c-6205-42ec-92b7-c665dac1f6eb",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 14,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "d332e703-dba3-4f56-bde3-fbeeb2b184ac",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 12,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "d6cc8f1f-e92a-4300-9e5b-3c6e54cd294d",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 11,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "e16bf7a5-654e-4d69-bb14-6110223a114a",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 11,
+  "tenantName": "1st Franklin Financial",
+  "linkedUnitId": "u143",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "e20c2213-efca-48e7-b5ea-c72626214b10",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 3,
+  "tenantName": "Mary Ellen's The Tux Shoppe",
+  "linkedUnitId": "u123",
+  "status": "occupied",
+  "notes": null
+ },
+ {
+  "id": "f41a4fcd-b255-48e5-add4-abf7a0bde021",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 13,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "f7f75598-4e29-41b7-9f3c-10ec8f958682",
+  "signId": "c3fb7756-34d5-48ee-96af-c00d9b6cb441",
+  "slotNumber": 7,
+  "tenantName": null,
+  "linkedUnitId": null,
+  "status": "vacant",
+  "notes": null
+ },
+ {
+  "id": "fef3a823-7b87-49e5-9999-8aabe7cb66dc",
+  "signId": "1d805bb9-efa4-46e8-8a81-c924bc07c0b8",
+  "slotNumber": 8,
+  "tenantName": "HotWorx",
+  "linkedUnitId": "u129",
+  "status": "occupied",
+  "notes": null
+ }
+]

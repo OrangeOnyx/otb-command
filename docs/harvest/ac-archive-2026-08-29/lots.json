@@ -1,0 +1,38 @@
+[
+ {
+  "id": "lot1",
+  "propertyId": "otb-prop-1",
+  "name": "Main Parking Field (Parcel 1)",
+  "fillOrder": 1,
+  "parcelRef": "parcel1",
+  "deprecated": false,
+  "color": "lot1",
+  "notes": "Primary parking field, part of Parcel 1 (Block I, Arnould Heights). Customers fill here first. Required parking for the retail building.",
+  "createdAt": "2026-06-10T03:17:31",
+  "updatedAt": "2026-06-10T03:17:31"
+ },
+ {
+  "id": "lot2",
+  "propertyId": "otb-prop-1",
+  "name": "[deprecated] North Lot",
+  "fillOrder": 2,
+  "parcelRef": null,
+  "deprecated": true,
+  "color": "lot2",
+  "notes": "DEPRECATED — speculative entry from pre-deed notes. Deed shows only TWO parcels (main + remote). Re-survey to confirm before re-using.",
+  "createdAt": "2026-06-10T03:17:32",
+  "updatedAt": "2026-06-10T03:17:32"
+ },
+ {
+  "id": "lot3",
+  "propertyId": "otb-prop-1",
+  "name": "Remote Parking — Lot 7, Block M (Parcel 2)",
+  "fillOrder": 3,
+  "parcelRef": "parcel2",
+  "deprecated": false,
+  "color": "lot3",
+  "notes": "Across Marie Antoinette Street. Legally Lot 7, Block M, Arnould Heights Subdivision Ext. No. 1. ~14,375 sf. Serves as REQUIRED ACCESSORY PARKING for Parcel 1's retail building — verify zoning before granting any exclusive license use.",
+  "createdAt": "2026-06-10T03:17:32",
+  "updatedAt": "2026-06-10T03:17:32"
+ }
+]

@@ -1,0 +1,143 @@
+[
+ {
+  "id": "building-systems",
+  "propertyId": "otb-prop-1",
+  "label": "Building Systems",
+  "icon": "🔧",
+  "audience": "Maintenance, vendors",
+  "purpose": "Interior floor plan composite. Water shutoffs, breakers, gas valves, plumbing.",
+  "showUnits": true,
+  "showParking": false,
+  "showSigns": false,
+  "showPois": true,
+  "poiGroups": [
+   "Utilities",
+   "Plumbing",
+   "Life Safety",
+   "Network"
+  ],
+  "backgroundUrl": null,
+  "backgroundKey": null,
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 2
+ },
+ {
+  "id": "common-areas",
+  "propertyId": "otb-prop-1",
+  "label": "Common Areas",
+  "icon": "🌿",
+  "audience": "Events, decorating",
+  "purpose": "Exterior + sidewalks. Columns, benches, trash cans, planters.",
+  "showUnits": true,
+  "showParking": false,
+  "showSigns": false,
+  "showPois": true,
+  "poiGroups": [
+   "Site"
+  ],
+  "backgroundUrl": null,
+  "backgroundKey": null,
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 3
+ },
+ {
+  "id": "daily-ops",
+  "propertyId": "otb-prop-1",
+  "label": "Daily Ops",
+  "icon": "⚡",
+  "audience": "Adam — daily use",
+  "purpose": "Google Maps / drone aerial + site plan overlay. All operational data visible.",
+  "showUnits": true,
+  "showParking": false,
+  "showSigns": false,
+  "showPois": false,
+  "poiGroups": [
+   "Network"
+  ],
+  "backgroundUrl": "",
+  "backgroundKey": "",
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 1
+ },
+ {
+  "id": "hardscape",
+  "propertyId": "otb-prop-1",
+  "label": "Site / Hardscape",
+  "icon": "🚧",
+  "audience": "Vendor coordination",
+  "purpose": "Overhead w/ ADA ramps, light poles, dumpster enclosures, bollards.",
+  "showUnits": true,
+  "showParking": true,
+  "showSigns": true,
+  "showPois": true,
+  "poiGroups": [
+   "Site",
+   "Building"
+  ],
+  "backgroundUrl": "",
+  "backgroundKey": "",
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 6
+ },
+ {
+  "id": "leasing",
+  "propertyId": "otb-prop-1",
+  "label": "Leasing",
+  "icon": "🏷",
+  "audience": "Brokers, prospects",
+  "purpose": "Clean site plan, vacancy + availability colors. Eventually 2.5D rendering w/ channel-letter signs.",
+  "showUnits": false,
+  "showParking": true,
+  "showSigns": true,
+  "showPois": true,
+  "poiGroups": [],
+  "backgroundUrl": null,
+  "backgroundKey": null,
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 0
+ },
+ {
+  "id": "roof",
+  "propertyId": "otb-prop-1",
+  "label": "Roof",
+  "icon": "🏠",
+  "audience": "Capex, insurance, HVAC contractors",
+  "purpose": "Top-down drone w/ RTUs visible. HVAC compliance shown per-unit.",
+  "showUnits": true,
+  "showParking": true,
+  "showSigns": true,
+  "showPois": true,
+  "poiGroups": [
+   "HVAC",
+   "Building"
+  ],
+  "backgroundUrl": null,
+  "backgroundKey": null,
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 5
+ },
+ {
+  "id": "signage",
+  "propertyId": "otb-prop-1",
+  "label": "Signage",
+  "icon": "🪧",
+  "audience": "Tenant signage approval",
+  "purpose": "Storefront elevation. Pylon + per-unit exterior sign positions, approval status.",
+  "showUnits": true,
+  "showParking": false,
+  "showSigns": true,
+  "showPois": false,
+  "poiGroups": [],
+  "backgroundUrl": null,
+  "backgroundKey": null,
+  "backgroundWidth": 0,
+  "backgroundHeight": 0,
+  "sortOrder": 4
+ }
+]

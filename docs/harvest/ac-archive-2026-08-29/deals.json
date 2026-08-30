@@ -1,0 +1,36 @@
+[
+ {
+  "id": "2433f7dc-6e46-416b-9299-4e0841045b59",
+  "propertyId": "otb-prop-1",
+  "prospectName": "Bayou Brew Test Lease",
+  "businessName": "Bayou Brew Test Lease",
+  "contactEmail": null,
+  "contactPhone": null,
+  "targetUnitId": null,
+  "targetSqft": null,
+  "proposedRent": null,
+  "stage": "lead",
+  "source": null,
+  "notes": "Test deal for Lease Assembler DOCX generation flow. Target unit: Suite 105 (u105).",
+  "createdAt": "2026-08-17T10:00:49.373152",
+  "updatedAt": "2026-08-17T10:00:49.373152",
+  "contactWebsite": null
+ },
+ {
+  "id": "8089dee7-8876-4fc4-985d-1f236083a159",
+  "propertyId": "otb-prop-1",
+  "prospectName": "DemoMan",
+  "businessName": "Man Demo",
+  "contactEmail": "DemoMan@aol.com",
+  "contactPhone": "337-555-1234",
+  "targetUnitId": null,
+  "targetSqft": null,
+  "proposedRent": "3000.00",
+  "stage": "lease_drafting",
+  "source": null,
+  "notes": "do it",
+  "createdAt": "2026-08-17T10:06:23.217081",
+  "updatedAt": "2026-08-17T10:06:44.406",
+  "contactWebsite": "DemoMan.Com"
+ }
+]
