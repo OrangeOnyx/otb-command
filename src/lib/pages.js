@@ -16,6 +16,8 @@ export const PAGES = [
   ["dates", "T-1", "Critical Dates"],
   ["board", "W-1", "Action Board"],
   ["dir", "K-1", "Directory"],
+  ["comms", "L-1", "Comm Log"],
+  ["matters", "N-1", "Matters"],
   ["maint", "M-1", "Maintenance"],
   ["sop", "O-1", "Operations"],
   ["vendors", "V-1", "Vendor Portal"]

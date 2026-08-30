@@ -30,6 +30,8 @@ import { initVendorPortal } from "./views/vendorportal.js";
 import { initMaintenance } from "./views/maintenance.js";
 import { initSop } from "./views/sop.js";
 import { initPortfolio } from "./views/portfolio.js";
+import { initComms } from "./views/comms.js";
+import { initMatters } from "./views/matters.js";
 import { closeDrawer } from "./views/drawer.js";
 
 
@@ -297,6 +299,8 @@ function initViews(account) {
   initMaintenance(account);
   initSop(account);
   initPortfolio();
+  initComms(account);
+  initMatters(account);
   initDashboard(); // last — its Action Queue reads the board's live cards
 }
 

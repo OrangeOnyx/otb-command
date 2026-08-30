@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:/Users/adam/Projects/otb-command-claude-code-kit/otb-command\" diff --stat HANDOFF.md)",
+      "Bash(git -C \"C:/Users/adam/Projects/otb-command-claude-code-kit/otb-command\" diff HANDOFF.md)",
+      "Bash(git -C \"C:/Users/adam/Projects/otb-command-claude-code-kit/otb-command\" add .claude/settings.json HANDOFF.md)",
+      "Bash(git -C \"C:/Users/adam/Projects/otb-command-claude-code-kit/otb-command\" commit -m \"Add deploy/push allow rules + HANDOFF status\")",
+      "Bash(git -C \"C:/Users/adam/Projects/otb-command-claude-code-kit/otb-command\" push origin master)",
+      "Bash(git -C \"C:/Users/adam/Projects/otb-command-claude-code-kit/otb-command\" log --oneline ceb8ba6..9d4b2da)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Record deploy-gate proof: allow rules verified in interactive session *)",
+      "Bash(git push *)"
+    ]
+  }
+}
