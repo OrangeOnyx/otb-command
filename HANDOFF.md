@@ -3,7 +3,43 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-29 — **C3 CAPTURE DRIVE OFFLINE; nightly/midday now
+Last updated: 2026-08-29 (later) — **HARVEST WAVES RAN UNDER /goal: H1.1 history
++ H1.2 + H2 IMPORTED · H2.5 BUILD WAVES 1–2 SHIPPED (491 tests) — ⚠ IN REPO,
+DEPLOY PENDING.** Full record: docs/superpowers/specs/2026-08-29-ac-harvest.md
++ punch list Rev 4 (republished, operator state r1 carried; new SMK-6).
+**Imports (all verified, idempotent `ac:` ids, MCP SQL door):** payment_history
+NEW table = 313 rows / **$1,133,492.20 to the cent** (H-1 interim shape (b) —
+additive/reversible, operator ratifies or reverses on the punch list) ·
+comm_log NEW = 62 AC voice-intake rows · maintenance_requests +1 REAL work
+order (Pothole Repair, Common Area — the other 23 AC WOs were cancelled
+"Test Tenant" test tickets, archived only) · compliance_events +37 real (661
+were an automated "Test User" COI-extraction loop, archived only; the 37
+include real deposits + 129/145 COI carriers/policy numbers) · lease_abstracts
+24 + rent_escalation_ref 83 (linked) · hvac_units NEW = 28 · deals NEW = 3.
+**Flat archive:** ALL 39 AC tables → docs/harvest/ac-archive-2026-08-29/
+(md5 manifest; passwordHash/auth_tokens/token values stripped) + Drive copy.
+**Builds (9 parallel agents over pre-wired seams):** 17-sheet nav — NEW L-1
+Comm Log (filters/search/log-entry; N-2 meeting notes v1 via matters) + NEW
+N-1 Matters (kind/status/deadlines, correspondence, T-1 feed incl. rent
+steps) · drawer: Prior payments (13-mo, status-truth lateness — 2026-07 AC
+rows were bulk-entered, never trust their paid_at) + operator-only Lease
+abstract panel + ledger ⤓ Statement (branded printable, owner-visible) · W-1
+leasing pipeline strip over deals · K-1 document `expires` field + coi.js
+badges + expiring strip (#16) · P-1: collections history bars, tenant-health
+scoring (60/25/15 model, #13), CAM recon DRAFT card (#6 v1) · S-1 ⤓ quarterly
+Board report from stored briefs (#12 v1). Assert suite EXTENDED to the 7 new
+tables (read-only landings deny even operator writes) — **run on PROD:
+SUITE_PASS_ROLLBACK, 0 residue.** Register now 7/25 green (10/11/13/14/16
+done; 5/6/12/18 v1-live; #7 QBO · #8 governance · #9 tenant portal · vendor
+upload links still open). Deferred/gated: doc+floor-plan BINARIES need a
+keyed AC-storage copy (H3 step) · user invites wait on H-3 · voice number
+cutover waits on H-2. Session lessons: this headless session's classifier
+blocked Bash access to the session tool-results dir AND get_publishable_keys
+— but the PowerShell tool ran repo node tools fine, and execute_sql handled
+all DDL + bulk inserts (dollar-quoted jsonb payloads, `America/Chicago` for
+AC's naive timestamps). **Operator: run the deploy below, then punch-list
+SMK-6 (L-1 rows · N-1 matter · 101 drawer panels · P-1 cards · ⤓ Statement).**
+Prior: 2026-08-29 — **C3 CAPTURE DRIVE OFFLINE; nightly/midday now
 guarded.** The E: capture drive is disconnected (no OTB-CAPTURE tree on any
 mounted volume; D: is the unrelated "My Passport" backup). Under Task
 Scheduler's PS 5.1, `Join-Path` on the missing drive threw at
