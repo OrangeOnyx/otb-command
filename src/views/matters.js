@@ -1,7 +1,9 @@
 /* N-1 Matters & Planning — long-running property affairs as status-filtered
    cards over lib/matters.js. OPERATOR: open matters, edit fields inline, log
-   meeting notes (N-2 v1 → comm_log), close/reopen. OWNER: read-only cards +
-   correspondence. Tenants/vendors never route here (single-sheet roles).
+   meeting notes + file attachments (N-2 → comm_log; files ride the documents
+   bucket seam), close/reopen. OWNER: read-only cards + correspondence, and
+   can OPEN attachments (bucket read RLS) but never attach.
+   Tenants/vendors never route here (single-sheet roles).
    Correspondence loads lazily on first expand; card expansion + the comms
    cache survive rerenders via module state. */
 import { REMOTE } from "../lib/remote.js";
@@ -10,7 +12,9 @@ import {
   MATTER_KINDS, MATTER_STATUS, sortMatters, deadlineTone,
   getMatters, onMattersChange, refreshMatters,
   addMatter, updateMatter, addMeetingNote, listMatterComms,
+  attachMatterDoc, commDocLink,
 } from "../lib/matters.js";
+import { docURL } from "../lib/docs.js";
 
 const todayYmd = () => new Date().toISOString().slice(0, 10);
 const tag = (label, color) =>
@@ -43,12 +47,15 @@ function commsHTML(id) {
   if (c === undefined || c === "loading") return '<div class="led-note">loading correspondence…</div>';
   if (c === "error") return '<div class="led-note" style="color:var(--brick)">correspondence read failed — reopen the card to retry</div>';
   if (!c.length) return '<div class="led-note">no correspondence linked yet</div>';
-  return c.map(r =>
-    '<div class="led-note">' + esc(r.channel) + ' · ' + esc(fmtWhen(r.at)) +
-    (r.contact_name ? " · " + esc(r.contact_name) : "") +
-    (r.unit ? " · unit " + esc(r.unit) : "") +
-    (r.summary ? ' — <span style="color:var(--ink)">' + esc(r.summary) + '</span>' : "") +
-    '</div>').join("");
+  return c.map(r => {
+    const doc = commDocLink(r); // attachment rows carry a doc:// body
+    return '<div class="led-note">' + esc(r.channel) + ' · ' + esc(fmtWhen(r.at)) +
+      (r.contact_name ? " · " + esc(r.contact_name) : "") +
+      (r.unit ? " · unit " + esc(r.unit) : "") +
+      (r.summary ? ' — <span style="color:var(--ink)">' + esc(r.summary) + '</span>' : "") +
+      (doc ? ' <a href="#" class="mtr-doclink" data-doc="' + esc(doc) + '" style="white-space:nowrap">Open 📎</a>' : "") +
+      '</div>';
+  }).join("");
 }
 
 /* inline operator forms (render into the card's slot) */
@@ -91,6 +98,8 @@ function matterHTML(m, today, operator) {
       '<div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">' +
       '<button class="chip mtr-edit" style="cursor:pointer">✎ Edit</button>' +
       '<button class="chip mtr-note-add" style="cursor:pointer">＋ Meeting note</button>' +
+      '<button class="chip mtr-attach" style="cursor:pointer">📎 Attach file</button>' +
+      '<input type="file" class="mtr-file" hidden>' +
       (m.status === "closed" ?
         '<button class="chip mtr-reopen" style="cursor:pointer">Reopen</button>' :
         '<button class="chip mtr-close" style="cursor:pointer">Close matter</button>') +
@@ -190,6 +199,29 @@ function wire(host, account) {
       slot().innerHTML = noteFormHTML();
       wireForms(host, account, id);
     });
+    /* attach flow mirrors recordsUI: chip proxies a hidden file input; upload
+       through the bucket seam then invalidate this matter's comms cache */
+    const fileIn = el.querySelector(".mtr-file");
+    el.querySelector(".mtr-attach")?.addEventListener("click", e => {
+      e.preventDefault();
+      fileIn.click();
+    });
+    fileIn?.addEventListener("change", async () => {
+      const f = fileIn.files[0];
+      fileIn.value = "";
+      if (!f) return;
+      const btn = el.querySelector(".mtr-attach");
+      btn.disabled = true; btn.textContent = "Uploading…";
+      try {
+        await attachMatterDoc(id, f, account.email);
+        comms.delete(id); // invalidate → lazy reload paints the attachment row
+        loadComms(id, host, account);
+        render(host, account);
+      } catch (err) {
+        fail("Attach", err);
+        btn.disabled = false; btn.textContent = "📎 Attach file";
+      }
+    });
     el.querySelector(".mtr-close")?.addEventListener("click", async () => {
       if (!confirm("Close this matter? It drops off the T-1 deadline feed.")) return;
       try { await updateMatter(id, { status: "closed", closed_on: todayYmd() }, account.email); }
@@ -199,6 +231,14 @@ function wire(host, account) {
       try { await updateMatter(id, { status: "open", closed_on: null }, account.email); }
       catch (err) { fail("Reopen", err); }
     });
+  });
+
+  /* open an attachment — signed URL resolved on click; wired for every role
+     (owners open read-only; only operators ever see the attach chip) */
+  host.querySelectorAll(".mtr-doclink").forEach(a => a.onclick = async e => {
+    e.preventDefault();
+    try { window.open(await docURL(a.dataset.doc), "_blank", "noopener"); }
+    catch (err) { alert("Could not open file: " + err.message); }
   });
 }
 

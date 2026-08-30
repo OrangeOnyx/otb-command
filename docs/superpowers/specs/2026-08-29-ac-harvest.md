@@ -68,6 +68,29 @@ K-1 and M-1. Data seams authored centrally (`lib/payhistory.js`,
 `lib/leaseref.js`, `lib/deals.js` — sop.js cache-trio pattern); parallel agents
 build: L-1 view · N-1 view + T-1 feed · drawer panels (Prior payments + Lease
 abstract) · W-1 deals pipeline · K-1 document expiry (#16, reusing coi.js) ·
-P-1 collections history + tenant health (#13). Register rows still open after
-this wave: #5 invoices/statements, #6 CAM recon, #7 accounting/QBO, #9 tenant
-portal expansion, #12 board reports, N-2 ingestion UX beyond comm_log entry.
+P-1 collections history + tenant health (#13).
+
+**Wave 2** (same day): per-unit ⤓ Statement in the drawer Ledger panel (#5 v1,
+`lib/statement.js`) · S-1 ⤓ quarterly Board report from stored owner_briefs
+models (#12 v1, `lib/boardreport.js` — missing months named, never papered
+over) · P-1 CAM/NNN reconciliation DRAFT card (#6 v1, `lib/camrecon.js` —
+worksheet actuals vs billed recoveries, CAM-only gross-up; caps/base-year
+clauses named as caveats, not modeled).
+
+**Wave 3** (same day): `governance_items` table (migration
+20260829210000) — operator-entered LLC records / covenants / deadlines on S-1
+with a T-1 feed (#8; repo-locked facts.js instruments stay the facts SOT) ·
+matter FILE ATTACHMENTS (N-2 v1.5): operator attaches docs via the existing
+documents-bucket seam, entries land in comm_log with openable doc:// links.
+
+Register rows still open after wave 3 — each gated, not skipped:
+- **#7 accounting/QBO (N-3)**: its own program; needs an operator design
+  session (chart of accounts, expense capture, QBO direction).
+- **#9 tenant portal expansion**: changes what TENANTS see (own ledger, lease
+  docs, payment links) — audience-facing scope the operator sets (cf. OWN-1);
+  also RLS changes on money tables.
+- **#2 vendor upload token-links**: architecturally blocked by the
+  no-service-key posture — unauthenticated storage uploads need server-signed
+  upload URLs (a service key) or a dedicated low-privilege upload identity.
+  Operator call before introducing either.
+- **#17 binaries**: keyed one-time AC storage copy (H3 step).

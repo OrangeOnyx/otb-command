@@ -9,6 +9,7 @@
    correspondence and the meeting-note insert.
    Pure folds (deadline feed, sort, tones) tested in test/matters.test.mjs. */
 import { REMOTE, sb, propertyContext } from "./remote.js";
+import { addDoc, buildDocLink, isDocLink, docPath } from "./docs.js";
 
 /* ---- vocabulary (plan-room palette; keys mirror the CHECK constraints) ---- */
 export const MATTER_KINDS = {
@@ -101,7 +102,7 @@ export async function listMatterComms(matterId) {
   if (!REMOTE) return [];
   const ctx = await propertyContext();
   const { data, error } = await sb.from("comm_log")
-    .select("id,at,channel,contact_name,summary,unit")
+    .select("id,at,channel,contact_name,summary,body,unit")
     .eq("property_id", ctx.property_id).eq("matter_id", matterId)
     .order("at", { ascending: false }).limit(100);
   if (error) throw error;
@@ -159,6 +160,37 @@ export async function addMeetingNote(matterId, { summary, body = "", contact = "
     contact_name: String(contact || "").slice(0, 120),
     summary: String(summary || "").slice(0, 500),
     body: String(body || "").slice(0, 4000),
+    source: "app",
+    updated_by: String(by || "").toLowerCase(),
+  };
+  const { error } = await sb.from("comm_log").insert(row);
+  if (error) throw error;
+  return row.id;
+}
+
+/* N-2 v1.5 file attachments: the file uploads through the documents bucket
+   seam (folder "matter-<id>" keeps a matter's files grouped), then lands as a
+   comm_log note whose body is the doc:// link. Bucket RLS already lets
+   owner+operator read (open) while only the operator uploads/inserts. */
+export const ATTACH_PREFIX = "Attached: ";
+/* pure: the summary line an attachment row carries (comm_log cap 500) */
+export const attachSummary = name =>
+  (ATTACH_PREFIX + String(name || "file")).slice(0, 500);
+
+/* pure: the doc:// storage path when a comm row's body is a doc link, else
+   null — the view renders an "Open 📎" anchor for non-null rows */
+export const commDocLink = row =>
+  row && isDocLink(row.body) ? docPath(row.body) : null;
+
+export async function attachMatterDoc(matterId, file, by) {
+  const path = await addDoc(file, { unit: "matter-" + matterId });
+  const row = {
+    id: newMatterId("cm"),
+    matter_id: matterId,
+    channel: "note",
+    direction: "",
+    summary: attachSummary(file.name),
+    body: buildDocLink(path),
     source: "app",
     updated_by: String(by || "").toLowerCase(),
   };

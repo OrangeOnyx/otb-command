@@ -1,6 +1,7 @@
 -- Phase B merge-gate item (e): full RLS assert suite — 5 personas (operator ·
--- owner · vendor · tenant · authenticated stranger) against the 17 stamped
--- tables under membership-only RLS. Self-contained: seeds synthetic
+-- owner · vendor · tenant · authenticated stranger) against the stamped
+-- tables under membership-only RLS (17 Phase-B + 5 SOP + 7 AC-harvest +
+-- governance_items = 30). Self-contained: seeds synthetic
 -- auth.users (the on_auth_user_created trigger builds profiles+org_members),
 -- asserts, then ABORTS via `SUITE_PASS_ROLLBACK` so nothing persists.
 -- Expected outcome: the statement FAILS with message SUITE_PASS_ROLLBACK.
@@ -113,6 +114,8 @@ begin
     values ('smoke-cm', '131', 'smoke-mt', 'note', 'Smoke correspondence');
   insert into deals (id, prospect, target_unit, stage)
     values ('smoke-dl', 'Smoke Prospect', '131', 'inquiry');
+  insert into governance_items (id, kind, title, entity, due_on)
+    values ('smoke-gv', 'deadline', 'Smoke annual report', 'Belle Realty of Lafayette, LLC', current_date + 60);
 
   ------------------------------------------------------------------
   -- OPERATOR: sees everything; writes money + state
@@ -156,6 +159,7 @@ begin
   select count(*) into n from matters;               if n < 1 then raise exception 'FAIL op matters read'; end if;
   select count(*) into n from comm_log;              if n < 1 then raise exception 'FAIL op comm_log read'; end if;
   select count(*) into n from deals;                 if n < 1 then raise exception 'FAIL op deals read'; end if;
+  select count(*) into n from governance_items;      if n < 1 then raise exception 'FAIL op governance read'; end if;
 
   insert into ledger_entries (id, unit, type, code, amount, date)
     values ('smoke:op', '131', 'payment', 'rent', 100, current_date);
@@ -199,6 +203,9 @@ begin
   update deals set stage = 'tour' where id = 'smoke-dl';
   get diagnostics n = row_count;
   if n <> 1 then raise exception 'FAIL op deals update hit %', n; end if;
+  update governance_items set status = 'satisfied' where id = 'smoke-gv';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op governance update hit %', n; end if;
   execute 'reset role';
 
   ------------------------------------------------------------------
@@ -240,6 +247,27 @@ begin
   update comp_state set state = 'na' where unit = '131' and field = 'coi';
   get diagnostics n = row_count; -- owner sees the row; RLS update must hit 0
   if n <> 0 then raise exception 'FAIL owner comp_state update was allowed'; end if;
+  -- AC harvest + governance: owner reads, never writes
+  select count(*) into n from payment_history;    if n < 1 then raise exception 'FAIL owner payment_history read'; end if;
+  select count(*) into n from lease_abstracts;    if n < 1 then raise exception 'FAIL owner lease_abstracts read'; end if;
+  select count(*) into n from hvac_units;         if n < 1 then raise exception 'FAIL owner hvac_units read'; end if;
+  select count(*) into n from matters;            if n < 1 then raise exception 'FAIL owner matters read'; end if;
+  select count(*) into n from comm_log;           if n < 1 then raise exception 'FAIL owner comm_log read'; end if;
+  select count(*) into n from deals;              if n < 1 then raise exception 'FAIL owner deals read'; end if;
+  select count(*) into n from governance_items;   if n < 1 then raise exception 'FAIL owner governance read'; end if;
+  begin
+    insert into comm_log (id, channel, summary) values ('smoke-cm-owner', 'note', 'owner write');
+    raise exception 'FAIL owner comm_log insert was allowed';
+  exception when insufficient_privilege then null; end;
+  update matters set status = 'closed' where id = 'smoke-mt';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL owner matters update was allowed'; end if;
+  update deals set stage = 'lost' where id = 'smoke-dl';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL owner deals update was allowed'; end if;
+  update governance_items set status = 'waived' where id = 'smoke-gv';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL owner governance update was allowed'; end if;
   insert into safe_log (action, path) values ('view', 'owner-smoke.pdf'); -- allowed
   select count(*) into n from safe_log;      if n <> 0 then raise exception 'FAIL owner safe read should be blind, got %', n; end if;
   select count(*) into n from vendor_log;    if n <> 0 then raise exception 'FAIL owner vlog read should be blind'; end if;
@@ -268,6 +296,11 @@ begin
        + (select count(*) from sop_steps) + (select count(*) from sop_assignments)
        + (select count(*) from sop_completions) into n;
   if n <> 0 then raise exception 'FAIL tenant sees sop tables (%)', n; end if;
+  select (select count(*) from payment_history) + (select count(*) from lease_abstracts)
+       + (select count(*) from rent_escalation_ref) + (select count(*) from hvac_units)
+       + (select count(*) from matters) + (select count(*) from comm_log)
+       + (select count(*) from deals) + (select count(*) from governance_items) into n;
+  if n <> 0 then raise exception 'FAIL tenant sees harvest tables (%)', n; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL tenant sees vendors'; end if;
   select count(*) into n from esign_requests;       if n <> 0 then raise exception 'FAIL tenant sees esign'; end if;
   insert into maintenance_requests (id, unit, title, created_by)
@@ -301,6 +334,11 @@ begin
        + (select count(*) from sop_steps) + (select count(*) from sop_assignments)
        + (select count(*) from sop_completions) into n;
   if n <> 0 then raise exception 'FAIL vendor sees sop tables (%)', n; end if;
+  select (select count(*) from payment_history) + (select count(*) from lease_abstracts)
+       + (select count(*) from rent_escalation_ref) + (select count(*) from hvac_units)
+       + (select count(*) from matters) + (select count(*) from comm_log)
+       + (select count(*) from deals) + (select count(*) from governance_items) into n;
+  if n <> 0 then raise exception 'FAIL vendor sees harvest tables (%)', n; end if;
   insert into maintenance_events (request_id, kind, status, actor)
     values ('mr-smoke', 'status', 'done', 'smoke-vendor@example.com'); -- allowed: assigned + done
   begin
@@ -327,6 +365,11 @@ begin
        + (select count(*) from sop_steps) + (select count(*) from sop_assignments)
        + (select count(*) from sop_completions) into n;
   if n <> 0 then raise exception 'FAIL stranger sees sop tables (%)', n; end if;
+  select (select count(*) from payment_history) + (select count(*) from lease_abstracts)
+       + (select count(*) from rent_escalation_ref) + (select count(*) from hvac_units)
+       + (select count(*) from matters) + (select count(*) from comm_log)
+       + (select count(*) from deals) + (select count(*) from governance_items) into n;
+  if n <> 0 then raise exception 'FAIL stranger sees harvest tables (%)', n; end if;
   select count(*) into n from maintenance_requests; if n <> 0 then raise exception 'FAIL stranger mr'; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL stranger vendors'; end if;
   select count(*) into n from tenant_contacts;      if n <> 0 then raise exception 'FAIL stranger tcontacts'; end if;

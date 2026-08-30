@@ -10,6 +10,7 @@ import { JD_BANK, factLines } from "../lib/facts.js";
 import { REMOTE } from "../lib/remote.js";
 import { getMatters, refreshMatters, matterDeadlines } from "../lib/matters.js";
 import { refreshLeaseRef, getLeaseRef, escalationEvents } from "../lib/leaseref.js";
+import { getGovernance, refreshGovernance, govDeadlines, GOV_KINDS } from "../lib/governance.js";
 
 /* sync events — leases + instruments (unchanged baseline set) */
 function baseEvents() {
@@ -47,11 +48,12 @@ export function renderDates() {
   document.getElementById("timeline").innerHTML = h;
 }
 
-/* one-shot REMOTE enrichment: N-1 matter deadlines + rent escalation steps */
+/* one-shot REMOTE enrichment: N-1 matter deadlines + rent escalation steps
+   + S-1 governance deadlines (register row #8) */
 async function enrich() {
   if (!REMOTE) return;
   try {
-    await Promise.all([refreshMatters(), refreshLeaseRef()]);
+    await Promise.all([refreshMatters(), refreshLeaseRef(), refreshGovernance()]);
     const el = document.getElementById("timeline");
     if (!el || !el.isConnected) return;
     const today = new Date().toISOString().slice(0, 10);
@@ -61,6 +63,13 @@ async function enrich() {
         d: pDate(m.date), c: m.overdue ? "var(--brick)" : "var(--brass)",
         t: "<b>MATTER: " + esc(m.title) + "</b>" + (m.note ? " — " + esc(m.note) : ""),
         sub: esc(m.kind),
+      });
+    });
+    govDeadlines(getGovernance().items, today).forEach(g => {
+      ev.push({
+        d: pDate(g.date), c: g.overdue ? "var(--brick)" : "var(--brass)",
+        t: "<b>GOVERNANCE: " + esc(g.title) + "</b>" + (g.entity ? " — " + esc(g.entity) : ""),
+        sub: esc((GOV_KINDS[g.kind] || g.kind) + (g.ref ? " · " + g.ref : "")),
       });
     });
     escalationEvents(getLeaseRef().escalations, today).forEach(s => {

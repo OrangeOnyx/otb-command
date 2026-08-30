@@ -8,7 +8,9 @@ import assert from "node:assert/strict";
 import {
   MATTER_KINDS, MATTER_STATUS, newMatterId,
   matterDeadlines, sortMatters, deadlineTone,
+  ATTACH_PREFIX, attachSummary, commDocLink,
 } from "../src/lib/matters.js";
+import { buildDocLink } from "../src/lib/docs.js";
 
 const M = (id, over = {}) => ({
   id, title: "Matter " + id, kind: "general", status: "open",
@@ -84,6 +86,29 @@ test("matters: deadlineTone — overdue / soon (≤30d incl. today) / later / nu
   assert.equal(deadlineTone("2026-09-29", t), "later");
   assert.equal(deadlineTone(null, t), null);
   assert.equal(deadlineTone("garbage", t), null);
+});
+
+/* ---- N-2 v1.5 attachments (pure half; storage calls not tested here) ---- */
+test("matters: commDocLink — path for doc-link bodies, null otherwise", () => {
+  assert.equal(
+    commDocLink({ body: buildDocLink("matter-mt1/abc__plat-rev9.pdf") }),
+    "matter-mt1/abc__plat-rev9.pdf");
+  assert.equal(commDocLink({ body: "doc://matter-mt2/x__handout.pdf" }), "matter-mt2/x__handout.pdf");
+  assert.equal(commDocLink({ body: "Discussed the variance at the hearing." }), null); // prose
+  assert.equal(commDocLink({ body: "https://drive.google.com/x" }), null); // external URL
+  assert.equal(commDocLink({ body: "" }), null);
+  assert.equal(commDocLink({ body: null }), null);
+  assert.equal(commDocLink({}), null);     // row without a body column
+  assert.equal(commDocLink(null), null);   // no row at all
+});
+
+test("matters: attachSummary carries the 'Attached: ' prefix + file name", () => {
+  assert.equal(ATTACH_PREFIX, "Attached: ");
+  assert.equal(attachSummary("plat-rev9.pdf"), "Attached: plat-rev9.pdf");
+  assert.equal(attachSummary(""), "Attached: file"); // never a bare prefix
+  const long = attachSummary("x".repeat(600));
+  assert.ok(long.startsWith(ATTACH_PREFIX));
+  assert.equal(long.length, 500); // comm_log summary cap
 });
 
 /* ---- id generator ---- */
