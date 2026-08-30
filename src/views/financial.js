@@ -7,6 +7,8 @@ import { CAT_META } from "../lib/colors.js";
 import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
 import { REMOTE, listLedgerEntries } from "../lib/remote.js";
 import { aging, effectiveEntries, CREDIT_TYPES } from "../lib/ledger.js";
+import { getPayHistory, payHistoryLoaded, refreshPayHistory, payHistoryStats, portfolioPayTotals } from "../lib/payhistory.js";
+import { tenantHealth, healthColor, periodTotals } from "../lib/tenanthealth.js";
 import recoveries from "../data/recoveries.json";
 
 const annual = u => (u.monthly || 0) * 12;
@@ -147,6 +149,8 @@ export function renderFinancial() {
       '<div class="card"><div class="panel-h"><h2>Lease rollover schedule</h2><div class="sub">ANNUAL RENT EXPIRING BY YEAR</div></div><div class="fbars">' + rollBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Tenant concentration</h2><div class="sub">TOP 5 BY IN-PLACE RENT</div></div><div class="fbars">' + topBars + '</div></div>' +
       (REMOTE ? '<div class="card"><div class="panel-h"><h2>Collections &amp; aging</h2><div class="sub">LEDGER-LITE · OPEN BALANCES BY AGE</div></div><div class="fbars" id="finLedger">Loading…</div></div>' : '') +
+      (REMOTE ? '<div class="card"><div class="panel-h"><h2>Payment history</h2><div class="sub">PREDECESSOR RECORD · JUL 2025 – JUL 2026</div></div><div class="fbars" id="finPayHist">Loading…</div></div>' : '') +
+      (REMOTE ? '<div class="card"><div class="panel-h"><h2>Tenant health</h2><div class="sub">SCORED 0–100 · PAYMENT RECORD + TERM</div></div><div class="fbars" id="finHealth">Loading…</div></div>' : '') +
       '<div class="card noi-card"><div class="panel-h"><h2>NOI worksheet</h2><div class="sub">ENTER ANNUAL OPERATING EXPENSES</div></div>' +
         '<div class="noi-line"><span>In-place rent (income)</span><b>' + fmt$0(inc.annualRent) + '</b></div>' +
         '<div class="opex">' + opexRows + '</div>' +
@@ -162,7 +166,7 @@ export function renderFinancial() {
     i.onchange = () => setOpex(i.dataset.opex, i.value));
   const cap = root.querySelector("#capRate");
   if (cap) cap.onchange = () => setCapRate(cap.value);
-  if (REMOTE) paintCollections();
+  if (REMOTE) { paintCollections(); paintPayHistory(); paintTenantHealth(); }
 }
 
 /* Ledger-lite rollup: async fill after the sync render (C-1 history pattern).
@@ -196,6 +200,66 @@ async function paintCollections() {
         : '<div class="led-note">No open balances — rent charges auto-post monthly starting Aug 2026; payments log in each unit\'s drawer.</div>');
   } catch (e) {
     el.innerHTML = '<div class="led-note">Ledger unavailable: ' + esc(e.message) + '</div>';
+  }
+}
+
+/* Predecessor payment record (payment_history, read-only): portfolio headline
+   + one bar per period. All math is the pure seams (portfolioPayTotals,
+   periodTotals); this only fetches and formats. */
+async function paintPayHistory() {
+  const el = document.getElementById("finPayHist");
+  if (!el) return;
+  try {
+    if (!payHistoryLoaded()) await refreshPayHistory();
+    if (!el.isConnected) return;
+    const rows = getPayHistory();
+    if (!rows.length) {
+      el.innerHTML = '<div class="led-note">No predecessor payment record on file.</div>';
+      return;
+    }
+    const tot = portfolioPayTotals(rows);
+    const periods = periodTotals(rows);
+    const max = Math.max(...periods.map(p => p.paid));
+    el.innerHTML =
+      '<div class="led-month">' + tot.months + " months · " + fmt$0(tot.totalPaid) + " collected · " +
+        Math.round((tot.onTimeRate || 0) * 100) + "% clean · " + fmt$0(tot.lateFees) + " late fees</div>" +
+      periods.map(p => bar(p.period, p.paid, max, "var(--green)",
+        fmt$0(p.paid) + (p.cleanShare < 1 ? " · " + Math.round(p.cleanShare * 100) + "% clean" : ""))).join("") +
+      '<div class="led-note">Predecessor record imported from Asset Command · read-only · ledger is the live record from 2026-08.</div>';
+  } catch (e) {
+    el.innerHTML = '<div class="led-note">Payment history unavailable: ' + esc(e.message) + '</div>';
+  }
+}
+
+/* Tenant-health register (worst 10): pure scoring in lib/tenanthealth.js over
+   the rent roll + payment_history stats; this only fetches and formats. */
+async function paintTenantHealth() {
+  const el = document.getElementById("finHealth");
+  if (!el) return;
+  try {
+    if (!payHistoryLoaded()) await refreshPayHistory();
+    if (!el.isConnected) return;
+    const today = new Date().toISOString().slice(0, 10);
+    const health = tenantHealth(UNITS, payHistoryStats(getPayHistory()), today);
+    if (!health.length) {
+      el.innerHTML = '<div class="led-note">No occupied units to score.</div>';
+      return;
+    }
+    const allGood = health.every(h => h.grade === "A" || h.grade === "B");
+    el.innerHTML =
+      (allGood ? '<div class="led-note">All tenants currently grade A/B.</div>' : '') +
+      health.slice(0, 10).map(h =>
+        '<div style="display:flex;align-items:baseline;gap:8px">' +
+          '<span class="uchip">' + esc(h.unit) + '</span>' +
+          '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(h.dba) + '</span>' +
+          '<b style="font-family:var(--mono);color:' + healthColor(h.grade) + '">' + esc(h.grade) + '</b>' +
+          '<span class="fbar-v">' + h.score + '</span>' +
+        '</div>' +
+        (h.factors.length ? '<div class="led-note" style="padding:0">' + esc(h.factors.join(" · ")) + '</div>' : '')
+      ).join("") +
+      '<div class="led-note">Score = 13-mo payment record (60) + term runway (25) + late-fee drag (15) — descriptive, not a credit decision.</div>';
+  } catch (e) {
+    el.innerHTML = '<div class="led-note">Tenant health unavailable: ' + esc(e.message) + '</div>';
   }
 }
 

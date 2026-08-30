@@ -8,6 +8,11 @@ import {
 } from "../store.js";
 import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { maintActionCards, onMaintChange } from "../lib/maintenance.js";
+import {
+  DEAL_STAGES, getDeals, onDealsChange, refreshDeals,
+  addDeal, setDealStage, deleteDeal, dealActionCards
+} from "../lib/deals.js";
+import { REMOTE, getSession } from "../lib/remote.js";
 import { HVAC_149, JD_BANK, factLines } from "../lib/facts.js";
 import { openDrawer } from "./drawer.js";
 
@@ -26,6 +31,7 @@ export const ACTION_KIND = {
   easement: ["Easement", "var(--slate)"],
   parking: ["Parking", "var(--brass)"],
   maintenance: ["Work Order", "var(--navy)"],
+  leasing: ["Leasing", "var(--anchor)"],
   task: ["Task", "var(--ink70)"]
 };
 
@@ -107,12 +113,29 @@ function cardHTML(card) {
     '</div>';
 }
 
+/* Deal cards ride the lanes read-only: no draggable attr, no data-id, no
+   archive ✕ — wire() never picks them up, so the strip's stage select stays
+   the single write path (a lane drag would fight the stage). */
+function dealCardHTML(card) {
+  const [kl, kc] = ACTION_KIND[card.kind] || ACTION_KIND.task;
+  return '<div class="acard acard-deal" style="cursor:default">' +
+    '<span class="ktag" style="--kc:' + kc + '">' + kl + '</span>' +
+    (card.unit ? '<span class="uchip" data-unit="' + esc(card.unit) + '">' + esc(card.unit) + '</span>' : "") +
+    dueChip(card.due) +
+    '<div class="atitle">' + esc(card.title) + '</div>' +
+    (card.detail ? '<div class="adetail">' + esc(card.detail) + '</div>' : "") +
+    '<div class="led-note">stage moves via the pipeline strip above</div>' +
+    '</div>';
+}
+
 export function renderBoard() {
   const board = document.getElementById("board");
   if (!board) return;
   const list = cards();
-  const overdue = list.filter(c => c.due && pDate(c.due) < TODAY && c.lane !== "done").length;
-  const count = l => list.filter(c => c.lane === l).length;
+  const deals = dealActionCards(getDeals()); // open deals only (pure shaping)
+  const all = list.concat(deals);
+  const overdue = all.filter(c => c.due && pDate(c.due) < TODAY && c.lane !== "done").length;
+  const count = l => all.filter(c => c.lane === l).length;
 
   const meta = document.getElementById("boardMeta");
   if (meta) meta.innerHTML =
@@ -120,22 +143,117 @@ export function renderBoard() {
     '<span class="bm"><b class="bm-over">' + overdue + '</b> overdue</span>' +
     '<span class="bm"><b>' + count("progress") + '</b> in progress</span>' +
     '<span class="bm"><b>' + count("watch") + '</b> watching</span>' +
+    (deals.length ? '<span class="bm"><b>' + deals.length + '</b> open deals</span>' : "") +
     (archivedCount() ? '<span class="bm"><a id="bmRestore">restore ' + archivedCount() + ' archived</a></span>' : "");
+
+  // pipeline strip lives immediately before the lanes (index.html untouched)
+  let strip = document.getElementById("dealStrip");
+  if (!strip) {
+    strip = document.createElement("div");
+    strip.id = "dealStrip";
+    board.parentElement.insertBefore(strip, board);
+  }
+  renderDealStrip(strip);
 
   board.innerHTML = LANES.map(([id, label, sub]) => {
     const col = list.filter(c => c.lane === id);
+    const dcol = deals.filter(c => c.lane === id);
     return '<div class="acol" data-lane="' + id + '">' +
-      '<div class="acol-h"><div><span class="acol-t">' + label + '</span> <span class="acol-n">' + col.length + '</span>' +
+      '<div class="acol-h"><div><span class="acol-t">' + label + '</span> <span class="acol-n">' + (col.length + dcol.length) + '</span>' +
       '<div class="acol-s">' + sub + '</div></div>' +
       '<button class="acol-add" data-lane="' + id + '" title="Add card">+</button></div>' +
       '<div class="acol-body" data-lane="' + id + '">' +
       col.map(cardHTML).join("") +
+      dcol.map(dealCardHTML).join("") +
       '<div class="acard-new" data-lane="' + id + '" hidden>' +
       '<input type="text" placeholder="New card title… (Enter)" data-lane="' + id + '">' +
       '</div></div></div>';
   }).join("");
 
   wire(board);
+}
+
+/* ---- leasing pipeline strip (register #11) ---- */
+let actorEmail = ""; // resolved once at init; stamps stage moves / adds
+
+function dealRowHTML(d, canWrite) {
+  const opts = Object.keys(DEAL_STAGES).map(k =>
+    '<option value="' + k + '"' + (d.stage === k ? " selected" : "") + '>' + DEAL_STAGES[k] + '</option>').join("");
+  return '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 0;border-top:1px solid var(--line)">' +
+    '<span style="font-weight:600">' + esc(d.business || d.prospect || "Prospect") + '</span>' +
+    (d.business && d.prospect ? '<span class="mute" style="font-size:11px">' + esc(d.prospect) + '</span>' : "") +
+    (d.target_unit ? '<span class="uchip" data-unit="' + esc(d.target_unit) + '">' + esc(d.target_unit) + '</span>' : "") +
+    (d.proposed_rent ? '<span style="font-family:var(--mono);font-size:11px">' + esc(d.proposed_rent) + '</span>' : "") +
+    (d.lead_source ? '<span class="chip">' + esc(d.lead_source) + '</span>' : "") +
+    (d.created_at ? '<span class="mute" style="font-family:var(--mono);font-size:10px">' + esc(String(d.created_at).slice(0, 10)) + '</span>' : "") +
+    '<span style="margin-left:auto;display:flex;align-items:center;gap:6px">' +
+    '<select class="deal-stage" data-id="' + esc(d.id) + '" data-stage="' + esc(d.stage) + '"' + (canWrite ? "" : " disabled") +
+    ' style="font-family:var(--mono);font-size:11px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)">' + opts + '</select>' +
+    (canWrite ? '<button class="deal-del" data-id="' + esc(d.id) + '" title="Delete deal" style="border:1px solid var(--line);background:none;border-radius:4px;color:var(--ink50);cursor:pointer;font-size:11px;padding:2px 7px">✕</button>' : "") +
+    '</span></div>';
+}
+
+function renderDealStrip(strip) {
+  // same body.role-* idiom drawer.js uses; write access needs the backend too
+  const operator = !document.body.classList.contains("role-owner") &&
+    !document.body.classList.contains("role-tenant") &&
+    !document.body.classList.contains("role-vendor");
+  const canWrite = operator && REMOTE;
+  const deals = getDeals();
+  const inp = (id, ph, extra) => '<input type="text" id="dl-' + id + '" placeholder="' + ph + '"' + (extra || "") +
+    ' style="font-family:var(--mono);font-size:11px;padding:4px 7px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)">';
+
+  strip.innerHTML =
+    '<div class="card" style="margin-bottom:16px">' +
+    '<div class="panel-h"><h2>Leasing Pipeline</h2><div class="sub">PROSPECT → TOUR → LOI → LEASE DRAFT</div>' +
+    '<span class="led-note" id="dealErr" style="color:var(--brick);margin-left:auto"></span></div>' +
+    '<div style="padding:6px 18px 14px">' +
+    (deals.length ? deals.map(d => dealRowHTML(d, canWrite)).join("")
+      : '<div class="led-note">No active deals — leads land here from AI-1 / voice intake.</div>') +
+    (canWrite ?
+      '<div style="padding-top:8px">' +
+      '<button class="chip" id="dealAddToggle" style="cursor:pointer">＋ Deal</button>' +
+      '<div id="dealAddForm" hidden>' + // inline display would defeat [hidden]; flex lives one level in
+      '<div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:8px">' +
+      inp("prospect", "Prospect (required)") + inp("business", "Business") + inp("unit", "Unit") +
+      inp("email", "Email") + inp("phone", "Phone") + inp("rent", "Proposed rent") +
+      inp("notes", "Notes", ' size="30"') +
+      '<button class="chip" id="dealAddSave" style="cursor:pointer">Save</button>' +
+      '</div></div></div>'
+      : (operator && !REMOTE ? '<div class="led-note mute">Deal writes run on the hosted backend — unavailable in local-only mode.</div>' : "")) +
+    '</div></div>';
+
+  wireStrip(strip, canWrite);
+}
+
+function wireStrip(strip, canWrite) {
+  const err = strip.querySelector("#dealErr");
+  const fail = (what, e) => { console.warn("deal " + what + ":", e && e.message); if (err) err.textContent = what + " failed — " + ((e && e.message) || "see console"); };
+  strip.querySelectorAll(".uchip").forEach(ch => ch.onclick = () => openDrawer(ch.dataset.unit));
+  if (!canWrite) return;
+  strip.querySelectorAll(".deal-stage").forEach(sel => sel.onchange = async () => {
+    try { await setDealStage(sel.dataset.id, sel.value, actorEmail); } // refreshDeals repaints
+    catch (e) { fail("stage change", e); sel.value = sel.dataset.stage; }
+  });
+  strip.querySelectorAll(".deal-del").forEach(btn => btn.onclick = async () => {
+    if (!confirm("Delete this deal? This is permanent.")) return;
+    try { await deleteDeal(btn.dataset.id); }
+    catch (e) { fail("delete", e); }
+  });
+  const toggle = strip.querySelector("#dealAddToggle"), form = strip.querySelector("#dealAddForm");
+  if (toggle) toggle.onclick = () => { form.hidden = !form.hidden; if (!form.hidden) form.querySelector("#dl-prospect").focus(); };
+  const save = strip.querySelector("#dealAddSave");
+  if (save) save.onclick = async () => {
+    const v = id => strip.querySelector("#dl-" + id).value.trim();
+    if (!v("prospect")) { if (err) err.textContent = "prospect name is required"; return; }
+    try {
+      await addDeal({
+        prospect: v("prospect"), business: v("business"), unit: v("unit"),
+        email: v("email"), phone: v("phone"), rent: v("rent"), notes: v("notes"),
+        leadSource: "operator", by: actorEmail,
+      }); // refreshDeals inside addDeal repaints the strip + lanes
+    } catch (e) { fail("add", e); }
+  };
 }
 
 let dragId = null;
@@ -150,8 +268,8 @@ function wire(board) {
     e.stopPropagation();
     dismissAction(x.dataset.id);
   });
-  // drag and drop between lanes
-  board.querySelectorAll(".acard").forEach(card => {
+  // drag and drop between lanes (deal cards render without draggable/data-id — skipped)
+  board.querySelectorAll('.acard[draggable="true"]').forEach(card => {
     card.ondragstart = e => { dragId = card.dataset.id; card.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; };
     card.ondragend = () => { dragId = null; card.classList.remove("dragging"); };
   });
@@ -184,4 +302,9 @@ export function initBoard() {
   renderBoard();
   subscribe(type => { if (type === "actions" || type === "comp" || type === "notes" || type === "import") renderBoard(); });
   onMaintChange(renderBoard); // work-order cards re-seed when the M-1 cache moves
+  if (REMOTE) { // deals live only on the hosted backend (same pattern as maintenance)
+    getSession().then(s => { actorEmail = (s && s.user && s.user.email) || ""; }).catch(() => {});
+    onDealsChange(renderBoard); // strip + lane cards repaint when the cache moves
+    refreshDeals();
+  }
 }

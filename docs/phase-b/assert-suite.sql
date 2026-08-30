@@ -57,7 +57,8 @@ begin
   -- one representative row per stamped table (tenancy stamps via defaults)
   insert into comp_state (unit, field, state) values ('131', 'coi', 'flag')
     on conflict (property_id, unit, field) do update set state = 'flag';
-  insert into unit_notes (unit, text) values ('131', 'suite note');
+  insert into unit_notes (unit, text) values ('131', 'suite note')
+    on conflict (property_id, unit) do update set text = excluded.text; -- prod holds real notes now
   insert into board_state (card_id, lane) values ('smoke-card', 'action');
   insert into directory_state (collection, id, dismissed) values ('contacts', 'smoke-c', true);
   insert into site_features (id, type, x, y, pos) values ('sf-suite', 'shutoff', 10, 20, 99);
@@ -94,6 +95,24 @@ begin
     values ('smoke-sop-asg', 'smoke-sop-proc', current_date);
   insert into sop_completions (id, procedure_id, assignment_id, completed_by)
     values ('smoke-sop-comp', 'smoke-sop-proc', 'smoke-sop-asg', 'smoke-op@example.com');
+  -- AC harvest (2026-08-29): representative rows across the 7 new tables.
+  -- payment_history / lease_abstracts / rent_escalation_ref are READ-ONLY
+  -- landings (no client write policies); hvac_units/matters/comm_log/deals
+  -- are content tier (operator write).
+  insert into payment_history (id, unit, period, amount_due, amount_paid, status)
+    values ('smoke-ph', '131', '2025-07', 100, 100, 'paid');
+  insert into lease_abstracts (id, unit, commencement, expiration)
+    values ('smoke-la', '131', '2024-01-01', '2029-01-01');
+  insert into rent_escalation_ref (id, unit, abstract_id, effective_on, new_rent)
+    values ('smoke-re', '131', 'smoke-la', '2027-01-01', 1234);
+  insert into hvac_units (id, unit, unit_label, tenant, system_type)
+    values ('smoke-hv', '131', '131', 'Smoke Tenant', 'PKG Unit');
+  insert into matters (id, title, kind, status, next_deadline)
+    values ('smoke-mt', 'Smoke Matter', 'zoning', 'open', current_date + 30);
+  insert into comm_log (id, unit, matter_id, channel, summary)
+    values ('smoke-cm', '131', 'smoke-mt', 'note', 'Smoke correspondence');
+  insert into deals (id, prospect, target_unit, stage)
+    values ('smoke-dl', 'Smoke Prospect', '131', 'inquiry');
 
   ------------------------------------------------------------------
   -- OPERATOR: sees everything; writes money + state
@@ -130,10 +149,18 @@ begin
   select count(*) into n from sop_steps;             if n < 1 then raise exception 'FAIL op sop_steps read'; end if;
   select count(*) into n from sop_assignments;       if n < 1 then raise exception 'FAIL op sop_assignments read'; end if;
   select count(*) into n from sop_completions;       if n < 1 then raise exception 'FAIL op sop_completions read'; end if;
+  select count(*) into n from payment_history;       if n < 1 then raise exception 'FAIL op payment_history read'; end if;
+  select count(*) into n from lease_abstracts;       if n < 1 then raise exception 'FAIL op lease_abstracts read'; end if;
+  select count(*) into n from rent_escalation_ref;   if n < 1 then raise exception 'FAIL op rent_escalation_ref read'; end if;
+  select count(*) into n from hvac_units;            if n < 1 then raise exception 'FAIL op hvac_units read'; end if;
+  select count(*) into n from matters;               if n < 1 then raise exception 'FAIL op matters read'; end if;
+  select count(*) into n from comm_log;              if n < 1 then raise exception 'FAIL op comm_log read'; end if;
+  select count(*) into n from deals;                 if n < 1 then raise exception 'FAIL op deals read'; end if;
 
   insert into ledger_entries (id, unit, type, code, amount, date)
     values ('smoke:op', '131', 'payment', 'rent', 100, current_date);
-  insert into unit_notes (unit, text) values ('105', 'operator write');
+  insert into unit_notes (unit, text) values ('105', 'operator write')
+    on conflict (property_id, unit) do update set text = excluded.text;
   update comp_state set state = 'ok' where unit = '131' and field = 'coi';
   delete from camera_overrides where camera_id = 'cam-suite'; -- operator delete allowed
   -- SOP: operator edits content, logs completions; the completion trail is
@@ -152,6 +179,26 @@ begin
   delete from sop_completions where id = 'smoke-sop-comp';
   get diagnostics n = row_count;
   if n <> 0 then raise exception 'FAIL op sop_completions delete was allowed'; end if;
+  -- AC harvest: the archival landings are read-only EVEN for the operator
+  -- (no write policies — imports run privileged); content-tier tables accept
+  -- operator writes.
+  update payment_history set notes = 'tamper' where id = 'smoke-ph';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL op payment_history update was allowed'; end if;
+  delete from lease_abstracts where id = 'smoke-la';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL op lease_abstracts delete was allowed'; end if;
+  update hvac_units set tenant = 'edited' where id = 'smoke-hv';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op hvac_units update hit %', n; end if;
+  update matters set status = 'monitoring' where id = 'smoke-mt';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op matters update hit %', n; end if;
+  insert into comm_log (id, unit, channel, summary)
+    values ('smoke-cm-2', '131', 'meeting', 'Operator meeting note');
+  update deals set stage = 'tour' where id = 'smoke-dl';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op deals update hit %', n; end if;
   execute 'reset role';
 
   ------------------------------------------------------------------

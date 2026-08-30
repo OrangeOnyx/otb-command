@@ -3,13 +3,28 @@
    Edit/add forms are built on click as local DOM, so a store re-render only
    happens on Save (intended) — no cross-render draft state to manage. */
 import { editRecord, addRecord, dismissRecord } from "../store.js";
-import { esc } from "./format.js";
+import { esc, TODAY } from "./format.js";
 import { addDoc, docURL, buildDocLink, isDocLink, docPath } from "./docs.js";
+import { coiStatus, coiBadge } from "./coi.js";
+import { isoDate } from "./docexpiry.js";
 
 const FIELDS = {
   contacts: [["role", "Role"], ["company", "Company"], ["name", "Contact"], ["phone", "Phone"], ["email", "Email"], ["note", "Note"]],
-  documents: [["name", "Name"], ["type", "Type"], ["ref", "Reference"], ["link", "Link (paste a Drive / SharePoint URL)"], ["note", "Note"]]
+  documents: [["name", "Name"], ["type", "Type"], ["ref", "Reference"], ["expires", "Expires (YYYY-MM-DD)"], ["link", "Link (paste a Drive / SharePoint URL)"], ["note", "Note"]]
 };
+
+const TODAY_ISO = isoDate(TODAY);
+
+/* Register row #16: any dated document gets an expiry badge (COI thresholds
+   reused — 30d critical / 60d expiring). Absent/malformed expires → nothing. */
+function expiryBadge(expires) {
+  const st = coiStatus(expires, TODAY_ISO);
+  if (st.state === "none") return "";
+  const text = st.state === "expired" ? "EXPIRED · " + (-st.days) + "d ago"
+    : st.state === "ok" ? "exp " + expires
+    : "EXPIRES · " + st.days + "d";
+  return ' <span class="rec-s" style="color:' + esc(coiBadge(st).color) + '">● ' + esc(text) + '</span>';
+}
 
 function contactView(r) {
   const line2 = [r.phone, r.email].filter(Boolean).join("  ·  ");
@@ -22,7 +37,7 @@ function contactView(r) {
 }
 function docView(r) {
   return '<div class="rec-main">' +
-    '<div class="rec-t">' + esc(r.name) + (r.type ? ' <span class="rec-role">' + esc(r.type) + '</span>' : "") + '</div>' +
+    '<div class="rec-t">' + esc(r.name) + (r.type ? ' <span class="rec-role">' + esc(r.type) + '</span>' : "") + expiryBadge(r.expires) + '</div>' +
     (r.ref ? '<div class="rec-s mono">' + esc(r.ref) + '</div>' : "") +
     (r.note ? '<div class="rec-note">' + esc(r.note) + '</div>' : "") +
     (r.link
