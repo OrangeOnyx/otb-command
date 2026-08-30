@@ -419,7 +419,7 @@ const BODY = `
         </div>
       </div>
       <div class="smoke" data-smoke="smk-6">
-        <div class="head"><span class="mono eyebrow">SMK-6</span><span class="name">Harvest sheets (after next deploy)</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-6"></span></div>
+        <div class="head"><span class="mono eyebrow">SMK-6</span><span class="name">Harvest sheets &mdash; live now</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-6"></span></div>
         <p class="desc">orangeoceanatlas.com &rarr; L-1 Comm Log shows the 62 imported voice rows &rarr;
         N-1 open a test matter + log a meeting note &rarr; unit 101 drawer: Prior payments shows 13
         months and Lease abstract renders &rarr; P-1: Collections history + Tenant health cards &rarr;
@@ -540,7 +540,8 @@ const BODY = `
       </div>
       <div class="wave" data-wave="h25">
         <div class="head"><span class="wid">H2.5</span><span class="wname">Parity rebuilds &mdash; four groups</span><span class="chip open">Open</span></div>
-        <p><strong>Build waves 1&ndash;2 LANDED Aug 29 (in repo, deploy pending):</strong> two new sheets
+        <p><strong>Build waves 1&ndash;2 LANDED + DEPLOYED Aug 29 (live on
+        orangeoceanatlas.com; bundle content-hash verified):</strong> two new sheets
         &mdash; L-1 Comm Log (#14, + N-2 meeting notes v1) and N-1 Matters &mdash; plus drawer
         Prior-payments + Lease-abstract panels, W-1 deal pipeline (#11), K-1 document expiry (#16),
         P-1 collections history + tenant health (#13), per-unit statements (#5 v1), S-1 quarterly
@@ -748,10 +749,11 @@ const BODY = `
       session &ldquo;read the punch list&rdquo;; a session already watching is notified the moment you save.</li>
       <li>A saved decision pick is treated as confirmed &mdash; Claude acts on it without relitigating.
       To reopen one, set it back to Undecided and Save.</li>
-      <li>Build health at snapshot: 463 tests green &middot; 5-persona assert suite over 29 tables
+      <li>Build health at snapshot: 491 tests green &middot; 5-persona assert suite over 29 tables
       ran on PROD Aug 29: SUITE_PASS_ROLLBACK, 0 residue &middot; payment_history verified
-      $1,133,492.20 to the cent. Everything above marked &ldquo;in repo&rdquo; awaits the next
-      deploy.</li>
+      $1,133,492.20 to the cent &middot; DEPLOYED same day, bundle content-hash verified.
+      That deploy + push were the first Claude-run ones to land (headless auto session,
+      un-prompted) &mdash; gate step g-2 above is satisfied; mark it Done.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\My Drive\00 OTB\</code>. Rebuild drill documented in the spec.</li>
