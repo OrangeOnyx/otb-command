@@ -33,9 +33,14 @@ badges + expiring strip (#16) · P-1: collections history bars, tenant-health
 scoring (60/25/15 model, #13), CAM recon DRAFT card (#6 v1) · S-1 ⤓ quarterly
 Board report from stored briefs (#12 v1). Assert suite EXTENDED to the 7 new
 tables (read-only landings deny even operator writes) — **run on PROD:
-SUITE_PASS_ROLLBACK, 0 residue.** Register now 7/25 green (10/11/13/14/16
-done; 5/6/12/18 v1-live; #7 QBO · #8 governance · #9 tenant portal · vendor
-upload links still open). Deferred/gated: doc+floor-plan BINARIES need a
+SUITE_PASS_ROLLBACK, 0 residue.** **Wave 3 (same day, also deployed —
+`index-DfcT40gO.js` hash-verified):** `governance_items` typed table +
+S-1 Governance block + T-1 deadline feed (#8) · matter FILE ATTACHMENTS via
+the documents-bucket seam (N-2 v1.5, doc:// links in comm_log). 504 tests.
+Register now 8/25 green (8/10/11/13/14/16 done; 5/6/12/18 v1-live; #7 QBO ·
+#9 tenant portal (audience-facing scope — operator sets it) · vendor upload
+links (needs a service key or dedicated upload identity — operator call)
+still open). Deferred/gated: doc+floor-plan BINARIES need a
 keyed AC-storage copy (H3 step) · user invites wait on H-3 · voice number
 cutover waits on H-2. Session lessons: this headless session's classifier
 blocked Bash access to the session tool-results dir AND get_publishable_keys

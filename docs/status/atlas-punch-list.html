@@ -297,7 +297,7 @@ const BODY = `
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; voice cutover waits on H-2</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">4</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
-      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>7 / 25</b><small>AC retires only at 25 / 25 green</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>8 / 25</b><small>AC retires only at 25 / 25 green</small></div>
     </div>
   </header>
 
@@ -545,9 +545,11 @@ const BODY = `
         &mdash; L-1 Comm Log (#14, + N-2 meeting notes v1) and N-1 Matters &mdash; plus drawer
         Prior-payments + Lease-abstract panels, W-1 deal pipeline (#11), K-1 document expiry (#16),
         P-1 collections history + tenant health (#13), per-unit statements (#5 v1), S-1 quarterly
-        board report (#12 v1), CAM recon draft (#6 v1). T-1 now carries matter deadlines + rent
-        steps. Still open in this wave: accounting/QBO (#7) &middot; tenant portal (#9) &middot;
-        governance (#8) &middot; vendor upload links (#2 gap).</p>
+        board report (#12 v1), CAM recon draft (#6 v1), S-1 governance records + T-1 deadline feed
+        (#8), matter file attachments (N-2 v1.5). T-1 now carries matter deadlines, rent steps, and
+        governance deadlines. Still open: accounting/QBO (#7 &mdash; needs a design session) &middot;
+        tenant portal (#9 &mdash; changes what tenants see; your call on scope) &middot; vendor upload
+        links (#2 gap &mdash; needs a service key or dedicated upload identity; your call).</p>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H2.5 priority">
             <button type="button" class="b-next" data-wav="h25" data-set="next" aria-pressed="false">Next up</button>
@@ -648,7 +650,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule E</span>
       <h2>Capability Register</h2>
-      <span class="mono sched-count">the H3 gate &middot; 7 / 25 green</span>
+      <span class="mono sched-count">the H3 gate &middot; 8 / 25 green</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
@@ -662,7 +664,7 @@ const BODY = `
       <div class="cell port"    title="5 &middot; Invoices + late fees &rarr; statements v1 LIVE in repo; invoice generation open">5</div>
       <div class="cell port"    title="6 &middot; CAM reconciliation &rarr; P-1 recon draft v1 in repo; caps/base-year open">6</div>
       <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
-      <div class="cell rebuild" title="8 &middot; Governance &rarr; S-1 + T-1 (REBUILD)">8</div>
+      <div class="cell done"    title="8 &middot; Governance &rarr; S-1 records + T-1 deadlines LIVE (dynamic layer over repo-locked facts)">8</div>
       <div class="cell rebuild" title="9 &middot; Tenant portal &rarr; expanded tenant role (REBUILD)">9</div>
       <div class="cell done"    title="10 &middot; Lease abstraction + escalations &rarr; PORTED Aug 29 (24 + 83 rows, drawer panel + T-1)">10</div>
       <div class="cell done"    title="11 &middot; Deal pipeline &rarr; W-1 pipeline strip LIVE in repo (3 AC rows imported)">11</div>
@@ -698,7 +700,7 @@ const BODY = `
         <li><b>5</b> Invoices + late fees <span class="st b">V1 LIVE</span></li>
         <li><b>6</b> CAM reconciliation <span class="st b">V1 LIVE</span></li>
         <li><b>7</b> Accounting / QuickBooks <span class="st s">REBUILD</span></li>
-        <li><b>8</b> Governance suite <span class="st s">REBUILD</span></li>
+        <li><b>8</b> Governance suite <span class="st g">DONE</span></li>
         <li><b>9</b> Tenant portal <span class="st s">REBUILD</span></li>
         <li><b>10</b> Lease abstraction + escalations <span class="st g">DONE</span></li>
         <li><b>11</b> Deal pipeline + waitlist <span class="st g">DONE</span></li>
@@ -749,7 +751,7 @@ const BODY = `
       session &ldquo;read the punch list&rdquo;; a session already watching is notified the moment you save.</li>
       <li>A saved decision pick is treated as confirmed &mdash; Claude acts on it without relitigating.
       To reopen one, set it back to Undecided and Save.</li>
-      <li>Build health at snapshot: 491 tests green &middot; 5-persona assert suite over 29 tables
+      <li>Build health at snapshot: 504 tests green &middot; 5-persona assert suite over 29 tables
       ran on PROD Aug 29: SUITE_PASS_ROLLBACK, 0 residue &middot; payment_history verified
       $1,133,492.20 to the cent &middot; DEPLOYED same day, bundle content-hash verified.
       That deploy + push were the first Claude-run ones to land (headless auto session,
