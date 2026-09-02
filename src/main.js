@@ -1,7 +1,8 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
-import { exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, authorizeEmail, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY } from "./lib/remote.js";
+import { UNITS, exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
+import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY } from "./lib/remote.js";
+import { ASSIGNABLE_ROLES, accessVendorOptions, accessUnitOptions, scopeKind, validateAssignment } from "./lib/access.js";
 import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
@@ -150,38 +151,74 @@ function buildShell(account) {
   ovWrap.append(ovToggle, ovCfg);
 
   /* sign-in access (operator; ovWrap is hidden for owner/vendor roles).
-     Authorize BEFORE first sign-in → the magic-link trigger assigns the role
-     directly; anyone already parked in 'pending' is promoted on the spot. */
+     The operator says what an email IS — owner / vendor (+ company) /
+     tenant (+ unit). assign_role stamps the matching SOT (V-1 roster email /
+     tenant contact / owner allowlist) so a fresh sign-in self-resolves, and
+     promotes anyone already parked in 'pending' on the spot, properly scoped.
+     Stray sign-ups can be dismissed entirely. */
   if (REMOTE) {
     const ac = document.createElement("details");
     ac.className = "ov-cfg";
+    const roleOpts = ASSIGNABLE_ROLES.map(r => '<option value="' + r + '">' + r + "</option>").join("");
     ac.innerHTML = "<summary>Sign-in access…</summary>" +
       '<div class="ac-body"><form class="ac-add" id="acAdd">' +
-      '<input id="acEmail" type="email" placeholder="owner@email.com" autocomplete="off">' +
-      '<button type="submit">+ Owner</button></form>' +
+      '<input id="acEmail" type="email" placeholder="person@email.com" autocomplete="off">' +
+      '<select id="acRole" class="ac-sel"><option value="">role…</option>' + roleOpts + "</select>" +
+      '<select id="acScope" class="ac-sel" hidden></select>' +
+      '<button type="submit">+ Add</button></form>' +
       '<div class="ac-list" id="acList"></div>' +
-      '<div class="ac-note mute">Vendors are authorized by the SOT Vendor List (V-1), not here.</div></div>';
+      '<div class="ac-note mute">Vendor/tenant picks stamp the V-1 roster / tenant contacts — that email signs in scoped from then on.</div></div>';
     ovWrap.append(ac);
+
+    const scopeOptions = kind =>
+      (kind === "vendor" ? accessVendorOptions() : accessUnitOptions(UNITS))
+        .map(o => '<option value="' + esc(o.id) + '">' + esc(o.label) + "</option>").join("");
+    const wireScope = (roleSel, scopeSel) => {
+      roleSel.onchange = () => {
+        const kind = scopeKind(roleSel.value);
+        scopeSel.hidden = !kind;
+        scopeSel.innerHTML = kind ? '<option value="">' + (kind === "vendor" ? "company…" : "unit…") + "</option>" + scopeOptions(kind) : "";
+      };
+    };
+
     const paint = async () => {
       const list = ac.querySelector("#acList");
       try {
         const [auth, pending] = await Promise.all([listAuthorized(), listPendingProfiles()]);
         list.innerHTML =
-          pending.map(p => '<div class="ac-row"><span class="ac-mail">' + esc(p.email) + '</span>' +
-            '<span class="ac-tag pend mono">pending</span><button class="ac-ok" data-e="' + esc(p.email) + '">make owner</button></div>').join("") +
+          pending.map(p => '<div class="ac-row ac-pend" data-e="' + esc(p.email) + '"><span class="ac-mail" title="' + esc(p.email) + '">' + esc(p.email) + "</span>" +
+            '<span class="ac-tag pend mono">pending</span>' +
+            '<select class="ac-sel ac-prole"><option value="">role…</option>' + roleOpts + "</select>" +
+            '<select class="ac-sel ac-pscope" hidden></select>' +
+            '<button class="ac-ok">assign</button><button class="ac-x ac-dis" title="Dismiss this sign-up entirely">✕</button></div>').join("") +
           auth.map(a => '<div class="ac-row"><span class="ac-mail">' + esc(a.email) + '</span>' +
-            '<span class="ac-tag mono">' + esc(a.role) + '</span><button class="ac-x" data-e="' + esc(a.email) + '" title="Revoke pre-authorization">✕</button></div>').join("") ||
+            '<span class="ac-tag mono">' + esc(a.role) + '</span><button class="ac-x ac-rev" data-e="' + esc(a.email) + '" title="Revoke pre-authorization">✕</button></div>').join("") ||
           '<div class="mute" style="font-size:11px;padding:4px 2px">no authorized emails yet</div>';
-        list.querySelectorAll(".ac-ok").forEach(b => { b.onclick = async () => { await authorizeEmail(b.dataset.e, "owner"); paint(); }; });
-        list.querySelectorAll(".ac-x").forEach(b => { b.onclick = async () => { if (!confirm("Revoke pre-authorization for " + b.dataset.e + "?\n(Does not sign out an already-active account.)")) return; try { await revokeAuthorized(b.dataset.e); paint(); } catch (e) { alert(e.message); } }; });
+        list.querySelectorAll(".ac-pend").forEach(row => {
+          const email = row.dataset.e, roleSel = row.querySelector(".ac-prole"), scopeSel = row.querySelector(".ac-pscope");
+          wireScope(roleSel, scopeSel);
+          row.querySelector(".ac-ok").onclick = async () => {
+            const err = validateAssignment(email, roleSel.value, scopeSel.value);
+            if (err) { alert(err); return; }
+            try { await assignRole(email, roleSel.value, scopeSel.value); paint(); } catch (e) { alert(e.message); }
+          };
+          row.querySelector(".ac-dis").onclick = async () => {
+            if (!confirm("Dismiss " + email + " entirely?\n(Deletes the stray sign-up; assigning a role later still works if they sign in again.)")) return;
+            try { await dismissPending(email); paint(); } catch (e) { alert(e.message); }
+          };
+        });
+        list.querySelectorAll(".ac-rev").forEach(b => { b.onclick = async () => { if (!confirm("Revoke pre-authorization for " + b.dataset.e + "?\n(Does not sign out an already-active account.)")) return; try { await revokeAuthorized(b.dataset.e); paint(); } catch (e) { alert(e.message); } }; });
       } catch (e) { list.innerHTML = '<div class="mute" style="font-size:11px">' + esc(e.message) + "</div>"; }
     };
     ac.addEventListener("toggle", () => { if (ac.open) paint(); });
+    wireScope(ac.querySelector("#acRole"), ac.querySelector("#acScope"));
     ac.querySelector("#acAdd").onsubmit = async e => {
       e.preventDefault();
-      const inp = ac.querySelector("#acEmail");
-      try { await authorizeEmail(inp.value, "owner"); inp.value = ""; paint(); }
-      catch (err) { alert(err.message); }
+      const inp = ac.querySelector("#acEmail"), role = ac.querySelector("#acRole"), scope = ac.querySelector("#acScope");
+      const err = validateAssignment(inp.value, role.value, scope.value);
+      if (err) { alert(err); return; }
+      try { await assignRole(inp.value, role.value, scope.value); inp.value = ""; paint(); }
+      catch (err2) { alert(err2.message); }
     };
   }
   const side = document.querySelector(".side");

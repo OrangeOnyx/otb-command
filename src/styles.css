@@ -608,10 +608,13 @@ body.role-vendor .ownerview { display: none !important; }
 
 /* ── sidebar: sign-in access panel ──────────────────────────────── */
 .ac-body { padding: 6px 2px 2px; }
-.ac-add { display: flex; gap: 6px; margin-bottom: 8px; }
-.ac-add input { flex: 1; min-width: 0; font-family: var(--body); font-size: 11.5px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); color: var(--ink); }
+.ac-add { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.ac-add input { flex: 1 1 100%; min-width: 0; font-family: var(--body); font-size: 11.5px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); color: var(--ink); }
+.ac-sel { flex: 1; min-width: 0; font-family: var(--mono); font-size: 10px; padding: 3px 4px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); color: var(--ink); }
 .ac-add button { font-family: var(--mono); font-size: 10.5px; padding: 0 9px; border: 1px solid var(--ink); border-radius: 6px; background: var(--ink); color: var(--paper); cursor: pointer; white-space: nowrap; }
 .ac-row { display: flex; align-items: center; gap: 6px; padding: 3px 2px; font-size: 11.5px; }
+.ac-row.ac-pend { flex-wrap: wrap; } /* email+tag line, then role/scope/assign controls */
+.ac-row .ac-sel { flex: 0 1 auto; max-width: 38%; }
 .ac-mail { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ac-tag { font-size: 9.5px; color: var(--green); }
 .ac-tag.pend { color: var(--brick, #C25E33); }

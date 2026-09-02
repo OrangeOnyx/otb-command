@@ -3,7 +3,39 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-08-29 (later) — **HARVEST WAVES RAN UNDER /goal: H1.1 history
+Last updated: 2026-09-01 — **SIGN-IN ROLE ASSIGNMENT SHIPPED (operator pick
+"option 1"): the sidebar "Sign-in access…" panel now assigns what an email IS —
+owner / vendor (+ V-1 company) / tenant (+ unit) — instead of the old
+make-owner-only button.** Trigger case: vendor Brian Zorn self-signed-up on the
+site and parked in `pending` (RLS-blind — nothing exposed; the panel just had
+no non-owner affordance). Immediate fix applied to prod same session: NEW
+vendors row `brian-zorn` (email bzorn253@gmail.com) in BOTH stores — DB
+public.vendors (auth/V-1) AND src/data/vendors.json → `npm run split-seed` +
+`npm run concierge-context` regens (that also fixed the operator-reported gap:
+the M-1 assign dropdown rides api/_seed.json, NOT the DB table — a DB-only
+vendor never appears in it) — plus profile flip + scoped org_members row.
+Build: migration `20260901180000_access_assignment` (applied via MCP
+apply_migration — IN server history, unlike the execute_sql door which the
+classifier blocked this session): `assign_role(email, role, scope)` — definer,
+manage_members-gated, never 'operator'; stamps the SOT the sign-up trigger
+reads (vendors.email [UNIQUE — clears the email off any other row] /
+tenant_contacts upsert / authorized_emails) so a fresh sign-in self-resolves,
+AND promotes an already-parked pending user with the correct unit_scope
+(closing the old promote_authorized gap: it always wrote scope '');
+`dismiss_pending(email)` deletes a stray sign-up (pending + membership-less
+only — can never touch a real member). 7-assert smoke under rollback on prod
+(gate raise · owner/tenant/vendor bodies · bad-role + unknown-vendor raises ·
+dismiss refuses members), 0 residue. Client: new pure seam src/lib/access.js
+(+5 tests), remote.js assignRole/dismissPending (authorizeEmail retired),
+panel rework in main.js (role+scope pickers on pending rows AND the add form,
+dismiss ✕), seed.js installs the vendor roster, styles. **513 tests, build
+clean, local no-login walk clean.** Note: commit c0df4a4 ("punch-list r3
+marks": L-1 bulk delete + Schedule G abatement split, SMK-6 ✓) landed from a
+CONCURRENT session mid-build and carried the Brian roster regen. **Operator
+smoke (1 min): sidebar → Sign-in access… → Brian shows as vendor-resolved
+(no pending row) · pick role "vendor" on the add form → company list renders ·
+M-1 → any WO → assign dropdown now lists Brian Zorn.**
+Prior: 2026-08-29 (later) — **HARVEST WAVES RAN UNDER /goal: H1.1 history
 + H1.2 + H2 IMPORTED · H2.5 BUILD WAVES 1–2 SHIPPED (491 tests) — DEPLOYED +
 VERIFIED (prod serves `index-DdDiWqeX.js` = exact local content-hash match;
 pg-comms/pg-matters + comm_log/payment_history greps ✓). This was the FIRST

@@ -270,25 +270,25 @@ export async function countClientErrors(hours = 24) {
 }
 
 /* ── access management (operator-only; RLS enforces) ─────────────
-   Authorize an email BEFORE first sign-in (allowlist consulted by the
-   sign-up trigger) and fix anyone already stuck in 'pending'. */
+   assign_role is the one door: the operator says what an email IS
+   (owner / vendor / tenant + scope) — the definer RPC stamps the SOT
+   (vendors.email / tenant_contacts / authorized_emails) so a fresh sign-in
+   self-resolves, and promotes anyone already parked in 'pending' with the
+   correct membership scope. Returns true when promoted in place. */
 export async function listAuthorized() {
   const { data, error } = await sb.from("authorized_emails").select("email,role,created_at").order("created_at", { ascending: false });
   if (error) throw error;
   return data || [];
 }
-export async function authorizeEmail(email, role = "owner") {
-  const e = String(email || "").trim().toLowerCase();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)) throw new Error("enter a valid email");
-  const ctx = await propertyContext();
-  const me = (await sb.auth.getUser()).data.user;
-  const { error } = await sb.from("authorized_emails").upsert({ email: e, role, added_by: me?.email || "", org_id: ctx.org_id });
+export async function assignRole(email, role, scope = "") {
+  const { data, error } = await sb.rpc("assign_role", { p_email: String(email || "").trim().toLowerCase(), p_role: role, p_scope: scope });
   if (error) throw error;
-  // if they already signed in and are parked in 'pending', promote in place —
-  // the definer RPC syncs profiles.role AND creates the org_members row
-  // (post-Phase-B, membership is the RLS authority)
-  const { error: e2 } = await sb.rpc("promote_authorized", { p_email: e });
-  if (e2) console.warn("promote:", e2.message);
+  return !!data;
+}
+export async function dismissPending(email) {
+  const { data, error } = await sb.rpc("dismiss_pending", { p_email: email });
+  if (error) throw error;
+  return !!data;
 }
 export async function revokeAuthorized(email) {
   const { error } = await sb.from("authorized_emails").delete().eq("email", email);
