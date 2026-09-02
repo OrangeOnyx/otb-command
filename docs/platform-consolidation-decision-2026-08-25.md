@@ -37,7 +37,7 @@ Approach key: **PARITY** = Atlas already does it, verify + close gaps · **PORT*
 
 | # | AC capability | Atlas destination | Approach | Data |
 |---|---|---|---|---|
-| 1 | Voice intake (Vapi/Retell line) | Existing Twilio bridge + voice-agent | PORT (Wave H1.1) | 62 rows import |
+| 1 | Voice intake (Vapi/Retell line) | Existing Twilio bridge + voice-agent | PORT (Wave H1.1) — history imported 2026-08-29; **H-2 decided PUBLISH 2026-09-01**, publish leg shipped same day (published_lines / set_voice_lines, sidebar panel, K-1 + M-1 surfaces); operator runs the forward → retire → notice sequence in docs/h11-voice-cutover-runbook-2026-09-01.md | 62 rows ✓ |
 | 2 | Work orders + media + vendor upload tokens | M-1 + maintenance-photos bucket + V-1 sealed folders | PORT (H1.2); token-link UX for unauthenticated vendor uploads is the gap to add | 24 WOs import |
 | 3 | SOP system (procedures/steps/assignments/completions, reminders, streaks) | NEW sheet + 5 typed tables + auto-trigger reminder leg | **PORTED 2026-08-25** (checksum-verified 506-row import; O-1 sheet + cron leg in repo, live on next deploy) | 506 rows ✓ |
 | 4 | Rent payment tracking + AR | Ledger + P-1 | PARITY going forward; history per H-1 decision | 313 rows ($1.13M) |
@@ -101,8 +101,9 @@ Grouped for independent shipping, roughly by operational value: **Money & Accoun
 ### Nothing is dropped
 Superseding the earlier draft of this section (operator instruction, 2026-08-25): there is no "not ported" list. Zero-usage features (CAM recon, QBO, governance, marketing, billing) are REBUILD/REF rows in the register — they transfer as clean builds in Atlas idiom with no data migration owed, on the Wave H2.5 schedule. The archived AC and NestJS schemas serve as their design references.
 
-## Open operator decisions
+## Operator decisions (punch list G-1, saved 2026-09-01 — confirmed, not relitigated)
 
-- **H-1 Rent-history shape:** import `rent_payments` as (a) pre-`ledger_start_ym` archival ledger entries, or (b) a dedicated read-only `payment_history` table surfaced in the unit drawer. (b) is cleaner — the append-only ledger stays born-clean.
-- **H-2 Phone number:** port the AC voice number to the Twilio bridge vs publish the bridge's number and retire AC's. Depends on which number tenants actually have.
-- **H-3 AC user invitations:** which of the 9 `user`-role accounts map to owner/vendor/tenant roles in `org_members`.
+- **H-1 Rent-history shape — DECIDED (b), ratified 2026-09-01.** `payment_history` stays as built on 2026-08-29 (read-only, unit-drawer "Prior payments"); the append-only ledger stays born-clean. Nothing further to build.
+- **H-2 Phone number — DECIDED PUBLISH, 2026-09-01.** The Twilio bridge's numbers are the published lines; AC's Vapi/Retell number forwards to the tenant line for a ≥30-day soak, then releases. Publish leg shipped 2026-09-01 (migration `voice_lines_publish`; sidebar "Phone lines…"; K-1 "Property lines"; M-1 tenant strip). Operator sequence + tenant-notice draft: `docs/h11-voice-cutover-runbook-2026-09-01.md`.
+- **OWN-1 Owner sheet set — DECIDED TRIM, 2026-09-01.** Owners see the classic five (dash · plan · roll · fin · safe). Applied on prod by the operator the same evening (`layer_settings.owner_sheets`, verified 2026-09-02 00:34Z).
+- **H-3 AC user invitations — OPEN.** Which of the 9 `user`-role accounts map to owner/vendor/tenant roles in `org_members`. Blocks the H2 invitation step only.

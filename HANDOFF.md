@@ -3,7 +3,42 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-09-01 — **SIGN-IN ROLE ASSIGNMENT SHIPPED (operator pick
+Last updated: 2026-09-01 (late) — **PUNCH-LIST r4 MARKS ACTED ON: H-1 (b)
+RATIFIED · H-2 PUBLISH → voice-lines publish leg SHIPPED + DEPLOYED · OWN-1
+TRIM verified on prod · waves H1.1/H1.2/H2/H2.5 marked Next.** Read the G-1
+sheet (state r4, saved 00:31Z Sep 2): decisions h1=b, h2=publish, own1=trim
+(h3 still undecided); smk-4/6 pass; g-1/g-2/h0-1/h0-2 done; h0-3 (AC secret
+rotation) open. OWN-1 needed no build — the operator had already flipped
+`layer_settings.owner_sheets` to the classic five at 00:34Z (verified by
+query). H-1 = docs only. H-2 = the build: migration
+`20260901230000_voice_lines_publish.sql` (APPLIED via MCP apply_migration —
+in server history): `voice_settings.tenant_number/leasing_number` (E.164
+check) + `voice_line_e164()` normalizer + `published_lines()` (any
+authenticated member — a published number is public) + `set_voice_lines()`
+(is_operator gate, refuses identical lines). Prod RPC smoke under rollback:
+SMOKE_PASS_ROLLBACK (gate · shape · body via jwt-claims impersonation ·
+differ · unpublish), 0 residue. Client: pure seam `src/lib/voicelines.js`
+(+6 tests) · remote.js getPublishedLines/setVoiceLines · sidebar
+**"Phone lines…"** panel (operator types the two Twilio numbers once) ·
+K-1 "Property lines" block (both lines, tap-to-call, re-reads on save) ·
+M-1 tenant-face "Urgent after hours?" strip (tenant line only). Every
+surface is silent until the numbers are pasted. Deliberately NOT switched:
+lease.js CONTACT office line, brief/board-report footers, leasing.js SMS
+signature, vinyl tel: QR — entity facts, operator call (listed in the
+runbook). **Runbook = docs/h11-voice-cutover-runbook-2026-09-01.md** (read
+numbers off Twilio → paste → forward AC's number to the tenant line →
+retire the Vapi/Retell agent → tenant notice draft → verify → release after
+30 days). Punch list **Rev 6** republished (state r4 carried; NEW SMK-7;
+H-1/H-2/OWN-1 cards + H1.1 wave rewritten; syntax drill run). Decision doc
+"Open operator decisions" → "Operator decisions" with status. **519 tests,
+build clean.** Untouched: `docs/graph/labels.json` shows an uncommitted
+graphify label reshuffle from a concurrent session — left alone.
+**Operator smoke = SMK-7 (2 min):** sidebar → Phone lines… → paste →
+Save → K-1 shows Property lines → tenant login's M-1 shows the strip.
+**Waiting on operator:** H-3 mapping · H0-3 secrets · SMK-2/3/5/7 ·
+vendor-upload identity (H1.2) · tenant-portal scope (#9) · QBO design
+session (#7) · AC-side forward/retire/notice steps.
+Prior: 2026-09-01 — **SIGN-IN ROLE ASSIGNMENT SHIPPED (operator pick
 "option 1"): the sidebar "Sign-in access…" panel now assigns what an email IS —
 owner / vendor (+ V-1 company) / tenant (+ unit) — instead of the old
 make-owner-only button.** Trigger case: vendor Brian Zorn self-signed-up on the

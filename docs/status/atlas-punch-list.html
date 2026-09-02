@@ -9,11 +9,11 @@
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":3,"saved":"2026-09-02T00:10:53.532Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"open","note":"","at":""},"smk-3":{"s":"open","note":"Regarding the lease assembler, I think it should be noted that the construction months, I think you have correct. That is, no base rent and no KM tax or insurance. The abatement months, they do not pay the base rent. They do pay the additional rent, which is the KM tax and insura","at":""},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"queued","note":""},"h12":{"p":"queued","note":""},"h2":{"p":"queued","note":""},"h25":{"p":"queued","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"","note":"","at":""},"h2":{"pick":"","note":"","at":""},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"","note":"","at":""}},"memo":{"text":"","at":""}}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":4,"saved":"2026-09-02T00:31:36.403Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"open","note":"","at":""},"smk-3":{"s":"open","note":"Regarding the lease assembler, I think it should be noted that the construction months, I think you have correct. That is, no base rent and no KM tax or insurance. The abatement months, they do not pay the base rent. They do pay the additional rent, which is the KM tax and insura","at":""},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"}},"memo":{"text":"","at":""}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -285,7 +285,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 1, 2026 &middot; Rev 5</span>
+      <span class="mono mast-date">Content &middot; Sep 1, 2026 (late) &middot; Rev 6</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one working sheet.
@@ -433,6 +433,24 @@ const BODY = `
           <input class="note" data-note="smk-6" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
+      <div class="smoke" data-smoke="smk-7">
+        <div class="head"><span class="mono eyebrow">SMK-7</span><span class="name">Phone lines &mdash; publish the bridge numbers</span><span class="chip open">2 min + AC side</span><span class="stamp" data-stamp="smk-7"></span></div>
+        <p class="desc">Decision H-2 = publish (Sep 1). Built: sidebar &rarr; <em>Phone lines&hellip;</em> &rarr; paste the two
+        Twilio numbers (Console &rarr; Phone Numbers; the tenant line is the one whose webhook ends
+        <code>?line=tenant</code>) &rarr; Save &rarr; K-1 shows a &ldquo;Property lines&rdquo; block (tap-to-call) &rarr;
+        a tenant login&rsquo;s M-1 shows the &ldquo;Urgent after hours?&rdquo; strip (owner-preview does NOT show it &mdash;
+        tenant face only). Then the AC side per <code>docs/h11-voice-cutover-runbook-2026-09-01.md</code>:
+        forward AC&rsquo;s number to the tenant line &rarr; retire the Vapi/Retell agent &rarr; tenant notice
+        (draft in the runbook) &rarr; release the old number after a 30-day soak.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-7 result">
+            <button type="button" class="b-open" data-smk="smk-7" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-7" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-7" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-7" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
     </div>
     <p class="smoke-note mono" id="save-stamp">No revision saved yet &mdash; marks publish to the sheet when you hit Save.</p>
   </section>
@@ -483,11 +501,16 @@ const BODY = `
         <div class="ctrl"><input class="note" data-wnote="h0" maxlength="600" placeholder="Note for Claude on H0 (optional)"></div>
       </div>
       <div class="wave" data-wave="h11">
-        <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Open</span></div>
-        <p>Pick the single phone stack &mdash; Atlas&rsquo; Twilio bridge is the keeper (truthful-booking guard,
-        tested). Repoint or port the number AC&rsquo;s Vapi/Retell agent answers. The history leg is DONE:
-        all 62 voice-intake rows live in the new L-1 Comm Log (<code>source:'ac'</code>).</p>
-        <div class="data">62 rows imported Aug 29 &middot; number cutover blocked by decision H-2</div>
+        <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Publish leg built</span></div>
+        <p><strong>H-2 decided Sep 1: publish the bridge&rsquo;s numbers.</strong> Atlas&rsquo; Twilio bridge is the
+        keeper; AC&rsquo;s Vapi/Retell line retires after a forwarding soak. Built the same evening:
+        <code>voice_settings</code> carries the two published numbers (E.164-checked; <code>published_lines()</code>
+        readable by every signed-in member, <code>set_voice_lines()</code> operator-only) &mdash; sidebar
+        <em>Phone lines&hellip;</em> panel, K-1 &ldquo;Property lines&rdquo; block, M-1 tenant strip; all silent until
+        the numbers are pasted. History leg DONE Aug 29 (62 rows in L-1). What remains is yours &mdash; SMK-7 above
+        + the AC-side steps in the runbook. Lease/brief contact numbers and the leasing SMS blurb were
+        deliberately NOT switched (entity facts; your call &mdash; runbook lists them).</p>
+        <div class="data">62 rows imported Aug 29 &middot; H-2 = publish Sep 1 &middot; publish leg live Sep 1 &middot; operator: paste numbers (SMK-7) &rarr; forward &rarr; retire &rarr; notice</div>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H1.1 priority">
             <button type="button" class="b-next" data-wav="h11" data-set="next" aria-pressed="false">Next up</button>
@@ -587,7 +610,8 @@ const BODY = `
         in the unit drawer. The decision doc leans (b) &mdash; the append-only ledger stays born-clean.
         <strong>Interim (Aug 29):</strong> Claude implemented (b) under <code>/goal</code> &mdash;
         additive and reversible (flip to (a) = drop the table, re-import from the archive). Pick (b)
-        to ratify or (a) to reverse.</p>
+        to ratify or (a) to reverse. <strong>Decided Sep 1: (b) ratified</strong> &mdash; <code>payment_history</code>
+        stays as built (read-only, unit-drawer &ldquo;Prior payments&rdquo;); the ledger stays born-clean. Nothing further to build.</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="H-1 decision">
             <button type="button" data-dec="h1" data-set="a" aria-pressed="false">(a) Archival ledger</button>
@@ -601,7 +625,10 @@ const BODY = `
       <div class="decision" data-dec-card="h2">
         <div class="head"><span class="did">H-2</span><span class="q">Phone-number strategy</span><span class="stamp" data-dstamp="h2"></span></div>
         <p>Port the number AC&rsquo;s agent answers over to the Twilio bridge, or publish the bridge&rsquo;s
-        number and retire AC&rsquo;s. Turns entirely on which number tenants actually have saved.</p>
+        number and retire AC&rsquo;s. Turns entirely on which number tenants actually have saved.
+        <strong>Decided Sep 1: publish.</strong> The publish leg shipped the same evening (see H1.1 / SMK-7);
+        the AC-side forward-then-retire sequence and a tenant-notice draft are in
+        <code>docs/h11-voice-cutover-runbook-2026-09-01.md</code>.</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="H-2 decision">
             <button type="button" data-dec="h2" data-set="port" aria-pressed="false">Port AC&rsquo;s number</button>
@@ -630,7 +657,10 @@ const BODY = `
         <div class="head"><span class="did">OWN-1</span><span class="q">Owner sheet set</span><span class="stamp" data-dstamp="own1"></span></div>
         <p>Owners currently see ALL 13 sheets (including comp, board, maintenance, vendors, AI) &mdash;
         a global setting, not per-person. Trim to the classic five (dash &middot; plan &middot; roll &middot;
-        fin &middot; safe) before Dickey&rsquo;s first sign-in? Raised Aug 10; unanswered.</p>
+        fin &middot; safe) before Dickey&rsquo;s first sign-in? Raised Aug 10; unanswered.
+        <strong>Decided Sep 1: trim.</strong> Applied on prod by you the same evening (<code>layer_settings
+        owner_sheets</code> = dash &middot; plan &middot; roll &middot; fin &middot; safe, 00:34Z Sep 2) &mdash; verified, nothing
+        left to build. Any future owner sees the classic five.</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="OWN-1 decision">
             <button type="button" data-dec="own1" data-set="trim" aria-pressed="false">Trim to classic five</button>
@@ -756,6 +786,13 @@ const BODY = `
       $1,133,492.20 to the cent &middot; DEPLOYED same day, bundle content-hash verified.
       That deploy + push were the first Claude-run ones to land (headless auto session,
       un-prompted) &mdash; gate step g-2 above is satisfied; mark it Done.</li>
+      <li>Sep 1 (late) snapshot: your r4 marks read and acted on &mdash; H-1 (b) ratified, H-2 publish
+      built (SMK-7), OWN-1 trim verified on prod, four waves marked Next. 519 tests green &middot;
+      migration <code>voice_lines_publish</code> applied via apply_migration (in server history) &middot;
+      RPC smoke on PROD: SMOKE_PASS_ROLLBACK (gate &middot; shape &middot; body &middot; differ &middot; unpublish), 0 residue.
+      Still waiting on you: H-3 mapping (H2 invitations) &middot; H0-3 secret rotation &middot; SMK-2/3/5/7 &middot;
+      the vendor upload-link identity call (H1.2 / register #2) &middot; tenant-portal scope (#9) &middot;
+      a QBO design session (#7).</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
@@ -768,7 +805,7 @@ const BODY = `
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-09-01</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">5</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">6</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>

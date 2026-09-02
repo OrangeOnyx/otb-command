@@ -10,8 +10,33 @@ import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
 import { expiringDocs, expiryLine, isoDate } from "../lib/docexpiry.js";
 import { esc, TODAY } from "../lib/format.js";
+import { REMOTE, getPublishedLines } from "../lib/remote.js";
+import { linesFromRow, lineRows } from "../lib/voicelines.js";
 
 let imageryDispose = null;
+
+/* Property lines (decision H-2, 2026-09-01): the published tenant-service
+   and leasing numbers top the contacts card, tap-to-call. Absent entirely
+   until the operator publishes them (sidebar → Phone lines…); hosted-only. */
+function renderLinesBlock(contactsEl) {
+  if (!REMOTE) return;
+  const card = contactsEl.parentElement;
+  getPublishedLines().then(row => {
+    if (!card.isConnected) return;
+    const rows = lineRows(linesFromRow(row));
+    let blk = card.querySelector("#dirLines");
+    if (!rows.length) { if (blk) blk.remove(); return; }
+    if (!blk) {
+      blk = document.createElement("div");
+      blk.id = "dirLines";
+      card.querySelector(".panel-h").insertAdjacentElement("afterend", blk);
+    }
+    blk.innerHTML = '<div class="dw-sec" style="margin-top:0">Property lines</div>' +
+      rows.map(r => '<div class="pl-line"><span class="pl-lbl">' + esc(r.label) + '</span>' +
+        '<a class="pl-num mono" href="' + esc(r.href) + '">' + esc(r.display) + '</a>' +
+        '<span class="pl-hint mute">' + esc(r.hint) + '</span></div>').join("");
+  }).catch(() => {});
+}
 
 /* Every document on the property: register list + each unit's docs, deduped
    by id (merge() surfaces custom unit-scoped docs in both lists). */
@@ -45,6 +70,7 @@ export function renderDirectory() {
   mountRecords(c, "contacts", propertyContacts(), {}, renderDirectory);
   mountRecords(d, "documents", propertyDocuments(), {}, renderDirectory);
   renderExpiryStrip(d);
+  renderLinesBlock(c);
   const img = document.getElementById("dirImagery");
   if (img && !imageryDispose) imageryDispose = mountAssets(img, "property"); // self-refreshing; mount once
 }
@@ -52,4 +78,5 @@ export function renderDirectory() {
 export function initDirectory() {
   renderDirectory();
   subscribe(type => { if (type === "contacts" || type === "documents" || type === "import") renderDirectory(); });
+  document.addEventListener("otb:lines", () => { const c = document.getElementById("dirContacts"); if (c) renderLinesBlock(c); });
 }

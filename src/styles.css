@@ -622,6 +622,14 @@ body.role-vendor .ownerview { display: none !important; }
 .ac-x { border: none; background: none; color: var(--ink50); cursor: pointer; font-size: 11px; }
 .ac-x:hover { color: var(--brick, #C25E33); }
 .ac-note { font-size: 10px; margin-top: 6px; }
+/* Phone lines (decision H-2): sidebar panel fields + K-1 block + M-1 tenant strip */
+.pl-lab { flex: 1 1 100%; display: flex; flex-direction: column; gap: 2px; font-size: 10px; letter-spacing: .04em; }
+.pl-line { display: flex; align-items: baseline; gap: 8px; padding: 3px 2px 5px; font-size: 12px; flex-wrap: wrap; }
+.pl-lbl { flex: 0 0 auto; }
+.pl-num { color: var(--green); font-weight: 600; text-decoration: none; }
+.pl-num:hover { text-decoration: underline; }
+.pl-hint { font-size: 10px; }
+.pl-strip { margin: 4px 0 8px; }
 
 /* ── Visual sheet export (⤓ SHEET / Ctrl+P): print ONLY the open sheet, ──────
    plan-room colors exact, landscape drawing-set page with a stamped footer. */

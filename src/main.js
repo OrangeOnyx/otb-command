@@ -1,8 +1,9 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
 import { UNITS, exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY } from "./lib/remote.js";
+import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY, getPublishedLines, setVoiceLines } from "./lib/remote.js";
 import { ASSIGNABLE_ROLES, accessVendorOptions, accessUnitOptions, scopeKind, validateAssignment } from "./lib/access.js";
+import { LINE_DEFS, linesFromRow, normalizeUsNumber, validateLines, publishNote } from "./lib/voicelines.js";
 import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
@@ -219,6 +220,41 @@ function buildShell(account) {
       if (err) { alert(err); return; }
       try { await assignRole(inp.value, role.value, scope.value); inp.value = ""; paint(); }
       catch (err2) { alert(err2.message); }
+    };
+
+    /* published phone lines (decision H-2, 2026-09-01: publish the Twilio
+       bridge's numbers; AC's Vapi/Retell line retires after a forwarding
+       soak). The ONE place the operator types the two numbers — tenants see
+       the tenant line on M-1, K-1 lists both; every surface stays silent
+       until Save. Runbook: docs/h11-voice-cutover-runbook-2026-09-01.md */
+    const pl = document.createElement("details");
+    pl.className = "ov-cfg";
+    pl.innerHTML = "<summary>Phone lines…</summary>" +
+      '<div class="ac-body"><form class="ac-add" id="plForm">' +
+      LINE_DEFS.map(([k, label]) => '<label class="pl-lab">' + esc(label) +
+        '<input id="pl-' + k + '" type="tel" placeholder="(337) 555-0100" autocomplete="off"></label>').join("") +
+      '<button type="submit">Save</button></form>' +
+      '<div class="ac-note mute" id="plNote"></div></div>';
+    ovWrap.append(pl);
+    const plPaint = async () => {
+      const note = pl.querySelector("#plNote");
+      try {
+        const lines = linesFromRow(await getPublishedLines());
+        LINE_DEFS.forEach(([k]) => { pl.querySelector("#pl-" + k).value = lines[k] ? lines[k].display : ""; });
+        note.textContent = publishNote(lines);
+      } catch (e) { note.textContent = e.message; }
+    };
+    pl.addEventListener("toggle", () => { if (pl.open) plPaint(); });
+    pl.querySelector("#plForm").onsubmit = async e => {
+      e.preventDefault();
+      const t = pl.querySelector("#pl-tenant").value, l = pl.querySelector("#pl-leasing").value;
+      const err = validateLines(t, l);
+      if (err) { alert(err); return; }
+      try {
+        await setVoiceLines(normalizeUsNumber(t) || "", normalizeUsNumber(l) || "");
+        plPaint();
+        document.dispatchEvent(new CustomEvent("otb:lines")); // K-1 re-reads its block
+      } catch (err2) { alert(err2.message); }
     };
   }
   const side = document.querySelector(".side");

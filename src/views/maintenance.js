@@ -5,7 +5,8 @@
    login roster. OWNER: read-only queue. Vendors never see M-1 — their
    assigned work orders surface on V-1 (vendorportal.js).
    Data/derivation lives in lib/maintenance.js; RLS scopes every query. */
-import { REMOTE, sb, listLedgerEntries } from "../lib/remote.js";
+import { REMOTE, sb, listLedgerEntries, getPublishedLines } from "../lib/remote.js";
+import { linesFromRow, lineRows } from "../lib/voicelines.js";
 import { withRunningBalance, DEBIT_TYPES } from "../lib/ledger.js";
 import { fmt$ } from "../lib/format.js";
 import {
@@ -167,6 +168,19 @@ function loadTenantAccount(el, unit) {
   }).catch(() => { el.innerHTML = '<div class="led-note">Account view unavailable right now.</div>'; });
 }
 
+/* Published tenant service line (decision H-2, 2026-09-01): a tap-to-call
+   strip under the unit header. Silent until the operator publishes the
+   number (sidebar → Phone lines…); tenants never see the leasing line. */
+function loadLinesStrip(el) {
+  if (!el) return;
+  getPublishedLines().then(row => {
+    if (!el.isConnected) return;
+    el.innerHTML = lineRows(linesFromRow(row), "tenant").map(r =>
+      '<div class="led-note pl-strip">Urgent after hours? Call the ' + esc(r.label.toLowerCase()) +
+      ' <a class="pl-num" href="' + esc(r.href) + '">' + esc(r.display) + '</a> — ' + esc(r.hint) + '.</div>').join("");
+  }).catch(() => {});
+}
+
 async function renderTenant(host, account) {
   const { data } = await sb.from("tenant_contacts").select("unit,name").limit(1);
   const me = data && data[0];
@@ -174,6 +188,7 @@ async function renderTenant(host, account) {
   const mine = getMaintCache();
   host.innerHTML =
     '<div class="dw-sec">Unit ' + esc(me.unit) + ' — maintenance</div>' +
+    '<div id="mtLines"></div>' +
     submitFormHTML(me.unit) +
     '<div class="dw-sec" style="margin-top:14px">Your requests</div>' +
     (mine.length ? mine.map(r => requestCard(r)).join("") : '<div class="safe-empty mute">nothing filed yet</div>') +
@@ -183,6 +198,7 @@ async function renderTenant(host, account) {
   wireSubmitForm(host, account.email, rerender);
   wireCardBasics(host, account.email, rerender);
   loadTenantAccount(host.querySelector("#mtTenantLedger"), me.unit);
+  loadLinesStrip(host.querySelector("#mtLines"));
 }
 
 /* ---------- operator face ---------- */

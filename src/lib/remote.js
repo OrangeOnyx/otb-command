@@ -299,3 +299,19 @@ export async function listPendingProfiles() {
   if (error) return [];
   return data || [];
 }
+
+/* ── published phone lines (decision H-2, 2026-09-01) ────────────
+   published_lines: any signed-in member (tenants included — a published
+   number is public by definition) → {tenant, leasing, updated_at}, E.164
+   or ''. set_voice_lines: operator-only; the RPC normalizes any US format
+   and refuses identical lines. Pure shaping lives in lib/voicelines.js. */
+export async function getPublishedLines() {
+  const { data, error } = await sb.rpc("published_lines");
+  if (error) throw error;
+  return data || {};
+}
+export async function setVoiceLines(tenant, leasing) {
+  const { data, error } = await sb.rpc("set_voice_lines", { p_tenant: tenant || "", p_leasing: leasing || "" });
+  if (error) throw error;
+  return data || {};
+}
