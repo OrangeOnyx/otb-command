@@ -86,7 +86,21 @@ export function scheduleG(inputs, sf, rec) {
   const fm = Math.max(0, Math.floor(+inputs.freeRentMonths || 0));
   if (cm) abatement.push(`Construction period: ${cm} month${cm > 1 ? "s" : ""} prior to the Commencement Date (§33.01 material inducement).`);
   if (fm) abatement.push(`Base-rent abatement: months 1–${fm} of the Initial Term — Base Rent abated; CAM, Taxes, and Insurance Charges (NNN) remain payable.`);
-  return { nnnPsf, steps, abatement };
+  /* Monthly schedule with the abatement APPLIED (operator rule, punch-list
+     SMK-3 note 2026-09-01): abated months bill additional rent (NNN) only —
+     base is abated, never the NNN. Construction months precede the
+     Commencement Date and don't appear in the paid schedule at all. The rate
+     `steps` above stay the contract rate; only this printed monthly view
+     splits, so the numbers a tenant checks match the abatement rider. */
+  const monthly = [];
+  for (const s of steps) {
+    const cut = Math.min(Math.max(fm, s.fromMonth - 1), s.toMonth);
+    if (s.fromMonth <= cut)
+      monthly.push({ fromMonth: s.fromMonth, toMonth: cut, psf: s.psf, monthlyBase: 0, monthlyNNN: s.monthlyNNN, monthlyTotal: s.monthlyNNN, abated: true });
+    if (cut < s.toMonth)
+      monthly.push({ fromMonth: cut + 1, toMonth: s.toMonth, psf: s.psf, monthlyBase: s.monthlyBase, monthlyNNN: s.monthlyNNN, monthlyTotal: s.monthlyTotal, abated: false });
+  }
+  return { nnnPsf, steps, abatement, monthly };
 }
 
 const range = s => s.fromMonth === s.toMonth ? `Month ${s.fromMonth}` : `Months ${s.fromMonth}–${s.toMonth}`;
@@ -171,8 +185,10 @@ export function assembleLease(inputs, unit, rec) {
     SECURITY_DEPOSIT: (+inputs.deposit || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
     BASE_RENT_STEP_ROWS: g.steps.map(s => `${range(s)}: ${money(s.psf)} PSF/yr — ${money(s.monthlyBase)}/mo base`).join("\n"),
     RENT_ABATEMENT_ROWS: g.abatement.length ? g.abatement.join("\n") : "NOT APPLICABLE",
-    MONTHLY_RENT_SCHEDULE: g.steps.map(s =>
-      `${range(s)}: ${money(s.monthlyTotal)}/mo total (base ${money(s.monthlyBase)} + NNN ${money(s.monthlyNNN)})`).join("\n"),
+    MONTHLY_RENT_SCHEDULE: g.monthly.map(s =>
+      s.abated
+        ? `${range(s)}: ${money(s.monthlyTotal)}/mo (Base Rent abated — additional rent only: NNN ${money(s.monthlyNNN)})`
+        : `${range(s)}: ${money(s.monthlyTotal)}/mo total (base ${money(s.monthlyBase)} + NNN ${money(s.monthlyNNN)})`).join("\n"),
     "ATTACH CURRENT APPROVED PLAT OF LEASED PREMISES":
       "[TO BE ATTACHED BEFORE EXECUTION: current approved plat of the Leased Premises — see issuance checklist]",
     "ATTACH CURRENT APPROVED SITE PLAN OF COMMON AREA":

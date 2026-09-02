@@ -8,11 +8,12 @@ import { REMOTE } from "../lib/remote.js";
 import { esc } from "../lib/format.js";
 import {
   CHANNELS, filterComms, commLine,
-  getComms, onCommsChange, refreshComms, addComm, deleteComm,
+  getComms, onCommsChange, refreshComms, addComm, deleteComm, deleteComms,
 } from "../lib/comms.js";
 
-/* view-local UI state — survives data re-renders */
-const state = { channel: "", unit: "", q: "", open: null, form: false };
+/* view-local UI state — survives data re-renders. `select` = bulk-select mode
+   (operator); `sel` holds the checked ids across list repaints. */
+const state = { channel: "", unit: "", q: "", open: null, form: false, select: false, sel: new Set() };
 
 function detailHTML(r) {
   const p = r.payload && typeof r.payload === "object" ? r.payload : {};
@@ -37,8 +38,12 @@ function detailHTML(r) {
 
 function rowHTML(r, operator) {
   const L = commLine(r);
+  const box = operator && state.select
+    ? '<input type="checkbox" class="comm-sel" data-id="' + esc(r.id) + '"' + (state.sel.has(r.id) ? " checked" : "") + '>'
+    : "";
   return '<div class="comm-row" data-id="' + esc(r.id) + '" style="border-bottom:1px dashed var(--line);padding:4px 0;cursor:pointer">' +
     '<div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap">' +
+    box +
     '<span class="mono" style="font-size:11px;white-space:nowrap">' + esc(L.when) + '</span>' +
     '<span class="chip" style="padding:1px 8px;font-size:10px">' + esc(L.chip) + '</span>' +
     (L.unitTag ? '<span class="mono" style="font-size:10px;background:#1E4F3C;color:#fff;border-radius:3px;padding:0 5px">' + esc(L.unitTag) + '</span>' : "") +
@@ -63,7 +68,13 @@ function headerHTML(operator) {
     Object.entries(CHANNELS).map(([k, label]) => chip(k, label, counts[k] || 0)).join("") +
     '<input type="text" id="commUnit" placeholder="unit" value="' + esc(state.unit) + '" style="width:64px;font-size:11px">' +
     '<input type="search" id="commQ" placeholder="search…" value="' + esc(state.q) + '" style="flex:1;min-width:140px;font-size:11px">' +
-    (operator ? '<button class="chip' + (state.form ? " on" : "") + '" id="commAdd">＋ Log entry</button>'
+    (operator
+      ? '<button class="chip' + (state.form ? " on" : "") + '" id="commAdd">＋ Log entry</button>' +
+        '<button class="chip' + (state.select ? " on" : "") + '" id="commSelMode" title="Select multiple entries to delete in one step">☑ Select</button>' +
+        (state.select
+          ? '<button class="chip" id="commSelAll">All filtered</button>' +
+            '<button class="chip" id="commSelDel"' + (state.sel.size ? "" : " disabled") + ' style="color:var(--brick)">✕ Delete ' + state.sel.size + '</button>'
+          : "")
       : '<span class="mute mono" style="font-size:10px">(read-only)</span>') +
     '</div>';
 }
@@ -106,8 +117,19 @@ function wireList(el, host, account) {
     try { await deleteComm(b.dataset.id); }
     catch (err) { alert("Delete failed: " + err.message); }
   });
+  el.querySelectorAll(".comm-sel").forEach(box => box.onclick = e => {
+    e.stopPropagation();
+    if (box.checked) state.sel.add(box.dataset.id); else state.sel.delete(box.dataset.id);
+    render(host, account); // header count updates
+  });
   el.querySelectorAll(".comm-row").forEach(row => row.onclick = e => {
-    if (e.target.closest(".comm-del")) return;
+    if (e.target.closest(".comm-del") || e.target.closest(".comm-sel")) return;
+    if (state.select) { // select mode: row click = toggle, not expand
+      const id = row.dataset.id;
+      if (state.sel.has(id)) state.sel.delete(id); else state.sel.add(id);
+      render(host, account);
+      return;
+    }
     state.open = state.open === row.dataset.id ? null : row.dataset.id;
     renderList(host, account);
   });
@@ -130,6 +152,25 @@ function render(host, account) {
     host.querySelector("#commAdd")?.addEventListener("click", () => {
       state.form = !state.form;
       render(host, account);
+    });
+    host.querySelector("#commSelMode")?.addEventListener("click", () => {
+      state.select = !state.select;
+      if (!state.select) state.sel.clear();
+      render(host, account);
+    });
+    host.querySelector("#commSelAll")?.addEventListener("click", () => {
+      filterComms(getComms(), state).forEach(r => state.sel.add(r.id));
+      render(host, account);
+    });
+    host.querySelector("#commSelDel")?.addEventListener("click", async () => {
+      const n = state.sel.size;
+      if (!n) return;
+      if (!confirm("Delete " + n + " log entr" + (n === 1 ? "y" : "ies") + "? This cannot be undone.")) return;
+      try {
+        await deleteComms([...state.sel]); // one confirm covers the whole set
+        state.sel.clear();
+        state.select = false;
+      } catch (err) { alert("Bulk delete failed: " + err.message); }
     });
     host.querySelector("#cfSave")?.addEventListener("click", async () => {
       const summary = host.querySelector("#cfSummary").value.trim();

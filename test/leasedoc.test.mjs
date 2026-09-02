@@ -205,3 +205,50 @@ test("assembleLease: rec all-zero (vacant, no recovery history) → ok, with $0.
   assert.equal(r.ok, true, r.errors.join("; "));
   assert.ok(r.warnings.some(w => /NNN charges are \$0\.00/i.test(w)));
 });
+
+/* Operator rule (punch-list SMK-3 note, 2026-09-01): abatement months abate
+   BASE RENT ONLY — additional rent (CAM/Tax/Ins) remains payable; the printed
+   monthly schedule must show that split so a tenant's arithmetic matches the
+   abatement rider. Construction months precede Commencement and never appear
+   in the paid schedule. */
+test("scheduleG monthly: abated months bill NNN only, remainder unchanged", () => {
+  const g = scheduleG(IN, 1907, REC); // freeRentMonths: 2
+  assert.equal(g.monthly[0].fromMonth, 1);
+  assert.equal(g.monthly[0].toMonth, 2);
+  assert.equal(g.monthly[0].abated, true);
+  assert.equal(g.monthly[0].monthlyBase, 0);
+  assert.ok(Math.abs(g.monthly[0].monthlyTotal - g.monthly[0].monthlyNNN) < 1e-9);
+  assert.equal(g.monthly[1].fromMonth, 3);
+  assert.equal(g.monthly[1].toMonth, 12);
+  assert.equal(g.monthly[1].abated, false);
+  assert.ok(Math.abs(g.monthly[1].monthlyTotal - (g.steps[0].monthlyBase + g.steps[0].monthlyNNN)) < 1e-9);
+  // later steps untouched by the split
+  assert.equal(g.monthly.length, g.steps.length + 1);
+  assert.equal(g.monthly[2].fromMonth, 13);
+});
+
+test("scheduleG monthly: no abatement = rows mirror the steps exactly", () => {
+  const g = scheduleG({ ...IN, freeRentMonths: 0 }, 1907, REC);
+  assert.equal(g.monthly.length, g.steps.length);
+  assert.ok(g.monthly.every(r => !r.abated));
+  assert.equal(g.monthly[0].fromMonth, 1);
+  assert.equal(g.monthly[0].toMonth, 12);
+});
+
+test("scheduleG monthly: abatement spanning a whole first step", () => {
+  const g = scheduleG({ ...IN, termMonths: 24, freeRentMonths: 12 }, 1907, REC);
+  assert.equal(g.monthly[0].toMonth, 12);
+  assert.equal(g.monthly[0].abated, true);
+  assert.equal(g.monthly[1].fromMonth, 13);
+  assert.equal(g.monthly[1].abated, false);
+  assert.equal(g.monthly.length, 2);
+});
+
+test("assembleLease: MONTHLY_RENT_SCHEDULE prints the abatement split", () => {
+  const r = assembleLease(IN, UNIT, REC);
+  assert.equal(r.ok, true);
+  assert.match(r.tokens.MONTHLY_RENT_SCHEDULE, /Months 1–2: .*Base Rent abated — additional rent only/);
+  assert.match(r.tokens.MONTHLY_RENT_SCHEDULE, /Months 3–12: .*\/mo total \(base /);
+  const none = assembleLease({ ...IN, freeRentMonths: 0 }, UNIT, REC);
+  assert.ok(!/Base Rent abated/.test(none.tokens.MONTHLY_RENT_SCHEDULE));
+});

@@ -100,3 +100,17 @@ export async function deleteComm(id) {
   if (error) throw error;
   await refreshComms();
 }
+
+/* Batch delete (operator punch-list ask, SMK-6 note 2026-09-01): ONE confirm
+   in the view covers the whole set. Chunked .in() keeps each statement well
+   under limits; single refresh at the end. Returns how many ids were sent. */
+export async function deleteComms(ids) {
+  const list = [...new Set((ids || []).filter(Boolean))];
+  if (!list.length) return 0;
+  for (let i = 0; i < list.length; i += 100) {
+    const { error } = await sb.from("comm_log").delete().in("id", list.slice(i, i + 100));
+    if (error) throw error;
+  }
+  await refreshComms();
+  return list.length;
+}
