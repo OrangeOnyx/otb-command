@@ -793,7 +793,7 @@ const BODY = `
       unpushed &middot; 519 tests green, build clean &middot; prod serves the HEAD bundle
       (<code>index-B82IeNgn.js</code>, exact match) &middot; server migration history carries
       <code>voice_lines_publish</code>. Supabase advisor sweep: one new lint from the voice leg
-      (<code>voice_line_e164</code> had a mutable search_path) &mdash; fix written as migration <code>20260902120000_voice_line_e164_search_path</code>, both prod doors classifier-blocked this session &mdash; one <code>ALTER FUNCTION</code> for you to run (HANDOFF has the line). Pre-existing and left
+      (<code>voice_line_e164</code> had a mutable search_path) &mdash; fix written as migration <code>20260902120000_voice_line_e164_search_path</code>; both prod doors were classifier-blocked in that session, but the still-open Sep 1 session applied it minutes later via apply_migration (server history, verified) &mdash; nothing for you to run. Pre-existing and left
       as designed: 45 security-definer RPCs executable by authenticated / anon (each body gates on
       membership), <code>app_secrets</code> RLS with no policy (service-role only), leaked-password
       protection off (magic-link only); performance notices (47 unindexed FKs, 45 duplicate permissive

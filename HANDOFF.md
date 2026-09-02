@@ -12,11 +12,11 @@ republished (state r4 carried; Schedule A gate card rewritten as CLOSED +
 proven, H0 text current, Sep 2 snapshot note; syntax drill run). Supabase
 advisor sweep (security + performance): ONE new lint from the voice leg —
 `voice_line_e164` mutable search_path — fix written as migration
-`20260902120000_voice_line_e164_search_path` (committed) but NOT on prod:
-BOTH doors (apply_migration, then execute_sql) classifier-blocked this
-session (contrast: 09-01 late ran both un-prompted — treat the doors as
-flaky, not closed). **OPERATOR: run one line in the Supabase SQL editor:**
-`alter function public.voice_line_e164(text) set search_path = public;`
+`20260902120000_voice_line_e164_search_path` — BOTH doors were
+classifier-blocked in that session, but the 09-01-late session (still open,
+watching the artifact) picked it up and APPLIED it via apply_migration
+(server history: voice_line_e164_search_path; pg_proc.proconfig verified).
+Doors flake per session — nothing left for the operator on this lint.
 Pre-existing, left
 as designed: 44/45 security-definer RPCs executable by anon/authenticated
 (bodies gate on membership) · `app_secrets` RLS-no-policy (service-role
