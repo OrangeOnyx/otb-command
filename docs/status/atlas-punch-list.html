@@ -9,7 +9,7 @@
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":1,"saved":"2026-08-27T22:28:08.882Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"open","note":"","at":""},"smk-3":{"s":"open","note":"","at":""},"smk-4":{"s":"open","note":"","at":""},"smk-5":{"s":"open","note":"","at":""}},"tasks":{"g-1":{"s":"open","at":""},"g-2":{"s":"open","at":""},"h0-1":{"s":"open","at":""},"h0-2":{"s":"open","at":""},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"queued","note":""},"h12":{"p":"queued","note":""},"h2":{"p":"queued","note":""},"h25":{"p":"queued","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"","note":"","at":""},"h2":{"pick":"","note":"","at":""},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"","note":"","at":""}},"memo":{"text":"","at":""}}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":3,"saved":"2026-09-02T00:10:53.532Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"open","note":"","at":""},"smk-3":{"s":"open","note":"Regarding the lease assembler, I think it should be noted that the construction months, I think you have correct. That is, no base rent and no KM tax or insurance. The abatement months, they do not pay the base rent. They do pay the additional rent, which is the KM tax and insura","at":""},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"queued","note":""},"h12":{"p":"queued","note":""},"h2":{"p":"queued","note":""},"h25":{"p":"queued","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"","note":"","at":""},"h2":{"pick":"","note":"","at":""},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"","note":"","at":""}},"memo":{"text":"","at":""}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
@@ -285,7 +285,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Aug 29, 2026 &middot; Rev 4</span>
+      <span class="mono mast-date">Content &middot; Sep 1, 2026 &middot; Rev 5</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one working sheet.
@@ -359,7 +359,7 @@ const BODY = `
             <button type="button" class="b-pass" data-smk="smk-1" data-set="pass" aria-pressed="false">Pass</button>
             <button type="button" class="b-fail" data-smk="smk-1" data-set="fail" aria-pressed="false">Fail</button>
           </div>
-          <input class="note" data-note="smk-1" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+          <input class="note" data-note="smk-1" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
       <div class="smoke" data-smoke="smk-2">
@@ -373,7 +373,7 @@ const BODY = `
             <button type="button" class="b-pass" data-smk="smk-2" data-set="pass" aria-pressed="false">Pass</button>
             <button type="button" class="b-fail" data-smk="smk-2" data-set="fail" aria-pressed="false">Fail</button>
           </div>
-          <input class="note" data-note="smk-2" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+          <input class="note" data-note="smk-2" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
       <div class="smoke" data-smoke="smk-3">
@@ -387,7 +387,7 @@ const BODY = `
             <button type="button" class="b-pass" data-smk="smk-3" data-set="pass" aria-pressed="false">Pass</button>
             <button type="button" class="b-fail" data-smk="smk-3" data-set="fail" aria-pressed="false">Fail</button>
           </div>
-          <input class="note" data-note="smk-3" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+          <input class="note" data-note="smk-3" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
       <div class="smoke" data-smoke="smk-4">
@@ -401,7 +401,7 @@ const BODY = `
             <button type="button" class="b-pass" data-smk="smk-4" data-set="pass" aria-pressed="false">Pass</button>
             <button type="button" class="b-fail" data-smk="smk-4" data-set="fail" aria-pressed="false">Fail</button>
           </div>
-          <input class="note" data-note="smk-4" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+          <input class="note" data-note="smk-4" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
       <div class="smoke" data-smoke="smk-5">
@@ -415,7 +415,7 @@ const BODY = `
             <button type="button" class="b-pass" data-smk="smk-5" data-set="pass" aria-pressed="false">Pass</button>
             <button type="button" class="b-fail" data-smk="smk-5" data-set="fail" aria-pressed="false">Fail</button>
           </div>
-          <input class="note" data-note="smk-5" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+          <input class="note" data-note="smk-5" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
       <div class="smoke" data-smoke="smk-6">
@@ -430,7 +430,7 @@ const BODY = `
             <button type="button" class="b-pass" data-smk="smk-6" data-set="pass" aria-pressed="false">Pass</button>
             <button type="button" class="b-fail" data-smk="smk-6" data-set="fail" aria-pressed="false">Fail</button>
           </div>
-          <input class="note" data-note="smk-6" maxlength="280" placeholder="Note &mdash; what you saw (especially on fail)">
+          <input class="note" data-note="smk-6" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
     </div>
@@ -480,7 +480,7 @@ const BODY = `
             <span class="stamp" data-tstamp="h0-3"></span>
           </div>
         </div>
-        <div class="ctrl"><input class="note" data-wnote="h0" maxlength="280" placeholder="Note for Claude on H0 (optional)"></div>
+        <div class="ctrl"><input class="note" data-wnote="h0" maxlength="600" placeholder="Note for Claude on H0 (optional)"></div>
       </div>
       <div class="wave" data-wave="h11">
         <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Open</span></div>
@@ -494,7 +494,7 @@ const BODY = `
             <button type="button" class="b-q" data-wav="h11" data-set="queued" aria-pressed="true">Queued</button>
             <button type="button" class="b-hold" data-wav="h11" data-set="hold" aria-pressed="false">Hold</button>
           </div>
-          <input class="note" data-wnote="h11" maxlength="280" placeholder="Note for Claude on this wave (optional)">
+          <input class="note" data-wnote="h11" maxlength="600" placeholder="Note for Claude on this wave (optional)">
         </div>
       </div>
       <div class="wave" data-wave="h12">
@@ -510,7 +510,7 @@ const BODY = `
             <button type="button" class="b-q" data-wav="h12" data-set="queued" aria-pressed="true">Queued</button>
             <button type="button" class="b-hold" data-wav="h12" data-set="hold" aria-pressed="false">Hold</button>
           </div>
-          <input class="note" data-wnote="h12" maxlength="280" placeholder="Note for Claude on this wave (optional)">
+          <input class="note" data-wnote="h12" maxlength="600" placeholder="Note for Claude on this wave (optional)">
         </div>
       </div>
       <div class="wave done" data-wave="h13">
@@ -535,7 +535,7 @@ const BODY = `
             <button type="button" class="b-q" data-wav="h2" data-set="queued" aria-pressed="true">Queued</button>
             <button type="button" class="b-hold" data-wav="h2" data-set="hold" aria-pressed="false">Hold</button>
           </div>
-          <input class="note" data-wnote="h2" maxlength="280" placeholder="Note for Claude on this wave (optional)">
+          <input class="note" data-wnote="h2" maxlength="600" placeholder="Note for Claude on this wave (optional)">
         </div>
       </div>
       <div class="wave" data-wave="h25">
@@ -556,7 +556,7 @@ const BODY = `
             <button type="button" class="b-q" data-wav="h25" data-set="queued" aria-pressed="true">Queued</button>
             <button type="button" class="b-hold" data-wav="h25" data-set="hold" aria-pressed="false">Hold</button>
           </div>
-          <input class="note" data-wnote="h25" maxlength="280" placeholder="Note for Claude &mdash; e.g. reorder the four groups (optional)">
+          <input class="note" data-wnote="h25" maxlength="600" placeholder="Note for Claude &mdash; e.g. reorder the four groups (optional)">
         </div>
       </div>
       <div class="wave gated" data-wave="h3">
@@ -565,7 +565,7 @@ const BODY = `
         Then: per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset
         assetcommand.orangeocean.com &rarr; archive both repos.
         <code>orangeoceanassetcommand.com</code> lapses at its Sep 26, 2026 transfer date.</p>
-        <div class="ctrl"><input class="note" data-wnote="h3" maxlength="280" placeholder="Note for Claude on decommission (optional)"></div>
+        <div class="ctrl"><input class="note" data-wnote="h3" maxlength="600" placeholder="Note for Claude on decommission (optional)"></div>
       </div>
     </div>
   </section>
@@ -595,7 +595,7 @@ const BODY = `
             <button type="button" class="b-und" data-dec="h1" data-set="" aria-pressed="true">Undecided</button>
           </div>
         </div>
-        <div class="ctrl"><input class="note" data-dnote="h1" maxlength="400" placeholder="Context for the decision (optional)"></div>
+        <div class="ctrl"><input class="note" data-dnote="h1" maxlength="600" placeholder="Context for the decision (optional)"></div>
         <div class="unblocks">&rarr; unblocks H2 rent import</div>
       </div>
       <div class="decision" data-dec-card="h2">
@@ -609,7 +609,7 @@ const BODY = `
             <button type="button" class="b-und" data-dec="h2" data-set="" aria-pressed="true">Undecided</button>
           </div>
         </div>
-        <div class="ctrl"><input class="note" data-dnote="h2" maxlength="400" placeholder="Context &mdash; e.g. which number tenants actually call (optional)"></div>
+        <div class="ctrl"><input class="note" data-dnote="h2" maxlength="600" placeholder="Context &mdash; e.g. which number tenants actually call (optional)"></div>
         <div class="unblocks">&rarr; unblocks H1.1 voice cutover</div>
       </div>
       <div class="decision" data-dec-card="h3">
@@ -623,7 +623,7 @@ const BODY = `
             <button type="button" class="b-und" data-dec="h3" data-set="" aria-pressed="true">Undecided</button>
           </div>
         </div>
-        <div class="ctrl"><input class="note" data-dnote="h3" maxlength="400" placeholder="The mapping &mdash; who becomes owner / vendor / tenant"></div>
+        <div class="ctrl"><input class="note" data-dnote="h3" maxlength="600" placeholder="The mapping &mdash; who becomes owner / vendor / tenant"></div>
         <div class="unblocks">&rarr; unblocks H2 user invitations</div>
       </div>
       <div class="decision" data-dec-card="own1">
@@ -638,7 +638,7 @@ const BODY = `
             <button type="button" class="b-und" data-dec="own1" data-set="" aria-pressed="true">Undecided</button>
           </div>
         </div>
-        <div class="ctrl"><input class="note" data-dnote="own1" maxlength="400" placeholder="Context (optional)"></div>
+        <div class="ctrl"><input class="note" data-dnote="own1" maxlength="600" placeholder="Context (optional)"></div>
         <div class="unblocks">&rarr; unblocks nothing, but gates his first impression</div>
       </div>
     </div>
@@ -767,8 +767,8 @@ const BODY = `
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-08-29</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">4</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-01</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">5</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
