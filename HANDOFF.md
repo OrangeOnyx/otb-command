@@ -3,7 +3,29 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
-Last updated: 2026-09-01 (late) — **PUNCH-LIST r4 MARKS ACTED ON: H-1 (b)
+Last updated: 2026-09-02 — **VERIFY-ONLY SESSION (operator: "review handoff,
+merge check, update the artifact, do what you can"): nothing unmerged or
+unpushed; prod = HEAD (`index-B82IeNgn.js` = exact local build); 519 tests
+green; server migration history carries `voice_lines_publish`.** Punch list
+live state still r4 (no new operator marks since Sep 1) → content **Rev 7**
+republished (state r4 carried; Schedule A gate card rewritten as CLOSED +
+proven, H0 text current, Sep 2 snapshot note; syntax drill run). Supabase
+advisor sweep (security + performance): ONE new lint from the voice leg —
+`voice_line_e164` mutable search_path — fix written as migration
+`20260902120000_voice_line_e164_search_path` (committed) but NOT on prod:
+BOTH doors (apply_migration, then execute_sql) classifier-blocked this
+session (contrast: 09-01 late ran both un-prompted — treat the doors as
+flaky, not closed). **OPERATOR: run one line in the Supabase SQL editor:**
+`alter function public.voice_line_e164(text) set search_path = public;`
+Pre-existing, left
+as designed: 44/45 security-definer RPCs executable by anon/authenticated
+(bodies gate on membership) · `app_secrets` RLS-no-policy (service-role
+only) · auth leaked-password protection off (magic-link only) · perf: 47
+unindexed FKs, 45 multiple-permissive-policy, 9 auth_rls_initplan, 20 unused
+indexes (small tables — candidates for a future hygiene migration, not
+urgent). Committed the stray graphify `labels.json` reshuffle. **No un-gated
+build work remains** — every open item waits on the operator (list below).
+Prior: 2026-09-01 (late) — **PUNCH-LIST r4 MARKS ACTED ON: H-1 (b)
 RATIFIED · H-2 PUBLISH → voice-lines publish leg SHIPPED + DEPLOYED · OWN-1
 TRIM verified on prod · waves H1.1/H1.2/H2/H2.5 marked Next.** Read the G-1
 sheet (state r4, saved 00:31Z Sep 2): decisions h1=b, h2=publish, own1=trim

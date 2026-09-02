@@ -3,9 +3,9 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Atlas Punch List — rev 4 (content refresh 2026-08-29: Waves H1.2 data leg +
-   H2 imports landed, H2.5 build waves 1-2 shipped, register recount; operator
-   state r1 carried forward. Interactive: gate tasks, smokes, wave priorities,
+/* Atlas Punch List — rev 7 (content refresh 2026-09-02: verify-only session —
+   gate card closed, H0 text current, prod = HEAD verified, DB advisor sweep;
+   operator state r4 carried forward. Interactive: gate tasks, smokes, wave priorities,
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
@@ -285,7 +285,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 1, 2026 (late) &middot; Rev 6</span>
+      <span class="mono mast-date">Content &middot; Sep 2, 2026 &middot; Rev 7</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one working sheet.
@@ -308,17 +308,14 @@ const BODY = `
       <span class="chip open" id="gate-chip" style="margin-left:auto">Auto gated &middot; file in place</span>
     </div>
     <div class="card">
-      <p><strong>Your part is done:</strong> <code>.claude/settings.json</code> exists with all
-      four allow rules (<code>npx vercel deploy --prod</code> and <code>git push origin
-      master</code>, Bash and PowerShell forms) &mdash; the step the handoff asked for. This gate
-      is about un-gating <em>Claude</em> to deploy and push going forward; the H1.3 prod deploy
-      itself is DONE (Schedule C).</p>
-      <p><strong>Tested live Aug 27 (auto-mode session):</strong> the classifier still blocked
-      even a zero-effect <code>git push --dry-run</code>, and separately blocked Claude
-      committing the settings file (it can&rsquo;t persist its own permission grants, by any
-      route). So auto-mode sessions stay operator-gated regardless of the file. The rules
-      should still let regular interactive sessions run these without prompting &mdash;
-      unproven until one lands. Two steps remain:</p>
+      <p><strong>Closed and proven.</strong> <code>.claude/settings.json</code> carries the four allow
+      rules (<code>npx vercel deploy --prod</code> and <code>git push origin master</code>, Bash and
+      PowerShell forms) and is committed (g-1, Aug 27). The first Claude-run deploy + push landed Aug 29
+      in a headless auto session, un-prompted (g-2), and the Sep 1 voice publish leg repeated the whole
+      chain: migration &rarr; prod smoke &rarr; deploy &rarr; push. Deploys are verified by served-bundle
+      name + content hash, never <code>vercel ls</code> (the one command still classifier-blocked).</p>
+      <p>Sep 2 check: prod serves <code>index-B82IeNgn.js</code> = the local build of HEAD; nothing
+      unmerged or unpushed. Both steps below are history &mdash; leave them Done.</p>
       <div class="tasks">
         <div class="task" data-task="g-1">
           <div class="seg" role="group" aria-label="Gate step 1">
@@ -468,10 +465,9 @@ const BODY = `
     <div class="waves">
       <div class="wave hot" data-wave="h0">
         <div class="head"><span class="wid">H0</span><span class="wname">Runbook housekeeping</span><span class="chip hot" id="h0-chip">Due this week</span></div>
-        <p>Cancel Manus before the Aug 27 renewal &mdash; <strong>that date is today.</strong>
-        Do not blanket-enable AC&rsquo;s scheduler (nine jobs, several unwanted &mdash; per-job runbook in the
-        Asset Command folder). Rotate AC&rsquo;s 9 exposed secrets: AC holds live data through the whole
-        harvest, so its security debt stays urgent until decommission. Check each off as it lands:</p>
+        <p>Manus canceled and AC&rsquo;s scheduler kept per-job &mdash; both marked Done Sep 1. One item left:
+        rotate AC&rsquo;s 9 exposed secrets. AC holds live data through the whole harvest, so its security
+        debt stays urgent until decommission. Check it off when it lands:</p>
         <div class="tasks">
           <div class="task" data-task="h0-1">
             <div class="seg" role="group" aria-label="H0 item 1">
@@ -785,7 +781,7 @@ const BODY = `
       ran on PROD Aug 29: SUITE_PASS_ROLLBACK, 0 residue &middot; payment_history verified
       $1,133,492.20 to the cent &middot; DEPLOYED same day, bundle content-hash verified.
       That deploy + push were the first Claude-run ones to land (headless auto session,
-      un-prompted) &mdash; gate step g-2 above is satisfied; mark it Done.</li>
+      un-prompted) &mdash; gate step g-2 above (marked Done Sep 1).</li>
       <li>Sep 1 (late) snapshot: your r4 marks read and acted on &mdash; H-1 (b) ratified, H-2 publish
       built (SMK-7), OWN-1 trim verified on prod, four waves marked Next. 519 tests green &middot;
       migration <code>voice_lines_publish</code> applied via apply_migration (in server history) &middot;
@@ -793,6 +789,16 @@ const BODY = `
       Still waiting on you: H-3 mapping (H2 invitations) &middot; H0-3 secret rotation &middot; SMK-2/3/5/7 &middot;
       the vendor upload-link identity call (H1.2 / register #2) &middot; tenant-portal scope (#9) &middot;
       a QBO design session (#7).</li>
+      <li>Sep 2 snapshot (verify-only session): no operator marks since r4 &middot; nothing unmerged or
+      unpushed &middot; 519 tests green, build clean &middot; prod serves the HEAD bundle
+      (<code>index-B82IeNgn.js</code>, exact match) &middot; server migration history carries
+      <code>voice_lines_publish</code>. Supabase advisor sweep: one new lint from the voice leg
+      (<code>voice_line_e164</code> had a mutable search_path) &mdash; fix written as migration <code>20260902120000_voice_line_e164_search_path</code>, both prod doors classifier-blocked this session &mdash; one <code>ALTER FUNCTION</code> for you to run (HANDOFF has the line). Pre-existing and left
+      as designed: 45 security-definer RPCs executable by authenticated / anon (each body gates on
+      membership), <code>app_secrets</code> RLS with no policy (service-role only), leaked-password
+      protection off (magic-link only); performance notices (47 unindexed FKs, 45 duplicate permissive
+      policies, 9 RLS initplan, 20 unused indexes) are small-table hygiene, not urgent. No un-gated
+      build work remains &mdash; every open item is yours.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
@@ -804,8 +810,8 @@ const BODY = `
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-01</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">6</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-02</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">7</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
@@ -963,7 +969,7 @@ function decorate(){
   if (h0Chip && h0Wave) {
     var h0Done = state.tasks["h0-1"].s === "done" && state.tasks["h0-2"].s === "done" && state.tasks["h0-3"].s === "done";
     h0Chip.className = "chip " + (h0Done ? "done" : "hot");
-    h0Chip.textContent = h0Done ? "Done" : "Due this week";
+    h0Chip.textContent = h0Done ? "Done" : "Secrets rotation open";
     h0Wave.className = "wave " + (h0Done ? "done" : "hot");
   }
 
