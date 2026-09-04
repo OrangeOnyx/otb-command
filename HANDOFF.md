@@ -3,6 +3,7 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
+Punch-list state r5 (saved 2026-09-04T01:04Z, read + carried into the repo copy by the still-open 09-01-late session): SMK-3 lease assembler PASSED Sep 3 (note cleared); nothing else changed — no new decisions, no memo. Acted-on baseline is now r5.
 Last updated: 2026-09-02 — **VERIFY-ONLY SESSION (operator: "review handoff,
 merge check, update the artifact, do what you can"): nothing unmerged or
 unpushed; prod = HEAD (`index-B82IeNgn.js` = exact local build); 519 tests
