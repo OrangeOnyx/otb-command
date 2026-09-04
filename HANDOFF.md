@@ -3,6 +3,7 @@
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`
+Punch list **Rev 8** published 2026-09-04 (state r5 carried): operator asked "what is left to build" → NEW **Schedule F Build Backlog** on the G-1 sheet = 24 items in three tiers (Tier 1 F-1..F-5 Claude-buildable now: #5 invoices · #6 CAM recon · #12 report variants · #18 HVAC PM · six PARITY reconciliations; Tier 2 F-6..F-16 gated on the operator: #7 QBO design session · #9 tenant-portal scope · #2 upload identity · #17 binaries · H-3 invites · voice AC-side · H0-3 · SMK-2/5 · capture drive · H3 · C-3 pilot; Tier 3 F-17..F-24 long tail: twin-marketing · Sentry · folder prefixes · DB hygiene · deposits · brand sheet · domains · REF rows). Transmittal is now Schedule G. Operator picks by F-number in the memo or chat. Syntax drill run; no app code touched.
 Punch-list state r5 (saved 2026-09-04T01:04Z, read + carried into the repo copy by the still-open 09-01-late session): SMK-3 lease assembler PASSED Sep 3 (note cleared); nothing else changed — no new decisions, no memo. Acted-on baseline is now r5.
 Last updated: 2026-09-02 — **VERIFY-ONLY SESSION (operator: "review handoff,
 merge check, update the artifact, do what you can"): nothing unmerged or

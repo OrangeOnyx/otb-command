@@ -3,9 +3,9 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Atlas Punch List — rev 7 (content refresh 2026-09-02: verify-only session —
-   gate card closed, H0 text current, prod = HEAD verified, DB advisor sweep;
-   operator state r4 carried forward. Interactive: gate tasks, smokes, wave priorities,
+/* Atlas Punch List — rev 8 (content refresh 2026-09-04: NEW Schedule F Build
+   Backlog = every remaining build item in three tiers; transmittal is now Schedule G;
+   operator state r5 carried forward. Interactive: gate tasks, smokes, wave priorities,
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
@@ -263,6 +263,20 @@ const CSS = `
   .reg-list .st{float:right; font-size:10.5px; letter-spacing:.08em;}
   .st.g{color:var(--green)} .st.b{color:var(--brass)} .st.s{color:var(--soft)}
   @media (max-width:640px){ .reg-list{columns:1} }
+  .bl-group{background:var(--card); border:1px solid var(--line); padding:16px 18px 6px; margin-bottom:12px;}
+  .bl-group[data-tier="1"]{border-left:3px solid var(--green);}
+  .bl-group[data-tier="2"]{border-left:3px solid var(--brick);}
+  .bl-group[data-tier="3"]{border-left:3px solid var(--soft);}
+  .bl-head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; border-bottom:1px dashed var(--line); padding-bottom:8px; margin-bottom:6px;}
+  .bl-head .bl-title{font-weight:600; font-size:15.5px;}
+  .bl-head .chip{margin-left:auto}
+  .bl-list{list-style:none; margin:0; padding:0;}
+  .bl-list li{display:grid; grid-template-columns:auto 1fr; gap:2px 14px; align-items:baseline; padding:9px 0; border-bottom:1px dashed var(--line);}
+  .bl-list li:last-child{border-bottom:0}
+  .bl-list .bid{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:12.5px; letter-spacing:.06em; color:var(--brass); padding-top:2px;}
+  .bl-list .bname{font-weight:500; font-size:14.5px;}
+  .bl-list .bname .chip{margin-left:8px; vertical-align:middle;}
+  .bl-list .bdesc{grid-column:2; color:var(--soft); font-size:13.5px; margin:0; max-width:78ch;}
   .notes ol{margin:0; padding-left:1.5em; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9; color:var(--soft);}
   .notes li{margin:.3em 0; max-width:80ch;}
   .titleblock{
@@ -285,13 +299,14 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 2, 2026 &middot; Rev 7</span>
+      <span class="mono mast-date">Content &middot; Sep 4, 2026 &middot; Rev 8</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one working sheet.
     Schedules A&ndash;D and the transmittal are live: check off gate steps and runbook items,
     mark smokes Pass or Fail, set wave priorities, record decisions, and leave Claude a memo
-    &mdash; one Save publishes it all where every viewer and every Claude session can read it.</p>
+    &mdash; one Save publishes it all where every viewer and every Claude session can read it.
+    Schedule F is the complete build backlog &mdash; every item still left to build, in three tiers.</p>
 
     <div class="kpis mono">
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; voice publish leg built &mdash; cutover steps on you (SMK-7)</small></div>
@@ -748,9 +763,89 @@ const BODY = `
     </details>
   </section>
 
-  <section id="transmittal">
+  <section id="backlog">
     <div class="schedule-label">
       <span class="eyebrow">Schedule F</span>
+      <h2>Build Backlog</h2>
+      <span class="mono sched-count">24 items &middot; snapshot Sep 4</span>
+    </div>
+    <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
+      Everything still left to build, in one place, ranked by how much each item unlocks.
+      Read-only like the register: to start one, name its number in the transmittal memo
+      (or in chat) and Claude takes it. As of Sep 4 nothing on the harvest track is un-gated
+      &mdash; Tier 1 is what Claude can build without a decision from you, Tier 2 waits on
+      you, Tier 3 is the long tail outside the harvest.</p>
+
+    <div class="bl-group" data-tier="1">
+      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Claude can build now &mdash; pick a number</span><span class="chip open">no decision needed</span></div>
+      <ol class="bl-list">
+        <li><span class="bid">F-1</span><span class="bname">#5 Invoices + late fees &rarr; full parity <span class="chip open">v1 live</span></span>
+          <p class="bdesc">Per-unit &#10515; Statement and late-fee suggestions already ship. Left: invoice numbering, PDF render, sent / paid state on the ledger family.</p></li>
+        <li><span class="bid">F-2</span><span class="bname">#6 CAM reconciliation &rarr; per-tenant shares + statements <span class="chip open">v1 live</span></span>
+          <p class="bdesc">P-1 recon DRAFT card exists. Left: annual true-up per tenant, caps and base-year handling, printable statements. Seeds: recoveries.json + the gross-up calc.</p></li>
+        <li><span class="bid">F-3</span><span class="bname">#12 Board + stakeholder reports &rarr; variants <span class="chip open">v1 live</span></span>
+          <p class="bdesc">S-1 quarterly board report generates from stored briefs. Left: stakeholder / lender variants over the same engine.</p></li>
+        <li><span class="bid">F-4</span><span class="bname">#18 HVAC &rarr; PM contract tracking + T-1 deadlines <span class="chip open">v1 live</span></span>
+          <p class="bdesc">28 units imported as a typed table. Left: Butcher Air &sect;9.01 monthly-PM contract tracking with deadlines feeding T-1 (NestJS HvacMaintenanceContract as the ref).</p></li>
+        <li><span class="bid">F-5</span><span class="bname">Parity reconciliations &mdash; six register rows <span class="chip open">verify &amp; close gaps</span></span>
+          <p class="bdesc">#4 rent tracking / AR &middot; #15 NL query (read-only NL over typed tables if the digest proves thin) &middot; #19 spatial datasets checked row-by-row against AC (appraisals &rarr; S-1) &middot; #20 marketing assets / brand kit &middot; #23 SOT import tooling / intake rail &middot; #24 allowlist / audit trails. Mostly reconciliation, little new surface.</p></li>
+      </ol>
+    </div>
+
+    <div class="bl-group" data-tier="2">
+      <div class="bl-head"><span class="eyebrow">Tier 2</span><span class="bl-title">Gated on you &mdash; decision or hand-step first</span><span class="chip hot">your move</span></div>
+      <ol class="bl-list">
+        <li><span class="bid">F-6</span><span class="bname">#7 Accounting / QuickBooks <span class="chip hot">biggest rock</span></span>
+          <p class="bdesc">REBUILD: chart of accounts, expense capture, QBO export or sync (gate D-4 = QBO sync, no own GL). Needs a design session with you before anything is built. Grows into N-3 accounting home.</p></li>
+        <li><span class="bid">F-7</span><span class="bname">#9 Tenant portal expansion <span class="chip hot">scope call</span></span>
+          <p class="bdesc">REBUILD: tenant sees own ledger, lease docs, payment links beyond M-1. Audience-facing, so you set the scope first.</p></li>
+        <li><span class="bid">F-8</span><span class="bname">#2 Vendor upload links <span class="chip hot">identity call</span></span>
+          <p class="bdesc">PORT gap: unauthenticated vendor uploads need a service key or a dedicated upload identity. Short build once you pick.</p></li>
+        <li><span class="bid">F-9</span><span class="bname">#17 Document + floor-plan binaries <span class="chip wait">H3 step</span></span>
+          <p class="bdesc">247 documents + 57 floor plans need a keyed copy out of AC storage into the documents bucket. Metadata is already archived.</p></li>
+        <li><span class="bid">F-10</span><span class="bname">H2 user invitations <span class="chip wait">waits on H-3</span></span>
+          <p class="bdesc">Invite the ~9 real AC users into org_members with mapped roles. Blocked only by the H-3 mapping in Schedule D.</p></li>
+        <li><span class="bid">F-11</span><span class="bname">Voice cutover, AC side <span class="chip wait">SMK-7 + runbook</span></span>
+          <p class="bdesc">Paste the numbers (SMK-7) &rarr; forward AC&rsquo;s number to the tenant line &rarr; retire the Vapi/Retell agent &rarr; tenant notice &rarr; 30-day soak &rarr; release. Lease / brief / SMS contact numbers stay yours to switch.</p></li>
+        <li><span class="bid">F-12</span><span class="bname">H0-3 secret rotation <span class="chip hot">security</span></span>
+          <p class="bdesc">AC&rsquo;s 9 exposed secrets. AC holds live data until decommission.</p></li>
+        <li><span class="bid">F-13</span><span class="bname">Open smokes SMK-2 / SMK-5 <span class="chip wait">passive</span></span>
+          <p class="bdesc">First 6 AM SOP cron digest and the first ACH payment both self-announce in AI-1; mark them when seen.</p></li>
+        <li><span class="bid">F-14</span><span class="bname">Capture drive reconnect + backfill <span class="chip hot">C3 data</span></span>
+          <p class="bdesc">The E: capture drive is offline; the C3 nightly skips cleanly. Reconnect (re-letter to E: if needed), then one manual run with a wider backfill window recovers the gap.</p></li>
+        <li><span class="bid">F-15</span><span class="bname">H3 decommission of Asset Command <span class="chip wait">gated 25 / 25</span></span>
+          <p class="bdesc">Per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset &rarr; archive both repos. Domain lapses Sep 26.</p></li>
+        <li><span class="bid">F-16</span><span class="bname">C-3 first external pilot <span class="chip wait">waiting on the world</span></span>
+          <p class="bdesc">Onboarding rail + manual are proven; the real intake starts when a pilot signs.</p></li>
+      </ol>
+    </div>
+
+    <div class="bl-group" data-tier="3">
+      <div class="bl-head"><span class="eyebrow">Tier 3</span><span class="bl-title">Long tail &mdash; outside the harvest track</span><span class="chip wait">deferred</span></div>
+      <ol class="bl-list">
+        <li><span class="bid">F-17</span><span class="bname">Twin-marketing set</span>
+          <p class="bdesc">B2 microsite (awaits new drone / camera footage) &middot; B3 fly-through &middot; B4 public scoped leasing bot &middot; C2 sandbox login &middot; C3 LinkedIn (footage-gated).</p></li>
+        <li><span class="bid">F-18</span><span class="bname">Error-tracking upgrade</span>
+          <p class="bdesc">Sentry free tier vs Vercel log drain. The no-vendor baseline (log_client_error, Client Errors card) is live.</p></li>
+        <li><span class="bid">F-19</span><span class="bname">Storage folder prefixes</span>
+          <p class="bdesc">Per-property prefixes in the buckets; deferred to Phase C onboarding.</p></li>
+        <li><span class="bid">F-20</span><span class="bname">Supabase hygiene migration</span>
+          <p class="bdesc">47 unindexed FKs, 45 duplicate permissive policies, 9 RLS initplan notices, 20 unused indexes. Small tables; not urgent.</p></li>
+        <li><span class="bid">F-21</span><span class="bname">Data gaps in the SOT</span>
+          <p class="bdesc">Missing deposits for 107 / 137 / 143 / 149.</p></li>
+        <li><span class="bid">F-22</span><span class="bname">Brand sheet</span>
+          <p class="bdesc">Pending since July; the abdalla-brand-system skill carries the working identity.</p></li>
+        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation</span>
+          <p class="bdesc">ooatlas.com / .ai unpurchased; product-vs-property web split (shopontheblvd, gate vinyl QR) still open. Parked with D-5 until a pilot forces it.</p></li>
+        <li><span class="bid">F-24</span><span class="bname">Reference rows #22 / #25</span>
+          <p class="bdesc">SaaS billing (pilot monetization) &middot; legal notices, 1099s, e-sign templates, workflow engine. Build when a real workflow demands.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="transmittal">
+    <div class="schedule-label">
+      <span class="eyebrow">Schedule G</span>
       <h2>Transmittal</h2>
       <span class="mono sched-count" id="memo-stamp"></span>
     </div>
@@ -799,6 +894,10 @@ const BODY = `
       protection off (magic-link only); performance notices (47 unindexed FKs, 45 duplicate permissive
       policies, 9 RLS initplan, 20 unused indexes) are small-table hygiene, not urgent. No un-gated
       build work remains &mdash; every open item is yours.</li>
+      <li>Sep 4 snapshot: state r5 read (SMK-3 passed Sep 3; nothing else new). You asked
+      &ldquo;what is left to build&rdquo; &mdash; the answer is now Schedule F: 24 items in three tiers,
+      built from HANDOFF.md + the register. Your SMK-6 note (&ldquo;delete items &mdash; confirm every
+      one?&rdquo;) was answered Sep 1: L-1 bulk delete landed in c0df4a4, one confirm per batch.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
@@ -810,8 +909,8 @@ const BODY = `
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-02</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">7</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-04</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">8</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
