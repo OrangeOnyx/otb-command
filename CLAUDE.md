@@ -71,6 +71,18 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   Also: rear M.A. parallel row 18 · Johnston strip 10 · JD Bank easement 13.
   **Plat striping totals 314 vs variance "324 provided" — Δ −10 unreconciled**
   (docs/parking-reconciliation-memo.md; cite 324 legally, plan ops on 314).
+  CANDIDATE RESOLUTION 2026-09-05 (REV 13): the architect CAD stripes an unlabeled
+  10-stall head-in row on the Johnston frontage south of the pylon sign → 314 + 10
+  = 324. Pending ground confirmation; do not retire the 314 ops figure yet.
+- **Access (A-1 REV 13, docs/site-access-inventory-2026-09.md):** 8 Belle curb
+  cuts — Arnould Driveway A (31' throat, two-way, the only full-movement cut:
+  55' median opening) and Driveway B (40', two-way, shared with JD Bank);
+  Johnston drive (30', two-way, immediately south of the bank notch); Patricia ×3
+  (149 service drive 37', 135B/137 rear pad 23', Lot 8 21'); Marie Antoinette ×2
+  (Lot 8 25', breezeway apron 10' pedestrian). Rear M.A. row = 5 curbed bays
+  straight off the street. All aisles two-way per plat arrows. JD Bank parcel is
+  reached through Driveway B + the Johnston drive (reciprocal servitude Entry
+  2004-00057697 — exhibit not yet pulled; servitude area NOT drawn).
 - Assessor parcels (Belle): 6026783, 6026784, 6026785, 6026788, 6009649 (remote).
 - Easements: Our Savior's Church $350/mo, 25-yr — **§3a liquor waiver survives
   termination** (restaurants OK within 175 ft; liquor line drawn on plat).

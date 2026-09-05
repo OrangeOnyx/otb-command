@@ -1,7 +1,27 @@
 # MEMO — Parking Count Reconciliation (Δ −10)
 **On The Boulevard Shopping Center · 101–149 Arnould Blvd, Lafayette, LA 70506**
 **Prepared:** June 10, 2026 · OTB Property Command, geometry REV 11
-**Status:** OPEN — pending variance file pull
+**Status:** OPEN — CANDIDATE RESOLUTION FOUND 2026-09-05 (see update below); ground/aerial confirmation pending
+
+---
+
+## UPDATE 2026-09-05 — candidate resolution from the architect CAD (geometry REV 13)
+While tracing ingress/egress from `cad/Boulev_CLEAN.dxf` for the A-1 access layer, the
+CAD's PARKING layer showed an **11-line head-in row (10 stalls at 9.0' pitch) nosing the
+Johnston R/W south of the pylon-sign pocket** (CAD x 1073–1093, y 189.0–279.5 → plat
+a 651–669.5, b −172…−271). It carries **no "N SPACES" label** on the plat, so the
+raster tally of labels below never counted it. The plat's own "Johnston strip 10" is the
+labeled 8 in the notch aisle + 2 at the sign pocket — a different row.
+
+**314 labeled + 10 unlabeled = 324 = the variance's "324 provided" exactly.**
+
+This favors candidate explanation 4 (a labeling gap on the plat, not a count error in the
+variance). Recorded in `src/data/geometry.json → parking.cadUnlabeled / totalStriped`;
+the row is drawn on A-1 and labeled "UNLABELED ON PLAT · CAD-STRIPED".
+
+Remaining to close: confirm the 10 stalls are striped on the ground today (walk or next
+drone pass), then flip CLAUDE.md to "324 striped = variance" and retire the 314 ops figure.
+Until then the interim guidance below still holds.
 
 ---
 
