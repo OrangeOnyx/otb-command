@@ -3,9 +3,10 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Atlas Punch List — rev 8 (content refresh 2026-09-04: NEW Schedule F Build
-   Backlog = every remaining build item in three tiers; transmittal is now Schedule G;
-   operator state r5 carried forward. Interactive: gate tasks, smokes, wave priorities,
+/* Atlas Punch List — rev 9 (2026-09-04, operator pick "1": finished items auto-fold —
+   passed smokes / done tasks / decided decisions collapse into an Archive strip in their
+   schedule with a Reopen button; state shape unchanged. Rev 8 same day added Schedule F
+   Build Backlog; transmittal is Schedule G; operator state r5 carried forward. Interactive: gate tasks, smokes, wave priorities,
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
@@ -277,6 +278,26 @@ const CSS = `
   .bl-list .bname{font-weight:500; font-size:14.5px;}
   .bl-list .bname .chip{margin-left:8px; vertical-align:middle;}
   .bl-list .bdesc{grid-column:2; color:var(--soft); font-size:13.5px; margin:0; max-width:78ch;}
+  details.archive{border:1px dashed var(--line); margin-top:12px;}
+  details.archive summary{
+    cursor:pointer; padding:8px 14px; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--soft);
+  }
+  details.archive summary:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .arch-list{list-style:none; margin:0; padding:0 14px 10px;}
+  .arch-list li{display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding:7px 0; border-top:1px dashed var(--line); font-size:13.5px;}
+  .arch-list .aid{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px; letter-spacing:.06em; color:var(--brass);}
+  .arch-list .alabel{opacity:.75}
+  .arch-list .anote{flex-basis:100%; color:var(--soft); font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px;}
+  .arch-list .reopen{
+    margin-left:auto; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; padding:4px 10px 3px; cursor:pointer;
+    background:transparent; color:var(--soft); border:1px solid var(--line);
+  }
+  .arch-list .reopen:hover{color:var(--ink); border-color:var(--soft);}
+  .arch-list .reopen:focus-visible{outline:2px solid var(--brass); outline-offset:1px;}
+  .arch-list .reopen:disabled{cursor:default; opacity:.55}
+  .smoke[hidden], .task[hidden], .decision[hidden], .tasks[hidden], details.archive[hidden]{display:none !important}
   .notes ol{margin:0; padding-left:1.5em; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9; color:var(--soft);}
   .notes li{margin:.3em 0; max-width:80ch;}
   .titleblock{
@@ -299,14 +320,16 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 4, 2026 &middot; Rev 8</span>
+      <span class="mono mast-date">Content &middot; Sep 4, 2026 &middot; Rev 9</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Atlas build, on one working sheet.
     Schedules A&ndash;D and the transmittal are live: check off gate steps and runbook items,
     mark smokes Pass or Fail, set wave priorities, record decisions, and leave Claude a memo
     &mdash; one Save publishes it all where every viewer and every Claude session can read it.
-    Schedule F is the complete build backlog &mdash; every item still left to build, in three tiers.</p>
+    Schedule F is the complete build backlog &mdash; every item still left to build, in three tiers.
+    Finished items fold away: a smoke marked Pass, a step marked Done, or a decision made drops into
+    the Archive strip of its schedule (dated, one line each); Reopen brings it back.</p>
 
     <div class="kpis mono">
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; voice publish leg built &mdash; cutover steps on you (SMK-7)</small></div>
@@ -349,6 +372,7 @@ const BODY = `
           <span class="stamp" data-tstamp="g-2"></span>
         </div>
       </div>
+      <details class="archive" id="arch-gate" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
     </div>
   </section>
 
@@ -464,6 +488,7 @@ const BODY = `
         </div>
       </div>
     </div>
+    <details class="archive" id="arch-smokes" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
     <p class="smoke-note mono" id="save-stamp">No revision saved yet &mdash; marks publish to the sheet when you hit Save.</p>
   </section>
 
@@ -509,6 +534,7 @@ const BODY = `
             <span class="stamp" data-tstamp="h0-3"></span>
           </div>
         </div>
+        <details class="archive" id="arch-h0" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
         <div class="ctrl"><input class="note" data-wnote="h0" maxlength="600" placeholder="Note for Claude on H0 (optional)"></div>
       </div>
       <div class="wave" data-wave="h11">
@@ -683,6 +709,7 @@ const BODY = `
         <div class="unblocks">&rarr; unblocks nothing, but gates his first impression</div>
       </div>
     </div>
+    <details class="archive" id="arch-dec" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
     <p class="parked"><strong>Parked, non-blocking:</strong> error-vendor upgrade (the no-vendor baseline
     is live &mdash; Sentry / log drains remain menu items) &middot; auto-deploy-on-green-CI.</p>
   </section>
@@ -898,6 +925,10 @@ const BODY = `
       &ldquo;what is left to build&rdquo; &mdash; the answer is now Schedule F: 24 items in three tiers,
       built from HANDOFF.md + the register. Your SMK-6 note (&ldquo;delete items &mdash; confirm every
       one?&rdquo;) was answered Sep 1: L-1 bulk delete landed in c0df4a4, one confirm per batch.</li>
+      <li>Sep 4 (later), your pick &ldquo;1&rdquo;: finished items now fold. Pass / Done / Decided drops the
+      card into the Archive strip at the foot of its schedule (dated, note kept); Reopen restores it and
+      shows the Save bar. Counts and KPIs still include archived items; the saved state is unchanged in
+      shape, so every earlier revision reads fine.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
@@ -910,7 +941,7 @@ const BODY = `
     <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-09-04</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">8</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">9</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
@@ -1021,13 +1052,36 @@ function setNoteInput(attr, id, value){
   if (inp) { if (inp.value !== value) inp.value = value; inp.disabled = readOnly; }
 }
 
+function archLine(kind, id, shown, label, stampText, stampCls, note){
+  var li = document.createElement("li");
+  var a = document.createElement("span"); a.className = "aid"; a.textContent = shown; li.appendChild(a);
+  var l = document.createElement("span"); l.className = "alabel"; l.textContent = label; li.appendChild(l);
+  var st = document.createElement("span"); st.className = "stamp " + stampCls; st.textContent = stampText; li.appendChild(st);
+  var b = document.createElement("button"); b.type = "button"; b.className = "reopen";
+  b.setAttribute("data-reopen", kind + ":" + id); b.textContent = "Reopen"; b.disabled = readOnly; li.appendChild(b);
+  if (note) { var n = document.createElement("span"); n.className = "anote"; n.textContent = "Note: " + note; li.appendChild(n); }
+  return li;
+}
+function fillArchive(archId, lines, noun){
+  var det = document.getElementById(archId); if (!det) return;
+  var ul = det.querySelector(".arch-list"); ul.textContent = "";
+  lines.forEach(function(li){ ul.appendChild(li); });
+  det.hidden = lines.length === 0;
+  var sum = det.querySelector("summary");
+  if (sum) sum.textContent = "Archive · " + lines.length + " " + noun + " · Reopen to bring one back";
+}
+function textOf(sel, root){ var el = (root || document).querySelector(sel); return el ? el.textContent.trim() : ""; }
+
 function decorate(){
+  var arch = { gate: [], smokes: [], h0: [], dec: [] };
   /* smokes */
   var pass = 0, fail = 0, open = 0;
   SMOKE_IDS.forEach(function(id){
     var e = state.smokes[id];
     var row = document.querySelector('[data-smoke="' + id + '"]');
     if (row) row.setAttribute("data-s", e.s);
+    if (row) row.hidden = e.s === "pass";
+    if (row && e.s === "pass") arch.smokes.push(archLine("smk", id, id.toUpperCase(), textOf(".name", row), "PASS" + (e.at ? " · " + e.at : ""), "pass", e.note));
     setSeg(null, id, e.s, "data-smk");
     setNoteInput("data-note", id, e.note);
     var stamp = document.querySelector('[data-stamp="' + id + '"]');
@@ -1050,6 +1104,8 @@ function decorate(){
     var e = state.tasks[id];
     var row = document.querySelector('[data-task="' + id + '"]');
     if (row) row.setAttribute("data-s", e.s);
+    if (row) row.hidden = e.s === "done";
+    if (row && e.s === "done") arch[id.indexOf("g-") === 0 ? "gate" : "h0"].push(archLine("tsk", id, id.toUpperCase(), textOf(".tname", row), "DONE" + (e.at ? " · " + e.at : ""), "done", ""));
     setSeg(null, id, e.s, "data-tsk");
     var stamp = document.querySelector('[data-tstamp="' + id + '"]');
     if (stamp) {
@@ -1085,6 +1141,8 @@ function decorate(){
     var e = state.decisions[id];
     var card = document.querySelector('[data-dec-card="' + id + '"]');
     if (card) card.setAttribute("data-decided", e.pick ? "1" : "0");
+    if (card) card.hidden = !!e.pick;
+    if (card && e.pick) arch.dec.push(archLine("dec", id, textOf(".did", card), textOf(".q", card), ("DECIDED " + (DEC_TAG[e.pick] || "")).trim() + (e.at ? " · " + e.at : ""), "done", e.note));
     setSeg(null, id, e.pick, "data-dec");
     setNoteInput("data-dnote", id, e.note);
     var stamp = document.querySelector('[data-dstamp="' + id + '"]');
@@ -1105,6 +1163,17 @@ function decorate(){
   if (memo) { if (memo.value !== state.memo.text) memo.value = state.memo.text; memo.disabled = readOnly; }
   var ms = document.getElementById("memo-stamp");
   if (ms) ms.textContent = state.memo.text ? (state.memo.at ? "memo · " + state.memo.at : "memo drafted") : "empty";
+
+  /* archive strips + empty task lists */
+  fillArchive("arch-gate", arch.gate, "done");
+  fillArchive("arch-smokes", arch.smokes, "passed");
+  fillArchive("arch-h0", arch.h0, "done");
+  fillArchive("arch-dec", arch.dec, "decided");
+  document.querySelectorAll(".tasks").forEach(function(c){
+    var rows = c.querySelectorAll(".task"), all = rows.length > 0;
+    rows.forEach(function(r){ if (!r.hidden) all = false; });
+    c.hidden = all;
+  });
 
   /* footer + stamp line */
   var stampLine = document.getElementById("save-stamp");
@@ -1251,6 +1320,16 @@ function bind(){
     var ms = document.getElementById("memo-stamp");
     if (ms) ms.textContent = state.memo.text ? "memo drafted — unsaved" : "empty";
     syncSavebar();
+  });
+  document.addEventListener("click", function(ev){
+    var b = ev.target && ev.target.closest ? ev.target.closest("[data-reopen]") : null;
+    if (!b || readOnly) return;
+    var p = b.getAttribute("data-reopen").split(":"), kind = p[0], id = p[1];
+    if (kind === "smk" && state.smokes[id]) { state.smokes[id].s = "open"; state.smokes[id].at = ""; }
+    else if (kind === "tsk" && state.tasks[id]) { state.tasks[id].s = "open"; state.tasks[id].at = ""; }
+    else if (kind === "dec" && state.decisions[id]) { state.decisions[id].pick = ""; state.decisions[id].at = ""; }
+    else return;
+    decorate();
   });
   document.getElementById("btn-save").addEventListener("click", doSave);
   document.getElementById("btn-discard").addEventListener("click", function(){
