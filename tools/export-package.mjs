@@ -78,7 +78,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${VB}" font-family
 <pattern id="hatch2" width="9" height="9" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#EDEFE8"/><line x1="0" y1="0" x2="0" y2="9" stroke="#CDD2C2" stroke-width="1.5"/></pattern>
 </defs>
 <rect x="${vx}" y="${vy}" width="${vw}" height="${vh}" fill="#EDEFE8"/>
-${layer("base")}${layer("remoteLot")}${layer("parking")}${unitsSvg}${layer("annotations")}${layer("generalNotes")}${layer("titleBlock")}
+${layer("base")}${layer("remoteLot")}${layer("parking")}${layer("access")}${unitsSvg}${layer("annotations")}${layer("easements")}${layer("generalNotes")}${layer("titleBlock")}
 </svg>`;
 writeFileSync(join(out, "OTB-SitePlan-A1.svg"), svg);
 
