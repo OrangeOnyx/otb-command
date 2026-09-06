@@ -1,6 +1,6 @@
 # Site Access Inventory — Ingress / Egress, Aisles, Median (A-1 REV 13)
 **On The Boulevard Shopping Center · 101–149 Arnould Blvd, Lafayette, LA 70506**
-**Prepared:** September 5, 2026 · OTB Property Command, geometry REV 13
+**Prepared:** September 5, 2026 · OTB Property Command, geometry REV 13 · REV 14 addendum September 6 (Arnould frontage islands)
 **Status:** DRAWN on A-1 (⇆ Access chip, on by default) · depicts what is physically there per the architect CAD, confirmed against satellite imagery
 
 ---
@@ -56,6 +56,23 @@ Bank context (NOT A PART): JD Bank's own Arnould driveway (NOT A PART) — throa
 - Segments (plat ft along Arnould from the Patricia POB): 70–172.5 and 227.8–506.3.
 - Opening: a 172.5–227.8 (55.3') — Driveway A — full movement; aligned with a far-side driveway (CAD far-curb returns x 611–648).
 - no median east of a 506.3 — Driveway B and the bank drive are full-access up to the Johnston signal; west nose at a 70 leaves the Patricia intersection open.
+
+## Arnould frontage islands (REV 14 — the "skinny islands")
+Traced from the CAD LINCONC curbs after the operator flagged them missing (2026-09-06).
+Satellite pixels are ~0.85 ft, so 3 ft strips do not read there; the CAD is the source.
+- **3.1 ft planting strip** between the stall curb and the property line along the three
+  eastern modules (a 218.65–512.85); the 4 ft public sidewalk sits just outside the line.
+- **Four curbed end caps**, 3–4 ft × 17 ft with rounded noses toward the aisle: east of
+  Driveway A (a 218.65–221.65), between the 11|11 modules (321.55–324.55), between the
+  11|9 modules (425.35–428.35), west of Driveway B (509.75–512.85).
+- **7-space module** (a 119.75–182.75): stalls set 9 ft back behind a deeper strip
+  (b 0…−8.8), stall depth 18 ft → back of stall at b −27.4; a 4 ft island nose at its east
+  end (a 183.25–187.25) abuts Driveway A's west curb.
+- **149 frontage**: landscape from the 5 ft walk (a 25.85–30.85, Arnould → the 149 corner)
+  to the first module (a 119.25); no stalls, matching the plat's "sidewalk/landscape only".
+- Stall depth everywhere on this row is 18 ft (CAD), not "to the property line" as REV 12–13
+  drew it; the Arnould-side aisle is therefore 21 ft (b −21.6…−42.9), 15.5 ft at the
+  7-space module.
 
 ## Aisle flow (plat "TF" arrows — every aisle carries an opposed pair → two-way throughout)
 | Aisle | a (ft) | b (ft) | Flow | Plat evidence |

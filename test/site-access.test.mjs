@@ -43,9 +43,15 @@ test("driveway inventory: 8 Belle cuts with CAD-exact throats (plat feet)", () =
   for (const x of geometry.access.driveways) assert.ok(x.cad && x.serves, `${x.id} missing provenance`);
 });
 
-test("Arnould head-in stalls no longer cross either driveway", () => {
-  const ticks = geometry.layers.parking.filter(p => p.t === "line" && near(p.y2, by(-1), 0.3) && near(p.y1, by(-18.5), 0.3));
-  assert.equal(ticks.length, 4 + 7 + 11 + 11 + 9, "38 stalls → 42 tick lines");
+test("Arnould head-in stalls sit behind the planting strips and never cross a driveway", () => {
+  // REV 14: eastern modules b −3.6…−21.6, the 7-space module b −9.4…−27.4 (CAD stall depths)
+  const east = geometry.layers.parking.filter(p => p.t === "line" && near(p.y2, by(-3.6), 0.3) && near(p.y1, by(-21.6), 0.3));
+  const west = geometry.layers.parking.filter(p => p.t === "line" && near(p.y2, by(-9.4), 0.3) && near(p.y1, by(-27.4), 0.3));
+  assert.equal(east.length, 12 + 12 + 10, "11 + 11 + 9 stalls → 34 tick lines");
+  assert.equal(west.length, 8, "7 stalls → 8 tick lines");
+  const ticks = east.concat(west);
+  // no tick reaches the property line any more (the strip sits between)
+  for (const t of ticks) assert.ok(t.y2 < by(-3) + 0.1, `tick at x=${t.x1} runs into the planting strip`);
   const drivewayA = [ax(218.65), ax(187.25)], drivewayB = [ax(552.45), ax(512.75)]; // screen x ranges (x decreases with a)
   for (const t of ticks) {
     assert.ok(!(t.x1 > drivewayA[0] + 0.1 && t.x1 < drivewayA[1] - 0.1), `tick at x=${t.x1} inside driveway A`);
@@ -94,7 +100,18 @@ test("parking reconciliation: 314 labeled + 10 CAD-striped unlabeled Johnston st
   assert.equal(row.length, 11);
 });
 
+test("Arnould frontage islands are drawn: 3' strip, 9' strip, four end caps, Jason's landscape", () => {
+  const green = geometry.layers.parking.filter(p => p.t === "rect" && p.attrs.fill === "#DDE0D4" && p.y < 662 && p.y + p.h > 640);
+  // strip along modules 1–3 (a 218.65–512.85 × b −0.3…−3.1, back of the R/W curb)
+  assert.ok(green.some(r => near(r.x, ax(512.85), 0.3) && near(r.w, ax(218.65) - ax(512.85), 0.3) && near(r.h, by(-0.3) - by(-3.1), 0.3)), "3.1' strip missing");
+  // four end caps 3–4' wide, ~17' long
+  const caps = green.filter(r => r.w > 5 && r.w < 8 && r.h > 30 && r.h < 34);
+  assert.equal(caps.length, 4, `expected 4 end caps, got ${caps.length}`);
+  // Jason's frontage landscape reaches the 5' walk
+  assert.ok(green.some(r => near(r.x + r.w, ax(30.85), 0.3)), "149 frontage landscape missing");
+});
+
 test("title block rev bumped with the geometry change", () => {
-  assert.equal(geometry.rev, "REV 13");
-  assert.ok(geometry.layers.titleBlock.some(p => p.t === "text" && /^REV 13/.test(p.s)));
+  assert.equal(geometry.rev, "REV 14");
+  assert.ok(geometry.layers.titleBlock.some(p => p.t === "text" && /^REV 14/.test(p.s)));
 });

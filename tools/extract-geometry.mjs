@@ -133,7 +133,7 @@ bdPath += " Z";
 const mid = s => [(s.S[0] + s.E[0]) / 2, (s.S[1] + s.E[1]) / 2];
 const lbl = (x, y, str, extra = {}) => text(r2(x), r2(y), str, { class: "svg-lab", "font-size": "8", ...extra });
 const courseLabels = [
-  lbl(mid(scr[0])[0], 673, fmtB(scr[0].bearing) + " — 550.12'", { "text-anchor": "middle" }),                       // Arnould
+  lbl(mid(scr[0])[0], 679, fmtB(scr[0].bearing) + " — 550.12'", { "text-anchor": "middle" }),                       // Arnould
   lbl(scr[1].S[0] - 8, mid(scr[1])[1], fmtB(scr[1].bearing) + " 100.00'",
     { "text-anchor": "middle", transform: "rotate(-90 " + r2(scr[1].S[0] - 8) + " " + r2(mid(scr[1])[1]) + ")" }),  // notch NW line
   lbl(mid(scr[2])[0], scr[2].S[1] - 7, fmtB(scr[2].bearing) + " 120.61'", { "text-anchor": "middle" }),             // notch SW line
@@ -326,14 +326,34 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   // sit inside them at these (a) feet. Driveway A occupies a 187–219 and
   // driveway B a 513–552 — no tick may cross either (REV 12 drew the last
   // module through driveway B).
-  const MOD = [[113.25, 176.25, 7], [221.65, 321.55, 11], [324.55, 425.35, 11], [428.35, 509.75, 9]];
-  MOD.forEach(([a0, a1, n]) => {
+  // REV 14: stall depth per CAD — the three eastern modules run b −3.6…−21.6
+  // (18' stalls behind a 3.1' planting strip); the 7-space module sits deeper,
+  // b −9.4…−27.4, behind a 9' strip. Stalls no longer run to the property line.
+  const MOD = [[119.75, 182.75, 7, -9.4, -27.4], [221.65, 320.65, 11, -3.6, -21.6], [325.35, 424.35, 11, -3.6, -21.6], [428.35, 509.25, 9, -3.6, -21.6]];
+  MOD.forEach(([a0, a1, n, bFront, bBack]) => {
     for (let i = 0; i <= n; i++) {
       const a = a0 + (i * (a1 - a0)) / n;
-      parking.push(line(ax(a), by(-18.5), ax(a), by(-1), TICK));
+      parking.push(line(ax(a), by(bBack), ax(a), by(bFront), TICK));
     }
     parking.push(zlab((ax(a0) + ax(a1)) / 2, 621, n + " SPACES", 7));
   });
+  // ── REV 14: the "skinny islands" along Arnould (CAD LINCONC curbs) ──
+  //    · 3.1' planting strip between the stall curb and the property line, a 218.65–512.85
+  //    · 9' strip in front of the 7-space module (a 119.25–183.25) with a 4' nose at its east end
+  //    · four curbed end caps, 3–4' × 17': east of Driveway A, between each module pair,
+  //      west of Driveway B (rounded noses toward the aisle)
+  //    · Jason's Deli frontage: landscape from the 5' walk (a 25.85–30.85) to the first module
+  const GREEN = { fill: "#DDE0D4", stroke: "#CDD2C2", "stroke-width": 0.8, "pointer-events": "none" };
+  const gr = (a0, a1, b0, b1, extra = {}) => rect(ax(a1), by(b1), r2(ax(a0) - ax(a1)), r2(by(b0) - by(b1)), { ...GREEN, ...extra });
+  parking.push(gr(30.85, 119.25, -0.3, -29.9));                 // Jason's frontage landscape (bldg-side curb at CAD y 429.8)
+  parking.push(rect(ax(30.85), by(-26), r2(ax(25.85) - ax(30.85)), r2(by(-0.3) - by(-26)), { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 0.8, "pointer-events": "none" })); // 5' walk Arnould → 149
+  parking.push(gr(119.25, 183.25, -0.3, -8.8));                 // 9' strip, 7-space module
+  parking.push(gr(183.25, 187.25, -8.8, -18.8, { rx: 2 }));     // nose east of the 7-space module (against Driveway A's west curb)
+  parking.push(gr(218.65, 512.85, -0.3, -3.1));                 // 3.1' strip, modules 1–3
+  [[218.65, 221.65], [321.55, 324.55], [425.35, 428.35], [509.75, 512.85]].forEach(([c0, c1]) =>
+    parking.push(gr(c0, c1, -3.1, -20.4, { rx: 2 })));           // end caps E1–E4
+  parking.push(zlab(ax(75), by(-14), "LANDSCAPE · NO STALLS AT 149 FRONTAGE", 6));
+  parking.push(zlab(545, 679, "3' PLANTING STRIP + 4 CURBED END CAPS PER CAD (REV 14)", 5.5));
 }
 
 // ── field angled bands: two double-loaded herringbone bands, one-way aisles;
@@ -842,14 +862,14 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "8" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + LOT 7", { class: "svg-lab", "font-size": "8" }),
   text(1078, 874, "GEOMETRY PER PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "8" }),
-  text(1078, 890, "REV 13 — ACCESS: INGRESS / EGRESS · AISLES · MEDIAN", { class: "svg-lab", "font-size": "8" }),
+  text(1078, 890, "REV 14 — ACCESS · ARNOULD FRONTAGE ISLANDS", { class: "svg-lab", "font-size": "8" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 13",
+  rev: "REV 14",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
@@ -880,7 +900,7 @@ const geometry = {
     source: "plat 'N SPACES' striping labels, raster-located at 200 dpi (crops reference/park-*); zone positions in (a,b) feet",
     zones: [
       { zone: "main field — two angled double-loaded herringbone bands, one-way aisles (stalls 9.00' × 23.70')", count: 100, detail: "per band: 36 (west segment) + 14 (east segment); bands at b -42.9..-78.2 and -103.7..-139.7, a 217..496" },
-      { zone: "Arnould frontage head-in row", count: 38, detail: "4 × ~100' lot modules: 7 + 11 + 11 + 9; none in front of Jason's Deli (sidewalk/landscape only); last 75.12' module before the notch is a driveway apron" },
+      { zone: "Arnould frontage head-in row", count: 38, detail: "4 × ~100' lot modules: 7 + 11 + 11 + 9; none in front of Jason's Deli (sidewalk/landscape only); last 75.12' module before the notch is a driveway apron. REV 14 (CAD): 18' stalls behind a 3.1' planting strip (9' strip at the 7-space module), four 3–4' curbed end-cap islands between modules / flanking the driveways" },
       { zone: "storefront row (long building)", count: 56, detail: "single head-in row between the liquor line and the covered walkway, labeled '56 SPACES' twice on the plat (stalls perpendicular to the storefront per plat + operator confirmation 2026-07-15 — NOT angled)" },
       { zone: "Lot 6 west-field zone", count: 28, detail: "16-space island module (a 144.5-185.7) + 12 head-in at the short-bldg walkway (3 handicap symbols + loading pad at the liquor-line end)" },
       { zone: "Lot 8 pocket (Patricia × M.A. corner)", count: 19, detail: "10 nosing the 135 end walk + 5 nosing M.A. + 4 nosing the breezeway walk — working estimate was ±15, plat says 19" },
