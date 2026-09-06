@@ -93,7 +93,11 @@ export function drawPlan() {
   });
 
   renderPrims(g(svg), geometry.layers.annotations);
-  if (showEasements) renderPrims(g(svg, "easement-layer"), geometry.layers.easements || []);
+  if (showEasements) {
+    const eg = g(svg, "easement-layer");
+    eg.setAttribute("pointer-events", "none"); // drawn above the unit rects; must never eat a unit click
+    renderPrims(eg, geometry.layers.easements || []);
+  }
   renderPrims(g(svg), geometry.layers.generalNotes);
   renderPrims(g(svg), geometry.layers.titleBlock);
 

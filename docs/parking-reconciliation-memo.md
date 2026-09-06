@@ -47,7 +47,7 @@ which definition controls.
 |---|---|---|---|
 | 1 | Main field — two angled double-loaded bands (9.00' × 23.70' stalls) | 100 | 36+36 west segments, 14+14 east segments |
 | 2 | Arnould frontage head-in row | 38 | modules 7 + 11 + 11 + 9; none at Jason's frontage |
-| 3 | Storefront row (long building) | 56 | one angled row, labeled "56 SPACES" twice |
+| 3 | Storefront row (long building) | 56 | one perpendicular head-in row (REV 12; NOT angled), labeled "56 SPACES" twice |
 | 4 | Lot 6 west-field zone | 28 | 16 island module + 12 at short-bldg walkway |
 | 5 | Lot 8 pocket (Patricia × M.A.) | 19 | 10 + 5 + 4 |
 | 6 | Rear M.A. parallel row | 18 | 4+4+4+4+2; gap at electric easement 577566 |

@@ -85,9 +85,9 @@ Satellite pixels are ~0.85 ft, so 3 ft strips do not read there; the CAD is the 
 | Storefront aisle | 118 → 651 | -139.7 → -166 | two-way | TF pairs at a 322/327, 450/454, 561/566 |
 | Notch E-W aisle (Johnston drive) *(shared: JD Bank traffic)* | 550.12 → 668 | -100 → -122 | two-way | TF inbound b −104 (a 601, 660) / outbound b −118…−121 (a 616, 643) |
 
-Note: geometry.parking still describes the herringbone bands as "one-way aisles" (raster-era
-wording). The plat's own arrows show both directions in all three east-west aisles; the
-drawn layer follows the arrows.
+Note: geometry.parking's main-field zone text formerly read "one-way aisles" (raster-era
+wording); corrected to two-way in the extractor and regenerated, matching the plat's arrows in all
+three east-west aisles and the drawn access layer.
 
 ## Streets as built
 - **arnould** — 80' R/W concrete boulevard: 4' sidewalk on the R/W, curb 15' out, 19' near lanes each side of the 11' raised median

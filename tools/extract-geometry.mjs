@@ -356,7 +356,7 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   parking.push(zlab(545, 679, "3' PLANTING STRIP + 4 CURBED END CAPS PER CAD (REV 14)", 5.5));
 }
 
-// ── field angled bands: two double-loaded herringbone bands, one-way aisles;
+// ── field angled bands: two double-loaded herringbone bands, two-way aisles per the plat TF arrows (REV 13);
 //    plat labels 36 (west segment) + 14 (east segment) per band ──
 {
   const BANDS = [[-42.9, -78.2], [-103.7, -139.7]];   // [b near Arnould, b far]
@@ -899,7 +899,7 @@ const geometry = {
   parking: {
     source: "plat 'N SPACES' striping labels, raster-located at 200 dpi (crops reference/park-*); zone positions in (a,b) feet",
     zones: [
-      { zone: "main field — two angled double-loaded herringbone bands, one-way aisles (stalls 9.00' × 23.70')", count: 100, detail: "per band: 36 (west segment) + 14 (east segment); bands at b -42.9..-78.2 and -103.7..-139.7, a 217..496" },
+      { zone: "main field — two angled double-loaded herringbone bands, two-way aisles per plat TF arrows (stalls 9.00' × 23.70')", count: 100, detail: "per band: 36 (west segment) + 14 (east segment); bands at b -42.9..-78.2 and -103.7..-139.7, a 217..496" },
       { zone: "Arnould frontage head-in row", count: 38, detail: "4 × ~100' lot modules: 7 + 11 + 11 + 9; none in front of Jason's Deli (sidewalk/landscape only); last 75.12' module before the notch is a driveway apron. REV 14 (CAD): 18' stalls behind a 3.1' planting strip (9' strip at the 7-space module), four 3–4' curbed end-cap islands between modules / flanking the driveways" },
       { zone: "storefront row (long building)", count: 56, detail: "single head-in row between the liquor line and the covered walkway, labeled '56 SPACES' twice on the plat (stalls perpendicular to the storefront per plat + operator confirmation 2026-07-15 — NOT angled)" },
       { zone: "Lot 6 west-field zone", count: 28, detail: "16-space island module (a 144.5-185.7) + 12 head-in at the short-bldg walkway (3 handicap symbols + loading pad at the liquor-line end)" },

@@ -53,6 +53,9 @@ A-1 (CAD-traced, plat frame, REV 14) remains the exhibit source.
 
 ## Ground-truth addendum (Google Earth captures, 2026-09-06)
 Operator supplied five Google Earth views after this audit. They confirm items 1–4
-and 6–8 and correct item 5 as rewritten above. They also confirm the A-1 REV 14
-frontage islands and the unlabeled Johnston row (cars parked in it). Details in
-`docs/site-access-inventory-2026-09.md` → Imagery check.
+and 6–8. Item 5 is rewritten above but stays OPEN: the imagery shows the church
+complex and its lot mid-block, and no striped lot at the Patricia corner where the
+recorded Lot 7 description places it. The imagery does not reconcile that gap;
+it closes only when the Lot 7 deed and the parcel placement agree. The views also
+confirm the A-1 REV 14 frontage islands and the unlabeled Johnston row (cars
+parked in it). Details in `docs/site-access-inventory-2026-09.md` → Imagery check.

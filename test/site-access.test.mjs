@@ -98,6 +98,9 @@ test("parking reconciliation: 314 labeled + 10 CAD-striped unlabeled Johnston st
   // the row is drawn: 11 tick lines nosing the Johnston R/W at a 651–669.5
   const row = geometry.layers.parking.filter(p => p.t === "line" && near(p.x1, ax(651.05), 0.3) && near(p.x2, ax(669.55), 0.3));
   assert.equal(row.length, 11);
+  // every tick sits inside the documented b −172…−271 band
+  const [yLo, yHi] = [by(-172), by(-271)].sort((a, b) => a - b);
+  assert.ok(row.every(p => p.y1 >= yLo - 0.3 && p.y1 <= yHi + 0.3 && p.y2 >= yLo - 0.3 && p.y2 <= yHi + 0.3), "Johnston row outside documented b range");
 });
 
 test("Arnould frontage islands are drawn: 3' strip, 9' strip, four end caps, Jason's landscape", () => {

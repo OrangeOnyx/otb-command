@@ -178,7 +178,7 @@
   "source": "plat 'N SPACES' striping labels, raster-located at 200 dpi (crops reference/park-*); zone positions in (a,b) feet",
   "zones": [
    {
-    "zone": "main field — two angled double-loaded herringbone bands, one-way aisles (stalls 9.00' × 23.70')",
+    "zone": "main field — two angled double-loaded herringbone bands, two-way aisles per plat TF arrows (stalls 9.00' × 23.70')",
     "count": 100,
     "detail": "per band: 36 (west segment) + 14 (east segment); bands at b -42.9..-78.2 and -103.7..-139.7, a 217..496"
    },
