@@ -151,10 +151,10 @@ placement stands. The striped lot mid-block beside the hip-roofed complex is a d
 property (reads as the church's). Aerial imagery cannot be used to verify Lot 7 striping.
 
 **Operator also confirms** the brick paver aprons and the parking areas visible in the
-imagery and in the ChatGPT render are real. The CAD stripes no head-in row along the short
-building's Patricia face (only the P1 service yard, the P2 pad, and Lot 8), so any striping
-there today is post-CAD and unlabeled on the plat — worth a look on the same walk as the
-Johnston row.
+imagery and in the ChatGPT render are real, and that the Patricia and Marie Antoinette
+sides carry the rear doors (fronts face the main field toward Arnould and Johnston). No
+parking is depicted or expected along the short building's Patricia face; the CAD shows
+only the P1 service yard, the P2 pad, and Lot 8 there, which matches.
 
 ## Open items for the operator
 1. Confirm the 10 Johnston-frontage stalls exist as striped today (a walk or the next drone
