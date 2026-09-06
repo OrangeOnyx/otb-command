@@ -29,13 +29,16 @@ A-1 (CAD-traced, plat frame, REV 14) remains the exhibit source.
    lawn. CAD: 3.1' planting strip, four curbed end caps, 9' strip at the
    7-space module, landscape (no stalls) along the 149 frontage. The render
    stripes stalls along 149's Arnould face.
-4. **Patricia side.** A full striped row along the north face of the short
-   building does not exist; Patricia is a 50' R/W with three service cuts
-   and the 19-space Lot 8 pocket at the Marie Antoinette corner.
+4. **Patricia side.** The render stripes a full row along the north face of
+   the short building. The plat and CAD show only the P1 service yard, the
+   P2 pad, and the 19-space Lot 8 pocket there. Operator states the parking
+   areas the render shows are real, so treat this as unlabeled striping to
+   count on the ground, not as invented.
 5. **Lot 7 omitted.** The mid-block lot and hip-roofed buildings across Marie
-   Antoinette are real (Google Earth shows the church complex and its lot
-   there); the render drops Belle's Lot 7 at the Patricia corner, where the
-   recorded description places it. See the Lot 7 item in the inventory memo.
+   Antoinette are real (the church complex and its lot). The render shows only
+   tree canopy at the Patricia corner, which is also what the aerials show, but
+   Belle's Lot 7 sits under those oaks (operator-confirmed 2026-09-06). A
+   lease exhibit must show the lot; canopy alone reads as no parking.
 6. **JD Bank notch not distinguished** — no "NOT A PART", no parcel line,
    no reciprocal-servitude routing.
 7. **Stall counts not preserved** (east modules show 14–15 stripes vs
@@ -52,10 +55,10 @@ A-1 (CAD-traced, plat frame, REV 14) remains the exhibit source.
   as a derived reference, never a precision trace.
 
 ## Ground-truth addendum (Google Earth captures, 2026-09-06)
-Operator supplied five Google Earth views after this audit. They confirm items 1–4
-and 6–8. Item 5 is rewritten above but stays OPEN: the imagery shows the church
-complex and its lot mid-block, and no striped lot at the Patricia corner where the
-recorded Lot 7 description places it. The imagery does not reconcile that gap;
-it closes only when the Lot 7 deed and the parcel placement agree. The views also
-confirm the A-1 REV 14 frontage islands and the unlabeled Johnston row (cars
-parked in it). Details in `docs/site-access-inventory-2026-09.md` → Imagery check.
+Operator supplied five Google Earth views after this audit. They confirm items 1–3
+and 6–8, and soften item 4 as rewritten above. Item 5 closed 2026-09-06: the
+operator confirms Lot 7 is at the Patricia corner directly across from Lot 8, under
+mature oaks that hide it from every aerial. The operator also confirms the brick
+paver aprons and parking areas the render shows are real. The views confirm the
+A-1 REV 14 frontage islands and the unlabeled Johnston row (cars parked in it).
+Details in `docs/site-access-inventory-2026-09.md` → Imagery check.

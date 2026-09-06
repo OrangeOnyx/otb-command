@@ -143,13 +143,18 @@ drive-thru at the corner with the Johnston drive immediately west of it; cars pa
 the unlabeled Johnston head-in row south of 101; a separate shopping center with angled
 parking across Arnould. The 2D view's compass confirms the ~38° rotation from north.
 
-**One discrepancy to resolve:** the imagery shows no striped lot across Marie Antoinette
-at the Patricia corner, where the recorded Lot 7 description places it (POB 25' along
-S38°32'E from the M.A. × Patricia R/W corner, 75' × 150.17'). The striped, occupied lot
-across M.A. sits mid-block, roughly a 385–460, beside a hip-roofed complex that reads as
-the church. A-1 keeps the plat placement. Operator to confirm: (1) Lot 7 is at the corner
-but unstriped/gravel today, or (2) the mid-block lot is Lot 7 and the tract description in
-the extractor needs re-checking against the Lot 7 deed.
+**Lot 7 — RESOLVED (operator, 2026-09-06):** the imagery shows no lot across Marie
+Antoinette at the Patricia corner because mature oaks on the parcel hide it from above.
+Lot 7 is directly across from Lot 8 on the corner, exactly where the recorded description
+puts it (POB 25' along S38°32'E from the M.A. × Patricia R/W corner, 75' × 150.17'). A-1's
+placement stands. The striped lot mid-block beside the hip-roofed complex is a different
+property (reads as the church's). Aerial imagery cannot be used to verify Lot 7 striping.
+
+**Operator also confirms** the brick paver aprons and the parking areas visible in the
+imagery and in the ChatGPT render are real. The CAD stripes no head-in row along the short
+building's Patricia face (only the P1 service yard, the P2 pad, and Lot 8), so any striping
+there today is post-CAD and unlabeled on the plat — worth a look on the same walk as the
+Johnston row.
 
 ## Open items for the operator
 1. Confirm the 10 Johnston-frontage stalls exist as striped today (a walk or the next drone
@@ -158,4 +163,4 @@ the extractor needs re-checking against the Lot 7 deed.
 3. Decide whether Driveway A's median opening should carry a "left-turn ingress" note in
    the leasing package (it is the only full-movement cut on Arnould).
 4. The breezeway apron is drawn as pedestrian; confirm it is not used as a vehicle lane.
-5. Lot 7 location vs. the Google Earth imagery (see Imagery check above).
+5. ~~Lot 7 location vs. the Google Earth imagery~~ — closed 2026-09-06 (corner, under oaks).

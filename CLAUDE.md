@@ -67,7 +67,7 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - Parking (plat-verified REV 9): Main Field (fills first) → **Lot 8** (19 spaces
   = 10+5+4, pocket at Patricia × Marie Antoinette corner, butts 135A/B) →
   **Lot 7** (remote, Lot 7 Block M, 110 Marie Antoinette St, parcel 6009649,
-  ±14,375 SF, 32 spaces = 6+8+10+8, directly across Marie Antoinette from Lot 8).
+  ±14,375 SF, 32 spaces = 6+8+10+8, directly across Marie Antoinette from Lot 8; under mature oaks — invisible in aerials, operator-confirmed 2026-09-06, do not re-question from imagery).
   Also: rear M.A. parallel row 18 · Johnston strip 10 · JD Bank easement 13.
   **Plat striping totals 314 vs variance "324 provided" — Δ −10 unreconciled**
   (docs/parking-reconciliation-memo.md; cite 324 legally, plan ops on 314).
