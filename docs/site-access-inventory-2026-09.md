@@ -133,6 +133,24 @@ No "N SPACES" label sits on it, so the raster label tally (314) never counted it
 - Extractor now reproduces REV 12 (perpendicular storefront ticks) — geometry.json is fully
   generated again by `npm run extract-geometry`.
 
+## Imagery check (Google Earth, operator-supplied 2026-09-06)
+Five Google Earth captures (one rotated 2D view, four 3D obliques) were compared against
+A-1 REV 14. Confirmed: rear Marie Antoinette parallel bays; Lot 8 pocket at the Patricia ×
+M.A. corner butting 135A/B; tree islands at the main-field module breaks; the Arnould
+frontage strip with trees in the end caps; landscape with no stalls along 149's Arnould
+face; the median continuous between Driveway A and its Johnston-end terminus; the JD Bank
+drive-thru at the corner with the Johnston drive immediately west of it; cars parked in
+the unlabeled Johnston head-in row south of 101; a separate shopping center with angled
+parking across Arnould. The 2D view's compass confirms the ~38° rotation from north.
+
+**One discrepancy to resolve:** the imagery shows no striped lot across Marie Antoinette
+at the Patricia corner, where the recorded Lot 7 description places it (POB 25' along
+S38°32'E from the M.A. × Patricia R/W corner, 75' × 150.17'). The striped, occupied lot
+across M.A. sits mid-block, roughly a 385–460, beside a hip-roofed complex that reads as
+the church. A-1 keeps the plat placement. Operator to confirm: (1) Lot 7 is at the corner
+but unstriped/gravel today, or (2) the mid-block lot is Lot 7 and the tract description in
+the extractor needs re-checking against the Lot 7 deed.
+
 ## Open items for the operator
 1. Confirm the 10 Johnston-frontage stalls exist as striped today (a walk or the next drone
    pass); if so, close the Δ −10 memo and update CLAUDE.md to "324 striped = variance".
@@ -140,3 +158,4 @@ No "N SPACES" label sits on it, so the raster label tally (314) never counted it
 3. Decide whether Driveway A's median opening should carry a "left-turn ingress" note in
    the leasing package (it is the only full-movement cut on Arnould).
 4. The breezeway apron is drawn as pedestrian; confirm it is not used as a vehicle lane.
+5. Lot 7 location vs. the Google Earth imagery (see Imagery check above).

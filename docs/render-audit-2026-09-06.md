@@ -32,14 +32,16 @@ A-1 (CAD-traced, plat frame, REV 14) remains the exhibit source.
 4. **Patricia side.** A full striped row along the north face of the short
    building does not exist; Patricia is a 50' R/W with three service cuts
    and the 19-space Lot 8 pocket at the Marie Antoinette corner.
-5. **Lot 7 misplaced** mid-block across Marie Antoinette; it sits directly
-   across from Lot 8 at the Patricia end. Houses across M.A. are invented.
+5. **Lot 7 omitted.** The mid-block lot and hip-roofed buildings across Marie
+   Antoinette are real (Google Earth shows the church complex and its lot
+   there); the render drops Belle's Lot 7 at the Patricia corner, where the
+   recorded description places it. See the Lot 7 item in the inventory memo.
 6. **JD Bank notch not distinguished** — no "NOT A PART", no parcel line,
    no reciprocal-servitude routing.
 7. **Stall counts not preserved** (east modules show 14–15 stripes vs
    11/11/9/7). Nothing in the render ties to 314 or 324.
-8. **Orientation unlabeled.** Plan is rotated ~38° from north (plat frame)
-   with no north arrow or street names.
+8. **Orientation unlabeled.** Plan is rotated ~38° from north (plat frame;
+   the Google Maps compass confirms it) with no north arrow or street names.
 
 ## Use policy
 - Marketing/mood imagery: acceptable after removing the east-of-Arnould lot or
@@ -48,3 +50,9 @@ A-1 (CAD-traced, plat frame, REV 14) remains the exhibit source.
 - If regenerating, feed the A-1 SVG export as the primary reference and the
   satellite as secondary; the workflow's own rules classify generative output
   as a derived reference, never a precision trace.
+
+## Ground-truth addendum (Google Earth captures, 2026-09-06)
+Operator supplied five Google Earth views after this audit. They confirm items 1–4
+and 6–8 and correct item 5 as rewritten above. They also confirm the A-1 REV 14
+frontage islands and the unlabeled Johnston row (cars parked in it). Details in
+`docs/site-access-inventory-2026-09.md` → Imagery check.

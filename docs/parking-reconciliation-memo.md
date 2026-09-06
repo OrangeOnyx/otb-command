@@ -19,6 +19,11 @@ This favors candidate explanation 4 (a labeling gap on the plat, not a count err
 variance). Recorded in `src/data/geometry.json → parking.cadUnlabeled / totalStriped`;
 the row is drawn on A-1 and labeled "UNLABELED ON PLAT · CAD-STRIPED".
 
+**Imagery check 2026-09-06 (Google Earth captures supplied by the operator):** the
+oblique and 2D views show cars parked head-in on the Johnston frontage directly south of
+unit 101, exactly where the CAD stripes the row, in a count consistent with 10. Still a
+candidate until the stripes are counted on the ground, but the row exists and is in use.
+
 Remaining to close: confirm the 10 stalls are striped on the ground today (walk or next
 drone pass), then flip CLAUDE.md to "324 striped = variance" and retire the 314 ops figure.
 Until then the interim guidance below still holds.
