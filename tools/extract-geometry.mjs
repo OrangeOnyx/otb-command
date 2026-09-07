@@ -271,12 +271,15 @@ const remoteLot = [];
     remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]), TICK7));
   }
   const l7y = (db) => r2(P7(37, db)[1]);
-  remoteLot.push(text(cx, l7y(-96), "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
-    { class: "svg-lab", "font-size": "10", "text-anchor": "middle", "font-weight": "600" }));
-  remoteLot.push(text(cx, l7y(-88.5), "LOT 7, BLOCK M · PARCEL 6009649 · 32 SPACES PER PLAT (6+8+10+8)",
-    { class: "svg-lab", "font-size": "8.5", "text-anchor": "middle" }));
-  remoteLot.push(text(cx, r2(yT - 10), "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
-    { class: "svg-lab", "font-size": "9.5", "text-anchor": "middle" }));
+  // labels sit in the blank field LEFT of the lot, right-anchored at its west edge (REV 14): centered on cx
+  // they ran past x 1480 on the export and over the rotated frontage label
+  const L7X = r2(xL - 8);
+  remoteLot.push(text(L7X, l7y(-96), "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
+    { class: "svg-lab", "font-size": "10", "text-anchor": "end", "font-weight": "600" }));
+  remoteLot.push(text(L7X, l7y(-88.5), "LOT 7, BLOCK M · PARCEL 6009649 · 32 SPACES PER PLAT (6+8+10+8)",
+    { class: "svg-lab", "font-size": "8.5", "text-anchor": "end" }));
+  remoteLot.push(text(r2(xR), r2(yT - 10), "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
+    { class: "svg-lab", "font-size": "9.5", "text-anchor": "end" }));
   remoteLot.push(text(r2(xR + 10), r2((yT + yB) / 2), "S38°32'00\"E 75.00' FRONTAGE · 150.17' DEEP",
     { class: "svg-lab", "font-size": "8", "text-anchor": "middle", transform: "rotate(90 " + r2(xR + 10) + " " + r2((yT + yB) / 2) + ")" }));
   remoteLot.push(line(cx, r2(yB), cx, 96, { stroke: "#8A937F", "stroke-width": 1.5, "stroke-dasharray": "5 4" }));
