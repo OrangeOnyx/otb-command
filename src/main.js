@@ -1,13 +1,12 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
-import { UNITS, exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY, getPublishedLines, setVoiceLines } from "./lib/remote.js";
+import { UNITS, exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState, configureStoreScope } from "./store.js";
+import { REMOTE, LOCAL_REVIEW, sb, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, getPublishedLines, setVoiceLines } from "./lib/remote.js";
 import { ASSIGNABLE_ROLES, accessVendorOptions, accessUnitOptions, scopeKind, validateAssignment } from "./lib/access.js";
 import { LINE_DEFS, linesFromRow, normalizeUsNumber, validateLines, publishNote } from "./lib/voicelines.js";
 import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
-import { migrateLocalToRemote } from "./lib/assets.js";
 import { initErrorLog } from "./lib/errlog.js";
 import { logClientError } from "./lib/remote.js";
 import { loadSeed } from "./lib/seed.js";
@@ -410,16 +409,20 @@ const syncQueue = new SyncQueue();
 const LAYER_BY_KEY = Object.fromEntries(LAYER_DEFS.map(d => [d.key, d]));
 
 const dirtyTables = new Set(); // tables whose last push failed → re-pull + re-diff
+let stopSync = () => {};
 
 function wireSync() {
-  let t = null;
+  let t = null, active = true;
+  stopSync = () => { active=false;clearTimeout(t);syncQueue.drain();dirtyTables.clear(); };
   const flush = async () => {
+    if (!active) return;
     /* Recover failed tables first: the queue cache advanced optimistically at
        queue-time, so after a failed push it lies about server truth. Re-pull
        the table, prime with reality, re-diff local state → exact minimal ops. */
     for (const table of [...dirtyTables]) {
       try {
         const rows = await fetchLayerRows(table);
+        if (!active) return;
         for (const d of LAYER_DEFS.filter(x => x.table === table)) {
           syncQueue.prime(d, rows.filter(r => d.ownsRow(r)));
           syncQueue.queue(d, d.toRows(getLayerState(d.key)));
@@ -427,6 +430,7 @@ function wireSync() {
         dirtyTables.delete(table);
       } catch { /* still unreachable — stays dirty, retried below */ }
     }
+    if (!active) return;
     const batches = syncQueue.drain();
     if (batches.length) {
       try {
@@ -437,9 +441,10 @@ function wireSync() {
         batches.forEach(b => dirtyTables.add(b.table));
       }
     }
-    if (dirtyTables.size) { clearTimeout(t); t = setTimeout(flush, 30000); }
+    if (active && dirtyTables.size) { clearTimeout(t); t = setTimeout(flush, 30000); }
   };
   subscribe((type, detail) => {
+    if (!active) return;
     if (type === "selection") return;
     if (detail && detail.remote) return;
     const keys = type === "import" ? Object.keys(LAYER_BY_KEY) : (LAYER_BY_KEY[type] ? [type] : []);
@@ -467,7 +472,7 @@ async function initPropertySwitcher() {
         esc(p.name) + '</option>').join("") + '</select>';
     const side = document.querySelector(".side");
     side.insertBefore(wrap, side.querySelector(".foot"));
-    wrap.querySelector("#propSel").onchange = e => { setActiveProperty(e.target.value); location.reload(); };
+    wrap.querySelector("#propSel").onchange = e => { stopSync();configureStoreScope(null);setActiveProperty(e.target.value);location.reload(); };
   } catch { /* roster unavailable — the switcher simply doesn't render */ }
 }
 
@@ -494,27 +499,36 @@ async function boot() {
     let session = null;
     try { session = await getSession(); } catch (e) { console.warn(e); }
     if (!session) { showLogin(); return; }
+    let invalidated = false;
+    sb.auth.onAuthStateChange((event,current) => {
+      if (event !== 'SIGNED_OUT' && (!current || current.user?.id === session.user.id)) return;
+      invalidated=true;stopSync();configureStoreScope(null);
+      document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+      document.querySelector('.app').style.display='none';
+      location.reload();
+    });
     let account = null;
     try { account = await getRole(); } catch (e) { console.warn(e); }
     account = account || { email: "", role: "pending" }; // fail closed, not to owner
     if (account.role === "pending") { showPending(account.email); return; }
-    // C1: hydrate confidential seed (rents/PII/vendors) before rendering. Owner
-    // + operator only; a failure leaves skeletons (never leaks), so don't block boot.
-    try { await loadSeed(); } catch (e) { console.warn("seed:", e); }
     try {
+      const ctx = await propertyContext();
+      if (invalidated) return;
+      configureStoreScope({mode:'authenticated',userId:session.user.id,orgId:ctx.org_id,propertyId:ctx.property_id});
+      // Private seed may fail safely to the public skeleton; shared state may
+      // not fail open to old local overrides or an empty editable dashboard.
+      try { await loadSeed(); } catch (e) { console.warn('seed:',e); }
+      if (invalidated) return;
       const remote = await loadState();
+      if (invalidated) return;
       for (const d of LAYER_DEFS) // prime the sync queue with server truth
         syncQueue.prime(d, (loadState.lastRows?.[d.table] || []).filter(r => d.ownsRow(r)));
-      if (Object.keys(remote).length) hydrateRemote(remote);
-      else if (account.role === "operator" && (await propertyContext()).slug === BUNDLED_PROPERTY) {
-        /* seed an empty backend from local — ONLY for the bundled property.
-           The local snapshot derives from the bundled OTB data package;
-           pushing it into a freshly onboarded property mirrors OTB state
-           there (caught live by the C-2 demo teardown, 2026-08-05). */
-        for (const d of LAYER_DEFS) syncQueue.queue(d, d.toRows(getLayerState(d.key)));
-        await pushOps(syncQueue.drain(), CLIENT_ORIGIN);
-      }
-    } catch (e) { console.warn("remote state:", e); }
+      hydrateRemote(remote); // including {}, which must clear all prior layers
+    } catch (e) {
+      if (invalidated) return;
+      configureStoreScope(null);showStateFailure();return;
+    }
+    if (invalidated) return;
     buildShell(account);
     initViews(account);
     applyRole(account.role);
@@ -531,16 +545,24 @@ async function boot() {
       }).catch(e => console.warn("realtime:", e));
     if (account.role === "operator") {
       wireSync();
-      if (!localStorage.getItem("otb-assets-migrated")) {
-        try { await migrateLocalToRemote(); } catch (e) { console.warn("asset migrate:", e); }
-        localStorage.setItem("otb-assets-migrated", "1");
-      }
+      // Existing browser files remain local; login does not authorize uploading
+      // unscoped files or seeding an empty property from a legacy snapshot.
     }
   } else {
+    configureStoreScope({mode:LOCAL_REVIEW?'local-review':'offline',propertyId:'otb'});
     buildShell(null);
     initViews(null);
     initRouter();
   }
+}
+
+function showStateFailure() {
+  document.querySelector('.app').style.display='none';
+  const gate=document.createElement('div');gate.className='login-gate';
+  gate.innerHTML='<div class="login-card"><div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div><h1 style="font-size:22px">Property records unavailable</h1><p class="login-msg">The signed-in property could not be loaded. Saved browser data has been preserved. Retry to load the current records before making changes.</p><button id="stateRetry">Retry loading records</button><button id="stateOut">Sign out</button></div>';
+  gate.querySelector('#stateRetry').onclick=()=>location.reload();
+  gate.querySelector('#stateOut').onclick=async()=>{await signOut();location.reload();};
+  document.body.appendChild(gate);
 }
 
 /* signed in, but not yet operator/owner/vendor — least-privilege holding pen

@@ -1,4 +1,4 @@
-/* Single source of mutable state. Every mutation writes through to localStorage.
+/* Single source of mutable state. Every mutation writes through to its scope.
    Persisted: compliance cell states + note overrides.
    C1: the CLIENT bundle carries only the public unit skeleton (no $/legal/notes);
    confidential fields are merged in at boot via installUnitsPrivate() from the
@@ -7,12 +7,12 @@ import unitsData from "./data/units.public.json" with { type: "json" };
 import complianceData from "./data/compliance.json" with { type: "json" };
 import { PAGE_IDS } from "./lib/pages.js";
 import { OPEX_LINES, emptyLayers, snapshotOf } from "./lib/layers.js";
+import { createScopedStateStorage, normalizeStateScope, sameStateScope } from "./lib/state-storage.js";
 export { OPEX_LINES }; // schema lives in the layer registry; re-exported for views
 
-const LS_KEY = "otb-command-state-v1";
 const STATE_VERSION = 1;
 
-export const UNITS = unitsData;
+export const UNITS = unitsData.map(unit => ({ ...unit }));
 export const byUnit = {};
 UNITS.forEach(u => { byUnit[u.unit] = u; });
 
@@ -47,15 +47,6 @@ function baselineComp() {
     Object.assign(comp[unit], seed);
   }
   return comp;
-}
-
-function load() {
-  try {
-    const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : null;
-  } catch { return null; }
 }
 
 /* actions = override layer over the auto-seeded Action Board (W-1).
@@ -109,13 +100,32 @@ const cleanCamOverride = o => {
 /* Every persisted layer comes from the registry (lib/layers.js) — adding a
    layer there materializes it here, in persist/export, and in remote sync. */
 const state = emptyLayers({ comp: baselineComp });
-const saved = load();
-if (saved) applySnapshot(saved);
+let activeScope = null;
+let scopedStorage = createScopedStateStorage();
+
+/* No storage is read at module import, before the auth/property gate. Boot
+   selects a scope before rendering; switching clears state and private fields
+   in place so existing UNITS/byUnit references cannot retain another session. */
+export function configureStoreScope(scope, { storage = () => globalThis.localStorage } = {}) {
+  activeScope = normalizeStateScope(scope);
+  scopedStorage = createScopedStateStorage({ scope: activeScope, storage });
+  UNITS.forEach((unit, index) => {
+    for (const key of Object.keys(unit)) delete unit[key];
+    Object.assign(unit, unitsData[index]);
+  });
+  Object.assign(state, emptyLayers({ comp: baselineComp }));
+  selected = null;
+  const loaded = scopedStorage.load();
+  if (loaded.snapshot) applySnapshot(loaded.snapshot);
+  return loaded;
+}
+
+export function getStoreScope() { return activeScope ? { ...activeScope } : null; }
 
 function applySnapshot(snap) {
   if (snap.comp && typeof snap.comp === "object") {
     for (const [unit, fields] of Object.entries(snap.comp)) {
-      if (!state.comp[unit] || typeof fields !== "object") continue;
+      if (!state.comp[unit] || !fields || typeof fields !== "object" || Array.isArray(fields)) continue;
       for (const [k, v] of Object.entries(fields)) {
         if (k in state.comp[unit] && VALID_STATE.has(v)) state.comp[unit][k] = v;
       }
@@ -168,18 +178,18 @@ function applySnapshot(snap) {
   }
 }
 
-function persist() {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify({
-      version: STATE_VERSION, savedAt: new Date().toISOString(),
-      ...snapshotOf(state)
-    }));
-  } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
+function persist(source = "local") {
+  // An authenticated recovery copy is not an offline authority. Hydration
+  // doesn't overwrite it; local edits remain recoverable after sign-out.
+  return scopedStorage.save(snapshotOf(state), { source });
 }
 
 /* ---------- change notification ---------- */
 const listeners = [];
-export function subscribe(fn) { listeners.push(fn); }
+export function subscribe(fn) {
+  listeners.push(fn);
+  return () => { const index = listeners.indexOf(fn); if (index >= 0) listeners.splice(index, 1); };
+}
 function emit(type, detail) { listeners.forEach(fn => fn(type, detail)); }
 
 /* ---------- selection (UI state, not persisted) ---------- */
@@ -340,7 +350,7 @@ export function hydrateRemote(snap) {
   if (!snap || typeof snap !== "object") return;
   Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);
-  persist(); // cache locally too
+  persist("remote");
 }
 
 /* ---------- per-layer access + realtime fold (B-5) ---------- */
@@ -355,7 +365,7 @@ export function hydrateLayer(key, layerState, meta = {}) {
   if (!(key in defaults)) return;
   state[key] = defaults[key];
   if (layerState !== undefined) applySnapshot({ [key]: layerState });
-  persist();
+  persist("remote");
   emit(key, { remote: true, ...meta });
 }
 
@@ -363,6 +373,7 @@ export function hydrateLayer(key, layerState, meta = {}) {
 export function exportJSON() {
   return JSON.stringify({
     version: STATE_VERSION,
+    scope: getStoreScope(),
     exportedAt: new Date().toISOString(),
     property: "On The Boulevard — 101–149 Arnould Blvd, Lafayette, LA 70506",
     ...snapshotOf(state)
@@ -371,7 +382,10 @@ export function exportJSON() {
 export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
   if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents && !snap.financials)) {
-    throw new Error("Not an Orange Ocean Atlas export — expected { comp, notes, actions, … }.");
+    throw new Error("Not a Cypress Command state export — expected { comp, notes, actions, … }.");
+  }
+  if (activeScope?.mode === "authenticated" && !sameStateScope(activeScope, snap.scope)) {
+    throw new Error("This export is not bound to the signed-in account and property. Review legacy or local exports in local review before transferring any changes.");
   }
   Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);
