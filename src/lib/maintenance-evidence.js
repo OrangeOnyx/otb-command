@@ -23,7 +23,7 @@ export function maintenanceReadSource(read) {
     kind:read.preview ? 'Authenticated preview database read' : read.mode === 'live-read' ? 'Authenticated database read' : 'Database verification snapshot',
     path:`${read.sourcePath ? read.sourcePath+' · ' : ''}${read.preview ? 'Isolated Cypress test database' : 'Supabase otb-command'} · public.maintenance_requests / public.maintenance_events · ${read.requestId}`,
     asOf:read.readAt,
-    excerpt:(read.preview ? previewEvidenceNotice(read.preview)+'\n\n' : '')+JSON.stringify(read,null,2)+'\n\nThis is a dated read of the request and its event trail, not an on-site inspection. The open status may be unchanged since import. No quote, invoice, payment or completion document is established by this read. Photo counts describe only the visible maintenance-photos request folder. The archived work order and physical frontage association retain their separate sources.',
+    excerpt:(read.preview ? previewEvidenceNotice(read.preview)+'\n\n' : '')+JSON.stringify(read,null,2)+'\n\nThis is a dated read of the request and its event trail, not an on-site inspection. A recorded status does not independently establish present conditions. No quote, invoice, payment or completion document is established by this read. Photo counts describe only the visible maintenance-photos request folder. The archived work order and physical frontage association retain their separate sources.',
   };
 }
 

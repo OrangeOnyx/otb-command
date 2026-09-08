@@ -59,7 +59,7 @@ export function createCommandMap(host, opts = {}) {
     .cc-map .cc-note{background:#f3ede0e8;padding:8px 11px;border:1px solid #1e4d3a18;border-radius:5px;backdrop-filter:blur(8px)}
     .cc-map .cc-tip{position:absolute;z-index:5;pointer-events:none;background:#0A1F16f2;color:#F3EDE0;border:1px solid #587360;border-radius:7px;padding:9px 12px;max-width:250px;font:12px/1.4 'Inter',sans-serif;box-shadow:0 8px 20px #0a1f1620}
     .cc-map .cc-tip strong{display:block;font-weight:600}.cc-map .cc-tip span{display:block;font-size:10px;color:#b7c7b5;margin-top:3px}
-    .cc-map .cc-issue{cursor:pointer;outline:none}.cc-map .cc-issue:hover .cc-issue-chip,.cc-map .cc-issue:focus-visible .cc-issue-chip{fill:#E79B3B;stroke:#0A1F16;stroke-width:2}
+    .cc-map .cc-issue{cursor:pointer}.cc-map .cc-issue-button{outline:none}.cc-map .cc-issue:hover .cc-issue-chip,.cc-map .cc-issue-button:focus-visible .cc-issue-chip{fill:#E79B3B;stroke:#0A1F16;stroke-width:2}
     @media(prefers-reduced-motion:reduce){.cc-map .cc-suite .cc-roof{transition:none}}
     @media(max-width:650px){.cc-map .cc-hud{right:10px;bottom:10px;gap:6px}.cc-map .cc-note{font-size:9px;padding:6px 8px}.cc-map .cc-compass{width:48px;height:48px}}
   </style>`;
@@ -194,8 +194,6 @@ export function createCommandMap(host, opts = {}) {
     svg.querySelector(".cc-issue")?.remove();
     if (!issueVisible) return;
     const layer = g(svg, "cc-issue");
-    layer.setAttribute("role", "button"); layer.setAttribute("tabindex", "0");
-    layer.setAttribute("aria-label", "Reported maintenance at suites 101 and 103 frontage. Exact point unknown. Open issue records.");
     // Association with source-named storefronts only. These lines follow suite
     // edges; they do not assert a pothole point, polygon, area or extent.
     for (const unit of ["101", "103"]) {
@@ -206,9 +204,14 @@ export function createCommandMap(host, opts = {}) {
     const anchor = point(mode, (first.x + last.x + last.w) / 2, first.y + first.h);
     const labelX = anchor.x - 220, labelY = anchor.y + 132;
     path(layer, `M ${anchor.x} ${anchor.y + 9} L ${anchor.x} ${labelY - 14} L ${labelX - 14} ${labelY - 14}`, { fill: "none", stroke: AMBER, "stroke-width": 1.5 });
-    rect(layer, labelX - 14, labelY - 34, 312, 49, { fill: AMBER, rx: 6, class: "cc-issue-chip" });
-    text(layer, labelX, labelY - 14, "REPORTED FRONTAGE", { fill: "#0A1F16", "font-size": 13, "font-weight": 700, "font-family": "'Inter',sans-serif", "letter-spacing": "1px", "pointer-events": "none" });
-    text(layer, labelX, labelY + 3, "Exact point unknown · open records", { fill: "#0A1F16", "font-size": 11, "font-family": "'Inter',sans-serif", "pointer-events": "none" });
+    // The accessible control is the painted label. The frontage lines make the
+    // parent group's center fall in empty map space, outside the click target.
+    const button = g(layer, "cc-issue-button");
+    button.setAttribute("role", "button"); button.setAttribute("tabindex", "0");
+    button.setAttribute("aria-label", "Reported maintenance at suites 101 and 103 frontage. Exact point unknown. Open issue records.");
+    rect(button, labelX - 14, labelY - 34, 312, 49, { fill: AMBER, rx: 6, class: "cc-issue-chip" });
+    text(button, labelX, labelY - 14, "REPORTED FRONTAGE", { fill: "#0A1F16", "font-size": 13, "font-weight": 700, "font-family": "'Inter',sans-serif", "letter-spacing": "1px", "pointer-events": "none" });
+    text(button, labelX, labelY + 3, "Exact point unknown · open records", { fill: "#0A1F16", "font-size": 11, "font-family": "'Inter',sans-serif", "pointer-events": "none" });
     layer.addEventListener("click", e => { if (dragged) return; e.stopPropagation(); opts.onIssue?.(); });
     layer.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); opts.onIssue?.(); } });
   }
