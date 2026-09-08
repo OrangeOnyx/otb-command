@@ -2,6 +2,7 @@
    owner draft. The existing maintenance queue remains the operating record. */
 import './command-maintenance.css';
 import { esc } from '../lib/format.js';
+import { previewEvidenceNotice } from '../lib/command-evidence.js';
 
 export const maintenanceReadTime = value => new Intl.DateTimeFormat('en-US', {
   timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short',
@@ -23,7 +24,8 @@ export function createCommandMaintenance({localReview,onProperty,onSource,onDraf
     const photoText=read?.photos?.state==='checked'
       ? `${read.photos.complete?'':'At least '}${read.photos.count} visible ${read.photos.count===1?'file':'files'}` : 'Folder not verified';
     host.innerHTML=`<div class="cm-intro"><div><div class="cm-eyebrow">Linked from the property</div><h2>${esc(issue.title)}</h2><p>Common area · associated frontage · suites ${esc(issue.location.suiteIds.join(' / '))}</p></div><button class="cmd-secondary" data-property>View on property ↗</button></div>
-      <div class="cm-columns"><div class="cm-main"><div class="cm-status-line"><span class="cmd-status-amber">${checked?`${read.explicitStatus?'Recorded':'Default'} ${esc(read.status.replaceAll('_',' '))}`:'System read unavailable'}</span><span>${checked?(read.mode==='live-read'?'Authenticated read':'Verification snapshot'):'Archive remains available'}</span></div>
+      ${issue.preview?`<p class="cm-caveat">${esc(previewEvidenceNotice(issue.preview))}</p>`:''}
+      <div class="cm-columns"><div class="cm-main"><div class="cm-status-line"><span class="cmd-status-amber">${checked?`${read.explicitStatus?'Recorded':'Default'} ${esc(read.status.replaceAll('_',' '))}`:'System read unavailable'}</span><span>${checked?(read.preview?'Isolated test database read':read.mode==='live-read'?'Authenticated read':'Verification snapshot'):'Archive remains available'}</span></div>
       <p class="cm-description">${esc(checked?read.detail:issue.description)}</p>
       ${checked?`<dl class="cm-facts"><div><dt>Checked</dt><dd>${esc(maintenanceReadTime(read.readAt))}</dd></div><div><dt>Last logged activity</dt><dd>${esc(maintenanceReadTime(read.lastAt))}</dd></div><div><dt>Vendor assignment</dt><dd>${read.vendorId?esc(read.vendorId):'None in retrieved events'}</dd></div><div><dt>Request photo folder</dt><dd>${esc(photoText)}</dd></div></dl>
       <details class="cm-identity"><summary>Request reference</summary><code>${esc(read.requestId)}</code><p>${esc(read.mode==='live-read'?'Read with the signed-in account’s access.':'A saved database verification, not a continuously live connection.')}</p></details>`:`<p class="cm-caveat">${evidence.currentRead?.state==='not-found'?'The linked request was not visible to this account at the read.':'The linked request could not be verified in this session.'} The ${esc(issue.asOf)} archive records this issue as ${esc(issue.archivedStatus)}; a new status is not inferred.</p>`}

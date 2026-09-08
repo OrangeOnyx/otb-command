@@ -1,6 +1,6 @@
 /* Offline owner-review packet. Plain edited text and cited record excerpts
    remain distinct; no documents, financial records, network or DOM are read. */
-import { commandDate } from "./command-evidence.js";
+import { commandDate, COMMAND_PREVIEW, previewEvidenceNotice } from "./command-evidence.js";
 
 const esc = value => String(value ?? "").replace(/[&<>"']/g, character => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -88,9 +88,9 @@ export function buildBriefingHTML({ issue, sources = [], text = "", generatedAt,
   @media print{@page{size:letter;margin:.6in}.packet{max-width:none;margin:0;padding:0;box-shadow:none}body{background:#fff}.masthead{margin-bottom:18px}h1,h2,h3,.section-label{break-after:avoid}.appendix{break-before:page;margin-top:0;padding-top:0;border-top:0}.source-card,.record-summary,.unknowns{break-inside:avoid}.draft-text{font-size:10pt;line-height:1.5}.source-excerpt{font-size:8pt}.notice,.draft-label,.record-summary,.source-excerpt{-webkit-print-color-adjust:exact;print-color-adjust:exact}.citation{color:var(--cypress)}p,li{orphans:3;widows:3}}
 </style></head><body><main class="packet">
   <header class="masthead">${logo ? `<img class="brand-logo" src="${logo}" alt="Cypress Command">` : '<span class="brand-name">Prepared with Cypress Command</span>'}<div class="packet-label">Owner briefing<br>On The Boulevard</div></header>
-  <h1>${esc(issue.title)}</h1><span class="draft-label">DRAFT · FOR REVIEW</span><p class="property">On The Boulevard · Belle Realty</p>
+  <h1>${esc(issue.title)}</h1><span class="draft-label">${issue.preview?esc(COMMAND_PREVIEW.label.toUpperCase())+' · ':''}DRAFT · FOR REVIEW</span><p class="property">On The Boulevard · Belle Realty</p>
   <div class="dates"><span>Draft prepared ${esc(prepared)}</span><span>Packet exported ${esc(exported)}</span><span>Property calendar: America/Chicago</span></div>
-  <section class="notice" aria-label="Review status"><p><strong>This is editable owner-update text, not a certified account of current conditions.</strong> The text below may include operator edits. Compare it with the dated source excerpts in the appendix.</p><p>Archive as of ${esc(issue.asOf)}. Nothing has been sent, approved, dispatched or paid by generating this packet. No business record has changed.</p></section>
+  <section class="notice" aria-label="Review status">${issue.preview?`<p><strong>${esc(previewEvidenceNotice(issue.preview))}</strong></p>`:''}<p><strong>This is editable owner-update text, not a certified account of current conditions.</strong> The text below may include operator edits. Compare it with the dated source excerpts in the appendix.</p><p>Archive as of ${esc(issue.asOf)}. Nothing has been sent, approved, dispatched or paid by generating this packet. No business record has changed.</p></section>
   <section aria-label="Draft owner update"><p class="section-label">Owner-update text · may include edits</p><div class="draft-text">${citedText(text, anchors) || "No draft text entered."}</div></section>
   <section class="appendix" aria-labelledby="appendix-title"><h2 id="appendix-title">The evidence behind the update.</h2><p class="section-label">Appendix · underlying records</p><p class="appendix-intro">These excerpts are separate from the edited draft above. Only references selected by the maintenance record are included; a citation is not evidence of inspection, repair, approval or payment.</p>
     <div class="record-summary"><p><strong>${esc(issue.title)}</strong></p><p class="record-id">Record ID: ${esc(issue.id)}</p><p>Archived status: ${esc(issue.archivedStatus || "Not recorded")} · archive as of ${esc(issue.asOf)}</p><p>Location: ${esc(issue.location?.label || "Not recorded")}</p><p>Precision: ${esc(issue.location?.precision || "Exact location unverified")}. Current condition has not been verified by this packet.</p></div>

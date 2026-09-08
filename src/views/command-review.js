@@ -6,7 +6,7 @@ import frauncesLicense from '../../public/brand/cypress/fonts/Fraunces-OFL.txt?r
 import interLicense from '../../public/brand/cypress/fonts/Inter-OFL.txt?raw';
 import monoLicense from '../../public/brand/cypress/fonts/JetBrainsMono-OFL.txt?raw';
 import { esc } from '../lib/format.js';
-import { buildOwnerUpdate, commandDate } from '../lib/command-evidence.js';
+import { buildOwnerUpdate, commandDate, ownerUpdateExportText } from '../lib/command-evidence.js';
 import { buildBriefingHTML } from '../lib/command-briefing.js';
 import { createCommandDraftSession, MAX_COMMAND_DRAFT_TEXT } from '../lib/command-draft-session.js';
 
@@ -148,7 +148,7 @@ export function createCommandReview({dialog, getEvidence, getScope}) {
   function download(contents,type,extension) {
     const url = URL.createObjectURL(new Blob([contents],{type}));
     const link = document.createElement('a'); link.href = url;
-    link.download = `Cypress-Command-owner-update-DRAFT-${commandDate(new Date())}.${extension}`;
+    link.download = `Cypress-Command-${context?.issue.preview?'PREVIEW-':''}owner-update-DRAFT-${commandDate(new Date())}.${extension}`;
     link.click(); setTimeout(() => URL.revokeObjectURL(url),1000);
   }
   $('cmdDraftText').addEventListener('input', () => { refreshEditor();save();status(valid() ? 'Edited draft · Review before sharing. Nothing has been sent.' : 'Add draft text before downloading or copying.'); });
@@ -156,7 +156,7 @@ export function createCommandReview({dialog, getEvidence, getScope}) {
   $('crRegenerate').onclick = () => { $('crReplacePrompt').hidden = false; $('crReplaceCancel').focus(); };
   $('crReplaceCancel').onclick = () => { $('crReplacePrompt').hidden = true; $('crRegenerate').focus(); };
   $('crReplaceConfirm').onclick = () => { if(!context)return;generate();setRead(false);$('crReplacePrompt').hidden=true;$('cmdDraftText').focus();status('Draft regenerated from the dated records. Nothing has been sent.'); };
-  $('cmdDownloadDraft').onclick = () => { if(valid()) { download(text(),'text/plain;charset=utf-8','txt');status('Text file prepared for download. Nothing has been sent.'); } };
+  $('cmdDownloadDraft').onclick = () => { if(valid()) { download(ownerUpdateExportText(text(),context.issue.preview),'text/plain;charset=utf-8','txt');status('Text file prepared for download. Nothing has been sent.'); } };
   $('cmdDownloadBriefing').onclick = async () => {
     if(!valid() || exporting) return;
     const current = generation;
@@ -174,7 +174,7 @@ export function createCommandReview({dialog, getEvidence, getScope}) {
   };
   $('cmdCopyDraft').onclick = async () => {
     if(!valid()) return;
-    try { await navigator.clipboard.writeText(text());status('Draft copied for review. Nothing has been sent.'); }
+    try { await navigator.clipboard.writeText(ownerUpdateExportText(text(),context.issue.preview));status('Draft copied for review. Nothing has been sent.'); }
     catch { setRead(false);$('cmdDraftText').focus();$('cmdDraftText').select();status('Copy is unavailable. Use your keyboard to copy the selected draft, or download a text file.'); }
   };
   dialog.querySelector('[data-close]').onclick = () => dialog.close();

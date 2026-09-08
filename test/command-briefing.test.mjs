@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildBriefingHTML } from "../src/lib/command-briefing.js";
+import { COMMAND_PREVIEW } from '../src/lib/command-evidence.js';
 
 const issue = {
   id: "record-1", title: "Pothole Repair", asOf: "2026-08-29", archivedStatus: "open",
@@ -14,6 +15,14 @@ const sources = [
   { id: "private-ledger", title: "Do not include", path: "private/payment.json", asOf: "2026-09-08", excerpt: "CONFIDENTIAL_UNSELECTED_AMOUNT" },
 ];
 const options = { issue, sources, text: "My edited update. [work-order]\nCheck [roster]. [unknown]", generatedAt: "2026-09-08T00:15:00Z", preparedAt: "2026-09-06" };
+
+test('preview HTML identifies the isolated test copy outside editable text',()=>{
+  const html=buildBriefingHTML({...options,issue:{...issue,preview:COMMAND_PREVIEW},text:'Edited text without an environment label.'});
+  assert.match(html,/PREVIEW · ISOLATED TEST DATA · DRAFT · FOR REVIEW/);
+  assert.match(html,/production record snapshot dated 2026-09-08T18:59:20Z/);
+  assert.match(html,/do not establish current production records/);
+  assert.doesNotMatch(buildBriefingHTML(options),/PREVIEW · ISOLATED TEST DATA/);
+});
 
 test("briefing keeps edited prose distinct, dates the archive and selects only record references", () => {
   const html = buildBriefingHTML(options);

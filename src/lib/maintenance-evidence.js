@@ -1,5 +1,6 @@
 /* Presentation of a bounded, dated request read. No store or network. */
 import { deriveRequest } from './maintenance-model.js';
+import { previewEvidenceNotice } from './command-evidence.js';
 
 export function maintenanceEvidence({request,events,photos,readAt,mode='snapshot',sourcePath=null,method=null}) {
   if (!request?.id || !Array.isArray(events) || !readAt || !Number.isFinite(Date.parse(readAt))) throw new Error('Incomplete maintenance evidence.');
@@ -18,17 +19,18 @@ export function maintenanceEvidence({request,events,photos,readAt,mode='snapshot
 export function maintenanceReadSource(read) {
   if (read?.state !== 'verified') return null;
   return {
-    id:'maintenance-system-record', title:'Linked M-1 work order · dated system read',
-    kind:read.mode === 'live-read' ? 'Authenticated database read' : 'Database verification snapshot',
-    path:`${read.sourcePath ? read.sourcePath+' · ' : ''}Supabase otb-command · public.maintenance_requests / public.maintenance_events · ${read.requestId}`,
+    id:'maintenance-system-record', title:read.preview ? 'Linked M-1 work order · isolated test copy' : 'Linked M-1 work order · dated system read',
+    kind:read.preview ? 'Authenticated preview database read' : read.mode === 'live-read' ? 'Authenticated database read' : 'Database verification snapshot',
+    path:`${read.sourcePath ? read.sourcePath+' · ' : ''}${read.preview ? 'Isolated Cypress test database' : 'Supabase otb-command'} · public.maintenance_requests / public.maintenance_events · ${read.requestId}`,
     asOf:read.readAt,
-    excerpt:JSON.stringify(read,null,2)+'\n\nThis is a dated read of the request and its event trail, not an on-site inspection. The open status may be unchanged since import. No quote, invoice, payment or completion document is established by this read. Photo counts describe only the visible maintenance-photos request folder. The archived work order and physical frontage association retain their separate sources.',
+    excerpt:(read.preview ? previewEvidenceNotice(read.preview)+'\n\n' : '')+JSON.stringify(read,null,2)+'\n\nThis is a dated read of the request and its event trail, not an on-site inspection. The open status may be unchanged since import. No quote, invoice, payment or completion document is established by this read. Photo counts describe only the visible maintenance-photos request folder. The archived work order and physical frontage association retain their separate sources.',
   };
 }
 
-export function attachMaintenanceRead(evidence,read) {
+export function attachMaintenanceRead(evidence,read,{preview=null}={}) {
+  if (preview) read={...read,preview};
   const source = maintenanceReadSource(read);
-  return {...evidence,currentRead:read,issue:{...evidence.issue,systemRecord:source ? read : null,
+  return {...evidence,...(preview?{preview}:{}),currentRead:read,issue:{...evidence.issue,...(preview?{preview}:{}),systemRecord:source ? read : null,
     sourceIds:[...evidence.issue.sourceIds.filter(id=>id!=='maintenance-system-record'),...(source?['maintenance-system-record']:[])]},
     sources:[...evidence.sources.filter(item=>item.id!=='maintenance-system-record'),...(source?[source]:[])]};
 }

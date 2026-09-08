@@ -1,6 +1,22 @@
 /* Cypress Command: presentation-only evidence and a deterministic review draft.
    No network, DOM, financial inference, mutable records, or bundled archive. */
 export const ROSTER_AS_OF = "2026-07-16";
+export const COMMAND_PREVIEW = Object.freeze({
+  label: 'Preview · isolated test data',
+  sourceSnapshotAt: '2026-09-08T18:59:20Z',
+});
+
+export function previewEvidenceNotice(preview) {
+  return preview ? `Isolated Cypress test database, seeded from a production record snapshot dated ${preview.sourceSnapshotAt}. Subsequent reads and edits describe this test copy; they do not establish current production records or site conditions.` : '';
+}
+
+/** Keep the environment qualification in downloads/copies even after edits. */
+export function ownerUpdateExportText(text, preview) {
+  const notice = previewEvidenceNotice(preview);
+  if (!notice) return text;
+  const heading = `${COMMAND_PREVIEW.label.toUpperCase()}\n${notice}`;
+  return String(text).includes(heading) ? text : `${heading}\n\n${text}`;
+}
 
 /** Property-local calendar date. A date-only source is already a calendar date;
     instants must carry a timezone (or be a Date / epoch millisecond value). */
@@ -84,7 +100,7 @@ export function buildOwnerUpdate({ issue, generatedAt } = {}) {
     `Recorded status: ${issue.archivedStatus || "not recorded"} in the ${issue.asOf} archive. Current repair/completion status has not been verified by this draft. [pothole-record]`,
     ...(system ? [
       '', 'LINKED WORK-ORDER CHECK',
-      `The canonical M-1 request ${system.requestId} was read at ${system.readAt}. ${system.explicitStatus ? 'Recorded state' : 'Default request state (no status event)'}: ${system.status}. Last logged activity: ${system.lastAt}. [maintenance-system-record]`,
+      `The ${issue.preview ? 'isolated test copy of' : 'canonical'} M-1 request ${system.requestId} was read at ${system.readAt}. ${system.explicitStatus ? 'Recorded state' : 'Default request state (no status event)'}: ${system.status}. Last logged activity: ${system.lastAt}. [maintenance-system-record]`,
       system.vendorId ? `Assignment identifier in the event trail: ${system.vendorId}. A company name or work authorization is not inferred. [maintenance-system-record]` : 'No vendor assignment appears in the retrieved event trail. [maintenance-system-record]',
       system.photos?.state === 'checked' ? `Photo folder: ${system.photos.complete ? '' : 'at least '}${system.photos.count} visible files at the read. This is not a search of every document repository. [maintenance-system-record]` : 'The photo folder could not be verified in this read.',
       'A database status is not a site inspection. Physical condition, repair completion evidence, scope, cost and payment remain to be verified.',
@@ -109,5 +125,5 @@ export function buildOwnerUpdate({ issue, generatedAt } = {}) {
     "",
     "DRAFT ONLY · Not sent. No maintenance, accounting, or external business record changed.",
   ].join("\n");
-  return { title: "Owner update · " + issue.title, text, sourceIds: [...references], generatedAt: generated, reviewOnly: true };
+  return { title: "Owner update · " + issue.title, text:ownerUpdateExportText(text,issue.preview), sourceIds: [...references], generatedAt: generated, reviewOnly: true };
 }

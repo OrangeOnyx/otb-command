@@ -35,7 +35,18 @@ import { initPortfolio } from "./views/portfolio.js";
 import { initComms } from "./views/comms.js";
 import { initMatters } from "./views/matters.js";
 import { closeDrawer } from "./views/drawer.js";
+import { COMMAND_PREVIEW } from './lib/command-evidence.js';
 
+const isCommandPreview=import.meta.env.VITE_COMMAND_ENV==='preview';
+const previewBadge=isCommandPreview?`<p class="command-preview-badge">${COMMAND_PREVIEW.label}</p>`:'';
+if (isCommandPreview) {
+  document.body.classList.add('command-preview');
+  const banner=document.createElement('div');
+  banner.className='command-preview-banner';
+  banner.textContent=COMMAND_PREVIEW.label;
+  document.querySelector('.topbar')?.after(banner);
+  document.title='Preview · Cypress Command — On The Boulevard';
+}
 
 /* ---------- login gate ---------- */
 function showLogin(msg) {
@@ -46,6 +57,7 @@ function showLogin(msg) {
   o.innerHTML =
     '<div class="login-card">' +
     '<div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>' +
+    previewBadge +
     '<div class="login-sub">Cypress Command — sign in</div>' +
     '<input id="loginEmail" type="email" placeholder="you@email.com" autocomplete="email">' +
     '<button id="loginBtn">Email me a sign-in link</button>' +
@@ -122,8 +134,8 @@ function buildShell(account) {
   let printTheme = null; // paper prints light regardless of screen theme
   const stampPrint = () => {
     const dateStr = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
-    document.getElementById("printFoot").textContent = printFootText(PAGES, currentPage, dateStr);
-    document.title = printDocTitle(PAGES, currentPage, TODAY.toISOString().slice(0, 10));
+    document.getElementById("printFoot").textContent = printFootText(PAGES, currentPage, dateStr)+(isCommandPreview?' · '+COMMAND_PREVIEW.label:'');
+    document.title = (isCommandPreview?'Preview · ':'')+printDocTitle(PAGES, currentPage, TODAY.toISOString().slice(0, 10));
     if (printTheme === null && document.documentElement.dataset.theme) {
       printTheme = document.documentElement.dataset.theme;
       delete document.documentElement.dataset.theme;
@@ -142,7 +154,7 @@ function buildShell(account) {
   };
   window.addEventListener("beforeprint", stampPrint);
   window.addEventListener("afterprint", () => {
-    document.title = "Cypress Command — On The Boulevard";
+    document.title = (isCommandPreview?'Preview · ':'')+"Cypress Command — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
     if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }
@@ -559,7 +571,7 @@ async function boot() {
 function showStateFailure() {
   document.querySelector('.app').style.display='none';
   const gate=document.createElement('div');gate.className='login-gate';
-  gate.innerHTML='<div class="login-card"><div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div><h1 style="font-size:22px">Property records unavailable</h1><p class="login-msg">The signed-in property could not be loaded. Saved browser data has been preserved. Retry to load the current records before making changes.</p><button id="stateRetry">Retry loading records</button><button id="stateOut">Sign out</button></div>';
+  gate.innerHTML='<div class="login-card"><div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>'+previewBadge+'<h1 style="font-size:22px">Property records unavailable</h1><p class="login-msg">The signed-in property could not be loaded. Saved browser data has been preserved. Retry to load the current records before making changes.</p><button id="stateRetry">Retry loading records</button><button id="stateOut">Sign out</button></div>';
   gate.querySelector('#stateRetry').onclick=()=>location.reload();
   gate.querySelector('#stateOut').onclick=async()=>{await signOut();location.reload();};
   document.body.appendChild(gate);
@@ -576,6 +588,7 @@ function showPending(email) {
   o.innerHTML =
     '<div class="login-card">' +
     '<div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>' +
+    previewBadge +
     '<div class="login-sub">Access pending</div>' +
     '<div class="login-msg">You’re signed in as <b>' + esc(email || "") + '</b>, but this address isn’t linked ' +
     'to an owner, operator, or vendor account yet. Contact management to be granted access.</div>' +

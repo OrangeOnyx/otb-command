@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readCurrentMaintenance} from '../api/_maintenance-read.mjs';
 import {maintenanceEvidence,attachMaintenanceRead} from '../src/lib/maintenance-evidence.js';
 import {loadCommandEvidence} from '../tools/command-evidence-data.mjs';
-import {buildOwnerUpdate} from '../src/lib/command-evidence.js';
+import {buildOwnerUpdate,COMMAND_PREVIEW,ownerUpdateExportText} from '../src/lib/command-evidence.js';
 
 // Synthetic rows exercise failure boundaries; the application fixture remains
 // the separately dated real request read from repository records.
@@ -91,4 +91,28 @@ test('owner update cites the dated system read without claiming a current inspec
   const earlier=buildOwnerUpdate({issue,generatedAt:'2026-09-07'});
   assert.equal(earlier.sourceIds.length,3);
   assert.equal(earlier.text.includes('maintenance-system-record'),false);
+});
+
+test('preview read and edited exports retain the production snapshot boundary',async()=>{
+  const base=await loadCommandEvidence({includeSnapshot:false});
+  const read=await readCurrentMaintenance(args,dependencies());
+  const result=attachMaintenanceRead(base,read,{preview:COMMAND_PREVIEW});
+  const source=result.sources.find(item=>item.id==='maintenance-system-record');
+  assert.equal(result.issue.preview.sourceSnapshotAt,'2026-09-08T18:59:20Z');
+  assert.equal(source.kind,'Authenticated preview database read');
+  assert.match(source.path,/Isolated Cypress test database/);
+  assert.doesNotMatch(source.path,/Supabase otb-command/);
+  assert.match(source.excerpt,/do not establish current production records/);
+  const draft=buildOwnerUpdate({issue:result.issue,generatedAt:'2026-09-09'});
+  assert.match(draft.text,/^PREVIEW · ISOLATED TEST DATA/);
+  assert.match(draft.text,/isolated test copy of M-1 request/);
+  assert.match(draft.text,/2026-09-08T18:59:20Z/);
+  assert.equal(ownerUpdateExportText(draft.text,COMMAND_PREVIEW),draft.text);
+  assert.match(ownerUpdateExportText('Operator edited every line.',COMMAND_PREVIEW),/^PREVIEW · ISOLATED TEST DATA/);
+  assert.equal(ownerUpdateExportText('Production draft.',null),'Production draft.');
+  const unavailable=attachMaintenanceRead(base,{state:'unavailable',readAt},{preview:COMMAND_PREVIEW});
+  assert.equal(unavailable.issue.systemRecord,null);
+  assert.match(buildOwnerUpdate({issue:unavailable.issue,generatedAt:'2026-09-09'}).text,/^PREVIEW · ISOLATED TEST DATA/);
+  assert.equal(base.issue.preview,undefined);
+  assert.equal(read.preview,undefined);
 });
