@@ -3,8 +3,8 @@
    C1: the CLIENT bundle carries only the public unit skeleton (no $/legal/notes);
    confidential fields are merged in at boot via installUnitsPrivate() from the
    auth-gated /api/seed endpoint. Full units.json stays the SOT for tools+server. */
-import unitsData from "./data/units.public.json";
-import complianceData from "./data/compliance.json";
+import unitsData from "./data/units.public.json" with { type: "json" };
+import complianceData from "./data/compliance.json" with { type: "json" };
 import { PAGE_IDS } from "./lib/pages.js";
 import { OPEX_LINES, emptyLayers, snapshotOf } from "./lib/layers.js";
 export { OPEX_LINES }; // schema lives in the layer registry; re-exported for views

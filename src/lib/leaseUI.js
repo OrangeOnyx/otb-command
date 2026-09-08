@@ -7,7 +7,7 @@ import { esc } from "./format.js";
 import { assembleLease } from "./leasedoc.js";
 import { mergeDocx, leaseFileName } from "./leasedocx.js";
 import { leaseHtml } from "./leasedochtml.js";
-import units from "../data/units.json" with { type: "json" };
+import { UNITS as units } from "../store.js";
 import recoveries from "../data/recoveries.json" with { type: "json" };
 
 const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
