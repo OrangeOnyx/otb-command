@@ -21,6 +21,7 @@ const FEATURE_ICON = Object.fromEntries(FEATURE_TYPES.map(([id, icon]) => [id, i
 
 export function createGeoScene(container, units, opts = {}) {
   const onPick = opts.onPick || (() => {});
+  let selectedUnit = null;
   const colorOf = {};
   units.forEach(u => { colorOf[u.unit] = u.color; });
 
@@ -99,7 +100,7 @@ export function createGeoScene(container, units, opts = {}) {
     map.addLayer({
       id: "unit-sel", type: "line", source: "units",
       paint: { "line-color": "#A87E2F", "line-width": 3 },
-      filter: ["==", ["get", "unit"], "__none__"]
+      filter: ["==", ["get", "unit"], selectedUnit || "__none__"]
     });
     map.on("click", "unit-fill", e => {
       const unit = e.features && e.features[0] && e.features[0].properties.unit;
@@ -112,6 +113,7 @@ export function createGeoScene(container, units, opts = {}) {
   map.on("idle", ensureLayers);
 
   function setSelected(unit) {
+    selectedUnit = unit;
     if (map.getLayer("unit-sel")) map.setFilter("unit-sel", ["==", ["get", "unit"], unit || "__none__"]);
   }
   function resize() { map.resize(); }

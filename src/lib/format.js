@@ -8,6 +8,13 @@ export const DATA_AS_OF = new Date(2026, 5, 10); // Jun 10 2026 — SOT issue da
 
 export const fmt$ = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 export const fmt$0 = n => "$" + Math.round(n).toLocaleString("en-US");
+/* A missing amount is not zero. Totals are available only when every input
+   is a finite number; explicit recorded zero amounts remain valid. */
+export function sumKnownAmounts(values) {
+  if (!Array.isArray(values) || !values.length || !values.every(Number.isFinite)) return null;
+  const total = values.reduce((sum, value) => sum + value, 0);
+  return Number.isFinite(total) ? total : null;
+}
 export const pDate = s => s ? new Date(s + "T00:00:00") : null;
 export const fDate = d => d ? d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—";
 export const monthsTo = d => (d - TODAY) / (1000 * 60 * 60 * 24 * 30.44);

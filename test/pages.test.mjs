@@ -13,8 +13,9 @@ test("PAGES is the full 17-sheet nav in drawing-set order", () => {
   ]);
 });
 
-test("boot default is D-1, not whatever sits first in the index (D-0)", () => {
-  assert.equal(DEFAULT_PAGE, "dash");
+test("Cypress boot opens the property view while the dashboard remains available", () => {
+  assert.equal(DEFAULT_PAGE, "spatial");
+  assert.ok(PAGE_IDS.includes("dash"));
   assert.ok(PAGE_IDS.includes(DEFAULT_PAGE));
 });
 

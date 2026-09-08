@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:review": "node tools/dev-review.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "extract-geometry": "node tools/extract-geometry.mjs",

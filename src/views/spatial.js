@@ -64,14 +64,13 @@ export function drawSpatial() {
   drawCompass(svg, box);
 }
 
-/* North arrow + 100' scale bar, bottom-left. Plan is rotated: true north = +x
-   (Patricia St). Along an iso axis projected length equals plan length
-   (cos30²+sin30² = 1), so the bar is drawn at true plan scale on the +x axis. */
+/* The plan's +x runs N38°32'W, not true north. Project the recorded bearing
+   through the same plan scales and isometric axes used by the buildings. */
 function drawCompass(svg, box) {
   const grp = g(svg, "iso-compass");
   const ink = "var(--ink)";
   const lab = { class: "iso-num dk", "font-size": "17", "pointer-events": "none" };
-  const barFt = 100, barLen = barFt * PLAN_PER_FT;      // plan px, true scale
+  const barFt = 100, barLen = barFt * geometry.boundary.transform.kxPxPerFt;
   const bx = box.x + 34, by = box.y + box.h - 150;      // bar start
   const ex = bx + barLen * COS, ey = by + barLen * SIN; // bar end (+x axis, 30° down-right)
   // scale bar with end ticks
@@ -85,13 +84,18 @@ function drawCompass(svg, box) {
   text(grp, bx, by + 40, trueScale ? "TRUE HEIGHT SCALE" :
     "HEIGHTS ×" + (FT_SCALE / PLAN_PER_FT).toFixed(1) + " FOR READABILITY",
     { ...lab, "font-size": "12", opacity: "0.75" });
-  // north arrow above the bar, same +x direction
+  // True north in the source bearing frame, including plan anisotropy.
+  const a = (38 + 32 / 60) * Math.PI / 180;
+  const vx = Math.cos(a) * geometry.boundary.transform.kxPxPerFt;
+  const vy = Math.sin(a) * geometry.boundary.transform.kyPxPerFt;
+  const ix = (vx - vy) * COS, iy = (vx + vy) * SIN, length = Math.hypot(ix, iy);
+  const dx = ix / length, dy = iy / length;
   const nx = bx, ny = by - 64, len = 56;
-  const tx = nx + len * COS, ty = ny + len * SIN;
+  const tx = nx + len * dx, ty = ny + len * dy;
   path(grp, `M ${nx} ${ny} L ${tx} ${ty}`, { stroke: ink, "stroke-width": "2", fill: "none" });
-  path(grp, `M ${tx} ${ty} l ${-13 * COS + 6 * SIN} ${-13 * SIN - 6 * COS} l ${2 * 6 * -SIN} ${2 * 6 * COS} Z`,
+  path(grp, `M ${tx} ${ty} L ${tx - 13 * dx + 6 * dy} ${ty - 13 * dy - 6 * dx} L ${tx - 13 * dx - 6 * dy} ${ty - 13 * dy + 6 * dx} Z`,
     { fill: ink, stroke: "none" });
-  text(grp, tx + 17 * COS, ty + 17 * SIN + 6, "N", { ...lab, "text-anchor": "middle" });
+  text(grp, tx + 17 * dx, ty + 17 * dy + 6, "N", { ...lab, "text-anchor": "middle" });
 }
 
 /* Serialize the iso SVG to a standalone file: inline the class styles, resolve
@@ -147,36 +151,59 @@ function unitData() {
 }
 
 let geoScene = null;     // Lens C handle (null until satellite opened)
+let lensGeneration = 0, activeLens = "iso";
 
-async function open3d() {
+function canOpen(generation, lens, host) {
+  return generation === lensGeneration && activeLens === lens && host.isConnected &&
+    !host.hidden && !host.closest(".cmd-legacy")?.hidden;
+}
+
+function lensError(error, host, generation) {
+  if (generation !== lensGeneration || !host?.isConnected) return;
+  console.warn("Spatial view unavailable:", error);
+  host.querySelector(".spatial-load-error")?.remove();
+  const message = document.createElement("p"); message.className = "spatial-load-error";
+  message.textContent = "This capture view could not load. The property model and plan remain available.";
+  host.append(message);
+}
+
+async function open3d(generation = lensGeneration) {
   const host = document.getElementById("spatial3d");
   if (!host || scene) return;
   const dark = document.documentElement.dataset.theme === "dark";
   const { createScene } = await import("../lib/scene3d.js");
+  if (!canOpen(generation, "3d", host) || scene) return;
+  host.querySelector(".spatial-load-error")?.remove();
   scene = createScene(host, unitData(), { dark, onPick: openDrawer,
     ftWorld: trueScale ? TRUE_FT_WORLD : undefined });
   scene.setSelected(getSelected());
 }
 
-async function openSat() {
+async function openSat(generation = lensGeneration) {
   const host = document.getElementById("spatialSat");
   if (!host || geoScene) return;
   const { createGeoScene } = await import("../lib/scenegeo.js");
+  if (!canOpen(generation, "sat", host) || geoScene) return;
+  host.querySelector(".spatial-load-error")?.remove();
   geoScene = createGeoScene(host, unitData(), { onPick: openDrawer });
   geoScene.setSelected(getSelected());
 }
 
 let realScene = null;    // Lens D handle (null until reality opened)
 
-async function openReal() {
+async function openReal(generation = lensGeneration) {
   const host = document.getElementById("spatialReal");
   if (!host || realScene) return;
   const { createSplatScene } = await import("../lib/scenesplat.js");
+  if (!canOpen(generation, "real", host) || realScene) return;
+  host.querySelector(".spatial-load-error")?.remove();
   realScene = createSplatScene(host, unitData(), { onPick: openDrawer });
   realScene.setSelected(getSelected());
 }
 
 function setLens(next) {
+  const generation = ++lensGeneration;
+  activeLens = next;
   const panes = {
     iso: document.getElementById("spatial"),
     "3d": document.getElementById("spatial3d"),
@@ -184,17 +211,18 @@ function setLens(next) {
     real: document.getElementById("spatialReal")
   };
   ["lensIso", "lens3d", "lensSat", "lensReal"].forEach((id, i) => {
-    document.getElementById(id).classList.toggle("on", ["iso", "3d", "sat", "real"][i] === next);
+    document.getElementById(id)?.classList.toggle("on", ["iso", "3d", "sat", "real"][i] === next);
   });
   Object.entries(panes).forEach(([k, el]) => {
+    if (!el) return;
     if (k === next) el.removeAttribute("hidden"); else el.setAttribute("hidden", "");
   });
   if (next !== "3d" && scene) { scene.dispose(); scene = null; }
   if (next !== "sat" && geoScene) { geoScene.dispose(); geoScene = null; }
   if (next !== "real" && realScene) { realScene.dispose(); realScene = null; }
-  if (next === "3d") open3d().then(() => scene && scene.resize());
-  if (next === "sat") openSat().then(() => geoScene && geoScene.resize());
-  if (next === "real") openReal();
+  if (next === "3d") open3d(generation).then(() => scene?.resize()).catch(e => lensError(e, panes["3d"], generation));
+  if (next === "sat") openSat(generation).then(() => geoScene?.resize()).catch(e => lensError(e, panes.sat, generation));
+  if (next === "real") openReal(generation).catch(e => lensError(e, panes.real, generation));
 }
 
 export function initSpatial() {
@@ -209,13 +237,20 @@ export function initSpatial() {
     trueScale = !trueScale;
     tBtn.classList.toggle("on", trueScale);
     drawSpatial();
-    if (scene) {                      // rebuild Lens B at the new height scale
-      scene.dispose(); scene = null;
-      open3d().then(() => scene && scene.resize());
+    if (activeLens === "3d") {      // invalidate even a still-pending import
+      if (scene) { scene.dispose(); scene = null; }
+      setLens("3d");
     }
   };
   const xBtn = document.getElementById("isoExport");
   if (xBtn) xBtn.onclick = exportIsoSvg;
+  // Stop expensive renderers when the sheet or the legacy disclosure closes.
+  // Observe the page because initCommand wraps the legacy nodes after this init.
+  const page = document.getElementById("pg-spatial");
+  if (page) new MutationObserver(() => {
+    const hidden = !page.classList.contains("on") || document.getElementById("spatial")?.closest(".cmd-legacy")?.hidden;
+    if (hidden && (scene || geoScene || realScene || activeLens !== "iso")) setLens("iso");
+  }).observe(page, { attributes: true, attributeFilter: ["class", "hidden"], subtree: true, childList: true });
   subscribe(type => {
     if (type === "selection") {
       drawSpatial();

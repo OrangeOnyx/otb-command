@@ -17,6 +17,7 @@ import { pageFromHash, hashFor, resolveRoute } from "./lib/router.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
+import { initCommand } from "./views/command.js";
 import { initSafe } from "./views/safe.js";
 import { initSearch } from "./views/search.js";
 import { printFootText, printDocTitle } from "./lib/printsheet.js";
@@ -45,8 +46,8 @@ function showLogin(msg) {
   o.className = "login-gate";
   o.innerHTML =
     '<div class="login-card">' +
-    '<div class="login-wm">ON THE <span>BOULEVARD</span></div>' +
-    '<div class="login-sub">Orange Ocean Atlas — sign in</div>' +
+    '<div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>' +
+    '<div class="login-sub">Cypress Command — sign in</div>' +
     '<input id="loginEmail" type="email" placeholder="you@email.com" autocomplete="email">' +
     '<button id="loginBtn">Email me a sign-in link</button>' +
     '<div class="login-msg" id="loginMsg">' + (msg || "Owners &amp; operator only. We’ll email you a one-time link.") + '</div>' +
@@ -70,6 +71,14 @@ let navBtn = {}, ovWrap = null;
 function buildShell(account) {
   /* navigation (drawing-set sheet index) */
   const nav = document.getElementById("nav");
+  const mobileNav = window.matchMedia("(max-width:860px)");
+  const syncMobileNav = () => {
+    const open = document.body.classList.contains("nav-open");
+    const panel = document.querySelector(".side");
+    panel.inert = mobileNav.matches && !open;
+    panel.setAttribute("aria-hidden", String(mobileNav.matches && !open));
+    document.getElementById("navBurger").setAttribute("aria-expanded", String(open));
+  };
   let currentPage = DEFAULT_PAGE;
   PAGES.forEach(([id, sheet, label]) => {
     const b = document.createElement("button");
@@ -80,8 +89,10 @@ function buildShell(account) {
       b.classList.add("on");
       document.querySelectorAll(".page").forEach(p => p.classList.remove("on"));
       document.getElementById("pg-" + id).classList.add("on");
+      if (currentPage !== id) document.querySelector(".main").scrollTop = 0;
       currentPage = id;
       document.body.classList.remove("nav-open");
+      syncMobileNav();
       closeDrawer();
       /* deep link: the hash mirrors the open sheet (pushes a history entry →
          back/forward walk the sheet trail) */
@@ -93,8 +104,10 @@ function buildShell(account) {
   document.getElementById("pg-" + DEFAULT_PAGE).classList.add("on");
 
   /* mobile: the sheet index is off-canvas behind ☰ (≤860px) */
-  document.getElementById("navBurger").onclick = () => document.body.classList.toggle("nav-open");
-  document.getElementById("navVeil").onclick = () => document.body.classList.remove("nav-open");
+  document.getElementById("navBurger").onclick = () => { document.body.classList.toggle("nav-open"); syncMobileNav(); };
+  document.getElementById("navVeil").onclick = () => { document.body.classList.remove("nav-open"); syncMobileNav(); };
+  mobileNav.addEventListener("change", syncMobileNav);
+  syncMobileNav();
 
   /* visual sheet export: footer + doc title stamp on print (button or Ctrl+P) */
   let printTheme = null; // paper prints light regardless of screen theme
@@ -120,7 +133,7 @@ function buildShell(account) {
   };
   window.addEventListener("beforeprint", stampPrint);
   window.addEventListener("afterprint", () => {
-    document.title = "Orange Ocean Atlas — On The Boulevard";
+    document.title = "Cypress Command — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
     if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }
@@ -359,6 +372,7 @@ function initRouter() {
 function initViews(account) {
   initPlan();
   initSpatial();
+  initCommand(account);
   initSafe();
   initSearch();
   renderRoll();
@@ -526,7 +540,7 @@ function showPending(email) {
   o.className = "login-gate";
   o.innerHTML =
     '<div class="login-card">' +
-    '<div class="login-wm">ON THE <span>BOULEVARD</span></div>' +
+    '<div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>' +
     '<div class="login-sub">Access pending</div>' +
     '<div class="login-msg">You’re signed in as <b>' + esc(email || "") + '</b>, but this address isn’t linked ' +
     'to an owner, operator, or vendor account yet. Contact management to be granted access.</div>' +

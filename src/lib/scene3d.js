@@ -87,7 +87,7 @@ export function createScene(container, units, opts = {}) {
     try {
       const url = (import.meta.env?.BASE_URL || "/") + "OTB-mesh.glb";
       const head = await fetch(url, { method: "HEAD" });
-      if (!head.ok || /text\/html/.test(head.headers.get("content-type") || "")) return;
+      if (!alive || !head.ok || /text\/html/.test(head.headers.get("content-type") || "")) return;
       // mount the chip IMMEDIATELY (disabled) — the 3 MB glb takes seconds to
       // arrive and an invisible-until-loaded button reads as "no mesh toggle"
       meshBtn = document.createElement("button");
@@ -98,7 +98,12 @@ export function createScene(container, units, opts = {}) {
       container.style.position = "relative";
       container.appendChild(meshBtn);
       const { GLTFLoader } = await import("three/examples/jsm/loaders/GLTFLoader.js");
+      if (!alive) return;
       const gltf = await new GLTFLoader().loadAsync(url);
+      if (!alive) {
+        gltf.scene.traverse(o => { if (o.isMesh) { o.geometry.dispose(); (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); } });
+        return;
+      }
       meshRoot = gltf.scene;
       meshRoot.traverse(o => {
         if (o.isMesh) o.material = new THREE.MeshBasicMaterial({ vertexColors: true });

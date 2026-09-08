@@ -1,5 +1,19 @@
 ﻿# OTB Property Command â€” Session Handoff
 
+## September 7, 2026 — Cypress Command local vertical slice
+
+The existing A-2 route is now the default Property workspace: navigable REV 12 geometry, 27 clickable suites, dated source excerpts, one real archived Pothole Repair record associated with 101/103 frontage, and an editable cited owner-update draft. Existing sheets and capture views remain. Geometry data is unchanged; derived boundaries/heights, parking/area discrepancies and legal conflicts remain explicit.
+
+Approved 04C v1.0.1 artwork and local fonts came from `OrangeOnyx/cypress-command-brand-system`, pinned commit `4a116e75472415210d05deea13041cb2b74db53a`; originals and hashes are in `public/brand/cypress/` and `docs/cypress-command-brand-provenance.md`. This is the current identity for this slice.
+
+Run `npm run dev:review`, then open `http://127.0.0.1:5174/#spatial`. This is the same Vite app in an explicit loopback-only evidence review, without Supabase writes. Normal `npm run dev` preserves configured sign-in. No deployment, push, sending, dispatch or payments were performed. The prior production/cron/punch-list statements below are historical and were not reverified in this build.
+
+**Acceptance: 534 tests pass; production build passes; all 27 suite targets and the source-to-draft journey verified in Chrome, including 390px responsive view.** Removed confidential rent-roll import from the browser; scoped seed/evidence endpoints to current OTB owner/operator membership; blocked unsafe record URLs. D-1 renders missing rent as Unavailable. Legacy localStorage isolation and other older API gates remain outstanding.
+
+Read `docs/cypress-command-audit-2026-09-07.md`, `docs/cypress-command-acceptance-2026-09-07.md` and `docs/security-cypress-review-2026-09-07.md` for evidence and remaining limits. Existing unrelated `docs/graph/labels.json` changes were preserved and excluded from these commits.
+
+---
+
 **Read this + `CLAUDE.md` at the start of a new session.** Start Claude Code from
 inside this repo folder so `CLAUDE.md` auto-loads.
 Repo: `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command`

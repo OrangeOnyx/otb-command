@@ -2,9 +2,9 @@
    The Action Queue derives from the SAME live cards as W-1 (single source) and
    re-renders on store changes; KPIs/runway are read-only from the rent roll. */
 import { UNITS, subscribe } from "../store.js";
-import { fmt$0, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
+import { fmt$0, sumKnownAmounts, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { getActionCards, ACTION_KIND } from "./board.js";
-import { REMOTE, getSession, listOccupancy, listOccupancyWeek, getCronHeartbeat, countClientErrors } from "../lib/remote.js";
+import { REMOTE, LOCAL_REVIEW, getSession, listOccupancy, listOccupancyWeek, getCronHeartbeat, countClientErrors } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
 import { heartbeatKpi } from "../lib/heartbeat.js";
 import { latestByStall, occSummary, occLine, occAsOf, weeklyRollup, rollupLine } from "../lib/occupancy.js";
@@ -24,6 +24,8 @@ export function renderDashboard() {
 }
 
 export function initDashboard() {
+  const sourceStatus = document.getElementById("dashboardSourceStatus");
+  if (sourceStatus) sourceStatus.textContent = "D-1 · July 2026 adopted roster" + (LOCAL_REVIEW ? " · Local review" : "");
   renderDashboard();
   // alerts derive from compliance flags + action-board overrides — refresh on those
   subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
@@ -86,18 +88,19 @@ function renderKPIs() {
   const vacant = UNITS.filter(u => u.status === "vacant");
   const vacantSF = vacant.reduce((s, u) => s + u.sf, 0);
   const occ = (gla - vacantSF) / gla * 100;
-  const rent = UNITS.reduce((s, u) => s + u.monthly, 0);
+  const rent = sumKnownAmounts(UNITS.map(u => u.monthly));
   const hold = UNITS.filter(u => u.status === "expired");
   const exp12 = UNITS.filter(u => u.end && u.status !== "expired" && monthsTo(pDate(u.end)) <= 12 && monthsTo(pDate(u.end)) > 0);
   const k = document.getElementById("kpis");
   k.innerHTML = [
     ["green", "Occupancy", occ.toFixed(1) + "<small>%</small>", (gla - vacantSF).toLocaleString() + " of " + gla.toLocaleString() + " SF"],
-    ["ink", "Monthly Rent", fmt$0(rent), fmt$0(rent * 12) + " annualized"],
+    ["ink", "Monthly Rent", rent === null ? "Unavailable" : fmt$0(rent),
+      rent === null ? "Complete financial source not loaded" : fmt$0(rent * 12) + " annualized · roster snapshot"],
     ["brick", "In Holdover", hold.length, hold.map(u => u.unit).join(" · ")],
     ["brass", "Expiring ≤ 12 mo", exp12.length, exp12.map(u => u.unit).join(" · ") || "none"],
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
     ["brass", "Parking", PARKING.provided + "<small>/" + PARKING.required + "</small>",
-      "legal (var. <b>" + PARKING.entry + "</b>) · " + PARKING.drawn + " drawn"]
+      "variance reference <b>" + PARKING.entry + "</b> · " + PARKING.drawn + " drawn"]
   ].concat(unifiKpi()).concat(occKpi()).concat(hbKpi()).concat(errKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 

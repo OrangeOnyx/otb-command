@@ -91,7 +91,7 @@ export function drawPlan() {
 
   renderPrims(g(svg), geometry.layers.annotations);
   renderPrims(g(svg), geometry.layers.generalNotes);
-  renderPrims(g(svg), geometry.layers.titleBlock);
+  drawTitleBlock(g(svg));
 
   // photo badges drawn last (topmost, clickable); filled async from IndexedDB
   const badgeLayer = g(svg);
@@ -99,6 +99,29 @@ export function drawPlan() {
 
   paintFeatures(g(svg, "feat-layer"));
   paintCameras(g(svg, "cam-layer"));
+}
+
+/* Correct the legacy sheet's directional annotation without changing any
+   source geometry. Its old arrow labeled the street axis as true north. */
+function drawTitleBlock(parent) {
+  const items = geometry.layers.titleBlock.filter(p =>
+    !(p.t === "path" && p.d.startsWith("M1296 936")) && !(p.t === "text" && p.s === "N")
+  ).map(p => {
+    if (p.t !== "text") return p;
+    if (p.s.includes("TRUE NORTH AT RIGHT")) return { ...p, s: "STREET-ORIENTED · NORTH PER RECORDED BEARING" };
+    if (p.s.startsWith("REV ")) return { ...p, s: `${geometry.rev} · PLAT BASE + DERIVED DIVISIONS` };
+    return p;
+  });
+  renderPrims(parent, items);
+  const a = (38 + 32 / 60) * Math.PI / 180;
+  const vx = Math.cos(a) * geometry.boundary.transform.kxPxPerFt;
+  const vy = Math.sin(a) * geometry.boundary.transform.kyPxPerFt;
+  const length = Math.hypot(vx, vy), dx = vx / length, dy = vy / length;
+  const x = 1300, y = 918, tx = x + 30 * dx, ty = y + 30 * dy;
+  const pointer = document.createElementNS(NS, "path");
+  pointer.setAttribute("d", `M ${x} ${y} L ${tx} ${ty} M ${tx - dx * 9 - dy * 4} ${ty - dy * 9 + dx * 4} L ${tx} ${ty} L ${tx - dx * 9 + dy * 4} ${ty - dy * 9 - dx * 4}`);
+  pointer.setAttribute("stroke", "#1E4D3A"); pointer.setAttribute("stroke-width", "1.8"); pointer.setAttribute("fill", "none"); parent.append(pointer);
+  text(parent, tx + 11 * dx, ty + 11 * dy + 3, "N", { fill: "#1E4D3A", "font-size": 10, "font-weight": 700, "text-anchor": "middle" });
 }
 
 /* ---- C3 occupancy layer: latest classified state per covered row56 stall
