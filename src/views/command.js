@@ -4,10 +4,12 @@ import './command.css';
 import geometry from '../data/geometry.json' with { type: 'json' };
 import planSourceUrl from '../../reference/plat-full-72.png?url';
 import { UNITS, byUnit, setSelected, getSelected, subscribe } from '../store.js';
-import { LOCAL_REVIEW, REMOTE, getSession, propertyContext, BUNDLED_PROPERTY } from '../lib/remote.js';
+import { LOCAL_REVIEW, REMOTE, getSession, propertyContext, BUNDLED_PROPERTY, sb } from '../lib/remote.js';
 import { esc } from '../lib/format.js';
 import { createCommandMap } from '../lib/command-map.js';
-import { suiteEvidence, buildOwnerUpdate, commandDate } from '../lib/command-evidence.js';
+import { suiteEvidence } from '../lib/command-evidence.js';
+import { createCommandReview } from './command-review.js';
+import { clearCommandDraftSessions } from '../lib/command-draft-session.js';
 
 const n = value => Number(value).toLocaleString('en-US');
 const icon = (name) => {
@@ -75,16 +77,29 @@ export function initCommand(account) {
     <footer class="cmd-foot"><span>Cypress Command <span class="cmd-dot"></span> Property intelligence with a source behind it.</span>
       <button id="cmdLegacy" class="cmd-quiet" aria-expanded="false">Capture & legacy views</button></footer>
     <dialog class="cmd-dialog" id="cmdSourceDialog" aria-labelledby="cmdSourceTitle"><div class="cmd-dialog-head"><span>Source library</span><button class="cmd-close" aria-label="Close source" data-close>${icon('close')}</button></div><div id="cmdSourceContent"></div></dialog>
-    <dialog class="cmd-dialog cmd-draft-dialog" id="cmdDraftDialog" aria-labelledby="cmdDraftTitle"><div class="cmd-dialog-head"><span>Owner communication</span><button class="cmd-close" aria-label="Close draft" data-close>${icon('close')}</button></div>
-      <div class="cmd-dialog-body"><div class="cmd-mode">Draft · Review required</div><h2 id="cmdDraftTitle">An update grounded in the record.</h2><p class="cmd-muted">Generated from the dated maintenance record and its source references. Edit before sharing.</p>
-        <label class="cmd-draft-label" for="cmdDraftText">Owner-update draft</label><textarea id="cmdDraftText" spellcheck="true"></textarea>
-        <div id="cmdDraftStatus" class="cmd-draft-status" role="status">Nothing has been sent. Edits remain in this tab.</div>
-        <div class="cmd-draft-actions"><button id="cmdDownloadDraft" class="cmd-primary">Download draft</button><button id="cmdCopyDraft" class="cmd-secondary">Copy draft</button><button id="cmdDraftSources" class="cmd-quiet">Review sources</button></div>
-      </div></dialog>`;
+    <dialog class="cmd-dialog" id="cmdDraftDialog" aria-labelledby="cmdDraftTitle"></dialog>`;
   page.append(legacy);
   const $ = id => document.getElementById(id);
-  let evidence = null, active = '101', tab = 'suite', sourceReturn = null;
+  let evidence = null, active = '101', tab = 'suite', sourceReturn = null, evidenceScope = null, evidenceGeneration = 0;
   const map = createCommandMap($('cmdMap'), { units: UNITS, onPick: id => select(id, false, true), onIssue: () => showIssue(true) });
+  const review = createCommandReview({dialog:$('cmdDraftDialog'),getEvidence:()=>evidence,getScope:async () => {
+    if (LOCAL_REVIEW) return {mode:'local-review',propertyId:'otb'};
+    const [session,ctx] = await Promise.all([getSession(),propertyContext()]);
+    return session?.user?.id === evidenceScope?.userId && ctx.property_id === evidenceScope?.propertyId ? evidenceScope : null;
+  }});
+  const openDraft = () => review.open();
+  if (REMOTE) sb.auth.onAuthStateChange((event, session) => {
+    if (event !== 'SIGNED_OUT' && (!evidenceScope || session?.user?.id === evidenceScope.userId)) return;
+    evidenceGeneration++;
+    clearCommandDraftSessions(() => window.sessionStorage);
+    review.clear(); evidence=null; evidenceScope=null;
+    $('cmdSourceDialog').close(); $('cmdSourceContent').textContent='';
+    $('cmdDraft').disabled=true; $('cmdOpenIssue').disabled=true; $('cmdIssueCount').textContent='—';
+    $('cmdRecordTitle').textContent='Sign in to review the property records';
+    $('cmdRecordDescription').textContent='This account session has ended or changed.';
+    $('cmdRecordFoot').textContent='Reopen the property workspace after signing in.';
+    map.setIssueVisible?.(false);renderDetail();
+  });
 
   function revealInWorkspace(element) {
     const main = page.closest('.main');
@@ -185,26 +200,6 @@ export function initCommand(account) {
     if (!dialog.open) dialog.showModal();
     if (switchingSource) [...$('cmdSourceContent').querySelectorAll('[data-source]')].find(button => button.dataset.source === id)?.focus({preventScroll:true});
   }
-  function openDraft() {
-    if (!evidence?.issue) return;
-    if (!$('cmdDraftText').value) {
-      const draft = buildOwnerUpdate({ issue:evidence.issue, generatedAt:new Date().toISOString() });
-      $('cmdDraftText').value = draft.text;
-    }
-    $('cmdDraftDialog').showModal();
-  }
-  $('cmdDraftText').addEventListener('input', () => { $('cmdDraftStatus').textContent = 'Edited in this tab. Review changes before sharing. Nothing has been sent.'; });
-  $('cmdDownloadDraft').onclick = () => {
-    const blob = new Blob([$('cmdDraftText').value], {type:'text/plain;charset=utf-8'}), url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = `Cypress-Command-owner-update-DRAFT-${commandDate(new Date())}.txt`; a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    $('cmdDraftStatus').textContent = 'Draft downloaded for review. Nothing has been sent.';
-  };
-  $('cmdCopyDraft').onclick = async () => {
-    try { await navigator.clipboard.writeText($('cmdDraftText').value); $('cmdDraftStatus').textContent = 'Draft copied for review. Nothing has been sent.'; }
-    catch { $('cmdDraftText').focus(); $('cmdDraftText').select(); $('cmdDraftStatus').textContent = 'Select and copy the draft text with your keyboard.'; }
-  };
-  $('cmdDraftSources').onclick = () => showSource('pothole-record');
   for (const dialog of [$('cmdSourceDialog'), $('cmdDraftDialog')]) {
     dialog.querySelector('[data-close]').onclick = () => dialog.close();
     dialog.addEventListener('click', e => { if (e.target === dialog) { const b = dialog.getBoundingClientRect(); if (e.clientX < b.left || e.clientX > b.right || e.clientY < b.top || e.clientY > b.bottom) dialog.close(); } });
@@ -227,15 +222,25 @@ export function initCommand(account) {
   renderDirectory(); select('101');
   loadEvidence();
   async function loadEvidence() {
+    const generation = evidenceGeneration;
     try {
       if (!LOCAL_REVIEW && !REMOTE) throw new Error('Run npm run dev:review to load the local property records.');
       if (REMOTE && !['operator','owner'].includes(account?.role)) throw new Error('An authorized owner or operator account is required.');
-      if (REMOTE && (await propertyContext()).slug !== BUNDLED_PROPERTY) throw new Error('The OTB evidence package is not available for this property.');
+      const ctx = REMOTE ? await propertyContext() : null;
+      if (REMOTE && ctx.slug !== BUNDLED_PROPERTY) throw new Error('The OTB evidence package is not available for this property.');
       const headers = {};
-      if (REMOTE) { const session = await getSession(); if (!session) throw new Error('Sign in to read the supporting records.'); headers.Authorization = `Bearer ${session.access_token}`; }
+      let requestScope = null;
+      if (REMOTE) { const session = await getSession(); if (!session?.user?.id) throw new Error('Sign in to read the supporting records.'); headers.Authorization = `Bearer ${session.access_token}`; requestScope={mode:'authenticated',userId:session.user.id,propertyId:ctx.property_id}; }
+      if (generation !== evidenceGeneration) return;
+      evidenceScope = requestScope;
       const response = await fetch(LOCAL_REVIEW ? '/__review/evidence' : '/api/command-evidence', {headers});
       if (!response.ok) throw new Error(`Supporting records are unavailable (${response.status}).`);
       const payload = await response.json();
+      if (REMOTE) {
+        const session = await getSession();
+        if (!session?.user?.id || session.user.id !== requestScope.userId) throw new Error('The account session changed. Reopen the property workspace.');
+      }
+      if (generation !== evidenceGeneration) return;
       if (!payload.issue || !Array.isArray(payload.sources)) throw new Error('The evidence response is incomplete.');
       evidence = payload;
       map.setIssueVisible?.(true);
@@ -245,6 +250,7 @@ export function initCommand(account) {
       $('cmdRecordFoot').textContent = `${evidence.issue.archivedStatus} in the ${evidence.issue.asOf} archive · current condition unverified`;
       renderDetail();
     } catch (error) {
+      if (generation !== evidenceGeneration) return;
       $('cmdRecordTitle').textContent = 'Supporting records unavailable'; $('cmdRecordDescription').textContent = error.message;
       $('cmdRecordFoot').textContent = 'No live status or sample work order is inferred.';
     }

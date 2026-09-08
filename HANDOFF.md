@@ -1,5 +1,11 @@
 ﻿# OTB Property Command â€” Session Handoff
 
+## September 8, 2026 — Owner review workflow
+
+Property's existing owner-update dialog now has side-by-side evidence, linked reading mode, tab-scoped draft recovery, explicit regeneration, and an offline branded HTML briefing download. Recovery is separate from business state and bound to account/property, issue and source fingerprint; sign-out clears the new draft scope. Source geometry and approved artwork remain unchanged. All 550 tests and production build pass; app recovery, citations, regeneration and export preparation were exercised. The saved HTML draft is also in the OTB Google Drive folder with matching hash; standalone print pagination remains unverified because the browser tool blocked local-file preview. See `docs/cypress-owner-review-2026-09-08.md`. No live business records changed and no deployment occurred.
+
+Next useful extension: a read-only link to the canonical M-1 request with explicit freshness/error handling before claiming current maintenance status. Continue in the same app at `http://127.0.0.1:5174/#spatial` via `npm run dev:review`.
+
 ## September 7, 2026 — Impeccable design refinement
 
 Refined the existing Cypress shell, property hierarchy, mobile map/detail navigation, and C-1 compliance table. Compliance now has search, flagged-row filtering, a sticky suite column, readable state controls, and guarded read-only activation. Approved 04C assets and property/source data are unchanged. All 536 tests and the production build pass; desktop and 390px mobile journeys were inspected. No external records were changed and nothing was deployed. See `docs/cypress-impeccable-refinement-2026-09-07.md` for acceptance and detector limitations. Continue with `npm run dev:review` at `http://127.0.0.1:5174/`.

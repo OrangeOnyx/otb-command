@@ -1,2 +1,5 @@
 # Vendored artwork and licenses retain upstream bytes, including CRLF and spaces.
 public/brand/cypress/** -text whitespace=cr-at-eol,-blank-at-eol
+
+# Offline packets embed original font license text; preserve verified file hashes.
+docs/owner-review/*.html -text whitespace=-blank-at-eol

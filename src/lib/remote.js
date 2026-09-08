@@ -1,6 +1,7 @@
 /* Supabase remote: auth (magic-link) + shared state sync.
    No-op when env keys are absent — the app then runs on localStorage only. */
 import { createClient } from "@supabase/supabase-js";
+import { clearCommandDraftSessions } from "./command-draft-session.js";
 
 /* Vite statically replaces these exact import.meta.env.VITE_* expressions at
    build time; the try/catch only matters under plain Node (node --test), where
@@ -93,7 +94,9 @@ export async function sendMagicLink(email) {
   return sb.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin } });
 }
 export async function signOut() {
-  if (REMOTE) await sb.auth.signOut();
+  try {
+    if (REMOTE) await sb.auth.signOut();
+  } finally { clearCommandDraftSessions(() => window.sessionStorage); }
 }
 /* ── typed layer state (Phase B-5, purge #7) ─────────────────────
    One row per diverged item across 7 typed tables; the snapshot shape is
