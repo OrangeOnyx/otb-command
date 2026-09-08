@@ -9,6 +9,7 @@ import { esc } from '../lib/format.js';
 import { createCommandMap } from '../lib/command-map.js';
 import { suiteEvidence } from '../lib/command-evidence.js';
 import { createCommandReview } from './command-review.js';
+import { createCommandMaintenance, maintenanceReadTime } from './command-maintenance.js';
 import { clearCommandDraftSessions } from '../lib/command-draft-session.js';
 
 const n = value => Number(value).toLocaleString('en-US');
@@ -88,11 +89,18 @@ export function initCommand(account) {
     return session?.user?.id === evidenceScope?.userId && ctx.property_id === evidenceScope?.propertyId ? evidenceScope : null;
   }});
   const openDraft = () => review.open();
+  const inProperty = action => {
+    if (location.hash==='#spatial') { action?.();return; }
+    window.addEventListener('hashchange',()=>action?.(),{once:true});
+    location.hash='spatial';
+  };
+  const maintenance = createCommandMaintenance({localReview:LOCAL_REVIEW,
+    onProperty:()=>inProperty(()=>showIssue()),onSource:id=>inProperty(()=>showSource(id)),onDraft:()=>inProperty(openDraft)});
   if (REMOTE) sb.auth.onAuthStateChange((event, session) => {
     if (event !== 'SIGNED_OUT' && (!evidenceScope || session?.user?.id === evidenceScope.userId)) return;
     evidenceGeneration++;
     clearCommandDraftSessions(() => window.sessionStorage);
-    review.clear(); evidence=null; evidenceScope=null;
+    review.clear(); evidence=null; evidenceScope=null;maintenance.update(null);
     $('cmdSourceDialog').close(); $('cmdSourceContent').textContent='';
     $('cmdDraft').disabled=true; $('cmdOpenIssue').disabled=true; $('cmdIssueCount').textContent='—';
     $('cmdRecordTitle').textContent='Sign in to review the property records';
@@ -173,10 +181,11 @@ export function initCommand(account) {
       <div class="cmd-suite-kicker">Common area <span class="cmd-status-amber">Archived ${esc(issue.archivedStatus)}</span></div><blockquote>“${esc(issue.description)}”</blockquote><p class="cmd-muted">Description from the original work order.</p>
       <dl class="cmd-facts"><div><dt>Reported</dt><dd>${esc(issue.reportedAt?.slice(0,10) || 'Unknown')}</dd></div><div><dt>Status recorded</dt><dd>${esc(issue.asOf)}</dd></div><div><dt>Associated frontage</dt><dd>Suites ${esc(issue.location.suiteIds.join(' / '))}</dd></div></dl>
       <div class="cmd-evidence-note is-amber"><b>Location association, not a surveyed point</b><p>The description and tenant roster connect the report to this frontage. The exact defect location and extent are unverified.</p></div>
+      <div class="cmd-system-check"><b>${issue.systemRecord?`System record · ${esc(issue.systemRecord.status.replaceAll('_',' '))}`:'System read unavailable'}</b><p>${issue.systemRecord?`${issue.systemRecord.mode==='live-read'?'Read':'Snapshot checked'} ${esc(maintenanceReadTime(issue.systemRecord.readAt))}. This records the event trail, not current site condition.`:'The archive remains available. No new status is inferred.'}</p><button class="cmd-secondary" id="cmdLinkedOrder">Open linked work order ${icon('arrow')}</button></div>
       <h3 class="cmd-detail-subhead">Still to establish</h3><p class="cmd-unknowns">Current condition, repair completion, vendor, cost and payment status are not established by these records.</p>
       <button id="cmdIssueDraft" class="cmd-primary cmd-wide">${icon('file')} Draft owner update</button>
       <div class="cmd-detail-sources"><h3>Supporting records</h3>${sourceButton('pothole-record','Original work-order excerpt')}${sourceButton('harvest-verification','Archive & import record')}${sourceButton('roster-101-103','Frontage association')}</div>`;
-    $('cmdIssueDraft').onclick = openDraft; wireSources($('cmdDetail'));
+    $('cmdIssueDraft').onclick = openDraft; $('cmdLinkedOrder').onclick=()=>{location.hash='maint';}; wireSources($('cmdDetail'));
   }
   const publicSource = id => {
     if (id === 'plan-source') return {id, title:'Supplied recorded-plat scan', path:'reference/plat-full-72.png', asOf:'1994-05-20 · last revision 2019-07-19', kind:'Source plan image', excerpt:'Supplied scan of the Montagnet & Domingue plat. The source image is oriented differently from the interactive view: Arnould Boulevard at top, Marie Antoinette below, Patricia at left and Johnston at right. Use the recorded courses for orientation. This copy does not settle conflicts between legal instruments.'};
@@ -193,7 +202,7 @@ export function initCommand(account) {
     const switchingSource = dialog.open;
     if (!dialog.open) sourceReturn = document.activeElement;
     $('cmdSourceContent').innerHTML = `<div class="cmd-dialog-body"><div class="cmd-source-meta">${esc(source.kind || 'Source reference')}</div><h2 id="cmdSourceTitle">${esc(source.title)}</h2><p class="cmd-source-path">${esc(source.path)}</p><div class="cmd-mode">${esc(source.asOf || 'Date not established')}</div>
-      <div class="cmd-source-options">${['suite-roster','suite-geometry','geometry','plan-source','plat',...(evidence ? ['pothole-record','harvest-verification','roster-101-103'] : [])].map(key => `<button data-source="${key}" class="${key===id ? 'is-active' : ''}">${esc(({ 'suite-roster':'Suite roster','suite-geometry':'Suite boundary',geometry:'Geometry', 'plan-source':'Supplied plan',plat:'CAD reproduction','pothole-record':'Work order','harvest-verification':'Archive','roster-101-103':'Location'})[key])}</button>`).join('')}</div>
+      <div class="cmd-source-options">${['suite-roster','suite-geometry','geometry','plan-source','plat',...(evidence ? ['pothole-record','harvest-verification','roster-101-103'] : []),...(evidence?.issue?.systemRecord?['maintenance-system-record']:[])].map(key => `<button data-source="${key}" class="${key===id ? 'is-active' : ''}">${esc(({ 'suite-roster':'Suite roster','suite-geometry':'Suite boundary',geometry:'Geometry', 'plan-source':'Supplied plan',plat:'CAD reproduction','pothole-record':'Work order','harvest-verification':'Archive','roster-101-103':'Location','maintenance-system-record':'System read'})[key])}</button>`).join('')}</div>
       <pre class="cmd-source-excerpt">${esc(typeof source.excerpt === 'string' ? source.excerpt : JSON.stringify(source.excerpt,null,2))}</pre>
       ${id === 'plan-source' ? `<a class="cmd-source-image" href="${esc(planSourceUrl)}" target="_blank" rel="noopener noreferrer"><img src="${esc(planSourceUrl)}" alt="Supplied Montagnet and Domingue recorded plat scan with revision table"><span>Open supplied plan at full resolution ${icon('external')}</span></a>` : source.imageUrl === '/plat-render.svg' ? `<a class="cmd-source-image" href="/plat-render.svg" target="_blank" rel="noopener noreferrer"><img src="/plat-render.svg" alt="Existing CAD schematic reproduction of the shopping center"><span>Open CAD reproduction ${icon('external')}</span></a>` : ''}</div>`;
     wireSources($('cmdSourceContent'));
@@ -242,7 +251,7 @@ export function initCommand(account) {
       }
       if (generation !== evidenceGeneration) return;
       if (!payload.issue || !Array.isArray(payload.sources)) throw new Error('The evidence response is incomplete.');
-      evidence = payload;
+      evidence = payload; maintenance.update(evidence);
       map.setIssueVisible?.(true);
       $('cmdDraft').disabled = false; $('cmdOpenIssue').disabled = false; $('cmdIssueCount').textContent = '1';
       $('cmdRecordTitle').textContent = evidence.issue.title;

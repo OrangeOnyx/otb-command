@@ -1,10 +1,20 @@
 ﻿# OTB Property Command â€” Session Handoff
 
+## September 8, 2026 — Completed Cypress Command local slice
+
+The full property → suite/source → real maintenance record → owner draft journey is complete in the existing app. The approved 04C artwork and REV 12 geometry are unchanged. The property now opens a read-only detail within existing M-1, using the same evidence response as the owner draft. A September 8, 2026, 00:24 CDT database verification found the canonical Pothole Repair request still recorded open, with one import event and zero files in its request photo folder. Local review labels this a saved verification snapshot; the hosted endpoint makes a fresh caller-JWT, property-scoped read and never substitutes that snapshot on failure. Physical condition, completion evidence and payment remain unknown.
+
+Legacy mutable browser state is now scoped by account, organization and property. Authenticated boot requires remote state, clears private fields/overrides on account or property change, and no longer auto-seeds an empty backend or uploads unscoped browser files at login. Existing local data is preserved. Local review can copy the old state into its own scope; authenticated imports require a matching scope. This addresses the shared-store cache findings, not every older API or asset-cache release issue.
+
+Acceptance: **566 tests pass; production build passes; desktop/mobile source → maintenance → draft journey, source citations, reload recovery, explicit regeneration and HTML export preparation were observed in the app.** The updated four-source draft is saved under `docs/owner-review/2026-09-08-owner-update-system-read-DRAFT.html` and `.txt`. Standalone HTML print pagination and hosted account switching remain unverified. No deployment, push, dispatch, payment or external business-record change occurred.
+
+Open `http://127.0.0.1:5174/#spatial` after `npm run dev:review`. Final acceptance: `docs/cypress-final-acceptance-2026-09-08.md`; requirements audit: `docs/cypress-completion-audit-2026-09-08.md`. This local deliverable is complete. Broader production/cron/accounting items below remain separate historical workstreams and should not restart the completed slice.
+
 ## September 8, 2026 — Owner review workflow
 
 Property's existing owner-update dialog now has side-by-side evidence, linked reading mode, tab-scoped draft recovery, explicit regeneration, and an offline branded HTML briefing download. Recovery is separate from business state and bound to account/property, issue and source fingerprint; sign-out clears the new draft scope. Source geometry and approved artwork remain unchanged. All 550 tests and production build pass; app recovery, citations, regeneration and export preparation were exercised. The saved HTML draft is also in the OTB Google Drive folder with matching hash; standalone print pagination remains unverified because the browser tool blocked local-file preview. See `docs/cypress-owner-review-2026-09-08.md`. No live business records changed and no deployment occurred.
 
-Next useful extension: a read-only link to the canonical M-1 request with explicit freshness/error handling before claiming current maintenance status. Continue in the same app at `http://127.0.0.1:5174/#spatial` via `npm run dev:review`.
+The read-only M-1 extension described here was completed in the later entry above. Continue in the same app at `http://127.0.0.1:5174/#spatial` via `npm run dev:review`.
 
 ## September 7, 2026 — Impeccable design refinement
 

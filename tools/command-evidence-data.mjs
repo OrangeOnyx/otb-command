@@ -2,12 +2,14 @@
    truth. Return one allowlisted real request, never the archive or its test,
    tenant, access-token, payment, or personal-contact records. */
 import { readFile } from "node:fs/promises";
+import { maintenanceEvidence,attachMaintenanceRead } from '../src/lib/maintenance-evidence.js';
 
 const WORK_ORDERS = new URL("../docs/harvest/ac-archive-2026-08-29/work_orders.json", import.meta.url);
 const MANIFEST = new URL("../docs/harvest/ac-archive-2026-08-29/MANIFEST.json", import.meta.url);
 const HARVEST = new URL("../docs/superpowers/specs/2026-08-29-ac-harvest.md", import.meta.url);
 const UNITS = new URL("../src/data/units.public.json", import.meta.url);
 const GEOMETRY = new URL("../src/data/geometry.json", import.meta.url);
+const CURRENT_SNAPSHOT = new URL('../docs/harvest/maintenance-verification-2026-09-08.json',import.meta.url);
 export const COMMAND_ISSUE_ID = "c005cdc5-fd30-41a7-b71c-e40d3b3d1874";
 
 const json = async url => JSON.parse(await readFile(url, "utf8"));
@@ -15,7 +17,7 @@ const normalizedTenant = value => String(value || "").toLowerCase().replace(/^th
 const publicUnit = row => Object.fromEntries(["unit", "dba", "use", "cat", "status", "start", "end", "sf"]
   .filter(key => Object.hasOwn(row, key)).map(key => [key, row[key]]));
 
-export async function loadCommandEvidence() {
+export async function loadCommandEvidence({includeSnapshot=true}={}) {
   const [orders, manifest, harvest, units, geometry] = await Promise.all([
     json(WORK_ORDERS), json(MANIFEST), readFile(HARVEST, "utf8"), json(UNITS), json(GEOMETRY),
   ]);
@@ -63,7 +65,7 @@ export async function loadCommandEvidence() {
     unknowns: ["Exact defect point and extent", "Current condition and repair status", "Vendor / assignment", "Repair scope and quote", "Completion evidence", "Payment status"],
     sourceIds: ["pothole-record", "harvest-verification", "roster-101-103"],
   };
-  return {
+  const evidence = {
     version: 1,
     asOf: manifest.exported,
     issue,
@@ -77,4 +79,11 @@ export async function loadCommandEvidence() {
       { id: "plat", title: "CAD reproduction of recorded plat", path: "public/plat-render.svg", asOf: "2019-07-19", kind: "Source reproduction", excerpt: "Existing CAD reproduction of the Montagnet & Domingue plat (1994-05-20; revised 2019-07-19). This is a schematic reproduction, not the certified legal instrument. Suite divisions marked derived in geometry.json are not surveyed demising walls.", imageUrl: "/plat-render.svg" },
     ],
   };
+  if (!includeSnapshot) return evidence;
+  try {
+    const snapshot = await json(CURRENT_SNAPSHOT);
+    if (snapshot.schemaVersion!==1 || snapshot.propertySlug!=='otb' || snapshot.request?.id!==issue.liveRequestId) throw new Error('Snapshot does not match this request.');
+    const read = maintenanceEvidence({...snapshot,mode:'snapshot',sourcePath:'docs/harvest/maintenance-verification-2026-09-08.json'});
+    return attachMaintenanceRead(evidence,read);
+  } catch { return {...evidence,currentRead:{state:'unavailable',mode:'snapshot'}}; }
 }

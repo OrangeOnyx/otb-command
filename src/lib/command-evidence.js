@@ -69,7 +69,8 @@ export function buildOwnerUpdate({ issue, generatedAt } = {}) {
   }
   const generated = commandDate(generatedAt === undefined ? new Date() : generatedAt);
   const suites = issue.location?.suiteIds || [];
-  const references = issue.sourceIds || [];
+  const system = issue.systemRecord?.state === 'verified' && commandDate(issue.systemRecord.readAt) <= generated ? issue.systemRecord : null;
+  const references = (issue.sourceIds || []).filter(id=>id!=='maintenance-system-record' || system);
   const costLine = issue.cost === null || issue.cost === undefined
     ? "Cost / quote: not recorded in the source."
     : `Recorded cost field: ${issue.cost}; this field does not establish approval, invoice receipt, or payment.`;
@@ -81,12 +82,19 @@ export function buildOwnerUpdate({ issue, generatedAt } = {}) {
     issue.title,
     `The archived maintenance record reports “${issue.description || issue.title}”. Reported by ${issue.reportedBy || "an unspecified reporter"} on ${String(issue.reportedAt).slice(0, 10)}. [pothole-record]`,
     `Recorded status: ${issue.archivedStatus || "not recorded"} in the ${issue.asOf} archive. Current repair/completion status has not been verified by this draft. [pothole-record]`,
+    ...(system ? [
+      '', 'LINKED WORK-ORDER CHECK',
+      `The canonical M-1 request ${system.requestId} was read at ${system.readAt}. ${system.explicitStatus ? 'Recorded state' : 'Default request state (no status event)'}: ${system.status}. Last logged activity: ${system.lastAt}. [maintenance-system-record]`,
+      system.vendorId ? `Assignment identifier in the event trail: ${system.vendorId}. A company name or work authorization is not inferred. [maintenance-system-record]` : 'No vendor assignment appears in the retrieved event trail. [maintenance-system-record]',
+      system.photos?.state === 'checked' ? `Photo folder: ${system.photos.complete ? '' : 'at least '}${system.photos.count} visible files at the read. This is not a search of every document repository. [maintenance-system-record]` : 'The photo folder could not be verified in this read.',
+      'A database status is not a site inspection. Physical condition, repair completion evidence, scope, cost and payment remain to be verified.',
+    ] : []),
     "",
     "LOCATION",
     issue.location?.label || "Location not verified.",
     suites.length ? `The frontage association uses the July 2026 roster for suites ${suites.join(" / ")}; the work order itself does not assign a suite. The exact defect point and extent remain unverified. [roster-101-103]` : "No suite association is supported by the selected records.",
     "",
-    "RECORD GAPS",
+    system ? "ARCHIVED RECORD GAPS" : "RECORD GAPS",
     issue.vendorName ? `Vendor named in source: ${issue.vendorName}.` : "Vendor / assignment: not recorded in the source.",
     costLine,
     issue.completedAt ? `Completion field in source: ${issue.completedAt}; current condition still requires confirmation.` : "Completion: no completion date or supporting completion record in this source.",
@@ -97,7 +105,7 @@ export function buildOwnerUpdate({ issue, generatedAt } = {}) {
     "Confirm the current condition on site, document the exact location with a photograph, and request a repair scope and quote if work remains necessary. Confirm any interim access measures during inspection. These are recommendations, not evidence of completed actions or authorization to dispatch or spend.",
     "",
     "SOURCE REFERENCES",
-    ...references.map(id => `[${id}] ${id === "pothole-record" ? "docs/harvest/ac-archive-2026-08-29/work_orders.json · " + issue.id : id === "harvest-verification" ? "docs/superpowers/specs/2026-08-29-ac-harvest.md · live imports table" : id === "roster-101-103" ? "src/data/units.public.json · suites 101 / 103 · July 2026 adopted snapshot" : id}`),
+    ...references.map(id => `[${id}] ${id === "pothole-record" ? "docs/harvest/ac-archive-2026-08-29/work_orders.json · " + issue.id : id === "harvest-verification" ? "docs/superpowers/specs/2026-08-29-ac-harvest.md · live imports table" : id === "roster-101-103" ? "src/data/units.public.json · suites 101 / 103 · July 2026 adopted snapshot" : id === 'maintenance-system-record' ? `${system.sourcePath || 'Authenticated Supabase read'} · public.maintenance_requests / public.maintenance_events · ${system.requestId} · ${system.readAt}` : id}`),
     "",
     "DRAFT ONLY · Not sent. No maintenance, accounting, or external business record changed.",
   ].join("\n");

@@ -1,0 +1,35 @@
+CYPRESS COMMAND · OWNER UPDATE DRAFT
+On The Boulevard · For owner review
+Prepared 2026-09-08 · Source archive as of 2026-08-29
+
+Pothole Repair
+The archived maintenance record reports “In front of pink paisley”. Reported by Pink paisley on 2026-07-27. [pothole-record]
+Recorded status: open in the 2026-08-29 archive. Current repair/completion status has not been verified by this draft. [pothole-record]
+
+LINKED WORK-ORDER CHECK
+The canonical M-1 request ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874 was read at 2026-09-08T05:24:33.481499+00:00. Recorded state: open. Last logged activity: 2026-07-28T00:23:58+00:00. [maintenance-system-record]
+No vendor assignment appears in the retrieved event trail. [maintenance-system-record]
+Photo folder: 0 visible files at the read. This is not a search of every document repository. [maintenance-system-record]
+A database status is not a site inspection. Physical condition, repair completion evidence, scope, cost and payment remain to be verified.
+
+LOCATION
+In front of pink paisley. Associated storefronts face the Arnould Boulevard side of the long building.
+The frontage association uses the July 2026 roster for suites 101 / 103; the work order itself does not assign a suite. The exact defect point and extent remain unverified. [roster-101-103]
+
+ARCHIVED RECORD GAPS
+Vendor / assignment: not recorded in the source.
+Cost / quote: not recorded in the source.
+Completion: no completion date or supporting completion record in this source.
+Payment: unknown; no payment evidence is included in these records.
+This archived record contains no supporting photograph or repair scope.
+
+RECOMMENDED NEXT ACTION · FOR REVIEW
+Confirm the current condition on site, document the exact location with a photograph, and request a repair scope and quote if work remains necessary. Confirm any interim access measures during inspection. These are recommendations, not evidence of completed actions or authorization to dispatch or spend.
+
+SOURCE REFERENCES
+[pothole-record] docs/harvest/ac-archive-2026-08-29/work_orders.json · c005cdc5-fd30-41a7-b71c-e40d3b3d1874
+[harvest-verification] docs/superpowers/specs/2026-08-29-ac-harvest.md · live imports table
+[roster-101-103] src/data/units.public.json · suites 101 / 103 · July 2026 adopted snapshot
+[maintenance-system-record] docs/harvest/maintenance-verification-2026-09-08.json · public.maintenance_requests / public.maintenance_events · ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874 · 2026-09-08T05:24:33.481499+00:00
+
+DRAFT ONLY · Not sent. No maintenance, accounting, or external business record changed.

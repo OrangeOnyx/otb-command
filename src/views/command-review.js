@@ -122,7 +122,7 @@ export function createCommandReview({dialog, getEvidence, getScope}) {
         recovery = createCommandDraftSession({storage:()=>window.sessionStorage,scope,issueId:context.issue.id,sourceFingerprint});
         const restored = recovery.load();
         $('crArchiveDate').textContent = `Source archive ${context.issue.asOf}`;
-        $('crSources').innerHTML = sourceList().map(source => `<button data-review-source="${esc(source.id)}" aria-pressed="false"><span>${esc(({ 'pothole-record':'Work order','harvest-verification':'Archive verification','roster-101-103':'Frontage association'})[source.id] || source.title)}</span><small>${esc(source.asOf || 'Undated')}</small></button>`).join('');
+        $('crSources').innerHTML = sourceList().map(source => `<button data-review-source="${esc(source.id)}" aria-pressed="false"><span>${esc(({ 'pothole-record':'Work order','harvest-verification':'Archive verification','roster-101-103':'Frontage association','maintenance-system-record':'Linked work order'})[source.id] || source.title)}</span><small>${esc(source.id==='maintenance-system-record'?commandDate(source.asOf):source.asOf || 'Undated')}</small></button>`).join('');
         $('crSources').querySelectorAll('button').forEach(button => button.onclick = () => showRecord(button.dataset.reviewSource));
         $('crUnknowns').innerHTML = (context.issue.unknowns || []).map(item => `<li>${esc(item)}</li>`).join('');
         showRecord(context.issue.sourceIds[0]);

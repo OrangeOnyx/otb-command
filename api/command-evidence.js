@@ -1,6 +1,8 @@
 /* Authenticated OTB owner/operator evidence read. Never a public archive. */
 import { requireBundledPropertyAccess } from "./_seed-auth.mjs";
 import { loadCommandEvidence } from "../tools/command-evidence-data.mjs";
+import { readCurrentMaintenance } from './_maintenance-read.mjs';
+import { attachMaintenanceRead } from '../src/lib/maintenance-evidence.js';
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "private, no-store");
@@ -11,7 +13,9 @@ export default async function handler(req, res) {
   const gate = await requireBundledPropertyAccess(req);
   if (gate.error) return res.status(gate.status).json({ error: gate.error });
   try {
-    return res.status(200).json(await loadCommandEvidence());
+    const evidence = await loadCommandEvidence({includeSnapshot:false});
+    const currentRead = await readCurrentMaintenance({token:gate.token,property:gate.property,requestId:evidence.issue.liveRequestId});
+    return res.status(200).json(attachMaintenanceRead(evidence,currentRead));
   } catch {
     return res.status(503).json({ error: "Source evidence is currently unavailable." });
   }
