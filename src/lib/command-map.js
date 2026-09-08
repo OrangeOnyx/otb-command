@@ -41,14 +41,14 @@ export function createCommandMap(host, opts = {}) {
   const root = document.createElement("div");
   root.className = "cc-map";
   root.innerHTML = `<style>
-    .cc-map{position:relative;width:100%;height:100%;min-height:360px;overflow:hidden;background:#eee9dd;isolation:isolate;touch-action:none}
-    .cc-map .cmd-map-svg{display:block;width:100%;height:100%;min-height:360px;position:absolute;inset:0;touch-action:none;cursor:grab;user-select:none}
+    .cc-map{position:relative;width:100%;height:100%;min-height:360px;overflow:hidden;background:#eee9dd;isolation:isolate;touch-action:pan-y pinch-zoom}
+    .cc-map .cmd-map-svg{display:block;width:100%;height:100%;min-height:360px;position:absolute;inset:0;touch-action:pan-y pinch-zoom;cursor:grab;user-select:none}
     .cc-map .cmd-map-svg:active{cursor:grabbing}
     .cc-map .cc-suite{cursor:pointer;outline:none}
     .cc-map .cc-suite .cc-roof{transition:fill .16s,stroke .16s}
     .cc-map .cc-suite:hover .cc-roof,.cc-map .cc-suite:focus-visible .cc-roof{fill:#3c7a5b;stroke:#F3EDE0;stroke-width:3}
     .cc-map .cc-suite[aria-pressed="true"] .cc-roof{fill:#D97706;stroke:#F3EDE0;stroke-width:3}
-    .cc-map .cc-suite:focus-visible{filter:drop-shadow(0 0 5px #D97706)}
+    .cc-map .cc-suite:focus-visible .cc-roof{stroke:#0A1F16;stroke-width:4}
     .cc-map .cc-suite-label{fill:#F3EDE0;font:600 15px 'JetBrains Mono',monospace;pointer-events:none;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#1E4D3A;stroke-width:1px}
     .cc-map .cc-suite[aria-pressed="true"] .cc-suite-label{fill:#0A1F16;stroke:none}
     .cc-map .cc-street{fill:#677565;font:600 16px 'Inter',sans-serif;letter-spacing:2px;pointer-events:none;text-anchor:middle;paint-order:stroke;stroke:#e8e3d7;stroke-width:4px;stroke-linejoin:round}
@@ -63,7 +63,7 @@ export function createCommandMap(host, opts = {}) {
     @media(prefers-reduced-motion:reduce){.cc-map .cc-suite .cc-roof{transition:none}}
     @media(max-width:650px){.cc-map .cc-hud{right:10px;bottom:10px;gap:6px}.cc-map .cc-note{font-size:9px;padding:6px 8px}.cc-map .cc-compass{width:48px;height:48px}}
   </style>`;
-  const svg = el("svg", { class: "cmd-map-svg", role: "group", "aria-label": "On The Boulevard property model. Drag to pan, scroll to zoom, or select a suite.", preserveAspectRatio: "xMidYMid meet" });
+  const svg = el("svg", { class: "cmd-map-svg", role: "group", "aria-label": "On The Boulevard property model. Drag with a mouse to pan, use Alt and scroll or the zoom buttons to zoom, or select a suite. Touch scrolling and pinch zoom control the page.", preserveAspectRatio: "xMidYMid meet" });
   root.appendChild(svg);
   const hud = document.createElement("div"); hud.className = "cc-hud";
   const compass = el("svg", { class: "cc-compass", viewBox: "0 0 80 80", "aria-label": "True north from recorded plat bearings", role: "img" });
@@ -185,7 +185,7 @@ export function createCommandMap(host, opts = {}) {
     drawIssue(); drawCompass();
     note.innerHTML = mode === "model"
       ? "<b>Recorded geometry · visual massing</b>CAD-assigned heights · dashed divisions are derived"
-      : "<b>Recorded plan · street-oriented</b>Dashed suite divisions are derived · scroll to zoom";
+      : "<b>Recorded plan · street-oriented</b>Dashed divisions are derived · Alt + scroll to zoom";
     const corners = [[-55, -315], [1510, -315], [1510, 780], [-55, 780]].map(([x, y]) => point(mode, x, y));
     fitBox = bounds(corners, 34);
     moveTo(fitBox);
@@ -243,10 +243,18 @@ export function createCommandMap(host, opts = {}) {
   }
   const controller = new AbortController();
   const listen = (event, callback, extra = {}) => svg.addEventListener(event, callback, { signal: controller.signal, ...extra });
-  listen("wheel", e => { e.preventDefault(); tip.hidden = true; zoomBy(Math.exp(-Math.max(-140, Math.min(140, e.deltaY)) * .002), svgPoint(e)); }, { passive: false });
+  listen("wheel", e => {
+    tip.hidden = true;
+    // Embedded-map navigation must not consume normal page scrolling or the
+    // browser's Ctrl/Meta zoom gestures. The visible buttons remain available.
+    if (!e.altKey || e.ctrlKey || e.metaKey) return;
+    e.preventDefault(); zoomBy(Math.exp(-Math.max(-140, Math.min(140, e.deltaY)) * .002), svgPoint(e));
+  }, { passive: false });
   listen("pointerdown", e => {
     if (e.button !== 0) return;
     cancelAnimationFrame(frame); dragged = false; tip.hidden = true;
+    if (e.pointerType === "touch") return; // native scroll/pinch; taps still select
+    if (drag) return;
     const p = svgPoint(e); if (!p) return;
     drag = { pointer: e.pointerId, startX: e.clientX, startY: e.clientY, point: p, box: { ...box } };
     // Capture on the original SVG target so click activation retains its suite.
@@ -259,8 +267,9 @@ export function createCommandMap(host, opts = {}) {
     const p = svgPoint(e); if (!p) return;
     box.x += drag.point.x - p.x; box.y += drag.point.y - p.y; applyBox();
   });
-  listen("pointerup", () => { drag = null; });
-  listen("pointercancel", () => { drag = null; dragged = false; });
+  listen("pointerup", e => { if (drag?.pointer === e.pointerId) drag = null; });
+  listen("pointercancel", e => { if (drag?.pointer === e.pointerId) drag = null; dragged = false; });
+  listen("lostpointercapture", e => { if (drag?.pointer === e.pointerId) drag = null; });
   listen("dblclick", e => { if (!e.target.closest(".cc-suite,.cc-issue")) zoomBy(1.5, svgPoint(e)); });
   const observer = new ResizeObserver(() => { if (!disposed && box) applyBox(); }); observer.observe(host);
   render();

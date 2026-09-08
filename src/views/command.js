@@ -18,6 +18,10 @@ const icon = (name) => {
     pin: '<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',
     reset: '<path d="M4 9a8 8 0 1 1 0 6M4 3v6h6"/>',
     focus: '<path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    minus: '<path d="M5 12h14"/>',
+    close: '<path d="m6 6 12 12M6 18 18 6"/>',
+    external: '<path d="M8 5H5v14h14v-3M12 4h8v8M10 14 20 4"/>',
   };
   return `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${paths[name] || paths.file}</svg>`;
 };
@@ -30,8 +34,9 @@ export function initCommand(account) {
   while (page.firstChild) legacy.append(page.firstChild);
   page.innerHTML = `
     <header class="cmd-heading">
-      <div><div class="cmd-location">Lafayette, Louisiana <span class="cmd-dot"></span> Belle Realty</div>
-        <h1>On The Boulevard</h1><p>Every space. Every record. A clearer next step.</p></div>
+      <div><h1>On The Boulevard</h1>
+        <div class="cmd-location">Lafayette, Louisiana <span class="cmd-dot"></span> Belle Realty</div>
+        <p>Every space. Every record. A clearer next step.</p></div>
       <div class="cmd-heading-right"><span class="cmd-mode" id="cmdMode">${LOCAL_REVIEW ? 'Local evidence review' : 'Property workspace'}</span>
         <button class="cmd-primary" id="cmdDraft" disabled>${icon('file')} Draft owner update</button></div>
     </header>
@@ -43,16 +48,17 @@ export function initCommand(account) {
           <button class="cmd-quiet" id="cmdGeometry">${icon('file')} Geometry & sources</button></div>
         <div class="cmd-map-host" id="cmdMap"></div>
         <div class="cmd-map-controls" aria-label="Map navigation">
-          <button id="cmdZoomIn" aria-label="Zoom in">+</button><button id="cmdZoomOut" aria-label="Zoom out">−</button>
+          <button id="cmdZoomIn" aria-label="Zoom in">${icon('plus')}</button><button id="cmdZoomOut" aria-label="Zoom out">${icon('minus')}</button>
           <button id="cmdReset" aria-label="Fit full property">${icon('reset')}</button></div>
         <div class="cmd-map-key"><span><i class="cmd-key-solid"></i> Suite</span><span><i class="cmd-key-dashed"></i> Derived division</span><span><i class="cmd-key-amber"></i> Record association</span></div>
-        <div class="cmd-map-footer"><span id="cmdViewNote">Plat-based footprints · CAD-assigned height estimates</span><span>Drag to pan · Scroll to zoom · Select a suite</span></div>
+        <div class="cmd-map-footer"><span id="cmdViewNote">Plat-based footprints · CAD-assigned height estimates</span><span>Mouse drag to pan · Alt + scroll to zoom · Tap a suite</span></div>
       </section>
       <aside class="cmd-inspector" aria-label="Suite and maintenance details">
         <div class="cmd-inspector-nav"><button id="cmdSuiteTab" class="is-active" aria-pressed="true">Suite detail</button><button id="cmdIssueTab" aria-pressed="false">Maintenance <span id="cmdIssueCount">—</span></button></div>
         <div id="cmdDetail" class="cmd-detail"></div>
       </aside>
     </div>
+    <p id="cmdSelectionStatus" class="cmd-selection-status" role="status" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0"></p>
     <div class="cmd-bottom">
       <section class="cmd-directory" aria-label="Suite directory">
         <div class="cmd-section-head"><h2>Explore the suites <span id="cmdSuiteCount">27</span></h2>
@@ -60,16 +66,16 @@ export function initCommand(account) {
         <div id="cmdSuites" class="cmd-suite-list"></div>
         <p class="cmd-muted">Tenant names and areas reflect the July 2026 adopted roster. Current occupancy has not been revalidated.</p>
       </section>
-      <section class="cmd-record-card" aria-label="Evidence and next step"><div class="cmd-record-top">${icon('pin')} From the property record</div>
-        <h2 id="cmdRecordTitle">Reading supporting records</h2><p id="cmdRecordDescription">Loading the property’s available maintenance evidence.</p>
+      <section class="cmd-record-card" aria-label="Evidence and next step"><h2 id="cmdRecordTitle">Reading supporting records</h2>
+        <div class="cmd-record-top">${icon('pin')} From the property record</div><p id="cmdRecordDescription">Loading the property’s available maintenance evidence.</p>
         <button id="cmdOpenIssue" class="cmd-link" disabled>Inspect the record ${icon('arrow')}</button>
         <div class="cmd-record-foot" id="cmdRecordFoot">Source status will be shown with its date.</div>
       </section>
     </div>
     <footer class="cmd-foot"><span>Cypress Command <span class="cmd-dot"></span> Property intelligence with a source behind it.</span>
       <button id="cmdLegacy" class="cmd-quiet" aria-expanded="false">Capture & legacy views</button></footer>
-    <dialog class="cmd-dialog" id="cmdSourceDialog" aria-labelledby="cmdSourceTitle"><div class="cmd-dialog-head"><span>Source library</span><button class="cmd-close" aria-label="Close source" data-close>×</button></div><div id="cmdSourceContent"></div></dialog>
-    <dialog class="cmd-dialog cmd-draft-dialog" id="cmdDraftDialog" aria-labelledby="cmdDraftTitle"><div class="cmd-dialog-head"><span>Owner communication</span><button class="cmd-close" aria-label="Close draft" data-close>×</button></div>
+    <dialog class="cmd-dialog" id="cmdSourceDialog" aria-labelledby="cmdSourceTitle"><div class="cmd-dialog-head"><span>Source library</span><button class="cmd-close" aria-label="Close source" data-close>${icon('close')}</button></div><div id="cmdSourceContent"></div></dialog>
+    <dialog class="cmd-dialog cmd-draft-dialog" id="cmdDraftDialog" aria-labelledby="cmdDraftTitle"><div class="cmd-dialog-head"><span>Owner communication</span><button class="cmd-close" aria-label="Close draft" data-close>${icon('close')}</button></div>
       <div class="cmd-dialog-body"><div class="cmd-mode">Draft · Review required</div><h2 id="cmdDraftTitle">An update grounded in the record.</h2><p class="cmd-muted">Generated from the dated maintenance record and its source references. Edit before sharing.</p>
         <label class="cmd-draft-label" for="cmdDraftText">Owner-update draft</label><textarea id="cmdDraftText" spellcheck="true"></textarea>
         <div id="cmdDraftStatus" class="cmd-draft-status" role="status">Nothing has been sent. Edits remain in this tab.</div>
@@ -78,13 +84,28 @@ export function initCommand(account) {
   page.append(legacy);
   const $ = id => document.getElementById(id);
   let evidence = null, active = '101', tab = 'suite', sourceReturn = null;
-  const map = createCommandMap($('cmdMap'), { units: UNITS, onPick: select, onIssue: showIssue });
+  const map = createCommandMap($('cmdMap'), { units: UNITS, onPick: id => select(id, false, true), onIssue: () => showIssue(true) });
 
-  function select(id, focus = false) {
+  function revealInWorkspace(element) {
+    const main = page.closest('.main');
+    if (!main || !element) return;
+    // Keep the application header fixed: scrollIntoView also scrolls ancestors.
+    main.scrollTo({top:main.scrollTop + element.getBoundingClientRect().top - main.getBoundingClientRect().top - 12, behavior:'auto'});
+  }
+  function revealInspector(message) {
+    $('cmdSelectionStatus').textContent = message;
+    if (!window.matchMedia('(max-width:660px)').matches) return;
+    const title = $('cmdDetailTitle');
+    if (!title) return;
+    revealInWorkspace(title.closest('.cmd-inspector'));
+    title.focus({preventScroll:true});
+  }
+  function select(id, focus = false, userInitiated = false) {
     if (!byUnit[id]) return;
     active = id; tab = 'suite'; setSelected(id); map.selectSuite(id);
     if (focus) map.focusSuite(id);
     renderDetail(); highlightDirectory();
+    if (userInitiated) revealInspector(`Suite ${id}, ${byUnit[id].dba === 'VACANT' ? 'no tenant in snapshot' : byUnit[id].dba}. Details updated.`);
   }
   function highlightDirectory() {
     $('cmdSuites').querySelectorAll('button').forEach(b => {
@@ -97,11 +118,11 @@ export function initCommand(account) {
     const list = UNITS.filter(u => `${u.unit} ${u.dba} ${u.use}`.toLowerCase().includes(q));
     $('cmdSuiteCount').textContent = list.length;
     $('cmdSuites').innerHTML = list.map(u => `<button class="cmd-suite" data-unit="${esc(u.unit)}" aria-label="Select suite ${esc(u.unit)}, ${esc(u.dba)}"><b>${esc(u.unit)}</b><span>${esc(u.dba === 'VACANT' ? 'No tenant in snapshot' : u.dba)}</span></button>`).join('') || '<p class="cmd-empty">No matching suites. Try a suite number or tenant name.</p>';
-    $('cmdSuites').querySelectorAll('button').forEach(b => b.onclick = () => select(b.dataset.unit, true));
+    $('cmdSuites').querySelectorAll('button').forEach(b => b.onclick = () => select(b.dataset.unit, true, true));
     highlightDirectory();
   }
   function sourceButton(id, label) {
-    return `<button class="cmd-source-link" data-source="${esc(id)}">${icon('file')} ${esc(label)} <span>↗</span></button>`;
+    return `<button class="cmd-source-link" data-source="${esc(id)}">${icon('file')} ${esc(label)} <span>${icon('external')}</span></button>`;
   }
   function wireSources(el) { el.querySelectorAll('[data-source]').forEach(b => b.onclick = () => showSource(b.dataset.source)); }
   function renderDetail() {
@@ -111,26 +132,30 @@ export function initCommand(account) {
     const u = byUnit[active], info = suiteEvidence(u, geometry);
     const associated = evidence?.issue?.location?.suiteIds?.includes(active);
     const classification = info.geometry?.classification || 'Mixed source authority';
-    $('cmdDetail').innerHTML = `<div class="cmd-suite-kicker">Suite ${esc(u.unit)} <button class="cmd-icon-btn" id="cmdFocus" aria-label="Focus suite ${esc(u.unit)}">${icon('focus')}</button></div>
-      <h2>${esc(u.dba === 'VACANT' ? 'No tenant in snapshot' : u.dba)}</h2><p class="cmd-use">${esc(u.use || 'Use not recorded')}</p>
+    $('cmdDetail').innerHTML = `<h2 id="cmdDetailTitle" tabindex="-1">${esc(u.dba === 'VACANT' ? 'No tenant in snapshot' : u.dba)}</h2>
+      <div class="cmd-suite-kicker">Suite ${esc(u.unit)} <button class="cmd-icon-btn" id="cmdFocus" aria-label="Focus suite ${esc(u.unit)}">${icon('focus')}</button></div><p class="cmd-use">${esc(u.use || 'Use not recorded')}</p>
       <div class="cmd-suite-area"><strong>${n(u.sf)}</strong><span>square feet<br>Adopted roster</span></div>
       <dl class="cmd-facts"><div><dt>Building</dt><dd>${+u.unit < 135 ? 'Long building' : 'Patricia building'}</dd></div><div><dt>Roster status</dt><dd>${esc(({active:'Active',anchor:'Anchor',owner:'Owner occupied',vacant:'Vacant'})[u.status] || u.status)} <small>July 2026</small></dd></div><div><dt>Recorded term end</dt><dd>${u.end ? esc(u.end) : 'Not recorded'}</dd></div></dl>
       <div class="cmd-evidence-note"><b>${esc(classification)}</b><p>${esc(info.geometry?.description || 'Review the geometry source for this suite.')}</p></div>
       ${associated ? `<button id="cmdSuiteIssue" class="cmd-associated">${icon('pin')}<span><b>Maintenance in this frontage</b><small>${esc(evidence.issue.title)} · exact point unknown</small></span>${icon('arrow')}</button>` : ''}
       <div class="cmd-detail-sources"><h3>Behind this view</h3>${sourceButton('suite-roster','Adopted suite roster')}${sourceButton('suite-geometry','Footprint & demising record')}${sourceButton('plan-source','Supplied plat scan')}</div>
       <p class="cmd-muted cmd-detail-note">Record-backed snapshot. This panel does not verify current possession, payment, or lease-instrument priority.</p>`;
-    $('cmdFocus').onclick = () => map.focusSuite(active);
+    $('cmdFocus').onclick = () => {
+      map.focusSuite(active);
+      if (window.matchMedia('(max-width:660px)').matches) revealInWorkspace($('cmdMap'));
+    };
     if ($('cmdSuiteIssue')) $('cmdSuiteIssue').onclick = showIssue;
     wireSources($('cmdDetail'));
   }
-  function showIssue() {
+  function showIssue(userInitiated = true) {
     tab = 'issue'; renderDetail(); if (evidence?.issue) map.focusIssue();
+    if (userInitiated) revealInspector(evidence?.issue ? `${evidence.issue.title}. Maintenance records shown.` : 'No maintenance evidence loaded.');
   }
   function renderIssue() {
     const issue = evidence?.issue;
-    if (!issue) { $('cmdDetail').innerHTML = '<div class="cmd-empty"><h2>No maintenance evidence loaded</h2><p>Use local evidence review or an authorized property account. No sample ticket is substituted.</p></div>'; return; }
-    $('cmdDetail').innerHTML = `<div class="cmd-suite-kicker">Common area <span class="cmd-status-amber">Archived ${esc(issue.archivedStatus)}</span></div>
-      <h2>${esc(issue.title)}</h2><blockquote>“${esc(issue.description)}”</blockquote><p class="cmd-muted">Description from the original work order.</p>
+    if (!issue) { $('cmdDetail').innerHTML = '<div class="cmd-empty"><h2 id="cmdDetailTitle" tabindex="-1">No maintenance evidence loaded</h2><p>Use local evidence review or an authorized property account. No sample ticket is substituted.</p></div>'; return; }
+    $('cmdDetail').innerHTML = `<h2 id="cmdDetailTitle" tabindex="-1">${esc(issue.title)}</h2>
+      <div class="cmd-suite-kicker">Common area <span class="cmd-status-amber">Archived ${esc(issue.archivedStatus)}</span></div><blockquote>“${esc(issue.description)}”</blockquote><p class="cmd-muted">Description from the original work order.</p>
       <dl class="cmd-facts"><div><dt>Reported</dt><dd>${esc(issue.reportedAt?.slice(0,10) || 'Unknown')}</dd></div><div><dt>Status recorded</dt><dd>${esc(issue.asOf)}</dd></div><div><dt>Associated frontage</dt><dd>Suites ${esc(issue.location.suiteIds.join(' / '))}</dd></div></dl>
       <div class="cmd-evidence-note is-amber"><b>Location association, not a surveyed point</b><p>The description and tenant roster connect the report to this frontage. The exact defect location and extent are unverified.</p></div>
       <h3 class="cmd-detail-subhead">Still to establish</h3><p class="cmd-unknowns">Current condition, repair completion, vendor, cost and payment status are not established by these records.</p>
@@ -150,13 +175,15 @@ export function initCommand(account) {
     const source = suiteSource || evidence?.sources?.find(s => s.id === id) || publicSource(id);
     const dialog = $('cmdSourceDialog');
     if (!source) return;
+    const switchingSource = dialog.open;
     if (!dialog.open) sourceReturn = document.activeElement;
     $('cmdSourceContent').innerHTML = `<div class="cmd-dialog-body"><div class="cmd-source-meta">${esc(source.kind || 'Source reference')}</div><h2 id="cmdSourceTitle">${esc(source.title)}</h2><p class="cmd-source-path">${esc(source.path)}</p><div class="cmd-mode">${esc(source.asOf || 'Date not established')}</div>
       <div class="cmd-source-options">${['suite-roster','suite-geometry','geometry','plan-source','plat',...(evidence ? ['pothole-record','harvest-verification','roster-101-103'] : [])].map(key => `<button data-source="${key}" class="${key===id ? 'is-active' : ''}">${esc(({ 'suite-roster':'Suite roster','suite-geometry':'Suite boundary',geometry:'Geometry', 'plan-source':'Supplied plan',plat:'CAD reproduction','pothole-record':'Work order','harvest-verification':'Archive','roster-101-103':'Location'})[key])}</button>`).join('')}</div>
       <pre class="cmd-source-excerpt">${esc(typeof source.excerpt === 'string' ? source.excerpt : JSON.stringify(source.excerpt,null,2))}</pre>
-      ${id === 'plan-source' ? `<a class="cmd-source-image" href="${esc(planSourceUrl)}" target="_blank" rel="noopener noreferrer"><img src="${esc(planSourceUrl)}" alt="Supplied Montagnet and Domingue recorded plat scan with revision table"><span>Open supplied plan at full resolution ↗</span></a>` : source.imageUrl === '/plat-render.svg' ? '<a class="cmd-source-image" href="/plat-render.svg" target="_blank" rel="noopener noreferrer"><img src="/plat-render.svg" alt="Existing CAD schematic reproduction of the shopping center"><span>Open CAD reproduction ↗</span></a>' : ''}</div>`;
+      ${id === 'plan-source' ? `<a class="cmd-source-image" href="${esc(planSourceUrl)}" target="_blank" rel="noopener noreferrer"><img src="${esc(planSourceUrl)}" alt="Supplied Montagnet and Domingue recorded plat scan with revision table"><span>Open supplied plan at full resolution ${icon('external')}</span></a>` : source.imageUrl === '/plat-render.svg' ? `<a class="cmd-source-image" href="/plat-render.svg" target="_blank" rel="noopener noreferrer"><img src="/plat-render.svg" alt="Existing CAD schematic reproduction of the shopping center"><span>Open CAD reproduction ${icon('external')}</span></a>` : ''}</div>`;
     wireSources($('cmdSourceContent'));
     if (!dialog.open) dialog.showModal();
+    if (switchingSource) [...$('cmdSourceContent').querySelectorAll('[data-source]')].find(button => button.dataset.source === id)?.focus({preventScroll:true});
   }
   function openDraft() {
     if (!evidence?.issue) return;
@@ -195,7 +222,7 @@ export function initCommand(account) {
   // A plan uses the narrow mobile canvas more effectively; both views remain
   // available and subsequent viewport changes preserve the user's choice.
   if (window.matchMedia('(max-width:660px)').matches) $('cmdPlan').click();
-  $('cmdLegacy').onclick = () => { legacy.hidden = !legacy.hidden; $('cmdLegacy').setAttribute('aria-expanded', String(!legacy.hidden)); if (!legacy.hidden) legacy.scrollIntoView({behavior:'auto',block:'start'}); };
+  $('cmdLegacy').onclick = () => { legacy.hidden = !legacy.hidden; $('cmdLegacy').setAttribute('aria-expanded', String(!legacy.hidden)); if (!legacy.hidden) revealInWorkspace(legacy); };
   subscribe(type => { if (type === 'selection' && getSelected() && getSelected() !== active) select(getSelected()); });
   renderDirectory(); select('101');
   loadEvidence();

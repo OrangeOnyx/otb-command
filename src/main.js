@@ -67,6 +67,15 @@ function showLogin(msg) {
 
 /* ---------- the app (built only once authed, or when no backend) ---------- */
 let navBtn = {}, ovWrap = null;
+const shellIcon = name => {
+  const paths = {
+    eye: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+    close: '<path d="m6 6 12 12M6 18 18 6"/>',
+    moon: '<path d="M20 14A8.5 8.5 0 0 1 10 4 8.5 8.5 0 1 0 20 14Z"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',
+  };
+  return '<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' + paths[name] + '</svg>';
+};
 
 function buildShell(account) {
   /* navigation (drawing-set sheet index) */
@@ -83,10 +92,11 @@ function buildShell(account) {
   PAGES.forEach(([id, sheet, label]) => {
     const b = document.createElement("button");
     b.innerHTML = '<span class="sheet">' + sheet + '</span>' + label;
-    if (id === DEFAULT_PAGE) b.classList.add("on");
+    if (id === DEFAULT_PAGE) { b.classList.add("on"); b.setAttribute("aria-current", "page"); }
     b.onclick = () => {
-      document.querySelectorAll(".nav button").forEach(x => x.classList.remove("on"));
+      document.querySelectorAll(".nav button").forEach(x => { x.classList.remove("on"); x.removeAttribute("aria-current"); });
       b.classList.add("on");
+      b.setAttribute("aria-current", "page");
       document.querySelectorAll(".page").forEach(p => p.classList.remove("on"));
       document.getElementById("pg-" + id).classList.add("on");
       if (currentPage !== id) document.querySelector(".main").scrollTop = 0;
@@ -284,7 +294,7 @@ function buildShell(account) {
         if (first) navBtn[first[0]].click();
       }
     }
-    ovToggle.textContent = ownerPreview ? "✕  Exit owner view" : "👁  Preview owner view";
+    ovToggle.innerHTML = shellIcon(ownerPreview ? "close" : "eye") + (ownerPreview ? "Exit owner view" : "Preview owner view");
     ovToggle.classList.toggle("on", ownerPreview);
   }
   ovToggle.onclick = () => { ownerPreview = !ownerPreview; applyOwner(); };
@@ -465,7 +475,10 @@ function initTheme() {
   const saved = localStorage.getItem("otb-theme") === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = saved;
   const btn = document.getElementById("themeToggle");
-  const label = () => { if (btn) btn.textContent = document.documentElement.dataset.theme === "dark" ? "◑ Light mode" : "◐ Dark mode"; };
+  const label = () => {
+    const dark = document.documentElement.dataset.theme === "dark";
+    if (btn) btn.innerHTML = shellIcon(dark ? "sun" : "moon") + (dark ? "Light mode" : "Dark mode");
+  };
   label();
   if (btn) btn.onclick = () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";

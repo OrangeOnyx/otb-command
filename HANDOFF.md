@@ -1,5 +1,9 @@
 ﻿# OTB Property Command â€” Session Handoff
 
+## September 7, 2026 — Impeccable design refinement
+
+Refined the existing Cypress shell, property hierarchy, mobile map/detail navigation, and C-1 compliance table. Compliance now has search, flagged-row filtering, a sticky suite column, readable state controls, and guarded read-only activation. Approved 04C assets and property/source data are unchanged. All 536 tests and the production build pass; desktop and 390px mobile journeys were inspected. No external records were changed and nothing was deployed. See `docs/cypress-impeccable-refinement-2026-09-07.md` for acceptance and detector limitations. Continue with `npm run dev:review` at `http://127.0.0.1:5174/`.
+
 ## September 7, 2026 — Cypress Command local vertical slice
 
 The existing A-2 route is now the default Property workspace: navigable REV 12 geometry, 27 clickable suites, dated source excerpts, one real archived Pothole Repair record associated with 101/103 frontage, and an editable cited owner-update draft. Existing sheets and capture views remain. Geometry data is unchanged; derived boundaries/heights, parking/area discrepancies and legal conflicts remain explicit.
