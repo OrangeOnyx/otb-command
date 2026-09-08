@@ -1,2 +1,2 @@
-# Vendored approved brand artwork, fonts and license text retain source bytes.
-public/brand/cypress/** -text
+# Vendored artwork and licenses retain upstream bytes, including CRLF and spaces.
+public/brand/cypress/** -text whitespace=cr-at-eol,-blank-at-eol
