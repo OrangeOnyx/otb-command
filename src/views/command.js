@@ -11,6 +11,7 @@ import { suiteEvidence } from '../lib/command-evidence.js';
 import { createCommandReview } from './command-review.js';
 import { createCommandMaintenance, maintenanceReadTime } from './command-maintenance.js';
 import { clearCommandDraftSessions } from '../lib/command-draft-session.js';
+import { createCommandNumbers } from './command-numbers.js';
 
 const n = value => Number(value).toLocaleString('en-US');
 const icon = (name) => {
@@ -62,6 +63,7 @@ export function initCommand(account) {
       </aside>
     </div>
     <p id="cmdSelectionStatus" class="cmd-selection-status" role="status" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0"></p>
+    <section id="cmdNumbers" class="cmd-numbers" aria-labelledby="cmdNumbersTitle"></section>
     <div class="cmd-bottom">
       <section class="cmd-directory" aria-label="Suite directory">
         <div class="cmd-section-head"><h2>Explore the suites <span id="cmdSuiteCount">27</span></h2>
@@ -96,6 +98,8 @@ export function initCommand(account) {
   };
   const maintenance = createCommandMaintenance({localReview:LOCAL_REVIEW,
     onProperty:()=>inProperty(()=>showIssue()),onSource:id=>inProperty(()=>showSource(id)),onDraft:()=>inProperty(openDraft)});
+  const numbers = createCommandNumbers({host:$('cmdNumbers'),account,onChange:renderDetail,onSource:showSource,
+    onInvalidate:()=>{ if ($('cmdSourceContent').querySelector('[data-atlas-reference]')) { $('cmdSourceDialog').close(); $('cmdSourceContent').textContent=''; } }});
   if (REMOTE) sb.auth.onAuthStateChange((event, session) => {
     if (event !== 'SIGNED_OUT' && (!evidenceScope || session?.user?.id === evidenceScope.userId)) return;
     evidenceGeneration++;
@@ -128,7 +132,10 @@ export function initCommand(account) {
     active = id; tab = 'suite'; setSelected(id); map.selectSuite(id);
     if (focus) map.focusSuite(id);
     renderDetail(); highlightDirectory();
-    if (userInitiated) revealInspector(`Suite ${id}, ${byUnit[id].dba === 'VACANT' ? 'no tenant in snapshot' : byUnit[id].dba}. Details updated.`);
+    if (userInitiated) {
+      $('cmdDetail').scrollTop = 0;
+      revealInspector(`Suite ${id}, ${byUnit[id].dba === 'VACANT' ? 'no tenant in snapshot' : byUnit[id].dba}. Details updated.`);
+    }
   }
   function highlightDirectory() {
     $('cmdSuites').querySelectorAll('button').forEach(b => {
@@ -159,6 +166,7 @@ export function initCommand(account) {
       <div class="cmd-suite-kicker">Suite ${esc(u.unit)} <button class="cmd-icon-btn" id="cmdFocus" aria-label="Focus suite ${esc(u.unit)}">${icon('focus')}</button></div><p class="cmd-use">${esc(u.use || 'Use not recorded')}</p>
       <div class="cmd-suite-area"><strong>${n(u.sf)}</strong><span>square feet<br>Adopted roster</span></div>
       <dl class="cmd-facts"><div><dt>Building</dt><dd>${+u.unit < 135 ? 'Long building' : 'Patricia building'}</dd></div><div><dt>Roster status</dt><dd>${esc(({active:'Active',anchor:'Anchor',owner:'Owner occupied',vacant:'Vacant'})[u.status] || u.status)} <small>July 2026</small></dd></div><div><dt>Recorded term end</dt><dd>${u.end ? esc(u.end) : 'Not recorded'}</dd></div></dl>
+      ${numbers.suiteMarkup(active,sourceButton)}
       <div class="cmd-evidence-note"><b>${esc(classification)}</b><p>${esc(info.geometry?.description || 'Review the geometry source for this suite.')}</p></div>
       ${associated ? `<button id="cmdSuiteIssue" class="cmd-associated">${icon('pin')}<span><b>Maintenance in this frontage</b><small>${esc(evidence.issue.title)} · exact point unknown</small></span>${icon('arrow')}</button>` : ''}
       <div class="cmd-detail-sources"><h3>Behind this view</h3>${sourceButton('suite-roster','Adopted suite roster')}${sourceButton('suite-geometry','Footprint & demising record')}${sourceButton('plan-source','Supplied plat scan')}</div>
@@ -172,7 +180,7 @@ export function initCommand(account) {
   }
   function showIssue(userInitiated = true) {
     tab = 'issue'; renderDetail(); if (evidence?.issue) map.focusIssue();
-    if (userInitiated) revealInspector(evidence?.issue ? `${evidence.issue.title}. Maintenance records shown.` : 'No maintenance evidence loaded.');
+    if (userInitiated) { $('cmdDetail').scrollTop=0; revealInspector(evidence?.issue ? `${evidence.issue.title}. Maintenance records shown.` : 'No maintenance evidence loaded.'); }
   }
   function renderIssue() {
     const issue = evidence?.issue;
@@ -196,13 +204,15 @@ export function initCommand(account) {
   };
   function showSource(id) {
     const suiteSource = ['suite-roster','suite-geometry'].includes(id) ? suiteEvidence(byUnit[active],geometry)?.sources.find(s=>s.id===id) : null;
-    const source = suiteSource || evidence?.sources?.find(s => s.id === id) || publicSource(id);
+    const financeSource = numbers.source(id);
+    const source = suiteSource || evidence?.sources?.find(s => s.id === id) || publicSource(id) || financeSource;
     const dialog = $('cmdSourceDialog');
     if (!source) return;
     const switchingSource = dialog.open;
     if (!dialog.open) sourceReturn = document.activeElement;
-    $('cmdSourceContent').innerHTML = `<div class="cmd-dialog-body"><div class="cmd-source-meta">${esc(source.kind || 'Source reference')}</div><h2 id="cmdSourceTitle">${esc(source.title)}</h2><p class="cmd-source-path">${esc(source.path)}</p><div class="cmd-mode">${esc(source.asOf || 'Date not established')}</div>
-      <div class="cmd-source-options">${['suite-roster','suite-geometry','geometry','plan-source','plat',...(evidence ? ['pothole-record','harvest-verification','roster-101-103'] : []),...(evidence?.issue?.systemRecord?['maintenance-system-record']:[])].map(key => `<button data-source="${key}" class="${key===id ? 'is-active' : ''}">${esc(({ 'suite-roster':'Suite roster','suite-geometry':'Suite boundary',geometry:'Geometry', 'plan-source':'Supplied plan',plat:'CAD reproduction','pothole-record':'Work order','harvest-verification':'Archive','roster-101-103':'Location','maintenance-system-record':'System read'})[key])}</button>`).join('')}</div>
+    const sourceChoices = financeSource ? numbers.sources().map(item=>({id:item.id,label:item.title})) : ['suite-roster','suite-geometry','geometry','plan-source','plat',...(evidence ? ['pothole-record','harvest-verification','roster-101-103'] : []),...(evidence?.issue?.systemRecord?['maintenance-system-record']:[])].map(key=>({id:key,label:({'suite-roster':'Suite roster','suite-geometry':'Suite boundary',geometry:'Geometry','plan-source':'Supplied plan',plat:'CAD reproduction','pothole-record':'Work order','harvest-verification':'Archive','roster-101-103':'Location','maintenance-system-record':'System read'})[key]}));
+    $('cmdSourceContent').innerHTML = `<div class="cmd-dialog-body"${financeSource ? ' data-atlas-reference' : ''}><div class="cmd-source-meta">${esc(source.kind || (financeSource ? 'Dated Atlas production extract' : 'Source reference'))}</div><h2 id="cmdSourceTitle">${esc(source.title)}</h2><p class="cmd-source-path">${esc(source.path)}</p><div class="cmd-mode">${esc(source.asOf || 'Date not established')}</div>
+      <div class="cmd-source-options">${sourceChoices.map(item => `<button data-source="${esc(item.id)}" class="${item.id===id ? 'is-active' : ''}">${esc(item.label)}</button>`).join('')}</div>
       <pre class="cmd-source-excerpt">${esc(typeof source.excerpt === 'string' ? source.excerpt : JSON.stringify(source.excerpt,null,2))}</pre>
       ${id === 'plan-source' ? `<a class="cmd-source-image" href="${esc(planSourceUrl)}" target="_blank" rel="noopener noreferrer"><img src="${esc(planSourceUrl)}" alt="Supplied Montagnet and Domingue recorded plat scan with revision table"><span>Open supplied plan at full resolution ${icon('external')}</span></a>` : source.imageUrl === '/plat-render.svg' ? `<a class="cmd-source-image" href="/plat-render.svg" target="_blank" rel="noopener noreferrer"><img src="/plat-render.svg" alt="Existing CAD schematic reproduction of the shopping center"><span>Open CAD reproduction ${icon('external')}</span></a>` : ''}</div>`;
     wireSources($('cmdSourceContent'));
@@ -215,7 +225,7 @@ export function initCommand(account) {
   }
   $('cmdSourceDialog').addEventListener('close', () => sourceReturn?.isConnected && sourceReturn.focus());
   $('cmdSearch').oninput = renderDirectory;
-  $('cmdSuiteTab').onclick = () => { tab='suite'; renderDetail(); };
+  $('cmdSuiteTab').onclick = () => { tab='suite'; renderDetail(); $('cmdDetail').scrollTop=0; };
   $('cmdIssueTab').onclick = showIssue; $('cmdOpenIssue').onclick = showIssue; $('cmdDraft').onclick = openDraft;
   $('cmdGeometry').onclick = () => showSource('geometry');
   $('cmdZoomIn').onclick = () => map.zoomBy(1.3); $('cmdZoomOut').onclick = () => map.zoomBy(1/1.3); $('cmdReset').onclick = () => map.reset();
@@ -230,6 +240,7 @@ export function initCommand(account) {
   subscribe(type => { if (type === 'selection' && getSelected() && getSelected() !== active) select(getSelected()); });
   renderDirectory(); select('101');
   loadEvidence();
+  numbers.start();
   async function loadEvidence() {
     const generation = evidenceGeneration;
     try {
