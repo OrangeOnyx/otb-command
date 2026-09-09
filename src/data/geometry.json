@@ -1,6 +1,6 @@
 {
- "rev": "REV 12",
- "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace)",
+ "rev": "REV 14",
+ "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
  "viewBox": {
   "main": "0 0 1480 990",
   "full": "0 -310 1480 1300"
@@ -178,14 +178,14 @@
   "source": "plat 'N SPACES' striping labels, raster-located at 200 dpi (crops reference/park-*); zone positions in (a,b) feet",
   "zones": [
    {
-    "zone": "main field — two angled double-loaded herringbone bands, one-way aisles (stalls 9.00' × 23.70')",
+    "zone": "main field — two angled double-loaded herringbone bands, two-way aisles per plat TF arrows (stalls 9.00' × 23.70')",
     "count": 100,
     "detail": "per band: 36 (west segment) + 14 (east segment); bands at b -42.9..-78.2 and -103.7..-139.7, a 217..496"
    },
    {
     "zone": "Arnould frontage head-in row",
     "count": 38,
-    "detail": "4 × ~100' lot modules: 7 + 11 + 11 + 9; none in front of Jason's Deli (sidewalk/landscape only); last 75.12' module before the notch is a driveway apron"
+    "detail": "4 × ~100' lot modules: 7 + 11 + 11 + 9; none in front of Jason's Deli (sidewalk/landscape only); last 75.12' module before the notch is a driveway apron. REV 14 (CAD): 18' stalls behind a 3.1' planting strip (9' strip at the 7-space module), four 3–4' curbed end-cap islands between modules / flanking the driveways"
    },
    {
     "zone": "storefront row (long building)",
@@ -224,12 +224,332 @@
    }
   ],
   "totalPlat": 314,
+  "cadUnlabeled": [
+   {
+    "zone": "Johnston frontage head-in row — south of the pylon-sign pocket, a 651–669.5 × b −172…−271",
+    "count": 10,
+    "source": "architect CAD PARKING layer: 11 stall lines at 9.0' pitch (x 1073–1093, y 189.0–279.5) nosing the Johnston R/W; carries NO 'N SPACES' label on the plat, so the raster label tally never saw it"
+   }
+  ],
+  "totalStriped": 324,
   "variance": {
    "entry": "99-11797",
    "provided": 324,
    "required": 344
   },
-  "reconciliation": "plat striping labels total 314 vs variance 324 provided — Δ -10 UNRECONCILED (surfaced, not adjusted; variance-era striping may differ from the 7/19/2019 plat revision)"
+  "reconciliation": "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. CANDIDATE reconciliation (REV 13, 2026-09-05): confirm those 10 stalls on the ground / current aerial, then close docs/parking-reconciliation-memo.md. Until then keep citing 324 legally and planning ops on 314."
+ },
+ "access": {
+  "source": "architect CAD Boulev_CLEAN.dxf (feet; plat-axis-aligned: a = X − 423.75, b = Y − 459.67) — LINCONC/LINCON2 curb & sidewalk returns, LINEDGRD edge of asphalt, TRAVLAN lanes, plat 'TF' flow arrows; each cut confirmed against the frozen Esri z19 satellite base (public/OTB-sat-base.jpg) via the footprints georef, 2026-09-05",
+  "driveways": [
+   {
+    "id": "A",
+    "street": "Arnould Blvd",
+    "name": "Driveway A — main entrance",
+    "throatA": [
+     187.25,
+     218.65
+    ],
+    "flareA": [
+     179.65,
+     236.25
+    ],
+    "movement": "two-way",
+    "serves": "main field N-S aisle (a 186–217) between the 7-space and first 11-space head-in modules; aligned with the raised-median opening (a 172.5–227.8, 55') → full movement; a driveway on the far side of Arnould lines up with it",
+    "cad": "throat = curb ends x 611.0 / 642.4; returns c(591.7,458.5) R20 and c(659.5,457.6) R17; plat boundary dimension 187.98' breaks exactly at the west throat edge",
+    "throatWidthFt": 31.4,
+    "flareWidthFt": 56.6
+   },
+   {
+    "id": "B",
+    "street": "Arnould Blvd",
+    "name": "Driveway B — east entrance, shared with JD Bank",
+    "throatA": [
+     512.75,
+     552.45
+    ],
+    "flareA": [
+     505.95,
+     558.95
+    ],
+    "movement": "two-way",
+    "serves": "notch N-S aisle (a 513–550) along the bank parcel's west line down to the storefront aisle; the bank's drive-thru and Johnston-side circulation ride this cut — the east throat edge sits 2.3' past the notch corner (a 550.12) on the bank parcel",
+    "shared": "JD Bank reciprocal access & parking servitude (plat exception 28, Entry 2004-00057697; $250/mo to Belle; expires 12/30/2034)",
+    "cad": "curb ends x 936.6 / 976.2; returns c(916.3,459.3) R20 and c(1002.8,456.7) R27; median ends at x 930 (a 506.3) → no median across this cut",
+    "throatWidthFt": 39.7,
+    "flareWidthFt": 53
+   },
+   {
+    "id": "J",
+    "street": "Johnston St / US 167",
+    "name": "Johnston driveway — south of the bank notch",
+    "throatB": [
+     -130.4,
+     -100
+    ],
+    "flareB": [
+     -156.97,
+     -93.07
+    ],
+    "movement": "two-way",
+    "serves": "notch E-W aisle (b −100…−122) west to the notch N-S aisle and Driveway B; the pylon-sign pocket (b −130…−141) sits immediately south of the cut",
+    "cad": "returns c(1098.9,392.1) R33 (north, lands on the notch corner) and c(1089.5,300.8) R28.5 (south, on the sign-pocket curb); plat arrows: inbound b −104 westbound, outbound b −118/−121 eastbound",
+    "throatWidthFt": 30.4,
+    "flareWidthFt": 63.9
+   },
+   {
+    "id": "P1",
+    "street": "Patricia St",
+    "name": "Jason's Deli service drive (149 rear)",
+    "throatB": [
+     -74.47,
+     -37.67
+    ],
+    "flareB": [
+     -87.2,
+     -20.5
+    ],
+    "movement": "two-way service",
+    "serves": "149 service yard between the Patricia R/W and the short building's Patricia face — FREEZER pad + 6' wood fence per plat topo; culvert apron across the open-ditch shoulder",
+    "cad": "curb lines y 385.2 and 422.0 from the asphalt edge to the building face x 425.7; returns c(385.7,372.2) R13 and c(397.0,442.0) R20",
+    "throatWidthFt": 36.8,
+    "flareWidthFt": 66.7
+   },
+   {
+    "id": "P2",
+    "street": "Patricia St",
+    "name": "135B / 137 rear service pad",
+    "throatB": [
+     -213.57,
+     -190.67
+    ],
+    "flareB": [
+     -223.6,
+     -180.8
+    ],
+    "movement": "two-way service",
+    "serves": "18' pad behind 135B (Belle office rear door) and 137, curbed at CAD x 407.7 from y 227.3 to 284.0",
+    "cad": "curb lines y 246.1 and 269.0; returns c(381.9,236.1) R10 and c(381.3,279.0) R10; R5 returns into the pad curb at x 402.7",
+    "throatWidthFt": 22.9,
+    "flareWidthFt": 42.8
+   },
+   {
+    "id": "P3",
+    "street": "Patricia St",
+    "name": "Lot 8 entrance (Patricia)",
+    "throatB": [
+     -275.47,
+     -254.47
+    ],
+    "flareB": [
+     -285.6,
+     -244.6
+    ],
+    "movement": "two-way",
+    "serves": "Lot 8 pocket — 19 spaces (10 nosing the 135 end walk + 5 nosing M.A. + 4 nosing the breezeway walk)",
+    "cad": "curb lines y 184.2 and 205.2; returns c(382.7,174.2) R10 and c(382.1,215.2) R10; south edge coincides with the Patricia × M.A. corner-return tangent (b −275)",
+    "throatWidthFt": 21,
+    "flareWidthFt": 41
+   },
+   {
+    "id": "M1",
+    "street": "Marie Antoinette St",
+    "name": "Lot 8 entrance (Marie Antoinette)",
+    "throatA": [
+     45.45,
+     70.45
+    ],
+    "flareA": [
+     35.45,
+     80.45
+    ],
+    "movement": "two-way",
+    "serves": "Lot 8 pocket from the M.A. side, between the 5 M.A.-nosing stalls (a 20–45) and the breezeway curb",
+    "cad": "returns c(459.2,159.4) R10 and c(504.2,159.3) R10 onto the asphalt edge y 149.3",
+    "throatWidthFt": 25,
+    "flareWidthFt": 45
+   },
+   {
+    "id": "M2",
+    "street": "Marie Antoinette St",
+    "name": "Breezeway apron — pedestrian connector",
+    "throatA": [
+     88.95,
+     98.75
+    ],
+    "flareA": [
+     80.45,
+     93.75
+    ],
+    "movement": "pedestrian",
+    "serves": "12.3' breezeway between the short and long buildings (5' sidewalk per plat topo) — connects Lot 8 / M.A. to the storefront aisle; too narrow for a marked drive lane",
+    "cad": "breezeway curbs x 512.7 and 522.5 (long-building west wall extended to y 154.2); R5 return c(517.5,154.2) to the asphalt edge",
+    "throatWidthFt": 9.8,
+    "flareWidthFt": 13.3
+   }
+  ],
+  "bankDrive": {
+   "street": "Arnould Blvd",
+   "name": "JD Bank's own Arnould driveway (NOT A PART)",
+   "throatA": [
+    637.05,
+    656.75
+   ],
+   "flareA": [
+    630.75,
+    663.35
+   ],
+   "movement": "two-way",
+   "note": "bank parcel; straddles the bank's R=30 Johnston corner return (tangent a 644.7); shown as context only — bank customers also use Driveway B and the Johnston driveway through the notch aisles",
+   "throatWidthFt": 19.7
+  },
+  "aisles": [
+   {
+    "id": "ns-A",
+    "name": "Driveway A aisle",
+    "a": [
+     186,
+     217
+    ],
+    "b": [
+     0,
+     -166
+    ],
+    "flow": "two-way",
+    "plat": "TF arrows at (a 197.5 in / 211 out) b −32…−119"
+   },
+   {
+    "id": "ns-notch",
+    "name": "Notch aisle (bank west line)",
+    "a": [
+     513,
+     550.12
+    ],
+    "b": [
+     0,
+     -166
+    ],
+    "flow": "two-way",
+    "plat": "TF arrows a 526 in / 538.6 out, b −24…−132; 37' between the 9-space row curb and the notch line",
+    "shared": "JD Bank traffic"
+   },
+   {
+    "id": "ns-johnston",
+    "name": "Johnston-side aisle (101 end)",
+    "a": [
+     623,
+     651
+    ],
+    "b": [
+     -122,
+     -281
+    ],
+    "flow": "two-way",
+    "plat": "TF arrows a 632.5 / 641 at b −200/−205"
+   },
+   {
+    "id": "ew-arnould",
+    "name": "Arnould frontage aisle",
+    "a": [
+     100,
+     513
+    ],
+    "b": [
+     -18.5,
+     -42.9
+    ],
+    "flow": "two-way",
+    "plat": "TF pairs at a 308/317 and 446/455"
+   },
+   {
+    "id": "ew-middle",
+    "name": "Middle aisle (between the herringbone bands)",
+    "a": [
+     118,
+     513
+    ],
+    "b": [
+     -78.2,
+     -103.7
+    ],
+    "flow": "two-way",
+    "plat": "TF pairs at a 316/324 and 443/452 — the plat draws both directions despite the angled stalls"
+   },
+   {
+    "id": "ew-storefront",
+    "name": "Storefront aisle",
+    "a": [
+     118,
+     651
+    ],
+    "b": [
+     -139.7,
+     -166
+    ],
+    "flow": "two-way",
+    "plat": "TF pairs at a 322/327, 450/454, 561/566"
+   },
+   {
+    "id": "ew-notch",
+    "name": "Notch E-W aisle (Johnston drive)",
+    "a": [
+     550.12,
+     668
+    ],
+    "b": [
+     -100,
+     -122
+    ],
+    "flow": "two-way",
+    "plat": "TF inbound b −104 (a 601, 660) / outbound b −118…−121 (a 616, 643)",
+    "shared": "JD Bank traffic"
+   }
+  ],
+  "arnouldMedian": {
+   "widthFt": 10.8,
+   "offsetFt": [
+    34,
+    44.8
+   ],
+   "segmentsAFt": [
+    [
+     70,
+     172.5
+    ],
+    [
+     227.8,
+     506.3
+    ]
+   ],
+   "openings": [
+    {
+     "aFt": [
+      172.5,
+      227.8
+     ],
+     "widthFt": 55.3,
+     "at": "Driveway A — full movement; aligned with a far-side driveway (CAD far-curb returns x 611–648)"
+    }
+   ],
+   "eastEndAFt": 506.3,
+   "note": "no median east of a 506.3 — Driveway B and the bank drive are full-access up to the Johnston signal; west nose at a 70 leaves the Patricia intersection open"
+  },
+  "pavement": {
+   "arnould": "80' R/W concrete boulevard: 4' sidewalk on the R/W, curb 15' out, 19' near lanes each side of the 11' raised median",
+   "patricia": "50' R/W asphalt: ~20' pavement on the far half, 26' open-ditch shoulder on the site side (plat: 'DRAINAGE — OPEN DITCH (EXISTING)'); cuts are culvert aprons with R10–R20 returns",
+   "johnston": "US 167, ±100' R/W: 4 through lanes (2 each way) + center line per TRAVLAN; asphalt edge 24.9' out from the R/W arc; near lanes flow SW (Arnould → Marie Antoinette)",
+   "marieAntoinette": "40' R/W asphalt: 20' pavement (b −310.4…−330.4), 10' shoulder on the site side; rear parallel bays open directly to the street"
+  },
+  "openFrontage": [
+   {
+    "where": "rear Marie Antoinette strip",
+    "detail": "5 curbed parallel bays (4+4+4+4+2) between islands — no single curb cut; 10' utility easement under the row; electric easement 577566 explains the gap"
+   },
+   {
+    "where": "Lot 7 (remote, across M.A.)",
+    "detail": "paved area meets the Patricia R/W for 80' (Lot-7 frame CAD y 4.3–84.1, b −455…−375) — uncurbed; no cut onto M.A. (13' landscape setback)"
+   }
+  ]
  },
  "streets": {
   "marieAntoinette": {
@@ -289,7 +609,7 @@
  },
  "boundary": {
   "mainTract": {
-   "name": "Block I tract — Arnold Heights Subd. + Ext. No. 1 (partition of Lots 1 & 2)",
+   "name": "Block I tract — Arnould Heights Subd. + Ext. No. 1 (partition of Lots 1 & 2)",
    "commence": "SW R/W corner, Arnould Blvd × Patricia St; thence S38°32'00\"E 25.00' to POB",
    "courses": [
     {
@@ -416,7 +736,7 @@
    "closureFt": 0
   },
   "lot7BlockM": {
-   "name": "Lot 7, Block M — Arnold Heights Subd. Ext. No. 1 (remote parking, parcel 6009649)",
+   "name": "Lot 7, Block M — Arnould Heights Subd. Ext. No. 1 (remote parking, parcel 6009649)",
    "commence": "SW R/W corner, Marie Antoinette St × Patricia St; thence S38°32'00\"E 25.00' to POB",
    "courses": [
     {
@@ -605,11 +925,11 @@
    {
     "t": "text",
     "x": 700,
-    "y": 726,
+    "y": 720,
     "s": "A R N O U L D   B O U L E V A R D   ( 8 0 '  R / W   C O N C R E T E )",
     "attrs": {
      "class": "svg-street",
-     "font-size": "18",
+     "font-size": "15",
      "text-anchor": "middle"
     }
    },
@@ -675,14 +995,14 @@
    },
    {
     "t": "text",
-    "x": 28,
+    "x": 13,
     "y": 376,
     "s": "J O H N S T O N   S T   ·   U S   H W Y   1 6 7   ( ± 1 0 0 '  R / W )",
     "attrs": {
      "class": "svg-street",
-     "font-size": "14",
+     "font-size": "13",
      "text-anchor": "middle",
-     "transform": "rotate(-90 28 376)"
+     "transform": "rotate(-90 13 376)"
     }
    },
    {
@@ -730,7 +1050,7 @@
    {
     "t": "text",
     "x": 804.44,
-    "y": 673,
+    "y": 679,
     "s": "S38°32'00\"E — 550.12'",
     "attrs": {
      "class": "svg-lab",
@@ -1272,36 +1592,36 @@
    },
    {
     "t": "text",
-    "x": 1267.42,
+    "x": 1166.85,
     "y": -160.58,
     "s": "LOT 7 — REMOTE PARKING · 110 MARIE ANTOINETTE ST",
     "attrs": {
      "class": "svg-lab",
      "font-size": "10",
-     "text-anchor": "middle",
+     "text-anchor": "end",
      "font-weight": "600"
     }
    },
    {
     "t": "text",
-    "x": 1267.42,
+    "x": 1166.85,
     "y": -146.43,
     "s": "LOT 7, BLOCK M · PARCEL 6009649 · 32 SPACES PER PLAT (6+8+10+8)",
     "attrs": {
      "class": "svg-lab",
      "font-size": "8.5",
-     "text-anchor": "middle"
+     "text-anchor": "end"
     }
    },
    {
     "t": "text",
-    "x": 1267.42,
+    "x": 1360,
     "y": -273.4,
     "s": "OVERFLOW / CROSS-PARKING · FILL ORDER: MAIN FIELD → LOT 8 → LOT 7",
     "attrs": {
      "class": "svg-lab",
      "font-size": "9.5",
-     "text-anchor": "middle"
+     "text-anchor": "end"
     }
    },
    {
@@ -1392,10 +1712,10 @@
    },
    {
     "t": "line",
-    "x1": 1087.83,
-    "y1": 627.1,
-    "x2": 1087.83,
-    "y2": 660.11,
+    "x1": 1092,
+    "y1": 610.31,
+    "x2": 1092,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1403,10 +1723,10 @@
    },
    {
     "t": "line",
-    "x1": 1061.64,
-    "y1": 627.1,
-    "x2": 1061.64,
-    "y2": 660.11,
+    "x1": 1075.33,
+    "y1": 610.31,
+    "x2": 1075.33,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1414,10 +1734,10 @@
    },
    {
     "t": "line",
-    "x1": 1035.46,
-    "y1": 627.1,
-    "x2": 1035.46,
-    "y2": 660.11,
+    "x1": 1058.67,
+    "y1": 610.31,
+    "x2": 1058.67,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1425,10 +1745,10 @@
    },
    {
     "t": "line",
-    "x1": 1009.27,
-    "y1": 627.1,
-    "x2": 1009.27,
-    "y2": 660.11,
+    "x1": 1042,
+    "y1": 610.31,
+    "x2": 1042,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1436,10 +1756,10 @@
    },
    {
     "t": "line",
-    "x1": 983.09,
-    "y1": 627.1,
-    "x2": 983.09,
-    "y2": 660.11,
+    "x1": 1025.34,
+    "y1": 610.31,
+    "x2": 1025.34,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1447,10 +1767,10 @@
    },
    {
     "t": "line",
-    "x1": 956.9,
-    "y1": 627.1,
-    "x2": 956.9,
-    "y2": 660.11,
+    "x1": 1008.68,
+    "y1": 610.31,
+    "x2": 1008.68,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1458,10 +1778,10 @@
    },
    {
     "t": "line",
-    "x1": 930.72,
-    "y1": 627.1,
-    "x2": 930.72,
-    "y2": 660.11,
+    "x1": 992.01,
+    "y1": 610.31,
+    "x2": 992.01,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1469,10 +1789,10 @@
    },
    {
     "t": "line",
-    "x1": 904.53,
-    "y1": 627.1,
-    "x2": 904.53,
-    "y2": 660.11,
+    "x1": 975.35,
+    "y1": 610.31,
+    "x2": 975.35,
+    "y2": 644.27,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1480,7 +1800,7 @@
    },
    {
     "t": "text",
-    "x": 996.18,
+    "x": 1033.68,
     "y": 621,
     "s": "7 SPACES",
     "attrs": {
@@ -1491,10 +1811,10 @@
    },
    {
     "t": "line",
-    "x1": 889.72,
-    "y1": 627.1,
-    "x2": 889.72,
-    "y2": 660.11,
+    "x1": 903.33,
+    "y1": 621.25,
+    "x2": 903.33,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1502,10 +1822,10 @@
    },
    {
     "t": "line",
-    "x1": 873.06,
-    "y1": 627.1,
-    "x2": 873.06,
-    "y2": 660.11,
+    "x1": 886.66,
+    "y1": 621.25,
+    "x2": 886.66,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1513,10 +1833,10 @@
    },
    {
     "t": "line",
-    "x1": 856.39,
-    "y1": 627.1,
-    "x2": 856.39,
-    "y2": 660.11,
+    "x1": 870,
+    "y1": 621.25,
+    "x2": 870,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1524,10 +1844,10 @@
    },
    {
     "t": "line",
-    "x1": 839.73,
-    "y1": 627.1,
-    "x2": 839.73,
-    "y2": 660.11,
+    "x1": 853.34,
+    "y1": 621.25,
+    "x2": 853.34,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1535,10 +1855,10 @@
    },
    {
     "t": "line",
-    "x1": 823.06,
-    "y1": 627.1,
-    "x2": 823.06,
-    "y2": 660.11,
+    "x1": 836.67,
+    "y1": 621.25,
+    "x2": 836.67,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1546,10 +1866,10 @@
    },
    {
     "t": "line",
-    "x1": 806.4,
-    "y1": 627.1,
-    "x2": 806.4,
-    "y2": 660.11,
+    "x1": 820.01,
+    "y1": 621.25,
+    "x2": 820.01,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1557,10 +1877,10 @@
    },
    {
     "t": "line",
-    "x1": 789.74,
-    "y1": 627.1,
-    "x2": 789.74,
-    "y2": 660.11,
+    "x1": 803.35,
+    "y1": 621.25,
+    "x2": 803.35,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1568,10 +1888,10 @@
    },
    {
     "t": "line",
-    "x1": 773.07,
-    "y1": 627.1,
-    "x2": 773.07,
-    "y2": 660.11,
+    "x1": 786.68,
+    "y1": 621.25,
+    "x2": 786.68,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1579,10 +1899,10 @@
    },
    {
     "t": "line",
-    "x1": 756.41,
-    "y1": 627.1,
-    "x2": 756.41,
-    "y2": 660.11,
+    "x1": 770.02,
+    "y1": 621.25,
+    "x2": 770.02,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1590,10 +1910,10 @@
    },
    {
     "t": "line",
-    "x1": 739.75,
-    "y1": 627.1,
-    "x2": 739.75,
-    "y2": 660.11,
+    "x1": 753.36,
+    "y1": 621.25,
+    "x2": 753.36,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1601,10 +1921,10 @@
    },
    {
     "t": "line",
-    "x1": 723.08,
-    "y1": 627.1,
-    "x2": 723.08,
-    "y2": 660.11,
+    "x1": 736.69,
+    "y1": 621.25,
+    "x2": 736.69,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1612,10 +1932,10 @@
    },
    {
     "t": "line",
-    "x1": 706.42,
-    "y1": 627.1,
-    "x2": 706.42,
-    "y2": 660.11,
+    "x1": 720.03,
+    "y1": 621.25,
+    "x2": 720.03,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1623,7 +1943,7 @@
    },
    {
     "t": "text",
-    "x": 798.07,
+    "x": 811.68,
     "y": 621,
     "s": "11 SPACES",
     "attrs": {
@@ -1634,10 +1954,10 @@
    },
    {
     "t": "line",
-    "x1": 691.61,
-    "y1": 627.1,
-    "x2": 691.61,
-    "y2": 660.11,
+    "x1": 711.33,
+    "y1": 621.25,
+    "x2": 711.33,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1645,10 +1965,10 @@
    },
    {
     "t": "line",
-    "x1": 674.94,
-    "y1": 627.1,
-    "x2": 674.94,
-    "y2": 660.11,
+    "x1": 694.66,
+    "y1": 621.25,
+    "x2": 694.66,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1656,10 +1976,10 @@
    },
    {
     "t": "line",
-    "x1": 658.28,
-    "y1": 627.1,
-    "x2": 658.28,
-    "y2": 660.11,
+    "x1": 678,
+    "y1": 621.25,
+    "x2": 678,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1667,10 +1987,10 @@
    },
    {
     "t": "line",
-    "x1": 641.62,
-    "y1": 627.1,
-    "x2": 641.62,
-    "y2": 660.11,
+    "x1": 661.34,
+    "y1": 621.25,
+    "x2": 661.34,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1678,10 +1998,10 @@
    },
    {
     "t": "line",
-    "x1": 624.95,
-    "y1": 627.1,
-    "x2": 624.95,
-    "y2": 660.11,
+    "x1": 644.67,
+    "y1": 621.25,
+    "x2": 644.67,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1689,10 +2009,10 @@
    },
    {
     "t": "line",
-    "x1": 608.29,
-    "y1": 627.1,
-    "x2": 608.29,
-    "y2": 660.11,
+    "x1": 628.01,
+    "y1": 621.25,
+    "x2": 628.01,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1700,10 +2020,10 @@
    },
    {
     "t": "line",
-    "x1": 591.63,
-    "y1": 627.1,
-    "x2": 591.63,
-    "y2": 660.11,
+    "x1": 611.35,
+    "y1": 621.25,
+    "x2": 611.35,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1711,10 +2031,10 @@
    },
    {
     "t": "line",
-    "x1": 574.96,
-    "y1": 627.1,
-    "x2": 574.96,
-    "y2": 660.11,
+    "x1": 594.68,
+    "y1": 621.25,
+    "x2": 594.68,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1722,10 +2042,10 @@
    },
    {
     "t": "line",
-    "x1": 558.3,
-    "y1": 627.1,
-    "x2": 558.3,
-    "y2": 660.11,
+    "x1": 578.02,
+    "y1": 621.25,
+    "x2": 578.02,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1733,10 +2053,10 @@
    },
    {
     "t": "line",
-    "x1": 541.64,
-    "y1": 627.1,
-    "x2": 541.64,
-    "y2": 660.11,
+    "x1": 561.36,
+    "y1": 621.25,
+    "x2": 561.36,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1744,10 +2064,10 @@
    },
    {
     "t": "line",
-    "x1": 524.97,
-    "y1": 627.1,
-    "x2": 524.97,
-    "y2": 660.11,
+    "x1": 544.69,
+    "y1": 621.25,
+    "x2": 544.69,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1755,10 +2075,10 @@
    },
    {
     "t": "line",
-    "x1": 508.31,
-    "y1": 627.1,
-    "x2": 508.31,
-    "y2": 660.11,
+    "x1": 528.03,
+    "y1": 621.25,
+    "x2": 528.03,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1766,7 +2086,7 @@
    },
    {
     "t": "text",
-    "x": 599.95,
+    "x": 619.68,
     "y": 621,
     "s": "11 SPACES",
     "attrs": {
@@ -1777,10 +2097,10 @@
    },
    {
     "t": "line",
-    "x1": 493.5,
-    "y1": 627.1,
-    "x2": 493.5,
-    "y2": 660.11,
+    "x1": 520.62,
+    "y1": 621.25,
+    "x2": 520.62,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1788,10 +2108,10 @@
    },
    {
     "t": "line",
-    "x1": 473.13,
-    "y1": 627.1,
-    "x2": 473.13,
-    "y2": 660.11,
+    "x1": 503.98,
+    "y1": 621.25,
+    "x2": 503.98,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1799,10 +2119,10 @@
    },
    {
     "t": "line",
-    "x1": 452.76,
-    "y1": 627.1,
-    "x2": 452.76,
-    "y2": 660.11,
+    "x1": 487.34,
+    "y1": 621.25,
+    "x2": 487.34,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1810,10 +2130,10 @@
    },
    {
     "t": "line",
-    "x1": 432.4,
-    "y1": 627.1,
-    "x2": 432.4,
-    "y2": 660.11,
+    "x1": 470.69,
+    "y1": 621.25,
+    "x2": 470.69,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1821,10 +2141,10 @@
    },
    {
     "t": "line",
-    "x1": 412.03,
-    "y1": 627.1,
-    "x2": 412.03,
-    "y2": 660.11,
+    "x1": 454.05,
+    "y1": 621.25,
+    "x2": 454.05,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1832,10 +2152,10 @@
    },
    {
     "t": "line",
-    "x1": 391.67,
-    "y1": 627.1,
-    "x2": 391.67,
-    "y2": 660.11,
+    "x1": 437.41,
+    "y1": 621.25,
+    "x2": 437.41,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1843,10 +2163,10 @@
    },
    {
     "t": "line",
-    "x1": 371.3,
-    "y1": 627.1,
-    "x2": 371.3,
-    "y2": 660.11,
+    "x1": 420.76,
+    "y1": 621.25,
+    "x2": 420.76,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1854,10 +2174,10 @@
    },
    {
     "t": "line",
-    "x1": 350.93,
-    "y1": 627.1,
-    "x2": 350.93,
-    "y2": 660.11,
+    "x1": 404.12,
+    "y1": 621.25,
+    "x2": 404.12,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1865,10 +2185,10 @@
    },
    {
     "t": "line",
-    "x1": 330.57,
-    "y1": 627.1,
-    "x2": 330.57,
-    "y2": 660.11,
+    "x1": 387.48,
+    "y1": 621.25,
+    "x2": 387.48,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1876,10 +2196,10 @@
    },
    {
     "t": "line",
-    "x1": 310.2,
-    "y1": 627.1,
-    "x2": 310.2,
-    "y2": 660.11,
+    "x1": 370.84,
+    "y1": 621.25,
+    "x2": 370.84,
+    "y2": 655.21,
     "attrs": {
      "stroke": "#C9CEBE",
      "stroke-width": 1
@@ -1887,12 +2207,156 @@
    },
    {
     "t": "text",
-    "x": 401.85,
+    "x": 445.73,
     "y": 621,
     "s": "9 SPACES",
     "attrs": {
      "class": "svg-lab",
      "font-size": "7",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1092.92,
+    "y": 605.59,
+    "w": 163.67,
+    "h": 55.84,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1256.59,
+    "y": 612.95,
+    "w": 9.26,
+    "h": 48.48,
+    "attrs": {
+     "fill": "#E2E5D9",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 974.43,
+    "y": 645.4,
+    "w": 118.49,
+    "h": 16.03,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 967.02,
+    "y": 626.53,
+    "w": 7.41,
+    "h": 18.87,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none",
+     "rx": 2
+    }
+   },
+   {
+    "t": "rect",
+    "x": 364.17,
+    "y": 656.15,
+    "w": 544.71,
+    "h": 5.28,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 903.33,
+    "y": 623.51,
+    "w": 5.55,
+    "h": 32.64,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none",
+     "rx": 2
+    }
+   },
+   {
+    "t": "rect",
+    "x": 712.81,
+    "y": 623.51,
+    "w": 5.55,
+    "h": 32.64,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none",
+     "rx": 2
+    }
+   },
+   {
+    "t": "rect",
+    "x": 520.62,
+    "y": 623.51,
+    "w": 5.56,
+    "h": 32.64,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none",
+     "rx": 2
+    }
+   },
+   {
+    "t": "rect",
+    "x": 364.17,
+    "y": 623.51,
+    "w": 5.74,
+    "h": 32.64,
+    "attrs": {
+     "fill": "#DDE0D4",
+     "stroke": "#CDD2C2",
+     "stroke-width": 0.8,
+     "pointer-events": "none",
+     "rx": 2
+    }
+   },
+   {
+    "t": "text",
+    "x": 1174.85,
+    "y": 635.59,
+    "s": "LANDSCAPE · NO STALLS AT 149 FRONTAGE",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "text",
+    "x": 545,
+    "y": 679,
+    "s": "3' PLANTING STRIP + 4 CURBED END CAPS PER CAD (REV 14)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
      "text-anchor": "middle"
     }
    },
@@ -3094,10 +3558,21 @@
     "t": "text",
     "x": 655,
     "y": 499,
-    "s": "PLAT STRIPING TALLY 314 = FIELD 100 + ARNOULD 38 + STOREFRONT 56 + LOT 6 28 + LOT 8 19 + REAR M.A. 18 + JOHNSTON 10 + LOT 7 32 + JD BANK ESMT 13 · Δ −10 VS VARIANCE — UNRECONCILED",
+    "s": "PLAT LABELS 314 = FIELD 100 · ARNOULD 38 · STOREFRONT 56 · LOT 6 28 · LOT 8 19 · REAR 18 · JOHNSTON 10 · LOT 7 32 · JD BANK 13",
     "attrs": {
      "class": "svg-lab",
-     "font-size": "6.5",
+     "font-size": "6",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "text",
+    "x": 655,
+    "y": 508,
+    "s": "+ 10 UNLABELED JOHNSTON HEAD-IN STALLS (CAD-STRIPED) = 324 = VARIANCE 'PROVIDED' — CANDIDATE RECONCILIATION, VERIFY ON GROUND",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
      "text-anchor": "middle"
     }
    },
@@ -3246,9 +3721,9 @@
    },
    {
     "t": "line",
-    "x1": 849.0,
+    "x1": 849,
     "y1": 344.1,
-    "x2": 849.0,
+    "x2": 849,
     "y2": 313.35,
     "attrs": {
      "stroke": "#C9CEBE",
@@ -4966,6 +5441,1077 @@
     }
    },
    {
+    "t": "rect",
+    "x": 76.91,
+    "y": 431.83,
+    "w": 218.48,
+    "h": 41.51,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "rect",
+    "x": 108.39,
+    "y": 131.29,
+    "w": 51.84,
+    "h": 300.54,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "rect",
+    "x": 74.13,
+    "y": 143.18,
+    "w": 34.26,
+    "h": 194.32,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 151.35,
+    "x2": 74.04,
+    "y2": 151.35,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 168.33,
+    "x2": 74.04,
+    "y2": 168.33,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 185.31,
+    "x2": 74.04,
+    "y2": 185.31,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 202.29,
+    "x2": 74.04,
+    "y2": 202.29,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 219.27,
+    "x2": 74.04,
+    "y2": 219.27,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 236.25,
+    "x2": 74.04,
+    "y2": 236.25,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 253.22,
+    "x2": 74.04,
+    "y2": 253.22,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 270.2,
+    "x2": 74.04,
+    "y2": 270.2,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 287.18,
+    "x2": 74.04,
+    "y2": 287.18,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 304.16,
+    "x2": 74.04,
+    "y2": 304.16,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "line",
+    "x1": 108.29,
+    "y1": 321.14,
+    "x2": 74.04,
+    "y2": 321.14,
+    "attrs": {
+     "stroke": "#C9CEBE",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "text",
+    "x": 122,
+    "y": 237,
+    "s": "10 SPACES — UNLABELED ON PLAT · CAD-STRIPED",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "text-anchor": "middle",
+     "transform": "rotate(-90 122 237)"
+    }
+   }
+  ],
+  "access": [
+   {
+    "t": "rect",
+    "x": 70,
+    "y": 662,
+    "w": 1290,
+    "h": 7.55,
+    "attrs": {
+     "fill": "#E2E5D9",
+     "stroke": "none",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 690.3,
+    "x2": 1480,
+    "y2": 690.3,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 1,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1408.23,
+    "y1": -310,
+    "x2": 1408.23,
+    "y2": 662,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 1,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 76.39,
+    "x2": 1480,
+    "y2": 76.39,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 1,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 0,
+    "y1": 38.66,
+    "x2": 1480,
+    "y2": 38.66,
+    "attrs": {
+     "stroke": "#AEB4A2",
+     "stroke-width": 1,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 0.16 -111.52 L 3.64 -83.22 L 6.88 -54.92 L 9.9 -26.62 L 12.68 1.68 L 15.24 29.98 L 17.57 58.28 L 19.67 86.58 L 21.55 114.88 L 23.19 143.18 L 24.61 171.48 L 25.81 199.78 L 26.78 228.08 L 27.52 256.38 L 28.04 284.67 L 28.33 312.97 L 28.39 341.27 L 28.23 369.57 L 27.85 397.87 L 27.24 426.17 L 26.4 454.47 L 25.34 482.77 L 24.05 511.07 L 22.53 539.37 L 20.79 567.67 L 18.83 595.97 L 16.63 624.27",
+    "attrs": {
+     "fill": "none",
+     "stroke": "#AEB4A2",
+     "stroke-width": 1,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 994.33,
+    "y": 726.15,
+    "w": 189.78,
+    "h": 20.37,
+    "attrs": {
+     "fill": "#C9CEBE",
+     "stroke": "#AEB4A2",
+     "stroke-width": 0.8,
+     "rx": 3,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1089.22,
+    "y": 738.53,
+    "s": "RAISED MEDIAN",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 376.3,
+    "y": 726.15,
+    "w": 515.64,
+    "h": 20.37,
+    "attrs": {
+     "fill": "#C9CEBE",
+     "stroke": "#AEB4A2",
+     "stroke-width": 0.8,
+     "rx": 3,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 634.12,
+    "y": 738.53,
+    "s": "RAISED MEDIAN",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 943.14,
+    "y": 738.53,
+    "s": "MEDIAN OPENING 55'",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 221.33,
+    "y": 738.53,
+    "s": "MEDIAN ENDS · FULL ACCESS TO SIGNAL",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1447,
+    "y": 560,
+    "s": "ASPHALT EDGE · DITCH SHOULDER",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(90 1447 560)"
+    }
+   },
+   {
+    "t": "text",
+    "x": 200,
+    "y": 84,
+    "s": "ASPHALT EDGE · 20' PAVEMENT IN 40' R/W",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 46.91,
+    "y": 140,
+    "s": "ASPHALT EDGE · US 167 · 4 LANES",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(-90 46.91 140)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 967.02 662 L 908.88 662 L 876.3 690.3 L 981.09 690.3 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 364.36 662 L 290.85 662 L 278.82 690.3 L 376.95 690.3 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 134.21 662 L 97.74 662 L 85.52 690.3 L 145.88 690.3 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#5F6E64",
+     "stroke-width": 0.8,
+     "stroke-dasharray": "3 2",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 933.45 637 L 933.45 653 M 933.45 653 L 930.25 648 L 936.65 648 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 942.45 653 L 942.45 637 M 942.45 637 L 945.65 642 L 939.25 642 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 323.1 637 L 323.1 653 M 323.1 653 L 319.9 648 L 326.3 648 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 332.1 653 L 332.1 637 M 332.1 637 L 335.3 642 L 328.9 642 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 111.48 643.5 L 111.48 656.5 M 111.48 656.5 L 108.28 651.5 L 114.68 651.5 Z",
+    "attrs": {
+     "fill": "#5F6E64",
+     "stroke": "#5F6E64",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 120.48 656.5 L 120.48 643.5 M 120.48 643.5 L 123.68 648.5 L 117.28 648.5 Z",
+    "attrs": {
+     "fill": "#5F6E64",
+     "stroke": "#5F6E64",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 937.95,
+    "y": 698,
+    "s": "DRIVEWAY A · ARNOULD · 31' THROAT · TWO-WAY · MEDIAN OPENING 55' — FULL MOVEMENT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 327.6,
+    "y": 698,
+    "s": "DRIVEWAY B · ARNOULD · 40' THROAT · TWO-WAY · SHARED W/ JD BANK — RECIPROCAL ACCESS & PARKING SERVITUDE",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 115.98,
+    "y": 686.5,
+    "s": "BANK DRIVE",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 73.6 415.98 L 71.86 473.34 L 25.19 486.41 L 28.27 365.86 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 114 466 L 130 466 M 130 466 L 125 469.2 L 125 462.8 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 130 437 L 114 437 M 114 437 L 119 433.8 L 119 440.2 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 224,
+    "y": 453,
+    "s": "JOHNSTON DRIVE · 30' THROAT · TWO-WAY",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1310.94,
+    "y": 521.5,
+    "w": 49.06,
+    "h": 69.43,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "rect",
+    "x": 1310.94,
+    "y": 223.55,
+    "w": 49.06,
+    "h": 106.97,
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#CDD2C2",
+     "stroke-width": 1
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1360 521.5 L 1360 590.93 L 1408.23 623.32 L 1408.23 497.49 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1360 259.07 L 1360 302.28 L 1408.23 320.9 L 1408.23 240.15 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1360 142.29 L 1360 181.91 L 1408.23 200.53 L 1408.23 123.18 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1331 560.72 L 1345 560.72 M 1345 560.72 L 1340 563.92 L 1340 557.52 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1345 551.72 L 1331 551.72 M 1331 551.72 L 1336 548.52 L 1336 554.92 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1331 285.18 L 1345 285.18 M 1345 285.18 L 1340 288.38 L 1340 281.98 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1345 276.18 L 1331 276.18 M 1331 276.18 L 1336 272.98 L 1336 279.38 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1331 166.6 L 1345 166.6 M 1345 166.6 L 1340 169.8 L 1340 163.4 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1345 157.6 L 1331 157.6 M 1331 157.6 L 1336 154.4 L 1336 160.8 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1420,
+    "y": 556.22,
+    "s": "149 SERVICE DRIVE · 37' · FREEZER + 6' FENCE",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(90 1420 556.22)"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1420,
+    "y": 280.68,
+    "s": "135B/137 REAR PAD · 23'",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(90 1420 280.68)"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1420,
+    "y": 162.1,
+    "s": "LOT 8 DRIVE · 21' · TWO-WAY",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(90 1420 162.1)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1229.56 96 L 1183.27 96 L 1164.76 76.39 L 1248.08 76.39 Z",
+    "attrs": {
+     "fill": "#E8EBE0",
+     "stroke": "#1C2B26",
+     "stroke-width": 0.9,
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1149.02 96 L 1130.88 96 L 1140.13 76.39 L 1164.76 76.39 Z",
+    "attrs": {
+     "fill": "#E2E5D9",
+     "stroke": "#5F6E64",
+     "stroke-width": 0.8,
+     "stroke-dasharray": "1.5 2",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1201.92 101 L 1201.92 115 M 1201.92 115 L 1198.72 110 L 1205.12 110 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1210.92 115 L 1210.92 101 M 1210.92 101 L 1214.12 106 L 1207.72 106 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1235,
+    "y": 91,
+    "s": "LOT 8 DRIVE · 25' · TWO-WAY",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "start",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1136,
+    "y": 91,
+    "s": "BREEZEWAY APRON · 10' THROAT · PEDESTRIAN",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6.5",
+     "font-weight": "600",
+     "fill": "#5F6E64",
+     "text-anchor": "end",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 600,
+    "y": 84,
+    "s": "REAR PARALLEL ROW — 5 CURBED BAYS OFF M.A. (4+4+4+4+2 = 18) · DIRECT STREET ACCESS, NO SINGLE CURB CUT",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "line",
+    "x1": 1362,
+    "y1": -196.6,
+    "x2": 1362,
+    "y2": -46.05,
+    "attrs": {
+     "stroke": "#2F6B4F",
+     "stroke-width": 2,
+     "stroke-dasharray": "6 4",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1420,
+    "y": -120.95,
+    "s": "LOT 7 — OPEN FRONTAGE ON PATRICIA · 80' UNCURBED · 32 SP",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(90 1420 -120.95)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 936.14 572 L 936.14 588 M 936.14 588 L 932.94 583 L 939.34 583 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 945.14 588 L 945.14 572 M 945.14 572 L 948.34 577 L 941.94 577 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 936.14 392 L 936.14 408 M 936.14 408 L 932.94 403 L 939.34 403 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 945.14 408 L 945.14 392 M 945.14 392 L 948.34 397 L 941.94 397 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 325.14 632 L 325.14 648 M 325.14 648 L 321.94 643 L 328.34 643 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 334.14 648 L 334.14 632 M 334.14 632 L 337.34 637 L 330.94 637 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 325.14 367 L 325.14 383 M 325.14 383 L 321.94 378 L 328.34 378 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 334.14 383 L 334.14 367 M 334.14 367 L 337.34 372 L 330.94 372 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 317.61,
+    "y": 505,
+    "s": "SHARED ACCESS AISLE — JD BANK TRAFFIC (RECIPROCAL SERVITUDE)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "6",
+     "font-weight": "600",
+     "fill": "#1C2B26",
+     "text-anchor": "middle",
+     "pointer-events": "none",
+     "transform": "rotate(-90 317.61 505)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 130.73 292 L 130.73 308 M 130.73 308 L 127.53 303 L 133.93 303 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 139.73 308 L 139.73 292 M 139.73 292 L 142.93 297 L 136.53 297 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1042 608.5 L 1058 608.5 M 1058 608.5 L 1053 611.7 L 1053 605.3 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1058 599.5 L 1042 599.5 M 1042 599.5 L 1047 596.3 L 1047 602.7 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 532 608.5 L 548 608.5 M 548 608.5 L 543 611.7 L 543 605.3 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 548 599.5 L 532 599.5 M 532 599.5 L 537 596.3 L 537 602.7 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1082 382.5 L 1098 382.5 M 1098 382.5 L 1093 385.7 L 1093 379.3 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 1098 373.5 L 1082 373.5 M 1082 373.5 L 1087 370.3 L 1087 376.7 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 242 382.5 L 258 382.5 M 258 382.5 L 253 385.7 L 253 379.3 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 258 373.5 L 242 373.5 M 242 373.5 L 247 370.3 L 247 376.7 Z",
+    "attrs": {
+     "fill": "#2F6B4F",
+     "stroke": "#2F6B4F",
+     "stroke-width": 1.2,
+     "stroke-linejoin": "round",
+     "pointer-events": "none"
+    }
+   }
+  ],
+  "annotations": [
+   {
+    "t": "text",
+    "x": 640,
+    "y": 307.06,
+    "s": "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "text",
+    "x": 1310.94,
+    "y": 671.5,
+    "s": "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "8.5",
+     "text-anchor": "end"
+    }
+   }
+  ],
+  "easements": [
+   {
     "t": "line",
     "x1": 1360,
     "y1": 643.13,
@@ -5074,30 +6620,6 @@
      "stroke-width": 1,
      "stroke-dasharray": "3 2"
     }
-   }
-  ],
-  "annotations": [
-   {
-    "t": "text",
-    "x": 640,
-    "y": 307.06,
-    "s": "LONG BLDG 101–133 — BACKS MARIE ANTOINETTE · 101 AT JOHNSTON END · STOREFRONTS FACE LOT 1",
-    "attrs": {
-     "class": "svg-lab",
-     "font-size": "8.5",
-     "text-anchor": "middle"
-    }
-   },
-   {
-    "t": "text",
-    "x": 1310.94,
-    "y": 671.5,
-    "s": "SHORT BLDG 135–149 — 149 ANCHORS ARNOULD CORNER",
-    "attrs": {
-     "class": "svg-lab",
-     "font-size": "8.5",
-     "text-anchor": "end"
-    }
    },
    {
     "t": "path",
@@ -5145,6 +6667,18 @@
      "class": "svg-lab",
      "font-size": "7.5",
      "fill": "#A87E2F",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 300,
+    "y": 388.49,
+    "s": "OUR SAVIOR'S CHURCH ACCESS & PARKING EASEMENT — $350/MO · 25-YR · SUNDAYS + 6PM–MIDNIGHT · AREA-WIDE (NO PLAT OUTLINE)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "7",
+     "fill": "#8A937F",
      "pointer-events": "none"
     }
    }
@@ -5916,7 +7450,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 11 — EASEMENT & UTILITY OVERLAYS",
+    "s": "REV 14 — ACCESS · ARNOULD FRONTAGE ISLANDS",
     "attrs": {
      "class": "svg-lab",
      "font-size": "8"

@@ -87,7 +87,12 @@ export const FEATURE_TYPES = [
   ["shutoff", "💧", "Water shutoff"], ["meter", "⚡", "Utility meter"],
   ["hydrant", "🧯", "Fire hydrant/riser"], ["column", "🏛", "Column"],
   ["bench", "🪑", "Bench"], ["can", "🗑", "Trash can"],
-  ["light", "💡", "Light pole"], ["sign", "🪧", "Sign"], ["other", "📍", "Other"]
+  ["light", "💡", "Light pole"], ["sign", "🪧", "Sign"],
+  // lease / ops designations (2026-09-05): mark reserved stalls, a monument-sign
+  // site, common-area extents, loading and dumpster pads on the A-1 plan
+  ["reserved", "🔒", "Reserved parking"], ["monument", "🏷", "Monument sign site"],
+  ["common", "🌿", "Common area"], ["loading", "🚚", "Loading zone"], ["dumpster", "♻", "Dumpster pad"],
+  ["other", "📍", "Other"]
 ];
 const FEATURE_IDS = new Set(FEATURE_TYPES.map(t => t[0]));
 const cleanFeature = f => ({

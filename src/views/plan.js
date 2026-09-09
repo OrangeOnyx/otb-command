@@ -20,6 +20,8 @@ let showFeatures = true;   // 📍 site-asset pins (features layer)
 let addPinMode = false;    // ＋ Pin: next plan click drops a pin
 let showPhotos = true; // 📷 badge on units that have photos/plans
 let showParking = true;  // 🅿 plat-traced stall striping (carved-out layer)
+let showAccess = true;   // ⇆ ingress/egress: curb cuts, aisle flow, Arnould median (geometry.layers.access, REV 13)
+let showEasements = true; // § liquor line + utility/electric/guy easements (geometry.layers.easements)
 let showCameras = false; // 🎥 CCTV mounts + view cones (registry: data/cameras.json)
 let showOcc = false;     // 🚗 C3 stall occupancy (REMOTE only; stall-map.json row56)
 let camEdit = false;     // ✎ Adjust: drag pins to move, drag the ◆ handle to re-aim
@@ -62,6 +64,7 @@ export function drawPlan() {
   renderPrims(g(svg), geometry.layers.remoteLot);
   if (showOcc) paintOcc(g(svg, "occ-layer")); // under the stall striping
   if (showParking) renderPrims(g(svg, "parking-layer"), geometry.layers.parking);
+  if (showAccess) renderPrims(g(svg, "access-layer"), geometry.layers.access || []);
 
   // raster overlay layer — below the unit rects so units stay interactive
   const overlayLayer = g(svg);
@@ -90,6 +93,11 @@ export function drawPlan() {
   });
 
   renderPrims(g(svg), geometry.layers.annotations);
+  if (showEasements) {
+    const eg = g(svg, "easement-layer");
+    eg.setAttribute("pointer-events", "none"); // drawn above the unit rects; must never eat a unit click
+    renderPrims(eg, geometry.layers.easements || []);
+  }
   renderPrims(g(svg), geometry.layers.generalNotes);
   renderPrims(g(svg), geometry.layers.titleBlock);
 
@@ -386,6 +394,18 @@ export function initPlan() {
   if (parkChip) parkChip.onclick = () => {
     showParking = !showParking;
     parkChip.classList.toggle("on", showParking);
+    drawPlan();
+  };
+  const accessChip = document.querySelector('.plan-tools .chip[data-overlay="access"]');
+  if (accessChip) accessChip.onclick = () => {
+    showAccess = !showAccess;
+    accessChip.classList.toggle("on", showAccess);
+    drawPlan();
+  };
+  const esmtChip = document.querySelector('.plan-tools .chip[data-overlay="easements"]');
+  if (esmtChip) esmtChip.onclick = () => {
+    showEasements = !showEasements;
+    esmtChip.classList.toggle("on", showEasements);
     drawPlan();
   };
   const occChip = document.querySelector('.plan-tools .chip[data-overlay="occupancy"]');

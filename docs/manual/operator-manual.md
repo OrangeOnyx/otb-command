@@ -137,14 +137,24 @@ something needs attention.
 
 The recorded plat, interactive. **Chips** toggle overlay layers:
 - **Lenses:** Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.
-- **🅿 Parking** — the 314 drawn stalls by zone.
+- **🅿 Parking** — the 314 plat-labeled stalls by zone, plus the 10-stall Johnston
+  row the CAD stripes but the plat never labels (marked as such).
+- **⇆ Access** — ingress/egress as built: every curb cut drawn as an apron with its
+  throat width, two-way arrow pairs at the cuts and along the aisles, the Arnould
+  raised median and its one 55' opening (Driveway A is the only full-movement cut),
+  edge-of-pavement lines, Lot 7's open Patricia frontage. Source: the architect CAD,
+  satellite-confirmed (`docs/site-access-inventory-2026-09.md`).
+- **§ Easements** — the §3a liquor line and its notes, the church easement note,
+  10' utility easements, electric easement 577566, the 5×5' guy easement. Switch off
+  for a clean leasing exhibit.
 - **🎥 Cameras** — 17 mounts with view cones; click one → its live view.
   **✎ Adjust cams** (operator-only): drag pin to move, drag the brass dot to
   re-aim, double-click to reset; corrections persist.
 - **🚗 Occupancy** — latest measured stall states painted green/outline over
   the storefront row, Lot 8 pocket, and the 149 corner.
-- **📍 Pins / ＋ Pin** — drop a pin per water shutoff, meter, bench, column.
-  Pins also appear on the satellite lens.
+- **📍 Pins / ＋ Pin** — drop a pin per water shutoff, meter, bench, column — and
+  for lease/ops designations: reserved parking, monument-sign site, common area,
+  loading zone, dumpster pad. Pins also appear on the satellite lens.
 - **Overlay → Floor plan** — whole-center floor-plan raster under the unit
   boxes, with an opacity slider.
 Click any unit → drawer.

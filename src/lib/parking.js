@@ -20,12 +20,15 @@ export function isHeadOn(line) {
 }
 
 /* Stall lines for the storefront row against the long building
-   (between the covered walkway and the liquor line; plat: '56 SPACES' ×2). */
-export function storefrontStalls(prims, band = { yMin: 300, yMax: 360 }) {
+   (between the covered walkway and the liquor line; plat: '56 SPACES' ×2).
+   The x-range keeps out the Johnston-frontage head-in ticks (REV 13, x < 110)
+   whose y-band overlaps the row. */
+export function storefrontStalls(prims, band = { yMin: 300, yMax: 360, xMin: 120, xMax: 1100 }) {
   return prims.filter(p => {
     if (p.t !== "line") return false;
-    const ymid = (p.y1 + p.y2) / 2;
-    return ymid > band.yMin && ymid < band.yMax;
+    const ymid = (p.y1 + p.y2) / 2, xmid = (p.x1 + p.x2) / 2;
+    return ymid > band.yMin && ymid < band.yMax &&
+      (band.xMin == null || xmid > band.xMin) && (band.xMax == null || xmid < band.xMax);
   });
 }
 

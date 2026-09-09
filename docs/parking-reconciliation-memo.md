@@ -1,7 +1,32 @@
 # MEMO — Parking Count Reconciliation (Δ −10)
 **On The Boulevard Shopping Center · 101–149 Arnould Blvd, Lafayette, LA 70506**
 **Prepared:** June 10, 2026 · OTB Property Command, geometry REV 11
-**Status:** OPEN — pending variance file pull
+**Status:** OPEN — CANDIDATE RESOLUTION FOUND 2026-09-05 (see update below); ground/aerial confirmation pending
+
+---
+
+## UPDATE 2026-09-05 — candidate resolution from the architect CAD (geometry REV 13)
+While tracing ingress/egress from `cad/Boulev_CLEAN.dxf` for the A-1 access layer, the
+CAD's PARKING layer showed an **11-line head-in row (10 stalls at 9.0' pitch) nosing the
+Johnston R/W south of the pylon-sign pocket** (CAD x 1073–1093, y 189.0–279.5 → plat
+a 651–669.5, b −172…−271). It carries **no "N SPACES" label** on the plat, so the
+raster tally of labels below never counted it. The plat's own "Johnston strip 10" is the
+labeled 8 in the notch aisle + 2 at the sign pocket — a different row.
+
+**314 labeled + 10 unlabeled = 324 = the variance's "324 provided" exactly.**
+
+This favors candidate explanation 4 (a labeling gap on the plat, not a count error in the
+variance). Recorded in `src/data/geometry.json → parking.cadUnlabeled / totalStriped`;
+the row is drawn on A-1 and labeled "UNLABELED ON PLAT · CAD-STRIPED".
+
+**Imagery check 2026-09-06 (Google Earth captures supplied by the operator):** the
+oblique and 2D views show cars parked head-in on the Johnston frontage directly south of
+unit 101, exactly where the CAD stripes the row, in a count consistent with 10. Still a
+candidate until the stripes are counted on the ground, but the row exists and is in use.
+
+Remaining to close: confirm the 10 stalls are striped on the ground today (walk or next
+drone pass), then flip CLAUDE.md to "324 striped = variance" and retire the 314 ops figure.
+Until then the interim guidance below still holds.
 
 ---
 
@@ -22,7 +47,7 @@ which definition controls.
 |---|---|---|---|
 | 1 | Main field — two angled double-loaded bands (9.00' × 23.70' stalls) | 100 | 36+36 west segments, 14+14 east segments |
 | 2 | Arnould frontage head-in row | 38 | modules 7 + 11 + 11 + 9; none at Jason's frontage |
-| 3 | Storefront row (long building) | 56 | one angled row, labeled "56 SPACES" twice |
+| 3 | Storefront row (long building) | 56 | one perpendicular head-in row (REV 12; NOT angled), labeled "56 SPACES" twice |
 | 4 | Lot 6 west-field zone | 28 | 16 island module + 12 at short-bldg walkway |
 | 5 | Lot 8 pocket (Patricia × M.A.) | 19 | 10 + 5 + 4 |
 | 6 | Rear M.A. parallel row | 18 | 4+4+4+4+2; gap at electric easement 577566 |
