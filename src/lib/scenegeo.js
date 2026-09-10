@@ -16,6 +16,7 @@ import geo from "../data/footprints-geo.json";
 import satBase from "../data/sat-base.json";
 import { planBearing, planToLL, ringCentroid } from "./geoproject.js";
 import { getFeatures, FEATURE_TYPES } from "../store.js";
+import { HILLSHADE_COORDINATES, probeHillshade, LIDAR_FETCH_HINT } from "./elevation.js";
 
 const FEATURE_ICON = Object.fromEntries(FEATURE_TYPES.map(([id, icon]) => [id, icon]));
 
@@ -56,6 +57,10 @@ export function createGeoScene(container, units, opts = {}) {
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: true }), "top-right");
   container.__map = map; // debug/verification seam (element-scoped, no global)
+  container.style.position = "relative";
+
+  let disposed = false;
+  let hillBtn = null;
 
   // unit-number markers at footprint centroids (screen-upright at any bearing)
   geo.features.forEach(f => {
@@ -111,11 +116,62 @@ export function createGeoScene(container, units, opts = {}) {
   map.on("load", ensureLayers);
   map.on("idle", ensureLayers);
 
+  /* Optional USGS hillshade — public/elevation/OTB-hillshade.png after
+     `node tools/fetch-otb-lidar.mjs`. HEAD-probe + HTML-fallback reject so
+     prod without the file is a no-op (console hint only). */
+  const mountHillshade = async () => {
+    const url = await probeHillshade(fetch, import.meta.env?.BASE_URL || "/");
+    if (disposed) return;
+    if (!url) { console.info(LIDAR_FETCH_HINT); return; }
+    let on = true, hillReady = false;
+    const add = () => {
+      if (disposed || hillReady || !map.getStyle() || map.getSource("hillshade")) return;
+      try {
+        map.addSource("hillshade", {
+          type: "image",
+          url,
+          coordinates: HILLSHADE_COORDINATES,
+        });
+        map.addLayer({
+          id: "hillshade", type: "raster", source: "hillshade",
+          layout: { visibility: on ? "visible" : "none" },
+          paint: { "raster-opacity": 0.42 },
+        }, map.getLayer("unit-fill") ? "unit-fill" : undefined);
+        hillReady = true;
+      } catch (err) {
+        hillReady = true; // do not retry on every idle
+        console.warn("hillshade overlay:", err.message || err);
+      }
+    };
+    map.on("load", add);
+    map.on("idle", add);
+    if (map.loaded()) add();
+    hillBtn = document.createElement("button");
+    hillBtn.type = "button";
+    hillBtn.className = "mesh-toggle tl";
+    hillBtn.title = "USGS 3DEP hillshade (lidar-otb-v1)";
+    const paint = () => {
+      hillBtn.textContent = on ? "⛰ Relief on" : "⛰ Relief off";
+      hillBtn.classList.toggle("on", on);
+      if (map.getLayer("hillshade")) {
+        map.setLayoutProperty("hillshade", "visibility", on ? "visible" : "none");
+      }
+    };
+    hillBtn.onclick = () => { on = !on; paint(); };
+    container.appendChild(hillBtn);
+    paint();
+  };
+  mountHillshade();
+
   function setSelected(unit) {
     if (map.getLayer("unit-sel")) map.setFilter("unit-sel", ["==", ["get", "unit"], unit || "__none__"]);
   }
   function resize() { map.resize(); }
-  function dispose() { map.remove(); } // removes markers with the map
+  function dispose() {
+    disposed = true;
+    if (hillBtn) { hillBtn.remove(); hillBtn = null; }
+    map.remove(); // removes markers with the map
+  }
 
   return { dispose, resize, setSelected, refreshPins: renderPins };
 }

@@ -126,6 +126,8 @@ svg#plan{width:100%;height:auto;display:block}
 .mesh-toggle{position:absolute;top:10px;right:10px;z-index:2;font:600 11px/1 var(--mono);letter-spacing:.08em;
   color:var(--ink);background:var(--card);border:1px solid var(--line2);border-radius:99px;padding:7px 12px;cursor:pointer}
 .mesh-toggle:hover{border-color:var(--brass)}
+.mesh-toggle.tl{right:auto;left:10px}
+.mesh-toggle.on{border-color:var(--brass);background:var(--brass-bg)}
 /* ---- A-1 site-asset pins (features layer) ---- */
 #pg-plan .plan-card{position:relative} /* anchors the pin editor */
 .feat-pin{cursor:pointer}
