@@ -1,0 +1,25 @@
+{
+  "release": "lidar-otb-v1",
+  "image": "/elevation/OTB-hillshade.png",
+  "coordinates": [
+    [-92.0559423317, 30.2050429232],
+    [-92.0500002163, 30.2050000009],
+    [-92.0500582720, 30.1989545318],
+    [-92.0560000244, 30.1989974437]
+  ],
+  "aoi": {
+    "west": -92.056,
+    "south": 30.199,
+    "east": -92.05,
+    "north": 30.205,
+    "center": [-92.05255, 30.20257]
+  },
+  "raster": {
+    "width": 572,
+    "height": 670,
+    "crs": "EPSG:26915",
+    "geoTransform": [590866.4590887724, 1, 0, 3341882.7631028392, 0, -1]
+  },
+  "source": "USGS 3DEP LA_Catahoula_Concordia_2017_D17 (public domain)",
+  "note": "Corners are the hillshade PNG pixel-is-area extent converted NAD83/UTM 15N → WGS84. File is local after `node tools/fetch-otb-lidar.mjs` — not committed. Missing file → overlay skipped."
+}

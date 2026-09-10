@@ -23,6 +23,10 @@ public/OTB-splat.ksplat
 # photogrammetry mesh (regenerable: npm run mesh-glb)
 public/OTB-mesh.glb
 
+# USGS LiDAR pack (regenerable: node tools/fetch-otb-lidar.mjs)
+public/elevation/
+docs/lidar/data/
+
 # knowledge graph outputs (regenerable: /graphify from docs/graph; see HANDOFF graphify note)
 docs/graph/graphify-out/
 docs/graph/.graphify_*

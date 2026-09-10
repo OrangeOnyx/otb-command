@@ -21,7 +21,8 @@
     "extract-georef": "python tools/extract-georef.py",
     "logo-thumbs": "python tools/make-logo-thumbs.py",
     "mesh-glb": "python tools/build-mesh-glb.py",
-    "cube-frames": "node tools/cube-frames.mjs"
+    "cube-frames": "node tools/cube-frames.mjs",
+    "fetch-lidar": "node tools/fetch-otb-lidar.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0"
