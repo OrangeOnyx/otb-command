@@ -15,13 +15,22 @@ test('suite finance stays absent without an authorized report or a matching suit
   assert.equal(atlasSuiteMarkup({scheduled:{units:{}}},'101',()=>{throw new Error('must not request a source');}), '');
 });
 
-test('scheduled suite zero remains a dated contractual value with its source', () => {
+test('scheduled suite zero remains a dated adopted value with its source', () => {
   const report = {scheduled:{asOf:'2026-07-16',sourceId:'atlas-rent-roll',units:{'135B':{monthly:0}}}};
   const markup = atlasSuiteMarkup(report,'135B',(id,label)=>`<button data-source="${id}">${label}</button>`);
   assert.match(markup,/\$0\.00/);
-  assert.match(markup,/Contractual schedule · Jul 16, 2026/);
+  assert.match(markup,/Adopted schedule · Jul 16, 2026/);
   assert.match(markup,/data-source="atlas-rent-roll"/);
   assert.match(markup,/current occupancy and payment are unverified/);
+});
+
+test('current suite review renders from the authorized report with its own source', () => {
+  const report={scheduled:{asOf:'2026-09-10',sourceId:'current-schedule',units:{'119':{monthly:2890.42,sourceId:'current-schedule',leaseEvidence:{status:'conflict',label:'Current term unresolved',summary:'Signed date clauses conflict.'}}}}};
+  const markup=atlasSuiteMarkup(report,'119',(id,label)=>`<button data-source="${id}">${label}</button>`);
+  assert.match(markup,/Current term unresolved/);
+  assert.match(markup,/data-source="lease-review-119"/);
+  assert.match(markup,/Schedule amounts do not establish bank receipts/);
+  assert.doesNotMatch(markup,/holdover|Contractual schedule/);
 });
 
 test('combined-suite reporting allocation is visible and escaped', () => {

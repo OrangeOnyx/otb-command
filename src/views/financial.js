@@ -2,30 +2,28 @@
    operator-entered operating-expense worksheet that yields NOI and an indicated
    value. Income is read-only from units.json (SOT); OpEx + cap rate persist
    through the store. No new data sources. */
-import { UNITS, OPEX_LINES, getFinancials, setOpex, setCapRate, subscribe } from "../store.js";
+import { UNITS, OPEX_LINES, getFinancials, setOpex, setCapRate, subscribe, getRecoveries } from "../store.js";
 import { CAT_META } from "../lib/colors.js";
-import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
+import { fmt$0, pDate, monthsTo, esc, TODAY, sumKnownAmounts } from "../lib/format.js";
 import { REMOTE, listLedgerEntries } from "../lib/remote.js";
 import { aging, effectiveEntries, CREDIT_TYPES } from "../lib/ledger.js";
 import { getPayHistory, payHistoryLoaded, refreshPayHistory, payHistoryStats, portfolioPayTotals } from "../lib/payhistory.js";
 import { tenantHealth, healthColor, periodTotals } from "../lib/tenanthealth.js";
 import { reconModel, reconCaveats } from "../lib/camrecon.js";
-import recoveries from "../data/recoveries.json";
+import { leaseTermCoverage } from "../lib/term-coverage.js";
 
 const annual = u => (u.monthly || 0) * 12;
 
 /* annual income by component (PSF × SF). Base is single-sourced from units.json
    (SOT rent roll); CAM/Tax/Ins come from the recoveries composition. */
-function composition() {
-  const c = { base: 0, cam: 0, tax: 0, ins: 0 };
-  UNITS.forEach(u => {
-    c.base += (u.base || 0) * u.sf;
-    const r = recoveries.units[u.unit];
-    if (!r) return;
-    c.cam += r.cam * u.sf; c.tax += r.tax * u.sf; c.ins += r.ins * u.sf;
-  });
-  c.total = c.base + c.cam + c.tax + c.ins;
-  c.recoveries = c.cam + c.tax + c.ins;
+function composition(recoveries) {
+  const c = { base: sumKnownAmounts(UNITS.map(u => Number.isFinite(u.base) ? u.base * u.sf : null)) };
+  for (const key of ['cam', 'tax', 'ins']) c[key] = sumKnownAmounts(UNITS.map(u => {
+    const amount = recoveries.units[u.unit]?.[key];
+    return Number.isFinite(amount) ? amount * u.sf : null;
+  }));
+  c.total = sumKnownAmounts([c.base, c.cam, c.tax, c.ins]);
+  c.recoveries = sumKnownAmounts([c.cam, c.tax, c.ins]);
   return c;
 }
 
@@ -36,10 +34,8 @@ function income() {
   const leasedSF = leased.reduce((s, u) => s + u.sf, 0);
   const annualRent = UNITS.reduce((s, u) => s + annual(u), 0);
   const effPSF = leasedSF ? annualRent / leasedSF : 0;
-  // rent-weighted average lease term remaining (years); expired → 0
-  const wNum = leased.reduce((s, u) => s + annual(u) * (u.end ? Math.max(0, monthsTo(pDate(u.end)) / 12) : 0), 0);
-  const walt = annualRent ? wNum / annualRent : 0;
-  return { gla, occSF, leasedSF, annualRent, effPSF, walt, leasedCount: leased.length };
+  const terms = leaseTermCoverage(UNITS, TODAY);
+  return { gla, occSF, leasedSF, annualRent, effPSF, terms, leasedCount: leased.length };
 }
 
 function atRisk() {
@@ -56,18 +52,6 @@ function byCategory() {
     .sort((a, b) => b.rent - a.rent);
 }
 
-function rollover() {
-  const buckets = {};
-  UNITS.filter(u => u.monthly > 0 && u.end).forEach(u => {
-    const d = pDate(u.end);
-    const key = d < TODAY ? "Holdover" : String(d.getFullYear());
-    (buckets[key] ||= { rent: 0, n: 0 }); buckets[key].rent += annual(u); buckets[key].n++;
-  });
-  const years = Object.keys(buckets).filter(k => k !== "Holdover").sort();
-  const order = (buckets.Holdover ? ["Holdover"] : []).concat(years);
-  return order.map(k => ({ k, ...buckets[k] }));
-}
-
 /* CAM-recon what-if gross-up (%) — session-local draft input, deliberately
    not persisted (register row #6 is a DRAFT surface, not a billing engine). */
 let camGrossUpPct = 0;
@@ -80,6 +64,11 @@ const bar = (label, val, max, color, right) =>
 export function renderFinancial() {
   const root = document.getElementById("pg-fin");
   if (!root) return;
+  const recoveries = getRecoveries();
+  if (!recoveries || !UNITS.every(u => Number.isFinite(u.monthly) && Number.isFinite(u.base))) {
+    root.querySelector('.fin-body').innerHTML = '<div class="card"><div class="panel-h"><h2>Private financial data unavailable</h2></div><p class="led-note">Rent and recovery figures require an authenticated owner/operator session. Local review does not contain these figures; missing values are unknown.</p></div>';
+    return;
+  }
   const inc = income();
   const risk = atRisk();
   const fin = getFinancials();
@@ -93,8 +82,8 @@ export function renderFinancial() {
     ["green", "In-place rent", fmt$0(inc.annualRent), fmt$0(inc.annualRent / 12) + "/mo · " + inc.leasedCount + " tenancies"],
     ["ink", "Effective rent", "$" + inc.effPSF.toFixed(2) + "<small> PSF</small>", "on " + inc.leasedSF.toLocaleString() + " leased SF"],
     ["green", "Occupancy", (inc.occSF / inc.gla * 100).toFixed(1) + "<small>%</small>", inc.occSF.toLocaleString() + " of " + inc.gla.toLocaleString() + " SF"],
-    ["brass", "WALT", inc.walt.toFixed(1) + "<small> yr</small>", "rent-weighted remaining term"],
-    ["brick", "Revenue at risk", fmt$0(risk.holdoverRent + risk.exp12Rent), risk.holdover.length + " holdover · " + risk.exp12.length + " expiring ≤12mo"],
+    ["brass", "WALT", inc.terms.walt == null ? "—" : inc.terms.walt.toFixed(1) + "<small> yr</small>", inc.terms.unknownUnits.length ? inc.terms.unknownUnits.length + " suites need term review · " + (inc.terms.coveredRentShare * 100).toFixed(0) + "% rent coverage" : "rent-weighted remaining term"],
+    ["brick", "Known near-term rent", fmt$0(risk.holdoverRent + risk.exp12Rent), risk.holdover.length + " explicit expired · " + risk.exp12.length + " expiring ≤12mo" + (inc.terms.unknownUnits.length ? " · excludes " + inc.terms.unknownUnits.length + " unresolved suites" : "")],
     ["brass", "Anchor concentration", anchorPct.toFixed(1) + "<small>%</small>", "Jason's Deli of in-place rent"]
   ].map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 
@@ -103,10 +92,11 @@ export function renderFinancial() {
   const catBars = cats.map(c => bar(c.label, c.rent, catMax, c.color,
     fmt$0(c.rent) + " · " + (c.rent / inc.annualRent * 100).toFixed(0) + "%")).join("");
 
-  const roll = rollover();
+  const roll = inc.terms.buckets;
   const rollMax = Math.max(...roll.map(r => r.rent));
-  const rollBars = roll.map(r => bar(r.k + " (" + r.n + ")", r.rent, rollMax,
-    r.k === "Holdover" ? "var(--brick)" : "var(--green)", fmt$0(r.rent))).join("");
+  const rollBars = roll.map(r => bar(r.label + " (" + r.n + ")", r.rent, rollMax,
+    r.label === "Term unresolved" ? "var(--brass)" : r.label === "Past recorded end" ? "var(--brick)" : "var(--green)", fmt$0(r.rent))).join("") +
+    (inc.terms.unknownUnits.length ? '<div class="led-note">Current term unresolved for suites ' + esc(inc.terms.unknownUnits.join(', ')) + '. Their scheduled rent remains included in this chart; no holdover is inferred.</div>' : '');
 
   // top-5 tenant concentration (group combined leases by legal entity)
   const byTenant = {};
@@ -117,17 +107,20 @@ export function renderFinancial() {
     (t.rent / inc.annualRent * 100).toFixed(0) + "%")).join("");
 
   // income composition (from SOT rent breakdown) — base vs NNN recoveries
-  const comp = composition();
+  const comp = composition(recoveries);
   const compRows = [
     ["Base rent", comp.base, "var(--green)"],
     ["CAM recovery", comp.cam, "var(--slate)"],
     ["Tax recovery", comp.tax, "var(--navy)"],
     ["Insurance recovery", comp.ins, "var(--plum)"]
   ];
-  const compMax = Math.max(...compRows.map(r => r[1]));
-  const compBars = compRows.map(([l, v, c]) => bar(l, v, compMax, c,
-    fmt$0(v) + " · " + (v / comp.total * 100).toFixed(0) + "%")).join("") +
-    '<div class="comp-foot">NNN recoveries (CAM+Tax+Ins): <b>' + fmt$0(comp.recoveries) + '/yr</b> — tenant reimbursements, offset against actual expenses below.</div>';
+  const compMax = Math.max(0, ...compRows.map(r => r[1]).filter(Number.isFinite));
+  const compBars = compRows.map(([l, v, c]) => Number.isFinite(v)
+    ? bar(l, v, compMax, c, fmt$0(v) + (comp.total ? " · " + (v / comp.total * 100).toFixed(0) + "%" : ""))
+    : '<div class="led-note">' + esc(l) + ': — · source breakdown unresolved</div>').join("") +
+    (comp.recoveries == null
+      ? '<div class="comp-foot">Recovery components remain unresolved for one or more suites. Total scheduled rent above remains available; missing components are not treated as zero.</div>'
+      : '<div class="comp-foot">NNN recoveries (CAM+Tax+Ins): <b>' + fmt$0(comp.recoveries) + '/yr</b> — tenant reimbursements, offset against actual expenses below.</div>');
 
   // recovery income per recoverable OpEx category, for the worksheet hints
   const RECOVER = { cam: comp.cam, taxes: comp.tax, insurance: comp.ins };
@@ -148,11 +141,13 @@ export function renderFinancial() {
 
   // CAM/NNN reconciliation draft (register row #6) — pure model in lib/camrecon.js;
   // all inputs local (UNITS + recoveries + worksheet actuals), painted synchronously.
-  const recon = reconModel(UNITS, recoveries,
+  const recon = comp.recoveries == null ? null : reconModel(UNITS, recoveries,
     { cam: fin.opex.cam || 0, taxes: fin.opex.taxes || 0, insurance: fin.opex.insurance || 0 },
     { grossUpPct: camGrossUpPct });
   let reconHtml;
-  if (!recon) {
+  if (comp.recoveries == null) {
+    reconHtml = '<div class="led-note">Recovery breakdown needs review. Resolve the missing suite components before drafting CAM / NNN reconciliation.</div>';
+  } else if (!recon) {
     reconHtml = '<div class="led-note">Enter CAM / Taxes / Insurance actuals in the NOI worksheet to draft a reconciliation.</div>';
   } else {
     const rDelta = d => '<b style="color:' + (d >= 0 ? "var(--green)" : "var(--brick)") + '">' +

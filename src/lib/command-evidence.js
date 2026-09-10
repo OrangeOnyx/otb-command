@@ -1,6 +1,6 @@
 /* Cypress Command: presentation-only evidence and a deterministic review draft.
    No network, DOM, financial inference, mutable records, or bundled archive. */
-export const ROSTER_AS_OF = "2026-07-16";
+export const ROSTER_AS_OF = "2026-09-10";
 export const COMMAND_PREVIEW = Object.freeze({
   label: 'Preview · isolated test data',
   sourceSnapshotAt: '2026-09-08T18:59:20Z',
@@ -70,7 +70,7 @@ export function suiteEvidence(unit, geometry) {
     fields,
     geometry: { classification, description: note, sourceId: "suite-geometry" },
     sources: [
-      sourceRef("suite-roster", `Suite ${id} · adopted roster extract`, "src/data/units.public.json; docs/sot-2026-07/", ROSTER_AS_OF, "Adopted source extract", JSON.stringify(publicRow, null, 2) + "\n\nJuly 2026 owner-corrected source extracts, adopted 2026-07-16. This is a dated roster, not confirmation of occupancy today. Financial and private fields excluded."),
+      sourceRef("suite-roster", `Suite ${id} · adopted roster extract`, "src/data/units.public.json; docs/sot-2026-07/", ROSTER_AS_OF, "Adopted roster with reviewed term updates", JSON.stringify(publicRow, null, 2) + "\n\nTenant names, status and areas retain July 2026 roster authority. Term fields include the September 10 lease review and owner confirmations; blank dates remain unresolved. Authorized suite reviews show individual evidence and limitations. This is not confirmation of occupancy today. Financial and private fields excluded."),
       sourceRef("suite-geometry", `Suite ${id} · geometry provenance`, "src/data/geometry.json", "2019-07-19", classification, JSON.stringify({ revision: geometry?.rev, source: geometry?.source, demising: bay || null, ...(split135 ? { split: note } : {}) }, null, 2) + "\n\nRendering follows the existing geometry. Derived/interpreted boundaries are not independently surveyed demising walls."),
       { id: "plan-source", title: "Supplied survey plan · original scan", path: "reference/plat-full-72.png", asOf: "2019-07-19", kind: "Supplied source scan", excerpt: "The supplied ALTA/ACSM survey scan includes the survey title, seal, revision table and bearings. Historic tenant labels on the plan do not establish current tenant status. Derived suite subdivisions are qualified separately in the model. This source image is not an independent legal-instrument authentication." },
       { id: "plat", title: "CAD reproduction of recorded plat", path: "public/plat-render.svg", asOf: "2019-07-19", kind: "Source reproduction", excerpt: "Montagnet & Domingue plat: 1994-05-20, revised 2019-07-19. This existing CAD reproduction supports visual comparison; it is not the certified instrument. Street-facing descriptions are approximate compass relationships; the long building follows the plat bearing, not exact north–south.", imageUrl: "/plat-render.svg" },

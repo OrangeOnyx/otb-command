@@ -297,6 +297,53 @@ thead th{font-family:var(--body);font-size:11px;letter-spacing:.02em;color:var(-
 .cmd-suite-rent p.cmd-rent-allocation{color:#78581F;margin-top:10px}
 .cmd-suite-rent .cmd-source-link{margin-top:4px}
 .cmd-suite-rent p.cmd-rent-qualification{margin:2px 0 0}
+
+/* Private lease provenance, shared by the property inspector and suite drawer. */
+.lease-review{margin:18px 0;padding:17px 0 4px;border-top:1px solid #D5DECF;color:#344D3D;font:12px/1.6 var(--body);overflow-wrap:anywhere}
+.lease-review>header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:9px}
+.lease-review h3,.lease-review h4{margin:0;font:600 12px/1.5 var(--body);color:var(--cypress,#1E4D3A)}
+.lease-review h4{margin-bottom:6px}
+.lease-review header time{font-size:10px;color:#687866;white-space:nowrap}
+.lease-review p{margin:6px 0;font-size:12px;line-height:1.6}
+.lease-review p.lease-review-status{display:inline-block;margin:0 0 5px;border-radius:4px;padding:4px 8px;background:#EEE7D8;color:#7B521C;font-size:11px;font-weight:600;line-height:1.5}
+.lease-review.is-reviewed p.lease-review-status{background:#E3EBDE;color:#315D3F}
+.lease-review.is-conflict p.lease-review-status{background:#F8EBD6;color:#865016}
+.lease-review-summary{color:#465A45}
+.lease-review-renewal,.lease-review-phases{padding:13px;margin-top:13px;border:1px solid #DDE3D3;border-radius:5px;background:#F2F3E9}
+.lease-review p.lease-review-amount{font-size:21px;font-weight:600;color:var(--cypress,#1E4D3A);font-variant-numeric:tabular-nums;letter-spacing:-.025em;margin:2px 0}
+.lease-review-amount span{font-size:11px;font-weight:400;letter-spacing:0}
+.lease-review p.lease-review-caution{margin-top:9px;font-size:11px;color:#855618}
+.lease-review-phases dl{margin:8px 0}
+.lease-review-phases dl>div{display:flex;align-items:center;justify-content:space-between;gap:13px;border-bottom:1px solid #DDE3D3;padding:9px 0}
+.lease-review-phases dl>div:last-child{border-bottom:0}
+.lease-review-phases dt{font-weight:500;font-size:11px}
+.lease-review-phases dt span{display:block;font-weight:400;color:#65745F;font-size:10px;margin-top:2px}
+.lease-review-phases dd{margin:0;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.lease-review-phases dd small{display:block;text-align:right;font-size:10px;font-weight:400;color:#65745F}
+.lease-review-phases>p{font-size:11px;color:#65745F}
+.lease-review p.lease-review-payment{font-size:11px;margin:13px 0;color:#65745F}
+.lease-review-payment strong{display:block;color:#3D5844;font-weight:500}
+.lease-review details{border-top:1px solid #DFE5D7;margin-top:12px;padding-top:5px}
+.lease-review summary{cursor:pointer;min-height:36px;padding:6px 0;list-style-position:inside;font-size:11px;font-weight:500;color:#466343}
+.lease-review summary span{float:right;font-variant-numeric:tabular-nums;color:#77816D}
+.lease-review summary:hover,.lease-review a:hover{color:#875511}
+.lease-review summary:focus-visible,.lease-review a:focus-visible{outline:2px solid #D97706;outline-offset:4px;border-radius:2px}
+.lease-review ul{padding-left:17px;margin:5px 0 10px;font-size:11px;color:#68765B}
+.lease-review li+li{margin-top:6px}
+.lease-review-sources ol{list-style:none;padding:0;margin:3px 0 10px}
+.lease-review-sources li{border-top:1px solid #E2E6DC;padding:10px 0 3px}
+.lease-review-sources li strong{display:block;font-weight:500;font-size:11px;color:#3D5844}
+.lease-review-sources time{font-size:10px;color:#77816D}
+.lease-review-sources p,.lease-review-sources p.lease-review-reference{font-size:11px;color:#68765B;margin:5px 0}
+.lease-review-sources p.lease-review-reference{font-size:10px}
+.lease-review-sources a{display:inline-flex;align-items:center;min-height:36px;color:#315F3D;font-size:11px;text-underline-offset:4px}
+[data-theme="dark"] .lease-review{color:#DAE3D5;border-color:#435A48}
+[data-theme="dark"] .lease-review h3,[data-theme="dark"] .lease-review h4,[data-theme="dark"] .lease-review-sources li strong,[data-theme="dark"] .lease-review-payment strong{color:#D8E5D0}
+[data-theme="dark"] .lease-review-summary,[data-theme="dark"] .lease-review summary,[data-theme="dark"] .lease-review-sources a{color:#BDD0B1}
+[data-theme="dark"] .lease-review-renewal,[data-theme="dark"] .lease-review-phases{background:#203B2B;border-color:#435A48}
+[data-theme="dark"] .lease-review p.lease-review-amount{color:#DCE8D4}
+[data-theme="dark"] .lease-review p.lease-review-caution{color:#E8BE7C}
+@media(max-width:660px){.lease-review summary,.lease-review-sources a{min-height:44px}.lease-review-phases dl>div{gap:10px}.lease-review-renewal,.lease-review-phases{padding:12px}.lease-review>header{gap:8px}}
 [data-theme="dark"] .cmd-numbers{color:var(--bone);border-color:#3F5749}
 [data-theme="dark"] .cmd-numbers-head p,[data-theme="dark"] .cmd-numbers-foot,[data-theme="dark"] .cmd-numbers-foot summary span{color:#B9CABA}
 [data-theme="dark"] .cmd-numbers-foot summary,[data-theme="dark"] .cmd-numbers-foot details strong,[data-theme="dark"] .cmd-numbers-foot .cmd-numbers-source{color:#D6E3CF}

@@ -7,7 +7,7 @@ export const ATLAS_SOURCE = Object.freeze({
   propertyId: '4918b2a2-2dcb-4f1d-8cb1-6ea3e5288977',
   propertySlug: 'otb',
 });
-const SOURCE_IDS = Object.freeze({ scheduled: 'atlas-rent-roll', ledger: 'atlas-ledger', history: 'atlas-payment-history', expenses: 'atlas-expenses' });
+const SOURCE_IDS = Object.freeze({ scheduled: 'current-lease-schedule', ledger: 'atlas-ledger', history: 'atlas-payment-history', expenses: 'atlas-expenses' });
 const ALLOCATIONS = Object.freeze({ '101': '101/103', '103': '101/103', '115': '115/117', '117': '115/117', '125': '125/127', '127': '125/127', '139': '139/141', '141': '139/141' });
 const UNIT = /^\d{3}(?:\.5|[AB])?$/;
 const TYPES = new Set(['charge', 'payment', 'void', 'late_fee', 'nsf', 'adjustment', 'credit', 'write_off']);
@@ -35,11 +35,16 @@ export function buildAtlasNumbers(snapshot, unitsPrivate) {
       !unitsPrivate || typeof unitsPrivate !== 'object') fail();
 
   const units = {};
+  const reviewDates = Object.values(unitsPrivate).map(row => row?.leaseEvidence?.reviewedAt).filter(Boolean);
+  if (reviewDates.some(day => !validDay(day))) fail();
+  const scheduleAsOf = reviewDates.sort().at(-1) || '2026-07-16';
   for (const [unit, row] of Object.entries(unitsPrivate)) {
     if (!UNIT.test(unit) || !row || typeof row !== 'object') fail();
     const monthly = cents(row.monthly) / 100;
     units[unit] = {
-      monthly, annualized: cents(monthly) * 12 / 100, sourceId: SOURCE_IDS.scheduled,
+      monthly, annualized: cents(monthly) * 12 / 100,
+      sourceId: row.leaseEvidence ? `lease-review-${unit}` : SOURCE_IDS.scheduled,
+      ...(row.leaseEvidence ? { leaseEvidence: structuredClone(row.leaseEvidence) } : {}),
       allocationNote: ALLOCATIONS[unit] ? `Reporting allocation within the combined ${ALLOCATIONS[unit]} lease; not separately billable.` : null,
     };
   }
@@ -87,9 +92,10 @@ export function buildAtlasNumbers(snapshot, unitsPrivate) {
   const expensesState = snapshot.financialWorksheet?.state === 'not-entered' ? 'not-entered' : 'unverified-inputs';
   const sources = [
     {
-      id: SOURCE_IDS.scheduled, title: 'Adopted rent roll · scheduled rent', asOf: '2026-07-16',
-      path: 'api/_seed.json; docs/sot-2026-07/; docs/sot-reconciliation-2026-07.md',
-      excerpt: `Owner-corrected July 2026 rent roll adopted July 16, 2026. Scheduled total rent is $${monthly.toFixed(2)} per month ($${(cents(monthly) * 12 / 100).toFixed(2)} annualized), including the recorded additional-rent components. These are contractual schedule figures, not bank receipts or confirmation of current occupancy. Combined-suite figures are reporting allocations, not separately billable amounts. The private seed matched the hash-verified deployed Atlas source backup from September 8, 2026.`,
+      id: SOURCE_IDS.scheduled, title: 'Cypress lease schedule · reviewed records', asOf: scheduleAsOf,
+      path: 'src/data/units.json → authenticated api/_seed.json; per-suite leaseEvidence; docs/sot-2026-07/',
+      kind: 'Owner-adopted roster with dated lease review updates',
+      excerpt: `Schedule reviewed through ${scheduleAsOf}: $${monthly.toFixed(2)} per month. This carries forward the owner-adopted July roster with explicitly sourced corrections and owner confirmations. It is separate from the unchanged dated Atlas ledger extract. Unreviewed amounts retain July roster authority. Proposed or tenant-signed renewals are excluded until activated; the schedule includes the owner-confirmed current abatement for suite 145. Annualized rent multiplies this dated monthly snapshot by 12 and is not a forecast of stepped rent. Current-term conflicts and component gaps remain visible in each suite review. Owner-reported payments are not bank-reconciled receipts. Combined-suite figures are reporting allocations, not separately billable amounts.`,
     },
     {
       id: SOURCE_IDS.ledger, title: 'Atlas ledger · dated production extract', asOf: snapshot.capturedAt,
@@ -109,17 +115,24 @@ export function buildAtlasNumbers(snapshot, unitsPrivate) {
         : 'The saved operating worksheet has unverified inputs, without an accounting period or source reconciliation. Actual expenses, NOI, valuation and full receivables are unavailable.',
     },
   ];
+  for (const [unit, row] of Object.entries(units)) {
+    if (!row.leaseEvidence) continue;
+    sources.push({id: row.sourceId, title: `Suite ${unit} · lease review`, asOf: row.leaseEvidence.reviewedAt,
+      kind: row.leaseEvidence.label, path: row.leaseEvidence.sources.map(source => source.reference).join('\n'),
+      excerpt: JSON.stringify(row.leaseEvidence, null, 2)});
+  }
   return {
     schemaVersion: 1, mode: 'dated-production-extract', capturedAt: snapshot.capturedAt,
     sourceLabel: 'Orange Ocean Atlas · dated production extract', refreshMode: 'manual-reviewed-extract',
     caveats: [
       'This is a dated read-only extract from production Atlas, distinct from the isolated Cypress test database. It does not refresh automatically.',
-      'Scheduled rent is the adopted July 16, 2026 contractual roster, not collected income or confirmed current occupancy.',
+      `Rent schedule reviewed through ${scheduleAsOf}; unchanged suites retain July roster authority. This schedule is separate from the dated Atlas entries and is not collected income. Proposed renewals are not included.`,
+      'Annualized rent is twelve times the dated monthly snapshot, not a forward forecast; suite 145 has a separately recorded next rent phase.',
       'Ledger totals group records by entry date, not reconciled rent period. Receipt completeness and bank settlement are unverified; no entries does not mean zero collections or delinquency.',
       'Combined-suite monthly amounts are reporting allocations, not separate bills.',
       'Actual operating expenses, NOI, valuation and complete receivables are unavailable.',
     ],
-    scheduled: { asOf: '2026-07-16', monthly, annualized: cents(monthly) * 12 / 100, unitCount: Object.keys(units).length, rentPayingUnitCount: Object.values(units).filter(row => row.monthly > 0).length, sourceId: SOURCE_IDS.scheduled, units },
+    scheduled: { asOf: scheduleAsOf, basis: 'reviewed-lease-schedule', monthly, annualized: cents(monthly) * 12 / 100, unitCount: Object.keys(units).length, rentPayingUnitCount: Object.values(units).filter(row => row.monthly > 0).length, sourceId: SOURCE_IDS.scheduled, units },
     periods,
     historical: { from: historyPeriods[0]?.period || null, to: historyPeriods.at(-1)?.period || null, recordCount: historyPeriods.reduce((sum, row) => sum + row.recordCount, 0), recordedPaid: total(historyPeriods.map(row => row.recordedPaid)), sourceId: SOURCE_IDS.history, periods: historyPeriods },
     expenses: { state: expensesState, noi: null, actualExpenses: null, value: null, sourceId: SOURCE_IDS.expenses },

@@ -9,7 +9,8 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { unitFill, STATUS_META, CAT_META } from "../src/lib/colors.js";
-import { esc } from "../src/lib/format.js";
+import { esc, sumKnownAmounts } from "../src/lib/format.js";
+import { splitUnits } from "./split-seed.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rd = f => JSON.parse(readFileSync(join(root, "src/data", f), "utf8"));
@@ -26,9 +27,12 @@ const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ fig
 const out = process.env.OTB_EXPORT_DIR || join(root, NOFIN ? "export-buyer" : "export");
 mkdirSync(out, { recursive: true });
 
-const DATA_AS_OF = new Date(2026, 6, 16);  // rent-roll SOT issue date (docs/sot-2026-07, adopted 7/16/2026)
+const BASELINE_AS_OF = "2026-07-16";
+const SCHEDULE_AS_OF = [BASELINE_AS_OF, ...units.map(u => u.leaseEvidence?.reviewedAt)
+  .filter(date => /^\d{4}-\d{2}-\d{2}$/.test(date || ""))].sort().at(-1);
+const DATA_AS_OF = new Date(SCHEDULE_AS_OF + "T00:00:00");
 const GENERATED = new Date();               // real generation date (audit M3)
-const TODAY = DATA_AS_OF;                    // figures/expiry windows are as-of the SOT
+const TODAY = DATA_AS_OF;                    // fixed review snapshot, not a live payment record
 /* esc now imported from src/lib/format.js — the old local copy didn't escape
    `"`, which left attribute values injectable in the standalone SVG. */
 
@@ -97,40 +101,72 @@ const sfSum = sum(units.map(u => u.sf));
 const monthly = sum(units.map(u => u.monthly));
 const pDate = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
 const fmt$ = n => "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
-const exp12 = units.filter(u => u.end && pDate(u.end) > TODAY && pDate(u.end) < new Date(2027, 5, 10));
+const fmtMonthly = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const nextYear = new Date(TODAY); nextYear.setFullYear(nextYear.getFullYear() + 1);
+const exp12 = units.filter(u => u.end && pDate(u.end) > TODAY && pDate(u.end) <= nextYear);
 const annualRent = monthly * 12;
 const holdRent = sum(holdovers.map(u => u.monthly * 12));
 const exp12Rent = sum(exp12.map(u => u.monthly * 12));
-const comp = { base: 0, cam: 0, tax: 0, ins: 0 };
-units.forEach(u => { comp.base += (u.base || 0) * u.sf; const r = recoveries.units[u.unit]; if (r) { comp.cam += r.cam * u.sf; comp.tax += r.tax * u.sf; comp.ins += r.ins * u.sf; } });
-comp.total = comp.base + comp.cam + comp.tax + comp.ins;
-comp.recoveries = comp.cam + comp.tax + comp.ins;
+const comp = { base: sumKnownAmounts(units.map(u => Number.isFinite(u.base) ? u.base * u.sf : null)) };
+for (const key of ['cam', 'tax', 'ins']) comp[key] = sumKnownAmounts(units.map(u => {
+  const value = recoveries.units[u.unit]?.[key];
+  return Number.isFinite(value) ? value * u.sf : null;
+}));
+comp.total = sumKnownAmounts([comp.base, comp.cam, comp.tax, comp.ins]);
+comp.recoveries = sumKnownAmounts([comp.cam, comp.tax, comp.ins]);
+const roundedKnown = value => Number.isFinite(value) ? Math.round(value * 100) / 100 : null;
 const pct = (n, d) => (n / d * 100).toFixed(0) + "%";
-const hvacRow = u => { const h = hvac.units[u.unit]; return h ? (h.repair === "100%" && h.replace === "100%" ? "tenant 100% (full)" : `${h.repair}/occ · ${h.replace} repl`) : "n/a"; };
+const hvacRow = u => {
+  const h = hvac.units[u.unit];
+  if (!h) return "unavailable";
+  if (h.repair == null || h.replace == null || h.repair === "Pending verification" || h.replace === "Pending verification")
+    return "unresolved — " + (h.note || "see lease review and source clauses");
+  return h.repair === "100%" && h.replace === "100%" ? "tenant 100% (full)" : `${h.repair}/occ · ${h.replace} repl`;
+};
 
 /* ── dossier markdown ──────────────────────────────────────────── */
 const row = u => NOFIN
   ? `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`
-  : `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${u.total ? "$" + u.total.toFixed(2) : "—"} | ${u.monthly ? fmt$(u.monthly) : "—"} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`;
+  : `| ${u.unit} | ${u.dba} | ${u.use} | ${u.sf.toLocaleString()} | ${Number.isFinite(u.total) ? "$" + u.total.toFixed(2) : "—"} | ${Number.isFinite(u.monthly) ? fmtMonthly(u.monthly) : "—"} | ${u.end || "—"} | ${STATUS_META[u.status].label} |`;
 const rollHead = NOFIN
   ? `| Unit | Tenant (DBA) | Use | SF | Term end | Status |\n|---|---|---|---|---|---|`
   : `| Unit | Tenant (DBA) | Use | SF | Total PSF | Monthly | Term end | Status |\n|---|---|---|---|---|---|---|---|`;
 const glanceRent = NOFIN
   ? `- Tenancy: ${leased.length} occupied tenancies; full rent roll, income & NOI available to qualified parties under NDA`
-  : `- In-place rent: ${fmt$(monthly)}/mo (${fmt$(monthly * 12)}/yr) across ${leased.length} paying tenancies`;
+  : `- Scheduled rent as of ${SCHEDULE_AS_OF}: ${fmtMonthly(monthly)}/month across ${leased.length} rent-bearing suites; ${fmtMonthly(monthly * 12)} annualized at the current monthly amount. This is not collected income or a forecast.`;
+const componentLine = (label, value) => `  - ${label}: ${value == null ? "unavailable — one or more suite components unresolved" : fmt$(value) + "/year"}`;
 const finSection = NOFIN
   ? `## Financials\n*Withheld from this overview. The complete rent roll (per-unit base + NNN), income composition, NNN recoveries, revenue-at-risk, and NOI workup are available to qualified parties under an executed confidentiality agreement.*`
   : `## Financial summary
-*Income derived from the rent-roll SOT (Sheet2 composition). Operating expenses are NOT in the SOT — NOI requires the owner's actual expense figures; do not invent them.*
-- **In-place rent: ${fmt$(annualRent)}/yr** (${fmt$(monthly)}/mo)
-- **Income composition** (annual, base + NNN recoveries reconcile to in-place rent):
-  - Base rent ${fmt$(comp.base)} (${pct(comp.base, comp.total)})
-  - CAM recovery ${fmt$(comp.cam)} (${pct(comp.cam, comp.total)})
-  - Tax recovery ${fmt$(comp.tax)} (${pct(comp.tax, comp.total)})
-  - Insurance recovery ${fmt$(comp.ins)} (${pct(comp.ins, comp.total)})
-  - **NNN recoveries (CAM+Tax+Ins): ${fmt$(comp.recoveries)}/yr** — tenant reimbursements that offset the corresponding operating expenses
-- **Revenue at risk: ${fmt$(holdRent + exp12Rent)}/yr (${pct(holdRent + exp12Rent, annualRent)} of in-place rent)** — ${fmt$(holdRent)} in ${holdovers.length} holdovers + ${fmt$(exp12Rent)} expiring within 12 months. WALT is short; near-term rollover is the central asset-management risk.
-- Anchor concentration: Jason's Deli (149) is ${pct(units.find(u => u.unit === "149").monthly * 12, annualRent)} of in-place rent.`;
+*Current scheduled rent is the ${BASELINE_AS_OF} adopted roster with the source-reviewed and owner-confirmed changes listed below, reviewed through ${SCHEDULE_AS_OF}. Unreviewed fields retain their prior authority. This is not a restatement of the July Atlas snapshot or its historical ledger. Operating expenses and bank settlement are not established by this schedule; NOI requires actual expenses.*
+- **Scheduled rent: ${fmtMonthly(monthly)}/month** as of ${SCHEDULE_AS_OF}; ${fmtMonthly(annualRent)} annualized at that amount. Planned renewals and future rent phases are listed separately and are not added to this current schedule.
+- **Income components** (annualized PSF decomposition; stated rents and rounding exceptions may differ):
+${componentLine("Base rent", comp.base)}
+${componentLine("CAM recovery", comp.cam)}
+${componentLine("Tax recovery", comp.tax)}
+${componentLine("Insurance recovery", comp.ins)}
+${componentLine("NNN recoveries (CAM + Tax + Insurance)", comp.recoveries)}
+${comp.recoveries == null ? "- The aggregate recovery breakdown is unavailable. Null components are unknown, not zero. Do not claim the decomposition reconciles to scheduled rent or generate a CAM reconciliation from it." : "- Recovery amounts are scheduled reimbursements, not evidence of bank receipts or actual operating costs."}
+- **Scheduled rent associated with known term dates:** ${fmt$(holdRent + exp12Rent)}/year annualized (${pct(holdRent + exp12Rent, annualRent)} of current scheduled rent) — ${fmt$(holdRent)} with an explicit expired status + ${fmt$(exp12Rent)} expiring within 12 months of ${SCHEDULE_AS_OF}. Unresolved term dates are excluded; this is not a complete risk measure.
+- Anchor concentration: Jason's Deli (149) is ${pct(units.find(u => u.unit === "149").monthly * 12, annualRent)} of current scheduled rent.`;
+const reviewedUnits = units.filter(u => u.leaseEvidence);
+const leaseReviewSection = NOFIN || !reviewedUnits.length ? "" : `## Lease review and source authority
+Reviewed changes through ${SCHEDULE_AS_OF} supplement the ${BASELINE_AS_OF} adopted roster. Owner confirmation is identified separately from reviewed signatures. A pending upload is not a reviewed signed instrument; tenant signature alone is not full execution. A planned combined-suite amount must not be counted once per suite.
+
+${reviewedUnits.map(u => {
+  const e = u.leaseEvidence;
+  const lines = [`### ${u.unit} · ${u.dba}`, `- **${e.label || e.status}** · reviewed ${e.reviewedAt}`, `- ${e.summary}`];
+  if (e.plannedRenewal) {
+    const r = e.plannedRenewal;
+    lines.push(`- Planned renewal — ${r.scope || 'suite ' + u.unit}: ${r.start || 'start unresolved'} to ${r.end || 'end unresolved'}; ${fmtMonthly(r.monthly)}/month combined total; status ${r.status}. ${r.includedInSchedule === true ? 'Marked included in current schedule.' : 'Excluded from the current scheduled amount.'}`);
+  }
+  for (const r of e.rentPhases || []) lines.push(`- Rent phase — ${r.label}: ${r.start || 'start unresolved'} to ${r.end || 'contractual end unresolved'}; ${fmtMonthly(r.monthly)}/month. Calendar mapping has the authority described in the sources; no automatic billing change is implied.`);
+  if (e.ownerReportedPayment) lines.push(`- Owner-reported current payment: ${fmtMonthly(e.ownerReportedPayment.monthly)}/month, confirmed ${e.ownerReportedPayment.confirmedAt}. Bank settlement has not been reconciled; this confirmation does not create a payment entry.`);
+  for (const s of e.sources || []) lines.push(`- Source [${s.kind}] ${s.title}${s.date ? ' · ' + s.date : ''}: ${s.reference || ''}${s.url ? ' · ' + s.url : ''}${s.excerpt ? ' — ' + s.excerpt : ''}`);
+  for (const item of e.openItems || []) lines.push(`- Open: ${item}`);
+  return lines.join('\n');
+}).join('\n\n')}
+`;
 const hvacSection = NOFIN
   ? ""
   : `## HVAC cost responsibility (per lease, SOT)
@@ -145,9 +181,9 @@ const depositAnomaly = NOFIN ? "" : " · missing deposits 107/137/143/149";
 const docTitle = NOFIN ? "Property Overview" : "Property Dossier";
 const md = `# On The Boulevard Shopping Center — ${docTitle}
 **101–149 Arnould Blvd, Lafayette, LA 70506** · Owner: Belle Realty of Lafayette, LLC (managed by Orange Ocean, LLC — Adam, Managing Member)
-*Generated ${GENERATED.toLocaleDateString("en-US")} · data as of ${DATA_AS_OF.toLocaleDateString("en-US")} · from Orange Ocean Atlas (geometry REV ${geometry.rev.replace("REV ", "")}, traced from the recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019). Companion image: OTB-SitePlan-A1.svg / .png*
+*Generated ${GENERATED.toLocaleDateString("en-US")} · data as of ${DATA_AS_OF.toLocaleDateString("en-US")} · from Cypress Command (geometry REV ${geometry.rev.replace("REV ", "")}, traced from the recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019). Companion image: OTB-SitePlan-A1.svg / .png*
 
-> **How to use this file:** paste it (with the site-plan image if the model accepts images) into any LLM as grounding context for marketing copy, leasing flyers, broker packages, investor summaries, or Q&A. Every figure below traces to the recorded plat, the rent-roll source-of-truth workbook, or recorded easements.${NOFIN ? "" : ' Items under "Known anomalies" are unresolved source conflicts — do not let a model silently "fix" them.'}
+> **How to use this file:** paste it (with the site-plan image if the model accepts images) into any LLM as grounding context for marketing copy, leasing flyers, broker packages, investor summaries, or Q&A. Property geometry follows the recorded sources; the roster begins with the July 16, 2026 adopted records.${NOFIN ? "" : ' Later lease updates carry their own review status and references below. Owner confirmation, reviewed documents, and historical ledger entries have different authority. Known conflicts must remain explicit.'}
 
 ## Property at a glance
 - **GLA 62,883 SF** · 27 demised units · 2 buildings · 4.84 acres · zoned CH (Commercial Heavy), Lafayette, LA
@@ -161,13 +197,15 @@ ${glanceRent}
 ${rollHead}
 ${units.map(row).join("\n")}
 
-- **Vacant / available:** ${vacant.map(u => `Unit ${u.unit} (${u.sf.toLocaleString()} SF${u.notes ? " — " + u.notes : ""})`).join("; ")}
+- **Vacant / available:** ${vacant.map(u => `Unit ${u.unit} (${u.sf.toLocaleString()} SF${!NOFIN && u.notes ? " — " + u.notes : ""})`).join("; ")}
 - **Holdover tenancies (expired, in occupancy):** ${holdovers.map(u => `${u.unit} ${u.dba} (expired ${u.end})`).join("; ")}
 - **Expirations within 12 months:** ${exp12.length ? exp12.map(u => `${u.unit} ${u.dba} (${u.end})`).join("; ") : "none"}
 - Combined leases: 101+103 (Pink Paisley, 9,931 SF) · 115+117 (Clothing Loft, 4,340 SF) · 125+127 (Jordan Amanda, 4,273 SF) · 139+141 (Fast Pass, 3,834 SF)
 - Owner-occupied: 135B (Belle Realty management office, 1,580 SF)
 
 ${finSection}
+
+${leaseReviewSection}
 
 ## Buildings & demising (plat-traced)
 - **Long building (101–133):** 85.45' deep × 522.31' long, 19 bays; backs Marie Antoinette St with rear face 18.73' off the R/W (rear strip holds parallel parking over a 10' utility easement); storefronts face the main field; 101 at the Johnston end.
@@ -236,20 +274,21 @@ const jsonObj = {
   meta: {
     property: "On The Boulevard Shopping Center, 101-149 Arnould Blvd, Lafayette, LA 70506",
     owner: "Belle Realty of Lafayette, LLC (manager: Orange Ocean, LLC)",
-    generated: GENERATED.toISOString().slice(0,10), dataAsOf: "2026-06-10", geometryRev: geometry.rev, source: geometry.source,
+    generated: GENERATED.toISOString().slice(0,10), dataAsOf: SCHEDULE_AS_OF, rosterBaselineAsOf: BASELINE_AS_OF, geometryRev: geometry.rev, source: geometry.source,
     headline: { glaSf: 62883, units: 27, buildings: 2, acres: 4.84, zoning: "CH" },
     ...(NOFIN ? { note: "Buyer overview — financial figures (rent, PSF, income, NOI, recoveries) withheld; available under NDA." } : {})
   },
   derived: NOFIN
     ? { unitSfSum: sfSum, occupiedUnits: occ.length, vacantUnits: vacant.length, vacantSf: sum(vacant.map(u => u.sf)), holdoverUnits: holdovers.map(u => u.unit) }
     : {
-        unitSfSum: sfSum, monthlyIncome: Math.round(monthly), annualIncome: Math.round(annualRent),
+        unitSfSum: sfSum, monthlyIncome: roundedKnown(monthly), annualIncome: roundedKnown(annualRent),
+        incomeBasis: `Scheduled rent as of ${SCHEDULE_AS_OF}; annualized current monthly amount, not receipts or a forecast. Planned renewals and future phases remain separate.`,
         occupiedUnits: occ.length, vacantUnits: vacant.length, vacantSf: sum(vacant.map(u => u.sf)),
         holdoverUnits: holdovers.map(u => u.unit),
-        incomeComposition: { base: Math.round(comp.base), cam: Math.round(comp.cam), tax: Math.round(comp.tax), ins: Math.round(comp.ins), nnnRecoveries: Math.round(comp.recoveries) },
+        incomeComposition: { base: roundedKnown(comp.base), cam: roundedKnown(comp.cam), tax: roundedKnown(comp.tax), ins: roundedKnown(comp.ins), nnnRecoveries: roundedKnown(comp.recoveries), status: comp.recoveries == null ? 'unresolved-components' : 'scheduled-psf-decomposition' },
         revenueAtRisk: { holdoverRent: Math.round(holdRent), expiring12moRent: Math.round(exp12Rent), total: Math.round(holdRent + exp12Rent) }
       },
-  units: NOFIN ? units.map(({ base, total, monthly, ...u }) => u) : units,
+  units: NOFIN ? splitUnits(units).publicUnits : units,
   compliance,
   ...(NOFIN ? {} : { rentComposition: recoveries.units, hvac: hvac.units }),
   contacts: directory.propertyContacts, documents: directory.propertyDocuments,
@@ -288,7 +327,7 @@ if (!NOFIN) {
 - Private storage buckets (assets/documents/safe/vendor-docs) with row-level-security policies; Safe + vendor access is audit-logged.
 
 ## Data & pipelines (all re-runnable)
-- Source of truth: SOT workbook (rent roll / HVAC splits / vendor list) + recorded plat CAD → extractors emit src/data JSON (units, geometry, heights, georef footprints, vendors, recoveries, HVAC).
+- Source authority: July 16, 2026 adopted rent roster plus later per-suite document reviews and owner confirmations in units.leaseEvidence; unresolved components remain null. The workbook, HVAC history and vendor records retain their documented authority. Recorded plat CAD remains the geometry source. Derived exports are not new sources of truth.
 - Generators: leasing posters + pylon artwork from CAD · owner proforma (Excel) · this LLM export + a no-financials buyer overview · concierge grounding context · splat pipeline (COLMAP → Brush → web splat) with a computational splat↔plan alignment fitter · satellite-georef fitter (re-fit when Esri refreshes imagery).
 - Persisted state (compliance, notes, actions, contacts, documents, financials) syncs to Supabase; owners see live data.
 

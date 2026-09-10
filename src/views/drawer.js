@@ -13,6 +13,7 @@ import { mountPayHistory } from "../lib/payhistoryUI.js";
 import { mountLeaseRef } from "../lib/leaserefUI.js";
 import { logoUrl } from "../lib/logos.js";
 import hvacData from "../data/hvac.json";
+import { leaseEvidenceMarkup } from "../lib/lease-evidence-ui.js";
 
 const drawer = document.getElementById("drawer");
 let editingNote = false;
@@ -37,8 +38,15 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(
 
 // keep the open drawer in sync with mutations made anywhere (e.g. matrix clicks)
 subscribe((type) => {
+  if (type === "scope") {
+    closeDrawer();
+    document.getElementById("dwBody").replaceChildren();
+    document.getElementById("dwName").textContent = "";
+    document.getElementById("dwUnit").textContent = "";
+    return;
+  }
   if (!drawer.classList.contains("open") || !getSelected()) return;
-  if (type === "comp" || type === "notes" || type === "import" || type === "contacts" || type === "documents") renderDrawer();
+  if (type === "seed" || type === "comp" || type === "notes" || type === "import" || type === "contacts" || type === "documents") renderDrawer();
 });
 
 function renderDrawer() {
@@ -61,7 +69,7 @@ function renderDrawer() {
     const pct = s ? Math.max(0, Math.min(100, (TODAY - s) / (e - s) * 100)) : 0;
     leaseHtml = '<div class="dw-sec">Lease term</div>' +
       '<div class="lease-line"><div class="lease-fill" style="width:' + (expired ? 100 : pct.toFixed(1)) + '%;background:' + (expired ? "var(--brick)" : "var(--green)") + '"></div></div>' +
-      '<div class="lease-meta"><span>' + fDate(s) + '</span><span>' + (expired ? Math.abs(daysTo(e)) + " days past term — holdover" : daysTo(e) + " days remaining") + '</span><span>' + fDate(e) + '</span></div>';
+      '<div class="lease-meta"><span>' + fDate(s) + '</span><span>' + (expired ? Math.abs(daysTo(e)) + " days past recorded term · current term unverified" : daysTo(e) + " days remaining") + '</span><span>' + fDate(e) + '</span></div>';
   }
 
   const facts = [
@@ -81,13 +89,13 @@ function renderDrawer() {
     const expoTag = tier ? ' <span class="expo-tag expo-' + tier + '">' + esc(TIER_LABEL[tier]) + '</span>' : "";
     hvacHtml = '<div class="dw-sec">HVAC responsibility' + expoTag + '</div>' +
       '<div class="facts">' +
-        '<div class="fact"><div class="k">Tenant repair cap</div><div class="v">' + esc(hv.repair) + (full ? "" : ' <small>/ occ.</small>') + '</div></div>' +
+        '<div class="fact"><div class="k">Tenant repair cap</div><div class="v">' + esc(hv.repair) + (full || hv.note ? "" : ' <small>/ occ.</small>') + '</div></div>' +
         '<div class="fact"><div class="k">Tenant replacement</div><div class="v">' + esc(hv.replace) + '</div></div>' +
       '</div>' +
-      '<div class="hvac-note">' + (full
+      '<div class="hvac-note">' + (hv.note ? esc(hv.note) : (full
         ? "Tenant fully responsible for HVAC repair &amp; replacement."
         : "Tenant pays to the cap; landlord covers the excess.") +
-        " Quarterly PM contract with " + esc(hvacData.provider) + " (or approved provider) required.</div>";
+        " Quarterly PM contract with " + esc(hvacData.provider) + " (or approved provider) required.") + "</div>";
   }
 
   const note = getNote(u.unit);
@@ -123,6 +131,7 @@ function renderDrawer() {
   body.innerHTML =
     '<div class="facts">' + facts + '</div>' +
     leaseHtml +
+    leaseEvidenceMarkup(u.leaseEvidence) +
     hvacHtml +
     notesHtml +
     '<div class="dw-sec">Contacts</div><div class="recs" id="dwContacts"></div>' +

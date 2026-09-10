@@ -75,7 +75,13 @@ test("REGRESSION — real seed today: two live renewal windows (115/117 @ 9/30/2
   assert.match(brief.detail, /131 \(1,907 SF\)/);
 });
 
-test("REGRESSION — renewal window arms itself: 119 (2/28/27) enters at 180d", () => {
-  const out = detectRenewalHorizon(units, "2026-09-02"); // 2027-02-28 within 180d of this date
+test("renewal window arms itself for an established end date at 180 days", () => {
+  const fixture = [{ ...units.find(u => u.unit === '119'), end: '2027-02-28' }];
+  const out = detectRenewalHorizon(fixture, "2026-09-02");
   assert.ok(out.some(c => c.triggerSource.startsWith("renewal:119:")), "119 should be in window by 2026-09-02");
+});
+
+test("unresolved signed-term dates do not become automatic renewal dates", () => {
+  const out = detectRenewalHorizon(units, "2026-09-10");
+  assert.ok(!out.some(c => /^renewal:(119|139|141|145):/.test(c.triggerSource)));
 });

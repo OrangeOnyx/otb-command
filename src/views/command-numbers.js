@@ -1,6 +1,7 @@
 /* Financial figures are fetched only after property authorization. Nothing in
    this module imports, caches, or substitutes a private financial snapshot. */
 import { esc } from '../lib/format.js';
+import { leaseEvidenceMarkup } from '../lib/lease-evidence-ui.js';
 import { LOCAL_REVIEW, REMOTE, BUNDLED_PROPERTY, activeSlug, getSession, propertyContext, sb } from '../lib/remote.js';
 
 const money = value => Number.isFinite(value) ? new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(value) : 'Unavailable';
@@ -17,11 +18,12 @@ export function recordedAmount(record, empty = 'No entries recorded') {
 export function atlasSuiteMarkup(report, unitId, sourceButton) {
   const unit = report?.scheduled?.units?.[unitId];
   if (!unit) return '';
-  return `<section class="cmd-suite-rent" aria-label="Suite scheduled rent from Atlas"><div><h3>Scheduled monthly rent</h3><strong>${esc(money(unit.monthly))}</strong></div>
-    <p>Contractual schedule · ${esc(date(report.scheduled.asOf))}</p>
+  return `<section class="cmd-suite-rent" aria-label="Suite scheduled rent"><div><h3>Scheduled monthly rent</h3><strong>${esc(money(unit.monthly))}</strong></div>
+    <p>Adopted schedule · ${esc(date(report.scheduled.asOf))}</p>
     ${unit.allocationNote ? `<p class="cmd-rent-allocation">${esc(unit.allocationNote)}</p>` : ''}
-    ${sourceButton(unit.sourceId || report.scheduled.sourceId,'Atlas rent-roll source')}
-    <p class="cmd-rent-qualification">A dated schedule; current occupancy and payment are unverified.</p></section>`;
+    ${sourceButton(unit.sourceId || report.scheduled.sourceId,'Rent schedule source')}
+    <p class="cmd-rent-qualification">${unit.leaseEvidence ? 'Owner confirmations and reviewed documents are identified below. Schedule amounts do not establish bank receipts.' : 'A dated adopted schedule; current occupancy and payment are unverified.'}</p></section>
+    ${leaseEvidenceMarkup(unit.leaseEvidence, {sourceButton, sourceId:unit.leaseEvidence?.sourceId || (unit.leaseEvidence ? `lease-review-${unitId}` : null)})}`;
 }
 
 export function createCommandNumbers({host, account, onChange = () => {}, onSource, onInvalidate = () => {}}) {
@@ -29,7 +31,7 @@ export function createCommandNumbers({host, account, onChange = () => {}, onSour
   const sourceLink = (id, label = 'View source') => id ? `<button class="cmd-numbers-source" data-atlas-source="${esc(id)}">${esc(label)}<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 5H5v14h14v-3M12 4h8v8M10 14 20 4"/></svg></button>` : '';
   const wire = () => host.querySelectorAll('[data-atlas-source]').forEach(button => { button.onclick = () => onSource(button.dataset.atlasSource); });
   function unavailable(message, {retry = false, pending = false} = {}) {
-    host.innerHTML = `<div class="cmd-numbers-head"><div><h2 id="cmdNumbersTitle">Numbers from Atlas</h2><p>${esc(message)}</p></div>${retry ? '<button class="cmd-secondary" data-atlas-retry>Try again</button>' : ''}</div>
+    host.innerHTML = `<div class="cmd-numbers-head"><div><h2 id="cmdNumbersTitle">Rent schedule &amp; Atlas records</h2><p>${esc(message)}</p></div>${retry ? '<button class="cmd-secondary" data-atlas-retry>Try again</button>' : ''}</div>
       <p class="cmd-numbers-state" role="status">${pending ? 'Reading the authorized property report…' : LOCAL_REVIEW ? 'Available after sign-in on the <a href="https://otb.cypresscommand.com/#spatial" target="_blank" rel="noopener noreferrer">hosted property workspace</a>.' : 'Financial figures are shown only when an authorized source is available.'}</p>`;
     host.setAttribute('aria-busy', String(pending));
     const retryButton = host.querySelector('[data-atlas-retry]');
@@ -49,12 +51,12 @@ export function createCommandNumbers({host, account, onChange = () => {}, onSour
   }
   const sameScope = (left, right) => left && right && ['userId','orgId','propertyId'].every(key => left[key] === right[key]);
   async function load() {
-    if (LOCAL_REVIEW || !REMOTE) { clear('A private report from the Atlas production records.'); return; }
+    if (LOCAL_REVIEW || !REMOTE) { clear('The reviewed rent schedule and dated Atlas records are private.'); return; }
     if (!['owner','operator'].includes(account?.role)) { clear('An authorized property owner or operator account is required.'); return; }
     if (loading) return;
     const requestGeneration = ++generation;
     report = null; onInvalidate(); onChange(); loading = true;
-    unavailable('Loading the dated Atlas production extract.', {pending:true});
+    unavailable('Loading the reviewed schedule and dated Atlas records.', {pending:true});
     try {
       const requestScope = await currentScope();
       if (generation !== requestGeneration) return;
@@ -81,10 +83,10 @@ export function createCommandNumbers({host, account, onChange = () => {}, onSour
     const history = report.historical;
     const records = count => `${count || 0} ${count === 1 ? 'entry' : 'entries'} in Atlas`;
     host.setAttribute('aria-busy','false');
-    host.innerHTML = `<div class="cmd-numbers-head"><div><h2 id="cmdNumbersTitle">Numbers from Atlas</h2><p>Production records captured ${esc(date(report.capturedAt))}. This is a dated extract.</p></div>
+    host.innerHTML = `<div class="cmd-numbers-head"><div><h2 id="cmdNumbersTitle">Rent schedule &amp; Atlas records</h2><p>Rent schedule reviewed ${esc(date(scheduled.asOf))}. Atlas ledger captured ${esc(date(report.capturedAt))}; historical entries remain separate.</p></div>
       ${report.periods.length ? `<label class="cmd-numbers-period">Entry month<select aria-label="Atlas entry month">${[...report.periods].sort((a,b) => b.period.localeCompare(a.period)).map(row => `<option value="${esc(row.period)}"${row.period === period ? ' selected' : ''}>${esc(month(row.period))}</option>`).join('')}</select></label>` : ''}</div>
       <dl class="cmd-numbers-grid">
-        <div><dt>Scheduled monthly rent</dt><dd>${esc(money(scheduled.monthly))}</dd><dd class="cmd-numbers-context"><p>${esc(date(scheduled.asOf))} adopted rent roll</p>${sourceLink(scheduled.sourceId,'Rent-roll source')}</dd></div>
+        <div><dt>Scheduled monthly rent</dt><dd>${esc(money(scheduled.monthly))}</dd><dd class="cmd-numbers-context"><p>${esc(date(scheduled.asOf))} reviewed schedule</p>${sourceLink(scheduled.sourceId,'Schedule sources')}</dd></div>
         <div><dt>Recorded charges</dt><dd class="${selected?.charges?.count > 0 ? '' : 'is-unavailable'}">${esc(recordedAmount(selected?.charges,'No charges recorded'))}</dd><dd class="cmd-numbers-context"><p>${esc(month(period))} · ${records(selected?.charges?.count)}</p>${sourceLink(selected?.charges?.sourceId,'Ledger source')}</dd></div>
         <div><dt>Recorded receipts</dt><dd class="${selected?.payments?.count > 0 ? '' : 'is-unavailable'}">${esc(recordedAmount(selected?.payments,'No receipts recorded'))}</dd><dd class="cmd-numbers-context"><p>${esc(month(period))} · ${selected?.payments?.count > 0 ? records(selected.payments.count) : 'Collection status unknown'}</p>${sourceLink(selected?.payments?.sourceId,'Receipt source')}</dd></div>
         <div><dt>Expenses &amp; NOI</dt><dd class="is-unavailable">Unavailable</dd><dd class="cmd-numbers-context"><p>${report.expenses?.state === 'not-entered' ? 'Operating expenses have not been entered.' : 'Operating-expense inputs have not been verified.'}</p>${sourceLink(report.expenses?.sourceId,'Expense source')}</dd></div>

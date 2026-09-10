@@ -20,10 +20,45 @@ UNITS.forEach(u => { byUnit[u.unit] = u; });
    skeleton objects IN PLACE — UNITS entries and byUnit values are the same
    references, so every view sees the merged data after boot hydration. */
 export function installUnitsPrivate(map) {
+  if (activeScope?.mode !== 'authenticated') return;
   for (const [unit, priv] of Object.entries(map || {})) {
-    if (byUnit[unit] && priv && typeof priv === "object") Object.assign(byUnit[unit], priv);
+    if (byUnit[unit] && priv && typeof priv === "object" && !Array.isArray(priv))
+      Object.assign(byUnit[unit], structuredClone(priv));
   }
 }
+
+/* Recovery economics come from the same authenticated seed as unit rents.
+   Keep this out of persisted layers and erase held row references on reset. */
+const privateRecoveries = { units: {} };
+let recoveriesLoaded = false;
+function erasePrivateObject(value) {
+  if (!value || typeof value !== 'object') return;
+  for (const key of Object.keys(value)) {
+    erasePrivateObject(value[key]);
+    delete value[key];
+  }
+}
+function clearRecoveriesPrivate() {
+  erasePrivateObject(privateRecoveries.units);
+  for (const key of Object.keys(privateRecoveries)) if (key !== 'units') delete privateRecoveries[key];
+  recoveriesLoaded = false;
+}
+export function installRecoveriesPrivate(payload) {
+  clearRecoveriesPrivate();
+  const knownMoney = value => typeof value === 'number' && Number.isFinite(value) && value >= 0;
+  const amountOrUnknown = value => value === null || knownMoney(value);
+  if (activeScope?.mode !== 'authenticated' || !payload?.units || Array.isArray(payload.units) ||
+      !knownMoney(payload.camFlatPsf) ||
+      Object.keys(payload.units).length !== UNITS.length ||
+      !UNITS.every(unit => {
+        const row = payload.units[unit.unit];
+        return row && ['cam', 'tax', 'ins'].every(key => amountOrUnknown(row[key]));
+      })) return false;
+  Object.assign(privateRecoveries, structuredClone(payload));
+  recoveriesLoaded = true;
+  return true;
+}
+export function getRecoveries() { return recoveriesLoaded ? privateRecoveries : null; }
 
 export const COMP_FIELDS = complianceData.fields;
 export const COMP_STATES = complianceData.states; // cycle order: u → ok → flag → na
@@ -101,15 +136,19 @@ const cleanCamOverride = o => {
    layer there materializes it here, in persist/export, and in remote sync. */
 const state = emptyLayers({ comp: baselineComp });
 let activeScope = null;
+let scopeRevision = 0;
 let scopedStorage = createScopedStateStorage();
 
 /* No storage is read at module import, before the auth/property gate. Boot
    selects a scope before rendering; switching clears state and private fields
    in place so existing UNITS/byUnit references cannot retain another session. */
 export function configureStoreScope(scope, { storage = () => globalThis.localStorage } = {}) {
+  scopeRevision++;
+  clearRecoveriesPrivate();
   activeScope = normalizeStateScope(scope);
   scopedStorage = createScopedStateStorage({ scope: activeScope, storage });
   UNITS.forEach((unit, index) => {
+    erasePrivateObject(unit.leaseEvidence);
     for (const key of Object.keys(unit)) delete unit[key];
     Object.assign(unit, unitsData[index]);
   });
@@ -117,10 +156,13 @@ export function configureStoreScope(scope, { storage = () => globalThis.localSto
   selected = null;
   const loaded = scopedStorage.load();
   if (loaded.snapshot) applySnapshot(loaded.snapshot);
+  emit('scope');
   return loaded;
 }
 
 export function getStoreScope() { return activeScope ? { ...activeScope } : null; }
+export function getStoreScopeRevision() { return scopeRevision; }
+export function notifySeedLoaded() { if (activeScope?.mode === 'authenticated') emit('seed'); }
 
 function applySnapshot(snap) {
   if (snap.comp && typeof snap.comp === "object") {
