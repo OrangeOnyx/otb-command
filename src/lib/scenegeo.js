@@ -123,20 +123,25 @@ export function createGeoScene(container, units, opts = {}) {
     const url = await probeHillshade(fetch, import.meta.env?.BASE_URL || "/");
     if (disposed) return;
     if (!url) { console.info(LIDAR_FETCH_HINT); return; }
-    let on = true;
+    let on = true, hillReady = false;
     const add = () => {
-      if (disposed || !map.getStyle() || map.getSource("hillshade")) return;
-      map.addSource("hillshade", {
-        type: "image",
-        url,
-        coordinates: HILLSHADE_COORDINATES,
-        attribution: "USGS 3DEP LA_Catahoula_Concordia_2017_D17 (public domain)",
-      });
-      map.addLayer({
-        id: "hillshade", type: "raster", source: "hillshade",
-        layout: { visibility: on ? "visible" : "none" },
-        paint: { "raster-opacity": 0.42 },
-      }, map.getLayer("unit-fill") ? "unit-fill" : undefined);
+      if (disposed || hillReady || !map.getStyle() || map.getSource("hillshade")) return;
+      try {
+        map.addSource("hillshade", {
+          type: "image",
+          url,
+          coordinates: HILLSHADE_COORDINATES,
+        });
+        map.addLayer({
+          id: "hillshade", type: "raster", source: "hillshade",
+          layout: { visibility: on ? "visible" : "none" },
+          paint: { "raster-opacity": 0.42 },
+        }, map.getLayer("unit-fill") ? "unit-fill" : undefined);
+        hillReady = true;
+      } catch (err) {
+        hillReady = true; // do not retry on every idle
+        console.warn("hillshade overlay:", err.message || err);
+      }
     };
     map.on("load", add);
     map.on("idle", add);
