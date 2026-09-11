@@ -35,7 +35,10 @@
 > Export/Import (snapshot shape unchanged). Images/docs in IndexedDB↔Supabase buckets
 > behind seams. Marketing poster generated from the architect's CAD
 > (`Boulev_CLEAN.dxf`, in feet) via `poster.py`. Path B (hosted backend) is
-> LIVE at otb-command.vercel.app. Brand sheet PENDING.
+> LIVE at otb-command.vercel.app / orangeoceanatlas.com — **production deploys
+> from `.github/workflows/deploy.yml` on every push to master (repo secret
+> `VERCEL_TOKEN`; cloud sessions trigger it by merging a PR — they cannot
+> dispatch workflows). Brand sheet = 04C v1.0.1, adopted 2026-09-11.**
 > **System extraction:** `transfer-package/` (2026-07-22) = full portable spec
 > (features/data/rules/screens/architecture + 10 JSONs); Supabase migration DDL
 > exported to `supabase/migrations/`.
