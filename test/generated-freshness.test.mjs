@@ -15,15 +15,17 @@ import { CONTEXT } from "../api/_context.mjs";
    the suite if a committed generated file drifted. Fix = run the named script. */
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Windows checkouts with core.autocrlf=true hand us CRLF; compare on LF.
+const readLf = (p) => readFileSync(p, "utf8").replace(/\r\n/g, "\n");
 
 test("units.public.json + api/_seed.json match a fresh split-seed derivation", () => {
   const { publicUnits, seed } = deriveSeed();
   assert.equal(
-    readFileSync(join(root, "src/data/units.public.json"), "utf8"),
+    readLf(join(root, "src/data/units.public.json")),
     JSON.stringify(publicUnits) + "\n",
     "STALE units.public.json — run `npm run split-seed`");
   assert.equal(
-    readFileSync(join(root, "api/_seed.json"), "utf8"),
+    readLf(join(root, "api/_seed.json")),
     JSON.stringify(seed) + "\n",
     "STALE api/_seed.json — run `npm run split-seed`");
 });
