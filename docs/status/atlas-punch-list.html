@@ -718,7 +718,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule E</span>
       <h2>Capability Register</h2>
-      <span class="mono sched-count">the H3 gate &middot; 8 / 25 green</span>
+      <span class="mono sched-count">the H3 gate &middot; 9 / 25 green</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
@@ -728,7 +728,7 @@ const BODY = `
       <div class="cell port"    title="1 &middot; Voice intake &rarr; history in L-1 (62 rows); number cutover waits on H-2">1</div>
       <div class="cell port"    title="2 &middot; Work orders &rarr; data in M-1; vendor upload-link UX open">2</div>
       <div class="cell done"    title="3 &middot; SOP system &rarr; O-1 Operations (PORTED Aug 25)">3</div>
-      <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY, history per H-1)">4</div>
+      <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY verified Sep 11: 313 rows / $1,133,492.20 match; Aug-2026 seam + late-fee policy decisions D-4a/D-4b owed)">4</div>
       <div class="cell port"    title="5 &middot; Invoices + late fees &rarr; statements v1 LIVE in repo; invoice generation open">5</div>
       <div class="cell port"    title="6 &middot; CAM reconciliation &rarr; P-1 recon draft v1 in repo; caps/base-year open">6</div>
       <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
@@ -739,16 +739,16 @@ const BODY = `
       <div class="cell port"    title="12 &middot; Board reports &rarr; S-1 quarterly report v1 in repo; stakeholder variants open">12</div>
       <div class="cell done"    title="13 &middot; NOI + tenant health &rarr; scoring shipped Aug 29 over 13-mo record">13</div>
       <div class="cell done"    title="14 &middot; Communications hub &rarr; L-1 Comm Log LIVE in repo (62 AC rows imported)">14</div>
-      <div class="cell parity"  title="15 &middot; NL query &rarr; AI-1 grounded digest (PARITY in some form)">15</div>
+      <div class="cell parity"  title="15 &middot; NL query &rarr; AI-1 grounded digest (PARITY; digest extended Sep 11 to ledger / M-1 / N-1 / S-1 / W-1 / O-1 counts; read-only query tool D-15 owed)">15</div>
       <div class="cell done"    title="16 &middot; Document expiry scans &rarr; K-1 generalized Aug 29 (coi.js reused)">16</div>
       <div class="cell port"    title="17 &middot; Documents / register &rarr; metadata archived; binaries need keyed storage copy">17</div>
       <div class="cell port"    title="18 &middot; HVAC &rarr; typed table imported (28 rows); PM tracking + T-1 deadlines open">18</div>
-      <div class="cell parity"  title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (PARITY, reconcile)">19</div>
-      <div class="cell parity"  title="20 &middot; Marketing assets &rarr; K-1 + brand kit (PARITY + gap)">20</div>
+      <div class="cell parity"  title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (PARITY; 2019 appraisal on S-1 + P-1 Sep 11; 8/13 recorded agreements + pylon 13/14 verified; D-19a title exceptions / D-19b pylon register owed)">19</div>
+      <div class="cell done"    title="20 &middot; Marketing assets &rarr; K-1 + brand kit (DONE Sep 11: 25/25 tenant logos + 04C kit verified; no AC marketing rows; orgs.brand runtime read = F-22)">20</div>
       <div class="cell done"    title="21 &middot; UniFi network card &rarr; D-1 (PARITY, done)">21</div>
       <div class="cell ref"     title="22 &middot; SaaS billing &rarr; deferred to pilot monetization (REF)">22</div>
-      <div class="cell parity"  title="23 &middot; SOT import tooling &rarr; intake rail (PARITY + gap)">23</div>
-      <div class="cell parity"  title="24 &middot; Allowlist / superadmin / audit &rarr; membership lattice (PARITY)">24</div>
+      <div class="cell parity"  title="23 &middot; SOT import tooling &rarr; intake rail (PARITY; property_identifiers migration 20260911140000 in repo, NOT applied; surfacing D-23a + owner-entity name D-23b owed)">23</div>
+      <div class="cell parity"  title="24 &middot; Allowlist / superadmin / audit &rarr; membership lattice (PARITY; OPEN Sep 11: AC allowlist 2/6 mapped, no viewer role, no sign-in log &mdash; D-24a / D-24b + H-3 owed)">24</div>
       <div class="cell ref"     title="25 &middot; Predecessor depth (notices, 1099s, workflow) &rarr; build on demand (REF)">25</div>
     </div>
     <div class="legend">
@@ -780,7 +780,7 @@ const BODY = `
         <li><b>17</b> Documents + register categories <span class="st b">PORT</span></li>
         <li><b>18</b> HVAC + predictive maintenance <span class="st b">V1 LIVE</span></li>
         <li><b>19</b> Spatial datasets <span class="st g">PARITY</span></li>
-        <li><b>20</b> Marketing assets <span class="st g">PARITY</span></li>
+        <li><b>20</b> Marketing assets <span class="st g">DONE</span></li>
         <li><b>21</b> UniFi network card <span class="st g">DONE</span></li>
         <li><b>22</b> SaaS billing <span class="st s">REF</span></li>
         <li><b>23</b> SOT import tooling <span class="st g">PARITY</span></li>
