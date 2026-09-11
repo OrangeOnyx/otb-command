@@ -47,19 +47,9 @@
    "replace": "$2,500",
    "tier": "standard"
   },
-  "117.5": {
-   "repair": "$500",
-   "replace": "$500",
-   "tier": "standard"
-  },
   "119": {
    "repair": "$750",
    "replace": "$1,500",
-   "tier": "standard"
-  },
-  "119.5": {
-   "repair": "$750",
-   "replace": "$2,000",
    "tier": "standard"
   },
   "121": {
@@ -89,16 +79,6 @@
   },
   "131": null,
   "133": null,
-  "135A": {
-   "repair": "$1,000",
-   "replace": "$1,000",
-   "tier": "standard"
-  },
-  "135B": {
-   "repair": "$1,000",
-   "replace": "$1,000",
-   "tier": "standard"
-  },
   "137": {
    "repair": "$750",
    "replace": "15%",
@@ -128,6 +108,28 @@
    "repair": "100%",
    "replace": "100%",
    "tier": "full"
+  },
+  "117.5": {
+   "repair": "Pending verification",
+   "replace": "Pending verification",
+   "tier": null,
+   "note": "Owner reports updated split; supplied renewal omits the clause."
+  },
+  "119.5": {
+   "repair": "Pending verification",
+   "replace": "Pending verification",
+   "tier": null,
+   "note": "Signed prior renewal has conflicting replacement provisions; current renewal copy pending."
+  },
+  "135A": {
+   "repair": "$1,000",
+   "replace": "$1,000",
+   "tier": "standard"
+  },
+  "135B": {
+   "repair": "$1,000",
+   "replace": "$1,000",
+   "tier": "standard"
   }
  }
 }

@@ -1,13 +1,12 @@
 /* App boot: auth gate (Path B) → navigation, top-bar, JSON export/import, renders. */
 import "./styles.css";
-import { UNITS, exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState } from "./store.js";
-import { REMOTE, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, BUNDLED_PROPERTY, getPublishedLines, setVoiceLines } from "./lib/remote.js";
+import { UNITS, exportJSON, importJSON, getOwnerSheets, setOwnerSheet, hydrateRemote, subscribe, getLayerState, configureStoreScope } from "./store.js";
+import { REMOTE, LOCAL_REVIEW, sb, getSession, getRole, sendMagicLink, signOut, loadState, pushOps, fetchLayerRows, listAuthorized, assignRole, dismissPending, revokeAuthorized, listPendingProfiles, listProperties, propertyContext, setActiveProperty, getPublishedLines, setVoiceLines } from "./lib/remote.js";
 import { ASSIGNABLE_ROLES, accessVendorOptions, accessUnitOptions, scopeKind, validateAssignment } from "./lib/access.js";
 import { LINE_DEFS, linesFromRow, normalizeUsNumber, validateLines, publishNote } from "./lib/voicelines.js";
 import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
-import { migrateLocalToRemote } from "./lib/assets.js";
 import { initErrorLog } from "./lib/errlog.js";
 import { logClientError } from "./lib/remote.js";
 import { loadSeed } from "./lib/seed.js";
@@ -17,9 +16,11 @@ import { pageFromHash, hashFor, resolveRoute } from "./lib/router.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
+import { initCommand } from "./views/command.js";
 import { initSafe } from "./views/safe.js";
 import { initSearch } from "./views/search.js";
 import { printFootText, printDocTitle } from "./lib/printsheet.js";
+import { stateStorageKey, sameStateScope } from "./lib/state-storage.js";
 import { fitZoom } from "./lib/roll.js";
 import { renderRoll } from "./views/rentroll.js";
 import { initMatrix } from "./views/compliance.js";
@@ -35,7 +36,18 @@ import { initPortfolio } from "./views/portfolio.js";
 import { initComms } from "./views/comms.js";
 import { initMatters } from "./views/matters.js";
 import { closeDrawer } from "./views/drawer.js";
+import { COMMAND_PREVIEW } from './lib/command-evidence.js';
 
+const isCommandPreview=import.meta.env.VITE_COMMAND_ENV==='preview';
+const previewBadge=isCommandPreview?`<p class="command-preview-badge">${COMMAND_PREVIEW.label}</p>`:'';
+if (isCommandPreview) {
+  document.body.classList.add('command-preview');
+  const banner=document.createElement('div');
+  banner.className='command-preview-banner';
+  banner.textContent=COMMAND_PREVIEW.label;
+  document.querySelector('.topbar')?.after(banner);
+  document.title='Preview · Cypress Command — On The Boulevard';
+}
 
 /* ---------- login gate ---------- */
 function showLogin(msg) {
@@ -46,6 +58,7 @@ function showLogin(msg) {
   o.innerHTML =
     '<div class="login-card">' +
     '<div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>' +
+    previewBadge +
     '<div class="login-sub">On The Boulevard · sign in</div>' +
     '<input id="loginEmail" type="email" placeholder="you@email.com" autocomplete="email">' +
     '<button id="loginBtn">Email me a sign-in link</button>' +
@@ -66,22 +79,42 @@ function showLogin(msg) {
 
 /* ---------- the app (built only once authed, or when no backend) ---------- */
 let navBtn = {}, ovWrap = null;
+const shellIcon = name => {
+  const paths = {
+    eye: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+    close: '<path d="m6 6 12 12M6 18 18 6"/>',
+    moon: '<path d="M20 14A8.5 8.5 0 0 1 10 4 8.5 8.5 0 1 0 20 14Z"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',
+  };
+  return '<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' + paths[name] + '</svg>';
+};
 
 function buildShell(account) {
   /* navigation (drawing-set sheet index) */
   const nav = document.getElementById("nav");
+  const mobileNav = window.matchMedia("(max-width:860px)");
+  const syncMobileNav = () => {
+    const open = document.body.classList.contains("nav-open");
+    const panel = document.querySelector(".side");
+    panel.inert = mobileNav.matches && !open;
+    panel.setAttribute("aria-hidden", String(mobileNav.matches && !open));
+    document.getElementById("navBurger").setAttribute("aria-expanded", String(open));
+  };
   let currentPage = DEFAULT_PAGE;
   PAGES.forEach(([id, sheet, label]) => {
     const b = document.createElement("button");
     b.innerHTML = '<span class="sheet">' + sheet + '</span>' + label;
-    if (id === DEFAULT_PAGE) b.classList.add("on");
+    if (id === DEFAULT_PAGE) { b.classList.add("on"); b.setAttribute("aria-current", "page"); }
     b.onclick = () => {
-      document.querySelectorAll(".nav button").forEach(x => x.classList.remove("on"));
+      document.querySelectorAll(".nav button").forEach(x => { x.classList.remove("on"); x.removeAttribute("aria-current"); });
       b.classList.add("on");
+      b.setAttribute("aria-current", "page");
       document.querySelectorAll(".page").forEach(p => p.classList.remove("on"));
       document.getElementById("pg-" + id).classList.add("on");
+      if (currentPage !== id) document.querySelector(".main").scrollTop = 0;
       currentPage = id;
       document.body.classList.remove("nav-open");
+      syncMobileNav();
       closeDrawer();
       /* deep link: the hash mirrors the open sheet (pushes a history entry →
          back/forward walk the sheet trail) */
@@ -93,15 +126,17 @@ function buildShell(account) {
   document.getElementById("pg-" + DEFAULT_PAGE).classList.add("on");
 
   /* mobile: the sheet index is off-canvas behind ☰ (≤860px) */
-  document.getElementById("navBurger").onclick = () => document.body.classList.toggle("nav-open");
-  document.getElementById("navVeil").onclick = () => document.body.classList.remove("nav-open");
+  document.getElementById("navBurger").onclick = () => { document.body.classList.toggle("nav-open"); syncMobileNav(); };
+  document.getElementById("navVeil").onclick = () => { document.body.classList.remove("nav-open"); syncMobileNav(); };
+  mobileNav.addEventListener("change", syncMobileNav);
+  syncMobileNav();
 
   /* visual sheet export: footer + doc title stamp on print (button or Ctrl+P) */
   let printTheme = null; // paper prints light regardless of screen theme
   const stampPrint = () => {
     const dateStr = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
-    document.getElementById("printFoot").textContent = printFootText(PAGES, currentPage, dateStr);
-    document.title = printDocTitle(PAGES, currentPage, TODAY.toISOString().slice(0, 10));
+    document.getElementById("printFoot").textContent = printFootText(PAGES, currentPage, dateStr)+(isCommandPreview?' · '+COMMAND_PREVIEW.label:'');
+    document.title = (isCommandPreview?'Preview · ':'')+printDocTitle(PAGES, currentPage, TODAY.toISOString().slice(0, 10));
     if (printTheme === null && document.documentElement.dataset.theme) {
       printTheme = document.documentElement.dataset.theme;
       delete document.documentElement.dataset.theme;
@@ -120,7 +155,7 @@ function buildShell(account) {
   };
   window.addEventListener("beforeprint", stampPrint);
   window.addEventListener("afterprint", () => {
-    document.title = "Cypress Command — On The Boulevard";
+    document.title = (isCommandPreview?'Preview · ':'')+"Cypress Command — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
     if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }
@@ -271,7 +306,7 @@ function buildShell(account) {
         if (first) navBtn[first[0]].click();
       }
     }
-    ovToggle.textContent = ownerPreview ? "✕  Exit owner view" : "👁  Preview owner view";
+    ovToggle.innerHTML = shellIcon(ownerPreview ? "close" : "eye") + (ownerPreview ? "Exit owner view" : "Preview owner view");
     ovToggle.classList.toggle("on", ownerPreview);
   }
   ovToggle.onclick = () => { ownerPreview = !ownerPreview; applyOwner(); };
@@ -359,6 +394,7 @@ function initRouter() {
 function initViews(account) {
   initPlan();
   initSpatial();
+  initCommand(account);
   initSafe();
   initSearch();
   renderRoll();
@@ -386,16 +422,20 @@ const syncQueue = new SyncQueue();
 const LAYER_BY_KEY = Object.fromEntries(LAYER_DEFS.map(d => [d.key, d]));
 
 const dirtyTables = new Set(); // tables whose last push failed → re-pull + re-diff
+let stopSync = () => {};
 
 function wireSync() {
-  let t = null;
+  let t = null, active = true;
+  stopSync = () => { active=false;clearTimeout(t);syncQueue.drain();dirtyTables.clear(); };
   const flush = async () => {
+    if (!active) return;
     /* Recover failed tables first: the queue cache advanced optimistically at
        queue-time, so after a failed push it lies about server truth. Re-pull
        the table, prime with reality, re-diff local state → exact minimal ops. */
     for (const table of [...dirtyTables]) {
       try {
         const rows = await fetchLayerRows(table);
+        if (!active) return;
         for (const d of LAYER_DEFS.filter(x => x.table === table)) {
           syncQueue.prime(d, rows.filter(r => d.ownsRow(r)));
           syncQueue.queue(d, d.toRows(getLayerState(d.key)));
@@ -403,6 +443,7 @@ function wireSync() {
         dirtyTables.delete(table);
       } catch { /* still unreachable — stays dirty, retried below */ }
     }
+    if (!active) return;
     const batches = syncQueue.drain();
     if (batches.length) {
       try {
@@ -413,9 +454,10 @@ function wireSync() {
         batches.forEach(b => dirtyTables.add(b.table));
       }
     }
-    if (dirtyTables.size) { clearTimeout(t); t = setTimeout(flush, 30000); }
+    if (active && dirtyTables.size) { clearTimeout(t); t = setTimeout(flush, 30000); }
   };
   subscribe((type, detail) => {
+    if (!active) return;
     if (type === "selection") return;
     if (detail && detail.remote) return;
     const keys = type === "import" ? Object.keys(LAYER_BY_KEY) : (LAYER_BY_KEY[type] ? [type] : []);
@@ -443,7 +485,7 @@ async function initPropertySwitcher() {
         esc(p.name) + '</option>').join("") + '</select>';
     const side = document.querySelector(".side");
     side.insertBefore(wrap, side.querySelector(".foot"));
-    wrap.querySelector("#propSel").onchange = e => { setActiveProperty(e.target.value); location.reload(); };
+    wrap.querySelector("#propSel").onchange = e => { stopSync();configureStoreScope(null);setActiveProperty(e.target.value);location.reload(); };
   } catch { /* roster unavailable — the switcher simply doesn't render */ }
 }
 
@@ -451,7 +493,10 @@ function initTheme() {
   const saved = localStorage.getItem("otb-theme") === "dark" ? "dark" : "light";
   document.documentElement.dataset.theme = saved;
   const btn = document.getElementById("themeToggle");
-  const label = () => { if (btn) btn.textContent = document.documentElement.dataset.theme === "dark" ? "◑ Light mode" : "◐ Dark mode"; };
+  const label = () => {
+    const dark = document.documentElement.dataset.theme === "dark";
+    if (btn) btn.innerHTML = shellIcon(dark ? "sun" : "moon") + (dark ? "Light mode" : "Dark mode");
+  };
   label();
   if (btn) btn.onclick = () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -467,27 +512,39 @@ async function boot() {
     let session = null;
     try { session = await getSession(); } catch (e) { console.warn(e); }
     if (!session) { showLogin(); return; }
+    let invalidated = false;
+    sb.auth.onAuthStateChange((event,current) => {
+      if (event !== 'SIGNED_OUT' && (!current || current.user?.id === session.user.id)) return;
+      invalidated=true;stopSync();configureStoreScope(null);
+      document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+      document.querySelector('.app').style.display='none';
+      location.reload();
+    });
     let account = null;
     try { account = await getRole(); } catch (e) { console.warn(e); }
     account = account || { email: "", role: "pending" }; // fail closed, not to owner
     if (account.role === "pending") { showPending(account.email); return; }
-    // C1: hydrate confidential seed (rents/PII/vendors) before rendering. Owner
-    // + operator only; a failure leaves skeletons (never leaks), so don't block boot.
-    try { await loadSeed(); } catch (e) { console.warn("seed:", e); }
+    let ctx = null;
     try {
+      ctx = await propertyContext();
+      if (invalidated) return;
+      configureStoreScope({mode:'authenticated',userId:session.user.id,orgId:ctx.org_id,propertyId:ctx.property_id});
+      // Private seed may fail safely to the public skeleton; shared state may
+      // not fail open to old local overrides or an empty editable dashboard.
+      try { await loadSeed(); } catch (e) { console.warn('seed:',e); }
+      if (invalidated) return;
       const remote = await loadState();
+      if (invalidated) return;
       for (const d of LAYER_DEFS) // prime the sync queue with server truth
         syncQueue.prime(d, (loadState.lastRows?.[d.table] || []).filter(r => d.ownsRow(r)));
-      if (Object.keys(remote).length) hydrateRemote(remote);
-      else if (account.role === "operator" && (await propertyContext()).slug === BUNDLED_PROPERTY) {
-        /* seed an empty backend from local — ONLY for the bundled property.
-           The local snapshot derives from the bundled OTB data package;
-           pushing it into a freshly onboarded property mirrors OTB state
-           there (caught live by the C-2 demo teardown, 2026-08-05). */
-        for (const d of LAYER_DEFS) syncQueue.queue(d, d.toRows(getLayerState(d.key)));
-        await pushOps(syncQueue.drain(), CLIENT_ORIGIN);
-      }
-    } catch (e) { console.warn("remote state:", e); }
+      hydrateRemote(remote); // including {}, which must clear all prior layers
+    } catch (e) {
+      if (invalidated) return;
+      console.warn("state:", e);
+      const scope = ctx ? {mode:'authenticated',userId:session.user.id,orgId:ctx.org_id,propertyId:ctx.property_id} : null;
+      configureStoreScope(null);showStateFailure({account, scope});return;
+    }
+    if (invalidated) return;
     buildShell(account);
     initViews(account);
     applyRole(account.role);
@@ -504,16 +561,52 @@ async function boot() {
       }).catch(e => console.warn("realtime:", e));
     if (account.role === "operator") {
       wireSync();
-      if (!localStorage.getItem("otb-assets-migrated")) {
-        try { await migrateLocalToRemote(); } catch (e) { console.warn("asset migrate:", e); }
-        localStorage.setItem("otb-assets-migrated", "1");
-      }
+      // Existing browser files remain local; login does not authorize uploading
+      // unscoped files or seeding an empty property from a legacy snapshot.
     }
   } else {
+    configureStoreScope({mode:LOCAL_REVIEW?'local-review':'offline',propertyId:'otb'});
     buildShell(null);
     initViews(null);
     initRouter();
   }
+}
+
+/* The retained per-scope copy that scoped storage keeps for exactly this
+   moment (authenticated boots never read it; remote hydration never
+   overwrites it). Returns {savedAt, snapshot} or null. */
+function readRetainedCopy(scope) {
+  const key = stateStorageKey(scope);
+  if (!key) return null;
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) || "null");
+    if (!parsed || !parsed.snapshot || !sameStateScope(scope, parsed.scope)) return null;
+    return { savedAt: parsed.savedAt || "", snapshot: parsed.snapshot };
+  } catch { return null; }
+}
+
+/* Authenticated boot could not load server state. Fail closed for editing,
+   but never strand the operator: offer the last saved copy READ-ONLY (store
+   scope stays null so nothing is persisted or synced from this session). */
+function showStateFailure({ account, scope } = {}) {
+  document.querySelector('.app').style.display='none';
+  const retained = scope ? readRetainedCopy(scope) : null;
+  const gate=document.createElement('div');gate.className='login-gate';
+  gate.innerHTML='<div class="login-card"><div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>'+previewBadge+'<h1 style="font-size:22px">Property records unavailable</h1><p class="login-msg">The signed-in property could not be loaded. Saved browser data has been preserved. Retry to load the current records before making changes.</p><button id="stateRetry">Retry loading records</button>'+
+    (retained ? '<button id="stateRecover" style="margin-top:8px;background:var(--slate)">Continue with last saved copy (read-only)</button><p class="login-msg">Saved '+esc(retained.savedAt ? retained.savedAt.replace("T"," ").slice(0,16)+"Z" : "earlier in this browser")+' · nothing you do in that view is saved or synced.</p>' : '')+
+    '<button id="stateOut" style="margin-top:8px">Sign out</button></div>';
+  gate.querySelector('#stateRetry').onclick=()=>location.reload();
+  gate.querySelector('#stateOut').onclick=async()=>{await signOut();location.reload();};
+  if (retained) gate.querySelector('#stateRecover').onclick=()=>{
+    gate.remove();
+    document.querySelector('.app').style.display='';
+    hydrateRemote(retained.snapshot);           // scope is null → persist() is a no-op
+    const main=document.querySelector('.main');
+    if (main) main.dataset.savedAt=retained.savedAt ? retained.savedAt.replace("T"," ").slice(0,16)+"Z" : "";
+    document.body.classList.add('state-recovery');
+    buildShell(account); initViews(account); applyRole(account.role); initRouter();
+  };
+  document.body.appendChild(gate);
 }
 
 /* signed in, but not yet operator/owner/vendor — least-privilege holding pen
@@ -527,6 +620,7 @@ function showPending(email) {
   o.innerHTML =
     '<div class="login-card">' +
     '<div class="login-wm"><img src="/brand/cypress/cc-04c-horizontal-primary.svg" alt="Cypress Command" width="260" height="91"></div>' +
+    previewBadge +
     '<div class="login-sub">Access pending</div>' +
     '<div class="login-msg">You’re signed in as <b>' + esc(email || "") + '</b>, but this address isn’t linked ' +
     'to an owner, operator, or vendor account yet. Contact management to be granted access.</div>' +

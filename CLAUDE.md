@@ -18,7 +18,9 @@
 > available: Atlas (spatial) · Almanac (dates) · Ledger · Desk · Register.
 
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
-> Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial ·
+> Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial [property
+> workspace since 2026-09-11: plat-based model + suite inspector + evidence/owner-brief
+> flow + dated ledger strip; iso/3D/satellite/reality under "Capture & legacy views"] ·
 > R-1 Rent Roll · P-1 Financial · C-1 Compliance · T-1 Critical Dates ·
 > W-1 Action Board · K-1 Directory · M-1 Maintenance · S-1 Owner Safe ·
 > AI-1 Concierge · V-1 Vendor Portal) — nav single-source: `src/lib/pages.js`.
@@ -101,10 +103,24 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - Anchor: Jason's Deli (149) — §9.01 requires monthly HVAC PM contract with
   **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC.
 - Exclusive-use watch: HotWorx (129, Mar 2024) vs C. Wolf (135A, Nov 2024).
-- **NO holdovers as of Jul 2026** — all five (105, 109, 117.5, 119, 143) RENEWED per the
-  owner-corrected signed rent roll (docs/sot-2026-07/, reconciled 2026-07-16; see
-  docs/sot-reconciliation-2026-07.md for new expirations). Upstream (145) signed at
-  $19.95/SF total. Vacant: 131 (LOI pending), 133. Owner-occupied: 135B.
+- **Lease terms — Tier-1 is the September 2026 lease review (operator ruling
+  2026-09-11): `docs/lease-population-2026-09-10.md` + per-suite `leaseEvidence`
+  in `src/data/units.json` supersede `docs/sot-2026-07/` for every suite they
+  name.** Scheduled monthly total **$88,070.71** (was $90,291.23). 143 1st Franklin:
+  signed amendment 12/22/2025 → **$3,354.75/mo ($21.00/SF total)**, 2/1/2026–
+  1/31/2031. 145 Upstream: executed lease, base-rent abatement Jul–Dec 2026 at
+  **$798.75/mo** (additional only), $3,035.25/mo from 1/2027; contractual
+  commencement/expiry UNRESOLVED (`end` blank). 119 OUPAC/Daco: signed-document
+  date conflict → current term UNRESOLVED (`end` blank), $2,890.42 retained.
+  139/141 Fast Pass: prior term ended 7/31/2026; tenant-signed 3-yr renewal
+  8/1/2026–7/31/2029 at $6,150.38 combined, LANDLORD SIGNATURE PENDING (`end`
+  blank; NOT a holdover; proposed rent not yet in the schedule). Owner-confirmed
+  renewals, signed copies pending: 105 → 3/31/2029 · 117.5 → 2/28/2029 (HVAC
+  split pending) · 119.5 → 2/28/2029 · 121 → 12/31/2031. 109: ownership-change
+  consent executed 8/31/2026, rent/term unchanged. HVAC caps 117.5 / 119.5 =
+  "Pending verification". Blank-`end` suites drop out of T-1 and W-1 renewal
+  triggers BY DESIGN until resolved (P-1 shows "Term unresolved"). No holdovers.
+  Vacant: 131 (LOI pending), 133. Owner-occupied: 135B.
 
 ## Locked design system ("plan room" aesthetic — do not drift)
 - Palette: paper #EDEFE8 / card #F6F7F1 / ink #1C2B26 / brass #A87E2F /
@@ -133,9 +149,12 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
    not re-propose it.** SOT stays the workbook + manual edits via the store.
 
 ## Data sources of truth (Tier 1)
-- **Rent roll / lease economics: `docs/sot-2026-07/` (owner-corrected signed rent
-  roll, adopted 2026-07-16) — supersedes the workbook for tenant/economics/expirations.**
-  Carries its own authority ranking + validation rules; DoorLoop dates never authoritative.
+- **Rent roll / lease economics:** `docs/lease-population-2026-09-10.md` +
+  `units.json` `leaseEvidence` (owner confirmations 2026-09-09/10, Belle emails,
+  OTB Master Lease Package 2026-08-01; adopted 2026-09-11) for the suites it
+  names → otherwise `docs/sot-2026-07/` (owner-corrected signed rent roll,
+  adopted 2026-07-16) → workbook. Supersession memo:
+  `docs/sot-supersession-2026-09-11.md`. DoorLoop dates never authoritative.
 - 00_OTB_Master_SOT.docx v1.1 · OTBMasterTemplateSetSOTcorrected.xlsx (27×30 rent
   roll) · Rev_Belle_Realty_Arnould_Blvd_Property.xlsx (meters) · HVAC PDF (2021)
   · recorded plat (Montagnet & Domingue, 5/20/1994, last rev 7/19/2019).
@@ -160,6 +179,18 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   appear only as an explicit PSF breakdown chart: Base · CAM · Tax · Ins →
   Total PSF → Total $/mo. (Base/Total PSF from the rent roll; CAM/Tax/Ins from
   recoveries.json — single-source rule.)
+- **Cypress preview (2026-09):** `VERCEL_ENV=preview` deployments run against the
+  isolated Supabase branch `hefexnqkigirmzpmeggj` (`tools/check-preview-isolation.mjs`
+  aborts build + every function if the prod ref or a listed secret is present in
+  Preview env). `otb.cypresscommand.com` is bound to that preview. NEVER promote a
+  preview deployment to production. `/api/atlas-numbers` (dated 2026-09-09
+  production-ledger extract, committed under `api/`) serves only when the
+  configured project ref equals the extract's source ref.
+- **Browser state (2026-09):** scoped keys `otb-command-state-v2:<mode>:…`;
+  authenticated boot is remote-required (never reads local); on load failure the
+  operator gets a READ-ONLY "last saved copy" path (store scope null → nothing
+  persists or syncs). Import JSON accepts legacy scope-less exports; rejects
+  exports bound to another account/property.
 - Validate before delivery: `node --check` each module / `npm run build`.
 - Commit per logical change with imperative messages ("Add geometry.json trace").
 - Rev label in the A-1 title block bumps on every geometry change.

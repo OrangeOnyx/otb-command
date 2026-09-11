@@ -147,36 +147,59 @@ function unitData() {
 }
 
 let geoScene = null;     // Lens C handle (null until satellite opened)
+let lensGeneration = 0, activeLens = "iso";
 
-async function open3d() {
+function canOpen(generation, lens, host) {
+  return generation === lensGeneration && activeLens === lens && host.isConnected &&
+    !host.hidden && !host.closest(".cmd-legacy")?.hidden;
+}
+
+function lensError(error, host, generation) {
+  if (generation !== lensGeneration || !host?.isConnected) return;
+  console.warn("Spatial view unavailable:", error);
+  host.querySelector(".spatial-load-error")?.remove();
+  const message = document.createElement("p"); message.className = "spatial-load-error";
+  message.textContent = "This capture view could not load. The property model and plan remain available.";
+  host.append(message);
+}
+
+async function open3d(generation = lensGeneration) {
   const host = document.getElementById("spatial3d");
   if (!host || scene) return;
   const dark = document.documentElement.dataset.theme === "dark";
   const { createScene } = await import("../lib/scene3d.js");
+  if (!canOpen(generation, "3d", host) || scene) return;
+  host.querySelector(".spatial-load-error")?.remove();
   scene = createScene(host, unitData(), { dark, onPick: openDrawer,
     ftWorld: trueScale ? TRUE_FT_WORLD : undefined });
   scene.setSelected(getSelected());
 }
 
-async function openSat() {
+async function openSat(generation = lensGeneration) {
   const host = document.getElementById("spatialSat");
   if (!host || geoScene) return;
   const { createGeoScene } = await import("../lib/scenegeo.js");
+  if (!canOpen(generation, "sat", host) || geoScene) return;
+  host.querySelector(".spatial-load-error")?.remove();
   geoScene = createGeoScene(host, unitData(), { onPick: openDrawer });
   geoScene.setSelected(getSelected());
 }
 
 let realScene = null;    // Lens D handle (null until reality opened)
 
-async function openReal() {
+async function openReal(generation = lensGeneration) {
   const host = document.getElementById("spatialReal");
   if (!host || realScene) return;
   const { createSplatScene } = await import("../lib/scenesplat.js");
+  if (!canOpen(generation, "real", host) || realScene) return;
+  host.querySelector(".spatial-load-error")?.remove();
   realScene = createSplatScene(host, unitData(), { onPick: openDrawer });
   realScene.setSelected(getSelected());
 }
 
 function setLens(next) {
+  const generation = ++lensGeneration;
+  activeLens = next;
   const panes = {
     iso: document.getElementById("spatial"),
     "3d": document.getElementById("spatial3d"),
@@ -184,17 +207,18 @@ function setLens(next) {
     real: document.getElementById("spatialReal")
   };
   ["lensIso", "lens3d", "lensSat", "lensReal"].forEach((id, i) => {
-    document.getElementById(id).classList.toggle("on", ["iso", "3d", "sat", "real"][i] === next);
+    document.getElementById(id)?.classList.toggle("on", ["iso", "3d", "sat", "real"][i] === next);
   });
   Object.entries(panes).forEach(([k, el]) => {
+    if (!el) return;
     if (k === next) el.removeAttribute("hidden"); else el.setAttribute("hidden", "");
   });
   if (next !== "3d" && scene) { scene.dispose(); scene = null; }
   if (next !== "sat" && geoScene) { geoScene.dispose(); geoScene = null; }
   if (next !== "real" && realScene) { realScene.dispose(); realScene = null; }
-  if (next === "3d") open3d().then(() => scene && scene.resize());
-  if (next === "sat") openSat().then(() => geoScene && geoScene.resize());
-  if (next === "real") openReal();
+  if (next === "3d") open3d(generation).then(() => scene?.resize()).catch(e => lensError(e, panes["3d"], generation));
+  if (next === "sat") openSat(generation).then(() => geoScene?.resize()).catch(e => lensError(e, panes.sat, generation));
+  if (next === "real") openReal(generation).catch(e => lensError(e, panes.real, generation));
 }
 
 export function initSpatial() {
@@ -209,13 +233,20 @@ export function initSpatial() {
     trueScale = !trueScale;
     tBtn.classList.toggle("on", trueScale);
     drawSpatial();
-    if (scene) {                      // rebuild Lens B at the new height scale
-      scene.dispose(); scene = null;
-      open3d().then(() => scene && scene.resize());
+    if (activeLens === "3d") {      // invalidate even a still-pending import
+      if (scene) { scene.dispose(); scene = null; }
+      setLens("3d");
     }
   };
   const xBtn = document.getElementById("isoExport");
   if (xBtn) xBtn.onclick = exportIsoSvg;
+  // Stop expensive renderers when the sheet or the legacy disclosure closes.
+  // Observe the page because initCommand wraps the legacy nodes after this init.
+  const page = document.getElementById("pg-spatial");
+  if (page) new MutationObserver(() => {
+    const hidden = !page.classList.contains("on") || document.getElementById("spatial")?.closest(".cmd-legacy")?.hidden;
+    if (hidden && (scene || geoScene || realScene || activeLens !== "iso")) setLens("iso");
+  }).observe(page, { attributes: true, attributeFilter: ["class", "hidden"], subtree: true, childList: true });
   subscribe(type => {
     if (type === "selection") {
       drawSpatial();

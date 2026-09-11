@@ -1,0 +1,43 @@
+[
+  {
+    "antipattern": "overused-font",
+    "name": "Overused font",
+    "description": "Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\adam\\Projects\\otb-command-claude-code-kit\\otb-command\\src\\views\\command.css",
+    "line": 3,
+    "snippet": "font-family:Fraunces"
+  },
+  {
+    "antipattern": "overused-font",
+    "name": "Overused font",
+    "description": "Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\adam\\Projects\\otb-command-claude-code-kit\\otb-command\\src\\views\\command.css",
+    "line": 4,
+    "snippet": "font-family:Inter"
+  },
+  {
+    "antipattern": "broken-image",
+    "name": "Broken or placeholder image",
+    "description": "<img> tags with empty src, missing src, or placeholder values ship as broken-image boxes. Use real images, generated assets, or remove the tag.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\adam\\Projects\\otb-command-claude-code-kit\\otb-command\\index.html",
+    "line": 229,
+    "snippet": "<img class=\"dw-logo\" id=\"dwLogo\" alt=\"\" hidden>"
+  },
+  {
+    "antipattern": "em-dash-overuse",
+    "name": "Em-dash overuse",
+    "description": "Em-dash saturation in body copy is an AI cadence tell. Advisory only: humans use em-dashes legitimately, so this fires only on saturation — at least 8 em-dashes (— or --) at a density near one per 500 characters of body text — never on a long article that uses a few. Prefer commas, colons, periods, or parentheses.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\adam\\Projects\\otb-command-claude-code-kit\\otb-command\\index.html",
+    "line": 0,
+    "snippet": "14 em-dashes in body text",
+    "advisory": true
+  }
+]

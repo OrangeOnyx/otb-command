@@ -6,35 +6,35 @@
    "base": 15.35,
    "cam": 2.1,
    "tax": 0.9,
-   "ins": 1.0,
+   "ins": 1,
    "total": 19.35
   },
   "103": {
    "base": 15.35,
    "cam": 2.1,
    "tax": 0.9,
-   "ins": 1.0,
+   "ins": 1,
    "total": 19.35
   },
   "105": {
    "base": 13.5,
    "cam": 2.1,
    "tax": 0.85,
-   "ins": 1.0,
+   "ins": 1,
    "total": 17.45
   },
   "107": {
    "base": 13.5,
    "cam": 2.1,
    "tax": 0.9,
-   "ins": 1.0,
+   "ins": 1,
    "total": 17.5
   },
   "109": {
-   "base": 14.0,
+   "base": 14,
    "cam": 2.1,
    "tax": 0.85,
-   "ins": 1.0,
+   "ins": 1,
    "total": 17.95
   },
   "111": {
@@ -65,26 +65,12 @@
    "ins": 1.85,
    "total": 18.4
   },
-  "117.5": {
-   "base": 14.0,
-   "cam": 2.1,
-   "tax": 0.95,
-   "ins": 1.95,
-   "total": 19.0
-  },
   "119": {
    "base": 13.5,
    "cam": 2.1,
    "tax": 0.9,
-   "ins": 1.0,
+   "ins": 1,
    "total": 17.5
-  },
-  "119.5": {
-   "base": 14.0,
-   "cam": 2.1,
-   "tax": 1.2,
-   "ins": 1.15,
-   "total": 18.45
   },
   "121": {
    "base": 12.75,
@@ -115,39 +101,25 @@
    "total": 18.5
   },
   "129": {
-   "base": 14.0,
+   "base": 14,
    "cam": 2.1,
    "tax": 0.95,
    "ins": 1.95,
-   "total": 19.0
+   "total": 19
   },
   "131": {
-   "base": 0.0,
-   "cam": 0.0,
-   "tax": 0.0,
-   "ins": 0.0,
-   "total": 0.0
+   "base": 0,
+   "cam": 0,
+   "tax": 0,
+   "ins": 0,
+   "total": 0
   },
   "133": {
-   "base": 0.0,
-   "cam": 0.0,
-   "tax": 0.0,
-   "ins": 0.0,
-   "total": 0.0
-  },
-  "135A": {
-   "base": 10.5,
-   "cam": 2.1,
-   "tax": 0.95,
-   "ins": 1.95,
-   "total": 15.5
-  },
-  "135B": {
-   "base": 0.0,
-   "cam": 0.0,
-   "tax": 0.0,
-   "ins": 0.0,
-   "total": 0.0
+   "base": 0,
+   "cam": 0,
+   "tax": 0,
+   "ins": 0,
+   "total": 0
   },
   "137": {
    "base": 13.5,
@@ -171,25 +143,56 @@
    "total": 18.5
   },
   "143": {
-   "base": 16.0,
-   "cam": 2.1,
-   "tax": 0.85,
-   "ins": 1.0,
-   "total": 19.95
+   "base": 16,
+   "cam": null,
+   "tax": null,
+   "ins": null,
+   "total": 21,
+   "note": "Amendment states additional rent in aggregate only; component split unverified."
   },
   "145": {
-   "base": 14.95,
-   "cam": 2.1,
-   "tax": 0.95,
-   "ins": 1.95,
-   "total": 19.95
+   "base": 0,
+   "cam": null,
+   "tax": null,
+   "ins": null,
+   "total": 5,
+   "note": "Current owner-mapped abatement; $798.75 additional rent is not allocated by component."
   },
   "149": {
    "base": 16.25,
    "cam": 2.1,
    "tax": 0.85,
-   "ins": 1.0,
+   "ins": 1,
    "total": 20.2
+  },
+  "117.5": {
+   "base": 14,
+   "cam": 2.1,
+   "tax": null,
+   "ins": 1.95,
+   "total": 19,
+   "note": "Printed 2026 renewal tax conflicts; stated total retained."
+  },
+  "119.5": {
+   "base": 14,
+   "cam": 2.1,
+   "tax": 1.2,
+   "ins": 1.15,
+   "total": 18.45
+  },
+  "135A": {
+   "base": 10.5,
+   "cam": 2.1,
+   "tax": 0.95,
+   "ins": 1.95,
+   "total": 15.5
+  },
+  "135B": {
+   "base": 0,
+   "cam": 0,
+   "tax": 0,
+   "ins": 0,
+   "total": 0
   }
  }
 }

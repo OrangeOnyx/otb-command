@@ -1,0 +1,640 @@
+{
+  "source": {
+    "method": "Single read-only PostgreSQL statement; property-scoped extract",
+    "projectRef": "kbhsghodquchkgfdzckc",
+    "propertyId": "4918b2a2-2dcb-4f1d-8cb1-6ea3e5288977",
+    "application": "Orange Ocean Atlas",
+    "propertySlug": "otb"
+  },
+  "capturedAt": "2026-09-09T18:40:22.514055+00:00",
+  "ledgerEntries": [
+    {
+      "id": "rent:2026-08:101",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "101",
+      "amount": 11085.81,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:103",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "103",
+      "amount": 4923.09,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:105",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "105",
+      "amount": 3231.16,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:107",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "107",
+      "amount": 2541.88,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:109",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "109",
+      "amount": 3808.39,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:111",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "111",
+      "amount": 2605.42,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:113",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "113",
+      "amount": 4017.58,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:115",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "115",
+      "amount": 3327.34,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:117",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "117",
+      "amount": 3327.34,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:117.5",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "117.5",
+      "amount": 2800.92,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:119",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "119",
+      "amount": 2890.42,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:119.5",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "119.5",
+      "amount": 3035.03,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:121",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "121",
+      "amount": 2527.9,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:123",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "123",
+      "amount": 5492.96,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:125",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "125",
+      "amount": 2674.79,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:127",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "127",
+      "amount": 3912.75,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:129",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "129",
+      "amount": 2832.58,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:135A",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "135A",
+      "amount": 2040.83,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:137",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "137",
+      "amount": 3165.04,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:139",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "139",
+      "amount": 2955.38,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:141",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "141",
+      "amount": 2955.38,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:143",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "143",
+      "amount": 3187.01,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:145",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "145",
+      "amount": 3187.01,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-08:149",
+      "due": "2026-08-01",
+      "code": "rent",
+      "date": "2026-08-01",
+      "type": "charge",
+      "unit": "149",
+      "amount": 7765.22,
+      "voidOf": null
+    },
+    {
+      "id": "emt816rqmjr85",
+      "due": null,
+      "code": null,
+      "date": "2026-08-25",
+      "type": "payment",
+      "unit": "109",
+      "amount": 3808.39,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:101",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "101",
+      "amount": 11085.81,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:103",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "103",
+      "amount": 4923.09,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:105",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "105",
+      "amount": 3231.16,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:107",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "107",
+      "amount": 2541.88,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:109",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "109",
+      "amount": 3808.39,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:111",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "111",
+      "amount": 2605.42,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:113",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "113",
+      "amount": 4017.58,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:115",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "115",
+      "amount": 3327.34,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:117",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "117",
+      "amount": 3327.34,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:117.5",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "117.5",
+      "amount": 2800.92,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:119",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "119",
+      "amount": 2890.42,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:119.5",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "119.5",
+      "amount": 3035.03,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:121",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "121",
+      "amount": 2527.9,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:123",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "123",
+      "amount": 5492.96,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:125",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "125",
+      "amount": 2674.79,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:127",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "127",
+      "amount": 3912.75,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:129",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "129",
+      "amount": 2832.58,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:135A",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "135A",
+      "amount": 2040.83,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:137",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "137",
+      "amount": 3165.04,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:139",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "139",
+      "amount": 2955.38,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:141",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "141",
+      "amount": 2955.38,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:143",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "143",
+      "amount": 3187.01,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:145",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "145",
+      "amount": 3187.01,
+      "voidOf": null
+    },
+    {
+      "id": "rent:2026-09:149",
+      "due": "2026-09-01",
+      "code": "rent",
+      "date": "2026-09-01",
+      "type": "charge",
+      "unit": "149",
+      "amount": 7765.22,
+      "voidOf": null
+    }
+  ],
+  "schemaVersion": 1,
+  "historyPeriods": [
+    {
+      "period": "2025-07",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 83107.91,
+      "recordedLateFees": 375
+    },
+    {
+      "period": "2025-08",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 89268.15,
+      "recordedLateFees": 25
+    },
+    {
+      "period": "2025-09",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 89191.56,
+      "recordedLateFees": 200
+    },
+    {
+      "period": "2025-10",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 90064.42,
+      "recordedLateFees": 375
+    },
+    {
+      "period": "2025-11",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 90064.42,
+      "recordedLateFees": 125
+    },
+    {
+      "period": "2025-12",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 89435.46,
+      "recordedLateFees": 200
+    },
+    {
+      "period": "2026-01",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 84005,
+      "recordedLateFees": 375
+    },
+    {
+      "period": "2026-02",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 86737.09,
+      "recordedLateFees": 225
+    },
+    {
+      "period": "2026-03",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 83582.04,
+      "recordedLateFees": 250
+    },
+    {
+      "period": "2026-04",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 89746.11,
+      "recordedLateFees": 25
+    },
+    {
+      "period": "2026-05",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 81241.25,
+      "recordedLateFees": 375
+    },
+    {
+      "period": "2026-06",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 24,
+      "recordedDue": 90064.42,
+      "recordedPaid": 90064.42,
+      "recordedLateFees": 50
+    },
+    {
+      "period": "2026-07",
+      "sources": [
+        "ac"
+      ],
+      "recordCount": 25,
+      "recordedDue": 86984.37,
+      "recordedPaid": 86984.37,
+      "recordedLateFees": 0
+    }
+  ],
+  "financialWorksheet": {
+    "state": "not-entered",
+    "updatedAt": "2026-08-04T10:31:07.862684+00:00",
+    "capRateEntered": false
+  }
+}

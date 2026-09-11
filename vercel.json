@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/command-evidence.js": {
+      "includeFiles": "{docs/harvest/ac-archive-2026-08-29/work_orders.json,docs/harvest/ac-archive-2026-08-29/MANIFEST.json,docs/superpowers/specs/2026-08-29-ac-harvest.md,src/data/units.public.json,src/data/geometry.json}"
+    }
+  },
   "crons": [
     { "path": "/api/auto-trigger", "schedule": "0 11 * * *" }
   ],

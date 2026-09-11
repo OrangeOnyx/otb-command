@@ -13,8 +13,9 @@ test("PAGES is the full 17-sheet nav in drawing-set order", () => {
   ]);
 });
 
-test("boot default is D-1, not whatever sits first in the index (D-0)", () => {
+test("Boot lands on the D-1 dashboard (operator ruling 2026-09-11)", () => {
   assert.equal(DEFAULT_PAGE, "dash");
+  assert.ok(PAGE_IDS.includes("dash"));
   assert.ok(PAGE_IDS.includes(DEFAULT_PAGE));
 });
 

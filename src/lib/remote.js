@@ -1,16 +1,22 @@
 /* Supabase remote: auth (magic-link) + shared state sync.
    No-op when env keys are absent — the app then runs on localStorage only. */
 import { createClient } from "@supabase/supabase-js";
+import { clearCommandDraftSessions } from "./command-draft-session.js";
 
 /* Vite statically replaces these exact import.meta.env.VITE_* expressions at
    build time; the try/catch only matters under plain Node (node --test), where
    import.meta.env is undefined and the app correctly falls back to local-only. */
-let URL, KEY;
+let URL, KEY, localReview = false;
 try {
+  localReview = import.meta.env.DEV && import.meta.env.VITE_LOCAL_REVIEW === "1";
   URL = import.meta.env.VITE_SUPABASE_URL;
   KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 } catch { /* plain Node — no Vite env */ }
-export const REMOTE = !!(URL && KEY);
+/* Explicit local review never creates a Supabase client or writes business
+   records. DEV is replaced with false in production, so this is not an auth
+   bypass in a deployed build, even if the environment flag is set there. */
+export const LOCAL_REVIEW = localReview;
+export const REMOTE = !LOCAL_REVIEW && !!(URL && KEY);
 export const sb = REMOTE ? createClient(URL, KEY) : null;
 
 import { LAYER_DEFS } from "./layers.js"; // single source — no twin list
@@ -88,7 +94,9 @@ export async function sendMagicLink(email) {
   return sb.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin } });
 }
 export async function signOut() {
-  if (REMOTE) await sb.auth.signOut();
+  try {
+    if (REMOTE) await sb.auth.signOut();
+  } finally { clearCommandDraftSessions(() => window.sessionStorage); }
 }
 /* ── typed layer state (Phase B-5, purge #7) ─────────────────────
    One row per diverged item across 7 typed tables; the snapshot shape is

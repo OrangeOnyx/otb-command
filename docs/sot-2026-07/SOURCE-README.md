@@ -1,3 +1,5 @@
+> **Partially superseded 2026-09-11:** for suites 105, 109, 117.5, 119, 119.5, 121, 139, 141, 143 and 145 the September 2026 lease review is Tier-1 — see `docs/sot-supersession-2026-09-11.md` and `docs/lease-population-2026-09-10.md`. This folder remains authoritative for every other suite.
+
 # On The Boulevard — Source of Truth Data
 
 These CSV + XLSX files are the **authoritative reference** for On The Boulevard Shopping Center

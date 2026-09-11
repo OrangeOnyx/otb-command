@@ -1,0 +1,31 @@
+
+> otb-command@0.1.0 build
+> vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+Module "src/views/spatial.js" tried to import "src/data/geometry.json" with no attributes, but it was already imported elsewhere with "type": "json" attributes. Please ensure that import attributes for the same module are always consistent.
+Module "src/views/plan.js" tried to import "src/data/geometry.json" with no attributes, but it was already imported elsewhere with "type": "json" attributes. Please ensure that import attributes for the same module are always consistent.
+Module "src/lib/colors.js" tried to import "src/data/hvac.json" with "type": "json" attributes, but it was already imported elsewhere with no attributes. Please ensure that import attributes for the same module are always consistent.
+Module "src/lib/command-map.js" tried to import "src/data/geometry.json" with no attributes, but it was already imported elsewhere with "type": "json" attributes. Please ensure that import attributes for the same module are always consistent.
+Module "src/lib/leaseUI.js" tried to import "src/data/recoveries.json" with "type": "json" attributes, but it was already imported elsewhere with no attributes. Please ensure that import attributes for the same module are always consistent.
+✓ 182 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              12.72 kB │ gzip:   4.03 kB
+dist/assets/lease-template-BPSH8fFJ.docx     42.74 kB
+dist/assets/plat-full-72-B8kr69r_.png       871.76 kB
+dist/assets/scenegeo-DNVN2dqC.css            69.92 kB │ gzip:  10.05 kB
+dist/assets/index-DqhSFZED.css               90.17 kB │ gzip:  18.54 kB
+dist/assets/scene3d-lDNR1CQ0.js              23.89 kB │ gzip:   6.36 kB
+dist/assets/GLTFLoader-02JZSJVB.js           44.77 kB │ gzip:  13.51 kB
+dist/assets/scenesplat-B4wWETj8.js          252.23 kB │ gzip:  67.10 kB
+dist/assets/three.module-D3WDbd-R.js        573.00 kB │ gzip: 145.84 kB
+dist/assets/index-BXFWaKGd.js               724.90 kB │ gzip: 220.16 kB
+dist/assets/scenegeo-CEEpbtCh.js          1,062.44 kB │ gzip: 287.19 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.63s
