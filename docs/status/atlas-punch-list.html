@@ -315,7 +315,7 @@
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":8,"saved":"2026-09-06T01:29:28.902Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"open","note":"","at":""}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"}},"memo":{"text":"","at":""}}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":13,"saved":"2026-09-11T22:36:59.427Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"open","note":"","at":""},"smk-12":{"s":"pass","note":"","at":"Sep 11"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"}},"memo":{"text":"","at":""}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
@@ -639,7 +639,7 @@ const BODY = `
     the Archive strip of its schedule (dated, one line each); Reopen brings it back.</p>
 
     <div class="kpis mono">
-      <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; voice publish leg built &mdash; cutover steps on you (SMK-7)</small></div>
+      <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; bridge numbers published Sep 11 (SMK-7 passed) &mdash; AC-side forward / retire / notice remain (F-11)</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">13</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
       <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>13 / 25</b><small>AC retires only at 25 / 25 green &middot; +5 on Sep 11</small></div>
@@ -975,7 +975,7 @@ const BODY = `
         <div class="ctrl"><input class="note" data-wnote="h0" maxlength="600" placeholder="Note for Claude on H0 (optional)"></div>
       </div>
       <div class="wave" data-wave="h11">
-        <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip open">Publish leg built</span></div>
+        <div class="head"><span class="wid">H1.1</span><span class="wname">Voice line cutover</span><span class="chip done">Numbers published Sep 11</span></div>
         <p><strong>H-2 decided Sep 1: publish the bridge&rsquo;s numbers.</strong> Atlas&rsquo; Twilio bridge is the
         keeper; AC&rsquo;s Vapi/Retell line retires after a forwarding soak. Built the same evening:
         <code>voice_settings</code> carries the two published numbers (E.164-checked; <code>published_lines()</code>
@@ -984,7 +984,7 @@ const BODY = `
         the numbers are pasted. History leg DONE Aug 29 (62 rows in L-1). What remains is yours &mdash; SMK-7 above
         + the AC-side steps in the runbook. Lease/brief contact numbers and the leasing SMS blurb were
         deliberately NOT switched (entity facts; your call &mdash; runbook lists them).</p>
-        <div class="data">62 rows imported Aug 29 &middot; H-2 = publish Sep 1 &middot; publish leg live Sep 1 &middot; operator: paste numbers (SMK-7) &rarr; forward &rarr; retire &rarr; notice</div>
+        <div class="data">62 rows imported Aug 29 &middot; H-2 = publish Sep 1 &middot; publish leg live Sep 1 &middot; numbers pasted + SMK-7 PASSED Sep 11 &middot; left: forward AC&rsquo;s number &rarr; retire the agent &rarr; tenant notice &rarr; 30-day soak (runbook)</div>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="H1.1 priority">
             <button type="button" class="b-next" data-wav="h11" data-set="next" aria-pressed="false">Next up</button>
@@ -1503,7 +1503,12 @@ const BODY = `
       review smoke clean. <code>invoices</code> table applied on prod; <code>hvac_contracts</code> blocked by the
       classifier (one-liner in HANDOFF); <code>property_identifiers</code> load HELD on D-23b. Manual PDFs now
       <code>Cypress-Command-*.pdf</code>, regenerated. Register 13 / 25. PR to master pending &mdash; merging it deploys.
-      Full record: HANDOFF.md &ldquo;September 11, 2026 (late)&rdquo; + <code>docs/superpowers/plans/2026-09-11-tier1-f1-f5.md</code>.</li>
+      Full record: HANDOFF.md &ldquo;September 11, 2026 (late)&rdquo; + <code>docs/superpowers/plans/2026-09-11-tier1-f1-f5.md</code>.
+      Your r13 marks were read: SMK-7 passed with the two numbers (recorded in the note), SMK-8 / 9 / 10 / 12 passed;
+      SMK-11 stays open. <strong>Your SMK-10 note (&ldquo;repair is complete, how do I get it to go away&rdquo;):</strong>
+      M-1 &rarr; the Pothole Repair card &rarr; <em>&#10003; Done</em>, then <em>Close</em>. Status is derived from the
+      event log, so the A-2 Maintenance tab and the D-1 queue fold it on the next paint; nothing is deleted, the
+      record stays as history.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
