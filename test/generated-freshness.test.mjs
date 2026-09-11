@@ -15,8 +15,6 @@ import { CONTEXT } from "../api/_context.mjs";
    the suite if a committed generated file drifted. Fix = run the named script. */
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-// Windows checkouts with core.autocrlf=true hand us CRLF; compare on LF.
-const readLf = (p) => readFileSync(p, "utf8").replace(/\r\n/g, "\n");
 
 /* core.autocrlf=true checkouts (Windows, worktrees) hand these files back with
    CRLF; the derivation is LF. Compare content, not line endings. */
