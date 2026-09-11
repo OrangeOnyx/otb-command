@@ -10,9 +10,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   HVAC_FREQ, HVAC_STATUS, validHvacFreq, validHvacStatus, hvacId,
-  nextDue, hvacDeadlines, sortHvac, covenant149Prefill, hvacSystemsFor,
+  nextDue, hvacDeadlines, sortHvac, covenant149Prefill, hvacSystemsFor, vendorSlug,
 } from "../src/lib/hvac.js";
 import { HVAC_149 } from "../src/lib/facts.js";
+import VENDORS from "../src/data/vendors.json" with { type: "json" };
 
 const C = (id, over = {}) => ({
   id, unit: "131", vendor_id: "", vendor_name: "Vendor " + id, scope: "",
@@ -151,6 +152,14 @@ test("hvac: covenant149Prefill mirrors the repo-locked §9.01 fact", () => {
   assert.equal(p.vendor_name, HVAC_149.contractor);
   assert.equal(p.ref, HVAC_149.clause);
   assert.notEqual(covenant149Prefill(), p); // fresh object each call — callers may mutate
+});
+
+test("hvac: vendorSlug reproduces the private roster ids (roster never imported by the app)", () => {
+  // the test may read the private roster; the browser graph may not
+  assert.ok(VENDORS.some(v => v.id === covenant149Prefill().vendor_id), "§9.01 vendor_id resolves in the roster");
+  for (const v of VENDORS) assert.equal(vendorSlug(v.company), v.id, v.company);
+  assert.equal(vendorSlug("  A & P Electrical Service, Inc "), "a-p-electrical-service-inc");
+  assert.equal(vendorSlug(null), "");
 });
 
 /* ---- hvac_units join ---- */

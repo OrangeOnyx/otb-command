@@ -20,7 +20,12 @@
    test/hvac.test.mjs. */
 import { REMOTE, sb, propertyContext } from "./remote.js";
 import { HVAC_149 } from "./facts.js";
-import vendors from "../data/vendors.json" with { type: "json" };
+
+/* roster id = tools/extract-vendors.py slugify(company) — restated here (not
+   imported) because src/data/vendors.json is private and must never enter
+   the browser bundle (test/client-privacy.test.mjs) */
+export const vendorSlug = s => String(s || "").normalize("NFKD").replace(/[^\x00-\x7f]/g, "")
+  .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "").slice(0, 48);
 
 /* ---- vocabulary (keys mirror the schema CHECK constraints) ---- */
 export const HVAC_FREQ = {
@@ -115,13 +120,12 @@ export function hvacSystemsFor(rows, unit) {
 }
 
 /* §9.01 form PREFILL derived from the repo-locked fact — NOT a seed row.
-   vendor_id resolves through the vendor roster by company name so the
-   contract can link to K-1 / V-1 without restating the id here. */
+   vendor_id is the roster slug of the contractor name so the contract links
+   to K-1 / V-1 without restating the id or importing the private roster. */
 export function covenant149Prefill() {
-  const v = vendors.find(x => x.company === HVAC_149.contractor);
   return {
     unit: HVAC_149.unit,
-    vendor_id: v ? v.id : "",
+    vendor_id: vendorSlug(HVAC_149.contractor),
     vendor_name: HVAC_149.contractor,
     frequency: "monthly",
     ref: HVAC_149.clause,
