@@ -11,6 +11,10 @@
 
    Storage helpers cover the upload→sign flow (lease packages today; any
    future server-written artifact tomorrow). */
+import { assertPreviewIsolation } from "../tools/check-preview-isolation.mjs";
+
+// A runtime override must not reconnect an already-built preview to production.
+assertPreviewIsolation();
 
 export const SUPA = process.env.VITE_SUPABASE_URL;
 export const ANON = process.env.VITE_SUPABASE_ANON_KEY;

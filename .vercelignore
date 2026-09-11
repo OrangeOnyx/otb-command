@@ -1,11 +1,26 @@
 .git
+.env*
+supabase/.temp
 node_modules
 export
 export-buyer
 marketing
 .superpowers
 cad
-docs
+# The evidence function reads these three source records privately at runtime.
+# Keep the rest of docs excluded; Vite's public output never copies this tree.
+docs/*
+!docs/harvest
+docs/harvest/*
+!docs/harvest/ac-archive-2026-08-29
+docs/harvest/ac-archive-2026-08-29/*
+!docs/harvest/ac-archive-2026-08-29/work_orders.json
+!docs/harvest/ac-archive-2026-08-29/MANIFEST.json
+!docs/superpowers
+docs/superpowers/*
+!docs/superpowers/specs
+docs/superpowers/specs/*
+!docs/superpowers/specs/2026-08-29-ac-harvest.md
 test
 tools/brand-assets
 capture/

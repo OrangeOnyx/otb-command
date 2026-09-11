@@ -7,8 +7,7 @@ import { esc } from "./format.js";
 import { assembleLease } from "./leasedoc.js";
 import { mergeDocx, leaseFileName } from "./leasedocx.js";
 import { leaseHtml } from "./leasedochtml.js";
-import units from "../data/units.json" with { type: "json" };
-import recoveries from "../data/recoveries.json" with { type: "json" };
+import { UNITS as units, getRecoveries } from "../store.js";
 
 const DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 const newId = () => "es" + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
@@ -114,9 +113,15 @@ export function mountLease(el, unit) {
     el.innerHTML = "";
     return;
   }
+  const recoveries = getRecoveries();
+  if (!recoveries) { el.innerHTML = '<div class="led-note">Private recovery figures are unavailable. Sign in with an authorized operator account to assemble a lease.</div>'; return; }
   const u = units.find(x => String(x.unit) === String(unit));
   const rec = recoveries.units[String(unit)];
   if (!u || !rec) { el.innerHTML = '<div class="led-note">No unit/recovery data — cannot assemble a lease for this unit.</div>'; return; }
+  if (!['cam', 'tax', 'ins'].every(key => Number.isFinite(rec[key]))) {
+    el.innerHTML = '<div class="led-note">This suite has an unresolved recovery breakdown. Review its source records before assembling a lease.</div>';
+    return;
+  }
 
   /* Vacant/no-lease-history units carry {cam:0,tax:0,ins:0} in recoveries.json
      (nothing to single-source from). Locking $0.00 into an executable lease

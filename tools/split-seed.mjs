@@ -19,7 +19,7 @@ const rd = f => JSON.parse(readFileSync(join(root, "src/data", f), "utf8"));
 
 // Fields that must NOT ship in the public bundle. Everything else (unit, dba,
 // use, cat, status, start, end, sf) is already marketing-/buyer-grade public.
-export const SENSITIVE_UNIT_FIELDS = ["base", "total", "monthly", "legal", "notes"];
+export const SENSITIVE_UNIT_FIELDS = ["base", "total", "monthly", "legal", "notes", "leaseEvidence"];
 
 /* Pure derivation — exported so test/generated-freshness can re-derive and
    diff against the committed outputs (the regen-footgun guard). */
@@ -42,6 +42,7 @@ export function deriveSeed() {
   const { publicUnits, unitsPrivate } = splitUnits(rd("units.json"));
   const seed = {
     unitsPrivate,                       // per-unit { base,total,monthly,legal,notes }
+    recoveries: rd("recoveries.json"),  // private PSF composition; never a browser import
     contacts: rd("contacts-info.json"), // tenant PII
     leaseLinks: rd("lease-links.json"), // executed-lease Drive URLs
     floorplanLinks: rd("floorplan-links.json"),

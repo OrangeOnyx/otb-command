@@ -1,18 +1,18 @@
-/* Single source of mutable state. Every mutation writes through to localStorage.
+/* Single source of mutable state. Every mutation writes through to its scope.
    Persisted: compliance cell states + note overrides.
    C1: the CLIENT bundle carries only the public unit skeleton (no $/legal/notes);
    confidential fields are merged in at boot via installUnitsPrivate() from the
    auth-gated /api/seed endpoint. Full units.json stays the SOT for tools+server. */
-import unitsData from "./data/units.public.json";
-import complianceData from "./data/compliance.json";
+import unitsData from "./data/units.public.json" with { type: "json" };
+import complianceData from "./data/compliance.json" with { type: "json" };
 import { PAGE_IDS } from "./lib/pages.js";
 import { OPEX_LINES, emptyLayers, snapshotOf } from "./lib/layers.js";
+import { createScopedStateStorage, normalizeStateScope, sameStateScope } from "./lib/state-storage.js";
 export { OPEX_LINES }; // schema lives in the layer registry; re-exported for views
 
-const LS_KEY = "otb-command-state-v1";
 const STATE_VERSION = 1;
 
-export const UNITS = unitsData;
+export const UNITS = unitsData.map(unit => ({ ...unit }));
 export const byUnit = {};
 UNITS.forEach(u => { byUnit[u.unit] = u; });
 
@@ -20,10 +20,45 @@ UNITS.forEach(u => { byUnit[u.unit] = u; });
    skeleton objects IN PLACE — UNITS entries and byUnit values are the same
    references, so every view sees the merged data after boot hydration. */
 export function installUnitsPrivate(map) {
+  if (activeScope?.mode !== 'authenticated') return;
   for (const [unit, priv] of Object.entries(map || {})) {
-    if (byUnit[unit] && priv && typeof priv === "object") Object.assign(byUnit[unit], priv);
+    if (byUnit[unit] && priv && typeof priv === "object" && !Array.isArray(priv))
+      Object.assign(byUnit[unit], structuredClone(priv));
   }
 }
+
+/* Recovery economics come from the same authenticated seed as unit rents.
+   Keep this out of persisted layers and erase held row references on reset. */
+const privateRecoveries = { units: {} };
+let recoveriesLoaded = false;
+function erasePrivateObject(value) {
+  if (!value || typeof value !== 'object') return;
+  for (const key of Object.keys(value)) {
+    erasePrivateObject(value[key]);
+    delete value[key];
+  }
+}
+function clearRecoveriesPrivate() {
+  erasePrivateObject(privateRecoveries.units);
+  for (const key of Object.keys(privateRecoveries)) if (key !== 'units') delete privateRecoveries[key];
+  recoveriesLoaded = false;
+}
+export function installRecoveriesPrivate(payload) {
+  clearRecoveriesPrivate();
+  const knownMoney = value => typeof value === 'number' && Number.isFinite(value) && value >= 0;
+  const amountOrUnknown = value => value === null || knownMoney(value);
+  if (activeScope?.mode !== 'authenticated' || !payload?.units || Array.isArray(payload.units) ||
+      !knownMoney(payload.camFlatPsf) ||
+      Object.keys(payload.units).length !== UNITS.length ||
+      !UNITS.every(unit => {
+        const row = payload.units[unit.unit];
+        return row && ['cam', 'tax', 'ins'].every(key => amountOrUnknown(row[key]));
+      })) return false;
+  Object.assign(privateRecoveries, structuredClone(payload));
+  recoveriesLoaded = true;
+  return true;
+}
+export function getRecoveries() { return recoveriesLoaded ? privateRecoveries : null; }
 
 export const COMP_FIELDS = complianceData.fields;
 export const COMP_STATES = complianceData.states; // cycle order: u → ok → flag → na
@@ -47,15 +82,6 @@ function baselineComp() {
     Object.assign(comp[unit], seed);
   }
   return comp;
-}
-
-function load() {
-  try {
-    const raw = localStorage.getItem(LS_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : null;
-  } catch { return null; }
 }
 
 /* actions = override layer over the auto-seeded Action Board (W-1).
@@ -114,13 +140,39 @@ const cleanCamOverride = o => {
 /* Every persisted layer comes from the registry (lib/layers.js) — adding a
    layer there materializes it here, in persist/export, and in remote sync. */
 const state = emptyLayers({ comp: baselineComp });
-const saved = load();
-if (saved) applySnapshot(saved);
+let activeScope = null;
+let scopeRevision = 0;
+let scopedStorage = createScopedStateStorage();
+
+/* No storage is read at module import, before the auth/property gate. Boot
+   selects a scope before rendering; switching clears state and private fields
+   in place so existing UNITS/byUnit references cannot retain another session. */
+export function configureStoreScope(scope, { storage = () => globalThis.localStorage } = {}) {
+  scopeRevision++;
+  clearRecoveriesPrivate();
+  activeScope = normalizeStateScope(scope);
+  scopedStorage = createScopedStateStorage({ scope: activeScope, storage });
+  UNITS.forEach((unit, index) => {
+    erasePrivateObject(unit.leaseEvidence);
+    for (const key of Object.keys(unit)) delete unit[key];
+    Object.assign(unit, unitsData[index]);
+  });
+  Object.assign(state, emptyLayers({ comp: baselineComp }));
+  selected = null;
+  const loaded = scopedStorage.load();
+  if (loaded.snapshot) applySnapshot(loaded.snapshot);
+  emit('scope');
+  return loaded;
+}
+
+export function getStoreScope() { return activeScope ? { ...activeScope } : null; }
+export function getStoreScopeRevision() { return scopeRevision; }
+export function notifySeedLoaded() { if (activeScope?.mode === 'authenticated') emit('seed'); }
 
 function applySnapshot(snap) {
   if (snap.comp && typeof snap.comp === "object") {
     for (const [unit, fields] of Object.entries(snap.comp)) {
-      if (!state.comp[unit] || typeof fields !== "object") continue;
+      if (!state.comp[unit] || !fields || typeof fields !== "object" || Array.isArray(fields)) continue;
       for (const [k, v] of Object.entries(fields)) {
         if (k in state.comp[unit] && VALID_STATE.has(v)) state.comp[unit][k] = v;
       }
@@ -173,18 +225,18 @@ function applySnapshot(snap) {
   }
 }
 
-function persist() {
-  try {
-    localStorage.setItem(LS_KEY, JSON.stringify({
-      version: STATE_VERSION, savedAt: new Date().toISOString(),
-      ...snapshotOf(state)
-    }));
-  } catch { /* storage unavailable (private mode / quota) — state stays in memory */ }
+function persist(source = "local") {
+  // An authenticated recovery copy is not an offline authority. Hydration
+  // doesn't overwrite it; local edits remain recoverable after sign-out.
+  return scopedStorage.save(snapshotOf(state), { source });
 }
 
 /* ---------- change notification ---------- */
 const listeners = [];
-export function subscribe(fn) { listeners.push(fn); }
+export function subscribe(fn) {
+  listeners.push(fn);
+  return () => { const index = listeners.indexOf(fn); if (index >= 0) listeners.splice(index, 1); };
+}
 function emit(type, detail) { listeners.forEach(fn => fn(type, detail)); }
 
 /* ---------- selection (UI state, not persisted) ---------- */
@@ -345,7 +397,7 @@ export function hydrateRemote(snap) {
   if (!snap || typeof snap !== "object") return;
   Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);
-  persist(); // cache locally too
+  persist("remote");
 }
 
 /* ---------- per-layer access + realtime fold (B-5) ---------- */
@@ -360,7 +412,7 @@ export function hydrateLayer(key, layerState, meta = {}) {
   if (!(key in defaults)) return;
   state[key] = defaults[key];
   if (layerState !== undefined) applySnapshot({ [key]: layerState });
-  persist();
+  persist("remote");
   emit(key, { remote: true, ...meta });
 }
 
@@ -368,6 +420,7 @@ export function hydrateLayer(key, layerState, meta = {}) {
 export function exportJSON() {
   return JSON.stringify({
     version: STATE_VERSION,
+    scope: getStoreScope(),
     exportedAt: new Date().toISOString(),
     property: "On The Boulevard — 101–149 Arnould Blvd, Lafayette, LA 70506",
     ...snapshotOf(state)
@@ -377,6 +430,13 @@ export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
   if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents && !snap.financials)) {
     throw new Error("Not a Cypress Command export — expected { comp, notes, actions, … }.");
+  }
+  /* Scoped exports (2026-09) must match the signed-in account + property.
+     Legacy exports carry no scope — every snapshot made before the scope
+     field existed, including the operator's Drive backups — and stay
+     importable; the caller confirms before applying any import. */
+  if (activeScope?.mode === "authenticated" && snap.scope && !sameStateScope(activeScope, snap.scope)) {
+    throw new Error("This export is bound to a different account or property and cannot be imported here.");
   }
   Object.assign(state, emptyLayers({ comp: baselineComp }));
   applySnapshot(snap);

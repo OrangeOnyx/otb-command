@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "readAt": "2026-09-08T05:24:33.481499+00:00",
+  "projectRef": "kbhsghodquchkgfdzckc",
+  "propertySlug": "otb",
+  "method": "Read-only Supabase connector query; scoped to Orange Ocean / OTB and this request ID. This verification used database access, not a browser-user RLS acceptance test.",
+  "sourceTables": ["public.maintenance_requests", "public.maintenance_events", "storage.objects (maintenance-photos bucket)"],
+  "request": {
+    "id": "ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+    "unit": "Common Area",
+    "title": "Pothole Repair",
+    "detail": "In front of Pink Paisley (101–103). Imported from Asset Command work orders.",
+    "org_id": "4f914829-e99f-49ed-a468-9c0d6376a74b",
+    "property_id": "4918b2a2-2dcb-4f1d-8cb1-6ea3e5288977",
+    "urgency": "routine",
+    "created_at": "2026-07-28T00:23:58+00:00"
+  },
+  "events": [{
+    "id": 20,
+    "request_id": "ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+    "kind": "status",
+    "status": "open",
+    "vendor_id": null,
+    "note": "Imported from Asset Command (reported 2026-07-27 by Pink Paisley; AC status open)",
+    "created_at": "2026-07-28T00:23:58+00:00"
+  }],
+  "photos": {"state":"checked","count":0,"newest":null,"complete":true}
+}

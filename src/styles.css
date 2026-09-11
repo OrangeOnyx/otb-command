@@ -417,6 +417,22 @@ body.owner-preview .main::before{content:"OWNER PREVIEW — read-only · limited
 .login-card button:disabled{opacity:.6;cursor:default}
 .login-msg{font-family:var(--body);font-size:12px;color:var(--slate);margin-top:12px;line-height:1.5}
 
+/* The preview marker occupies its own row; the approved masthead is unchanged. */
+body.command-preview .app{grid-template-rows:96px 32px minmax(0,1fr)}
+.command-preview-banner{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;background:#F3E7CE;color:#68430F;border-bottom:1px solid #D6BB8D;font:600 11px/1.4 var(--body);letter-spacing:.015em}
+.command-preview-banner::before,.command-preview-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#D97706;flex:none}
+.command-preview-badge{display:flex;align-items:center;gap:8px;width:fit-content;margin:4px 0 16px;padding:7px 10px;border:1px solid #D6BB8D;border-radius:4px;background:#F3E7CE;color:#68430F;font:600 11px/1.4 var(--body)}
+body.command-preview .drawer{top:128px}
+@media(max-width:860px){body.command-preview .side{top:128px}}
+@media print{.command-preview-banner{display:block;padding:7px 0;background:none;color:#0A1F16;border-bottom:1px solid #D97706;text-align:left;margin-bottom:12px}.command-preview-banner::before{display:none}}
+
+/* read-only recovery view (server state unavailable, last saved copy shown) */
+body.state-recovery .main::before{content:"READ-ONLY · LAST SAVED COPY " attr(data-saved-at) " — server records unavailable · nothing is saved or synced";display:block;background:var(--brick);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-align:center;padding:6px}
+body.state-recovery input,body.state-recovery select,body.state-recovery textarea,body.state-recovery .tb-actions,body.state-recovery .acct button{pointer-events:none;opacity:.85}
+
+/* inline SVG glyphs used by shell buttons (sidebar owner-preview, theme, account) */
+.ui-icon{width:17px;height:17px;flex:none;vertical-align:middle}
+
 /* account row + owner read-only */
 .acct{padding:10px 14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
 .acct-who{font-family:var(--mono);font-size:10px;color:var(--slate);overflow:hidden;text-overflow:ellipsis}
@@ -448,6 +464,11 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
   --brass-bg: #2A2416; --green-bg: #16241D; --brick-bg: #2A1B14; --slate-bg: #1E2420;
   --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.5);
 }
+
+/* Dark mode: the masthead stays Charcoal so the Bone (reverse) lockup reads;
+   derived alert cards follow --card instead of the (now light) --white. */
+[data-theme="dark"] .topbar{background:#0A1F16;color:#F3EDE0}
+[data-theme="dark"] .alert{background:var(--card)}
 
 /* ---- A-2 Lens B (3D) ---- */
 .spatial3d { width: 100%; height: 70vh; min-height: 420px; }

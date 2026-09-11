@@ -7,7 +7,7 @@ import { dirname, join } from "node:path";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rd = p => JSON.parse(readFileSync(join(root, p), "utf8"));
 
-const SENSITIVE = ["base", "total", "monthly", "legal", "notes"];
+const SENSITIVE = ["base", "total", "monthly", "legal", "notes", "leaseEvidence"];
 
 test("units.public.json carries NO sensitive fields", () => {
   const pub = rd("src/data/units.public.json");
@@ -32,4 +32,3 @@ test("_seed.json bundles the confidential collections", () => {
   assert.ok(seed.vendors.length >= 60, "vendor roster present");
   assert.ok(seed.leaseLinks && seed.floorplanLinks, "lease + floorplan links present");
 });
-

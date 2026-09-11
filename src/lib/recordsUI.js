@@ -7,6 +7,7 @@ import { esc, TODAY } from "./format.js";
 import { addDoc, docURL, buildDocLink, isDocLink, docPath } from "./docs.js";
 import { coiStatus, coiBadge } from "./coi.js";
 import { isoDate } from "./docexpiry.js";
+import { safeReferenceUrl } from "./reference-url.js";
 
 const FIELDS = {
   contacts: [["role", "Role"], ["company", "Company"], ["name", "Contact"], ["phone", "Phone"], ["email", "Email"], ["note", "Note"]],
@@ -36,6 +37,7 @@ function contactView(r) {
     '</div>';
 }
 function docView(r) {
+  const referenceUrl = safeReferenceUrl(r.link);
   return '<div class="rec-main">' +
     '<div class="rec-t">' + esc(r.name) + (r.type ? ' <span class="rec-role">' + esc(r.type) + '</span>' : "") + expiryBadge(r.expires) + '</div>' +
     (r.ref ? '<div class="rec-s mono">' + esc(r.ref) + '</div>' : "") +
@@ -43,7 +45,9 @@ function docView(r) {
     (r.link
       ? (isDocLink(r.link)
         ? '<a class="rec-link rec-doclink" href="#" data-doc="' + esc(docPath(r.link)) + '">Open 📎</a>'
-        : '<a class="rec-link" href="' + esc(r.link) + '" target="_blank" rel="noopener">Open ↗</a>')
+        : referenceUrl
+          ? '<a class="rec-link" href="' + esc(referenceUrl) + '" target="_blank" rel="noopener noreferrer">Open ↗</a>'
+          : '<span class="rec-s mute">Unsupported reference link</span>')
       : '<span class="rec-s mute">no file linked</span>') +
     '</div>';
 }

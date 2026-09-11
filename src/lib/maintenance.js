@@ -10,6 +10,8 @@
    Pure parts tested in test/maintenance.test.mjs. */
 import { REMOTE, sb, propertyContext } from "./remote.js";
 import { createBucketStore } from "./bucketstore.js";
+import { deriveRequest } from "./maintenance-model.js";
+export { deriveRequest } from "./maintenance-model.js";
 
 /* ---- status / urgency vocabulary (plan-room palette) ---- */
 export const MR_STATUS = {
@@ -32,21 +34,6 @@ export const newRequestId = (now = Date.now(), rnd = Math.random()) =>
 
 /* head row + its events → the state every face renders. displayStatus folds
    the derived 'assigned' in; raw status stays what the trail actually says. */
-export function deriveRequest(row, events = []) {
-  const forThis = events.filter(e => e.request_id === row.id);
-  const latest = kind => forThis.filter(e => e.kind === kind).slice(-1)[0] || null;
-  const st = latest("status"), asg = latest("assign");
-  const status = (st && st.status) || "open";
-  const vendorId = asg ? asg.vendor_id : null;
-  return {
-    ...row,
-    events: forThis,
-    status,
-    vendorId,
-    displayStatus: status === "open" && vendorId ? "assigned" : status,
-    lastAt: forThis.length ? forThis[forThis.length - 1].created_at : row.created_at,
-  };
-}
 
 /* One display line per event (compevents pattern). */
 export function describeMrEvent(evt, vendorNames = {}) {

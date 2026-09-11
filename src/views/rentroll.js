@@ -1,11 +1,10 @@
 /* R-1 Rent Roll — sortable table, row click opens drawer.
    PSF breakdown (Base/CAM/Tax/Ins/Total) comes from the SOT rent composition
    (recoveries.json); SF, Monthly, term, status from units.json. */
-import { UNITS } from "../store.js";
-import { fmt$, fmt$0, pDate, fDate, monthsTo, esc } from "../lib/format.js";
+import { UNITS, getRecoveries } from "../store.js";
+import { fmt$, fmt$0, pDate, fDate, monthsTo, esc, sumKnownAmounts } from "../lib/format.js";
 import { expiryBucket, expiryMark, expiryLegend } from "../lib/roll.js";
 import { STATUS_META } from "../lib/colors.js";
-import recoveries from "../data/recoveries.json";
 import { logoUrl } from "../lib/logos.js";
 import { openDrawer } from "./drawer.js";
 
@@ -13,7 +12,7 @@ let sortKey = "unit", sortDir = 1;
 // Base & Total PSF are single-sourced from units.json (the SOT rent roll);
 // recoveries.json supplies only the CAM/Tax/Ins decomposition.
 const REC_KEYS = new Set(["cam", "tax", "ins"]);
-const rec = u => recoveries.units[u.unit] || {};
+const rec = u => getRecoveries()?.units[u.unit] || {};
 
 // value accessor — base/total from the unit, CAM/Tax/Ins from the composition
 function val(u, key) {
@@ -34,8 +33,8 @@ export function renderRoll() {
     const A = val(a, sortKey), B = val(b, sortKey);
     return (A < B ? -1 : A > B ? 1 : 0) * sortDir;
   });
-  const tot = UNITS.reduce((s, u) => s + u.monthly, 0), totSF = UNITS.reduce((s, u) => s + u.sf, 0);
-  const psf = (v) => (v ? v.toFixed(2) : "—");
+  const tot = sumKnownAmounts(UNITS.map(u => u.monthly)), totSF = UNITS.reduce((s, u) => s + u.sf, 0);
+  const psf = (v) => (Number.isFinite(v) ? v.toFixed(2) : "—");
 
   let h = '<table><thead><tr>' + cols.map(c => '<th class="' + (c[2] || "") + '" data-k="' + c[0] + '">' + c[1] + (sortKey === c[0] ? (sortDir > 0 ? " ▲" : " ▼") : "") + '</th>').join("") + '</tr></thead><tbody>';
   let n6 = 0, n12 = 0;
@@ -53,13 +52,13 @@ export function renderRoll() {
       '<td class="num">' + psf(r.tax) + '</td>' +
       '<td class="num">' + psf(r.ins) + '</td>' +
       '<td class="num">' + psf(u.total) + '</td>' +
-      '<td class="num">' + (u.monthly ? fmt$(u.monthly) : "—") + '</td>' +
+      '<td class="num">' + (Number.isFinite(u.monthly) ? fmt$(u.monthly) : "—") + '</td>' +
       '<td class="endcell">' + (bucket ? '<span class="expmark">' + expiryMark(bucket) + '</span> ' : "") + (u.end ? fDate(pDate(u.end)) : "—") + '</td>' +
       '<td><span class="pill ' + sm.pill + '"><span class="dot"></span>' + sm.label + '</span></td></tr>';
   });
   h += '</tbody><tfoot><tr><td colspan="2">TOTALS — ' + UNITS.length + ' UNITS</td><td class="num">' + totSF.toLocaleString() + '</td>' +
-    '<td class="num" colspan="5">gross ' + (tot * 12 / totSF).toFixed(2) + ' PSF <span class="mono" style="opacity:.6">(all SF incl. vacant; P-1 effective = leased SF)</span></td>' +
-    '<td class="num">' + fmt$(tot) + '</td><td colspan="2">' + fmt$0(tot * 12) + ' / YR</td></tr></tfoot></table>';
+    '<td class="num" colspan="5">gross ' + (tot == null ? '—' : (tot * 12 / totSF).toFixed(2)) + ' PSF <span class="mono" style="opacity:.6">(all SF incl. vacant; P-1 effective = leased SF)</span></td>' +
+    '<td class="num">' + (tot == null ? '—' : fmt$(tot)) + '</td><td colspan="2">' + (tot == null ? 'Private financial data unavailable' : fmt$0(tot * 12) + ' / YR') + '</td></tr></tfoot></table>';
   const el = document.getElementById("rollTable");
   el.innerHTML = h;
   el.querySelectorAll("thead th").forEach(th => th.onclick = () => {
@@ -70,5 +69,5 @@ export function renderRoll() {
   el.querySelectorAll("tbody tr").forEach(tr => tr.onclick = () => openDrawer(tr.dataset.u));
   const legend = expiryLegend(n6, n12);
   document.getElementById("rollStamp").textContent =
-    (legend ? legend + " · " : "") + "Base/CAM/Tax/Ins/Total = $/SF · Source: SOT workbook";
+    (legend ? legend + " · " : "") + (getRecoveries() ? "Base/CAM/Tax/Ins/Total = $/SF · July roster + September 10 lease review. Open a suite for evidence and pending terms; — means unverified." : "Private rent and recovery figures require an authenticated owner/operator session.");
 }

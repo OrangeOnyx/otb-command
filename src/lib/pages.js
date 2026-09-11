@@ -31,8 +31,9 @@ export const TENANT_SHEET = "maint";
 
 export const PAGE_IDS = PAGES.map(([id]) => id);
 
-/* Boot lands here (D-1 remains the working home sheet — D-0 sits above it in
-   drawing-set order but is a cross-property rollup, not the daily surface). */
+/* Boot lands here (D-1 remains the working home sheet — operator ruling
+   2026-09-11; D-0 sits above it in drawing-set order but is a cross-property
+   rollup, and A-2 is the property workspace, not the daily surface). */
 export const DEFAULT_PAGE = "dash";
 
 /* Owner-view defaults (fresh state / reset only — a persisted ownerSheets

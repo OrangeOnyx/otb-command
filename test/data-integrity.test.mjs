@@ -15,6 +15,10 @@ test("per-unit total = base + CAM + Tax + Ins (single-source invariant)", () => 
     if (u.status === "vacant" || !u.total) continue;
     const r = recoveries.units[u.unit];
     assert.ok(r, `unit ${u.unit} missing recoveries row`);
+    if ([r.cam, r.tax, r.ins].some(value => value === null)) {
+      assert.ok(u.leaseEvidence?.openItems?.length && r.note, `unit ${u.unit}: missing components require a documented review gap`);
+      continue;
+    }
     const expect = u.base + r.cam + r.tax + r.ins;
     assert.ok(Math.abs(u.total - expect) < 0.005, `unit ${u.unit}: total ${u.total} ≠ base+NNN ${expect.toFixed(2)}`);
   }
@@ -38,15 +42,16 @@ test("monthly = total × SF / 12 for every leased unit (except documented stated
   }
 });
 
-test("income composition reconciles to in-place rent within the documented variance", () => {
+test("complete income compositions reconcile to their stated rents within the documented variance", () => {
   const comp = { base: 0, cam: 0, tax: 0, ins: 0 };
-  units.forEach(u => {
+  const completeUnits = units.filter(u => ['cam', 'tax', 'ins'].every(key => Number.isFinite(recoveries.units[u.unit]?.[key])));
+  completeUnits.forEach(u => {
     comp.base += (u.base || 0) * u.sf;
     const r = recoveries.units[u.unit];
     if (r) { comp.cam += r.cam * u.sf; comp.tax += r.tax * u.sf; comp.ins += r.ins * u.sf; }
   });
   const compTotal = comp.base + comp.cam + comp.tax + comp.ins;
-  const monthlyAnnual = units.reduce((s, u) => s + (u.monthly || 0), 0) * 12;
+  const monthlyAnnual = completeUnits.reduce((s, u) => s + (u.monthly || 0), 0) * 12;
   // Expected gap = Pink Paisley owner-accepted −$4.84/mo = $58.08/yr (± rounding pennies)
   const documentedVariance = 4.84 * 12;
   const delta = compTotal - monthlyAnnual;
