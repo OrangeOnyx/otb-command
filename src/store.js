@@ -7,7 +7,7 @@ import unitsData from "./data/units.public.json" with { type: "json" };
 import complianceData from "./data/compliance.json" with { type: "json" };
 import recoveryTermsData from "./data/recovery-terms.json" with { type: "json" };
 import { PAGE_IDS } from "./lib/pages.js";
-import { OPEX_LINES, emptyLayers, snapshotOf } from "./lib/layers.js";
+import { OPEX_LINES, emptyLayers, snapshotOf, cleanOpexYears } from "./lib/layers.js";
 import { createScopedStateStorage, normalizeStateScope, sameStateScope } from "./lib/state-storage.js";
 export { OPEX_LINES }; // schema lives in the layer registry; re-exported for views
 
@@ -217,6 +217,7 @@ function applySnapshot(snap) {
     if (f.opex && typeof f.opex === "object")
       for (const [k, v] of Object.entries(f.opex)) if (k in state.financials.opex && Number.isFinite(+v)) state.financials.opex[k] = +v;
     if (f.capRatePct != null && Number.isFinite(+f.capRatePct)) state.financials.capRatePct = +f.capRatePct; // null must stay null, not coerce to 0
+    Object.assign(state.financials.opexYears, cleanOpexYears(f.opexYears)); // missing → {} (legacy snapshots)
   }
   if (Array.isArray(snap.ownerSheets))
     state.ownerSheets = PAGE_IDS.filter(p => snap.ownerSheets.includes(p));
@@ -366,6 +367,17 @@ export function setCapRate(value) {
   state.financials.capRatePct = Number.isFinite(v) && v > 0 ? v : null;
   persist();
   emit("financials", {});
+}
+/* Prior-year actuals for the CAM reconciliation (F-2): whole six-line object
+   per calendar year, sanitized by the registry's cleanOpexYears. Invalid year
+   keys are ignored; an all-zero year is kept (the operator entered it). */
+export function setOpexYear(year, opex) {
+  const clean = cleanOpexYears({ [String(year)]: opex });
+  const y = Object.keys(clean)[0];
+  if (!y) return;
+  state.financials.opexYears[y] = clean[y];
+  persist();
+  emit("financials", { year: y });
 }
 
 /* ---------- site-asset pins (A-1 features layer) ---------- */

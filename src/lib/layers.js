@@ -23,6 +23,25 @@ export const OPEX_LINES = [
 const emptyOpex = () => Object.fromEntries(OPEX_LINES.map(([k]) => [k, 0]));
 const emptyColl = () => ({ edit: {}, dismissed: {}, custom: [] });
 
+/* financials.opexYears — prior-year actuals keyed by calendar year ("YYYY"),
+   each the same six-line shape as financials.opex (F-2 CAM reconciliation
+   needs last year's actuals to apply lease caps). Sanitizer shared by
+   store.applySnapshot and store.setOpexYear: non-YYYY keys and non-object
+   years are dropped; unknown lines are dropped; every known line is kept,
+   coerced to a number and floored at 0. Always returns fresh objects. */
+const YEAR_KEY = /^\d{4}$/;
+export function cleanOpexYears(raw) {
+  const out = {};
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return out;
+  for (const [year, o] of Object.entries(raw)) {
+    if (!YEAR_KEY.test(year) || !o || typeof o !== "object" || Array.isArray(o)) continue;
+    const clean = emptyOpex();
+    for (const [k, v] of Object.entries(o)) if (k in clean) clean[k] = Math.max(0, +v || 0);
+    out[year] = clean;
+  }
+  return out;
+}
+
 /* ── row contract (Phase B-5 typed layers) ────────────────────────
    Each layer maps to a typed Supabase table: toRows(layerState) → canonical
    row array (no tenancy stamps — remote adds org_id/property_id/origin at
@@ -104,7 +123,7 @@ export const LAYER_DEFS = [
     table: "directory_state", pk: ["collection", "id"], ...overrideRows("contacts") },
   { key: "documents", empty: emptyColl,
     table: "directory_state", pk: ["collection", "id"], ...overrideRows("documents") },
-  { key: "financials", empty: () => ({ opex: emptyOpex(), capRatePct: null }),
+  { key: "financials", empty: () => ({ opex: emptyOpex(), capRatePct: null, opexYears: {} }),
     table: "layer_settings", pk: ["key"], ...singletonRows("financials") },
   { key: "ownerSheets", empty: () => [...DEFAULT_OWNER_SHEETS],
     table: "layer_settings", pk: ["key"], ...singletonRows("owner_sheets") },
