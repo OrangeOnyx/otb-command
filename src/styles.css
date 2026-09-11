@@ -519,6 +519,28 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 body.role-owner .led-add, body.role-owner .led-void, body.role-owner .led-sugg { display: none; }
 body.role-owner .es-add, body.role-owner .es-cancel, body.role-owner .es-resend { display: none; }
 
+/* ---- invoices (F-1: drawer + tenant face) ---- */
+.inv-pick { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 2px 0 6px; }
+.inv-pick select { font-family: var(--mono); font-size: 11px; padding: 4px 6px; border: 1px solid var(--line);
+  border-radius: 4px; background: var(--card); color: var(--ink); min-width: 0; }
+.inv-ops { display: inline-flex; gap: 6px; margin-left: auto; }
+.inv-sum { font-family: var(--mono); font-size: 10.5px; color: var(--ink70); padding: 2px 0 6px; }
+.inv-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink50); padding: 8px 0 2px; }
+.inv-row { display: grid; grid-template-columns: auto 1fr auto auto auto; gap: 8px; align-items: center;
+  font-size: 12px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.inv-id { font-family: var(--mono); font-size: 11px; }
+.inv-m { color: var(--ink70); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.inv-amt { font-family: var(--mono); font-size: 11px; text-align: right; }
+.inv-chip { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line); color: var(--ink50); white-space: nowrap; }
+.inv-chip.sent, .inv-chip.partial { color: var(--brass); border-color: var(--brass); }
+.inv-chip.paid { color: var(--green); border-color: var(--green); }
+.inv-chip.void { text-decoration: line-through; }
+.inv-chip.overdue { color: var(--brick); border-color: var(--brick); }
+body.role-owner .inv-ops { display: none; }
+/* owner keeps the read-only doc export — the month picker must stay live */
+body.role-owner .inv-pick select { pointer-events: auto; opacity: 1; }
+
 /* ---- document attach (P1) ---- */
 .rec-attachrow { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
 .rec-attach-msg { font-size: 10.5px; color: var(--ink50); }
