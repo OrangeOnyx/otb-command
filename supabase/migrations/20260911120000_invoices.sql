@@ -7,7 +7,8 @@
 -- (owner+operator read · operator write · stamp trigger) PLUS a tenant
 -- own-unit read modelled on "ledger read tenant own unit".
 -- Not in the layer registry → NOT added to the realtime publication.
--- NOT YET APPLIED — apply via MCP apply_migration.
+-- APPLIED to otb prod (kbhsghodquchkgfdzckc) 2026-09-11 via MCP apply_migration
+-- (in server migration history as `invoices`).
 begin;
 create table public.invoices (
   id text primary key,
