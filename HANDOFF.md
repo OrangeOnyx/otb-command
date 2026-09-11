@@ -12,6 +12,8 @@ Operator pick "F1,F2,F3,F4,F5. and the instruction manual needs to say Cypress C
 - **Manual** — PDFs renamed `Cypress-Command-*.pdf`, version line September 2026 (17 sheets / 624 tests at regen), HTML + PDF + `public/manual/` regenerated on this box (`python tools/build-manuals.py`); OO-Atlas PDFs removed. Body text still says orangeoceanatlas.com for the live host (domain move F-23 still yours).
 - Housekeeping: freshness test compares on LF (autocrlf checkouts); `.claude/worktrees/` ignored; `.claude/launch.json` gains `otb-review-5174`.
 
+**Punch list Rev 11 published** (state r13 carried — operator saved 22:36Z Sep 11: SMK-7 PASSED with the two bridge numbers in the note (337-270-7044 · 337-273-0384 as typed), SMK-8/9/10/12 PASSED, SMK-11 open; no new decisions). SMK-10 note asked how to make the completed Pothole Repair go away → answered on the sheet: M-1 → the card → ✓ Done, then Close (status is derived from the event log; nothing is deleted). Rev 11 adds SMK-13…17 (one per F-item), Schedule D cards D-4a/4b/15/19a/19b/23a/23b/24a/24b (pick 1/2/3), register 13/25, Tier 1 marked shipped. NOTE: the repo copy had been left at Rev 9 by the cloud session — Rev 11 was rebuilt from the live artifact body, so the repo copy is authoritative again.
+
 **Open on the operator after this lands:** (1) merge the PR (deploy runs on merge); (2) apply `hvac_contracts` (one-liner above); (3) SMK-13…17 on the punch list (Rev 11); (4) verify the F-2 cap table; (5) rule on D-23b before the identifiers load; (6) everything from the Sep 11 morning list (SMK-8…12, domain move, Preview env, lease follow-ups).
 
 ## September 8, 2026 — Completed Cypress Command local slice
