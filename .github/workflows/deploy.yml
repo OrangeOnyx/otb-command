@@ -1,0 +1,60 @@
+# Production deploy to the existing Vercel project (otb-command) on every push
+# to master, plus manual dispatch. The project has no Vercel↔Git integration
+# (deploys have always been CLI-driven), so this workflow IS the deploy path
+# from the cloud. It needs ONE repository secret: VERCEL_TOKEN (Vercel →
+# Account Settings → Tokens). Org and project ids are public identifiers.
+# Without the secret the job exits early with a notice instead of failing.
+name: deploy
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
+env:
+  VERCEL_ORG_ID: team_LygXqj30ONZhttGjy3UIxGT9
+  VERCEL_PROJECT_ID: prj_4gSxJWKDASjJolEuXmL0oBcFjefe
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Check for deploy credentials
+        id: creds
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::VERCEL_TOKEN secret not set — deploy skipped. Add it under Settings → Secrets → Actions, or run 'vercel --prod' locally."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.creds.outputs.ready == 'true'
+        run: npm ci
+      - if: steps.creds.outputs.ready == 'true'
+        run: npm test
+      - if: steps.creds.outputs.ready == 'true'
+        run: npm i -g vercel@latest
+      - if: steps.creds.outputs.ready == 'true'
+        name: Pull production settings
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - if: steps.creds.outputs.ready == 'true'
+        name: Build
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - if: steps.creds.outputs.ready == 'true'
+        name: Deploy
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" | tee deploy-url.txt
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - if: steps.creds.outputs.ready == 'true'
+        run: echo "::notice::Production deployed → $(tail -1 deploy-url.txt)"
