@@ -808,3 +808,24 @@ body.role-vendor .ownerview { display: none !important; }
 .pf-kpi .note{font-family:var(--mono);font-size:10.5px;color:var(--ink50);margin-top:5px}
 .prop-switch{padding:12px 20px;border-top:1px solid var(--line)}
 .prop-switch select{width:100%;font-family:var(--mono);font-size:11.5px;padding:6px 8px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:4px}
+
+/* P-1 CAM reconciliation card (F-2): year/gross-up controls, prior-year worksheet, per-tenant true-up rows */
+.cam-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-family:var(--mono);font-size:11px;color:var(--ink70);padding-bottom:8px}
+.cam-ctl select,.cam-ctl input{font-family:var(--mono);font-size:11px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.cam-ctl input{width:56px;text-align:right}
+.cam-ctl .cam-gu{color:var(--ink50);flex-basis:100%}
+.cam-prior{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 10px;margin:4px 0 10px}
+.cam-prior label{display:flex;flex-direction:column;gap:2px;font-family:var(--mono);font-size:9.5px;color:var(--ink50)}
+.cam-prior input{width:100%;box-sizing:border-box;font-family:var(--mono);font-size:11px;text-align:right;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.cam-prior input:focus{outline:none;border-color:var(--brass)}
+.cam-h,.cam-row{display:grid;grid-template-columns:40px minmax(0,1fr) 68px 68px 68px 76px 24px;gap:0 6px;align-items:baseline;font-family:var(--mono);font-size:10.5px}
+.cam-h{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink50);border-bottom:1px solid var(--line);padding-bottom:3px}
+.cam-row{padding:3px 0;border-bottom:1px solid var(--line2)}
+.cam-row .dba{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink70)}
+.cam-h .n,.cam-row .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cam-row .n.owe{color:var(--brick);font-weight:600}
+.cam-row .n.cr{color:var(--green);font-weight:600}
+.cam-row .cap{grid-column:2/-1;font-size:9px;color:var(--ink50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cam-stmt{font-family:var(--mono);font-size:11px;line-height:1;padding:2px 5px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink70);cursor:pointer;justify-self:end}
+.cam-stmt:hover{border-color:var(--brass);color:var(--brass)}
+@media (max-width:640px){.cam-h,.cam-row{grid-template-columns:40px minmax(0,1fr) 64px 76px 24px}.cam-h .n:nth-child(4),.cam-h .n:nth-child(5),.cam-row .n:nth-child(4),.cam-row .n:nth-child(5){display:none}}

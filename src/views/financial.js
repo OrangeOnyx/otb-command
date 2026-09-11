@@ -1,8 +1,9 @@
 /* P-1 Financial Summary — income rollup derived from the rent roll, plus an
    operator-entered operating-expense worksheet that yields NOI and an indicated
    value. Income is read-only from units.json (SOT); OpEx + cap rate persist
-   through the store. No new data sources. */
-import { UNITS, OPEX_LINES, getFinancials, setOpex, setCapRate, subscribe, getRecoveries } from "../store.js";
+   through the store. CAM reconciliation (F-2) adds prior-year actuals
+   (financials.opexYears) and the public recovery terms (recovery-terms.json). */
+import { UNITS, byUnit, OPEX_LINES, getFinancials, setOpex, setCapRate, setOpexYear, subscribe, getRecoveries, getRecoveryTerms } from "../store.js";
 import { CAT_META } from "../lib/colors.js";
 import { fmt$0, pDate, monthsTo, esc, TODAY, sumKnownAmounts } from "../lib/format.js";
 import { REMOTE, listLedgerEntries } from "../lib/remote.js";
@@ -10,6 +11,7 @@ import { aging, effectiveEntries, CREDIT_TYPES } from "../lib/ledger.js";
 import { getPayHistory, payHistoryLoaded, refreshPayHistory, payHistoryStats, portfolioPayTotals } from "../lib/payhistory.js";
 import { tenantHealth, healthColor, periodTotals } from "../lib/tenanthealth.js";
 import { reconModel, reconCaveats } from "../lib/camrecon.js";
+import { camStatementModel, camStatementHTML } from "../lib/camstatement.js";
 import { leaseTermCoverage } from "../lib/term-coverage.js";
 import { APPRAISAL_2019, factLines } from "../lib/facts.js";
 
@@ -53,9 +55,13 @@ function byCategory() {
     .sort((a, b) => b.rent - a.rent);
 }
 
-/* CAM-recon what-if gross-up (%) — session-local draft input, deliberately
-   not persisted (register row #6 is a DRAFT surface, not a billing engine). */
-let camGrossUpPct = 0;
+/* CAM-recon session-local inputs, deliberately not persisted (register row #6
+   is a DRAFT surface, not a billing engine): gross-up override in % (null =
+   derive from occupancy via calc/grossup.js) and the reconciliation year
+   (current + 2 prior). Prior-year actuals DO persist (financials.opexYears). */
+let camGrossUpPct = null;
+let camYear = TODAY.getFullYear();
+const CAM_YEARS = () => [0, 1, 2].map(d => TODAY.getFullYear() - d);
 
 const bar = (label, val, max, color, right) =>
   '<div class="fbar-row"><span class="fbar-l">' + esc(label) + '</span>' +
@@ -140,39 +146,76 @@ export function renderFinancial() {
       hint + "</div>";
   }).join("");
 
-  // CAM/NNN reconciliation draft (register row #6) — pure model in lib/camrecon.js;
-  // all inputs local (UNITS + recoveries + worksheet actuals), painted synchronously.
+  // CAM/NNN reconciliation (register row #6, F-2) — pure model in lib/camrecon.js;
+  // all inputs local (UNITS + recoveries + worksheet actuals for camYear + the
+  // persisted prior-year worksheet + recovery terms), painted synchronously.
+  const camPriorYear = camYear - 1;
+  const priorOpex = fin.opexYears[String(camPriorYear)] || null;
+  const terms = getRecoveryTerms();
   const recon = comp.recoveries == null ? null : reconModel(UNITS, recoveries,
     { cam: fin.opex.cam || 0, taxes: fin.opex.taxes || 0, insurance: fin.opex.insurance || 0 },
-    { grossUpPct: camGrossUpPct });
+    { grossUpPct: camGrossUpPct, year: camYear, priorOpex, terms });
   let reconHtml;
   if (comp.recoveries == null) {
     reconHtml = '<div class="led-note">Recovery breakdown needs review. Resolve the missing suite components before drafting CAM / NNN reconciliation.</div>';
-  } else if (!recon) {
-    reconHtml = '<div class="led-note">Enter CAM / Taxes / Insurance actuals in the NOI worksheet to draft a reconciliation.</div>';
   } else {
-    const rDelta = d => '<b style="color:' + (d >= 0 ? "var(--green)" : "var(--brick)") + '">' +
-      (d >= 0 ? "+" : "−") + fmt$0(Math.abs(d)) + '</b>';
-    const RC = [["cam", "CAM", "var(--slate)"], ["tax", "Taxes", "var(--navy)"], ["ins", "Insurance", "var(--plum)"]];
-    const rMax = Math.max(...RC.map(([k]) => Math.max(recon.components[k].billed, recon.components[k].grossed)));
-    const reconBars = RC.map(([k, label, color]) => {
-      const c = recon.components[k];
-      return bar(label, c.billed, rMax, color, fmt$0(c.billed) + " vs " + fmt$0(c.grossed) + " · " + rDelta(c.delta));
-    }).join("");
-    const worst = recon.units.slice(0, 8).map(r =>
-      '<div style="display:flex;align-items:baseline;gap:8px;font-family:var(--mono)">' +
-        '<span class="uchip">' + esc(r.unit) + '</span>' +
-        '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' +
-          fmt$0(r.billed) + ' billed · ' + (r.share * 100).toFixed(1) + '% share</span>' +
-        '<span class="fbar-v">' + rDelta(r.delta) + '</span>' +
-      '</div>').join("");
-    reconHtml =
-      '<div class="led-month"><input id="camGrossUp" type="number" min="0" step="5" value="' + camGrossUpPct + '" style="width:56px"> % gross-up · billed vs grossed actuals · Δ + = over-collected</div>' +
-      reconBars +
-      '<div class="led-note">Vacancy shortfall ' + fmt$0(recon.vacancyShortfall) + ' — grossed actuals on ' +
-        recon.vacantSf.toLocaleString() + ' vacant SF no tenant reimburses (landlord absorbs).</div>' +
-      worst +
-      reconCaveats().map(c => '<div class="led-note">' + esc(c) + '</div>').join("");
+    const yearSel = '<select id="camYear">' + CAM_YEARS().map(y =>
+      '<option value="' + y + '"' + (y === camYear ? " selected" : "") + '>' + y + '</option>').join("") + '</select>';
+    const guTxt = !recon ? ""
+      : recon.grossUpDerived
+        ? ' · gross-up ×' + recon.grossUpFactor.toFixed(3) + ' derived (' + Math.round(recon.occupancy * 100) + '% → ' + Math.round(recon.targetOccupancy * 100) + '% occupancy)'
+        : ' · gross-up ×' + recon.grossUpFactor.toFixed(3) + ' override';
+    const controls =
+      '<div class="cam-ctl">Reconcile ' + yearSel +
+        '<span>· worksheet actuals = ' + camYear + '</span>' +
+        '<span>· <input id="camGrossUp" type="number" min="0" step="5" placeholder="auto" value="' + (camGrossUpPct === null ? "" : camGrossUpPct) + '"> % CAM gross-up</span>' +
+        '<span class="cam-gu">' + esc(guTxt) + '</span></div>';
+    // prior-year mini-worksheet — persisted via store.setOpexYear (financials.opexYears)
+    const prior = priorOpex || {};
+    const priorWs =
+      '<div class="led-month">Prior-year actuals · ' + camPriorYear + (priorOpex ? "" : ' · <b>not on file</b> — caps cannot apply until entered') + '</div>' +
+      '<div class="cam-prior">' + OPEX_LINES.map(([k, label]) =>
+        '<label>' + esc(label) + '<input type="number" min="0" step="1000" data-opex-prior="' + k + '" value="' + (prior[k] || "") + '" placeholder="0"></label>').join("") + '</div>';
+    if (!recon) {
+      reconHtml = controls + priorWs +
+        '<div class="led-note">Enter CAM / Taxes / Insurance actuals for ' + camYear + ' in the NOI worksheet to draft a reconciliation.</div>';
+    } else {
+      const rDelta = d => '<b style="color:' + (d >= 0 ? "var(--green)" : "var(--brick)") + '">' +
+        (d >= 0 ? "+" : "−") + fmt$0(Math.abs(d)) + '</b>';
+      const RC = [["cam", "CAM", "var(--slate)"], ["tax", "Taxes", "var(--navy)"], ["ins", "Insurance", "var(--plum)"]];
+      const rMax = Math.max(...RC.map(([k]) => Math.max(recon.components[k].billed, recon.components[k].grossed)));
+      const reconBars = RC.map(([k, label, color]) => {
+        const c = recon.components[k];
+        return bar(label, c.billed, rMax, color, fmt$0(c.billed) + " vs " + fmt$0(c.grossed) + " · " + rDelta(c.delta));
+      }).join("");
+      // per-tenant true-up: billed · actual share · capped share · true-up (+ owes / − credit) · ⤓ Statement
+      const tu = r => r.trueUp === null ? '<span class="n">—</span>'
+        : '<span class="n ' + (r.trueUp > 0 ? "owe" : r.trueUp < 0 ? "cr" : "") + '">' +
+          (r.trueUp > 0 ? "+" : r.trueUp < 0 ? "−" : "") + fmt$0(Math.abs(r.trueUp)) + '</span>';
+      const rows = recon.units.map(r =>
+        '<div class="cam-row">' +
+          '<span class="uchip" style="margin:0">' + esc(r.unit) + '</span>' +
+          '<span class="dba">' + esc(r.dba || "") + '</span>' +
+          '<span class="n">' + (r.recoveriesKnown ? fmt$0(r.billed) : "—") + '</span>' +
+          '<span class="n">' + fmt$0(r.actualShare) + '</span>' +
+          '<span class="n">' + (r.cappedShare === null ? "—" : fmt$0(r.cappedShare)) + '</span>' +
+          tu(r) +
+          '<button class="cam-stmt" data-unit="' + esc(r.unit) + '" title="Open reconciliation statement">⤓</button>' +
+          '<span class="cap">' + esc(r.capReason) + '</span>' +
+        '</div>').join("");
+      const net = recon.totals.trueUp;
+      reconHtml = controls + reconBars +
+        '<div class="led-note">Vacancy shortfall ' + fmt$0(recon.vacancyShortfall) + ' — grossed actuals on ' +
+          recon.vacantSf.toLocaleString() + ' vacant SF no tenant reimburses (landlord absorbs)' +
+          (recon.ownerSf ? '; owner-occupied share ' + fmt$0(recon.ownerAbsorbed) + ' on ' + recon.ownerSf.toLocaleString() + ' SF also absorbed' : '') +
+          '. Δ + = over-collected.</div>' +
+        priorWs +
+        '<div class="cam-h"><span>Unit</span><span>Tenant</span><span class="n">Billed</span><span class="n">Actual</span><span class="n">Capped</span><span class="n">True-up</span><span></span></div>' +
+        rows +
+        '<div class="led-month" style="padding-top:8px">Net true-up ' + (net >= 0 ? "+" : "−") + fmt$0(Math.abs(net)) +
+          ' — + tenant owes · − credit · ⤓ opens the tenant statement</div>' +
+        reconCaveats(recon).map(c => '<div class="led-note">' + esc(c) + '</div>').join("");
+    }
   }
 
   root.querySelector(".fin-body").innerHTML =
@@ -206,7 +249,25 @@ export function renderFinancial() {
   const cap = root.querySelector("#capRate");
   if (cap) cap.onchange = () => setCapRate(cap.value);
   const gu = root.querySelector("#camGrossUp");
-  if (gu) gu.onchange = () => { camGrossUpPct = Math.max(0, +gu.value || 0); renderFinancial(); };
+  if (gu) gu.onchange = () => { camGrossUpPct = gu.value === "" ? null : Math.max(0, +gu.value || 0); renderFinancial(); };
+  const ys = root.querySelector("#camYear");
+  if (ys) ys.onchange = () => { camYear = +ys.value || TODAY.getFullYear(); renderFinancial(); };
+  // prior-year worksheet: any line change writes the whole six-line year (store re-emits → repaint)
+  root.querySelectorAll("input[data-opex-prior]").forEach(i => i.onchange = () => {
+    const o = {};
+    root.querySelectorAll("input[data-opex-prior]").forEach(j => { o[j.dataset.opexPrior] = j.value; });
+    setOpexYear(camPriorYear, o);
+  });
+  root.querySelectorAll(".cam-stmt").forEach(b => b.onclick = () => {
+    if (!recon) return;
+    const row = recon.units.find(r => r.unit === b.dataset.unit);
+    if (!row) return;
+    const model = camStatementModel(recon, row, recoveries, terms, { year: camYear, unitInfo: byUnit[row.unit] });
+    const html = camStatementHTML(model, byUnit[row.unit], { issuedISO: new Date().toISOString().slice(0, 10) });
+    const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+    window.open(url, "_blank", "noopener");
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
+  });
   if (REMOTE) { paintCollections(); paintPayHistory(); paintTenantHealth(); }
 }
 

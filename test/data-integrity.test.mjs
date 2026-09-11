@@ -74,3 +74,56 @@ test("audit-grade headline figures unchanged (27 units, GLA sum 62,810)", () => 
   const sfSum = units.reduce((s, u) => s + u.sf, 0);
   assert.equal(sfSum, 62810, "demised SF sum drifted from the audited 62,810");
 });
+
+/* ── recovery-terms.json (F-2) — per-unit CAM/Tax/Ins cap terms, reference only ── */
+const terms = rd("recovery-terms.json");
+const TERM_KEYS = ["capPct", "capBasis", "capFromLeaseYear", "capComponents", "auditRights", "baseYear", "source", "note"];
+const CAP_COMPONENTS = ["cam", "tax", "ins"];
+
+test("recovery-terms.json joins every unit exactly once with a valid cap shape", () => {
+  assert.ok(typeof terms._note === "string" && terms._note.includes("lease_abstractions"), "_note records provenance");
+  assert.deepEqual(Object.keys(terms.units).sort(), units.map(u => u.unit).sort());
+  for (const [unit, t] of Object.entries(terms.units)) {
+    assert.ok(Object.keys(t).every(k => TERM_KEYS.includes(k)), unit + ": unknown key " + Object.keys(t).join(","));
+    assert.ok(t.capPct === null || (typeof t.capPct === "number" && t.capPct > 0 && t.capPct < 1), unit + ": capPct");
+    assert.ok(t.capBasis === null || t.capBasis === "prior_year_actuals", unit + ": capBasis");
+    assert.ok(t.capFromLeaseYear === null || (Number.isInteger(t.capFromLeaseYear) && t.capFromLeaseYear >= 1), unit + ": capFromLeaseYear");
+    assert.ok(Array.isArray(t.capComponents) && t.capComponents.every(c => CAP_COMPONENTS.includes(c)) &&
+      new Set(t.capComponents).size === t.capComponents.length, unit + ": capComponents");
+    assert.equal(typeof t.auditRights, "boolean", unit + ": auditRights");
+    assert.ok(t.baseYear === null || (Number.isInteger(t.baseYear) && t.baseYear >= 1990 && t.baseYear <= 2100), unit + ": baseYear");
+    assert.ok(typeof t.source === "string" && (t.source === "" || /^ac:lease_abstractions:[0-9a-f-]{36}$/.test(t.source)), unit + ": source");
+    if ("note" in t) assert.ok(typeof t.note === "string" && t.note.length, unit + ": note");
+    if (t.capPct !== null) {
+      assert.ok(t.capBasis && t.capFromLeaseYear && t.capComponents.length && t.source, unit + ": a cap needs basis, start year, components and a source");
+    } else {
+      assert.equal(t.capBasis, null, unit); assert.equal(t.capFromLeaseYear, null, unit); assert.equal(t.capComponents.length, 0, unit);
+    }
+  }
+});
+
+test("recovery-terms: 14 capped units per the AC abstracts (143 = 4% CAM-only; 145 audit rights; no base-year clause anywhere)", () => {
+  const capped = Object.entries(terms.units).filter(([, t]) => t.capPct !== null).map(([u]) => u).sort();
+  assert.deepEqual(capped, ["101", "103", "105", "109", "111", "115", "119", "121", "123", "125", "127", "141", "143", "145"].sort());
+  assert.equal(terms.units["143"].capPct, 0.04);
+  assert.deepEqual(terms.units["143"].capComponents, ["cam"]);
+  for (const u of capped.filter(u => u !== "143")) {
+    assert.equal(terms.units[u].capPct, 0.05, u);
+    assert.deepEqual([...terms.units[u].capComponents].sort(), [...CAP_COMPONENTS].sort(), u);
+    assert.equal(terms.units[u].capFromLeaseYear, 2, u);
+  }
+  assert.deepEqual(Object.entries(terms.units).filter(([, t]) => t.auditRights).map(([u]) => u), ["145"]);
+  assert.ok(Object.values(terms.units).every(t => t.baseYear === null));
+  for (const u of units) {
+    const sourced = terms.units[u.unit].source !== "";
+    assert.equal(sourced, u.status !== "vacant" && u.status !== "owner", u.unit + ": abstraction on file iff leased");
+  }
+});
+
+test("store exposes recovery terms for every unit on the roll (public reference data, no seed gate)", async () => {
+  const { getRecoveryTerms, recoveryTermsFor, UNITS } = await import("../src/store.js");
+  const t = getRecoveryTerms();
+  assert.deepEqual(Object.keys(t).sort(), UNITS.map(u => u.unit).sort());
+  assert.equal(recoveryTermsFor("143").capPct, 0.04);
+  assert.equal(recoveryTermsFor("nope"), null);
+});
