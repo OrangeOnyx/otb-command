@@ -11,6 +11,7 @@ import { getPayHistory, payHistoryLoaded, refreshPayHistory, payHistoryStats, po
 import { tenantHealth, healthColor, periodTotals } from "../lib/tenanthealth.js";
 import { reconModel, reconCaveats } from "../lib/camrecon.js";
 import { leaseTermCoverage } from "../lib/term-coverage.js";
+import { APPRAISAL_2019, factLines } from "../lib/facts.js";
 
 const annual = u => (u.monthly || 0) * 12;
 
@@ -190,8 +191,12 @@ export function renderFinancial() {
         '<div class="opex">' + opexRows + '</div>' +
         '<div class="noi-line sub2"><span>Total operating expenses</span><b>(' + fmt$0(opexTotal) + ')</b></div>' +
         '<div class="noi-line total"><span>Net operating income</span><b>' + fmt$0(noi) + '</b></div>' +
-        '<div class="noi-line cap"><span>Market cap rate</span><span class="cap-in"><input type="number" min="0" step="0.05" id="capRate" value="' + (fin.capRatePct ?? "") + '" placeholder="—">%</span></div>' +
+        /* Cap-rate hint only (register row #19): the 2019 appraisal's 8.50% is
+           a placeholder + tooltip, never a stored value — the operator enters
+           today's market rate. */
+        '<div class="noi-line cap"><span>Market cap rate</span><span class="cap-in"><input type="number" min="0" step="0.05" id="capRate" value="' + (fin.capRatePct ?? "") + '" placeholder="' + APPRAISAL_2019.capRatePct.toFixed(2) + '" title="' + esc(factLines.capRateHint()) + '">%</span></div>' +
         '<div class="noi-line value"><span>Indicated value</span><b>' + (value ? fmt$0(value) : '<span class="muted">enter cap rate</span>') + '</b></div>' +
+        (fin.capRatePct ? '' : '<div class="noi-note">Cap-rate reference: ' + esc(factLines.capRateHint()) + '.</div>') +
         (opexTotal === 0 ? '<div class="noi-note">NOI equals gross income until operating expenses are entered — figures above are not in the SOT.</div>' : '') +
       '</div>' +
     '</div>';
