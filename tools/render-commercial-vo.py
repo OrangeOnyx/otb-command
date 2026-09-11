@@ -36,7 +36,7 @@ LINES = [
     "tour booked. Every call becomes a transcript.",
     "And on the first of the month, the owner receives a brief no one had to remember to write — "
     "and no A I was allowed to embellish.",
-    "One property proved it, end to end. The next twenty are the point. Orange Ocean Atlas — "
+    "One property proved it, end to end. The next twenty are the point. Cypress Command — "
     "built by an operator, for the owners of real places.",
 ]
 

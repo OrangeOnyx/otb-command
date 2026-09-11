@@ -157,6 +157,6 @@ export function statementHTML(model, unitInfo, { issuedISO } = {}) {
     '<div class="due"><span class="l">Balance due</span>' +
     '<span class="v ' + (v > 0 ? "owe" : "clear") + '">' + esc(dueTxt) + "</span></div>" +
     '<div class="foot">Remit per your lease; contact Belle Realty of Lafayette, LLC.<br>' +
-    "Statement generated from the Atlas ledger — entries from " + esc(LEDGER_START_YM) + ".</div>" +
+    "Statement generated from the Cypress Command ledger — entries from " + esc(LEDGER_START_YM) + ".</div>" +
     "</div></body></html>";
 }
