@@ -13,11 +13,14 @@
      by calc/grossup.js from actual occupancy (occupied SF / GLA) to the
      stipulated 95% (never below 1.0); a numeric grossUpPct is an operator
      override (0 = bill CAM at actual). `methodology` is statement-ready prose.
-   - Billed recovery income per component = Σ over OCCUPIED units
-     (status !== "vacant") of recoveries.units[unit].{cam|tax|ins} PSF × SF —
-     the same math P-1's income-composition panel uses. A unit whose PSF row
-     is missing or carries nulls bills 0 here and is flagged
-     recoveriesKnown:false (no true-up is stated for it).
+   - Billed recovery income per component = Σ over TENANT units (status
+     neither "vacant" nor "owner") of recoveries.units[unit].{cam|tax|ins}
+     PSF × SF — the same math P-1's income-composition panel uses. A unit
+     whose PSF row is missing or carries nulls bills 0 here and is flagged
+     recoveriesKnown:false (no true-up is stated for it; sorted last).
+   - Occupancy for the gross-up counts every non-vacant suite (an owner-
+     occupied suite incurs variable cost), but the owner suite gets no
+     tenant row: its share is reported as ownerAbsorbed, like vacancy.
    - Pro-rata convention per the lease abstracts ("Pro Rata Portion"):
      unit share = unit SF / GLA (62,883 SF, audit-grade — GLA_SF below; the
      rent roll's 27 suites sum to 62,810 SF, the 73 SF difference is
@@ -106,9 +109,11 @@ export function reconModel(units, recoveries, opexActuals, {
   if (COMPONENTS.every(c => actualOf(acts, c) === 0)) return null; // worksheet empty — stay quiet
 
   const all = units || [];
-  const occ = all.filter(u => u.status !== "vacant");
-  const occupiedSf = occ.reduce((s, u) => s + (+u.sf || 0), 0);
-  const vacantSf = all.filter(u => u.status === "vacant").reduce((s, u) => s + (+u.sf || 0), 0);
+  const sfOf = list => list.reduce((s, u) => s + (+u.sf || 0), 0);
+  const occupiedSf = sfOf(all.filter(u => u.status !== "vacant"));
+  const vacantSf = sfOf(all.filter(u => u.status === "vacant"));
+  const ownerSf = sfOf(all.filter(u => u.status === "owner"));
+  const occ = all.filter(u => u.status !== "vacant" && u.status !== "owner"); // tenant rows
   const recUnits = (recoveries && recoveries.units) || {};
   const psf = (u, key) => +((recUnits[u.unit] || {})[key]) || 0;
   const known = u => COMPONENTS.every(c => Number.isFinite(+((recUnits[u.unit] || {})[c.recKey])) &&
@@ -136,6 +141,7 @@ export function reconModel(units, recoveries, opexActuals, {
   const totals = { actual: tActual, grossed: tGrossed, billed: tBilled, delta: tBilled - tGrossed,
     priorGrossed: hasPrior ? tPriorGrossed : null, trueUp: 0 };
   const vacancyShortfall = tGrossed * (glaSf ? vacantSf / glaSf : 0);
+  const ownerAbsorbed = tGrossed * (glaSf ? ownerSf / glaSf : 0);
 
   const termsOf = u => (terms && terms[u.unit] && typeof terms[u.unit] === "object") ? terms[u.unit] : null;
 
@@ -189,7 +195,8 @@ export function reconModel(units, recoveries, opexActuals, {
       cappedShare: capComputed ? cappedShare : null,
       trueUp, lines, recoveriesKnown, auditRights: !!(t && t.auditRights),
     };
-  }).sort((a, b) => Math.abs(b.trueUp ?? b.delta) - Math.abs(a.trueUp ?? a.delta) ||
+  }).sort((a, b) => (a.trueUp === null) - (b.trueUp === null) || // unknown recoveries last
+    Math.abs(b.trueUp ?? 0) - Math.abs(a.trueUp ?? 0) ||
     String(a.unit).localeCompare(String(b.unit), undefined, { numeric: true }));
   totals.trueUp = unitRows.reduce((s, r) => s + (r.trueUp || 0), 0);
 
@@ -197,7 +204,7 @@ export function reconModel(units, recoveries, opexActuals, {
     glaSf, year: recYear, priorYear, hasPrior,
     grossUpPct: gu.grossUpPct, grossUpFactor: gu.grossUpFactor, grossUpDerived: gu.grossUpDerived,
     occupancy: gu.occupancy, targetOccupancy: TARGET_OCCUPANCY, methodology: gu.methodology,
-    occupiedSf, vacantSf, components, totals, vacancyShortfall, units: unitRows,
+    occupiedSf, vacantSf, ownerSf, components, totals, vacancyShortfall, ownerAbsorbed, units: unitRows,
   };
 }
 

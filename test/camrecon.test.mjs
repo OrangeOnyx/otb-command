@@ -293,7 +293,8 @@ test("audit rights ride along from the terms row", () => {
 test("rows sort by |true-up| (capped) first, then unit", () => {
   const m = reconModel(UNITS, RECOVERIES, ACTUALS, WITH_CAP); // A −6,900 vs B −600
   assert.deepEqual(m.units.map(r => r.unit), ["A", "B"]);
-  const tie = reconModel([UNITS[0], { ...UNITS[1], sf: 6000, unit: "0" }], RECOVERIES, ACTUALS, OPT);
+  const tie = reconModel([UNITS[0], { ...UNITS[1], sf: 6000, unit: "0" }],
+    { ...RECOVERIES, units: { ...RECOVERIES.units, "0": RECOVERIES.units.A } }, ACTUALS, OPT);
   assert.deepEqual(tie.units.map(r => r.unit), ["0", "A"]);
 });
 
@@ -321,4 +322,27 @@ test("caveats: with prior on file and caps applied, the proration note appears a
   const c = reconCaveats(reconModel(UNITS, RECOVERIES, ACTUALS, WITH_CAP));
   assert.ok(!c.some(s => /not on file/.test(s)));
   assert.ok(c.some(s => /prorated/.test(s)));
+});
+
+/* ── owner-occupied suite + unknown-recovery ordering (real-roll findings) ── */
+test("owner-occupied suite counts toward occupancy but gets no tenant row; its share is ownerAbsorbed", () => {
+  const units = [...UNITS, { unit: "O", dba: "Owner office", sf: 500, status: "owner", start: "2020-01-01" }];
+  const rec = { ...RECOVERIES, units: { ...RECOVERIES.units, O: { cam: 0, tax: 0, ins: 0 } } };
+  const m = reconModel(units, rec, ACTUALS, { glaSf: 10500, grossUpPct: 0, year: 2026, terms: { O: CAP_ALL } });
+  assert.equal(m.occupiedSf, 9500);   // 6000 + 3000 + 500 — owner suite is occupied space
+  assert.equal(m.ownerSf, 500);
+  assert.equal(m.vacantSf, 1000);
+  assert.deepEqual(m.units.map(r => r.unit), ["A", "B"], "no statement / true-up for the landlord's own suite");
+  close(m.ownerAbsorbed, 33000 * 500 / 10500);
+  close(m.vacancyShortfall, 33000 * 1000 / 10500);
+  close(m.totals.trueUp, m.units.reduce((s, r) => s + r.trueUp, 0));
+});
+
+test("rows with unknown recovery PSF sort last regardless of size", () => {
+  const units = [{ unit: "X", dba: "Huge unknown", sf: 9000, status: "active" }, ...UNITS];
+  const rec = { ...RECOVERIES, units: { ...RECOVERIES.units, X: { cam: null, tax: null, ins: null } } };
+  const m = reconModel(units, rec, ACTUALS, { glaSf: 20000, grossUpPct: 0 });
+  assert.deepEqual(m.units.map(r => r.unit), ["A", "B", "X"]);
+  assert.equal(m.units[2].recoveriesKnown, false);
+  assert.equal(m.units[2].trueUp, null);
 });
