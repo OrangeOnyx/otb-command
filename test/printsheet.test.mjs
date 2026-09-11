@@ -6,12 +6,12 @@ const PAGES = [["dash", "D-1", "Dashboard"], ["plan", "A-1", "Site Plan"]];
 
 test("printFootText stamps sheet code, title, date, and headline figures", () => {
   const t = printFootText(PAGES, "plan", "JUL 16, 2026");
-  assert.equal(t, "ORANGE OCEAN ATLAS · OTB · A-1 SITE PLAN · PRINTED JUL 16, 2026 · 62,883 SF GLA · 27 UNITS");
+  assert.equal(t, "CYPRESS COMMAND · OTB · A-1 SITE PLAN · PRINTED JUL 16, 2026 · 62,883 SF GLA · 27 UNITS");
 });
 
 test("printFootText tolerates an unknown page id", () => {
   const t = printFootText(PAGES, "nope", "JUL 16, 2026");
-  assert.match(t, /^ORANGE OCEAN ATLAS · OTB · PRINTED/);
+  assert.match(t, /^CYPRESS COMMAND · OTB · PRINTED/);
 });
 
 test("printDocTitle drives the default PDF filename", () => {

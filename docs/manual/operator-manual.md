@@ -1,4 +1,4 @@
-# Orange Ocean Atlas — Operating Manual (On The Boulevard deployment)
+# Cypress Command — Operating Manual (On The Boulevard deployment)
 **Version August 2026 · covers the 14-sheet production build (340 tests)**
 Live app: https://orangeoceanatlas.com (also otb-command.vercel.app) · Operator: adam@adamabdalla.com
 

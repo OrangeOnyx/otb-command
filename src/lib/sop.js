@@ -1,5 +1,5 @@
 /* O-1 Operations — SOP module (harvest H1.3, 2026-08-25). Ported from Asset
-   Command's 5-table SOP system into Atlas idiom: content tables are editable
+   Command's 5-table SOP system into Cypress Command idiom: content tables are editable
    (stamped), occurrences + completions are schedule scaffolding + append-only
    trail, and occurrence STATUS IS DERIVED — completed ⟺ a completion links
    the occurrence, overdue ⟺ its due date passed without one (same

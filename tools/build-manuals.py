@@ -112,16 +112,16 @@ def build(md_name, html_name, pdf_name, doc_title, sheet_code):
     # First line of the MD is the doc H1 — the title block carries branding.
     confid = "CONFIDENTIAL" in text[:400]
     html_doc = f"""<!doctype html><html><head><meta charset="utf-8">
-<title>Orange Ocean Atlas — {esc(doc_title.title())}</title>
+<title>Cypress Command — {esc(doc_title.title())}</title>
 <style>{CSS}</style></head><body><div class="wrap">
 <div class="titleblock">
-  <div><div class="name">ORANGE OCEAN ATLAS · OTB</div>
+  <div><div class="name">CYPRESS COMMAND · OTB</div>
   <div style="font:600 13px 'IBM Plex Mono',monospace">{esc(doc_title)} · AUGUST 2026{' · <span class=confid>CONFIDENTIAL</span>' if confid else ''}</div></div>
   <div class="sheet">SHEET {esc(sheet_code)} · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
 </div>
 {body}
 <div class="foot">
-  <span>ORANGE OCEAN ATLAS — instrumented asset management</span>
+  <span>CYPRESS COMMAND — instrumented asset management</span>
   <span>Managed by Orange Ocean, LLC · generated {esc(__import__('datetime').date.today().isoformat())}</span>
 </div>
 </div></body></html>"""

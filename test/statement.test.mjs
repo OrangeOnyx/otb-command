@@ -97,7 +97,7 @@ test("HTML carries letterhead, month title, issued date, balance due, and the le
   assert.ok(html.includes("Statement — " + monthLabel("2026-09")));
   assert.ok(html.includes("Sep 30, 2026"));
   assert.ok(html.includes("Balance due"));
-  assert.ok(html.includes("Statement generated from the Atlas ledger — entries from " + LEDGER_START_YM));
+  assert.ok(html.includes("Statement generated from the Cypress Command ledger — entries from " + LEDGER_START_YM));
 });
 
 test("balance due colors: brick class when owed, green class when settled or credit", () => {

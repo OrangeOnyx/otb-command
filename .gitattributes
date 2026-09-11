@@ -1,0 +1,4 @@
+# Vendored brand artwork and font licenses keep upstream bytes (CRLF included)
+# so the SHA-256 table in docs/cypress-command-brand-provenance.md stays true
+# on Windows checkouts with core.autocrlf=true.
+public/brand/cypress/** -text

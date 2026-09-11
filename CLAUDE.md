@@ -1,11 +1,21 @@
-# OTB Property Command — Project Memory
+# Cypress Command (OTB deployment) — Project Memory
 
-> **PRODUCT NAME (operator-locked 2026-07-26): "Orange Ocean Atlas."** The
-> platform is Orange Ocean Atlas; OTB is its flagship deployment. Always the
-> full composite in market-facing output — never naked "Atlas" (crowded
-> genus: Saunders Atlas / AtlasX / Atlas RE / VISION-ATLAS). Repo/infra names
-> (otb-command, vercel project) unchanged. Module-naming concept available:
-> Atlas (spatial) · Almanac (dates) · Ledger · Desk · Register.
+> **PRODUCT NAME (operator-locked 2026-09-11): "Cypress Command."** Supersedes
+> "Orange Ocean Atlas" (locked 2026-07-26, retired). The platform is Cypress
+> Command; OTB is its flagship deployment (otb.cypresscommand.com). Always the
+> full composite in market-facing output — never naked "Cypress" or "Command".
+> Brand assets = release **04C v1.0.1** (approved 2026-09-06) in
+> `public/brand/cypress/` (lockups primary/reverse, mark, favicon, app icon,
+> fonts), byte-verified against the private `OrangeOnyx/cypress-command-brand-system`
+> repo — provenance + usage rules in `docs/cypress-command-brand-provenance.md`
+> (no retyping the wordmark, horizontal lockup ≥ 260px wide uncropped, reverse
+> art on Cypress/Charcoal only). Brand palette: Cypress #1E4D3A · Moss #2F6B4E
+> · Amber #D97706 · Charcoal #0A1F16 · Bone #F3EDE0; brand type Fraunces /
+> Inter / JetBrains Mono. **The app shell keeps the locked plan-room design
+> system below** — the brand shows as the lockup (masthead + sign-in), favicon,
+> and the product name in titles / print footers / exports. Repo/infra names
+> (otb-command, vercel project) unchanged. Module-naming concept still
+> available: Atlas (spatial) · Almanac (dates) · Ledger · Desk · Register.
 
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
 > Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial ·
