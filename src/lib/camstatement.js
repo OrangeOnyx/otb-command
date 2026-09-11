@@ -105,7 +105,6 @@ const CSS = `
   td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   tr.tot td{border-top:2px solid #1C2B26;border-bottom:0;font-weight:600}
   .cap{font-family:'IBM Plex Mono',monospace;font-size:11px;margin:10px 0 0;padding:8px 12px;background:#F6F7F1;border-left:3px solid #A87E2F}
-  .cap .n{display:block;color:#5F6E64;font-size:10px;margin-top:4px}
   .due{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;
        padding:12px 16px;background:#F6F7F1;border:1px solid #A87E2F;font-family:'IBM Plex Mono',monospace}
   .due .l{font-size:11px;letter-spacing:.14em;text-transform:uppercase}
@@ -133,8 +132,8 @@ export function camStatementHTML(model, unitInfo, { issuedISO } = {}) {
 
   const lineRows = model.lines.map(l =>
     "<tr><td>" + esc(l.label) + (l.capped ? " (capped)" : "") + "</td>" +
-    cell(l.billed) + cell(l.actualShare) + cell(l.cappedShare) + cell(l.owed) + "</tr>").join("");
-  const totRow = '<tr class="tot"><td>Totals</td>' + cell(model.totals.billed) + cell(model.totals.actualShare) +
+    cell(model.recoveriesKnown ? l.billed : null) + cell(l.actualShare) + cell(l.cappedShare) + cell(l.owed) + "</tr>").join("");
+  const totRow = '<tr class="tot"><td>Totals</td>' + cell(model.recoveriesKnown ? model.totals.billed : null) + cell(model.totals.actualShare) +
     cell(model.totals.cappedShare) + cell(model.totals.owed) + "</tr>";
 
   let dueLabel, dueClass, dueTxt;
@@ -147,7 +146,8 @@ export function camStatementHTML(model, unitInfo, { issuedISO } = {}) {
     ? "No cap on file for this lease."
     : "Cap: " + esc(model.cap.reason) + (model.cap.components.length ? " · covers " + esc(model.cap.components.join(", ").toUpperCase()) : "") +
       (model.cap.basis ? " · basis " + esc(model.cap.basis.replace(/_/g, " ")) : "");
-  const capNote = model.cap.note ? '<span class="n">Abstract note: ' + esc(model.cap.note) + "</span>" : "";
+  // cap.note (the transcription note) is operator context — deliberately NOT printed on the tenant statement
+  const capNote = "";
 
   return '<!doctype html><html><head><meta charset="utf-8">' +
     '<meta name="viewport" content="width=device-width,initial-scale=1">' +

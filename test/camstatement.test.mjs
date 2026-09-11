@@ -106,10 +106,10 @@ test("model: year falls back to the recon year; missing inputs throw", () => {
 /* ---- document ---- */
 const htmlA = () => camStatementHTML(camStatementModel(recon(), rowOf(recon(), "A"), RECOVERIES, TERMS, { year: 2026, unitInfo: INFO_A }), INFO_A, { issuedISO: "2027-03-15" });
 
-test("HTML escapes the dba and the abstract note — no raw markup survives", () => {
+test("HTML escapes the dba; the transcription note stays off the tenant statement — no raw markup survives", () => {
   const html = htmlA();
   assert.ok(html.includes("Alpha &lt;b&gt;&quot;Co&quot;&lt;/b&gt;"));
-  assert.ok(html.includes("abstract note &lt;i&gt;x&lt;/i&gt;"));
+  assert.ok(!html.includes("abstract note"), "operator transcription note must not print for the tenant");
   assert.ok(!html.includes("<b>") && !html.includes("<i>"), "unescaped markup leaked from data");
 });
 
@@ -154,6 +154,6 @@ test("HTML renders unknown economics as — and withholds the balance; no cap �
   assert.ok(html.includes("recovery PSF not on file"));
   assert.ok(html.includes("No cap on file"));
   assert.ok(!html.includes("audit rights"));
-  assert.ok(!html.includes("$0.00/mo"), "unknown monthly must not print as $0");
+  assert.ok(!html.includes("$0.00"), "unknown monthly and unknown estimates must not print as $0");
   assert.ok(html.includes('class="num">—</td>'), "unknown PSF prints as —");
 });
