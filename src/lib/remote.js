@@ -207,6 +207,40 @@ export async function addLedgerEntry(row) {
   return rec;
 }
 
+/* ── invoices (F-1; per-unit per-month documents over the ledger) ──
+   Reads owner/operator + tenant own-unit, writes operator (RLS). The row
+   holds only the send/void lifecycle + an amount/entry_ids snapshot — paid is
+   derived client-side (src/lib/invoice.js), never written. Fail loud like
+   the ledger: a dropped "sent" mark is a real collections error. */
+export async function listInvoices(unit) {
+  if (!REMOTE) return [];
+  const ctx = await propertyContext();
+  let q = sb.from("invoices")
+    .select("id,unit,ym,amount,entry_ids,status,sent_on,sent_via,notes,source,updated_at,updated_by")
+    .eq("property_id", ctx.property_id)
+    .order("ym", { ascending: false }).order("unit");
+  if (unit) q = q.eq("unit", unit);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data || []).map(r => ({ ...r, entryIds: Array.isArray(r.entry_ids) ? r.entry_ids : [] }));
+}
+export async function upsertInvoice(row) {
+  if (!REMOTE) throw new Error("invoices require the hosted backend");
+  if (!row || !row.id || !row.unit || !row.ym) throw new Error("invoice needs id, unit, ym");
+  const ctx = await propertyContext();
+  const rec = {
+    id: row.id, org_id: ctx.org_id, property_id: ctx.property_id, unit: row.unit, ym: row.ym,
+    amount: +row.amount || 0,
+    entry_ids: Array.isArray(row.entryIds) ? row.entryIds : Array.isArray(row.entry_ids) ? row.entry_ids : [],
+    status: row.status || "draft",
+    sent_on: row.sent_on || null, sent_via: row.sent_via || "",
+    notes: row.notes || "", source: row.source || "ledger",
+  };
+  const { error } = await sb.from("invoices").upsert(rec);
+  if (error) throw error;
+  return rec;
+}
+
 /* ── D-0 portfolio reads (Phase B-3) ─────────────────────────────
    Cross-property aggregates: NO property filter — RLS scopes rows to the
    member's org(s); the client groups by property_id. Column lists stay
