@@ -1,9 +1,314 @@
-<title>Atlas Punch List</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cypress Command Punch List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
 <style>body{margin:0;background:#EDEFE8}@media (prefers-color-scheme:dark){body{background:#151B18}}</style>
+<style id="punch-css">
+  :root{
+    --paper:#EDEFE8; --card:#F6F7F1; --ink:#1C2B26; --soft:#5F6E64;
+    --line:#C7CDC1; --rule:#1C2B26;
+    --brass:#A87E2F; --green:#2F6B4F; --anchor:#1E4F3C; --brick:#C25E33;
+    --green-tint:rgba(47,107,79,.10); --brass-tint:rgba(168,126,47,.12);
+    --brick-tint:rgba(194,94,51,.10); --slate-tint:rgba(95,110,100,.10);
+    --hatch:rgba(28,43,38,.28);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#151B18; --card:#1C2420; --ink:#E7EAE0; --soft:#9AA79E;
+      --line:#2E3833; --rule:#9AA79E;
+      --brass:#C99C50; --green:#6FA98A; --anchor:#8CC3A8; --brick:#D8815B;
+      --green-tint:rgba(111,169,138,.14); --brass-tint:rgba(201,156,80,.14);
+      --brick-tint:rgba(216,129,91,.13); --slate-tint:rgba(154,167,158,.10);
+      --hatch:rgba(231,234,224,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#151B18; --card:#1C2420; --ink:#E7EAE0; --soft:#9AA79E;
+    --line:#2E3833; --rule:#9AA79E;
+    --brass:#C99C50; --green:#6FA98A; --anchor:#8CC3A8; --brick:#D8815B;
+    --green-tint:rgba(111,169,138,.14); --brass-tint:rgba(201,156,80,.14);
+    --brick-tint:rgba(216,129,91,.13); --slate-tint:rgba(154,167,158,.10);
+    --hatch:rgba(231,234,224,.25);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:400 16px/1.6 "Public Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; padding:clamp(12px,3vw,40px);
+  }
+  .sheet{
+    position:relative; max-width:1060px; margin:0 auto;
+    border:2px solid var(--rule); background:var(--paper);
+    padding:clamp(20px,4vw,52px);
+  }
+  .sheet::before{
+    content:""; position:absolute; inset:7px; border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--brass); font-weight:500;
+  }
+  header.masthead{border-bottom:2px solid var(--rule); padding-bottom:22px; margin-bottom:26px;}
+  .mast-row{display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; justify-content:space-between;}
+  h1{
+    font-family:"Big Shoulders Display",sans-serif; font-weight:700;
+    font-size:clamp(46px,8vw,84px); line-height:.95; letter-spacing:.01em;
+    margin:10px 0 8px; text-transform:uppercase; text-wrap:balance;
+  }
+  .mast-date{color:var(--soft); font-size:12px; letter-spacing:.1em; text-transform:uppercase;}
+  .lede{max-width:62ch; color:var(--soft); margin:0; font-size:15.5px;}
+  .kpis{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));
+    gap:0; border:1px solid var(--rule); margin:26px 0 8px; background:var(--card);
+  }
+  .kpi{padding:16px 18px 14px; border-right:1px solid var(--line);}
+  .kpi:last-child{border-right:0}
+  .kpi b{
+    display:block; font-family:"Big Shoulders Display",sans-serif; font-weight:600;
+    font-size:38px; line-height:1; margin:4px 0 2px; font-variant-numeric:tabular-nums;
+  }
+  .kpi small{color:var(--soft); font-size:12.5px; line-height:1.4; display:block;}
+  @media (max-width:640px){ .kpi{border-right:0; border-bottom:1px solid var(--line);} .kpi:last-child{border-bottom:0} }
+  section{margin-top:44px;}
+  .schedule-label{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; border-bottom:1px solid var(--rule); padding-bottom:8px; margin-bottom:18px;}
+  h2{
+    font-family:"Big Shoulders Display",sans-serif; font-weight:600; font-size:30px;
+    letter-spacing:.02em; text-transform:uppercase; margin:0;
+  }
+  .sched-count{margin-left:auto; color:var(--soft); font-size:12px; letter-spacing:.08em;}
+  .chip{
+    display:inline-block; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:10.5px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+    padding:3px 9px 2px; border:1px solid currentColor; white-space:nowrap;
+  }
+  .chip.done{color:var(--green); background:var(--green-tint);}
+  .chip.open{color:var(--brass); background:var(--brass-tint);}
+  .chip.hot{color:var(--brick); background:var(--brick-tint);}
+  .chip.wait{color:var(--soft); background:var(--slate-tint);}
+  .card{background:var(--card); border:1px solid var(--line); padding:20px 22px;}
+  .card p{margin:.5em 0; max-width:72ch;}
+  .card p:first-child{margin-top:0}
+  code{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.88em;
+    background:var(--slate-tint); padding:1px 5px; border:1px solid var(--line);
+  }
+  .tasks{margin-top:12px; border-top:1px dashed var(--line);}
+  .task{display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; padding:10px 0; border-bottom:1px dashed var(--line);}
+  .task .tname{font-weight:500; font-size:14.5px; flex:1; min-width:min(260px,100%);}
+  .task[data-s="done"] .tname{opacity:.55; text-decoration:line-through; text-decoration-thickness:1px;}
+  .smokes{display:flex; flex-direction:column; gap:10px;}
+  .smoke{
+    background:var(--card); border:1px solid var(--line);
+    border-left:3px solid transparent; padding:14px 18px;
+  }
+  .smoke[data-s="pass"]{border-left-color:var(--green);}
+  .smoke[data-s="pass"] .name, .smoke[data-s="pass"] .desc{opacity:.6;}
+  .smoke[data-s="fail"]{border-left-color:var(--brick); background:var(--brick-tint);}
+  .smoke .head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; margin-bottom:2px;}
+  .smoke .name{font-weight:600; font-size:15.5px;}
+  .smoke .desc{color:var(--soft); font-size:14px; margin:0; max-width:76ch;}
+  .ctrl{display:flex; flex-wrap:wrap; gap:10px 16px; align-items:center; margin-top:12px;}
+  .seg{display:inline-flex; border:1px solid var(--line); background:var(--card);}
+  .seg button, .pick button{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; padding:6px 13px 5px;
+    background:transparent; color:var(--soft); border:0; border-right:1px solid var(--line);
+    cursor:pointer; transition:background .15s,color .15s;
+  }
+  .seg button:last-child{border-right:0}
+  .seg button:focus-visible, .pick button:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .seg button[aria-pressed="true"].b-open{background:var(--slate-tint); color:var(--ink);}
+  .seg button[aria-pressed="true"].b-pass{background:var(--green); color:var(--card);}
+  .seg button[aria-pressed="true"].b-fail{background:var(--brick); color:var(--card);}
+  .seg button[aria-pressed="true"].b-next{background:var(--brass); color:#fff;}
+  .seg button[aria-pressed="true"].b-q{background:var(--slate-tint); color:var(--ink);}
+  .seg button[aria-pressed="true"].b-hold{background:var(--soft); color:var(--card);}
+  .seg button:disabled, .pick button:disabled{cursor:default; opacity:.55}
+  .pick{display:inline-flex; flex-wrap:wrap; border:1px solid var(--line); background:var(--card); max-width:100%;}
+  .pick button{text-transform:none; letter-spacing:.03em; font-size:12px; padding:7px 13px 6px;}
+  .pick button:last-child{border-right:0}
+  .pick button[aria-pressed="true"]{background:var(--green); color:var(--card);}
+  .pick button[aria-pressed="true"].b-und{background:var(--slate-tint); color:var(--ink);}
+  .stamp{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--soft);}
+  .stamp.pass, .stamp.done{color:var(--green);} .stamp.fail{color:var(--brick);}
+  .note{
+    flex:1; min-width:min(240px,100%); font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12.5px; color:var(--ink); background:transparent; border:0;
+    border-bottom:1px dashed var(--line); padding:5px 2px;
+  }
+  .note:focus{outline:none; border-bottom:1px solid var(--brass);}
+  .note::placeholder{color:var(--soft); opacity:.75}
+  .note:disabled{opacity:.55}
+  .memo{
+    width:100%; min-height:120px; resize:vertical;
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px; line-height:1.7;
+    color:var(--ink); background:var(--card); border:1px solid var(--line); padding:14px 16px;
+  }
+  .memo:focus{outline:none; border-color:var(--brass);}
+  .memo::placeholder{color:var(--soft); opacity:.75}
+  .memo:disabled{opacity:.55}
+  .smoke-note{color:var(--soft); font-size:12px; margin-top:10px; max-width:80ch;}
+  .savebar{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:18px; z-index:20;
+    display:none; align-items:center; gap:8px 14px; flex-wrap:wrap;
+    background:var(--ink); color:var(--paper); border:1px solid var(--rule);
+    padding:10px 12px 10px 18px; max-width:min(92vw,640px);
+    box-shadow:0 8px 28px rgba(0,0,0,.28);
+  }
+  .savebar.on{display:flex}
+  .savebar .msg{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; letter-spacing:.03em;}
+  .savebar button{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--paper);
+    background:transparent; color:var(--paper); padding:7px 14px 6px; cursor:pointer;
+  }
+  .savebar button.primary{background:var(--brass); border-color:var(--brass); color:#fff;}
+  .savebar button:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
+  .savebar button:disabled{opacity:.6; cursor:default}
+  .waves{border-left:2px solid var(--rule); margin-left:8px; padding-left:0;}
+  .wave{position:relative; padding:0 0 26px 26px;}
+  .wave:last-child{padding-bottom:4px;}
+  .wave::before{
+    content:""; position:absolute; left:-6px; top:8px; width:10px; height:10px;
+    background:var(--paper); border:2px solid var(--soft); border-radius:50%;
+  }
+  .wave.done::before{background:var(--green); border-color:var(--green);}
+  .wave.hot::before{background:var(--brick); border-color:var(--brick);}
+  .wave.gated::before{background:var(--paper); border-color:var(--brick);}
+  .wave .head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline;}
+  .wave .wid{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:13px; letter-spacing:.06em;}
+  .wave .wname{font-weight:600; font-size:16px;}
+  .wave p{color:var(--soft); font-size:14.5px; margin:4px 0 0; max-width:74ch;}
+  .wave .data{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--soft);
+    margin-top:6px; letter-spacing:.02em;
+  }
+  .decisions{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px;}
+  .decision{background:var(--card); border:1px solid var(--line); border-top:3px solid var(--brick); padding:16px 18px;}
+  .decision[data-decided="1"]{border-top-color:var(--green);}
+  .decision[data-decided="1"] .did{color:var(--green);}
+  .decision .head{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:baseline; margin-bottom:6px;}
+  .decision .head .stamp{margin-left:auto}
+  .decision .did{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; font-weight:500;
+    color:var(--brick); letter-spacing:.08em;
+  }
+  .decision .q{font-weight:600; font-size:15.5px;}
+  .decision p{color:var(--soft); font-size:14px; margin:.4em 0;}
+  .decision .ctrl{margin-top:12px;}
+  .decision .unblocks{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px;
+    color:var(--anchor); letter-spacing:.04em; margin-top:10px;
+  }
+  .parked{margin-top:14px; color:var(--soft); font-size:13.5px; max-width:76ch;}
+  .reg-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr));
+    gap:6px; margin-bottom:14px;
+  }
+  .cell{
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px; font-weight:500;
+    border:1px solid var(--line); color:var(--ink); background:var(--card); cursor:default;
+  }
+  .cell.done{background:var(--green); border-color:var(--green); color:var(--card);}
+  .cell.parity{border:2px solid var(--green); color:var(--green); background:var(--green-tint);}
+  .cell.port{border:2px solid var(--brass); color:var(--brass); background:var(--brass-tint);}
+  .cell.rebuild{background:var(--slate-tint); color:var(--soft);}
+  .cell.ref{
+    color:var(--soft);
+    background:repeating-linear-gradient(45deg,transparent 0 4px,var(--hatch) 4px 5px);
+  }
+  .legend{display:flex; flex-wrap:wrap; gap:10px 22px; font-size:12.5px; color:var(--soft); margin-bottom:14px;}
+  .legend span{display:inline-flex; align-items:center; gap:7px;}
+  .sw{width:14px; height:14px; flex:none; border:1px solid var(--line); background:var(--card);}
+  .sw.done{background:var(--green); border-color:var(--green);}
+  .sw.parity{border:2px solid var(--green); background:var(--green-tint);}
+  .sw.port{border:2px solid var(--brass); background:var(--brass-tint);}
+  .sw.rebuild{background:var(--slate-tint);}
+  .sw.ref{background:repeating-linear-gradient(45deg,transparent 0 4px,var(--hatch) 4px 5px);}
+  details.reg-index{border:1px solid var(--line); background:var(--card);}
+  details.reg-index summary{
+    cursor:pointer; padding:10px 16px; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass);
+  }
+  details.reg-index summary:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .reg-list{
+    columns:2; column-gap:36px; padding:4px 18px 16px; margin:0; list-style:none;
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9;
+  }
+  .reg-list li{break-inside:avoid; color:var(--soft);}
+  .reg-list b{color:var(--ink); font-weight:500;}
+  .reg-list .st{float:right; font-size:10.5px; letter-spacing:.08em;}
+  .st.g{color:var(--green)} .st.b{color:var(--brass)} .st.s{color:var(--soft)}
+  @media (max-width:640px){ .reg-list{columns:1} }
+  .bl-group{background:var(--card); border:1px solid var(--line); padding:16px 18px 6px; margin-bottom:12px;}
+  .bl-group[data-tier="1"]{border-left:3px solid var(--green);}
+  .bl-group[data-tier="2"]{border-left:3px solid var(--brick);}
+  .bl-group[data-tier="3"]{border-left:3px solid var(--soft);}
+  .bl-head{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:baseline; border-bottom:1px dashed var(--line); padding-bottom:8px; margin-bottom:6px;}
+  .bl-head .bl-title{font-weight:600; font-size:15.5px;}
+  .bl-head .chip{margin-left:auto}
+  .bl-list{list-style:none; margin:0; padding:0;}
+  .bl-list li{display:grid; grid-template-columns:auto 1fr; gap:2px 14px; align-items:baseline; padding:9px 0; border-bottom:1px dashed var(--line);}
+  .bl-list li:last-child{border-bottom:0}
+  .bl-list .bid{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:500; font-size:12.5px; letter-spacing:.06em; color:var(--brass); padding-top:2px;}
+  .bl-list .bname{font-weight:500; font-size:14.5px;}
+  .bl-list .bname .chip{margin-left:8px; vertical-align:middle;}
+  .bl-list .bdesc{grid-column:2; color:var(--soft); font-size:13.5px; margin:0; max-width:78ch;}
+  details.archive{border:1px dashed var(--line); margin-top:12px;}
+  details.archive summary{
+    cursor:pointer; padding:8px 14px; font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--soft);
+  }
+  details.archive summary:focus-visible{outline:2px solid var(--brass); outline-offset:-2px;}
+  .arch-list{list-style:none; margin:0; padding:0 14px 10px;}
+  .arch-list li{display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding:7px 0; border-top:1px dashed var(--line); font-size:13.5px;}
+  .arch-list .aid{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px; letter-spacing:.06em; color:var(--brass);}
+  .arch-list .alabel{opacity:.75}
+  .arch-list .anote{flex-basis:100%; color:var(--soft); font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px;}
+  .arch-list .reopen{
+    margin-left:auto; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; padding:4px 10px 3px; cursor:pointer;
+    background:transparent; color:var(--soft); border:1px solid var(--line);
+  }
+  .arch-list .reopen:hover{color:var(--ink); border-color:var(--soft);}
+  .arch-list .reopen:focus-visible{outline:2px solid var(--brass); outline-offset:1px;}
+  .arch-list .reopen:disabled{cursor:default; opacity:.55}
+  .smoke[hidden], .task[hidden], .decision[hidden], .tasks[hidden], details.archive[hidden]{display:none !important}
+  .notes ol{margin:0; padding-left:1.5em; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; line-height:1.9; color:var(--soft);}
+  .notes li{margin:.3em 0; max-width:80ch;}
+  .titleblock{
+    margin-top:48px; border:2px solid var(--rule); display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); background:var(--card);
+  }
+  .tb{padding:10px 14px 12px; border-right:1px solid var(--line);}
+  .tb:last-child{border-right:0}
+  .tb .lab{
+    font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:9.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--soft); display:block; margin-bottom:2px;
+  }
+  .tb .val{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12.5px; font-weight:500;}
+  @media (max-width:640px){ .tb{border-right:0; border-bottom:1px solid var(--line);} .tb:last-child{border-bottom:0} }
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Atlas Punch List — rev 9 (2026-09-04, operator pick "1": finished items auto-fold —
+/* Cypress Command Punch List — rev 11 (2026-09-11 late: Tier 1 backlog F-1…F-5 BUILT on branch
+   claude/tier1-f1-f5, PR pending; Schedule B gains SMK-13…17, Schedule D gains the nine F-5
+   decisions D-4a…D-24b, register rows 5/6/12/18/20 green, Schedule F Tier 1 marked shipped).
+   Rev 10 (2026-09-11: product renamed Cypress Command; PR #3–#6 merged +
+   deployed via the new GitHub Actions deploy workflow; Schedule B gains SMK-8…12, the post-deploy checks).
+   Rev 9 (2026-09-04, operator pick "1"): finished items auto-fold —
    passed smokes / done tasks / decided decisions collapse into an Archive strip in their
    schedule with a Reopen button; state shape unchanged. Rev 8 same day added Schedule F
    Build Backlog; transmittal is Schedule G; operator state r5 carried forward. Interactive: gate tasks, smokes, wave priorities,
@@ -14,13 +319,15 @@ const STATE = /*__STATE__*/{"rev":8,"saved":"2026-09-06T01:29:28.902Z","smokes":
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
-const DEC_IDS = ["h1","h2","h3","own1"];
-const DEC_OPTS = { h1:["a","b"], h2:["port","publish"], h3:["decided"], own1:["trim","keep"] };
-const DEC_TAG = { a:"(A)", b:"(B)", port:"PORT", publish:"PUBLISH", decided:"", trim:"TRIM", keep:"KEEP ALL" };
+const DEC_IDS = ["h1","h2","h3","own1","d4a","d4b","d15","d19a","d19b","d23a","d23b","d24a","d24b"];
+const DEC_OPTS = { h1:["a","b"], h2:["port","publish"], h3:["decided"], own1:["trim","keep"],
+  d4a:["1","2","3"], d4b:["1","2","3"], d15:["1","2","3"], d19a:["1","2","3"], d19b:["1","2"],
+  d23a:["1","2","3"], d23b:["1","2"], d24a:["1","2","3"], d24b:["1","2","3"] };
+const DEC_TAG = { a:"(A)", b:"(B)", port:"PORT", publish:"PUBLISH", decided:"", trim:"TRIM", keep:"KEEP ALL", "1":"OPTION 1", "2":"OPTION 2", "3":"OPTION 3" };
 const DRAFT_KEY = "atlas-punch-draft-r3";
 
 const CSS = `
@@ -319,11 +626,11 @@ const BODY = `
 <div class="sheet">
   <header class="masthead">
     <div class="mast-row">
-      <span class="eyebrow">Orange Ocean Atlas &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 4, 2026 &middot; Rev 9</span>
+      <span class="eyebrow">Cypress Command &middot; Program Status &middot; Sheet G-1</span>
+      <span class="mono mast-date">Content &middot; Sep 11, 2026 (late) &middot; Rev 11</span>
     </div>
     <h1>Punch List</h1>
-    <p class="lede">Everything still open across the Atlas build, on one working sheet.
+    <p class="lede">Everything still open across the Cypress Command build (formerly Orange Ocean Atlas), on one working sheet.
     Schedules A&ndash;D and the transmittal are live: check off gate steps and runbook items,
     mark smokes Pass or Fail, set wave priorities, record decisions, and leave Claude a memo
     &mdash; one Save publishes it all where every viewer and every Claude session can read it.
@@ -334,8 +641,8 @@ const BODY = `
     <div class="kpis mono">
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; voice publish leg built &mdash; cutover steps on you (SMK-7)</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
-      <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">4</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
-      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>8 / 25</b><small>AC retires only at 25 / 25 green</small></div>
+      <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">13</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>13 / 25</b><small>AC retires only at 25 / 25 green &middot; +5 on Sep 11</small></div>
     </div>
   </header>
 
@@ -354,6 +661,16 @@ const BODY = `
       name + content hash, never <code>vercel ls</code> (the one command still classifier-blocked).</p>
       <p>Sep 2 check: prod serves <code>index-B82IeNgn.js</code> = the local build of HEAD; nothing
       unmerged or unpushed. Both steps below are history &mdash; leave them Done.</p>
+      <p><strong>Sep 11 &mdash; the deploy path moved.</strong> Production now ships from GitHub Actions:
+      <code>.github/workflows/deploy.yml</code> runs on every push to master (and by hand from the Actions tab)
+      &mdash; <code>npm ci</code> &rarr; <code>npm test</code> &rarr; <code>vercel build/deploy --prod</code>
+      &mdash; using the repo secret <code>VERCEL_TOKEN</code> you added the same day. First run
+      landed <code>dpl_3yw4zaXU7XUPUGXjYuLvQYSfF91i</code> at master <code>7b726a8</code>, aliased to
+      orangeoceanatlas.com and otb-command.vercel.app; served CSS hash matched a local build of master.
+      The local <code>npx vercel deploy --prod</code> allow rule still works but is no longer the only door.
+      Merged that day: #3 rebrand &middot; #4 Codex integration under your three rulings &middot; #5 workflow
+      &middot; #6 handoff note. Cloud sessions cannot dispatch or re-run workflows (GitHub App 403) &mdash;
+      they trigger a deploy by merging a PR; you can also run it from the Actions tab.</p>
       <div class="tasks">
         <div class="task" data-task="g-1">
           <div class="seg" role="group" aria-label="Gate step 1">
@@ -485,6 +802,126 @@ const BODY = `
             <button type="button" class="b-fail" data-smk="smk-7" data-set="fail" aria-pressed="false">Fail</button>
           </div>
           <input class="note" data-note="smk-7" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-8">
+        <div class="head"><span class="mono eyebrow">SMK-8</span><span class="name">Cypress Command sign-in + D-1 landing</span><span class="chip open">1 min</span><span class="stamp" data-stamp="smk-8"></span></div>
+        <p class="desc">orangeoceanatlas.com (or otb-command.vercel.app) signed out &rarr; the sign-in card carries the 04C lockup and &ldquo;ON THE BOULEVARD &middot; SIGN IN&rdquo;; tab title &ldquo;Cypress Command &mdash; On The Boulevard&rdquo;; favicon is the Cypress mark. Magic link &rarr; you land on <strong>D-1</strong> (ruling 3), masthead shows the reverse lockup over Charcoal with the LLC address line and the &ldquo;ISSUE &middot; 324 STALLS (legal)&rdquo; stamp.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-8 result">
+            <button type="button" class="b-open" data-smk="smk-8" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-8" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-8" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-8" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-9">
+        <div class="head"><span class="mono eyebrow">SMK-9</span><span class="name">Dark mode on every sheet</span><span class="chip open">1 min</span><span class="stamp" data-stamp="smk-9"></span></div>
+        <p class="desc">Sidebar &#9680; Dark mode &rarr; masthead stays Charcoal (lockup readable), KPI values and the Action Queue cards are legible on D-1 &rarr; A-2: the model and suite inspector keep their light surfaces with dark text &rarr; back to light. Both bugs (dark-on-dark ink; light alert cards) were fixed in #4.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-9 result">
+            <button type="button" class="b-open" data-smk="smk-9" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-9" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-9" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-9" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-10">
+        <div class="head"><span class="mono eyebrow">SMK-10</span><span class="name">A-2 Spatial &mdash; property workspace</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-10"></span></div>
+        <p class="desc">A-2 &rarr; plat-based model renders, click suite 149 &rarr; inspector shows Jason&rsquo;s Deli, 4,613 SF, term end 2030-10-31 &rarr; Maintenance tab shows the Pothole Repair record &rarr; &ldquo;Draft owner update&rdquo; opens the briefing dialog (cancel) &rarr; foot: &ldquo;Capture &amp; legacy views&rdquo; reveals the iso / 3D / satellite / reality chips and the iso still draws with TRUE NORTH AT RIGHT.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-10 result">
+            <button type="button" class="b-open" data-smk="smk-10" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-10" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-10" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-10" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-11">
+        <div class="head"><span class="mono eyebrow">SMK-11</span><span class="name">Rent roll on the Sept lease review (ruling 2)</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-11"></span></div>
+        <p class="desc">R-1 &rarr; 143 1st Franklin <strong>$3,354.75</strong> &middot; 145 Upstream <strong>$798.75</strong> &middot; 119, 139, 141, 145 show no expiration &rarr; P-1 rollover shows the &ldquo;Term unresolved&rdquo; bucket and WALT reads &ldquo;&mdash;&rdquo; &rarr; T-1 omits those four suites &rarr; unit 145 drawer: lease evidence panel shows the abatement phases (Jul&ndash;Dec 2026 $798.75; $3,035.25 from Jan 2027) and no Gmail links.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-11 result">
+            <button type="button" class="b-open" data-smk="smk-11" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-11" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-11" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-11" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-12">
+        <div class="head"><span class="mono eyebrow">SMK-12</span><span class="name">Import JSON with an old export</span><span class="chip open">1 min</span><span class="stamp" data-stamp="smk-12"></span></div>
+        <p class="desc">Topbar IMPORT JSON &rarr; pick any export made before Sep 11 (a Drive backup is fine) &rarr; it loads with no &ldquo;different account or property&rdquo; error and the compliance matrix / notes reflect the file. Then EXPORT JSON: the new file carries a <code>scope</code> block. Discard the import afterwards if it was an old snapshot (Import again with today&rsquo;s export).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-12 result">
+            <button type="button" class="b-open" data-smk="smk-12" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-12" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-12" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-12" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-13">
+        <div class="head"><span class="mono eyebrow">SMK-13</span><span class="name">Invoices (F-1)</span><span class="chip open">2 min &middot; after the PR deploys</span><span class="stamp" data-stamp="smk-13"></span></div>
+        <p class="desc">Unit 101 drawer &rarr; <strong>Invoices</strong> &rarr; pick Aug 2026 &rarr; &#10515; Invoice opens <code>INV-202608-101</code> (tab title = the number, so Save-as-PDF names the file; PAID / OVERDUE stamp is derived from the ledger, never typed) &rarr; <em>Mark sent</em> &rarr; chip reads SENT &rarr; a tenant login&rsquo;s M-1 lists that invoice read-only. Drafts stay operator-only until sent.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-13 result">
+            <button type="button" class="b-open" data-smk="smk-13" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-13" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-13" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-13" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-14">
+        <div class="head"><span class="mono eyebrow">SMK-14</span><span class="name">CAM reconciliation (F-2)</span><span class="chip open">3 min &middot; verify the cap table</span><span class="stamp" data-stamp="smk-14"></span></div>
+        <p class="desc">P-1 &rarr; recon card &rarr; year 2026 &rarr; enter 2025 actuals in the prior-year worksheet &rarr; per-tenant rows show billed / actual share / capped / true-up; 101 shows the 5% cap line, 143 reads &ldquo;Not determinable&rdquo; (recovery PSF unknown), 135B is absorbed like vacancy &rarr; &#10515; Statement on 101 opens the annual reconciliation with the Base &middot; CAM &middot; Tax &middot; Ins PSF breakdown. <strong>Then check the cap table in HANDOFF against the signed leases</strong> (143 = 4% CAM-only; the rest 5% from lease year 2; 119 / 145 have no commencement on the roll).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-14 result">
+            <button type="button" class="b-open" data-smk="smk-14" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-14" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-14" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-14" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-15">
+        <div class="head"><span class="mono eyebrow">SMK-15</span><span class="name">Report variants (F-3)</span><span class="chip open">1 min</span><span class="stamp" data-stamp="smk-15"></span></div>
+        <p class="desc">S-1 &rarr; <strong>Quarterly reports</strong> &rarr; &#10515; Lender opens &ldquo;Lender Report &mdash; Q2 2026&rdquo; with a Collections block and the line &ldquo;Debt service and covenant data are not on file&rdquo; &rarr; &#10515; Stakeholder shows &ldquo;Member distributions and capital accounts are not on file&rdquo; &rarr; &#10515; Board is unchanged from before.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-15 result">
+            <button type="button" class="b-open" data-smk="smk-15" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-15" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-15" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-15" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-16">
+        <div class="head"><span class="mono eyebrow">SMK-16</span><span class="name">HVAC PM contracts (F-4)</span><span class="chip open">2 min &middot; after the hvac_contracts one-liner</span><span class="stamp" data-stamp="smk-16"></span></div>
+        <p class="desc">First run the one-liner in HANDOFF (Supabase SQL editor &rarr; paste <code>20260911130000_hvac_contracts.sql</code>). Then unit 149 drawer &rarr; HVAC block shows the system rows from <code>hvac_units</code> &rarr; <em>From &sect;9.01</em> creates the Butcher Air monthly contract &rarr; <em>Log service</em> today &rarr; next due moves one month &rarr; T-1 shows &ldquo;HVAC PM due &mdash; 149&rdquo; once it is inside 30 days.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-16 result">
+            <button type="button" class="b-open" data-smk="smk-16" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-16" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-16" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-16" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-17">
+        <div class="head"><span class="mono eyebrow">SMK-17</span><span class="name">Live digest + valuation (F-5)</span><span class="chip open">1 min</span><span class="stamp" data-stamp="smk-17"></span></div>
+        <p class="desc">AI-1 &rarr; ask &ldquo;what is overdue and who owes rent?&rdquo; &rarr; the answer cites ledger aging / open M-1 / N-1 deadline counts (no tenant emails or phones) &rarr; S-1 proforma card shows &ldquo;Valuation on file &mdash; 2019 appraisal&rdquo; and P-1&rsquo;s cap-rate input hints 8.50%.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-17 result">
+            <button type="button" class="b-open" data-smk="smk-17" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-17" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-17" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-17" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
     </div>
@@ -634,7 +1071,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule D</span>
       <h2>Decisions Required</h2>
-      <span class="mono sched-count" id="dec-count">0 / 4 decided</span>
+      <span class="mono sched-count" id="dec-count">0 / 13 decided</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Pick an option and Save &mdash; the sheet records it with the date, and Claude treats a saved
@@ -708,6 +1145,130 @@ const BODY = `
         <div class="ctrl"><input class="note" data-dnote="own1" maxlength="600" placeholder="Context (optional)"></div>
         <div class="unblocks">&rarr; unblocks nothing, but gates his first impression</div>
       </div>
+      <div class="decision" data-dec-card="d4a">
+        <div class="head"><span class="did">D-4a</span><span class="q">Aug-2026 seam month</span><span class="stamp" data-dstamp="d4a"></span></div>
+        <p>Register #4. Atlas&rsquo; ledger starts 2026-08 and AC&rsquo;s 108 un-imported charges are ALSO Aug 2026 (18 units, split base / CAM / tax / ins + 36 late fees, 18 draft invoices never sent). Two records of one month. Option 1 is the recommendation.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-4a decision">
+            <button type="button" data-dec="d4a" data-set="1" aria-pressed="false">1 &middot; Atlas ledger is the sole Aug record; AC drafts archive-only</button>
+            <button type="button" data-dec="d4a" data-set="2" aria-pressed="false">2 &middot; import AC Aug as voided history</button>
+            <button type="button" data-dec="d4a" data-set="3" aria-pressed="false">3 &middot; import AC Aug live</button>
+            <button type="button" class="b-und" data-dec="d4a" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d4a" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #4</div>
+      </div>
+      <div class="decision" data-dec-card="d4b">
+        <div class="head"><span class="did">D-4b</span><span class="q">Late-fee policy</span><span class="stamp" data-dstamp="d4b"></span></div>
+        <p>Atlas assesses $100 flat + $25/day after a 5-day grace; AC assessed $50 flat, $0/day &mdash; and double-ran every August fee (2 &times; $50, a bug, not policy). Which schedule do the leases actually say? Option 1 = keep Atlas and you cite the lease source.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-4b decision">
+            <button type="button" data-dec="d4b" data-set="1" aria-pressed="false">1 &middot; keep $100 + $25/day (cite lease)</button>
+            <button type="button" data-dec="d4b" data-set="2" aria-pressed="false">2 &middot; adopt $50 flat if the leases say so</button>
+            <button type="button" data-dec="d4b" data-set="3" aria-pressed="false">3 &middot; per-unit policy</button>
+            <button type="button" class="b-und" data-dec="d4b" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d4b" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #4</div>
+      </div>
+      <div class="decision" data-dec-card="d15">
+        <div class="head"><span class="did">D-15</span><span class="q">Read-only NL query tool</span><span class="stamp" data-dstamp="d15"></span></div>
+        <p>Register #15. The concierge digest now carries live counts from six organs. A whitelisted <code>query_record</code> tool would let it answer row-level questions; NL&rarr;SQL is rejected. Option 1 = no tool now, log unanswered questions first.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-15 decision">
+            <button type="button" data-dec="d15" data-set="1" aria-pressed="false">1 &middot; no tool now &mdash; log unanswered questions</button>
+            <button type="button" data-dec="d15" data-set="2" aria-pressed="false">2 &middot; whitelisted query_record tool</button>
+            <button type="button" data-dec="d15" data-set="3" aria-pressed="false">3 &middot; NL&rarr;SQL (rejected)</button>
+            <button type="button" class="b-und" data-dec="d15" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d15" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #15</div>
+      </div>
+      <div class="decision" data-dec-card="d19a">
+        <div class="head"><span class="did">D-19a</span><span class="q">Five recorded instruments not in Atlas</span><span class="stamp" data-dstamp="d19a"></span></div>
+        <p>Register #19. AC holds 13 recorded agreements; Atlas instruments.json holds 8 by entry number. Absent: title exceptions 98-18247, 99-041054, 286167, 97-012420, 445327. Option 1 = add a <code>titleExceptions</code> block to instruments.json + a K-1 block.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-19a decision">
+            <button type="button" data-dec="d19a" data-set="1" aria-pressed="false">1 &middot; titleExceptions in instruments.json + K-1</button>
+            <button type="button" data-dec="d19a" data-set="2" aria-pressed="false">2 &middot; wait for the owner title policy</button>
+            <button type="button" data-dec="d19a" data-set="3" aria-pressed="false">3 &middot; drop (rejected)</button>
+            <button type="button" class="b-und" data-dec="d19a" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d19a" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #19</div>
+      </div>
+      <div class="decision" data-dec-card="d19b">
+        <div class="head"><span class="did">D-19b</span><span class="q">Pylon slot register</span><span class="stamp" data-dstamp="d19b"></span></div>
+        <p>AC kept 28 pylon slots with status + linked unit; Atlas has pylon artwork only (13/14 panels verified). Option 1 = move PANEL_UNIT into <code>pylon.json</code> + a K-1 card.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-19b decision">
+            <button type="button" data-dec="d19b" data-set="1" aria-pressed="false">1 &middot; pylon.json + K-1 card</button>
+            <button type="button" data-dec="d19b" data-set="2" aria-pressed="false">2 &middot; leave in pylon.py</button>
+            <button type="button" class="b-und" data-dec="d19b" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d19b" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #19</div>
+      </div>
+      <div class="decision" data-dec-card="d23a">
+        <div class="head"><span class="did">D-23a</span><span class="q">Where the 25 property identifiers surface</span><span class="stamp" data-dstamp="d23a"></span></div>
+        <p>Register #23. AC&rsquo;s 25 label/value identifiers (EIN, policy numbers, LUS account, title status&hellip; 12 are null) load into <code>properties.facts</code> via migration 20260911140000. Where do they show? Option 1 = a K-1 card, nulls as &ldquo;not on file&rdquo;.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-23a decision">
+            <button type="button" data-dec="d23a" data-set="1" aria-pressed="false">1 &middot; K-1 card</button>
+            <button type="button" data-dec="d23a" data-set="2" aria-pressed="false">2 &middot; S-1 block</button>
+            <button type="button" data-dec="d23a" data-set="3" aria-pressed="false">3 &middot; data only, no surface</button>
+            <button type="button" class="b-und" data-dec="d23a" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d23a" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #23</div>
+      </div>
+      <div class="decision" data-dec-card="d23b">
+        <div class="head"><span class="did">D-23b</span><span class="q">Owner entity name in the AC identifiers</span><span class="stamp" data-dstamp="d23b"></span></div>
+        <p>AC says &ldquo;Owner Entity (Legal Name) = On The Boulevard, LLC&rdquo;; the audit record is Belle Realty of Lafayette, LLC. <strong>The identifiers load is held until you rule</strong> &mdash; Claude will not write a contradicting owner into prod facts. Option 1 = you confirm Belle Realty and the row is corrected before load.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-23b decision">
+            <button type="button" data-dec="d23b" data-set="1" aria-pressed="false">1 &middot; Belle Realty &mdash; correct the row, then load</button>
+            <button type="button" data-dec="d23b" data-set="2" aria-pressed="false">2 &middot; load as-is, keep as a discrepancy record</button>
+            <button type="button" class="b-und" data-dec="d23b" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d23b" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; gates the property_identifiers load (register #23)</div>
+      </div>
+      <div class="decision" data-dec-card="d24a">
+        <div class="head"><span class="did">D-24a</span><span class="q">AC read-only users</span><span class="stamp" data-dstamp="d24a"></span></div>
+        <p>Register #24. AC&rsquo;s allowlist has 6 read_only emails; Atlas has no viewer role (owner / vendor / tenant only). 2 of 6 map already (dickeydupuis &rarr; owner, bzorn &rarr; vendor). Option 1 = map read_only &rarr; owner and fold into H-3.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-24a decision">
+            <button type="button" data-dec="d24a" data-set="1" aria-pressed="false">1 &middot; read_only &rarr; owner (fold into H-3)</button>
+            <button type="button" data-dec="d24a" data-set="2" aria-pressed="false">2 &middot; add an explicit viewer role (~1 day)</button>
+            <button type="button" data-dec="d24a" data-set="3" aria-pressed="false">3 &middot; leave unmapped</button>
+            <button type="button" class="b-und" data-dec="d24a" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d24a" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #24 with H-3</div>
+      </div>
+      <div class="decision" data-dec-card="d24b">
+        <div class="head"><span class="did">D-24b</span><span class="q">Sign-in audit trail</span><span class="stamp" data-dstamp="d24b"></span></div>
+        <p>AC logged 2,622 events (96% page views, 93 sign-ins, with IP + UA). Atlas logs domain actions and client errors only &mdash; no sign-in log. Option 1 = a small <code>signin_log</code> fed by a stamped RPC; a page-view firehose is rejected.</p>
+        <div class="ctrl">
+          <div class="pick" role="group" aria-label="D-24b decision">
+            <button type="button" data-dec="d24b" data-set="1" aria-pressed="false">1 &middot; signin_log + stamped RPC</button>
+            <button type="button" data-dec="d24b" data-set="2" aria-pressed="false">2 &middot; rely on the dashboard auth logs</button>
+            <button type="button" data-dec="d24b" data-set="3" aria-pressed="false">3 &middot; page-view firehose (rejected)</button>
+            <button type="button" class="b-und" data-dec="d24b" data-set="" aria-pressed="true">Undecided</button>
+          </div>
+        </div>
+        <div class="ctrl"><input class="note" data-dnote="d24b" maxlength="600" placeholder="Context (optional)"></div>
+        <div class="unblocks">&rarr; closes register #24</div>
+      </div>
     </div>
     <details class="archive" id="arch-dec" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
     <p class="parked"><strong>Parked, non-blocking:</strong> error-vendor upgrade (the no-vendor baseline
@@ -718,7 +1279,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule E</span>
       <h2>Capability Register</h2>
-      <span class="mono sched-count">the H3 gate &middot; 9 / 25 green</span>
+      <span class="mono sched-count">the H3 gate &middot; 13 / 25 green</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
@@ -729,25 +1290,25 @@ const BODY = `
       <div class="cell port"    title="2 &middot; Work orders &rarr; data in M-1; vendor upload-link UX open">2</div>
       <div class="cell done"    title="3 &middot; SOP system &rarr; O-1 Operations (PORTED Aug 25)">3</div>
       <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY verified Sep 11: 313 rows / $1,133,492.20 match; Aug-2026 seam + late-fee policy decisions D-4a/D-4b owed)">4</div>
-      <div class="cell port"    title="5 &middot; Invoices + late fees &rarr; statements v1 LIVE in repo; invoice generation open">5</div>
-      <div class="cell port"    title="6 &middot; CAM reconciliation &rarr; P-1 recon draft v1 in repo; caps/base-year open">6</div>
+      <div class="cell done"    title="5 &middot; Invoices + late fees &rarr; BUILT Sep 11 (F-1): INV-YYYYMM-unit numbering, printable invoice, sent / void state, paid derived from the ledger; table on prod; deploys with the PR">5</div>
+      <div class="cell done"    title="6 &middot; CAM reconciliation &rarr; BUILT Sep 11 (F-2): per-tenant caps from the lease abstracts, prior-year actuals, true-up, printable annual statement; no base-year clause exists">6</div>
       <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
       <div class="cell done"    title="8 &middot; Governance &rarr; S-1 records + T-1 deadlines LIVE (dynamic layer over repo-locked facts)">8</div>
       <div class="cell rebuild" title="9 &middot; Tenant portal &rarr; expanded tenant role (REBUILD)">9</div>
       <div class="cell done"    title="10 &middot; Lease abstraction + escalations &rarr; PORTED Aug 29 (24 + 83 rows, drawer panel + T-1)">10</div>
       <div class="cell done"    title="11 &middot; Deal pipeline &rarr; W-1 pipeline strip LIVE in repo (3 AC rows imported)">11</div>
-      <div class="cell port"    title="12 &middot; Board reports &rarr; S-1 quarterly report v1 in repo; stakeholder variants open">12</div>
+      <div class="cell done"    title="12 &middot; Board reports &rarr; BUILT Sep 11 (F-3): Board / Lender / Stakeholder variants over the same engine">12</div>
       <div class="cell done"    title="13 &middot; NOI + tenant health &rarr; scoring shipped Aug 29 over 13-mo record">13</div>
       <div class="cell done"    title="14 &middot; Communications hub &rarr; L-1 Comm Log LIVE in repo (62 AC rows imported)">14</div>
       <div class="cell parity"  title="15 &middot; NL query &rarr; AI-1 grounded digest (PARITY; digest extended Sep 11 to ledger / M-1 / N-1 / S-1 / W-1 / O-1 counts; read-only query tool D-15 owed)">15</div>
       <div class="cell done"    title="16 &middot; Document expiry scans &rarr; K-1 generalized Aug 29 (coi.js reused)">16</div>
       <div class="cell port"    title="17 &middot; Documents / register &rarr; metadata archived; binaries need keyed storage copy">17</div>
-      <div class="cell port"    title="18 &middot; HVAC &rarr; typed table imported (28 rows); PM tracking + T-1 deadlines open">18</div>
+      <div class="cell done"    title="18 &middot; HVAC &rarr; BUILT Sep 11 (F-4): PM contract tracking + T-1 deadlines + hvac_units in the drawer; hvac_contracts table still to apply on prod (one-liner in HANDOFF)">18</div>
       <div class="cell parity"  title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (PARITY; 2019 appraisal on S-1 + P-1 Sep 11; 8/13 recorded agreements + pylon 13/14 verified; D-19a title exceptions / D-19b pylon register owed)">19</div>
       <div class="cell done"    title="20 &middot; Marketing assets &rarr; K-1 + brand kit (DONE Sep 11: 25/25 tenant logos + 04C kit verified; no AC marketing rows; orgs.brand runtime read = F-22)">20</div>
       <div class="cell done"    title="21 &middot; UniFi network card &rarr; D-1 (PARITY, done)">21</div>
       <div class="cell ref"     title="22 &middot; SaaS billing &rarr; deferred to pilot monetization (REF)">22</div>
-      <div class="cell parity"  title="23 &middot; SOT import tooling &rarr; intake rail (PARITY; property_identifiers migration 20260911140000 in repo, NOT applied; surfacing D-23a + owner-entity name D-23b owed)">23</div>
+      <div class="cell parity"  title="23 &middot; SOT import tooling &rarr; intake rail (PARITY; property_identifiers migration 20260911140000 in repo, NOT applied &mdash; waits on D-23b; surfacing D-23a owed)">23</div>
       <div class="cell parity"  title="24 &middot; Allowlist / superadmin / audit &rarr; membership lattice (PARITY; OPEN Sep 11: AC allowlist 2/6 mapped, no viewer role, no sign-in log &mdash; D-24a / D-24b + H-3 owed)">24</div>
       <div class="cell ref"     title="25 &middot; Predecessor depth (notices, 1099s, workflow) &rarr; build on demand (REF)">25</div>
     </div>
@@ -765,20 +1326,20 @@ const BODY = `
         <li><b>2</b> Work orders + vendor uploads <span class="st b">PORT</span></li>
         <li><b>3</b> SOP system <span class="st g">DONE</span></li>
         <li><b>4</b> Rent tracking + AR <span class="st g">PARITY</span></li>
-        <li><b>5</b> Invoices + late fees <span class="st b">V1 LIVE</span></li>
-        <li><b>6</b> CAM reconciliation <span class="st b">V1 LIVE</span></li>
+        <li><b>5</b> Invoices + late fees <span class="st g">DONE</span></li>
+        <li><b>6</b> CAM reconciliation <span class="st g">DONE</span></li>
         <li><b>7</b> Accounting / QuickBooks <span class="st s">REBUILD</span></li>
         <li><b>8</b> Governance suite <span class="st g">DONE</span></li>
         <li><b>9</b> Tenant portal <span class="st s">REBUILD</span></li>
         <li><b>10</b> Lease abstraction + escalations <span class="st g">DONE</span></li>
         <li><b>11</b> Deal pipeline + waitlist <span class="st g">DONE</span></li>
-        <li><b>12</b> Board + stakeholder reports <span class="st b">V1 LIVE</span></li>
+        <li><b>12</b> Board + stakeholder reports <span class="st g">DONE</span></li>
         <li><b>13</b> NOI valuation + tenant health <span class="st g">DONE</span></li>
         <li><b>14</b> Communications hub <span class="st g">DONE</span></li>
         <li><b>15</b> NL query <span class="st g">PARITY</span></li>
         <li><b>16</b> Document expiry scanning <span class="st g">DONE</span></li>
         <li><b>17</b> Documents + register categories <span class="st b">PORT</span></li>
-        <li><b>18</b> HVAC + predictive maintenance <span class="st b">V1 LIVE</span></li>
+        <li><b>18</b> HVAC + predictive maintenance <span class="st g">DONE</span></li>
         <li><b>19</b> Spatial datasets <span class="st g">PARITY</span></li>
         <li><b>20</b> Marketing assets <span class="st g">DONE</span></li>
         <li><b>21</b> UniFi network card <span class="st g">DONE</span></li>
@@ -794,7 +1355,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule F</span>
       <h2>Build Backlog</h2>
-      <span class="mono sched-count">24 items &middot; snapshot Sep 4</span>
+      <span class="mono sched-count">24 items &middot; snapshot Sep 11 (late) &middot; Tier 1 shipped</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Everything still left to build, in one place, ranked by how much each item unlocks.
@@ -804,18 +1365,18 @@ const BODY = `
       you, Tier 3 is the long tail outside the harvest.</p>
 
     <div class="bl-group" data-tier="1">
-      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Claude can build now &mdash; pick a number</span><span class="chip open">no decision needed</span></div>
+      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 &mdash; on branch claude/tier1-f1-f5, PR pending</span><span class="chip done">shipped</span></div>
       <ol class="bl-list">
-        <li><span class="bid">F-1</span><span class="bname">#5 Invoices + late fees &rarr; full parity <span class="chip open">v1 live</span></span>
-          <p class="bdesc">Per-unit &#10515; Statement and late-fee suggestions already ship. Left: invoice numbering, PDF render, sent / paid state on the ledger family.</p></li>
-        <li><span class="bid">F-2</span><span class="bname">#6 CAM reconciliation &rarr; per-tenant shares + statements <span class="chip open">v1 live</span></span>
-          <p class="bdesc">P-1 recon DRAFT card exists. Left: annual true-up per tenant, caps and base-year handling, printable statements. Seeds: recoveries.json + the gross-up calc.</p></li>
-        <li><span class="bid">F-3</span><span class="bname">#12 Board + stakeholder reports &rarr; variants <span class="chip open">v1 live</span></span>
-          <p class="bdesc">S-1 quarterly board report generates from stored briefs. Left: stakeholder / lender variants over the same engine.</p></li>
-        <li><span class="bid">F-4</span><span class="bname">#18 HVAC &rarr; PM contract tracking + T-1 deadlines <span class="chip open">v1 live</span></span>
-          <p class="bdesc">28 units imported as a typed table. Left: Butcher Air &sect;9.01 monthly-PM contract tracking with deadlines feeding T-1 (NestJS HvacMaintenanceContract as the ref).</p></li>
-        <li><span class="bid">F-5</span><span class="bname">Parity reconciliations &mdash; six register rows <span class="chip open">verify &amp; close gaps</span></span>
-          <p class="bdesc">#4 rent tracking / AR &middot; #15 NL query (read-only NL over typed tables if the digest proves thin) &middot; #19 spatial datasets checked row-by-row against AC (appraisals &rarr; S-1) &middot; #20 marketing assets / brand kit &middot; #23 SOT import tooling / intake rail &middot; #24 allowlist / audit trails. Mostly reconciliation, little new surface.</p></li>
+        <li><span class="bid">F-1</span><span class="bname">#5 Invoices + late fees &rarr; full parity <span class="chip done">built Sep 11</span></span>
+          <p class="bdesc">Numbered invoices (INV-YYYYMM-unit) over the ledger, printable with the browser&rsquo;s Save-as-PDF, sent / void state stored, paid derived. Table on prod. Smoke: SMK-13.</p></li>
+        <li><span class="bid">F-2</span><span class="bname">#6 CAM reconciliation &rarr; per-tenant shares + statements <span class="chip done">built Sep 11</span></span>
+          <p class="bdesc">Per-tenant caps transcribed from the lease abstracts, prior-year actuals worksheet, occupancy gross-up, true-up, printable annual statement. No base-year clause exists in any lease on file. Smoke: SMK-14 (verify the cap table).</p></li>
+        <li><span class="bid">F-3</span><span class="bname">#12 Board + stakeholder reports &rarr; variants <span class="chip done">built Sep 11</span></span>
+          <p class="bdesc">Board / Lender / Stakeholder over the same engine and stored briefs; debt and distribution data print as &ldquo;not on file&rdquo; until such data exists. Smoke: SMK-15.</p></li>
+        <li><span class="bid">F-4</span><span class="bname">#18 HVAC &rarr; PM contract tracking + T-1 deadlines <span class="chip done">built Sep 11</span></span>
+          <p class="bdesc">Contract seam + drawer block + T-1 feed; the 28 hvac_units rows finally render. <strong>hvac_contracts table still to apply on prod</strong> (one-liner in HANDOFF). Smoke: SMK-16.</p></li>
+        <li><span class="bid">F-5</span><span class="bname">Parity reconciliations &mdash; six register rows <span class="chip done">verified Sep 11</span></span>
+          <p class="bdesc"><code>docs/parity-reconciliation-2026-09-11.md</code>: #20 DONE; #4 / #15 / #19 / #23 green-with-note; #24 OPEN. Closed: 2019 appraisal on S-1, live concierge digest, identifiers migration written (held on D-23b). Nine decisions now in Schedule D. Smoke: SMK-17.</p></li>
       </ol>
     </div>
 
@@ -860,10 +1421,10 @@ const BODY = `
           <p class="bdesc">47 unindexed FKs, 45 duplicate permissive policies, 9 RLS initplan notices, 20 unused indexes. Small tables; not urgent.</p></li>
         <li><span class="bid">F-21</span><span class="bname">Data gaps in the SOT</span>
           <p class="bdesc">Missing deposits for 107 / 137 / 143 / 149.</p></li>
-        <li><span class="bid">F-22</span><span class="bname">Brand sheet</span>
-          <p class="bdesc">Pending since July; the abdalla-brand-system skill carries the working identity.</p></li>
-        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation</span>
-          <p class="bdesc">ooatlas.com / .ai unpurchased; product-vs-property web split (shopontheblvd, gate vinyl QR) still open. Parked with D-5 until a pilot forces it.</p></li>
+        <li><span class="bid">F-22</span><span class="bname">Brand sheet <span class="chip done">04C adopted</span></span>
+          <p class="bdesc">Cypress Command 04C v1.0.1 is in the repo (<code>public/brand/cypress/</code>, hash-verified) and live on prod as of Sep 11. Left: fold the 04C palette / type into the abdalla-brand-system letterhead and signature blocks.</p></li>
+        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation <span class="chip hot">domain move</span></span>
+          <p class="bdesc">cypresscommand.com is the public site. <strong>otb.cypresscommand.com still CNAMEs to the Codex preview deployment</strong> (isolated Supabase branch), not production. Move it to the production project in Vercel + GoDaddy, then Claude swaps the three orangeoceanatlas.com constants (leasing URL, manual links, publish note). Property-vs-product web split (shopontheblvd, gate vinyl QR) still open.</p></li>
         <li><span class="bid">F-24</span><span class="bname">Reference rows #22 / #25</span>
           <p class="bdesc">SaaS billing (pilot monetization) &middot; legal notices, 1099s, e-sign templates, workflow engine. Build when a real workflow demands.</p></li>
       </ol>
@@ -929,6 +1490,20 @@ const BODY = `
       card into the Archive strip at the foot of its schedule (dated, note kept); Reopen restores it and
       shows the Save bar. Counts and KPIs still include archived items; the saved state is unchanged in
       shape, so every earlier revision reads fine.</li>
+      <li>Sep 11 snapshot: product renamed <strong>Cypress Command</strong> (operator-locked; Orange Ocean Atlas retired).
+      PR #3 rebrand, #4 Codex Astra integration (under your rulings: plan-room stays &middot; Sept lease review is
+      Tier-1 &middot; D-1 is home), #5 deploy workflow and #6 merged to master; production deployed from the
+      workflow with your VERCEL_TOKEN. Audit of both lines: <code>docs/audit-rebrand-pr3-vs-codex-2026-09-11.md</code>;
+      rent-roll supersession: <code>docs/sot-supersession-2026-09-11.md</code>. 624 tests green. Unauthenticated
+      surface smoked from the cloud (title, lockup, favicon, manual, API gates); SMK-8&ndash;12 above are the
+      signed-in checks only you can run. Open on you: the domain move (F-23), Vercel Preview env must not carry
+      the prod Supabase ref (the isolation guard aborts preview builds if it does).</li>
+      <li>Sep 11 (late) snapshot: you picked F-1&ndash;F-5 + the manual retitle. All five built by parallel
+      builders on branch <code>claude/tier1-f1-f5</code> &mdash; 706 tests green (was 624), build clean, local
+      review smoke clean. <code>invoices</code> table applied on prod; <code>hvac_contracts</code> blocked by the
+      classifier (one-liner in HANDOFF); <code>property_identifiers</code> load HELD on D-23b. Manual PDFs now
+      <code>Cypress-Command-*.pdf</code>, regenerated. Register 13 / 25. PR to master pending &mdash; merging it deploys.
+      Full record: HANDOFF.md &ldquo;September 11, 2026 (late)&rdquo; + <code>docs/superpowers/plans/2026-09-11-tier1-f1-f5.md</code>.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
@@ -938,10 +1513,10 @@ const BODY = `
   </section>
 
   <footer class="titleblock">
-    <div class="tb"><span class="lab">Project</span><span class="val">Orange Ocean Atlas &mdash; OTB Command</span></div>
+    <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-04</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">9</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-11</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">11</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
@@ -968,7 +1543,7 @@ function ensureAssets(){
 function fullDoc(appSrc){
   return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
-    '<title>Atlas Punch List</title>\n' +
+    '<title>Cypress Command Punch List</title>\n' +
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="stylesheet" href="' + FONTS + '">\n' +
     '<style>body{margin:0;background:#EDEFE8}@media (prefers-color-scheme:dark){body{background:#151B18}}</style>\n' +
@@ -1153,7 +1728,7 @@ function decorate(){
     if (e.pick) decided++;
   });
   var dc = document.getElementById("dec-count");
-  if (dc) dc.textContent = decided + " / 4 decided";
+  if (dc) dc.textContent = decided + " / " + DEC_IDS.length + " decided";
   var kd = document.getElementById("kpi-dec"), kds = document.getElementById("kpi-dec-sub");
   if (kd) kd.textContent = String(DEC_IDS.length - decided);
   if (kds) kds.textContent = decided > 0 ? "undecided · " + decided + " decided · + 2 parked" : "undecided · + 2 parked";
@@ -1366,3 +1941,5 @@ window.__punch = { doc: function(st){ return fullDoc(withState(APP_EL.textConten
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();
 </script>
+</body>
+</html>
