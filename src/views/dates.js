@@ -5,12 +5,13 @@
    escalation steps (AC lease abstracts, reference-only) are fetched once at
    init and merged into the same timeline via a module-level event array. */
 import { UNITS, subscribe } from "../store.js";
-import { fmt$0, pDate, monthsTo, esc, TODAY } from "../lib/format.js";
+import { fmt$0, pDate, fDate, monthsTo, esc, TODAY } from "../lib/format.js";
 import { JD_BANK, factLines } from "../lib/facts.js";
 import { REMOTE } from "../lib/remote.js";
 import { getMatters, refreshMatters, matterDeadlines } from "../lib/matters.js";
 import { refreshLeaseRef, getLeaseRef, escalationEvents } from "../lib/leaseref.js";
 import { getGovernance, refreshGovernance, govDeadlines, GOV_KINDS } from "../lib/governance.js";
+import { getHvacContracts, refreshHvac, hvacDeadlines, HVAC_FREQ } from "../lib/hvac.js";
 
 /* sync events — leases + instruments (unchanged baseline set) */
 function baseEvents() {
@@ -49,11 +50,12 @@ export function renderDates() {
 }
 
 /* one-shot REMOTE enrichment: N-1 matter deadlines + rent escalation steps
-   + S-1 governance deadlines (register row #8) */
+   + S-1 governance deadlines (register row #8) + HVAC PM contract due dates
+   (F-4, derived from last service + frequency) */
 async function enrich() {
   if (!REMOTE) return;
   try {
-    await Promise.all([refreshMatters(), refreshLeaseRef(), refreshGovernance()]);
+    await Promise.all([refreshMatters(), refreshLeaseRef(), refreshGovernance(), refreshHvac()]);
     const el = document.getElementById("timeline");
     if (!el || !el.isConnected) return;
     const today = new Date().toISOString().slice(0, 10);
@@ -70,6 +72,17 @@ async function enrich() {
         d: pDate(g.date), c: g.overdue ? "var(--brick)" : "var(--brass)",
         t: "<b>GOVERNANCE: " + esc(g.title) + "</b>" + (g.entity ? " — " + esc(g.entity) : ""),
         sub: esc((GOV_KINDS[g.kind] || g.kind) + (g.ref ? " · " + g.ref : "")),
+      });
+    });
+    const contracts = getHvacContracts().items;
+    hvacDeadlines(contracts, today).forEach(h => {
+      const c = contracts.find(x => x.id === h.id);
+      const last = c && c.last_service_on ? fDate(pDate(c.last_service_on)) : "never";
+      ev.push({
+        d: pDate(h.date), c: h.overdue ? "var(--brick)" : "var(--brass)",
+        t: "<b>HVAC PM due — " + esc(h.unit) + (h.vendor ? " · " + esc(h.vendor) : "") + "</b>" +
+          (h.overdue ? " — overdue" : ""),
+        sub: esc([h.ref, HVAC_FREQ[h.frequency] || h.frequency, "last service " + last].filter(Boolean).join(" · ")),
       });
     });
     escalationEvents(getLeaseRef().escalations, today).forEach(s => {

@@ -393,6 +393,25 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 .expo-full{color:var(--green);background:var(--green-bg)}
 .expo-pct{color:#8a6d1f;background:var(--brass-bg)}
 .expo-standard{color:var(--brick);background:var(--brick-bg)}
+/* F-4 HVAC block (drawer): hvac_units system rows + PM contract lines */
+.hvac-block{margin-top:8px}
+.hvac-sys{font-family:var(--mono);font-size:10.5px;color:var(--ink70);padding:3px 2px;border-bottom:1px solid var(--line2)}
+.hvac-sys small{color:var(--ink50)}
+.hvac-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:6px 2px;border-bottom:1px solid var(--line2);font-size:12px}
+.hvac-vendor{font-weight:600;color:var(--ink)}
+.hvac-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink50)}
+.hvac-due{font-family:var(--mono);font-size:11px;color:var(--slate)}
+.hvac-due.soon{color:var(--brass)}
+.hvac-due.over{color:var(--brick)}
+.hvac-acts{display:flex;gap:4px;margin-left:auto}
+.hvac-acts .chip,.hvac-add .chip{cursor:pointer;padding:3px 9px}
+.hvac-add{display:flex;align-items:center;gap:8px;margin-top:6px}
+.hvac-form{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0;padding:8px;border:1px dashed var(--brass);border-radius:4px}
+.hvac-form input,.hvac-form select{font-family:var(--mono);font-size:11px;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);min-width:0}
+.hvac-form .wide,.hvac-form .acts{grid-column:1/-1}
+.hvac-form .acts{display:flex;gap:6px}
+.hvac-form .acts .chip{cursor:pointer}
+body.role-owner .hvac-acts,body.role-owner .hvac-add,body.role-tenant .hvac-acts,body.role-tenant .hvac-add{display:none}
 
 /* owner-view (Path B): operator picks owner-visible sheets + previews */
 .ownerview{padding:10px 14px;border-top:1px solid var(--line)}
