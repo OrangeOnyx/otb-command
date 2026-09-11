@@ -5,6 +5,7 @@
    auth-gated /api/seed endpoint. Full units.json stays the SOT for tools+server. */
 import unitsData from "./data/units.public.json" with { type: "json" };
 import complianceData from "./data/compliance.json" with { type: "json" };
+import recoveryTermsData from "./data/recovery-terms.json" with { type: "json" };
 import { PAGE_IDS } from "./lib/pages.js";
 import { OPEX_LINES, emptyLayers, snapshotOf } from "./lib/layers.js";
 import { createScopedStateStorage, normalizeStateScope, sameStateScope } from "./lib/state-storage.js";
@@ -59,6 +60,13 @@ export function installRecoveriesPrivate(payload) {
   return true;
 }
 export function getRecoveries() { return recoveriesLoaded ? privateRecoveries : null; }
+
+/* Recovery TERMS (CAM/Tax/Ins caps, audit rights) — public reference data
+   transcribed from the AC lease abstracts (src/data/recovery-terms.json,
+   validated in test/data-integrity.test.mjs). Not a persisted layer, not seed-
+   gated: no dollar figures live here. Read-only; the signed lease governs. */
+export function getRecoveryTerms() { return recoveryTermsData.units; }
+export function recoveryTermsFor(unit) { return recoveryTermsData.units[unit] || null; }
 
 export const COMP_FIELDS = complianceData.fields;
 export const COMP_STATES = complianceData.states; // cycle order: u → ok → flag → na

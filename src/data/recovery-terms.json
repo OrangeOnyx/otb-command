@@ -1,0 +1,308 @@
+{
+ "_note": "Per-unit additional-rent (CAM/Tax/Ins) recovery terms transcribed from the AC lease abstractions harvest (docs/harvest/ac-archive-2026-08-29/lease_abstractions.json, keyClausesSummary) on 2026-09-11. REFERENCE ONLY — the signed lease governs; verify against the lease before relying on a cap. capPct is a decimal (0.05 = 5%); capBasis prior_year_actuals = increase limited to capPct over the prior calendar year's actual charge; capFromLeaseYear = first lease year the cap applies; capComponents = which of cam/tax/ins the cap covers (conservative: only the components the abstract names). baseYear: no base-year stop clause is recorded for any unit — null everywhere; a future value is a calendar year (YYYY). source '' = no abstraction on file (vacant / owner-occupied). Lease year is derived by camrecon.js from the rent-roll start date; a unit with no start date on the roll cannot have its cap applied.",
+ "units": {
+  "101": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:905e9ed2-0fa2-4e79-aabc-59b231626937"
+  },
+  "103": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:8093860f-2231-4a17-9467-f201a344436e"
+  },
+  "105": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:214c1c32-da10-49bf-978c-062d709d61bf",
+   "note": "Abstract states no start year; prior-year basis implies lease year 2 (inferred)."
+  },
+  "107": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:09b3ce89-b1a3-4780-bd41-78af84927994"
+  },
+  "109": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:40aba2e5-f9cb-4a26-9709-e0895d4ca6e6"
+  },
+  "111": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:c59f2bac-6c5f-4aa7-987d-357e0480cf20"
+  },
+  "113": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:57633441-6204-4868-b6e8-6dc7e6927125"
+  },
+  "115": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:f2b06dda-5655-4859-8f8f-088efcdd8824",
+   "note": "Abstract states no start year; prior-year basis implies lease year 2 (inferred)."
+  },
+  "117": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:b7f2f3c8-3e21-4b6f-8f34-69c389b1d3ed"
+  },
+  "119": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:7dd5fdd5-81e6-4f40-8472-f82c7309a58b",
+   "note": "Abstract states no start year; prior-year basis implies lease year 2 (inferred). Lease start not on the rent roll — cap cannot be applied until it is."
+  },
+  "121": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:bc9be6ea-f4fa-43ac-a3f1-32f03acafe39",
+   "note": "Abstract says 'capped at 5% annually beginning in year 2'; prior-year-actuals basis inferred."
+  },
+  "123": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:7fadb46b-7fef-4946-a106-27509f115043"
+  },
+  "125": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:f7e5fec8-765b-49bf-98a1-09041d6a42b2"
+  },
+  "127": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:341c7699-a5af-4a6c-a4f5-77ae581d544c"
+  },
+  "129": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:6f76de6e-4e5a-4cb2-a1e9-06b63bfb8f86"
+  },
+  "131": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": ""
+  },
+  "133": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": ""
+  },
+  "137": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:5af0e043-62b7-400c-8cad-f235b35557ad"
+  },
+  "139": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:56b9227a-a344-46c4-9796-f8fceabdffb6"
+  },
+  "141": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:547f25f8-9356-4e88-b28a-570e066564e2"
+  },
+  "143": {
+   "capPct": 0.04,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam"
+   ],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:1b664534-23da-42bb-8e34-2fda9f9be66b",
+   "note": "Abstract names CAM only ('CAM cap of 4% annually beginning in the second year'); tax/ins recorded as uncapped (conservative); prior-year basis inferred."
+  },
+  "145": {
+   "capPct": 0.05,
+   "capBasis": "prior_year_actuals",
+   "capFromLeaseYear": 2,
+   "capComponents": [
+    "cam",
+    "tax",
+    "ins"
+   ],
+   "auditRights": true,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:a2c57921-328e-4c68-90cb-42f282659ea9",
+   "note": "Abstract states no start year; prior-year basis implies lease year 2 (inferred). Lease start not on the rent roll — cap cannot be applied until it is."
+  },
+  "149": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:4d1aa4a7-bbda-4794-b462-72decd5afeda"
+  },
+  "117.5": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:ef86d225-c557-4c5c-9050-e7442df0400b"
+  },
+  "119.5": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:40848355-3a88-4107-91f2-5c655da29a24"
+  },
+  "135A": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": "ac:lease_abstractions:8e0d8700-bfa2-45e3-87b3-1c743fe26cdf"
+  },
+  "135B": {
+   "capPct": null,
+   "capBasis": null,
+   "capFromLeaseYear": null,
+   "capComponents": [],
+   "auditRights": false,
+   "baseYear": null,
+   "source": ""
+  }
+ }
+}
