@@ -14,6 +14,7 @@
 
 import { monthKey, monthLabel } from "./autotrigger.js";
 import { esc } from "./format.js";
+import { OO_CSS, arrow, kpiTile } from "./docbrand.js";
 
 export const EXPIRATION_HORIZON_DAYS = 365;
 
@@ -122,40 +123,8 @@ export function momDeltas(model, prior) {
 
 /* ── document ──────────────────────────────────────────────────── */
 
-/* Orange Ocean B2B brand (brand-orange-ocean.md): Ocean Navy #1C2D4F,
-   Sunset Orange #E8820C accent, Light #F0F4F8, Helvetica. Wordmark colorway
-   on the navy bar = dark-background rule: ORANGE in orange, OCEAN in white. */
-const OO = `
-  body{font-family:Helvetica,Arial,sans-serif;color:#1C2D4F;margin:0;background:#F0F4F8}
-  .page{max-width:8.5in;margin:0 auto;background:#fff;padding:.7in .8in}
-  .bar{background:#1C2D4F;padding:20px 28px;display:flex;justify-content:space-between;align-items:baseline}
-  .bar .wm{font-size:19px;font-weight:bold;letter-spacing:.14em}
-  .bar .wm .o{color:#E8820C}.bar .wm .c{color:#fff}
-  .bar .tag{font-size:10.5px;letter-spacing:.18em;color:#F0F4F8}
-  h1{font-size:23px;margin:0 0 2px;letter-spacing:.02em}
-  .sub{font-size:12px;color:#4A6FA5;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px}
-  h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1C2D4F;border-bottom:2px solid #E8820C;padding-bottom:4px;margin:26px 0 10px}
-  .kpis{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 4px}
-  .kpi{flex:1 1 150px;background:#F0F4F8;border-left:3px solid #E8820C;padding:12px 14px}
-  .kpi .v{font-size:21px;font-weight:bold}
-  .kpi .l{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#4A6FA5;margin-top:2px}
-  .kpi .d{font-size:11px;margin-top:4px;color:#1C2D4F}
-  .kpi .d.up{color:#2F6B4F}.kpi .d.down{color:#A33B1F}
-  table{width:100%;border-collapse:collapse;font-size:11.5px}
-  td,th{border:1px solid #C7D0DE;padding:5px 7px;text-align:left}
-  th{background:#F0F4F8;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#1C2D4F}
-  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-  p,li{font-size:13px;line-height:1.55}
-  .note{font-size:11.5px;color:#4A6FA5}
-  .foot{font-size:10.5px;color:#4A6FA5;margin-top:32px;border-top:1px solid #C7D0DE;padding-top:10px;line-height:1.6}
-  @media print{body{background:#fff}.page{padding:.35in .5in}.bar{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-`;
-
-const arrow = { up: "▲", down: "▼", flat: "—" };
-
-function kpiTile(value, label, deltaHtml) {
-  return `<div class="kpi"><div class="v">${value}</div><div class="l">${label}</div>${deltaHtml || ""}</div>`;
-}
+/* Orange Ocean B2B brand CSS + kpi tile / arrow glyphs live in lib/docbrand.js
+   (shared with the quarterly reports since F-3, 2026-09-11). */
 
 function momChip(direction, text) {
   return `<div class="d ${direction}">${arrow[direction]} ${esc(text)}</div>`;
@@ -192,7 +161,7 @@ ${m.capValue ? kpiTile(money0(m.capValue), `Value @ ${m.capRatePct}% cap`) : ""}
 <ul>${m.actions.map(c => `<li><b>[${esc(c.lane)}]</b> ${esc(c.title)}${c.due ? ` <span class="note">(due ${esc(c.due)})</span>` : ""}</li>`).join("")}</ul>` : "";
 
   return `<!doctype html><html><head><meta charset="utf-8">
-<title>Owner Intelligence Brief — ${esc(m.monthLabel)} — On The Boulevard</title><style>${OO}</style></head><body>
+<title>Owner Intelligence Brief — ${esc(m.monthLabel)} — On The Boulevard</title><style>${OO_CSS}</style></head><body>
 <div class="bar"><span class="wm"><span class="o">ORANGE</span> <span class="c">OCEAN</span></span><span class="tag">OWNER INTELLIGENCE BRIEF</span></div>
 <div class="page">
 <h1>On The Boulevard — ${esc(m.monthLabel)}</h1>
