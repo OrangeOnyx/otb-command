@@ -20,6 +20,14 @@ export const PARKING = Object.freeze({
 export const JD_BANK = Object.freeze({ ...instruments.jdBank });
 export const HVAC_149 = Object.freeze({ ...instruments.hvac149 });
 export const EXCLUSIVES = Object.freeze(instruments.exclusives.map(e => Object.freeze({ ...e })));
+/* 2019 Broussard MAI appraisal (register row #19, F-5 2026-09-11) — figures
+   from the AC archive row; the PDF stays in AC storage until F-9. Historical
+   reference: S-1 "Valuation on file" line + P-1 cap-rate hint, never a value
+   the app computes with. */
+export const APPRAISAL_2019 = Object.freeze({ ...instruments.appraisal2019 });
+
+const usd0 = n => "$" + Math.round(+n || 0).toLocaleString("en-US");
+const mdy = iso => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
 /* Card/timeline prose — plain strings (no HTML; callers escape/format). */
 export const factLines = {
@@ -43,5 +51,14 @@ export const factLines = {
     "Exclusive-use watch — " + EXCLUSIVES.map(e => e.tenant).join(" vs "),
   exclusivesDetail: () =>
     EXCLUSIVES.map(e => e.unit + " (" + e.signed + ")").join(" vs ") +
-    " — screen new " + EXCLUSIVES.map(e => e.watch).join(" / ") + " uses"
+    " — screen new " + EXCLUSIVES.map(e => e.watch).join(" / ") + " uses",
+  appraisal2019: () =>
+    "Valuation on file — 2019 appraisal (" + APPRAISAL_2019.appraiser.split(",")[0] + ", MAI): as-is " +
+    usd0(APPRAISAL_2019.asIsValue) + " · NOI " + usd0(APPRAISAL_2019.noi) + " · cap " +
+    APPRAISAL_2019.capRatePct.toFixed(2) + "% · effective " + mdy(APPRAISAL_2019.effectiveDate) +
+    " · income " + usd0(APPRAISAL_2019.incomeApproachValue) + " / sales " + usd0(APPRAISAL_2019.salesComparisonValue) +
+    " / cost " + usd0(APPRAISAL_2019.costApproachValue) + " · historical reference only",
+  capRateHint: () =>
+    APPRAISAL_2019.capRatePct.toFixed(2) + "% per 2019 appraisal (" + APPRAISAL_2019.appraiser.split(",")[0] +
+    ", MAI, " + mdy(APPRAISAL_2019.effectiveDate) + ") — reference only; enter today's market cap rate"
 };

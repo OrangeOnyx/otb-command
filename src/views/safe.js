@@ -7,6 +7,7 @@ import { SAFE_CATEGORIES, addSafeDoc, listSafe, safeURL, removeSafeDoc, listLog 
 import { openBoardReport } from "../lib/boardreport.js";
 import { esc } from "../lib/format.js";
 import { REMOTE, getSession } from "../lib/remote.js";
+import { APPRAISAL_2019, factLines } from "../lib/facts.js";
 import {
   GOV_KINDS, sortGov, nextAnnual,
   getGovernance, onGovernanceChange, refreshGovernance,
@@ -30,6 +31,14 @@ async function render() {
       '<span class="safe-cat-n mono">' + rows.length + '</span>' +
       '<button class="chip safe-add" data-cat="' + cat + '">+ Upload</button>' +
       '<input type="file" class="safe-file" data-cat="' + cat + '" hidden></div>' +
+      /* Register row #19 (F-5): the 2019 appraisal is a repo-locked fact
+         (facts.js), not a filed document — the PDF binary is still in AC
+         storage pending F-9, so this line has no Open link. */
+      (cat === "proforma"
+        ? '<div class="safe-row safe-fact" title="' + esc(APPRAISAL_2019.fileLocation) + '">' +
+          '<span class="safe-name">' + esc(factLines.appraisal2019()) + '</span>' +
+          '<span class="safe-meta mono">' + esc(APPRAISAL_2019.source) + '</span></div>'
+        : '') +
       (rows.length
         ? rows.map(f =>
           '<div class="safe-row" data-path="' + esc(f.path) + '">' +
