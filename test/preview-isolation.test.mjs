@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { assertPreviewIsolation, PREVIEW_BLOCKED_SECRETS, PRODUCTION_SUPABASE_REF } from "../tools/check-preview-isolation.mjs";
 
@@ -88,7 +90,11 @@ test("every supported integration secret blocks preview; empty values disable in
 });
 
 test("actual Vite preview build rejects production configuration before output is generated", () => {
-  const vite = fileURLToPath(new URL("../node_modules/vite/bin/vite.js", import.meta.url));
+  // resolve through Node's module walk, not a hard-coded ../node_modules — a git
+  // worktree has no node_modules of its own and borrows the main checkout's.
+  // vite's exports map hides ./bin, so anchor on package.json and join.
+  const vitePkg = createRequire(import.meta.url).resolve("vite/package.json");
+  const vite = join(dirname(vitePkg), "bin", "vite.js");
   const root = fileURLToPath(new URL("../", import.meta.url));
   const run = spawnSync(process.execPath, [vite, "build"], {
     cwd: root,

@@ -5,10 +5,13 @@
    login roster. OWNER: read-only queue. Vendors never see M-1 — their
    assigned work orders surface on V-1 (vendorportal.js).
    Data/derivation lives in lib/maintenance.js; RLS scopes every query. */
-import { REMOTE, sb, listLedgerEntries, getPublishedLines } from "../lib/remote.js";
+import { REMOTE, sb, listLedgerEntries, listInvoices, getPublishedLines } from "../lib/remote.js";
 import { linesFromRow, lineRows } from "../lib/voicelines.js";
 import { withRunningBalance, DEBIT_TYPES } from "../lib/ledger.js";
-import { fmt$ } from "../lib/format.js";
+import { invoiceModel, invoiceStatus } from "../lib/invoice.js";
+import { invoiceChip, openInvoice } from "../lib/invoiceUI.js";
+import { monthLabel } from "../lib/statement.js";
+import { fmt$, TODAY } from "../lib/format.js";
 import {
   MR_STATUS, MR_URGENCY, MR_OPEN_STATES,
   getMaintCache, refreshMaint, onMaintChange, submitRequest, addMrEvent,
@@ -149,7 +152,10 @@ function wireSubmitForm(host, email, rerender) {
    RLS scopes the query to their unit; the balance math is the SAME pure fold
    the operator drawer uses (src/lib/ledger.js). Fills in async. */
 function loadTenantAccount(el, unit) {
-  listLedgerEntries(unit).then(rows => {
+  const today = TODAY.toISOString ? TODAY.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10);
+  // invoices ride along (F-1): RLS scopes to the tenant's unit; a read failure
+  // must not take the ledger trail down with it
+  Promise.all([listLedgerEntries(unit), listInvoices(unit).catch(() => [])]).then(([rows, invs]) => {
     if (!el.isConnected) return;
     const bal = withRunningBalance(rows);
     const balance = bal.length ? bal[bal.length - 1].runningBalance : 0;
@@ -160,11 +166,30 @@ function loadTenantAccount(el, unit) {
         '<span class="led-a ' + (debit ? "deb" : "cred") + '">' + (debit ? "" : "−") + fmt$(e.amount) + '</span>' +
         '<span class="led-b">' + fmt$(e.runningBalance) + '</span></div>';
     }).join("");
+    // issued invoices only — a draft is operator-internal until "Mark sent";
+    // status is DERIVED from the same ledger rows (never stored)
+    const issued = invs.filter(i => i.status !== "draft");
+    const invHtml = issued.map(i => {
+      const st = invoiceStatus(i, rows, today);
+      const printable = !!invoiceModel(rows, unit, i.ym);
+      return '<div class="inv-row"><span class="inv-id">' + esc(i.id) + '</span>' +
+        '<span class="inv-m">' + esc(monthLabel(i.ym)) + '</span>' +
+        '<span class="inv-amt">' + fmt$(st.amount || +i.amount || 0) + '</span>' + invoiceChip(st) +
+        (printable ? '<button class="chip inv-dl" data-ym="' + esc(i.ym) + '" title="Open ' + esc(i.id) + '">⤓</button>' : '<span></span>') +
+        '</div>';
+    }).join("");
     el.innerHTML =
       '<div class="led-head"><span class="led-lbl">Balance</span><b class="' + (balance > 0 ? "owe" : "clear") + '">' +
       fmt$(Math.abs(balance)) + (balance > 0 ? " owed" : balance < 0 ? " credit" : "") + '</b></div>' +
       (rowsHtml || '<div class="led-note">No activity yet.</div>') +
+      '<div class="inv-sub">Invoices</div>' +
+      (invHtml || '<div class="led-note">No invoices issued yet.</div>') +
       '<div class="led-note">Questions about a charge or payment? Contact management.</div>';
+    el.querySelectorAll(".inv-dl").forEach(b => b.onclick = () => {
+      const m = invoiceModel(rows, unit, b.dataset.ym);
+      const row = issued.find(i => i.ym === b.dataset.ym);
+      if (m && row) openInvoice(m, unit, invoiceStatus(row, rows, today), row.sent_on);
+    });
   }).catch(() => { el.innerHTML = '<div class="led-note">Account view unavailable right now.</div>'; });
 }
 

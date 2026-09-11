@@ -83,9 +83,10 @@ export function monthRentCharges(units, ym) {
    system — false receivables + spurious late-fee suggestions). */
 export const LEDGER_START_YM = "2026-08";
 
-/* FIFO core: apply a unit's credits to its debits oldest-first.
+/* FIFO core: apply a unit's credits to its debits oldest-first (exported for
+   invoice.js — paid/partial is DERIVED from this fold, never stored).
    Returns per-debit open remainders + any unapplied credit. */
-function fifoOpenDebits(list) {
+export function fifoOpenDebits(list) {
   const rows = list.slice().sort(chrono);
   const debits = rows.filter(e => DEBIT_TYPES.includes(e.type))
     .map(e => ({ entry: e, date: e.due || e.date, open: round2(+e.amount || 0) }));

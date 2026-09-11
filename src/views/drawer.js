@@ -7,6 +7,7 @@ import { unitContacts, unitDocuments } from "../lib/directory.js";
 import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
 import { mountLedger } from "../lib/ledgerUI.js";
+import { mountInvoices } from "../lib/invoiceUI.js";
 import { mountEsign } from "../lib/esignUI.js";
 import { mountLease } from "../lib/leaseUI.js";
 import { mountPayHistory } from "../lib/payhistoryUI.js";
@@ -138,6 +139,7 @@ function renderDrawer() {
     '<div class="dw-sec">Documents</div><div class="recs" id="dwDocs"></div>' +
     '<div class="dw-sec">Photos &amp; Plans</div><div class="assets" id="dwAssets"></div>' +
     '<div class="dw-sec">Ledger</div><div class="led" id="dwLedger"></div>' +
+    '<div class="dw-sec">Invoices</div><div class="inv" id="dwInvoices"></div>' +
     '<div class="dw-sec">Prior payments · AC</div><div class="led" id="dwPayHist"></div>' +
     (nonOperator ? "" : '<div class="dw-sec">Lease</div><div class="led" id="dwLease"></div>' +
       '<div class="dw-sec">Lease abstract · AC</div><div class="led" id="dwLeaseRef"></div>') +
@@ -147,6 +149,7 @@ function renderDrawer() {
   mountRecords(body.querySelector("#dwContacts"), "contacts", unitContacts(u.unit), { unit: u.unit }, renderDrawer);
   mountRecords(body.querySelector("#dwDocs"), "documents", unitDocuments(u.unit), { unit: u.unit }, renderDrawer);
   mountLedger(body.querySelector("#dwLedger"), u.unit);
+  mountInvoices(body.querySelector("#dwInvoices"), u.unit);
   mountPayHistory(body.querySelector("#dwPayHist"), u.unit);
   mountLease(body.querySelector("#dwLease"), u.unit);
   mountLeaseRef(body.querySelector("#dwLeaseRef"), u.unit);
