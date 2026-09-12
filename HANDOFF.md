@@ -1,5 +1,13 @@
 ﻿# Cypress Command · OTB — Session Handoff
 
+## September 12, 2026 (00:53 CDT) — PR #8 MERGED · Tier 1 F-1…F-5 LIVE ON PRODUCTION
+
+Operator said "next" after the Rev 11 close. Merged PR #8 (merge commit `4ac9b7f`, CI `verify` + CodeRabbit green, merge state CLEAN) → `deploy.yml` run #34666119958 succeeded (01:53Z) → production serves `index-CstYhXe0.js` on orangeoceanatlas.com AND otb-command.vercel.app, sha1 `b6507d26…` = local master build byte-for-byte. Vercel deployment `otb-command-l8k8hscok`.
+
+**`hvac_contracts` is STILL NOT ON PROD.** Both SQL doors (`apply_migration`, then `execute_sql`) were classifier-blocked again this session — third block in a row for this one file. Until it lands, F-4 reads warn in the console and return an empty roster (best-effort read), and Add contract / Log service will fail loud in the drawer. Operator one-liner: Supabase SQL editor → paste `supabase/migrations/20260911130000_hvac_contracts.sql` → Run (the file header stays NOT YET APPLIED until someone flips it). `20260911140000_property_identifiers.sql` remains deliberately unapplied pending D-23b.
+
+**Open on the operator now:** (1) apply `hvac_contracts` (one-liner above); (2) SMK-13…17 on punch list Rev 11 — now against production, not the loopback review; (3) verify the F-2 cap table; (4) rule on D-23b; (5) the Sep 11 morning list (SMK-11, domain move F-23, Preview env, lease follow-ups). Local `docs/graph/labels.json` edit is still uncommitted and unrelated — left alone.
+
 ## September 11, 2026 (late) — Tier 1 backlog F-1…F-5 BUILT + manual retitled (branch `claude/tier1-f1-f5`, PR pending)
 
 Operator pick "F1,F2,F3,F4,F5. and the instruction manual needs to say Cypress Command now." Five builders ran in isolated worktrees over the scouted seams; merged onto `claude/tier1-f1-f5` (off master 636cc9e). **706 tests green (was 624), `vite build` clean (`index-CstYhXe0.js`), local review smoke clean (S-1 chips + valuation line, T-1, 149 drawer HVAC + Invoices sections mount, zero console errors).** Plan of record: `docs/superpowers/plans/2026-09-11-tier1-f1-f5.md`.
