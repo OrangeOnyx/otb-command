@@ -393,6 +393,25 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 .expo-full{color:var(--green);background:var(--green-bg)}
 .expo-pct{color:#8a6d1f;background:var(--brass-bg)}
 .expo-standard{color:var(--brick);background:var(--brick-bg)}
+/* F-4 HVAC block (drawer): hvac_units system rows + PM contract lines */
+.hvac-block{margin-top:8px}
+.hvac-sys{font-family:var(--mono);font-size:10.5px;color:var(--ink70);padding:3px 2px;border-bottom:1px solid var(--line2)}
+.hvac-sys small{color:var(--ink50)}
+.hvac-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:6px 2px;border-bottom:1px solid var(--line2);font-size:12px}
+.hvac-vendor{font-weight:600;color:var(--ink)}
+.hvac-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink50)}
+.hvac-due{font-family:var(--mono);font-size:11px;color:var(--slate)}
+.hvac-due.soon{color:var(--brass)}
+.hvac-due.over{color:var(--brick)}
+.hvac-acts{display:flex;gap:4px;margin-left:auto}
+.hvac-acts .chip,.hvac-add .chip{cursor:pointer;padding:3px 9px}
+.hvac-add{display:flex;align-items:center;gap:8px;margin-top:6px}
+.hvac-form{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0;padding:8px;border:1px dashed var(--brass);border-radius:4px}
+.hvac-form input,.hvac-form select{font-family:var(--mono);font-size:11px;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);min-width:0}
+.hvac-form .wide,.hvac-form .acts{grid-column:1/-1}
+.hvac-form .acts{display:flex;gap:6px}
+.hvac-form .acts .chip{cursor:pointer}
+body.role-owner .hvac-acts,body.role-owner .hvac-add,body.role-tenant .hvac-acts,body.role-tenant .hvac-add{display:none}
 
 /* owner-view (Path B): operator picks owner-visible sheets + previews */
 .ownerview{padding:10px 14px;border-top:1px solid var(--line)}
@@ -518,6 +537,28 @@ body.role-owner .asset-add,body.role-owner .asset-x{display:none}
 .led-age.tot { border-bottom: 0; font-weight: 600; }
 body.role-owner .led-add, body.role-owner .led-void, body.role-owner .led-sugg { display: none; }
 body.role-owner .es-add, body.role-owner .es-cancel, body.role-owner .es-resend { display: none; }
+
+/* ---- invoices (F-1: drawer + tenant face) ---- */
+.inv-pick { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 2px 0 6px; }
+.inv-pick select { font-family: var(--mono); font-size: 11px; padding: 4px 6px; border: 1px solid var(--line);
+  border-radius: 4px; background: var(--card); color: var(--ink); min-width: 0; }
+.inv-ops { display: inline-flex; gap: 6px; margin-left: auto; }
+.inv-sum { font-family: var(--mono); font-size: 10.5px; color: var(--ink70); padding: 2px 0 6px; }
+.inv-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink50); padding: 8px 0 2px; }
+.inv-row { display: grid; grid-template-columns: auto 1fr auto auto auto; gap: 8px; align-items: center;
+  font-size: 12px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.inv-id { font-family: var(--mono); font-size: 11px; }
+.inv-m { color: var(--ink70); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.inv-amt { font-family: var(--mono); font-size: 11px; text-align: right; }
+.inv-chip { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line); color: var(--ink50); white-space: nowrap; }
+.inv-chip.sent, .inv-chip.partial { color: var(--brass); border-color: var(--brass); }
+.inv-chip.paid { color: var(--green); border-color: var(--green); }
+.inv-chip.void { text-decoration: line-through; }
+.inv-chip.overdue { color: var(--brick); border-color: var(--brick); }
+body.role-owner .inv-ops { display: none; }
+/* owner keeps the read-only doc export — the month picker must stay live */
+body.role-owner .inv-pick select { pointer-events: auto; opacity: 1; }
 
 /* ---- document attach (P1) ---- */
 .rec-attachrow { display: flex; align-items: center; gap: 8px; margin: 6px 0 2px; }
@@ -767,3 +808,24 @@ body.role-vendor .ownerview { display: none !important; }
 .pf-kpi .note{font-family:var(--mono);font-size:10.5px;color:var(--ink50);margin-top:5px}
 .prop-switch{padding:12px 20px;border-top:1px solid var(--line)}
 .prop-switch select{width:100%;font-family:var(--mono);font-size:11.5px;padding:6px 8px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:4px}
+
+/* P-1 CAM reconciliation card (F-2): year/gross-up controls, prior-year worksheet, per-tenant true-up rows */
+.cam-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-family:var(--mono);font-size:11px;color:var(--ink70);padding-bottom:8px}
+.cam-ctl select,.cam-ctl input{font-family:var(--mono);font-size:11px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.cam-ctl input{width:56px;text-align:right}
+.cam-ctl .cam-gu{color:var(--ink50);flex-basis:100%}
+.cam-prior{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 10px;margin:4px 0 10px}
+.cam-prior label{display:flex;flex-direction:column;gap:2px;font-family:var(--mono);font-size:9.5px;color:var(--ink50)}
+.cam-prior input{width:100%;box-sizing:border-box;font-family:var(--mono);font-size:11px;text-align:right;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.cam-prior input:focus{outline:none;border-color:var(--brass)}
+.cam-h,.cam-row{display:grid;grid-template-columns:40px minmax(0,1fr) 68px 68px 68px 76px 24px;gap:0 6px;align-items:baseline;font-family:var(--mono);font-size:10.5px}
+.cam-h{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink50);border-bottom:1px solid var(--line);padding-bottom:3px}
+.cam-row{padding:3px 0;border-bottom:1px solid var(--line2)}
+.cam-row .dba{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink70)}
+.cam-h .n,.cam-row .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cam-row .n.owe{color:var(--brick);font-weight:600}
+.cam-row .n.cr{color:var(--green);font-weight:600}
+.cam-row .cap{grid-column:2/-1;font-size:9px;color:var(--ink50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cam-stmt{font-family:var(--mono);font-size:11px;line-height:1;padding:2px 5px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink70);cursor:pointer;justify-self:end}
+.cam-stmt:hover{border-color:var(--brass);color:var(--brass)}
+@media (max-width:640px){.cam-h,.cam-row{grid-template-columns:40px minmax(0,1fr) 64px 76px 24px}.cam-h .n:nth-child(4),.cam-h .n:nth-child(5),.cam-row .n:nth-child(4),.cam-row .n:nth-child(5){display:none}}

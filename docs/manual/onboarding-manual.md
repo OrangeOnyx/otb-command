@@ -1,5 +1,5 @@
 # Cypress Command — Property Onboarding Manual
-**Version August 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run**
+**Version September 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run**
 Operator-driven by design — there is no self-serve signup. One intake file =
 one property.
 

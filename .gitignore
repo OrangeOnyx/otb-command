@@ -33,3 +33,6 @@ docs/graph/graphify-out/
 docs/graph/.graphify_*
 graphify-out/
 capture/
+
+# Claude agent worktrees (per-session, never committed)
+.claude/worktrees/

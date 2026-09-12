@@ -1,7 +1,7 @@
 -- Phase B merge-gate item (e): full RLS assert suite — 5 personas (operator ·
 -- owner · vendor · tenant · authenticated stranger) against the stamped
 -- tables under membership-only RLS (17 Phase-B + 5 SOP + 7 AC-harvest +
--- governance_items = 30). Self-contained: seeds synthetic
+-- governance_items + invoices + hvac_contracts = 32). Self-contained: seeds synthetic
 -- auth.users (the on_auth_user_created trigger builds profiles+org_members),
 -- asserts, then ABORTS via `SUITE_PASS_ROLLBACK` so nothing persists.
 -- Expected outcome: the statement FAILS with message SUITE_PASS_ROLLBACK.
@@ -116,6 +116,13 @@ begin
     values ('smoke-dl', 'Smoke Prospect', '131', 'inquiry');
   insert into governance_items (id, kind, title, entity, due_on)
     values ('smoke-gv', 'deadline', 'Smoke annual report', 'Belle Realty of Lafayette, LLC', current_date + 60);
+  -- F-1 invoices (2026-09-11): content tier + tenant own-unit read; NOT in
+  -- the realtime publication (not a layer-registry table — count stays 7).
+  insert into invoices (id, unit, ym, amount, entry_ids) values
+    ('INV-202608-131', '131', '2026-08', 100, '["smoke:131"]'::jsonb),
+    ('INV-202608-105', '105', '2026-08', 200, '["smoke:105"]'::jsonb);
+  insert into hvac_contracts (id, unit, vendor_name, frequency, last_service_on, ref)
+    values ('smoke-hc', '131', 'Smoke HVAC Co', 'monthly', current_date - 20, 'smoke');
 
   ------------------------------------------------------------------
   -- OPERATOR: sees everything; writes money + state
@@ -160,6 +167,8 @@ begin
   select count(*) into n from comm_log;              if n < 1 then raise exception 'FAIL op comm_log read'; end if;
   select count(*) into n from deals;                 if n < 1 then raise exception 'FAIL op deals read'; end if;
   select count(*) into n from governance_items;      if n < 1 then raise exception 'FAIL op governance read'; end if;
+  select count(*) into n from invoices;              if n < 2 then raise exception 'FAIL op invoices read %', n; end if;
+  select count(*) into n from hvac_contracts;        if n < 1 then raise exception 'FAIL op hvac_contracts read'; end if;
 
   insert into ledger_entries (id, unit, type, code, amount, date)
     values ('smoke:op', '131', 'payment', 'rent', 100, current_date);
@@ -206,6 +215,15 @@ begin
   update governance_items set status = 'satisfied' where id = 'smoke-gv';
   get diagnostics n = row_count;
   if n <> 1 then raise exception 'FAIL op governance update hit %', n; end if;
+  -- invoices: operator marks sent (update) and files a new month (insert)
+  update invoices set status = 'sent', sent_on = current_date, sent_via = 'manual' where id = 'INV-202608-131';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op invoices update hit %', n; end if;
+  insert into invoices (id, unit, ym, amount, entry_ids)
+    values ('INV-202609-131', '131', '2026-09', 100, '[]'::jsonb);
+  update hvac_contracts set last_service_on = current_date where id = 'smoke-hc';
+  get diagnostics n = row_count;
+  if n <> 1 then raise exception 'FAIL op hvac_contracts update hit %', n; end if;
   execute 'reset role';
 
   ------------------------------------------------------------------
@@ -255,6 +273,7 @@ begin
   select count(*) into n from comm_log;           if n < 1 then raise exception 'FAIL owner comm_log read'; end if;
   select count(*) into n from deals;              if n < 1 then raise exception 'FAIL owner deals read'; end if;
   select count(*) into n from governance_items;   if n < 1 then raise exception 'FAIL owner governance read'; end if;
+  select count(*) into n from hvac_contracts;     if n < 1 then raise exception 'FAIL owner hvac_contracts read'; end if;
   begin
     insert into comm_log (id, channel, summary) values ('smoke-cm-owner', 'note', 'owner write');
     raise exception 'FAIL owner comm_log insert was allowed';
@@ -268,6 +287,18 @@ begin
   update governance_items set status = 'waived' where id = 'smoke-gv';
   get diagnostics n = row_count;
   if n <> 0 then raise exception 'FAIL owner governance update was allowed'; end if;
+  -- invoices: owner reads every unit, never writes
+  select count(*) into n from invoices;           if n < 3 then raise exception 'FAIL owner invoices read %', n; end if;
+  update invoices set status = 'void' where id = 'INV-202608-131';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL owner invoices update was allowed'; end if;
+  begin
+    insert into invoices (id, unit, ym) values ('INV-202610-131', '131', '2026-10');
+    raise exception 'FAIL owner invoices insert was allowed';
+  exception when insufficient_privilege then null; end;
+  update hvac_contracts set status = 'ended' where id = 'smoke-hc';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL owner hvac_contracts update was allowed'; end if;
   insert into safe_log (action, path) values ('view', 'owner-smoke.pdf'); -- allowed
   select count(*) into n from safe_log;      if n <> 0 then raise exception 'FAIL owner safe read should be blind, got %', n; end if;
   select count(*) into n from vendor_log;    if n <> 0 then raise exception 'FAIL owner vlog read should be blind'; end if;
@@ -285,6 +316,18 @@ begin
   if n <> 0 then raise exception 'FAIL tenant sees unit 105 ledger'; end if;
   select count(*) into n from ledger_entries where unit = '131';
   if n < 1 then raise exception 'FAIL tenant blind to own ledger'; end if;
+  -- invoices: own unit only, read-only (update must hit 0, insert blocked)
+  select count(*) into n from invoices where unit = '105';
+  if n <> 0 then raise exception 'FAIL tenant sees unit 105 invoices'; end if;
+  select count(*) into n from invoices where unit = '131';
+  if n < 1 then raise exception 'FAIL tenant blind to own invoices'; end if;
+  update invoices set status = 'void' where id = 'INV-202608-131';
+  get diagnostics n = row_count;
+  if n <> 0 then raise exception 'FAIL tenant invoices update was allowed'; end if;
+  begin
+    insert into invoices (id, unit, ym) values ('INV-202610-131', '131', '2026-10');
+    raise exception 'FAIL tenant invoices insert was allowed';
+  exception when insufficient_privilege then null; end;
   select count(*) into n from maintenance_requests; if n < 1 then raise exception 'FAIL tenant mr read'; end if;
   select count(*) into n from tenant_contacts;      if n <> 1 then raise exception 'FAIL tenant tcontacts self-read %', n; end if;
   select (select count(*) from comp_state) + (select count(*) from unit_notes)
@@ -299,7 +342,8 @@ begin
   select (select count(*) from payment_history) + (select count(*) from lease_abstracts)
        + (select count(*) from rent_escalation_ref) + (select count(*) from hvac_units)
        + (select count(*) from matters) + (select count(*) from comm_log)
-       + (select count(*) from deals) + (select count(*) from governance_items) into n;
+       + (select count(*) from deals) + (select count(*) from governance_items)
+       + (select count(*) from hvac_contracts) into n;
   if n <> 0 then raise exception 'FAIL tenant sees harvest tables (%)', n; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL tenant sees vendors'; end if;
   select count(*) into n from esign_requests;       if n <> 0 then raise exception 'FAIL tenant sees esign'; end if;
@@ -325,6 +369,7 @@ begin
   if n <> 0 then raise exception 'FAIL vendor sees unassigned mr'; end if;
   select count(*) into n from vendors; if n <> 1 then raise exception 'FAIL vendor own-row read %', n; end if;
   select count(*) into n from ledger_entries;   if n <> 0 then raise exception 'FAIL vendor sees ledger'; end if;
+  select count(*) into n from invoices;         if n <> 0 then raise exception 'FAIL vendor sees invoices'; end if;
   select (select count(*) from comp_state) + (select count(*) from unit_notes)
        + (select count(*) from board_state) + (select count(*) from directory_state)
        + (select count(*) from site_features) + (select count(*) from camera_overrides)
@@ -337,7 +382,8 @@ begin
   select (select count(*) from payment_history) + (select count(*) from lease_abstracts)
        + (select count(*) from rent_escalation_ref) + (select count(*) from hvac_units)
        + (select count(*) from matters) + (select count(*) from comm_log)
-       + (select count(*) from deals) + (select count(*) from governance_items) into n;
+       + (select count(*) from deals) + (select count(*) from governance_items)
+       + (select count(*) from hvac_contracts) into n;
   if n <> 0 then raise exception 'FAIL vendor sees harvest tables (%)', n; end if;
   insert into maintenance_events (request_id, kind, status, actor)
     values ('mr-smoke', 'status', 'done', 'smoke-vendor@example.com'); -- allowed: assigned + done
@@ -356,6 +402,7 @@ begin
   execute 'set local role authenticated';
 
   select count(*) into n from ledger_entries;       if n <> 0 then raise exception 'FAIL stranger ledger'; end if;
+  select count(*) into n from invoices;             if n <> 0 then raise exception 'FAIL stranger invoices'; end if;
   select (select count(*) from comp_state) + (select count(*) from unit_notes)
        + (select count(*) from board_state) + (select count(*) from directory_state)
        + (select count(*) from site_features) + (select count(*) from camera_overrides)
@@ -368,7 +415,8 @@ begin
   select (select count(*) from payment_history) + (select count(*) from lease_abstracts)
        + (select count(*) from rent_escalation_ref) + (select count(*) from hvac_units)
        + (select count(*) from matters) + (select count(*) from comm_log)
-       + (select count(*) from deals) + (select count(*) from governance_items) into n;
+       + (select count(*) from deals) + (select count(*) from governance_items)
+       + (select count(*) from hvac_contracts) into n;
   if n <> 0 then raise exception 'FAIL stranger sees harvest tables (%)', n; end if;
   select count(*) into n from maintenance_requests; if n <> 0 then raise exception 'FAIL stranger mr'; end if;
   select count(*) into n from vendors;              if n <> 0 then raise exception 'FAIL stranger vendors'; end if;

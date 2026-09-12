@@ -2,7 +2,7 @@
    hand-synced store-keys/remote-LAYERS twin lists. */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { LAYER_DEFS, LAYER_KEYS, emptyLayers, snapshotOf, OPEX_LINES } from "../src/lib/layers.js";
+import { LAYER_DEFS, LAYER_KEYS, emptyLayers, snapshotOf, OPEX_LINES, cleanOpexYears } from "../src/lib/layers.js";
 
 const KNOWN = ["comp", "notes", "actions", "contacts", "documents",
   "financials", "ownerSheets", "features", "cameras"];
@@ -49,4 +49,49 @@ test("every registered layer except comp carries its own empty factory", () => {
     if (key === "comp") assert.equal(empty, null);
     else assert.equal(typeof empty, "function", key);
   }
+});
+
+/* ── financials.opexYears (F-2): prior-year actuals keyed by calendar year ── */
+test("financials empty shape carries an empty opexYears map", () => {
+  const { financials } = emptyLayers({ comp: () => ({}) });
+  assert.deepEqual(financials.opexYears, {});
+});
+
+test("cleanOpexYears keeps YYYY keys with the six OPEX lines, coerces numbers, floors negatives at 0", () => {
+  const out = cleanOpexYears({ "2025": { taxes: "1200", insurance: 300.5, cam: -5, mgmt: 0, utilities: 10, reserves: 0 } });
+  assert.deepEqual(Object.keys(out), ["2025"]);
+  assert.deepEqual(Object.keys(out["2025"]).sort(), OPEX_LINES.map(([k]) => k).sort());
+  assert.equal(out["2025"].taxes, 1200);
+  assert.equal(out["2025"].insurance, 300.5);
+  assert.equal(out["2025"].cam, 0);
+});
+
+test("cleanOpexYears rejects non-year keys, non-object years, unknown lines and non-numeric values", () => {
+  const out = cleanOpexYears({
+    "2024": { taxes: 100, bogus: 7, cam: "abc", mgmt: null },
+    "24": { taxes: 1 }, "2024-01": { taxes: 1 }, "abcd": { taxes: 1 },
+    "2023": 42, "2022": null, "2021": [1, 2],
+  });
+  assert.deepEqual(Object.keys(out), ["2024"]);
+  assert.equal(out["2024"].taxes, 100);
+  assert.equal(out["2024"].cam, 0, "non-numeric string → 0, line kept");
+  assert.equal(out["2024"].mgmt, 0);
+  assert.ok(!("bogus" in out["2024"]));
+});
+
+test("cleanOpexYears tolerates missing/invalid input and returns fresh objects", () => {
+  assert.deepEqual(cleanOpexYears(undefined), {});
+  assert.deepEqual(cleanOpexYears(null), {});
+  assert.deepEqual(cleanOpexYears([]), {});
+  assert.deepEqual(cleanOpexYears("2025"), {});
+  const src = { "2025": { taxes: 1 } };
+  const out = cleanOpexYears(src);
+  assert.notEqual(out["2025"], src["2025"]);
+});
+
+test("financials layer round-trips opexYears through toRows/fromRows", () => {
+  const d = LAYER_DEFS.find(l => l.key === "financials");
+  const s = { opex: { taxes: 1, insurance: 0, cam: 0, mgmt: 0, utilities: 0, reserves: 0 }, capRatePct: null,
+    opexYears: { "2025": { taxes: 9, insurance: 8, cam: 7, mgmt: 6, utilities: 5, reserves: 4 } } };
+  assert.deepEqual(d.fromRows(d.toRows(s)), s);
 });

@@ -1,5 +1,5 @@
 # Cypress Command — Operating Manual (On The Boulevard deployment)
-**Version August 2026 · covers the 14-sheet production build (340 tests)**
+**Version September 2026 · covers the 17-sheet production build (624 tests)**
 Live app: https://orangeoceanatlas.com (also otb-command.vercel.app) · Operator: adam@adamabdalla.com
 
 This supersedes the July 2026 text-only edition (`docs/pitch/operator-manual.md`).

@@ -4,9 +4,10 @@
    safe_log). Owners get read/open only — operator controls are hidden by the
    existing body.role-owner CSS AND enforced server-side by RLS. */
 import { SAFE_CATEGORIES, addSafeDoc, listSafe, safeURL, removeSafeDoc, listLog } from "../lib/safe.js";
-import { openBoardReport } from "../lib/boardreport.js";
+import { openBoardReport, AUDIENCES, AUDIENCE_LABELS } from "../lib/boardreport.js";
 import { esc } from "../lib/format.js";
 import { REMOTE, getSession } from "../lib/remote.js";
+import { APPRAISAL_2019, factLines } from "../lib/facts.js";
 import {
   GOV_KINDS, sortGov, nextAnnual,
   getGovernance, onGovernanceChange, refreshGovernance,
@@ -30,6 +31,14 @@ async function render() {
       '<span class="safe-cat-n mono">' + rows.length + '</span>' +
       '<button class="chip safe-add" data-cat="' + cat + '">+ Upload</button>' +
       '<input type="file" class="safe-file" data-cat="' + cat + '" hidden></div>' +
+      /* Register row #19 (F-5): the 2019 appraisal is a repo-locked fact
+         (facts.js), not a filed document — the PDF binary is still in AC
+         storage pending F-9, so this line has no Open link. */
+      (cat === "proforma"
+        ? '<div class="safe-row safe-fact" title="' + esc(APPRAISAL_2019.fileLocation) + '">' +
+          '<span class="safe-name">' + esc(factLines.appraisal2019()) + '</span>' +
+          '<span class="safe-meta mono">' + esc(APPRAISAL_2019.source) + '</span></div>'
+        : '') +
       (rows.length
         ? rows.map(f =>
           '<div class="safe-row" data-path="' + esc(f.path) + '">' +
@@ -40,28 +49,30 @@ async function render() {
         : '<div class="safe-empty mute">nothing filed</div>') +
       '</div>';
   }).join("") +
-    /* Quarterly board report (register row #12): composes the stored monthly
-       owner-brief models. Operator AND owner — RLS scopes the reads. */
+    /* Quarterly reports (register row #12 + F-3 variants): compose the stored
+       monthly owner-brief models for the last complete quarter — Board ·
+       Lender · Stakeholder. Operator AND owner — RLS scopes the reads. */
     '<div class="safe-cat">' +
-    '<div class="safe-cat-head"><span class="safe-cat-name">Board report</span>' +
-    '<button class="chip" id="safeBoardRpt">⤓ Last quarter</button>' +
+    '<div class="safe-cat-head"><span class="safe-cat-name">Quarterly reports</span>' +
+    AUDIENCES.map(a => '<button class="chip safe-rpt" data-aud="' + a + '">⤓ ' + esc(AUDIENCE_LABELS[a].replace(" Report", "")) + '</button>').join("") +
     '<span class="led-note mute" id="safeBoardNote"></span></div></div>' +
     /* Governance (register row #8): operator-entered entity/covenant records
        over governance_items — its content is painted by renderGov (cache-fed,
        repainted alone via onGovernanceChange, never a full safe render). */
     '<div class="safe-cat" id="safeGov"></div>';
 
-  const rptBtn = host.querySelector("#safeBoardRpt");
-  if (rptBtn) rptBtn.onclick = async () => {
+  const rptBtns = host.querySelectorAll(".safe-rpt");
+  rptBtns.forEach(btn => btn.onclick = async () => {
     const note = host.querySelector("#safeBoardNote");
-    rptBtn.disabled = true;
+    const aud = btn.dataset.aud;
+    rptBtns.forEach(b => { b.disabled = true; });
     try {
-      const q = await openBoardReport(new Date().toISOString().slice(0, 7));
-      if (note) note.textContent = "Opened " + q + ".";
+      const q = await openBoardReport(new Date().toISOString().slice(0, 7), aud);
+      if (note) note.textContent = "Opened " + AUDIENCE_LABELS[aud] + " — " + q + ".";
     } catch (err) {
       if (note) note.textContent = err.message; // incl. "hosted backend required" in local mode
-    } finally { rptBtn.disabled = false; }
-  };
+    } finally { rptBtns.forEach(b => { b.disabled = false; }); }
+  });
 
   host.querySelectorAll(".safe-add").forEach(btn => {
     btn.onclick = () => host.querySelector('.safe-file[data-cat="' + btn.dataset.cat + '"]').click();

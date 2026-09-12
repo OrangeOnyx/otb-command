@@ -3,9 +3,9 @@
 
 Re-run after editing either manual:  python tools/build-manuals.py
 Outputs (next to the sources, image refs stay relative to img/):
-    docs/manual/operator-manual.html   + OO-Atlas-Operator-Manual.pdf
-    docs/manual/onboarding-manual.html + OO-Atlas-Onboarding-Manual.pdf
-    docs/manual/complete-documentation.html + OO-Atlas-Complete-Documentation.pdf
+    docs/manual/operator-manual.html   + Cypress-Command-Operator-Manual.pdf
+    docs/manual/onboarding-manual.html + Cypress-Command-Onboarding-Manual.pdf
+    docs/manual/complete-documentation.html + Cypress-Command-Complete-Documentation.pdf
       (Book I operating manual + Book II onboarding, one file)
 PDFs render via headless Chrome (write to temp, copy in — Chrome can't write
 into the repo tree). Plan-room palette from otb_brand; screenshots are REAL
@@ -22,13 +22,13 @@ SRC = os.path.join(ROOT, "docs", "manual")
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 MANUALS = [
-    ("operator-manual.md", "operator-manual.html", "OO-Atlas-Operator-Manual.pdf",
+    ("operator-manual.md", "operator-manual.html", "Cypress-Command-Operator-Manual.pdf",
      "OPERATING MANUAL", "M-1"),
-    ("onboarding-manual.md", "onboarding-manual.html", "OO-Atlas-Onboarding-Manual.pdf",
+    ("onboarding-manual.md", "onboarding-manual.html", "Cypress-Command-Onboarding-Manual.pdf",
      "ONBOARDING MANUAL", "M-2"),
     ([("BOOK I — OPERATING MANUAL", "operator-manual.md"),
       ("BOOK II — PROPERTY ONBOARDING", "onboarding-manual.md")],
-     "complete-documentation.html", "OO-Atlas-Complete-Documentation.pdf",
+     "complete-documentation.html", "Cypress-Command-Complete-Documentation.pdf",
      "COMPLETE PROGRAM DOCUMENTATION", "M-0"),
 ]
 
@@ -116,7 +116,7 @@ def build(md_name, html_name, pdf_name, doc_title, sheet_code):
 <style>{CSS}</style></head><body><div class="wrap">
 <div class="titleblock">
   <div><div class="name">CYPRESS COMMAND · OTB</div>
-  <div style="font:600 13px 'IBM Plex Mono',monospace">{esc(doc_title)} · AUGUST 2026{' · <span class=confid>CONFIDENTIAL</span>' if confid else ''}</div></div>
+  <div style="font:600 13px 'IBM Plex Mono',monospace">{esc(doc_title)} · SEPTEMBER 2026{' · <span class=confid>CONFIDENTIAL</span>' if confid else ''}</div></div>
   <div class="sheet">SHEET {esc(sheet_code)} · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
 </div>
 {body}
@@ -149,13 +149,13 @@ def publish():
     os.makedirs(pub, exist_ok=True)
     html_doc = open(os.path.join(SRC, "complete-documentation.html"), encoding="utf-8").read()
     banner = ('<p style="font:12px \'IBM Plex Mono\',monospace;margin:0 0 14px">'
-              '<a href="OO-Atlas-Complete-Documentation.pdf">⤓ Download as PDF</a>'
+              '<a href="Cypress-Command-Complete-Documentation.pdf">⤓ Download as PDF</a>'
               ' · <a href="intake-form.html">property intake form</a>'
               ' · <a href="/">back to the app</a></p>')
     html_doc = html_doc.replace('<div class="wrap">', '<div class="wrap">' + banner, 1)
     open(os.path.join(pub, "index.html"), "w", encoding="utf-8").write(html_doc)
-    shutil.copyfile(os.path.join(SRC, "OO-Atlas-Complete-Documentation.pdf"),
-                    os.path.join(pub, "OO-Atlas-Complete-Documentation.pdf"))
+    shutil.copyfile(os.path.join(SRC, "Cypress-Command-Complete-Documentation.pdf"),
+                    os.path.join(pub, "Cypress-Command-Complete-Documentation.pdf"))
     shutil.copyfile(os.path.join(ROOT, "docs", "phase-c", "intake-form.html"),
                     os.path.join(pub, "intake-form.html"))
     img_dst = os.path.join(pub, "img")

@@ -12,8 +12,13 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { CONTEXT } from "./_context.mjs";
 import { requireOwnerOrOperator, supaJson, underDailyCap, capReply } from "./_auth.mjs";
-import { buildMessages, digestState } from "../src/lib/concierge.js";
+import { buildMessages, digestState, digestTyped } from "../src/lib/concierge.js";
 import { LAYER_DEFS } from "../src/lib/layers.js";
+import { aging, round2 } from "../src/lib/ledger.js";
+import { deriveRequest } from "../src/lib/maintenance-model.js";
+import { matterDeadlines } from "../src/lib/matters.js";
+import { govDeadlines } from "../src/lib/governance.js";
+import { foldCompletions, deriveOccurrence } from "../src/lib/sop.js";
 import { LEASE_TOOL, buildProposalHTML, buildOwnerSummaryHTML, packageFileName } from "../src/lib/lease.js";
 import { CALC_TOOL, runCalc, calcFallback } from "../src/lib/calc/index.js";
 import { collectKnownNumbers, validateNumbers } from "../src/lib/calc/guardrail.js";
@@ -225,15 +230,83 @@ export default async function handler(req, res) {
   }
 }
 
-/* Best-effort live-state digest; never blocks an answer. */
+/* Typed-record summary (F-5, register row #15): read-only counts + top rows
+   from the typed organs the LAYER_DEFS digest never saw. Each organ is its
+   own try/catch — a failed or empty read simply omits that key, and
+   digestTyped lists it as "not loaded". Reads run as the caller (RLS), so an
+   owner sees exactly what the sheets would show them. Folds reuse the sheet
+   seams (aging / deriveRequest / matterDeadlines / govDeadlines /
+   deriveOccurrence) so the digest can never disagree with P-1/M-1/N-1/S-1/O-1. */
+async function typedSummary(t, token) {
+  const today = new Date().toISOString().slice(0, 10);
+  const scope = "property_id=eq." + t.property_id;
+  const read = (tb, select, extra = "") =>
+    supaJson("/rest/v1/" + tb + "?" + scope + "&select=" + select + extra, token)
+      .then(r => (Array.isArray(r) ? r : []));
+  const summary = {};
+  const organ = async (key, fn) => { try { const v = await fn(); if (v) summary[key] = v; } catch { /* omitted → "not loaded" */ } };
+  await Promise.all([
+    organ("ledger", async () => {
+      const rows = await read("ledger_entries", "id,unit,type,code,amount,date,due,void_of", "&limit=5000");
+      const ag = aging(rows.map(r => ({ ...r, voidOf: r.void_of })), today);
+      const owing = Object.entries(ag).filter(([, b]) => b.total > 0).sort((a, b) => b[1].total - a[1].total);
+      const sum = k => round2(owing.reduce((s, [, b]) => s + (+b[k] || 0), 0));
+      return {
+        openBalance: sum("total"), unitsOwing: owing.length,
+        aging: { current: sum("current"), d31_60: sum("d31_60"), d61_90: sum("d61_90"), d90: sum("d90") },
+        top: owing.slice(0, 5).map(([unit, b]) => ({ unit, balance: b.total })),
+      };
+    }),
+    organ("maintenance", async () => {
+      const [reqs, events] = await Promise.all([
+        read("maintenance_requests", "id,unit,title,urgency,created_at", "&order=created_at.desc&limit=500"),
+        read("maintenance_events", "request_id,kind,status,vendor_id,created_at", "&order=created_at.asc,id.asc&limit=5000"),
+      ]);
+      const open = reqs.map(r => deriveRequest(r, events)).filter(r => r.status === "open" || r.status === "in_progress");
+      return {
+        open: open.length, urgent: open.filter(r => r.urgency === "urgent" || r.urgency === "emergency").length,
+        top: open.slice(0, 5).map(r => ({ unit: r.unit, title: r.title, urgency: r.urgency, status: r.displayStatus })),
+      };
+    }),
+    organ("matters", async () => {
+      const rows = matterDeadlines(await read("matters", "id,title,kind,status,next_deadline,next_deadline_note"), today);
+      return { count: rows.length, openDeadlines: rows.slice(0, 5).map(r => ({ title: r.title, date: r.date, overdue: r.overdue })) };
+    }),
+    organ("governance", async () => {
+      const rows = govDeadlines(await read("governance_items", "id,title,entity,ref,kind,status,due_on"), today);
+      return { count: rows.length, due: rows.slice(0, 5).map(r => ({ title: r.title, date: r.date, overdue: r.overdue })) };
+    }),
+    organ("deals", async () => {
+      const rows = await read("deals", "id,stage");
+      const stages = {};
+      for (const r of rows) stages[r.stage || "inquiry"] = (stages[r.stage || "inquiry"] || 0) + 1;
+      return { count: rows.length, stages };
+    }),
+    organ("sop", async () => {
+      const [occ, comp] = await Promise.all([
+        read("sop_assignments", "id,procedure_id,due_on", "&limit=5000"),
+        read("sop_completions", "assignment_id", "&limit=5000"),
+      ]);
+      const overdue = foldCompletions(occ, comp).filter(o => deriveOccurrence(o, today) === "overdue").length;
+      return { overdue };
+    }),
+  ]);
+  return summary;
+}
+
+/* Best-effort live-state digest; never blocks an answer. Two blocks: the
+   LAYER_DEFS override digest (operator edits) + the typed-record digest. */
 async function liveDigest(token) {
   try {
     const t = await tenancyContext(token);
     if (!t) return "";
     const tables = [...new Set(LAYER_DEFS.map(d => d.table))];
-    const results = await Promise.all(tables.map(tb =>
-      supaJson("/rest/v1/" + tb + "?property_id=eq." + t.property_id + "&select=*", token)
-        .catch(() => [])));
+    const [results, typed] = await Promise.all([
+      Promise.all(tables.map(tb =>
+        supaJson("/rest/v1/" + tb + "?property_id=eq." + t.property_id + "&select=*", token)
+          .catch(() => []))),
+      typedSummary(t, token).catch(() => ({})),
+    ]);
     const byTable = Object.fromEntries(tables.map((tb, i) => [tb, Array.isArray(results[i]) ? results[i] : []]));
     const layers = {};
     for (const d of LAYER_DEFS) {
@@ -242,6 +315,6 @@ async function liveDigest(token) {
       const v = d.fromRows(rows);
       if (v !== undefined) layers[d.key] = v;
     }
-    return digestState(layers);
+    return [digestState(layers), digestTyped(typed)].filter(Boolean).join("\n\n");
   } catch { return ""; }
 }

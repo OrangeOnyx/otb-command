@@ -50,10 +50,10 @@ hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
   .wrap { max-width:none; padding:0; }
   img { border-color:#ccc; }
 }
-</style></head><body><div class="wrap"><p style="font:12px 'IBM Plex Mono',monospace;margin:0 0 14px"><a href="OO-Atlas-Complete-Documentation.pdf">⤓ Download as PDF</a> · <a href="intake-form.html">property intake form</a> · <a href="/">back to the app</a></p>
+</style></head><body><div class="wrap"><p style="font:12px 'IBM Plex Mono',monospace;margin:0 0 14px"><a href="Cypress-Command-Complete-Documentation.pdf">⤓ Download as PDF</a> · <a href="intake-form.html">property intake form</a> · <a href="/">back to the app</a></p>
 <div class="titleblock">
   <div><div class="name">CYPRESS COMMAND · OTB</div>
-  <div style="font:600 13px 'IBM Plex Mono',monospace">COMPLETE PROGRAM DOCUMENTATION · AUGUST 2026</div></div>
+  <div style="font:600 13px 'IBM Plex Mono',monospace">COMPLETE PROGRAM DOCUMENTATION · SEPTEMBER 2026</div></div>
   <div class="sheet">SHEET M-0 · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
 </div>
 <p style="font-size:14px;color:#5F6E64">One document, every part of the program:</p><ul><li>BOOK I — OPERATING MANUAL</li><li>BOOK II — PROPERTY ONBOARDING</li></ul>
@@ -61,7 +61,7 @@ hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
   padding:18px 22px; margin:52px 0 30px; 
   font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
   BOOK I — OPERATING MANUAL</div><h1>Cypress Command — Operating Manual (On The Boulevard deployment)</h1>
-<p><strong>Version August 2026 · covers the 14-sheet production build (340 tests)</strong>
+<p><strong>Version September 2026 · covers the 17-sheet production build (624 tests)</strong>
 Live app: https://orangeoceanatlas.com (also otb-command.vercel.app) · Operator: adam@adamabdalla.com</p>
 <p>This supersedes the July 2026 text-only edition (<code>docs/pitch/operator-manual.md</code>).
 Every screenshot is a real capture of the running system. <strong>Tenant names and
@@ -202,14 +202,24 @@ something needs attention.</p>
 <p><img alt="A-1 Site Plan" src="img/plan.png" /></p>
 <p>The recorded plat, interactive. <strong>Chips</strong> toggle overlay layers:
 - <strong>Lenses:</strong> Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.
-- <strong>🅿 Parking</strong> — the 314 drawn stalls by zone.
+- <strong>🅿 Parking</strong> — the 314 plat-labeled stalls by zone, plus the 10-stall Johnston
+  row the CAD stripes but the plat never labels (marked as such).
+- <strong>⇆ Access</strong> — ingress/egress as built: every curb cut drawn as an apron with its
+  throat width, two-way arrow pairs at the cuts and along the aisles, the Arnould
+  raised median and its one 55' opening (Driveway A is the only full-movement cut),
+  edge-of-pavement lines, Lot 7's open Patricia frontage. Source: the architect CAD,
+  satellite-confirmed (<code>docs/site-access-inventory-2026-09.md</code>).
+- <strong>§ Easements</strong> — the §3a liquor line and its notes, the church easement note,
+  10' utility easements, electric easement 577566, the 5×5' guy easement. Switch off
+  for a clean leasing exhibit.
 - <strong>🎥 Cameras</strong> — 17 mounts with view cones; click one → its live view.
   <strong>✎ Adjust cams</strong> (operator-only): drag pin to move, drag the brass dot to
   re-aim, double-click to reset; corrections persist.
 - <strong>🚗 Occupancy</strong> — latest measured stall states painted green/outline over
   the storefront row, Lot 8 pocket, and the 149 corner.
-- <strong>📍 Pins / ＋ Pin</strong> — drop a pin per water shutoff, meter, bench, column.
-  Pins also appear on the satellite lens.
+- <strong>📍 Pins / ＋ Pin</strong> — drop a pin per water shutoff, meter, bench, column — and
+  for lease/ops designations: reserved parking, monument-sign site, common area,
+  loading zone, dumpster pad. Pins also appear on the satellite lens.
 - <strong>Overlay → Floor plan</strong> — whole-center floor-plan raster under the unit
   boxes, with an opacity slider.
 Click any unit → drawer.</p>
@@ -503,7 +513,7 @@ the same governed data this manual describes.</em></p>
   padding:18px 22px; margin:52px 0 30px; break-before:page;
   font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
   BOOK II — PROPERTY ONBOARDING</div><h1>Cypress Command — Property Onboarding Manual</h1>
-<p><strong>Version August 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run</strong>
+<p><strong>Version September 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run</strong>
 Operator-driven by design — there is no self-serve signup. One intake file =
 one property.</p>
 <p>This is the complete procedure for bringing a new property onto the platform:
@@ -731,6 +741,6 @@ prod and funnel-proven live by the C-2 run (property created via the rail,
 verified, then torn down).</em></p>
 <div class="foot">
   <span>CYPRESS COMMAND — instrumented asset management</span>
-  <span>Managed by Orange Ocean, LLC · generated 2026-08-10</span>
+  <span>Managed by Orange Ocean, LLC · generated 2026-09-11</span>
 </div>
 </div></body></html>
