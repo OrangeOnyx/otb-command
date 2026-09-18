@@ -1,5 +1,70 @@
 ﻿# Cypress Command · OTB — Session Handoff
 
+## September 18, 2026 (early) — VOICE CALL RECORDS + OWNER-DOCUMENT CARDS BUILT + LIVE · punch list Rev 13 · register 17/25
+
+Operator (chat + Sep 18 memo, punch-list state **r36** read first): "review Asset Command again … owners
+will want to listen to any message or transcript … auto work order / leasing package … build everything";
+memo: AC's owner documents had more detail and clearer sections, the unit drawer's blocks run together;
+demo tomorrow. New marks since r30: **D-4a = option 1** (Sep 17), SMK-18/19/20 PASS, H-3 note (owners =
+Adam, Catherine, Alicia + one brother Abdalla; everyone else viewer; vendor Brian Zorn; no tenants) — pick still undecided.
+
+**Premise correction (recorded in the punch list F-26 + memory):** Asset Command never recorded or
+transcribed a call. Its ElevenLabs agents posted structured `voice_intake` rows + a Manus push
+notification; "Package Sent" was a UI label — `/otb/leasing-package` wrote a row and sent nothing.
+The Cypress bridge already logged every turn; listen/read/e-mail/auto-package is net-new here.
+
+**Built (PR #10 merged `1c86720`; function-cap fix merged `fd0bb84`; deploy run 35312121252 succeeded;
+prod serves `index-C6p3EoyK.js` on orangeoceanatlas.com + otb-command.vercel.app = local build byte-for-byte;
+733 tests green (was 718); migration `20260918120000_voice_call_records.sql` APPLIED on prod via apply_migration
+— 9 `voice_*` RPCs verified present):**
+
+- **F-26 Voice call records.** `bridge/server.mjs` posts `setup` / `end` events to the brain (fire-and-forget,
+  never touches the live call). `api/_voicecall.mjs`: `summarizeCall` (Haiku, forced `record_call_summary` tool
+  from `src/lib/voicecall.js` — intent maintenance/leasing/billing/general · urgency · unit · caller · callback ·
+  follow-up; invents nothing; hang-ups still record), `finalizeCall` → `voice_call_finalize` (voice_calls columns +
+  `comm_log` mirror `vc:<CallSid>`, source `voice`, body = Caller/Agent transcript) → owner e-mail via `api/_email.mjs`
+  (Resend or SendGrid key + `NOTIFY_FROM`; no-op until set) → `open_trigger_thread` on emergencies. Tool successes
+  merge into `voice_calls.outcome` (`voice_call_outcome`: work_order · tour · lead · package). Recording: Twilio
+  per-call recording started at `setup` when `TWILIO_ACCOUNT_SID`/`TWILIO_AUTH_TOKEN` exist; `api/voice-call.js`
+  = POST RecordingStatusCallback (X-Twilio-Signature HMAC over `VOICE_PUBLIC_ORIGIN + /api/voice-call`) + GET mp3
+  proxy (owner/operator JWT + `voice_recording_for` security-invoker lookup) — recordings stay at Twilio, no
+  service-role key, no bucket. New leasing tool `send_leasing_package` (`PACKAGE_TOOL`, persona paragraph):
+  `voice_leasing_lead` → `deals` (stage inquiry, source `voice:<sid>`) + `leasingPackageEmail` when the caller gave
+  an address AND mail is configured; the tool result tells the agent exactly what it may claim. Daily cron
+  (`auto-trigger.mjs`) sweeps `voice_calls_pending` (≥20 min, unfinalized) so calls record even before the Fly
+  redeploy. UI: L-1 voice rows (intent/urgency chips, 🔊, needs-attention dot), expanded call card (summary ·
+  outcome links · ▶ Play recording via blob · Caller/Agent turns · ✓ Mark handled = `comm_log.status`), "Calls ·
+  7 days" strip + attention filter; D-1 `callKpi`; M-1 "📞 from call — open" (`findCommByWorkOrder` → `openComm`).
+  Runbook: `docs/voice-call-records-runbook-2026-09-18.md`.
+- **F-27 Owner-document cards (the memo).** Document records gain `counterparty · amount + amountKind · effective ·
+  matures · status · risk · riskNote` (`expires` keeps its meaning; edit/custom jsonb → no migration).
+  `src/lib/docregister.js` (docDetail / riskRegister / renewalRadar / daysChip, tested) + `recordsUI.js` sectioned
+  card (status pill · counterparty · `<dl>` rows · risk callout · note · file link) + 2-col form with selects.
+  Seeds: the six AC Property Vault records as `pd:ac:*` in `directory.json` (Hartford liability $13,647 premium ·
+  Lloyd's property $7,988,449 coverage medium-risk · WC · Investar loan matures 2030-04-30 · Fidelity 2007 lender
+  title policy HIGH risk · HUD-1) + `unitContacts` (HotWorx 129 Lockton Affinity, Upstream 145 Lockton Companies).
+  S-1 opens with **Property records**: Risk register (worst-first) + Renewal & maturity radar (soonest-first),
+  repainted on document edits. Drawer `.dw-sec` now a ruled section header. Concierge dossier regenerated
+  (`api/_context.mjs`, freshness test).
+- **Deploy stumble, fixed:** the first deploy of PR #10 failed on Vercel's Hobby cap (12 serverless functions;
+  two new voice endpoints = 13) and `| tee` swallowed the exit code — the run showed green while prod still served
+  `index-B3veBnIq.js`. Endpoints folded into `api/voice-call.js` (repo = exactly 12), `deploy.yml` now `set -o pipefail`.
+  **Rule: the next API endpoint must fold into an existing function or the plan moves to Pro.**
+- **Punch list Rev 13** published (artifact v53) from the live body, STATE r36 carried verbatim: SMK-21 (tenant-line
+  call record) + SMK-22 (leasing package by phone), F-26/F-27 in Tier 1, register #4 → DONE (17/25), Sep 18 note.
+  Repo copy `docs/status/atlas-punch-list.html` (CRLF). `docs/parity-reconciliation-2026-09-11.md` §Rulings 2026-09-18.
+
+**Operator-only, in order (runbook):** (1) `cd bridge && flyctl deploy` — until then the 6 AM sweeper writes each
+call record the next morning; (2) `TWILIO_ACCOUNT_SID` + `TWILIO_AUTH_TOKEN` in Vercel Production for recordings
+(+ optional "calls may be recorded" in the two greetings); (3) `RESEND_API_KEY` or `SENDGRID_API_KEY` + `NOTIFY_FROM`
+(verified domain) for the owner / package e-mails; (4) SMK-21 / SMK-22; (5) H-3 mark + the brother's name/e-mail
+for invitations. Unchanged: H0-3, F-23 domain move, SMK-5.
+
+**Not done / caveats:** live smoke of an actual call was not possible from this session (needs the bridge
+redeploy + a phone); the pipeline was exercised by unit tests + the local review preview (S-1/K-1/drawer verified
+in-browser; L-1 is hosted-only). `docs/graph/labels.json` was already modified before this session and was left
+out of every commit. No SMS anywhere (A2P parked).
+
 ## September 17, 2026 (evening) — F-5 RULINGS BUILT + LIVE · three migrations landed · punch list Rev 12
 
 Operator: "review handoff, artifact, saved decisions, merge what needs to be and continue building." Punch list state **r30** (saved 2026-09-18T02:34Z) read first: SMK-11 and SMK-13…17 PASSED Sep 17; **eight of nine F-5 decisions picked, all option 1** (D-4b, D-15, D-19a, D-19b, D-23a, D-23b, D-24a, D-24b); D-4a and H-3 still undecided; SMK-5 note "we are sticking with ach at moment"; the SMK-6 note is the Sep 1 one (answered Sep 4). Nothing was unmerged in git (every branch ahead 0). Built the rulings the same day on `claude/f5-rulings-2026-09-17` → **PR #9 merged (`eeb654b`, verify + CodeRabbit green) → deploy run 35300984422 succeeded → production serves `index-B3veBnIq.js` on orangeoceanatlas.com AND otb-command.vercel.app, sha1 `f843153c…` = local build byte-for-byte.** 718 tests green (was 706).
