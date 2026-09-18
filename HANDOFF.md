@@ -94,6 +94,19 @@ out of every commit. No SMS anywhere (A2P parked).
 - **Operator next:** shoot 131 / 133 with the Insta360 (2–4 positions, equirectangular 2:1 export) →
   B-1 upload → Publish manifest → SMK-24. Plus the earlier three (flyctl deploy · TWILIO vars · Resend).
 
+### Sep 18 (evening) — numbers re-published on prod · Vercel Pro · public tour form
+
+- Operator: "re-paste the numbers on prod for me and I upgraded to Pro in Vercel." Done by SQL on
+  `voice_settings` (the RPC is JWT-gated): **tenant +1 337-273-0384 · leasing +1 337-270-7044**
+  (assignment per HANDOFF Sep 11 line: 270-7044 = LEASING · 273-0384 = TENANT). K-1 "Property lines"
+  and the M-1 tenant strip render again on next load.
+- **Vercel Pro** → the 12-function cap is gone. Built the public *Request a tour* form on /tour:
+  `api/tour-lead.js` (13th function; honeypot `company`, same-origin, length caps, phone-or-email)
+  → `web_tour_lead` RPC (`20260918170000_web_tour_lead.sql`, APPLIED on prod: deals row
+  `lead_source='web'`, `source='web:<id>'` + comm_log note `wl:<id>` source `web`; 40/day cap) →
+  AI-1 manager thread `web-lead:<id>` → owner e-mail when mail is configured. Commit `a4b699c`.
+  `api/voice-call.js` stays merged (harmless). Runbooks updated.
+
 ## September 17, 2026 (evening) — F-5 RULINGS BUILT + LIVE · three migrations landed · punch list Rev 12
 
 Operator: "review handoff, artifact, saved decisions, merge what needs to be and continue building." Punch list state **r30** (saved 2026-09-18T02:34Z) read first: SMK-11 and SMK-13…17 PASSED Sep 17; **eight of nine F-5 decisions picked, all option 1** (D-4b, D-15, D-19a, D-19b, D-23a, D-23b, D-24a, D-24b); D-4a and H-3 still undecided; SMK-5 note "we are sticking with ach at moment"; the SMK-6 note is the Sep 1 one (answered Sep 4). Nothing was unmerged in git (every branch ahead 0). Built the rulings the same day on `claude/f5-rulings-2026-09-17` → **PR #9 merged (`eeb654b`, verify + CodeRabbit green) → deploy run 35300984422 succeeded → production serves `index-B3veBnIq.js` on orangeoceanatlas.com AND otb-command.vercel.app, sha1 `f843153c…` = local build byte-for-byte.** 718 tests green (was 706).
