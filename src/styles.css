@@ -297,6 +297,16 @@ td.unitcell{font-family:var(--mono);font-weight:600}
 /* ===== K-1 DIRECTORY + shared records UI (contacts / documents) ===== */
 .dir-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 @media (max-width:1100px){.dir-grid{grid-template-columns:1fr}}
+.reg-row{display:grid;grid-template-columns:auto 1fr auto;gap:2px 12px;align-items:baseline;padding:6px 2px;border-bottom:1px solid var(--line2);font-size:12px}
+.reg-row:last-child{border-bottom:0}
+.reg-row .reg-k{font-family:var(--mono);font-size:10.5px;color:var(--ink70);white-space:nowrap}
+.reg-row .reg-v{color:var(--ink)}
+.reg-row .reg-v.missing{color:var(--ink50);font-style:italic}
+.reg-row .reg-s{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink50);white-space:nowrap}
+.reg-row .reg-s.hot{color:var(--brick)}
+.reg-row .reg-s.ok{color:var(--green)}
+.reg-row .reg-n{grid-column:2/4;font-size:11px;color:var(--ink50)}
+.reg-group{margin:12px 0 4px}
 .dir-imagery{grid-column:1/-1}
 .dir-imagery .assets{padding:8px 14px 14px}
 #overlayOpacity{width:84px;vertical-align:middle;accent-color:var(--brass);margin-left:4px}

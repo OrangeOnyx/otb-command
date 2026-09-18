@@ -303,7 +303,12 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Punch List — rev 11 (2026-09-11 late: Tier 1 backlog F-1…F-5 BUILT on branch
+/* Cypress Command Punch List — rev 12 (2026-09-17: operator state r30 read — SMK-11 + SMK-13…17
+   passed, eight of nine F-5 rulings picked (all option 1) and BUILT the same day: title exceptions +
+   pylon register + property identifiers on K-1, signin_log + D-1 sign-in KPI, late-fee source cited;
+   hvac_contracts + property_identifiers (owner = Belle Realty) + signin_log migrations APPLIED on prod;
+   Schedule B gains SMK-18…20; register rows 15/19/23 green → 16/25).
+   Rev 11 (2026-09-11 late: Tier 1 backlog F-1…F-5 BUILT on branch
    claude/tier1-f1-f5, PR pending; Schedule B gains SMK-13…17, Schedule D gains the nine F-5
    decisions D-4a…D-24b, register rows 5/6/12/18/20 green, Schedule F Tier 1 marked shipped).
    Rev 10 (2026-09-11: product renamed Cypress Command; PR #3–#6 merged +
@@ -315,11 +320,11 @@
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":13,"saved":"2026-09-11T22:36:59.427Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"open","note":"","at":""},"smk-12":{"s":"pass","note":"","at":"Sep 11"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"}},"memo":{"text":"","at":""}}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":30,"saved":"2026-09-18T02:34:14.543Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"we are sticking with ach at moment","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"pass","note":"","at":"Sep 17"},"smk-12":{"s":"pass","note":"","at":"Sep 11"},"smk-13":{"s":"pass","note":"","at":"Sep 17"},"smk-14":{"s":"pass","note":"","at":"Sep 17"},"smk-15":{"s":"pass","note":"","at":"Sep 17"},"smk-16":{"s":"pass","note":"","at":"Sep 17"},"smk-17":{"s":"pass","note":"","at":"Sep 17"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"},"d4a":{"pick":"","note":"","at":""},"d4b":{"pick":"1","note":"","at":"Sep 17"},"d15":{"pick":"1","note":"","at":"Sep 17"},"d19a":{"pick":"1","note":"","at":"Sep 17"},"d19b":{"pick":"1","note":"","at":"Sep 17"},"d23a":{"pick":"1","note":"","at":"Sep 17"},"d23b":{"pick":"1","note":"","at":"Sep 17"},"d24a":{"pick":"1","note":"","at":"Sep 17"},"d24b":{"pick":"1","note":"","at":"Sep 17"}},"memo":{"text":"","at":""}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -627,7 +632,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Cypress Command &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 11, 2026 (late) &middot; Rev 11</span>
+      <span class="mono mast-date">Content &middot; Sep 17, 2026 &middot; Rev 12</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Cypress Command build (formerly Orange Ocean Atlas), on one working sheet.
@@ -642,7 +647,7 @@ const BODY = `
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; bridge numbers published Sep 11 (SMK-7 passed) &mdash; AC-side forward / retire / notice remain (F-11)</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">13</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
-      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>13 / 25</b><small>AC retires only at 25 / 25 green &middot; +5 on Sep 11</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>16 / 25</b><small>AC retires only at 25 / 25 green &middot; +3 on Sep 17 (#15 &middot; #19 &middot; #23 closed by your rulings)</small></div>
     </div>
   </header>
 
@@ -901,8 +906,8 @@ const BODY = `
         </div>
       </div>
       <div class="smoke" data-smoke="smk-16">
-        <div class="head"><span class="mono eyebrow">SMK-16</span><span class="name">HVAC PM contracts (F-4)</span><span class="chip open">2 min &middot; after the hvac_contracts one-liner</span><span class="stamp" data-stamp="smk-16"></span></div>
-        <p class="desc">First run the one-liner in HANDOFF (Supabase SQL editor &rarr; paste <code>20260911130000_hvac_contracts.sql</code>). Then unit 149 drawer &rarr; HVAC block shows the system rows from <code>hvac_units</code> &rarr; <em>From &sect;9.01</em> creates the Butcher Air monthly contract &rarr; <em>Log service</em> today &rarr; next due moves one month &rarr; T-1 shows &ldquo;HVAC PM due &mdash; 149&rdquo; once it is inside 30 days.</p>
+        <div class="head"><span class="mono eyebrow">SMK-16</span><span class="name">HVAC PM contracts (F-4)</span><span class="chip open">2 min &middot; table landed Sep 17 &mdash; re-run as SMK-20</span><span class="stamp" data-stamp="smk-16"></span></div>
+        <p class="desc"><strong>Your Sep 17 PASS predates the table:</strong> <code>hvac_contracts</code> only reached prod later that night (Claude&rsquo;s migration door opened after three blocked sessions), so <em>From &sect;9.01</em> / <em>Log service</em> had nothing to write into. The mark stays; the re-run is SMK-20 below. Steps: unit 149 drawer &rarr; HVAC block shows the system rows from <code>hvac_units</code> &rarr; <em>From &sect;9.01</em> creates the Butcher Air monthly contract &rarr; <em>Log service</em> today &rarr; next due moves one month &rarr; T-1 shows &ldquo;HVAC PM due &mdash; 149&rdquo; once it is inside 30 days.</p>
         <div class="ctrl">
           <div class="seg" role="group" aria-label="SMK-16 result">
             <button type="button" class="b-open" data-smk="smk-16" data-set="open" aria-pressed="true">Open</button>
@@ -922,6 +927,42 @@ const BODY = `
             <button type="button" class="b-fail" data-smk="smk-17" data-set="fail" aria-pressed="false">Fail</button>
           </div>
           <input class="note" data-note="smk-17" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-18">
+        <div class="head"><span class="mono eyebrow">SMK-18</span><span class="name">K-1 registers (D-19a &middot; D-19b &middot; D-23a/b)</span><span class="chip open">2 min &middot; after the deploy</span><span class="stamp" data-stamp="smk-18"></span></div>
+        <p class="desc">K-1 &rarr; <strong>Property identifiers</strong> card: 25 rows in seven groups, header reads &ldquo;12 not on file&rdquo;, <em>Owner Entity (Legal Name)</em> = <strong>Belle Realty of Lafayette, LLC</strong> (as of Sep 17; your D-23b ruling), blanks read &ldquo;&mdash; not on file&rdquo; &rarr; <strong>Pylon sign register</strong> card: 14 panels P1&ndash;P14 unit-for-unit, P13 flagged <em>reprint needed</em> (installed face still reads &ldquo;Boulevard Nutrition&rdquo;) &rarr; Document Register foot: &ldquo;Recorded instruments of record &middot; 13&rdquo;, the five title exceptions that were missing (98-18247, 99-041054, 286167, 97-012420, 445327) show &ldquo;of record only&rdquo;.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-18 result">
+            <button type="button" class="b-open" data-smk="smk-18" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-18" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-18" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-18" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-19">
+        <div class="head"><span class="mono eyebrow">SMK-19</span><span class="name">Sign-in audit on D-1 (D-24b)</span><span class="chip open">1 min &middot; after the deploy</span><span class="stamp" data-stamp="smk-19"></span></div>
+        <p class="desc">Sign in (or reload after the deploy) &rarr; D-1 KPI strip gains <strong>Sign-ins (7d)</strong> with your own row: &ldquo;last: &lt;your email&gt; &middot; Nm ago &middot; 1 account &middot; 1 operator&rdquo;. Reloading inside 10 minutes does not add a second row (one row per session start). Owner / vendor / tenant logins are counted too but never see the card (operator read only). No page views are logged &mdash; by design.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-19 result">
+            <button type="button" class="b-open" data-smk="smk-19" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-19" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-19" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-19" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-20">
+        <div class="head"><span class="mono eyebrow">SMK-20</span><span class="name">HVAC PM contracts &mdash; re-run now that the table is live (F-4)</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-20"></span></div>
+        <p class="desc">Unit 149 drawer &rarr; HVAC block &rarr; <em>From &sect;9.01</em> creates the Butcher Air monthly contract (it now persists &mdash; reload and it is still there) &rarr; <em>Log service</em> today &rarr; next due moves one month &rarr; T-1 shows &ldquo;HVAC PM due &mdash; 149 &middot; Butcher Air Conditioning&rdquo; once inside 30 days. If either button errors, note the message.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-20 result">
+            <button type="button" class="b-open" data-smk="smk-20" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-20" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-20" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-20" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
     </div>
@@ -1117,7 +1158,9 @@ const BODY = `
         <div class="head"><span class="did">H-3</span><span class="q">AC user role mapping</span><span class="stamp" data-dstamp="h3"></span></div>
         <p>Which of AC&rsquo;s 9 real <code>user</code>-role accounts map to owner / vendor / tenant in
         <code>org_members</code>. (The 64 synthetic &ldquo;owner&rdquo; accounts are noise &mdash; not invited.)
-        Write the mapping in the note, then mark it decided.</p>
+        Write the mapping in the note, then mark it decided. <strong>D-24a decided Sep 17 (option 1):</strong> AC&rsquo;s
+        <code>read_only</code> users map to <em>owner</em> &mdash; so the four unmapped read_only emails ride this mapping
+        (they will see S-1 and P-1); name any who should not.</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="H-3 decision">
             <button type="button" data-dec="h3" data-set="decided" aria-pressed="false">Mapping decided &mdash; see note</button>
@@ -1147,7 +1190,7 @@ const BODY = `
       </div>
       <div class="decision" data-dec-card="d4a">
         <div class="head"><span class="did">D-4a</span><span class="q">Aug-2026 seam month</span><span class="stamp" data-dstamp="d4a"></span></div>
-        <p>Register #4. Atlas&rsquo; ledger starts 2026-08 and AC&rsquo;s 108 un-imported charges are ALSO Aug 2026 (18 units, split base / CAM / tax / ins + 36 late fees, 18 draft invoices never sent). Two records of one month. Option 1 is the recommendation.</p>
+        <p>Register #4. Atlas&rsquo; ledger starts 2026-08 and AC&rsquo;s 108 un-imported charges are ALSO Aug 2026 (18 units, split base / CAM / tax / ins + 36 late fees, 18 draft invoices never sent). Two records of one month. Option 1 is the recommendation. (D-4b closed Sep 17: the $100 + $25/day schedule is cited to lease &sect;4.01(C); Atlas stays the sole Aug record by default until you rule here.)</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="D-4a decision">
             <button type="button" data-dec="d4a" data-set="1" aria-pressed="false">1 &middot; Atlas ledger is the sole Aug record; AC drafts archive-only</button>
@@ -1279,7 +1322,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule E</span>
       <h2>Capability Register</h2>
-      <span class="mono sched-count">the H3 gate &middot; 13 / 25 green</span>
+      <span class="mono sched-count">the H3 gate &middot; 16 / 25 green</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
@@ -1289,7 +1332,7 @@ const BODY = `
       <div class="cell port"    title="1 &middot; Voice intake &rarr; history in L-1 (62 rows); number cutover waits on H-2">1</div>
       <div class="cell port"    title="2 &middot; Work orders &rarr; data in M-1; vendor upload-link UX open">2</div>
       <div class="cell done"    title="3 &middot; SOP system &rarr; O-1 Operations (PORTED Aug 25)">3</div>
-      <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY verified Sep 11: 313 rows / $1,133,492.20 match; Aug-2026 seam + late-fee policy decisions D-4a/D-4b owed)">4</div>
+      <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY verified Sep 11: 313 rows / $1,133,492.20 match; D-4b decided Sep 17 &mdash; late-fee schedule cited to lease &sect;4.01(C); Aug-2026 seam D-4a still owed)">4</div>
       <div class="cell done"    title="5 &middot; Invoices + late fees &rarr; BUILT Sep 11 (F-1): INV-YYYYMM-unit numbering, printable invoice, sent / void state, paid derived from the ledger; table on prod; deploys with the PR">5</div>
       <div class="cell done"    title="6 &middot; CAM reconciliation &rarr; BUILT Sep 11 (F-2): per-tenant caps from the lease abstracts, prior-year actuals, true-up, printable annual statement; no base-year clause exists">6</div>
       <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
@@ -1300,16 +1343,16 @@ const BODY = `
       <div class="cell done"    title="12 &middot; Board reports &rarr; BUILT Sep 11 (F-3): Board / Lender / Stakeholder variants over the same engine">12</div>
       <div class="cell done"    title="13 &middot; NOI + tenant health &rarr; scoring shipped Aug 29 over 13-mo record">13</div>
       <div class="cell done"    title="14 &middot; Communications hub &rarr; L-1 Comm Log LIVE in repo (62 AC rows imported)">14</div>
-      <div class="cell parity"  title="15 &middot; NL query &rarr; AI-1 grounded digest (PARITY; digest extended Sep 11 to ledger / M-1 / N-1 / S-1 / W-1 / O-1 counts; read-only query tool D-15 owed)">15</div>
+      <div class="cell done"    title="15 &middot; NL query &rarr; AI-1 grounded digest (DONE Sep 17: D-15 option 1 &mdash; no query tool now; unanswered questions log through AI-1 transcripts)">15</div>
       <div class="cell done"    title="16 &middot; Document expiry scans &rarr; K-1 generalized Aug 29 (coi.js reused)">16</div>
       <div class="cell port"    title="17 &middot; Documents / register &rarr; metadata archived; binaries need keyed storage copy">17</div>
-      <div class="cell done"    title="18 &middot; HVAC &rarr; BUILT Sep 11 (F-4): PM contract tracking + T-1 deadlines + hvac_units in the drawer; hvac_contracts table still to apply on prod (one-liner in HANDOFF)">18</div>
-      <div class="cell parity"  title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (PARITY; 2019 appraisal on S-1 + P-1 Sep 11; 8/13 recorded agreements + pylon 13/14 verified; D-19a title exceptions / D-19b pylon register owed)">19</div>
+      <div class="cell done"    title="18 &middot; HVAC &rarr; BUILT Sep 11 (F-4): PM contract tracking + T-1 deadlines + hvac_units in the drawer; hvac_contracts APPLIED on prod Sep 17 (re-run SMK-20)">18</div>
+      <div class="cell done"    title="19 &middot; Spatial datasets &rarr; A-1 / A-2 / K-1 (DONE Sep 17: 13/13 recorded instruments as titleExceptions + K-1 block; pylon register pylon.json + K-1 card; 2019 appraisal on S-1 + P-1)">19</div>
       <div class="cell done"    title="20 &middot; Marketing assets &rarr; K-1 + brand kit (DONE Sep 11: 25/25 tenant logos + 04C kit verified; no AC marketing rows; orgs.brand runtime read = F-22)">20</div>
       <div class="cell done"    title="21 &middot; UniFi network card &rarr; D-1 (PARITY, done)">21</div>
       <div class="cell ref"     title="22 &middot; SaaS billing &rarr; deferred to pilot monetization (REF)">22</div>
-      <div class="cell parity"  title="23 &middot; SOT import tooling &rarr; intake rail (PARITY; property_identifiers migration 20260911140000 in repo, NOT applied &mdash; waits on D-23b; surfacing D-23a owed)">23</div>
-      <div class="cell parity"  title="24 &middot; Allowlist / superadmin / audit &rarr; membership lattice (PARITY; OPEN Sep 11: AC allowlist 2/6 mapped, no viewer role, no sign-in log &mdash; D-24a / D-24b + H-3 owed)">24</div>
+      <div class="cell done"    title="23 &middot; SOT import tooling &rarr; intake rail (DONE Sep 17: 25 identifiers loaded into properties.facts with owner = Belle Realty per D-23b; K-1 Property identifiers card per D-23a, 12 gaps visible)">23</div>
+      <div class="cell parity"  title="24 &middot; Allowlist / superadmin / audit &rarr; membership lattice (PARITY; sign-in log LIVE Sep 17 per D-24b; D-24a read_only &rarr; owner folded into H-3 &mdash; closes when H-3 is decided)">24</div>
       <div class="cell ref"     title="25 &middot; Predecessor depth (notices, 1099s, workflow) &rarr; build on demand (REF)">25</div>
     </div>
     <div class="legend">
@@ -1336,15 +1379,15 @@ const BODY = `
         <li><b>12</b> Board + stakeholder reports <span class="st g">DONE</span></li>
         <li><b>13</b> NOI valuation + tenant health <span class="st g">DONE</span></li>
         <li><b>14</b> Communications hub <span class="st g">DONE</span></li>
-        <li><b>15</b> NL query <span class="st g">PARITY</span></li>
+        <li><b>15</b> NL query <span class="st g">DONE</span></li>
         <li><b>16</b> Document expiry scanning <span class="st g">DONE</span></li>
         <li><b>17</b> Documents + register categories <span class="st b">PORT</span></li>
         <li><b>18</b> HVAC + predictive maintenance <span class="st g">DONE</span></li>
-        <li><b>19</b> Spatial datasets <span class="st g">PARITY</span></li>
+        <li><b>19</b> Spatial datasets <span class="st g">DONE</span></li>
         <li><b>20</b> Marketing assets <span class="st g">DONE</span></li>
         <li><b>21</b> UniFi network card <span class="st g">DONE</span></li>
         <li><b>22</b> SaaS billing <span class="st s">REF</span></li>
-        <li><b>23</b> SOT import tooling <span class="st g">PARITY</span></li>
+        <li><b>23</b> SOT import tooling <span class="st g">DONE</span></li>
         <li><b>24</b> Allowlist / superadmin / audit <span class="st g">PARITY</span></li>
         <li><b>25</b> Predecessor depth (notices, 1099s) <span class="st s">REF</span></li>
       </ul>
@@ -1355,7 +1398,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule F</span>
       <h2>Build Backlog</h2>
-      <span class="mono sched-count">24 items &middot; snapshot Sep 11 (late) &middot; Tier 1 shipped</span>
+      <span class="mono sched-count">25 items &middot; snapshot Sep 17 &middot; Tier 1 + F-5 rulings shipped</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Everything still left to build, in one place, ranked by how much each item unlocks.
@@ -1365,7 +1408,7 @@ const BODY = `
       you, Tier 3 is the long tail outside the harvest.</p>
 
     <div class="bl-group" data-tier="1">
-      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 &mdash; on branch claude/tier1-f1-f5, PR pending</span><span class="chip done">shipped</span></div>
+      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 (PR #8, live Sep 12) &middot; F-5 rulings built Sep 17</span><span class="chip done">shipped</span></div>
       <ol class="bl-list">
         <li><span class="bid">F-1</span><span class="bname">#5 Invoices + late fees &rarr; full parity <span class="chip done">built Sep 11</span></span>
           <p class="bdesc">Numbered invoices (INV-YYYYMM-unit) over the ledger, printable with the browser&rsquo;s Save-as-PDF, sent / void state stored, paid derived. Table on prod. Smoke: SMK-13.</p></li>
@@ -1374,9 +1417,11 @@ const BODY = `
         <li><span class="bid">F-3</span><span class="bname">#12 Board + stakeholder reports &rarr; variants <span class="chip done">built Sep 11</span></span>
           <p class="bdesc">Board / Lender / Stakeholder over the same engine and stored briefs; debt and distribution data print as &ldquo;not on file&rdquo; until such data exists. Smoke: SMK-15.</p></li>
         <li><span class="bid">F-4</span><span class="bname">#18 HVAC &rarr; PM contract tracking + T-1 deadlines <span class="chip done">built Sep 11</span></span>
-          <p class="bdesc">Contract seam + drawer block + T-1 feed; the 28 hvac_units rows finally render. <strong>hvac_contracts table still to apply on prod</strong> (one-liner in HANDOFF). Smoke: SMK-16.</p></li>
+          <p class="bdesc">Contract seam + drawer block + T-1 feed; the 28 hvac_units rows finally render. <code>hvac_contracts</code> applied on prod Sep 17. Smoke: SMK-16 &rarr; re-run as SMK-20.</p></li>
         <li><span class="bid">F-5</span><span class="bname">Parity reconciliations &mdash; six register rows <span class="chip done">verified Sep 11</span></span>
           <p class="bdesc"><code>docs/parity-reconciliation-2026-09-11.md</code>: #20 DONE; #4 / #15 / #19 / #23 green-with-note; #24 OPEN. Closed: 2019 appraisal on S-1, live concierge digest, identifiers migration written (held on D-23b). Nine decisions now in Schedule D. Smoke: SMK-17.</p></li>
+        <li><span class="bid">F-25</span><span class="bname">F-5 rulings &rarr; five builds <span class="chip done">built Sep 17</span></span>
+          <p class="bdesc">Your eight option-1 picks, acted on the same day: D-19a title exceptions (13 instruments in <code>instruments.json</code> + K-1 block) &middot; D-19b <code>pylon.json</code> + K-1 pylon card (pylon.py reads it; SVGs byte-identical) &middot; D-23a K-1 Property identifiers card &middot; D-23b owner row corrected to Belle Realty, then <strong>loaded on prod</strong> (25 rows, 12 blank) &middot; D-24b <code>signin_log</code> + stamped RPC + D-1 &ldquo;Sign-ins (7d)&rdquo; KPI &middot; D-4b late-fee schedule cited to lease &sect;4.01(C) &middot; D-15 / D-24a: no build (by pick). Record: <code>docs/parity-reconciliation-2026-09-11.md</code> &sect;Rulings. Smokes: SMK-18, SMK-19.</p></li>
       </ol>
     </div>
 
@@ -1509,6 +1554,17 @@ const BODY = `
       M-1 &rarr; the Pothole Repair card &rarr; <em>&#10003; Done</em>, then <em>Close</em>. Status is derived from the
       event log, so the A-2 Maintenance tab and the D-1 queue fold it on the next paint; nothing is deleted, the
       record stays as history.</li>
+      <li>Sep 17 snapshot: your r30 marks read &mdash; SMK-11 and SMK-13&ndash;17 passed; D-4b, D-15, D-19a, D-19b, D-23a, D-23b,
+      D-24a, D-24b all <strong>option 1</strong> (acted on, never relitigated); D-4a and H-3 still yours. Built and deployed the
+      same day (F-25 above): 718 tests green (was 706), build clean. Three migrations landed on prod through Claude&rsquo;s own
+      door this time: <code>hvac_contracts</code> (the one-liner is no longer needed &mdash; but your SMK-16 PASS came before the
+      table existed, so please run SMK-20), <code>property_identifiers</code> (owner = Belle Realty of Lafayette, LLC, per D-23b;
+      the AC value survives only in the provenance stamp) and <code>signin_log</code>. Verified on prod: 25 identifier rows, 12 blank,
+      <code>log_signin</code> present. <strong>Your SMK-5 note</strong> (&ldquo;sticking with ACH&rdquo;) &mdash; noted; ACH stays the
+      only rail, SMK-5 simply waits for the first payment to land and self-announce. <strong>Your SMK-6 note</strong> is the Sep 1
+      one, answered Sep 4: L-1 &rarr; <em>Select</em> &rarr; <em>Select all</em> (or tick rows) &rarr; <em>Delete</em> = one confirm
+      for the whole batch. Still yours: D-4a, H-3 (now carrying D-24a), H0-3 secret rotation, the domain move F-23, the F-2 cap
+      table check, and SMK-18 / 19 / 20.</li>
       <li>Full AC flat archive (39 tables, md5 manifest, secrets stripped):
       <code>docs/harvest/ac-archive-2026-08-29/</code> + Drive copy under
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
@@ -1520,8 +1576,8 @@ const BODY = `
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-11</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">11</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-17</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">12</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>

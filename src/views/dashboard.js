@@ -4,9 +4,10 @@
 import { UNITS, subscribe } from "../store.js";
 import { fmt$0, sumKnownAmounts, pDate, fDate, monthsTo, daysTo, esc, TODAY } from "../lib/format.js";
 import { getActionCards, ACTION_KIND } from "./board.js";
-import { REMOTE, LOCAL_REVIEW, getSession, listOccupancy, listOccupancyWeek, getCronHeartbeat, countClientErrors } from "../lib/remote.js";
+import { REMOTE, LOCAL_REVIEW, getSession, listOccupancy, listOccupancyWeek, getCronHeartbeat, countClientErrors, listSignins } from "../lib/remote.js";
 import { unifiHealthLine } from "../lib/unifi.js";
 import { heartbeatKpi } from "../lib/heartbeat.js";
+import { signinKpi } from "../lib/signins.js";
 import { latestByStall, occSummary, occLine, occAsOf, weeklyRollup, rollupLine } from "../lib/occupancy.js";
 import { PARKING } from "../lib/facts.js";
 import stallMap from "../data/stall-map.json";
@@ -16,6 +17,7 @@ let occState = null;     // cached occupancy summary; renderKPIs reads it
 let occWeek = "";        // cached 7-day rollup line; renderKPIs reads it
 let hbRow = null;        // cached cron heartbeat row; renderKPIs reads it
 let errCount = 0;        // cached 24h client-error count; renderKPIs reads it
+let signinRows = null;   // cached 7-day signin_log rows (operator read); renderKPIs reads it
 
 export function renderDashboard() {
   renderKPIs();
@@ -29,7 +31,7 @@ export function initDashboard() {
   renderDashboard();
   // alerts derive from compliance flags + action-board overrides — refresh on those
   subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
-  if (REMOTE) { fetchUnifi(); fetchOcc(); fetchHeartbeat(); fetchErrCount(); }
+  if (REMOTE) { fetchUnifi(); fetchOcc(); fetchHeartbeat(); fetchErrCount(); fetchSignins(); }
 }
 
 /* C3 parking occupancy card — Supabase occupancy_samples (RLS owner/operator);
@@ -56,6 +58,15 @@ async function fetchHeartbeat() {
   try {
     hbRow = await getCronHeartbeat();
     if (hbRow) renderKPIs();
+  } catch { /* card simply doesn't render */ }
+}
+
+/* D-24b sign-in audit — operator-only RLS read; an empty window (or any
+   read failure) renders nothing. */
+async function fetchSignins() {
+  try {
+    signinRows = await listSignins(7);
+    if (signinRows.length) renderKPIs();
   } catch { /* card simply doesn't render */ }
 }
 
@@ -101,7 +112,7 @@ function renderKPIs() {
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
     ["brass", "Parking", PARKING.provided + "<small>/" + PARKING.required + "</small>",
       "variance reference <b>" + PARKING.entry + "</b> · " + PARKING.drawn + " drawn"]
-  ].concat(unifiKpi()).concat(occKpi()).concat(hbKpi()).concat(errKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
+  ].concat(unifiKpi()).concat(occKpi()).concat(hbKpi()).concat(signKpi()).concat(errKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 
 function unifiKpi() {
@@ -130,6 +141,13 @@ function occKpi() {
 
 function hbKpi() {
   const k = heartbeatKpi(hbRow, Date.now());
+  if (!k) return [];
+  const [color, label, val, note] = k;
+  return [[color, label, val, esc(note)]];
+}
+
+function signKpi() {
+  const k = signinKpi(signinRows, Date.now());
   if (!k) return [];
   const [color, label, val, note] = k;
   return [[color, label, val, esc(note)]];

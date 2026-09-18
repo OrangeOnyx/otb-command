@@ -10,8 +10,10 @@ import { mountRecords } from "../lib/recordsUI.js";
 import { mountAssets } from "../lib/assetsUI.js";
 import { expiringDocs, expiryLine, isoDate } from "../lib/docexpiry.js";
 import { esc, TODAY } from "../lib/format.js";
-import { REMOTE, getPublishedLines } from "../lib/remote.js";
+import { REMOTE, getPublishedLines, getPropertyFacts } from "../lib/remote.js";
 import { linesFromRow, lineRows } from "../lib/voicelines.js";
+import { TITLE_EXCEPTIONS, PYLON } from "../lib/facts.js";
+import { groupIdentifiers, identifierSummary, displayValue } from "../lib/identifiers.js";
 
 let imageryDispose = null;
 
@@ -63,6 +65,79 @@ function renderExpiryStrip(docsEl) {
     due.map(x => '<div class="led-note" style="color:' + esc(x.color) + '">' + esc(expiryLine(x)) + '</div>').join("");
 }
 
+/* Recorded instruments of record (ruling D-19a, 2026-09-17): the 13 title
+   exceptions from the archive, verbatim, under the document register. Rows
+   already carried as register documents say so; the rest are "of record
+   only" until the owner title policy is ordered and they can be pulled. */
+function renderTitleBlock(docsEl) {
+  const card = docsEl.parentElement;
+  let blk = card.querySelector("#dirTitle");
+  if (!blk) {
+    blk = document.createElement("div");
+    blk.id = "dirTitle";
+    card.appendChild(blk);
+  }
+  const docs = new Set(propertyDocuments().map(r => r.id));
+  const ofRecord = TITLE_EXCEPTIONS.filter(e => !(e.registerDoc && docs.has(e.registerDoc))).length;
+  blk.innerHTML = '<div class="dw-sec">Recorded instruments of record · ' + TITLE_EXCEPTIONS.length +
+    (ofRecord ? ' · ' + ofRecord + ' of record only (title policy not yet ordered)' : '') + '</div>' +
+    TITLE_EXCEPTIONS.map(e => {
+      const onReg = !!(e.registerDoc && docs.has(e.registerDoc));
+      const dead = /^(Expired|SUPERSEDED)/.test(e.status);
+      return '<div class="reg-row"><span class="reg-k">' + esc(e.entryNumber) +
+        (e.titleExceptionNo != null ? ' · exc. #' + e.titleExceptionNo : '') + '</span>' +
+        '<span class="reg-v">' + esc(e.title) + '</span>' +
+        '<span class="reg-s' + (dead ? '' : onReg ? ' ok' : '') + '">' + (onReg ? "on register" : "of record only") + '</span>' +
+        '<span class="reg-n">' + esc(e.status) + '</span></div>';
+    }).join("");
+}
+
+/* Pylon sign register (ruling D-19b, 2026-09-17): panel → unit → tenant of
+   record → status; a panel whose installed face differs from the tenant of
+   record is flagged for reprint. */
+function renderPylonBlock() {
+  const el = document.getElementById("dirPylon");
+  if (!el) return;
+  const sub = document.getElementById("dirPylonSub");
+  const byUnit = new Map(UNITS.map(u => [u.unit, u]));
+  const reprint = PYLON.panels.filter(p => p.physicalReads).length;
+  if (sub) sub.textContent = PYLON.schedule.toUpperCase() + " · " + PYLON.panels.length + " PANELS" +
+    (reprint ? " · " + reprint + " REPRINT NEEDED" : "") + " · ZONING " + PYLON.zoning.toUpperCase();
+  el.innerHTML = PYLON.panels.map(p => {
+    const u = byUnit.get(p.unit);
+    const tenant = u ? u.dba : "";
+    const face = !!(p.physicalReads && p.physicalReads !== tenant);
+    return '<div class="reg-row"><span class="reg-k">' + esc(p.panel) + ' · ' + esc(p.size) + '</span>' +
+      '<span class="reg-v"><b>' + esc(p.unit) + '</b>' + (tenant ? ' · ' + esc(tenant) : '') + '</span>' +
+      '<span class="reg-s' + (face ? ' hot' : p.status === "occupied" ? ' ok' : '') + '">' +
+      (face ? "reprint needed" : esc(p.status)) + '</span>' +
+      (face ? '<span class="reg-n">Installed panel reads "' + esc(p.physicalReads) + '" — ' + esc(p.note) + '</span>'
+        : p.note ? '<span class="reg-n">' + esc(p.note) + '</span>' : '') + '</div>';
+  }).join("");
+}
+
+/* Property identifiers (ruling D-23a, 2026-09-17): properties.facts rows of
+   kind='identifier', grouped as AC grouped them; nulls read "not on file" so
+   the gaps stay visible work items. Hosted-only; absent until the read lands. */
+function renderIdentifiers() {
+  const el = document.getElementById("dirIdentifiers");
+  if (!el) return;
+  if (!REMOTE) { el.innerHTML = '<div class="led-note">Hosted only — identifiers live on the property record.</div>'; return; }
+  getPropertyFacts().then(facts => {
+    if (!el.isConnected) return;
+    const groups = groupIdentifiers(facts);
+    const sub = document.getElementById("dirIdSub");
+    if (!groups.length) { el.innerHTML = '<div class="led-note">No identifiers on the property record yet.</div>'; return; }
+    if (sub) sub.textContent = identifierSummary(groups).toUpperCase();
+    el.innerHTML = groups.map(g =>
+      '<div class="dw-sec reg-group">' + esc(g.group) + (g.missing ? ' · ' + g.missing + ' not on file' : '') + '</div>' +
+      g.rows.map(r => '<div class="reg-row"><span class="reg-k">' + esc(r.label) + '</span>' +
+        '<span class="reg-v' + (r.missing ? ' missing' : '') + '">' + esc(displayValue(r)) + '</span>' +
+        '<span class="reg-s">' + (r.asOf ? 'as of ' + esc(r.asOf) : '') + '</span></div>').join("")
+    ).join("");
+  }).catch(() => {});
+}
+
 export function renderDirectory() {
   const c = document.getElementById("dirContacts");
   const d = document.getElementById("dirDocs");
@@ -70,7 +145,10 @@ export function renderDirectory() {
   mountRecords(c, "contacts", propertyContacts(), {}, renderDirectory);
   mountRecords(d, "documents", propertyDocuments(), {}, renderDirectory);
   renderExpiryStrip(d);
+  renderTitleBlock(d);
   renderLinesBlock(c);
+  renderPylonBlock();
+  renderIdentifiers();
   const img = document.getElementById("dirImagery");
   if (img && !imageryDispose) imageryDispose = mountAssets(img, "property"); // self-refreshing; mount once
 }

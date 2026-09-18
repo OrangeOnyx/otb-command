@@ -5,8 +5,8 @@
    repo-locked in src/lib/facts.js; no seed rows here. Content tier like
    governance_items (owner+operator read · operator write · stamp trigger).
    Additive — no existing table touched.
-   NOT YET APPLIED — apply via MCP apply_migration when the door is open;
-   this file is the record. */
+   APPLIED on prod 2026-09-17 via MCP apply_migration (server history
+   'hvac_contracts'); this file is the record. */
 begin;
 create table public.hvac_contracts (
   id text primary key,

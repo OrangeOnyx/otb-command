@@ -6,6 +6,7 @@
    (314) — see docs/parking-reconciliation-memo.md. */
 import geometry from "../data/geometry.json" with { type: "json" };
 import instruments from "../data/instruments.json" with { type: "json" };
+import pylon from "../data/pylon.json" with { type: "json" };
 
 const v = geometry.parking.variance;
 
@@ -25,6 +26,14 @@ export const EXCLUSIVES = Object.freeze(instruments.exclusives.map(e => Object.f
    reference: S-1 "Valuation on file" line + P-1 cap-rate hint, never a value
    the app computes with. */
 export const APPRAISAL_2019 = Object.freeze({ ...instruments.appraisal2019 });
+/* Recorded instruments of record — the 13 title exceptions from the AC
+   archive, verbatim (ruling D-19a option 1, 2026-09-17). K-1 renders them
+   as a register block; registerDoc links the ones already carried as
+   documents. Reconcile against the owner title policy when it is ordered. */
+export const TITLE_EXCEPTIONS = Object.freeze(instruments.titleExceptions.items.map(e => Object.freeze({ ...e })));
+/* Monument-sign panel register (ruling D-19b option 1, 2026-09-17): panel →
+   unit → status as data; tools/pylon.py reads the same file. */
+export const PYLON = Object.freeze({ ...pylon.sign, panels: Object.freeze(pylon.panels.map(p => Object.freeze({ ...p }))) });
 
 const usd0 = n => "$" + Math.round(+n || 0).toLocaleString("en-US");
 const mdy = iso => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });

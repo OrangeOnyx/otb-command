@@ -302,6 +302,34 @@ export async function logClientError({ page, message, stack, ua }) {
   try { await sb.rpc("log_client_error", { p_page: page, p_message: message, p_stack: stack, p_ua: ua }); }
   catch { /* the beacon never throws into the page it watches */ }
 }
+/* ── property facts (K-1 identifiers card, ruling D-23a) ───────────
+   properties.facts is a jsonb array on the active property row; RLS
+   prop_read answers for members. Best-effort: [] on any failure. */
+export async function getPropertyFacts() {
+  if (!REMOTE) return [];
+  try {
+    const ctx = await propertyContext();
+    const { data, error } = await sb.from("properties").select("facts").eq("id", ctx.property_id).maybeSingle();
+    if (error || !data) return [];
+    return Array.isArray(data.facts) ? data.facts : [];
+  } catch { return []; }
+}
+
+/* ── sign-in audit (ruling D-24b; definer RPC stamps email + role) ── */
+export async function logSignin({ page, ua }) {
+  if (!REMOTE) return;
+  try { await sb.rpc("log_signin", { p_page: page, p_ua: ua }); }
+  catch { /* the audit write never throws into boot */ }
+}
+export async function listSignins(days = 7, limit = 200) {
+  if (!REMOTE) return [];
+  const since = new Date(Date.now() - days * 86400e3).toISOString();
+  const { data, error } = await sb.from("signin_log").select("email,role,at")
+    .gte("at", since).order("at", { ascending: false }).limit(limit);
+  if (error) return []; // non-operator / pre-migration → card doesn't render
+  return data || [];
+}
+
 export async function countClientErrors(hours = 24) {
   if (!REMOTE) return 0;
   const since = new Date(Date.now() - hours * 3600e3).toISOString();
