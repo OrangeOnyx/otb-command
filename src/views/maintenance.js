@@ -20,6 +20,8 @@ import {
 } from "../lib/maintenance.js";
 import { UNITS } from "../store.js";
 import { esc } from "../lib/format.js";
+import { findCommByWorkOrder } from "../lib/comms.js";
+import { openComm } from "./comms.js";
 
 /* service-vendor roster for the assign dropdown (installed from the seed,
    operator/owner only — same channel as the V-1 roster) */
@@ -41,7 +43,14 @@ function timelineHTML(req) {
     const d = describeMrEvent(e, names);
     return '<div class="mono mute" style="font-size:11px">' + esc(d.when + (d.who ? " · " + d.who : "") + " · ") + esc(d.line) + '</div>';
   }).join("");
-  return '<div class="mono mute" style="font-size:11px">' + esc(fmtWhen(req.created_at)) + ' · filed by ' + esc(String(req.created_by).split("@")[0] || "operator") + '</div>' + rows;
+  /* a work order the phone agent filed links back to its call record in
+     L-1 (summary · recording · transcript) — 2026-09-18 call records */
+  const fromCall = String(req.created_by || "").startsWith("voice:");
+  const call = fromCall ? findCommByWorkOrder(req.id) : null;
+  const callLink = fromCall
+    ? ' · <a href="#comms" class="mr-call rec-link" data-comm="' + esc(call ? call.id : "") + '" style="margin:0">📞 from call' + (call ? " — open" : "") + '</a>'
+    : "";
+  return '<div class="mono mute" style="font-size:11px">' + esc(fmtWhen(req.created_at)) + ' · filed by ' + esc(String(req.created_by).split("@")[0] || "operator") + callLink + '</div>' + rows;
 }
 
 /* photos strip fills in async; audit-free signed links */
@@ -87,6 +96,10 @@ function requestCard(req, { controls = "", noteBox = true } = {}) {
 }
 
 function wireCardBasics(host, email, rerender) {
+  host.querySelectorAll(".mr-call").forEach(a => a.onclick = e => {
+    e.preventDefault();
+    if (a.dataset.comm) openComm(a.dataset.comm); else location.hash = "#comms";
+  });
   host.querySelectorAll("[data-mr]").forEach(card => {
     const id = card.dataset.mr;
     loadPhotos(card.querySelector(".mr-photos"), id);

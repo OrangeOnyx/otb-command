@@ -8,10 +8,23 @@ import { addDoc, docURL, buildDocLink, isDocLink, docPath } from "./docs.js";
 import { coiStatus, coiBadge } from "./coi.js";
 import { isoDate } from "./docexpiry.js";
 import { safeReferenceUrl } from "./reference-url.js";
+import { docDetail, DOC_STATUS, DOC_RISK, AMOUNT_KIND } from "./docregister.js";
 
 const FIELDS = {
   contacts: [["role", "Role"], ["company", "Company"], ["name", "Contact"], ["phone", "Phone"], ["email", "Email"], ["note", "Note"]],
-  documents: [["name", "Name"], ["type", "Type"], ["ref", "Reference"], ["expires", "Expires (YYYY-MM-DD)"], ["link", "Link (paste a Drive / SharePoint URL)"], ["note", "Note"]]
+  /* 2026-09-18 owner-document detail (Property Vault parity): counterparty ·
+     amount (+ kind) · effective · renews/expires · matures · status · risk ·
+     risk note. All optional — a bare register row still renders as before. */
+  documents: [
+    ["name", "Name"], ["type", "Type (e.g. Insurance · liability, Loan, Title, Easement)"],
+    ["counterparty", "Counterparty (carrier / lender / title co / agency)"],
+    ["ref", "Reference (policy #, loan #, entry #)"],
+    ["amount", "Amount (whole dollars)"], ["amountKind", "Amount is…", "select", AMOUNT_KIND],
+    ["effective", "Effective (YYYY-MM-DD)"], ["expires", "Renews / expires (YYYY-MM-DD)"], ["matures", "Matures (YYYY-MM-DD, loans)"],
+    ["status", "Status", "select", { "": "— unset —", ...Object.fromEntries(Object.entries(DOC_STATUS).map(([k, v]) => [k, v[0]])) }],
+    ["risk", "Risk flag", "select", Object.fromEntries(Object.entries(DOC_RISK).map(([k, v]) => [k, v[0]]))],
+    ["riskNote", "Risk note (why this is tracked)"],
+    ["link", "Link (paste a Drive / SharePoint URL)"], ["note", "Note"]]
 };
 
 const TODAY_ISO = isoDate(TODAY);
@@ -38,24 +51,43 @@ function contactView(r) {
 }
 function docView(r) {
   const referenceUrl = safeReferenceUrl(r.link);
-  return '<div class="rec-main">' +
-    '<div class="rec-t">' + esc(r.name) + (r.type ? ' <span class="rec-role">' + esc(r.type) + '</span>' : "") + expiryBadge(r.expires) + '</div>' +
-    (r.ref ? '<div class="rec-s mono">' + esc(r.ref) + '</div>' : "") +
+  const d = docDetail(r, TODAY_ISO);
+  const head = '<div class="rec-t">' + esc(r.name) + (r.type ? ' <span class="rec-role">' + esc(r.type) + '</span>' : "") +
+    (d.statusLabel ? ' <span class="doc-status" style="color:' + d.statusColor + ';border-color:' + d.statusColor + '">' + esc(d.statusLabel) + '</span>' : "") +
+    (d.status === "active" || !d.status ? expiryBadge(r.expires) : "") + '</div>';
+  if (!d.detailed) {
+    return '<div class="rec-main">' + head +
+      (r.ref ? '<div class="rec-s mono">' + esc(r.ref) + '</div>' : "") +
+      (r.note ? '<div class="rec-note">' + esc(r.note) + '</div>' : "") +
+      docLinkHTML(r, referenceUrl) + '</div>';
+  }
+  /* sectioned card: counterparty · definition rows · risk callout · note */
+  return '<div class="rec-main doc-card">' + head +
+    (d.counterparty ? '<div class="doc-party">' + esc(d.counterparty) + '</div>' : "") +
+    (d.rows.length ? '<dl class="doc-dl">' + d.rows.map(row =>
+      '<dt>' + esc(row.k) + '</dt><dd' + (row.mono ? ' class="mono"' : "") + '>' + esc(row.v) +
+      (row.chip ? ' <span class="doc-chip ' + esc(row.chip.tone) + '">' + esc(row.chip.label) + '</span>' : "") + '</dd>').join("") + '</dl>' : "") +
+    (d.riskLabel ? '<div class="doc-risk" style="border-color:' + d.riskColor + '"><b style="color:' + d.riskColor + '">' + esc(d.riskLabel) + '.</b> ' + esc(d.riskNote) + '</div>' : "") +
     (r.note ? '<div class="rec-note">' + esc(r.note) + '</div>' : "") +
-    (r.link
+    docLinkHTML(r, referenceUrl) + '</div>';
+}
+function docLinkHTML(r, referenceUrl) {
+  return (r.link
       ? (isDocLink(r.link)
         ? '<a class="rec-link rec-doclink" href="#" data-doc="' + esc(docPath(r.link)) + '">Open 📎</a>'
         : referenceUrl
           ? '<a class="rec-link" href="' + esc(referenceUrl) + '" target="_blank" rel="noopener noreferrer">Open ↗</a>'
           : '<span class="rec-s mute">Unsupported reference link</span>')
-      : '<span class="rec-s mute">no file linked</span>') +
-    '</div>';
+      : '<span class="rec-s mute">no file linked</span>');
 }
 
 function formHTML(name, r) {
-  return '<div class="rec-form">' + FIELDS[name].map(([k, label]) =>
-    '<label class="rec-f"><span>' + label + '</span>' +
-    '<input data-k="' + k + '" value="' + esc(r[k] || "") + '"></label>').join("") +
+  return '<div class="rec-form' + (name === "documents" ? " rec-form-doc" : "") + '">' + FIELDS[name].map(([k, label, kind, opts]) =>
+    '<label class="rec-f' + (k === "name" || k === "note" || k === "riskNote" || k === "link" || k === "counterparty" ? " wide" : "") + '"><span>' + label + '</span>' +
+    (kind === "select"
+      ? '<select data-k="' + k + '">' + Object.entries(opts).map(([v, l]) =>
+        '<option value="' + esc(v) + '"' + (String(r[k] ?? (k === "risk" ? "none" : k === "amountKind" ? "amount" : "")) === v ? " selected" : "") + '>' + esc(l) + '</option>').join("") + '</select>'
+      : '<input data-k="' + k + '" value="' + esc(r[k] ?? "") + '">') + '</label>').join("") +
     (name === "documents"
       ? '<div class="rec-attachrow"><button class="chip rec-attach">📎 Attach file</button>' +
         '<input type="file" class="rec-file" hidden><span class="rec-attach-msg mono"></span></div>'
@@ -80,7 +112,7 @@ export function mountRecords(el, name, records, scope, rerender) {
     if (isNew) anchor.replaceWith(form); else { anchor.style.display = "none"; anchor.after(form); }
     form.querySelector(".rec-save").onclick = () => {
       const patch = {};
-      form.querySelectorAll("input[data-k]").forEach(i => patch[i.dataset.k] = i.value.trim());
+      form.querySelectorAll("input[data-k], select[data-k]").forEach(i => patch[i.dataset.k] = i.value.trim());
       if (isNew) addRecord(name, { ...(scope.unit ? { unit: scope.unit } : {}), ...patch });
       else editRecord(name, r.id, patch);
       rerender();

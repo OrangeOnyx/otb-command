@@ -36,7 +36,7 @@ function unitContactSeed(unit) {
     unit, role: u.status === "owner" ? "Owner / occupant" : "Tenant of record",
     company: u.legal || u.dba, name: ci.name || "", phone: ci.phone || "", email: ci.email || "",
     note: u.dba + (u.use ? " — " + u.use : "")
-  }];
+  }].concat((directory.unitContacts || {})[unit] || []); // e.g. the tenant's insurance agency (AC harvest)
 }
 function unitDocSeed(unit) {
   const u = byUnit[unit];

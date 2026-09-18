@@ -26,6 +26,7 @@ import { achFirstCandidate } from "../src/lib/ach.js";
 import { monthRentCharges, LEDGER_START_YM } from "../src/lib/ledger.js";
 
 import { configured, rpcSecret as rpc } from "./_supa.mjs";
+import { finalizeCall } from "./_voicecall.mjs";
 
 /* A2: first run of a month generates the Owner Intelligence Brief document
    (deterministic — src/lib/brief.js) and stores it in owner_briefs via the
@@ -92,6 +93,24 @@ export default async function handler(req, res) {
     candidates.push(...voiceLeadCandidates(calls, new Date().toISOString()));
   } catch (e) { console.warn("voice-lead scan:", e.message); }
 
+  /* Call records sweeper (2026-09-18): calls whose end event never reached
+     the brain (bridge outage, pre-redeploy bridge) are finalized from their
+     transcript here — summary, L-1 mirror, owner e-mail. Best effort. */
+  let voiceSummary = null;
+  if (process.env.VOICE_SECRET) {
+    try {
+      const pending = await rpc("voice_calls_pending", { p_secret: process.env.VOICE_SECRET, p_older_min: 20 });
+      voiceSummary = { pending: pending.length, finalized: 0, failed: 0 };
+      for (const c of pending) {
+        try {
+          await finalizeCall({ callSid: c.call_sid, line: c.line, caller: c.caller, messages: c.messages || [],
+            durationS: null, secret: process.env.VOICE_SECRET, cronSecret: secret });
+          voiceSummary.finalized++;
+        } catch (e) { voiceSummary.failed++; console.warn("voice finalize:", c.call_sid, e.message); }
+      }
+    } catch (e) { console.warn("voice sweep:", e.message); }
+  }
+
   /* H1.3 SOP reminders (replaces AC's dead Manus scheduler): materialize the
      current period's occurrence per scheduled procedure (deterministic ids +
      on-conflict-do-nothing — re-runs insert 0, the rent-charges idiom), then
@@ -150,6 +169,7 @@ export default async function handler(req, res) {
 
   const summary = { date: today, scanned: candidates.length, opened: 0, skippedExisting: 0, failed: 0, openedSources: [] };
   if (sopSummary) summary.sop = sopSummary;
+  if (voiceSummary) summary.voice = voiceSummary;
 
   await ensureMonthlyRent(units, secret, today, summary);
   const briefLine = await ensureMonthlyBrief(units, secret, today, summary);
