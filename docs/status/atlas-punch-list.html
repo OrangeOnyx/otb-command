@@ -303,7 +303,11 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Punch List — rev 13 (2026-09-18: operator state r36 read — D-4a picked (1),
+/* Cypress Command Punch List — rev 14 (2026-09-18 later: operator picks 1·2·3 on marketing → B-1 Marketing
+   sheet (flyers · overview · tenant cards · photo library · 360° tour media) + public /tour microsite BUILT + LIVE;
+   recording disclosure in both greetings, Resend chosen, SMS leg built (dormant until A2P); Schedule B gains SMK-23…24;
+   Schedule F gains F-28 / F-29, F-17 B2 un-gated).
+   Rev 13 (2026-09-18: operator state r36 read — D-4a picked (1),
    H-3 note + memo received; BUILT + LIVE the same day: voice call records (L-1 call cards with
    summary / transcript / recording / outcome, owner e-mail seam, send_leasing_package tool, D-1
    Calls KPI, M-1 back-link; migration voice_call_records APPLIED on prod) and owner-document detail
@@ -329,7 +333,7 @@ const STATE = /*__STATE__*/{"rev":36,"saved":"2026-09-18T05:00:16.693Z","smokes"
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22","smk-23","smk-24"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -637,7 +641,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Cypress Command &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 18, 2026 &middot; Rev 13</span>
+      <span class="mono mast-date">Content &middot; Sep 18, 2026 &middot; Rev 14</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Cypress Command build (formerly Orange Ocean Atlas), on one working sheet.
@@ -1000,6 +1004,37 @@ const BODY = `
             <button type="button" class="b-fail" data-smk="smk-22" data-set="fail" aria-pressed="false">Fail</button>
           </div>
           <input class="note" data-note="smk-22" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-23">
+        <div class="head"><span class="mono eyebrow">SMK-23</span><span class="name">B-1 Marketing &mdash; flyer, overview, tenant card (F-28)</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-23"></span></div>
+        <p class="desc">B-1 &rarr; <em>&#10515; Flyer</em> on Suite 131 opens a Letter page: 1,907 SF, drive times, the neighbors&rsquo; logos, the site
+        plan, the leasing QR, &ldquo;Also available: Suite 133 &mdash; combinable&rdquo;, <strong>no dollar figure anywhere</strong> &rarr; Print / Save PDF names
+        it <code>OTB-Flyer-Suite-131</code> &rarr; <em>&#10515; Overview sheet</em>: 62,883 SF &middot; 27 suites &middot; 94.9% &middot; Google 4.3 &#9733; &middot; the
+        25-logo wall &rarr; Tenant cards: pick HotWorx + &ldquo;Now open&rdquo; &rarr; a 1080-square navy card with the logo tile. Photo library: upload
+        one exterior shot into <em>Property</em>, click &#9733; &rarr; the Overview&rsquo;s hero changes on the next open.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-23 result">
+            <button type="button" class="b-open" data-smk="smk-23" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-23" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-23" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-23" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-24">
+        <div class="head"><span class="mono eyebrow">SMK-24</span><span class="name">/tour microsite &mdash; first panorama (F-29)</span><span class="chip wait">after the 131 scan</span><span class="stamp" data-stamp="smk-24"></span></div>
+        <p class="desc">orangeoceanatlas.com/tour today: Suite 131 and 133 sections, the plat as the placeholder, &ldquo;Interior 360&deg; scan coming&rdquo;,
+        Call / Text-to-tour buttons that dial the leasing line. After the Insta360 shoot: B-1 &rarr; 360&deg; tour &rarr; Suite 131 &rarr; <em>&#65291; 360&deg;
+        panorama</em> (equirectangular JPEG, 2:1) &rarr; <em>Publish manifest &rarr; /tour</em> &rarr; reload the microsite &rarr; the suite section becomes a
+        drag-to-look viewer; scroll zooms; a second panorama adds a dot. Runbook: <code>docs/marketing-b1-and-tour-2026-09-18.md</code>.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-24 result">
+            <button type="button" class="b-open" data-smk="smk-24" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-24" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-24" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-24" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
     </div>
@@ -1481,6 +1516,17 @@ const BODY = `
           Fidelity title, HUD-1) and the HotWorx / Upstream insurance agencies ride as seeds; S-1 opens with a <strong>Risk register</strong>
           (worst first) + <strong>Renewal &amp; maturity radar</strong> (soonest first); drawer sections now have a visible rule so one block
           ends where the next begins. Edit on K-1 / the drawer; the S-1 blocks follow.</p></li>
+        <li><span class="bid">F-28</span><span class="bname">B-1 Marketing sheet &mdash; flyers, overview, tenant cards, photo library <span class="chip done">built Sep 18</span></span>
+          <p class="bdesc">Your pick 1 + 3. Everything assembled from the source of truth on the fly, never hand-kept: an availability flyer
+          per vacant suite (hero photo, SF, drive times, Google rating, neighbors&rsquo; logos, site plan or filed floor plan, leasing QR,
+          combinable line), the center overview sheet (stats strip, 25-logo wall, availability box), a 1080-square tenant co-marketing
+          card (Welcome / Now open / Featured) and the photo library over the assets bucket with a persisted &#9733; hero pick per suite.
+          Print / Save PDF from each page; rates never printed. Smoke: SMK-23.</p></li>
+        <li><span class="bid">F-29</span><span class="bname">/tour microsite for 131 &middot; 133 + 360&deg; media pipeline <span class="chip done">built Sep 18 &middot; awaits scans</span></span>
+          <p class="bdesc">Your pick 2 &mdash; the old B2 item, un-gated by the Insta360 / LiDAR plan. Public page (no sign-in) with one section per
+          vacant suite: three.js 360&deg; viewer over the panoramas you upload on B-1 (public <code>tour</code> bucket, migration
+          <strong>APPLIED on prod</strong>), plat + numbers + Call / Text-to-tour until then. Manifest published from B-1 with one click.
+          QR at <code>public/qr/tour.svg</code>. Smoke: SMK-24 after the first scan.</p></li>
       </ol>
     </div>
 
@@ -1516,7 +1562,7 @@ const BODY = `
       <div class="bl-head"><span class="eyebrow">Tier 3</span><span class="bl-title">Long tail &mdash; outside the harvest track</span><span class="chip wait">deferred</span></div>
       <ol class="bl-list">
         <li><span class="bid">F-17</span><span class="bname">Twin-marketing set</span>
-          <p class="bdesc">B2 microsite (awaits new drone / camera footage) &middot; B3 fly-through &middot; B4 public scoped leasing bot &middot; C2 sandbox login &middot; C3 LinkedIn (footage-gated).</p></li>
+          <p class="bdesc">B2 microsite &rarr; <strong>built Sep 18 as F-29</strong> (scans fill it in) &middot; B3 fly-through (LiDAR mesh, once cleaned) &middot; B4 public scoped leasing bot &middot; C2 sandbox login &middot; C3 LinkedIn (footage-gated).</p></li>
         <li><span class="bid">F-18</span><span class="bname">Error-tracking upgrade</span>
           <p class="bdesc">Sentry free tier vs Vercel log drain. The no-vendor baseline (log_client_error, Client Errors card) is live.</p></li>
         <li><span class="bid">F-19</span><span class="bname">Storage folder prefixes</span>
@@ -1641,6 +1687,13 @@ const BODY = `
       (runbook <code>docs/voice-call-records-runbook-2026-09-18.md</code>): <code>cd bridge &amp;&amp; flyctl deploy</code> (until then the
       6 AM sweeper writes each call record the next morning), the two Twilio env vars for recordings, a mail key +
       <code>NOTIFY_FROM</code> for the owner / package e-mails. Still yours: H-3, H0-3, F-23, SMK-5, SMK-21 / 22.</li>
+      <li>Sep 18 (later): your three rulings landed &mdash; both greetings on prod now say &ldquo;This call may be recorded&rdquo;; Resend is
+      the mail provider (runbook step 4 rewritten as a 10-minute setup); the leasing package also goes by <strong>text</strong> &mdash; built,
+      dormant until the A2P sender exists (<code>TWILIO_SMS_FROM</code>). Then your pick <strong>1 &middot; 2 &middot; 3</strong> on marketing:
+      <strong>F-28</strong> B-1 Marketing sheet and <strong>F-29</strong> /tour microsite built and deployed the same day (739 tests, bundle
+      hash-verified). One thing to check before the demo: prod&rsquo;s <code>voice_settings</code> has both published numbers <em>blank</em>
+      even though SMK-7 was marked PASS with them &mdash; re-paste them in the sidebar <em>Phone lines&hellip;</em> panel or K-1&rsquo;s
+      &ldquo;Property lines&rdquo; block and the tenant strip stay silent.</li>
     </ol>
   </section>
 
@@ -1648,7 +1701,7 @@ const BODY = `
     <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-09-18</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">13</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">14</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>

@@ -65,6 +65,35 @@ redeploy + a phone); the pipeline was exercised by unit tests + the local review
 in-browser; L-1 is hosted-only). `docs/graph/labels.json` was already modified before this session and was left
 out of every commit. No SMS anywhere (A2P parked).
 
+### Sep 18 (later) — three rulings + marketing picks 1 · 2 · 3, all live
+
+- **Rulings acted on:** both `voice_settings` greetings on prod now end "This call may be recorded" (bridge
+  fallbacks match, commit `9cd5576`); mail provider = **Resend** (runbook step 4 rewritten as a 10-minute
+  setup); the leasing package also goes by **text** — `sendSms` in `api/_voicecall.mjs` (Twilio Messages
+  API), fired inside `send_leasing_package` once `TWILIO_SMS_FROM` or `TWILIO_MESSAGING_SERVICE_SID`
+  exists (A2P); dormant until then, and the agent only claims the legs that went out.
+- **Watch:** prod `voice_settings.tenant_number / leasing_number` were BLANK on Sep 18 despite the SMK-7
+  PASS note carrying the two numbers — re-paste in the sidebar *Phone lines…* or K-1's "Property lines"
+  block + the tenant strip stay silent.
+- **F-28 B-1 Marketing** (`src/lib/marketing.js` pure + `src/views/marketing.js`, sheet id `mkt`, code B-1
+  after K-1; `test/marketing.test.mjs`): availability flyer per vacant suite, center overview sheet,
+  1080-square tenant co-marketing cards, photo library over the assets bucket with a persisted hero pick
+  (`marketing` layer → `layer_settings`, `getMarketing()/setHero()` in store.js), 360° tour media block.
+  Every output opens as a blob page with Print / Save PDF; images absolute; rates never printed. QR SVGs
+  `public/qr/leasing.svg` + `tour.svg` (segno).
+- **F-29 /tour microsite** (`tour.html` + `src/tour/main.js`, second Vite entry → `dist/tour.html`;
+  Vercel rewrite `/tour`): three.js equirectangular viewer per suite when panoramas exist, plat + numbers
+  + Call / Text-to-tour until then; reads `manifest.json` from the new PUBLIC bucket `tour`
+  (`20260918150000_tour_bucket.sql`, APPLIED on prod via apply_migration; public select, operator write,
+  50 MB). `src/lib/tour.js` uploads + `publishManifest`. Live: orangeoceanatlas.com/tour (200).
+  Runbook `docs/marketing-b1-and-tour-2026-09-18.md` (Insta360 export settings, upload, publish).
+- **Build note:** the multi-entry build renames the app bundle `assets/main-<hash>.js` (was `index-`);
+  deploy verification now greps `assets/main-`. Prod `main-Dvs0ZL1q.js` = local build byte-for-byte
+  (commit `0296bef`). Still 12 functions. 739 tests. Punch list **Rev 14** (SMK-23 flyer/overview/card ·
+  SMK-24 first panorama; F-28 / F-29; F-17 B2 marked built as F-29).
+- **Operator next:** shoot 131 / 133 with the Insta360 (2–4 positions, equirectangular 2:1 export) →
+  B-1 upload → Publish manifest → SMK-24. Plus the earlier three (flyctl deploy · TWILIO vars · Resend).
+
 ## September 17, 2026 (evening) — F-5 RULINGS BUILT + LIVE · three migrations landed · punch list Rev 12
 
 Operator: "review handoff, artifact, saved decisions, merge what needs to be and continue building." Punch list state **r30** (saved 2026-09-18T02:34Z) read first: SMK-11 and SMK-13…17 PASSED Sep 17; **eight of nine F-5 decisions picked, all option 1** (D-4b, D-15, D-19a, D-19b, D-23a, D-23b, D-24a, D-24b); D-4a and H-3 still undecided; SMK-5 note "we are sticking with ach at moment"; the SMK-6 note is the Sep 1 one (answered Sep 4). Nothing was unmerged in git (every branch ahead 0). Built the rulings the same day on `claude/f5-rulings-2026-09-17` → **PR #9 merged (`eeb654b`, verify + CodeRabbit green) → deploy run 35300984422 succeeded → production serves `index-B3veBnIq.js` on orangeoceanatlas.com AND otb-command.vercel.app, sha1 `f843153c…` = local build byte-for-byte.** 718 tests green (was 706).
