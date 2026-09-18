@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { LAYER_DEFS, LAYER_KEYS, emptyLayers, snapshotOf, OPEX_LINES, cleanOpexYears } from "../src/lib/layers.js";
 
 const KNOWN = ["comp", "notes", "actions", "contacts", "documents",
-  "financials", "ownerSheets", "features", "cameras"];
+  "financials", "ownerSheets", "marketing", "features", "cameras"];
 
 test("registry covers exactly the known layers, unique, in order", () => {
   assert.deepEqual(LAYER_KEYS, KNOWN);

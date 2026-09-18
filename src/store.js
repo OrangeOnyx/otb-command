@@ -221,6 +221,9 @@ function applySnapshot(snap) {
   }
   if (Array.isArray(snap.ownerSheets))
     state.ownerSheets = PAGE_IDS.filter(p => snap.ownerSheets.includes(p));
+  if (snap.marketing && typeof snap.marketing === "object" && snap.marketing.hero && typeof snap.marketing.hero === "object")
+    for (const [unit, id] of Object.entries(snap.marketing.hero))
+      if (typeof id === "string" && id) state.marketing.hero[String(unit)] = id;
   if (Array.isArray(snap.features))
     state.features = snap.features
       .filter(f => f && typeof f === "object" && f.id && Number.isFinite(+f.x) && Number.isFinite(+f.y))
@@ -352,6 +355,16 @@ export function setOwnerSheet(id, on) {
   state.ownerSheets = PAGE_IDS.filter(p => s.has(p));
   persist();
   emit("ownerSheets", { id });
+}
+
+/* ---------- marketing (B-1 hero picks) ---------- */
+export function getMarketing() { return state.marketing; }
+export function setHero(unit, assetId) {
+  if (!unit) return;
+  if (assetId) state.marketing.hero[String(unit)] = String(assetId);
+  else delete state.marketing.hero[String(unit)];
+  persist();
+  emit("marketing", { unit });
 }
 
 /* ---------- financials (P-1 operating assumptions) ---------- */

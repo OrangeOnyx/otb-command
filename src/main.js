@@ -35,6 +35,7 @@ import { initSop } from "./views/sop.js";
 import { initPortfolio } from "./views/portfolio.js";
 import { initComms } from "./views/comms.js";
 import { initMatters } from "./views/matters.js";
+import { initMarketing } from "./views/marketing.js";
 import { closeDrawer } from "./views/drawer.js";
 import { COMMAND_PREVIEW } from './lib/command-evidence.js';
 
@@ -410,6 +411,7 @@ function initViews(account) {
   initPortfolio();
   initComms(account);
   initMatters(account);
+  initMarketing();
   initDashboard(); // last — its Action Queue reads the board's live cards
 }
 

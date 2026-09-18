@@ -9,7 +9,8 @@
     { "path": "/api/auto-trigger", "schedule": "0 11 * * *" }
   ],
   "rewrites": [
-    { "source": "/leasing", "destination": "/leasing.html" }
+    { "source": "/leasing", "destination": "/leasing.html" },
+    { "source": "/tour", "destination": "/tour.html" }
   ],
   "headers": [
     {

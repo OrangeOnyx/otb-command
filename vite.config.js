@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import { fileURLToPath } from "node:url";
 import { assertPreviewIsolation } from "./tools/check-preview-isolation.mjs";
 
 /* Private review evidence is read server-side on demand and never enters
@@ -9,6 +10,11 @@ export default defineConfig(({ command, mode }) => {
   const review = command === "serve" && mode !== "production" && process.env.VITE_LOCAL_REVIEW === "1";
   return {
     define: { 'import.meta.env.VITE_COMMAND_ENV': JSON.stringify(process.env.VERCEL_ENV || 'local') },
+    /* two entries: the app + the public /tour microsite (B-1, 2026-09-18) */
+    build: { rollupOptions: { input: {
+      main: fileURLToPath(new URL("./index.html", import.meta.url)),
+      tour: fileURLToPath(new URL("./tour.html", import.meta.url)),
+    } } },
     ...(review ? { server: { host: "127.0.0.1", port: 5174, strictPort: true } } : {}),
     plugins: [{
       name: "otb-local-review-evidence",

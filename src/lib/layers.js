@@ -127,6 +127,11 @@ export const LAYER_DEFS = [
     table: "layer_settings", pk: ["key"], ...singletonRows("financials") },
   { key: "ownerSheets", empty: () => [...DEFAULT_OWNER_SHEETS],
     table: "layer_settings", pk: ["key"], ...singletonRows("owner_sheets") },
+  /* B-1 marketing (2026-09-18): the operator's hero-photo pick per suite
+     (asset id in the assets bucket); flyers / overview fall back to the
+     newest photo when a pick is absent or stale. */
+  { key: "marketing", empty: () => ({ hero: {} }),
+    table: "layer_settings", pk: ["key"], ...singletonRows("marketing") },
   { key: "features", empty: () => [],
     table: "site_features", pk: ["id"], ownsRow: ownAll,
     toRows: s => (s || []).map((f, i) => ({ id: f.id, type: f.type,

@@ -894,3 +894,32 @@ body.role-vendor .ownerview { display: none !important; }
 .dw-body>.dw-sec{margin-top:26px;padding:0 0 5px;border-bottom:1.5px solid var(--ink);color:var(--ink);font-weight:600;letter-spacing:.14em;display:flex;align-items:baseline;gap:8px}
 .dw-body>.dw-sec:first-of-type{margin-top:14px}
 .dw-body>.dw-sec::before{content:"";width:6px;height:6px;background:var(--brass);flex:none;align-self:center}
+
+/* B-1 Marketing (2026-09-18): flyer tiles · overview · tenant cards · photo library · tour media */
+.mkt-card{margin-bottom:14px;padding-bottom:14px}
+.mkt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;padding:12px 18px 4px}
+.mkt-tile{border:1px solid var(--line2);border-radius:5px;overflow:hidden;background:var(--white)}
+.mkt-thumb{height:140px;background:var(--paper2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mkt-thumb img{width:100%;height:100%;object-fit:cover}
+.mkt-thumb.wide{width:260px;height:150px;flex:none;border:1px solid var(--line2);border-radius:5px}
+.mkt-thumb.sq{width:150px;height:150px;flex:none;border:1px solid var(--line2);border-radius:5px;background:#fff;padding:12px}
+.mkt-thumb.sq img{object-fit:contain}
+.mkt-thumb .mute{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:8px;text-align:center}
+.mkt-tile-b{padding:8px 10px 10px;font-size:13px;display:flex;flex-direction:column;gap:4px}
+.mkt-tile-b .chip{align-self:flex-start;cursor:pointer;margin-top:4px}
+.mkt-row{display:flex;gap:16px;align-items:flex-start;padding:12px 18px 4px;flex-wrap:wrap}
+.mkt-p{font-size:12.5px;color:var(--ink70);max-width:56ch;margin:0 0 8px;line-height:1.5}
+.mkt-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mkt-ctl select{font-family:var(--mono);font-size:11px;padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.mkt-ctl .chip{cursor:pointer}
+.mkt-lib{padding:8px 18px 4px;border-top:1px dashed var(--line2)}
+.mkt-lib-h{display:flex;gap:10px;align-items:center;font-size:13px;margin-bottom:6px;flex-wrap:wrap}
+.mkt-lib-h .chip{cursor:pointer}
+.mkt-strip{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:6px}
+.mkt-ph{position:relative;width:110px;height:82px;border:2px solid transparent;border-radius:4px;overflow:hidden;background:var(--paper2)}
+.mkt-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mkt-ph.hero{border-color:var(--brass)}
+.mkt-ph .mkt-star,.mkt-ph .mkt-del{position:absolute;top:3px;border:0;border-radius:3px;background:rgba(28,43,38,.75);color:#fff;font-size:11px;line-height:1;padding:3px 5px;cursor:pointer;opacity:0;transition:opacity .12s}
+.mkt-ph .mkt-star{left:3px} .mkt-ph .mkt-del{right:3px}
+.mkt-ph:hover .mkt-star,.mkt-ph:hover .mkt-del,.mkt-ph.hero .mkt-star{opacity:1}
+.mkt-ph.hero .mkt-star{background:var(--brass)}
