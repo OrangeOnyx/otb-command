@@ -16,8 +16,8 @@ Caller ↔ Twilio ConversationRelay ↔ Fly bridge ↔ Vercel brain ↔ Supabase
                                         │ end   ──→ voice_call_finalize: Claude Haiku summary + intent + urgency
                                         │            + unit + caller → comm_log mirror (L-1) → owner e-mail**
                                         │            → EMERGENCY calls also open an AI-1 manager thread
-Twilio ──(recording completed)──→ /api/voice-recording (signature-checked) → voice_call_recording*
-Browser ──(owner/operator session)──→ /api/voice-audio?sid=RE… → streams the mp3 from Twilio*
+Twilio ──(recording completed)──→ POST /api/voice-call (signature-checked) → voice_call_recording*
+Browser ──(owner/operator session)──→ GET /api/voice-call?sid=RE… → streams the mp3 from Twilio*
 Cron 6 AM ──→ voice_calls_pending → finalizes any call the bridge never closed out (no bridge redeploy needed)
 ```
 
@@ -85,6 +85,9 @@ Without them everything else still works: summary, transcript, outcome, L-1 card
 
 - Recordings stay at Twilio (no new bucket, no service-role key); the proxy checks the
   caller's role AND that the sid belongs to a readable `voice_calls` row.
+- Callback + proxy share ONE function (`api/voice-call.js`): the Vercel Hobby plan caps a
+  deployment at 12 serverless functions and the repo now sits exactly at 12 — the next
+  endpoint must fold into an existing file or the plan must move to Pro.
 - No SMS anywhere (A2P still parked). The package goes by e-mail or by the operator.
 - The summarizer is told to invent nothing; a hang-up with no speech records "The caller
   hung up before anything was said." and still lands in L-1.

@@ -434,3 +434,10 @@ against an absent table; the operator should re-run its Log service step.
 
 Register (Schedule E): #15, #19, #23 → DONE (16 / 25). #4 waits on D-4a;
 #24 waits on H-3.
+
+## Rulings — 2026-09-18 (punch list state r36, saved 2026-09-18T05:00Z)
+
+| Decision | Pick | Done |
+|---|---|---|
+| D-4a seam convention | **1** (Sep 17 mark, read Sep 18) | Atlas ledger is the sole Aug-2026 record; AC's 108 Aug charges + 18 draft invoices stay archive-only (`docs/harvest/ac-archive-2026-08-29/`). Nothing to import; nothing to build. Register **#4 → DONE** (17 / 25). |
+| H-3 role mapping | note only (pick still undecided) | Operator note: owners = Adam, Catherine, Alicia and one brother Abdalla; everyone else = viewer with temporary access; vendor Brian Zorn; no tenants yet. Awaits the mapping mark; #24 still waits on H-3. |
