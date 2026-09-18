@@ -187,7 +187,7 @@ async function playRecording(box) {
   try {
     const session = (await sb.auth.getSession()).data.session;
     if (!session) throw new Error("session expired");
-    const r = await fetch("/api/voice-audio?sid=" + encodeURIComponent(box.dataset.rec), {
+    const r = await fetch("/api/voice-call?sid=" + encodeURIComponent(box.dataset.rec), {
       headers: { Authorization: "Bearer " + session.access_token },
     });
     if (!r.ok) {

@@ -53,7 +53,9 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - if: steps.creds.outputs.ready == 'true'
         name: Deploy
-        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" | tee deploy-url.txt
+        run: |
+          set -o pipefail
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" | tee deploy-url.txt
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - if: steps.creds.outputs.ready == 'true'

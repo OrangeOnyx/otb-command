@@ -1,6 +1,6 @@
 /* Voice call records — server half (2026-09-18). Shared by the brain
    (/api/voice-agent: call start / end events), the recording callback
-   (/api/voice-recording), the audio proxy (/api/voice-audio) and the daily
+   + audio proxy (/api/voice-call: POST callback, GET stream) and the daily
    sweeper in auto-trigger.mjs. Pure derivations live in src/lib/voicecall.js.
 
    Twilio is OPTIONAL: TWILIO_ACCOUNT_SID + TWILIO_AUTH_TOKEN turn on call
@@ -17,6 +17,9 @@ import {
 } from "../src/lib/voicecall.js";
 
 export const PUBLIC_ORIGIN = (process.env.VOICE_PUBLIC_ORIGIN || "https://otb-command.vercel.app").replace(/\/$/, "");
+/* Twilio posts recording status here (one function serves callback + audio —
+   the Hobby plan's 12-function cap; see api/voice-call.js) */
+export const RECORDING_CALLBACK = PUBLIC_ORIGIN + "/api/voice-call";
 export const APP_URL = (process.env.APP_PUBLIC_URL || "https://otb.cypresscommand.com").replace(/\/$/, "");
 const MODEL = process.env.VOICE_SUMMARY_MODEL || process.env.VOICE_MODEL || "claude-haiku-4-5-20251001";
 
@@ -30,7 +33,7 @@ const twilioAuth = () => "Basic " + Buffer.from(process.env.TWILIO_ACCOUNT_SID +
 export async function startRecording(callSid, secret) {
   if (!twilioConfigured() || !/^CA[0-9a-f]{32}$/i.test(callSid)) return { ok: false, reason: "not configured" };
   const form = new URLSearchParams({
-    RecordingStatusCallback: PUBLIC_ORIGIN + "/api/voice-recording",
+    RecordingStatusCallback: RECORDING_CALLBACK,
     RecordingStatusCallbackEvent: "completed absent",
     RecordingChannels: "dual",
     Trim: "trim-silence",

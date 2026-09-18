@@ -303,7 +303,12 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Punch List — rev 12 (2026-09-17: operator state r30 read — SMK-11 + SMK-13…17
+/* Cypress Command Punch List — rev 13 (2026-09-18: operator state r36 read — D-4a picked (1),
+   H-3 note + memo received; BUILT + LIVE the same day: voice call records (L-1 call cards with
+   summary / transcript / recording / outcome, owner e-mail seam, send_leasing_package tool, D-1
+   Calls KPI, M-1 back-link; migration voice_call_records APPLIED on prod) and owner-document detail
+   cards + S-1 risk register / renewal radar (the memo); Schedule B gains SMK-21…22; register #4 → 17/25).
+   Rev 12 (2026-09-17: operator state r30 read — SMK-11 + SMK-13…17
    passed, eight of nine F-5 rulings picked (all option 1) and BUILT the same day: title exceptions +
    pylon register + property identifiers on K-1, signin_log + D-1 sign-in KPI, late-fee source cited;
    hvac_contracts + property_identifiers (owner = Belle Realty) + signin_log migrations APPLIED on prod;
@@ -320,11 +325,11 @@
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":30,"saved":"2026-09-18T02:34:14.543Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"we are sticking with ach at moment","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"pass","note":"","at":"Sep 17"},"smk-12":{"s":"pass","note":"","at":"Sep 11"},"smk-13":{"s":"pass","note":"","at":"Sep 17"},"smk-14":{"s":"pass","note":"","at":"Sep 17"},"smk-15":{"s":"pass","note":"","at":"Sep 17"},"smk-16":{"s":"pass","note":"","at":"Sep 17"},"smk-17":{"s":"pass","note":"","at":"Sep 17"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"},"d4a":{"pick":"","note":"","at":""},"d4b":{"pick":"1","note":"","at":"Sep 17"},"d15":{"pick":"1","note":"","at":"Sep 17"},"d19a":{"pick":"1","note":"","at":"Sep 17"},"d19b":{"pick":"1","note":"","at":"Sep 17"},"d23a":{"pick":"1","note":"","at":"Sep 17"},"d23b":{"pick":"1","note":"","at":"Sep 17"},"d24a":{"pick":"1","note":"","at":"Sep 17"},"d24b":{"pick":"1","note":"","at":"Sep 17"}},"memo":{"text":"","at":""}}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":36,"saved":"2026-09-18T05:00:16.693Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"we are sticking with ach at moment","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"pass","note":"","at":"Sep 17"},"smk-12":{"s":"pass","note":"","at":"Sep 11"},"smk-13":{"s":"pass","note":"","at":"Sep 17"},"smk-14":{"s":"pass","note":"","at":"Sep 17"},"smk-15":{"s":"pass","note":"","at":"Sep 17"},"smk-16":{"s":"pass","note":"","at":"Sep 17"},"smk-17":{"s":"pass","note":"","at":"Sep 17"},"smk-18":{"s":"pass","note":"","at":"Sep 17"},"smk-19":{"s":"pass","note":"","at":"Sep 17"},"smk-20":{"s":"pass","note":"","at":"Sep 17"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"Adam Abdalla, Catherine Abdalla, Brother Abdalla, and Alicia Abdalla are the only owners. Everyone else is just a viewer with temporary access, and the only vendor I think that has signed up so far is Brian Zorn. No tenants have signed up yet.","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"},"d4a":{"pick":"1","note":"","at":"Sep 17"},"d4b":{"pick":"1","note":"","at":"Sep 17"},"d15":{"pick":"1","note":"","at":"Sep 17"},"d19a":{"pick":"1","note":"","at":"Sep 17"},"d19b":{"pick":"1","note":"","at":"Sep 17"},"d23a":{"pick":"1","note":"","at":"Sep 17"},"d23b":{"pick":"1","note":"","at":"Sep 17"},"d24a":{"pick":"1","note":"","at":"Sep 17"},"d24b":{"pick":"1","note":"","at":"Sep 17"}},"memo":{"text":"All right, Claude. What I wanted to say is this: in the asset command, whenever you would look at an owner document, it provided a lot more detail than you do, and the sections were a little bit clearer and more clear-cut. For instance, if you look at the unit drawer that you've got, it's hard to tell where one piece of information starts and another begins.\n\nI don't know. I think Assecon did a very good job, for instance, on the title policy or the insurance policies, listing information about who the broker was, who the tenant was, and the information it gave was a little bit more than you did. I wish we could get a little bit of that look and feel of the information incorporated into this.\n\nYou do very well on some other things. I don't know if we're going to need to go through that one by one or what, but I need to step away. I want to give you a goal of just knocking out everything you can because I'm meeting with somebody tomorrow, and I want to demo this.","at":"Sep 18"}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -632,7 +637,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Cypress Command &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 17, 2026 &middot; Rev 12</span>
+      <span class="mono mast-date">Content &middot; Sep 18, 2026 &middot; Rev 13</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Cypress Command build (formerly Orange Ocean Atlas), on one working sheet.
@@ -647,7 +652,7 @@ const BODY = `
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; bridge numbers published Sep 11 (SMK-7 passed) &mdash; AC-side forward / retire / notice remain (F-11)</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">13</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
-      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>16 / 25</b><small>AC retires only at 25 / 25 green &middot; +3 on Sep 17 (#15 &middot; #19 &middot; #23 closed by your rulings)</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>17 / 25</b><small>AC retires only at 25 / 25 green &middot; +1 on Sep 18 (#4 closed by D-4a = option 1) &middot; #24 waits on H-3</small></div>
     </div>
   </header>
 
@@ -963,6 +968,38 @@ const BODY = `
             <button type="button" class="b-fail" data-smk="smk-20" data-set="fail" aria-pressed="false">Fail</button>
           </div>
           <input class="note" data-note="smk-20" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-21">
+        <div class="head"><span class="mono eyebrow">SMK-21</span><span class="name">Voice call record &mdash; tenant line (F-26)</span><span class="chip open">3 min &middot; after flyctl deploy</span><span class="stamp" data-stamp="smk-21"></span></div>
+        <p class="desc">Call the tenant line, report a fake AC issue for 105 with a callback number, hang up &rarr; within a minute
+        L-1 shows a <strong>Maintenance &middot; Urgent</strong> row for unit 105 with the &ldquo;Calls &middot; 7 days&rdquo; strip on top &rarr; expand
+        &rarr; summary, &ldquo;Work order vr-&hellip; &rarr;&rdquo;, the Caller / Agent transcript &rarr; <em>&#10003; Mark handled</em> &rarr; D-1 shows
+        &ldquo;Calls &middot; 7d&rdquo;. <em>&#9654; Play recording</em> appears once <code>TWILIO_ACCOUNT_SID</code> / <code>TWILIO_AUTH_TOKEN</code> are in
+        the Vercel env (runbook step 3); the owner e-mail lands once a mail key + <code>NOTIFY_FROM</code> are (step 4). Until the bridge is
+        redeployed (<code>cd bridge &amp;&amp; flyctl deploy</code>) the 6 AM sweeper writes the record instead &mdash; same card, next morning.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-21 result">
+            <button type="button" class="b-open" data-smk="smk-21" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-21" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-21" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-21" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-22">
+        <div class="head"><span class="mono eyebrow">SMK-22</span><span class="name">Leasing package by phone (F-26)</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-22"></span></div>
+        <p class="desc">Call the leasing line, ask for the package by e-mail, spell an address, decline a tour &rarr; the agent reads the address
+        back and says the package is on its way ONLY if mail is configured (otherwise &ldquo;Adam will send it today&rdquo;) &rarr; L-1 shows a
+        <strong>Leasing</strong> row: &ldquo;Lead saved to W-1 pipeline&rdquo; + &ldquo;Leasing package e-mailed to &hellip;&rdquo; (or &ldquo;send pending&rdquo;)
+        &rarr; W-1 pipeline strip carries the lead (stage inquiry, source voice).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-22 result">
+            <button type="button" class="b-open" data-smk="smk-22" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-22" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-22" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-22" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
     </div>
@@ -1322,7 +1359,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule E</span>
       <h2>Capability Register</h2>
-      <span class="mono sched-count">the H3 gate &middot; 16 / 25 green</span>
+      <span class="mono sched-count">the H3 gate &middot; 17 / 25 green</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Every AC capability and its Atlas destination &mdash; 25 rows. Zero usage never waives a row;
@@ -1332,7 +1369,7 @@ const BODY = `
       <div class="cell port"    title="1 &middot; Voice intake &rarr; history in L-1 (62 rows); number cutover waits on H-2">1</div>
       <div class="cell port"    title="2 &middot; Work orders &rarr; data in M-1; vendor upload-link UX open">2</div>
       <div class="cell done"    title="3 &middot; SOP system &rarr; O-1 Operations (PORTED Aug 25)">3</div>
-      <div class="cell parity"  title="4 &middot; Rent tracking + AR &rarr; Ledger + P-1 (PARITY verified Sep 11: 313 rows / $1,133,492.20 match; D-4b decided Sep 17 &mdash; late-fee schedule cited to lease &sect;4.01(C); Aug-2026 seam D-4a still owed)">4</div>
+      <div class="cell done"    title="4 &middot; Rent tracking + AR &rarr; DONE Sep 18: D-4a = option 1 (Atlas ledger is the sole Aug-2026 record; AC's 108 Aug charges + 18 drafts stay archive-only) &middot; D-4b late-fee schedule cited to lease &sect;4.01(C) &middot; parity verified Sep 11 (313 rows / $1,133,492.20)">4</div>
       <div class="cell done"    title="5 &middot; Invoices + late fees &rarr; BUILT Sep 11 (F-1): INV-YYYYMM-unit numbering, printable invoice, sent / void state, paid derived from the ledger; table on prod; deploys with the PR">5</div>
       <div class="cell done"    title="6 &middot; CAM reconciliation &rarr; BUILT Sep 11 (F-2): per-tenant caps from the lease abstracts, prior-year actuals, true-up, printable annual statement; no base-year clause exists">6</div>
       <div class="cell rebuild" title="7 &middot; Accounting / QBO &rarr; new accounting layer (REBUILD)">7</div>
@@ -1368,7 +1405,7 @@ const BODY = `
         <li><b>1</b> Voice intake <span class="st b">PORT</span></li>
         <li><b>2</b> Work orders + vendor uploads <span class="st b">PORT</span></li>
         <li><b>3</b> SOP system <span class="st g">DONE</span></li>
-        <li><b>4</b> Rent tracking + AR <span class="st g">PARITY</span></li>
+        <li><b>4</b> Rent tracking + AR <span class="st g">DONE</span></li>
         <li><b>5</b> Invoices + late fees <span class="st g">DONE</span></li>
         <li><b>6</b> CAM reconciliation <span class="st g">DONE</span></li>
         <li><b>7</b> Accounting / QuickBooks <span class="st s">REBUILD</span></li>
@@ -1422,6 +1459,28 @@ const BODY = `
           <p class="bdesc"><code>docs/parity-reconciliation-2026-09-11.md</code>: #20 DONE; #4 / #15 / #19 / #23 green-with-note; #24 OPEN. Closed: 2019 appraisal on S-1, live concierge digest, identifiers migration written (held on D-23b). Nine decisions now in Schedule D. Smoke: SMK-17.</p></li>
         <li><span class="bid">F-25</span><span class="bname">F-5 rulings &rarr; five builds <span class="chip done">built Sep 17</span></span>
           <p class="bdesc">Your eight option-1 picks, acted on the same day: D-19a title exceptions (13 instruments in <code>instruments.json</code> + K-1 block) &middot; D-19b <code>pylon.json</code> + K-1 pylon card (pylon.py reads it; SVGs byte-identical) &middot; D-23a K-1 Property identifiers card &middot; D-23b owner row corrected to Belle Realty, then <strong>loaded on prod</strong> (25 rows, 12 blank) &middot; D-24b <code>signin_log</code> + stamped RPC + D-1 &ldquo;Sign-ins (7d)&rdquo; KPI &middot; D-4b late-fee schedule cited to lease &sect;4.01(C) &middot; D-15 / D-24a: no build (by pick). Record: <code>docs/parity-reconciliation-2026-09-11.md</code> &sect;Rulings. Smokes: SMK-18, SMK-19.</p></li>
+        <li><span class="bid">F-26</span><span class="bname">Voice call records &mdash; listen, read, work order, package, e-mail <span class="chip done">built Sep 18</span></span>
+          <p class="bdesc">Your Sep 18 ask. Correction first: Asset Command never recorded or transcribed a call &mdash; its ElevenLabs agents posted
+          structured intake rows + a push, and &ldquo;Package Sent&rdquo; was a label (nothing was ever sent). Built here: the bridge posts call
+          start / end; the brain summarizes + classifies every call (Claude Haiku: intent &middot; urgency &middot; unit &middot; caller), keeps the full
+          transcript, records the outcome (work order &middot; tour &middot; W-1 lead &middot; package), mirrors it into L-1 as a call card (chips, outcome
+          links, &#9654; recording, Caller / Agent transcript, Mark handled), e-mails every allow-listed owner + operator (Resend or SendGrid
+          key + <code>NOTIFY_FROM</code>), opens an AI-1 manager thread on emergencies. Recording = Twilio per-call recording once
+          <code>TWILIO_ACCOUNT_SID</code> / <code>TWILIO_AUTH_TOKEN</code> exist, streamed through the owner/operator-gated
+          <code>/api/voice-call</code> proxy (no service-role key, no new bucket). New leasing tool <code>send_leasing_package</code> saves the
+          lead to <code>deals</code> and e-mails the package when the caller gave an address &mdash; the spoken reply never overclaims. Daily
+          cron sweeps calls the bridge never closed. D-1 &ldquo;Calls &middot; 7d&rdquo; KPI; M-1 &ldquo;&#128222; from call&rdquo; back-link.
+          Migration <code>voice_call_records</code> <strong>APPLIED on prod Sep 18</strong>. Runbook:
+          <code>docs/voice-call-records-runbook-2026-09-18.md</code> &mdash; yours: <code>flyctl deploy</code>, the two Twilio vars, the mail key.
+          Smokes: SMK-21, SMK-22.</p></li>
+        <li><span class="bid">F-27</span><span class="bname">Owner-document detail cards + S-1 risk register <span class="chip done">built Sep 18</span></span>
+          <p class="bdesc">Your memo (AC&rsquo;s owner documents had more detail and clearer sections). Document records now carry counterparty
+          (carrier / lender / title co / agency) &middot; reference &middot; amount + kind (premium / coverage / principal / insured) &middot; effective
+          &middot; renews / expires &middot; matures &middot; status (active / expired / superseded / reference) &middot; risk flag + note; K-1 and the unit
+          drawer render them as sectioned cards; the six AC Property Vault records (Hartford liability, Lloyd&rsquo;s property, WC, Investar loan,
+          Fidelity title, HUD-1) and the HotWorx / Upstream insurance agencies ride as seeds; S-1 opens with a <strong>Risk register</strong>
+          (worst first) + <strong>Renewal &amp; maturity radar</strong> (soonest first); drawer sections now have a visible rule so one block
+          ends where the next begins. Edit on K-1 / the drawer; the S-1 blocks follow.</p></li>
       </ol>
     </div>
 
@@ -1570,14 +1629,26 @@ const BODY = `
       <code>G:\\My Drive\\00 OTB\\</code>. Rebuild drill documented in the spec.</li>
       <li>New-capability north star: &ldquo;open Atlas, never open another program&rdquo; &mdash;
       N-1 Matters &amp; Planning, N-2 meeting-notes ingestion, N-3 accounting home ride Wave H2.5.</li>
+      <li>Sep 18 snapshot: state r36 read &mdash; <strong>D-4a = option 1</strong> (acted on: register #4 done, nothing imported),
+      SMK-18 / 19 / 20 passed, your H-3 note received (owners = Adam, Catherine, Alicia and one brother Abdalla; everyone else a
+      viewer; vendor Brian Zorn; no tenants) &mdash; H-3 still wants the <em>Mapping decided</em> mark, and the brother&rsquo;s name /
+      e-mail if he should be invited. Your memo and chat ask built the same day as <strong>F-26</strong> (voice call records) and
+      <strong>F-27</strong> (owner-document cards + S-1 register): PR #10 merged, deploy verified, migration
+      <code>voice_call_records</code> applied on prod through Claude&rsquo;s door, 733 tests green. One stumble, fixed the same hour:
+      the first deploy died on Vercel&rsquo;s Hobby cap (12 serverless functions &mdash; the two new voice endpoints made 13) and the
+      workflow&rsquo;s <code>| tee</code> had swallowed the failure; recording callback + audio proxy now share <code>api/voice-call.js</code>
+      (exactly 12) and the workflow fails loud (<code>pipefail</code>). Three things only you can do
+      (runbook <code>docs/voice-call-records-runbook-2026-09-18.md</code>): <code>cd bridge &amp;&amp; flyctl deploy</code> (until then the
+      6 AM sweeper writes each call record the next morning), the two Twilio env vars for recordings, a mail key +
+      <code>NOTIFY_FROM</code> for the owner / package e-mails. Still yours: H-3, H0-3, F-23, SMK-5, SMK-21 / 22.</li>
     </ol>
   </section>
 
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-17</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">12</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-18</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">13</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
