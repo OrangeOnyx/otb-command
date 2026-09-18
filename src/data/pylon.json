@@ -1,0 +1,139 @@
+{
+  "_comment": "D-19b option 1 (operator 2026-09-17): the monument/pylon panel register as DATA. panel→unit is the operator's physical sign order (was PANEL_UNIT in tools/pylon.py; the tool now reads this file). Panel schedule per the sign: P1 2x8 · P2 4x8 (anchor) · P3–P14 2x4 pairs. AC kept 28 pylon_slots across two signs; the second sign (c3fb7756…, 14 vacant slots, no tenant) was the AC example sign and is NOT carried. acSlot = AC slot number on the real sign (1d805bb9…). physicalReads records what the installed panel actually says when it differs from the tenant of record.",
+  "source": "tools/pylon.py PANEL_UNIT (operator) + ac:pylon_slots sign 1d805bb9-efa4-46e8-8a81-c924bc07c0b8 (docs/harvest/ac-archive-2026-08-29/pylon_slots.json)",
+  "sign": {
+    "name": "Monument sign — Johnston St frontage",
+    "panels": 14,
+    "schedule": "P1 2x8 · P2 4x8 · P3–P14 2x4 pairs",
+    "zoning": "Entry 99-041054 (title exception #25)"
+  },
+  "panels": [
+    {
+      "panel": "P1",
+      "size": "2x8",
+      "unit": "107",
+      "status": "occupied",
+      "acSlot": 1,
+      "acStatus": "occupied",
+      "note": "AC slot 1 carried no tenant; Atlas record = 107"
+    },
+    {
+      "panel": "P2",
+      "size": "4x8",
+      "unit": "149",
+      "status": "occupied",
+      "acSlot": 2,
+      "acStatus": "occupied",
+      "note": "anchor panel"
+    },
+    {
+      "panel": "P3",
+      "size": "2x4",
+      "unit": "123",
+      "status": "occupied",
+      "acSlot": 3,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P4",
+      "size": "2x4",
+      "unit": "139",
+      "status": "occupied",
+      "acSlot": 4,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P5",
+      "size": "2x4",
+      "unit": "109",
+      "status": "occupied",
+      "acSlot": 5,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P6",
+      "size": "2x4",
+      "unit": "125",
+      "status": "occupied",
+      "acSlot": 6,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P7",
+      "size": "2x4",
+      "unit": "115",
+      "status": "occupied",
+      "acSlot": 7,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P8",
+      "size": "2x4",
+      "unit": "129",
+      "status": "occupied",
+      "acSlot": 8,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P9",
+      "size": "2x4",
+      "unit": "119.5",
+      "status": "occupied",
+      "acSlot": 9,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P10",
+      "size": "2x4",
+      "unit": "111",
+      "status": "occupied",
+      "acSlot": 10,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P11",
+      "size": "2x4",
+      "unit": "143",
+      "status": "occupied",
+      "acSlot": 11,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P12",
+      "size": "2x4",
+      "unit": "117.5",
+      "status": "occupied",
+      "acSlot": 12,
+      "acStatus": "occupied",
+      "note": ""
+    },
+    {
+      "panel": "P13",
+      "size": "2x4",
+      "unit": "145",
+      "status": "occupied",
+      "acSlot": 13,
+      "acStatus": "occupied",
+      "physicalReads": "Boulevard Nutrition",
+      "note": "Boulevard Nutrition closed; space taken by Upstream Rehabilitation (Unit 145). PHYSICAL PANEL STILL READS \"Boulevard Nutrition\" — reprint needed."
+    },
+    {
+      "panel": "P14",
+      "size": "2x4",
+      "unit": "119",
+      "status": "occupied",
+      "acSlot": 14,
+      "acStatus": "occupied",
+      "note": ""
+    }
+  ]
+}

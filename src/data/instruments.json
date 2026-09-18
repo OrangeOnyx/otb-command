@@ -15,8 +15,18 @@
     "requirement": "monthly PM contract must stay active"
   },
   "exclusives": [
-    { "unit": "129", "tenant": "HotWorx", "signed": "Mar 2024", "watch": "fitness" },
-    { "unit": "135A", "tenant": "C. Wolf", "signed": "Nov 2024", "watch": "barber" }
+    {
+      "unit": "129",
+      "tenant": "HotWorx",
+      "signed": "Mar 2024",
+      "watch": "fitness"
+    },
+    {
+      "unit": "135A",
+      "tenant": "C. Wolf",
+      "signed": "Nov 2024",
+      "watch": "barber"
+    }
   ],
   "appraisal2019": {
     "_comment": "Register row #19 closure (F-5, 2026-09-11). Every figure verbatim from the AC archive row docs/harvest/ac-archive-2026-08-29/appraisals.json (MANIFEST md5 a5c495db881ad2bb9a8f8e2cc1273daf). The PDF binary (fileKey 2019Appraisal-101-149ArnouldBlvd_953afecd.pdf) stays in AC storage pending the F-9 keyed storage copy; figures below are the archive row's, not re-read from the PDF. Historical reference only — appraiser's 2019 stabilized projections, not current rent-roll actuals.",
@@ -45,5 +55,102 @@
     "file": "2019Appraisal-101-149ArnouldBlvd.pdf",
     "fileLocation": "AC storage — fileKey 2019Appraisal-101-149ArnouldBlvd_953afecd.pdf (binary not yet copied; F-9)",
     "source": "ac:appraisals:003b088b-8ea5-4e87-9ef5-dc22e24c888c"
+  },
+  "titleExceptions": {
+    "_comment": "D-19a option 1 (operator 2026-09-17): the recorded-instrument set of record, VERBATIM from the AC archive recorded_agreements.json (13 rows, MANIFEST 2026-08-29). registerDoc points at the K-1 document-register row that already carries the instrument (directory.json propertyDocuments); null = of record only, no Atlas document yet. The owner title policy is still MISSING (identifier 'Owner policy status') — reconcile these against it when it is ordered.",
+    "source": "ac:recorded_agreements (docs/harvest/ac-archive-2026-08-29/recorded_agreements.json)",
+    "items": [
+      {
+        "entryNumber": "(2019 executed)",
+        "title": "Access & Parking Easement — Our Savior's Church ($350/mo, 25-yr, supersedes 2015 agmt; incl. liquor waiver §3a)",
+        "titleExceptionNo": null,
+        "status": "Active — on file",
+        "registerDoc": "pd:church"
+      },
+      {
+        "entryNumber": "(2020 executed)",
+        "title": "Reciprocal Access & Parking Easement — JD Bank ($250/mo to Belle, exp 2034, supersedes 2004 Whitney agmt; Belle gains 13 bank spaces)",
+        "titleExceptionNo": null,
+        "status": "Active — on file",
+        "registerDoc": "pd:jdbank"
+      },
+      {
+        "entryNumber": "03-060864",
+        "title": "Cross Easement and Servitude Agreement",
+        "titleExceptionNo": 27,
+        "status": "Applies",
+        "registerDoc": null
+      },
+      {
+        "entryNumber": "2004-00057697",
+        "title": "Reciprocal Access & Parking Easement — Belle↔Whitney National Bank",
+        "titleExceptionNo": 28,
+        "status": "SUPERSEDED by 2020 JD Bank agreement",
+        "registerDoc": "pd:jdbank"
+      },
+      {
+        "entryNumber": "98-18247",
+        "title": "Zoning Variance (Parking) — original",
+        "titleExceptionNo": 23,
+        "status": "Applies; revised by #24",
+        "registerDoc": null
+      },
+      {
+        "entryNumber": "99-11797",
+        "title": "Zoning Variance (Parking) — revised",
+        "titleExceptionNo": 24,
+        "status": "Applies — current variance of record",
+        "registerDoc": "pd:variance"
+      },
+      {
+        "entryNumber": "99-041054",
+        "title": "Zoning (Signage)",
+        "titleExceptionNo": 25,
+        "status": "Applies",
+        "registerDoc": null
+      },
+      {
+        "entryNumber": "97-012420",
+        "title": "Title exception #20",
+        "titleExceptionNo": 20,
+        "status": "Applies",
+        "registerDoc": null
+      },
+      {
+        "entryNumber": "286167",
+        "title": "Title exception #11 (Church property plat reference)",
+        "titleExceptionNo": 11,
+        "status": "Applies",
+        "registerDoc": null
+      },
+      {
+        "entryNumber": "445327",
+        "title": "Title exception #13",
+        "titleExceptionNo": 13,
+        "status": "Applies",
+        "registerDoc": null
+      },
+      {
+        "entryNumber": "577566",
+        "title": "10' City of Lafayette Electric Easement (#14)",
+        "titleExceptionNo": 14,
+        "status": "Applies",
+        "registerDoc": "pd:electric"
+      },
+      {
+        "entryNumber": "77-000785",
+        "title": "15' Temporary Drainage Easement",
+        "titleExceptionNo": null,
+        "status": "Expired",
+        "registerDoc": "pd:drainage"
+      },
+      {
+        "entryNumber": "77-0783",
+        "title": "15' Temporary Drainage Easement (Marie Antoinette side)",
+        "titleExceptionNo": null,
+        "status": "Expired",
+        "registerDoc": "pd:drainage"
+      }
+    ]
   }
 }

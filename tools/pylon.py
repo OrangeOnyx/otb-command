@@ -130,9 +130,10 @@ TEN={
  "P13":(["Upstream","Rehabilitation"],"#FFFFFF","#1F5132",SANS,False,22),
  "P14":(["OUPAC","LOANS"],"#1a1a1a","#E8C457",SANS,True,30),
 }
-# panel -> unit (the operator's physical sign order; P13 = Upstream Rehab, replaced Blvd Nutrition)
-PANEL_UNIT={"P1":"107","P2":"149","P3":"123","P4":"139","P5":"109","P6":"125","P7":"115",
-            "P8":"129","P9":"119.5","P10":"111","P11":"143","P12":"117.5","P13":"145","P14":"119"}
+# panel -> unit: single source is src/data/pylon.json (D-19b, 2026-09-17) — the same
+# register the K-1 pylon card renders. P13 = Upstream Rehab (replaced Blvd Nutrition).
+PYLON=json.load(open(os.path.join(ROOT,"src","data","pylon.json"),encoding="utf-8"))
+PANEL_UNIT={p["panel"]:p["unit"] for p in PYLON["panels"] if p.get("unit")}
 LOGO_DIR=os.path.join(ASSETS,"tenant-logos")
 LOGO_IDX=json.load(open(os.path.join(LOGO_DIR,"_index.json"),encoding="utf-8")) if os.path.exists(os.path.join(LOGO_DIR,"_index.json")) else {}
 MIME={".png":"png",".jpg":"jpeg",".jpeg":"jpeg",".webp":"webp",".gif":"gif"}

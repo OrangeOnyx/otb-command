@@ -9,7 +9,14 @@
        ({type:"void", voidOf:<id>}) — nothing is ever updated or deleted
    Every function is pure; Supabase/store wiring lives with the view layer. */
 
-export const OTB_LATE_POLICY = { graceDays: 5, flatFee: 100, perDayFee: 25 }; // donor constants (OTB standard schedule)
+/* Policy of record — ruling D-4b option 1 (operator 2026-09-17): keep this
+   schedule and cite its source. Source: OTB standard lease, Section 4.01(C)
+   Payment — "Amounts not received by day five incur $100 plus $25 per day
+   beginning day six" (src/data/lease-body.json, the executed-lease body).
+   The AC seed's $50 flat / $0 per day was an unsourced default, and AC
+   double-ran every Aug-2026 fee (a bug, not policy). test/ledger.test.mjs
+   pins this object to the lease text. */
+export const OTB_LATE_POLICY = { graceDays: 5, flatFee: 100, perDayFee: 25 };
 
 export const DEBIT_TYPES = ["charge", "late_fee", "nsf", "adjustment"];
 export const CREDIT_TYPES = ["payment", "credit", "write_off"];

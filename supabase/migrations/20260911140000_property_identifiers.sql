@@ -1,4 +1,7 @@
--- NOT YET APPLIED (written 2026-09-11, F-5 register row #23) — apply when the SQL door is open.
+-- APPLIED on prod 2026-09-17 via MCP apply_migration (server history 'property_identifiers'),
+-- after operator ruling D-23b option 1 (2026-09-17): Owner Entity (Legal Name) corrected to
+-- Belle Realty of Lafayette, LLC before load (AC value "On The Boulevard, LLC" kept in the
+-- source stamp). Written 2026-09-11, F-5 register row #23.
 -- AC property_identifiers (25 label/value rows, archive
 -- docs/harvest/ac-archive-2026-08-29/property_identifiers.json, MANIFEST md5
 -- 4af6f163ddd3dc32358036889e3f8897) → properties.facts for the OTB row.
@@ -30,10 +33,10 @@ set facts = coalesce((
     "kind": "identifier",
     "group": "Entity & Legal",
     "label": "Owner Entity (Legal Name)",
-    "value": "On The Boulevard, LLC",
+    "value": "Belle Realty of Lafayette, LLC",
     "sortOrder": 0,
-    "asOf": "2026-07-31",
-    "source": "ac:property_identifiers:67196655-45ce-4912-b8af-63c204fb97bd"
+    "asOf": "2026-09-17",
+    "source": "ac:property_identifiers:67196655-45ce-4912-b8af-63c204fb97bd; corrected per D-23b"
   },
   {
     "key": "identifier:entity-legal:property-manager-contract",

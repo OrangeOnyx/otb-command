@@ -8,7 +8,7 @@ import { LAYER_DEFS } from "./lib/layers.js";
 import { SyncQueue } from "./lib/statesync.js";
 import { startRealtime } from "./lib/realtime.js";
 import { initErrorLog } from "./lib/errlog.js";
-import { logClientError } from "./lib/remote.js";
+import { logClientError, logSignin } from "./lib/remote.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
 import { PAGES, DEFAULT_PAGE, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
@@ -552,6 +552,9 @@ async function boot() {
     /* B-4 error beacon: authed sessions report uncaught errors (deduped,
        session-capped client-side; hourly-capped server-side). */
     initErrorLog(logClientError);
+    /* D-24b sign-in audit: one stamped row per session start (the RPC
+       dedupes reloads inside 10 min); best-effort, never blocks boot. */
+    logSignin({ page: (location.hash || "").slice(0, 200), ua: navigator.userAgent.slice(0, 300) });
     if (account.role === "operator" || account.role === "owner")
       initPropertySwitcher();
     if (account.role === "operator" || account.role === "owner")
