@@ -53,14 +53,20 @@ Without them everything else still works: summary, transcript, outcome, L-1 card
 3. **Recording (optional, recommended).** Vercel → Project → Settings → Environment
    Variables (Production): `TWILIO_ACCOUNT_SID` (Console → Account Info) and
    `TWILIO_AUTH_TOKEN`. Redeploy (any push to master, or Actions → deploy → Run).
-   Louisiana is one-party consent; if you want callers told, add "Calls may be recorded"
-   to the two greetings (`voice_settings.greeting_tenant / greeting_leasing` — sidebar
-   settings UI is still queued, SQL editor works).
-4. **E-mail (optional, recommended).** One of:
-   - Resend: `RESEND_API_KEY` + `NOTIFY_FROM="Cypress Command <notices@<your verified domain>>"`
-   - SendGrid: `SENDGRID_API_KEY` + `NOTIFY_FROM` (same shape)
-   The From domain must be verified at the provider or the send bounces. Nothing sends
-   until both are present; the app never fails a call over mail.
+   Operator ruling Sep 18: callers ARE told. Both greetings on prod now read "… This call may
+   be recorded. How can I help?" (`voice_settings` updated 2026-09-18; the bridge re-reads
+   greetings every 10 min and its hardcoded fallbacks carry the same line).
+4. **E-mail — Resend (operator ruling Sep 18: "whatever is easiest").** resend.com → sign up →
+   Domains → add `cypresscommand.com` (or the subdomain you prefer) → paste the three DNS
+   records at GoDaddy → API Keys → create → Vercel Production env:
+   `RESEND_API_KEY` + `NOTIFY_FROM="Cypress Command <notices@cypresscommand.com>"`. ~10 minutes,
+   free tier covers this volume. (SendGrid works too: `SENDGRID_API_KEY` + `NOTIFY_FROM`.)
+   Nothing sends until both are present; the app never fails a call over mail.
+4b. **SMS leg (ruling Sep 18: the package also goes by text).** Built, env-gated. Once the
+   A2P 10DLC registration clears in the Twilio console, set `TWILIO_SMS_FROM` (the tenant or
+   leasing line in E.164) — or `TWILIO_MESSAGING_SERVICE_SID` — and the leasing agent texts
+   the one-pager link to the caller's callback number in the same tool call that e-mails it.
+   Until then no text is attempted and the agent never claims one.
 5. **Smoke (SMK-21):** call the tenant line, report a fake AC issue for 105 with a callback
    number, hang up → within a minute L-1 shows a Maintenance · Urgent row for unit 105;
    expand → summary, "Work order vr-… →", transcript; ▶ Play recording appears once
@@ -77,6 +83,7 @@ Without them everything else still works: summary, transcript, outcome, L-1 card
 | `VOICE_SECRET`, `ANTHROPIC_API_KEY`, `CRON_SECRET` | already set | — |
 | `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN` | recording + playback | off |
 | `RESEND_API_KEY` **or** `SENDGRID_API_KEY`, `NOTIFY_FROM` | owner e-mail + package e-mail | off |
+| `TWILIO_SMS_FROM` **or** `TWILIO_MESSAGING_SERVICE_SID` | package by text (after A2P) | off |
 | `VOICE_PUBLIC_ORIGIN` | recording callback URL | `https://otb-command.vercel.app` |
 | `APP_PUBLIC_URL` | link in the e-mail | `https://otb.cypresscommand.com` |
 | `VOICE_SUMMARY_MODEL` | summarizer | `VOICE_MODEL` → claude-haiku-4-5 |
@@ -88,7 +95,7 @@ Without them everything else still works: summary, transcript, outcome, L-1 card
 - Callback + proxy share ONE function (`api/voice-call.js`): the Vercel Hobby plan caps a
   deployment at 12 serverless functions and the repo now sits exactly at 12 — the next
   endpoint must fold into an existing file or the plan must move to Pro.
-- No SMS anywhere (A2P still parked). The package goes by e-mail or by the operator.
+- SMS is limited to the leasing-package text and stays dormant until the A2P sender exists.
 - The summarizer is told to invent nothing; a hang-up with no speech records "The caller
   hung up before anything was said." and still lands in L-1.
 - `comm_log.status` is the only field the operator edits on a voice row (new ↔ handled).

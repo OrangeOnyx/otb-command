@@ -186,7 +186,7 @@ export const TOUR_TOOL = {
 
 export const PACKAGE_TOOL = {
   name: "send_leasing_package",
-  description: "Save the caller as a leasing lead and send them the leasing package. Call after confirming name and callback number aloud; ask for an e-mail address and read it back letter by letter before including it. The tool result says whether the package was actually sent — repeat that truthfully.",
+  description: "Save the caller as a leasing lead and send them the leasing package (by text to the callback number and/or by e-mail). Call after confirming name and callback number aloud; ask for an e-mail address and read it back letter by letter before including it. The tool result says exactly how the package went out (or that it did not) — repeat that truthfully.",
   input_schema: {
     type: "object",
     properties: {
@@ -251,7 +251,7 @@ PRICING: if asked about rent, say asking rates run in the ${sop.leasing.rateLang
 
 SCREENING — the ONLY concept screen you apply: an exclusive-use conflict. The center has exclusives around fitness (${sop.leasing.exclusives.join("; ")}). If the caller's concept clearly competes with those, be honest that it's likely a non-starter — but still take their name and number and log the call. Do not screen anything else (parking, use type, liquor) — Adam evaluates those.
 
-LEASING PACKAGE: if the caller wants details sent, or you cannot book a tour, offer the leasing package by e-mail. Ask for their e-mail address, read it back letter by letter, then call send_leasing_package (it also saves them as a lead). Repeat the tool result truthfully: say the package is on its way ONLY if the result says it was sent; otherwise say Adam will send it today. Never say a package was sent when it was not.
+LEASING PACKAGE: if the caller wants details sent, or you cannot book a tour, offer the leasing package by text or e-mail. Ask for their e-mail address (optional), read it back letter by letter, then call send_leasing_package (it also saves them as a lead). Repeat the tool result truthfully: say the package is on its way — and how (text, e-mail, or both) — ONLY as the result states; otherwise say Adam will send it today. Never say a package was sent when it was not.
 
 TOURS: Adam shows every space personally. Offer these open slots (read at most two or three aloud, most convenient first):
   ${slots}

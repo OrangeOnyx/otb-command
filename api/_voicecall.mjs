@@ -69,6 +69,40 @@ export function twilioSignatureValid(url, params, signature, token = process.env
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
+/* ---- SMS (operator ruling 2026-09-18: the leasing package also goes by text
+   once A2P clears). Gated on the Twilio creds + TWILIO_SMS_FROM (E.164) or a
+   TWILIO_MESSAGING_SERVICE_SID; unregistered US traffic is blocked by the
+   carriers, so nothing is attempted until the operator sets the sender.
+   Never throws. ---- */
+export const smsConfigured = () =>
+  twilioConfigured() && !!(process.env.TWILIO_SMS_FROM || process.env.TWILIO_MESSAGING_SERVICE_SID);
+
+export async function sendSms(to, body) {
+  const digits = String(to || "").replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
+  if (!smsConfigured()) return { sent: false, reason: "not configured" };
+  if (digits.length !== 10) return { sent: false, reason: "not a US number" };
+  const form = new URLSearchParams({ To: "+1" + digits, Body: String(body || "").slice(0, 1200) });
+  if (process.env.TWILIO_MESSAGING_SERVICE_SID) form.set("MessagingServiceSid", process.env.TWILIO_MESSAGING_SERVICE_SID);
+  else form.set("From", process.env.TWILIO_SMS_FROM);
+  try {
+    const r = await fetch(twilioBase() + "/Messages.json", {
+      method: "POST",
+      headers: { authorization: twilioAuth(), "content-type": "application/x-www-form-urlencoded" },
+      body: form.toString(),
+      signal: AbortSignal.timeout(10000),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      console.error("twilio sms:", r.status, String(j.message || "").slice(0, 160));
+      return { sent: false, reason: "HTTP " + r.status };
+    }
+    return { sent: true, sid: j.sid };
+  } catch (e) {
+    console.error("twilio sms:", e.message);
+    return { sent: false, reason: e.message };
+  }
+}
+
 /* The recording media, streamed from Twilio (mp3). Returns the fetch Response. */
 export function fetchRecordingAudio(recordingSid) {
   return fetch(twilioBase() + "/Recordings/" + recordingSid + ".mp3", {

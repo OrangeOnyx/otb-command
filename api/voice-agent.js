@@ -15,8 +15,8 @@ import {
   MAINT_TOOL, TOUR_TOOL, PACKAGE_TOOL, MAX_TURNS, DEFAULT_TOUR_WINDOWS, SLOT_MINUTES_DEFAULT,
   claimsBooking, BOOKING_GUARD_NOTE, BOOKING_FALLBACK,
 } from "../src/lib/voiceagent.js";
-import { leasingPackageEmail } from "../src/lib/leasing.js";
-import { startRecording, finalizeCall } from "./_voicecall.mjs";
+import { leasingPackageEmail, smsText, LEASING_URL } from "../src/lib/leasing.js";
+import { startRecording, finalizeCall, sendSms, smsConfigured } from "./_voicecall.mjs";
 import { sendEmail, emailConfigured } from "./_email.mjs";
 import sop from "../src/data/sop.json" with { type: "json" };
 import UNITS from "../src/data/units.public.json" with { type: "json" };
@@ -96,14 +96,23 @@ async function runTool(name, input, callSid, caller) {
       });
       await recordOutcome(callSid, "lead", leadId);
       const okEmail = EMAIL_RE.test(email);
-      let sent = false;
+      const roll = UNITS.units || UNITS;
+      let sent = false, texted = false;
       if (okEmail && emailConfigured()) {
-        const msg = leasingPackageEmail({ units: UNITS.units || UNITS, prospect: name_.split(" ")[0] });
+        const msg = leasingPackageEmail({ units: roll, prospect: name_.split(" ")[0] });
         sent = (await sendEmail({ to: [email], subject: msg.subject, text: msg.text, html: msg.html })).sent;
       }
-      await recordOutcome(callSid, "package", { sent, email: okEmail ? email : "" });
-      return sent
-        ? { ok: true, note: "Package e-mailed to " + email + ". Confirm the address aloud and let them know it is on its way." }
+      /* text leg (ruling 2026-09-18): the one-pager link to the callback number,
+         only once TWILIO_SMS_FROM / a messaging service exists (A2P) */
+      const phone = String(input.phone || caller || "");
+      if (smsConfigured() && phone) {
+        const vacants = roll.filter(u => u.status === "vacant").map(u => ({ unit: u.unit, sf: u.sf }));
+        texted = (await sendSms(phone, smsText(vacants, LEASING_URL))).sent;
+      }
+      await recordOutcome(callSid, "package", { sent, email: okEmail ? email : "", sms: texted, phone: texted ? phone : "" });
+      const how = [sent ? "e-mailed to " + email : "", texted ? "texted to their callback number" : ""].filter(Boolean).join(" and ");
+      return sent || texted
+        ? { ok: true, note: "Package " + how + ". Tell the caller exactly that and nothing more." }
         : okEmail
           ? { ok: true, note: "Lead saved; the operator will e-mail the package to " + email + " shortly. Say Adam will send it today — do not say it has already been sent." }
           : { ok: true, note: "Lead saved with no e-mail address. Say Adam will follow up by phone with the package — do not claim anything was sent." };

@@ -82,6 +82,9 @@ test("voicecall: outcome lines cover work order, tour, lead, package states", ()
   assert.match(lines[3].label, /e-mailed to p@x.com/);
   assert.match(outcomeLines({ package: { sent: false, email: "p@x.com" } })[0].label, /send pending/);
   assert.match(outcomeLines({ package: { sent: false } })[0].label, /no e-mail given/);
+  assert.equal(outcomeLines({ package: { sent: true, email: "p@x.com", sms: true, phone: "3375550101" } })[0].label,
+    "Leasing package e-mailed to p@x.com and texted to (337) 555-0101");
+  assert.equal(outcomeLines({ package: { sent: false, sms: true, phone: "" } })[0].label, "Leasing package texted to the callback number");
 });
 
 const ROW = {

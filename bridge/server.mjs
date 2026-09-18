@@ -26,8 +26,8 @@ const TTS_VOICE = process.env.TTS_VOICE || "7EzWGsX10sAS4c9m9cPf"; // Jack John 
 const SORRY = "I'm sorry, I'm having trouble on my end. Adam will see this call and follow up with you. Thank you for calling.";
 
 const FALLBACK_GREETING = {
-  tenant: "Thanks for calling On The Boulevard tenant services. How can I help?",
-  leasing: "Thanks for calling On The Boulevard leasing. How can I help?",
+  tenant: "Thanks for calling On The Boulevard tenant services. This call may be recorded. How can I help?",
+  leasing: "Thanks for calling On The Boulevard leasing. This call may be recorded. How can I help?",
 };
 
 let greetingCache = { at: 0, tenant: null, leasing: null };

@@ -108,8 +108,9 @@ export function outcomeLines(outcome) {
   if (o.lead) out.push({ kind: "lead", id: String(o.lead), label: "Lead saved to W-1 pipeline", sheet: "board" });
   if (o.package) {
     const p = o.package;
+    const legs = [p.sent ? "e-mailed to " + (p.email || "caller") : "", p.sms ? "texted to " + (fmtPhone(p.phone) || "the callback number") : ""].filter(Boolean);
     out.push({ kind: "package", id: "", sheet: "",
-      label: p.sent ? "Leasing package e-mailed to " + (p.email || "caller")
+      label: legs.length ? "Leasing package " + legs.join(" and ")
         : p.email ? "Leasing package requested · " + p.email + " — send pending (e-mail not configured)"
         : "Leasing package requested — no e-mail given, operator to send" });
   }
