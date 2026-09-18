@@ -92,9 +92,9 @@ Without them everything else still works: summary, transcript, outcome, L-1 card
 
 - Recordings stay at Twilio (no new bucket, no service-role key); the proxy checks the
   caller's role AND that the sid belongs to a readable `voice_calls` row.
-- Callback + proxy share ONE function (`api/voice-call.js`): the Vercel Hobby plan caps a
-  deployment at 12 serverless functions and the repo now sits exactly at 12 — the next
-  endpoint must fold into an existing file or the plan must move to Pro.
+- Callback + proxy share ONE function (`api/voice-call.js`) — written under the Hobby plan's
+  12-function cap. The operator moved the project to **Vercel Pro** on Sep 18, so the cap no
+  longer binds (`api/tour-lead.js` is the 13th); the merged file stays as is.
 - SMS is limited to the leasing-package text and stays dormant until the A2P sender exists.
 - The summarizer is told to invent nothing; a hang-up with no speech records "The caller
   hung up before anything was said." and still lands in L-1.

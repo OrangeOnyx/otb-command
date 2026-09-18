@@ -53,6 +53,9 @@ Reads `https://<supabase>/storage/v1/object/public/tour/manifest.json` (public r
 ## Not built (deliberate)
 
 - No AI-generated imagery — the center's own photography sells it.
-- No public "book a tour" form (would need a 13th function or a public RPC); the SMS / call
-  buttons land on the leasing line whose calls are now recorded and logged in L-1.
+- ~~No public "book a tour" form~~ — built the same evening once the operator moved Vercel
+  to **Pro** (the 12-function cap is gone): each suite section ends in a *Request a tour* form
+  → `POST /api/tour-lead` (honeypot, same-origin, length caps) → `web_tour_lead` RPC (deals row
+  `lead_source='web'` + L-1 note, 40/day cap) → AI-1 manager thread + owner e-mail when mail is
+  configured. The call / text buttons stay.
 - Tenant cards export as PDF / screenshot; a one-click PNG needs a canvas pass — say the word.

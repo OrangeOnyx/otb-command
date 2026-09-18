@@ -77,7 +77,27 @@ function suiteCard(u, media) {
         '<div class="pend-note"><b>Interior 360° scan coming.</b> Until then: the numbers are real, the plan is the recorded plat, and Adam walks it with you any weekday.</div></div>') +
     '<div class="s-facts"><div><b>Available</b>now</div><div><b>Terms</b>NNN · rate quoted per space</div>' +
     (sibling.length ? '<div><b>Combine</b>with Suite ' + esc(sibling.map(s => s.unit).join(" / ")) + ' → ' + n0(u.sf + sibling.reduce((s, x) => s + x.sf, 0)) + ' SF</div>' : '') +
-    '<div><b>Neighbors</b>' + esc(anchor ? anchor.dba : "On The Boulevard tenants") + ' and 20+ local shops</div></div></section>';
+    '<div><b>Neighbors</b>' + esc(anchor ? anchor.dba : "On The Boulevard tenants") + ' and 20+ local shops</div></div>' +
+    '<form class="ask" data-unit="' + esc(u.unit) + '" autocomplete="on"><div class="k">Request a tour of Suite ' + esc(u.unit) + '</div>' +
+    '<div class="row"><input name="name" placeholder="Your name" required maxlength="120"><input name="phone" placeholder="Mobile (we\'ll text you)" inputmode="tel" maxlength="40"><input name="email" placeholder="E-mail (optional)" type="email" maxlength="120"></div>' +
+    '<div class="row"><input name="note" placeholder="Your concept, timing, or a good time to meet (optional)" maxlength="1000"><input name="company" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true"></div>' +
+    '<div class="row"><button class="btn" type="submit">Send request</button><span class="msg"></span></div></form></section>';
+}
+
+async function submitAsk(form) {
+  const btn = form.querySelector("button"), msg = form.querySelector(".msg");
+  const body = Object.fromEntries(new FormData(form).entries());
+  body.unit = form.dataset.unit;
+  if (!body.name || (!body.phone && !body.email)) { msg.textContent = "A name and a mobile or e-mail, please."; return; }
+  btn.disabled = true; msg.textContent = "Sending…";
+  try {
+    const r = await fetch("/api/tour-lead", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.error || "try calling");
+    form.innerHTML = '<div class="k">Request a tour</div><p class="ok">Got it — Adam will reach out within the day. Prefer now? <a href="' + TEL + '">Call</a> or <a href="' + SMS + '">text</a>.</p>';
+  } catch (e) {
+    btn.disabled = false; msg.textContent = "Could not send (" + e.message + "). Call or text " + PHONE + ".";
+  }
 }
 
 async function boot() {
@@ -87,6 +107,7 @@ async function boot() {
   root.innerHTML = vacant.length ? vacant.map(u => suiteCard(u, manifest.suites && manifest.suites[u.unit])).join("")
     : '<section class="suite"><h2>Fully leased</h2><p>Join the waitlist — call or text ' + PHONE + '.</p></section>';
   root.querySelectorAll(".pano").forEach(el => { try { viewer(el, JSON.parse(el.dataset.panos)); } catch { el.remove(); } });
+  root.querySelectorAll("form.ask").forEach(fm => fm.addEventListener("submit", e => { e.preventDefault(); submitAsk(fm); }));
   const st = document.getElementById("stats");
   if (st) st.innerHTML = '<div><b>' + n0(gla) + '</b>SF center</div><div><b>' + roll.length + '</b>suites</div>' +
     (corridor.centerListing && corridor.centerListing.rating ? '<div><b>' + esc(corridor.centerListing.rating) + ' ★</b>Google · ' + n0(corridor.centerListing.ratings) + ' reviews</div>' : '') +
