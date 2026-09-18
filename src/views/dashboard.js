@@ -10,6 +10,8 @@ import { heartbeatKpi } from "../lib/heartbeat.js";
 import { signinKpi } from "../lib/signins.js";
 import { latestByStall, occSummary, occLine, occAsOf, weeklyRollup, rollupLine } from "../lib/occupancy.js";
 import { PARKING } from "../lib/facts.js";
+import { getComms, onCommsChange } from "../lib/comms.js";
+import { callStats, CALL_INTENTS } from "../lib/voicecall.js";
 import stallMap from "../data/stall-map.json";
 
 let unifiSummary = null; // cached /api/unifi shape; renderKPIs reads it
@@ -31,7 +33,7 @@ export function initDashboard() {
   renderDashboard();
   // alerts derive from compliance flags + action-board overrides — refresh on those
   subscribe(type => { if (type === "comp" || type === "actions" || type === "notes" || type === "import") renderDashboard(); });
-  if (REMOTE) { fetchUnifi(); fetchOcc(); fetchHeartbeat(); fetchErrCount(); fetchSignins(); }
+  if (REMOTE) { fetchUnifi(); fetchOcc(); fetchHeartbeat(); fetchErrCount(); fetchSignins(); onCommsChange(renderKPIs); }
 }
 
 /* C3 parking occupancy card — Supabase occupancy_samples (RLS owner/operator);
@@ -112,7 +114,7 @@ function renderKPIs() {
     ["ink", "Vacant Bays", vacant.length, vacant.map(u => u.unit + " (" + u.sf.toLocaleString() + " SF)").join(" · ")],
     ["brass", "Parking", PARKING.provided + "<small>/" + PARKING.required + "</small>",
       "variance reference <b>" + PARKING.entry + "</b> · " + PARKING.drawn + " drawn"]
-  ].concat(unifiKpi()).concat(occKpi()).concat(hbKpi()).concat(signKpi()).concat(errKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
+  ].concat(callKpi()).concat(unifiKpi()).concat(occKpi()).concat(hbKpi()).concat(signKpi()).concat(errKpi()).map(([c, l, v, n]) => '<div class="card kpi ' + c + '"><div class="lbl">' + l + '</div><div class="val">' + v + '</div><div class="note">' + n + '</div></div>').join("");
 }
 
 function unifiKpi() {
@@ -151,6 +153,20 @@ function signKpi() {
   if (!k) return [];
   const [color, label, val, note] = k;
   return [[color, label, val, esc(note)]];
+}
+
+/* Calls · 7 days (2026-09-18 call records): reads the L-1 cache — the
+   phone lines' finalized calls, by intent, with how many still need a
+   human. Quiet until the first real call record exists. */
+function callKpi() {
+  if (!REMOTE) return [];
+  const s = callStats(getComms(), new Date().toISOString());
+  if (!s.total) return [];
+  const parts = Object.keys(CALL_INTENTS).filter(k => s.byIntent[k]).map(k => s.byIntent[k] + " " + CALL_INTENTS[k][0].toLowerCase());
+  const note = (s.needsAttention ? "<b>" + s.needsAttention + " need" + (s.needsAttention === 1 ? "s" : "") + " attention</b>" : "all handled") +
+    (s.emergencies ? " · <b>" + s.emergencies + " emergency</b>" : "") +
+    (parts.length ? " · " + esc(parts.join(" · ")) : "") + " · L-1";
+  return [[s.needsAttention ? "brick" : "green", "Calls · 7d", s.total, note]];
 }
 
 function errKpi() {

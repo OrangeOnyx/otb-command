@@ -13,10 +13,49 @@ import {
   getGovernance, onGovernanceChange, refreshGovernance,
   addGovItem, updateGovItem, deleteGovItem,
 } from "../lib/governance.js";
+import { propertyDocuments, unitDocuments } from "../lib/directory.js";
+import { UNITS, subscribe } from "../store.js";
+import { riskRegister, renewalRadar } from "../lib/docregister.js";
 
 const fmtSize = n => !n ? "" : n > 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB";
 const fmtWhen = iso => iso ? new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
 const fmtDay = ymd => ymd ? new Date(ymd + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
+
+/* ── Property records (owner memo 2026-09-18): the owner-bible view Asset
+   Command's Property Vault gave — every tracked title / insurance / loan /
+   closing record's risk flag, worst first, and a renewal & maturity radar,
+   soonest first. Derived from the K-1 register + unit documents (store-
+   merged, so operator edits show here at once). Owners read; editing is
+   on K-1 / the unit drawer. Painted alone via renderRecords. */
+function recordsHTML() {
+  const seen = new Map();
+  propertyDocuments().concat(...UNITS.map(u => unitDocuments(u.unit)))
+    .forEach(r => { if (!seen.has(r.id)) seen.set(r.id, r); });
+  const docs = [...seen.values()];
+  const today = new Date().toISOString().slice(0, 10);
+  const risks = riskRegister(docs), radar = renewalRadar(docs, today);
+  const where = r => (r.unit ? "Unit " + r.unit : "Property") + (r.type ? " · " + r.type : "");
+  return '<div class="safe-cat-head"><span class="safe-cat-name">Property records</span>' +
+    '<span class="safe-cat-n mono">' + docs.length + '</span>' +
+    '<span class="led-note mute">title · insurance · loan · closing — edit on K-1 Directory</span></div>' +
+    '<div class="dw-sec" style="margin-top:6px">Risk register · ' + risks.length + '</div>' +
+    (risks.length ? risks.map(r =>
+      '<div class="doc-reg-row"><span class="doc-risk-dot" style="background:' + r.color + '"></span>' +
+      '<span class="doc-reg-name">' + esc(r.name) + '</span>' +
+      '<span class="doc-reg-meta mono">' + esc(r.riskLabel) + ' · ' + esc(where(r)) + '</span>' +
+      (r.riskNote ? '<span class="doc-reg-note">' + esc(r.riskNote) + '</span>' : "") + '</div>').join("")
+      : '<div class="safe-empty mute">no flagged records</div>') +
+    '<div class="dw-sec">Renewal &amp; maturity radar · ' + radar.length + '</div>' +
+    (radar.length ? radar.map(r =>
+      '<div class="doc-reg-row"><span class="doc-chip ' + esc(r.chip.tone) + '">' + esc(r.chip.label) + '</span>' +
+      '<span class="doc-reg-name">' + esc(r.name) + '</span>' +
+      '<span class="doc-reg-meta mono">' + esc(r.kind + " " + r.dateLabel) + (r.counterparty ? ' · ' + esc(r.counterparty) : "") + '</span></div>').join("")
+      : '<div class="safe-empty mute">no dated records</div>');
+}
+function renderRecords() {
+  const el = document.getElementById("safeRecords");
+  if (el && el.isConnected) el.innerHTML = recordsHTML();
+}
 
 async function render() {
   const host = document.getElementById("safeList");
@@ -24,7 +63,8 @@ async function render() {
   const files = await listSafe();
   if (!host.isConnected) return;
 
-  host.innerHTML = SAFE_CATEGORIES.map(([cat, label]) => {
+  host.innerHTML = '<div class="safe-cat" id="safeRecords">' + recordsHTML() + '</div>' +
+  SAFE_CATEGORIES.map(([cat, label]) => {
     const rows = files.filter(f => f.category === cat);
     return '<div class="safe-cat">' +
       '<div class="safe-cat-head"><span class="safe-cat-name">' + label + '</span>' +
@@ -245,6 +285,7 @@ async function renderLog() {
 export function initSafe() {
   render();
   renderLog();
+  subscribe(type => { if (type === "documents" || type === "import" || type === "seed") renderRecords(); });
   if (REMOTE) {
     getSession().then(s => { actorEmail = (s && s.user && s.user.email) || ""; }).catch(() => {});
     onGovernanceChange(renderGov); // block-only repaint; renderGov guards isConnected

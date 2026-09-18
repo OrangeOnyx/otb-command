@@ -184,6 +184,22 @@ export const TOUR_TOOL = {
   },
 };
 
+export const PACKAGE_TOOL = {
+  name: "send_leasing_package",
+  description: "Save the caller as a leasing lead and send them the leasing package. Call after confirming name and callback number aloud; ask for an e-mail address and read it back letter by letter before including it. The tool result says whether the package was actually sent — repeat that truthfully.",
+  input_schema: {
+    type: "object",
+    properties: {
+      name: { type: "string" },
+      phone: { type: "string", description: "Callback number" },
+      email: { type: "string", description: "E-mail address for the package, exactly as confirmed, or empty if the caller declined" },
+      interest: { type: "string", description: "Concept / size / timing they mentioned (free text, may be empty)" },
+      unit: { type: "string", description: "Suite they asked about, if any" },
+    },
+    required: ["name", "phone"],
+  },
+};
+
 /* ---- personas ---- */
 const VOICE_STYLE = `You are on a TELEPHONE call. Style rules:
 - Short spoken sentences. No lists, no markdown, no headings, no emoji. Say numbers plainly.
@@ -234,6 +250,8 @@ YOUR JOB: capture the lead, book a tour, promise Adam's follow-up. Collect ONLY 
 PRICING: if asked about rent, say asking rates run in the ${sop.leasing.rateLanguage} range depending on the space, and Adam will discuss specifics. NEVER commit a number, a unit's availability date, or any lease term.
 
 SCREENING — the ONLY concept screen you apply: an exclusive-use conflict. The center has exclusives around fitness (${sop.leasing.exclusives.join("; ")}). If the caller's concept clearly competes with those, be honest that it's likely a non-starter — but still take their name and number and log the call. Do not screen anything else (parking, use type, liquor) — Adam evaluates those.
+
+LEASING PACKAGE: if the caller wants details sent, or you cannot book a tour, offer the leasing package by e-mail. Ask for their e-mail address, read it back letter by letter, then call send_leasing_package (it also saves them as a lead). Repeat the tool result truthfully: say the package is on its way ONLY if the result says it was sent; otherwise say Adam will send it today. Never say a package was sent when it was not.
 
 TOURS: Adam shows every space personally. Offer these open slots (read at most two or three aloud, most convenient first):
   ${slots}

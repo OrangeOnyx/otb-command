@@ -839,3 +839,58 @@ body.role-vendor .ownerview { display: none !important; }
 .cam-stmt{font-family:var(--mono);font-size:11px;line-height:1;padding:2px 5px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink70);cursor:pointer;justify-self:end}
 .cam-stmt:hover{border-color:var(--brass);color:var(--brass)}
 @media (max-width:640px){.cam-h,.cam-row{grid-template-columns:40px minmax(0,1fr) 64px 76px 24px}.cam-h .n:nth-child(4),.cam-h .n:nth-child(5),.cam-row .n:nth-child(4),.cam-row .n:nth-child(5){display:none}}
+
+/* L-1 call records (2026-09-18): strip · row markers · expanded call detail */
+.call-strip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:8px 12px;margin-bottom:10px;border:1px solid var(--line2);border-left:3px solid var(--brass);border-radius:5px;background:var(--card)}
+.call-kpi{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink50);background:transparent;border:0;padding:0}
+.call-kpi b{font-family:var(--disp);font-size:18px;letter-spacing:.02em;color:var(--ink);margin-right:3px;vertical-align:-1px}
+.call-att{cursor:pointer;border-bottom:1px dashed transparent}
+.call-att:hover,.call-att.on{border-bottom-color:var(--brass);color:var(--ink)}
+.call-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--brick);vertical-align:middle}
+.comm-row.attention{background:linear-gradient(90deg,rgba(194,94,51,.06),transparent 40%)}
+.call-detail{margin:6px 0 8px 8px;padding:8px 12px 10px;border-left:2px solid var(--brass);background:var(--card);border-radius:0 5px 5px 0}
+.call-head{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.call-facts{font-size:10.5px}
+.call-state{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brick)}
+.call-state.ok{color:var(--green)}
+.call-summary{font-size:13px;line-height:1.5;margin:8px 0 2px;max-width:76ch}
+.call-sec{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);margin:12px 0 4px;border-bottom:1px solid var(--line2);padding-bottom:2px}
+.call-outcome{margin:0;padding-left:18px;font-size:12px;line-height:1.6}
+.call-link{color:var(--brass);font-weight:600;text-decoration:none}
+.call-link:hover{text-decoration:underline}
+.call-audio{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.call-audio .chip{cursor:pointer}
+.call-turns{display:flex;flex-direction:column;gap:5px;max-height:420px;overflow-y:auto;padding-right:4px}
+.call-turns .turn{display:grid;grid-template-columns:52px 1fr;gap:8px;font-size:12.5px;line-height:1.45}
+.call-turns .who{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding-top:3px;color:var(--ink50)}
+.call-turns .turn.caller .who{color:var(--anchor);font-weight:600}
+.call-turns .turn.caller .txt{color:var(--ink)}
+.call-turns .turn.agent .txt{color:var(--ink70)}
+.call-acts{margin-top:10px}
+.call-acts .chip{cursor:pointer}
+
+/* Owner-document detail cards (2026-09-18): sectioned K-1 / drawer document rows, S-1 property records */
+.doc-status{font-family:var(--mono);font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;border-radius:99px;padding:1px 7px;margin-left:6px;vertical-align:1px}
+.doc-card .doc-party{font-size:12px;color:var(--ink70);margin-top:2px}
+.doc-dl{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:8px 0 4px;padding:6px 10px;border:1px solid var(--line2);border-radius:5px;background:var(--paper2)}
+.doc-dl dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);padding-top:3px;white-space:nowrap}
+.doc-dl dd{margin:0;font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums;padding:2px 0;border-bottom:1px solid var(--line2)}
+.doc-dl dd:last-of-type{border-bottom:0}
+.doc-dl dd.mono{font-family:var(--mono);font-size:11.5px}
+.doc-chip{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:1px 7px;border:1px solid currentColor;margin-left:6px;vertical-align:1px}
+.doc-chip.brick{color:var(--brick)} .doc-chip.brass{color:var(--brass)} .doc-chip.anchor{color:var(--anchor)} .doc-chip.slate{color:var(--slate)}
+.doc-risk{margin:6px 0 2px;padding:6px 10px;border-left:3px solid;border-radius:0 5px 5px 0;background:var(--card);font-size:12px;line-height:1.5;color:var(--ink70)}
+.rec-form-doc{display:grid;grid-template-columns:1fr 1fr;gap:7px 10px}
+.rec-form-doc .rec-f.wide,.rec-form-doc .rec-attachrow,.rec-form-doc .rec-formacts{grid-column:1/-1}
+.rec-f select{font-family:var(--body);font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:5px;background:var(--white);color:var(--ink)}
+.doc-reg-row{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:6px 2px;border-bottom:1px solid var(--line2);font-size:12.5px}
+.doc-reg-row:last-child{border-bottom:0}
+.doc-risk-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.doc-reg-name{font-weight:600;color:var(--ink)}
+.doc-reg-meta{font-size:10.5px;color:var(--ink50)}
+.doc-reg-note{flex-basis:100%;font-size:11.5px;line-height:1.5;color:var(--ink70);padding-left:19px}
+
+/* Unit drawer section boundaries (owner memo 2026-09-18: "hard to tell where one piece starts") */
+.dw-body>.dw-sec{margin-top:26px;padding:0 0 5px;border-bottom:1.5px solid var(--ink);color:var(--ink);font-weight:600;letter-spacing:.14em;display:flex;align-items:baseline;gap:8px}
+.dw-body>.dw-sec:first-of-type{margin-top:14px}
+.dw-body>.dw-sec::before{content:"";width:6px;height:6px;background:var(--brass);flex:none;align-self:center}

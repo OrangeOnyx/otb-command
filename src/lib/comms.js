@@ -114,3 +114,18 @@ export async function deleteComms(ids) {
   await refreshComms();
   return list.length;
 }
+
+/* Call records (2026-09-18): the operator marks a call handled / reopens
+   it — comm_log.status is the only mutable field on a voice row (RLS:
+   operator update). Owners read. */
+export async function setCommStatus(id, status) {
+  const st = status === "handled" ? "handled" : "new";
+  const { error } = await sb.from("comm_log").update({ status: st, updated_at: new Date().toISOString() }).eq("id", id);
+  if (error) throw error;
+  await refreshComms();
+}
+
+/* M-1 → L-1 back-link: the call whose outcome filed this work order. */
+export const findCommByWorkOrder = (requestId, rows = cache) =>
+  (rows || []).find(r => r && r.source === "voice" && r.payload && r.payload.outcome &&
+    r.payload.outcome.work_order === requestId) || null;

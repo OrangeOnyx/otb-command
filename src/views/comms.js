@@ -1,21 +1,64 @@
 /* L-1 Comm Log — the cross-channel correspondence sheet. OPERATOR: filter/
    search the log, expand entries, hand-log new correspondence (note/email/
-   letter/meeting/sms), delete stale rows. OWNER: read-only list. Sealed roles
-   (tenant/vendor/pending) never render here. All derivation lives in
-   lib/comms.js; RLS scopes every query. Data re-renders ride onCommsChange;
-   filter/expand/form are view-local UI state re-painted directly. */
-import { REMOTE } from "../lib/remote.js";
+   letter/meeting/sms), delete stale rows, mark calls handled. OWNER: read-only
+   list — including every phone call's summary, transcript and recording
+   (2026-09-18 call records: rows with source='voice' + payload.call_sid).
+   Sealed roles (tenant/vendor/pending) never render here. All derivation
+   lives in lib/comms.js + lib/voicecall.js; RLS scopes every query. Data
+   re-renders ride onCommsChange; filter/expand/form are view-local UI state
+   re-painted directly. */
+import { REMOTE, sb } from "../lib/remote.js";
 import { esc } from "../lib/format.js";
 import {
   CHANNELS, filterComms, commLine,
-  getComms, onCommsChange, refreshComms, addComm, deleteComm, deleteComms,
+  getComms, onCommsChange, refreshComms, addComm, deleteComm, deleteComms, setCommStatus,
 } from "../lib/comms.js";
+import { isVoiceCall, callDisplay, callStats, CALL_INTENTS } from "../lib/voicecall.js";
 
 /* view-local UI state — survives data re-renders. `select` = bulk-select mode
    (operator); `sel` holds the checked ids across list repaints. */
-const state = { channel: "", unit: "", q: "", open: null, form: false, select: false, sel: new Set() };
+const state = { channel: "", unit: "", q: "", open: null, form: false, select: false, sel: new Set(), attention: false };
+let mounted = null; // { host, account } — lets other sheets open a call here
 
-function detailHTML(r) {
+const tag = (label, color) =>
+  '<span class="mono" style="background:' + color + ';color:#fff;border-radius:3px;padding:0 5px;font-size:10px;white-space:nowrap">' + esc(label) + '</span>';
+
+/* ── voice call detail (owner-readable: summary · outcome · recording · transcript) ── */
+function callDetailHTML(r, operator) {
+  const d = callDisplay(r);
+  const facts = [
+    d.line, d.duration ? d.duration + " min" : "", d.phone ? "☎ " + d.phone : "",
+    d.unit ? "Unit " + d.unit : "",
+  ].filter(Boolean);
+  const outcome = d.outcome.length
+    ? '<div class="call-sec">Outcome</div><ul class="call-outcome">' + d.outcome.map(o =>
+      '<li>' + (o.sheet ? '<a href="#' + esc(o.sheet) + '" class="call-link">' + esc(o.label) + ' →</a>' : esc(o.label)) + '</li>').join("") + '</ul>'
+    : "";
+  const audio = d.recordingSid
+    ? '<div class="call-sec">Recording</div><div class="call-audio" data-rec="' + esc(d.recordingSid) + '">' +
+      '<button class="chip call-play">▶ Play recording</button><span class="led-note call-audio-msg"></span></div>'
+    : (r.payload && r.payload.recording_status === "in-progress"
+      ? '<div class="call-sec">Recording</div><div class="led-note">Recording still processing at Twilio — check back shortly.</div>' : "");
+  const turns = d.turns.length
+    ? '<div class="call-sec">Transcript</div><div class="call-turns">' + d.turns.map(t =>
+      '<div class="turn ' + t.role + '"><span class="who">' + (t.role === "caller" ? "Caller" : "Agent") + '</span>' +
+      '<span class="txt">' + esc(t.text).replace(/\n/g, "<br>") + '</span></div>').join("") + '</div>'
+    : '<div class="call-sec">Transcript</div><div class="led-note">Nothing was captured on this call.</div>';
+  const handled = operator
+    ? '<div class="call-acts"><button class="chip call-status" data-id="' + esc(r.id) + '" data-st="' + (d.handled ? "new" : "handled") + '">' +
+      (d.handled ? "↺ Reopen" : "✓ Mark handled") + '</button></div>'
+    : "";
+  return '<div class="call-detail">' +
+    '<div class="call-head">' + tag(d.intentLabel, d.intentColor) +
+    (d.urgency !== "routine" ? tag(d.urgencyLabel, d.urgencyColor) : "") +
+    (d.handled ? '<span class="call-state ok">handled</span>' : '<span class="call-state">needs attention</span>') +
+    '<span class="mono mute call-facts">' + esc(facts.join(" · ")) + '</span></div>' +
+    '<div class="call-summary">' + esc(r.summary || "") + '</div>' +
+    outcome + audio + turns + handled + '</div>';
+}
+
+function detailHTML(r, operator) {
+  if (isVoiceCall(r)) return callDetailHTML(r, operator);
   const p = r.payload && typeof r.payload === "object" ? r.payload : {};
   const meta = [
     r.contact_phone ? "📞 " + r.contact_phone : "",
@@ -41,19 +84,41 @@ function rowHTML(r, operator) {
   const box = operator && state.select
     ? '<input type="checkbox" class="comm-sel" data-id="' + esc(r.id) + '"' + (state.sel.has(r.id) ? " checked" : "") + '>'
     : "";
-  return '<div class="comm-row" data-id="' + esc(r.id) + '" style="border-bottom:1px dashed var(--line);padding:4px 0;cursor:pointer">' +
+  let callBits = "";
+  if (isVoiceCall(r)) {
+    const d = callDisplay(r);
+    callBits = tag(d.intentLabel, d.intentColor) +
+      (d.urgency === "emergency" || d.urgency === "urgent" ? tag(d.urgencyLabel, d.urgencyColor) : "") +
+      (d.recordingSid ? '<span title="recording on file">🔊</span>' : "") +
+      (d.handled ? "" : '<span class="call-dot" title="needs attention"></span>');
+  }
+  return '<div class="comm-row' + (isVoiceCall(r) && !callDisplay(r).handled ? " attention" : "") + '" data-id="' + esc(r.id) + '" style="border-bottom:1px dashed var(--line);padding:4px 0;cursor:pointer">' +
     '<div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap">' +
     box +
     '<span class="mono" style="font-size:11px;white-space:nowrap">' + esc(L.when) + '</span>' +
     '<span class="chip" style="padding:1px 8px;font-size:10px">' + esc(L.chip) + '</span>' +
+    callBits +
     (L.unitTag ? '<span class="mono" style="font-size:10px;background:#1E4F3C;color:#fff;border-radius:3px;padding:0 5px">' + esc(L.unitTag) + '</span>' : "") +
     '<span style="font-size:12px;color:var(--ink70);white-space:nowrap">' + esc(L.who) + '</span>' +
     '<span style="font-size:12px;flex:1;min-width:120px">' + esc(L.summary) + '</span>' +
     (L.sourceTag ? '<span class="mono mute" style="font-size:9px" title="imported Asset Command voice history">' + esc(L.sourceTag) + '</span>' : "") +
     (operator ? '<button class="safe-del comm-del" data-id="' + esc(r.id) + '" title="Delete entry">✕</button>' : "") +
     '</div>' +
-    (state.open === r.id ? detailHTML(r) : "") +
+    (state.open === r.id ? detailHTML(r, operator) : "") +
     '</div>';
+}
+
+/* Calls · 7 days strip — only once a real call record exists */
+function callStripHTML() {
+  const s = callStats(getComms(), new Date().toISOString());
+  if (!s.total && !state.attention) return "";
+  const intents = Object.keys(CALL_INTENTS).filter(k => s.byIntent[k]).map(k =>
+    '<span class="call-kpi"><b style="color:' + CALL_INTENTS[k][1] + '">' + s.byIntent[k] + '</b> ' + esc(CALL_INTENTS[k][0].toLowerCase()) + '</span>').join("");
+  return '<div class="call-strip">' +
+    '<span class="call-kpi"><b>' + s.total + '</b> call' + (s.total === 1 ? "" : "s") + ' · 7 days</span>' +
+    '<button class="call-kpi call-att' + (state.attention ? " on" : "") + '" id="commAttention"><b style="color:' + (s.needsAttention ? "var(--brick)" : "var(--green)") + '">' + s.needsAttention + '</b> need' + (s.needsAttention === 1 ? "s" : "") + ' attention</button>' +
+    (s.emergencies ? '<span class="call-kpi"><b style="color:var(--brick)">' + s.emergencies + '</b> emergency</span>' : "") +
+    intents + '</div>';
 }
 
 function headerHTML(operator) {
@@ -63,7 +128,8 @@ function headerHTML(operator) {
   const chip = (val, label, n) =>
     '<button class="chip comm-ch' + (state.channel === val ? " on" : "") + '" data-ch="' + esc(val) + '">' +
     label + (n ? ' <span class="mono" style="font-size:9px">' + n + '</span>' : "") + '</button>';
-  return '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:8px">' +
+  return callStripHTML() +
+    '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:8px">' +
     chip("", "All", rows.length) +
     Object.entries(CHANNELS).map(([k, label]) => chip(k, label, counts[k] || 0)).join("") +
     '<input type="text" id="commUnit" placeholder="unit" value="' + esc(state.unit) + '" style="width:64px;font-size:11px">' +
@@ -98,16 +164,47 @@ function formHTML() {
     '<button class="chip" id="cfCancel">Cancel</button></div></div>';
 }
 
+const visibleRows = () => filterComms(getComms(), state)
+  .filter(r => !state.attention || (isVoiceCall(r) && !callDisplay(r).handled));
+
 /* only the list re-paints while typing — the inputs keep focus */
 function renderList(host, account) {
   const el = host.querySelector("#commList");
   if (!el) return;
   const operator = account && account.role === "operator";
-  const rows = filterComms(getComms(), state);
+  const rows = visibleRows();
   el.innerHTML = rows.length ? rows.map(r => rowHTML(r, operator)).join("")
     : getComms().length ? '<div class="led-note">No entries match the current filters.</div>'
       : '<div class="led-note">No correspondence logged yet.</div>';
   wireList(el, host, account);
+}
+
+/* recording → blob → <audio> (the endpoint needs the session bearer, which
+   an <audio src> can't carry; same pattern as the AI-1 🔊 button) */
+async function playRecording(box) {
+  const btn = box.querySelector(".call-play"), msg = box.querySelector(".call-audio-msg");
+  btn.disabled = true; msg.textContent = "Loading…";
+  try {
+    const session = (await sb.auth.getSession()).data.session;
+    if (!session) throw new Error("session expired");
+    const r = await fetch("/api/voice-audio?sid=" + encodeURIComponent(box.dataset.rec), {
+      headers: { Authorization: "Bearer " + session.access_token },
+    });
+    if (!r.ok) {
+      let why = "HTTP " + r.status;
+      try { why = (await r.json()).error || why; } catch { /* keep */ }
+      throw new Error(why);
+    }
+    const url = URL.createObjectURL(await r.blob());
+    const audio = document.createElement("audio");
+    audio.controls = true; audio.src = url; audio.style.width = "100%";
+    btn.replaceWith(audio);
+    msg.textContent = "";
+    audio.play().catch(() => {});
+  } catch (e) {
+    btn.disabled = false;
+    msg.textContent = "Could not load the recording: " + e.message;
+  }
 }
 
 function wireList(el, host, account) {
@@ -122,8 +219,19 @@ function wireList(el, host, account) {
     if (box.checked) state.sel.add(box.dataset.id); else state.sel.delete(box.dataset.id);
     render(host, account); // header count updates
   });
+  el.querySelectorAll(".call-play").forEach(b => b.onclick = e => {
+    e.stopPropagation();
+    playRecording(b.closest(".call-audio"));
+  });
+  el.querySelectorAll(".call-status").forEach(b => b.onclick = async e => {
+    e.stopPropagation();
+    b.disabled = true;
+    try { await setCommStatus(b.dataset.id, b.dataset.st); }
+    catch (err) { b.disabled = false; alert("Update failed: " + err.message); }
+  });
+  el.querySelectorAll(".call-detail a, .call-detail audio, .call-detail .call-audio").forEach(a => a.onclick = e => e.stopPropagation());
   el.querySelectorAll(".comm-row").forEach(row => row.onclick = e => {
-    if (e.target.closest(".comm-del") || e.target.closest(".comm-sel")) return;
+    if (e.target.closest(".comm-del") || e.target.closest(".comm-sel") || e.target.closest(".call-detail")) return;
     if (state.select) { // select mode: row click = toggle, not expand
       const id = row.dataset.id;
       if (state.sel.has(id)) state.sel.delete(id); else state.sel.add(id);
@@ -145,6 +253,8 @@ function render(host, account) {
     state.channel = state.channel === b.dataset.ch ? "" : b.dataset.ch; // re-click = back to All
     render(host, account);
   });
+  const att = host.querySelector("#commAttention");
+  if (att) att.onclick = () => { state.attention = !state.attention; render(host, account); };
   host.querySelector("#commUnit").oninput = e => { state.unit = e.target.value; renderList(host, account); };
   host.querySelector("#commQ").oninput = e => { state.q = e.target.value; renderList(host, account); };
 
@@ -159,7 +269,7 @@ function render(host, account) {
       render(host, account);
     });
     host.querySelector("#commSelAll")?.addEventListener("click", () => {
-      filterComms(getComms(), state).forEach(r => state.sel.add(r.id));
+      visibleRows().forEach(r => state.sel.add(r.id));
       render(host, account);
     });
     host.querySelector("#commSelDel")?.addEventListener("click", async () => {
@@ -198,6 +308,15 @@ function render(host, account) {
   renderList(host, account);
 }
 
+/* Other sheets (M-1 "from call") land here with the call expanded. */
+export function openComm(id) {
+  state.channel = ""; state.unit = ""; state.q = ""; state.attention = false; state.select = false;
+  state.open = id;
+  if (mounted) render(mounted.host, mounted.account);
+  location.hash = "#comms";
+  setTimeout(() => document.querySelector('.comm-row[data-id="' + CSS.escape(id) + '"]')?.scrollIntoView({ block: "center", behavior: "smooth" }), 50);
+}
+
 export function initComms(account) {
   const host = document.getElementById("commsBody");
   if (!host) return;
@@ -206,6 +325,7 @@ export function initComms(account) {
     return;
   }
   if (account.role !== "operator" && account.role !== "owner") return; // sealed roles never route here
+  mounted = { host, account };
   onCommsChange(() => render(host, account));
   refreshComms(); // paint fires via onCommsChange
   render(host, account); // immediate skeleton while the fetch runs

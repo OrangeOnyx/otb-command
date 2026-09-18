@@ -1,5 +1,5 @@
 {
-  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store.",
+  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies.",
   "propertyContacts": [
     {
       "id": "pc:butcher",
@@ -209,6 +209,103 @@
       "ref": "Floor Plan - Whole Center.jpg",
       "link": "https://drive.google.com/open?id=1KQRhcgtsFQqbNlZXeAS19CzwfAO3JAAA&usp=drive_fs",
       "note": "Per-unit floor plans on each unit drawer (A-1 → unit)"
+    },
+    {
+      "id": "pd:ac:hartford-2627",
+      "name": "Hartford Package — GL + Umbrella (26–27)",
+      "type": "Insurance · liability",
+      "counterparty": "Hartford Underwriters Insurance Company (agent: Ryan Thomson, TSL Insurance Group, (337) 889-0717)",
+      "ref": "Policy 43SBMAL3XX2",
+      "amount": 13647,
+      "amountKind": "premium",
+      "effective": "2026-05-15",
+      "expires": "2027-05-15",
+      "status": "active",
+      "risk": "low",
+      "riskNote": "Liability package ONLY by design (GL $1M/occ, $2M agg; Umbrella $5M, $10K SIR). Building coverage lives on the separate Lloyd's property policy. Open with TSL: (1) Federal Pacific electric panel at Pink Paisley (101/103) — fire hazard, may affect renewal; (2) no flood policy in program (NFIP/private) — decision needed.",
+      "link": "",
+      "note": "Named insured: Belle Realty of Lafayette LLC. GL $1M each occ / $2M gen agg / $2M prod-comp agg / $1M pers&adv inj; Umbrella $5M agg/occ. Package premium $13,647. Source: 26–27 TSL proposal (Revised 3), reviewed 2026-07-02 (AC archive pd-hartford-2627)."
+    },
+    {
+      "id": "pd:ac:property-2627",
+      "name": "Commercial Property — Buildings (26–27)",
+      "type": "Insurance · property",
+      "counterparty": "Lloyd's of London (Velocity Risk Underwriters, surplus lines via TSL Insurance Group)",
+      "ref": "Bound via TSL — obtain policy #",
+      "amount": 7988449,
+      "amountKind": "coverage",
+      "effective": "2026-05-15",
+      "expires": "2027-05-15",
+      "status": "active",
+      "risk": "medium",
+      "riskNote": "The policy that DOES insure the buildings — Loc 1, 101–149 Arnould, building limit $7,988,449 (RC, 80% coinsurance) + Business Income/Extra Expense/Rental $928,557 + Equipment Breakdown. Track: (1) 80% coinsurance — if replacement cost exceeds ~$9.98M a penalty applies at loss; confirm insured value. (2) Flood EXCLUDED — no NFIP/private flood; decide given Lafayette exposure. (3) Wind/hail minimum earned premium 25%/85% in wind season. (4) FPE panel at Pink Paisley noted in inspection. (5) Obtain the Lloyd's policy number and attach the bound policy.",
+      "link": "",
+      "note": "Named insured: Belle Realty of Lafayette LLC. Surplus lines. Proposed property premium $61,495.58 (down from $72,823.57 expiring). Loc 2 (110 Marie Antoinette) is the parking lot — liability only. Source: 26–27 TSL proposal (Revised 3), reviewed 2026-07-02 (AC archive pd-property-2627)."
+    },
+    {
+      "id": "pd:ac:wc-2627",
+      "name": "Workers Compensation (26–27)",
+      "type": "Insurance · workers comp",
+      "counterparty": "Louisiana Workers Compensation Corporation (LWCC), via TSL Insurance Group",
+      "ref": "Obtain policy #",
+      "amount": 3553,
+      "amountKind": "premium",
+      "effective": "2026-05-15",
+      "expires": "2027-05-15",
+      "status": "active",
+      "risk": "none",
+      "riskNote": "",
+      "link": "",
+      "note": "Employers Liability $500K each accident / $500K disease policy limit / $500K disease each employee. Estimated payroll $200,189 (up from $156,292). Edward Abdalla excluded; Catherine Abdalla included. LWCC dividends received historically ($1,348.97 in 2025). Proposed WC premium $3,553. Source: 26–27 TSL proposal (Revised 3) (AC archive pd-wc-2627)."
+    },
+    {
+      "id": "pd:ac:investar-loan",
+      "name": "Investar Bank Term Loan",
+      "type": "Loan",
+      "counterparty": "Investar Bank, National Association",
+      "ref": "Note dated 10-30-2019",
+      "amount": 1500000,
+      "amountKind": "loan",
+      "effective": "2019-10-30",
+      "expires": "",
+      "matures": "2030-04-30",
+      "status": "active",
+      "risk": "low",
+      "riskNote": "Balloon maturity 04-30-2030. Begin refinance / extension conversations 12–18 months out (by late 2028) to avoid a rushed rate reset at maturity.",
+      "link": "",
+      "note": "Borrower: Belle Realty of Lafayette, L.L.C. Principal $1,500,000. Source: ExecutedInvestarBankLoan20112019.pdf + 9323.hud1.pdf (AC archive pd-investar-loan)."
+    },
+    {
+      "id": "pd:ac:title-2007",
+      "name": "Fidelity National Title — Loan Policy (2007)",
+      "type": "Title",
+      "counterparty": "Fidelity National Title Insurance Company (insured lender: Protective Life Insurance Company)",
+      "ref": "Policy No. 74102317 · Entry No. 2007-00033813, Lafayette Parish",
+      "amount": 1250000,
+      "amountKind": "insured",
+      "effective": "2007-07-25",
+      "expires": "",
+      "status": "reference",
+      "risk": "high",
+      "riskNote": "A LENDER loan policy insuring Protective Life on a 2007 $1,250,000 mortgage — NOT the current Investar loan. It does not protect Belle Realty's ownership interest and names a prior lender. No evidence of an owner's title policy or a lender policy for the 2019 Investar loan. Order (a) an owner's policy in Belle Realty's name and (b) a lender policy for Investar if one was never issued.",
+      "link": "",
+      "note": "Insured mortgage: Act of Mortgage & Security Agreement dated 07-17-2007, recorded 07-25-2007. Amount of insurance $1,250,000; premium $3,572.70. Title vested in Belle Realty of Lafayette, L.L.C. Source: belle.realty.policy.sched.pdf (AC archive pd-title-2007)."
+    },
+    {
+      "id": "pd:ac:hud1-2019",
+      "name": "HUD-1 Settlement Statement (2019 acquisition / refi)",
+      "type": "Closing",
+      "counterparty": "Investar Bank / Belle Realty of Lafayette, L.L.C.",
+      "ref": "File 9323",
+      "amount": 1500000,
+      "amountKind": "loan",
+      "effective": "2019-10-30",
+      "expires": "",
+      "status": "reference",
+      "risk": "none",
+      "riskNote": "",
+      "link": "",
+      "note": "New loan $1,500,000; settlement charges $26,055.70; prior mortgage payoff $753,625.78; hold for construction $720,318.52. Property: 123 Arnould Blvd (On The Boulevard). Source: 9323.hud1.pdf (AC archive pd-hud1-2019)."
     }
   ],
   "unitDocTypes": [
@@ -218,5 +315,31 @@
     "Estoppel",
     "Guaranty",
     "Sign drawing"
-  ]
+  ],
+  "unitContacts": {
+    "129": [
+      {
+        "id": "c:129:insurance",
+        "unit": "129",
+        "role": "Insurance agency",
+        "company": "Lockton Affinity, LLC (HOTWORX Insurance Program)",
+        "name": "",
+        "phone": "844-401-9446",
+        "email": "",
+        "note": "Carrier: Certain Underwriters at Lloyd's, London · Policy HXG-000232-00 (GL / Property / WC / Professional) · Property policy HXP-000232-00 · WC SWC1589711 · Insured: HW Settlers Trace LLC / Lexi Investments · Fax 913-652-7599. (AC harvest insurance_contacts, 2026-06-29)"
+      }
+    ],
+    "145": [
+      {
+        "id": "c:145:insurance",
+        "unit": "145",
+        "role": "Insurance agency",
+        "company": "Lockton Companies (Lockton Insurance Brokers, LLC)",
+        "name": "",
+        "phone": "816-960-9000",
+        "email": "",
+        "note": "Carrier: TDC Specialty Insurance Company · Policy MFP-02533-25-01 (GL / Auto / Umbrella / WC) · Belle Realty of Lafayette named additional insured (Clinic #2577) · Insured: Upstream Rollco/Rehabilitation, Benchmark Growth Partners · Umbrella 005AL000048252 · WC 37WEID1080. (AC harvest insurance_contacts, 2026-06-29)"
+      }
+    ]
+  }
 }

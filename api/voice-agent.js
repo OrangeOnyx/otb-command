@@ -11,11 +11,15 @@ import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { rpcSecret } from "./_supa.mjs";
 import {
-  tenantPersona, leasingPersona, nextTourSlots, speechify,
-  MAINT_TOOL, TOUR_TOOL, MAX_TURNS, DEFAULT_TOUR_WINDOWS, SLOT_MINUTES_DEFAULT,
+  tenantPersona, leasingPersona, nextTourSlots, slotLabel, speechify,
+  MAINT_TOOL, TOUR_TOOL, PACKAGE_TOOL, MAX_TURNS, DEFAULT_TOUR_WINDOWS, SLOT_MINUTES_DEFAULT,
   claimsBooking, BOOKING_GUARD_NOTE, BOOKING_FALLBACK,
 } from "../src/lib/voiceagent.js";
+import { leasingPackageEmail } from "../src/lib/leasing.js";
+import { startRecording, finalizeCall } from "./_voicecall.mjs";
+import { sendEmail, emailConfigured } from "./_email.mjs";
 import sop from "../src/data/sop.json" with { type: "json" };
+import UNITS from "../src/data/units.public.json" with { type: "json" };
 
 export const maxDuration = 60;
 
@@ -44,6 +48,17 @@ function chicagoNow() {
   return { ms, nowLine };
 }
 
+/* what the call produced, merged onto voice_calls.outcome (the finalized
+   record + owner e-mail link to it) — best effort, never blocks the reply */
+async function recordOutcome(callSid, key, value) {
+  if (!callSid) return;
+  try { await rpcSecret("voice_call_outcome", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_key: key, p_value: value }); }
+  catch (e) { console.error("voice outcome:", key, e.message); }
+}
+
+const SLOT_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 async function runTool(name, input, callSid, caller) {
   const p_secret = process.env.VOICE_SECRET;
   try {
@@ -53,6 +68,7 @@ async function runTool(name, input, callSid, caller) {
         p_detail: String(input.detail || ""), p_urgency: String(input.urgency || "routine"),
         p_caller: caller,
       });
+      await recordOutcome(callSid, "work_order", id);
       return { ok: true, request_id: id, note: "Work order filed. The operator sees it immediately." };
     }
     if (name === "book_tour") {
@@ -61,9 +77,36 @@ async function runTool(name, input, callSid, caller) {
         p_phone: String(input.phone || ""), p_interest: String(input.interest || ""),
         p_call_sid: callSid,
       });
+      if (r === "ok") {
+        const key = String(input.slot_key || "");
+        await recordOutcome(callSid, "tour", { slot_key: key, label: SLOT_RE.test(key) ? slotLabel(key) : key, name: String(input.name || "") });
+      }
       return r === "ok"
         ? { ok: true, note: "Booked. The operator is notified and will confirm." }
         : { ok: false, note: "That slot was just taken — offer the next open slot." };
+    }
+    if (name === "send_leasing_package") {
+      /* the lead is saved regardless; the package e-mails only when the caller
+         gave an address AND mail is configured — the reply never overclaims */
+      const email = String(input.email || "").trim().toLowerCase();
+      const name_ = String(input.name || "").trim();
+      const leadId = await rpcSecret("voice_leasing_lead", {
+        p_secret, p_call_sid: callSid, p_name: name_, p_phone: String(input.phone || ""),
+        p_email: email, p_interest: String(input.interest || ""), p_unit: String(input.unit || ""),
+      });
+      await recordOutcome(callSid, "lead", leadId);
+      const okEmail = EMAIL_RE.test(email);
+      let sent = false;
+      if (okEmail && emailConfigured()) {
+        const msg = leasingPackageEmail({ units: UNITS.units || UNITS, prospect: name_.split(" ")[0] });
+        sent = (await sendEmail({ to: [email], subject: msg.subject, text: msg.text, html: msg.html })).sent;
+      }
+      await recordOutcome(callSid, "package", { sent, email: okEmail ? email : "" });
+      return sent
+        ? { ok: true, note: "Package e-mailed to " + email + ". Confirm the address aloud and let them know it is on its way." }
+        : okEmail
+          ? { ok: true, note: "Lead saved; the operator will e-mail the package to " + email + " shortly. Say Adam will send it today — do not say it has already been sent." }
+          : { ok: true, note: "Lead saved with no e-mail address. Say Adam will follow up by phone with the package — do not claim anything was sent." };
     }
     return { ok: false, note: "unknown tool" };
   } catch (e) {
@@ -93,6 +136,36 @@ export default async function handler(req, res) {
   const callSid = String(req.body?.callSid || "").slice(0, 64);
   const caller = String(req.body?.caller || "").slice(0, 20);
   const raw = Array.isArray(req.body?.messages) ? req.body.messages : [];
+
+  /* call lifecycle events from the bridge (2026-09-18 call records):
+     setup → the row exists + recording starts (when Twilio creds are set);
+     end   → summary / classification / L-1 mirror / owner e-mail. Both are
+     best effort: a failure here never touches a live call. */
+  const event = req.body?.event === "setup" ? "setup" : req.body?.event === "end" ? "end" : "";
+  if (event) {
+    if (!callSid) return res.status(400).json({ error: "callSid required" });
+    if (event === "setup") {
+      try { await rpcSecret("voice_call_start", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: line, p_caller: caller }); }
+      catch (e) { console.error("voice call start:", e.message); }
+      const rec = await startRecording(callSid, process.env.VOICE_SECRET);
+      return res.status(200).json({ ok: true, recording: rec.ok });
+    }
+    const messages = raw
+      .filter(m => (m?.role === "user" || m?.role === "assistant") && typeof m?.content === "string")
+      .map(m => ({ role: m.role, content: m.content.slice(0, 4000) }));
+    const durationS = Number(req.body?.durationS);
+    try {
+      await rpcSecret("voice_call_start", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: line, p_caller: caller });
+      const out = await finalizeCall({
+        callSid, line, caller, messages, durationS: Number.isFinite(durationS) ? durationS : null,
+        secret: process.env.VOICE_SECRET, cronSecret: process.env.CRON_SECRET,
+      });
+      return res.status(200).json({ ok: true, intent: out.summary.intent, urgency: out.summary.urgency, email: out.email.sent });
+    } catch (e) {
+      console.error("voice call end:", e.message);
+      return res.status(200).json({ ok: false, error: e.message });
+    }
+  }
   const messages = raw
     .filter(m => (m?.role === "user" || m?.role === "assistant") && typeof m?.content === "string")
     .slice(-MAX_TURNS * 2)
@@ -119,7 +192,7 @@ export default async function handler(req, res) {
   const system = line === "tenant"
     ? tenantPersona(sop, { nowLine })
     : leasingPersona(sop, { nowLine, slots });
-  const tools = line === "tenant" ? [MAINT_TOOL] : [TOUR_TOOL];
+  const tools = line === "tenant" ? [MAINT_TOOL] : [TOUR_TOOL, PACKAGE_TOOL];
 
   const anthropic = new Anthropic();
   let reply = "";

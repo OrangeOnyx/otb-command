@@ -76,6 +76,24 @@ wss.on("connection", (ws, req) => {
   let callSid = "";
   const messages = [];
   let busy = false;
+  const startedAt = Date.now();
+  let ended = false;
+
+  /* call lifecycle → brain (2026-09-18 call records). Fire-and-forget:
+     the brain records the call, starts the Twilio recording, and at the end
+     summarizes / e-mails. A brain failure here never touches the live call. */
+  const lifecycle = (event, extra = {}) =>
+    fetch(BRAIN + "/api/voice-agent", {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: "Bearer " + SECRET },
+      body: JSON.stringify({ event, line, callSid, caller, ...extra }),
+      signal: AbortSignal.timeout(event === "end" ? 55000 : 8000),
+    }).catch(e => console.error("lifecycle " + event + ":", e.message));
+  const endCall = () => {
+    if (ended || !callSid) return;
+    ended = true;
+    lifecycle("end", { messages, durationS: Math.round((Date.now() - startedAt) / 1000) });
+  };
 
   const speak = (text, last = true) => ws.send(JSON.stringify({ type: "text", token: text, last }));
 
@@ -84,8 +102,10 @@ wss.on("connection", (ws, req) => {
     try { event = JSON.parse(data); } catch { return; }
 
     if (event.type === "setup" || event.type === "connected") {
+      const first = !callSid && !!event.callSid;
       callSid = event.callSid || callSid;
       caller = event.from || caller;
+      if (first) lifecycle("setup");
       return;
     }
     if (event.type === "error") { console.error("relay error:", event.description); return; }
@@ -114,6 +134,7 @@ wss.on("connection", (ws, req) => {
   });
 
   ws.on("error", (e) => console.error("ws:", e.message));
+  ws.on("close", endCall);
 });
 
 server.listen(PORT, () => console.log("voice bridge on :" + PORT + " → " + BRAIN));
