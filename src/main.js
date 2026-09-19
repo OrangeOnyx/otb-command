@@ -37,6 +37,10 @@ import { initComms } from "./views/comms.js";
 import { initMatters } from "./views/matters.js";
 import { initMarketing } from "./views/marketing.js";
 import { closeDrawer } from "./views/drawer.js";
+import { getActionCards } from "./views/board.js";
+import { onMaintChange } from "./lib/maintenance.js";
+import { ribbonModel, ribbonHTML } from "./lib/ribbon.js";
+import { isoDate } from "./lib/docexpiry.js";
 import { COMMAND_PREVIEW } from './lib/command-evidence.js';
 
 const isCommandPreview=import.meta.env.VITE_COMMAND_ENV==='preview';
@@ -392,6 +396,23 @@ function initRouter() {
   if (pageFromHash(location.hash)) goHash(); // honor a deep link on load; else keep role default
 }
 
+/* Masthead KPI ribbon (2026-09-19, Asset Command review pick 3): the five
+   always-on numbers, same sources as D-1; each drills into its sheet via the
+   hash router. Re-paints on every store event (cheap: pure model). */
+function renderRibbon() {
+  const el = document.getElementById("ribbon");
+  if (!el) return;
+  let cards = [];
+  try { cards = getActionCards(); } catch { /* board not ready yet */ }
+  el.innerHTML = ribbonHTML(ribbonModel(UNITS, cards, isoDate(TODAY)));
+  el.querySelectorAll(".rb-item").forEach(b => b.onclick = () => { location.hash = hashFor(b.dataset.page); });
+}
+function initRibbon() {
+  renderRibbon();
+  subscribe(type => { if (type !== "selection") renderRibbon(); });
+  onMaintChange(renderRibbon);
+}
+
 function initViews(account) {
   initPlan();
   initSpatial();
@@ -413,6 +434,7 @@ function initViews(account) {
   initMatters(account);
   initMarketing();
   initDashboard(); // last — its Action Queue reads the board's live cards
+  initRibbon();    // after the board: the attention count reads its live cards
 }
 
 /* push operator edits to the shared backend (per-row diffs, debounced).

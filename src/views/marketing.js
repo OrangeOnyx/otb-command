@@ -19,6 +19,9 @@ import {
 } from "../lib/marketing.js";
 import { tourAvailable, addTourMedia, listTourMedia, removeTourMedia, publishManifest, manifestUrl, TOUR_KINDS } from "../lib/tour.js";
 import corridor from "../data/corridor.json";
+import { PYLON } from "../lib/facts.js";
+import { pylonSVG, pylonRoster, pylonSummary } from "../lib/pylonsvg.js";
+import { wirePylon } from "./directory.js";
 
 let host = null;
 let assetsByUnit = {};   // unit → [{id,kind,name,url,addedAt}]
@@ -127,10 +130,33 @@ function tourBlock() {
   return '<div class="card mkt-card"><div class="panel-h"><h2>360° tour · ' + vac.map(u => u.unit).join(" · ") + '</div><div class="sub">INSTA360 EQUIRECTANGULAR JPEGS + ONE HERO STILL PER SUITE · PUBLIC BUCKET · THE MICROSITE READS THE MANIFEST</div></div>' + inner + '</div>';
 }
 
+/* Pylon sign (2026-09-19, Asset Command review pick 5): the monument sign
+   drawn from the D-19b register — panel occupancy is a marketing asset and a
+   renewal lever (a tenant without a face is the next candidate; a reprint
+   is an open work item). Same builders as the K-1 register. */
+function pylonBlock() {
+  const byUnit = Object.fromEntries(UNITS.map(u => [u.unit, u]));
+  const { rows, counts } = pylonRoster(PYLON, byUnit);
+  // per TENANT, not per unit: a multi-bay tenant with one face (115/117, 125/127, 139/141) is covered
+  const faced = new Set(rows.filter(r => r.unit && byUnit[r.unit]).map(r => byUnit[r.unit].dba));
+  const seen = new Set();
+  const noFace = UNITS.filter(u => u.status !== "vacant" && u.status !== "owner" && !faced.has(u.dba) && !seen.has(u.dba) && seen.add(u.dba));
+  return '<div class="card mkt-card" id="mktPylon"><div class="panel-h"><h2>Pylon sign</h2><div class="sub">' + esc(PYLON.name.toUpperCase()) + ' · ' + esc(pylonSummary(counts, rows.length).toUpperCase()) + ' · ' + esc(PYLON.schedule.toUpperCase()) + '</div></div>' +
+    '<div class="py-wrap"><div class="py-sign">' + pylonSVG(PYLON, byUnit) + '</div>' +
+    '<div class="py-roster">' + rows.map(r =>
+      '<div class="reg-row py-r" data-unit="' + esc(r.unit) + '" data-panel="' + esc(r.panel) + '"><span class="reg-k">' + esc(r.panel) + ' · ' + esc(r.size) + '</span>' +
+      '<span class="reg-v">' + (r.unit ? '<b>' + esc(r.unit) + '</b>' + (r.tenant ? ' · ' + esc(r.tenant) : '') : '<span class="missing">available</span>') + '</span>' +
+      '<span class="reg-s' + (r.state === "reprint" ? ' hot' : r.state === "occupied" ? ' ok' : '') + '">' + (r.state === "reprint" ? "reprint needed" : esc(r.state)) + '</span></div>').join("") +
+    '<p class="mkt-p" style="margin-top:10px">' + (counts.vacant ? counts.vacant + ' panel' + (counts.vacant === 1 ? '' : 's') + ' open.' : 'The sign is full.') +
+    (noFace.length ? ' Tenants without a face: ' + esc(noFace.map(u => u.unit + " " + u.dba).join(", ")) + ' — candidates for the next open panel or a renewal negotiation lever.' : ' Every tenant of record has a face.') +
+    (counts.reprint ? ' ' + counts.reprint + ' panel reads the wrong name — reprint is an open work item.' : '') + '</p></div></div>';
+}
+
 /* ---- render + wire ---- */
 function render() {
   if (!host) return;
-  host.innerHTML = flyersHTML() + overviewBlock() + cardsBlock() + libraryBlock() + tourBlock();
+  host.innerHTML = flyersHTML() + overviewBlock() + cardsBlock() + pylonBlock() + libraryBlock() + tourBlock();
+  wirePylon(host.querySelector("#mktPylon"));
   host.querySelectorAll(".mkt-flyer").forEach(b => b.onclick = () => {
     const unit = b.dataset.unit;
     openDoc(flyerHTML(flyerModel({ unit, assets: assetsByUnit[unit] || [], picks: getMarketing().hero, ...ctx() })));

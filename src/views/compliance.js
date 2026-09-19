@@ -6,6 +6,11 @@ import { esc } from "../lib/format.js";
 import { LOCAL_REVIEW, REMOTE, logCompEvent, listCompEvents } from "../lib/remote.js";
 import { eventRow, describeEvent } from "../lib/compevents.js";
 import { canEditCompliance, filterComplianceRows } from "../lib/compliance-ui.js";
+import { coverageRows, filterCoverage, coiExpiryText, COVERAGE_FILTERS, CELL_LABEL } from "../lib/coverage.js";
+import { unitDocuments } from "../lib/directory.js";
+import { isoDate } from "../lib/docexpiry.js";
+import { TODAY } from "../lib/format.js";
+import { openDrawer } from "./drawer.js";
 
 const FIELD_LABELS = Object.fromEntries(COMP_FIELDS);
 const LABELS = { u: "Unverified", ok: "On file", flag: "Flagged", na: "N/A" };
@@ -112,9 +117,46 @@ async function paintHistory(generation) {
   }
 }
 
+/* ---- document coverage (2026-09-19, Asset Command review pick 4) ---- */
+let covFilter = "gaps";
+const covIcon = state => state === "ok" ? "✓" : state === "soon" ? "◔" : state === "na" ? "—" : "✕";
+export function renderCoverage() {
+  const body = document.getElementById("covBody");
+  if (!body) return;
+  const { rows, summary } = coverageRows(UNITS, unitDocuments, unit => ({ lease: getComp(unit, "lease"), coi: getComp(unit, "coi") }), isoDate(TODAY));
+  const sub = document.getElementById("covSub");
+  if (sub) sub.textContent = "LEASE & COI GAP REPORT · " + summary.total + " OCCUPIED SUITES · " + summary.gaps + " WITH GAPS";
+  const shown = filterCoverage(rows, covFilter);
+  const counts = { gaps: summary.gaps, nolease: summary.missingLease, nocoi: summary.missingCoi, lapsed: summary.coiLapsedSoon, complete: summary.complete, all: summary.total };
+  body.innerHTML =
+    '<div class="cov-kpis">' + [
+      ["brick", summary.missingLease, "Missing lease"], ["brick", summary.missingCoi, "Missing COI"],
+      ["brass", summary.coiLapsedSoon, "COI lapsed / soon"], ["brass", summary.gaps, "Suites with gaps"], ["green", summary.complete, "Fully covered"],
+    ].map(([tone, v, l]) => '<div class="cov-k cov-' + tone + (v ? "" : " zero") + '"><b>' + v + '</b><span>' + l + '</span></div>').join("") + '</div>' +
+    '<div class="cov-filters" role="group" aria-label="Coverage filter">' + COVERAGE_FILTERS.map(([id, label]) =>
+      '<button type="button" class="chip' + (id === covFilter ? " on" : "") + '" data-f="' + id + '">' + esc(label) + ' <small>' + counts[id] + '</small></button>').join("") + '</div>' +
+    '<table class="cov-table"><thead><tr><th>Unit</th><th>Tenant</th><th>Lease</th><th>COI</th><th>COI expires</th><th>Other docs</th></tr></thead><tbody>' +
+    (shown.length ? shown.map(r =>
+      '<tr class="cov-row' + (r.gap ? " gap" : "") + '" data-unit="' + esc(r.unit) + '" tabindex="0">' +
+      '<td class="mono">' + esc(r.unit) + '</td><td>' + esc(r.dba) + '</td>' +
+      '<td><span class="cov-cell cov-' + r.lease + '" title="' + esc(CELL_LABEL[r.lease]) + '">' + covIcon(r.lease) + (r.leaseCount > 1 ? ' <small>×' + r.leaseCount + '</small>' : '') + '</span></td>' +
+      '<td><span class="cov-cell cov-' + r.coi + '" title="' + esc(CELL_LABEL[r.coi]) + '">' + covIcon(r.coi) + '</span></td>' +
+      '<td class="mono cov-exp cov-exp-' + r.coi + '">' + esc(coiExpiryText(r)) + '</td>' +
+      '<td class="mono">' + (r.other || "—") + '</td></tr>').join("")
+      : '<tr><td colspan="6" class="led-note">Nothing in this filter.</td></tr>') + '</tbody></table>' +
+    '<p class="cov-note">Evidence = a file on the suite&#39;s document records (drawer / K-1) <b>or</b> the matrix state below marked On file. A matrix Flag always shows as a gap. COI expiry uses the vendor-COI thresholds (30d critical · 60d expiring). Click a row to open the suite.</p>';
+  body.querySelectorAll(".cov-filters .chip").forEach(b => b.onclick = () => { covFilter = b.dataset.f; renderCoverage(); });
+  body.querySelectorAll(".cov-row").forEach(tr => {
+    const go = () => openDrawer(tr.dataset.unit);
+    tr.onclick = go;
+    tr.onkeydown = e => { if (e.key === "Enter") go(); };
+  });
+}
+
 export function initMatrix() {
-  subscribe(type => { if (type === "comp" || type === "import") renderMatrix(); });
+  subscribe(type => { if (type === "comp" || type === "import") renderMatrix(); if (["comp", "import", "documents", "seed"].includes(type)) renderCoverage(); });
   renderMatrix();
+  renderCoverage();
   roleObserver?.disconnect();
   roleObserver = new MutationObserver(() => {
     if (readOnly !== !canEditCompliance(document.body.classList)) renderMatrix();

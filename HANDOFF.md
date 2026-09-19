@@ -1,4 +1,42 @@
-﻿# Cypress Command · OTB — Session Handoff
+# Cypress Command · OTB — Session Handoff
+
+## September 19, 2026 — ASSET COMMAND VISUAL REVIEW → PICKS 1–5 BUILT · 765 tests green · NOT YET PUSHED
+
+Operator (Sep 18 evening): reviewed 38 full-page captures + a 10-min recording of
+assetcommand.orangeocean.com ("I like some of the visual information displayed …
+let me know your thoughts"); ranked list of 8 ports delivered; operator: "1, 2, 3, 4, 5 —
+build them". Memo: `docs/asset-command-review-2026-09-18.md` (the ranking, the AC data
+flags, what was built). Everything is in the plan-room system — AC's SaaS skin was not copied.
+
+**Built (local, committed on master, not pushed — this session's push door untested):**
+- **T-1 Lease expiry timeline** — `src/lib/leasegantt.js` + `src/views/dates-lease.js`: 4-year SVG
+  Gantt, today line, Jan/Jul ticks, bucket cards (past end · <90d · 90–180d · >180d · term
+  unresolved). Blank-`end` suites 119/139/141/145 list as "term unresolved" with their lease-
+  review label — BY DESIGN, never guessed. Row click → drawer.
+- **T-1 Renewal pipeline** — `src/lib/renewals.js` + NEW `src/data/renewal-options.json`
+  (reference-only option terms, AI-extracted from the executed leases via the AC harvest;
+  24 suites, every notice = 60 days). noticeBy = Tier-1 end − notice days. Live groups today:
+  Notice window 1 (111 · notice by 2026-12-02) · Deadline passed 2 (115/117 · notice was
+  2026-08-01) · Option available 17 · Term unresolved 4. "Open suite" → drawer; no new persistence.
+- **Masthead KPI ribbon** — `src/lib/ribbon.js`, `#ribbon` in `.topbar` (main.js `initRibbon`,
+  after the board so the attention count reads live W-1 cards). Occupancy · Rent/mo · Vacant ·
+  Expiring ≤12 mo · Needs attention; each button drills into its sheet. Address block hides
+  ≤1560px; ribbon wraps to its own row ≤860px; hidden in print.
+- **C-1 Document coverage** — `src/lib/coverage.js`, `#coverage` card above the matrix: per
+  occupied suite Lease · COI · COI expires · other docs, filter chips, five summary counts.
+  Evidence = file on the suite's document records OR matrix On file; matrix Flag = gap; COI
+  thresholds from `lib/coi.js`. Local review reads 23 gaps because lease Drive links are
+  hosted-only seed and the matrix is unverified — honest, not a bug.
+- **Pylon sign** — `src/lib/pylonsvg.js`: native SVG elevation from `data/pylon.json`; B-1 gets a
+  "Pylon sign" block (sign + roster + "tenants without a face" PER TENANT); K-1's register now
+  draws the same sign next to its roster (`wirePylon` shared, hover-links panel ↔ row, click →
+  drawer). P13 renders brick-dashed with the installed "Boulevard Nutrition" text.
+- Tests: `test/leasegantt`, `renewals`, `ribbon`, `coverage`, `pylonsvg` (.test.mjs) — 765 green.
+
+**Not done / caveats:** screenshots timed out in the browser pane most of the session; the five
+surfaces were verified by DOM reads (counts, groups, labels, layout boxes at 1500 / 375 px) and
+one T-1 screenshot. Picks 6–8 (P-1 donut + waterfall, A-1 overlay tabs, tenant health) were
+NOT built — operator did not pick them. `docs/graph/labels.json` still modified, still left out.
 
 ## September 18, 2026 (early) — VOICE CALL RECORDS + OWNER-DOCUMENT CARDS BUILT + LIVE · punch list Rev 13 · register 17/25
 

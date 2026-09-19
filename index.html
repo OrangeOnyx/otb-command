@@ -18,6 +18,7 @@
       <a class="wordmark" href="#dash" aria-label="Cypress Command — dashboard"><img src="/brand/cypress/cc-04c-horizontal-reverse.svg" alt="Cypress Command" width="260" height="91"></a>
     </div>
     <div class="addr">ON THE BOULEVARD<br>101–149 ARNOULD BLVD · LAFAYETTE, LA 70506 · BELLE REALTY OF LAFAYETTE, LLC</div>
+    <div class="ribbon" id="ribbon" aria-label="Property key figures"></div>
     <div class="spacer"></div>
     <div class="gs" id="gsBox">
       <input id="gsInput" type="search" aria-label="Search units, contacts and documents" placeholder="Search units, contacts, docs…  ( / )" autocomplete="off">
@@ -139,13 +140,27 @@
     <!-- C-1 COMPLIANCE -->
     <section class="page" id="pg-comp">
       <div class="page-head"><h1>Tenant Compliance</h1><div class="sub">C-1 · 11 FIELDS × 27 UNITS · CLICK CELL TO CYCLE</div></div>
+      <div class="card coverage" id="coverage">
+        <div class="panel-h"><h2>Document coverage</h2><div class="sub" id="covSub">LEASE &amp; COI GAP REPORT · OCCUPIED SUITES</div></div>
+        <div id="covBody"></div>
+      </div>
       <div class="card matrix" id="matrix"></div>
     </section>
 
     <!-- T-1 CRITICAL DATES -->
     <section class="page" id="pg-dates">
       <div class="page-head"><h1>Critical Dates</h1><div class="sub">T-1 · EXPIRATIONS, EASEMENTS, INSTRUMENTS</div></div>
-      <div class="card"><div class="tl" id="timeline"></div></div>
+      <div class="card gantt-card">
+        <div class="panel-h"><h2>Lease expiry timeline</h2><div class="sub" id="ganttSub">TERM REMAINING BY SUITE · TODAY MARKED</div></div>
+        <div class="gantt-buckets" id="ganttBuckets"></div>
+        <div class="gantt" id="gantt"></div>
+      </div>
+      <div class="card renew-card">
+        <div class="panel-h"><h2>Renewal pipeline</h2><div class="sub" id="renewSub">OPTION NOTICE DEADLINES · TIER-1 DATES × LEASE-ABSTRACT OPTION TERMS (REFERENCE)</div></div>
+        <div class="renew-kpis" id="renewKpis"></div>
+        <div class="renew" id="renew"></div>
+      </div>
+      <div class="card"><div class="panel-h"><h2>Dated events</h2><div class="sub">LEASES · INSTRUMENTS · MATTERS · GOVERNANCE · HVAC PM · RENT STEPS</div></div><div class="tl" id="timeline"></div></div>
     </section>
 
     <!-- W-1 ACTION BOARD -->

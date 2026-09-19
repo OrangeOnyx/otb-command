@@ -14,6 +14,8 @@ import { REMOTE, getPublishedLines, getPropertyFacts } from "../lib/remote.js";
 import { linesFromRow, lineRows } from "../lib/voicelines.js";
 import { TITLE_EXCEPTIONS, PYLON } from "../lib/facts.js";
 import { groupIdentifiers, identifierSummary, displayValue } from "../lib/identifiers.js";
+import { pylonSVG, pylonRoster, pylonSummary } from "../lib/pylonsvg.js";
+import { openDrawer } from "./drawer.js";
 
 let imageryDispose = null;
 
@@ -99,21 +101,28 @@ function renderPylonBlock() {
   const el = document.getElementById("dirPylon");
   if (!el) return;
   const sub = document.getElementById("dirPylonSub");
-  const byUnit = new Map(UNITS.map(u => [u.unit, u]));
-  const reprint = PYLON.panels.filter(p => p.physicalReads).length;
-  if (sub) sub.textContent = PYLON.schedule.toUpperCase() + " · " + PYLON.panels.length + " PANELS" +
-    (reprint ? " · " + reprint + " REPRINT NEEDED" : "") + " · ZONING " + PYLON.zoning.toUpperCase();
-  el.innerHTML = PYLON.panels.map(p => {
-    const u = byUnit.get(p.unit);
-    const tenant = u ? u.dba : "";
-    const face = !!(p.physicalReads && p.physicalReads !== tenant);
-    return '<div class="reg-row"><span class="reg-k">' + esc(p.panel) + ' · ' + esc(p.size) + '</span>' +
-      '<span class="reg-v"><b>' + esc(p.unit) + '</b>' + (tenant ? ' · ' + esc(tenant) : '') + '</span>' +
-      '<span class="reg-s' + (face ? ' hot' : p.status === "occupied" ? ' ok' : '') + '">' +
-      (face ? "reprint needed" : esc(p.status)) + '</span>' +
-      (face ? '<span class="reg-n">Installed panel reads "' + esc(p.physicalReads) + '" — ' + esc(p.note) + '</span>'
-        : p.note ? '<span class="reg-n">' + esc(p.note) + '</span>' : '') + '</div>';
-  }).join("");
+  const byUnit = Object.fromEntries(UNITS.map(u => [u.unit, u]));
+  const { rows, counts } = pylonRoster(PYLON, byUnit);
+  if (sub) sub.textContent = PYLON.schedule.toUpperCase() + " · " + pylonSummary(counts, rows.length).toUpperCase() + " · ZONING " + PYLON.zoning.toUpperCase();
+  el.innerHTML = '<div class="py-wrap"><div class="py-sign">' + pylonSVG(PYLON, byUnit) + '</div><div class="py-roster">' + rows.map(r =>
+    '<div class="reg-row py-r" data-unit="' + esc(r.unit) + '" data-panel="' + esc(r.panel) + '"><span class="reg-k">' + esc(r.panel) + ' · ' + esc(r.size) + '</span>' +
+    '<span class="reg-v">' + (r.unit ? '<b>' + esc(r.unit) + '</b>' + (r.tenant ? ' · ' + esc(r.tenant) : '') : '<span class="missing">available</span>') + '</span>' +
+    '<span class="reg-s' + (r.state === "reprint" ? ' hot' : r.state === "occupied" ? ' ok' : '') + '">' + (r.state === "reprint" ? "reprint needed" : esc(r.state)) + '</span>' +
+    (r.state === "reprint" ? '<span class="reg-n">Installed panel reads "' + esc(r.physicalReads) + '" — ' + esc(r.note) + '</span>'
+      : r.note ? '<span class="reg-n">' + esc(r.note) + '</span>' : '') + '</div>').join("") + '</div></div>';
+  wirePylon(el);
+}
+
+/* shared hover/click wiring for the sign + roster (B-1 reuses it) */
+export function wirePylon(el) {
+  const hi = panel => el.querySelectorAll(".py-panel, .py-r").forEach(n => n.classList.toggle("py-hi", !!panel && n.dataset.panel === panel));
+  el.querySelectorAll(".py-panel, .py-r").forEach(n => {
+    n.onmouseenter = () => hi(n.dataset.panel);
+    n.onmouseleave = () => hi("");
+    const go = () => { if (n.dataset.unit) openDrawer(n.dataset.unit); };
+    n.onclick = go;
+    n.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+  });
 }
 
 /* Property identifiers (ruling D-23a, 2026-09-17): properties.facts rows of

@@ -12,6 +12,7 @@ import { getMatters, refreshMatters, matterDeadlines } from "../lib/matters.js";
 import { refreshLeaseRef, getLeaseRef, escalationEvents } from "../lib/leaseref.js";
 import { getGovernance, refreshGovernance, govDeadlines, GOV_KINDS } from "../lib/governance.js";
 import { getHvacContracts, refreshHvac, hvacDeadlines, HVAC_FREQ } from "../lib/hvac.js";
+import { renderLeaseBlocks, renderGantt } from "./dates-lease.js";
 
 /* sync events — leases + instruments (unchanged baseline set) */
 function baseEvents() {
@@ -100,6 +101,10 @@ async function enrich() {
 
 export function initDates() {
   renderDates();
+  renderLeaseBlocks();
   enrich();
-  subscribe(type => { if (type === "import") renderDates(); });
+  subscribe(type => { if (type === "import" || type === "seed") { renderDates(); renderLeaseBlocks(); } });
+  // the Gantt is width-aware (bars are absolute px inside the card)
+  let t = 0;
+  window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(renderGantt, 150); });
 }

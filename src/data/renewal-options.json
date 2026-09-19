@@ -1,0 +1,198 @@
+{
+  "_comment": "Renewal option terms per suite \u2014 REFERENCE ONLY, AI-extracted from the executed leases (AC lease_abstractions harvest 2026-08-29, register #10 PORT). Feeds the T-1 renewal pipeline: noticeBy = Tier-1 lease end (units.json) minus noticeDays. The signed rent roll + docs/lease-population-2026-09-10.md stay the SOT for term dates; a blank `end` in units.json keeps the suite out of the deadline math by design. Verify the option clause in the executed lease before relying on any row.",
+  "source": "docs/harvest/ac-archive-2026-08-29/lease_abstractions.json \u2192 renewalOptions[0]",
+  "units": {
+    "101": {
+      "term": "5 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "$16.88 PSF",
+      "confidence": "high"
+    },
+    "103": {
+      "term": "5 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "$16.88 PSF",
+      "confidence": "high"
+    },
+    "105": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "107": {
+      "term": "3 years",
+      "count": 3,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated; increase shall not exceed the percentage increase in the Consumer Price Index",
+      "confidence": "high"
+    },
+    "109": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "not less than sixty (60) days prior to the expiration of the Initial Term",
+      "rentBasis": "Monthly Rental Amount shall be negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "111": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "113": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "not less than 60 days prior to expiration",
+      "rentBasis": "Monthly Rental Amount shall be negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "115": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "117": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "117.5": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "119": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "not less than sixty (60) days prior to the expiration of the Initial Term",
+      "rentBasis": "negotiated by the Lessor and the Lessee",
+      "confidence": "medium"
+    },
+    "119.5": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "121": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "123": {
+      "term": "Three (3) additional terms of five (5) years each",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "Not less than sixty (60) days prior to the expiration of the Initial Term",
+      "rentBasis": "Negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "125": {
+      "term": "5 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "127": {
+      "term": "5 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by the Lessor and the Lessee",
+      "confidence": "high"
+    },
+    "129": {
+      "term": "4 terms of 5 years each",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated, but Base Rent shall not increase more than 5% in each option period.",
+      "confidence": "high"
+    },
+    "135A": {
+      "term": "5 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "137": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "139": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated by Lessor and Lessee",
+      "confidence": "high"
+    },
+    "141": {
+      "term": "3 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated between Lessor and Lessee",
+      "confidence": "high"
+    },
+    "143": {
+      "term": "5 years",
+      "count": 3,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Negotiated market rate not to exceed a 10% increase over current base monthly rental rate",
+      "confidence": "high"
+    },
+    "145": {
+      "term": "5 years",
+      "count": 1,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "$15.40 PSF ($2,460.15 per month)",
+      "confidence": "medium"
+    },
+    "149": {
+      "term": "120 months",
+      "count": 4,
+      "noticeDays": 60,
+      "noticeText": "60 days",
+      "rentBasis": "Fixed steps ($4,997.40 and $5,381.80)",
+      "confidence": "high"
+    }
+  }
+}
