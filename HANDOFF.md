@@ -1,6 +1,6 @@
 # Cypress Command · OTB — Session Handoff
 
-## September 19, 2026 — ASSET COMMAND VISUAL REVIEW → PICKS 1–5 BUILT · 765 tests green · NOT YET PUSHED
+## September 19, 2026 — ASSET COMMAND VISUAL REVIEW → PICKS 1–5 BUILT + LIVE · 765 tests green · prod serves main-W4yalM0w.js
 
 Operator (Sep 18 evening): reviewed 38 full-page captures + a 10-min recording of
 assetcommand.orangeocean.com ("I like some of the visual information displayed …
@@ -8,7 +8,7 @@ let me know your thoughts"); ranked list of 8 ports delivered; operator: "1, 2, 
 build them". Memo: `docs/asset-command-review-2026-09-18.md` (the ranking, the AC data
 flags, what was built). Everything is in the plan-room system — AC's SaaS skin was not copied.
 
-**Built (local, committed on master, not pushed — this session's push door untested):**
+**Built (commit 1fc567c pushed to master; deploy.yml landed — orangeoceanatlas.com serves `main-W4yalM0w.js` = local build):**
 - **T-1 Lease expiry timeline** — `src/lib/leasegantt.js` + `src/views/dates-lease.js`: 4-year SVG
   Gantt, today line, Jan/Jul ticks, bucket cards (past end · <90d · 90–180d · >180d · term
   unresolved). Blank-`end` suites 119/139/141/145 list as "term unresolved" with their lease-
