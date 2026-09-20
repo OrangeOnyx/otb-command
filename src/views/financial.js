@@ -9,11 +9,13 @@ import { fmt$0, pDate, monthsTo, esc, TODAY, sumKnownAmounts } from "../lib/form
 import { REMOTE, listLedgerEntries } from "../lib/remote.js";
 import { aging, effectiveEntries, CREDIT_TYPES } from "../lib/ledger.js";
 import { getPayHistory, payHistoryLoaded, refreshPayHistory, payHistoryStats, portfolioPayTotals } from "../lib/payhistory.js";
-import { tenantHealth, healthColor, periodTotals } from "../lib/tenanthealth.js";
+import { tenantHealth, healthColor, periodTotals, healthBand, healthSummary, BAND_LABEL } from "../lib/tenanthealth.js";
+import { donutSVG, waterfallSVG, capSensitivity, fmtShort } from "../lib/fincharts.js";
 import { reconModel, reconCaveats } from "../lib/camrecon.js";
 import { camStatementModel, camStatementHTML } from "../lib/camstatement.js";
 import { leaseTermCoverage } from "../lib/term-coverage.js";
 import { APPRAISAL_2019, factLines } from "../lib/facts.js";
+import { openDrawer } from "./drawer.js";
 
 const annual = u => (u.monthly || 0) * 12;
 
@@ -128,6 +130,31 @@ export function renderFinancial() {
     (comp.recoveries == null
       ? '<div class="comp-foot">Recovery components remain unresolved for one or more suites. Total scheduled rent above remains available; missing components are not treated as zero.</div>'
       : '<div class="comp-foot">NNN recoveries (CAM+Tax+Ins): <b>' + fmt$0(comp.recoveries) + '/yr</b> — tenant reimbursements, offset against actual expenses below.</div>');
+  // composition donut (pick 6) — literal palette hex: SVG fill attributes don't take var()
+  const DONUT_HEX = { "var(--green)": "#2F6B4F", "var(--slate)": "#5F6E64", "var(--navy)": "#3A5570", "var(--plum)": "#6B4E71" };
+  const compDonut = comp.total
+    ? donutSVG(compRows.map(([l, v, c]) => ({ label: l, value: v, color: DONUT_HEX[c] || c })), { centerLabel: "per year", centerValue: fmtShort(comp.total) })
+    : "";
+
+  // revenue → NOI waterfall (pick 6): GPR is an ESTIMATE (in-place rent + vacant SF at the
+  // effective PSF); every expense step is the operator's own worksheet line, nothing assumed
+  const vacantSF = inc.gla - inc.occSF;
+  const vacancyEst = vacantSF * inc.effPSF;
+  const WF = { total: "#1E4F3C", income: "#2F6B4F", loss: "#C25E33", noi: "#A87E2F" };
+  const wfSteps = [
+    { label: "GPR (est.)", value: inc.annualRent + vacancyEst, kind: "total", color: WF.total, note: "100% occupancy" },
+    { label: "Vacancy", value: -vacancyEst, kind: "delta", color: WF.loss, note: vacantSF.toLocaleString() + " SF est." },
+    { label: "In-place", value: inc.annualRent, kind: "total", color: WF.income, note: "rent roll" },
+  ].concat(OPEX_LINES.filter(([k]) => fin.opex[k] > 0).map(([k, label]) => ({ label: (l => l.charAt(0).toUpperCase() + l.slice(1))(label.replace(" (common)", "").replace("Property ", "")), value: -(fin.opex[k] || 0), kind: "delta", color: WF.loss, note: "worksheet" })))
+    .concat([{ label: "NOI", value: noi, kind: "total", color: WF.noi, note: opexTotal ? "" : "no opex yet" }]);
+  const wfSvg = waterfallSVG(wfSteps, { width: 560, height: 210 });
+
+  // cap-rate sensitivity (pick 6): ±100bp around the entered rate; reference placeholder flagged
+  const sens = capSensitivity(noi, fin.capRatePct, { reference: APPRAISAL_2019.capRatePct });
+  const sensHtml = sens.rows.length
+    ? '<div class="sens"><div class="sens-h">Cap-rate sensitivity' + (sens.reference ? ' <span class="sens-ref">around the ' + APPRAISAL_2019.capRatePct.toFixed(2) + '% reference — enter today\'s rate above</span>' : '') + '</div>' +
+      '<div class="sens-row">' + sens.rows.map(r => '<div class="sens-c' + (r.current ? " cur" : "") + '"><i>' + r.cap.toFixed(2) + '%</i><b>' + fmtShort(r.value) + '</b></div>').join("") + '</div></div>'
+    : '';
 
   // recovery income per recoverable OpEx category, for the worksheet hints
   const RECOVER = { cam: comp.cam, taxes: comp.tax, insurance: comp.ins };
@@ -221,7 +248,7 @@ export function renderFinancial() {
   root.querySelector(".fin-body").innerHTML =
     '<div class="kpis fin-kpis">' + kpis + '</div>' +
     '<div class="fin-grid">' +
-      '<div class="card"><div class="panel-h"><h2>Income composition</h2><div class="sub">BASE RENT vs NNN RECOVERIES · PER SOT</div></div><div class="fbars">' + compBars + '</div></div>' +
+      '<div class="card"><div class="panel-h"><h2>Income composition</h2><div class="sub">BASE · CAM · TAX · INS — ANNUAL · PER SOT</div></div><div class="comp-wrap">' + (compDonut ? '<div class="comp-donut">' + compDonut + '</div>' : '') + '<div class="fbars">' + compBars + '</div></div></div>' +
       '<div class="card"><div class="panel-h"><h2>Income by use</h2><div class="sub">ANNUAL IN-PLACE RENT · SHARE</div></div><div class="fbars">' + catBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Lease rollover schedule</h2><div class="sub">ANNUAL RENT EXPIRING BY YEAR</div></div><div class="fbars">' + rollBars + '</div></div>' +
       '<div class="card"><div class="panel-h"><h2>Tenant concentration</h2><div class="sub">TOP 5 BY IN-PLACE RENT</div></div><div class="fbars">' + topBars + '</div></div>' +
@@ -229,7 +256,8 @@ export function renderFinancial() {
       (REMOTE ? '<div class="card"><div class="panel-h"><h2>Payment history</h2><div class="sub">PREDECESSOR RECORD · JUL 2025 – JUL 2026</div></div><div class="fbars" id="finPayHist">Loading…</div></div>' : '') +
       (REMOTE ? '<div class="card"><div class="panel-h"><h2>Tenant health</h2><div class="sub">SCORED 0–100 · PAYMENT RECORD + TERM</div></div><div class="fbars" id="finHealth">Loading…</div></div>' : '') +
       '<div class="card"><div class="panel-h"><h2>CAM / NNN reconciliation — draft</h2><div class="sub">WORKSHEET ACTUALS vs BILLED RECOVERIES · ANNUAL</div></div><div class="fbars" id="finCamRecon">' + reconHtml + '</div></div>' +
-      '<div class="card noi-card"><div class="panel-h"><h2>NOI worksheet</h2><div class="sub">ENTER ANNUAL OPERATING EXPENSES</div></div>' +
+      '<div class="card noi-card"><div class="panel-h"><h2>NOI worksheet</h2><div class="sub">REVENUE → NOI · GPR AND VACANCY ARE ESTIMATES · EXPENSES ARE YOUR ENTRIES</div></div>' +
+        (wfSvg ? '<div class="wf-wrap">' + wfSvg + '</div>' : '') +
         '<div class="noi-line"><span>In-place rent (income)</span><b>' + fmt$0(inc.annualRent) + '</b></div>' +
         '<div class="opex">' + opexRows + '</div>' +
         '<div class="noi-line sub2"><span>Total operating expenses</span><b>(' + fmt$0(opexTotal) + ')</b></div>' +
@@ -239,6 +267,7 @@ export function renderFinancial() {
            today's market rate. */
         '<div class="noi-line cap"><span>Market cap rate</span><span class="cap-in"><input type="number" min="0" step="0.05" id="capRate" value="' + (fin.capRatePct ?? "") + '" placeholder="' + APPRAISAL_2019.capRatePct.toFixed(2) + '" title="' + esc(factLines.capRateHint()) + '">%</span></div>' +
         '<div class="noi-line value"><span>Indicated value</span><b>' + (value ? fmt$0(value) : '<span class="muted">enter cap rate</span>') + '</b></div>' +
+        sensHtml +
         (fin.capRatePct ? '' : '<div class="noi-note">Cap-rate reference: ' + esc(factLines.capRateHint()) + '.</div>') +
         (opexTotal === 0 ? '<div class="noi-note">NOI equals gross income until operating expenses are entered — figures above are not in the SOT.</div>' : '') +
       '</div>' +
@@ -347,19 +376,23 @@ async function paintTenantHealth() {
       el.innerHTML = '<div class="led-note">No occupied units to score.</div>';
       return;
     }
-    const allGood = health.every(h => h.grade === "A" || h.grade === "B");
+    const s = healthSummary(health);
     el.innerHTML =
-      (allGood ? '<div class="led-note">All tenants currently grade A/B.</div>' : '') +
-      health.slice(0, 10).map(h =>
-        '<div style="display:flex;align-items:baseline;gap:8px">' +
+      '<div class="th-kpis">' + [
+        ["", s.avg == null ? "—" : s.avg + "<small>/100</small>", "Avg score"], ["", s.n, "Tenants"],
+        [s.risk ? "brick" : "", s.risk, "At risk"], [s.watch ? "brass" : "", s.watch, "Watch"], ["green", s.ok, "OK"],
+      ].map(([tone, v, l]) => '<div class="th-k' + (tone ? " th-" + tone : "") + '"><b>' + v + '</b><span>' + l + '</span></div>').join("") + '</div>' +
+      health.map(h => {
+        const band = healthBand(h.grade);
+        return '<div class="th-row th-' + band + '" data-unit="' + esc(h.unit) + '" tabindex="0" role="button">' +
           '<span class="uchip">' + esc(h.unit) + '</span>' +
-          '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(h.dba) + '</span>' +
-          '<b style="font-family:var(--mono);color:' + healthColor(h.grade) + '">' + esc(h.grade) + '</b>' +
-          '<span class="fbar-v">' + h.score + '</span>' +
-        '</div>' +
-        (h.factors.length ? '<div class="led-note" style="padding:0">' + esc(h.factors.join(" · ")) + '</div>' : '')
-      ).join("") +
-      '<div class="led-note">Score = 13-mo payment record (60) + term runway (25) + late-fee drag (15) — descriptive, not a credit decision.</div>';
+          '<span class="th-name">' + esc(h.dba) + (h.factors.length ? '<span class="th-fact">' + esc(h.factors.join(" · ")) + '</span>' : '') + '</span>' +
+          '<span class="th-bar"><span style="width:' + h.score + '%;background:' + healthColor(h.grade) + '"></span></span>' +
+          '<b class="th-score" style="color:' + healthColor(h.grade) + '">' + h.score + '</b>' +
+          '<span class="th-chip th-chip-' + band + '">' + BAND_LABEL[band] + ' · ' + esc(h.grade) + '</span></div>';
+      }).join("") +
+      '<details class="th-how"><summary>How this score is calculated</summary><p>Payment record (max 60): −6 per late month, −9 per partial, −15 per unpaid across the 13-month predecessor record; no record scores 45. Term runway (max 25): ≥24 mo 25 · 12–24 mo 18 · 6–12 mo 10 · &lt;6 mo 4 · past term or no end on file 0. Late-fee drag (max 15): $0 → 15 · ≤$100 → 10 · ≤$300 → 5. Grades A ≥85 · B ≥70 · C ≥55 · D ≥40 · else E. Bands: A/B OK · C Watch · D/E At risk. Descriptive only — not a credit decision.</p></details>';
+    el.querySelectorAll(".th-row").forEach(r => { r.onclick = () => openDrawer(r.dataset.unit); r.onkeydown = e => { if (e.key === "Enter") openDrawer(r.dataset.unit); }; });
   } catch (e) {
     el.innerHTML = '<div class="led-note">Tenant health unavailable: ' + esc(e.message) + '</div>';
   }

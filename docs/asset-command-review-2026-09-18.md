@@ -14,9 +14,9 @@ system; the picks below were ported into the sheet vernacular.
 3. **Persistent KPI ribbon in the masthead** (occupancy · rent · vacant · expiring ≤12 mo · needs attention) → app shell
 4. **Document coverage matrix** (unit × lease / COI / COI expiry / other docs, gap filters) → C-1
 5. **Pylon sign panel roster** (clickable panels + roster, occupancy / reprint) → B-1 + K-1
-6. P-1 revenue-composition donut + NOI waterfall (labeled as estimate) — not built
-7. A-1 overlay-mode tabs (Leasing / Daily Ops / Building Systems / …) — not built
-8. Tenant health score list — gated on real inputs (no AR data) — not built
+6. **P-1 revenue-composition donut + revenue → NOI waterfall + cap-rate sensitivity** → P-1 (built 2026-09-20)
+7. **A-1 view presets** (Leasing / Daily Ops / Building Systems / Common Areas / Signage / Roof / Site & Hardscape) → A-1 (built 2026-09-20)
+8. **Tenant health** presentation upgrade on the existing P-1 score → P-1 (built 2026-09-20)
 
 Skipped on purpose: dark marketing landing, pricing / billing, platform admin,
 the SOP library (44 overdue generic procedures), the wholesale vendor directory
@@ -50,3 +50,18 @@ Verification: 765 tests green (was 733), `npm run build` clean, local review
 preview (`npm run dev:review`) exercised T-1 / C-1 / K-1 / B-1 / masthead by
 DOM reads; rent reads "—" in local review because the private financial seed
 is hosted-only (by design).
+
+## Picks 6–8 (operator "build 6-8", built 2026-09-20)
+
+| Pick | Module | View | Notes |
+|---|---|---|---|
+| 6 | `src/lib/fincharts.js` | `src/views/financial.js` | Composition donut beside the existing Base · CAM · Tax · Ins bars. Revenue → NOI waterfall at the top of the NOI worksheet: **GPR and vacancy are estimates** (in-place rent + vacant SF at the effective PSF, labeled); every expense step is the operator's own worksheet line, nothing assumed; NOI is the worksheet NOI. Cap-rate sensitivity ±100 bp in 25 bp steps around the entered rate; with no rate entered it centers on the 2019 appraisal 8.50% reference and says so (never stored). |
+| 7 | `src/lib/planviews.js` | `src/views/plan.js` + `index.html` | Seven named toolbar states over the existing chips (mode · scope · overlays · unit-fill). `applyPlanView` sets state, `syncTools` re-derives every chip and slider from it, `matchView` keeps the view highlight honest — any manual chip click drops it. Occupancy overlay stays off outside the hosted app. |
+| 8 | `src/lib/tenanthealth.js` (`healthBand`, `healthSummary`) | `src/views/financial.js` | Same score model (predecessor payment record + term runway + late-fee drag, unchanged). New presentation: five summary tiles, the full worst-first list with a 0–100 bar and OK / Watch / At-risk chip, click → drawer, "How this score is calculated" fold. Hosted-only (payment history lives in Supabase). |
+
+Verification 2026-09-20: 777 tests green (+12), build clean. A-1 views exercised in the
+local review preview (chip sync, manual-toggle drop-out). P-1 charts exercised in the
+same preview by switching the store into an authenticated scope with in-memory storage
+and installing synthetic rent / recovery figures (local review carries no private
+figures); the tenant-health block could not be painted locally (REMOTE-gated) and is
+covered by the pure tests + syntax check only.

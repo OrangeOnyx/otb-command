@@ -1,5 +1,26 @@
 # Cypress Command · OTB — Session Handoff
 
+## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT · 777 tests green
+
+Operator: "build 6-8". Memo `docs/asset-command-review-2026-09-18.md` §"Picks 6–8" has the table.
+- **P-1 charts (6):** `src/lib/fincharts.js` — composition donut next to the Base · CAM · Tax · Ins
+  bars; revenue → NOI waterfall at the top of the NOI worksheet (GPR + vacancy = ESTIMATES at the
+  effective PSF, labeled; expense steps = the operator's worksheet lines only); cap-rate sensitivity
+  ±100 bp / 25 bp around the entered rate, or around the 8.50% appraisal reference (flagged, never
+  stored) when blank.
+- **A-1 view presets (7):** `src/lib/planviews.js` — Leasing · Daily Ops · Building Systems · Common
+  Areas · Signage · Roof · Site / Hardscape as a "View" row above the chips (`#planViews`).
+  `applyPlanView` → `syncTools` → chips/sliders re-derived from state; `matchView` drops the
+  highlight the moment a chip is toggled by hand. Occupancy stays off outside REMOTE.
+- **Tenant health (8):** score model UNCHANGED (`tenantHealth`); `healthBand` / `healthSummary`
+  added; P-1 card now = five tiles + full worst-first list with bar + OK / Watch / At-risk chip +
+  "How this score is calculated" fold; rows open the drawer. Hosted-only as before.
+- Tests: `test/fincharts`, `planviews`, `tenanthealth-bands` (.test.mjs).
+
+**Caveats:** P-1 verified in the local preview only via a synthetic authenticated scope (in-memory
+storage + fake rent/recovery figures) — look at the real P-1 on prod once; the tenant-health block
+was not painted locally (REMOTE). Screenshots still time out in the pane; DOM reads used.
+
 ## September 19, 2026 — ASSET COMMAND VISUAL REVIEW → PICKS 1–5 BUILT + LIVE · 765 tests green · prod serves main-W4yalM0w.js
 
 Operator (Sep 18 evening): reviewed 38 full-page captures + a 10-min recording of

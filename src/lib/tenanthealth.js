@@ -86,3 +86,17 @@ export function periodTotals(rows) {
     .map(b => ({ period: b.period, due: b.due, paid: b.paid, cleanShare: b.n ? b.clean / b.n : 0 }))
     .sort((a, b) => a.period < b.period ? -1 : a.period > b.period ? 1 : 0);
 }
+
+/* Presentation band (2026-09-20, Asset Command review pick 8): AC listed
+   tenants with a 0–100 bar and an "At Risk" / "Watch" chip. Same grade model,
+   three bands: A/B = ok · C = watch · D/E = at risk. */
+export const healthBand = g => (g === "A" || g === "B") ? "ok" : g === "C" ? "watch" : "risk";
+export const BAND_LABEL = { ok: "OK", watch: "Watch", risk: "At risk" };
+
+/* summary tiles over a tenantHealth() result */
+export function healthSummary(health) {
+  const n = (health || []).length;
+  const avg = n ? Math.round(health.reduce((s, h) => s + h.score, 0) / n) : null;
+  const count = b => (health || []).filter(h => healthBand(h.grade) === b).length;
+  return { n, avg, ok: count("ok"), watch: count("watch"), risk: count("risk"), critical: (health || []).filter(h => h.grade === "E").length };
+}

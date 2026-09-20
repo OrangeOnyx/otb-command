@@ -13,6 +13,7 @@ import { getCamOverrides, setCamOverride, clearCamOverride } from "../store.js";
 import stallMap from "../data/stall-map.json";
 import { latestByStall, stallOverlay } from "../lib/occupancy.js";
 import { REMOTE, listOccupancy } from "../lib/remote.js";
+import { PLAN_VIEWS, viewById, matchView } from "../lib/planviews.js";
 
 let planMode = "status";
 let planScope = "main";
@@ -366,12 +367,75 @@ function showTT(e, u) {
 }
 function hideTT() { tt.style.display = "none"; }
 
+/* ---- view presets (2026-09-20, Asset Command review pick 7) ----
+   A view is a named toolbar state (lib/planviews.js). applyPlanView sets the
+   module state and syncTools re-derives every chip / slider from it, so the
+   chips stay the truth; any later chip click drops the view highlight. */
+function toolState() {
+  return { mode: planMode, scope: planScope, unitOpacity, overlays: {
+    photos: showPhotos, parking: showParking, access: showAccess, easements: showEasements, cameras: showCameras,
+    occupancy: showOcc, roof: overlays.roof, signage: overlays.signage, facility: showFacility, features: showFeatures } };
+}
+function syncTools() {
+  const q = s => document.querySelector(s);
+  document.querySelectorAll(".plan-tools .chip[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === planMode));
+  document.querySelectorAll(".plan-tools .chip[data-scope]").forEach(b => b.classList.toggle("on", b.dataset.scope === planScope));
+  const on = (sel, v) => { const el = q(sel); if (el) el.classList.toggle("on", !!v); };
+  on('.plan-tools .chip[data-overlay="photos"]', showPhotos);
+  on('.plan-tools .chip[data-overlay="parking"]', showParking);
+  on('.plan-tools .chip[data-overlay="access"]', showAccess);
+  on('.plan-tools .chip[data-overlay="easements"]', showEasements);
+  on('.plan-tools .chip[data-overlay="cameras"]', showCameras);
+  on('.plan-tools .chip[data-overlay="occupancy"]', showOcc);
+  on('.plan-tools .chip[data-overlay="roof"]', overlays.roof);
+  on('.plan-tools .chip[data-overlay="signage"]', overlays.signage);
+  on('.plan-tools .chip[data-overlay="facility"]', showFacility);
+  on('#featShow', showFeatures);
+  const camAdj = document.getElementById("camAdjust");
+  if (camAdj) { if (!showCameras) { camEdit = false; camAdj.classList.remove("on"); } camAdj.hidden = !showCameras || readOnlyRole(); }
+  const opc = document.getElementById("overlayOpacity");
+  if (opc) opc.style.display = (overlays.roof || overlays.signage || showFacility) ? "" : "none";
+  const uop = document.getElementById("unitOpacity");
+  if (uop) uop.value = Math.round(unitOpacity * 100);
+  markView();
+}
+function markView() {
+  const id = matchView(toolState());
+  document.querySelectorAll(".plan-views .chip[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === id));
+}
+export function applyPlanView(id) {
+  const v = viewById(id);
+  if (!v) return;
+  planMode = v.mode; planScope = v.scope; unitOpacity = v.unitOpacity;
+  showPhotos = v.overlays.photos; showParking = v.overlays.parking; showAccess = v.overlays.access;
+  showEasements = v.overlays.easements; showCameras = v.overlays.cameras;
+  showOcc = REMOTE ? v.overlays.occupancy : false; // samples live in Supabase only
+  overlays.roof = v.overlays.roof; overlays.signage = v.overlays.signage;
+  showFacility = v.overlays.facility; showFeatures = v.overlays.features;
+  addPinMode = false; const fa = document.getElementById("featAdd"); if (fa) fa.classList.remove("on");
+  const ft = document.getElementById("featType"); if (ft) ft.hidden = true;
+  closeFeatureEditor();
+  syncTools();
+  drawPlan();
+  renderLegend();
+  markView();
+}
+
 export function renderLegend() {
   document.getElementById("legend").innerHTML = legendFor(planMode).map(([l, c]) =>
     '<span class="li"><span class="sw" style="background:' + c + '"></span>' + l + '</span>').join("");
 }
 
 export function initPlan() {
+  const views = document.getElementById("planViews");
+  if (views) {
+    views.innerHTML = '<span class="lg">View</span>' + PLAN_VIEWS.map(v =>
+      '<button type="button" class="chip" data-view="' + v.id + '" title="' + esc(v.hint) + '">' + esc(v.label) + '</button>').join("");
+    views.querySelectorAll(".chip[data-view]").forEach(b => b.onclick = () => applyPlanView(b.dataset.view));
+  }
+  // any manual chip / slider change re-checks whether a view still applies (bubbles after the chip handlers)
+  const tools = document.querySelector(".plan-tools");
+  if (tools) { tools.addEventListener("click", () => markView()); tools.addEventListener("input", () => markView()); }
   document.querySelectorAll(".plan-tools .chip[data-mode]").forEach(b => {
     b.onclick = () => {
       document.querySelectorAll(".plan-tools .chip[data-mode]").forEach(x => x.classList.remove("on"));

@@ -1047,3 +1047,67 @@ body.role-vendor .ownerview { display: none !important; }
 .py-roster .reg-row:hover,.py-roster .reg-row.py-hi{background:rgba(168,126,47,.1)}
 @media (max-width:860px){.py-wrap{grid-template-columns:1fr}.py-sign{position:static;max-width:260px;margin:0 auto}}
 @media print{.py-sign{position:static}}
+
+/* ===== ASSET COMMAND REVIEW PORTS 6–8 (2026-09-20) — P-1 charts · A-1 views · tenant health ===== */
+/* P-1 composition donut */
+.comp-wrap{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;align-items:center;padding:8px 16px 0}
+.comp-wrap .fbars{padding:8px 0 16px}
+.comp-donut{display:flex;align-items:center;justify-content:center}
+.donut{display:block}
+.dn-slice{stroke:var(--card);stroke-width:1.5}
+.dn-val{font-family:var(--disp);font-weight:700;font-size:20px;fill:var(--ink)}
+.dn-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;fill:var(--ink50)}
+@media (max-width:640px){.comp-wrap{grid-template-columns:1fr}}
+
+/* P-1 revenue → NOI waterfall */
+.wf-wrap{padding:8px 12px 0;overflow-x:auto}
+.wfall{display:block;font-family:var(--mono);max-width:100%;height:auto}
+.wf-grid{stroke:var(--line2);stroke-width:1}
+.wf-zero{stroke:var(--ink50);stroke-width:1}
+.wf-axis{font-size:9px;fill:var(--ink50)}
+.wf-bar rect{opacity:.92}
+.wf-delta rect{opacity:.8}
+.wf-val{font-size:9.5px;font-weight:600;fill:var(--ink)}
+.wf-lbl{font-size:9px;fill:var(--ink70)}
+.wf-note{font-size:7.5px;fill:var(--ink50);letter-spacing:.04em}
+.wf-link{stroke:var(--ink30);stroke-width:1;stroke-dasharray:2 2}
+
+/* P-1 cap-rate sensitivity */
+.sens{padding:6px 16px 4px}
+.sens-h{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);margin-bottom:6px}
+.sens-ref{text-transform:none;letter-spacing:0;color:var(--brass)}
+.sens-row{display:grid;grid-template-columns:repeat(9,1fr);gap:3px}
+.sens-c{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border:1px solid var(--line2);border-radius:3px;background:var(--white)}
+.sens-c i{font-family:var(--mono);font-size:9px;font-style:normal;color:var(--ink50)}
+.sens-c b{font-family:var(--mono);font-size:10px;color:var(--ink)}
+.sens-c.cur{border-color:var(--brass);background:var(--brass-bg)}
+.sens-c.cur b{color:var(--brass);font-weight:700}
+@media (max-width:860px){.sens-row{grid-template-columns:repeat(3,1fr)}}
+
+/* P-1 tenant health */
+.th-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px}
+.th-k{padding:8px 10px;border:1px solid var(--line);border-radius:4px;background:var(--white);display:flex;flex-direction:column;gap:3px}
+.th-k b{font-family:var(--disp);font-weight:700;font-size:22px;line-height:1;color:var(--ink)}
+.th-k b small{font-size:11px;color:var(--ink50);font-weight:600}
+.th-k span{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink50)}
+.th-brick b{color:var(--brick)} .th-brass b{color:var(--brass)} .th-green b{color:var(--green)}
+.th-row{display:grid;grid-template-columns:auto 1fr 120px 34px auto;gap:10px;align-items:center;padding:6px 4px;border-bottom:1px solid var(--line2);cursor:pointer;border-radius:3px}
+.th-row:last-of-type{border-bottom:0}
+.th-row:hover,.th-row:focus-visible{background:rgba(28,43,38,.04);outline:none}
+.th-name{display:flex;flex-direction:column;min-width:0;font-size:12.5px;color:var(--ink)}
+.th-fact{font-family:var(--mono);font-size:9.5px;color:var(--ink50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.th-bar{height:8px;background:var(--paper2);border:1px solid var(--line2);border-radius:99px;overflow:hidden}
+.th-bar span{display:block;height:100%;border-radius:99px}
+.th-score{font-family:var(--mono);font-size:12px;text-align:right}
+.th-chip{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:99px;white-space:nowrap}
+.th-chip-ok{color:var(--green);background:var(--green-bg)}
+.th-chip-watch{color:var(--brass);background:var(--brass-bg)}
+.th-chip-risk{color:var(--brick);background:var(--brick-bg)}
+.th-how{margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--ink50)}
+.th-how summary{cursor:pointer;color:var(--ink70)}
+.th-how p{margin-top:6px;line-height:1.5;font-family:var(--body);font-size:11.5px}
+@media (max-width:860px){.th-kpis{grid-template-columns:repeat(3,1fr)}.th-row{grid-template-columns:auto 1fr 34px auto}.th-bar{display:none}}
+
+/* A-1 view presets */
+.plan-views{margin-bottom:6px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.plan-views .chip.on{background:var(--anchor);border-color:var(--anchor)}
