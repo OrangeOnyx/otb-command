@@ -1,6 +1,6 @@
 # Cypress Command · OTB — Session Handoff
 
-## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT · 777 tests green
+## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT + LIVE · 777 tests green · commit ab8ccb1 · prod serves main-CnCYM8ZH.js
 
 Operator: "build 6-8". Memo `docs/asset-command-review-2026-09-18.md` §"Picks 6–8" has the table.
 - **P-1 charts (6):** `src/lib/fincharts.js` — composition donut next to the Base · CAM · Tax · Ins
