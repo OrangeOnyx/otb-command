@@ -113,6 +113,33 @@ operator:** rated SF 77,749 vs GLA 62,883 (ask TSL what was submitted); BI $928,
 named-storm cash exposure; flood decision; alarm-monitoring vendor on M-1 (warranty); FPE-panel answer on
 the property application vs the Sep 18 note. No code paths changed — data + docs only. Committed 231d4d6, pushed on the operator's "push it"; prod serves **main-gA89eWES.js** (curl-verified: the bundle carries TXH-F30836). **Then the operator ruled** (chat, same night): flood = **NO** by decision; alarm monitoring = **Acadiana Security Plus** (ASP-25991, now `pc:asp` + the property riskNote); **no Federal Pacific panels** — the Sep 18 101/103 flag was addressed before renewal (Hartford riskNote rewritten); 77,749 rated SF source unknown to the operator → still open with TSL. Memo open items re-ranked (8 open + 3 ruled).
 
+### Sep 22 (morning) — MANUAL CONTENT PASS · ARTICLE SERIES CORRECTED + 2 NEW ARTICLES · plan doc
+
+Operator: "if i were to create an article series all about shopping centers…" (Google AI Mode transcript +
+articles.cypresscommand.com) → gap plan delivered → picks **A, B, then 1 and 2**.
+- **A — operator manual** (`docs/manual/operator-manual.md`, commit 175eb7a): version line 18 sheets / 777
+  tests; §1.2 sheet index rewritten in nav order + KPI ribbon; NEW §3.18 B-1 Marketing · §3.19 L-1 Comm Log ·
+  §3.20 N-1 Matters · §3.21 O-1 Operations · §3.22 /tour; Sep 18–22 features folded into D-1, A-1 (view
+  presets), P-1 (charts · tenant health · CAM recon), C-1 (coverage), T-1 (Gantt · renewal pipeline), W-1
+  (pipeline strip), Ledger (statement · prior payments · abstract), K-1 (register fields · pylon · lines),
+  S-1 (risk register · radar · 26–27 insurance · board report), §3.17 (call records · package); §5.3 SOT =
+  lease-population-2026-09-10 + leaseEvidence; §6.2/6.3 deploy-on-push (the old "commits do not auto-deploy"
+  was wrong). Onboarding manual "13 property sheets" → 17. `python tools/build-manuals.py` re-run → 3 PDFs +
+  HTML + `public/manual/` (deploy run 35730065224).
+- **B — articles site** (`C:\Users\adam\Projects\article series\shopping-center-series`, repo
+  OrangeOnyx/shopping-center-operator-series, commit e0ad95f, live on articles.cypresscommand.com): the
+  series brief had "Arnold Blvd" + "70,000 SF" as APPROVED FACTS → 124 replacements across 41 files
+  (Arnould; ~63,000 SF; article 05's $/SF example re-based); 34 retitled "Cypress Command Platform: …",
+  35 "Why OTB Command Became the Cypress Command Platform" + dated postscript; sheet explorer 13 → 18
+  sheets; brief's approved-facts block now carries GLA/units/zoning, the Arnold-Heights-vs-Arnould rule,
+  and the public-record parking/easement facts (no easement dollars in print).
+- **1 + 2 — new articles** 39 "Parking Is the Lease: How a 324/344 Variance Governs Every Deal" (Part IV)
+  and 40 "Easements That Outlive Their Contracts" (Part II), 1,511 / 1,527 words, from
+  `docs/parking-reconciliation-memo.md` + `docs/site-access-inventory-2026-09.md` + instruments.json.
+- Plan of record + ranked picks 3–12: `docs/article-series-plan-2026-09-22.md`. Google's 12-article
+  "roadmap" = the manual re-cut; NOT adopted (would duplicate `docs/manual/`).
+- Memory: `article-series-site.md` (site location · build · deploy path).
+
 ## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT + LIVE · 777 tests green · commit ab8ccb1 · prod serves main-CnCYM8ZH.js
 
 Operator: "build 6-8". Memo `docs/asset-command-review-2026-09-18.md` §"Picks 6–8" has the table.
