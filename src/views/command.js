@@ -76,7 +76,7 @@ export function initCommand(account) {
         <div class="cmd-record-foot" id="cmdRecordFoot">Source status will be shown with its date.</div>
       </section>
     </div>
-    <footer class="cmd-foot"><span>Cypress Command <span class="cmd-dot"></span> A-2 property workspace</span>
+    <footer class="cmd-foot"><span>Cypress Command Platform <span class="cmd-dot"></span> A-2 property workspace</span>
       <button id="cmdLegacy" class="cmd-quiet" aria-expanded="false">Capture & legacy views</button></footer>
     <dialog class="cmd-dialog" id="cmdSourceDialog" aria-labelledby="cmdSourceTitle"><div class="cmd-dialog-head"><span>Source library</span><button class="cmd-close" aria-label="Close source" data-close>${icon('close')}</button></div><div id="cmdSourceContent"></div></dialog>
     <dialog class="cmd-dialog" id="cmdDraftDialog" aria-labelledby="cmdDraftTitle"></dialog>`;

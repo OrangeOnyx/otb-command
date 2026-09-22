@@ -51,7 +51,7 @@ if (isCommandPreview) {
   banner.className='command-preview-banner';
   banner.textContent=COMMAND_PREVIEW.label;
   document.querySelector('.topbar')?.after(banner);
-  document.title='Preview · Cypress Command — On The Boulevard';
+  document.title='Preview · Cypress Command Platform — On The Boulevard';
 }
 
 /* ---------- login gate ---------- */
@@ -160,7 +160,7 @@ function buildShell(account) {
   };
   window.addEventListener("beforeprint", stampPrint);
   window.addEventListener("afterprint", () => {
-    document.title = (isCommandPreview?'Preview · ':'')+"Cypress Command — On The Boulevard";
+    document.title = (isCommandPreview?'Preview · ':'')+"Cypress Command Platform — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
     if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }

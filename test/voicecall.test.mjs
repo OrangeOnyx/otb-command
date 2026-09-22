@@ -144,7 +144,7 @@ test("voicecall: owner e-mail subject, text and html", () => {
   assert.match(m.text, /#comms/);
   assert.match(m.text, /Caller: Water!/);
   assert.match(m.html, /Filing &lt;now&gt;\./);
-  assert.match(m.html, /Cypress Command/);
+  assert.match(m.html, /Cypress Command Platform/);
   assert.doesNotMatch(m.html, /<now>/);
   const plain = callEmail({ call: { line: "leasing", intent: "leasing", urgency: "routine" }, transcript: "" });
   assert.equal(plain.subject, "Leasing call");

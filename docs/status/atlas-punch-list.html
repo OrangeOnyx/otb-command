@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cypress Command Punch List</title>
+<title>Cypress Command Platform Punch List</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
 <style>body{margin:0;background:#EDEFE8}@media (prefers-color-scheme:dark){body{background:#151B18}}</style>
@@ -303,7 +303,11 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Punch List — rev 14 (2026-09-18 later: operator picks 1·2·3 on marketing → B-1 Marketing
+/* Cypress Command Platform Punch List — rev 15 (2026-09-22: operator rulings — the product is "Cypress Command
+   Platform" and it deploys at otb.cypresscommand.com (found on the production Vercel project, pinned to the Codex
+   branch: one settings edit, no DNS change); the Asset Command visual-review ports built Sep 19–20 (picks 1–8)
+   catalogued as F-30…F-37 with smokes SMK-25…28; Sep 26 AC domain lapse flagged; operator state r36 carried verbatim).
+   Rev 14 (2026-09-18 later: operator picks 1·2·3 on marketing → B-1 Marketing
    sheet (flyers · overview · tenant cards · photo library · 360° tour media) + public /tour microsite BUILT + LIVE;
    recording disclosure in both greetings, Resend chosen, SMS leg built (dormant until A2P); Schedule B gains SMK-23…24;
    Schedule F gains F-28 / F-29, F-17 B2 un-gated).
@@ -333,7 +337,7 @@ const STATE = /*__STATE__*/{"rev":36,"saved":"2026-09-18T05:00:16.693Z","smokes"
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22","smk-23","smk-24"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22","smk-23","smk-24","smk-25","smk-26","smk-27","smk-28"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -640,11 +644,11 @@ const BODY = `
 <div class="sheet">
   <header class="masthead">
     <div class="mast-row">
-      <span class="eyebrow">Cypress Command &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 18, 2026 &middot; Rev 14</span>
+      <span class="eyebrow">Cypress Command Platform &middot; Program Status &middot; Sheet G-1</span>
+      <span class="mono mast-date">Content &middot; Sep 22, 2026 &middot; Rev 15</span>
     </div>
     <h1>Punch List</h1>
-    <p class="lede">Everything still open across the Cypress Command build (formerly Orange Ocean Atlas), on one working sheet.
+    <p class="lede">Everything still open across the Cypress Command Platform build (OTB deployment &middot; formerly Orange Ocean Atlas), on one working sheet.
     Schedules A&ndash;D and the transmittal are live: check off gate steps and runbook items,
     mark smokes Pass or Fail, set wave priorities, record decisions, and leave Claude a memo
     &mdash; one Save publishes it all where every viewer and every Claude session can read it.
@@ -1037,6 +1041,54 @@ const BODY = `
           <input class="note" data-note="smk-24" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
+      <div class="smoke" data-smoke="smk-25">
+        <div class="head"><span class="mono eyebrow">SMK-25</span><span class="name">T-1 lease timeline + renewal pipeline (F-30 &middot; F-31)</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-25"></span></div>
+        <p class="desc">T-1 &rarr; a four-year Gantt with today&rsquo;s line and Jan / Jul ticks; bucket cards past end &middot; &lt;90 d &middot; 90&ndash;180 d &middot; &gt;180 d &middot; term unresolved &mdash; 119 / 139 / 141 / 145 sit in <em>term unresolved</em> with their lease-review label (by design, never guessed) &rarr; <strong>Renewal pipeline</strong> below: Notice window 1 (111 &middot; notice by 2026-12-02) &middot; Deadline passed 2 (115 / 117 &middot; notice was 2026-08-01) &middot; Option available 17 &middot; Term unresolved 4 &rarr; click any row &rarr; the unit drawer opens. Option terms are reference-only (AI-extracted from the executed leases; every notice reads 60 days) &mdash; flag any suite whose option you know reads differently.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-25 result">
+            <button type="button" class="b-open" data-smk="smk-25" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-25" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-25" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-25" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-26">
+        <div class="head"><span class="mono eyebrow">SMK-26</span><span class="name">Masthead ribbon &middot; C-1 coverage &middot; pylon sign (F-32 &middot; F-33 &middot; F-34)</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-26"></span></div>
+        <p class="desc">Topbar ribbon reads Occupancy &middot; Rent/mo &middot; Vacant &middot; Expiring &le;12 mo &middot; Needs attention (the live W-1 count); each button drills into its sheet; on a phone it wraps to its own row and the address block hides &rarr; C-1: <strong>Document coverage</strong> card above the matrix &mdash; per occupied suite Lease &middot; COI &middot; COI expires &middot; other docs, filter chips, five counts (a Flag in the matrix reads as a gap; a file on the suite&rsquo;s records or a matrix <em>On file</em> reads as evidence) &rarr; B-1: <strong>Pylon sign</strong> block draws the elevation from <code>pylon.json</code>, P13 brick-dashed with the installed &ldquo;Boulevard Nutrition&rdquo; face, and lists tenants without a panel &rarr; K-1&rsquo;s pylon register draws the same sign; hover a panel &rarr; its row lights; click &rarr; drawer.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-26 result">
+            <button type="button" class="b-open" data-smk="smk-26" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-26" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-26" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-26" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-27">
+        <div class="head"><span class="mono eyebrow">SMK-27</span><span class="name">P-1 charts + tenant health &mdash; on production, real figures (F-35 &middot; F-37)</span><span class="chip hot">3 min &middot; never seen with real numbers</span><span class="stamp" data-stamp="smk-27"></span></div>
+        <p class="desc">Only ever verified against synthetic rent / recovery figures in the local preview; the health block is hosted-only and was never painted. P-1 &rarr; the composition donut beside the Base &middot; CAM &middot; Tax &middot; Ins bars matches the rent roll&rsquo;s shares &rarr; NOI worksheet opens with a revenue &rarr; NOI waterfall on top (GPR and vacancy are labeled ESTIMATES at the effective PSF; every expense step is your own worksheet line) &rarr; cap-rate strip runs &plusmn;100 bp in 25 bp steps around your entered rate (blank = around the 8.50% appraisal reference, flagged, never stored) &rarr; <strong>Tenant health</strong>: five tiles + the worst-first list with a 0&ndash;100 bar and OK / Watch / At-risk chip, &ldquo;How this score is calculated&rdquo; fold, row &rarr; drawer. Note anything that reads wrong against R-1.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-27 result">
+            <button type="button" class="b-open" data-smk="smk-27" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-27" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-27" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-27" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-28">
+        <div class="head"><span class="mono eyebrow">SMK-28</span><span class="name">A-1 view presets (F-36)</span><span class="chip open">1 min</span><span class="stamp" data-stamp="smk-28"></span></div>
+        <p class="desc">A-1 &rarr; the <em>View</em> row above the chips: Leasing &middot; Daily Ops &middot; Building Systems &middot; Common Areas &middot; Signage &middot; Roof &middot; Site / Hardscape &rarr; pick Signage &rarr; chips and sliders re-derive (signage / pylon layers on, the rest off) &rarr; toggle any chip by hand &rarr; the View highlight drops (a preset never lies about the toolbar) &rarr; pick Leasing &rarr; unit fill returns to lease status. Occupancy stays off outside the hosted app.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-28 result">
+            <button type="button" class="b-open" data-smk="smk-28" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-28" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-28" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-28" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
     </div>
     <details class="archive" id="arch-smokes" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
     <p class="smoke-note mono" id="save-stamp">No revision saved yet &mdash; marks publish to the sheet when you hit Save.</p>
@@ -1174,7 +1226,7 @@ const BODY = `
         <p>AC does not retire until every register row below is parity-verified, ported, or rebuilt.
         Then: per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset
         assetcommand.orangeocean.com &rarr; archive both repos.
-        <code>orangeoceanassetcommand.com</code> lapses at its Sep 26, 2026 transfer date.</p>
+        <code>orangeoceanassetcommand.com</code> lapses at its Sep 26, 2026 transfer date. <strong>Sep 22: four days out</strong> &mdash; confirm the lapse is intended; AC still holds live data and H0-3 is open. If the old domain should outlive the transfer date, renew it before Sep 26.</p>
         <div class="ctrl"><input class="note" data-wnote="h3" maxlength="600" placeholder="Note for Claude on decommission (optional)"></div>
       </div>
     </div>
@@ -1470,7 +1522,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule F</span>
       <h2>Build Backlog</h2>
-      <span class="mono sched-count">25 items &middot; snapshot Sep 17 &middot; Tier 1 + F-5 rulings shipped</span>
+      <span class="mono sched-count">33 items &middot; snapshot Sep 22 &middot; Asset Command ports F-30&ndash;F-37 shipped</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Everything still left to build, in one place, ranked by how much each item unlocks.
@@ -1480,7 +1532,7 @@ const BODY = `
       you, Tier 3 is the long tail outside the harvest.</p>
 
     <div class="bl-group" data-tier="1">
-      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 (PR #8, live Sep 12) &middot; F-5 rulings built Sep 17</span><span class="chip done">shipped</span></div>
+      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 (PR #8, live Sep 12) &middot; F-5 rulings built Sep 17 &middot; Asset Command ports built Sep 19&ndash;20</span><span class="chip done">shipped</span></div>
       <ol class="bl-list">
         <li><span class="bid">F-1</span><span class="bname">#5 Invoices + late fees &rarr; full parity <span class="chip done">built Sep 11</span></span>
           <p class="bdesc">Numbered invoices (INV-YYYYMM-unit) over the ledger, printable with the browser&rsquo;s Save-as-PDF, sent / void state stored, paid derived. Table on prod. Smoke: SMK-13.</p></li>
@@ -1527,6 +1579,45 @@ const BODY = `
           vacant suite: three.js 360&deg; viewer over the panoramas you upload on B-1 (public <code>tour</code> bucket, migration
           <strong>APPLIED on prod</strong>), plat + numbers + Call / Text-to-tour until then. Manifest published from B-1 with one click.
           QR at <code>public/qr/tour.svg</code>. Smoke: SMK-24 after the first scan.</p></li>
+        <li><span class="bid">F-30</span><span class="bname">T-1 lease expiry timeline <span class="chip done">built Sep 19</span></span>
+          <p class="bdesc">Asset Command review pick 1 (your Sep 18 evening ranking of 38 captures + the recording; memo
+          <code>docs/asset-command-review-2026-09-18.md</code>). Four-year SVG Gantt over the Tier-1 lease terms (<code>src/lib/leasegantt.js</code>):
+          today line, Jan / Jul ticks, bucket cards past end &middot; &lt;90 d &middot; 90&ndash;180 d &middot; &gt;180 d &middot; term unresolved. Blank-<code>end</code>
+          suites 119 / 139 / 141 / 145 list as &ldquo;term unresolved&rdquo; with their lease-review label &mdash; by design, never guessed. Row &rarr; drawer.
+          AC&rsquo;s SaaS skin was not copied; everything is in the plan-room system. Smoke: SMK-25.</p></li>
+        <li><span class="bid">F-31</span><span class="bname">T-1 renewal pipeline <span class="chip done">built Sep 19</span></span>
+          <p class="bdesc">Pick 2. <code>src/lib/renewals.js</code> + new <code>src/data/renewal-options.json</code> (reference-only option terms,
+          AI-extracted from the executed leases via the AC harvest; 24 suites, every notice = 60 days). Notice-by = Tier-1 end &minus; notice days.
+          Groups today: Notice window 1 (111 &middot; by 2026-12-02) &middot; Deadline passed 2 (115 / 117 &middot; was 2026-08-01) &middot; Option available 17 &middot;
+          Term unresolved 4. &ldquo;Open suite&rdquo; &rarr; drawer; no new persistence. Smoke: SMK-25.</p></li>
+        <li><span class="bid">F-32</span><span class="bname">Masthead KPI ribbon <span class="chip done">built Sep 19</span></span>
+          <p class="bdesc">Pick 3. <code>src/lib/ribbon.js</code> in the topbar: Occupancy &middot; Rent/mo &middot; Vacant &middot; Expiring &le;12 mo &middot;
+          Needs attention (reads the live W-1 cards); each button drills into its sheet. Address block hides &le;1560 px; ribbon wraps to its own row
+          &le;860 px; hidden in print. Smoke: SMK-26.</p></li>
+        <li><span class="bid">F-33</span><span class="bname">C-1 document coverage <span class="chip done">built Sep 19</span></span>
+          <p class="bdesc">Pick 4. <code>src/lib/coverage.js</code> card above the matrix: per occupied suite Lease &middot; COI &middot; COI expires &middot;
+          other docs, filter chips, five summary counts. Evidence = a file on the suite&rsquo;s document records OR a matrix <em>On file</em>; a matrix
+          Flag = gap; COI thresholds from <code>lib/coi.js</code>. Local review reads 23 gaps because the lease Drive links are hosted-only seed and the
+          matrix is unverified &mdash; honest, not a bug. Smoke: SMK-26.</p></li>
+        <li><span class="bid">F-34</span><span class="bname">Pylon sign elevation on B-1 + K-1 <span class="chip done">built Sep 19</span></span>
+          <p class="bdesc">Pick 5. <code>src/lib/pylonsvg.js</code>: native SVG elevation from <code>pylon.json</code>. B-1 gains a &ldquo;Pylon sign&rdquo;
+          block (sign + roster + &ldquo;tenants without a face&rdquo; per tenant); K-1&rsquo;s register draws the same sign beside its roster, hover links
+          panel &harr; row, click &rarr; drawer. P13 renders brick-dashed with the installed &ldquo;Boulevard Nutrition&rdquo; text. Smoke: SMK-26.</p></li>
+        <li><span class="bid">F-35</span><span class="bname">P-1 charts &mdash; composition donut, revenue &rarr; NOI waterfall, cap-rate sensitivity <span class="chip done">built Sep 20 &middot; verify on prod</span></span>
+          <p class="bdesc">Pick 6 (&ldquo;build 6&ndash;8&rdquo;). <code>src/lib/fincharts.js</code>: donut beside the Base &middot; CAM &middot; Tax &middot; Ins bars;
+          waterfall at the top of the NOI worksheet &mdash; GPR + vacancy are ESTIMATES at the effective PSF and say so, expense steps are your worksheet
+          lines only, NOI is the worksheet NOI; cap-rate strip &plusmn;100 bp / 25 bp around the entered rate, or around the 8.50% appraisal reference
+          (flagged, never stored) when blank. <strong>Verified only with synthetic figures in the local preview</strong> &mdash; SMK-27 is the first real look.</p></li>
+        <li><span class="bid">F-36</span><span class="bname">A-1 view presets <span class="chip done">built Sep 20</span></span>
+          <p class="bdesc">Pick 7. <code>src/lib/planviews.js</code>: Leasing &middot; Daily Ops &middot; Building Systems &middot; Common Areas &middot; Signage &middot;
+          Roof &middot; Site / Hardscape as a &ldquo;View&rdquo; row above the chips. <code>applyPlanView</code> sets state, <code>syncTools</code> re-derives every
+          chip and slider, <code>matchView</code> drops the highlight the moment a chip is toggled by hand. Occupancy stays off outside the hosted app.
+          Smoke: SMK-28.</p></li>
+        <li><span class="bid">F-37</span><span class="bname">Tenant-health presentation <span class="chip done">built Sep 20 &middot; verify on prod</span></span>
+          <p class="bdesc">Pick 8. Score model UNCHANGED (predecessor payment record + term runway + late-fee drag); <code>healthBand</code> /
+          <code>healthSummary</code> added. P-1 card = five tiles + the full worst-first list with a 0&ndash;100 bar and OK / Watch / At-risk chip +
+          &ldquo;How this score is calculated&rdquo; fold; rows open the drawer. Hosted-only (payment history lives in Supabase) &mdash; never painted
+          locally, covered by pure tests. Smoke: SMK-27.</p></li>
       </ol>
     </div>
 
@@ -1572,9 +1663,15 @@ const BODY = `
         <li><span class="bid">F-21</span><span class="bname">Data gaps in the SOT</span>
           <p class="bdesc">Missing deposits for 107 / 137 / 143 / 149.</p></li>
         <li><span class="bid">F-22</span><span class="bname">Brand sheet <span class="chip done">04C adopted</span></span>
-          <p class="bdesc">Cypress Command 04C v1.0.1 is in the repo (<code>public/brand/cypress/</code>, hash-verified) and live on prod as of Sep 11. Left: fold the 04C palette / type into the abdalla-brand-system letterhead and signature blocks.</p></li>
-        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation <span class="chip hot">domain move</span></span>
-          <p class="bdesc">cypresscommand.com is the public site. <strong>otb.cypresscommand.com still CNAMEs to the Codex preview deployment</strong> (isolated Supabase branch), not production. Move it to the production project in Vercel + GoDaddy, then Claude swaps the three orangeoceanatlas.com constants (leasing URL, manual links, publish note). Property-vs-product web split (shopontheblvd, gate vinyl QR) still open.</p></li>
+          <p class="bdesc">Cypress Command 04C v1.0.1 is in the repo (<code>public/brand/cypress/</code>, hash-verified) and live on prod as of Sep 11. Left: fold the 04C palette / type into the abdalla-brand-system letterhead and signature blocks. <strong>Sep 22 ruling:</strong> the product is <strong>Cypress Command Platform</strong> &mdash; the full composite now sits in every title, print footer, generated document, notice e-mail and the concierge&rsquo;s own description; the 04C wordmark art and the <code>Cypress-Command-*.pdf</code> manual file names are unchanged.</p></li>
+        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation <span class="chip hot">one Vercel edit</span></span>
+          <p class="bdesc">cypresscommand.com is the public site. <strong>Ruling Sep 22: the platform deploys at otb.cypresscommand.com.</strong>
+          Found the same day: the domain is already on the production Vercel project (<code>otb-command</code>), DNS verified &mdash; but pinned to git
+          branch <code>codex/cypress-command-completion</code>, so it serves the Codex preview build (isolated Supabase branch), not production.
+          The move is one edit, no GoDaddy / DNS change: Vercel &rarr; otb-command &rarr; Settings &rarr; Domains &rarr; otb.cypresscommand.com &rarr;
+          Edit &rarr; clear the Git Branch &rarr; Save. It then serves the same production deployment as orangeoceanatlas.com. Tell Claude when it is
+          done: the orangeoceanatlas.com constants (leasing URL, tour URL, the numbers-panel link) swap to otb.cypresscommand.com and the flyer / tour
+          QRs regenerate. Property-vs-product web split (shopontheblvd, gate vinyl QR) still open.</p></li>
         <li><span class="bid">F-24</span><span class="bname">Reference rows #22 / #25</span>
           <p class="bdesc">SaaS billing (pilot monetization) &middot; legal notices, 1099s, e-sign templates, workflow engine. Build when a real workflow demands.</p></li>
       </ol>
@@ -1694,14 +1791,23 @@ const BODY = `
       hash-verified). One thing to check before the demo: prod&rsquo;s <code>voice_settings</code> has both published numbers <em>blank</em>
       even though SMK-7 was marked PASS with them &mdash; re-paste them in the sidebar <em>Phone lines&hellip;</em> panel or K-1&rsquo;s
       &ldquo;Property lines&rdquo; block and the tenant strip stay silent.</li>
+      <li>Sep 22 snapshot: state r36 read &mdash; no new marks since Sep 18. Two rulings from you recorded and acted on: the product is
+      <strong>Cypress Command Platform</strong> (now in every title, print footer, generated document, notice e-mail and the concierge&rsquo;s own
+      description; lockup art and manual file names unchanged; CLAUDE.md updated) and it deploys at <strong>otb.cypresscommand.com</strong>
+      (finding + the one Vercel edit on F-23 &mdash; no DNS change). The sheet was two sessions behind the build: the Asset Command visual-review
+      ports you picked Sep 18 evening &mdash; 1&ndash;5 built Sep 19, 6&ndash;8 built Sep 20, both live, 777 tests green, prod serves the Sep 20
+      bundle &mdash; are now F-30&ndash;F-37 with smokes SMK-25&ndash;28. <strong>SMK-27 matters most:</strong> P-1&rsquo;s charts and the tenant-health
+      block were only ever verified against synthetic figures. Four days out: <code>orangeoceanassetcommand.com</code> lapses Sep 26 &mdash; confirm
+      that is intended (H3). Still yours: the H-3 mark (+ the brother&rsquo;s name / e-mail), H0-3, the F-23 edit, flyctl deploy + the Twilio vars +
+      Resend (runbook), the 131 / 133 scans, SMK-5, SMK-21&ndash;28.</li>
     </ol>
   </section>
 
   <footer class="titleblock">
-    <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command &mdash; OTB deployment</span></div>
+    <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command Platform &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-18</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">14</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-22</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">15</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
@@ -1728,7 +1834,7 @@ function ensureAssets(){
 function fullDoc(appSrc){
   return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n' +
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
-    '<title>Cypress Command Punch List</title>\n' +
+    '<title>Cypress Command Platform Punch List</title>\n' +
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="stylesheet" href="' + FONTS + '">\n' +
     '<style>body{margin:0;background:#EDEFE8}@media (prefers-color-scheme:dark){body{background:#151B18}}</style>\n' +

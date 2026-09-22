@@ -123,7 +123,7 @@ export function buildAtlasNumbers(snapshot, unitsPrivate) {
   }
   return {
     schemaVersion: 1, mode: 'dated-production-extract', capturedAt: snapshot.capturedAt,
-    sourceLabel: 'Cypress Command production ledger · dated extract', refreshMode: 'manual-reviewed-extract',
+    sourceLabel: 'Cypress Command Platform production ledger · dated extract', refreshMode: 'manual-reviewed-extract',
     caveats: [
       'This is a dated read-only extract from the production ledger, distinct from the isolated Cypress test database. It does not refresh automatically.',
       `Rent schedule reviewed through ${scheduleAsOf}; unchanged suites retain July roster authority. This schedule is separate from the dated Atlas entries and is not collected income. Proposed renewals are not included.`,

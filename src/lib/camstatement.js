@@ -183,6 +183,6 @@ export function camStatementHTML(model, unitInfo, { issuedISO } = {}) {
       ? '<p class="note">Your lease provides audit rights over additional-rent records; supporting invoices and the expense ledger are available on request.</p>'
       : "") +
     '<div class="foot">Draft reconciliation prepared by Belle Realty of Lafayette, LLC; the signed lease governs and scheduled rent is unchanged by this statement.<br>' +
-    "Generated from the Cypress Command operating-expense worksheet for " + esc(yr) + ".</div>" +
+    "Generated from the Cypress Command Platform operating-expense worksheet for " + esc(yr) + ".</div>" +
     "</div></body></html>";
 }

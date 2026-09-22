@@ -2,7 +2,7 @@
    provider picked by which key exists in the Vercel env:
      RESEND_API_KEY   → https://api.resend.com/emails
      SENDGRID_API_KEY → https://api.sendgrid.com/v3/mail/send
-   plus NOTIFY_FROM ("Cypress Command <notices@yourdomain>") — the domain must
+   plus NOTIFY_FROM ("Cypress Command Platform <notices@yourdomain>") — the domain must
    be verified at the provider or the send bounces. Nothing configured →
    { sent:false, reason:"not configured" } and the caller carries on; the app
    never fails a call, a cron, or a request because mail didn't go out.

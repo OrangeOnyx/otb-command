@@ -271,7 +271,7 @@ ${kpiTile(money0(c.pay.lateFees), "Late fees assessed")}
 ${collectionsBody}`;
 
     const debtBlock = `<h2>Debt Service</h2>
-<p>Debt service and covenant data are not on file in Cypress Command.</p>`;
+<p>Debt service and covenant data are not on file in Cypress Command Platform.</p>`;
 
     body = `${missingLine}
 <div class="kpis">

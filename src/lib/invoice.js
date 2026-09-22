@@ -187,6 +187,6 @@ export function invoiceHTML(model, unitInfo, { issuedISO, status } = {}) {
     '<div class="hint">Print / Save as PDF — Ctrl+P (⌘P on Mac) → destination “Save as PDF”. The file names itself ' +
     esc(model.id) + ".</div>" +
     '<div class="foot">Remit per your lease; contact Belle Realty of Lafayette, LLC.<br>' +
-    "Invoice generated from the Cypress Command ledger — entries from " + esc(LEDGER_START_YM) + ".</div>" +
+    "Invoice generated from the Cypress Command Platform ledger — entries from " + esc(LEDGER_START_YM) + ".</div>" +
     "</div></body></html>";
 }

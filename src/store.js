@@ -462,7 +462,7 @@ export function exportJSON() {
 export function importJSON(text) {
   const snap = JSON.parse(text); // throws on bad JSON — caller surfaces it
   if (!snap || typeof snap !== "object" || (!snap.comp && !snap.notes && !snap.actions && !snap.contacts && !snap.documents && !snap.financials)) {
-    throw new Error("Not a Cypress Command export — expected { comp, notes, actions, … }.");
+    throw new Error("Not a Cypress Command Platform export — expected { comp, notes, actions, … }.");
   }
   /* Scoped exports (2026-09) must match the signed-in account + property.
      Legacy exports carry no scope — every snapshot made before the scope

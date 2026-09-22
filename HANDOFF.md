@@ -1,4 +1,44 @@
-# Cypress Command · OTB — Session Handoff
+# Cypress Command Platform · OTB — Session Handoff
+
+## September 22, 2026 — TWO RULINGS RECORDED (name · domain) · punch list Rev 15 (artifact v55) · 777 tests green
+
+Operator: "review handoff, artifact, what's left to build, any sprints left, anything gated?" → review delivered
+(state r36 read first — no new marks since Sep 18; sheet was two sessions behind the build) → "go (also, this
+will be called **Cypress Command Platform** and it will be deployed at **otb.cypresscommand.com**)".
+
+- **Ruling 1 — product name = Cypress Command Platform.** Applied to every text-facing product name: tab
+  titles (`index.html`, `src/main.js`), print footers / generated documents (invoice, statement, CAM statement,
+  board report, lease summary, owner briefing packet), the voice-call notice e-mail, the import error, the A-2
+  footer, the concierge system prompt (`api/concierge.js`), `api/_atlas-numbers.mjs` source label, the export
+  package + manual titles (`tools/`), 6 test pins, and the concierge dossier regenerated
+  (`tools/build-concierge-context.mjs` → `api/_context.mjs`, freshness test green). UNCHANGED by design: the
+  04C lockup art + its `alt` text (the wordmark reads "Cypress Command"), `Cypress-Command-*.pdf` manual file
+  names (not regenerated — next `tools/build-manuals.py` run picks up the new title), code comments,
+  `leaseEvidence` source labels in `units.json` ("Cypress Command property review · September 10, 2026" is a
+  dated record label, not the product name). CLAUDE.md product-name block rewritten.
+- **Ruling 2 — deployment address = otb.cypresscommand.com.** Finding (Vercel MCP, read-only): the domain is
+  ALREADY on the production project `otb-command` (prj_4gSxJWKDASjJolEuXmL0oBcFjefe), verified, but
+  `gitBranch: "codex/cypress-command-completion"` — so it serves the Codex preview build (isolated Supabase
+  branch), not production. **F-23 is therefore one Vercel edit, no GoDaddy / DNS change:** Vercel →
+  otb-command → Settings → Domains → otb.cypresscommand.com → Edit → clear Git Branch → Save. Claude did NOT
+  make that change (account setting; operator's). **After the operator confirms:** swap
+  `src/lib/leasing.js` LEASING_URL, `src/lib/marketing.js` tourUrl, the `src/views/command-numbers.js` link,
+  regenerate `public/qr/leasing.svg` + `tour.svg` (segno), and re-point the punch-list smoke URLs.
+  `api/_voicecall.mjs` APP_URL and `voicecall.js` appUrl already default to otb.cypresscommand.com.
+- **Punch list Rev 15** published from the live body (repo copy == live body, diff 0), STATE r36 carried
+  verbatim: masthead / title / footer → Cypress Command Platform; Schedule B +SMK-25 (T-1 timeline +
+  pipeline) · SMK-26 (ribbon · C-1 coverage · pylon sign) · **SMK-27 (P-1 charts + tenant health on prod with
+  real figures — the Sep 20 caveat)** · SMK-28 (A-1 view presets); Schedule F +F-30…F-37 (the eight Asset
+  Command ports, 33 items); F-22 name ruling; F-23 rewritten with the domain finding; H3 wave flags the
+  **Sep 26 orangeoceanassetcommand.com lapse (4 days out — confirm intended)**; Sep 22 note. Repo copy
+  `docs/status/atlas-punch-list.html` (CRLF, no trailing newline).
+- Build: `main-D2VIFDz5.js` local; pushed to master → deploy.yml (verify by bundle name).
+
+**Open on the operator (unchanged + the two new):** (1) the F-23 Vercel edit above; (2) confirm the Sep 26 domain
+lapse; (3) H-3 mark + the brother's name / e-mail; (4) H0-3 secret rotation; (5) flyctl deploy · TWILIO vars ·
+Resend key (runbook); (6) 131 / 133 Insta360 scans → SMK-24; (7) SMK-21…28, SMK-27 first; (8) SMK-5 waits on
+the world. **No un-gated build work remains** — every Schedule F item left is Tier 2 / Tier 3.
+`docs/graph/labels.json` still modified, still left out of every commit.
 
 ## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT + LIVE · 777 tests green · commit ab8ccb1 · prod serves main-CnCYM8ZH.js
 

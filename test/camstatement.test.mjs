@@ -131,7 +131,7 @@ test("HTML carries letterhead, title, meta, PSF breakdown, reconciliation table,
   assert.ok(html.includes("5% cap over 2025 actuals applied (lease year 3) — cap binding"));
   assert.ok(html.includes("no gross-up applied"));
   assert.ok(html.includes("audit rights"));
-  assert.ok(html.includes("Cypress Command"));
+  assert.ok(html.includes("Cypress Command Platform"));
 });
 
 test("HTML balance box: credit → clear class and CR figure; amount due → owe class", () => {

@@ -1,9 +1,14 @@
 # Cypress Command (OTB deployment) — Project Memory
 
-> **PRODUCT NAME (operator-locked 2026-09-11): "Cypress Command."** Supersedes
-> "Orange Ocean Atlas" (locked 2026-07-26, retired). The platform is Cypress
-> Command; OTB is its flagship deployment (otb.cypresscommand.com). Always the
-> full composite in market-facing output — never naked "Cypress" or "Command".
+> **PRODUCT NAME (operator-locked 2026-09-22): "Cypress Command Platform."** Supersedes
+> "Cypress Command" (locked 2026-09-11) and "Orange Ocean Atlas" (2026-07-26, retired).
+> The platform is Cypress Command Platform; OTB is its flagship deployment, and the
+> deployment address is **otb.cypresscommand.com** (operator ruling 2026-09-22; the domain
+> sits on the production Vercel project pinned to the Codex branch until the operator
+> clears that binding — see HANDOFF Sep 22). Always the full composite in market-facing
+> output (titles, print footers, generated documents, e-mails, the concierge prompt) — never
+> naked "Cypress", "Command" or "Cypress Command". The 04C lockup art and the
+> `Cypress-Command-*.pdf` manual file names are unchanged.
 > Brand assets = release **04C v1.0.1** (approved 2026-09-06) in
 > `public/brand/cypress/` (lockups primary/reverse, mark, favicon, app icon,
 > fonts), byte-verified against the private `OrangeOnyx/cypress-command-brand-system`

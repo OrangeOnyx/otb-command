@@ -161,7 +161,7 @@ export function callStats(rows, nowIso, days = 7) {
 /* ---- owner e-mail ---- */
 const escHtml = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]));
 
-export function callEmail({ call, transcript, appUrl = "https://otb.cypresscommand.com", productName = "Cypress Command" } = {}) {
+export function callEmail({ call, transcript, appUrl = "https://otb.cypresscommand.com", productName = "Cypress Command Platform" } = {}) {
   const c = call || {};
   const intent = validIntent(c.intent), urgency = validUrgency(c.urgency);
   const unitBit = c.unit ? " · Unit " + c.unit : "";

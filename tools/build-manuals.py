@@ -112,7 +112,7 @@ def build(md_name, html_name, pdf_name, doc_title, sheet_code):
     # First line of the MD is the doc H1 — the title block carries branding.
     confid = "CONFIDENTIAL" in text[:400]
     html_doc = f"""<!doctype html><html><head><meta charset="utf-8">
-<title>Cypress Command — {esc(doc_title.title())}</title>
+<title>Cypress Command Platform — {esc(doc_title.title())}</title>
 <style>{CSS}</style></head><body><div class="wrap">
 <div class="titleblock">
   <div><div class="name">CYPRESS COMMAND · OTB</div>

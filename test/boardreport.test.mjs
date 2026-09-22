@@ -197,7 +197,7 @@ test("boardReportHTML: lender variant — title, blocks, not-on-file lines, no i
   assert.ok(html.includes("<h2>Collections</h2>"));
   assert.ok(html.includes("Collections history: not on file for this quarter"));
   assert.ok(html.includes("<h2>Debt Service</h2>"));
-  assert.ok(html.includes("Debt service and covenant data are not on file in Cypress Command."));
+  assert.ok(html.includes("Debt service and covenant data are not on file in Cypress Command Platform."));
   // provenance + gap disclosure survive
   assert.ok(html.includes("Months without a stored brief: 2026-05, 2026-06"));
   assert.ok(html.includes("Composed from 1 of 3 monthly Owner Intelligence Briefs"));
@@ -227,7 +227,7 @@ test("boardReportHTML: lender collections block renders when extras are present"
   assert.ok(html.includes("$750"), "61–90 bucket");
   assert.ok(html.includes("$1,000"), "90+ bucket");
   assert.ok(html.includes("$4,250"), "aging total");
-  assert.ok(html.includes("Debt service and covenant data are not on file in Cypress Command."), "debt line is unconditional");
+  assert.ok(html.includes("Debt service and covenant data are not on file in Cypress Command Platform."), "debt line is unconditional");
 
   // pay only: aging line names the gap
   const half = boardReportModel(quarterOf("2026-04"), { "2026-04": brief() }, { audience: "lender", extras: { payStats } });
