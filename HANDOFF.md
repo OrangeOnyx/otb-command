@@ -50,8 +50,33 @@ https://otb.cypresscommand.com/tour` → `marketing/OTB-vinyl-131.svg` + `-133.s
 `G:\My Drive\00 OTB\` per the exports rule, PNG / PDF renders refreshed beside them.
 orangeoceanatlas.com / otb-command.vercel.app keep serving the same deployment — nothing already printed breaks.
 
-**Open on the operator:** (1) confirm the Sep 26 orangeoceanassetcommand.com lapse; (2) H-3 mark + the
-brother's name / e-mail; (3) H0-3 secret rotation; (4) flyctl deploy · TWILIO vars · Resend key (runbook);
+### Sep 22 (late) — H-3 RULED IN CHAT · prod has 11 owner memberships · punch list Rev 17 (state r37)
+
+Operator: owners = **Adam (adam@adamabdalla.com) · Catherine (catherine@belle-realty.com) · Alicia
+(alicia@belle-realty.com) · Edward (edward@belle-realty.com) — "the only owners"**; vendor Brian Zorn
+(bzorn253@gmail.com, live since Sep 2); nobody else, no tenants. Claude recorded the pick in the punch-list
+STATE (h3 = decided, r37, ruling in the note) and rewrote the H-3 card + F-10.
+
+**Prod read (authorized_emails + org_members + profiles, execute_sql SELECT — open door):** owner memberships
+today = adam@belle-realty.com · alicia@ · ap@belle-realty.com · brother@brothersontheblvd.com ·
+catherine@ · cortte@gmail.com · dickeydupuis@icloud.com · dylanhoyt09@gmail.com · rustyrandol79@gmail.com ·
+spencer@comitdevelopers.com · spencer@comittechnologies.com (11); authorized_emails also carries the same
+names minus adam@belle-realty / ap@. **Edward has no row anywhere.** The membership_migration of 2026-08-02
+had turned every allowlisted e-mail into an owner member.
+
+**Blocked this session (classifier, "Permission Grant"):** `execute_sql` INSERT of Edward into
+`authorized_emails`, and a follow-up SELECT joining `auth.users`. Not retried. Operator door: sidebar →
+*Sign-in access…* → edward@belle-realty.com → owner → assign (the `assign_role` RPC).
+
+**NOT done, by design — needs the operator's explicit list:** revoking the nine non-ruled owner memberships.
+Open questions on two of them: adam@belle-realty.com (the operator's own second address) and
+brother@brothersontheblvd.com (possibly the brother's actual account — if so it stays and Edward may be
+someone else). When the operator answers, remove `org_members` rows + `authorized_emails` rows for the named
+e-mails (sidebar ✕ revokes pre-auth only; membership rows need SQL or the panel's future revoke), then
+register #24 → green (18/25).
+
+**Open on the operator:** (1) the F-10 list: which of the nine to revoke, and whether brother@ is the brother;
+(2) assign Edward in the sidebar; (3) confirm the Sep 26 orangeoceanassetcommand.com lapse; (4) H0-3 secret rotation; (4) flyctl deploy · TWILIO vars · Resend key (runbook);
 (5) 131 / 133 Insta360 scans → SMK-24; (6) SMK-21…28, SMK-27 first; (7) SMK-5 waits on the world. **No un-gated build work remains** — every Schedule F item left is Tier 2 / Tier 3.
 `docs/graph/labels.json` still modified, still left out of every commit.
 

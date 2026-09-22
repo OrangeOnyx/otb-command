@@ -303,7 +303,10 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Platform Punch List — rev 16 (2026-09-22 later: F-23 CLOSED — operator cleared the branch binding,
+/* Cypress Command Platform Punch List — rev 17 (2026-09-22 late: H-3 DECIDED in chat and recorded in STATE r37 —
+   owners = Adam · Catherine · Alicia · Edward, vendor = Brian Zorn, nobody else; prod holds 11 owner memberships,
+   so F-10 is now a revocation list awaiting the operator's go + one pre-authorization the classifier blocked).
+   Rev 16 (2026-09-22 later: F-23 CLOSED — operator cleared the branch binding,
    otb.cypresscommand.com serves production; leasing / tour constants + QR codes swapped; SMK-24 URL re-pointed).
    Rev 15 (2026-09-22: operator rulings — the product is "Cypress Command
    Platform" and it deploys at otb.cypresscommand.com (found on the production Vercel project, pinned to the Codex
@@ -335,7 +338,7 @@
    decision pickers, transmittal memo).
    Canonical source lives in this script: CSS + BODY constants + fullDoc().
    Operator state is embedded between the markers below and rewritten on save. */
-const STATE = /*__STATE__*/{"rev":36,"saved":"2026-09-18T05:00:16.693Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"we are sticking with ach at moment","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"pass","note":"","at":"Sep 17"},"smk-12":{"s":"pass","note":"","at":"Sep 11"},"smk-13":{"s":"pass","note":"","at":"Sep 17"},"smk-14":{"s":"pass","note":"","at":"Sep 17"},"smk-15":{"s":"pass","note":"","at":"Sep 17"},"smk-16":{"s":"pass","note":"","at":"Sep 17"},"smk-17":{"s":"pass","note":"","at":"Sep 17"},"smk-18":{"s":"pass","note":"","at":"Sep 17"},"smk-19":{"s":"pass","note":"","at":"Sep 17"},"smk-20":{"s":"pass","note":"","at":"Sep 17"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"","note":"Adam Abdalla, Catherine Abdalla, Brother Abdalla, and Alicia Abdalla are the only owners. Everyone else is just a viewer with temporary access, and the only vendor I think that has signed up so far is Brian Zorn. No tenants have signed up yet.","at":""},"own1":{"pick":"trim","note":"","at":"Sep 1"},"d4a":{"pick":"1","note":"","at":"Sep 17"},"d4b":{"pick":"1","note":"","at":"Sep 17"},"d15":{"pick":"1","note":"","at":"Sep 17"},"d19a":{"pick":"1","note":"","at":"Sep 17"},"d19b":{"pick":"1","note":"","at":"Sep 17"},"d23a":{"pick":"1","note":"","at":"Sep 17"},"d23b":{"pick":"1","note":"","at":"Sep 17"},"d24a":{"pick":"1","note":"","at":"Sep 17"},"d24b":{"pick":"1","note":"","at":"Sep 17"}},"memo":{"text":"All right, Claude. What I wanted to say is this: in the asset command, whenever you would look at an owner document, it provided a lot more detail than you do, and the sections were a little bit clearer and more clear-cut. For instance, if you look at the unit drawer that you've got, it's hard to tell where one piece of information starts and another begins.\n\nI don't know. I think Assecon did a very good job, for instance, on the title policy or the insurance policies, listing information about who the broker was, who the tenant was, and the information it gave was a little bit more than you did. I wish we could get a little bit of that look and feel of the information incorporated into this.\n\nYou do very well on some other things. I don't know if we're going to need to go through that one by one or what, but I need to step away. I want to give you a goal of just knocking out everything you can because I'm meeting with somebody tomorrow, and I want to demo this.","at":"Sep 18"}}/*__END__*/;
+const STATE = /*__STATE__*/{"rev":37,"saved":"2026-09-22T05:40:00.000Z","smokes":{"smk-1":{"s":"pass","note":"","at":"Aug 27"},"smk-2":{"s":"pass","note":"","at":"Sep 5"},"smk-3":{"s":"pass","note":"","at":"Sep 3"},"smk-4":{"s":"pass","note":"","at":"Sep 1"},"smk-5":{"s":"open","note":"we are sticking with ach at moment","at":""},"smk-6":{"s":"pass","note":" i want to delete items i must confirm for every single one?","at":"Sep 1"},"smk-7":{"s":"pass","note":"3372707044 and 3372730384","at":"Sep 11"},"smk-8":{"s":"pass","note":"","at":"Sep 11"},"smk-9":{"s":"pass","note":"","at":"Sep 11"},"smk-10":{"s":"pass","note":"repair is complete how do i get it to go away","at":"Sep 11"},"smk-11":{"s":"pass","note":"","at":"Sep 17"},"smk-12":{"s":"pass","note":"","at":"Sep 11"},"smk-13":{"s":"pass","note":"","at":"Sep 17"},"smk-14":{"s":"pass","note":"","at":"Sep 17"},"smk-15":{"s":"pass","note":"","at":"Sep 17"},"smk-16":{"s":"pass","note":"","at":"Sep 17"},"smk-17":{"s":"pass","note":"","at":"Sep 17"},"smk-18":{"s":"pass","note":"","at":"Sep 17"},"smk-19":{"s":"pass","note":"","at":"Sep 17"},"smk-20":{"s":"pass","note":"","at":"Sep 17"}},"tasks":{"g-1":{"s":"done","at":"Sep 1"},"g-2":{"s":"done","at":"Sep 1"},"h0-1":{"s":"done","at":"Sep 1"},"h0-2":{"s":"done","at":"Sep 1"},"h0-3":{"s":"open","at":""}},"waves":{"h0":{"p":"queued","note":""},"h11":{"p":"next","note":""},"h12":{"p":"next","note":""},"h2":{"p":"next","note":""},"h25":{"p":"next","note":""},"h3":{"p":"queued","note":""}},"decisions":{"h1":{"pick":"b","note":"","at":"Sep 1"},"h2":{"pick":"publish","note":"","at":"Sep 1"},"h3":{"pick":"decided","at":"Sep 22","note":"Ruled in chat Sep 22 (recorded by Claude): owners = Adam (adam@adamabdalla.com, operator), Catherine (catherine@belle-realty.com), Alicia (alicia@belle-realty.com), Edward (edward@belle-realty.com) - the only owners. Vendor = Brian Zorn (bzorn253@gmail.com, live since Sep 2). Nobody else; no tenants. Earlier note: Adam Abdalla, Catherine Abdalla, Brother Abdalla, and Alicia Abdalla are the only owners. Everyone else is just a viewer with temporary access, and the only vendor I think that has signed up so far is Brian Zorn. No tenants have signed up yet."},"own1":{"pick":"trim","note":"","at":"Sep 1"},"d4a":{"pick":"1","note":"","at":"Sep 17"},"d4b":{"pick":"1","note":"","at":"Sep 17"},"d15":{"pick":"1","note":"","at":"Sep 17"},"d19a":{"pick":"1","note":"","at":"Sep 17"},"d19b":{"pick":"1","note":"","at":"Sep 17"},"d23a":{"pick":"1","note":"","at":"Sep 17"},"d23b":{"pick":"1","note":"","at":"Sep 17"},"d24a":{"pick":"1","note":"","at":"Sep 17"},"d24b":{"pick":"1","note":"","at":"Sep 17"}},"memo":{"text":"All right, Claude. What I wanted to say is this: in the asset command, whenever you would look at an owner document, it provided a lot more detail than you do, and the sections were a little bit clearer and more clear-cut. For instance, if you look at the unit drawer that you've got, it's hard to tell where one piece of information starts and another begins.\n\nI don't know. I think Assecon did a very good job, for instance, on the title policy or the insurance policies, listing information about who the broker was, who the tenant was, and the information it gave was a little bit more than you did. I wish we could get a little bit of that look and feel of the information incorporated into this.\n\nYou do very well on some other things. I don't know if we're going to need to go through that one by one or what, but I need to step away. I want to give you a goal of just knocking out everything you can because I'm meeting with somebody tomorrow, and I want to demo this.","at":"Sep 18"}}/*__END__*/;
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
@@ -647,7 +650,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Cypress Command Platform &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 22, 2026 &middot; Rev 16</span>
+      <span class="mono mast-date">Content &middot; Sep 22, 2026 &middot; Rev 17</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Cypress Command Platform build (OTB deployment &middot; formerly Orange Ocean Atlas), on one working sheet.
@@ -662,7 +665,7 @@ const BODY = `
       <div class="kpi"><span class="eyebrow">H1 organ cutovers</span><b>2 / 3</b><small>SOP live &middot; work-order data in M-1 &middot; bridge numbers published Sep 11 (SMK-7 passed) &mdash; AC-side forward / retire / notice remain (F-11)</small></div>
       <div class="kpi"><span class="eyebrow">Operator smokes</span><b id="kpi-smokes">5</b><small id="kpi-smokes-sub">open &middot; none marked yet</small></div>
       <div class="kpi"><span class="eyebrow">Decisions on desk</span><b id="kpi-dec">13</b><small id="kpi-dec-sub">undecided &middot; + 2 parked</small></div>
-      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>17 / 25</b><small>AC retires only at 25 / 25 green &middot; +1 on Sep 18 (#4 closed by D-4a = option 1) &middot; #24 waits on H-3</small></div>
+      <div class="kpi"><span class="eyebrow">Register &middot; H3 gate</span><b>17 / 25</b><small>AC retires only at 25 / 25 green &middot; #24 closes when the H-3 mapping is applied on prod (F-10 &mdash; your go on the revocations)</small></div>
     </div>
   </header>
 
@@ -1284,9 +1287,9 @@ const BODY = `
         <div class="head"><span class="did">H-3</span><span class="q">AC user role mapping</span><span class="stamp" data-dstamp="h3"></span></div>
         <p>Which of AC&rsquo;s 9 real <code>user</code>-role accounts map to owner / vendor / tenant in
         <code>org_members</code>. (The 64 synthetic &ldquo;owner&rdquo; accounts are noise &mdash; not invited.)
-        Write the mapping in the note, then mark it decided. <strong>D-24a decided Sep 17 (option 1):</strong> AC&rsquo;s
-        <code>read_only</code> users map to <em>owner</em> &mdash; so the four unmapped read_only emails ride this mapping
-        (they will see S-1 and P-1); name any who should not.</p>
+        <strong>Decided Sep 22 in chat, recorded here by Claude (state r37):</strong> owners are Adam, Catherine, Alicia and Edward
+        (edward@belle-realty.com) &mdash; the only owners; Brian Zorn is the vendor (live since Sep 2); nobody else, no tenants.
+        D-24a&rsquo;s read_only &rarr; owner fold is therefore overruled for everyone outside that list. Applying it is F-10.</p>
         <div class="ctrl">
           <div class="pick" role="group" aria-label="H-3 decision">
             <button type="button" data-dec="h3" data-set="decided" aria-pressed="false">Mapping decided &mdash; see note</button>
@@ -1634,8 +1637,17 @@ const BODY = `
           <p class="bdesc">PORT gap: unauthenticated vendor uploads need a service key or a dedicated upload identity. Short build once you pick.</p></li>
         <li><span class="bid">F-9</span><span class="bname">#17 Document + floor-plan binaries <span class="chip wait">H3 step</span></span>
           <p class="bdesc">247 documents + 57 floor plans need a keyed copy out of AC storage into the documents bucket. Metadata is already archived.</p></li>
-        <li><span class="bid">F-10</span><span class="bname">H2 user invitations <span class="chip wait">waits on H-3</span></span>
-          <p class="bdesc">Invite the ~9 real AC users into org_members with mapped roles. Blocked only by the H-3 mapping in Schedule D.</p></li>
+        <li><span class="bid">F-10</span><span class="bname">Apply the H-3 mapping on prod <span class="chip hot">your go</span></span>
+          <p class="bdesc"><strong>Prod today (read Sep 22):</strong> Catherine and Alicia are already owners (signed in, memberships in place); Brian Zorn is
+          already the vendor (Sep 2). <strong>Edward has no account yet</strong> &mdash; Claude&rsquo;s pre-authorization insert was classifier-blocked
+          (a permission grant), so: sidebar &rarr; <em>Sign-in access&hellip;</em> &rarr; e-mail <code>edward@belle-realty.com</code> &rarr; role owner &rarr;
+          assign; then he signs in with the magic link. <strong>Nine other owner memberships exist on prod</strong> that your ruling excludes:
+          adam@belle-realty.com (your own second address &mdash; keep?), ap@belle-realty.com (Accounts Payable), brother@brothersontheblvd.com
+          (is this the brother&rsquo;s own account? if so it stays), cortte@gmail.com, dickeydupuis@icloud.com (pre-authorized Aug 10),
+          dylanhoyt09@gmail.com, rustyrandol79@gmail.com, spencer@comitdevelopers.com and spencer@comittechnologies.com (the IT vendor).
+          Each sees S-1 and P-1 today. Reply with the ones to revoke (or &ldquo;all nine&rdquo;) and Claude removes their owner memberships
+          and pre-authorizations; the sidebar panel&rsquo;s &#10005; does the same one at a time. Register #24 goes green when the list matches
+          the ruling.</p></li>
         <li><span class="bid">F-11</span><span class="bname">Voice cutover, AC side <span class="chip wait">SMK-7 + runbook</span></span>
           <p class="bdesc">Paste the numbers (SMK-7) &rarr; forward AC&rsquo;s number to the tenant line &rarr; retire the Vapi/Retell agent &rarr; tenant notice &rarr; 30-day soak &rarr; release. Lease / brief / SMS contact numbers stay yours to switch.</p></li>
         <li><span class="bid">F-12</span><span class="bname">H0-3 secret rotation <span class="chip hot">security</span></span>
@@ -1806,6 +1818,11 @@ const BODY = `
       Resend (runbook), the 131 / 133 scans, SMK-5, SMK-21&ndash;28.</li>
       <li>Sep 22 (later): you said &ldquo;saved&rdquo; &mdash; <strong>F-23 closed</strong>. otb.cypresscommand.com serves production (verified by bundle
       name + title); leasing / tour constants and both QR codes now carry the new address; deployed. Sheet count: 33 items, F-23 done.</li>
+      <li>Sep 22 (late): you ruled H-3 in chat &mdash; Adam, Catherine, Alicia, Edward are the only owners; Brian Zorn the vendor &mdash; and Claude
+      recorded the pick in the sheet&rsquo;s state (r37) with the ruling in the note. Reading prod turned up eleven owner memberships, not four
+      (see F-10): two are the ruled owners, nine are not. Nothing was revoked without you. Edward&rsquo;s pre-authorization is one sidebar step
+      (Claude&rsquo;s insert was blocked as a permission grant). Also this session: manuals rebuilt under the Platform name at
+      otb.cypresscommand.com; gate vinyls re-run with the tour QR (SVG / PNG / PDF on Drive).</li>
     </ol>
   </section>
 
@@ -1813,7 +1830,7 @@ const BODY = `
     <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command Platform &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-09-22</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">16</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">17</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
