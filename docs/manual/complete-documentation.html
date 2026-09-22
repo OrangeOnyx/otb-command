@@ -61,7 +61,7 @@ hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
   padding:18px 22px; margin:52px 0 30px; 
   font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
   BOOK I — OPERATING MANUAL</div><h1>Cypress Command Platform — Operating Manual (On The Boulevard deployment)</h1>
-<p><strong>Version September 2026 · covers the 17-sheet production build (624 tests)</strong>
+<p><strong>Version September 22, 2026 · covers the 18-sheet production build (777 tests)</strong>
 Live app: https://otb.cypresscommand.com (also orangeoceanatlas.com · otb-command.vercel.app) · Operator: adam@adamabdalla.com</p>
 <p>This supersedes the July 2026 text-only edition (<code>docs/pitch/operator-manual.md</code>).
 Every screenshot is a real capture of the running system. <strong>Tenant names and
@@ -120,16 +120,21 @@ automatically:</p>
 <li><strong>D-0 Portfolio</strong> — cross-property rollup (one card per property)</li>
 <li><strong>D-1 Dashboard</strong> — KPIs, action queue, live cards</li>
 <li><strong>A-1 Site Plan</strong> — the interactive plat</li>
-<li><strong>A-2 Spatial</strong> — iso / 3D / satellite / photoreal lenses</li>
-<li><strong>R-1 Rent Roll</strong> · <strong>P-1 Financial</strong> — money</li>
-<li><strong>C-1 Compliance</strong> · <strong>T-1 Critical Dates</strong> — obligations</li>
-<li><strong>W-1 Action Board</strong> — kanban of everything needing action</li>
-<li><strong>K-1 Directory</strong> — contacts, document register, site imagery</li>
-<li><strong>M-1 Maintenance</strong> — work orders (also the tenant's sheet)</li>
-<li><strong>S-1 Owner Safe</strong> — sealed document vault</li>
+<li><strong>A-2 Spatial</strong> — the property workspace (plat model, suite inspector, evidence) + capture lenses</li>
+<li><strong>R-1 Rent Roll</strong> · <strong>C-1 Compliance</strong> · <strong>P-1 Financial</strong> — money and obligations</li>
+<li><strong>S-1 Owner Safe</strong> — sealed document vault + property records</li>
 <li><strong>AI-1 Concierge</strong> — the three AI personas</li>
+<li><strong>T-1 Critical Dates</strong> · <strong>W-1 Action Board</strong> — what is due, who is doing it</li>
+<li><strong>K-1 Directory</strong> — contacts, document register, pylon sign, site imagery</li>
+<li><strong>B-1 Marketing</strong> — flyers, overview, tenant cards, photo library, tour media</li>
+<li><strong>L-1 Comm Log</strong> — every letter, e-mail, meeting note and phone call</li>
+<li><strong>N-1 Matters</strong> — long-running affairs with deadlines and correspondence</li>
+<li><strong>M-1 Maintenance</strong> — work orders (also the tenant's sheet)</li>
+<li><strong>O-1 Operations</strong> — the procedures (SOP) library</li>
 <li><strong>V-1 Vendor Portal</strong> — vendor roster, COIs, work orders</li>
 </ul>
+<p>The masthead carries a <strong>KPI ribbon</strong> — Occupancy · Rent/mo · Vacant · Expiring ≤12 mo ·
+Needs attention — and each figure is a button that drills into its sheet.</p>
 <p>The URL tracks the open sheet (<code>#roll</code>, <code>#plan</code>…) — the back button walks your
 history, and links can deep-link a sheet. Boot lands on D-1 (D-0 sits above it
 in drawing-set order but is a rollup, not the daily surface).</p>
@@ -172,7 +177,10 @@ Everything works; nothing is mobile-only.</p>
    payment arrived that couldn't be matched. Each condition opens exactly
    <strong>one</strong> thread, ever — if there's nothing new, there's nothing there.</li>
 <li><strong>M-1 Maintenance</strong> — new tenant requests (from the portal or the phone
-   line) appear in the queue. Triage per §3.10.</li>
+   line) appear in the queue. Triage per §3.10.
+4a. <strong>L-1 Comm Log</strong> — the "Calls · 7 days" strip and the attention filter:
+   every recorded phone call with its summary, intent and urgency chips;
+   listen, read the turns, then <strong>✓ Mark handled</strong> (§3.19).</li>
 <li><strong>Mail/phone → the system</strong> — anything that arrived outside the system
    (a signed lease, a COI, a check conversation) gets recorded where it
    belongs the same day: SOT update (§5.3), vendor folder (§3.13), ledger
@@ -195,12 +203,16 @@ as-of label shows date+time for non-today samples), <strong>Network (UniFi)</str
 up/down, <strong>Automation (cron)</strong> — green with last-run age; brick-red STALE past
 26 hours, which matters because maintenance aging, voice leads, C3 heartbeat,
 UniFi, rent posting, and the owner brief all ride that one daily cron —
-<strong>Client Errors (24h)</strong> (renders only when the count is nonzero), and the
+<strong>Client Errors (24h)</strong> (renders only when the count is nonzero), the
+<strong>Calls</strong> KPI (recorded voice calls awaiting attention), and the
 Action Queue (same cards as W-1). If a card shows brick-red, it is telling you
 something needs attention.</p>
 <h2>3.3 A-1 Site Plan</h2>
 <p><img alt="A-1 Site Plan" src="img/plan.png" /></p>
-<p>The recorded plat, interactive. <strong>Chips</strong> toggle overlay layers:
+<p>The recorded plat, interactive. A <strong>View</strong> row above the chips sets a preset
+— Leasing · Daily Ops · Building Systems · Common Areas · Signage · Roof ·
+Site / Hardscape — and the chips re-derive from it; toggling any chip by hand
+drops the preset highlight. <strong>Chips</strong> toggle overlay layers:
 - <strong>Lenses:</strong> Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.
 - <strong>🅿 Parking</strong> — the 314 plat-labeled stalls by zone, plus the 10-stall Johnston
   row the CAD stripes but the plat never labels (marked as such).
@@ -245,25 +257,54 @@ measures itself and shrinks to fit), with expiry flags — ▲ brick ≤6 months
 △ amber 6–12 months — and a legend in the stamp.</p>
 <h2>3.6 P-1 Financial</h2>
 <p><img alt="P-1 Financial" src="img/fin.png" /></p>
-<p>Income composition, rollover, and concentration charts; the <strong>NOI worksheet</strong>
-(enter opex → NOI → cap-rate value); <strong>Collections &amp; aging</strong> (month
-collected-vs-charged and per-unit FIFO aging from the ledger). The Excel
-proforma (<code>npm run proforma</code>) is the owner-overridable model for underwriting
-conversations.</p>
+<p>Income composition (bars + a composition donut beside the Base · CAM · Tax ·
+Ins breakdown), rollover, and concentration charts; the <strong>NOI worksheet</strong>
+(enter opex → NOI → cap-rate value) now opens with a <strong>revenue → NOI
+waterfall</strong> (gross potential rent + vacancy are labeled ESTIMATES at the
+effective PSF; expense steps are your worksheet lines only) and a <strong>cap-rate
+sensitivity</strong> table ±100 bp in 25 bp steps around the entered rate (or the
+flagged 8.50% appraisal reference when blank — never stored);
+<strong>Collections &amp; aging</strong> (month collected-vs-charged, collections history bars,
+and per-unit FIFO aging from the ledger); <strong>Tenant health</strong> — five tiles plus
+a worst-first list with OK / Watch / At-risk chips and a "How this score is
+calculated" fold (score model 60/25/15; rows open the drawer; hosted only);
+and the <strong>CAM reconciliation</strong> card — year picker, prior-year opex worksheet,
+per-tenant caps from the lease abstracts (<code>src/data/recovery-terms.json</code>),
+derived occupancy gross-up, and a per-row <strong>⤓ Statement</strong> that prints the
+tenant's annual reconciliation with the PSF breakdown, cap line and
+methodology. Suites with unknown PSF print "Not determinable" rather than a
+guess. The Excel proforma (<code>npm run proforma</code>) is the owner-overridable model
+for underwriting conversations.</p>
 <h2>3.7 C-1 Compliance</h2>
 <p><img alt="C-1 Compliance" src="img/comp.png" /></p>
-<p>The 11×27 matrix. <strong>Click a cell to cycle</strong> unknown → ok → flag → n/a
+<p>A <strong>Document coverage</strong> card sits above the matrix: per occupied suite —
+Lease · COI · COI expires · other documents — with filter chips and five
+summary counts. Evidence = a file on the suite's document records OR a matrix
+"On file"; a matrix Flag is a gap. Then the 11×27 matrix. <strong>Click a cell to cycle</strong> unknown → ok → flag → n/a
 (food-service-only fields apply only where relevant). Every flip is recorded —
 who, when, from→to — and <strong>⏱ History</strong> shows the trail. You cannot corrupt
 this history; corrections are new flips. Edits sync live between devices —
 flip a cell on your phone and it flips on the desktop without a reload.</p>
 <h2>3.8 T-1 Critical Dates</h2>
 <p><img alt="T-1 Critical Dates" src="img/dates.png" /></p>
-<p>Lease expirations plus instrument deadlines (JD Bank easement end, etc.) on
-one timeline. Derived — nothing to maintain.</p>
+<p>Three derived views — nothing to maintain:
+- <strong>Lease expiry timeline</strong> — a four-year Gantt with a today line and bucket
+  cards (past end · &lt;90 d · 90–180 d · &gt;180 d · term unresolved). Suites whose
+  lease end is unresolved in the September 2026 lease review list under
+  "term unresolved" with their review label — BY DESIGN, never guessed.
+  Row click → drawer.
+- <strong>Renewal pipeline</strong> — option terms transcribed from the executed leases
+  (<code>src/data/renewal-options.json</code>, reference only; every notice = 60 days).
+  Groups: Notice window · Deadline passed · Option available · Term
+  unresolved. "Open suite" → drawer.
+- <strong>Instrument + governance deadlines</strong> — the JD Bank servitude end, the
+  insurance renewals, the premium-finance maturity, and every S-1 governance
+  item with a date, on the same timeline as the leases.</p>
 <h2>3.9 W-1 Action Board</h2>
 <p><img alt="W-1 Action Board" src="img/board.png" /></p>
-<p>See Part II. Card types include seeded facts (holdover, renewal, vacancy,
+<p>See Part II. A <strong>leasing pipeline strip</strong> over the deals table (inquiry →
+tour → proposal → signed; voice and web leads land here on their own) sits
+above the lanes. Card types include seeded facts (holdover, renewal, vacancy,
 compliance flag, covenant) and <strong>live work-order cards</strong> (<code>mr:</code> prefixed).
 Overrides (lane moves, dismissals) persist; the seed recomputes every render,
 so a dismissed card returns only if the underlying fact returns.</p>
@@ -283,6 +324,12 @@ Tenant-side view: §4.3.</li>
 <h2>3.11 The Ledger (drawer → Ledger)</h2>
 <ul>
 <li>Balance headline + last entries with running balance.</li>
+<li><strong>⤓ Statement</strong> — a branded, printable tenant statement (owner-visible).</li>
+<li><strong>Prior payments</strong> — 13 months of payment history with status-truth
+  lateness (the July 2026 rows imported from Asset Command were bulk-entered;
+  never trust their paid-at dates).</li>
+<li><strong>Lease abstract</strong> (operator-only panel) — the abstracted terms, escalation
+  steps and option terms for the suite, beside the ledger.</li>
 <li><strong>Monthly rent charges post themselves</strong> (idempotently) on the 1st, since
   August 2026.</li>
 <li><strong>ACH payments post themselves.</strong> Each unit has a reusable Stripe payment
@@ -328,14 +375,28 @@ rejected by the database itself.</li>
 </ul>
 <h2>3.14 K-1 Directory</h2>
 <p><img alt="K-1 Directory" src="img/dir.png" /></p>
-<p>Property contacts, the document register (rows can carry a real uploaded file
-— 📎 attach → the row's link becomes an "Open 📎" that always serves a fresh
-secure URL), and the site-imagery library.</p>
+<p>Property contacts (including the <strong>Property lines</strong> block — the tenant and
+leasing numbers — and the insurance contacts: agent, brokers, claims lines),
+the document register, and the site-imagery library. Register rows carry
+<code>counterparty · amount · effective · matures · status · risk</code> besides the
+file (📎 attach → the row's link becomes an "Open 📎" that always serves a
+fresh secure URL); an <strong>expiring strip</strong> at the top lists what lapses next.
+The <strong>pylon sign</strong> renders as a native SVG elevation next to the tenant
+roster — hover links panel ↔ row, click → drawer; installed-but-unlisted
+faces draw brick-dashed.</p>
 <h2>3.15 S-1 Owner Safe</h2>
-<p>Category folders (Proforma / Leases / Tax / Insurance / Banking / Other).
-Upload and open as the operator; owners read-only; vendors/tenants sealed out
-at the database layer. <strong>Recent access</strong> (operator-only) shows every view,
-upload, and delete with who and when.</p>
+<p>Opens with <strong>Property records</strong>: a <strong>Risk register</strong> (worst-first) and a
+<strong>Renewal &amp; maturity radar</strong> (soonest-first) derived from the document
+register — today that is the 2026–27 insurance program as bound (property ·
+BOP liability + umbrella · workers' compensation, all renewing 2027-05-15, the
+premium-finance agreement maturing 2027-03-15), the loan maturity, the lender
+title policy and the recorded instruments. Abstract of the bound policies:
+<code>docs/insurance-program-2026-27.md</code>. Then the <strong>Governance</strong> block (items with
+deadlines feed T-1), <strong>⤓ Board report</strong> (quarterly, assembled from the stored
+owner briefs), and the category folders (Proforma / Leases / Tax / Insurance /
+Banking / Other). Upload and open as the operator; owners read-only;
+vendors/tenants sealed out at the database layer. <strong>Recent access</strong>
+(operator-only) shows every view, upload, and delete with who and when.</p>
 <h2>3.16 AI-1 Agent Desk</h2>
 <p><img alt="AI-1 Concierge" src="img/ai.png" /></p>
 <p>Three personas — <strong>🏛 Concierge</strong> (property Q&amp;A), <strong>🤝 Leasing</strong>,
@@ -372,14 +433,77 @@ upload, and delete with who and when.</p>
   booking tool actually succeeded; an unbacked claim is corrected or replaced
   with an honest fallback, and a leasing call that ends without a booking
   opens a <code>voice-lead:</code> manager thread within hours so no lead drops.</li>
-<li>Every call lands as a transcript thread in AI-1 History.</li>
-<li>Go-live steps + secret rotation drill: <code>docs/a3-voice-runbook.md</code>.</li>
+<li>Both greetings end "This call may be recorded." Every call is recorded at
+  Twilio (once the Twilio account variables are set in Vercel), summarized
+  the moment it ends (intent · urgency · unit · caller · callback · follow-up
+  — nothing invented; hang-ups still record), written to <strong>L-1</strong> as a call
+  card with the Caller/Agent turns and ▶ Play recording, mirrored as a
+  transcript thread in AI-1 History, and e-mailed to the owners when a mail
+  key is configured. Emergencies open a manager thread on their own.</li>
+<li>The leasing line can <strong>send the leasing package</strong> by e-mail (and by text
+  once A2P messaging is approved): the caller's request creates a deal row
+  and the agent may only claim the legs that actually went out.</li>
+<li>Calls that end before the summary lands are swept by the daily cron
+  (≥20 minutes unfinalized) so nothing is lost.</li>
+<li>Go-live steps + secret rotation drill: <code>docs/a3-voice-runbook.md</code>; call
+  records: <code>docs/voice-call-records-runbook-2026-09-18.md</code>.</li>
 </ul>
+<h2>3.18 B-1 Marketing</h2>
+<p>Five blocks, every one generated from the source of truth on the fly — a
+flyer can never disagree with the rent roll, and <strong>rates are never printed</strong>:
+1. <strong>Availability flyers</strong> — one printable flyer per vacant suite.
+2. <strong>Center overview</strong> — stats · logo wall · site plan · availability.
+3. <strong>Tenant cards</strong> — 1080-square co-marketing card per tenant.
+4. <strong>Photo library</strong> — the assets bucket by suite; the operator picks the
+   hero image per suite and the pick persists (<code>marketing</code> layer).
+5. <strong>360° tour media</strong> — panoramas + hero stills uploaded to the PUBLIC
+   <code>tour</code> bucket; <strong>Publish manifest</strong> refreshes what the /tour microsite
+   shows. Insta360 export settings and the upload steps:
+   <code>docs/marketing-b1-and-tour-2026-09-18.md</code>.
+Every output opens as a page with Print / Save PDF. The <strong>pylon sign</strong> block
+shows the sign, its roster and "tenants without a face" per tenant. QR codes
+for the leasing page and the tour live in <code>public/qr/</code>.</p>
+<h2>3.19 L-1 Comm Log</h2>
+<p>The cross-channel correspondence sheet. Filter by channel (note / e-mail /
+letter / meeting / SMS / voice / web) or unit, search, expand an entry,
+hand-log new correspondence, delete stale rows. <strong>Voice rows</strong> (§3.17) carry
+intent and urgency chips, a needs-attention dot, the summary, outcome links
+(work order · tour · lead · package), ▶ Play recording, the Caller/Agent
+turns, and <strong>✓ Mark handled</strong>. The "Calls · 7 days" strip and the attention
+filter are the morning triage (Part II). Web tour requests from /tour land
+here too. Owners see the log read-only, including every call's summary,
+transcript and recording; tenants and vendors never see this sheet.</p>
+<h2>3.20 N-1 Matters &amp; Planning</h2>
+<p>Long-running property affairs as status-filtered cards: kind (lease
+negotiation, claim, permit, dispute, project, general), status, deadlines,
+correspondence and file attachments. Operator: open a matter, edit fields
+inline, log meeting notes (they mirror into L-1), attach documents (they ride
+the documents bucket), close or reopen. Deadlines feed T-1. Owners read the
+cards and open attachments but never attach.</p>
+<h2>3.21 O-1 Operations</h2>
+<p>The procedures (SOP) library — categories → procedures → steps, with
+due-today / overdue / streak state. Browse, expand a procedure, ✓ <strong>Complete</strong>
+with notes and minutes (it closes the oldest open occurrence), author new
+content (add or edit categories, procedures, steps; deactivate), clear stale
+occurrences. The daily cron materializes each scheduled procedure's current
+occurrence and opens ONE "SOPs overdue" digest thread in AI-1 keyed by the
+newest lapse (a static backlog never re-fires). Owners read-only; tenants and
+vendors never see O-1.</p>
+<h2>3.22 The public /tour microsite</h2>
+<p><code>otb.cypresscommand.com/tour</code> needs no sign-in: a 360° viewer per suite when
+panoramas have been published from B-1, otherwise the plat, the numbers and
+Call / Text-to-tour. The <strong>Request a tour</strong> form writes a web lead (deal row +
+L-1 note, capped per day), opens a manager thread in AI-1, and e-mails the
+owners when mail is configured. The leasing one-pager stays at
+<code>/leasing.html</code>.</p>
 <hr />
 <h1>Part IV — Counterparty guides</h1>
 <h2>4.1 Owners</h2>
-<p>Sign in with your authorized email. You see the sheets the operator has shared
-(dashboard, rent roll, financials, and the Safe are typical), <strong>read-only</strong>.
+<p>Sign in with your authorized email (the owner list is fixed by the operator —
+§6.1). You see the sheets the operator has shared (dashboard, rent roll,
+financials, and the Safe are typical), <strong>read-only</strong>. The Comm Log, when
+shared, lets you listen to any recorded call and read its summary and
+transcript.
 The <strong>📊 Briefs</strong> panel in AI-1 holds your monthly intelligence brief — every
 figure deterministic, archived permanently. You may ask the AI desk questions;
 its numbers are guardrailed the same as the operator's.</p>
@@ -407,7 +531,9 @@ under the federal E-SIGN Act and Louisiana UETA.</p>
 <ul>
 <li>11:00 UTC — proactive scan: renewals/holdovers/occupancy → AI threads;
   work-order aging; camera-pipeline heartbeat; rent-charge posting;
-  unmatched-ACH threads; unbooked voice leads; UniFi outages. The scan also
+  unmatched-ACH threads; unbooked voice leads; UniFi outages; unfinalized
+  voice calls swept into L-1; scheduled procedures materialized on O-1 and
+  ONE "SOPs overdue" digest thread. The scan also
   stamps the <strong>Automation (cron)</strong> card on D-1 — if that card goes brick,
   every one of those safety nets is silent; treat it as urgent.</li>
 <li>12:00 local + 23:45 local — camera frames classified + uploaded
@@ -426,8 +552,14 @@ under the federal E-SIGN Act and Louisiana UETA.</p>
 </ul>
 <h2>5.3 When a lease is signed / a fact changes (governed SOT update)</h2>
 <ol>
-<li>Update the source pack <code>docs/sot-2026-07/</code> (authority rank 1).</li>
-<li>Apply the change to <code>src/data/units.json</code>.</li>
+<li>Update the source of truth: <code>docs/lease-population-2026-09-10.md</code> and the
+   suite's <code>leaseEvidence</code> in <code>src/data/units.json</code> (Tier 1 since the
+   September 2026 lease review; <code>docs/sot-2026-07/</code> stays authoritative for
+   suites the review does not name). Supersession rules:
+   <code>docs/sot-supersession-2026-09-11.md</code>.</li>
+<li>Apply the change to <code>src/data/units.json</code>. Leave a lease <code>end</code> BLANK when
+   the signed documents do not resolve it — T-1 and W-1 then show "term
+   unresolved" instead of a guessed date. No holdovers are assumed.</li>
 <li><code>npm run split-seed</code> &amp;&amp; <code>npm run concierge-context</code> (the test suite fails
    if you forget — deliberately).</li>
 <li><code>npm test</code> → commit → deploy (§6.3) → verify live.
@@ -458,14 +590,21 @@ exceptions as exceptions — do not "fix" them to formula.</li>
   sheets owners get.</li>
 </ul>
 <h2>6.2 Quality gates (never skip)</h2>
-<p><code>node --check</code> on changed modules · <code>npm test</code> (340) · <code>npm run build</code> ·
+<p><code>node --check</code> on changed modules · <code>npm test</code> (777) · <code>npm run build</code> ·
 deploy · <strong>grep the prod bundle for the change</strong> · smoke the live URL.
-Committing is not shipping: <strong>commits do not auto-deploy.</strong></p>
+Since 2026-09-11 <strong>every push to <code>master</code> deploys</strong> through
+<code>.github/workflows/deploy.yml</code> (npm ci → npm test → vercel build/deploy
+--prod); a failing test blocks the deploy. Verify by fetching the live page
+and checking the <code>assets/main-&lt;hash&gt;.js</code> bundle name against the local build.</p>
 <h2>6.3 Deploying</h2>
+<p>Push to <code>master</code> (or merge a PR) — GitHub Actions deploys production. Manual
+fallback from this machine:</p>
 <pre><code class="language-bash">npx vercel deploy --prod --yes --scope adams-projects-0c52918e
 </code></pre>
-<p>(CLI is logged in as orangeonyx on this machine. <code>.vercelignore</code> governs
-uploads — the 16MB splat + 3MB mesh ride in <code>public/</code>.)</p>
+<p>(<code>.vercelignore</code> governs uploads — the 16MB splat + 3MB mesh ride in
+<code>public/</code>.) Never promote a Preview deployment: previews run against the
+isolated Supabase branch and the build aborts if production secrets leak into
+the Preview scope.</p>
 <h2>6.4 Backup &amp; portability</h2>
 <ul>
 <li>Topbar <strong>Export</strong> → full-state JSON. Take one before risky edits; <strong>Import</strong>
@@ -500,7 +639,11 @@ repo.</p>
 <li>E-sign, lease proposals, and payment links: the operator transmits
   links/documents; the app sends nothing outbound on its own.</li>
 <li>Voice: no SMS notify on dispatch, no live call transfer, no daily call cap
-  (set a Twilio usage trigger); settings edits via SQL until a UI lands.</li>
+  (set a Twilio usage trigger); recordings and the leasing-package e-mail
+  wait on the Twilio and mail keys in Vercel; the leasing package by text
+  waits on A2P approval; settings edits via SQL until a UI lands.</li>
+<li>B-1 outputs and the /tour site never print a rate; the operator quotes
+  rates in person or by the leasing line's approved range.</li>
 <li>Desktop-first; the phone experience is a responsive web app, not a native
   app.</li>
 <li>Onboarding a second property is operator-driven (see the onboarding
@@ -670,7 +813,7 @@ sign-in. Nothing to provision, no passwords to distribute.</p>
 <li><strong>No data package.</strong> Onboarding creates the container, not the contents:
    units, geometry, rent roll, and seeds are the site-plan-tier premium step
    (Phase C data-package pipeline). Until that lands for the new property,
-   the 13 property sheets remain bound to the flagship's bundled data — the
+   the 17 property sheets remain bound to the flagship's bundled data — the
    new property renders correctly on D-0 and boots its own sheets empty.</li>
 <li><strong>Known residual while switched:</strong> manual edits made while you are
    actively switched INTO a data-less property will sync to that property.

@@ -196,7 +196,7 @@ sign-in. Nothing to provision, no passwords to distribute.
 1. **No data package.** Onboarding creates the container, not the contents:
    units, geometry, rent roll, and seeds are the site-plan-tier premium step
    (Phase C data-package pipeline). Until that lands for the new property,
-   the 13 property sheets remain bound to the flagship's bundled data — the
+   the 17 property sheets remain bound to the flagship's bundled data — the
    new property renders correctly on D-0 and boots its own sheets empty.
 2. **Known residual while switched:** manual edits made while you are
    actively switched INTO a data-less property will sync to that property.
