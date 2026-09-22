@@ -111,7 +111,7 @@ notices. Program cost **$78,695.58/yr** (+ $2,425.38 finance charge). All three 
 Copies + memo → `G:\My Drive\00 OTB\Cypress Command\Insurance 2026-27\`. **Top open items for the
 operator:** rated SF 77,749 vs GLA 62,883 (ask TSL what was submitted); BI $928,557 ≈ 10.5 months of rent;
 named-storm cash exposure; flood decision; alarm-monitoring vendor on M-1 (warranty); FPE-panel answer on
-the property application vs the Sep 18 note. No code paths changed — data + docs only.
+the property application vs the Sep 18 note. No code paths changed — data + docs only. Committed 231d4d6, pushed on the operator's "push it"; prod serves **main-gA89eWES.js** (curl-verified: the bundle carries TXH-F30836).
 
 ## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT + LIVE · 777 tests green · commit ab8ccb1 · prod serves main-CnCYM8ZH.js
 
