@@ -75,8 +75,24 @@ someone else). When the operator answers, remove `org_members` rows + `authorize
 e-mails (sidebar ✕ revokes pre-auth only; membership rows need SQL or the panel's future revoke), then
 register #24 → green (18/25).
 
-**Open on the operator:** (1) the F-10 list: which of the nine to revoke, and whether brother@ is the brother;
-(2) assign Edward in the sidebar; (3) confirm the Sep 26 orangeoceanassetcommand.com lapse; (4) H0-3 secret rotation; (4) flyctl deploy · TWILIO vars · Resend key (runbook);
+### Sep 22 (later still) — F-10 APPLIED · register 18/25 · punch list Rev 18 (state r38)
+
+Operator's final owner list: **adam@belle-realty.com · adam@adamabdalla.com · alicia@belle-realty.com ·
+catherine@belle-realty.com · edward@belle-realty.com · ap@belle-realty.com**. Applied on prod via
+`execute_sql` (door OPEN for the revocation, one statement: delete `org_members` owner rows + delete
+`authorized_emails` rows + `profiles.role → 'pending'` for brother@brothersontheblvd.com, cortte@gmail.com,
+dickeydupuis@icloud.com, dylanhoyt09@gmail.com, rustyrandol79@gmail.com, spencer@comitdevelopers.com,
+spencer@comittechnologies.com). Read-back verified: `authorized_emails` = alicia + catherine; `org_members` =
+adam@adamabdalla (operator) + adam@belle-realty / alicia / ap / catherine (owner) + bzorn253 (vendor,
+brian-zorn); the seven profiles = pending (they see "Access pending"; re-assignable from the sidebar).
+The CTE's "pre-authorizations removed: 1" count was a same-snapshot artifact — the read-back is the truth.
+Register **#24 → DONE (18/25)**. Punch list Rev 18 published (v58), H-3 note = the six-owner list.
+
+**Still not done — operator's sidebar step:** Edward has no account or allowlist row (the grant insert was
+classifier-blocked twice-shaped; not retried). Sidebar → *Sign-in access…* → edward@belle-realty.com → owner.
+
+**Open on the operator:** (1) assign Edward in the sidebar; (2) confirm the Sep 26 orangeoceanassetcommand.com
+lapse; (3) H0-3 secret rotation; (4) flyctl deploy · TWILIO vars · Resend key (runbook);
 (5) 131 / 133 Insta360 scans → SMK-24; (6) SMK-21…28, SMK-27 first; (7) SMK-5 waits on the world. **No un-gated build work remains** — every Schedule F item left is Tier 2 / Tier 3.
 `docs/graph/labels.json` still modified, still left out of every commit.
 
