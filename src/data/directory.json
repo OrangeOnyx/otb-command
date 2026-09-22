@@ -1,5 +1,5 @@
 {
-  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies.",
+  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies. 2026-09-22: the three pd:ac:* insurance seeds now carry the BOUND 26–27 policies (numbers, all-in cost, deductibles, carriers) and pd:ins:ipfs-2627 tracks the premium-finance schedule; pc:tsl / pc:amwins / pc:velocity / pc:hartford / pc:lwcc / pc:ipfs are the insurance parties printed on those policies (docs/insurance-program-2026-27.md).",
   "propertyContacts": [
     {
       "id": "pc:butcher",
@@ -63,6 +63,60 @@
       "phone": "",
       "email": "",
       "note": "ATC 2007054432, Schedule B — Section 2 (exceptions)"
+    },
+    {
+      "id": "pc:tsl",
+      "role": "Insurance agent of record",
+      "company": "TSL Insurance Group, Inc.",
+      "name": "Angie Viator",
+      "phone": "(337) 262-0511",
+      "email": "lafayette@tslins.com",
+      "note": "Agent on all three 26–27 policies (property 2021-801944-06 · Hartford 43 SBM AL3XX2 · LWCC 177302-A). PO Box 599 / 210 Rue Fontaine, Lafayette LA 70508. Renewal date 05/15/2027 — start marketing by mid-Feb."
+    },
+    {
+      "id": "pc:amwins",
+      "role": "Surplus-lines broker (property)",
+      "company": "Amwins Insurance Brokerage, LLC",
+      "name": "Justin Kotrla (SVP) · Gavin Thornton",
+      "phone": "214-561-9339",
+      "email": "justin.kotrla@amwins.com",
+      "note": "Placed property policy 2021-801944-06 (Velocity Risk program). 5910 N Central Expressway Ste 500, Dallas TX 75206. Louisiana surplus-lines broker of record; LIGA does not apply."
+    },
+    {
+      "id": "pc:velocity",
+      "role": "Property claims",
+      "company": "Velocity Risk Underwriters, LLC (RSG Specialty)",
+      "name": "Small Business Claims",
+      "phone": "1-844-878-2567",
+      "email": "smallbusiness.claims@velocityrisk.com",
+      "note": "Report every property loss here first (e-mail preferred): insured name + policy 2021-801944-06, location, description, type of loss, on-site contact. Non-destructive tarping only without adjuster approval."
+    },
+    {
+      "id": "pc:hartford",
+      "role": "Liability claims",
+      "company": "The Hartford",
+      "name": "Claims",
+      "phone": "1-800-327-3636",
+      "email": "",
+      "note": "BOP / umbrella 43 SBM AL3XX2. Certificates of insurance (tenant / easement additional-insured requests) via business.thehartford.com or TSL."
+    },
+    {
+      "id": "pc:lwcc",
+      "role": "Workers' comp carrier",
+      "company": "Louisiana Workers' Compensation Corporation (LWCC)",
+      "name": "Policyholder Services",
+      "phone": "800-519-7787",
+      "email": "billingrequest@lwcc.com",
+      "note": "Policy 177302-A. Injury reporting / benefits 800-267-2410 · lwcc.com. Payments PO Box 919142, Dallas TX 75391. Report ownership changes within 90 days; payroll audit after 05/15/2027."
+    },
+    {
+      "id": "pc:ipfs",
+      "role": "Premium finance",
+      "company": "IPFS Corporation",
+      "name": "TXH processing",
+      "phone": "(877) 687-9824",
+      "email": "txh.processing@ipfs.com",
+      "note": "Account TXH-F30836 finances the property policy — $5,777.14 on the 15th through 03/15/2027. Customer service (800) 247-6129; ipfs.com AutoPay."
     }
   ],
   "propertyDocuments": [
@@ -212,51 +266,68 @@
     },
     {
       "id": "pd:ac:hartford-2627",
-      "name": "Hartford Package — GL + Umbrella (26–27)",
+      "name": "Hartford Business Owner's Policy — GL + Umbrella (26–27)",
       "type": "Insurance · liability",
-      "counterparty": "Hartford Underwriters Insurance Company (agent: Ryan Thomson, TSL Insurance Group, (337) 889-0717)",
-      "ref": "Policy 43SBMAL3XX2",
+      "counterparty": "Hartford Underwriters Insurance Company (NAIC 30104), agent TSL Insurance Group, Inc. (Angie Viator · (337) 262-0511 · lafayette@tslins.com)",
+      "ref": "Policy 43 SBM AL3XX2 · 05/15/2026–05/15/2027",
       "amount": 13647,
       "amountKind": "premium",
       "effective": "2026-05-15",
       "expires": "2027-05-15",
       "status": "active",
       "risk": "low",
-      "riskNote": "Liability package ONLY by design (GL $1M/occ, $2M agg; Umbrella $5M, $10K SIR). Building coverage lives on the separate Lloyd's property policy. Open with TSL: (1) Federal Pacific electric panel at Pink Paisley (101/103) — fire hazard, may affect renewal; (2) no flood policy in program (NFIP/private) — decision needed.",
+      "riskNote": "Bound policy on file (2026-09-22). Liability only by design — 'no property coverage' at Loc 1 (101–149 Arnould) and Loc 2 (110 Marie Antoinette, Lot 7 parking); buildings are on policy 2021-801944-06. This term ADDED exclusions: cyber incident liability, data-privacy-law violations, endocrine disrupters. Umbrella schedules business liability only (no auto / employers' liability) — confirm with TSL. Open with TSL: Federal Pacific panel at 101/103 (property application answered 'no FPE'); no flood policy in program.",
       "link": "",
-      "note": "Named insured: Belle Realty of Lafayette LLC. GL $1M each occ / $2M gen agg / $2M prod-comp agg / $1M pers&adv inj; Umbrella $5M agg/occ. Package premium $13,647. Source: 26–27 TSL proposal (Revised 3), reviewed 2026-07-02 (AC archive pd-hartford-2627)."
+      "note": "Named insured Belle Realty of Lafayette LLC; class Building Owner – Lessors Risk Only – Shopping Centers 10+ stores; non-auditable. GL $1M each occurrence / $2M general aggregate / $2M products-completed ops / $1M personal & advertising / $1M damage to premises rented / $10K medical; blanket additional insured by contract (SL 30 32) + hired & non-owned auto (SL 30 26) included. Umbrella $5M occurrence / aggregate, $10K SIR. Total premium $13,647 = liability $9,409 + umbrella $3,678 + policy base $292 + terrorism $268 (TRIA accepted). Claims 1-800-327-3636. ACORD 25 dated 04/05/2026 in the packet. Abstract: docs/insurance-program-2026-27.md. Source: 26-27 CPKG Pol.pdf."
     },
     {
       "id": "pd:ac:property-2627",
-      "name": "Commercial Property — Buildings (26–27)",
+      "name": "Commercial Property — Buildings + Business Income (26–27)",
       "type": "Insurance · property",
-      "counterparty": "Lloyd's of London (Velocity Risk Underwriters, surplus lines via TSL Insurance Group)",
-      "ref": "Bound via TSL — obtain policy #",
+      "counterparty": "Lloyd's Syndicate 2357 (51.7%) + Velocity Specialty, Lloyd's/RenRe, Harleysville, AXIS 1686, National Fire & Marine, Ally — surplus lines via Velocity Risk Underwriters / Amwins, agent TSL Insurance Group, Inc. (Angie Viator · (337) 262-0511 · lafayette@tslins.com)",
+      "ref": "Policy 2021-801944-06 · 05/15/2026–05/15/2027",
       "amount": 7988449,
       "amountKind": "coverage",
       "effective": "2026-05-15",
       "expires": "2027-05-15",
       "status": "active",
       "risk": "medium",
-      "riskNote": "The policy that DOES insure the buildings — Loc 1, 101–149 Arnould, building limit $7,988,449 (RC, 80% coinsurance) + Business Income/Extra Expense/Rental $928,557 + Equipment Breakdown. Track: (1) 80% coinsurance — if replacement cost exceeds ~$9.98M a penalty applies at loss; confirm insured value. (2) Flood EXCLUDED — no NFIP/private flood; decide given Lafayette exposure. (3) Wind/hail minimum earned premium 25%/85% in wind season. (4) FPE panel at Pink Paisley noted in inspection. (5) Obtain the Lloyd's policy number and attach the bound policy.",
+      "riskNote": "Bound policy on file (2026-09-22). Named-storm deductible 3% of TIV ≈ $267,510/occurrence + $100,000 all-other wind; AOP $5,000. 80% coinsurance (RC must be ≤ $9,985,561). Flood NOT insured (zone X). TRIA rejected. Protective-safeguards warranty: central-monitored fire + burglar alarms must stay live (armed after hours) or a related loss is void. Minimum earned 25% — 85% if cancelled while in force Jun 1–Nov 30. Rated SF 77,749 vs GLA 62,883 — reconcile with TSL. Business income $928,557 ≈ 10.5 months of scheduled rent. Roof (built-up, replaced 2020) settles at ACV once older than 11 years (2031).",
       "link": "",
-      "note": "Named insured: Belle Realty of Lafayette LLC. Surplus lines. Proposed property premium $61,495.58 (down from $72,823.57 expiring). Loc 2 (110 Marie Antoinette) is the parking lot — liability only. Source: 26–27 TSL proposal (Revised 3), reviewed 2026-07-02 (AC archive pd-property-2627)."
+      "note": "Named insured Belle Realty of Lafayette LLC. Loc 1 = 101 Arnould Blvd #101–149: Building $7,988,449 · Other structures $0 · Contents $0 · Business income $928,557 · TIV $8,917,006. Equipment breakdown (Velocity Specialty 100%, $5,000 ded) + cyber suite ($1,000 ded) + Bronze sublimits package. All-in $61,495.58 = premium $57,476.00 + fees $1,175.00 + LA surplus-lines tax $2,844.58; financed through IPFS TXH-F30836. First mortgagee Investar Bank NA, PO Box 2422, Natchitoches LA 71457. Claims: smallbusiness.claims@velocityrisk.com · 1-844-878-2567. Abstract: docs/insurance-program-2026-27.md. Source: 26-27 PROP Policy.pdf (Amwins confirmation 5/15/2026 + Velocity declarations SMB 200 2503 LA)."
     },
     {
       "id": "pd:ac:wc-2627",
-      "name": "Workers Compensation (26–27)",
+      "name": "Workers' Compensation + Employers' Liability (26–27)",
       "type": "Insurance · workers comp",
-      "counterparty": "Louisiana Workers Compensation Corporation (LWCC), via TSL Insurance Group",
-      "ref": "Obtain policy #",
+      "counterparty": "Louisiana Workers' Compensation Corporation (LWCC, carrier 30120), agent TSL Insurance Group, Inc. (Angie Viator · (337) 262-0511 · lafayette@tslins.com)",
+      "ref": "Policy 177302-A · 05/15/2026–05/15/2027",
       "amount": 3553,
       "amountKind": "premium",
       "effective": "2026-05-15",
       "expires": "2027-05-15",
       "status": "active",
-      "risk": "none",
-      "riskNote": "",
+      "risk": "low",
+      "riskNote": "Bound policy on file (2026-09-22). Premium is an ESTIMATE on $200,189 payroll — auditable up to 3 years after expiry (audit non-cooperation charge up to 2× premium); keep payroll records + subcontractor WC certificates. Edward Abdalla (partner) EXCLUDED — no WC benefits for his injury. Report any ownership change to LWCC within 90 days. Post the LWCC Notice of Compliance at the office (R.S. 23:1302).",
       "link": "",
-      "note": "Employers Liability $500K each accident / $500K disease policy limit / $500K disease each employee. Estimated payroll $200,189 (up from $156,292). Edward Abdalla excluded; Catherine Abdalla included. LWCC dividends received historically ($1,348.97 in 2025). Proposed WC premium $3,553. Source: 26–27 TSL proposal (Revised 3) (AC archive pd-wc-2627)."
+      "note": "Named insured Belle Realty of Lafayette LLC; location 101–149 Arnould Blvd. Employers' liability $500K each accident / $500K disease policy limit / $500K disease each employee; other states: none (LWCC 13B incidental only). Class 9012 property managers/clerical $177,343 @ 1.34 = $2,376; class 9015 all other $22,846 @ 3.84 = $877; EL increased limits $100; expense constant $160; terrorism $40. Estimated annual premium $3,553.00; minimum $1,149; deposit $0. Installments 4 × $888.25 (05/15, 06/14, 07/15, 08/14/2026). Late fee $25 or 1%. Venue East Baton Rouge Parish. LWCC policyholder services 800-519-7787. Abstract: docs/insurance-program-2026-27.md. Source: 26-27 WCOM Policy.pdf."
+    },
+    {
+      "id": "pd:ins:ipfs-2627",
+      "name": "IPFS Premium Finance Agreement — property policy (26–27)",
+      "type": "Loan",
+      "counterparty": "IPFS Corporation, 2900 N Loop West Ste 1150, Houston TX 77092 · (877) 687-9824 · txh.processing@ipfs.com",
+      "ref": "Account TXH-F30836 · quote 35295440 · signed 05/14/2026",
+      "amount": 55346,
+      "amountKind": "loan",
+      "effective": "2026-05-15",
+      "expires": "",
+      "matures": "2027-03-15",
+      "status": "active",
+      "risk": "low",
+      "riskNote": "A missed installment lets IPFS cancel property policy 2021-801944-06 on 10 days' notice (power of attorney) — in wind season that also triggers the 85% minimum earned premium. Late charge 5% of the installment after 5 days. Six installments remain after 09/15/2026: Oct 15 2026 → Mar 15 2027 = $34,662.84. Enroll AutoPay at ipfs.com.",
+      "link": "",
+      "note": "Finances policy 2021-801944-06 (Lloyd's / Velocity via Amwins). Cash price $61,495.58 · down payment $6,149.56 · amount financed $55,346.02 · finance charge $2,425.38 · total of payments $57,771.40 · APR 9.450% · 10 × $5,777.14 due the 15th, 06/15/2026–03/15/2027 · disbursed 05/18/2026 to TSL Insurance Group – Lafayette. Signed by Adam Abdalla 05/14/2026 10:20 CDT (indio SIGN). Abstract: docs/insurance-program-2026-27.md. Source: 26-27 PFA.pdf + 26-27 IPFS FINC NOA.pdf."
     },
     {
       "id": "pd:ac:investar-loan",

@@ -96,6 +96,23 @@ lapse; (3) H0-3 secret rotation; (4) flyctl deploy · TWILIO vars · Resend key 
 (5) 131 / 133 Insta360 scans → SMK-24; (6) SMK-21…28, SMK-27 first; (7) SMK-5 waits on the world. **No un-gated build work remains** — every Schedule F item left is Tier 2 / Tier 3.
 `docs/graph/labels.json` still modified, still left out of every commit.
 
+### Sep 22 (night) — 26–27 INSURANCE PROGRAM ABSTRACTED FROM THE BOUND POLICIES · register seeds updated
+
+Operator supplied the five bound-policy PDFs (property · Hartford BOP · LWCC WC · IPFS PFA + notice of
+acceptance). Read in full; abstract = **`docs/insurance-program-2026-27.md`** (limits, deductibles, carrier
+shares, payment schedules, calendar, 10 ranked open items). The Sep 18 `pd:ac:*` seeds came from the TSL
+*proposal*; they now carry the BOUND facts — property **2021-801944-06** ($61,495.58 all-in, TIV $8,917,006,
+named-storm 3% ≈ $267,510 + $100K all-other wind, 80% coinsurance, flood NO, TRIA rejected, protective-
+safeguards warranty, min-earned 25%/85%), Hartford **43 SBM AL3XX2** ($13,647; cyber + data-privacy
+exclusions added this term), LWCC **177302-A** ($3,553 est., Edward excluded, auditable) — plus new
+**`pd:ins:ipfs-2627`** (premium finance TXH-F30836, 10 × $5,777.14, matures 2027-03-15 → S-1 radar) and six
+K-1 contacts (TSL / Amwins / Velocity claims / Hartford claims / LWCC / IPFS) from the policies' own
+notices. Program cost **$78,695.58/yr** (+ $2,425.38 finance charge). All three renew **2027-05-15**.
+Copies + memo → `G:\My Drive\00 OTB\Cypress Command\Insurance 2026-27\`. **Top open items for the
+operator:** rated SF 77,749 vs GLA 62,883 (ask TSL what was submitted); BI $928,557 ≈ 10.5 months of rent;
+named-storm cash exposure; flood decision; alarm-monitoring vendor on M-1 (warranty); FPE-panel answer on
+the property application vs the Sep 18 note. No code paths changed — data + docs only.
+
 ## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT + LIVE · 777 tests green · commit ab8ccb1 · prod serves main-CnCYM8ZH.js
 
 Operator: "build 6-8". Memo `docs/asset-command-review-2026-09-18.md` §"Picks 6–8" has the table.
