@@ -41,9 +41,13 @@ and by curl: otb.cypresscommand.com returns the production bundle + the Platform
 `src/lib/leasing.js` LEASING_URL and `src/lib/marketing.js` tourUrl to otb.cypresscommand.com (test pin
 updated), regenerated `public/qr/leasing.svg` (now QR version 4, 210 px) + `tour.svg` (version 3) with the
 Sep 18 segno settings (scale 6, border 1, ink #1c2d4f), touched the build-manuals docstring + the B-1/tour
-runbook line, and republished the punch list as Rev 16 (F-23 → done, SMK-24 URL re-pointed). Not touched:
-`public/manual/*.html` (regenerates from `tools/build-manuals.py` on its next run; the old address still
-resolves), `tools/vinyl-b1.py` output (gate vinyl QR still encodes the old form until re-run for print).
+runbook line, and republished the punch list as Rev 16 (F-23 → done, SMK-24 URL re-pointed). Then, on the
+operator's "regenerate the manual and vinyl QR too": manual sources (`docs/manual/*.md`) re-titled
+"Cypress Command Platform — …" and re-addressed to otb.cypresscommand.com (orangeoceanatlas.com kept as an
+"also" alias on the live-app line), `tools/build-manuals.py` re-run → three PDFs + HTML + `public/manual/`
+republished (file names still `Cypress-Command-*.pdf` by design); `python tools/vinyl-b1.py --url
+https://otb.cypresscommand.com/tour` → `marketing/OTB-vinyl-131.svg` + `-133.svg` (git-ignored) copied to
+`G:\My Drive\00 OTB\` per the exports rule, PNG / PDF renders refreshed beside them.
 orangeoceanatlas.com / otb-command.vercel.app keep serving the same deployment — nothing already printed breaks.
 
 **Open on the operator:** (1) confirm the Sep 26 orangeoceanassetcommand.com lapse; (2) H-3 mark + the

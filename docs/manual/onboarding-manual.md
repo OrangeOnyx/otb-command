@@ -1,4 +1,4 @@
-# Cypress Command — Property Onboarding Manual
+# Cypress Command Platform — Property Onboarding Manual
 **Version September 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run**
 Operator-driven by design — there is no self-serve signup. One intake file =
 one property.
@@ -68,7 +68,7 @@ deliberately activated.
 ![The fill-in-the-blank intake form](img/intake-form.png)
 
 Send the new property's manager the intake form link —
-**https://orangeoceanatlas.com/manual/intake-form.html** (or email them the
+**https://otb.cypresscommand.com/manual/intake-form.html** (or email them the
 file itself, `docs/phase-c/intake-form.html` — it works offline too). They
 answer plain-English questions — company name, property name and address,
 first billing month, late-fee schedule, who gets access — then click
