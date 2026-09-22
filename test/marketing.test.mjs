@@ -98,7 +98,7 @@ test("marketing: overview + tenant card", () => {
   assert.match(html, /HotWorx · Suite 129/);
   assert.equal(tenantCardModel({ unit: "131", units: UNITS }), null); // vacant has no card
   assert.equal(tenantCardModel({ unit: "129", units: UNITS, headline: "bogus" }).headline, CARD_HEADLINES.welcome);
-  assert.equal(OTB_PUBLIC.tourUrl, "https://orangeoceanatlas.com/tour");
+  assert.equal(OTB_PUBLIC.tourUrl, "https://otb.cypresscommand.com/tour");
 });
 
 test("marketing: tourManifest groups panos and hero per suite", () => {

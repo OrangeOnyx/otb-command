@@ -142,7 +142,7 @@ def build(md_name, html_name, pdf_name, doc_title, sheet_code):
 
 
 def publish():
-    """In-app copy: public/manual/ serves at orangeoceanatlas.com/manual/
+    """In-app copy: public/manual/ serves at otb.cypresscommand.com/manual/ (and orangeoceanatlas.com/manual/)
     (sidebar 📖 User manual link, every role). Generic edition only — the
     combined doc carries fictional sample data by construction."""
     pub = os.path.join(ROOT, "public", "manual")

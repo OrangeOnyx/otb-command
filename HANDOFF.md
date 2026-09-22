@@ -32,12 +32,23 @@ will be called **Cypress Command Platform** and it will be deployed at **otb.cyp
   Command ports, 33 items); F-22 name ruling; F-23 rewritten with the domain finding; H3 wave flags the
   **Sep 26 orangeoceanassetcommand.com lapse (4 days out — confirm intended)**; Sep 22 note. Repo copy
   `docs/status/atlas-punch-list.html` (CRLF, no trailing newline).
-- Build: `main-D2VIFDz5.js` local; pushed to master → deploy.yml (verify by bundle name).
+- Build: `main-D2VIFDz5.js` — deployed and verified on prod (commit 12a2530).
 
-**Open on the operator (unchanged + the two new):** (1) the F-23 Vercel edit above; (2) confirm the Sep 26 domain
-lapse; (3) H-3 mark + the brother's name / e-mail; (4) H0-3 secret rotation; (5) flyctl deploy · TWILIO vars ·
-Resend key (runbook); (6) 131 / 133 Insta360 scans → SMK-24; (7) SMK-21…28, SMK-27 first; (8) SMK-5 waits on
-the world. **No un-gated build work remains** — every Schedule F item left is Tier 2 / Tier 3.
+### Sep 22 (later) — F-23 CLOSED · otb.cypresscommand.com serves production · punch list Rev 16 (v56)
+
+Operator cleared the Git Branch binding in Vercel ("saved"). Verified via the Vercel MCP (`gitBranch: null`)
+and by curl: otb.cypresscommand.com returns the production bundle + the Platform title. Claude then swapped
+`src/lib/leasing.js` LEASING_URL and `src/lib/marketing.js` tourUrl to otb.cypresscommand.com (test pin
+updated), regenerated `public/qr/leasing.svg` (now QR version 4, 210 px) + `tour.svg` (version 3) with the
+Sep 18 segno settings (scale 6, border 1, ink #1c2d4f), touched the build-manuals docstring + the B-1/tour
+runbook line, and republished the punch list as Rev 16 (F-23 → done, SMK-24 URL re-pointed). Not touched:
+`public/manual/*.html` (regenerates from `tools/build-manuals.py` on its next run; the old address still
+resolves), `tools/vinyl-b1.py` output (gate vinyl QR still encodes the old form until re-run for print).
+orangeoceanatlas.com / otb-command.vercel.app keep serving the same deployment — nothing already printed breaks.
+
+**Open on the operator:** (1) confirm the Sep 26 orangeoceanassetcommand.com lapse; (2) H-3 mark + the
+brother's name / e-mail; (3) H0-3 secret rotation; (4) flyctl deploy · TWILIO vars · Resend key (runbook);
+(5) 131 / 133 Insta360 scans → SMK-24; (6) SMK-21…28, SMK-27 first; (7) SMK-5 waits on the world. **No un-gated build work remains** — every Schedule F item left is Tier 2 / Tier 3.
 `docs/graph/labels.json` still modified, still left out of every commit.
 
 ## September 20, 2026 — ASSET COMMAND PICKS 6–8 BUILT + LIVE · 777 tests green · commit ab8ccb1 · prod serves main-CnCYM8ZH.js

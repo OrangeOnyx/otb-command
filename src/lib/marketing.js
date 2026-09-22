@@ -20,7 +20,7 @@ export const OTB_PUBLIC = Object.freeze({
   corner: "Johnston St (US-167) at Arnould Blvd",
   phone: "(337) 270-7044",
   leasingUrl: LEASING_URL,
-  tourUrl: "https://orangeoceanatlas.com/tour",
+  tourUrl: "https://otb.cypresscommand.com/tour",
   navy: "#1C2D4F", gold: "#C9A24B", paper: "#F7F5EF",
 });
 

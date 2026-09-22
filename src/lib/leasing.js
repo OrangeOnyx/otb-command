@@ -9,7 +9,7 @@
 /* canonical hosted one-pager (public/leasing.html rides every deploy; the
    product domain serves it today — swap when the tenant-facing canonical
    domain decision lands, then regen the page + any printed QR) */
-export const LEASING_URL = "https://orangeoceanatlas.com/leasing.html";
+export const LEASING_URL = "https://otb.cypresscommand.com/leasing.html";
 
 const STOP = new Set(["the", "of", "and", "a", "an", "llc", "inc", "co"]);
 

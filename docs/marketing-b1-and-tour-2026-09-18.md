@@ -22,7 +22,7 @@ space" — by the same rule the leasing agent follows.
 
 ## /tour microsite (public, no sign-in)
 
-`orangeoceanatlas.com/tour` (moves with the F-23 domain decision; the QR at `public/qr/tour.svg`
+`otb.cypresscommand.com/tour` (F-23 closed 2026-09-22; orangeoceanatlas.com/tour still answers; the QR at `public/qr/tour.svg`
 encodes this URL — regenerate with segno when the domain changes). One section per vacant
 suite: 360° viewer (three.js, drag / touch / scroll-zoom, dots to switch views) when panoramas
 exist, otherwise the recorded plat + "scan coming"; real SF and use; Call / Text-to-tour

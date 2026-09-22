@@ -303,7 +303,9 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Platform Punch List — rev 15 (2026-09-22: operator rulings — the product is "Cypress Command
+/* Cypress Command Platform Punch List — rev 16 (2026-09-22 later: F-23 CLOSED — operator cleared the branch binding,
+   otb.cypresscommand.com serves production; leasing / tour constants + QR codes swapped; SMK-24 URL re-pointed).
+   Rev 15 (2026-09-22: operator rulings — the product is "Cypress Command
    Platform" and it deploys at otb.cypresscommand.com (found on the production Vercel project, pinned to the Codex
    branch: one settings edit, no DNS change); the Asset Command visual-review ports built Sep 19–20 (picks 1–8)
    catalogued as F-30…F-37 with smokes SMK-25…28; Sep 26 AC domain lapse flagged; operator state r36 carried verbatim).
@@ -645,7 +647,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Cypress Command Platform &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 22, 2026 &middot; Rev 15</span>
+      <span class="mono mast-date">Content &middot; Sep 22, 2026 &middot; Rev 16</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Cypress Command Platform build (OTB deployment &middot; formerly Orange Ocean Atlas), on one working sheet.
@@ -1028,7 +1030,7 @@ const BODY = `
       </div>
       <div class="smoke" data-smoke="smk-24">
         <div class="head"><span class="mono eyebrow">SMK-24</span><span class="name">/tour microsite &mdash; first panorama (F-29)</span><span class="chip wait">after the 131 scan</span><span class="stamp" data-stamp="smk-24"></span></div>
-        <p class="desc">orangeoceanatlas.com/tour today: Suite 131 and 133 sections, the plat as the placeholder, &ldquo;Interior 360&deg; scan coming&rdquo;,
+        <p class="desc">otb.cypresscommand.com/tour today (orangeoceanatlas.com/tour still answers): Suite 131 and 133 sections, the plat as the placeholder, &ldquo;Interior 360&deg; scan coming&rdquo;,
         Call / Text-to-tour buttons that dial the leasing line. After the Insta360 shoot: B-1 &rarr; 360&deg; tour &rarr; Suite 131 &rarr; <em>&#65291; 360&deg;
         panorama</em> (equirectangular JPEG, 2:1) &rarr; <em>Publish manifest &rarr; /tour</em> &rarr; reload the microsite &rarr; the suite section becomes a
         drag-to-look viewer; scroll zooms; a second panorama adds a dot. Runbook: <code>docs/marketing-b1-and-tour-2026-09-18.md</code>.</p>
@@ -1664,14 +1666,16 @@ const BODY = `
           <p class="bdesc">Missing deposits for 107 / 137 / 143 / 149.</p></li>
         <li><span class="bid">F-22</span><span class="bname">Brand sheet <span class="chip done">04C adopted</span></span>
           <p class="bdesc">Cypress Command 04C v1.0.1 is in the repo (<code>public/brand/cypress/</code>, hash-verified) and live on prod as of Sep 11. Left: fold the 04C palette / type into the abdalla-brand-system letterhead and signature blocks. <strong>Sep 22 ruling:</strong> the product is <strong>Cypress Command Platform</strong> &mdash; the full composite now sits in every title, print footer, generated document, notice e-mail and the concierge&rsquo;s own description; the 04C wordmark art and the <code>Cypress-Command-*.pdf</code> manual file names are unchanged.</p></li>
-        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation <span class="chip hot">one Vercel edit</span></span>
+        <li><span class="bid">F-23</span><span class="bname">Product domains + web separation <span class="chip done">domain live Sep 22</span></span>
           <p class="bdesc">cypresscommand.com is the public site. <strong>Ruling Sep 22: the platform deploys at otb.cypresscommand.com.</strong>
           Found the same day: the domain is already on the production Vercel project (<code>otb-command</code>), DNS verified &mdash; but pinned to git
           branch <code>codex/cypress-command-completion</code>, so it serves the Codex preview build (isolated Supabase branch), not production.
-          The move is one edit, no GoDaddy / DNS change: Vercel &rarr; otb-command &rarr; Settings &rarr; Domains &rarr; otb.cypresscommand.com &rarr;
-          Edit &rarr; clear the Git Branch &rarr; Save. It then serves the same production deployment as orangeoceanatlas.com. Tell Claude when it is
-          done: the orangeoceanatlas.com constants (leasing URL, tour URL, the numbers-panel link) swap to otb.cypresscommand.com and the flyer / tour
-          QRs regenerate. Property-vs-product web split (shopontheblvd, gate vinyl QR) still open.</p></li>
+          <strong>Closed Sep 22 (later):</strong> you cleared the branch binding in Vercel (one edit, no DNS change) &mdash; verified: the domain
+          now serves the production bundle and title. Claude swapped the leasing URL and tour URL constants to otb.cypresscommand.com, regenerated
+          <code>public/qr/leasing.svg</code> + <code>tour.svg</code>, and deployed; flyers, the overview sheet and /tour print the new address from
+          here on. orangeoceanatlas.com and otb-command.vercel.app still answer (same deployment) &mdash; nothing printed earlier breaks.
+          Left: property-vs-product web split (shopontheblvd, gate vinyl QR) &mdash; the vinyl QR still encodes the old form until
+          <code>tools/vinyl-b1.py</code> is re-run for print.</p></li>
         <li><span class="bid">F-24</span><span class="bname">Reference rows #22 / #25</span>
           <p class="bdesc">SaaS billing (pilot monetization) &middot; legal notices, 1099s, e-sign templates, workflow engine. Build when a real workflow demands.</p></li>
       </ol>
@@ -1800,6 +1804,8 @@ const BODY = `
       block were only ever verified against synthetic figures. Four days out: <code>orangeoceanassetcommand.com</code> lapses Sep 26 &mdash; confirm
       that is intended (H3). Still yours: the H-3 mark (+ the brother&rsquo;s name / e-mail), H0-3, the F-23 edit, flyctl deploy + the Twilio vars +
       Resend (runbook), the 131 / 133 scans, SMK-5, SMK-21&ndash;28.</li>
+      <li>Sep 22 (later): you said &ldquo;saved&rdquo; &mdash; <strong>F-23 closed</strong>. otb.cypresscommand.com serves production (verified by bundle
+      name + title); leasing / tour constants and both QR codes now carry the new address; deployed. Sheet count: 33 items, F-23 done.</li>
     </ol>
   </section>
 
@@ -1807,7 +1813,7 @@ const BODY = `
     <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command Platform &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
     <div class="tb"><span class="lab">Date</span><span class="val">2026-09-22</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">15</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">16</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>
