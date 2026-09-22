@@ -1,5 +1,5 @@
 {
-  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies. 2026-09-22: the three pd:ac:* insurance seeds now carry the BOUND 26–27 policies (numbers, all-in cost, deductibles, carriers) and pd:ins:ipfs-2627 tracks the premium-finance schedule; pc:tsl / pc:amwins / pc:velocity / pc:hartford / pc:lwcc / pc:ipfs are the insurance parties printed on those policies (docs/insurance-program-2026-27.md).",
+  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies. 2026-09-22: the three pd:ac:* insurance seeds now carry the BOUND 26–27 policies (numbers, all-in cost, deductibles, carriers) and pd:ins:ipfs-2627 tracks the premium-finance schedule; pc:tsl / pc:amwins / pc:velocity / pc:hartford / pc:lwcc / pc:ipfs / pc:asp are the insurance parties printed on those policies (docs/insurance-program-2026-27.md).",
   "propertyContacts": [
     {
       "id": "pc:butcher",
@@ -117,6 +117,15 @@
       "phone": "(877) 687-9824",
       "email": "txh.processing@ipfs.com",
       "note": "Account TXH-F30836 finances the property policy — $5,777.14 on the 15th through 03/15/2027. Customer service (800) 247-6129; ipfs.com AutoPay."
+    },
+    {
+      "id": "pc:asp",
+      "role": "Alarm monitoring (insurance warranty)",
+      "company": "Acadiana Security Plus, Inc.",
+      "name": "",
+      "phone": "337-839-1880",
+      "email": "contactus@getaspnow.com",
+      "note": "Account ASP-25991. Monitors the central-station fire + burglar alarms that property policy 2021-801944-06 warrants (SMB 412): keep both live, burglar armed after hours, report any impairment to Velocity immediately. Operator-named 2026-09-22."
     }
   ],
   "propertyDocuments": [
@@ -276,7 +285,7 @@
       "expires": "2027-05-15",
       "status": "active",
       "risk": "low",
-      "riskNote": "Bound policy on file (2026-09-22). Liability only by design — 'no property coverage' at Loc 1 (101–149 Arnould) and Loc 2 (110 Marie Antoinette, Lot 7 parking); buildings are on policy 2021-801944-06. This term ADDED exclusions: cyber incident liability, data-privacy-law violations, endocrine disrupters. Umbrella schedules business liability only (no auto / employers' liability) — confirm with TSL. Open with TSL: Federal Pacific panel at 101/103 (property application answered 'no FPE'); no flood policy in program.",
+      "riskNote": "Bound policy on file (2026-09-22). Liability only by design — 'no property coverage' at Loc 1 (101–149 Arnould) and Loc 2 (110 Marie Antoinette, Lot 7 parking); buildings are on policy 2021-801944-06. This term ADDED exclusions: cyber incident liability, data-privacy-law violations, endocrine disrupters. Umbrella schedules business liability only (no auto / employers' liability) — confirm with TSL. Operator rulings 2026-09-22: no Federal Pacific panels (the 101/103 flag was addressed before renewal; the application's 'No' is correct); no flood policy by decision.",
       "link": "",
       "note": "Named insured Belle Realty of Lafayette LLC; class Building Owner – Lessors Risk Only – Shopping Centers 10+ stores; non-auditable. GL $1M each occurrence / $2M general aggregate / $2M products-completed ops / $1M personal & advertising / $1M damage to premises rented / $10K medical; blanket additional insured by contract (SL 30 32) + hired & non-owned auto (SL 30 26) included. Umbrella $5M occurrence / aggregate, $10K SIR. Total premium $13,647 = liability $9,409 + umbrella $3,678 + policy base $292 + terrorism $268 (TRIA accepted). Claims 1-800-327-3636. ACORD 25 dated 04/05/2026 in the packet. Abstract: docs/insurance-program-2026-27.md. Source: 26-27 CPKG Pol.pdf."
     },
@@ -292,7 +301,7 @@
       "expires": "2027-05-15",
       "status": "active",
       "risk": "medium",
-      "riskNote": "Bound policy on file (2026-09-22). Named-storm deductible 3% of TIV ≈ $267,510/occurrence + $100,000 all-other wind; AOP $5,000. 80% coinsurance (RC must be ≤ $9,985,561). Flood NOT insured (zone X). TRIA rejected. Protective-safeguards warranty: central-monitored fire + burglar alarms must stay live (armed after hours) or a related loss is void. Minimum earned 25% — 85% if cancelled while in force Jun 1–Nov 30. Rated SF 77,749 vs GLA 62,883 — reconcile with TSL. Business income $928,557 ≈ 10.5 months of scheduled rent. Roof (built-up, replaced 2020) settles at ACV once older than 11 years (2031).",
+      "riskNote": "Bound policy on file (2026-09-22). Named-storm deductible 3% of TIV ≈ $267,510/occurrence + $100,000 all-other wind; AOP $5,000. 80% coinsurance (RC must be ≤ $9,985,561). Flood NOT insured (zone X) — operator ruling 2026-09-22: no flood policy by decision. TRIA rejected. Protective-safeguards warranty: central-monitored fire + burglar alarms (Acadiana Security Plus, ASP-25991) must stay live, armed after hours, or a related loss is void. Minimum earned 25% — 85% if cancelled while in force Jun 1–Nov 30. Rated SF 77,749 vs GLA 62,883 — reconcile with TSL. Business income $928,557 ≈ 10.5 months of scheduled rent. Roof (built-up, replaced 2020) settles at ACV once older than 11 years (2031).",
       "link": "",
       "note": "Named insured Belle Realty of Lafayette LLC. Loc 1 = 101 Arnould Blvd #101–149: Building $7,988,449 · Other structures $0 · Contents $0 · Business income $928,557 · TIV $8,917,006. Equipment breakdown (Velocity Specialty 100%, $5,000 ded) + cyber suite ($1,000 ded) + Bronze sublimits package. All-in $61,495.58 = premium $57,476.00 + fees $1,175.00 + LA surplus-lines tax $2,844.58; financed through IPFS TXH-F30836. First mortgagee Investar Bank NA, PO Box 2422, Natchitoches LA 71457. Claims: smallbusiness.claims@velocityrisk.com · 1-844-878-2567. Abstract: docs/insurance-program-2026-27.md. Source: 26-27 PROP Policy.pdf (Amwins confirmation 5/15/2026 + Velocity declarations SMB 200 2503 LA)."
     },

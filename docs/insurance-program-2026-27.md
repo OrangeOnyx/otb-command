@@ -92,8 +92,8 @@ does **not** back this surplus-lines placement.
   central-monitored fire alarm YES, central-monitored burglar alarm YES,
   sprinklers NO. Coverage is conditioned on keeping those alarms in service
   and reporting any impairment immediately; the burglar alarm must be armed
-  during all non-working hours. Log alarm-monitoring vendor and test dates
-  on M-1.
+  during all non-working hours. Monitoring vendor: Acadiana Security Plus,
+  Inc. (ASP-25991). Log test dates on M-1.
 - **Minimum earned premium (SMB 415):** cancellation by the insured refunds
   pro rata subject to **25 %** minimum earned — **85 %** if the policy was in
   force at any time June 1 – November 30. Fees are fully earned. Do not
@@ -231,22 +231,26 @@ CDT (indio SIGN, adam@belle-realty.com) and Notice of Acceptance 5/14/2026.
 3. **Business income $928,557 vs scheduled rent $1,056,848/yr
    ($88,070.71 × 12).** Limit covers ≈ 10.5 months of rent with a 30-day
    extended period — confirm this is intended, or raise at renewal.
-4. **Flood: not insured** (zone X, Lafayette). Standing decision from the
-   Sep 18 register note — still open. Get an NFIP/private quote for the record.
-5. **Protective safeguards:** identify the alarm-monitoring vendor and
-   confirm both fire and burglar monitoring are live and armed after hours;
-   a lapse voids coverage for a related loss.
-6. **Roof data "unknown"** (anchorage, deck, attachment) — Skydio survey and
+4. **Protective safeguards:** monitoring vendor is **Acadiana Security Plus,
+   Inc.** (account ASP-25991, 337-839-1880 — operator ruling 2026-09-22).
+   Keep both fire and burglar monitoring live and armed after hours; a lapse
+   voids coverage for a related loss. Log tests on M-1.
+5. **Roof data "unknown"** (anchorage, deck, attachment) — Skydio survey and
    the roofer can fill these; they may improve the wind rate.
-7. **Coinsurance:** obtain a replacement-cost estimate; the $7,988,449 limit
+6. **Coinsurance:** obtain a replacement-cost estimate; the $7,988,449 limit
    satisfies 80 % coinsurance only if RC ≤ $9,985,561.
-8. **Umbrella schedule of underlying** lists business liability only; no
+7. **Umbrella schedule of underlying** lists business liability only; no
    employers' liability or auto scheduled. Confirm with TSL that EL is meant
    to sit outside the umbrella.
-9. **Federal Pacific panel at 101/103** — the property application answered
-   "No" to FPE/Zinsco hazards while the Sep 18 register note flags one at
-   Pink Paisley. Resolve before renewal (misrepresentation risk).
-10. Post the LWCC compliance notice; calendar the 2027 payroll audit.
+8. Post the LWCC compliance notice; calendar the 2027 payroll audit.
+
+**Ruled 2026-09-22 (operator) — no longer open:**
+- **Flood: NO.** Belle carries no flood policy by decision (zone X). Do not
+  re-raise; revisit only if the FEMA zone changes.
+- **Federal Pacific panels: none.** The Sep 18 register flag for 101/103 was
+  addressed before renewal; the "No" on the property application is correct.
+- **77,749 SF:** the operator does not know the source of the figure — the
+  question stands with TSL (item 1).
 
 ## Register changes made 2026-09-22
 
@@ -254,5 +258,7 @@ CDT (indio SIGN, adam@belle-realty.com) and Notice of Acceptance 5/14/2026.
 `pd:ac:wc-2627` updated with the bound policy numbers, all-in cost,
 deductibles, carriers and the items above; new `pd:ins:ipfs-2627` (premium
 finance, matures 2027-03-15) and K-1 contacts for TSL, Amwins, Velocity Risk
-claims, The Hartford claims, LWCC and IPFS. Source PDFs copied to
-`G:\My Drive\00 OTB\Cypress Command\Insurance 2026-27\` beside this memo.
+claims, The Hartford claims, LWCC and IPFS; `pc:asp` (Acadiana Security
+Plus, alarm monitoring — the protective-safeguards warranty party). Source
+PDFs copied to `G:\My Drive\00 OTB\Cypress Command\Insurance 2026-27\`
+beside this memo.
