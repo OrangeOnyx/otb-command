@@ -6,7 +6,7 @@
 
    HTTP:
      GET  /healthz            → ok (Fly checks)
-     POST /twiml?line=tenant|leasing → TwiML pointing Twilio at wss://…/ws
+     POST /twiml?line=tenant|leasing|main → TwiML pointing Twilio at wss://…/ws
    WS:
      /ws?line=…&from=…        → ConversationRelay session (one per call)
 
@@ -26,11 +26,19 @@ const TTS_VOICE = process.env.TTS_VOICE || "7EzWGsX10sAS4c9m9cPf"; // Jack John 
 const SORRY = "I'm sorry, I'm having trouble on my end. Adam will see this call and follow up with you. Thank you for calling.";
 
 const FALLBACK_GREETING = {
-  tenant: "Thanks for calling On The Boulevard tenant services. This call may be recorded. How can I help?",
+  tenant: "Thanks for calling On The Boulevard. This call may be recorded. Are you calling about a space to lease, or about an existing suite?",
+  main: "Thanks for calling On The Boulevard. This call may be recorded. Are you calling about a space to lease, or about an existing suite?",
   leasing: "Thanks for calling On The Boulevard leasing. This call may be recorded. How can I help?",
 };
 
-let greetingCache = { at: 0, tenant: null, leasing: null };
+function resolveLine(raw) {
+  const s = String(raw || "").toLowerCase();
+  if (s === "leasing") return "leasing";
+  if (s === "main") return "main";
+  return "tenant";
+}
+
+let greetingCache = { at: 0, tenant: null, leasing: null, main: null };
 async function greeting(line) {
   if (Date.now() - greetingCache.at > 10 * 60 * 1000) {
     try {
@@ -40,7 +48,7 @@ async function greeting(line) {
       });
       if (r.ok) {
         const j = await r.json();
-        greetingCache = { at: Date.now(), tenant: j.greeting_tenant, leasing: j.greeting_leasing };
+        greetingCache = { at: Date.now(), tenant: j.greeting_tenant || j.greeting_main, leasing: j.greeting_leasing, main: j.greeting_main || j.greeting_tenant };
       }
     } catch { /* keep stale/fallback */ }
   }
@@ -53,7 +61,7 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, "http://x");
   if (url.pathname === "/healthz") { res.writeHead(200); return res.end("ok"); }
   if (url.pathname === "/twiml") {
-    const line = url.searchParams.get("line") === "leasing" ? "leasing" : "tenant";
+    const line = resolveLine(url.searchParams.get("line"));
     let body = "";
     for await (const c of req) body += c;
     const from = (body.match(/(?:^|&)From=([^&]*)/) || [])[1] || "";
@@ -71,7 +79,7 @@ const wss = new WebSocketServer({ server, path: "/ws" });
 
 wss.on("connection", (ws, req) => {
   const url = new URL(req.url, "http://x");
-  const line = url.searchParams.get("line") === "leasing" ? "leasing" : "tenant";
+  const line = resolveLine(url.searchParams.get("line"));
   let caller = decodeURIComponent(url.searchParams.get("from") || "");
   let callSid = "";
   const messages = [];
