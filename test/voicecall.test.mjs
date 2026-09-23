@@ -22,7 +22,7 @@ test("voicecall: vocabulary + fallbacks", () => {
   assert.deepEqual(SUMMARY_TOOL.input_schema.properties.intent.enum, Object.keys(CALL_INTENTS));
   assert.deepEqual(SUMMARY_TOOL.input_schema.properties.urgency.enum, Object.keys(CALL_URGENCY));
   assert.match(summaryPrompt("leasing"), /LEASING line/);
-  assert.match(summaryPrompt("tenant"), /TENANT line/);
+  assert.match(summaryPrompt("tenant"), /main office line/);
 });
 
 test("voicecall: normalizeSummary caps, falls back, and strips the callback", () => {

@@ -20,6 +20,16 @@ export function isRouterLine(line) {
   return line === "main" || line === "tenant";
 }
 
+/* The truthful-booking guard was written for the leasing line, where every
+   "all set" / "confirmed" / "scheduled" is about a tour. On the combined line
+   those words are ordinary maintenance talk ("your work order is confirmed"),
+   so the guard only fires there when the reply is actually about a tour. */
+const TOUR_TALK_RE = /\b(?:tours?|showings?|walk-?throughs?|see the space|look at the space)\b/i;
+export function bookingGuardApplies(line, reply) {
+  if (line === "leasing") return true;
+  return isRouterLine(line) && TOUR_TALK_RE.test(String(reply || ""));
+}
+
 const VOICE_STYLE = `You are on a TELEPHONE call. Style rules:
 - Short spoken sentences. No lists, no markdown, no headings, no emoji. Say numbers plainly.
 - One question at a time. Confirm names, numbers, and units back to the caller before acting on them.

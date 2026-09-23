@@ -16,7 +16,7 @@ import {
   claimsBooking, BOOKING_GUARD_NOTE, BOOKING_FALLBACK,
 } from "../src/lib/voiceagent.js";
 import {
-  mainPersona, resolveLine, persistLine, isRouterLine, MAIN_GREETING,
+  mainPersona, resolveLine, persistLine, isRouterLine, bookingGuardApplies, MAIN_GREETING,
 } from "../src/lib/voicerouter.js";
 import { leasingPackageEmail, smsText, LEASING_URL } from "../src/lib/leasing.js";
 import { startRecording, finalizeCall, sendSms, smsConfigured } from "./_voicecall.mjs";
@@ -225,7 +225,7 @@ export default async function handler(req, res) {
   }
   try {
     await modelRounds(3);
-    if ((line === "leasing" || isRouterLine(line)) && claimsBooking(reply) && !bookedThisTurn) {
+    if (bookingGuardApplies(line, reply) && claimsBooking(reply) && !bookedThisTurn) {
       let bookedEarlier = false;
       try {
         bookedEarlier = await rpcSecret("voice_call_has_booking",

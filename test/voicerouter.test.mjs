@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  resolveLine, persistLine, isRouterLine, MAIN_GREETING, mainPersona,
+  resolveLine, persistLine, isRouterLine, bookingGuardApplies, MAIN_GREETING, mainPersona,
 } from "../src/lib/voicerouter.js";
 import { speechify, MAINT_TOOL, TOUR_TOOL, PACKAGE_TOOL } from "../src/lib/voiceagent.js";
 import sop from "../src/data/sop.json" with { type: "json" };
@@ -43,4 +43,15 @@ test("router line exposes every tool schema", () => {
   for (const tool of [MAINT_TOOL, TOUR_TOOL, PACKAGE_TOOL]) {
     assert.ok(tool.name && tool.input_schema?.type === "object");
   }
+});
+
+test("booking guard stays off maintenance talk on the combined line", () => {
+  // maintenance replies full of claim words must NOT trip the tour guard
+  assert.ok(!bookingGuardApplies("tenant", "Your work order is confirmed and you are all set."));
+  assert.ok(!bookingGuardApplies("main", "The HVAC vendor is scheduled for first thing tomorrow."));
+  // tour talk on the combined line is still guarded
+  assert.ok(bookingGuardApplies("tenant", "You're all set for a tour Tuesday at ten."));
+  assert.ok(bookingGuardApplies("main", "Your showing is confirmed."));
+  // the dedicated leasing line is always guarded
+  assert.ok(bookingGuardApplies("leasing", "You're all set."));
 });

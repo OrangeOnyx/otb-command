@@ -44,7 +44,7 @@ export const SUMMARY_TOOL = {
 };
 
 export function summaryPrompt(line) {
-  const who = line === "leasing" ? "the LEASING line (prospects asking about space)" : "the TENANT line (tenants and their staff)";
+  const who = line === "leasing" ? "the LEASING line (prospects asking about space)" : "the main office line (tenants and their staff, and leasing prospects — classify by what the caller actually wanted)";
   return `You summarize finished phone calls to On The Boulevard Shopping Center, Lafayette, Louisiana, for the property operator (Adam) and the owners. This call came in on ${who}. The transcript is Caller / Agent turns; the Agent is an automated assistant, not a person.
 Rules: state only what the transcript supports — never invent a name, unit, or promise. If the caller hung up or nothing was captured, say so in one sentence. Do not include the agent's greeting. Use the record_call_summary tool exactly once.`;
 }
