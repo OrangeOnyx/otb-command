@@ -114,15 +114,17 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - **Lease terms — Tier-1 is the September 2026 lease review (operator ruling
   2026-09-11): `docs/lease-population-2026-09-10.md` + per-suite `leaseEvidence`
   in `src/data/units.json` supersede `docs/sot-2026-07/` for every suite they
-  name.** Scheduled monthly total **$88,070.71** (was $90,291.23). 143 1st Franklin:
+  name.** Scheduled monthly total **$88,310.33** (was $88,070.71 before the
+  Fast Pass execution 2026-09-23; $90,291.23 before the Sept review). 143 1st Franklin:
   signed amendment 12/22/2025 → **$3,354.75/mo ($21.00/SF total)**, 2/1/2026–
   1/31/2031. 145 Upstream: executed lease, base-rent abatement Jul–Dec 2026 at
   **$798.75/mo** (additional only), $3,035.25/mo from 1/2027; contractual
   commencement/expiry UNRESOLVED (`end` blank). 119 OUPAC/Daco: signed-document
   date conflict → current term UNRESOLVED (`end` blank), $2,890.42 retained.
-  139/141 Fast Pass: prior term ended 7/31/2026; tenant-signed 3-yr renewal
-  8/1/2026–7/31/2029 at $6,150.38 combined, LANDLORD SIGNATURE PENDING (`end`
-  blank; NOT a holdover; proposed rent not yet in the schedule). Owner-confirmed
+  139/141 Fast Pass: 3-yr renewal FULLY EXECUTED (tenant 9/10, landlord
+  9/12/2026) 8/1/2026–7/31/2029, $14.25/SF level base, $6,150.38 combined
+  ($3,075.19 per suite allocation) — IN the schedule since 2026-09-23;
+  continued possession from 8/1 ratified as occupancy, NOT a holdover. Owner-confirmed
   renewals, signed copies pending: 105 → 3/31/2029 · 117.5 → 2/28/2029 (HVAC
   split pending) · 119.5 → 2/28/2029 · 121 → 12/31/2031. 109: ownership-change
   consent executed 8/31/2026, rent/term unchanged. HVAC caps 117.5 / 119.5 =
