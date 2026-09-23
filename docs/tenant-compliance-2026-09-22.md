@@ -46,7 +46,9 @@ The SQL door was blocked in this session. Run it once in the Supabase SQL editor
 ```sql
 with v(unit, field) as (values
   ('101','lease'),('103','lease'),('105','lease'),('119','lease'),('125','lease'),('127','lease'),
-  ('129','lease'),('139','lease'),('141','lease'),('109','ach'),('129','ach'),('145','sign'))
+  ('129','lease'),('139','lease'),('141','lease'),('109','ach'),('129','ach'),('145','sign'),
+  -- local PC sweep additions (docs/tenant-compliance-2026-09-22-pc-sweep.md)
+  ('107','lease'),('115','lease'),('117','lease'),('143','lease'),('101','hvac'),('103','hvac'))
 update comp_state c set state = 'ok', origin = 'compliance-sweep-2026-09-22'
 from v where c.unit = v.unit and c.field = v.field and c.state = 'u'
 returning c.unit, c.field, c.state;
@@ -68,7 +70,7 @@ sent. It asks for:
 - Current COIs for all suites.
 - W-9s and occupational licenses. The sweep found none for any tenant.
 - Grease trap and hood/Ansul records for 107, 113 and 149.
-- Missing executed leases: 107, 115/117, 121, 123, 135A, 137, 143 base lease, and 145.
+- Missing executed leases: 121, 123, 135A, 137 and 145. The PC sweep found 107, 115/117 and 143.
 - Deposit receipts.
 - Rent ACH authorizations for everyone except 109 and 129.
 
