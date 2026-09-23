@@ -63,6 +63,8 @@ function unitDocSeed(unit) {
       ref: "Second floor", link: fp.url2, note: ""
     });
   }
+  // dated register seeds, e.g. tenant COIs from the 2026-09-22 compliance sweep
+  if (u.status !== "vacant") docs.push(...((directory.unitDocuments || {})[unit] || []));
   return docs;
 }
 
