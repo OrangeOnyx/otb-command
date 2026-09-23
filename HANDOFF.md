@@ -3,8 +3,8 @@
 ## September 23, 2026 — ONE-NUMBER VOICE ROUTER reviewed + hardened · 782 tests green
 
 Operator: Grok built a routing brain so there is one published number — **337-769-1554** (office line) forwards
-to the **tenant Twilio line 337-273-0384** (operator typed "237-0384"; repo + commit 92c408f say 273-0384 —
-CONFIRM). The tenant webhook now runs `mainPersona` (`src/lib/voicerouter.js`) with all three tools (work order,
+to the **tenant Twilio line 337-273-0384** (operator-confirmed 2026-09-23;
+237-0384 was a typo). The tenant webhook now runs `mainPersona` (`src/lib/voicerouter.js`) with all three tools (work order,
 tour, leasing package), no live transfer. Leasing line 337-270-7044 unchanged. Twilio console needs no change
 (the tenant number still posts `line=tenant`); the Vercel brain already serves the new greeting, so the old Fly
 bridge speaks it without a redeploy (`flyctl deploy` only needed for `line=main`, which nothing routes to yet).
@@ -17,7 +17,7 @@ Review fixes (this session):
 - Call-summary prompt no longer tells Haiku every non-leasing call is a tenant (`src/lib/voicecall.js`).
 - **Unbooked-lead safety net missed office-line prospects** (they persist as `line='tenant'`).
   `supabase/migrations/20260923130000_unbooked_leads_main_line.sql` adds `or vc.intent = 'leasing'` —
-  **NOT YET APPLIED ON PROD** (apply_migration blocked) → operator: paste into the SQL editor.
+  **APPLIED ON PROD** 2026-09-23 (operator paste; verified). Router LIVE at 70510b8.
 - Left as-is (flag): the brain now hard-codes the greeting, so the `voice_settings.greeting_tenant` field is ignored.
 
 ## September 22, 2026 — TWO RULINGS RECORDED (name · domain) · punch list Rev 15 (artifact v55) · 777 tests green

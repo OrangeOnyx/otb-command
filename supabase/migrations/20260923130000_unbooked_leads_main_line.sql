@@ -1,4 +1,4 @@
--- STATUS: NOT YET APPLIED ON PROD (apply_migration blocked 2026-09-23) — operator: paste this file into the Supabase SQL editor for kbhsghodquchkgfdzckc.
+-- STATUS: APPLIED ON PROD 2026-09-23 (operator pasted in the SQL editor; verified via pg_get_functiondef).
 -- 2026-09-23 main-line router: the published office number (337-769-1554)
 -- forwards onto the tenant Twilio line, which now takes leasing calls too.
 -- Those calls persist as line='tenant' (voice_calls.line CHECK is still
