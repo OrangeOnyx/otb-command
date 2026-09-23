@@ -1,7 +1,7 @@
 /* A-3 voice brain — Vercel serverless, called once per caller utterance by the
    Fly ConversationRelay bridge (bridge = dumb transport; ALL intelligence,
    secrets, and writes live here, next to the concierge).
-   POST { line:'tenant'|'leasing', callSid, caller, messages:[{role,content}…] }
+   POST { line:'tenant'|'leasing'|'main', callSid, caller, messages:[{role,content}…] }
      → { reply }   (plain speakable text — the bridge feeds it to Twilio TTS)
    Auth: Authorization: Bearer <VOICE_SECRET> (Fly + Vercel env copies of the
    app_secrets 'voice_agent' row — rotated via tools/rotate-voice-secret.mjs).
@@ -11,10 +11,13 @@ import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { rpcSecret } from "./_supa.mjs";
 import {
-  tenantPersona, leasingPersona, nextTourSlots, slotLabel, speechify,
+  leasingPersona, nextTourSlots, slotLabel, speechify,
   MAINT_TOOL, TOUR_TOOL, PACKAGE_TOOL, MAX_TURNS, DEFAULT_TOUR_WINDOWS, SLOT_MINUTES_DEFAULT,
   claimsBooking, BOOKING_GUARD_NOTE, BOOKING_FALLBACK,
 } from "../src/lib/voiceagent.js";
+import {
+  mainPersona, resolveLine, persistLine, isRouterLine, MAIN_GREETING,
+} from "../src/lib/voicerouter.js";
 import { leasingPackageEmail, smsText, LEASING_URL } from "../src/lib/leasing.js";
 import { startRecording, finalizeCall, sendSms, smsConfigured } from "./_voicecall.mjs";
 import { sendEmail, emailConfigured } from "./_email.mjs";
@@ -86,8 +89,6 @@ async function runTool(name, input, callSid, caller) {
         : { ok: false, note: "That slot was just taken — offer the next open slot." };
     }
     if (name === "send_leasing_package") {
-      /* the lead is saved regardless; the package e-mails only when the caller
-         gave an address AND mail is configured — the reply never overclaims */
       const email = String(input.email || "").trim().toLowerCase();
       const name_ = String(input.name || "").trim();
       const leadId = await rpcSecret("voice_leasing_lead", {
@@ -102,8 +103,6 @@ async function runTool(name, input, callSid, caller) {
         const msg = leasingPackageEmail({ units: roll, prospect: name_.split(" ")[0] });
         sent = (await sendEmail({ to: [email], subject: msg.subject, text: msg.text, html: msg.html })).sent;
       }
-      /* text leg (ruling 2026-09-18): the one-pager link to the callback number,
-         only once TWILIO_SMS_FROM / a messaging service exists (A2P) */
       const phone = String(input.phone || caller || "");
       if (smsConfigured() && phone) {
         const vacants = roll.filter(u => u.status === "vacant").map(u => ({ unit: u.unit, sf: u.sf }));
@@ -125,14 +124,17 @@ async function runTool(name, input, callSid, caller) {
 }
 
 export default async function handler(req, res) {
-  /* GET = bridge config pull (greetings from the voice_settings row) */
   if (req.method === "GET") {
     if (!process.env.VOICE_SECRET) return res.status(503).json({ error: "voice agent not configured" });
     if (!secretOk(req)) return res.status(401).json({ error: "unauthorized" });
     try {
       const st = await rpcSecret("voice_tour_state", { p_secret: process.env.VOICE_SECRET });
       const s = st?.settings || {};
-      return res.status(200).json({ greeting_tenant: s.greeting_tenant, greeting_leasing: s.greeting_leasing });
+      return res.status(200).json({
+        greeting_tenant: MAIN_GREETING,
+        greeting_leasing: s.greeting_leasing,
+        greeting_main: MAIN_GREETING,
+      });
     } catch { return res.status(502).json({ error: "settings unavailable" }); }
   }
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
@@ -140,21 +142,18 @@ export default async function handler(req, res) {
     return res.status(503).json({ error: "voice agent not configured" });
   if (!secretOk(req)) return res.status(401).json({ error: "unauthorized" });
 
-  const line = req.body?.line === "leasing" ? "leasing" : req.body?.line === "tenant" ? "tenant" : null;
-  if (!line) return res.status(400).json({ error: "line must be tenant|leasing" });
+  const line = resolveLine(req.body?.line);
+  const storedLine = persistLine(line);
+  if (!req.body?.line) return res.status(400).json({ error: "line must be tenant|leasing|main" });
   const callSid = String(req.body?.callSid || "").slice(0, 64);
   const caller = String(req.body?.caller || "").slice(0, 20);
   const raw = Array.isArray(req.body?.messages) ? req.body.messages : [];
 
-  /* call lifecycle events from the bridge (2026-09-18 call records):
-     setup → the row exists + recording starts (when Twilio creds are set);
-     end   → summary / classification / L-1 mirror / owner e-mail. Both are
-     best effort: a failure here never touches a live call. */
   const event = req.body?.event === "setup" ? "setup" : req.body?.event === "end" ? "end" : "";
   if (event) {
     if (!callSid) return res.status(400).json({ error: "callSid required" });
     if (event === "setup") {
-      try { await rpcSecret("voice_call_start", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: line, p_caller: caller }); }
+      try { await rpcSecret("voice_call_start", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: storedLine, p_caller: caller }); }
       catch (e) { console.error("voice call start:", e.message); }
       const rec = await startRecording(callSid, process.env.VOICE_SECRET);
       return res.status(200).json({ ok: true, recording: rec.ok });
@@ -164,7 +163,7 @@ export default async function handler(req, res) {
       .map(m => ({ role: m.role, content: m.content.slice(0, 4000) }));
     const durationS = Number(req.body?.durationS);
     try {
-      await rpcSecret("voice_call_start", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: line, p_caller: caller });
+      await rpcSecret("voice_call_start", { p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: storedLine, p_caller: caller });
       const out = await finalizeCall({
         callSid, line, caller, messages, durationS: Number.isFinite(durationS) ? durationS : null,
         secret: process.env.VOICE_SECRET, cronSecret: process.env.CRON_SECRET,
@@ -184,9 +183,8 @@ export default async function handler(req, res) {
 
   const { ms, nowLine } = chicagoNow();
 
-  /* leasing line: live slot inventory woven into the persona each turn */
   let slots = [];
-  if (line === "leasing") {
+  if (line === "leasing" || isRouterLine(line)) {
     try {
       const st = await rpcSecret("voice_tour_state", { p_secret: process.env.VOICE_SECRET });
       const s = st?.settings || {};
@@ -194,14 +192,14 @@ export default async function handler(req, res) {
         st?.booked || [], s.slot_minutes || SLOT_MINUTES_DEFAULT);
     } catch (e) {
       console.error("voice tour state:", e.message);
-      slots = []; // persona falls back to callback-promise mode
+      slots = [];
     }
   }
 
-  const system = line === "tenant"
-    ? tenantPersona(sop, { nowLine })
-    : leasingPersona(sop, { nowLine, slots });
-  const tools = line === "tenant" ? [MAINT_TOOL] : [TOUR_TOOL, PACKAGE_TOOL];
+  const system = line === "leasing"
+    ? leasingPersona(sop, { nowLine, slots })
+    : mainPersona(sop, { nowLine, slots });
+  const tools = line === "leasing" ? [TOUR_TOOL, PACKAGE_TOOL] : [MAINT_TOOL, TOUR_TOOL, PACKAGE_TOOL];
 
   const anthropic = new Anthropic();
   let reply = "";
@@ -222,18 +220,12 @@ export default async function handler(req, res) {
         role: "user",
         content: [{ type: "tool_result", tool_use_id: toolUse.id, content: JSON.stringify(result) }],
       });
-      reply = text; // keep last text in case the loop caps out
+      reply = text;
     }
   }
   try {
     await modelRounds(3);
-
-    /* truthful-booking guard (queue #1): a leasing reply may assert a booking
-       ONLY if book_tour succeeded this turn or earlier in this same call
-       (checked in tour_bookings by call_sid — the bridge's text-only history
-       carries no tool evidence). One corrective round, then an honest
-       fallback + a voice-lead manager thread so the lead can't drop. */
-    if (line === "leasing" && claimsBooking(reply) && !bookedThisTurn) {
+    if ((line === "leasing" || isRouterLine(line)) && claimsBooking(reply) && !bookedThisTurn) {
       let bookedEarlier = false;
       try {
         bookedEarlier = await rpcSecret("voice_call_has_booking",
@@ -265,10 +257,9 @@ export default async function handler(req, res) {
   }
   reply = speechify(reply) || SORRY;
 
-  /* transcript — best effort, never blocks the spoken reply */
   try {
     await rpcSecret("voice_log_turn", {
-      p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: line,
+      p_secret: process.env.VOICE_SECRET, p_call_sid: callSid, p_line: storedLine,
       p_caller: caller, p_user: messages[messages.length - 1].content, p_assistant: reply,
     });
   } catch (e) { console.error("voice transcript:", e.message); }
