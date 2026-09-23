@@ -1,5 +1,5 @@
 {
-  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies. 2026-09-22: the three pd:ac:* insurance seeds now carry the BOUND 26–27 policies (numbers, all-in cost, deductibles, carriers) and pd:ins:ipfs-2627 tracks the premium-finance schedule; pc:tsl / pc:amwins / pc:velocity / pc:hartford / pc:lwcc / pc:ipfs / pc:asp are the insurance parties printed on those policies (docs/insurance-program-2026-27.md).",
+  "_note": "Property-level contacts and document register. Only verified parties/instruments are seeded; phone/email/link are intentionally blank for the operator to fill. Per-unit tenant contacts and lease docs are generated from units.json in the views. Documents are a REGISTER (reference + link), not a blob store. 2026-09-18: owner-document detail fields (counterparty · amount/amountKind · effective · expires · matures · status · risk · riskNote) — the six AC Property Vault records ride as pd:ac:* seeds; unitContacts carries the harvested tenant insurance agencies. 2026-09-22: the three pd:ac:* insurance seeds now carry the BOUND 26–27 policies (numbers, all-in cost, deductibles, carriers) and pd:ins:ipfs-2627 tracks the premium-finance schedule; pc:tsl / pc:amwins / pc:velocity / pc:hartford / pc:lwcc / pc:ipfs / pc:asp are the insurance parties printed on those policies (docs/insurance-program-2026-27.md). 2026-09-23: unitDocuments seeds the tenant COIs found in the 2026-09-22 compliance sweep (insured, policy period, file name; no policy numbers); links fill once the files are on Drive.",
   "propertyContacts": [
     {
       "id": "pc:butcher",
@@ -419,6 +419,78 @@
         "phone": "816-960-9000",
         "email": "",
         "note": "Carrier: TDC Specialty Insurance Company · Policy MFP-02533-25-01 (GL / Auto / Umbrella / WC) · Belle Realty of Lafayette named additional insured (Clinic #2577) · Insured: Upstream Rollco/Rehabilitation, Benchmark Growth Partners · Umbrella 005AL000048252 · WC 37WEID1080. (AC harvest insurance_contacts, 2026-06-29)"
+      }
+    ]
+  },
+  "unitDocuments": {
+    "107": [
+      {
+        "id": "d:107:coi:2021-06-30",
+        "unit": "107",
+        "name": "Certificate of insurance",
+        "type": "Certificate of insurance",
+        "ref": "Lafayette_Cookies_and_Cream_COI_updated_2020-08-11.pdf",
+        "link": "",
+        "counterparty": "Lafayette Cookies & Cream, LLC",
+        "effective": "2020-06-30",
+        "expires": "2021-06-30",
+        "note": "State Farm; GL/umbrella/WC to 6/30/2021, auto to 12/30/2020. Stale - no later certificate found. Source: Tenant compliance sweep 2026-09-22 (docs/tenant-compliance-2026-09-22.md)."
+      }
+    ],
+    "113": [
+      {
+        "id": "d:113:coi:2026-10-16",
+        "unit": "113",
+        "name": "Certificate of insurance",
+        "type": "Certificate of insurance",
+        "ref": "Graze_Acadiana_COI_2026-04-27.pdf",
+        "link": "",
+        "counterparty": "Graze Acadiana",
+        "effective": "2025-10-16",
+        "expires": "2026-10-16",
+        "note": "Expiry shown = earliest line: workers comp (Employers) to 10/16/2026. GL (Accredited Surety) 4/30/2026-4/30/2027, building owner additional insured with waiver of subrogation. Source: Tenant compliance sweep 2026-09-22 (docs/tenant-compliance-2026-09-22.md)."
+      }
+    ],
+    "119": [
+      {
+        "id": "d:119:coi:2026-03-01",
+        "unit": "119",
+        "name": "Certificate of insurance",
+        "type": "Certificate of insurance",
+        "ref": "Oupac_119_Arnould_Blvd_COI_2025-03-14.pdf",
+        "link": "",
+        "counterparty": "OUPAC Financial",
+        "effective": "2025-03-01",
+        "expires": "2026-03-01",
+        "note": "Issued 3/14/2025. Lapsed - no renewal certificate found. Source: Tenant compliance sweep 2026-09-22 (docs/tenant-compliance-2026-09-22.md)."
+      }
+    ],
+    "129": [
+      {
+        "id": "d:129:coi:2026-10-20",
+        "unit": "129",
+        "name": "Certificate of insurance",
+        "type": "Certificate of insurance",
+        "ref": "Lexi_Investments_Proof_of_Insurance_54883111_2025-10-27.pdf",
+        "link": "",
+        "counterparty": "Lexi Investments (HotWorx)",
+        "effective": "2025-10-20",
+        "expires": "2026-10-20",
+        "note": "Two proofs of insurance (54883111 / 54883190), both to 10/20/2026. Source: Tenant compliance sweep 2026-09-22 (docs/tenant-compliance-2026-09-22.md)."
+      }
+    ],
+    "145": [
+      {
+        "id": "d:145:coi:2026-07-01",
+        "unit": "145",
+        "name": "Certificate of insurance",
+        "type": "Certificate of insurance",
+        "ref": "Upstream_RollCo_Lafayette_West_Clinic2577_COI_2026-05-26.pdf",
+        "link": "",
+        "counterparty": "Upstream / RollCo - Lafayette West Clinic #2577",
+        "effective": "2025-07-01",
+        "expires": "2026-07-01",
+        "note": "Issued 5/26/2026 against the 7/1/2025-7/1/2026 policy term - lapsed. The Lockton-link download in the sweep was an empty file. Source: Tenant compliance sweep 2026-09-22 (docs/tenant-compliance-2026-09-22.md)."
       }
     ]
   }

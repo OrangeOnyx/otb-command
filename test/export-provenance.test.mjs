@@ -28,7 +28,7 @@ function exportIntoScratch(t, nofin = false) {
   };
 }
 
-test('financial export preserves current review authority, exact schedule, unknown components and pending renewals', t => {
+test('financial export preserves current review authority, exact schedule, unknown components and executed renewals', t => {
   const { md, data } = exportIntoScratch(t);
   assert.equal(data.meta.dataAsOf, latestReview);
   assert.equal(data.meta.rosterBaselineAsOf, '2026-07-16');
@@ -47,7 +47,7 @@ test('financial export preserves current review authority, exact schedule, unkno
     for (const source of u.leaseEvidence.sources || []) assert.ok(md.includes(source.reference), `${u.unit} source reference`);
   }
   assert.match(md, /Combined suites 139\/141: 2026-08-01 to 2029-07-31; \$6,150\.38\/month combined total/);
-  assert.match(md, /Excluded from the current scheduled amount/);
+  assert.match(md, /status executed\. Marked included in current schedule\./);
   assert.match(md, /Owner-mapped full rent: 2027-01-01 to contractual end unresolved; \$3,035\.25\/month/);
 });
 
