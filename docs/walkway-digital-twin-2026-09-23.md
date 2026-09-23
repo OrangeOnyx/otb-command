@@ -27,6 +27,7 @@ fits a regular column lattice along the storefront run.
 | Center-to-center pitch | **26.67 ft ≈ 26'-8"** | ±2% — plan scale and alignment fit carry about 0.5 ft over one bay |
 | Walkway depth, storefront → column line | **≈15.0 ft** | the storefront peak may be signage or glass; confirm with a tape |
 | Per-column position | ±2 ft | L02 and L16 are weak (z < 0.7) |
+| Cross-walkway position | seated 1 ft inside the CAD curb (y 310.7). The cloud read 5.8 ft nearer the storefront; the splat fit is roof-scored and biased on that axis | CCTV shows the columns on the curb |
 | Short building 135–149 | **not resolved** | 2020 cloud too thin under that canopy; needs the ground capture |
 
 **Module check (operator: 24" columns, 24" scored squares).** 26'-8" is 13⅓ squares, not a whole

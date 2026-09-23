@@ -83,6 +83,14 @@ def main():
     storeY = ey[np.argmax(hy[:len(hy) // 2])] + 0.25                 # inner peak = storefront
     band = inH & (py > colY - 6) & (py < colY + 3) & (px > x0 - 10) & (px < x1 + 10)
     score, pitch, cols, zs = fit_lattice(px[band], x0, x1, np.arange(45, 54, 0.05))
+    # Cross-axis: the splat fit is scored on roof outlines, so it carries a few feet
+    # of bias perpendicular to the storefront. CCTV (suite-113 N/S) shows the columns
+    # standing on the walkway's parking edge, which the CAD draws as the sidewalk
+    # strip in front of the footprint. Seat column centers half a column inside it.
+    base = json.loads((ROOT / "src" / "data" / "geometry.json").read_text())["layers"]["base"]
+    strip = next(p for p in base if p["t"] == "rect" and abs(p["x"] - x0) < 1 and face <= p["y"] <= face + 5)
+    curbY = strip["y"] + strip["h"]
+    seatY = curbY - 1.0 * PLAN_PER_FT
 
     out = {
         "source": f"{SRC.name} (Oct-2020 DJI dense solve) via tools/detect-columns.py; splat-align.json baked",
@@ -90,11 +98,15 @@ def main():
         "moduleFt": MODULE_FT,
         "columnSizeFt": 2.0,
         "longBuilding": {
-            "axis": "x", "columnLineY": round(colY, 2), "storefrontY": round(storeY, 2),
+            "axis": "x", "columnLineY": round(seatY, 2), "curbY": round(curbY, 2),
+            "cloudColumnLineY": round(colY, 2), "cloudStorefrontY": round(storeY, 2),
+            "crossAxisBiasFt": round((seatY - colY) / PLAN_PER_FT, 1),
             "walkwayDepthFt": round((colY - storeY) / PLAN_PER_FT, 1),
+            "heightFt": 10, "heightNote": "schematic — canopy underside not yet measured",
+            "positionToleranceFt": 3,
             "pitchPx": round(pitch, 2), "pitchFt": round(pitch / PLAN_PER_FT, 2),
             "latticeScore": round(float(score), 2),
-            "columns": [{"id": f"L{i + 1:02d}", "x": round(float(c), 2), "y": round(colY, 2),
+            "columns": [{"id": f"L{i + 1:02d}", "x": round(float(c), 2), "y": round(seatY, 2),
                          "evidenceZ": round(float(z), 2)} for i, (c, z) in enumerate(zip(cols, zs))],
         },
         "shortBuilding": {

@@ -5,9 +5,15 @@
  "columnSizeFt": 2.0,
  "longBuilding": {
   "axis": "x",
-  "columnLineY": 299.81,
-  "storefrontY": 271.81,
+  "columnLineY": 310.69,
+  "curbY": 312.56,
+  "cloudColumnLineY": 299.81,
+  "cloudStorefrontY": 271.81,
+  "crossAxisBiasFt": 5.8,
   "walkwayDepthFt": 15.0,
+  "heightFt": 10,
+  "heightNote": "schematic \u2014 canopy underside not yet measured",
+  "positionToleranceFt": 3,
   "pitchPx": 49.75,
   "pitchFt": 26.67,
   "latticeScore": 2.38,
@@ -15,115 +21,115 @@
    {
     "id": "L01",
     "x": 201.53,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.25
    },
    {
     "id": "L02",
     "x": 251.28,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 0.68
    },
    {
     "id": "L03",
     "x": 301.03,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.47
    },
    {
     "id": "L04",
     "x": 350.78,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.95
    },
    {
     "id": "L05",
     "x": 400.53,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.13
    },
    {
     "id": "L06",
     "x": 450.28,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.69
    },
    {
     "id": "L07",
     "x": 500.03,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.28
    },
    {
     "id": "L08",
     "x": 549.78,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 2.54
    },
    {
     "id": "L09",
     "x": 599.53,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 2.41
    },
    {
     "id": "L10",
     "x": 649.28,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.73
    },
    {
     "id": "L11",
     "x": 699.03,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 2.26
    },
    {
     "id": "L12",
     "x": 748.78,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 2.86
    },
    {
     "id": "L13",
     "x": 798.53,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.66
    },
    {
     "id": "L14",
     "x": 848.28,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 2.1
    },
    {
     "id": "L15",
     "x": 898.03,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 1.66
    },
    {
     "id": "L16",
     "x": 947.78,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 0.62
    },
    {
     "id": "L17",
     "x": 997.53,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 4.59
    },
    {
     "id": "L18",
     "x": 1047.28,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 7.26
    },
    {
     "id": "L19",
     "x": 1097.03,
-    "y": 299.81,
+    "y": 310.69,
     "evidenceZ": 6.0
    }
   ]
