@@ -39,9 +39,9 @@ These five are seeded as unit document records (`directory.json` → `unitDocume
 are no links yet; add the Drive links in the drawer once the files are in their final place. V-1 is
 unchanged, because vendor COIs are a different register.
 
-## 3. Evidence for the C-1 matrix (production `comp_state`), NOT YET ON PROD
+## 3. Evidence for the C-1 matrix (production `comp_state`), APPLIED 2026-09-23 (operator, SQL editor; 18 rows verified)
 
-The SQL door was blocked in this session. Run it once in the Supabase SQL editor (prod `kbhsghodquchkgfdzckc`):
+The SQL door was blocked for Claude; the operator ran this in the Supabase SQL editor (prod `kbhsghodquchkgfdzckc`):
 
 ```sql
 with v(unit, field) as (values
