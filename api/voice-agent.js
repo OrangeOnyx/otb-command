@@ -130,10 +130,13 @@ export default async function handler(req, res) {
     try {
       const st = await rpcSecret("voice_tour_state", { p_secret: process.env.VOICE_SECRET });
       const s = st?.settings || {};
+      /* the tenant line IS the main line since 2026-09-23 — the saved
+         greeting_tenant wins; MAIN_GREETING only covers a blank field */
+      const front = String(s.greeting_tenant || "").trim() || MAIN_GREETING;
       return res.status(200).json({
-        greeting_tenant: MAIN_GREETING,
+        greeting_tenant: front,
         greeting_leasing: s.greeting_leasing,
-        greeting_main: MAIN_GREETING,
+        greeting_main: front,
       });
     } catch { return res.status(502).json({ error: "settings unavailable" }); }
   }

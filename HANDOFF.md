@@ -18,7 +18,10 @@ Review fixes (this session):
 - **Unbooked-lead safety net missed office-line prospects** (they persist as `line='tenant'`).
   `supabase/migrations/20260923130000_unbooked_leads_main_line.sql` adds `or vc.intent = 'leasing'` —
   **APPLIED ON PROD** 2026-09-23 (operator paste; verified). Router LIVE at 70510b8.
-- Left as-is (flag): the brain now hard-codes the greeting, so the `voice_settings.greeting_tenant` field is ignored.
+- Greeting setting restored (operator ask): the brain reads `voice_settings.greeting_tenant` again (it IS the
+  main-line greeting now; built-in `MAIN_GREETING` only if blank). Prod row updated first to the combined
+  "space to lease, or an existing suite?" greeting so the old "tenant services" text never came back. No UI
+  editor exists — change it by SQL on `voice_settings` (id 'otb'); the bridge caches greetings 10 min.
 
 ## September 22, 2026 — TWO RULINGS RECORDED (name · domain) · punch list Rev 15 (artifact v55) · 777 tests green
 
