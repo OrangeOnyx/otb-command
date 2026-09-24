@@ -112,6 +112,26 @@ const ky = (ENV.yBottom - ENV.yTop) / (bMax - bMin);
 const toXY = ab => [ENV.xRight - kx * (ab[0] - aMin), ENV.yBottom + ky * (ab[1] - bMax)];
 const r2 = n => Math.round(n * 100) / 100;
 
+/* ── A-1 site register geometry (assetGeom). Plan-px quads recorded while the
+   strokes below are drawn; p0→p1 is the stall-ordering edge. Counts are the
+   plat 'N SPACES' labels — the register subdivides each row count-exact, so a
+   row's drawn tick spacing may differ slightly from its derived stalls. ── */
+const AG = { zones: [], drives: [], aisles: [] };
+[["field", "F", "Main field", 100], ["arnould", "AR", "Arnould frontage row", 38],
+ ["storefront", "SF", "Storefront row (long building)", 56], ["lot6", "L6", "Lot 6 west field", 28],
+ ["lot8", "L8", "Lot 8 pocket", 19], ["rear", "RM", "Rear Marie Antoinette parallel row", 18],
+ ["johnston", "JS", "Johnston strip", 10], ["lot7", "L7", "Lot 7 remote lot", 32, "full"],
+ ["jdbank", "JD", "JD Bank easement spaces (NOT A PART)", 13],
+ ["johnston-cad", "JC", "Johnston CAD head-in row (unlabeled on plat)", 10, "main", true]]
+  .forEach(([id, code, name, count, scope = "main", pending]) =>
+    AG.zones.push({ id, code, name, count, ...(pending ? { pending: true } : {}), scope, rows: [] }));
+const azRow = (zid, id, n, quad) =>
+  AG.zones.find(z => z.id === zid).rows.push({ id, n, quad: quad.map(([x, y]) => [r2(x), r2(y)]) });
+// a-range × b-range quad in plan px, ordered along a (ax/by are defined in the parking section; called later)
+const abQuad = (a0, a1, b0, b1) => [[ax(a0), by(b0)], [ax(a1), by(b0)], [ax(a1), by(b1)], [ax(a0), by(b1)]];
+// same, ordered along b
+const baQuad = (a0, a1, b0, b1) => [[ax(a0), by(b0)], [ax(a0), by(b1)], [ax(a1), by(b1)], [ax(a1), by(b0)]];
+
 let bdPath = "";
 const scr = []; // screen-space segs for labels
 main.segs.forEach((s, i) => {
@@ -250,16 +270,17 @@ const remoteLot = [];
   // 10 along the east (deep) line, 8 at the rear — 32 total, labeled rows
   const P7 = (da, db) => toXY([POB7[0] + da, POB7[1] + db]);
   const TICK7 = { stroke: "#C9CEBE", "stroke-width": 1 };
-  const row7 = (da0, da1, db0, db1, n) => { // n stalls → n+1 vertical ticks
+  const row7 = (id, da0, da1, db0, db1, n) => { // n stalls → n+1 vertical ticks
     for (let i = 0; i <= n; i++) {
       const da = da0 + (i * (da1 - da0)) / n;
       const A = P7(da, db0), B = P7(da, db1);
       remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]), TICK7));
     }
+    azRow("lot7", id, n, [P7(da0, db0), P7(da1, db0), P7(da1, db1), P7(da0, db1)]);
   };
-  row7(8, 62, -2, -20.5, 6);        // 6 SPACES — frontage row (noses M.A.)
-  row7(3, 75, -55, -73.5, 8);       // 8 SPACES — mid row
-  row7(3, 75, -112, -130.5, 8);     // 8 SPACES — rear row
+  row7("frontage", 8, 62, -2, -20.5, 6);   // 6 SPACES — frontage row (noses M.A.)
+  row7("mid", 3, 75, -55, -73.5, 8);       // 8 SPACES — mid row
+  row7("rear", 3, 75, -112, -130.5, 8);    // 8 SPACES — rear row
   {                                  // 10' utility easement along the rear lot line (plat)
     const A = P7(3, -140.2), B = P7(75, -140.2);
     remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]),
@@ -270,6 +291,7 @@ const remoteLot = [];
     const A = P7(56, db), B = P7(74.5, db);
     remoteLot.push(line(r2(A[0]), r2(A[1]), r2(B[0]), r2(B[1]), TICK7));
   }
+  azRow("lot7", "east", 10, [P7(56, -26), P7(56, -116), P7(74.5, -116), P7(74.5, -26)]);
   const l7y = (db) => r2(P7(37, db)[1]);
   // labels sit in the blank field LEFT of the lot, right-anchored at its west edge (REV 14): centered on cx
   // they ran past x 1480 on the export and over the rotated frontage label
@@ -333,12 +355,13 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   // (18' stalls behind a 3.1' planting strip); the 7-space module sits deeper,
   // b −9.4…−27.4, behind a 9' strip. Stalls no longer run to the property line.
   const MOD = [[119.75, 182.75, 7, -9.4, -27.4], [221.65, 320.65, 11, -3.6, -21.6], [325.35, 424.35, 11, -3.6, -21.6], [428.35, 509.25, 9, -3.6, -21.6]];
-  MOD.forEach(([a0, a1, n, bFront, bBack]) => {
+  MOD.forEach(([a0, a1, n, bFront, bBack], k) => {
     for (let i = 0; i <= n; i++) {
       const a = a0 + (i * (a1 - a0)) / n;
       parking.push(line(ax(a), by(bBack), ax(a), by(bFront), TICK));
     }
     parking.push(zlab((ax(a0) + ax(a1)) / 2, 621, n + " SPACES", 7));
+    azRow("arnould", "m" + (k + 1), n, abQuad(a0, a1, bFront, bBack));
   });
   // ── REV 14: the "skinny islands" along Arnould (CAD LINCONC curbs) ──
   //    · 3.1' planting strip between the stall curb and the property line, a 218.65–512.85
@@ -363,7 +386,7 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
 //    plat labels 36 (west segment) + 14 (east segment) per band ──
 {
   const BANDS = [[-42.9, -78.2], [-103.7, -139.7]];   // [b near Arnould, b far]
-  BANDS.forEach(([b0, b1]) => {
+  BANDS.forEach(([b0, b1], bi) => {
     const ySp = (by(b0) + by(b1)) / 2;
     const segs = [[217.2, 405], [438, 496.2]];
     segs.forEach(([a0, a1]) => {
@@ -372,6 +395,12 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
         parking.push(line(ax(a), by(b0) - 3, r2(ax(a) - 12), r2(ySp - 2), TICK));   // Arnould-side stalls
         parking.push(line(ax(a), r2(ySp + 2), r2(ax(a) - 12), by(b1) + 3, TICK));   // far-side stalls
       }
+      // plat labels 36 (west) / 14 (east) per band = 18 / 7 a side
+      const n = a0 === 217.2 ? 18 : 7, seg = a0 === 217.2 ? "w" : "e";
+      azRow("field", "b" + (bi + 1) + seg + "-near", n,
+        [[ax(a0), by(b0)], [ax(a1), by(b0)], [ax(a1) - 12, ySp], [ax(a0) - 12, ySp]]);
+      azRow("field", "b" + (bi + 1) + seg + "-far", n,
+        [[ax(a0), ySp], [ax(a1), ySp], [ax(a1) - 12, by(b1)], [ax(a0) - 12, by(b1)]]);
     });
     // planting islands: west cap, mid L-island, east teardrop (per plat)
     const iy = r2(by(b1) - 2), ih = r2(by(b0) - by(b1) + 4);
@@ -395,6 +424,8 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
     const x = r2(ax(a) - 6.5);
     parking.push(line(x, by(-168.5), x, by(-184.8), TICK));
   }
+  { const x0 = ax(131) - 6.5, x1 = ax(131 + 56 * 8.96) - 6.5; // 57 ticks at 8.96' → 56 stalls
+    azRow("storefront", "row56", 56, [[x0, by(-168.5)], [x1, by(-168.5)], [x1, by(-184.8)], [x0, by(-184.8)]]); }
   parking.push(zlab(380, 327, "56 SPACES", 7.5, { "font-weight": "600" }));
   parking.push(zlab(900, 327, "56 SPACES", 7.5, { "font-weight": "600" }));
 }
@@ -417,6 +448,10 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   }
   parking.push(zlab(ax(107.6), (by(-42.9) + by(-150.9)) / 2, "12 SPACES", 7,
     { transform: "rotate(-90 " + r2(ax(107.6)) + " " + r2((by(-42.9) + by(-150.9)) / 2) + ")" }));
+  // island module double-loaded across the ax(165.1) spine (8 a side per the 16 label) + the 12 column
+  azRow("lot6", "island-w", 8, baQuad(147, 165.1, -71.5, -128.5));
+  azRow("lot6", "island-e", 8, baQuad(165.1, 183, -71.5, -128.5));
+  azRow("lot6", "walk12", 12, baQuad(98.5, 116.7, -42.9, -150.9));
   // handicap loading pad at the column's liquor-line end (per plat)
   parking.push(rect(ax(116.7), by(-155.4), r2(ax(98.5) - ax(116.7)), r2(by(-149.4) - by(-155.4)), { fill: "url(#hatch2)", stroke: "#CDD2C2", "stroke-width": 1 }));
 }
@@ -427,16 +462,20 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   for (let i = 0; i <= 5; i++) parking.push(line(r2(1233.7 + i * 16.9), by(-300) + 4, r2(1233.7 + i * 16.9), by(-288), TICK));        // 5 nose M.A.
   for (let i = 0; i <= 4; i++) parking.push(line(1154, by(-252 - i * 9), 1188, by(-252 - i * 9), TICK));                               // 4 nose the breezeway walk
   parking.push(zlab(1242, (by(-288) + by(-252.9)) / 2 + 3, "LOT 8 — 19 SPACES PER PLAT (10+5+4)", 7.5, { "font-weight": "600" }));
+  azRow("lot8", "end-walk10", 10, [[1186.5, by(-234.7) - 2], [1317, by(-234.7) - 2], [1317, by(-252.9)], [1186.5, by(-252.9)]]);
+  azRow("lot8", "ma5", 5, [[1233.7, by(-288)], [1318.2, by(-288)], [1318.2, by(-300) + 4], [1233.7, by(-300) + 4]]);
+  azRow("lot8", "breezeway4", 4, [[1154, by(-252)], [1154, by(-288)], [1188, by(-288)], [1188, by(-252)]]);
 }
 
 // ── rear M.A. parallel row: 4+4+4+4+2 = 18 (10' utility easement strip) ──
 {
   const G = [[102, 192, 4], [211, 279, 4], [279, 379, 4], [379, 479, 4], [577, 620, 2]];
-  G.forEach(([a0, a1, n]) => {
+  G.forEach(([a0, a1, n], k) => {
     for (let i = 0; i <= n; i++) {
       const a = a0 + (i * (a1 - a0)) / n;
       parking.push(line(ax(a), by(-283), ax(a), by(-297), TICK));
     }
+    azRow("rear", "m" + (k + 1), n, abQuad(a0, a1, -283, -297));
   });
   parking.push(zlab(ax(528), by(-289) + 2.5, "REAR PARKING — 18 PARALLEL (4+4+4+4+2)", 6.5));
 }
@@ -451,6 +490,8 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   parking.push(rect(ax(668), by(-160), r2(ax(656) - ax(668)), 11, { fill: "url(#hatch2)", stroke: "#5F6E64", "stroke-width": 1 }));
   for (let i = 0; i <= 2; i++) parking.push(line(ax(656 - i * 9), by(-147), ax(656 - i * 9), by(-163), TICK));
   parking.push(zlab(ax(640), by(-152), "PYLON SIGN · 2 SP", 6, { "text-anchor": "start" }));
+  azRow("johnston", "head8", 8, abQuad(565.3, 622.3, -122.4, -140.4));
+  azRow("johnston", "pylon2", 2, abQuad(656, 638, -147, -163));
 }
 
 // ── JD Bank parcel (NOT A PART): bank building + 6+7 = 13 easement spaces ──
@@ -460,6 +501,8 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   for (let i = 0; i <= 6; i++) parking.push(line(ax(553), by(-22 - i * 9), ax(571), by(-22 - i * 9), TICK));   // 6 along the notch line
   for (let i = 0; i <= 7; i++) parking.push(line(ax(652), by(-20 - i * 9), ax(668), by(-20 - i * 9), TICK));   // 7 along Johnston
   parking.push(zlab(183, 528, "JD BANK — 13 SPACES (6+7)", 7.5, { "font-weight": "600" }));
+  azRow("jdbank", "notch6", 6, baQuad(553, 571, -22, -76));
+  azRow("jdbank", "johnston7", 7, baQuad(652, 668, -20, -83));
   parking.push(zlab(183, 539, "RECIPROCAL EASEMENT $250/MO · EXP. 12/30/2034", 6.5));
 }
 
@@ -479,6 +522,7 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
     parking.push(line(ax(651.05), by(b), ax(669.55), by(b), TICK));
   }
   parking.push(zlab(122, 237, "10 SPACES — UNLABELED ON PLAT · CAD-STRIPED", 6, { transform: "rotate(-90 122 237)" }));
+  azRow("johnston-cad", "cad10", 10, baQuad(651.05, 669.55, -270.67, -180.67));
 }
 
 /* ── easement overlays (REV 11; own toggleable layer since REV 13) — live
@@ -727,13 +771,19 @@ const DRIVES = [
 const BANK_DRIVE = { street: "Arnould Blvd", name: "JD Bank's own Arnould driveway (NOT A PART)", throatA: [637.05, 656.75], flareA: [630.75, 663.35], movement: "two-way",
   note: "bank parcel; straddles the bank's R=30 Johnston corner return (tangent a 644.7); shown as context only — bank customers also use Driveway B and the Johnston driveway through the notch aisles" };
 
-const apronArnould = (d, st) => poly([[ax(d.throatA[0]), 662], [ax(d.throatA[1]), 662], [ax(d.flareA[1]), by(ST.arnould.curbFt)], [ax(d.flareA[0]), by(ST.arnould.curbFt)]], st);
-const apronPatricia = d => poly([[1360, by(d.throatB[0])], [1360, by(d.throatB[1])], [ax(ST.patricia.asphaltEdgeA), by(d.flareB[1])], [ax(ST.patricia.asphaltEdgeA), by(d.flareB[0])]], APRON);
-const apronMA = (d, st) => poly([[ax(d.throatA[0]), 96], [ax(d.throatA[1]), 96], [ax(d.flareA[1]), by(ST.marieAntoinette.asphaltB[0])], [ax(d.flareA[0]), by(ST.marieAntoinette.asphaltB[0])]], st);
+// site register: record each Belle apron polygon once (BANK_DRIVE has no id → skipped)
+const recDrive = (d, pts) => {
+  if (d.id && !AG.drives.some(x => x.id === d.id)) AG.drives.push({ id: d.id, name: d.name, street: d.street,
+    movement: d.movement, quad: pts.map(([x, y]) => [r2(x), r2(y)]) });
+  return pts;
+};
+const apronArnould = (d, st) => poly(recDrive(d, [[ax(d.throatA[0]), 662], [ax(d.throatA[1]), 662], [ax(d.flareA[1]), by(ST.arnould.curbFt)], [ax(d.flareA[0]), by(ST.arnould.curbFt)]]), st);
+const apronPatricia = d => poly(recDrive(d, [[1360, by(d.throatB[0])], [1360, by(d.throatB[1])], [ax(ST.patricia.asphaltEdgeA), by(d.flareB[1])], [ax(ST.patricia.asphaltEdgeA), by(d.flareB[0])]]), APRON);
+const apronMA = (d, st) => poly(recDrive(d, [[ax(d.throatA[0]), 96], [ax(d.throatA[1]), 96], [ax(d.flareA[1]), by(ST.marieAntoinette.asphaltB[0])], [ax(d.flareA[0]), by(ST.marieAntoinette.asphaltB[0])]]), st);
 const apronJohnston = d => {
   const out = ST.johnston.asphaltEdgeOutFt;
-  return poly([[ax(johnstonA(d.throatB[0])), by(d.throatB[0])], [ax(johnstonA(d.throatB[1])), by(d.throatB[1])],
-    [ax(johnstonA(d.flareB[1], out)), by(d.flareB[1])], [ax(johnstonA(d.flareB[0], out)), by(d.flareB[0])]], APRON);
+  return poly(recDrive(d, [[ax(johnstonA(d.throatB[0])), by(d.throatB[0])], [ax(johnstonA(d.throatB[1])), by(d.throatB[1])],
+    [ax(johnstonA(d.flareB[1], out)), by(d.flareB[1])], [ax(johnstonA(d.flareB[0], out)), by(d.flareB[0])]]), APRON);
 };
 const mid2 = arr => (arr[0] + arr[1]) / 2;
 const D = Object.fromEntries(DRIVES.map(d => [d.id, d]));
@@ -779,6 +829,8 @@ const AISLES = [
   { id: "ew-storefront", name: "Storefront aisle", a: [118, 651], b: [-139.7, -166], flow: "two-way", plat: "TF pairs at a 322/327, 450/454, 561/566" },
   { id: "ew-notch", name: "Notch E-W aisle (Johnston drive)", a: [550.12, 668], b: [-100, -122], flow: "two-way", plat: "TF inbound b −104 (a 601, 660) / outbound b −118…−121 (a 616, 643)", shared: "JD Bank traffic" }
 ];
+AISLES.forEach(s => AG.aisles.push({ id: s.id, name: s.name, flow: s.flow,
+  quad: abQuad(s.a[0], s.a[1], s.b[0], s.b[1]).map(([x, y]) => [r2(x), r2(y)]) }));
 access.push(...twoWay(ax(201.5), 580, 90), ...twoWay(ax(201.5), 400, 90));
 access.push(...twoWay(ax(531.5), 640, 90), ...twoWay(ax(531.5), 375, 90));
 access.push(alab(ax(538), 505, "SHARED ACCESS AISLE — JD BANK TRAFFIC (RECIPROCAL SERVITUDE)", 6, { transform: "rotate(-90 " + ax(538) + " 505)" }));
@@ -961,7 +1013,10 @@ const geometry = {
   // layer order = z-order: base under everything; plan.js draws access after parking,
   // the unit rects next, then annotations and the (toggleable) easements layer
   layers: { base, remoteLot, parking, access, annotations, easements, generalNotes, titleBlock },
-  units: placed
+  units: placed,
+  // A-1 site register (docs/superpowers/plans/2026-09-24-a1-site-register.md): plan-px shapes
+  // recorded alongside the strokes above — metadata only, drawn layers are unchanged
+  assetGeom: AG
 };
 
 writeFileSync(join(root, "src/data/geometry.json"), JSON.stringify(geometry, null, 1) + "\n");
