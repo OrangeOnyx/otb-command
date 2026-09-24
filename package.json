@@ -23,7 +23,8 @@
     "logo-thumbs": "python tools/make-logo-thumbs.py",
     "mesh-glb": "python tools/build-mesh-glb.py",
     "cube-frames": "node tools/cube-frames.mjs",
-    "fetch-lidar": "node tools/fetch-otb-lidar.mjs"
+    "fetch-lidar": "node tools/fetch-otb-lidar.mjs",
+    "site-twin": "node tools/build-site-twin.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0"

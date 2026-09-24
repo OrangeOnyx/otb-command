@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#1c2b26">
+  <title>OTB Site Twin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='7' fill='%231c2b26'/%3E%3Cpath d='M8 26h24v4H8zm3-12h7v10h-7zm11 3h7v7h-7z' fill='%23e4b953'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand"><span class="brand-symbol" aria-hidden="true">OTB</span><div><h1>On The Boulevard</h1><p>Site twin · keyed to the A-1 site register</p></div></div>
+    <nav aria-label="Exports"><a href="model.glb" download="OTB-site-twin.glb">Download 3D model <span aria-hidden="true">↗</span></a><a href="site-register.csv" download>Site register (CSV)</a></nav>
+  </header>
+  <main>
+    <section class="workspace" aria-label="Interactive 3D site model">
+      <div class="viewbar">
+        <div class="view-tabs" role="group" aria-label="Camera views"><button id="overview" class="active" aria-pressed="true">Overview</button><button id="plan" aria-pressed="false">Plan</button><button id="eye" aria-pressed="false">Walkway</button></div>
+        <div class="view-tabs" role="group" aria-label="Look"><button id="look-presentation" class="active" aria-pressed="true">Presentation</button><button id="look-record" aria-pressed="false">Record</button></div>
+        <button id="reset" title="Reset camera and clear selection">Reset view</button>
+      </div>
+      <div id="stage" aria-busy="true">
+        <div id="canvas-host"></div><div id="markers" aria-hidden="true"></div>
+        <div id="loading" role="status"><span class="loader-mark" aria-hidden="true"></span><strong>Building the view…</strong><p>Loading the site model and register.</p></div>
+        <div class="stage-caption"><span class="dot"></span><span id="scene-status">Site model</span></div>
+        <div class="tour" id="tour" hidden><button id="previous" aria-label="Previous column">←</button><span id="tour-label">Walkway</span><button id="next" aria-label="Next column">→</button></div>
+        <div class="navigation-help" id="navigation-help">Drag to orbit · Scroll to zoom · Right-drag to pan · Click an object to inspect</div>
+      </div>
+      <footer class="model-footer"><span><i class="swatch hi"></i>Highlighted <i class="swatch sel"></i>Selected — neither indicates condition</span><span id="model-summary">Cypress Command Platform · OTB site twin</span></footer>
+    </section>
+    <aside aria-label="Site register panel">
+      <section class="panel-section">
+        <div class="section-title"><h2>Site register</h2><span id="asset-count" class="count">—</span></div>
+        <p class="muted">Click a category to cycle <b>hidden → shown → highlighted</b>.</p>
+        <div id="cats" class="cats" role="group" aria-label="Categories"></div>
+        <label class="toggle"><span>Isolate highlighted + selection</span><input id="isolate" type="checkbox" role="switch"></label>
+        <label class="toggle"><span>Show labels</span><input id="labels" type="checkbox" role="switch"></label>
+      </section>
+      <section class="panel-section" aria-live="polite">
+        <div class="section-title"><h2 id="sel-title">Select an asset</h2><button id="clear" class="text-button" hidden>Clear</button></div>
+        <div id="sel-body"><p class="muted">Click an object in the model or pick one below.</p></div>
+      </section>
+      <section class="panel-section register">
+        <label class="search"><span class="sr-only">Find an asset</span><input id="search" type="search" placeholder="Find Column 12, stall-lot8-003, W1204084, 2-2401…" autocomplete="off"></label>
+        <div id="list" aria-label="Assets"></div>
+      </section>
+      <details class="provenance"><summary>Model basis &amp; limitations</summary><div id="basis"></div><p><a href="twin-report.json" download>Conversion report</a> · <a href="twin-data.json" download>Asset data</a></p></details>
+    </aside>
+  </main>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>

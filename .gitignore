@@ -36,3 +36,4 @@ capture/
 
 # Claude agent worktrees (per-session, never committed)
 .claude/worktrees/
+dist-twin/
