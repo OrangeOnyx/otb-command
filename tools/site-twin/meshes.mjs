@@ -35,8 +35,8 @@ export function flatPolygon(g, pts, y, down = false) {
 }
 
 /* vertical prism y0 -> y1 over a simple polygon (top + outward walls; bottom only if asked) */
-export function prism(g, pts, y0, y1, { bottom = false } = {}) {
-  flatPolygon(g, pts, y1);
+export function prism(g, pts, y0, y1, { bottom = false, top = true } = {}) {
+  if (top) flatPolygon(g, pts, y1);
   if (bottom) flatPolygon(g, pts, y0, true);
   const ccw = area2(pts) > 0;
   for (let i = 0; i < pts.length; i++) {

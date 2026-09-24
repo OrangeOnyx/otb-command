@@ -77,3 +77,36 @@ test("flat polygons face up", () => {
 test("category spec covers every register category", () => {
   for (const [id] of CATEGORIES) assert.ok(SPEC[id], "missing spec for " + id);
 });
+
+import { buildTwin, samplePath } from "../tools/build-site-twin.mjs";
+
+const twin = buildTwin();
+
+test("twin GLB validates and every drawn asset node carries its register id", async () => {
+  assert.equal(twin.report.validation.ok, true, twin.report.validation.errors.join("; "));
+  const gltf = await loadGlb(twin.glb);
+  const ids = new Set(); gltf.scene.traverse(o => { if (o.userData?.assetId) ids.add(o.userData.assetId); });
+  const drawn = twin.data.assets.filter(a => !a.dataOnly).map(a => a.id);
+  assert.deepEqual([...ids].sort(), [...drawn].sort());
+  assert.equal(twin.data.assets.length, new Set(twin.data.assets.map(a => a.id)).size, "unique ids");
+});
+
+test("stalls 324 (10 cad-pending), columns 39, units 27 are nodes; data-only rows are not drawn", () => {
+  const by = c => twin.data.assets.filter(a => a.category === c && !a.dataOnly);
+  assert.equal(by("stall").length, 324);
+  assert.equal(by("stall").filter(a => a.status === "cad-pending").length, 10);
+  assert.equal(by("column").length, 39);
+  assert.equal(by("unit").length, 27);
+  for (const c of ["panel", "timeclock", "wmeter", "emeter", "zone", "building"]) assert.equal(by(c).length, 0, c);
+  assert.equal(twin.data.walkTour.length, 39);
+});
+
+test("build is deterministic (byte-identical GLB)", () => {
+  assert.ok(buildTwin().glb.equals(twin.glb));
+});
+
+test("samplePath handles the generator's M/L/A/Z paths", () => {
+  const pts = samplePath("M 0 0 L 10 0 A 5 5 0 0 1 20 0 Z", 4);
+  assert.equal(pts.length, 2 + 4);
+  assert.deepEqual(pts.at(-1).map(v => Math.round(v * 1e6) / 1e6 + 0), [20, 0]);
+});

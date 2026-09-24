@@ -27,13 +27,18 @@ export class GltfBuilder {
     this.json.accessors.push({ bufferView: view, componentType, count, type, ...extra });
     return this.json.accessors.length - 1;
   }
-  mesh(name, { positions, normals, indices }, material) {
+  _primitive({ positions, normals, indices }, material) {
     const n = positions.length / 3, min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
     for (let i = 0; i < positions.length; i++) { const k = i % 3; if (positions[i] < min[k]) min[k] = positions[i]; if (positions[i] > max[k]) max[k] = positions[i]; }
     const pos = this._accessor(this._view(positions, ARRAY_BUFFER), FLOAT, n, "VEC3", { min: min.map(round6), max: max.map(round6) });
     const nor = this._accessor(this._view(normals, ARRAY_BUFFER), FLOAT, n, "VEC3");
     const idx = this._accessor(this._view(indices, ELEMENT_ARRAY_BUFFER), UINT32, indices.length, "SCALAR");
-    this.json.meshes.push({ name, primitives: [{ attributes: { POSITION: pos, NORMAL: nor }, indices: idx, material }] });
+    return { attributes: { POSITION: pos, NORMAL: nor }, indices: idx, material };
+  }
+  mesh(name, data, material) { return this.meshParts(name, [{ data, material }]); }
+  /* one mesh, several primitives (e.g. unit walls + TPO roof) — one pickable node */
+  meshParts(name, parts) {
+    this.json.meshes.push({ name, primitives: parts.map(p => this._primitive(p.data, p.material)) });
     return this.json.meshes.length - 1;
   }
   node({ name, mesh, children, extras }) {
