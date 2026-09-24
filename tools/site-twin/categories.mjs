@@ -16,7 +16,7 @@ export const SPEC = {
   parcel:        { mesh: "flat", color: "#3E4143", record: "#E8EBE0", visible: true },
   building:      { mesh: "data" },
   unit:          { mesh: "prism", color: "#E6DCC6", roof: "#F2F2EE", record: "#2F6B4F", visible: true },
-  walk:          { mesh: "walk", color: "#CFCBC2", shingle: "#3A3D40", record: "#DCD3BF", visible: true },
+  walk:          { mesh: "walk", color: "#CFCBC2", shingle: "#3A3D40", soffit: "#E3D6B8", record: "#DCD3BF", visible: true },
   island:        { mesh: "prism", heightFt: 0.5, color: "#5E8C4A", record: "#DDE0D4", visible: true },
   tree:          { mesh: "tree", heightFt: 24, crownFt: 10, color: "#4E7A3A", record: "#8FA67F", visible: false },
   easement:      { mesh: "ribbon", widthM: 0.3, y: 0.03, color: "#A87E2F", record: "#A87E2F", visible: false },

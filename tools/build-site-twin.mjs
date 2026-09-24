@@ -124,12 +124,13 @@ export function buildTwin() {
         break;
       }
       case "walk": {
-        const slab = G(), roofG = G();
+        const slab = G(), roofG = G(), soff = G();
         if (a.line) ribbon(slab, line, ft(4), 0.1);
         else polys.forEach(q => prism(slab, q, 0, ft(0.5)));
         const e = walkEdges[a.id];
-        if (e) { const q = polys[0]; canopy(roofG, [q[e[0][0]], q[e[0][1]]], [q[e[1][0]], q[e[1][1]]], eave, top); }
-        place(a, [{ geo: slab, material: mat(s.color, "concrete walk") }, { geo: roofG, material: mat(s.shingle, "shingle canopy") }], [C[0], 0, C[1]]);
+        if (e) { const q = polys[0]; canopy(roofG, [q[e[0][0]], q[e[0][1]]], [q[e[1][0]], q[e[1][1]]], eave, top, soff); }
+        place(a, [{ geo: slab, material: mat(s.color, "concrete walk") }, { geo: roofG, material: mat(s.shingle, "shingle canopy") },
+                  { geo: soff, material: mat(s.soffit, "canopy soffit + fascia") }], [C[0], 0, C[1]]);
         break;
       }
       case "tree": place(a, [{ geo: tree(G(), P, ft(s.crownFt), ft(s.heightFt)), material: mat(s.color, "tree") }], [P[0], 0, P[1]]); break;
@@ -189,7 +190,7 @@ export function buildTwin() {
     schema: 1, product: "Cypress Command Platform", property: "On The Boulevard Shopping Center, 101–149 Arnould Blvd, Lafayette LA",
     title: "OTB site twin", units: "metre", upAxis: "Y",
     generatedFrom: { geometryRev: geometry.rev, registerFits: siteReg.fits, register: "src/lib/siteassets.js buildRegister (same ids as A-1 ◫ Register)" },
-    transform: { from: "A-1 plan px", plat: T, originPlatFt: [r3(cX / FT), r3(-cZ / FT)], mapping: "X = a·0.3048 − originX, Z = −b·0.3048 − originZ, Y up" },
+    transform: { from: "A-1 plan px", plat: T, originPlatFt: [r3(-cX / FT), r3(cZ / FT)], mapping: "X = −a·0.3048 − originX, Z = b·0.3048 − originZ, Y up (Johnston −X, Marie Antoinette −Z)" },
     northRotationRad: r3(northRotation(georef)), northNote: "azimuth of plat +b (CAD +Y) per footprints-geo.json georef; model is NOT rotated (D4)",
     decisions: DECISIONS, pylonPanels: pylon.panels.map(p => ({ panel: p.panel, size: p.size, unit: p.unit, status: p.status })),
     categories: catList, walkTour, assets: assetsOut,
@@ -222,6 +223,7 @@ function copyViewer() {
   copyFileSync(join(tj, "examples/jsm/controls/OrbitControls.js"), join(vend, "addons/controls/OrbitControls.js"));
   copyFileSync(join(tj, "examples/jsm/loaders/GLTFLoader.js"), join(vend, "addons/loaders/GLTFLoader.js"));
   copyFileSync(join(tj, "examples/jsm/utils/BufferGeometryUtils.js"), join(vend, "addons/utils/BufferGeometryUtils.js"));
+  copyFileSync(join(tj, "examples/jsm/utils/SkeletonUtils.js"), join(vend, "addons/utils/SkeletonUtils.js")); // GLTFLoader imports it
   copyFileSync(join(tj, "LICENSE"), join(vend, "THREE-LICENSE.txt"));
 }
 

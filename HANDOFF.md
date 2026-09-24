@@ -1,5 +1,19 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 24, 2026 (later) — OTB SITE TWIN (Stage 2) BUILT on branch `site-twin-stage2` · 809 tests green
+
+Operator: "1, then write the Stage 2 plan" → Stage 1 merged (PR #14, live) → plan (PR #15) → "go" on defaults D1–D4.
+
+- `npm run site-twin` → `dist-twin/OTB_Site_Twin/` (gitignored): `model.glb` (1.28 MB · 648 nodes · 6.7k tris; every node
+  `extras.assetId` = A-1 register id), `twin-data.json`, `site-register.csv`, `twin-report.json`, offline viewer + vendored
+  three.js. `--check` = byte-identical rebuild. Zip delivered to `G:\My Drive\00 OTB\site-twin\OTB_Site_Twin.zip`.
+- 745 register assets → 616 modeled / 129 data-only (unit-centroid + unlocated rows, zones, buildings). Placeholders 0.
+- D1 canopy 10'/14' + D2 one RTU proxy per suite = presentation; D3 historic trees hidden; D4 plat axes (plan view = A-1).
+- Browser-verified on the 8770 preview: overview/plan/walkway tour 1→39, pick (canvas + list), zone → 56 stalls, record look,
+  LUS toggle, data-only meter rows, placeholders, 375 px stacked layout. Basis: `docs/site-twin-2026-09.md`.
+- `.claude/launch.json` gained `otb-site-twin-8770` (uncommitted, like `otb-review-5213`).
+- NEXT (optional): load the GLB into A-2 Lens-B; field-measure canopy height to replace D1.
+
 ## September 24, 2026 — A-1 SITE REGISTER (Stage 1 of the site twin) LIVE · PR #14 merged 1edec96 · prod serves main-MemVePzz.js · 799 tests green
 
 Operator: "give the interactive site plan the same treatment as the column twin" → picks: **staged (register now,

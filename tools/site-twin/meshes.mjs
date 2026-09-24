@@ -77,19 +77,19 @@ export function disc(g, [X, Z], r, y, seg = 16) {
    shingle face rising from the field edge (eaveY) to an inset line (topY);
    a flat top from the inset line back to the building face. field = [f0, f1],
    bldg = [b0, b1] with f0<->b0 and f1<->b1 across the walk. */
-export function canopy(g, field, bldg, eaveY, topY) {
+export function canopy(g, field, bldg, eaveY, topY, soffit = g) {
   const inset = Math.min(topY - eaveY, 0.8 * Math.hypot(bldg[0][0] - field[0][0], bldg[0][1] - field[0][1]));
   const toward = (f, b) => { const d = Math.hypot(b[0] - f[0], b[1] - f[1]) || 1; return [f[0] + ((b[0] - f[0]) / d) * inset, f[1] + ((b[1] - f[1]) / d) * inset]; };
   const i0 = toward(field[0], bldg[0]), i1 = toward(field[1], bldg[1]);
   const P = (p, y) => [p[0], y, p[1]];
-  flatPolygon(g, [field[0], field[1], bldg[1], bldg[0]], eaveY, true);                 // soffit
+  flatPolygon(soffit, [field[0], field[1], bldg[1], bldg[0]], eaveY, true);            // soffit (own material)
   const n = norm(cross(sub(P(field[1], eaveY), P(field[0], eaveY)), sub(P(i0, topY), P(field[0], eaveY))));
   const out = n[1] >= 0 ? n : n.map(v => -v);                                           // slope faces up/out
   g.quad(P(field[0], eaveY), P(field[1], eaveY), P(i1, topY), P(i0, topY), out);        // shingle slope
   flatPolygon(g, [i0, i1, bldg[1], bldg[0]], topY);                                     // flat top
   // fascia under the eave line (0.25 m band), facing the field
   const fn = norm([field[0][0] - bldg[0][0], 0, field[0][1] - bldg[0][1]]);
-  g.quad(P(field[0], eaveY - 0.25), P(field[1], eaveY - 0.25), P(field[1], eaveY), P(field[0], eaveY), fn);
+  soffit.quad(P(field[0], eaveY - 0.25), P(field[1], eaveY - 0.25), P(field[1], eaveY), P(field[0], eaveY), fn);
   return g;
 }
 
