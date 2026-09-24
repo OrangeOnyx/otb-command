@@ -17,13 +17,32 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 G = Path("G:/My Drive/00 OTB/01 Belle Files to be placed")
 MAX_RMS = 6.0  # plan px (~3 ft) — drawings of record
-LUS_MAX_RMS = 10.0  # context tier (LUS aerial, 1990s greenspace sheet): anchors are approximate by nature
+CONTEXT_MAX_RMS = 10.0  # context tier (1990s greenspace sheet): pre-2007 drawing, anchors approximate
+LUS_MAX_RMS = 20.0  # LUS aerial (±10 ft): LUS address points sit off-centre on each suite
 GEO = json.loads((ROOT / "src/data/geometry.json").read_text(encoding="utf-8"))
 U = GEO["units"]
 
 # A-1 plan-px building corners (from the demising-derived unit rects)
 LB = {"x133": U["133"]["x"] + U["133"]["w"], "x101": U["101"]["x"], "front": U["101"]["y"] + U["101"]["h"], "rear": U["101"]["y"]}
 SB = {"xfield": U["137"]["x"], "xpat": U["137"]["x"] + U["137"]["w"], "yma": U["135A"]["y"], "yarn": U["149"]["y"] + U["149"]["h"]}
+# plat stall curbs bounding the covered walks (from the generator's stall rows): storefront row far edge (y) and the
+# Lot 6 walk-row edge along the short building (x)
+_Z = {z["id"]: z for z in GEO["assetGeom"]["zones"]}
+CURB = {"storefront": min(p[1] for p in _Z["storefront"]["rows"][0]["quad"]),
+        "lot6": max(p[0] for r in _Z["lot6"]["rows"] if r["id"] == "walk12" for p in r["quad"])}
+
+
+def fit_similarity(anchors):
+    """Rotation + uniform scale + translation (no shear) - for map-like sources (aerials) whose anchors are nearly
+    collinear, where a free affine would extrapolate wildly off the anchor line."""
+    A = np.array([a for a, _ in anchors], float); B = np.array([b for _, b in anchors], float)
+    ma, mb = A.mean(0), B.mean(0); a, b = A - ma, B - mb
+    Uu, S, Vt = np.linalg.svd(b.T @ a); R = Uu @ Vt
+    assert np.linalg.det(R) > 0, "reflection"
+    s = S.sum() / (a ** 2).sum(); t = mb - s * R @ ma
+    M = np.vstack([(s * R).T, t])  # same 3x2 layout apply() expects
+    err = np.linalg.norm(np.c_[A, np.ones(len(A))] @ M - B, axis=1)
+    return M, round(float(np.sqrt((err ** 2).mean())), 2)
 
 
 def fit(anchors):
@@ -76,18 +95,22 @@ def sheet_columns():
     lab = "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
     sources.append({"id": "columns-benches-cans", "file": str(src), "anchors": "long-building corners (4, exact fit)",
                     "rmsPx": rms, "check": f"scale along {along:.2f} vs across {across:.2f} px/ft",
-                    "note": "short-walk items (columns 33-39 + their cans/benches) take x by spanning the 12.5' walkway; "
-                            "the sheet does not show the short building's face"})
-    # The sheet shows only the short building's WALKWAY strip (image x 0..199), not its face. Short-walk items keep the
-    # affine's y and take x by spanning the walkway: image x 199 (field edge, where the columns stand) -> A-1 1131.3
-    # (Lot 6 walk-row curb, ax(98.5)); image x 199 - 12.5'*12.42 -> the short-building face SB.xfield.
-    edge_img, face_img, edge_plan = 199.0, 199.0 - 12.5 * 12.42, 1131.3
+                    "note": "items are placed across each walk proportionally (storefront face -> plat stall curb): the sheet draws the walks 14.5' / 13.1' deep vs ~11' / ~12.5' on the plat; "
+                            "the 101-end walk is not drawn on A-1 and keeps the sheet's scale"})
+    # Walkway depth differs between sources: the Floorplanner sheet draws the long walk 14.5' deep (blue strip
+    # y 2243..2423) and the short walk 13.1' (x 36..199), while the plat puts the stall curbs ~11' / ~12.5' off the
+    # storefronts. Items are placed ACROSS each walk proportionally (face -> curb) so columns land at the plat curb;
+    # ALONG-walk positions keep the affine. The 101-end walk is not drawn on A-1, so it keeps the sheet's scale.
+    curb_long = CURB["storefront"]; curb_short = CURB["lot6"]
 
     def place(x, y):
         p = apply(M, x, y)
-        if x < 240 and y < 2300:  # short-building walk strip (image x 0..~210)
-            t = min(max((edge_img - x) / (edge_img - face_img), 0), 1)
-            p[0] = round(edge_plan + t * (SB["xfield"] - edge_plan), 2)
+        if x < 240 and y < 2300:  # short-building walk strip
+            t = min(max((x - 36) / (199 - 36), 0), 1.1)
+            p[0] = round(SB["xfield"] - t * (SB["xfield"] - curb_short), 2)
+        elif x >= 195 and 2200 < y < 2423:  # long-building storefront walk (incl. the 101 corner column 7)
+            t = min(max((2423 - y) / (2423 - 2243), 0), 1.1)
+            p[1] = round(LB["front"] + t * (curb_long - LB["front"]), 2)
         return p
 
     # Column tags: black numbered boxes; the column square sits 68 px below its tag (same x).
@@ -193,10 +216,10 @@ def sheet_trees():
     fits["greenspace-9201.0C"] = rms
     # context tier: the 1990s sheet predates the 2007 short-building work (drawn aspect 2.39 vs 2.47 today), so it
     # cannot meet the 6 px drawing tolerance; trees are historic positions to confirm against current aerials
-    assert rms <= LUS_MAX_RMS, rms
+    assert rms <= CONTEXT_MAX_RMS, rms
     lab = "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)"
     sources.append({"id": "greenspace-9201.0C", "file": str(src), "anchors": "long + short building corners (8)", "rmsPx": rms,
-                    "maxRmsPx": LUS_MAX_RMS, "note": "historic context tier — pre-2007 short building"})
+                    "maxRmsPx": CONTEXT_MAX_RMS, "note": "historic context tier — pre-2007 short building"})
     hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
     m = cv2.morphologyEx(cv2.inRange(hsv, (40, 60, 60), (85, 255, 230)), cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
     n, _, st, cen = cv2.connectedComponentsWithStats(m)
@@ -230,36 +253,54 @@ def sheet_lus():
             "111": (582, 592), "109": (597, 611), "107": (611, 630), "105": (627, 652), "149": (462, 215),
             "145": (445, 235), "143": (430, 240.6), "141": (418, 252), "139": (404, 262), "137": (390, 272)}
     anchors = [(xy, (U[k]["x"] + U[k]["w"] / 2, U[k]["y"] + U[k]["h"] / 2)) for k, xy in dots.items()]
-    M, rms = fit(anchors)
+    M, rms = fit_similarity(anchors)
     fits["lus-2021"] = rms
     assert rms <= LUS_MAX_RMS, rms
     lab = "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets"
-    sources.append({"id": "lus-2021", "file": str(LUS), "anchors": "20 LUS address points -> suite centroids",
+    sources.append({"id": "lus-2021", "file": str(LUS), "anchors": "20 LUS address points -> suite centroids (similarity fit)",
                     "rmsPx": rms, "maxRmsPx": LUS_MAX_RMS})
     st = "public-utility-context"
-    for sid, xy, what in [("6-3861", (600, 301), "water valve/structure — Arnould, 149 frontage"),
-                          ("6-3823", (731, 462), "water valve/structure — Arnould, mid-frontage"),
-                          ("8-1782", (875, 617), "water structure — Arnould × Johnston"),
-                          ("6-3790", (861, 629), "water structure — Arnould × Johnston"),
-                          ("2-2401", (422, 566), "water valve/structure — Marie Antoinette, behind 121"),
-                          ("2-2419", (291, 396), "water valve/structure — Marie Antoinette near Patricia"),
-                          ("2-2436", (216, 322), "water valve/structure — Patricia × Marie Antoinette")]:
-        add("lus-" + sid, "lus-point", f"LUS {sid}", apply(M, *xy), lab, status=st, sub=what)
-    for k, (xy, what) in enumerate([((661, 308), "Arnould, 149 frontage (1795, sta 3+08)"), ((850, 549), "Arnould, 101 end (1796)"),
-                                    ((411, 524), "Marie Antoinette, behind 121 (1790)"), ((583, 742), "Marie Antoinette, behind 103 (8971 D)"),
-                                    ((224, 284), "Patricia × Marie Antoinette (1787)")], 1):
-        add(f"lus-mh-{k:02d}", "lus-point", f"LUS sewer manhole {k}", apply(M, *xy), lab, status=st, sub=what)
-    for k, (xy, what) in enumerate([((617, 322), "Arnould, 149 frontage"), ((437, 531), "Marie Antoinette, behind 121"),
-                                    ((324, 375), "Marie Antoinette near Lot 8")], 1):
-        add(f"lus-red-{k:02d}", "lus-point", f"LUS red point symbol {k}", apply(M, *xy), lab, status=st,
+    # ALONG each street the similarity fit is well constrained (the anchor dots run the building lengths); ACROSS it
+    # it is not (dots cluster on the roof centrelines). So every LUS feature takes its along-street coordinate from
+    # the fit and its across-street coordinate from the line it sits on, placed off the plat R/W line by the spacing
+    # measured in the capture (1:1,250 -> ~1.08 ft/px): Arnould water on the property-side edge, sewer 32' further
+    # out; Marie Antoinette 2" water on the property side, sewer 24' further out; Patricia sewer on the centreline.
+    ky, kx = GEO["boundary"]["transform"]["kyPxPerFt"], GEO["boundary"]["transform"]["kxPxPerFt"]
+    ARN_RW, MA_RW, PAT_RW = 662, 96, 1360  # A-1 R/W lines (b = 0, b = -300, a = -25)
+    LINE = {"arnould-water": ("y", ARN_RW + 5 * ky), "arnould-sewer": ("y", ARN_RW + 37 * ky),
+            "ma-water": ("y", MA_RW - 5 * ky), "ma-sewer": ("y", MA_RW - 29 * ky), "patricia-sewer": ("x", PAT_RW + 25 * kx)}
+
+    def on(line, xy):
+        axis, v = LINE[line]; p = apply(M, *xy)
+        return [p[0], round(v, 2)] if axis == "y" else [round(v, 2), p[1]]
+    for sid, xy, line, what in [("6-3861", (600, 301), "arnould-water", "water valve/structure — Arnould"),
+                                ("6-3823", (731, 462), "arnould-water", "water valve/structure — Arnould, mid-frontage"),
+                                ("8-1782", (875, 617), "arnould-water", "water structure — Arnould × Johnston"),
+                                ("6-3790", (861, 629), "arnould-water", "water structure — Arnould × Johnston"),
+                                ("2-2401", (422, 566), "ma-water", "water valve/structure — Marie Antoinette, behind 121"),
+                                ("2-2419", (291, 396), "ma-water", "water valve/structure — Marie Antoinette near Lot 8"),
+                                ("2-2436", (216, 322), "ma-water", "water valve/structure — Patricia × Marie Antoinette")]:
+        add("lus-" + sid, "lus-point", f"LUS {sid}", on(line, xy), lab, status=st, sub=what)
+    for k, (xy, line, what) in enumerate([((661, 308), "arnould-sewer", "Arnould (1795, sta 3+08)"),
+                                          ((850, 549), "arnould-sewer", "Arnould, 101 end (1796)"),
+                                          ((411, 524), "ma-sewer", "Marie Antoinette, behind 121 (1790)"),
+                                          ((583, 742), "ma-sewer", "Marie Antoinette, behind 103 (8971 D)")], 1):
+        add(f"lus-mh-{k:02d}", "lus-point", f"LUS sewer manhole {k}", on(line, xy), lab, status=st, sub=what)
+    add("lus-mh-05", "lus-point", "LUS sewer manhole 5", [round(LINE["patricia-sewer"][1], 2), round(LINE["ma-sewer"][1], 2)], lab,
+        status=st, sub="Patricia × Marie Antoinette (1787)")
+    for k, (xy, line, what) in enumerate([((617, 322), "arnould-water", "Arnould"), ((437, 531), "ma-water", "Marie Antoinette, behind 121"),
+                                          ((324, 375), "ma-water", "Marie Antoinette near Lot 8")], 1):
+        add(f"lus-red-{k:02d}", "lus-point", f"LUS red point symbol {k}", on(line, xy), lab, status=st,
             sub=what + " — hydrant or valve per the LUS legend (legend not on the capture; unconfirmed)")
-    for mid, a, b, what in [("water-arnould", (462, 100), (928, 691), "8\" PVC water main — Arnould Blvd"),
-                            ("sewer-arnould", (509, 112), (981, 700), "8\" VCP sewer main — Arnould Blvd (far side)"),
-                            ("water-ma", (331, 462), (588, 794), "2\" PVC water line — Marie Antoinette (property side)"),
-                            ("sewer-ma", (350, 450), (625, 794), "8\" VCP sewer main — Marie Antoinette"),
-                            ("sewer-patricia", (224, 284), (450, 112), "8\" VCP sewer main — Patricia St")]:
+    for mid, line, what in [("water-arnould", "arnould-water", "8\" PVC water main — Arnould Blvd (property side)"),
+                            ("sewer-arnould", "arnould-sewer", "8\" VCP sewer main — Arnould Blvd"),
+                            ("water-ma", "ma-water", "2\" PVC water line — Marie Antoinette (property side)"),
+                            ("sewer-ma", "ma-sewer", "8\" VCP sewer main — Marie Antoinette"),
+                            ("sewer-patricia", "patricia-sewer", "8\" VCP sewer main — Patricia St")]:
+        axis, v = LINE[line]; v = round(v, 2)
         items.append({"id": "lus-" + mid, "cat": "lus-main", "label": what, "status": st, "source": lab,
-                      "line": [apply(M, *a), apply(M, *b)]})
+                      "line": [[70, v], [1360, v]] if axis == "y" else [[v, 96], [v, 662]],
+                      "sub": "street-parallel; across-street offset from the line spacing in the LUS capture"})
     print(f"LUS: rms {rms}px")
 
 
@@ -284,11 +325,11 @@ def hand_placed():
         add(f"bollard-{g}", "bollard", f"Pipe bollards, pair {g}", [SB["xpat"] + 17, round(y, 2)], lab_c, status=appr, count=2)
     # walks derived from the building faces + the digitized column lines
     col = {i["id"]: i["point"] for i in items if i["cat"] == "column"}
-    yl = max(col["col-07"][1], col["col-20"][1]) + 2
+    yl = CURB["storefront"]  # long walk runs storefront -> plat stall curb
     lab_w = "derived from the A-1 building faces + the digitized column lines (Plat of Survey 2020 'covered walkway')"
     for wid, label, q in [("walk-long", "Covered walkway — long building storefront", [[LB["x101"], LB["front"]], [LB["x133"], LB["front"]], [LB["x133"], yl], [LB["x101"], yl]]),
                           ("walk-101-end", "Covered walkway — 101 end (Johnston)", [[col["col-01"][0] - 2, LB["rear"] - 10], [LB["x101"], LB["rear"] - 10], [LB["x101"], yl], [col["col-01"][0] - 2, yl]]),
-                          ("walk-short", "Covered walkway — short building", [[1131.3, SB["yma"]], [SB["xfield"], SB["yma"]], [SB["xfield"], col["col-39"][1] + 2], [1131.3, col["col-39"][1] + 2]]),
+                          ("walk-short", "Covered walkway — short building", [[CURB["lot6"], SB["yma"]], [SB["xfield"], SB["yma"]], [SB["xfield"], col["col-39"][1] + 2], [CURB["lot6"], col["col-39"][1] + 2]]),
                           ("breezeway", "Breezeway (133 end ↔ 135A)", [[LB["x133"], SB["yma"]], [SB["xfield"], SB["yma"]], [SB["xfield"], LB["front"]], [LB["x133"], LB["front"]]])]:
         items.append({"id": wid, "cat": "walk", "label": label, "status": "derived", "source": lab_w, "polys": [q]})
     items.append({"id": "sidewalk-arnould", "cat": "walk", "label": "4' public sidewalk — Arnould R/W", "status": "derived",

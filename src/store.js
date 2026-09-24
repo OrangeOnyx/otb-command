@@ -126,6 +126,10 @@ export const FEATURE_TYPES = [
   // site, common-area extents, loading and dumpster pads on the A-1 plan
   ["reserved", "🔒", "Reserved parking"], ["monument", "🏷", "Monument sign site"],
   ["common", "🌿", "Common area"], ["loading", "🚚", "Loading zone"], ["dumpster", "♻", "Dumpster pad"],
+  // A-1 site register placeholders (2026-09-24): no drawing on file — the operator's pins fill these categories
+  ["storm-drain", "🕳", "Storm drain / catch basin"], ["backflow", "🔁", "Backflow preventer"],
+  ["fdc-riser", "🚒", "FDC / sprinkler riser"], ["grease-trap", "🛢", "Grease trap"],
+  ["roof-drain", "☔", "Roof drain"], ["irrigation", "🌱", "Irrigation controller"],
   ["other", "📍", "Other"]
 ];
 const FEATURE_IDS = new Set(FEATURE_TYPES.map(t => t[0]));

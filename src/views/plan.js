@@ -14,6 +14,7 @@ import stallMap from "../data/stall-map.json";
 import { latestByStall, stallOverlay } from "../lib/occupancy.js";
 import { REMOTE, listOccupancy } from "../lib/remote.js";
 import { PLAN_VIEWS, viewById, matchView } from "../lib/planviews.js";
+import { initRegister, paintRegister } from "./plan-register.js";
 
 let planMode = "status";
 let planScope = "main";
@@ -108,6 +109,7 @@ export function drawPlan() {
 
   paintFeatures(g(svg, "feat-layer"));
   paintCameras(g(svg, "cam-layer"));
+  paintRegister(svg); // A-1 site register highlight layer — always on top
 }
 
 /* ---- C3 occupancy layer: latest classified state per covered row56 stall
@@ -560,6 +562,7 @@ export function initPlan() {
     if (type === "features" || type === "import") { closeFeatureEditor(); drawPlan(); }
   });
   onAssetChange(() => drawPlan()); // repaint badges when photos are added/removed
+  initRegister({ redraw: drawPlan });
   drawPlan();
   renderLegend();
 }

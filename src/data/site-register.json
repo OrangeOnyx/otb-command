@@ -14,7 +14,7 @@
    "codexUnmatched": []
   },
   "greenspace-9201.0C": 9.08,
-  "lus-2021": 8.52
+  "lus-2021": 17.06
  },
  "sources": [
   {
@@ -23,7 +23,7 @@
    "anchors": "long-building corners (4, exact fit)",
    "rmsPx": 0.0,
    "check": "scale along 12.42 vs across 12.39 px/ft",
-   "note": "short-walk items (columns 33-39 + their cans/benches) take x by spanning the 12.5' walkway; the sheet does not show the short building's face"
+   "note": "items are placed across each walk proportionally (storefront face -> plat stall curb): the sheet draws the walks 14.5' / 13.1' deep vs ~11' / ~12.5' on the plat; the 101-end walk is not drawn on A-1 and keeps the sheet's scale"
   },
   {
    "id": "water-shutoff-clusters",
@@ -48,9 +48,9 @@
   {
    "id": "lus-2021",
    "file": "G:\\My Drive\\00 OTB\\01 Belle Files to be placed\\Center Infrastructure\\Water Meters & Electric Meters\\image002.png",
-   "anchors": "20 LUS address points -> suite centroids",
-   "rmsPx": 8.52,
-   "maxRmsPx": 10.0
+   "anchors": "20 LUS address points -> suite centroids (similarity fit)",
+   "rmsPx": 17.06,
+   "maxRmsPx": 20.0
   }
  ],
  "items": [
@@ -140,7 +140,7 @@
    "label": "Column 7",
    "point": [
     148.58,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -154,7 +154,7 @@
    "label": "Column 8",
    "point": [
     164.94,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -168,7 +168,7 @@
    "label": "Column 9",
    "point": [
     196.03,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -182,7 +182,7 @@
    "label": "Column 10",
    "point": [
     211.95,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -196,7 +196,7 @@
    "label": "Column 11",
    "point": [
     239.62,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -210,7 +210,7 @@
    "label": "Column 12",
    "point": [
     256.57,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -224,7 +224,7 @@
    "label": "Column 13",
    "point": [
     283.2,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -238,7 +238,7 @@
    "label": "Column 14",
    "point": [
     299.86,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -252,7 +252,7 @@
    "label": "Column 15",
    "point": [
     356.53,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -266,7 +266,7 @@
    "label": "Column 16",
    "point": [
     406.51,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -280,7 +280,7 @@
    "label": "Column 17",
    "point": [
     448.75,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -294,7 +294,7 @@
    "label": "Column 18",
    "point": [
     498.73,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -308,7 +308,7 @@
    "label": "Column 19",
    "point": [
     544.54,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -322,7 +322,7 @@
    "label": "Column 20",
    "point": [
     591.25,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -336,7 +336,7 @@
    "label": "Column 21",
    "point": [
     635.87,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -350,7 +350,7 @@
    "label": "Column 22",
    "point": [
     680.65,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -364,7 +364,7 @@
    "label": "Column 23",
    "point": [
     726.31,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -378,7 +378,7 @@
    "label": "Column 24",
    "point": [
     772.27,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -392,7 +392,7 @@
    "label": "Column 25",
    "point": [
     818.68,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -406,7 +406,7 @@
    "label": "Column 26",
    "point": [
     866.87,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -420,7 +420,7 @@
    "label": "Column 27",
    "point": [
     916.41,
-    319.66
+    313.12
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -434,7 +434,7 @@
    "label": "Column 28",
    "point": [
     930.69,
-    319.66
+    313.12
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -448,7 +448,7 @@
    "label": "Column 29",
    "point": [
     970.25,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -462,7 +462,7 @@
    "label": "Column 30",
    "point": [
     1017.7,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -476,7 +476,7 @@
    "label": "Column 31",
    "point": [
     1066.79,
-    319.96
+    313.35
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -490,7 +490,7 @@
    "label": "Column 32",
    "point": [
     1113.05,
-    319.35
+    312.89
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
@@ -503,7 +503,7 @@
    "cat": "column",
    "label": "Column 33",
    "point": [
-    1131.3,
+    1131.34,
     342.34
    ],
    "status": "digitized",
@@ -517,7 +517,7 @@
    "cat": "column",
    "label": "Column 34",
    "point": [
-    1131.3,
+    1131.34,
     390.14
    ],
    "status": "digitized",
@@ -531,7 +531,7 @@
    "cat": "column",
    "label": "Column 35",
    "point": [
-    1131.3,
+    1131.34,
     443.88
    ],
    "status": "digitized",
@@ -545,7 +545,7 @@
    "cat": "column",
    "label": "Column 36",
    "point": [
-    1131.3,
+    1131.34,
     496.7
    ],
    "status": "digitized",
@@ -559,7 +559,7 @@
    "cat": "column",
    "label": "Column 37",
    "point": [
-    1131.3,
+    1131.2,
     550.59
    ],
    "status": "digitized",
@@ -573,7 +573,7 @@
    "cat": "column",
    "label": "Column 38",
    "point": [
-    1131.3,
+    1131.34,
     603.72
    ],
    "status": "digitized",
@@ -587,7 +587,7 @@
    "cat": "column",
    "label": "Column 39",
    "point": [
-    1131.3,
+    1131.34,
     625.33
    ],
    "status": "digitized",
@@ -602,7 +602,7 @@
    "label": "Trash can 1",
    "point": [
     173.19,
-    297.34
+    296.19
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -613,7 +613,7 @@
    "label": "Trash can 2",
    "point": [
     282.31,
-    297.33
+    296.18
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -624,7 +624,7 @@
    "label": "Trash can 3",
    "point": [
     404.58,
-    297.34
+    296.19
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -635,7 +635,7 @@
    "label": "Trash can 4",
    "point": [
     440.2,
-    297.37
+    296.21
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -646,7 +646,7 @@
    "label": "Trash can 5",
    "point": [
     500.28,
-    297.37
+    296.21
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -657,7 +657,7 @@
    "label": "Trash can 6",
    "point": [
     595.99,
-    297.36
+    296.21
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -668,7 +668,7 @@
    "label": "Trash can 7",
    "point": [
     642.23,
-    297.35
+    296.19
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -679,7 +679,7 @@
    "label": "Trash can 8",
    "point": [
     723.23,
-    297.36
+    296.2
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -690,7 +690,7 @@
    "label": "Trash can 9",
    "point": [
     769.7,
-    297.32
+    296.17
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -701,7 +701,7 @@
    "label": "Trash can 10",
    "point": [
     850.26,
-    297.34
+    296.19
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -712,7 +712,7 @@
    "label": "Trash can 11",
    "point": [
     963.25,
-    297.43
+    296.25
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -723,7 +723,7 @@
    "label": "Trash can 12",
    "point": [
     1015.01,
-    297.39
+    296.22
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -734,7 +734,7 @@
    "label": "Trash can 13",
    "point": [
     1120.78,
-    297.77
+    296.52
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -755,7 +755,7 @@
    "cat": "can",
    "label": "Trash can 15",
    "point": [
-    1150.26,
+    1149.36,
     345.55
    ],
    "status": "digitized",
@@ -766,7 +766,7 @@
    "cat": "can",
    "label": "Trash can 16",
    "point": [
-    1150.26,
+    1149.37,
     388.47
    ],
    "status": "digitized",
@@ -777,7 +777,7 @@
    "cat": "can",
    "label": "Trash can 17",
    "point": [
-    1150.18,
+    1149.3,
     438.96
    ],
    "status": "digitized",
@@ -788,7 +788,7 @@
    "cat": "can",
    "label": "Trash can 18",
    "point": [
-    1150.25,
+    1149.36,
     478.84
    ],
    "status": "digitized",
@@ -799,7 +799,7 @@
    "cat": "can",
    "label": "Trash can 19",
    "point": [
-    1150.18,
+    1149.29,
     521.95
    ],
    "status": "digitized",
@@ -810,7 +810,7 @@
    "cat": "can",
    "label": "Trash can 20",
    "point": [
-    1150.23,
+    1149.34,
     622.66
    ],
    "status": "digitized",
@@ -822,7 +822,7 @@
    "label": "Bench 1",
    "point": [
     187.87,
-    297.44
+    296.26
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -833,7 +833,7 @@
    "label": "Bench 2",
    "point": [
     266.43,
-    297.46
+    296.28
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -844,7 +844,7 @@
    "label": "Bench 3",
    "point": [
     366.13,
-    297.4
+    296.23
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -855,7 +855,7 @@
    "label": "Bench 4",
    "point": [
     453.56,
-    297.35
+    296.19
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -866,7 +866,7 @@
    "label": "Bench 5",
    "point": [
     534.86,
-    297.43
+    296.25
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -877,7 +877,7 @@
    "label": "Bench 6",
    "point": [
     683.95,
-    297.43
+    296.26
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -888,7 +888,7 @@
    "label": "Bench 7",
    "point": [
     812.89,
-    297.43
+    296.25
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -899,7 +899,7 @@
    "label": "Bench 8",
    "point": [
     863.3,
-    297.42
+    296.25
    ],
    "status": "digitized",
    "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)"
@@ -920,7 +920,7 @@
    "cat": "bench",
    "label": "Bench 10",
    "point": [
-    1151.86,
+    1150.89,
     427.16
    ],
    "status": "digitized",
@@ -1844,20 +1844,20 @@
    "cat": "lus-point",
    "label": "LUS 6-3861",
    "point": [
-    929.85,
-    688.93
+    931.9,
+    671.43
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
-   "sub": "water valve/structure — Arnould, 149 frontage"
+   "sub": "water valve/structure — Arnould"
   },
   {
    "id": "lus-6-3823",
    "cat": "lus-point",
    "label": "LUS 6-3823",
    "point": [
-    527.22,
-    702.88
+    526.36,
+    671.43
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1868,8 +1868,8 @@
    "cat": "lus-point",
    "label": "LUS 8-1782",
    "point": [
-    116.74,
-    751.29
+    113.03,
+    671.43
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1880,8 +1880,8 @@
    "cat": "lus-point",
    "label": "LUS 6-3790",
    "point": [
-    117.11,
-    705.84
+    113.24,
+    671.43
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1892,8 +1892,8 @@
    "cat": "lus-point",
    "label": "LUS 2-2401",
    "point": [
-    770.34,
-    -58.2
+    768.53,
+    86.57
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1904,20 +1904,20 @@
    "cat": "lus-point",
    "label": "LUS 2-2419",
    "point": [
-    1186.11,
-    -58.6
+    1187.37,
+    86.57
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
-   "sub": "water valve/structure — Marie Antoinette near Patricia"
+   "sub": "water valve/structure — Marie Antoinette near Lot 8"
   },
   {
    "id": "lus-2-2436",
    "cat": "lus-point",
    "label": "LUS 2-2436",
    "point": [
-    1390.07,
-    -93.94
+    1392.71,
+    86.57
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1928,20 +1928,20 @@
    "cat": "lus-point",
    "label": "LUS sewer manhole 1",
    "point": [
-    841.64,
-    797.73
+    843.44,
+    731.81
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
-   "sub": "Arnould, 149 frontage (1795, sta 3+08)"
+   "sub": "Arnould (1795, sta 3+08)"
   },
   {
    "id": "lus-mh-02",
    "cat": "lus-point",
    "label": "LUS sewer manhole 2",
    "point": [
-    248.02,
-    804.73
+    245.47,
+    731.81
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1952,8 +1952,8 @@
    "cat": "lus-point",
    "label": "LUS sewer manhole 3",
    "point": [
-    845.75,
-    -16.5
+    844.65,
+    41.29
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1964,8 +1964,8 @@
    "cat": "lus-point",
    "label": "LUS sewer manhole 4",
    "point": [
-    307.46,
-    -8.14
+    302.42,
+    41.29
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1976,8 +1976,8 @@
    "cat": "lus-point",
    "label": "LUS sewer manhole 5",
    "point": [
-    1435.35,
-    -21.09
+    1406.29,
+    41.29
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -1988,20 +1988,20 @@
    "cat": "lus-point",
    "label": "LUS red point symbol 1",
    "point": [
-    877.44,
-    690.58
+    879.12,
+    671.43
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
-   "sub": "Arnould, 149 frontage — hydrant or valve per the LUS legend (legend not on the capture; unconfirmed)"
+   "sub": "Arnould — hydrant or valve per the LUS legend (legend not on the capture; unconfirmed)"
   },
   {
    "id": "lus-red-02",
    "cat": "lus-point",
    "label": "LUS red point symbol 2",
    "point": [
-    802.29,
-    23.83
+    801.01,
+    86.57
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -2012,8 +2012,8 @@
    "cat": "lus-point",
    "label": "LUS red point symbol 3",
    "point": [
-    1174.6,
-    37.57
+    1176.11,
+    86.57
    ],
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
@@ -2022,36 +2022,38 @@
   {
    "id": "lus-water-arnould",
    "cat": "lus-main",
-   "label": "8\" PVC water main — Arnould Blvd",
+   "label": "8\" PVC water main — Arnould Blvd (property side)",
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
    "line": [
     [
-     1399.85,
-     721.49
+     70,
+     671.43
     ],
     [
-     -59.09,
-     743.59
+     1360,
+     671.43
     ]
-   ]
+   ],
+   "sub": "street-parallel; across-street offset from the line spacing in the LUS capture"
   },
   {
    "id": "lus-sewer-arnould",
    "cat": "lus-main",
-   "label": "8\" VCP sewer main — Arnould Blvd (far side)",
+   "label": "8\" VCP sewer main — Arnould Blvd",
    "status": "public-utility-context",
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
    "line": [
     [
-     1322.23,
-     795.38
+     70,
+     731.81
     ],
     [
-     -139.99,
-     833.74
+     1360,
+     731.81
     ]
-   ]
+   ],
+   "sub": "street-parallel; across-street offset from the line spacing in the LUS capture"
   },
   {
    "id": "lus-water-ma",
@@ -2061,14 +2063,15 @@
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
    "line": [
     [
-     1038.58,
-     -79.69
+     70,
+     86.57
     ],
     [
-     225.11,
-     -76.63
+     1360,
+     86.57
     ]
-   ]
+   ],
+   "sub": "street-parallel; across-street offset from the line spacing in the LUS capture"
   },
   {
    "id": "lus-sewer-ma",
@@ -2078,14 +2081,15 @@
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
    "line": [
     [
-     1031.81,
-     -24.45
+     70,
+     41.29
     ],
     [
-     177.81,
-     -4.24
+     1360,
+     41.29
     ]
-   ]
+   ],
+   "sub": "street-parallel; across-street offset from the line spacing in the LUS capture"
   },
   {
    "id": "lus-sewer-patricia",
@@ -2095,14 +2099,15 @@
    "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
    "line": [
     [
-     1435.35,
-     -21.09
+     1406.29,
+     96
     ],
     [
-     1397.66,
-     679.96
+     1406.29,
+     662
     ]
-   ]
+   ],
+   "sub": "street-parallel; across-street offset from the line spacing in the LUS capture"
   },
   {
    "id": "xfmr-t1",
@@ -2277,11 +2282,11 @@
      ],
      [
       1125.84,
-      321.96
+      313.35
      ],
      [
       160.78,
-      321.96
+      313.35
      ]
     ]
    ]
@@ -2304,11 +2309,11 @@
      ],
      [
       160.78,
-      321.96
+      313.35
      ],
      [
       146.58,
-      321.96
+      313.35
      ]
     ]
    ]
@@ -2322,7 +2327,7 @@
    "polys": [
     [
      [
-      1131.3,
+      1131.34,
       219.31
      ],
      [
@@ -2334,7 +2339,7 @@
       627.33
      ],
      [
-      1131.3,
+      1131.34,
       627.33
      ]
     ]
@@ -2397,7 +2402,7 @@
     ],
     [
      926.695,
-     321.96
+     313.35
     ]
    ],
    "sub": "separates converted area 'A' (125–133, 9,265 SF) from the 35,025 SF block"
