@@ -1,0 +1,5923 @@
+{
+  "schemaVersion": 1,
+  "title": "On The Boulevard infrastructure source inventory",
+  "sourceAsOf": null,
+  "status": "Source references; physical verification and 3D placement pending",
+  "counts": {
+    "workbookRows": 30,
+    "waterMeters": 28,
+    "electricMeters": 28,
+    "timeClockPhotoFiles": 24,
+    "timeClockReferenceGroups": 23,
+    "timeClockPreviews": 24,
+    "mapAnnotations": 19,
+    "physicalShutoffCount": null
+  },
+  "sources": [
+    {
+      "id": "Water Meter Number Reference.xlsx",
+      "filename": "Water Meter Number Reference.xlsx",
+      "relativePath": "Water Meter Number Reference.xlsx",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Water Meter Number Reference.xlsx",
+      "kind": "workbook",
+      "sha256": "4f7cdb76e077b572f5d0a1230cfa04afe63cdd37cd4be8f5f413a88f9c132900",
+      "bytes": 25271
+    },
+    {
+      "id": "Water Shutoff Clusters.png",
+      "filename": "Water Shutoff Clusters.png",
+      "relativePath": "Water Shutoff Clusters.png",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Water Shutoff Clusters.png",
+      "kind": "annotated-water-map",
+      "sha256": "6f5fa658e34a77b63ea11fad467ed925f6f6b2e7c88510215497f5c162a10929",
+      "bytes": 722489
+    },
+    {
+      "id": "All Water Shutoffs.png",
+      "filename": "All Water Shutoffs.png",
+      "relativePath": "All Water Shutoffs.png",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\All Water Shutoffs.png",
+      "kind": "identical-map-alias",
+      "sha256": "6f5fa658e34a77b63ea11fad467ed925f6f6b2e7c88510215497f5c162a10929",
+      "bytes": 722489
+    },
+    {
+      "id": "image001 (1).png",
+      "filename": "image001 (1).png",
+      "relativePath": "image001 (1).png",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\image001 (1).png",
+      "kind": "historical-gis-screenshot",
+      "sha256": "5a3f2b58d00165da8f5dbe89b549c5ae1d3960f0046baddd0890596197a82477",
+      "bytes": 1733076,
+      "dateVisibleInScreenshot": "2021-07-14",
+      "dateBasis": "Windows taskbar display; not a guaranteed GIS survey date",
+      "geographicRegistration": "Unavailable: cursor coordinates are not image control points"
+    },
+    {
+      "id": "image002.png",
+      "filename": "image002.png",
+      "relativePath": "image002.png",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\image002.png",
+      "kind": "historical-gis-screenshot",
+      "sha256": "964ede3e73eb7a9ee4e4432dc538c548ade81e39ecbe1ce251814c65c3bfea3c",
+      "bytes": 2249394,
+      "dateVisibleInScreenshot": "2021-07-14",
+      "dateBasis": "Windows taskbar display; not a guaranteed GIS survey date",
+      "geographicRegistration": "Unavailable: cursor coordinates are not image control points"
+    },
+    {
+      "id": "image004.png",
+      "filename": "image004.png",
+      "relativePath": "image004.png",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\image004.png",
+      "kind": "historical-gis-screenshot",
+      "sha256": "e5bdef271a65be5207ffa86e571fe20160c7e4ef516643536c77fd50390b6def",
+      "bytes": 1735798,
+      "dateVisibleInScreenshot": "2021-07-14",
+      "dateBasis": "Windows taskbar display; not a guaranteed GIS survey date",
+      "geographicRegistration": "Unavailable: cursor coordinates are not image control points"
+    },
+    {
+      "id": "Unit Time Clocks/101 Time Clock.HEIC",
+      "filename": "101 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/101 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\101 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "88bf296063658111a56f906b0ece0c7c68679f53c2b9cf7561214542e3a45243",
+      "bytes": 1833140,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:49:25",
+      "captureDateRaw": "2021:11:17 11:49:25",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-101.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ],
+      "visualObservations": {
+        "visibleDeviceCount": 1,
+        "unitStickerText": "101",
+        "manufacturerText": "INTERMATIC",
+        "modelText": "T101",
+        "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+      }
+    },
+    {
+      "id": "Unit Time Clocks/103 Time Clock.HEIC",
+      "filename": "103 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/103 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\103 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "efaa35807ec207223771977d018a583de6e9077b9becdd4de94ed2e998efbb51",
+      "bytes": 1873920,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 10:21:10",
+      "captureDateRaw": "2021:11:17 10:21:10",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-103.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/105 Time Clock.HEIC",
+      "filename": "105 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/105 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\105 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "de613abae29fc9e67072a9eb4ef266b7a8ef9dd5b338fa857292f0fdc964f146",
+      "bytes": 2290678,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        4032,
+        3024
+      ],
+      "exifDateTimeRaw": "2021:11:17 13:04:56",
+      "captureDateRaw": "2021:11:17 13:04:56",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-105.jpg",
+      "previewDimensionsPixels": [
+        1600,
+        1200
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/107 Time Clock.HEIC",
+      "filename": "107 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/107 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\107 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "12151e83775f2284c27155f2536725abde820a88a26b9fe3b5c6b3a30daac11e",
+      "bytes": 1475137,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 10:24:39",
+      "captureDateRaw": "2021:11:17 10:24:39",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-107.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/109 Time Clock.HEIC",
+      "filename": "109 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/109 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\109 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "5120cdaf3019d9a2b47b00da0a1aff3bcf434c605af14683b6d8e991d1010c6a",
+      "bytes": 1539767,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        4032,
+        3024
+      ],
+      "exifDateTimeRaw": "2021:11:17 10:54:52",
+      "captureDateRaw": "2021:11:17 10:54:52",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-109.jpg",
+      "previewDimensionsPixels": [
+        1600,
+        1200
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/113 Time Clock.HEIC",
+      "filename": "113 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/113 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\113 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "171f9425ce05e8ca0d19a4562a696227c060f104ec780630825045d91c39070e",
+      "bytes": 2128463,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:02:14",
+      "captureDateRaw": "2021:11:17 11:02:14",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-113.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/115 Time Clock.HEIC",
+      "filename": "115 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/115 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\115 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "891c127afc4fd599b4819b7afeb336f9739015aa1e1f122cec5e6f3a3135612e",
+      "bytes": 2227341,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 10:44:15",
+      "captureDateRaw": "2021:11:17 10:44:15",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-115.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/117 Time Clock.HEIC",
+      "filename": "117 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/117 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\117 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "9ec47cd354126d59d2fa6496206dbfeef90d535d4b56afed238c646e3d3c5431",
+      "bytes": 1648669,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:05:52",
+      "captureDateRaw": "2021:11:17 11:05:52",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-117.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/117.5 Time Clock.HEIC",
+      "filename": "117.5 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/117.5 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\117.5 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "3341c79713470ca9e70a87ff8c81d5a5062556f2eced77a6f6ce70d58f1dcfa6",
+      "bytes": 1627635,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:08:18",
+      "captureDateRaw": "2021:11:17 11:08:18",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-117-5.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ],
+      "visualObservations": {
+        "visibleDeviceCount": 1,
+        "unitStickerText": "117.5",
+        "manufacturerText": "INTERMATIC",
+        "modelText": null,
+        "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+      }
+    },
+    {
+      "id": "Unit Time Clocks/119 Time Clock.HEIC",
+      "filename": "119 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/119 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\119 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "3039bdde1cb2347a2f02ba69462a700378a87af57f41ba1a234f07fe963b8aee",
+      "bytes": 1479892,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:55:10",
+      "captureDateRaw": "2021:11:17 11:55:10",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-119.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/119.5 Time Clock 2.HEIC",
+      "filename": "119.5 Time Clock 2.HEIC",
+      "relativePath": "Unit Time Clocks/119.5 Time Clock 2.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\119.5 Time Clock 2.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "1c9757face866e49c020b047ca43f6e40342821711a1441eeb41037a60b855b4",
+      "bytes": 1579031,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:27 13:16:01",
+      "captureDateRaw": "2021:11:27 13:16:01",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-119-5-2.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ],
+      "visualObservations": {
+        "visibleDeviceCount": 1,
+        "unitStickerText": null,
+        "manufacturerText": "TORK",
+        "modelText": "1101",
+        "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+      }
+    },
+    {
+      "id": "Unit Time Clocks/119.5 Time Clock.HEIC",
+      "filename": "119.5 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/119.5 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\119.5 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "3714d0056fd5eb5f118d0ba06db19f0665cb7185978da2a0b6e5a9554c668207",
+      "bytes": 1706271,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:27 13:15:55",
+      "captureDateRaw": "2021:11:27 13:15:55",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-119-5.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ],
+      "visualObservations": {
+        "visibleDeviceCount": 1,
+        "unitStickerText": "119.5",
+        "manufacturerText": "INTERMATIC",
+        "modelText": "T103",
+        "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+      }
+    },
+    {
+      "id": "Unit Time Clocks/121 Time Clock.HEIC",
+      "filename": "121 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/121 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\121 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "cc6653cb38d20fd7642ad768ff5ac935ae62a2c37ef87a1de8edaba12e64b191",
+      "bytes": 1252396,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:13:58",
+      "captureDateRaw": "2021:11:17 11:13:58",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-121.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/123 Time Clock.HEIC",
+      "filename": "123 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/123 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\123 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "0a8cb832d1cf5ab09ba3fb0436230b13624cafdc1742e982b6a6e909a49a9e6c",
+      "bytes": 2264471,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:11:23",
+      "captureDateRaw": "2021:11:17 11:11:23",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-123.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/125 Time Clock.HEIC",
+      "filename": "125 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/125 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\125 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "10dbfc74b2074b25fe874e36dabf880a521a4afc8fe59745135e055547485fbf",
+      "bytes": 1717030,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:24:39",
+      "captureDateRaw": "2021:11:17 11:24:39",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-125.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/127 Time Clock.HEIC",
+      "filename": "127 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/127 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\127 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "87c2e49dd7c86503004df99af27f6690699a178a0ec70cc2d71803dab4f71002",
+      "bytes": 2296528,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:26:28",
+      "captureDateRaw": "2021:11:17 11:26:28",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-127.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/129 Time Clock.HEIC",
+      "filename": "129 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/129 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\129 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "ac1cad1e89c31e1fd3bed5d309ea9674e78f9aeea642076bea2bb6e603f16701",
+      "bytes": 1868622,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:29:58",
+      "captureDateRaw": "2021:11:17 11:29:58",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-129.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/131 133 Time Clock.HEIC",
+      "filename": "131 133 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/131 133 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\131 133 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "feab085db66e8a43d962e1d2ed911a51983a986e98a258f292c51d9101f44944",
+      "bytes": 2179727,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        4032,
+        3024
+      ],
+      "exifDateTimeRaw": "2021:11:17 11:32:06",
+      "captureDateRaw": "2021:11:17 11:32:06",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-131-133.jpg",
+      "previewDimensionsPixels": [
+        1600,
+        1200
+      ],
+      "visualObservations": {
+        "visibleDeviceCount": 2,
+        "unitStickerText": "131/133 (left box)",
+        "manufacturerText": "INTERMATIC (left box label)",
+        "modelText": null,
+        "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+      }
+    },
+    {
+      "id": "Unit Time Clocks/135A Time Clock.HEIC",
+      "filename": "135A Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/135A Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\135A Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "e7c28ed83c2ae2d8107f1fb6b211a9a4facc1bf791df6fd64fd1077b854e55e7",
+      "bytes": 2152331,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:17 13:09:11",
+      "captureDateRaw": "2021:11:17 13:09:11",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-135a.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/137 Time Clock.HEIC",
+      "filename": "137 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/137 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\137 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "f601b62f4d624d26fd21aa76ae73e8cf6e952ce28eb00d1d866fa7adb8d4c3af",
+      "bytes": 1538186,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:16 14:32:04",
+      "captureDateRaw": "2021:11:16 14:32:04",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-137.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/141 Time Clock.HEIC",
+      "filename": "141 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/141 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\141 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "4718fee3f1b52acc552133c8db736e18a2cbb14ff02b62274b2bc8bc732acd72",
+      "bytes": 1467650,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:16 14:26:00",
+      "captureDateRaw": "2021:11:16 14:26:00",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-141.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/143 Time Clock.HEIC",
+      "filename": "143 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/143 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\143 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "3fa6904139db0d3048d11f64536b3da9a9a4d3388def13d18731bb18ff2d4158",
+      "bytes": 1520976,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:16 14:30:32",
+      "captureDateRaw": "2021:11:16 14:30:32",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-143.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "id": "Unit Time Clocks/145.HEIC",
+      "filename": "145.HEIC",
+      "relativePath": "Unit Time Clocks/145.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\145.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "65b81eab148fee09fa34a843af15f93809900b97415de4c3d4c75370b0610c4a",
+      "bytes": 2004990,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:16 14:37:00",
+      "captureDateRaw": "2021:11:16 14:37:00",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-145.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ],
+      "visualObservations": {
+        "visibleDeviceCount": 1,
+        "unitStickerText": "145",
+        "manufacturerText": "INTERMATIC",
+        "modelText": "T103",
+        "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+      }
+    },
+    {
+      "id": "Unit Time Clocks/149 Time Clock.HEIC",
+      "filename": "149 Time Clock.HEIC",
+      "relativePath": "Unit Time Clocks/149 Time Clock.HEIC",
+      "sourcePath": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\work\\infrastructure-intake\\Unit Time Clocks\\149 Time Clock.HEIC",
+      "kind": "time-clock-photo",
+      "sha256": "bb3bfb7629e6bb7392053489a3e26e63e91b3f4a2d4495a6d1fb97014576079f",
+      "bytes": 1953832,
+      "previewStatus": "converted",
+      "sourceDimensionsPixels": [
+        3024,
+        4032
+      ],
+      "exifDateTimeRaw": "2021:11:16 14:39:10",
+      "captureDateRaw": "2021:11:16 14:39:10",
+      "dateBasis": "EXIF DateTimeOriginal; source camera metadata, not a field-inspection date",
+      "previewPath": "infrastructure/time-clock-149.jpg",
+      "previewDimensionsPixels": [
+        1200,
+        1600
+      ]
+    }
+  ],
+  "sourceRows": [
+    {
+      "sheet": "Sheet1",
+      "row": 3,
+      "range": "A3:H3",
+      "values": {
+        "A": "101.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103824",
+        "E": "W1204084",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 105"
+      },
+      "rawCells": {
+        "A3": {
+          "value": "101.0",
+          "raw": "101.0",
+          "storageType": "n"
+        },
+        "B3": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C3": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D3": {
+          "value": "E1103824",
+          "raw": "8",
+          "storageType": "s"
+        },
+        "E3": {
+          "value": "W1204084",
+          "raw": "9",
+          "storageType": "s"
+        },
+        "F3": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G3": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H3": {
+          "value": "Behind 105",
+          "raw": "11",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 4,
+      "range": "A4:H4",
+      "values": {
+        "A": "101.0",
+        "B": "Arnould Blvd",
+        "C": "House",
+        "D": "E1242388",
+        "E": "W1217102",
+        "F": "Sprinkler",
+        "G": "1 inch",
+        "H": "Grass near Blvd"
+      },
+      "rawCells": {
+        "A4": {
+          "value": "101.0",
+          "raw": "101.0",
+          "storageType": "n"
+        },
+        "B4": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C4": {
+          "value": "House",
+          "raw": "12",
+          "storageType": "s"
+        },
+        "D4": {
+          "value": "E1242388",
+          "raw": "13",
+          "storageType": "s"
+        },
+        "E4": {
+          "value": "W1217102",
+          "raw": "14",
+          "storageType": "s"
+        },
+        "F4": {
+          "value": "Sprinkler",
+          "raw": "15",
+          "storageType": "s"
+        },
+        "G4": {
+          "value": "1 inch",
+          "raw": "16",
+          "storageType": "s"
+        },
+        "H4": {
+          "value": "Grass near Blvd",
+          "raw": "17",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 5,
+      "range": "A5:H5",
+      "values": {
+        "A": "103.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": null,
+        "E": "W1200836",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 105"
+      },
+      "rawCells": {
+        "A5": {
+          "value": "103.0",
+          "raw": "103.0",
+          "storageType": "n"
+        },
+        "B5": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C5": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D5": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "E5": {
+          "value": "W1200836",
+          "raw": "18",
+          "storageType": "s"
+        },
+        "F5": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G5": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H5": {
+          "value": "Behind 105",
+          "raw": "11",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 6,
+      "range": "A6:H6",
+      "values": {
+        "A": "105.0",
+        "B": "Arnould Blvd",
+        "C": "#2",
+        "D": "E1103827",
+        "E": "W1222193",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 107"
+      },
+      "rawCells": {
+        "A6": {
+          "value": "105.0",
+          "raw": "105.0",
+          "storageType": "n"
+        },
+        "B6": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C6": {
+          "value": "#2",
+          "raw": "19",
+          "storageType": "s"
+        },
+        "D6": {
+          "value": "E1103827",
+          "raw": "20",
+          "storageType": "s"
+        },
+        "E6": {
+          "value": "W1222193",
+          "raw": "21",
+          "storageType": "s"
+        },
+        "F6": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G6": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H6": {
+          "value": "Behind 107",
+          "raw": "22",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 7,
+      "range": "A7:H7",
+      "values": {
+        "A": "107.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103814",
+        "E": "W1248504",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 109"
+      },
+      "rawCells": {
+        "A7": {
+          "value": "107.0",
+          "raw": "107.0",
+          "storageType": "n"
+        },
+        "B7": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C7": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D7": {
+          "value": "E1103814",
+          "raw": "23",
+          "storageType": "s"
+        },
+        "E7": {
+          "value": "W1248504",
+          "raw": "24",
+          "storageType": "s"
+        },
+        "F7": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G7": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H7": {
+          "value": "Behind 109",
+          "raw": "25",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 8,
+      "range": "A8:H8",
+      "values": {
+        "A": "109.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103813",
+        "E": "W1206964",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 109"
+      },
+      "rawCells": {
+        "A8": {
+          "value": "109.0",
+          "raw": "109.0",
+          "storageType": "n"
+        },
+        "B8": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C8": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D8": {
+          "value": "E1103813",
+          "raw": "26",
+          "storageType": "s"
+        },
+        "E8": {
+          "value": "W1206964",
+          "raw": "27",
+          "storageType": "s"
+        },
+        "F8": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G8": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H8": {
+          "value": "Behind 109",
+          "raw": "25",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 9,
+      "range": "A9:H9",
+      "values": {
+        "A": "111.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103812",
+        "E": "W1203728",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 109"
+      },
+      "rawCells": {
+        "A9": {
+          "value": "111.0",
+          "raw": "111.0",
+          "storageType": "n"
+        },
+        "B9": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C9": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D9": {
+          "value": "E1103812",
+          "raw": "28",
+          "storageType": "s"
+        },
+        "E9": {
+          "value": "W1203728",
+          "raw": "29",
+          "storageType": "s"
+        },
+        "F9": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G9": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H9": {
+          "value": "Behind 109",
+          "raw": "25",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 10,
+      "range": "A10:H10",
+      "values": {
+        "A": "113.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1214708",
+        "E": "W1252003",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 109"
+      },
+      "rawCells": {
+        "A10": {
+          "value": "113.0",
+          "raw": "113.0",
+          "storageType": "n"
+        },
+        "B10": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C10": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D10": {
+          "value": "E1214708",
+          "raw": "30",
+          "storageType": "s"
+        },
+        "E10": {
+          "value": "W1252003",
+          "raw": "31",
+          "storageType": "s"
+        },
+        "F10": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G10": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H10": {
+          "value": "Behind 109",
+          "raw": "25",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 11,
+      "range": "A11:H11",
+      "values": {
+        "A": "113.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": null,
+        "E": "W1202593",
+        "F": null,
+        "G": "1 inch",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A11": {
+          "value": "113.0",
+          "raw": "113.0",
+          "storageType": "n"
+        },
+        "B11": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C11": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D11": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "E11": {
+          "value": "W1202593",
+          "raw": "32",
+          "storageType": "s"
+        },
+        "F11": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G11": {
+          "value": "1 inch",
+          "raw": "16",
+          "storageType": "s"
+        },
+        "H11": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 12,
+      "range": "A12:H12",
+      "values": {
+        "A": "115.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103815",
+        "E": "W1276245",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A12": {
+          "value": "115.0",
+          "raw": "115.0",
+          "storageType": "n"
+        },
+        "B12": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C12": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D12": {
+          "value": "E1103815",
+          "raw": "34",
+          "storageType": "s"
+        },
+        "E12": {
+          "value": "W1276245",
+          "raw": "35",
+          "storageType": "s"
+        },
+        "F12": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G12": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H12": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 13,
+      "range": "A13:H13",
+      "values": {
+        "A": "117.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103848",
+        "E": "W1277282",
+        "F": null,
+        "G": "1 inch",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A13": {
+          "value": "117.0",
+          "raw": "117.0",
+          "storageType": "n"
+        },
+        "B13": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C13": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D13": {
+          "value": "E1103848",
+          "raw": "36",
+          "storageType": "s"
+        },
+        "E13": {
+          "value": "W1277282",
+          "raw": "37",
+          "storageType": "s"
+        },
+        "F13": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G13": {
+          "value": "1 inch",
+          "raw": "16",
+          "storageType": "s"
+        },
+        "H13": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 14,
+      "range": "A14:H14",
+      "values": {
+        "A": "117.5",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103851",
+        "E": "W1214160",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A14": {
+          "value": "117.5",
+          "raw": "117.5",
+          "storageType": "n"
+        },
+        "B14": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C14": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D14": {
+          "value": "E1103851",
+          "raw": "38",
+          "storageType": "s"
+        },
+        "E14": {
+          "value": "W1214160",
+          "raw": "39",
+          "storageType": "s"
+        },
+        "F14": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G14": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H14": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 15,
+      "range": "A15:H15",
+      "values": {
+        "A": "119.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103850",
+        "E": "W1219561",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A15": {
+          "value": "119.0",
+          "raw": "119.0",
+          "storageType": "n"
+        },
+        "B15": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C15": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D15": {
+          "value": "E1103850",
+          "raw": "40",
+          "storageType": "s"
+        },
+        "E15": {
+          "value": "W1219561",
+          "raw": "41",
+          "storageType": "s"
+        },
+        "F15": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G15": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H15": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 16,
+      "range": "A16:H16",
+      "values": {
+        "A": "119.5",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103849",
+        "E": "W1248531",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A16": {
+          "value": "119.5",
+          "raw": "119.5",
+          "storageType": "n"
+        },
+        "B16": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C16": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D16": {
+          "value": "E1103849",
+          "raw": "42",
+          "storageType": "s"
+        },
+        "E16": {
+          "value": "W1248531",
+          "raw": "43",
+          "storageType": "s"
+        },
+        "F16": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G16": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H16": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 17,
+      "range": "A17:H17",
+      "values": {
+        "A": "121.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103844",
+        "E": "W1261861",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 119"
+      },
+      "rawCells": {
+        "A17": {
+          "value": "121.0",
+          "raw": "121.0",
+          "storageType": "n"
+        },
+        "B17": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C17": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D17": {
+          "value": "E1103844",
+          "raw": "44",
+          "storageType": "s"
+        },
+        "E17": {
+          "value": "W1261861",
+          "raw": "45",
+          "storageType": "s"
+        },
+        "F17": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G17": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H17": {
+          "value": "Behind 119",
+          "raw": "33",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 18,
+      "range": "A18:H18",
+      "values": {
+        "A": "123.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1220613",
+        "E": "W1276858",
+        "F": null,
+        "G": "3/4\"",
+        "H": "?"
+      },
+      "rawCells": {
+        "A18": {
+          "value": "123.0",
+          "raw": "123.0",
+          "storageType": "n"
+        },
+        "B18": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C18": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D18": {
+          "value": "E1220613",
+          "raw": "46",
+          "storageType": "s"
+        },
+        "E18": {
+          "value": "W1276858",
+          "raw": "47",
+          "storageType": "s"
+        },
+        "F18": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G18": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H18": {
+          "value": "?",
+          "raw": "48",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 19,
+      "range": "A19:H19",
+      "values": {
+        "A": "125.0",
+        "B": "Arnould Blvd",
+        "C": "House",
+        "D": "E1103767",
+        "E": null,
+        "F": null,
+        "G": null,
+        "H": null
+      },
+      "rawCells": {
+        "A19": {
+          "value": "125.0",
+          "raw": "125.0",
+          "storageType": "n"
+        },
+        "B19": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C19": {
+          "value": "House",
+          "raw": "12",
+          "storageType": "s"
+        },
+        "D19": {
+          "value": "E1103767",
+          "raw": "49",
+          "storageType": "s"
+        },
+        "E19": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "F19": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G19": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "H19": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 20,
+      "range": "A20:H20",
+      "values": {
+        "A": "125.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103845",
+        "E": "W1210783",
+        "F": null,
+        "G": "1 1/2\"",
+        "H": "Behind 131"
+      },
+      "rawCells": {
+        "A20": {
+          "value": "125.0",
+          "raw": "125.0",
+          "storageType": "n"
+        },
+        "B20": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C20": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D20": {
+          "value": "E1103845",
+          "raw": "50",
+          "storageType": "s"
+        },
+        "E20": {
+          "value": "W1210783",
+          "raw": "51",
+          "storageType": "s"
+        },
+        "F20": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G20": {
+          "value": "1 1/2\"",
+          "raw": "52",
+          "storageType": "s"
+        },
+        "H20": {
+          "value": "Behind 131",
+          "raw": "53",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 21,
+      "range": "A21:H21",
+      "values": {
+        "A": "127.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103846",
+        "E": "W1273864",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 131"
+      },
+      "rawCells": {
+        "A21": {
+          "value": "127.0",
+          "raw": "127.0",
+          "storageType": "n"
+        },
+        "B21": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C21": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D21": {
+          "value": "E1103846",
+          "raw": "54",
+          "storageType": "s"
+        },
+        "E21": {
+          "value": "W1273864",
+          "raw": "55",
+          "storageType": "s"
+        },
+        "F21": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G21": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H21": {
+          "value": "Behind 131",
+          "raw": "53",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 22,
+      "range": "A22:H22",
+      "values": {
+        "A": "129.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103847",
+        "E": "W1243719",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Behind 131"
+      },
+      "rawCells": {
+        "A22": {
+          "value": "129.0",
+          "raw": "129.0",
+          "storageType": "n"
+        },
+        "B22": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C22": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D22": {
+          "value": "E1103847",
+          "raw": "56",
+          "storageType": "s"
+        },
+        "E22": {
+          "value": "W1243719",
+          "raw": "57",
+          "storageType": "s"
+        },
+        "F22": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G22": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H22": {
+          "value": "Behind 131",
+          "raw": "53",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 23,
+      "range": "A23:H23",
+      "values": {
+        "A": "131.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103764",
+        "E": "W1204099",
+        "F": null,
+        "G": "3/4'",
+        "H": "Behind 131"
+      },
+      "rawCells": {
+        "A23": {
+          "value": "131.0",
+          "raw": "131.0",
+          "storageType": "n"
+        },
+        "B23": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C23": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D23": {
+          "value": "E1103764",
+          "raw": "58",
+          "storageType": "s"
+        },
+        "E23": {
+          "value": "W1204099",
+          "raw": "59",
+          "storageType": "s"
+        },
+        "F23": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G23": {
+          "value": "3/4'",
+          "raw": "60",
+          "storageType": "s"
+        },
+        "H23": {
+          "value": "Behind 131",
+          "raw": "53",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 24,
+      "range": "A24:H24",
+      "values": {
+        "A": "135.0",
+        "B": "Arnould Blvd",
+        "C": "#A",
+        "D": "E1246693",
+        "E": "W1263981",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Back Right of 149"
+      },
+      "rawCells": {
+        "A24": {
+          "value": "135.0",
+          "raw": "135.0",
+          "storageType": "n"
+        },
+        "B24": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C24": {
+          "value": "#A",
+          "raw": "61",
+          "storageType": "s"
+        },
+        "D24": {
+          "value": "E1246693",
+          "raw": "62",
+          "storageType": "s"
+        },
+        "E24": {
+          "value": "W1263981",
+          "raw": "63",
+          "storageType": "s"
+        },
+        "F24": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G24": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H24": {
+          "value": "Back Right of 149",
+          "raw": "64",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 25,
+      "range": "A25:H25",
+      "values": {
+        "A": "135.0",
+        "B": "Arnould Blvd",
+        "C": "#B",
+        "D": "E1246694",
+        "E": "W1217175",
+        "F": null,
+        "G": "1 inch",
+        "H": "Back Right of 149"
+      },
+      "rawCells": {
+        "A25": {
+          "value": "135.0",
+          "raw": "135.0",
+          "storageType": "n"
+        },
+        "B25": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C25": {
+          "value": "#B",
+          "raw": "65",
+          "storageType": "s"
+        },
+        "D25": {
+          "value": "E1246694",
+          "raw": "66",
+          "storageType": "s"
+        },
+        "E25": {
+          "value": "W1217175",
+          "raw": "67",
+          "storageType": "s"
+        },
+        "F25": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G25": {
+          "value": "1 inch",
+          "raw": "16",
+          "storageType": "s"
+        },
+        "H25": {
+          "value": "Back Right of 149",
+          "raw": "64",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 26,
+      "range": "A26:H26",
+      "values": {
+        "A": "137.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1246695",
+        "E": "W1252591",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Right of 149"
+      },
+      "rawCells": {
+        "A26": {
+          "value": "137.0",
+          "raw": "137.0",
+          "storageType": "n"
+        },
+        "B26": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C26": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D26": {
+          "value": "E1246695",
+          "raw": "68",
+          "storageType": "s"
+        },
+        "E26": {
+          "value": "W1252591",
+          "raw": "69",
+          "storageType": "s"
+        },
+        "F26": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G26": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H26": {
+          "value": "Right of 149",
+          "raw": "70",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 27,
+      "range": "A27:H27",
+      "values": {
+        "A": "137.0",
+        "B": "Arnould Blvd",
+        "C": "House",
+        "D": "E1268329",
+        "E": null,
+        "F": null,
+        "G": null,
+        "H": null
+      },
+      "rawCells": {
+        "A27": {
+          "value": "137.0",
+          "raw": "137.0",
+          "storageType": "n"
+        },
+        "B27": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C27": {
+          "value": "House",
+          "raw": "12",
+          "storageType": "s"
+        },
+        "D27": {
+          "value": "E1268329",
+          "raw": "71",
+          "storageType": "s"
+        },
+        "E27": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "F27": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G27": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "H27": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 28,
+      "range": "A28:H28",
+      "values": {
+        "A": "139.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1246658",
+        "E": "W1264168",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Right of 149"
+      },
+      "rawCells": {
+        "A28": {
+          "value": "139.0",
+          "raw": "139.0",
+          "storageType": "n"
+        },
+        "B28": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C28": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D28": {
+          "value": "E1246658",
+          "raw": "72",
+          "storageType": "s"
+        },
+        "E28": {
+          "value": "W1264168",
+          "raw": "73",
+          "storageType": "s"
+        },
+        "F28": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G28": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H28": {
+          "value": "Right of 149",
+          "raw": "70",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 29,
+      "range": "A29:H29",
+      "values": {
+        "A": "141.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1246659",
+        "E": "W1260034",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Right of 149"
+      },
+      "rawCells": {
+        "A29": {
+          "value": "141.0",
+          "raw": "141.0",
+          "storageType": "n"
+        },
+        "B29": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C29": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D29": {
+          "value": "E1246659",
+          "raw": "74",
+          "storageType": "s"
+        },
+        "E29": {
+          "value": "W1260034",
+          "raw": "75",
+          "storageType": "s"
+        },
+        "F29": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G29": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H29": {
+          "value": "Right of 149",
+          "raw": "70",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 30,
+      "range": "A30:H30",
+      "values": {
+        "A": "143.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1246657",
+        "E": "W1203617",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Right of 149"
+      },
+      "rawCells": {
+        "A30": {
+          "value": "143.0",
+          "raw": "143.0",
+          "storageType": "n"
+        },
+        "B30": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C30": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D30": {
+          "value": "E1246657",
+          "raw": "76",
+          "storageType": "s"
+        },
+        "E30": {
+          "value": "W1203617",
+          "raw": "77",
+          "storageType": "s"
+        },
+        "F30": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G30": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H30": {
+          "value": "Right of 149",
+          "raw": "70",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 31,
+      "range": "A31:H31",
+      "values": {
+        "A": "145.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1103762",
+        "E": "W1267364",
+        "F": null,
+        "G": "3/4\"",
+        "H": "Right of 149"
+      },
+      "rawCells": {
+        "A31": {
+          "value": "145.0",
+          "raw": "145.0",
+          "storageType": "n"
+        },
+        "B31": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C31": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D31": {
+          "value": "E1103762",
+          "raw": "78",
+          "storageType": "s"
+        },
+        "E31": {
+          "value": "W1267364",
+          "raw": "79",
+          "storageType": "s"
+        },
+        "F31": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G31": {
+          "value": "3/4\"",
+          "raw": "10",
+          "storageType": "s"
+        },
+        "H31": {
+          "value": "Right of 149",
+          "raw": "70",
+          "storageType": "s"
+        }
+      }
+    },
+    {
+      "sheet": "Sheet1",
+      "row": 32,
+      "range": "A32:H32",
+      "values": {
+        "A": "149.0",
+        "B": "Arnould Blvd",
+        "C": null,
+        "D": "E1214707",
+        "E": "W1217545",
+        "F": null,
+        "G": "1 inch",
+        "H": "Right of 149"
+      },
+      "rawCells": {
+        "A32": {
+          "value": "149.0",
+          "raw": "149.0",
+          "storageType": "n"
+        },
+        "B32": {
+          "value": "Arnould Blvd",
+          "raw": "7",
+          "storageType": "s"
+        },
+        "C32": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "D32": {
+          "value": "E1214707",
+          "raw": "80",
+          "storageType": "s"
+        },
+        "E32": {
+          "value": "W1217545",
+          "raw": "81",
+          "storageType": "s"
+        },
+        "F32": {
+          "value": null,
+          "raw": null,
+          "storageType": "n"
+        },
+        "G32": {
+          "value": "1 inch",
+          "raw": "16",
+          "storageType": "s"
+        },
+        "H32": {
+          "value": "Right of 149",
+          "raw": "70",
+          "storageType": "s"
+        }
+      }
+    }
+  ],
+  "items": [
+    {
+      "sourceKey": "utility-meter:electric:E1103824",
+      "type": "meter",
+      "label": "Electric meter E1103824",
+      "unit": "101",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103824",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103824",
+        "originalUnitLabel": "101",
+        "sourceAddressNumber": "101.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 3,
+            "range": "A3:H3",
+            "meterCell": "D3"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1204084",
+      "type": "meter",
+      "label": "Water meter W1204084",
+      "unit": "101",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1204084",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1204084",
+        "originalUnitLabel": "101",
+        "sourceAddressNumber": "101.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 105",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 3,
+            "range": "A3:H3",
+            "meterCell": "E3"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1242388",
+      "type": "meter",
+      "label": "Electric meter E1242388",
+      "unit": null,
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1242388",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1242388",
+        "originalUnitLabel": "101 House",
+        "sourceAddressNumber": "101.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "House",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": "House",
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 4,
+            "range": "A4:H4",
+            "meterCell": "D4"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1217102",
+      "type": "meter",
+      "label": "Water meter W1217102",
+      "unit": null,
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1217102",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1217102",
+        "originalUnitLabel": "101 House",
+        "sourceAddressNumber": "101.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "House",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": "House",
+        "purposeRaw": "Sprinkler",
+        "reportedMeterSizeRaw": "1 inch",
+        "approximateLocationRaw": "Grass near Blvd",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 4,
+            "range": "A4:H4",
+            "meterCell": "E4"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1200836",
+      "type": "meter",
+      "label": "Water meter W1200836",
+      "unit": "103",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1200836",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1200836",
+        "originalUnitLabel": "103",
+        "sourceAddressNumber": "103.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 105",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 5,
+            "range": "A5:H5",
+            "meterCell": "E5"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103827",
+      "type": "meter",
+      "label": "Electric meter E1103827",
+      "unit": "105",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103827",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103827",
+        "originalUnitLabel": "105 #2",
+        "sourceAddressNumber": "105.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "#2",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 6,
+            "range": "A6:H6",
+            "meterCell": "D6"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1222193",
+      "type": "meter",
+      "label": "Water meter W1222193",
+      "unit": "105",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1222193",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1222193",
+        "originalUnitLabel": "105 #2",
+        "sourceAddressNumber": "105.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "#2",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 107",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 6,
+            "range": "A6:H6",
+            "meterCell": "E6"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103814",
+      "type": "meter",
+      "label": "Electric meter E1103814",
+      "unit": "107",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103814",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103814",
+        "originalUnitLabel": "107",
+        "sourceAddressNumber": "107.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 7,
+            "range": "A7:H7",
+            "meterCell": "D7"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1248504",
+      "type": "meter",
+      "label": "Water meter W1248504",
+      "unit": "107",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1248504",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1248504",
+        "originalUnitLabel": "107",
+        "sourceAddressNumber": "107.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 109",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 7,
+            "range": "A7:H7",
+            "meterCell": "E7"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103813",
+      "type": "meter",
+      "label": "Electric meter E1103813",
+      "unit": "109",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103813",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103813",
+        "originalUnitLabel": "109",
+        "sourceAddressNumber": "109.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 8,
+            "range": "A8:H8",
+            "meterCell": "D8"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1206964",
+      "type": "meter",
+      "label": "Water meter W1206964",
+      "unit": "109",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1206964",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1206964",
+        "originalUnitLabel": "109",
+        "sourceAddressNumber": "109.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 109",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 8,
+            "range": "A8:H8",
+            "meterCell": "E8"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103812",
+      "type": "meter",
+      "label": "Electric meter E1103812",
+      "unit": "111",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103812",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103812",
+        "originalUnitLabel": "111",
+        "sourceAddressNumber": "111.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 9,
+            "range": "A9:H9",
+            "meterCell": "D9"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1203728",
+      "type": "meter",
+      "label": "Water meter W1203728",
+      "unit": "111",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1203728",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1203728",
+        "originalUnitLabel": "111",
+        "sourceAddressNumber": "111.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 109",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 9,
+            "range": "A9:H9",
+            "meterCell": "E9"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1214708",
+      "type": "meter",
+      "label": "Electric meter E1214708",
+      "unit": "113",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1214708",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1214708",
+        "originalUnitLabel": "113",
+        "sourceAddressNumber": "113.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 10,
+            "range": "A10:H10",
+            "meterCell": "D10"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1252003",
+      "type": "meter",
+      "label": "Water meter W1252003",
+      "unit": "113",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1252003",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1252003",
+        "originalUnitLabel": "113",
+        "sourceAddressNumber": "113.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 109",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 10,
+            "range": "A10:H10",
+            "meterCell": "E10"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1202593",
+      "type": "meter",
+      "label": "Water meter W1202593",
+      "unit": "113",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1202593",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1202593",
+        "originalUnitLabel": "113",
+        "sourceAddressNumber": "113.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "1 inch",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 11,
+            "range": "A11:H11",
+            "meterCell": "E11"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103815",
+      "type": "meter",
+      "label": "Electric meter E1103815",
+      "unit": "115",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103815",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103815",
+        "originalUnitLabel": "115",
+        "sourceAddressNumber": "115.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 12,
+            "range": "A12:H12",
+            "meterCell": "D12"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1276245",
+      "type": "meter",
+      "label": "Water meter W1276245",
+      "unit": "115",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1276245",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1276245",
+        "originalUnitLabel": "115",
+        "sourceAddressNumber": "115.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 12,
+            "range": "A12:H12",
+            "meterCell": "E12"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103848",
+      "type": "meter",
+      "label": "Electric meter E1103848",
+      "unit": "117",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103848",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103848",
+        "originalUnitLabel": "117",
+        "sourceAddressNumber": "117.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 13,
+            "range": "A13:H13",
+            "meterCell": "D13"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1277282",
+      "type": "meter",
+      "label": "Water meter W1277282",
+      "unit": "117",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1277282",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1277282",
+        "originalUnitLabel": "117",
+        "sourceAddressNumber": "117.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "1 inch",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 13,
+            "range": "A13:H13",
+            "meterCell": "E13"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103851",
+      "type": "meter",
+      "label": "Electric meter E1103851",
+      "unit": "117.5",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103851",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103851",
+        "originalUnitLabel": "117.5",
+        "sourceAddressNumber": "117.5",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 14,
+            "range": "A14:H14",
+            "meterCell": "D14"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1214160",
+      "type": "meter",
+      "label": "Water meter W1214160",
+      "unit": "117.5",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1214160",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1214160",
+        "originalUnitLabel": "117.5",
+        "sourceAddressNumber": "117.5",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 14,
+            "range": "A14:H14",
+            "meterCell": "E14"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103850",
+      "type": "meter",
+      "label": "Electric meter E1103850",
+      "unit": "119",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103850",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103850",
+        "originalUnitLabel": "119",
+        "sourceAddressNumber": "119.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 15,
+            "range": "A15:H15",
+            "meterCell": "D15"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1219561",
+      "type": "meter",
+      "label": "Water meter W1219561",
+      "unit": "119",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1219561",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1219561",
+        "originalUnitLabel": "119",
+        "sourceAddressNumber": "119.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 15,
+            "range": "A15:H15",
+            "meterCell": "E15"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103849",
+      "type": "meter",
+      "label": "Electric meter E1103849",
+      "unit": "119.5",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103849",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103849",
+        "originalUnitLabel": "119.5",
+        "sourceAddressNumber": "119.5",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 16,
+            "range": "A16:H16",
+            "meterCell": "D16"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1248531",
+      "type": "meter",
+      "label": "Water meter W1248531",
+      "unit": "119.5",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1248531",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1248531",
+        "originalUnitLabel": "119.5",
+        "sourceAddressNumber": "119.5",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 16,
+            "range": "A16:H16",
+            "meterCell": "E16"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103844",
+      "type": "meter",
+      "label": "Electric meter E1103844",
+      "unit": "121",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103844",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103844",
+        "originalUnitLabel": "121",
+        "sourceAddressNumber": "121.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 17,
+            "range": "A17:H17",
+            "meterCell": "D17"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1261861",
+      "type": "meter",
+      "label": "Water meter W1261861",
+      "unit": "121",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1261861",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1261861",
+        "originalUnitLabel": "121",
+        "sourceAddressNumber": "121.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 119",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 17,
+            "range": "A17:H17",
+            "meterCell": "E17"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1220613",
+      "type": "meter",
+      "label": "Electric meter E1220613",
+      "unit": "123",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1220613",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1220613",
+        "originalUnitLabel": "123",
+        "sourceAddressNumber": "123.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 18,
+            "range": "A18:H18",
+            "meterCell": "D18"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1276858",
+      "type": "meter",
+      "label": "Water meter W1276858",
+      "unit": "123",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1276858",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1276858",
+        "originalUnitLabel": "123",
+        "sourceAddressNumber": "123.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "?",
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 18,
+            "range": "A18:H18",
+            "meterCell": "E18"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103767",
+      "type": "meter",
+      "label": "Electric meter E1103767",
+      "unit": null,
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103767",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103767",
+        "originalUnitLabel": "125 House",
+        "sourceAddressNumber": "125.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "House",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": "House",
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 19,
+            "range": "A19:H19",
+            "meterCell": "D19"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103845",
+      "type": "meter",
+      "label": "Electric meter E1103845",
+      "unit": "125",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103845",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103845",
+        "originalUnitLabel": "125",
+        "sourceAddressNumber": "125.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 20,
+            "range": "A20:H20",
+            "meterCell": "D20"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1210783",
+      "type": "meter",
+      "label": "Water meter W1210783",
+      "unit": "125",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1210783",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1210783",
+        "originalUnitLabel": "125",
+        "sourceAddressNumber": "125.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "1 1/2\"",
+        "approximateLocationRaw": "Behind 131",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 20,
+            "range": "A20:H20",
+            "meterCell": "E20"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103846",
+      "type": "meter",
+      "label": "Electric meter E1103846",
+      "unit": "127",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103846",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103846",
+        "originalUnitLabel": "127",
+        "sourceAddressNumber": "127.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 21,
+            "range": "A21:H21",
+            "meterCell": "D21"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1273864",
+      "type": "meter",
+      "label": "Water meter W1273864",
+      "unit": "127",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1273864",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1273864",
+        "originalUnitLabel": "127",
+        "sourceAddressNumber": "127.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 131",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 21,
+            "range": "A21:H21",
+            "meterCell": "E21"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103847",
+      "type": "meter",
+      "label": "Electric meter E1103847",
+      "unit": "129",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103847",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103847",
+        "originalUnitLabel": "129",
+        "sourceAddressNumber": "129.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 22,
+            "range": "A22:H22",
+            "meterCell": "D22"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1243719",
+      "type": "meter",
+      "label": "Water meter W1243719",
+      "unit": "129",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1243719",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1243719",
+        "originalUnitLabel": "129",
+        "sourceAddressNumber": "129.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Behind 131",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 22,
+            "range": "A22:H22",
+            "meterCell": "E22"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103764",
+      "type": "meter",
+      "label": "Electric meter E1103764",
+      "unit": "131",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103764",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103764",
+        "originalUnitLabel": "131",
+        "sourceAddressNumber": "131.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 23,
+            "range": "A23:H23",
+            "meterCell": "D23"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1204099",
+      "type": "meter",
+      "label": "Water meter W1204099",
+      "unit": "131",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1204099",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1204099",
+        "originalUnitLabel": "131",
+        "sourceAddressNumber": "131.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4'",
+        "approximateLocationRaw": "Behind 131",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 23,
+            "range": "A23:H23",
+            "meterCell": "E23"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1246693",
+      "type": "meter",
+      "label": "Electric meter E1246693",
+      "unit": "135A",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1246693",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1246693",
+        "originalUnitLabel": "135 #A",
+        "sourceAddressNumber": "135.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "#A",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 24,
+            "range": "A24:H24",
+            "meterCell": "D24"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1263981",
+      "type": "meter",
+      "label": "Water meter W1263981",
+      "unit": "135A",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1263981",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1263981",
+        "originalUnitLabel": "135 #A",
+        "sourceAddressNumber": "135.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "#A",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Back Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 24,
+            "range": "A24:H24",
+            "meterCell": "E24"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1246694",
+      "type": "meter",
+      "label": "Electric meter E1246694",
+      "unit": "135B",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1246694",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1246694",
+        "originalUnitLabel": "135 #B",
+        "sourceAddressNumber": "135.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "#B",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 25,
+            "range": "A25:H25",
+            "meterCell": "D25"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1217175",
+      "type": "meter",
+      "label": "Water meter W1217175",
+      "unit": "135B",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1217175",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1217175",
+        "originalUnitLabel": "135 #B",
+        "sourceAddressNumber": "135.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "#B",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "1 inch",
+        "approximateLocationRaw": "Back Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 25,
+            "range": "A25:H25",
+            "meterCell": "E25"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1246695",
+      "type": "meter",
+      "label": "Electric meter E1246695",
+      "unit": "137",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1246695",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1246695",
+        "originalUnitLabel": "137",
+        "sourceAddressNumber": "137.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 26,
+            "range": "A26:H26",
+            "meterCell": "D26"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1252591",
+      "type": "meter",
+      "label": "Water meter W1252591",
+      "unit": "137",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1252591",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1252591",
+        "originalUnitLabel": "137",
+        "sourceAddressNumber": "137.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 26,
+            "range": "A26:H26",
+            "meterCell": "E26"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1268329",
+      "type": "meter",
+      "label": "Electric meter E1268329",
+      "unit": null,
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1268329",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1268329",
+        "originalUnitLabel": "137 House",
+        "sourceAddressNumber": "137.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": "House",
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": "House",
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 27,
+            "range": "A27:H27",
+            "meterCell": "D27"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1246658",
+      "type": "meter",
+      "label": "Electric meter E1246658",
+      "unit": "139",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1246658",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1246658",
+        "originalUnitLabel": "139",
+        "sourceAddressNumber": "139.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 28,
+            "range": "A28:H28",
+            "meterCell": "D28"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1264168",
+      "type": "meter",
+      "label": "Water meter W1264168",
+      "unit": "139",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1264168",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1264168",
+        "originalUnitLabel": "139",
+        "sourceAddressNumber": "139.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 28,
+            "range": "A28:H28",
+            "meterCell": "E28"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1246659",
+      "type": "meter",
+      "label": "Electric meter E1246659",
+      "unit": "141",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1246659",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1246659",
+        "originalUnitLabel": "141",
+        "sourceAddressNumber": "141.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 29,
+            "range": "A29:H29",
+            "meterCell": "D29"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1260034",
+      "type": "meter",
+      "label": "Water meter W1260034",
+      "unit": "141",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1260034",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1260034",
+        "originalUnitLabel": "141",
+        "sourceAddressNumber": "141.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 29,
+            "range": "A29:H29",
+            "meterCell": "E29"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1246657",
+      "type": "meter",
+      "label": "Electric meter E1246657",
+      "unit": "143",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1246657",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1246657",
+        "originalUnitLabel": "143",
+        "sourceAddressNumber": "143.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 30,
+            "range": "A30:H30",
+            "meterCell": "D30"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1203617",
+      "type": "meter",
+      "label": "Water meter W1203617",
+      "unit": "143",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1203617",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1203617",
+        "originalUnitLabel": "143",
+        "sourceAddressNumber": "143.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 30,
+            "range": "A30:H30",
+            "meterCell": "E30"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1103762",
+      "type": "meter",
+      "label": "Electric meter E1103762",
+      "unit": "145",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1103762",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1103762",
+        "originalUnitLabel": "145",
+        "sourceAddressNumber": "145.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 31,
+            "range": "A31:H31",
+            "meterCell": "D31"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1267364",
+      "type": "meter",
+      "label": "Water meter W1267364",
+      "unit": "145",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1267364",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1267364",
+        "originalUnitLabel": "145",
+        "sourceAddressNumber": "145.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "3/4\"",
+        "approximateLocationRaw": "Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 31,
+            "range": "A31:H31",
+            "meterCell": "E31"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:electric:E1214707",
+      "type": "meter",
+      "label": "Electric meter E1214707",
+      "unit": "149",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "E1214707",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "electric",
+        "meterIdRaw": "E1214707",
+        "originalUnitLabel": "149",
+        "sourceAddressNumber": "149.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": null,
+        "approximateLocationRaw": null,
+        "locationStatus": "unknown",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 32,
+            "range": "A32:H32",
+            "meterCell": "D32"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "utility-meter:water:W1217545",
+      "type": "meter",
+      "label": "Water meter W1217545",
+      "unit": "149",
+      "modelId": "water-meter-reference-workbook",
+      "modelVersion": "source-workbook-v1",
+      "objectId": "W1217545",
+      "metadata": {
+        "assetKind": "utility_meter",
+        "utility": "water",
+        "meterIdRaw": "W1217545",
+        "originalUnitLabel": "149",
+        "sourceAddressNumber": "149.0",
+        "sourceStreet": "Arnould Blvd",
+        "addressQualifierRaw": null,
+        "associationBasis": "Explicit workbook row; present service connections not field verified",
+        "serviceAreaRaw": null,
+        "purposeRaw": null,
+        "reportedMeterSizeRaw": "1 inch",
+        "approximateLocationRaw": "Right of 149",
+        "locationStatus": "source-description-only",
+        "sourceImage": null,
+        "sourceRefs": [
+          {
+            "file": "Water Meter Number Reference.xlsx",
+            "sheet": "Sheet1",
+            "row": 32,
+            "range": "A32:H32",
+            "meterCell": "E32"
+          }
+        ],
+        "physicalVerification": "not-verified",
+        "currentCondition": "unknown"
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:101",
+      "type": "other",
+      "label": "Time clock reference · Unit 101",
+      "unit": "101",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "101",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "101"
+        ],
+        "originalUnitLabel": "101",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-101.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-101.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/101 Time Clock.HEIC",
+            "sha256": "88bf296063658111a56f906b0ece0c7c68679f53c2b9cf7561214542e3a45243"
+          }
+        ],
+        "photoObservations": [
+          {
+            "file": "Unit Time Clocks/101 Time Clock.HEIC",
+            "visibleDeviceCount": 1,
+            "unitStickerText": "101",
+            "manufacturerText": "INTERMATIC",
+            "modelText": "T101",
+            "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+          }
+        ],
+        "captureDatesRaw": [
+          "2021:11:17 11:49:25"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:103",
+      "type": "other",
+      "label": "Time clock reference · Unit 103",
+      "unit": "103",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "103",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "103"
+        ],
+        "originalUnitLabel": "103",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-103.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-103.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/103 Time Clock.HEIC",
+            "sha256": "efaa35807ec207223771977d018a583de6e9077b9becdd4de94ed2e998efbb51"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 10:21:10"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:105",
+      "type": "other",
+      "label": "Time clock reference · Unit 105",
+      "unit": "105",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "105",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "105"
+        ],
+        "originalUnitLabel": "105",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-105.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-105.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/105 Time Clock.HEIC",
+            "sha256": "de613abae29fc9e67072a9eb4ef266b7a8ef9dd5b338fa857292f0fdc964f146"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 13:04:56"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:107",
+      "type": "other",
+      "label": "Time clock reference · Unit 107",
+      "unit": "107",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "107",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "107"
+        ],
+        "originalUnitLabel": "107",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-107.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-107.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/107 Time Clock.HEIC",
+            "sha256": "12151e83775f2284c27155f2536725abde820a88a26b9fe3b5c6b3a30daac11e"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 10:24:39"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:109",
+      "type": "other",
+      "label": "Time clock reference · Unit 109",
+      "unit": "109",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "109",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "109"
+        ],
+        "originalUnitLabel": "109",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-109.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-109.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/109 Time Clock.HEIC",
+            "sha256": "5120cdaf3019d9a2b47b00da0a1aff3bcf434c605af14683b6d8e991d1010c6a"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 10:54:52"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:113",
+      "type": "other",
+      "label": "Time clock reference · Unit 113",
+      "unit": "113",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "113",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "113"
+        ],
+        "originalUnitLabel": "113",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-113.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-113.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/113 Time Clock.HEIC",
+            "sha256": "171f9425ce05e8ca0d19a4562a696227c060f104ec780630825045d91c39070e"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:02:14"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:115",
+      "type": "other",
+      "label": "Time clock reference · Unit 115",
+      "unit": "115",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "115",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "115"
+        ],
+        "originalUnitLabel": "115",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-115.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-115.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/115 Time Clock.HEIC",
+            "sha256": "891c127afc4fd599b4819b7afeb336f9739015aa1e1f122cec5e6f3a3135612e"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 10:44:15"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:117",
+      "type": "other",
+      "label": "Time clock reference · Unit 117",
+      "unit": "117",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "117",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "117"
+        ],
+        "originalUnitLabel": "117",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-117.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-117.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/117 Time Clock.HEIC",
+            "sha256": "9ec47cd354126d59d2fa6496206dbfeef90d535d4b56afed238c646e3d3c5431"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:05:52"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:117.5",
+      "type": "other",
+      "label": "Time clock reference · Unit 117.5",
+      "unit": "117.5",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "117.5",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "117.5"
+        ],
+        "originalUnitLabel": "117.5",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-117-5.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-117-5.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/117.5 Time Clock.HEIC",
+            "sha256": "3341c79713470ca9e70a87ff8c81d5a5062556f2eced77a6f6ce70d58f1dcfa6"
+          }
+        ],
+        "photoObservations": [
+          {
+            "file": "Unit Time Clocks/117.5 Time Clock.HEIC",
+            "visibleDeviceCount": 1,
+            "unitStickerText": "117.5",
+            "manufacturerText": "INTERMATIC",
+            "modelText": null,
+            "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+          }
+        ],
+        "captureDatesRaw": [
+          "2021:11:17 11:08:18"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:119",
+      "type": "other",
+      "label": "Time clock reference · Unit 119",
+      "unit": "119",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "119",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "119"
+        ],
+        "originalUnitLabel": "119",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-119.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-119.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/119 Time Clock.HEIC",
+            "sha256": "3039bdde1cb2347a2f02ba69462a700378a87af57f41ba1a234f07fe963b8aee"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:55:10"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:119.5",
+      "type": "other",
+      "label": "Time clock reference · Unit 119.5",
+      "unit": "119.5",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "119.5",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "119.5"
+        ],
+        "originalUnitLabel": "119.5",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-119-5-2.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-119-5-2.jpg",
+          "infrastructure/time-clock-119-5.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/119.5 Time Clock 2.HEIC",
+            "sha256": "1c9757face866e49c020b047ca43f6e40342821711a1441eeb41037a60b855b4"
+          },
+          {
+            "file": "Unit Time Clocks/119.5 Time Clock.HEIC",
+            "sha256": "3714d0056fd5eb5f118d0ba06db19f0665cb7185978da2a0b6e5a9554c668207"
+          }
+        ],
+        "photoObservations": [
+          {
+            "file": "Unit Time Clocks/119.5 Time Clock 2.HEIC",
+            "visibleDeviceCount": 1,
+            "unitStickerText": null,
+            "manufacturerText": "TORK",
+            "modelText": "1101",
+            "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+          },
+          {
+            "file": "Unit Time Clocks/119.5 Time Clock.HEIC",
+            "visibleDeviceCount": 1,
+            "unitStickerText": "119.5",
+            "manufacturerText": "INTERMATIC",
+            "modelText": "T103",
+            "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+          }
+        ],
+        "captureDatesRaw": [
+          "2021:11:27 13:16:01",
+          "2021:11:27 13:15:55"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 2,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "Multiple photos do not establish multiple clocks."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:121",
+      "type": "other",
+      "label": "Time clock reference · Unit 121",
+      "unit": "121",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "121",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "121"
+        ],
+        "originalUnitLabel": "121",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-121.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-121.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/121 Time Clock.HEIC",
+            "sha256": "cc6653cb38d20fd7642ad768ff5ac935ae62a2c37ef87a1de8edaba12e64b191"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:13:58"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:123",
+      "type": "other",
+      "label": "Time clock reference · Unit 123",
+      "unit": "123",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "123",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "123"
+        ],
+        "originalUnitLabel": "123",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-123.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-123.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/123 Time Clock.HEIC",
+            "sha256": "0a8cb832d1cf5ab09ba3fb0436230b13624cafdc1742e982b6a6e909a49a9e6c"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:11:23"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:125",
+      "type": "other",
+      "label": "Time clock reference · Unit 125",
+      "unit": "125",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "125",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "125"
+        ],
+        "originalUnitLabel": "125",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-125.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-125.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/125 Time Clock.HEIC",
+            "sha256": "10dbfc74b2074b25fe874e36dabf880a521a4afc8fe59745135e055547485fbf"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:24:39"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:127",
+      "type": "other",
+      "label": "Time clock reference · Unit 127",
+      "unit": "127",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "127",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "127"
+        ],
+        "originalUnitLabel": "127",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-127.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-127.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/127 Time Clock.HEIC",
+            "sha256": "87c2e49dd7c86503004df99af27f6690699a178a0ec70cc2d71803dab4f71002"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:26:28"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:129",
+      "type": "other",
+      "label": "Time clock reference · Unit 129",
+      "unit": "129",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "129",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "129"
+        ],
+        "originalUnitLabel": "129",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-129.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-129.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/129 Time Clock.HEIC",
+            "sha256": "ac1cad1e89c31e1fd3bed5d309ea9674e78f9aeea642076bea2bb6e603f16701"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 11:29:58"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:131+133",
+      "type": "other",
+      "label": "Time clock reference · Units 131/133",
+      "unit": null,
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "131 133",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "131",
+          "133"
+        ],
+        "originalUnitLabel": "131 133",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-131-133.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-131-133.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/131 133 Time Clock.HEIC",
+            "sha256": "feab085db66e8a43d962e1d2ed911a51983a986e98a258f292c51d9101f44944"
+          }
+        ],
+        "photoObservations": [
+          {
+            "file": "Unit Time Clocks/131 133 Time Clock.HEIC",
+            "visibleDeviceCount": 2,
+            "unitStickerText": "131/133 (left box)",
+            "manufacturerText": "INTERMATIC (left box label)",
+            "modelText": null,
+            "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+          }
+        ],
+        "captureDatesRaw": [
+          "2021:11:17 11:32:06"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:135A",
+      "type": "other",
+      "label": "Time clock reference · Unit 135A",
+      "unit": "135A",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "135A",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "135A"
+        ],
+        "originalUnitLabel": "135A",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-135a.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-135a.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/135A Time Clock.HEIC",
+            "sha256": "e7c28ed83c2ae2d8107f1fb6b211a9a4facc1bf791df6fd64fd1077b854e55e7"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:17 13:09:11"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:137",
+      "type": "other",
+      "label": "Time clock reference · Unit 137",
+      "unit": "137",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "137",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "137"
+        ],
+        "originalUnitLabel": "137",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-137.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-137.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/137 Time Clock.HEIC",
+            "sha256": "f601b62f4d624d26fd21aa76ae73e8cf6e952ce28eb00d1d866fa7adb8d4c3af"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:16 14:32:04"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:141",
+      "type": "other",
+      "label": "Time clock reference · Unit 141",
+      "unit": "141",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "141",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "141"
+        ],
+        "originalUnitLabel": "141",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-141.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-141.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/141 Time Clock.HEIC",
+            "sha256": "4718fee3f1b52acc552133c8db736e18a2cbb14ff02b62274b2bc8bc732acd72"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:16 14:26:00"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:143",
+      "type": "other",
+      "label": "Time clock reference · Unit 143",
+      "unit": "143",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "143",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "143"
+        ],
+        "originalUnitLabel": "143",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-143.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-143.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/143 Time Clock.HEIC",
+            "sha256": "3fa6904139db0d3048d11f64536b3da9a9a4d3388def13d18731bb18ff2d4158"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:16 14:30:32"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:145",
+      "type": "other",
+      "label": "Time clock reference · Unit 145",
+      "unit": "145",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "145",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "145"
+        ],
+        "originalUnitLabel": "145",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-145.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-145.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/145.HEIC",
+            "sha256": "65b81eab148fee09fa34a843af15f93809900b97415de4c3d4c75370b0610c4a"
+          }
+        ],
+        "photoObservations": [
+          {
+            "file": "Unit Time Clocks/145.HEIC",
+            "visibleDeviceCount": 1,
+            "unitStickerText": "145",
+            "manufacturerText": "INTERMATIC",
+            "modelText": "T103",
+            "basis": "Visual reading of converted source photo; no current operation, circuitry or schedule inferred"
+          }
+        ],
+        "captureDatesRaw": [
+          "2021:11:16 14:37:00"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    },
+    {
+      "sourceKey": "time-clock-reference:149",
+      "type": "other",
+      "label": "Time clock reference · Unit 149",
+      "unit": "149",
+      "modelId": "unit-time-clock-photo-folder",
+      "modelVersion": "source-photos-v1",
+      "objectId": "149",
+      "metadata": {
+        "assetKind": "time_clock",
+        "servedUnits": [
+          "149"
+        ],
+        "originalUnitLabel": "149",
+        "associationBasis": "Source folder and filenames only; served circuits and present operation unverified",
+        "sourceImage": "infrastructure/time-clock-149.jpg",
+        "sourceImages": [
+          "infrastructure/time-clock-149.jpg"
+        ],
+        "sourceRefs": [
+          {
+            "file": "Unit Time Clocks/149 Time Clock.HEIC",
+            "sha256": "bb3bfb7629e6bb7392053489a3e26e63e91b3f4a2d4495a6d1fb97014576079f"
+          }
+        ],
+        "photoObservations": [],
+        "captureDatesRaw": [
+          "2021:11:16 14:39:10"
+        ],
+        "physicalClockCount": null,
+        "photoCount": 1,
+        "circuit": null,
+        "schedule": null,
+        "currentCondition": "unknown",
+        "locationStatus": "unlocated",
+        "physicalVerification": "not-verified",
+        "notes": "No circuit, schedule or location has been inferred from the filename."
+      }
+    }
+  ],
+  "mapAnnotations": [
+    {
+      "id": "water-map:city-meter:01",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "8",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 263.5,
+        "y": 193.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:city-meter:02",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 479.5,
+        "y": 1068.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:city-meter:03",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "8",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1136.0,
+        "y": 1068.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:city-meter:04",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1585.5,
+        "y": 1073.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:city-meter:05",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1715.5,
+        "y": 1081.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:city-meter:06",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1811.5,
+        "y": 1065.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:01",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 208.5,
+        "y": 702.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:02",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 236.0,
+        "y": 925.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:03",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 460.5,
+        "y": 1041.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:04",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 864.5,
+        "y": 1041.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:05",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "10",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1136.0,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:06",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1347.0,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:07",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1432.5,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:08",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1508.5,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:09",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1585.5,
+        "y": 1041.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:10",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1656.5,
+        "y": 1033.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:11",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1715.5,
+        "y": 1049.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:12",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "3",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1787.5,
+        "y": 1043.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    },
+    {
+      "id": "water-map:tenant-shutoff:13",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 2047.0,
+        "y": 1060.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "2D source image only; no 3D or geographic transform"
+    }
+  ],
+  "ambiguities": [
+    {
+      "id": "source-113-two-water-meters",
+      "detail": "113 appears with W1252003 at E10 and W1202593 at E11, with different approximate locations. Both identifiers are retained; no meter is merged."
+    },
+    {
+      "id": "source-123-location",
+      "detail": "W1276858 (E18) has approximate location '?' (H18); it remains unknown."
+    },
+    {
+      "id": "source-house-services",
+      "detail": "House rows 4,19,27 are common-area/source-service associations, not tenant assignments. Row4 water purpose is explicitly Sprinkler."
+    },
+    {
+      "id": "source-117-5",
+      "detail": "117.5 appears in workbook row14 and a time-clock filename. Preserve this source label even if absent from the active suite roster; do not alias to117 or119.5."
+    },
+    {
+      "id": "source-105-qualifier",
+      "detail": "105 row6 qualifier '#2' is preserved; its meaning is not supplied and has not been turned into a separate suite."
+    },
+    {
+      "id": "source-131-size",
+      "detail": "G23 literally contains 3/4' rather than 3/4\". The punctuation is preserved, not silently corrected."
+    },
+    {
+      "id": "source-131-133-time-clock",
+      "detail": "The single '131 133 Time Clock' photo visibly contains two timer boxes. The left sticker reads131/133. Record servedUnits [131,133] with no individual circuit or unit assignment; present installation count is unverified."
+    },
+    {
+      "id": "source-119-5-time-clock",
+      "detail": "Two119.5 photos are grouped as one source reference. One shows IntermaticT103 with119.5 sticker; the other shows TORK1101 without a visible unit sticker in its frame. They depict different device appearances, but current inventory and served circuits remain unverified."
+    },
+    {
+      "id": "source-clock-history",
+      "detail": "Photo EXIF DateTimeOriginal values are in November2021. These are historical references, not a September2026 condition inspection."
+    },
+    {
+      "id": "source-water-map-numbers",
+      "detail": "The legend defines colors, not numeric labels. Marker numbers are not treated as meter IDs, valve IDs or quantities. No workbook-to-marker membership is asserted."
+    },
+    {
+      "id": "source-gis-history",
+      "detail": "All three GIS screenshots display7/14/2021 in the taskbar; they are historical reference with no inferred pipe survey or 3D registration."
+    }
+  ],
+  "notes": [
+    "Source keys link imported records; the asset register issues separate permanent physical UUIDs.",
+    "No file contains inferred 3D coordinates, operating condition, wiring, valve connectivity or current tenant status.",
+    "The two water maps are byte-identical and are counted once."
+  ]
+}

@@ -27,7 +27,7 @@ The native source coordinates are centimeters. Conversion divides by 100 to prod
 
 **C25 remains ambiguous.** Its repeated square loop shares an edge with a larger narrow walkway feature and is about 1.12 m from C26. It remains a model-derived candidate pending source/photo or field review. Do not describe C25 and C26 as two physically verified supports.
 
-The elevated source surface is interpreted as a canopy from its elevation and matching walkway footprint. Available roof/canopy geometry is limited: the finish treatment does not create a verified roof pitch, fascia profile, storefront framing, sign geometry or missing exterior detail. Source door openings and simple glazing proxies are retained; catalog furnishings, fittings and detailed texture assets are not reconstructed. The unregistered second-floor design and alternative ground-floor design are preserved in the native export but excluded from this GLB.
+The elevated source surface is interpreted as a canopy from its elevation and matching walkway footprint. Available roof/canopy geometry is limited: the finish treatment does not create a verified roof pitch, fascia profile, storefront framing, sign geometry or missing exterior detail. Source door openings and simple glazing proxies are retained; catalog furnishings, fittings and detailed texture assets are not reconstructed. The base `model.glb` remains unchanged. The registered native second-floor design is now additive in `upper-floors.glb`, and `complete-model.glb` combines both. The alternative ground-floor design remains only in the native export.
 
 ### Brochure reference
 
@@ -69,10 +69,28 @@ Hosted mode uses the app's existing `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_
 
 ## Verification state
 
-As of this handoff, the full automated suite has **802 passing tests**. The production build passed with the runner config loader. Focused tests cover permanent identity, revision/evidence history, local storage failures, model bounds and eye positions, measurement rules, asset links, and local maintenance request/event/photo integration.
+As of this handoff, the full automated suite has **819 passing tests**. The production build passed with the runner config loader. Focused tests cover permanent identity, revision/evidence history, local storage failures, model bounds and eye positions, measurement rules, asset links, and local maintenance request/event/photo integration.
 
 **Integrated browser QA passed locally:** C12 selection and eye view beneath the canopy; photo upload/readback after reload; a clearly labeled test inspection and request retained after reload; linked-request navigation into M-1; start/done status history; asset-link QR rendering; surface-based manual placement for equipment/items and new columns; two-point model measurements; saved sectioned view restoration and control synchronization; neutral/reference finishes; tour stop selection synchronized with the record; desktop and 390 × 844 field layout; no browser console errors. Two labeled QA-only assets, a test viewpoint and a completed test request remain in the review browser, with no asserted property damage and no production write. The hosted migration/RLS runtime checks have not been performed.
 
-Editable geometry is available from Views & finishes → Download editable 3D model (.glb), and at public/twin/model.glb. It is a source-geometry export; reference-color overrides live in the scene code. Asset histories live separately from that geometry. The broader native Floorplanner export remains the source for reconstructing omitted designs.
+Editable geometry is available from Views → Download complete model (.glb), at `public/twin/complete-model.glb`. Upper-only GLB and detailed geometry/provenance JSON are also downloadable. Source IDs and raw geometry are retained; reference-color overrides live in the scene code. Asset histories live separately from geometry.
 
 Implementation detail is in [asset-twin-data.md](asset-twin-data.md), [asset-twin-scene.md](asset-twin-scene.md) and [asset-twin-maintenance.md](asset-twin-maintenance.md).
+
+
+## Additional plans and infrastructure — September 24 expansion
+
+- Units 101 and 103 have independently selectable upper-floor layers. Unit 101 is the partial rear strip, not an invented full-footprint second story. Unit 103 retains its central void and rear stair openings. Stairs use explicitly schematic envelopes; no invented tread dimensions or guardrail heights are asserted.
+- The source upper elevation of 3.05 m conflicts with ground walls reaching 3.8862 m (0.8362 m overlap). Both source values are retained. This limitation appears in the Sources pane and upper-floor JSON; field heights are still needed.
+- 28 water and 28 electric meter IDs are imported from Sheet1 rows 3–32 of the supplied workbook. Both water meters associated with Unit 113 remain separate. House-service rows are common-area references, not tenant assignments. Unknowns remain unknown.
+- 24 time-clock JPEG previews retain original hashes and EXIF dates in the source catalog. The photographs were captured in November 2021. They form 23 filename-based reference groups, not a verified count of clocks. The 131/133 photo shows two timers; the two 119.5 photos show different device types.
+- The supplied fixture register contains 39 column references. Its 37 existing native-object links are shown as provisional correspondences, without renumbering or duplicating permanent column records. Source Columns 1 and 2 remain unmatched. The C25/C26 ambiguity remains open.
+- Ten benches and twenty trash cans receive source-derived pins and independent permanent records. Their model-registration residual is 0.537 m RMS / 1.294 m maximum. Positions and ground-reference elevations are explicitly approximate and not field verified.
+- Six blue and thirteen red water-map annotations retain literal source labels. The two supplied water-map files are identical. Label numbers are not assumed to be counts or meter IDs; no physical valve records or service connections are invented.
+- The Sources pane provides interactive source-image markers. Unit records show both supplied floor-plan images. Meter records retain exact workbook/cell provenance; historical clock photos are separated from current inspection photos.
+
+Additional live acceptance: both upper levels and partial 101 extent; plan and perspective views; upper-wall toggle; actual 103 central void; source map selection (including unmatched Column 1); exact house sprinkler-meter lookup; both 119.5 historical photos; upper-floor pin placement and focus using the existing QA record; existing photo, inspection and linked request retained after reload; pre-upgrade saved ground-view restoration; unchanged C12 permanent ID and under-canopy eye view; mobile field layout without horizontal overflow; no console errors. All 819 automated tests and the production build pass. Two QA-only records remain; the workflow QA pin is now on Unit 103's upper floor solely for testing.
+
+The present source catalogs and reference images are bundled in this local-review branch. Before any public hosted rollout, decide which drawings, meter identifiers and infrastructure photos may be public, and serve restricted source evidence through authenticated storage; client-side route checks do not protect bundled files. This intake did not deploy, publish sources or apply database migrations.
+
+Rebuild details: [upper floors](asset-twin-upper-floors.md), [fixtures](twin-fixture-reconciliation.md), [meters and clocks](twin-infrastructure-sources.md). Merge geometry with `node tools/merge-twin-glb.mjs`; no new runtime dependency or environment variable is required.

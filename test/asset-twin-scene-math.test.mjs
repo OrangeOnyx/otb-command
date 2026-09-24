@@ -53,3 +53,18 @@ test('neutral finish resets a prior reference palette without accepting malforme
   assert.deepEqual(normalizeFinishPalette({columns:'#fff',walls:'url(example)',unknown:'#123456'},existing),{...existing,columns:'#fff'});
   assert.deepEqual(existing,{walls:'#e6e2d7',canopyTop:'#666760'});
 });
+
+test('saved-view validation accepts legacy ground views and explicit upper-floor views in the combined model',()=>{
+  const combinedBounds={min:[-95,0,-42],max:[95,6.9362,41]};
+  const layerIds=['walls','floors','walkway','columns','canopy','assets','ground','upper-101','upper-103'];
+  const legacy={version:1,mode:'overview',position:[0,70,-120],target:[0,1,0],zoom:1,
+    layers:{walls:true,floors:true,walkway:true,columns:true,canopy:false,assets:true},sectionHeight:null};
+  assert.equal(validateSavedView(legacy,combinedBounds,layerIds),true,'Old layer maps remain valid after adding levels');
+  const upper={...legacy,position:[80,18,22],target:[66,4.5,25],sectionHeight:5.5,
+    layers:{...legacy.layers,ground:false,'upper-101':false,'upper-103':true}};
+  const before=structuredClone(upper);
+  assert.equal(validateSavedView(upper,combinedBounds,layerIds),true);
+  assert.deepEqual(upper,before,'Validation must preserve saved camera and layer state');
+  assert.equal(validateSavedView({...upper,layers:{...upper.layers,'upper-999':true}},combinedBounds,layerIds),false);
+  assert.equal(validateSavedView({...upper,sectionHeight:7},combinedBounds,layerIds),false);
+});
