@@ -9,6 +9,7 @@ export default defineConfig(({ command, mode }) => {
   if (command === "build") assertPreviewIsolation();
   const review = command === "serve" && mode !== "production" && process.env.VITE_LOCAL_REVIEW === "1";
   return {
+    cacheDir: '.cache/vite',
     define: { 'import.meta.env.VITE_COMMAND_ENV': JSON.stringify(process.env.VERCEL_ENV || 'local') },
     /* two entries: the app + the public /tour microsite (B-1, 2026-09-18) */
     build: { rollupOptions: { input: {

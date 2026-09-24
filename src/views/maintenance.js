@@ -5,7 +5,7 @@
    login roster. OWNER: read-only queue. Vendors never see M-1 — their
    assigned work orders surface on V-1 (vendorportal.js).
    Data/derivation lives in lib/maintenance.js; RLS scopes every query. */
-import { REMOTE, sb, listLedgerEntries, listInvoices, getPublishedLines } from "../lib/remote.js";
+import { REMOTE, LOCAL_REVIEW, sb, listLedgerEntries, listInvoices, getPublishedLines } from "../lib/remote.js";
 import { linesFromRow, lineRows } from "../lib/voicelines.js";
 import { withRunningBalance, DEBIT_TYPES } from "../lib/ledger.js";
 import { invoiceModel, invoiceStatus } from "../lib/invoice.js";
@@ -17,6 +17,7 @@ import {
   getMaintCache, refreshMaint, onMaintChange, submitRequest, addMrEvent,
   addMrPhoto, listMrPhotos, mrPhotoURL, describeMrEvent,
   listTenantContacts, upsertTenantContact, deactivateTenantContact,
+  COMMON_AREA_UNIT, maintenanceLocationLabel,
 } from "../lib/maintenance.js";
 import { UNITS } from "../store.js";
 import { esc } from "../lib/format.js";
@@ -30,6 +31,38 @@ export function installMaintVendors(list) {
   vendors = (Array.isArray(list) ? list : []).filter(v => v.kind === "service");
 }
 const vendorNames = () => Object.fromEntries(vendors.map(v => [v.id, v.company]));
+let focusedRequestId = null;
+let paintMaintenance = null;
+let stopMaintenanceListener = null;
+
+/* The router accepts page IDs only; keep the selected record in this module,
+   not in a query fragment that would make #maint an unknown page. */
+export async function openMaintenanceRequest(requestId) {
+  if (!requestId) throw new Error('A maintenance request ID is required.');
+  if (!paintMaintenance) throw new Error('The maintenance queue is unavailable in this session.');
+  focusedRequestId = String(requestId);
+  location.hash = '#maint';
+  await refreshMaint();
+  if (!getMaintCache().some(r => r.id === focusedRequestId)) throw new Error('This request is not visible in the current property or review copy.');
+  await paintMaintenance();
+  // Let the hash router reveal the page before scrolling its selected card.
+  await new Promise(resolve => requestAnimationFrame(resolve));
+  focusLinkedRequest(document.getElementById('mtBody'));
+  return true;
+}
+
+function focusLinkedRequest(host) {
+  if (!focusedRequestId || !host || location.hash !== '#maint') return;
+  const card = [...host.querySelectorAll('[data-mr]')].find(el => el.dataset.mr === focusedRequestId);
+  if (!card) return;
+  let ancestor = card.parentElement;
+  while (ancestor && ancestor !== host) { if (ancestor.tagName === 'DETAILS') ancestor.open = true; ancestor = ancestor.parentElement; }
+  card.querySelector('details').open = true;
+  card.setAttribute('tabindex', '-1');
+  card.style.outline = '2px solid var(--accent, #446b59)';
+  card.focus({ preventScroll: true });
+  card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+}
 
 const tag = (label, color) =>
   '<span style="background:' + color + ';color:#fff;border-radius:3px;padding:0 5px;font-size:10px">' + esc(label) + '</span>';
@@ -67,7 +100,7 @@ function loadPhotos(el, requestId) {
         catch (err) { alert("Could not open photo: " + err.message); }
       };
     });
-  });
+  }).catch(err => { if (el.isConnected) el.textContent = 'Photos unavailable: ' + err.message; });
 }
 
 async function uploadPhotos(requestId, fileList) {
@@ -80,10 +113,13 @@ async function uploadPhotos(requestId, fileList) {
 function requestCard(req, { controls = "", noteBox = true } = {}) {
   return '<div class="card" style="padding:10px 12px;margin:8px 0" data-mr="' + esc(req.id) + '">' +
     '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">' +
-    '<span class="mono" style="font-weight:600">' + esc(req.unit) + '</span>' +
+    '<span class="mono" style="font-weight:600">' + esc(maintenanceLocationLabel(req)) + '</span>' +
     statusTag(req.displayStatus) + urgencyTag(req.urgency) +
     '<span style="font-weight:600">' + esc(req.title) + '</span></div>' +
     (req.detail ? '<div style="font-size:12px;margin:4px 0">' + esc(req.detail) + '</div>' : "") +
+    (req.asset_id ? '<div class="mono mute" style="font-size:10px;overflow-wrap:anywhere">Asset reference: ' + esc(req.asset_id) + '</div>' : '') +
+    (req.spatial_location ? '<div class="mono mute" style="font-size:10px;overflow-wrap:anywhere">Model location reference' + (req.spatial_location.sourceKey ? ': ' + esc(req.spatial_location.sourceKey) : '') + ' · not a condition assessment</div>' : '') +
+    (req.local_review ? '<div class="mono" style="font-size:10px">LOCAL REVIEW · stored only in this browser</div>' : '') +
     '<div class="mr-photos" style="margin:4px 0"></div>' +
     '<details style="margin:4px 0"><summary class="mono mute" style="font-size:11px;cursor:pointer">history (' + req.events.length + ')</summary>' + timelineHTML(req) + '</details>' +
     controls +
@@ -122,7 +158,7 @@ function wireCardBasics(host, email, rerender) {
 function submitFormHTML(unitFixed) {
   const unitField = unitFixed
     ? '<span class="mono" style="font-weight:600">Unit ' + esc(unitFixed) + '</span><input type="hidden" id="mrUnit" value="' + esc(unitFixed) + '">'
-    : '<select id="mrUnit">' + UNITS.map(u => '<option value="' + esc(u.unit) + '">' + esc(u.unit) + (u.dba ? " · " + esc(u.dba) : "") + '</option>').join("") + '</select>';
+    : '<select id="mrUnit" aria-label="Suite or common area"><option value="' + COMMON_AREA_UNIT + '">Common area</option>' + UNITS.map(u => '<option value="' + esc(u.unit) + '">' + esc(u.unit) + (u.dba ? " · " + esc(u.dba) : "") + '</option>').join("") + '</select>';
   return '<div class="card" style="padding:10px 12px;margin:8px 0">' +
     '<div class="dw-sec">New request</div>' +
     '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0">' + unitField +
@@ -254,18 +290,20 @@ function operatorControls(req) {
 }
 
 async function renderOperator(host, account) {
+  const contacts = await listTenantContacts();
   const list = getMaintCache();
   const open = list.filter(r => MR_OPEN_STATES.includes(r.displayStatus));
   const finished = list.filter(r => !MR_OPEN_STATES.includes(r.displayStatus));
-  const contacts = await listTenantContacts();
   if (!host.isConnected) return;
   host.innerHTML =
+    (LOCAL_REVIEW ? '<div class="ai-note" role="note"><b>Local review only.</b> Requests, notes, assignments, status changes and photos stay in this browser. They are not sent to the property system or vendors. Clearing browser data removes this review copy.</div>' : '') +
     '<div class="dw-sec">Work orders — ' + open.length + ' open</div>' +
     submitFormHTML(null) +
     (open.length ? open.map(r => requestCard(r, { controls: operatorControls(r) })).join("") : '<div class="safe-empty mute">queue is clear</div>') +
     (finished.length ?
       '<details style="margin-top:10px"><summary class="mono mute" style="cursor:pointer">finished (' + finished.length + ')</summary>' +
-      finished.slice(0, 20).map(r => requestCard(r, { noteBox: false })).join("") + '</details>' : "") +
+      finished.filter((r, index) => index < 20 || r.id === focusedRequestId).map(r => requestCard(r, { noteBox: false })).join("") + '</details>' : "") +
+    (LOCAL_REVIEW ? '' :
     '<details style="margin-top:16px"><summary class="dw-sec" style="cursor:pointer;display:inline-block">Tenant logins — ' + contacts.filter(c => c.active).length + '</summary>' +
     '<div class="mono mute" style="font-size:11px;margin:4px 0">A listed email signs in with the normal magic link and lands on this sheet scoped to their unit.</div>' +
     contacts.map(c =>
@@ -276,7 +314,7 @@ async function renderOperator(host, account) {
     '<input type="email" id="tcEmail" placeholder="tenant@email.com" style="min-width:200px">' +
     '<select id="tcUnit">' + UNITS.map(u => '<option value="' + esc(u.unit) + '">' + esc(u.unit) + '</option>').join("") + '</select>' +
     '<input type="text" id="tcName" placeholder="name (optional)">' +
-    '<button class="chip" id="tcAdd">+ Add tenant login</button></div></details>';
+    '<button class="chip" id="tcAdd">+ Add tenant login</button></div></details>');
 
   const rerender = () => renderOperator(host, account);
   wireSubmitForm(host, account.email, rerender);
@@ -295,7 +333,8 @@ async function renderOperator(host, account) {
       catch (err) { alert("Status change failed: " + err.message); }
     });
   });
-  host.querySelector("#tcAdd").onclick = async () => {
+  const addContact = host.querySelector("#tcAdd");
+  if (addContact) addContact.onclick = async () => {
     const email = host.querySelector("#tcEmail").value.trim();
     if (!email) return;
     try { await upsertTenantContact(email, host.querySelector("#tcUnit").value, host.querySelector("#tcName").value.trim()); rerender(); }
@@ -306,6 +345,7 @@ async function renderOperator(host, account) {
     try { await deactivateTenantContact(b.dataset.email); rerender(); }
     catch (err) { alert(err.message); }
   });
+  focusLinkedRequest(host);
 }
 
 /* ---------- owner face: read-only queue ---------- */
@@ -321,16 +361,22 @@ function renderOwner(host) {
 export function initMaintenance(account) {
   const host = document.getElementById("mtBody");
   if (!host) return;
-  if (!REMOTE) {
+  stopMaintenanceListener?.();
+  paintMaintenance = null;
+  if (!REMOTE && !LOCAL_REVIEW) {
     host.innerHTML = '<div class="ai-note mute">Maintenance runs on the hosted backend — unavailable in local-only mode.</div>';
     return;
   }
-  const paint = () => {
-    if (account.role === "tenant") renderTenant(host, account);
-    else if (account.role === "operator") renderOperator(host, account);
+  const activeAccount = LOCAL_REVIEW ? { role: 'operator', email: 'local-review' } : account;
+  const paint = async () => {
+    if (activeAccount?.role === "tenant") await renderTenant(host, activeAccount);
+    else if (activeAccount?.role === "operator") await renderOperator(host, activeAccount);
     else renderOwner(host);
+    focusLinkedRequest(host);
   };
-  onMaintChange(paint);
-  refreshMaint(); // paint fires via onMaintChange
-  paint();        // immediate skeleton while the fetch runs
+  paintMaintenance = paint;
+  const report = err => { host.innerHTML = '<div class="ai-note">Maintenance unavailable: ' + esc(err.message) + '</div>'; };
+  stopMaintenanceListener = onMaintChange(() => { paint().catch(report); });
+  host.innerHTML = '<div class="ai-note mute">Loading maintenance…</div>';
+  refreshMaint().then(paint).catch(report);
 }

@@ -8,10 +8,13 @@
    RLS scopes everything (tenant = own unit, vendor = ever-assigned, owner =
    read, operator = all) — the same listRequests() call serves every face.
    Pure parts tested in test/maintenance.test.mjs. */
-import { REMOTE, sb, propertyContext } from "./remote.js";
+import { REMOTE, LOCAL_REVIEW, sb, propertyContext } from "./remote.js";
 import { createBucketStore } from "./bucketstore.js";
-import { deriveRequest } from "./maintenance-model.js";
-export { deriveRequest } from "./maintenance-model.js";
+import { deriveRequest, maintenanceLinkFields, maintenanceEventFields, maintenanceLocationLabel, createLocalMaintenanceStore } from "./maintenance-model.js";
+export { deriveRequest, COMMON_AREA_UNIT, maintenanceLocationLabel } from "./maintenance-model.js";
+export const maintenanceMode = () => LOCAL_REVIEW ? 'local-review' : REMOTE ? 'remote' : 'unavailable';
+const requireMaintenance = () => { if (!REMOTE && !LOCAL_REVIEW) throw new Error('Maintenance requires the hosted backend or explicit local review mode.'); };
+const localStore = () => createLocalMaintenanceStore(globalThis.localStorage);
 
 /* ---- status / urgency vocabulary (plan-room palette) ---- */
 export const MR_STATUS = {
@@ -63,7 +66,7 @@ export function mrCard(req) {
     due: null,
     title: "Work order — " + req.title,
     detail: ul + " · " + (MR_STATUS[req.displayStatus] || [req.displayStatus])[0] +
-      (req.vendorId ? " · " + req.vendorId : "") + " · manage on M-1",
+      (req.vendorId ? " · " + req.vendorId : "") + (req.asset_id ? " · " + maintenanceLocationLabel(req) : "") + " · manage on M-1",
   };
 }
 
@@ -91,26 +94,35 @@ export function maintTriggerCandidates(rows, todayISO, { days = 2 } = {}) {
 }
 
 /* ---- photos: one folder per request id ---- */
-export const mrPhotos = createBucketStore({ bucket: "maintenance-photos", idPrefix: "mp", ttl: 600 });
-export const addMrPhoto = (file, requestId) => mrPhotos.add(file, requestId, file.name);
-export const listMrPhotos = requestId => mrPhotos.list(requestId);
-export const mrPhotoURL = path => mrPhotos.url(path);
+export const mrPhotos = createBucketStore({ bucket: "maintenance-photos", idPrefix: "mp", ttl: 600,
+  local: LOCAL_REVIEW ? { db: 'otb-maintenance-photos-local-review-v1', store: 'photos' } : null });
+export async function addMrPhoto(file, requestId) {
+  requireMaintenance();
+  if (LOCAL_REVIEW && !localStore().list().some(r => r.id === requestId)) throw new Error('Local review request not found.');
+  if (!String(file?.type || '').startsWith('image/')) throw new Error('Choose an image for the request photo.');
+  return mrPhotos.add(file, requestId, file.name);
+}
+export const listMrPhotos = requestId => { requireMaintenance(); return mrPhotos.list(requestId); };
+export const mrPhotoURL = path => { requireMaintenance(); return mrPhotos.url(path); };
 
-/* ---- REMOTE data layer + cache (RLS scopes rows per role) ---- */
+/* ---- hosted data (RLS per role) or explicit isolated browser review ---- */
 let cache = [];
 const listeners = [];
 export const getMaintCache = () => cache;
-export function onMaintChange(cb) { listeners.push(cb); }
+export function onMaintChange(cb) { listeners.push(cb); return () => { const i = listeners.indexOf(cb); if (i >= 0) listeners.splice(i, 1); }; }
+const notifyMaint = () => listeners.forEach(cb => { try { cb(); } catch (e) { console.warn(e); } });
 
 export async function refreshMaint() {
+  if (LOCAL_REVIEW) { cache = localStore().list(); notifyMaint(); return cache; }
   if (!REMOTE) return cache;
+  const ctx = await propertyContext();
   const [{ data: rows, error: e1 }, { data: events, error: e2 }] = await Promise.all([
-    sb.from("maintenance_requests").select("*").order("created_at", { ascending: false }),
-    sb.from("maintenance_events").select("*").order("created_at", { ascending: true }).order("id", { ascending: true }),
+    sb.from("maintenance_requests").select("*").eq('property_id', ctx.property_id).order("created_at", { ascending: false }),
+    sb.from("maintenance_events").select("*").eq('property_id', ctx.property_id).order("created_at", { ascending: true }).order("id", { ascending: true }),
   ]);
   if (e1 || e2) { console.warn("maintenance read:", (e1 || e2).message); return cache; }
   cache = (rows || []).map(r => deriveRequest(r, events || []));
-  listeners.forEach(cb => { try { cb(); } catch (e) { console.warn(e); } });
+  notifyMaint();
   return cache;
 }
 
@@ -119,28 +131,47 @@ export function maintActionCards() {
   return cache.map(mrCard).filter(Boolean);
 }
 
-export async function submitRequest({ unit, title, detail, urgency }, email) {
-  const ctx = await propertyContext();
+export async function submitRequest(input, email) {
+  requireMaintenance();
+  const { title, detail, urgency } = input;
+  if (!String(title || '').trim()) throw new Error('Give the request a short title.');
+  const link = maintenanceLinkFields(input);
+  const ctx = LOCAL_REVIEW ? { org_id: 'local-review', property_id: 'otb' } : await propertyContext();
+  if (link.asset_id) {
+    const { getPhysicalAsset } = await import('./physical-assets.js');
+    const asset = await getPhysicalAsset(link.asset_id);
+    if (!asset || asset.status === 'retired') throw new Error('Choose an active physical asset.');
+    if (!LOCAL_REVIEW && (!asset.persisted || asset.org_id !== ctx.org_id || asset.property_id !== ctx.property_id)) throw new Error('Save the physical asset in this property before linking a work order.');
+    if (asset.unit && String(asset.unit) !== link.unit) throw new Error('The request suite must match the linked asset.');
+    if (!asset.unit && link.unit !== 'common-area') throw new Error('Use common-area for an asset without a verified suite association.');
+    link.asset_label ||= asset.label;
+  }
   const row = {
     id: newRequestId(),
     org_id: ctx.org_id, property_id: ctx.property_id,
-    unit: String(unit),
-    title: String(title).slice(0, 120),
+    ...link,
+    title: String(title).trim().slice(0, 120),
     detail: String(detail || "").slice(0, 2000),
     urgency: MR_URGENCY[urgency] ? urgency : "routine",
     created_by: String(email || "").toLowerCase(),
   };
+  if (LOCAL_REVIEW) {
+    localStore().insertRequest({ ...row, created_at: new Date().toISOString() });
+    await refreshMaint(); return row.id;
+  }
   const { error } = await sb.from("maintenance_requests").insert(row);
   if (error) throw error;
   await refreshMaint();
   return row.id;
 }
 
-export async function addMrEvent(requestId, { kind, status = null, vendorId = null, note = "" }, actorEmail) {
+export async function addMrEvent(requestId, event, actorEmail) {
+  requireMaintenance();
+  const fields = maintenanceEventFields(event);
+  if (LOCAL_REVIEW) { localStore().appendEvent(requestId, event, actorEmail); await refreshMaint(); return; }
   const ctx = await propertyContext();
   const { error } = await sb.from("maintenance_events").insert({
-    request_id: requestId, org_id: ctx.org_id, property_id: ctx.property_id, kind, status, vendor_id: vendorId,
-    note: String(note || "").slice(0, 1000), actor: String(actorEmail || ""),
+    request_id: requestId, org_id: ctx.org_id, property_id: ctx.property_id, ...fields, actor: String(actorEmail || ""),
   });
   if (error) throw error;
   await refreshMaint();
@@ -148,17 +179,20 @@ export async function addMrEvent(requestId, { kind, status = null, vendorId = nu
 
 /* ---- tenant roster (operator-managed; drives magic-link role match) ---- */
 export async function listTenantContacts() {
+  if (LOCAL_REVIEW) return [];
   const { data, error } = await sb.from("tenant_contacts").select("*").order("unit");
   if (error) { console.warn("tenant_contacts:", error.message); return []; }
   return data || [];
 }
 export async function upsertTenantContact(email, unit, name = "") {
+  if (!REMOTE) throw new Error('Tenant access management requires the hosted backend.');
   const ctx = await propertyContext();
   const { error } = await sb.from("tenant_contacts")
     .upsert({ email: String(email).trim().toLowerCase(), org_id: ctx.org_id, property_id: ctx.property_id, unit: String(unit), name, active: true });
   if (error) throw error;
 }
 export async function deactivateTenantContact(email) {
+  if (!REMOTE) throw new Error('Tenant access management requires the hosted backend.');
   const { error } = await sb.from("tenant_contacts").update({ active: false }).eq("email", email);
   if (error) throw error;
 }

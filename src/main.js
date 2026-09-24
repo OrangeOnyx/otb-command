@@ -16,6 +16,7 @@ import { pageFromHash, hashFor, resolveRoute } from "./lib/router.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
 import { initSpatial } from "./views/spatial.js";
+import { initAssetTwin } from "./views/asset-twin.js";
 import { initCommand } from "./views/command.js";
 import { initSafe } from "./views/safe.js";
 import { initSearch } from "./views/search.js";
@@ -428,6 +429,7 @@ function initViews(account) {
   initConcierge();
   initVendorPortal(account);
   initMaintenance(account);
+  initAssetTwin(account);
   initSop(account);
   initPortfolio();
   initComms(account);
