@@ -111,3 +111,43 @@ test("registerCSV: header + one row per asset, quoted", () => {
   assert.equal(lines[0], '"label","asset_id","category","group","parent","unit","status","center_x_px","center_y_px","count","source"');
   assert.equal(lines.length, reg.length + 1);
 });
+
+const siteReg = JSON.parse(readFileSync(join(root, "src/data/site-register.json"), "utf8"));
+const meterDoc = JSON.parse(readFileSync(join(root, "src/data/meters.json"), "utf8"));
+
+test("site-register: 39 operator-numbered columns, contiguous ids, 37 cross-linked to the Codex twin", () => {
+  const cols = siteReg.items.filter(i => i.cat === "column");
+  assert.deepEqual(cols.map(c => c.id), Array.from({ length: 39 }, (_, i) => "col-" + String(i + 1).padStart(2, "0")));
+  assert.equal(cols.filter(c => c.codexAssetId).length, 37);
+  assert.deepEqual(siteReg.fits["codex-crosslink"].operatorUnmatched, ["Column 1", "Column 2"]);
+});
+
+test("site-register: every sheet fit within its tier (6 px drawings, 10 px context)", () => {
+  for (const s of siteReg.sources) assert.ok(s.rmsPx <= (s.maxRmsPx || siteReg.maxRmsPx), s.id + " rms " + s.rmsPx);
+});
+
+test("site-register: located points sit inside the A-1 full viewBox", () => {
+  const [x0, y0, w, h] = geometry.viewBox.full.split(/\s+/).map(Number);
+  for (const i of siteReg.items.filter(i => i.point))
+    assert.ok(i.point[0] >= x0 && i.point[0] <= x0 + w && i.point[1] >= y0 && i.point[1] <= y0 + h, i.id + " " + i.point);
+});
+
+test("site-register: shut-off clusters total 37; meter-cluster counts vs workbook flag only 'Behind 131'", () => {
+  const sh = siteReg.items.filter(i => i.cat === "shutoff");
+  assert.equal(sh.length, 13);
+  assert.equal(sh.reduce((s, i) => s + i.count, 0), 37);
+  const wm = meterDoc.meters.filter(m => m.kind === "wmeter");
+  const mismatched = siteReg.items.filter(i => i.cat === "meter-cluster")
+    .filter(c => c.count !== wm.filter(m => m.cluster === c.id).length + (c.id === "mclu-119" ? 1 : 0)).map(c => c.id);
+  assert.deepEqual(mismatched, ["mclu-131"]); // map shows 1, workbook lists 4 (123 '?' counted behind 119)
+});
+
+test("meters.json: 28 water + 28 electric, unique numbers", () => {
+  assert.deepEqual(meterDoc.counts, { wmeter: 28, emeter: 28 });
+  assert.equal(new Set(meterDoc.meters.map(m => m.id)).size, meterDoc.meters.length);
+});
+
+test("full register with all sources: unique ids", () => {
+  const reg = buildRegister(geometry, { items: siteReg.items, meters: meterDoc.meters });
+  assert.equal(new Set(reg.map(a => a.id)).size, reg.length);
+});
