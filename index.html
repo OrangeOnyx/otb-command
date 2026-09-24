@@ -104,12 +104,27 @@
         <button class="chip on" id="featShow">📍 Assets</button>
         <button class="chip feat-add" id="featAdd" title="Click the plan to drop asset pins (shutoffs, meters, benches…)">＋ Pin</button>
         <select id="featType" class="feat-type" hidden></select>
+        <button class="chip" id="regShow" title="Site register: stable asset IDs for parcels, units, parking zones and stalls, curb cuts, walkway columns/benches/cans, meters and shut-offs, LUS utilities, building systems and cameras. Highlight, isolate, focus, export">◫ Register</button>
         <input type="range" id="overlayOpacity" min="10" max="100" value="55" title="Overlay opacity" style="display:none">
         <span class="lg" style="margin-left:10px">Unit fill</span>
         <input type="range" id="unitOpacity" min="0" max="100" value="100" title="Unit box opacity">
         <div class="legend" id="legend"></div>
       </div>
-      <div class="card plan-card"><svg id="plan" viewBox="0 0 1480 990" role="img" aria-label="On The Boulevard site plan"></svg></div>
+      <div class="card plan-card" id="planCard"><svg id="plan" viewBox="0 0 1480 990" role="img" aria-label="On The Boulevard site plan"></svg>
+        <aside id="siteRegister" class="site-register" aria-label="Site register" hidden>
+          <div class="sr-head"><h2>Site register</h2><span id="srCount" class="sr-muted"></span></div>
+          <div id="srCats" class="sr-cats" role="group" aria-label="Highlight categories"></div>
+          <div class="sr-toggles"><label class="sr-toggle"><input type="checkbox" id="srIsolate"> Isolate highlighted</label>
+            <label class="sr-toggle"><input type="checkbox" id="srLabels"> Show labels</label></div>
+          <section id="srSel" class="sr-sel" aria-live="polite"></section>
+          <input id="srSearch" type="search" placeholder="Find C12, stall-lot8-003, W1204084, Driveway A…" autocomplete="off" aria-label="Find an asset">
+          <div id="srList" class="sr-list"></div>
+          <div class="sr-foot"><button type="button" id="srReset" class="chip">Reset view</button><button type="button" id="srCsv" class="chip">⤓ CSV</button><button type="button" id="srJson" class="chip">⤓ JSON</button></div>
+          <details class="sr-basis"><summary>Basis &amp; limits</summary>
+            <p>Stalls are the recorded plat's per-zone counts spread evenly over the drawn rows; the 10 Johnston CAD stalls stay pending until confirmed on the ground (legal 324 provided / ops 314). Columns 1–39 follow the operator's walkway inventory; 37 link to the Sep 23 3D column twin (the model misses columns 1–2).</p>
+            <p>Furniture, meters, shut-offs, ADA, fences and the pylon are digitized from the operator's sheets and the 2020 survey (≤6 px fit). LUS mains and structures (2021 captures) and the 1990s trees are a context tier (≤10 px). Transformers, heat pumps and fire walls are placed approximately from photographed sheets. Unit-keyed rows (HVAC, panels, time clocks, electric meters) sit at the suite centre. Nothing here is surveyed or field verified; IDs are register keys, not physical tags. Grey categories have no source on file — a 📍 pin of that type fills them.</p>
+          </details>
+        </aside></div>
     </section>
 
     <section class="page" id="pg-spatial">

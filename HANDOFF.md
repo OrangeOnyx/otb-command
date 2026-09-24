@@ -1,5 +1,26 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 24, 2026 — A-1 SITE REGISTER (Stage 1 of the site twin) BUILT on branch `a1-site-register` · 799 tests green
+
+Operator: "give the interactive site plan the same treatment as the column twin" → picks: **staged (register now,
+3D site twin next, same IDs)**, parking **zones + individual stalls**, then "include all of it, placeholders for the
+☐ items", LUS mains/hydrants **in**, per-unit building systems **in Stage 1**.
+
+- A-1 **◫ Register**: 745 assets / 41 categories — highlight, pick (plan or list), isolate, focus, labels, CSV/JSON.
+  Basis, ID scheme, status vocabulary, findings: `docs/site-register-2026-09.md`. Plan:
+  `docs/superpowers/plans/2026-09-24-a1-site-register.md`.
+- Data: `geometry.assetGeom` (generator; drawn layers byte-identical, REV 14 kept), `src/data/site-register.json`
+  (`tools/digitize-site-sources.py` — gated affine/similarity fits per sheet), `src/data/meters.json`
+  (`tools/build-meters.py`). 6 placeholder pin types added to `FEATURE_TYPES` (storm drain, backflow, FDC/riser,
+  grease trap, roof drain, irrigation).
+- Columns: operator's **39** are the record; 37 cross-linked to the Codex twin (cols 1–2 model-missing; Codex C25 = col 27).
+- Flags for the operator: meter cluster "behind 131" 1 on map vs 4 in workbook · 123 meter location "?" · **Federal
+  Pacific panel (unit unknown) → replacement review** · no time-clock photo for 111/135B/139 · civil sheets
+  C1.02–C1.05 not on file.
+- NOT merged/deployed. `.claude/launch.json` gained a local `otb-review-5213` entry (uncommitted).
+- NEXT: operator review of the branch → PR → merge (= deploy). Then Stage 2 plan (portable 3D site twin keyed to
+  these IDs; target look = `Style_I_would_like_to_get_the_center_to_look_like_for_marketing.png`).
+
 ## September 23, 2026 — ONE-NUMBER VOICE ROUTER reviewed + hardened · 782 tests green
 
 Operator: Grok built a routing brain so there is one published number — **337-769-1554** (office line) forwards
