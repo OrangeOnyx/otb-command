@@ -38,6 +38,29 @@ that, every column snaps to an exact square index and pins can be placed by squa
 Cross-check, CCTV `suite-113-south`: the columns stand at the walkway/parking edge. The bay south of 113
 has an ADA curb ramp that cuts through the scoring, so tile counts can't be taken from that frame.
 
+### 2a. Conflicting source: the Floorplanner model (project 109978485)
+
+A Codex pass (`C:\Users\adam\Documents\Codex\2026-09-23\ca\work\column-analysis.json`) found **37**
+walls in the Floorplanner model that look like 24" square column loops. It flags them as candidates
+from the model only, with no count on site. They sit in three lines:
+- **Long line: 26 columns** over about 520 ft. Bays run about 24.5–26 ft, with a 3.7 ft doublet near the middle.
+  At one end there are **four pairs 8.8 ft apart**. Bailey photo #01 (2020) also shows paired columns
+  under the canopy's small roof peaks.
+- A perpendicular line of 7 at about 28 ft bays (150 ft), and one of 5 at 14.7–20.3 ft (72 ft), at opposite ends.
+
+I tried registering that sequence to the plat by maximizing cloud density at every drawn column (scale held at 1.0).
+It fit **worse than the plain regular lattice in either orientation** (score 1.22 or 0.96, against 2.38). It also
+put the 5-column line inside suite 101 or off the ends of the CAD walkway strips. The Floorplanner layout
+is hand-modeled, and its bay spacing doesn't hold up against the photogrammetry across the full run.
+**A-2 therefore keeps the scan lattice.** The Floorplanner model is logged as a conflicting count, 26 against 19.
+The walk settles it:
+- Count the columns along the long building, end to end.
+- Note where the **pairs** are and the gap inside each pair.
+- Say whether a column line wraps around either end of the long building.
+
+The CAD shows a walkway strip only in front of the long building (y 294.6–312.6) and in front of the short
+building (x 1134.5–1152.5). It shows none at the Johnston end, where parking runs to the wall.
+
 ## 3. Capture plan — tomorrow (Insta360 + drone + phone)
 
 Save everything to `E:\OTB-CAPTURE\2026-09-24\` (never the repo). Shoot in steady light, ideally early
@@ -69,6 +92,8 @@ morning or overcast, with few cars. Lock exposure and white balance on every dev
 ### 3.4 Ground truth (phone, 5 min; the most important numbers)
 1. **Tiles between two column centers**, counted along the walkway at three places: at 105, at 121 and
    at 131. Note any partial squares.
+1a. **Total column count** along each building. Note which bays have **paired** columns, and the gap inside each pair
+   (this settles the 19-vs-26 conflict in §2a).
 2. **Storefront glass → column face**, taped, at the same three places.
 3. **Whether the scoring lines up with the column faces** (yes or no, one photo).
 4. Benches, trash cans, meters and drains: one photo each with a scored square in frame, then note
