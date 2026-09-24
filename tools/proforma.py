@@ -61,9 +61,9 @@ SF_T=f"'Rent Roll'!C{TOT}"; BASE_T=f"'Rent Roll'!I{TOT}"; CAM_T=f"'Rent Roll'!J{
 # numeric prefills (estimates) computed here
 sf_sum=sum(u["sf"] for u in units)
 base_t=sum((u.get("base",0) or 0)*u["sf"] for u in units)
-cam_t=sum(rec.get(u["unit"],{}).get("cam",0)*u["sf"] for u in units)
-tax_t=sum(rec.get(u["unit"],{}).get("tax",0)*u["sf"] for u in units)
-ins_t=sum(rec.get(u["unit"],{}).get("ins",0)*u["sf"] for u in units)
+cam_t=sum((rec.get(u["unit"],{}).get("cam") or 0)*u["sf"] for u in units)
+tax_t=sum((rec.get(u["unit"],{}).get("tax") or 0)*u["sf"] for u in units)
+ins_t=sum((rec.get(u["unit"],{}).get("ins") or 0)*u["sf"] for u in units)
 egi=base_t+cam_t+tax_t+ins_t
 
 # ================= Proforma =================
