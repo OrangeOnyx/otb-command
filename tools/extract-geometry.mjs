@@ -116,7 +116,13 @@ const r2 = n => Math.round(n * 100) / 100;
    strokes below are drawn; p0→p1 is the stall-ordering edge. Counts are the
    plat 'N SPACES' labels — the register subdivides each row count-exact, so a
    row's drawn tick spacing may differ slightly from its derived stalls. ── */
-const AG = { zones: [], drives: [], aisles: [] };
+const AG = { zones: [], drives: [], aisles: [], parcels: [], easements: [], islands: [] };
+const bb = pts => {
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const x = Math.min(...xs), y = Math.min(...ys);
+  return { x: r2(x), y: r2(y), w: r2(Math.max(...xs) - x), h: r2(Math.max(...ys) - y) };
+};
+const rq = quad => quad.map(([x, y]) => [r2(x), r2(y)]);
 [["field", "F", "Main field", 100], ["arnould", "AR", "Arnould frontage row", 38],
  ["storefront", "SF", "Storefront row (long building)", 56], ["lot6", "L6", "Lot 6 west field", 28],
  ["lot8", "L8", "Lot 8 pocket", 19], ["rear", "RM", "Rear Marie Antoinette parallel row", 18],
@@ -148,6 +154,8 @@ main.segs.forEach((s, i) => {
   }
 });
 bdPath += " Z";
+AG.parcels.push({ id: "main", name: "Main tract — Belle parcels 6026783 / 6026784 / 6026785 / 6026788", d: bdPath,
+  bbox: bb(scr.flatMap(s => [s.S, s.E, ...(s.M ? [s.M] : [])])) });
 
 // bearing/distance labels, plat-style (positions chosen against the sheet layout)
 const mid = s => [(s.S[0] + s.E[0]) / 2, (s.S[1] + s.E[1]) / 2];
@@ -264,6 +272,7 @@ const remoteLot = [];
   const xL = Math.min(...pts7.map(p => p[0])), xR = Math.max(...pts7.map(p => p[0]));
   const yT = Math.min(...pts7.map(p => p[1])), yB = Math.max(...pts7.map(p => p[1]));
   const cx = r2((xL + xR) / 2);
+  AG.parcels.push({ id: "lot7", name: "Lot 7, Block M — remote parking, parcel 6009649", d: p7, bbox: bb(pts7), scope: "full" });
   remoteLot.push(path(p7, { fill: "#E8EBE0", stroke: "#CDD2C2", "stroke-width": 1 }));
   remoteLot.push(path(p7, { fill: "none", stroke: "#1C2B26", "stroke-width": 1.2, "stroke-dasharray": "14 5 3 5" }));
   // stall striping per plat (REV 9): 6 at the M.A. frontage, 8 mid-lot,
@@ -370,7 +379,10 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   //      west of Driveway B (rounded noses toward the aisle)
   //    · Jason's Deli frontage: landscape from the 5' walk (a 25.85–30.85) to the first module
   const GREEN = { fill: "#DDE0D4", stroke: "#CDD2C2", "stroke-width": 0.8, "pointer-events": "none" };
-  const gr = (a0, a1, b0, b1, extra = {}) => rect(ax(a1), by(b1), r2(ax(a0) - ax(a1)), r2(by(b0) - by(b1)), { ...GREEN, ...extra });
+  const gr = (a0, a1, b0, b1, extra = {}) => {
+    AG.islands.push({ id: "arnould-" + (AG.islands.length + 1), name: "Arnould planting strip / end cap", quad: rq(abQuad(a0, a1, b0, b1)) });
+    return rect(ax(a1), by(b1), r2(ax(a0) - ax(a1)), r2(by(b0) - by(b1)), { ...GREEN, ...extra });
+  };
   parking.push(gr(30.85, 119.25, -0.3, -29.9));                 // Jason's frontage landscape (bldg-side curb at CAD y 429.8)
   parking.push(rect(ax(30.85), by(-26), r2(ax(25.85) - ax(30.85)), r2(by(-0.3) - by(-26)), { fill: "#E2E5D9", stroke: "#CDD2C2", "stroke-width": 0.8, "pointer-events": "none" })); // 5' walk Arnould → 149
   parking.push(gr(119.25, 183.25, -0.3, -8.8));                 // 9' strip, 7-space module
@@ -404,6 +416,9 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
     });
     // planting islands: west cap, mid L-island, east teardrop (per plat)
     const iy = r2(by(b1) - 2), ih = r2(by(b0) - by(b1) + 4);
+    [["west cap", r2(ax(217.2) - 4), 10], ["mid L-island", ax(432.5), r2(ax(405) - ax(432.5))], ["east teardrop", ax(507), r2(ax(496.2) - ax(507))]]
+      .forEach(([nm, x, w]) => AG.islands.push({ id: "field-b" + (bi + 1) + "-" + nm.split(" ")[0], name: "Field band " + (bi + 1) + " " + nm,
+        quad: rq([[x, iy], [x + w, iy], [x + w, iy + ih], [x, iy + ih]]) }));
     parking.push(rect(r2(ax(217.2) - 4), iy, 10, ih, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
     parking.push(rect(ax(432.5), iy, r2(ax(405) - ax(432.5)), ih, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
     parking.push(rect(ax(507), iy, r2(ax(496.2) - ax(507)), ih, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
@@ -435,6 +450,9 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   parking.push(rect(ax(185.7), by(-137.4), r2(ax(144.5) - ax(185.7)), r2(by(-65.4) - by(-137.4)), PAVE));
   parking.push(rect(ax(183), by(-71), r2(ax(147) - ax(183)), 11, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
   parking.push(rect(ax(183), r2(by(-131.5) - 11), r2(ax(147) - ax(183)), 11, { ...PAVE, fill: "#DDE0D4", rx: 5 }));
+  AG.islands.push(
+    { id: "lot6-cap-n", name: "Lot 6 island cap (Arnould end)", quad: rq([[ax(183), by(-71)], [ax(147), by(-71)], [ax(147), by(-71) + 11], [ax(183), by(-71) + 11]]) },
+    { id: "lot6-cap-s", name: "Lot 6 island cap (storefront end)", quad: rq([[ax(183), by(-131.5) - 11], [ax(147), by(-131.5) - 11], [ax(147), by(-131.5)], [ax(183), by(-131.5)]]) });
   parking.push(line(ax(165.1), r2(by(-71.5)), ax(165.1), r2(by(-128.5)), SPINE));
   for (let b = -73; b >= -128; b -= 9) {
     parking.push(line(ax(147), by(b), ax(183), by(b), TICK));
@@ -548,6 +566,12 @@ const easements = [];
   // 5×5' guy easement at the pylon-sign pocket (plat marker 10 area)
   easements.push(rect(ax(663), by(-155), r2(ax(658) - ax(663)), r2(by(-150) - by(-155)),
     { fill: "none", stroke: "#8A937F", "stroke-width": 1, "stroke-dasharray": "3 2" }));
+  AG.easements.push(
+    { id: "util-arnould", name: "10' utility easement — Arnould", line: rq([[ax(-25), by(-10)], [ax(550), by(-10)]]) },
+    { id: "util-patricia", name: "10' utility easement — Patricia", line: rq([[ax(-15), 100], [ax(-15), 658]]) },
+    { id: "util-ma", name: "10' utility easement — Marie Antoinette", line: rq([[ax(-20), by(-290)], [ax(635), by(-290)]]) },
+    { id: "electric-577566", name: "City of Lafayette electric easement — Entry 577566", quad: rq(abQuad(547.2, 571.2, -272.4, -293.4)) },
+    { id: "guy", name: "5×5' guy easement — pylon sign pocket", quad: rq(abQuad(658, 663, -150, -155)) });
 }
 
 /* ── building placements — plat-exact demising (REV 6) ──────────────
@@ -667,6 +691,8 @@ const liqPath =
   " L " + r2(liqT[0]) + " " + r2(liqT[1]) +
   // sweep 0 verified by midArc cross product (arc bows toward Patricia corner)
   " A " + r2(LIQ.radiusFt * kx) + " " + r2(LIQ.radiusFt * ky) + " 0 0 0 " + r2(liqW[0]) + " " + r2(liqW[1]);
+AG.easements.push({ id: "liquor-line", name: "Liquor line — Our Savior's Church easement §3a (waiver survives termination)",
+  d: liqPath, bbox: bb([liqTail, liqE, liqT, liqW]) });
 
 
 /* ── access layer (REV 13): ingress / egress, curb cuts, aisle flow,
