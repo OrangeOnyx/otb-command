@@ -1,0 +1,3210 @@
+{
+  "schema_version": "1.0",
+  "source_file": "C:\\Users\\adam\\Documents\\Codex\\2026-09-23\\ca\\outputs\\OTB_Editable_Export_2026-09-23\\On_The_Boulevard.native.fml",
+  "source_sha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+  "project_id": 109978485,
+  "design_id": 241952337,
+  "coordinate_units": "centimeters; source x/y plan, z up",
+  "status": "Model-derived candidate columns. No physical count, survey, structure, condition or load-bearing claim.",
+  "method": {
+    "endpoint_connectivity_tolerance_cm": 0.01,
+    "walkway_source_surface_index": 0,
+    "matching_rule": "Bounded planar wall face, centerline bbox 60\u201363 by 59.5\u201363 cm, rectangle fill ratio >0.98, at most 6 boundary segments, centroid within source walkway polygon.",
+    "source_height_preserved": true,
+    "model_wall_height_cm": 388.6199994092976,
+    "solid_proxy_caveat": "Highlight proxy fills hollow wall loops; physical column dimensions and construction are unverified.",
+    "completeness_caveat": "Detection targets a repeated template; differently sized or connected columns may be excluded. This is not a certified count."
+  },
+  "summary": {
+    "candidate_columns": 37,
+    "source_wall_segments_classified": 154,
+    "source_wall_segments_total": 1646,
+    "source_area_polygons_under_1_sqft": 87,
+    "selected_openings": 0,
+    "unique_stable_ids": 37
+  },
+  "columns": [
+    {
+      "id": "column-038b4a052760",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1597,
+        1598,
+        1599,
+        1600
+      ],
+      "source_wall_guids": [
+        "53e40f",
+        "5b9ea1",
+        "6baffe",
+        "e06054"
+      ],
+      "footprint_cm": [
+        [
+          3032.66,
+          499.8
+        ],
+        [
+          3109.32,
+          499.8
+        ],
+        [
+          3109.32,
+          575.97
+        ],
+        [
+          3032.66,
+          575.97
+        ],
+        [
+          3032.66,
+          499.8
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          3101.82,
+          568.47
+        ],
+        [
+          3040.16,
+          568.47
+        ],
+        [
+          3040.16,
+          507.3
+        ],
+        [
+          3101.82,
+          507.3
+        ],
+        [
+          3101.82,
+          568.47
+        ]
+      ],
+      "center_cm": {
+        "x": 3070.99,
+        "y": 537.885
+      },
+      "centerline_width_cm": 61.66000000000031,
+      "centerline_depth_cm": 61.170000000000016,
+      "width_cm": 76.66000000000031,
+      "depth_cm": 76.17000000000002,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C01"
+    },
+    {
+      "id": "column-d2b3a3e668ba",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1589,
+        1590,
+        1591,
+        1592
+      ],
+      "source_wall_guids": [
+        "416f97",
+        "71a9c5",
+        "8be627",
+        "c7fc75"
+      ],
+      "footprint_cm": [
+        [
+          3040.31,
+          -119.2
+        ],
+        [
+          3116.97,
+          -119.2
+        ],
+        [
+          3116.97,
+          -43.03
+        ],
+        [
+          3040.31,
+          -43.03
+        ],
+        [
+          3040.31,
+          -119.2
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          3047.81,
+          -50.53
+        ],
+        [
+          3047.81,
+          -111.7
+        ],
+        [
+          3109.47,
+          -111.7
+        ],
+        [
+          3109.47,
+          -50.53
+        ],
+        [
+          3047.81,
+          -50.53
+        ]
+      ],
+      "center_cm": {
+        "x": 3078.64,
+        "y": -81.11500000000001
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C02"
+    },
+    {
+      "id": "column-02295ca93280",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1593,
+        1594,
+        1595,
+        1596
+      ],
+      "source_wall_guids": [
+        "0c8272",
+        "2595ac",
+        "7ffc54",
+        "a4ea96"
+      ],
+      "footprint_cm": [
+        [
+          3040.31,
+          -681.53
+        ],
+        [
+          3116.97,
+          -681.53
+        ],
+        [
+          3116.97,
+          -605.36
+        ],
+        [
+          3040.31,
+          -605.36
+        ],
+        [
+          3040.31,
+          -681.53
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          3109.47,
+          -612.86
+        ],
+        [
+          3047.81,
+          -612.86
+        ],
+        [
+          3047.81,
+          -674.03
+        ],
+        [
+          3109.47,
+          -674.03
+        ],
+        [
+          3109.47,
+          -612.86
+        ]
+      ],
+      "center_cm": {
+        "x": 3078.64,
+        "y": -643.4449999999999
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.16999999999996,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.16999999999996,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C03"
+    },
+    {
+      "id": "column-aa85e5b580cf",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1585,
+        1586,
+        1587,
+        1588
+      ],
+      "source_wall_guids": [
+        "304ccc",
+        "c3fe06",
+        "d81813",
+        "efd83b"
+      ],
+      "footprint_cm": [
+        [
+          3040.31,
+          -1244.72
+        ],
+        [
+          3116.97,
+          -1244.72
+        ],
+        [
+          3116.97,
+          -1168.55
+        ],
+        [
+          3040.31,
+          -1168.55
+        ],
+        [
+          3040.31,
+          -1244.72
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          3047.81,
+          -1176.05
+        ],
+        [
+          3047.81,
+          -1237.22
+        ],
+        [
+          3109.47,
+          -1237.22
+        ],
+        [
+          3109.47,
+          -1176.05
+        ],
+        [
+          3047.81,
+          -1176.05
+        ]
+      ],
+      "center_cm": {
+        "x": 3078.64,
+        "y": -1206.635
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C04"
+    },
+    {
+      "id": "column-58ee6b101d84",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        255,
+        256,
+        257,
+        258
+      ],
+      "source_wall_guids": [
+        "acb47e",
+        "d68e3e",
+        "e76f9d",
+        "eba4b4"
+      ],
+      "footprint_cm": [
+        [
+          3040.31,
+          -1691.62
+        ],
+        [
+          3116.97,
+          -1691.62
+        ],
+        [
+          3116.97,
+          -1615.45
+        ],
+        [
+          3040.31,
+          -1615.45
+        ],
+        [
+          3040.31,
+          -1691.62
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          3047.81,
+          -1622.95
+        ],
+        [
+          3047.81,
+          -1684.12
+        ],
+        [
+          3109.47,
+          -1684.12
+        ],
+        [
+          3109.47,
+          -1622.95
+        ],
+        [
+          3047.81,
+          -1622.95
+        ]
+      ],
+      "center_cm": {
+        "x": 3078.64,
+        "y": -1653.5349999999999
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.169999999999845,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.16999999999985,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C05"
+    },
+    {
+      "id": "column-b54ed1758e8b",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1282,
+        1283,
+        1284,
+        1285
+      ],
+      "source_wall_guids": [
+        "02d4ea",
+        "626a44",
+        "9f8102",
+        "d5da78"
+      ],
+      "footprint_cm": [
+        [
+          2772.22,
+          -1692.49
+        ],
+        [
+          2848.88,
+          -1692.49
+        ],
+        [
+          2848.88,
+          -1616.32
+        ],
+        [
+          2772.22,
+          -1616.32
+        ],
+        [
+          2772.22,
+          -1692.49
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          2779.72,
+          -1684.99
+        ],
+        [
+          2841.38,
+          -1684.99
+        ],
+        [
+          2841.38,
+          -1623.82
+        ],
+        [
+          2779.72,
+          -1623.82
+        ],
+        [
+          2779.72,
+          -1684.99
+        ]
+      ],
+      "center_cm": {
+        "x": 2810.55,
+        "y": -1654.405
+      },
+      "centerline_width_cm": 61.66000000000031,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000031,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C06"
+    },
+    {
+      "id": "column-5bc5065cf1b8",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        201,
+        202,
+        203,
+        204
+      ],
+      "source_wall_guids": [
+        "320fdc",
+        "4b7663",
+        "4f12c7",
+        "75f102"
+      ],
+      "footprint_cm": [
+        [
+          2250.68,
+          -1693.65
+        ],
+        [
+          2327.34,
+          -1693.65
+        ],
+        [
+          2327.34,
+          -1617.48
+        ],
+        [
+          2250.68,
+          -1617.48
+        ],
+        [
+          2250.68,
+          -1693.65
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          2319.84,
+          -1624.98
+        ],
+        [
+          2258.18,
+          -1624.98
+        ],
+        [
+          2258.18,
+          -1686.15
+        ],
+        [
+          2319.84,
+          -1686.15
+        ],
+        [
+          2319.84,
+          -1624.98
+        ]
+      ],
+      "center_cm": {
+        "x": 2289.01,
+        "y": -1655.565
+      },
+      "centerline_width_cm": 61.66000000000031,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000031,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C07"
+    },
+    {
+      "id": "column-044d1f471c0c",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        197,
+        198,
+        199,
+        200
+      ],
+      "source_wall_guids": [
+        "093e18",
+        "95f271",
+        "e1f7fb",
+        "e9ab96"
+      ],
+      "footprint_cm": [
+        [
+          1982.59,
+          -1694.52
+        ],
+        [
+          2059.25,
+          -1694.52
+        ],
+        [
+          2059.25,
+          -1618.35
+        ],
+        [
+          1982.59,
+          -1618.35
+        ],
+        [
+          1982.59,
+          -1694.52
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          1990.09,
+          -1687.02
+        ],
+        [
+          2051.75,
+          -1687.02
+        ],
+        [
+          2051.75,
+          -1625.85
+        ],
+        [
+          1990.09,
+          -1625.85
+        ],
+        [
+          1990.09,
+          -1687.02
+        ]
+      ],
+      "center_cm": {
+        "x": 2020.92,
+        "y": -1656.435
+      },
+      "centerline_width_cm": 61.66000000000008,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000008,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C08"
+    },
+    {
+      "id": "column-b612c2a14b74",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1251,
+        1252,
+        1253,
+        1254
+      ],
+      "source_wall_guids": [
+        "0f45a0",
+        "3f6ce0",
+        "dea802",
+        "e33559"
+      ],
+      "footprint_cm": [
+        [
+          1532.56,
+          -1693.58
+        ],
+        [
+          1609.22,
+          -1693.58
+        ],
+        [
+          1609.22,
+          -1617.41
+        ],
+        [
+          1532.56,
+          -1617.41
+        ],
+        [
+          1532.56,
+          -1693.58
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          1540.06,
+          -1686.08
+        ],
+        [
+          1601.72,
+          -1686.08
+        ],
+        [
+          1601.72,
+          -1624.91
+        ],
+        [
+          1540.06,
+          -1624.91
+        ],
+        [
+          1540.06,
+          -1686.08
+        ]
+      ],
+      "center_cm": {
+        "x": 1570.8899999999999,
+        "y": -1655.495
+      },
+      "centerline_width_cm": 61.66000000000008,
+      "centerline_depth_cm": 61.169999999999845,
+      "width_cm": 76.66000000000008,
+      "depth_cm": 76.16999999999985,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C09"
+    },
+    {
+      "id": "column-5d259bb6c3b7",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        193,
+        194,
+        195,
+        196
+      ],
+      "source_wall_guids": [
+        "66e161",
+        "cff61a",
+        "d838bb",
+        "df07ad"
+      ],
+      "footprint_cm": [
+        [
+          1264.47,
+          -1694.45
+        ],
+        [
+          1341.13,
+          -1694.45
+        ],
+        [
+          1341.13,
+          -1618.28
+        ],
+        [
+          1264.47,
+          -1618.28
+        ],
+        [
+          1264.47,
+          -1694.45
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          1271.97,
+          -1686.95
+        ],
+        [
+          1333.63,
+          -1686.95
+        ],
+        [
+          1333.63,
+          -1625.78
+        ],
+        [
+          1271.97,
+          -1625.78
+        ],
+        [
+          1271.97,
+          -1686.95
+        ]
+      ],
+      "center_cm": {
+        "x": 1302.8000000000002,
+        "y": -1656.365
+      },
+      "centerline_width_cm": 61.66000000000008,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000008,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C10"
+    },
+    {
+      "id": "column-90181ecef8d9",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1247,
+        1248,
+        1249,
+        1250
+      ],
+      "source_wall_guids": [
+        "12a4d3",
+        "1628fe",
+        "5fc613",
+        "ea217b"
+      ],
+      "footprint_cm": [
+        [
+          816.76,
+          -1693.75
+        ],
+        [
+          893.43,
+          -1693.75
+        ],
+        [
+          893.43,
+          -1617.58
+        ],
+        [
+          816.76,
+          -1617.58
+        ],
+        [
+          816.76,
+          -1693.75
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          885.93,
+          -1686.25
+        ],
+        [
+          885.93,
+          -1625.08
+        ],
+        [
+          824.26,
+          -1625.08
+        ],
+        [
+          824.26,
+          -1686.25
+        ],
+        [
+          885.93,
+          -1686.25
+        ]
+      ],
+      "center_cm": {
+        "x": 855.095,
+        "y": -1655.665
+      },
+      "centerline_width_cm": 61.66999999999996,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66999999999996,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C11"
+    },
+    {
+      "id": "column-a463a9a2acf7",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        189,
+        190,
+        191,
+        192
+      ],
+      "source_wall_guids": [
+        "0db9a3",
+        "17caff",
+        "abac1b",
+        "fbf2a6"
+      ],
+      "footprint_cm": [
+        [
+          548.67,
+          -1694.63
+        ],
+        [
+          625.33,
+          -1694.63
+        ],
+        [
+          625.33,
+          -1618.46
+        ],
+        [
+          548.67,
+          -1618.46
+        ],
+        [
+          548.67,
+          -1694.63
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          617.83,
+          -1625.96
+        ],
+        [
+          556.17,
+          -1625.96
+        ],
+        [
+          556.17,
+          -1687.13
+        ],
+        [
+          617.83,
+          -1687.13
+        ],
+        [
+          617.83,
+          -1625.96
+        ]
+      ],
+      "center_cm": {
+        "x": 587.0,
+        "y": -1656.545
+      },
+      "centerline_width_cm": 61.66000000000008,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000008,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C12"
+    },
+    {
+      "id": "column-47239d683e86",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        185,
+        186,
+        187,
+        188
+      ],
+      "source_wall_guids": [
+        "1d467f",
+        "1f33cc",
+        "ab4849",
+        "c1d75d"
+      ],
+      "footprint_cm": [
+        [
+          -382.45,
+          -1690.6
+        ],
+        [
+          -305.79,
+          -1690.6
+        ],
+        [
+          -305.79,
+          -1614.43
+        ],
+        [
+          -382.45,
+          -1614.43
+        ],
+        [
+          -382.45,
+          -1690.6
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -374.95,
+          -1683.1
+        ],
+        [
+          -313.29,
+          -1683.1
+        ],
+        [
+          -313.29,
+          -1621.93
+        ],
+        [
+          -374.95,
+          -1621.93
+        ],
+        [
+          -374.95,
+          -1683.1
+        ]
+      ],
+      "center_cm": {
+        "x": -344.12,
+        "y": -1652.5149999999999
+      },
+      "centerline_width_cm": 61.65999999999997,
+      "centerline_depth_cm": 61.169999999999845,
+      "width_cm": 76.65999999999997,
+      "depth_cm": 76.16999999999985,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C13"
+    },
+    {
+      "id": "column-16c0ba4535cc",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1239,
+        1240,
+        1241,
+        1242
+      ],
+      "source_wall_guids": [
+        "0171df",
+        "86fedc",
+        "b25d07",
+        "f97f4f"
+      ],
+      "footprint_cm": [
+        [
+          -1196.06,
+          -1693.26
+        ],
+        [
+          -1119.4,
+          -1693.26
+        ],
+        [
+          -1119.4,
+          -1617.09
+        ],
+        [
+          -1196.06,
+          -1617.09
+        ],
+        [
+          -1196.06,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -1126.9,
+          -1685.76
+        ],
+        [
+          -1126.9,
+          -1624.59
+        ],
+        [
+          -1188.56,
+          -1624.59
+        ],
+        [
+          -1188.56,
+          -1685.76
+        ],
+        [
+          -1126.9,
+          -1685.76
+        ]
+      ],
+      "center_cm": {
+        "x": -1157.73,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C14"
+    },
+    {
+      "id": "column-67175e7ffef6",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1243,
+        1244,
+        1245,
+        1246
+      ],
+      "source_wall_guids": [
+        "2d9a16",
+        "b29776",
+        "cd4566",
+        "ce5c2a"
+      ],
+      "footprint_cm": [
+        [
+          -1890.58,
+          -1693.26
+        ],
+        [
+          -1813.92,
+          -1693.26
+        ],
+        [
+          -1813.92,
+          -1617.09
+        ],
+        [
+          -1890.58,
+          -1617.09
+        ],
+        [
+          -1890.58,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -1821.42,
+          -1685.76
+        ],
+        [
+          -1821.42,
+          -1624.59
+        ],
+        [
+          -1883.08,
+          -1624.59
+        ],
+        [
+          -1883.08,
+          -1685.76
+        ],
+        [
+          -1821.42,
+          -1685.76
+        ]
+      ],
+      "center_cm": {
+        "x": -1852.25,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C15"
+    },
+    {
+      "id": "column-ed119356cf6a",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        205,
+        206,
+        207,
+        208
+      ],
+      "source_wall_guids": [
+        "0884d4",
+        "0b2bba",
+        "74254e",
+        "bf5348"
+      ],
+      "footprint_cm": [
+        [
+          -2706.06,
+          -1697.45
+        ],
+        [
+          -2629.4,
+          -1697.45
+        ],
+        [
+          -2629.4,
+          -1621.28
+        ],
+        [
+          -2706.06,
+          -1621.28
+        ],
+        [
+          -2706.06,
+          -1697.45
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -2698.56,
+          -1689.95
+        ],
+        [
+          -2636.9,
+          -1689.95
+        ],
+        [
+          -2636.9,
+          -1628.78
+        ],
+        [
+          -2698.56,
+          -1628.78
+        ],
+        [
+          -2698.56,
+          -1689.95
+        ]
+      ],
+      "center_cm": {
+        "x": -2667.73,
+        "y": -1659.365
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C16"
+    },
+    {
+      "id": "column-aee610a618a4",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        165,
+        166,
+        167,
+        168
+      ],
+      "source_wall_guids": [
+        "90f29a",
+        "d3fb1f",
+        "dc341e",
+        "dc879b"
+      ],
+      "footprint_cm": [
+        [
+          -3455.38,
+          -1692.63
+        ],
+        [
+          -3378.72,
+          -1692.63
+        ],
+        [
+          -3378.72,
+          -1616.46
+        ],
+        [
+          -3455.38,
+          -1616.46
+        ],
+        [
+          -3455.38,
+          -1692.63
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -3447.88,
+          -1685.13
+        ],
+        [
+          -3386.22,
+          -1685.13
+        ],
+        [
+          -3386.22,
+          -1623.96
+        ],
+        [
+          -3447.88,
+          -1623.96
+        ],
+        [
+          -3447.88,
+          -1685.13
+        ]
+      ],
+      "center_cm": {
+        "x": -3417.05,
+        "y": -1654.545
+      },
+      "centerline_width_cm": 61.66000000000031,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000031,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C17"
+    },
+    {
+      "id": "column-a271a91870ae",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        169,
+        170,
+        171,
+        172
+      ],
+      "source_wall_guids": [
+        "1f0743",
+        "7a3d62",
+        "a4917d",
+        "b7ba37"
+      ],
+      "footprint_cm": [
+        [
+          -4205.42,
+          -1691.89
+        ],
+        [
+          -4128.75,
+          -1691.89
+        ],
+        [
+          -4128.75,
+          -1615.72
+        ],
+        [
+          -4205.42,
+          -1615.72
+        ],
+        [
+          -4205.42,
+          -1691.89
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -4197.92,
+          -1684.39
+        ],
+        [
+          -4136.25,
+          -1684.39
+        ],
+        [
+          -4136.25,
+          -1623.22
+        ],
+        [
+          -4197.92,
+          -1623.22
+        ],
+        [
+          -4197.92,
+          -1684.39
+        ]
+      ],
+      "center_cm": {
+        "x": -4167.085,
+        "y": -1653.805
+      },
+      "centerline_width_cm": 61.67000000000007,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.67000000000007,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C18"
+    },
+    {
+      "id": "column-d785b928bb21",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        173,
+        174,
+        175,
+        176
+      ],
+      "source_wall_guids": [
+        "337683",
+        "396678",
+        "c539e3",
+        "f55e26"
+      ],
+      "footprint_cm": [
+        [
+          -4949.53,
+          -1691.19
+        ],
+        [
+          -4872.87,
+          -1691.19
+        ],
+        [
+          -4872.87,
+          -1615.02
+        ],
+        [
+          -4949.53,
+          -1615.02
+        ],
+        [
+          -4949.53,
+          -1691.19
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -4942.03,
+          -1683.69
+        ],
+        [
+          -4880.37,
+          -1683.69
+        ],
+        [
+          -4880.37,
+          -1622.52
+        ],
+        [
+          -4942.03,
+          -1622.52
+        ],
+        [
+          -4942.03,
+          -1683.69
+        ]
+      ],
+      "center_cm": {
+        "x": -4911.2,
+        "y": -1653.105
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C19"
+    },
+    {
+      "id": "column-c26484797ec1",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        177,
+        178,
+        179,
+        180
+      ],
+      "source_wall_guids": [
+        "1d444f",
+        "5e29ca",
+        "77a4b4",
+        "7e7d5f"
+      ],
+      "footprint_cm": [
+        [
+          -5694.67,
+          -1689.52
+        ],
+        [
+          -5618.01,
+          -1689.52
+        ],
+        [
+          -5618.01,
+          -1613.35
+        ],
+        [
+          -5694.67,
+          -1613.35
+        ],
+        [
+          -5694.67,
+          -1689.52
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -5687.17,
+          -1682.02
+        ],
+        [
+          -5625.51,
+          -1682.02
+        ],
+        [
+          -5625.51,
+          -1620.85
+        ],
+        [
+          -5687.17,
+          -1620.85
+        ],
+        [
+          -5687.17,
+          -1682.02
+        ]
+      ],
+      "center_cm": {
+        "x": -5656.34,
+        "y": -1651.435
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C20"
+    },
+    {
+      "id": "column-a8f1bedc07e9",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        181,
+        182,
+        183,
+        184
+      ],
+      "source_wall_guids": [
+        "2c4a42",
+        "b0487f",
+        "c79394",
+        "eaeabe"
+      ],
+      "footprint_cm": [
+        [
+          -6441.78,
+          -1692.96
+        ],
+        [
+          -6365.12,
+          -1692.96
+        ],
+        [
+          -6365.12,
+          -1616.79
+        ],
+        [
+          -6441.78,
+          -1616.79
+        ],
+        [
+          -6441.78,
+          -1692.96
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -6434.28,
+          -1685.46
+        ],
+        [
+          -6372.62,
+          -1685.46
+        ],
+        [
+          -6372.62,
+          -1624.29
+        ],
+        [
+          -6434.28,
+          -1624.29
+        ],
+        [
+          -6434.28,
+          -1685.46
+        ]
+      ],
+      "center_cm": {
+        "x": -6403.45,
+        "y": -1654.875
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C21"
+    },
+    {
+      "id": "column-1f046ab1c1c0",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1235,
+        1236,
+        1237,
+        1238
+      ],
+      "source_wall_guids": [
+        "050463",
+        "33a674",
+        "d90d6a",
+        "f01239"
+      ],
+      "footprint_cm": [
+        [
+          -7196.76,
+          -1690.88
+        ],
+        [
+          -7120.1,
+          -1690.88
+        ],
+        [
+          -7120.1,
+          -1614.71
+        ],
+        [
+          -7196.76,
+          -1614.71
+        ],
+        [
+          -7196.76,
+          -1690.88
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -7189.26,
+          -1683.38
+        ],
+        [
+          -7127.6,
+          -1683.38
+        ],
+        [
+          -7127.6,
+          -1622.21
+        ],
+        [
+          -7189.26,
+          -1622.21
+        ],
+        [
+          -7189.26,
+          -1683.38
+        ]
+      ],
+      "center_cm": {
+        "x": -7158.43,
+        "y": -1652.795
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C22"
+    },
+    {
+      "id": "column-a72402b949b5",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        213,
+        214,
+        215,
+        216
+      ],
+      "source_wall_guids": [
+        "4fe8a4",
+        "6271d3",
+        "858c19",
+        "c67fde"
+      ],
+      "footprint_cm": [
+        [
+          -7964.1,
+          -1693.26
+        ],
+        [
+          -7887.44,
+          -1693.26
+        ],
+        [
+          -7887.44,
+          -1617.09
+        ],
+        [
+          -7964.1,
+          -1617.09
+        ],
+        [
+          -7964.1,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -7956.6,
+          -1685.76
+        ],
+        [
+          -7894.94,
+          -1685.76
+        ],
+        [
+          -7894.94,
+          -1624.59
+        ],
+        [
+          -7956.6,
+          -1624.59
+        ],
+        [
+          -7956.6,
+          -1685.76
+        ]
+      ],
+      "center_cm": {
+        "x": -7925.77,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.660000000000764,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.66000000000076,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C23"
+    },
+    {
+      "id": "column-e8fa3fb70060",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        209,
+        210,
+        211,
+        212
+      ],
+      "source_wall_guids": [
+        "53daf0",
+        "62d6b5",
+        "913ff5",
+        "e448af"
+      ],
+      "footprint_cm": [
+        [
+          -8735.02,
+          -1693.26
+        ],
+        [
+          -8658.36,
+          -1693.26
+        ],
+        [
+          -8658.36,
+          -1617.09
+        ],
+        [
+          -8735.02,
+          -1617.09
+        ],
+        [
+          -8735.02,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -8727.52,
+          -1685.76
+        ],
+        [
+          -8665.86,
+          -1685.76
+        ],
+        [
+          -8665.86,
+          -1624.59
+        ],
+        [
+          -8727.52,
+          -1624.59
+        ],
+        [
+          -8727.52,
+          -1685.76
+        ]
+      ],
+      "center_cm": {
+        "x": -8696.69,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C24"
+    },
+    {
+      "id": "column-45d9d6177283",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1258,
+        1259,
+        1261,
+        1262
+      ],
+      "source_wall_guids": [
+        "45b61e",
+        "4d6910",
+        "daca7f",
+        "f7b724"
+      ],
+      "footprint_cm": [
+        [
+          -9633.31,
+          -1688.97
+        ],
+        [
+          -9556.65,
+          -1688.97
+        ],
+        [
+          -9556.65,
+          -1612.8
+        ],
+        [
+          -9633.31,
+          -1612.8
+        ],
+        [
+          -9633.31,
+          -1688.97
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -9625.81,
+          -1681.47
+        ],
+        [
+          -9564.15,
+          -1681.47
+        ],
+        [
+          -9564.15,
+          -1620.3
+        ],
+        [
+          -9625.81,
+          -1620.3
+        ],
+        [
+          -9625.81,
+          -1681.47
+        ]
+      ],
+      "center_cm": {
+        "x": -9594.98,
+        "y": -1650.885
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "medium_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C25",
+      "review_note": "Repeated square loop shares an edge with a larger narrow walkway feature and lies about 1.12 m from C26. Keep as a candidate pending source/photo review; do not claim two physically verified supports."
+    },
+    {
+      "id": "column-887d27e648e6",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        161,
+        162,
+        163,
+        164
+      ],
+      "source_wall_guids": [
+        "1b7619",
+        "2163d0",
+        "aaa943",
+        "d55b47"
+      ],
+      "footprint_cm": [
+        [
+          -9745.05,
+          -1691.08
+        ],
+        [
+          -9668.39,
+          -1691.08
+        ],
+        [
+          -9668.39,
+          -1614.91
+        ],
+        [
+          -9745.05,
+          -1614.91
+        ],
+        [
+          -9745.05,
+          -1691.08
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -9737.55,
+          -1683.58
+        ],
+        [
+          -9675.89,
+          -1683.58
+        ],
+        [
+          -9675.89,
+          -1622.41
+        ],
+        [
+          -9737.55,
+          -1622.41
+        ],
+        [
+          -9737.55,
+          -1683.58
+        ]
+      ],
+      "center_cm": {
+        "x": -9706.72,
+        "y": -1652.995
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.169999999999845,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.16999999999985,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C26"
+    },
+    {
+      "id": "column-21818286d35d",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        217,
+        218,
+        219,
+        220
+      ],
+      "source_wall_guids": [
+        "13c065",
+        "37ca38",
+        "cdefb3",
+        "df5235"
+      ],
+      "footprint_cm": [
+        [
+          -10448.06,
+          -1693.26
+        ],
+        [
+          -10371.4,
+          -1693.26
+        ],
+        [
+          -10371.4,
+          -1617.09
+        ],
+        [
+          -10448.06,
+          -1617.09
+        ],
+        [
+          -10448.06,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -10440.56,
+          -1685.76
+        ],
+        [
+          -10378.9,
+          -1685.76
+        ],
+        [
+          -10378.9,
+          -1624.59
+        ],
+        [
+          -10440.56,
+          -1624.59
+        ],
+        [
+          -10440.56,
+          -1685.76
+        ]
+      ],
+      "center_cm": {
+        "x": -10409.73,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C27"
+    },
+    {
+      "id": "column-ce943c0fb5c2",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        221,
+        222,
+        223,
+        224
+      ],
+      "source_wall_guids": [
+        "27977d",
+        "3b2f23",
+        "8a1038",
+        "915113"
+      ],
+      "footprint_cm": [
+        [
+          -11231.92,
+          -1693.28
+        ],
+        [
+          -11155.25,
+          -1693.28
+        ],
+        [
+          -11155.25,
+          -1617.61
+        ],
+        [
+          -11231.92,
+          -1617.61
+        ],
+        [
+          -11231.92,
+          -1693.28
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -11224.42,
+          -1685.78
+        ],
+        [
+          -11162.75,
+          -1685.78
+        ],
+        [
+          -11162.75,
+          -1625.13
+        ],
+        [
+          -11224.42,
+          -1625.11
+        ],
+        [
+          -11224.42,
+          -1685.78
+        ]
+      ],
+      "center_cm": {
+        "x": -11193.585,
+        "y": -1655.445
+      },
+      "centerline_width_cm": 61.67000000000007,
+      "centerline_depth_cm": 60.67000000000007,
+      "width_cm": 76.67000000000007,
+      "depth_cm": 75.67000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C28"
+    },
+    {
+      "id": "column-9e141c322e07",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        229,
+        230,
+        231,
+        232
+      ],
+      "source_wall_guids": [
+        "14c8ee",
+        "19c0a1",
+        "346434",
+        "d7638d"
+      ],
+      "footprint_cm": [
+        [
+          -12014.53,
+          -1693.26
+        ],
+        [
+          -11937.87,
+          -1693.26
+        ],
+        [
+          -11937.87,
+          -1617.09
+        ],
+        [
+          -12014.53,
+          -1617.09
+        ],
+        [
+          -12014.53,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12007.03,
+          -1624.59
+        ],
+        [
+          -12007.03,
+          -1685.76
+        ],
+        [
+          -11945.37,
+          -1685.76
+        ],
+        [
+          -11945.37,
+          -1624.59
+        ],
+        [
+          -12007.03,
+          -1624.59
+        ]
+      ],
+      "center_cm": {
+        "x": -11976.2,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C29"
+    },
+    {
+      "id": "column-97dabebaad03",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        225,
+        226,
+        227,
+        228
+      ],
+      "source_wall_guids": [
+        "2a0dfe",
+        "49a3b3",
+        "d100d2",
+        "dfc7e7"
+      ],
+      "footprint_cm": [
+        [
+          -12805.61,
+          -1693.26
+        ],
+        [
+          -12728.95,
+          -1693.26
+        ],
+        [
+          -12728.95,
+          -1617.09
+        ],
+        [
+          -12805.61,
+          -1617.09
+        ],
+        [
+          -12805.61,
+          -1693.26
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12798.11,
+          -1685.76
+        ],
+        [
+          -12736.45,
+          -1685.76
+        ],
+        [
+          -12736.45,
+          -1624.59
+        ],
+        [
+          -12798.11,
+          -1624.59
+        ],
+        [
+          -12798.11,
+          -1685.76
+        ]
+      ],
+      "center_cm": {
+        "x": -12767.28,
+        "y": -1655.175
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C30"
+    },
+    {
+      "id": "column-e867804401a1",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        233,
+        234,
+        235,
+        236
+      ],
+      "source_wall_guids": [
+        "275262",
+        "735506",
+        "899f1f",
+        "ba14d2"
+      ],
+      "footprint_cm": [
+        [
+          -12979.97,
+          -2047.85
+        ],
+        [
+          -12903.31,
+          -2047.85
+        ],
+        [
+          -12903.31,
+          -1971.68
+        ],
+        [
+          -12979.97,
+          -1971.68
+        ],
+        [
+          -12979.97,
+          -2047.85
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12972.47,
+          -1979.18
+        ],
+        [
+          -12972.47,
+          -2040.35
+        ],
+        [
+          -12910.81,
+          -2040.35
+        ],
+        [
+          -12910.81,
+          -1979.18
+        ],
+        [
+          -12972.47,
+          -1979.18
+        ]
+      ],
+      "center_cm": {
+        "x": -12941.64,
+        "y": -2009.7649999999999
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.169999999999845,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.16999999999985,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C31"
+    },
+    {
+      "id": "column-3156ee7986df",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        243,
+        244,
+        245,
+        246,
+        247
+      ],
+      "source_wall_guids": [
+        "6c0927",
+        "91ca46",
+        "b02889",
+        "c6c758",
+        "fd6555"
+      ],
+      "footprint_cm": [
+        [
+          -12981.63,
+          -2818.62
+        ],
+        [
+          -12904.97,
+          -2818.62
+        ],
+        [
+          -12904.97,
+          -2742.45
+        ],
+        [
+          -12981.63,
+          -2742.45
+        ],
+        [
+          -12981.63,
+          -2818.62
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12912.47,
+          -2811.12
+        ],
+        [
+          -12912.47,
+          -2749.95
+        ],
+        [
+          -12974.13,
+          -2749.95
+        ],
+        [
+          -12974.13,
+          -2802.15
+        ],
+        [
+          -12974.13,
+          -2811.12
+        ],
+        [
+          -12912.47,
+          -2811.12
+        ]
+      ],
+      "center_cm": {
+        "x": -12943.3,
+        "y": -2780.535
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C32"
+    },
+    {
+      "id": "column-81c79ff96e48",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        237,
+        238,
+        239,
+        241,
+        242
+      ],
+      "source_wall_guids": [
+        "01e9ad",
+        "0339e3",
+        "09f96c",
+        "0b15e1",
+        "f28ff1"
+      ],
+      "footprint_cm": [
+        [
+          -12980.07,
+          -3675.39
+        ],
+        [
+          -12903.41,
+          -3675.39
+        ],
+        [
+          -12903.41,
+          -3599.22
+        ],
+        [
+          -12980.07,
+          -3599.22
+        ],
+        [
+          -12980.07,
+          -3675.39
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12910.91,
+          -3667.89
+        ],
+        [
+          -12910.91,
+          -3606.72
+        ],
+        [
+          -12972.57,
+          -3606.72
+        ],
+        [
+          -12972.57,
+          -3658.92
+        ],
+        [
+          -12972.57,
+          -3667.89
+        ],
+        [
+          -12910.91,
+          -3667.89
+        ]
+      ],
+      "center_cm": {
+        "x": -12941.74,
+        "y": -3637.305
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C33"
+    },
+    {
+      "id": "column-a9381f0a71be",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1270,
+        1271,
+        1272,
+        1273,
+        1274
+      ],
+      "source_wall_guids": [
+        "4e11b0",
+        "7181a7",
+        "90cc3c",
+        "9f659e",
+        "b424b7"
+      ],
+      "footprint_cm": [
+        [
+          -12980.4,
+          -4529.86
+        ],
+        [
+          -12903.74,
+          -4529.86
+        ],
+        [
+          -12903.74,
+          -4453.69
+        ],
+        [
+          -12980.4,
+          -4453.69
+        ],
+        [
+          -12980.4,
+          -4529.86
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12911.24,
+          -4522.36
+        ],
+        [
+          -12911.24,
+          -4461.19
+        ],
+        [
+          -12972.9,
+          -4461.19
+        ],
+        [
+          -12972.9,
+          -4513.39
+        ],
+        [
+          -12972.9,
+          -4522.36
+        ],
+        [
+          -12911.24,
+          -4522.36
+        ]
+      ],
+      "center_cm": {
+        "x": -12942.07,
+        "y": -4491.775
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C34"
+    },
+    {
+      "id": "column-77db6e0ff5af",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1264,
+        1265,
+        1266,
+        1268,
+        1269
+      ],
+      "source_wall_guids": [
+        "35e5c1",
+        "adaa44",
+        "c6cbc0",
+        "d4ce92",
+        "efd895"
+      ],
+      "footprint_cm": [
+        [
+          -12978.15,
+          -5379.46
+        ],
+        [
+          -12901.49,
+          -5379.46
+        ],
+        [
+          -12901.49,
+          -5303.29
+        ],
+        [
+          -12978.15,
+          -5303.29
+        ],
+        [
+          -12978.15,
+          -5379.46
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12908.99,
+          -5371.96
+        ],
+        [
+          -12908.99,
+          -5310.79
+        ],
+        [
+          -12970.65,
+          -5310.79
+        ],
+        [
+          -12970.65,
+          -5362.99
+        ],
+        [
+          -12970.65,
+          -5371.96
+        ],
+        [
+          -12908.99,
+          -5371.96
+        ]
+      ],
+      "center_cm": {
+        "x": -12939.82,
+        "y": -5341.375
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C35"
+    },
+    {
+      "id": "column-fc0ad1c131f2",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        249,
+        250,
+        251,
+        253,
+        254
+      ],
+      "source_wall_guids": [
+        "25dca7",
+        "9bc7c5",
+        "9c3e2d",
+        "d125b4",
+        "d20f11"
+      ],
+      "footprint_cm": [
+        [
+          -12980.4,
+          -6241.1
+        ],
+        [
+          -12903.74,
+          -6241.1
+        ],
+        [
+          -12903.74,
+          -6164.93
+        ],
+        [
+          -12980.4,
+          -6164.93
+        ],
+        [
+          -12980.4,
+          -6241.1
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12911.24,
+          -6233.6
+        ],
+        [
+          -12911.24,
+          -6172.43
+        ],
+        [
+          -12972.9,
+          -6172.43
+        ],
+        [
+          -12972.9,
+          -6224.63
+        ],
+        [
+          -12972.9,
+          -6233.6
+        ],
+        [
+          -12911.24,
+          -6233.6
+        ]
+      ],
+      "center_cm": {
+        "x": -12942.07,
+        "y": -6203.015
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C36"
+    },
+    {
+      "id": "column-cd2fbfa1e062",
+      "source_design_id": 241952337,
+      "source_wall_indices": [
+        1276,
+        1277,
+        1278,
+        1280,
+        1281
+      ],
+      "source_wall_guids": [
+        "342983",
+        "a0b1a7",
+        "a409fe",
+        "dcce05",
+        "e5a41a"
+      ],
+      "footprint_cm": [
+        [
+          -12979.97,
+          -6585.33
+        ],
+        [
+          -12903.31,
+          -6585.33
+        ],
+        [
+          -12903.31,
+          -6509.16
+        ],
+        [
+          -12979.97,
+          -6509.16
+        ],
+        [
+          -12979.97,
+          -6585.33
+        ]
+      ],
+      "footprint_method": "Bounding rectangle of the near-axis-aligned source wall-centerline loop, expanded by half the source wall thickness. Filled visual proxy replaces a hollow wall loop.",
+      "centerline_polygon_cm": [
+        [
+          -12972.47,
+          -6577.83
+        ],
+        [
+          -12910.81,
+          -6577.83
+        ],
+        [
+          -12910.81,
+          -6516.66
+        ],
+        [
+          -12972.47,
+          -6516.66
+        ],
+        [
+          -12972.47,
+          -6568.86
+        ],
+        [
+          -12972.47,
+          -6577.83
+        ]
+      ],
+      "center_cm": {
+        "x": -12941.64,
+        "y": -6547.245
+      },
+      "centerline_width_cm": 61.659999999999854,
+      "centerline_depth_cm": 61.17000000000007,
+      "width_cm": 76.65999999999985,
+      "depth_cm": 76.17000000000007,
+      "bottom_cm": 0,
+      "height_cm": 388.6199994092976,
+      "wall_thicknesses_cm": [
+        15
+      ],
+      "confidence": "high_model_pattern_match",
+      "physical_verification": "unverified",
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "source_openings_count": 0,
+      "label": "C37"
+    }
+  ],
+  "exclusions": [
+    {
+      "reason": "Closed walkway loop does not match repeated near-square column template",
+      "wall_indices": [
+        1255,
+        1256,
+        1257,
+        1260,
+        1261,
+        1263
+      ],
+      "bbox_cm": [
+        -9648.93,
+        -1716.42,
+        -9625.81,
+        -1583.91
+      ],
+      "size_cm": [
+        23.1200000000008,
+        132.51
+      ]
+    },
+    {
+      "reason": "Closed walkway loop does not match repeated near-square column template",
+      "wall_indices": [
+        1286,
+        1288,
+        1290,
+        1292,
+        1293,
+        1294
+      ],
+      "bbox_cm": [
+        -12860.63,
+        -1716.42,
+        -12826.45,
+        -1583.91
+      ],
+      "size_cm": [
+        34.17999999999847,
+        132.51
+      ]
+    },
+    {
+      "reason": "Closed walkway loop does not match repeated near-square column template",
+      "wall_indices": [
+        1287,
+        1289,
+        1291,
+        1292
+      ],
+      "bbox_cm": [
+        -12889.48,
+        -1683.15,
+        -12860.63,
+        -1623.44
+      ],
+      "size_cm": [
+        28.850000000000364,
+        59.710000000000036
+      ]
+    },
+    {
+      "reason": "Closed walkway loop does not match repeated near-square column template",
+      "wall_indices": [
+        1345,
+        1351,
+        1352,
+        1356,
+        1357
+      ],
+      "bbox_cm": [
+        1578.31,
+        -1229.09,
+        1601.22,
+        -1196.85
+      ],
+      "size_cm": [
+        22.910000000000082,
+        32.24000000000001
+      ]
+    },
+    {
+      "reason": "Closed walkway loop does not match repeated near-square column template",
+      "wall_indices": [
+        1344,
+        1346,
+        1352,
+        1353
+      ],
+      "bbox_cm": [
+        1601.22,
+        -1229.09,
+        1610.98,
+        -1196.85
+      ],
+      "size_cm": [
+        9.759999999999991,
+        32.24000000000001
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        160
+      ],
+      "component_bbox_cm": [
+        -11224.416100437937,
+        -1624.607258299405,
+        -11162.754536645582,
+        -1624.607258299352
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        240
+      ],
+      "component_bbox_cm": [
+        -12980.03602615075,
+        -3667.891582082125,
+        -12910.906135973797,
+        -3606.720923211319
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        248
+      ],
+      "component_bbox_cm": [
+        -12980.373197624393,
+        -2811.123326773635,
+        -12912.466513192761,
+        -2749.9526679028295
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        252
+      ],
+      "component_bbox_cm": [
+        -12980.37319756213,
+        -6233.602376502304,
+        -12911.243307385177,
+        -6172.431717631372
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        1255,
+        1256,
+        1260,
+        1263,
+        1257
+      ],
+      "component_bbox_cm": [
+        -9648.931873737967,
+        -1716.418224840254,
+        -9564.15177287587,
+        -1583.905637920863
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        1267
+      ],
+      "component_bbox_cm": [
+        -12978.116651492568,
+        -5371.962717648526,
+        -12908.986761315615,
+        -5310.792058777672
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        1275
+      ],
+      "component_bbox_cm": [
+        -12980.373197593099,
+        -4522.361769653006,
+        -12911.243307416145,
+        -4461.191110782201
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        1279
+      ],
+      "component_bbox_cm": [
+        -12980.373197555868,
+        -6577.831794289534,
+        -12910.806018015634,
+        -6516.661135418601
+      ]
+    },
+    {
+      "reason": "Unassigned attachment or open fragment retained as source walls",
+      "wall_indices": [
+        1286,
+        1288,
+        1292,
+        1294,
+        1293,
+        1291,
+        1287,
+        1289,
+        1290
+      ],
+      "component_bbox_cm": [
+        -12889.47840738275,
+        -1716.4182248387056,
+        -12826.453500696354,
+        -1583.9056379190204
+      ]
+    }
+  ]
+}

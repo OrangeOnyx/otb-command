@@ -14,15 +14,16 @@ const derived = new Set(Object.values(geometry.demising).flatMap(b => b.bays)
   .filter(b => /derived/i.test(b[2] || "")).map(b => b[0]));
 // The 135 mid-depth division is an interpretation within the plat's 37.4' bay.
 derived.add("135A"); derived.add("135B");
-// Walkway columns (tools/detect-columns.py): 2 ft square posts centered on the
-// detected lattice. Sorted with the suites so iso depth order stays correct.
+// Walkway columns (tools/import-fp-columns.py): the Floorplanner model's 24" columns,
+// registered to the plat footprints. Sorted with the suites so iso depth order holds.
 const COLUMN_SIDE = (walkway.columnSizeFt || 2) * PLAN_PER_FT;
-const COLUMNS = (walkway.longBuilding?.columns || []).map(c => ({
-  kind: "column", id: c.id, x: c.x - COLUMN_SIDE / 2, y: c.y - COLUMN_SIDE / 2, w: COLUMN_SIDE, h: COLUMN_SIDE,
-}));
-const COLUMN_HEIGHT = (walkway.longBuilding?.heightFt || 10) * PLAN_PER_FT;
-const COLUMN_NOTE = `Detected from the 2020 drone scan · ±${walkway.longBuilding?.positionToleranceFt ?? 3} ft · ` +
-  `${walkway.longBuilding?.pitchFt ?? "—"} ft on center · pending tile-count check`;
+const LINE_NAME = { long: "Long-building walkway", short: "Short-building walkway", wrap101: "Suite 101 end" };
+const COLUMNS = Object.entries(walkway.lines || {}).flatMap(([line, cols]) => cols.map(c => ({
+  kind: "column", id: c.id, line, x: c.x - COLUMN_SIDE / 2, y: c.y - COLUMN_SIDE / 2, w: COLUMN_SIDE, h: COLUMN_SIDE,
+})));
+const COLUMN_HEIGHT = (walkway.heightFt || 10) * PLAN_PER_FT;
+const COLUMN_NOTE = `Floorplanner model, registered to the plat (±${Math.ceil(walkway.registration?.maxResidualFt ?? 4)} ft) · ` +
+  "24-inch column · field count pending";
 let instance = 0;
 
 function el(name, attrs = {}) {
@@ -208,7 +209,8 @@ export function createCommandMap(host, opts = {}) {
   function drawColumn(layer, r) {
     const group = g(layer, "cc-column");
     group.setAttribute("data-column", r.id);
-    const title = el("title"); title.textContent = `Walkway column ${r.id}\n${COLUMN_NOTE}`; group.appendChild(title);
+    const name = `Column ${r.id} · ${LINE_NAME[r.line] || "Walkway"}`;
+    const title = el("title"); title.textContent = `${name}\n${COLUMN_NOTE}`; group.appendChild(title);
     if (mode === "model") {
       const f = modelFaces(r, COLUMN_HEIGHT);
       path(group, facePath(f.front), { fill: "#CFC8B8", stroke: "#8A8472", "stroke-width": .4 });
@@ -217,7 +219,7 @@ export function createCommandMap(host, opts = {}) {
     } else {
       rect(group, r.x, r.y, r.w, r.h, { fill: BONE, stroke: "#55694F", "stroke-width": .6 });
     }
-    group.addEventListener("pointermove", e => { if (!drag) showTipText(e, `Walkway column ${r.id}`, COLUMN_NOTE); });
+    group.addEventListener("pointermove", e => { if (!drag) showTipText(e, name, COLUMN_NOTE); });
     group.addEventListener("pointerleave", () => { tip.hidden = true; });
   }
   function drawIssue() {

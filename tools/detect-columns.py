@@ -2,7 +2,7 @@
 #   python tools/detect-columns.py [fused.ply]
 # Default input: C:/Users/adam/tools3dgs/otb-work/dense/fused.ply (the 121-frame solve
 # the splat + mesh share; its frames are the Oct-2020 Bailey DJI flight).
-# Output: src/data/walkway-columns.json (plan px, same frame as geometry.json units).
+# Output: export/walkway-columns-scan.json (plan px, same frame as geometry.json units).
 #
 # Method: bake splat-align.json (COLMAP -> Lens-B world), invert layout3d centering to
 # plan px, keep points 3-9 ft above grade (under the canopy fascia, above curbs/wheel
@@ -17,7 +17,9 @@ import numpy as np
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else \
     pathlib.Path("C:/Users/adam/tools3dgs/otb-work/dense/fused.ply")
-OUT = ROOT / "src" / "data" / "walkway-columns.json"
+# Evidence only since 2026-09-23: A-2 draws the Floorplanner columns (tools/import-fp-columns.py,
+# operator ruling). This scan lattice is kept as an independent cross-check.
+OUT = ROOT / "export" / "walkway-columns-scan.json"
 ALIGN = json.loads((ROOT / "src" / "data" / "splat-align.json").read_text())
 UNITS = json.loads((ROOT / "src" / "data" / "geometry.json").read_text())["units"]
 WORLD = 0.06            # scene3d-layout.js

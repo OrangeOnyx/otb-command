@@ -38,7 +38,21 @@ that, every column snaps to an exact square index and pins can be placed by squa
 Cross-check, CCTV `suite-113-south`: the columns stand at the walkway/parking edge. The bay south of 113
 has an ADA curb ramp that cuts through the scoring, so tile counts can't be taken from that frame.
 
-### 2a. Conflicting source: the Floorplanner model (project 109978485)
+### 2b. ADOPTED (operator ruling 2026-09-23): the Floorplanner columns
+
+"The floor planner is a more accurate representation." A-2 now draws all **37 Floorplanner columns**:
+- **26** on the long building (L01–L26, 101 end first, including the pairs at the 101 end).
+- **7** on the short building (S01–S07).
+- **4** wrapping around the 101 / Johnston end (W01–W04).
+
+`tools/import-fp-columns.py` registers them to the plat by matching each building's Floorplanner envelope
+to its plat footprint. The storefront wall run gives the ends and the collinear wall runs give the depths. It is a 180° rotation,
+using the plan's documented px/ft (1.8515 x, 1.8866 y) and solving offsets only. Worst footprint residual: **3.8 ft**.
+Sources are vendored in `reference/floorplanner/`. Column height is drawn at Floorplanner's 12'-9" wall height.
+The scan detector (`tools/detect-columns.py`) is kept only as a cross-check and now writes `export/`.
+The walk still confirms the count, the pairs and the wrap.
+
+### 2a. Superseded analysis: the Floorplanner model vs the scan (kept for the record)
 
 A Codex pass (`C:\Users\adam\Documents\Codex\2026-09-23\ca\work\column-analysis.json`) found **37**
 walls in the Floorplanner model that look like 24" square column loops. It flags them as candidates

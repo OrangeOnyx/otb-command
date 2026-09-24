@@ -1,140 +1,250 @@
 {
- "source": "fused.ply (Oct-2020 DJI dense solve) via tools/detect-columns.py; splat-align.json baked",
- "status": "DETECTED \u2014 pending operator tile-count confirmation (see docs/walkway-digital-twin-2026-09-23.md)",
+ "source": "Floorplanner project 109978485 design 241952337 \u2014 24-inch column wall loops (Codex column-analysis.json 2026-09-23); registered to the plat footprints by tools/import-fp-columns.py",
+ "status": "ADOPTED \u2014 operator 2026-09-23: Floorplanner is the more accurate representation. Tile counts / pair locations from the walk still confirm (docs/walkway-digital-twin-2026-09-23.md)",
  "moduleFt": 2.0,
  "columnSizeFt": 2.0,
- "longBuilding": {
-  "axis": "x",
-  "columnLineY": 310.69,
-  "curbY": 312.56,
-  "cloudColumnLineY": 299.81,
-  "cloudStorefrontY": 271.81,
-  "crossAxisBiasFt": 5.8,
-  "walkwayDepthFt": 15.0,
-  "heightFt": 10,
-  "heightNote": "schematic \u2014 canopy underside not yet measured",
-  "positionToleranceFt": 3,
-  "pitchPx": 49.75,
-  "pitchFt": 26.67,
-  "latticeScore": 2.38,
-  "columns": [
+ "heightFt": 12.75,
+ "heightNote": "Floorplanner wall height (12'-9\"); canopy underside not field-measured",
+ "registration": {
+  "planPxPerFtX": 1.8515,
+  "planPxPerFtY": 1.8866,
+  "maxResidualPxX": 5.38,
+  "maxResidualPxY": 7.08,
+  "maxResidualFt": 3.79
+ },
+ "counts": {
+  "long": 26,
+  "short": 7,
+  "wrap101": 4
+ },
+ "lines": {
+  "long": [
    {
-    "id": "L01",
-    "x": 201.53,
-    "y": 310.69,
-    "evidenceZ": 1.25
+    "fp": "column-58ee6b101d84",
+    "x": 153.63,
+    "y": 312.37,
+    "id": "L01"
    },
    {
-    "id": "L02",
-    "x": 251.28,
-    "y": 310.69,
-    "evidenceZ": 0.68
+    "fp": "column-b54ed1758e8b",
+    "x": 169.92,
+    "y": 312.42,
+    "id": "L02"
    },
    {
-    "id": "L03",
-    "x": 301.03,
-    "y": 310.69,
-    "evidenceZ": 1.47
+    "fp": "column-5bc5065cf1b8",
+    "x": 201.6,
+    "y": 312.5,
+    "id": "L03"
    },
    {
-    "id": "L04",
-    "x": 350.78,
-    "y": 310.69,
-    "evidenceZ": 1.95
+    "fp": "column-044d1f471c0c",
+    "x": 217.89,
+    "y": 312.55,
+    "id": "L04"
    },
    {
-    "id": "L05",
-    "x": 400.53,
-    "y": 310.69,
-    "evidenceZ": 1.13
+    "fp": "column-b612c2a14b74",
+    "x": 245.22,
+    "y": 312.49,
+    "id": "L05"
    },
    {
-    "id": "L06",
-    "x": 450.28,
-    "y": 310.69,
-    "evidenceZ": 1.69
+    "fp": "column-5d259bb6c3b7",
+    "x": 261.51,
+    "y": 312.55,
+    "id": "L06"
    },
    {
-    "id": "L07",
-    "x": 500.03,
-    "y": 310.69,
-    "evidenceZ": 1.28
+    "fp": "column-90181ecef8d9",
+    "x": 288.7,
+    "y": 312.5,
+    "id": "L07"
    },
    {
-    "id": "L08",
-    "x": 549.78,
-    "y": 310.69,
-    "evidenceZ": 2.54
+    "fp": "column-a463a9a2acf7",
+    "x": 304.99,
+    "y": 312.56,
+    "id": "L08"
    },
    {
-    "id": "L09",
-    "x": 599.53,
-    "y": 310.69,
-    "evidenceZ": 2.41
+    "fp": "column-47239d683e86",
+    "x": 361.55,
+    "y": 312.31,
+    "id": "L09"
    },
    {
-    "id": "L10",
-    "x": 649.28,
-    "y": 310.69,
-    "evidenceZ": 1.73
+    "fp": "column-16c0ba4535cc",
+    "x": 410.97,
+    "y": 312.47,
+    "id": "L10"
    },
    {
-    "id": "L11",
-    "x": 699.03,
-    "y": 310.69,
-    "evidenceZ": 2.26
+    "fp": "column-67175e7ffef6",
+    "x": 453.16,
+    "y": 312.47,
+    "id": "L11"
    },
    {
-    "id": "L12",
-    "x": 748.78,
-    "y": 310.69,
-    "evidenceZ": 2.86
+    "fp": "column-ed119356cf6a",
+    "x": 502.7,
+    "y": 312.73,
+    "id": "L12"
    },
    {
-    "id": "L13",
-    "x": 798.53,
-    "y": 310.69,
-    "evidenceZ": 1.66
+    "fp": "column-aee610a618a4",
+    "x": 548.21,
+    "y": 312.43,
+    "id": "L13"
    },
    {
-    "id": "L14",
-    "x": 848.28,
-    "y": 310.69,
-    "evidenceZ": 2.1
+    "fp": "column-a271a91870ae",
+    "x": 593.77,
+    "y": 312.39,
+    "id": "L14"
    },
    {
-    "id": "L15",
-    "x": 898.03,
-    "y": 310.69,
-    "evidenceZ": 1.66
+    "fp": "column-d785b928bb21",
+    "x": 638.98,
+    "y": 312.34,
+    "id": "L15"
    },
    {
-    "id": "L16",
-    "x": 947.78,
-    "y": 310.69,
-    "evidenceZ": 0.62
+    "fp": "column-c26484797ec1",
+    "x": 684.24,
+    "y": 312.24,
+    "id": "L16"
    },
    {
-    "id": "L17",
-    "x": 997.53,
-    "y": 310.69,
-    "evidenceZ": 4.59
+    "fp": "column-a8f1bedc07e9",
+    "x": 729.62,
+    "y": 312.45,
+    "id": "L17"
    },
    {
-    "id": "L18",
-    "x": 1047.28,
-    "y": 310.69,
-    "evidenceZ": 7.26
+    "fp": "column-1f046ab1c1c0",
+    "x": 775.48,
+    "y": 312.32,
+    "id": "L18"
    },
    {
-    "id": "L19",
-    "x": 1097.03,
-    "y": 310.69,
-    "evidenceZ": 6.0
+    "fp": "column-a72402b949b5",
+    "x": 822.09,
+    "y": 312.47,
+    "id": "L19"
+   },
+   {
+    "fp": "column-e8fa3fb70060",
+    "x": 868.92,
+    "y": 312.47,
+    "id": "L20"
+   },
+   {
+    "fp": "column-45d9d6177283",
+    "x": 923.49,
+    "y": 312.21,
+    "id": "L21"
+   },
+   {
+    "fp": "column-887d27e648e6",
+    "x": 930.28,
+    "y": 312.34,
+    "id": "L22"
+   },
+   {
+    "fp": "column-21818286d35d",
+    "x": 972.98,
+    "y": 312.47,
+    "id": "L23"
+   },
+   {
+    "fp": "column-ce943c0fb5c2",
+    "x": 1020.6,
+    "y": 312.49,
+    "id": "L24"
+   },
+   {
+    "fp": "column-9e141c322e07",
+    "x": 1068.14,
+    "y": 312.47,
+    "id": "L25"
+   },
+   {
+    "fp": "column-97dabebaad03",
+    "x": 1116.19,
+    "y": 312.47,
+    "id": "L26"
+   }
+  ],
+  "short": [
+   {
+    "fp": "column-e867804401a1",
+    "x": 1126.78,
+    "y": 334.42,
+    "id": "S01"
+   },
+   {
+    "fp": "column-3156ee7986df",
+    "x": 1126.88,
+    "y": 381.99,
+    "id": "S02"
+   },
+   {
+    "fp": "column-81c79ff96e48",
+    "x": 1126.79,
+    "y": 435.02,
+    "id": "S03"
+   },
+   {
+    "fp": "column-a9381f0a71be",
+    "x": 1126.81,
+    "y": 487.91,
+    "id": "S04"
+   },
+   {
+    "fp": "column-77db6e0ff5af",
+    "x": 1126.67,
+    "y": 540.5,
+    "id": "S05"
+   },
+   {
+    "fp": "column-fc0ad1c131f2",
+    "x": 1126.81,
+    "y": 593.83,
+    "id": "S06"
+   },
+   {
+    "fp": "column-cd2fbfa1e062",
+    "x": 1126.78,
+    "y": 615.28,
+    "id": "S07"
+   }
+  ],
+  "wrap101": [
+   {
+    "fp": "column-aa85e5b580cf",
+    "x": 153.63,
+    "y": 284.71,
+    "id": "W01"
+   },
+   {
+    "fp": "column-02295ca93280",
+    "x": 153.63,
+    "y": 249.85,
+    "id": "W02"
+   },
+   {
+    "fp": "column-d2b3a3e668ba",
+    "x": 153.63,
+    "y": 215.04,
+    "id": "W03"
+   },
+   {
+    "fp": "column-038b4a052760",
+    "x": 154.1,
+    "y": 176.73,
+    "id": "W04"
    }
   ]
- },
- "shortBuilding": {
-  "status": "NOT RESOLVED \u2014 the 2020 cloud is too thin under the 135-149 canopy (lattice score ~1.2); needs the ground capture"
  }
 }
