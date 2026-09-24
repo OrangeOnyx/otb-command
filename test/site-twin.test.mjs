@@ -40,3 +40,40 @@ test("GLB round-trips through three's GLTFLoader with extras intact", async () =
   let found; gltf.scene.traverse(o => { if (o.userData?.assetId === "col-01") found = o; });
   assert.ok(found, "extras -> userData.assetId");
 });
+
+import { Geo, flatPolygon, prism, boxAt, ribbon, pipe, disc, canopy, tree, wall } from "../tools/site-twin/meshes.mjs";
+import { SPEC } from "../tools/site-twin/categories.mjs";
+import { CATEGORIES } from "../src/lib/siteassets.js";
+
+const sane = g => {
+  const t = g.typed();
+  assert.equal(t.indices.length % 3, 0);
+  assert.ok(t.positions.every(Number.isFinite) && t.normals.every(Number.isFinite));
+  for (let i = 0; i < t.normals.length; i += 3) assert.ok(Math.abs(Math.hypot(t.normals[i], t.normals[i + 1], t.normals[i + 2]) - 1) < 1e-4);
+  for (const i of t.indices) assert.ok(i < t.positions.length / 3);
+  return t;
+};
+
+test("mesh primitives produce finite, indexed, unit-normal geometry", () => {
+  const sq = [[0, 0], [4, 0], [4, 3], [0, 3]];
+  assert.equal(sane(flatPolygon(new Geo(), sq, 0)).indices.length, 6);
+  assert.equal(sane(prism(new Geo(), sq, 0, 2)).indices.length, 6 + 4 * 6);
+  sane(boxAt(new Geo(), [1, 1], 1, 2, 3, 0.5, 0.3));
+  sane(ribbon(new Geo(), [[0, 0], [5, 0], [5, 5]], 0.2, 0.01));
+  sane(pipe(new Geo(), [[0, 0], [10, 0]], 0.25, -1.2));
+  sane(wall(new Geo(), [[0, 0], [0, 6]], 0.3, 0, 5));
+  sane(disc(new Geo(), [0, 0], 0.5, 0.02));
+  sane(canopy(new Geo(), [[0, 3], [10, 3]], [[0, 0], [10, 0]], 3.05, 4.27));
+  sane(tree(new Geo(), [0, 0], 3, 7));
+});
+
+test("flat polygons face up", () => {
+  const t = flatPolygon(new Geo(), [[0, 0], [4, 0], [4, 3]], 0).typed();
+  const [a, b, c] = [0, 1, 2].map(k => [...t.positions.slice(t.indices[k] * 3, t.indices[k] * 3 + 3)]);
+  const n = [(b[1] - a[1]) * (c[2] - a[2]) - (b[2] - a[2]) * (c[1] - a[1]), (b[2] - a[2]) * (c[0] - a[0]) - (b[0] - a[0]) * (c[2] - a[2])];
+  assert.ok(n[1] > 0, "winding agrees with +Y normal");
+});
+
+test("category spec covers every register category", () => {
+  for (const [id] of CATEGORIES) assert.ok(SPEC[id], "missing spec for " + id);
+});
