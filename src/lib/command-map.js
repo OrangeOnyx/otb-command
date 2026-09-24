@@ -3,6 +3,7 @@
    The model is a projected SVG, so navigation works without WebGL or a service. */
 import geometry from "../data/geometry.json";
 import heights from "../data/heights.json";
+import walkway from "../data/walkway-columns.json";
 import { NS, g, path, rect, text, renderPrims } from "./svg.js";
 import { isoPoint, prismFaces, facePath, depthKey, COS } from "./iso.js";
 import { PLAN_PER_FT } from "./splat-align.js";
@@ -13,6 +14,16 @@ const derived = new Set(Object.values(geometry.demising).flatMap(b => b.bays)
   .filter(b => /derived/i.test(b[2] || "")).map(b => b[0]));
 // The 135 mid-depth division is an interpretation within the plat's 37.4' bay.
 derived.add("135A"); derived.add("135B");
+// Walkway columns (tools/import-fp-columns.py): the Floorplanner model's 24" columns,
+// registered to the plat footprints. Sorted with the suites so iso depth order holds.
+const COLUMN_SIDE = (walkway.columnSizeFt || 2) * PLAN_PER_FT;
+const LINE_NAME = { long: "Long-building walkway", short: "Short-building walkway", wrap101: "Suite 101 end" };
+const COLUMNS = Object.entries(walkway.lines || {}).flatMap(([line, cols]) => cols.map(c => ({
+  kind: "column", id: c.id, line, x: c.x - COLUMN_SIDE / 2, y: c.y - COLUMN_SIDE / 2, w: COLUMN_SIDE, h: COLUMN_SIDE,
+})));
+const COLUMN_HEIGHT = (walkway.heightFt || 10) * PLAN_PER_FT;
+const COLUMN_NOTE = `Floorplanner model, registered to the plat (±${Math.ceil(walkway.registration?.maxResidualFt ?? 4)} ft) · ` +
+  "24-inch column · field count pending";
 let instance = 0;
 
 function el(name, attrs = {}) {
@@ -73,10 +84,13 @@ export function createCommandMap(host, opts = {}) {
   host.appendChild(root);
 
   function showTip(event, unit) {
+    showTipText(event, `Suite ${unit.unit} · ${unit.dba || "Record available"}`,
+      derived.has(unit.unit) ? "Derived division · select to review sources" : "Plat demising string · select to review sources");
+  }
+  function showTipText(event, title, body) {
     tip.replaceChildren();
-    const name = document.createElement("strong"); name.textContent = `Suite ${unit.unit} · ${unit.dba || "Record available"}`;
-    const detail = document.createElement("span");
-    detail.textContent = derived.has(unit.unit) ? "Derived division · select to review sources" : "Plat demising string · select to review sources";
+    const name = document.createElement("strong"); name.textContent = title;
+    const detail = document.createElement("span"); detail.textContent = body;
     tip.append(name, detail); tip.hidden = false;
     const r = root.getBoundingClientRect();
     tip.style.left = Math.max(8, Math.min(r.width - 265, event.clientX - r.left + 14)) + "px";
@@ -155,8 +169,10 @@ export function createCommandMap(host, opts = {}) {
       text(labels, remoteCenter.x, remoteCenter.y + dy, label, { class: "cc-ground-label", style: `font-size:${dy === -22 ? 19 : 12}px;${dy === -22 ? "font-weight:700" : ""}` });
     });
     const suiteLayer = g(svg, "cc-suites");
-    const rows = units.map(u => ({ ...geometry.units[u.unit], unit: u.unit, record: u })).sort((a, b) => depthKey(a) - depthKey(b));
+    const rows = [...units.map(u => ({ ...geometry.units[u.unit], unit: u.unit, record: u })), ...COLUMNS]
+      .sort((a, b) => depthKey(a) - depthKey(b));
     for (const r of rows) {
+      if (r.kind === "column") { drawColumn(suiteLayer, r); continue; }
       const group = g(suiteLayer, "cc-suite");
       group.setAttribute("data-suite", r.unit); group.setAttribute("role", "button"); group.setAttribute("tabindex", "0");
       group.setAttribute("aria-label", `Suite ${r.unit} — ${r.record.dba || "Record available"}`);
@@ -189,6 +205,22 @@ export function createCommandMap(host, opts = {}) {
     const corners = [[-55, -315], [1510, -315], [1510, 780], [-55, 780]].map(([x, y]) => point(mode, x, y));
     fitBox = bounds(corners, 34);
     moveTo(fitBox);
+  }
+  function drawColumn(layer, r) {
+    const group = g(layer, "cc-column");
+    group.setAttribute("data-column", r.id);
+    const name = `Column ${r.id} · ${LINE_NAME[r.line] || "Walkway"}`;
+    const title = el("title"); title.textContent = `${name}\n${COLUMN_NOTE}`; group.appendChild(title);
+    if (mode === "model") {
+      const f = modelFaces(r, COLUMN_HEIGHT);
+      path(group, facePath(f.front), { fill: "#CFC8B8", stroke: "#8A8472", "stroke-width": .4 });
+      path(group, facePath(f.right), { fill: "#B9B2A1", stroke: "#8A8472", "stroke-width": .4 });
+      path(group, facePath(f.top), { fill: BONE, stroke: "#8A8472", "stroke-width": .4 });
+    } else {
+      rect(group, r.x, r.y, r.w, r.h, { fill: BONE, stroke: "#55694F", "stroke-width": .6 });
+    }
+    group.addEventListener("pointermove", e => { if (!drag) showTipText(e, name, COLUMN_NOTE); });
+    group.addEventListener("pointerleave", () => { tip.hidden = true; });
   }
   function drawIssue() {
     svg.querySelector(".cc-issue")?.remove();

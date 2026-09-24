@@ -53,7 +53,7 @@ export function initCommand(account) {
         <div class="cmd-map-controls" aria-label="Map navigation">
           <button id="cmdZoomIn" aria-label="Zoom in">${icon('plus')}</button><button id="cmdZoomOut" aria-label="Zoom out">${icon('minus')}</button>
           <button id="cmdReset" aria-label="Fit full property">${icon('reset')}</button></div>
-        <div class="cmd-map-key"><span><i class="cmd-key-solid"></i> Suite</span><span><i class="cmd-key-dashed"></i> Derived division</span><span><i class="cmd-key-amber"></i> Record association</span></div>
+        <div class="cmd-map-key"><span><i class="cmd-key-solid"></i> Suite</span><span><i class="cmd-key-dashed"></i> Derived division</span><span><i class="cmd-key-amber"></i> Record association</span><span><i class="cmd-key-column"></i> Walkway column</span></div>
         <div class="cmd-map-footer"><span id="cmdViewNote">Plat-based footprints · CAD-assigned height estimates</span><span>Mouse drag to pan · Alt + scroll to zoom · Tap a suite</span></div>
       </section>
       <aside class="cmd-inspector" aria-label="Suite and maintenance details">
