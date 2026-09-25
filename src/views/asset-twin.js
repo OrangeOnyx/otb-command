@@ -16,6 +16,7 @@ import waterMap from '../data/twin-water-map.json' with { type: 'json' };
 import { infrastructure } from '../lib/asset-twin-source-data.js';
 import { waterLocations, waterLocationsCSV } from '../lib/asset-twin-water.js';
 import { waterPaneHTML, waterLocationRows, waterDetailHTML, waterMeterRows } from './asset-twin-water.js';
+import { openWaterAerial, waterEvidencePackage } from './asset-twin-water-aerial.js';
 const mappedWaterLocations=waterLocations(waterMap);
 
 const conditions = Assets.PHYSICAL_ASSET_CONDITIONS;
@@ -214,7 +215,7 @@ export function initAssetTwin(account) {
   }
   function renderWater(){
     $('atWaterLocations').innerHTML=waterLocationRows(waterMap,$('atWaterFilter').value,selectedWaterId);
-    $('atWaterDetail').innerHTML=waterDetailHTML(mappedWaterLocations.find(item=>item.id===selectedWaterId));
+    $('atWaterDetail').innerHTML=waterDetailHTML(mappedWaterLocations.find(item=>item.id===selectedWaterId),key=>Assets.getPhysicalAssetForSource(key));
     $('atWaterMeters').innerHTML=waterMeterRows(infrastructure.items,$('atWaterSearch').value,key=>Assets.getPhysicalAssetForSource(key));
   }
   function selectWaterLocation(id,{focus=false}={}){
@@ -287,7 +288,7 @@ export function initAssetTwin(account) {
     if(button.dataset.sourceMap){openSourceMap(dialog,button.dataset.sourceMap,{selectedId:selectedWaterId,onWaterSelect:id=>openWaterMap(id)});return;}
     if(button.dataset.waterLocation){selectWaterLocation(button.dataset.waterLocation,{focus:true});return;}
     if(button.dataset.waterFocus){selectWaterLocation(button.dataset.waterFocus,{focus:true});return;}
-    if(button.dataset.waterAction){const action=button.dataset.waterAction;if(action==='overview')openWaterMap();if(action==='json')downloadBlob(new Blob([JSON.stringify(waterMap,null,2)],{type:'application/json'}),'OTB-Water-Locations.json');if(action==='csv')downloadBlob(new Blob([waterLocationsCSV(waterMap)],{type:'text/csv;charset=utf-8'}),'OTB-Water-Locations.csv');return;}
+    if(button.dataset.waterAction){const action=button.dataset.waterAction;if(action==='overview')openWaterMap();if(action==='aerial')openWaterAerial(dialog,{selectedId:selectedWaterId,onWaterSelect:id=>openWaterMap(id)});if(action==='evidence')downloadBlob(new Blob([JSON.stringify(waterEvidencePackage(),null,2)],{type:'application/json'}),'OTB-Water-Evidence.json');if(action==='json')downloadBlob(new Blob([JSON.stringify(waterMap,null,2)],{type:'application/json'}),'OTB-Water-Locations.json');if(action==='csv')downloadBlob(new Blob([waterLocationsCSV(waterMap)],{type:'text/csv;charset=utf-8'}),'OTB-Water-Locations.csv');return;}
     if(button.dataset.upperUnit){scene?.setLevel(`upper-${button.dataset.upperUnit}`);return;}
     if(button.dataset.sourceUnit){const asset=Assets.getPhysicalAssetForSource(`unit:${button.dataset.sourceUnit}`);if(asset)selectAsset(asset.id);return;}
     if(button.dataset.asset){selectAsset(button.dataset.asset);return;}
