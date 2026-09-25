@@ -1,0 +1,1290 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "otb-fixtures-v1",
+  "units": "meters",
+  "upAxis": "Y",
+  "count": 30,
+  "counts": {
+    "benches": 10,
+    "trashCans": 20
+  },
+  "sourceInventorySha256": "81e8b927013dde5d2b67bb815381fc4ad4cbe1bb5179d180d8a4392e17414a3b",
+  "groundModelSha256": "f93acd33d80b4296ec07fa09c1cf7f8d4c888f98cf25f763f1e59d8c6a3628cf",
+  "sourceRegistration": {
+    "rmsMeters": 0.53702082,
+    "maxResidualMeters": 1.29391791
+  },
+  "physicalVerification": "unverified",
+  "limitations": [
+    "Source identities and registered plan locations are retained. Positions have not been field verified.",
+    "Representative appearance is informed by the supplied marketing photographs. Exact manufacturer, construction, finish and individual matches are unverified.",
+    "Bench envelope 1.8 × 0.65 × 0.90 m and trash-can envelope 0.55 × 0.55 × 0.85 m are presentation assumptions, not measurements.",
+    "Orientation follows the nearer walkway run as a visual assumption, facing the parking area.",
+    "Presentation base elevations are raycast onto the current model walkway where available. Source ground-reference points are retained separately."
+  ],
+  "items": [
+    {
+      "id": "can-01",
+      "sourceKey": "otb-a1-register:can-01",
+      "kind": "waste_bin",
+      "label": "Trash can 1",
+      "position": [
+        90.68702773,
+        0.254203200340271,
+        11.57385985
+      ],
+      "fixtureId": "can-01",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        90.68702773,
+        0,
+        11.57385985
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-02",
+      "sourceKey": "otb-a1-register:can-02",
+      "kind": "waste_bin",
+      "label": "Trash can 2",
+      "position": [
+        72.80838759,
+        0.254203200340271,
+        11.56443263
+      ],
+      "fixtureId": "can-02",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        72.80838759,
+        0,
+        11.56443263
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-03",
+      "sourceKey": "otb-a1-register:can-03",
+      "kind": "waste_bin",
+      "label": "Trash can 3",
+      "position": [
+        52.77527126,
+        0.254203200340271,
+        11.55052608
+      ],
+      "fixtureId": "can-03",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        52.77527126,
+        0,
+        11.55052608
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-04",
+      "sourceKey": "otb-a1-register:can-04",
+      "kind": "waste_bin",
+      "label": "Trash can 4",
+      "position": [
+        46.93923075,
+        0.254203200340271,
+        11.54378084
+      ],
+      "fixtureId": "can-04",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        46.93923075,
+        0,
+        11.54378084
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-05",
+      "sourceKey": "otb-a1-register:can-05",
+      "kind": "waste_bin",
+      "label": "Trash can 5",
+      "position": [
+        37.09551093,
+        0.254203200340271,
+        11.53772227
+      ],
+      "fixtureId": "can-05",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        37.09551093,
+        0,
+        11.53772227
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-06",
+      "sourceKey": "otb-a1-register:can-06",
+      "kind": "waste_bin",
+      "label": "Trash can 6",
+      "position": [
+        21.41404582,
+        0.254203200340271,
+        11.5280707
+      ],
+      "fixtureId": "can-06",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        21.41404582,
+        0,
+        11.5280707
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-07",
+      "sourceKey": "otb-a1-register:can-07",
+      "kind": "waste_bin",
+      "label": "Trash can 7",
+      "position": [
+        13.83785424,
+        0.254203200340271,
+        11.52656103
+      ],
+      "fixtureId": "can-07",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        13.83785424,
+        0,
+        11.52656103
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-08",
+      "sourceKey": "otb-a1-register:can-08",
+      "kind": "waste_bin",
+      "label": "Trash can 8",
+      "position": [
+        0.56656076,
+        0.254203200340271,
+        11.51681622
+      ],
+      "fixtureId": "can-08",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        0.56656076,
+        0,
+        11.51681622
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-09",
+      "sourceKey": "otb-a1-register:can-09",
+      "kind": "waste_bin",
+      "label": "Trash can 9",
+      "position": [
+        -7.04734801,
+        0.254203200340271,
+        11.51685998
+      ],
+      "fixtureId": "can-09",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -7.04734801,
+        0,
+        11.51685998
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-10",
+      "sourceKey": "otb-a1-register:can-10",
+      "kind": "waste_bin",
+      "label": "Trash can 10",
+      "position": [
+        -20.24651716,
+        0.254203200340271,
+        11.50558292
+      ],
+      "fixtureId": "can-10",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -20.24651716,
+        0,
+        11.50558292
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-11",
+      "sourceKey": "otb-a1-register:can-11",
+      "kind": "waste_bin",
+      "label": "Trash can 11",
+      "position": [
+        -38.75899959,
+        0.254203200340271,
+        11.48472905
+      ],
+      "fixtureId": "can-11",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -38.75899959,
+        0,
+        11.48472905
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-12",
+      "sourceKey": "otb-a1-register:can-12",
+      "kind": "waste_bin",
+      "label": "Trash can 12",
+      "position": [
+        -47.23964068,
+        0.254203200340271,
+        11.48423936
+      ],
+      "fixtureId": "can-12",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -47.23964068,
+        0,
+        11.48423936
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-13",
+      "sourceKey": "otb-a1-register:can-13",
+      "kind": "waste_bin",
+      "label": "Trash can 13",
+      "position": [
+        -64.56837662,
+        0.254203200340271,
+        11.42627455
+      ],
+      "fixtureId": "can-13",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -64.56837662,
+        0,
+        11.42627455
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-14",
+      "sourceKey": "otb-a1-register:can-14",
+      "kind": "waste_bin",
+      "label": "Trash can 14",
+      "position": [
+        -68.37255102,
+        0.254203200340271,
+        11.25523199
+      ],
+      "fixtureId": "can-14",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.37255102,
+        0,
+        11.25523199
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-15",
+      "sourceKey": "otb-a1-register:can-15",
+      "kind": "waste_bin",
+      "label": "Trash can 15",
+      "position": [
+        -69.0883806,
+        0.254203200340271,
+        3.69319481
+      ],
+      "fixtureId": "can-15",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -69.0883806,
+        0,
+        3.69319481
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-16",
+      "sourceKey": "otb-a1-register:can-16",
+      "kind": "waste_bin",
+      "label": "Trash can 16",
+      "position": [
+        -68.94764303,
+        0.254203200340271,
+        -3.07368534
+      ],
+      "fixtureId": "can-16",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.94764303,
+        0,
+        -3.07368534
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-17",
+      "sourceKey": "otb-a1-register:can-17",
+      "kind": "waste_bin",
+      "label": "Trash can 17",
+      "position": [
+        -68.76868645,
+        0.254203200340271,
+        -11.03406336
+      ],
+      "fixtureId": "can-17",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.76868645,
+        0,
+        -11.03406336
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-18",
+      "sourceKey": "otb-a1-register:can-18",
+      "kind": "waste_bin",
+      "label": "Trash can 18",
+      "position": [
+        -68.64622547,
+        0.254203200340271,
+        -17.32165422
+      ],
+      "fixtureId": "can-18",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.64622547,
+        0,
+        -17.32165422
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-19",
+      "sourceKey": "otb-a1-register:can-19",
+      "kind": "waste_bin",
+      "label": "Trash can 19",
+      "position": [
+        -68.49175013,
+        0.254203200340271,
+        -24.1184822
+      ],
+      "fixtureId": "can-19",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.49175013,
+        0,
+        -24.1184822
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "can-20",
+      "sourceKey": "otb-a1-register:can-20",
+      "kind": "waste_bin",
+      "label": "Trash can 20",
+      "position": [
+        -68.1658629,
+        0.254203200340271,
+        -39.99668851
+      ],
+      "fixtureId": "can-20",
+      "assetKind": "waste_bin",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 0.55,
+        "depth": 0.55,
+        "height": 0.85
+      },
+      "fixtureDimensionsMeters": [
+        0.55,
+        0.85,
+        0.55
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.1658629,
+        0,
+        -39.99668851
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Square tan slats and dark frame/hood informed by the supplied storefront photograph. Individual bin matches and details are unverified."
+    },
+    {
+      "id": "bench-01",
+      "sourceKey": "otb-a1-register:bench-01",
+      "kind": "bench",
+      "label": "Bench 1",
+      "position": [
+        88.28203679,
+        0.254203200340271,
+        11.56134311
+      ],
+      "fixtureId": "bench-01",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        88.28203679,
+        0,
+        11.56134311
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-02",
+      "sourceKey": "otb-a1-register:bench-02",
+      "kind": "bench",
+      "label": "Bench 2",
+      "position": [
+        75.41055472,
+        0.254203200340271,
+        11.55026773
+      ],
+      "fixtureId": "bench-02",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        75.41055472,
+        0,
+        11.55026773
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-03",
+      "sourceKey": "otb-a1-register:bench-03",
+      "kind": "bench",
+      "label": "Bench 3",
+      "position": [
+        59.07518802,
+        0.254203200340271,
+        11.54809694
+      ],
+      "fixtureId": "bench-03",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        59.07518802,
+        0,
+        11.54809694
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-04",
+      "sourceKey": "otb-a1-register:bench-04",
+      "kind": "bench",
+      "label": "Bench 4",
+      "position": [
+        44.75021473,
+        0.254203200340271,
+        11.54558685
+      ],
+      "fixtureId": "bench-04",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        44.75021473,
+        0,
+        11.54558685
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-05",
+      "sourceKey": "otb-a1-register:bench-05",
+      "kind": "bench",
+      "label": "Bench 5",
+      "position": [
+        31.42993405,
+        0.254203200340271,
+        11.52792866
+      ],
+      "fixtureId": "bench-05",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        31.42993405,
+        0,
+        11.52792866
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-06",
+      "sourceKey": "otb-a1-register:bench-06",
+      "kind": "bench",
+      "label": "Bench 6",
+      "position": [
+        7.002534,
+        0.254203200340271,
+        11.51131753
+      ],
+      "fixtureId": "bench-06",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        7.002534,
+        0,
+        11.51131753
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-07",
+      "sourceKey": "otb-a1-register:bench-07",
+      "kind": "bench",
+      "label": "Bench 7",
+      "position": [
+        -14.12348508,
+        0.254203200340271,
+        11.49989162
+      ],
+      "fixtureId": "bench-07",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -14.12348508,
+        0,
+        11.49989162
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-08",
+      "sourceKey": "otb-a1-register:bench-08",
+      "kind": "bench",
+      "label": "Bench 8",
+      "position": [
+        -22.38283788,
+        0.254203200340271,
+        11.49480819
+      ],
+      "fixtureId": "bench-08",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -22.38283788,
+        0,
+        11.49480819
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 3.141592653589793,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-09",
+      "sourceKey": "otb-a1-register:bench-09",
+      "kind": "bench",
+      "label": "Bench 9",
+      "position": [
+        -68.60883057,
+        0.254203200340271,
+        9.40252693
+      ],
+      "fixtureId": "bench-09",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -68.60883057,
+        0,
+        9.40252693
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    },
+    {
+      "id": "bench-10",
+      "sourceKey": "otb-a1-register:bench-10",
+      "kind": "bench",
+      "label": "Bench 10",
+      "position": [
+        -69.06834113,
+        0.254203200340271,
+        -9.17380492
+      ],
+      "fixtureId": "bench-10",
+      "assetKind": "bench",
+      "category": "fixtures",
+      "modelVersion": "otb-fixtures-v1",
+      "physicalVerification": "unverified",
+      "dimensionsMeters": {
+        "width": 1.8,
+        "depth": 0.65,
+        "height": 0.9
+      },
+      "fixtureDimensionsMeters": [
+        1.8,
+        0.9,
+        0.65
+      ],
+      "dimensionStatus": "assumed",
+      "dimensionNote": "Indicative dimensions for presentation; replace with measured fixture dimensions.",
+      "positionStatus": "approximate_source_registered",
+      "positionNote": "Source-plan location is approximate; no field verification or clearance claim.",
+      "sourcePositionMeters": [
+        -69.06834113,
+        0,
+        -9.17380492
+      ],
+      "presentationBaseElevationMeters": 0.254203200340271,
+      "placementMethod": "raycast_to_model_walkway",
+      "rotationY": 1.5707963267948966,
+      "orientationStatus": "visual_assumption",
+      "orientationBasis": "Aligned parallel to the nearer registered walkway run, facing the parking area; not a surveyed orientation.",
+      "appearanceStatus": "indicative_photo_informed",
+      "appearanceNote": "Tan seat/trim and dark ornamental back informed by the supplied marketing photographs; simplified pattern, individual matches and finish are unverified."
+    }
+  ],
+  "glbSha256": "3250c3d4a5dfba0071b2f2b4bc336b4bc790f2b7367c52fc15a712f3471d4a86",
+  "glbBytes": 206080,
+  "groundedOnWalkwayCount": 30
+}

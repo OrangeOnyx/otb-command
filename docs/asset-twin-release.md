@@ -94,3 +94,17 @@ Additional live acceptance: both upper levels and partial 101 extent; plan and p
 The present source catalogs and reference images are bundled in this local-review branch. Before any public hosted rollout, decide which drawings, meter identifiers and infrastructure photos may be public, and serve restricted source evidence through authenticated storage; client-side route checks do not protect bundled files. This intake did not deploy, publish sources or apply database migrations.
 
 Rebuild details: [upper floors](asset-twin-upper-floors.md), [fixtures](twin-fixture-reconciliation.md), [meters and clocks](twin-infrastructure-sources.md). Merge geometry with `node tools/merge-twin-glb.mjs`; no new runtime dependency or environment variable is required.
+
+## Physical bench and trash-can models — September 24
+
+The existing 10 bench and 20 trash-can records now have selectable physical models. Tan slats and dark frames follow the supplied brochure photograph; exact dimensions, orientation, and individual fixture matches remain assumptions. The original registered X/Z coordinates and permanent asset records are retained. Presentation bases are raised to the existing walkway surface without rewriting source bindings or field measurements.
+
+Bench models and trash-can models have separate layer controls. Fixture labels are optional. Direct mesh selection opens the existing record and highlights its geometry; presentation mode restores natural materials while keeping the furnishings visible. Focus checks candidate sightlines and rejects camera positions inside columns. Upper-floor isolation hides ground fixtures. A manually placed fixture keeps its explicit placement.
+
+The complete GLB now contains ground geometry, both upper floors, and all 30 fixtures. A separate fixture GLB and source/assumption JSON are downloadable from Views. No additional dependency, environment variable, database migration, or production write was introduced for this addition.
+
+Rebuild: `node tools/build-twin-fixtures.mjs`, then `node tools/merge-twin-glb.mjs`. See [model contract and assumptions](asset-twin-fixture-models.md) and [appearance evidence](twin-fixture-appearance-evidence.md).
+
+Validation: all **831 tests pass**; the production build passes with existing JSON-import and bundle-size warnings. Geometry tests cover all 30 identities, actual bounds, bin openings, runtime/export agreement, walkway grounding, independent materials, and unobstructed fixture close-ups against native walls/columns. The merged export preserves the source documents and existing column IDs.
+
+Live local review verified bench and bin mesh clicks, selection colors, natural presentation finishes, independent layers, hidden-layer focus recovery, ground/upper filtering, optional labels, and mobile field layout. Bench 1 and Bench 5 exposed camera/column intersections, which were corrected and regression-tested. C12 retains `pa_1bd53572-8fe3-4582-9467-8288c4159061`; the earlier QA inspection and maintenance link remain. No new physical records or test inspections were created. Browser console showed no errors after reload. The review remains local and has not been deployed.

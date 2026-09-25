@@ -168,10 +168,11 @@ export function mergeGlbs(sources) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const [base='public/twin/model.glb',upper='public/twin/upper-floors.glb',output='public/twin/complete-model.glb'] = process.argv.slice(2);
+  const [base='public/twin/model.glb',upper='public/twin/upper-floors.glb',output='public/twin/complete-model.glb',fixtures='public/twin/fixtures.glb'] = process.argv.slice(2);
   const {bytes,report} = mergeGlbs([
     {name:path.basename(base),groupName:'source-ground-floor',bytes:fs.readFileSync(base)},
     {name:path.basename(upper),groupName:'source-upper-floors',bytes:fs.readFileSync(upper)},
+    {name:path.basename(fixtures),groupName:'source-walkway-fixtures',bytes:fs.readFileSync(fixtures)},
   ]);
   fs.mkdirSync(path.dirname(output),{recursive:true}); fs.writeFileSync(output,bytes);
   console.log(JSON.stringify(report,null,2));

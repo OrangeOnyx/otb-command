@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {mergeGlbs,parseGlb,validateGlb,writeGlb} from '../tools/merge-twin-glb.mjs';
 
-const files=['model.glb','upper-floors.glb'];
+const files=['model.glb','upper-floors.glb','fixtures.glb'];
 const sources=files.map(name=>({name,bytes:fs.readFileSync(new URL(`../public/twin/${name}`,import.meta.url))}));
 
 test('complete GLB round trip preserves every source primitive, byte range, material, node identity and extras',()=>{
@@ -51,7 +51,18 @@ test('complete default scene reaches all 37 columns and both upper levels with n
   assert.equal(upperNodes.length,8);
   assert.deepEqual(upperNodes.filter(n=>n.children?.length).map(n=>n.name).sort(),['upper-101','upper-103']);
   assert.ok(nodes.some(n=>n.name==='canopy'));
+  const fixtureGroups=nodes.filter(n=>n.children?.length&&n.extras?.sourceKey?.startsWith('otb-a1-register:'));
+  assert.equal(fixtureGroups.length,30);
+  assert.equal(fixtureGroups.filter(n=>n.extras.assetKind==='bench').length,10);
+  assert.equal(fixtureGroups.filter(n=>n.extras.assetKind==='waste_bin').length,20);
+  assert.equal(new Set(fixtureGroups.map(n=>n.extras.sourceKey)).size,30);
   assert.equal(reached.size,json.nodes.length);
+});
+
+test('downloadable complete model includes the current base, upper-floor and fixture documents',()=>{
+  const {json}=parseGlb(fs.readFileSync(new URL('../public/twin/complete-model.glb',import.meta.url)));
+  const expected=mergeGlbs(sources).report.sourceDocuments.map(({file,sha256})=>({file,sha256}));
+  assert.deepEqual(json.extras.sourceDocuments.map(({file,sha256})=>({file,sha256})),expected);
 });
 
 test('malformed input and unsupported extension references fail instead of silently corrupting the package',()=>{
