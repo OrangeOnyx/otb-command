@@ -17,6 +17,9 @@ import { infrastructure } from '../lib/asset-twin-source-data.js';
 import { waterLocations, waterLocationsCSV } from '../lib/asset-twin-water.js';
 import { waterPaneHTML, waterLocationRows, waterDetailHTML, waterMeterRows } from './asset-twin-water.js';
 import { openWaterAerial, waterEvidencePackage } from './asset-twin-water-aerial.js';
+import { researchEvidenceForAsset } from '../lib/asset-twin-research.js';
+import { evidenceSectionHTML } from './asset-twin-evidence.js';
+import { cleanPhysicalAssetEvidence } from '../lib/physical-asset-evidence-model.js';
 const mappedWaterLocations=waterLocations(waterMap);
 
 const conditions = Assets.PHYSICAL_ASSET_CONDITIONS;
@@ -128,16 +131,37 @@ export function initAssetTwin(account) {
     const asset=selected();if(!asset)return;
     const writable=canWrite();const dims=asset.dimensions||{};const b=latestLocatedBinding(asset);const source=sourceId(asset);const c=data.columns.find(c=>c.id===source);
     const inspections=Assets.listPhysicalAssetInspections(asset.id);
+    const evidence=Assets.listPhysicalAssetEvidence(asset.id);
+    const pendingEvidence=researchEvidenceForAsset(asset).filter(item=>!evidence.some(saved=>saved.id===item.id));
     $('atRecord').innerHTML=`<div class="at-record-heading"><div><h2>${esc(asset.label)}</h2><p class="at-muted">${esc(sourceTypeLabels[sourceAssetKind(asset)]??types[asset.type])}${asset.unit?` · Unit ${esc(asset.unit)}`:' · Common area'}</p></div><button data-record-action="focus" ${!b?'disabled':''}>Focus</button></div><div class="at-record-state"><span style="--condition:${conditionColors[asset.condition]}">${esc(conditions[asset.condition])}</span><span>${asset.verification==='field-verified'?'Field verified':'Verification pending'}</span></div>
       ${c?.reviewNote?`<p class="at-warning">${esc(c.reviewNote)}</p>`:''}
+      <div class="at-record-subtabs"><button data-record-scroll="atEvidenceBlock">References</button><button data-record-scroll="atPhotoBlock">Photos</button><button data-record-scroll="atInspectionBlock">Inspections</button><button data-record-scroll="atWorkBlock">Work orders</button></div>
       ${recordSourceHTML(asset,source)}
       <div class="at-record-actions"><button data-record-action="issue" class="at-primary" ${!writable?'disabled':''}>Record an issue</button><button data-record-action="qr">Asset link & QR</button></div>
-      <div class="at-record-subtabs"><button data-record-scroll="atPhotoBlock">Photos</button><button data-record-scroll="atInspectionBlock">Inspections</button><button data-record-scroll="atWorkBlock">Work orders</button></div>
       <section class="at-record-section" id="atPhotoBlock"><div class="at-panel-head"><h3>Photos</h3><label class="at-upload ${!writable?'is-disabled':''}">${icon('camera')} Add photos<input id="atPhotoInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple ${!writable?'disabled':''}></label></div><div id="atPhotos" class="at-photos"><p class="at-muted">Loading photos…</p></div></section>
+      ${evidenceSectionHTML(asset,evidence,pendingEvidence,writable)}
       <details class="at-record-section" open><summary>Asset details</summary><form id="atRecordForm"><fieldset ${!writable?'disabled':''}><label>Name<input name="label" value="${esc(asset.label)}" required maxlength="120"></label><label>Unit association<select name="unit" ${asset.type==='unit'?'disabled':''}>${unitOptions(asset.unit)}</select></label><label>Material / finish<input name="material" value="${esc(asset.material||'')}" placeholder="Not yet recorded" maxlength="160"></label><label>Asset notes<textarea name="notes" rows="3" maxlength="4000">${esc(asset.notes||'')}</textarea></label><div class="at-dimensions"><label>Width<input name="width" type="number" min="0.001" step="any" value="${dims.width||''}"></label><label>Depth<input name="depth" type="number" min="0.001" step="any" value="${dims.depth||''}"></label><label>Height<input name="height" type="number" min="0.001" step="any" value="${dims.height||''}"></label><label>Units<select name="dimensionUnit">${options({ft:'Feet',m:'Meters',in:'Inches',cm:'Centimeters'},dims.unit||'ft')}</select></label></div><label class="at-checkbox"><input name="verified" type="checkbox" ${asset.verification==='field-verified'?'checked':''}> I have field-verified this asset record</label><button class="at-primary" type="submit">Save asset record</button></fieldset></form>${c?`<p class="at-muted">Source model bounds: ${c.dimensionsMeters.map(v=>(v/.3048).toFixed(2)).join(' × ')} ft (width × height × depth). Separate from recorded field measurements.</p>`:''}</details>
       <section class="at-record-section" id="atInspectionBlock"><h3>Inspection history</h3><div class="at-history">${inspections.length?inspections.map(i=>`<article><div><strong>${esc(conditions[i.condition]||i.condition)}</strong><time>${esc(i.date)}</time></div><p>${esc(i.notes||'No inspection notes.')}</p><small>${esc(i.inspector||'Inspector not recorded')}</small></article>`).join(''):'<p class="at-muted">No inspections recorded. Model appearance does not establish condition.</p>'}</div><details><summary>Add an inspection</summary><form id="atInspectionForm"><fieldset ${!writable?'disabled':''}><div class="at-two"><label>Inspection date<input type="date" name="date" value="${localDate()}" required></label><label>Condition<select name="condition">${options(conditions,asset.condition)}</select></label></div><label>Inspector<input name="inspector" value="${esc(account?.email||'')}" placeholder="Your name" maxlength="160"></label><label>Findings<textarea name="notes" rows="3" maxlength="6000" required></textarea></label><button type="submit" class="at-primary">Save inspection</button></fieldset></form></details></section>
       <section class="at-record-section" id="atWorkBlock"><h3>Linked OTB maintenance</h3><div id="atWorkOrders"></div></section>
-      <details class="at-record-section"><summary>Identity & model binding</summary><p class="at-muted">This permanent ID holds the photos and history. Source objects can change without replacing it.</p><code class="at-asset-id">${esc(asset.id)}</code><p class="at-muted">${asset.bindings.length} source binding revision(s). ${b?'Model location recorded.':'No 3D location recorded.'}</p><button data-record-action="place" ${!writable||source?'disabled':''}>${b?'Update model location':'Place in model'}</button><button data-record-action="rebind" ${!writable?'disabled':''}>Link replacement model object</button></details>`;
+      <details class="at-record-section"><summary>Identity & model binding</summary><p class="at-muted">This permanent ID holds the photos and history. Source objects can change without replacing it.</p><code class="at-asset-id">${esc(asset.id)}</code><p class="at-muted">${asset.bindings.filter(binding=>binding.model_id!=='otb-evidence').length} source binding revision(s). ${evidence.length} saved evidence entries. ${b?'Model location recorded.':'No 3D location recorded.'}</p><button data-record-action="place" ${!writable||source?'disabled':''}>${b?'Update model location':'Place in model'}</button><button data-record-action="rebind" ${!writable?'disabled':''}>Link replacement model object</button></details>`;
+    $('atEvidenceForm').onsubmit=e=>{e.preventDefault();if(!canWrite())return;const f=new FormData(e.currentTarget);run(async()=>{
+      const input=Object.fromEntries(f.entries());input.sourceDate=input.sourceDate||null;input.reviewedAt=localDate();
+      if(input.sourceDate&&input.dateMeaning==='unknown')throw new Error('Choose what the source or observation date means.');
+      const cleaned=cleanPhysicalAssetEvidence(input);
+      await ensureSaved(asset);await Assets.appendPhysicalAssetEvidence(asset.id,cleaned);
+      if(selectedId===asset.id)renderRecord();showMessage(`Evidence saved to ${asset.label}. Inspection and verification status are unchanged.`);
+    },e.submitter);};
+    $('atRecord').querySelectorAll('[data-evidence-action]').forEach(button=>button.onclick=()=>{
+      if(button.dataset.evidenceAction==='export'){
+        const packet={schemaVersion:1,exportedAt:new Date().toISOString(),asset:{id:asset.id,label:asset.label,type:asset.type,unit:asset.unit,verification:asset.verification},evidence:Assets.listPhysicalAssetEvidence(asset.id)};
+        downloadBlob(new Blob([JSON.stringify(packet,null,2)],{type:'application/json'}),`${asset.label.replace(/[^a-z0-9_-]/gi,'-')}-evidence.json`);return;
+      }
+      if(!canWrite())return;
+      run(async()=>{
+        try{await ensureSaved(asset);await Assets.appendPhysicalAssetEvidenceBatch(pendingEvidence.map(item=>({assetId:asset.id,evidence:item})));showMessage(`Research references saved to ${asset.label}.`);}
+        finally{if(selectedId===asset.id)renderRecord();}
+      },button);
+    });
     $('atRecordForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);run(async()=>{
       await Assets.savePhysicalAsset({...asset,label:f.get('label'),unit:asset.type==='unit'?asset.unit:f.get('unit'),material:f.get('material'),notes:f.get('notes'),verification:f.has('verified')?'field-verified':'unverified',dimensions:{width:f.get('width'),depth:f.get('depth'),height:f.get('height'),unit:f.get('dimensionUnit')}});
       renderRecord();renderDirectory();showMessage('Asset record saved. Its permanent ID is unchanged.');
@@ -272,6 +296,10 @@ export function initAssetTwin(account) {
       const inventory=REMOTE?await listHvacUnits():[];
       const items=[...sourceItems,...inventory.map(item=>({sourceKey:`hvac:${item.id}`,type:'hvac',label:item.label||item.name||`HVAC ${item.unit||''} ${item.id}`,unit:item.unit,metadata:{source:'hvac_units',sourceId:item.id}})),...getFeatures().map(item=>({sourceKey:`site-feature:${item.id}`,type:types[item.type]?item.type:'other',label:item.label||`${types[item.type]||'Site asset'} ${item.id}`,metadata:{source:'site-feature',sourceId:item.id,planCoordinates:{x:item.x,y:item.y},registration:'2D plan; not registered to 3D'}}))];
       await Assets.initializePhysicalAssets({units:UNITS,columns:data.columns,items,modelVersion,modelId,propertyKey:LOCAL_REVIEW?'otb-local-review':ctx.slug});await refreshMaint();
+      if(LOCAL_REVIEW&&canWrite()){
+        try{await Assets.appendPhysicalAssetEvidenceBatch(Assets.listPhysicalAssets().flatMap(asset=>researchEvidenceForAsset(asset).map(evidence=>({assetId:asset.id,evidence}))));}
+        catch(error){showMessage(`Research references were not attached: ${error.message} You can retry from each asset record.`,true);}
+      }
       const {createAssetTwinScene}=await import('../lib/asset-twin-scene.js');
       if(root.hidden||generation!==openGeneration)return;
       scene=createAssetTwinScene($('atCanvas'),{data,modelUrl,upperData,upperModelUrl,onSelect:selection=>{if(selection.kind==='water-reference'){selectWaterLocation(selection.referenceId);return;}const asset=selection.kind==='asset'?Assets.getPhysicalAsset(selection.assetId):Assets.getPhysicalAssetForModelObject(selection.sourceId);if(asset)selectAsset(asset.id);},onMeasurement:event=>{$('atMeasureReadout').textContent=event.status==='complete'?`Model distance: ${(event.distanceMeters/.3048).toFixed(2)} ft · ${event.distanceMeters.toFixed(2)} m`:event.status==='started'?'Pick two model surfaces':event.status==='point'?'Pick the second model surface':'';},onChange:event=>{syncSceneControls(event);if(event.mode){root.querySelectorAll('[data-camera]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.camera===event.mode)));}if(event.tour?.running)$('atTourLabel').textContent=`Tour stop ${event.tour.index+1} of ${event.tour.total}`;}});

@@ -7,13 +7,18 @@ import {
   cleanPhysicalAsset, cleanAssetInspection, cleanSourceBinding, derivePhysicalAsset,
   physicalAssetSourceKey, newPhysicalId,
 } from "./physical-assets-model.js";
+import { cleanPhysicalAssetEvidence, physicalAssetEvidenceBinding, physicalAssetEvidenceFromBinding,
+  physicalAssetEvidenceSourceKey } from "./physical-asset-evidence-model.js";
 export { PHYSICAL_ASSET_TYPES, PHYSICAL_ASSET_CONDITIONS, physicalAssetSourceKey } from "./physical-assets-model.js";
+export { PHYSICAL_ASSET_EVIDENCE_KINDS, PHYSICAL_ASSET_EVIDENCE_STATUSES,
+  PHYSICAL_ASSET_EVIDENCE_SCOPES, PHYSICAL_ASSET_EVIDENCE_DATE_MEANINGS } from "./physical-asset-evidence-model.js";
 const clone = value => JSON.parse(JSON.stringify(value));
 const empty = () => ({ version: 1, assets: [], bindings: [], inspections: [], photos: [] });
 let data = empty(), candidates = empty(), initialized = false, storageKey = "", initPromise = null, sessionEpoch = 0;
 let status = { mode: REMOTE ? "remote" : LOCAL_REVIEW ? "local-review" : "local", loaded: false,
   persistence: "not-loaded", error: null, message: "Asset register has not loaded." };
 const listeners = new Set();
+const pendingEvidence = new Map();
 const notify = () => listeners.forEach(fn => { try { fn(); } catch (e) { console.warn("physical assets listener:", e); } });
 export const onPhysicalAssetsChange = fn => { listeners.add(fn); return () => listeners.delete(fn); };
 export const getPhysicalAssetsStatus = () => ({ ...status });
@@ -54,6 +59,10 @@ export function getPhysicalAssetForSource(sourceKey) {
 export const getPhysicalAssetForModelObject = (objectId, modelId = "otb-floorplanner") => getPhysicalAssetForSource(physicalAssetSourceKey({ id: objectId }, modelId));
 export const listPhysicalAssetInspections = assetId => clone(data.inspections.filter(i => i.asset_id === assetId)
   .sort((a, b) => b.date.localeCompare(a.date) || b.created_at.localeCompare(a.created_at)));
+export const listPhysicalAssetEvidence = assetId => data.bindings.filter(b => b.asset_id === assetId)
+  .map(physicalAssetEvidenceFromBinding).filter(Boolean)
+  .sort((a, b) => b.reviewedAt.localeCompare(a.reviewedAt) || String(b.created_at).localeCompare(String(a.created_at)) || a.id.localeCompare(b.id))
+  .map(clone);
 
 async function readRemote() {
   const ctx = await propertyContext();
@@ -181,6 +190,69 @@ export async function bindModelSource(assetId, input) {
       status = { ...status, error: null, persistence: "remote", message: "Source binding saved; prior revisions retained." };
     } else localCommit({ ...data, bindings: [...data.bindings, row] });
     notify(); return clone(row);
+  } catch (e) { throw fail(e); }
+}
+function prepareAssetEvidence(assetId, input) {
+  if (!requireAsset(assetId).persisted) throw new Error("Save the physical asset before attaching evidence");
+  return { assetId, evidence: cleanPhysicalAssetEvidence(input) };
+}
+function existingAssetEvidence(assetId, evidenceId, bindings = data.bindings) {
+  const sourceKey = physicalAssetEvidenceSourceKey(assetId, evidenceId);
+  const binding = bindings.find(b => b.source_key === sourceKey);
+  if (!binding) return null;
+  const existing = physicalAssetEvidenceFromBinding(binding);
+  if (!existing || existing.asset_id !== assetId) throw new Error("This evidence key is already used by an incompatible source record; choose a new evidence ID");
+  return existing;
+}
+export async function appendPhysicalAssetEvidence(assetId, input) {
+  try {
+    const { evidence } = prepareAssetEvidence(assetId, input);
+    const existing = existingAssetEvidence(assetId, evidence.id);
+    if (existing) return clone(existing);
+    // Collapse simultaneous UI requests too; the database unique source/revision
+    // constraint remains the authority across separate clients.
+    const key = `${sessionEpoch}:${storageKey}:${assetId}:${evidence.id}`;
+    let pending = pendingEvidence.get(key);
+    if (!pending) {
+      pending = Promise.resolve().then(async () => {
+        const binding = await bindModelSource(assetId, physicalAssetEvidenceBinding(assetId, evidence));
+        const saved = physicalAssetEvidenceFromBinding(binding);
+        if (!saved) throw new Error("Saved evidence could not be read; reload the asset to confirm the stored result");
+        return saved;
+      });
+      pendingEvidence.set(key, pending);
+    }
+    try { return clone(await pending); }
+    finally { if (pendingEvidence.get(key) === pending) pendingEvidence.delete(key); }
+  } catch (e) { throw fail(e); }
+}
+export async function appendPhysicalAssetEvidenceBatch(entries) {
+  ready();
+  try {
+    if (!Array.isArray(entries)) throw new Error("Evidence batch must be an array");
+    // Validate every entry and persistence gate before any write. Catalog IDs
+    // are stable; duplicate IDs always retain the original evidence snapshot.
+    const prepared = entries.map(entry => prepareAssetEvidence(entry?.assetId, entry?.evidence));
+    if (REMOTE) {
+      const result = [];
+      // Hosted writes use the existing scoped append path. This is not a
+      // transaction: earlier successful entries remain if a later write fails.
+      for (const { assetId, evidence } of prepared) result.push(await appendPhysicalAssetEvidence(assetId, evidence));
+      return result;
+    }
+    const bindings = [...data.bindings];
+    const result = prepared.map(({ assetId, evidence }) => {
+      const existing = existingAssetEvidence(assetId, evidence.id, bindings);
+      if (existing) return existing;
+      const binding = cleanSourceBinding(assetId, physicalAssetEvidenceBinding(assetId, evidence));
+      bindings.push(binding);
+      return physicalAssetEvidenceFromBinding(binding);
+    });
+    if (bindings.length !== data.bindings.length) {
+      localCommit({ ...data, bindings });
+      notify();
+    }
+    return result.map(clone);
   } catch (e) { throw fail(e); }
 }
 export async function appendPhysicalAssetInspection(assetId, input) {

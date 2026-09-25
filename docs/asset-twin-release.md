@@ -2,6 +2,8 @@
 
 Date: September 24, 2026. Branch: `codex/otb-asset-twin`.
 
+September 25 addition: asset records now hold saved source links, dated reference views and append-only verification notes. Select an asset, then **References**. Catalog attachment, persistence boundaries and current validation are documented in [Permanent asset research evidence](asset-twin-research-evidence.md). This remains a local review release.
+
 This release adds an asset workspace to the existing OTB Command app. The current acceptance target is **local browser review**. Hosted persistence, permissions and storage migrations are prepared in code but have **not been applied or runtime-tested against Supabase**. Integrated browser acceptance passed for the local workflow. Hosted rollout still requires the checks below.
 
 Work is isolated in `C:\Users\adam\Documents\Codex\2026-09-23\ca\work\otb-asset-twin`. The canonical checkout at `C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command` remains untouched by this feature work.

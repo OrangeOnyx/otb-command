@@ -1,5 +1,13 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 25, 2026 — Permanent asset research evidence (isolated twin branch)
+
+In `codex/otb-asset-twin`, the twin's Record → References section now saves source links, dated Earth views and verification notes against permanent asset IDs. Local review attaches the curated research catalog atomically and idempotently; manual notes and per-record JSON exports are available. Dates retain selector/source-year caveats, and applicable water/column/fixture/upper-floor checks remain explicitly unverified. No imagery or field certainty is manufactured.
+
+The existing append-only bindings table stores evidence snapshots without geometry; no new migration. Hosted candidates require an explicit operator save/attach action. No deployment, migration application or live Supabase write was performed. Canonical checkout unchanged. See `docs/asset-twin-research-evidence.md` for storage/API details and verification.
+
+Validation: 873 automated tests covered; 872 passed in sandbox, and the one config-loader permission failure passed with normal filesystem access. Production build passed with the runner config loader. C12 and water-meter evidence inspected live; a clearly labeled evidence note on the pre-existing QA record survived reload with unchanged asset ID, inspection and verification status. Browser console had no errors.
+
 ## September 23, 2026 — ONE-NUMBER VOICE ROUTER reviewed + hardened · 782 tests green
 
 Operator: Grok built a routing brain so there is one published number — **337-769-1554** (office line) forwards
