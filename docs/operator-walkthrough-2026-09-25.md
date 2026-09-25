@@ -211,6 +211,17 @@ real account (restore it) or someone else (leave revoked)?
 
 ---
 
+## Answers on the record (2026-09-25)
+
+| Item | Operator answer | State |
+| --- | --- | --- |
+| 1 · `orangeoceanassetcommand.com` | Renew one year, auto-renew **off** — it dies with H3, not on a calendar date | Operator to execute at the registrar |
+| 2 · H0-3 | Rotate. Exact checklist against the live Railway variable set: `docs/ac-secret-rotation-2026-09-25.md`. Ten rotations, three sittings; `LLM_API_KEY` (the plaintext Perplexity key) first | Open |
+| 2b · AC P0-1 PII | Neither `db-backup-20260707.sql` nor `seed-payload.json` is in the AC remote's history — no purge needed. AC logins are not password-based, so no force-reset. Review docs redacted (AC PR #27) | Closed but for `DATABASE_URL` |
+| 3 · Edward | `edward@belle-realty.com` added in *Sign-in access…* with role **owner**. `brother@brothersontheblvd.com` is **not** his account — stays revoked/pending | Done; awaiting his first magic-link sign-in |
+
+---
+
 ## What I do once you answer
 
 Everything above is yours because it needs an account, a console, a phone, or a camera. On my
