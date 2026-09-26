@@ -51,7 +51,7 @@ export function initAssetTwin(account) {
   root.innerHTML=`
     <header class="at-header"><button data-action="close" class="at-back">${icon('back')}<span>Property workspace</span></button><div class="at-heading"><h1>On The Boulevard</h1><p>Asset twin <span id="atPersistence">Loading records</span></p></div><div class="at-mode" aria-label="Workspace mode"><button data-mode="inspect" aria-pressed="true">Inspect</button><button data-mode="present" aria-pressed="false">Present</button><button data-mode="field" aria-pressed="false">Field</button></div></header>
     <div class="at-body"><section class="at-model" aria-label="3D model and tools"><div class="at-toolbar"><div class="at-camera-tabs"><button data-camera="overview" aria-pressed="true">Overview</button><button data-camera="plan" aria-pressed="false">Plan</button><button data-camera="eye" aria-pressed="false">Eye level</button></div><div class="at-tool-actions"><button data-action="measure">Measure</button><button data-action="save-view">Save view</button><button data-action="reset">Fit model</button></div></div>
-      <div class="at-level-row"><label for="atLevel">Level</label><select id="atLevel"><option value="all">All levels</option><option value="ground">Ground floor</option><option value="upper-101">Unit 101 · Upper floor</option><option value="upper-103">Unit 103 · Upper floor</option><option value="custom" hidden>Custom layers</option></select><button data-action="site-overview">Site overview</button><button data-water-action="overview">Water & shutoffs</button><button data-tab="sources">Plans & sources</button></div><div class="at-canvas" id="atCanvas"><div class="at-loading" id="atLoading">Loading the source model…</div></div>
+      <div class="at-layout-row" aria-label="Building and site views"><button data-action="interior-plans">Interior floor plans</button><button data-action="building-exterior">Exterior &amp; site</button><span>Same model and asset records</span></div><div class="at-level-row"><label for="atLevel">Level</label><select id="atLevel"><option value="all">All levels</option><option value="ground">Ground floor</option><option value="upper-101">Unit 101 · Upper floor</option><option value="upper-103">Unit 103 · Upper floor</option><option value="custom" hidden>Custom layers</option></select><button data-action="site-overview">Site overview</button><button data-water-action="overview">Water & shutoffs</button><button data-tab="sources">Plans & sources</button></div><div class="at-canvas" id="atCanvas"><div class="at-loading" id="atLoading">Loading the source model…</div></div>
       <div class="at-scene-note"><span id="atSceneNote">Source geometry · Model dimensions unverified</span><span id="atMeasureReadout" aria-live="polite"></span></div>
       <div class="at-presentation-bar"><button data-action="tour-prev">Previous stop</button><span id="atTourLabel">Guided walkway tour</span><button data-action="tour-next">Next stop</button><button data-action="tour-play">Play tour</button><button data-action="tour-stop">Stop</button></div>
       <details class="at-model-tools" open><summary>Layers & viewing tools</summary><div class="at-layer-grid"><label><input id="atColumns" type="checkbox" checked> Highlight columns</label><label><input id="atCanopy" type="checkbox"> Show canopy</label><label><input id="atWalls" type="checkbox" checked> Building walls</label><label><input id="atWalkway" type="checkbox" checked> Walkway</label><label><input id="atFade" type="checkbox"> Fade walls</label><label><input id="atCondition" type="checkbox"> Color by inspection</label><label><input id="atSuitePins" type="checkbox" checked> Suite labels</label><label><input id="atEquipmentPins" type="checkbox" checked> Equipment pins</label><label><input id="atBenches" type="checkbox" checked> Bench models</label><label><input id="atWasteBins" type="checkbox" checked> Trash-can models</label><label><input id="atFixtureLabels" type="checkbox"> Fixture labels</label><label><input id="atWaterCity" type="checkbox"> City meter map points</label><label><input id="atWaterShutoffs" type="checkbox"> Tenant shutoff map points</label><label><input id="atSiteContext" type="checkbox" checked> Site & common areas</label>${Object.entries(SITE_LAYER_LABELS).map(([kind,label])=>`<label><input data-site-layer="${kind}" type="checkbox" ${kind!=='off-parcel'?'checked':''}> ${label}</label>`).join('')}</div><div class="at-section-row"><label for="atSection">Section height</label><input id="atSection" type="range" min="0.4" max="4" step="0.1" value="4"><output id="atSectionValue">Full model</output><button data-action="clear-measure">Clear measure</button></div><div class="at-condition-key" id="atConditionKey" hidden>${Object.entries(conditions).map(([key,label])=>`<span><i style="background:${conditionColors[key]}"></i>${esc(label)}</span>`).join('')}</div></details>
@@ -67,7 +67,7 @@ export function initAssetTwin(account) {
   const $=id=>root.querySelector(`#${id}`);
   const canWrite=()=>!document.body.classList.contains('state-recovery') && (LOCAL_REVIEW || REMOTE && account?.role==='operator');
   let scene=null,data=null,upperData=null,siteData=null,selectedId=null,selectedWaterId=null,loaded=false,loading=null,busy=false,mode='inspect',activeTab='assets',tourIndex=0,photoGeneration=0,viewStorageKey='';
-  let savedViews=[];let currentPhotos=[];let openGeneration=0,messageTimer=0;let selectingFromRecord=false,pendingSelection=null;const inertSiblings=new Map();
+  let interiorMode=false;let savedViews=[];let currentPhotos=[];let openGeneration=0,messageTimer=0;let selectingFromRecord=false,pendingSelection=null;const inertSiblings=new Map();
   const selected=()=>Assets.getPhysicalAsset(selectedId);
   const sourceId=a=>{const id=sourceObjectForAsset(a,data?.columns||[]);return id&&Assets.getPhysicalAssetForModelObject(id)?.id===a.id?id:null;};
   const showMessage=(text,error=false)=>{clearTimeout(messageTimer);$('atMessage').textContent=text;$('atMessage').hidden=false;$('atMessage').classList.toggle('is-error',error);messageTimer=setTimeout(()=>{$('atMessage').hidden=true;},error?14000:8000);};
@@ -93,11 +93,33 @@ export function initAssetTwin(account) {
     if(tab==='record')renderRecord();if(tab==='water')renderWater();
   }
   function setMode(next){
+    if(next==='present'&&interiorMode)showExterior();
     mode=next;root.dataset.mode=next;for(const button of root.querySelectorAll('[data-mode]'))button.setAttribute('aria-pressed',String(button.dataset.mode===next));
     scene?.setPresentation(next==='present');
     if(next==='present'){scene?.clearMeasurement();scene?.setSectionHeight(null);scene?.setFadeWalls(false);$('atCanopy').checked=true;scene?.setLayer('canopy',true);setTab('views');}
     if(next==='field')setTab(selectedId?'record':'assets');
     applyFinish();requestAnimationFrame(()=>scene?.resize());
+  }
+  function showInterior(level='ground'){
+    if(!scene||!loaded)return;
+    interiorMode=true;$('atLevel').querySelector('[value=all]').hidden=true;selectedId=null;selectedWaterId=null;setMode('inspect');scene.selectSource(null);scene.selectWaterMarker(null);scene.setSectionHeight(null);setTab('assets');$('atType').value='all';$('atSearch').value='';renderDirectory();root.querySelector('.at-model-tools').open=false;
+    scene.setLevel(['upper-101','upper-103'].includes(level)?level:'ground',{focus:false});
+    for(const layer of ['site-context','canopy','water_meters','water_shutoffs','assets','benches','waste_bins'])scene.setLayer(layer,false);
+    for(const layer of ['walls','floors','openings'])scene.setLayer(layer,true);
+    scene.setFadeWalls(false);scene.setHighlight(false);scene.setLabels(false);scene.setView('plan');
+    root.querySelector('[data-action="interior-plans"]').setAttribute('aria-pressed','true');
+    root.querySelector('[data-action="building-exterior"]').setAttribute('aria-pressed','false');
+    $('atSceneNote').textContent='Interior floor plans - choose Ground floor, Unit 101 or Unit 103 above. Source layouts need field verification.';
+    const url=new URL(location.href);url.searchParams.set('layout','interior');url.searchParams.delete('asset');url.searchParams.delete('water');history.replaceState(null,'',url);
+  }
+  function showExterior(){
+    if(!scene||!loaded)return;
+    interiorMode=false;$('atLevel').querySelector('[value=all]').hidden=false;setMode('inspect');scene.selectSource(null);scene.setSectionHeight(null);scene.setLevel('all',{focus:false});
+    for(const layer of ['site-context','canopy','walls','floors','openings','walkway','assets','benches','waste_bins'])scene.setLayer(layer,true);
+    scene.setFadeWalls(false);scene.setHighlight(true);scene.setLabels(true);scene.setView('overview');
+    root.querySelector('[data-action="interior-plans"]').setAttribute('aria-pressed','false');
+    root.querySelector('[data-action="building-exterior"]').setAttribute('aria-pressed','true');
+    const url=new URL(location.href);url.searchParams.set('layout','exterior');history.replaceState(null,'',url);
   }
   function applyFinish(){
     scene?.setFinishPalette?.($('atFinish').value==='reference'?{walls:'#e6e2d7',columns:'#f0eee6',walkway:'#aaa9a1',canopy:'#d8cfba',canopyTop:'#666760',glazing:'#a8bdc5'}:null);
@@ -248,6 +270,7 @@ export function initAssetTwin(account) {
   function selectWaterLocation(id,{focus=false}={}){
     if(!mappedWaterLocations.some(item=>item.id===id))return;
     if(!loaded)pendingSelection={kind:'water',id};
+    interiorMode=false;$('atLevel').querySelector('[value=all]').hidden=false;root.querySelector('[data-action=interior-plans]').setAttribute('aria-pressed','false');root.querySelector('[data-action=building-exterior]').setAttribute('aria-pressed','false');scene?.setLayer('site-context',true);
     selectedWaterId=id;selectedId=null;if(mode==='present')setMode('inspect');setTab('water');
     if(focus)scene?.focusWaterMarker(id);else scene?.selectWaterMarker(id);
     updateURL(null);renderWater();
@@ -255,7 +278,7 @@ export function initAssetTwin(account) {
   function openWaterMap(id=null){
     if(id&&mappedWaterLocations.some(item=>item.id===id)){selectWaterLocation(id,{focus:true});return;}
     if(!loaded)pendingSelection={kind:'water',id:'all'};
-    selectedWaterId=null;selectedId=null;if(mode==='present')setMode('inspect');setTab('water');scene?.selectWaterMarker(null);scene?.focusWaterMap();updateURL(null);
+    interiorMode=false;$('atLevel').querySelector('[value=all]').hidden=false;root.querySelector('[data-action="interior-plans"]').setAttribute('aria-pressed','false');root.querySelector('[data-action="building-exterior"]').setAttribute('aria-pressed','false');scene?.setLayer('site-context',true);selectedWaterId=null;selectedId=null;if(mode==='present')setMode('inspect');setTab('water');scene?.selectWaterMarker(null);scene?.focusWaterMap();updateURL(null);
   }
   function renderViews(){
     $('atSavedViews').innerHTML=`<h3>Saved viewpoints</h3>${savedViews.length?savedViews.map((v,i)=>`<div><button data-restore-view="${i}">${esc(v.name)}</button><button data-remove-view="${i}" aria-label="Remove saved view ${esc(v.name)}">${icon('close')}</button></div>`).join(''):'<p class="at-muted">Position the camera, then choose Save view.</p>'}<p class="at-muted">Viewpoints are saved in this browser. They do not contain asset records.</p><a class="at-download" href="${import.meta.env.BASE_URL}twin/complete-model.glb" download="On-The-Boulevard-Complete.glb">Download complete model (.glb)</a><a class="at-download" href="${siteModelUrl}" download="On-The-Boulevard-Site-Context.glb">Download parking & common areas (.glb)</a><a class="at-download" href="${siteDataUrl}" download="On-The-Boulevard-Site-Context.json">Download site geometry & sources (.json)</a><a class="at-download" href="${upperModelUrl}" download="On-The-Boulevard-Upper-Floors.glb">Download upper floors (.glb)</a><a class="at-download" href="${upperDataUrl}" download="On-The-Boulevard-Upper-Floors.json">Download upper-floor geometry & sources (.json)</a><a class="at-download" href="${import.meta.env.BASE_URL}twin/fixtures.glb" download="On-The-Boulevard-Benches-And-Cans.glb">Download benches & trash cans (.glb)</a><a class="at-download" href="${import.meta.env.BASE_URL}twin/fixture-models.json" download="On-The-Boulevard-Fixture-Sources.json">Download fixture geometry & sources (.json)</a><p class="at-muted">Complete model includes buildings, upper floors, all 30 fixtures, and source-derived site surfaces. Exports retain editable geometry and source IDs. Fixture dimensions and orientation, upper-floor elevation, and stair envelopes remain unverified.</p>`;
@@ -264,6 +287,13 @@ export function initAssetTwin(account) {
     if(!loaded||!scene||!data?.columns?.length)return;const columns=data.columns;tourIndex=(tourIndex+delta+columns.length)%columns.length;const c=columns[tourIndex];scene.setView('eye');scene.focusSource(c.id);$('atTourLabel').textContent=`${c.label} · Stop ${tourIndex+1} of ${columns.length}`;
   }
   function syncSceneControls(event){
+    if(['view-restored','site-focus','water-reference-focus','water-map-focus'].includes(event.reason)){
+      interiorMode=event.mode==='plan'&&event.layers?.['site-context']===false&&event.layers?.canopy===false;
+      $('atLevel').querySelector('[value=all]').hidden=interiorMode;
+      root.querySelector('[data-action=interior-plans]').setAttribute('aria-pressed',String(interiorMode));
+      root.querySelector('[data-action=building-exterior]').setAttribute('aria-pressed',String(!interiorMode&&!!event.layers?.['site-context']&&!!event.layers?.canopy));
+      const url=new URL(location.href);url.searchParams.set('layout',interiorMode?'interior':'exterior');history.replaceState(null,'',url);
+    }
     if(!selectingFromRecord&&['selection','focus','tour-stop','view-restored','water-reference-focus','water-map-focus','site-focus'].includes(event.reason)){
       const asset=event.selectedSiteZoneId?Assets.getPhysicalAssetForSource(siteZoneSourceKey(event.selectedSiteZoneId)):event.selectedSourceId?Assets.getPhysicalAssetForModelObject(event.selectedSourceId):event.selectedAssetId?Assets.getPhysicalAsset(event.selectedAssetId):null;
       selectedWaterId=event.selectedWaterId??null;selectedId=asset?.id??null;
@@ -311,6 +341,8 @@ export function initAssetTwin(account) {
       const intent=pendingSelection;pendingSelection=null;
       if(intent?.kind==='water')openWaterMap(intent.id);
       else if(intent?.kind==='asset'){if(Assets.getPhysicalAsset(intent.id))selectAsset(intent.id);else showMessage('This asset record is not available in this property or browser. Select a record from the register.',true);}
+      else if(new URL(location.href).searchParams.get('layout')==='exterior')showExterior();
+      else showInterior();
       root.querySelector('[data-action="new-asset"]').disabled=!canWrite();
     })().catch(error=>{if(generation!==openGeneration)return;scene?.dispose();scene=null;$('atLoading').textContent=`The asset twin could not open: ${error.message}`;showMessage(error.message,true);}).finally(()=>{if(generation===openGeneration)loading=null;});return loading;
   }
@@ -322,7 +354,7 @@ export function initAssetTwin(account) {
     if(button.dataset.waterLocation){selectWaterLocation(button.dataset.waterLocation,{focus:true});return;}
     if(button.dataset.waterFocus){selectWaterLocation(button.dataset.waterFocus,{focus:true});return;}
     if(button.dataset.waterAction){const action=button.dataset.waterAction;if(action==='overview')openWaterMap();if(action==='aerial')openWaterAerial(dialog,{selectedId:selectedWaterId,onWaterSelect:id=>openWaterMap(id)});if(action==='evidence')downloadBlob(new Blob([JSON.stringify(waterEvidencePackage(),null,2)],{type:'application/json'}),'OTB-Water-Evidence.json');if(action==='json')downloadBlob(new Blob([JSON.stringify(waterMap,null,2)],{type:'application/json'}),'OTB-Water-Locations.json');if(action==='csv')downloadBlob(new Blob([waterLocationsCSV(waterMap)],{type:'text/csv;charset=utf-8'}),'OTB-Water-Locations.csv');return;}
-    if(button.dataset.upperUnit){scene?.setLevel(`upper-${button.dataset.upperUnit}`);return;}
+    if(button.dataset.upperUnit){showInterior(`upper-${button.dataset.upperUnit}`);return;}
     if(button.dataset.sourceUnit){const asset=Assets.getPhysicalAssetForSource(`unit:${button.dataset.sourceUnit}`);if(asset)selectAsset(asset.id);return;}
     if(button.dataset.asset){selectAsset(button.dataset.asset);return;}
     if(button.dataset.tab){if(button.dataset.tab==='water')openWaterMap(selectedWaterId);else setTab(button.dataset.tab);return;}
@@ -332,8 +364,10 @@ export function initAssetTwin(account) {
     if(button.dataset.removeView!=null){run(async()=>{persistViews(savedViews.filter((_,i)=>i!==+button.dataset.removeView));renderViews();});return;}
     const action=button.dataset.action;
     if(action==='close')close();
-    if(action==='reset')scene?.setView('overview');
-    if(action==='site-overview'){scene?.setLevel('ground',{focus:false});scene?.setLayer('site-context',true);scene?.setView('plan');setTab('assets');$('atType').value='site_area';$('atSearch').value='';renderDirectory();}
+    if(action==='reset')scene?.setView(interiorMode?'plan':'overview');
+    if(action==='interior-plans')showInterior($('atLevel').value);
+    if(action==='building-exterior')showExterior();
+    if(action==='site-overview'){showExterior();scene?.setLevel('ground',{focus:false});scene?.setLayer('site-context',true);scene?.setView('plan');setTab('assets');$('atType').value='site_area';$('atSearch').value='';renderDirectory();}
     if(action==='measure'){scene?.beginMeasurement();showMessage('Pick two visible model surfaces. Distances are based on unverified model geometry.');}
     if(action==='clear-measure')scene?.clearMeasurement();
     if(action==='new-asset')newAsset();
@@ -349,7 +383,7 @@ export function initAssetTwin(account) {
   });
   $('atSiteContext').onchange=()=>scene?.setLayer('site-context',$('atSiteContext').checked);
   root.querySelectorAll('[data-site-layer]').forEach(input=>input.onchange=()=>scene?.setLayer(siteLayerKey(input.dataset.siteLayer),input.checked));
-  $('atLevel').onchange=()=>scene?.setLevel($('atLevel').value);
+  $('atLevel').onchange=()=>{if(interiorMode)showInterior($('atLevel').value);else scene?.setLevel($('atLevel').value);};
   $('atSearch').oninput=renderDirectory;$('atType').onchange=renderDirectory;
   $('atWaterFilter').onchange=renderWater;$('atWaterSearch').oninput=renderWater;
   $('atFixtureLabels').onchange=()=>scene?.setFixtureLabels($('atFixtureLabels').checked);
