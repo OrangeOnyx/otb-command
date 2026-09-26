@@ -1,5 +1,6 @@
 import infrastructure from '../data/twin-infrastructure.json' with { type: 'json' };
 import fixtures from '../data/twin-site-fixtures.json' with { type: 'json' };
+import { siteBindingForAsset } from './asset-twin-site-records.js';
 
 export { infrastructure, fixtures };
 export const fixtureSeeds=fixtures.items.filter(item=>item.seedPolicy==='new_asset_candidate').map(item=>({
@@ -11,9 +12,14 @@ export const fixtureSeeds=fixtures.items.filter(item=>item.seedPolicy==='new_ass
 }));
 export const sourceItems=[...infrastructure.items,...fixtureSeeds];
 const sourcesByKey=new Map(sourceItems.map(item=>[item.sourceKey,item]));
-export function sourceItemForAsset(asset){return asset?.bindings?.map(binding=>sourcesByKey.get(binding.source_key)).find(Boolean)??null;}
+export function sourceItemForAsset(asset){
+  const known=asset?.bindings?.map(binding=>sourcesByKey.get(binding.source_key)).find(Boolean);
+  if(known)return known;
+  const site=siteBindingForAsset(asset);
+  return site?{sourceKey:site.source_key,metadata:site.metadata}:null;
+}
 export function sourceMetadata(asset){return sourceItemForAsset(asset)?.metadata??{};}
 export function sourceAssetKind(asset){return sourceMetadata(asset).assetKind??asset?.type;}
 export function columnReference(modelColumnId){return fixtures.items.find(item=>item.kind==='column'&&item.modelColumnId===modelColumnId)??null;}
 export function sourceSearchText(asset){const m=sourceMetadata(asset);return [asset.label,asset.unit,m.meterIdRaw,m.utility,m.originalUnitLabel,m.approximateLocationRaw,...(m.servedUnits??[])].filter(Boolean).join(' ').toLowerCase();}
-export const sourceTypeLabels={time_clock:'Time clock reference',bench:'Bench',waste_bin:'Trash can',utility_meter:'Utility meter'};
+export const sourceTypeLabels={time_clock:'Time clock reference',bench:'Bench',waste_bin:'Trash can',utility_meter:'Utility meter',site_area:'Common area'};

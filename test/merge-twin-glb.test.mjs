@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {mergeGlbs,parseGlb,validateGlb,writeGlb} from '../tools/merge-twin-glb.mjs';
 
-const files=['model.glb','upper-floors.glb','fixtures.glb'];
+const files=['model.glb','upper-floors.glb','fixtures.glb','site-context.glb'];
 const sources=files.map(name=>({name,bytes:fs.readFileSync(new URL(`../public/twin/${name}`,import.meta.url))}));
 
 test('complete GLB round trip preserves every source primitive, byte range, material, node identity and extras',()=>{
@@ -38,7 +38,7 @@ test('complete GLB round trip preserves every source primitive, byte range, mate
   }
 });
 
-test('complete default scene reaches all 37 columns and both upper levels with no export-only hidden geometry',()=>{
+test('complete default scene reaches columns, upper levels, fixtures and every site zone with no export-only hidden geometry',()=>{
   const {json}=parseGlb(mergeGlbs(sources).bytes), reached=new Set();
   function visit(i){assert.ok(!reached.has(i),'source hierarchy must not share or cycle nodes');reached.add(i);for(const c of json.nodes[i].children||[])visit(c);}
   for(const node of json.scenes[json.scene].nodes)visit(node);
@@ -56,13 +56,33 @@ test('complete default scene reaches all 37 columns and both upper levels with n
   assert.equal(fixtureGroups.filter(n=>n.extras.assetKind==='bench').length,10);
   assert.equal(fixtureGroups.filter(n=>n.extras.assetKind==='waste_bin').length,20);
   assert.equal(new Set(fixtureGroups.map(n=>n.extras.sourceKey)).size,30);
+  const siteCatalog=JSON.parse(fs.readFileSync(new URL('../public/twin/site-context.json',import.meta.url)));
+  const siteGroups=nodes.filter(n=>n.children?.length&&n.extras?.siteZoneId);
+  assert.equal(siteGroups.length,siteCatalog.zones.length);
+  assert.deepEqual(siteGroups.map(n=>n.extras.siteZoneId).sort(),siteCatalog.zones.map(z=>z.id).sort());
+  for(const zone of siteCatalog.zones){
+    const group=siteGroups.find(n=>n.extras.siteZoneId===zone.id);
+    assert.equal(group.extras.siteCategory,zone.kind);
+    assert.equal(group.extras.contextOnly,zone.contextOnly===true);
+    assert.equal(group.extras.physicalVerification,'unverified');
+    assert.equal(group.extras.presentationElevationOnly,true);
+    for(const child of group.children){
+      assert.equal(json.nodes[child].extras.siteZoneId,zone.id);
+      assert.equal(json.nodes[child].extras.physicalVerification,'unverified');
+    }
+  }
+  assert.ok(siteGroups.some(n=>n.extras.siteZoneId==='lot-7'));
+  assert.ok(siteGroups.some(n=>n.extras.siteZoneId==='jd-bank-context'&&n.extras.contextOnly));
   assert.equal(reached.size,json.nodes.length);
 });
 
-test('downloadable complete model includes the current base, upper-floor and fixture documents',()=>{
+test('downloadable complete model includes the current base, upper-floor, fixture and site-context documents',()=>{
   const {json}=parseGlb(fs.readFileSync(new URL('../public/twin/complete-model.glb',import.meta.url)));
   const expected=mergeGlbs(sources).report.sourceDocuments.map(({file,sha256})=>({file,sha256}));
   assert.deepEqual(json.extras.sourceDocuments.map(({file,sha256})=>({file,sha256})),expected);
+  const siteSource=json.extras.sourceDocuments.find(source=>source.file==='site-context.glb');
+  assert.equal(json.nodes[siteSource.sourceGroupNode].name,'source-site-context');
+  assert.ok(json.scenes[json.scene].nodes.includes(siteSource.sourceGroupNode));
 });
 
 test('malformed input and unsupported extension references fail instead of silently corrupting the package',()=>{

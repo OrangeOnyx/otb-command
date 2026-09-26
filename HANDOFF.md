@@ -1,3 +1,9 @@
+## September 25, 2026 - Parking/common areas and site-capture handoff
+
+Added 51 visual site zones with 41 permanent common-area records, selectable geometry, layer controls, W1217102 broad grass search, and a complete editable GLB including site context. Five historical architectural sheets are reviewed; Insta360 and iPhone/iPad LiDAR field checklist is available from Sources. Existing asset IDs and native building geometry are preserved. Local review only; no production deployment or live database writes.
+
+Validation: 886 tests covered (one environment-blocked config test passed in its 10-test normal-access rerun), production build passed, live browser selection/reload/search/upper-floor/presentation checks passed. See `docs/asset-twin-site-context-release.md` and `docs/asset-twin-site-context.md`. Handoff package: `outputs/OTB_Site_Context_2026-09-25` in the task workspace, outside this checkout.
+
 # Cypress Command Platform · OTB — Session Handoff
 
 ## September 25, 2026 — Permanent asset research evidence (isolated twin branch)
