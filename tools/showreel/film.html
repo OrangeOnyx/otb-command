@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Thousand Promises</title>
+<style>
+@font-face{font-family:'Besley';font-style:normal;font-weight:400 900;font-display:block;src:url(fonts/Besley.woff2) format('woff2')}
+@font-face{font-family:'Besley';font-style:italic;font-weight:400;font-display:block;src:url(fonts/Besley-Italic.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-display:block;src:url(fonts/Archivo.woff2) format('woff2')}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:400;font-display:block;src:url(fonts/CourierPrime-400.woff2) format('woff2')}
+@font-face{font-family:'Courier Prime';font-style:normal;font-weight:700;font-display:block;src:url(fonts/CourierPrime-700.woff2) format('woff2')}
+html,body{margin:0;background:#000;height:100%}
+body{display:grid;place-items:center;overflow:hidden}
+canvas{width:min(100vw,177.78vh);height:auto;display:block}
+#go{position:fixed;inset:0;display:grid;place-items:center;color:#fff;font:700 14px 'Courier Prime',monospace;letter-spacing:.1em;cursor:pointer;background:rgba(0,0,0,.55)}
+body.render #go{display:none}
+</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div id="go">CLICK TO PLAY · SPACE PAUSE · ← → SCRUB · ?palette=terra|bayou|signal</div>
+<svg id="measure" width="0" height="0" style="position:absolute"></svg>
+<script src="site.js"></script>
+<script>
+// "A Thousand Promises" — Cypress Command Platform film (90 s).
+// Every frame is a pure function of t, so it plays live and renders frame-exact (render.mjs).
+'use strict';
+const W = 1920, H = 1080, FPS = 60, DUR = 90;
+const cv = document.getElementById('c');
+const main = cv.getContext('2d');
+let g = main;
+const params = new URLSearchParams(location.search);
+
+// ── palettes ────────────────────────────────────────────────────────────
+// hero = the square that carries the film (N on dark grounds, L on light).
+const PALETTES = {
+  terra: {
+    night: '#1B1813', night2: '#26221B', paper: '#F4EFE2', paper2: '#EAE2CD', ink: '#1E1B16', soft: '#5C554A', rule: '#C9BFA8', nsoft: '#BEB4A2', nrule: '#4E463A',
+    heroN: '#D2802F', heroL: '#A44E12', edgeL: null, accN: '#D2802F', accL: '#A44E12',
+    inks: ['#A44E12', '#49573C', '#8F6D0C', '#5A3B5C'], inksN: ['#D2802F', '#9AA989', '#CFA032', '#C39BC0'],
+    okL: '#49573C', okN: '#9AA989', warnL: '#8F6D0C', warnN: '#CFA032', alertL: '#8A2F1F', alertN: '#D27363',
+    fields: ['#A44E12', '#49573C', '#8F6D0C', '#5A3B5C', '#1E1B16', '#1E4D3A'], fieldText: '#F4EFE2',
+    end: { bg: '#F4EFE2', mark: '#A44E12', text: '#1E1B16', soft: '#5C554A', acc: '#A44E12' },
+  },
+  bayou: {
+    night: '#0E1716', night2: '#172421', paper: '#F1EFE8', paper2: '#E2E5DC', ink: '#0F1B19', soft: '#4B5D58', rule: '#C3CCC4', nsoft: '#A9BAB3', nrule: '#2C3D39',
+    heroN: '#FF7A45', heroL: '#E0531F', edgeL: null, accN: '#FF7A45', accL: '#E0531F',
+    inks: ['#1F7A74', '#E0531F', '#C9971C', '#6C4AB6'], inksN: ['#3CC2B4', '#FF7A45', '#F2C14E', '#A78BFA'],
+    okL: '#1F7A74', okN: '#3CC2B4', warnL: '#B7860F', warnN: '#F2C14E', alertL: '#C62A45', alertN: '#FF5D73',
+    fields: ['#1F7A74', '#E0531F', '#B7860F', '#6C4AB6', '#0F1B19', '#123C38'], fieldText: '#F1EFE8',
+    end: { bg: '#0E1716', mark: '#FF7A45', text: '#F1EFE8', soft: '#A9BAB3', acc: '#3CC2B4' },
+  },
+  signal: {
+    night: '#0A0A0B', night2: '#161618', paper: '#F4F4EF', paper2: '#E6E6DF', ink: '#0A0A0B', soft: '#5A5A60', rule: '#CFCFC8', nsoft: '#A0A0A8', nrule: '#2A2A2F',
+    heroN: '#C8F31D', heroL: '#C8F31D', edgeL: '#0A0A0B', accN: '#C8F31D', accL: '#2F4BFF',
+    inks: ['#2F4BFF', '#FF4D1A', '#0A0A0B', '#8B5CF6'], inksN: ['#6B7FFF', '#FF6A3D', '#C8F31D', '#B69CFF'],
+    okL: '#1F8A4C', okN: '#4ADE80', warnL: '#B45309', warnN: '#FBBF24', alertL: '#DC2626', alertN: '#F87171',
+    fields: ['#2F4BFF', '#FF4D1A', '#0A0A0B', '#8B5CF6', '#2F4BFF', '#0A0A0B'], fieldText: '#F4F4EF',
+    end: { bg: '#0A0A0B', mark: '#C8F31D', text: '#F4F4EF', soft: '#A0A0A8', acc: '#C8F31D' },
+  },
+};
+const PAL = PALETTES[params.get('palette')] || PALETTES.terra;
+const DISPLAY = 'Besley', UI = 'Archivo', MONO = '"Courier Prime"';
+
+// ── math ────────────────────────────────────────────────────────────────
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, a, b) => cl((t - a) / (b - a));
+const lerp = (a, b, x) => a + (b - a) * x;
+const E = {
+  lin: x => x,
+  inCubic: x => x * x * x,
+  outCubic: x => 1 - Math.pow(1 - x, 3),
+  inOutCubic: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
+  outQuint: x => 1 - Math.pow(1 - x, 5),
+  outExpo: x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x),
+  inExpo: x => x <= 0 ? 0 : Math.pow(2, 10 * x - 10),
+  inOutExpo: x => x <= 0 ? 0 : x >= 1 ? 1 : x < .5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2,
+  outBack: x => { const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); },
+};
+const ep = (t, a, d, e = E.outExpo) => e(P(t, a, a + d));
+const smooth = (t, a, b) => { const x = P(t, a, b); return x * x * (3 - 2 * x); };
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let r = Math.imul(seed ^ seed >>> 15, 1 | seed); r = r + Math.imul(r ^ r >>> 7, 61 | r) ^ r; return ((r ^ r >>> 14) >>> 0) / 4294967296; }; }
+function hex(c) { const n = parseInt(c.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+function mix(a, b, x) { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(lerp(v, B[i], cl(x))).toString(16).padStart(2, '0')).join(''); }
+function rgba(c, a) { const [r, gg, b] = hex(c); return `rgba(${r},${gg},${b},${a})`; }
+
+// ── primitives ──────────────────────────────────────────────────────────
+function reset() { g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.filter = 'none'; g.setLineDash([]); g.letterSpacing = '0px'; g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.shadowColor = 'transparent'; }
+function bg(c) { reset(); g.fillStyle = c; g.fillRect(0, 0, W, H); }
+function rect(x, y, w, h, c) { g.fillStyle = c; g.fillRect(x, y, w, h); }
+function rrect(x, y, w, h, r, c, stroke) { g.beginPath(); g.roundRect(x, y, w, h, r); if (c) { g.fillStyle = c; g.fill(); } if (stroke) { g.strokeStyle = stroke; g.lineWidth = 1; g.stroke(); } }
+function line(x1, y1, x2, y2, c, w = 1) { g.strokeStyle = c; g.lineWidth = w; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); }
+function text(s, x, y, f, c, track = 0, align = 'left') { g.font = f; g.fillStyle = c; g.letterSpacing = track + 'px'; g.textAlign = align; g.fillText(s, x, y); g.letterSpacing = '0px'; g.textAlign = 'left'; }
+function tw(s, f, track = 0) { g.font = f; g.letterSpacing = track + 'px'; const w = g.measureText(s).width; g.letterSpacing = '0px'; return w; }
+function rise(s, x, y, f, c, t, t0, { size, track = 0, stagger = .03, dur = .6, align = 'left', ease = E.outExpo, by = 'char' } = {}) {
+  const parts = by === 'word' ? s.split(/(\s+)/) : [...s];
+  const total = tw(s, f, track);
+  let cx = align === 'center' ? x - total / 2 : align === 'right' ? x - total : x;
+  g.font = f; g.fillStyle = c; g.letterSpacing = track + 'px';
+  let k = 0;
+  for (const p of parts) {
+    const w = g.measureText(p).width;
+    if (p.trim()) {
+      const e = ease(P(t, t0 + k * stagger, t0 + k * stagger + dur));
+      if (e > 0) { g.save(); g.beginPath(); g.rect(cx - size * .1, y - size * 1.05, w + size * .3, size * 1.45); g.clip(); g.fillText(p, cx, y + (1 - e) * size * 1.15); g.restore(); }
+      k++;
+    }
+    cx += w;
+  }
+  g.letterSpacing = '0px';
+  return total;
+}
+function hull(pts) {
+  pts = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lo = [], up = [];
+  for (const p of pts) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+  for (const p of pts.slice().reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
+  return lo.slice(0, -1).concat(up.slice(0, -1));
+}
+function poly(pts, c) { g.fillStyle = c; g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.closePath(); g.fill(); }
+// the hero square
+function hero(x, y, s, onLight, rot = 0, alpha = 1) {
+  g.save(); g.globalAlpha *= alpha; g.translate(x, y); g.rotate(rot);
+  g.fillStyle = onLight ? PAL.heroL : PAL.heroN; g.fillRect(-s / 2, -s / 2, s, s);
+  if (onLight && PAL.edgeL) { g.strokeStyle = PAL.edgeL; g.lineWidth = 2; g.strokeRect(-s / 2, -s / 2, s, s); }
+  g.restore();
+}
+const svgNS = 'http://www.w3.org/2000/svg', meas = document.getElementById('measure');
+function svgPath(d) { const p = document.createElementNS(svgNS, 'path'); p.setAttribute('d', d); meas.appendChild(p); return p; }
+const MARK = new Path2D('M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z');
+
+// ── site geometry (traced plat, src/data/geometry.json) ──────────────────
+const S = window.SITE;
+const bPath = new Path2D(S.boundary), l7Path = new Path2D(S.lot7);
+const bLen = svgPath(S.boundary).getTotalLength();
+const units = S.units.map(([x, y, w, h], i) => ({ x, y, w, h, i, bld: x > 1150 ? 1 : 0 }));
+const stalls = [];
+S.rows.forEach((r, ri) => { const [p0, p1, p2, p3] = r.q; for (let k = 0; k <= r.n; k++) { const f = k / r.n; stalls.push({ ri, a: [lerp(p0[0], p1[0], f), lerp(p0[1], p1[1], f)], b: [lerp(p3[0], p2[0], f), lerp(p3[1], p2[1], f)] }); } });
+
+// ═════════════════════════════════════════════════════════════════════════
+// 1 · PROMISES (0–8)
+const L1 = 'Every property runs on', L2a = 'a thousand small ', L2b = 'promises.';
+const FT = `900 84px ${DISPLAY}`;
+function S1(t) {
+  bg(PAL.night);
+  const x0 = 170, y1 = 520;
+  const lift = ep(t, 2.9, .5, E.inOutCubic);
+  // line 1
+  const n1 = Math.floor(cl((t - 1) * 16, 0, L1.length));
+  g.globalAlpha = lerp(1, .38, lift);
+  text(L1.slice(0, n1), x0, y1 - lift * 104, FT, PAL.paper, -1.5);
+  g.globalAlpha = 1;
+  // line 2
+  const n2 = Math.floor(cl((t - 3.05) * 14, 0, L2a.length + L2b.length));
+  const a = L2a.slice(0, n2), b = n2 > L2a.length ? L2b.slice(0, n2 - L2a.length) : '';
+  const wa = tw(L2a, FT, -1.5);
+  const shatter = P(t, 5.9, 8);
+  if (t >= 3.05) {
+    text(a, x0, y1, FT, PAL.paper, -1.5);
+    if (shatter <= 0) text(b, x0 + wa, y1, FT, PAL.heroN, -1.5);
+    else { // letters of "promises." detach and tumble toward camera
+      g.font = FT; let cx = x0 + wa;
+      [...L2b].forEach((ch, i) => {
+        const w = g.measureText(ch).width, R = rng(i + 3);
+        const e = E.inCubic(cl(shatter * 1.25 - i * .03));
+        const sc = 1 + e * (3 + R() * 6);
+        g.save(); g.globalAlpha = 1 - e;
+        g.translate(cx + w / 2 + (R() - .5) * 900 * e, y1 - 30 + (R() - .5) * 700 * e);
+        g.rotate((R() - .5) * 4 * e); g.scale(sc, sc);
+        text(ch, -w / 2, 30, FT, PAL.heroN, 0); g.restore();
+        cx += w - 1.5;
+      });
+      g.globalAlpha = 1 - E.inCubic(shatter);
+      rect(0, 0, 0, 0, '#000');
+    }
+    g.globalAlpha = 1;
+  }
+  // block cursor: blinks on the clock, rides the text, then dissolves into the storm
+  const typingLen = t < 3.05 ? tw(L1.slice(0, n1), FT, -1.5) : tw(a + b, FT, -1.5);
+  const cy = t < 3.05 ? y1 - lift * 104 : y1;
+  const typingNow = (t > 1 && t < 2.45) || (t > 3.05 && t < 4.9);
+  const blink = typingNow || Math.floor(t * 2) % 2 === 0;
+  const fade = 1 - ep(t, 5.6, .4);
+  if (blink && fade > 0 && t > .5) hero(x0 + typingLen + 26, cy - 28, 36, false, 0, fade);
+  // the storm arrives
+  if (t > 6) storm(t, false, ep(t, 6, 2, E.inCubic));
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// 2 · THE PILE (6–28): a flight through everything a property promises
+const NF = 220, FR = rng(42);
+const ALERTS = ['Roof leak reported', 'COI expired', 'HVAC PM due', 'Renewal notice · 90 days', 'Sign permit pending', 'Backflow test due', 'Invoice past due', 'Owner report due', 'Lock change request', 'Parking complaint', 'Grease trap service', 'Fire inspection'];
+const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+const SIZES = [[200, 150], [120, 130], [130, 130], [170, 200], [300, 64], [220, 120], [190, 110]];
+const frags = [...Array(NF)].map((_, i) => {
+  const type = Math.floor(FR() * 7);
+  return { i, type, x: (FR() - .5) * 3800, y: (FR() - .5) * 2200, z: FR() * 3000, r0: (FR() - .5) * 1.2, spin: (FR() - .5) * .5,
+    a: ALERTS[Math.floor(FR() * ALERTS.length)], mo: MON[Math.floor(FR() * 12)], d: 1 + Math.floor(FR() * 28), wo: 1000 + Math.floor(FR() * 8999), seed: Math.floor(FR() * 1e6), w: SIZES[type][0], h: SIZES[type][1] };
+});
+const FOCAL = 900, FREEZE = 26;
+function camZ(t) { const tt = Math.min(t, FREEZE); const u = Math.max(0, tt - 8); return 260 * Math.max(0, tt - 6) + 1100 * u * u * u / (3 * 18 * 18); }
+function spinT(t) { const tt = Math.min(t, FREEZE); const u = Math.max(0, tt - 16); return tt + u * u * .35; }
+function fragState(f, t) {
+  const tt = Math.min(t, FREEZE);
+  const zr = ((f.z - camZ(t)) % 3000 + 3000) % 3000 + 60;
+  const s = FOCAL / zr;
+  const wob = Math.sin(tt * .7 + f.i) * 60;
+  return { sx: W / 2 + (f.x + wob) * s, sy: H / 2 + (f.y + Math.cos(tt * .6 + f.i) * 40) * s, s: s * .9, rot: f.r0 + f.spin * spinT(t), z: zr,
+    alpha: cl((3000 - zr) / 500) * cl((zr - 70) / 90) };
+}
+function drawFrag(f, detail) {
+  const w = f.w, h = f.h, x = -w / 2, y = -h / 2, R = rng(f.seed);
+  if (!detail) { rect(x, y, w, h, f.type === 2 ? PAL.warnN : f.type === 4 ? PAL.night2 : PAL.paper); return; }
+  switch (f.type) {
+    case 0: // lease
+      rect(x, y, w, h, PAL.paper); text('LEASE', x + 14, y + 26, `700 14px ${MONO}`, PAL.ink, 2);
+      for (let k = 0; k < 5; k++) rect(x + 14, y + 42 + k * 16, (w - 28) * (.55 + R() * .45), 5, PAL.rule);
+      g.strokeStyle = PAL.ink; g.lineWidth = 2; g.beginPath(); g.moveTo(x + 18, y + h - 18); g.bezierCurveTo(x + 50, y + h - 44, x + 60, y + h - 2, x + 96, y + h - 26); g.stroke();
+      break;
+    case 1: // calendar tile
+      rect(x, y, w, h, PAL.paper); rect(x, y, w, 30, PAL.warnL);
+      text(f.mo, x + w / 2, y + 21, `700 14px ${UI}`, PAL.paper, 2, 'center');
+      text(String(f.d), x + w / 2, y + h - 22, `900 60px ${DISPLAY}`, PAL.ink, -1, 'center');
+      break;
+    case 2: // sticky note
+      rect(x, y, w, h, PAL.warnN);
+      g.strokeStyle = rgba(PAL.ink, .7); g.lineWidth = 2.5;
+      for (let k = 0; k < 3; k++) { g.beginPath(); for (let s = 0; s <= 10; s++) { const px = x + 16 + s * (w - 40) / 10 * (k === 2 ? .6 : 1), py = y + 36 + k * 30 + Math.sin(s * 1.7 + k) * 3; s ? g.lineTo(px, py) : g.moveTo(px, py); } g.stroke(); }
+      break;
+    case 3: // invoice
+      rect(x, y, w, h, PAL.paper); text('INVOICE', x + 14, y + 28, `700 15px ${MONO}`, PAL.ink, 2);
+      for (let k = 0; k < 5; k++) { rect(x + 14, y + 50 + k * 20, (w - 28) * .55, 5, PAL.rule); rect(x + w - 50, y + 50 + k * 20, 36, 5, PAL.rule); }
+      rect(x + 14, y + h - 30, w - 28, 12, PAL.heroL);
+      break;
+    case 4: // alert notification
+      rrect(x, y, w, h, 14, mix(PAL.night2, PAL.paper, .1)); g.beginPath(); g.arc(x + 30, y + h / 2, 9, 0, 7); g.fillStyle = PAL.alertN; g.fill();
+      text(f.a, x + 54, y + h / 2 + 7, `600 19px ${UI}`, PAL.paper);
+      break;
+    case 5: // email
+      rect(x, y, w, h, PAL.paper2);
+      g.strokeStyle = PAL.soft; g.lineWidth = 2; g.strokeRect(x + 16, y + 18, 44, 30); g.beginPath(); g.moveTo(x + 16, y + 18); g.lineTo(x + 38, y + 36); g.lineTo(x + 60, y + 18); g.stroke();
+      rect(x + 74, y + 22, w - 96, 7, PAL.ink); rect(x + 74, y + 38, (w - 96) * .6, 6, PAL.rule);
+      for (let k = 0; k < 2; k++) rect(x + 16, y + 68 + k * 16, w - 32 - k * 50, 5, PAL.rule);
+      break;
+    default: // work order
+      rect(x, y, w, h, PAL.paper); text(`WO-${f.wo}`, x + 14, y + 28, `700 16px ${MONO}`, PAL.ink, 1);
+      rect(x + 14, y + 46, w - 28, 10, PAL.paper2); rect(x + 14, y + 46, (w - 28) * (.2 + R() * .7), 10, PAL.okL);
+      rect(x + 14, y + 72, (w - 28) * .7, 5, PAL.rule);
+  }
+}
+// Snap targets: the 144 nearest fragments at the freeze lock into a 16×9 wall.
+const COLS = 16, ROWS = 9, CELL = 104, GAP = 16;
+const frozen = frags.map(f => ({ f, st: fragState(f, FREEZE) }));
+const nearest = frozen.filter(o => o.st.alpha > .05).sort((a, b) => a.st.z - b.st.z).slice(0, COLS * ROWS);
+nearest.sort((a, b) => a.st.sy - b.st.sy);
+for (let r = 0; r < ROWS; r++) {
+  const row = nearest.slice(r * COLS, (r + 1) * COLS).sort((a, b) => a.st.sx - b.st.sx);
+  row.forEach((o, c) => { o.f.cell = { r, c, x: (W - (COLS * (CELL + GAP) - GAP)) / 2 + c * (CELL + GAP) + CELL / 2, y: (H - (ROWS * (CELL + GAP) - GAP)) / 2 + r * (CELL + GAP) + CELL / 2 }; o.f.cellIdx = r * COLS + c; });
+}
+const SNAP = 28;
+function cellPose(f, t) {
+  const st = fragState(f, FREEZE), c = f.cell;
+  const dist = Math.hypot(st.sx - W / 2, st.sy - H / 2);
+  const e = E.outBack(P(t, SNAP + dist * .00022, SNAP + dist * .00022 + .55));
+  const fit = Math.min(CELL / f.w, CELL / f.h);
+  return { sx: lerp(st.sx, c.x, e), sy: lerp(st.sy, c.y, e), s: lerp(st.s, fit, e), rot: lerp(st.rot, 0, e), alpha: lerp(st.alpha, 1, cl(e)), e };
+}
+const WORDS1 = [[10, 'Leases.'], [12, 'Renewals.'], [14, 'Roof leaks.'], [16, 'Insurance.'],
+  [18, 'Invoices.'], [18.5, 'Owners.'], [19, 'Vendors.'], [19.5, 'Deadlines.'], [20, 'Permits.'], [20.5, 'Inspections.'], [21, 'Keys.'], [21.5, 'Calls.']];
+const FLASH = ['CAM', 'HVAC', 'COI', 'TAX', 'LIENS', 'LOCKS', 'SIGNS', 'ROOF', 'GREASE', 'NOTICE', 'LATE', 'LEAK', 'PERMIT', 'AUDIT', 'RENT', 'KEYS'];
+function storm(t, light, fadeIn = 1) {
+  const shake = t < FREEZE ? smooth(t, 21, 26) * 14 : 0;
+  const R = rng(Math.floor(t * 60));
+  reset(); g.translate((R() - .5) * shake, (R() - .5) * shake);
+  const list = frags.map(f => ({ f, st: t < SNAP ? fragState(f, t) : null })).sort((a, b) => (b.st ? b.st.z : 0) - (a.st ? a.st.z : 0));
+  for (const { f, st } of list) {
+    let p = st;
+    if (t >= SNAP) { if (!f.cell) { const s0 = fragState(f, FREEZE); const e = ep(t, SNAP, .4, E.inCubic); p = { ...s0, alpha: s0.alpha * (1 - e), s: s0.s * (1 + e * 2) }; } else p = cellPose(f, t); }
+    const a = p.alpha * fadeIn;
+    if (a <= .01) continue;
+    const sw = f.w * p.s;
+    if (sw < 1.5 || p.sx < -sw * 2 || p.sx > W + sw * 2 || p.sy < -sw * 2 || p.sy > H + sw * 2) continue;
+    g.save(); g.globalAlpha = a; g.translate(p.sx, p.sy); g.rotate(p.rot); g.scale(p.s, p.s);
+    drawFrag(f, sw > 22); g.restore();
+  }
+  reset();
+}
+function S2(t) {
+  bg(PAL.night);
+  if (t < SNAP) {
+    // unread counter climbs exponentially
+    storm(t, false);
+    const unread = Math.round(Math.exp(lerp(0, Math.log(248), smooth(t, 8, FREEZE))));
+    if (t > 8.5) {
+      g.globalAlpha = ep(t, 8.5, .5);
+      const lab = `${unread} UNREAD`, f = `700 22px ${MONO}`, w = tw(lab, f, 1.5);
+      rrect(W - 90 - w - 50, 60, w + 60, 50, 25, PAL.alertN); text(lab, W - 90 - w / 2 - 20, 93, f, PAL.night, 1.5, 'center');
+      g.globalAlpha = 1;
+    }
+    // words hit on the beat
+    if (t < FREEZE) {
+      for (let k = 0; k < WORDS1.length; k++) {
+        const [t0, wd] = WORDS1[k], dur = t0 < 18 ? 2 : .5;
+        if (t < t0 || t >= t0 + dur) continue;
+        const lt = t - t0, e = ep(lt, 0, .3), out = ep(lt, dur - .15, .15, E.inCubic);
+        g.globalAlpha = e * (1 - out); g.filter = `blur(${(1 - e) * 16}px)`; g.shadowColor = PAL.night; g.shadowBlur = 60;
+        const sc = lerp(1.25, 1, e) + lt * .03;
+        g.translate(W / 2, H / 2 + 60); g.scale(sc, sc);
+        text(wd, 0, 0, `900 ${t0 < 18 ? 190 : 170}px ${DISPLAY}`, PAL.paper, -5, 'center');
+        reset();
+      }
+      if (t >= 22) { // flash words: chromatic split, every 16th
+        const k = Math.floor((t - 22) * 4), wd = FLASH[k % FLASH.length];
+        const R = rng(k + 9), x = W / 2 + (R() - .5) * 700, y = H / 2 + (R() - .5) * 420;
+        const f = `900 ${150 + R() * 110}px ${DISPLAY}`;
+        g.globalAlpha = .85; text(wd, x - 8, y, f, PAL.alertN, -4, 'center'); text(wd, x + 8, y, f, PAL.accN, -4, 'center');
+        g.globalAlpha = 1; text(wd, x, y, f, PAL.paper, -4, 'center');
+      }
+    }
+    // the freeze: everything holds, one square, a heartbeat
+    if (t >= FREEZE) {
+      g.globalAlpha = .7 * ep(t, FREEZE, .15); rect(0, 0, W, H, PAL.night); g.globalAlpha = 1;
+      const beat = Math.max(ep(t, 26.5, .12, E.outCubic) * (1 - ep(t, 26.62, .3)), ep(t, 26.72, .1) * (1 - ep(t, 26.82, .35)));
+      for (const tb of [26.5, 26.72]) { const e = P(t, tb, tb + .9); if (e > 0 && e < 1) { g.globalAlpha = (1 - e) * .6; g.strokeStyle = PAL.heroN; g.lineWidth = 2; g.strokeRect(W / 2 - 20 - e * 160, H / 2 - 20 - e * 160, 40 + e * 320, 40 + e * 320); g.globalAlpha = 1; } }
+      hero(W / 2, H / 2, 40 * (1 + beat * .25) * ep(t, FREEZE, .12), false);
+      const q = 'What if every promise had a place?';
+      const n = Math.floor(cl((t - 26.35) * 30, 0, q.length));
+      text(q.slice(0, n), W / 2, H / 2 + 110, `italic 400 46px ${DISPLAY}`, PAL.paper, 0, 'center');
+      // pre-snap swell: the square gathers light
+      const gather = ep(t, 27.6, .4, E.inExpo);
+      if (gather > 0) { g.globalAlpha = gather * .5; g.filter = `blur(${20 + gather * 40}px)`; hero(W / 2, H / 2, 60 + gather * 200, false); reset(); }
+    }
+  } else {
+    // SNAP: the square floods the frame with paper light; fragments lock into the wall
+    const flood = ep(t, SNAP, .32, E.outCubic);
+    const sz = lerp(40, 2400, flood);
+    g.fillStyle = mix(PAL.heroN, PAL.paper, ep(t, SNAP + .05, .4)); g.fillRect(W / 2 - sz / 2, H / 2 - sz / 2, sz, sz);
+    const dim = 1 - .6 * smooth(t, 28.9, 29.2) * (1 - smooth(t, 30.3, 30.6));
+    g.globalAlpha = 1; storm(t, true, 1);
+    if (t > 28.9) {
+      g.globalAlpha = 1 - dim; rect(0, 0, W, H, PAL.paper); g.globalAlpha = 1;
+      g.globalAlpha = 1 - ep(t, 30.35, .25);
+      rise('Everything has a place.', W / 2, H / 2 + 40, `900 128px ${DISPLAY}`, PAL.ink, t, 28.95, { size: 128, track: -3.5, stagger: .06, dur: .5, by: 'word', align: 'center' });
+      g.globalAlpha = 1;
+    }
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// 3 · THE PLACE (30.5–45.6): cards become suites; the plat stands up; a day passes
+const PICK = units[11];
+function cam3(t) {
+  const tilt = ep(t, 33, 2.2, E.inOutCubic);
+  const phi = tilt * 55 * Math.PI / 180;
+  const th = (-tilt * 25 - smooth(t, 35, 45.6) * 50) * Math.PI / 180;
+  let s = lerp(.95, 1.12, tilt) + smooth(t, 35, 43.4) * .12;
+  let ox = 704, oy = lerp(300, 390, tilt), cx = W / 2, cy = lerp(560, 600, tilt);
+  const dive = E.inExpo(P(t, 43.4, 45.6));
+  const zf0 = s * Math.sin(phi);
+  if (dive > 0) {
+    const px = PICK.x + PICK.w / 2, py = PICK.y + PICK.h / 2;
+    ox = lerp(ox, px, E.outCubic(P(t, 43.4, 44.6))); oy = lerp(oy, py, E.outCubic(P(t, 43.4, 44.6)));
+    s = s * Math.pow(60, dive);
+    cy = lerp(cy, H / 2 + 40 * s * Math.sin(phi), E.outCubic(P(t, 43.4, 44.6)));
+  }
+  const a = s * Math.cos(th), b = s * Math.cos(phi) * Math.sin(th), c = -s * Math.sin(th), d = s * Math.cos(phi) * Math.cos(th), zf = s * Math.sin(phi);
+  return { s, th, phi, zf,
+    T: (z = 0) => g.setTransform(a, b, c, d, cx - (a * ox + c * oy), cy - (b * ox + d * oy) - z * zf),
+    P: (x, y, z = 0) => [cx + a * (x - ox) + c * (y - oy), cy + b * (x - ox) + d * (y - oy) - z * zf] };
+}
+const EVENTS = (() => { const R = rng(77), L = ['RENEWAL', 'COI', 'HVAC PM', 'ROOF', 'INVOICE', 'PERMIT', 'BACKFLOW', 'OWNER RPT', 'LOCKS', 'SIGNAGE']; return [...Array(22)].map((_, k) => ({ t: 35 + k * .34 + R() * .2, u: units[Math.floor(R() * 27)], lab: L[Math.floor(R() * L.length)] })); })();
+const CARS = (() => { const R = rng(3); return [...Array(14)].map((_, k) => ({ lane: k % 2, off: R() * 1900, v: 110 + R() * 60, c: k % 5 })); })();
+function S3(t) {
+  const C3 = cam3(t);
+  const tod = P(t, 35, 43), night = smooth(t, 38.2, 41.8), dusk = Math.sin(Math.PI * P(t, 36.5, 41.5)) * .9;
+  let ground = mix(mix(PAL.paper, PAL.heroL, dusk * .25), PAL.night, night);
+  bg(ground);
+  const ink = mix(PAL.ink, PAL.paper, night), soft = mix(PAL.rule, PAL.nrule, night);
+  // street (Arnould) + traffic
+  C3.T(); rect(-400, 662, 2300, 90, mix(mix(PAL.paper2, PAL.heroL, dusk * .15), PAL.night2, night));
+  g.setLineDash([24, 18]); line(-400, 707, 1900, 707, rgba(ink, .35), 2 / C3.s); g.setLineDash([]);
+  // lot
+  g.fillStyle = mix(PAL.paper2, PAL.night2, night); g.fill(bPath);
+  g.strokeStyle = mix(PAL.accL, PAL.accN, night); g.lineWidth = 2.5 / C3.s; g.globalAlpha = ep(t, 30.6, .8); g.stroke(bPath);
+  g.strokeStyle = soft; g.lineWidth = 1.2 / C3.s; g.stroke(l7Path); g.globalAlpha = 1;
+  const sd = ep(t, 30.8, 1.4, E.outCubic);
+  g.globalAlpha = .8;
+  for (const st of stalls) line(st.a[0], st.a[1], lerp(st.a[0], st.b[0], sd), lerp(st.a[1], st.b[1], sd), soft, 1 / C3.s);
+  g.globalAlpha = 1;
+  // night light pools
+  if (night > 0) for (const u of units) { const cx = u.bld ? u.x - 18 : u.x + u.w / 2, cy = u.bld ? u.y + u.h / 2 : u.y + u.h + 24; const gr = g.createRadialGradient(cx, cy, 0, cx, cy, 70); gr.addColorStop(0, rgba(PAL.warnN, .35 * night)); gr.addColorStop(1, rgba(PAL.warnN, 0)); g.fillStyle = gr; g.fillRect(cx - 70, cy - 70, 140, 140); }
+  // cars
+  for (const car of CARS) {
+    const x = ((car.off + car.v * (t - 30) * (car.lane ? -1 : 1)) % 2100 + 2100) % 2100 - 300, y = car.lane ? 730 : 686;
+    C3.T();
+    if (night > 0) { g.fillStyle = rgba(PAL.warnN, .45 * night); g.beginPath(); const dx = car.lane ? -1 : 1; g.moveTo(x + dx * 12, y - 3); g.lineTo(x + dx * 60, y - 12); g.lineTo(x + dx * 60, y + 12); g.lineTo(x + dx * 12, y + 3); g.fill(); }
+    rrect(x - 12, y - 6, 24, 12, 3, [PAL.inks[0], PAL.ink, PAL.paper, PAL.inks[1], PAL.inks[3]][car.c]);
+  }
+  // shadows (sun sweeps from east to west, lengthening toward dusk)
+  const sunA = lerp(-.6, 2.2, tod), sunK = lerp(.5, 3.2, P(t, 35, 40.5));
+  const lx = Math.cos(sunA), ly = Math.sin(sunA) * .6 + .3;
+  const Hmax = 40;
+  const rise3 = u => ep(t, 33.4 + u.bld * .3 + (u.bld ? (u.y - 219) / 390 : (u.x - 160) / 960) * .5, .8, E.outExpo);
+  const colorIn = u => ep(t, 31.3 + (u.i % 9) * .12, .4, E.outCubic);
+  if (P(t, 33.3, 34) > 0) {
+    C3.T(); g.globalAlpha = .22 * (1 - night) * P(t, 33.5, 34.5);
+    for (const u of units) { const z = Hmax * rise3(u), ddx = -lx * z * sunK, ddy = -ly * z * sunK; const pts = [[u.x, u.y], [u.x + u.w, u.y], [u.x + u.w, u.y + u.h], [u.x, u.y + u.h]]; poly(hull(pts.concat(pts.map(([x, y]) => [x + ddx, y + ddy]))), PAL.ink); }
+    g.globalAlpha = 1;
+  }
+  // suites: flat tops (arriving cards tint them) → extruded boxes
+  const sinT = Math.sin(C3.th), cosT = Math.cos(C3.th);
+  const order = units.map(q => ({ q, depth: (q.x + q.w / 2) * sinT + (q.y + q.h / 2) * cosT })).sort((m, n) => m.depth - n.depth);
+  const pickGlow = ep(t, 42.8, .6);
+  for (const { q } of order) {
+    const z = Hmax * rise3(q);
+    const cat = PAL.inks[q.i % 4], catN = PAL.inksN[q.i % 4];
+    let top = mix(mix(PAL.paper, PAL.paper2, 1), mix(PAL.paper, cat, .7), colorIn(q));
+    top = mix(top, mix(PAL.night2, catN, .55), night);
+    if (q === PICK) top = mix(top, PAL.paper, pickGlow);
+    const x0 = q.x + 1, y0 = q.y + 1, x1 = q.x + q.w - 1, y1 = q.y + q.h - 1;
+    const faces = [[[x0, y1], [x1, y1], 0, 1], [[x1, y0], [x1, y1], 1, 0], [[x0, y0], [x1, y0], 0, -1], [[x0, y0], [x0, y1], -1, 0]];
+    reset();
+    if (z > .5) for (const [p1, p2, nx, ny] of faces) {
+      if (nx * sinT + ny * cosT <= .001) continue;
+      const lit = .66 + .2 * (nx * lx + ny * ly);
+      const A = C3.P(p1[0], p1[1], 0), B = C3.P(p2[0], p2[1], 0), Cc = C3.P(p2[0], p2[1], z), D = C3.P(p1[0], p1[1], z);
+      poly([A, B, Cc, D], mix(top, '#000000', 1 - lit));
+      // storefront glass glows at night (field side: +y long bay, -x short bay)
+      if (night > 0 && ((q.bld === 0 && ny === 1) || (q.bld === 1 && nx === -1))) {
+        const zA = z * .12, zB = z * .55;
+        g.globalAlpha = night * .9; poly([C3.P(p1[0], p1[1], zA), C3.P(p2[0], p2[1], zA), C3.P(p2[0], p2[1], zB), C3.P(p1[0], p1[1], zB)], PAL.warnN); g.globalAlpha = 1;
+      }
+    }
+    C3.T(z); rect(x0, y0, x1 - x0, y1 - y0, top);
+    g.strokeStyle = rgba(ink, .25); g.lineWidth = 1 / C3.s; g.strokeRect(x0, y0, x1 - x0, y1 - y0);
+  }
+  reset();
+  // cards fly from the wall into their suites
+  if (t < 33.2) for (const f of frags) {
+    if (!f.cell) continue;
+    const u = units[f.cellIdx % 27];
+    const t0 = 30.5 + (f.cell.r * .08 + f.cell.c * .03), e = E.inOutCubic(P(t, t0, t0 + .7));
+    if (e >= 1) continue;
+    const [ux, uy] = C3.P(u.x + u.w / 2, u.y + u.h / 2);
+    const fit = Math.min(CELL / f.w, CELL / f.h);
+    g.save(); g.translate(lerp(f.cell.x, ux, e), lerp(f.cell.y, uy, e) - Math.sin(e * Math.PI) * 60); g.rotate(e * (f.cell.c % 2 ? .5 : -.5)); g.scale(fit * (1 - e * .85), fit * (1 - e * .85));
+    drawFrag(f, true); g.restore();
+  }
+  // event pins: a flag pops over a suite, then resolves
+  let closed = 0;
+  for (const ev of EVENTS) {
+    const lt = t - ev.t; if (lt < 0) continue;
+    const done = lt > .8; if (done) closed++;
+    if (lt > 1.5) continue;
+    const u = ev.u, z = Hmax * rise3(u);
+    const [bx, by] = C3.P(u.x + u.w / 2, u.y + u.h / 2, z);
+    const up = ep(lt, 0, .35, E.outBack) * 90 * (1 - ep(lt, 1.2, .3, E.inCubic));
+    const al = 1 - ep(lt, 1.2, .3);
+    g.globalAlpha = al; line(bx, by, bx, by - up, ink, 2);
+    const col = done ? mix(PAL.okL, PAL.okN, night) : mix(PAL.warnL, PAL.warnN, night);
+    const lab = done ? '✓ ' + ev.lab : ev.lab, f = `700 14px ${UI}`, w = tw(lab, f, 1.5);
+    rect(bx - 2, by - up - 30, w + 20, 30, col); text(lab, bx + 8, by - up - 10, f, done ? PAL.paper : mix(PAL.paper, PAL.ink, night > .5 ? 1 : 0), 1.5);
+    g.globalAlpha = 1;
+  }
+  // copy + HUD
+  const tc = mix(PAL.ink, PAL.paper, night), acc = mix(PAL.accL, PAL.accN, night);
+  const outA = 1 - ep(t, 43.2, .3);
+  g.globalAlpha = (1 - ep(t, 33.8, .4));
+  rise('EVERY PROMISE BELONGS TO A PLACE', 110, 120, `700 16px ${UI}`, acc, t, 31.0, { size: 16, track: 3, stagger: .012 });
+  rise('Traced from the recorded plat · Lafayette, Louisiana', 110, 152, `400 20px ${MONO}`, PAL.soft, t, 31.3, { size: 20, stagger: .006 });
+  g.globalAlpha = outA * (1 - ep(t, 38.6, .3));
+  rise('Dates that keep themselves.', 110, 960, `900 88px ${DISPLAY}`, tc, t, 35.2, { size: 88, track: -2, stagger: .07, by: 'word' });
+  g.globalAlpha = outA;
+  if (t > 39) rise('Nothing slips.', 110, 960, `900 88px ${DISPLAY}`, tc, t, 39.2, { size: 88, track: -2, stagger: .09, by: 'word' });
+  g.globalAlpha = outA * ep(t, 34.6, .5);
+  const day = Math.max(1, Math.round(1 + 364 * smooth(t, 35, 43)));
+  text(`DAY ${String(day).padStart(3, '0')} / 365`, W - 110, 110, `700 30px ${MONO}`, tc, 2, 'right');
+  text(`${String(closed).padStart(2, '0')} ITEMS CLOSED`, W - 110, 146, `700 16px ${UI}`, acc, 2.5, 'right');
+  g.globalAlpha = 1;
+  // the roof becomes the screen
+  const white = ep(t, 45.2, .4, E.inCubic);
+  if (white > 0) { g.globalAlpha = white; rect(0, 0, W, H, PAL.paper); g.globalAlpha = 1; }
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// 4 · ONE COMMAND (45.6–64): the app, the carousel, the concierge, the implosion
+const SHEETS = [['D-1', 'DASHBOARD'], ['A-1', 'SITE PLAN'], ['A-2', 'SPATIAL'], ['R-1', 'RENT ROLL'], ['P-1', 'FINANCIAL'], ['C-1', 'COMPLIANCE'], ['T-1', 'CRITICAL DATES'], ['W-1', 'ACTION BOARD'], ['K-1', 'DIRECTORY'], ['M-1', 'MAINTENANCE'], ['S-1', 'OWNER SAFE'], ['AI-1', 'CONCIERGE'], ['V-1', 'VENDOR PORTAL']];
+const STEP = Math.PI * 2 / 13;
+function ringA(t) { let A = 0; for (let k = 0; k < 11; k++) A += ep(t, 46.5 + k * .5, .34, E.inOutExpo) * STEP; return A + ep(t, 52, 1.6, E.inOutExpo) * Math.PI * 2; }
+function miniViz(i, x, y, w, h) {
+  const R = rng(i * 31 + 1), k = i % 5, c = PAL.inks[i % 4];
+  if (k === 0) for (let j = 0; j < 9; j++) { const bh = (.25 + R() * .75) * h; rect(x + j * w / 9, y + h - bh, w / 9 - 8, bh, j === 6 ? PAL.heroL : c); }
+  else if (k === 1) { g.strokeStyle = c; g.lineWidth = 4; g.beginPath(); for (let j = 0; j <= 12; j++) { const px = x + j * w / 12, py = y + h - (.2 + .6 * (j / 12) + Math.sin(j * 1.3) * .12) * h; j ? g.lineTo(px, py) : g.moveTo(px, py); } g.stroke(); }
+  else if (k === 2) for (let j = 0; j < 28; j++) { const on = R() > .7; rect(x + (j % 7) * w / 7, y + Math.floor(j / 7) * h / 4, w / 7 - 6, h / 4 - 6, on ? PAL.warnL : PAL.paper2); }
+  else if (k === 3) for (let j = 0; j < 4; j++) { rect(x, y + j * h / 4, 22, 22, j < 3 ? PAL.okL : 'transparent'); g.strokeStyle = PAL.ink; g.lineWidth = 2; g.strokeRect(x, y + j * h / 4, 22, 22); rect(x + 36, y + j * h / 4 + 8, (w - 60) * (.4 + R() * .5), 6, PAL.rule); }
+  else { g.save(); g.translate(x, y - 20); g.scale(w / 1400, w / 1400); g.strokeStyle = c; g.lineWidth = 12; g.stroke(bPath); for (const u of units) { g.fillStyle = PAL.rule; g.fillRect(u.x, u.y, u.w - 2, u.h - 2); } g.restore(); }
+}
+function card(i, w, h) {
+  const x = -w / 2, y = -h / 2;
+  rect(x, y, w, h, PAL.paper); g.strokeStyle = PAL.rule; g.lineWidth = 2; g.strokeRect(x, y, w, h);
+  rect(x, y, w, 8, PAL.inks[i % 4]);
+  text(SHEETS[i][0], x + 28, y + 88, `900 64px ${DISPLAY}`, PAL.ink, -1);
+  text(SHEETS[i][1], x + 30, y + 120, `700 15px ${UI}`, PAL.soft, 2.5);
+  miniViz(i, x + 30, y + 150, w - 60, h - 180);
+}
+const Q = 'What needs my attention this week?';
+const ROWS4 = [['Renewal window opens', 'T-1 · CRITICAL DATES', 'warn'], ['Certificate of insurance expired', 'C-1 · COMPLIANCE', 'alert'], ['Roof inspection due', 'M-1 · MAINTENANCE', 'warn']];
+function cursorPos(t) {
+  // the hero square is the pointer
+  const pts = [[54.2, 1780, 330], [57.6, 1690, 560], [58.0, 1690, 560], [58.2, 1690, 660], [58.4, 1690, 660], [58.6, 1690, 760], [58.8, 1690, 760], [59.4, 1500, 900]];
+  if (t <= pts[0][0]) return [pts[0][1], pts[0][2]];
+  for (let k = 1; k < pts.length; k++) if (t < pts[k][0]) { const e = E.inOutCubic(P(t, pts[k - 1][0], pts[k][0])); return [lerp(pts[k - 1][1], pts[k][1], e), lerp(pts[k - 1][2], pts[k][2], e)]; }
+  return [pts[pts.length - 1][1], pts[pts.length - 1][2]];
+}
+function S4(t) {
+  bg(PAL.night);
+  const [kx, ky] = cursorPos(Math.min(t, 60));
+  const imp = E.inExpo(P(t, 60, 60.9));
+  reset(); g.translate(kx, ky); g.scale(1 - imp, 1 - imp); g.translate(-kx, -ky);
+  const T0 = g.getTransform();
+  rect(0, 0, W, H, PAL.paper);
+  // window chrome
+  const cw = ep(t, 45.6, .6, E.inOutCubic);
+  g.strokeStyle = PAL.rule; g.lineWidth = 2; g.strokeRect(60, 60, (W - 120) * cw, H - 120);
+  rect(60, 60, (W - 120) * cw, 72, PAL.paper2);
+  if (t > 45.9) {
+    g.globalAlpha = ep(t, 45.9, .4);
+    g.save(); g.translate(92, 78); g.scale(.36, .36); g.fillStyle = PAL.heroL; g.fill(MARK, 'evenodd'); g.restore();
+    text('COMMAND PLATFORM', 150, 104, `800 16px ${UI}`, PAL.ink, 3);
+    g.globalAlpha = 1;
+    const front = ((Math.round(ringA(t) / STEP) % 13) + 13) % 13;
+    let ix = 560;
+    SHEETS.forEach(([c], k) => { const e = ep(t, 46 + k * .04, .4); g.globalAlpha = e; text(c, ix + 32, 104 + (1 - e) * 20, `700 14px ${MONO}`, k === front && t < 54 ? PAL.ink : PAL.soft, 1, 'center'); g.globalAlpha = 1; ix += 94; });
+    if (t < 54) { const A = ringA(t) / STEP, fx = 560 + 32 + A % 13 * 94; rect(fx - 26, 124, 52, 4, PAL.heroL); }
+  }
+  // carousel
+  if (t >= 46.1 && t < 54.4) {
+    const A = ringA(t), R = 760, Dc = 2300, f = 1900, cx = W / 2, cy = 600;
+    const k = Math.min(10, Math.floor((t - 46.5) / .5)), frontIdx = ((Math.round(A / STEP) % 13) + 13) % 13;
+    const bgLt = t - (46.5 + Math.max(0, k) * .5);
+    g.globalAlpha = .9 * (1 - ep(t, 53.7, .3));
+    rise(SHEETS[frontIdx][1], W / 2, 690, `900 230px ${DISPLAY}`, mix(PAL.paper2, PAL.rule, .55), bgLt, 0, { size: 210, track: -6, stagger: .015, dur: .35, align: 'center' });
+    g.globalAlpha = 1;
+    const enter = ep(t, 46.1, .7, E.outCubic), zoom = E.inExpo(P(t, 53.6, 54.3));
+    const cards = SHEETS.map((_, i) => { const a = i * STEP - A; return { i, a, z: Math.cos(a) * R, x: Math.sin(a) * R }; }).sort((p, q) => p.z - q.z);
+    for (const c of cards) {
+      const s = f / (Dc - c.z) * enter * (c.i === 11 ? 1 + zoom * 3.2 : 1);
+      const sx = Math.cos(c.a);
+      g.save(); g.setTransform(T0); g.translate(cx + c.x * f / (Dc - c.z), cy + c.z * .16 * f / (Dc - c.z) - 60 - (1 - enter) * 300 + (c.i === 11 ? zoom * -40 : 0));
+      g.globalAlpha = cl(.25 + .75 * (c.z / R + 1) / 2) * (c.i === 11 ? 1 : 1 - zoom);
+      g.scale(s * Math.max(.04, Math.abs(sx)), s);
+      if (sx > 0) { g.shadowColor = rgba(PAL.ink, .18); g.shadowBlur = 30; g.shadowOffsetY = 12; card(c.i, 440, 320); }
+      else rect(-220, -160, 440, 320, PAL.paper2);
+      g.restore();
+    }
+  }
+  // concierge
+  if (t >= 54.2) {
+    g.setTransform(T0);
+    const lt = t - 54.2;
+    rise('AI-1 · CONCIERGE', 140, 200, `700 16px ${UI}`, PAL.accL, t, 54.2, { size: 16, track: 3, stagger: .01 });
+    rise('Ask it anything.', 140, 272, `900 64px ${DISPLAY}`, PAL.ink, t, 54.3, { size: 64, track: -1.5, stagger: .06, by: 'word' });
+    const f = `500 28px ${UI}`, n = Math.floor(cl((t - 54.5) * 30, 0, Q.length)), qw = tw(Q, f) + 56;
+    const be = ep(t, 54.4, .4);
+    g.globalAlpha = be; rrect(W - 140 - qw, 300, qw, 64, 6, PAL.ink); text(Q.slice(0, n), W - 140 - qw + 28, 342, f, PAL.paper); g.globalAlpha = 1;
+    // answer
+    const ae = ep(t, 56.0, .4);
+    if (ae > 0) { rect(140, 420, 6 * ae, 56, PAL.heroL); rise('Three things this week.', 166, 466, `900 50px ${DISPLAY}`, PAL.ink, t, 56.0, { size: 50, track: -1, stagger: .05, by: 'word' }); }
+    ROWS4.forEach(([ttl, meta, st], k) => {
+      const t0 = 56.5 + k * .5, e = ep(t, t0, .5), y = 510 + k * 100;
+      if (e <= 0) return;
+      const col = st === 'alert' ? PAL.alertL : PAL.warnL;
+      g.save(); g.translate((1 - e) * 500, 0); g.globalAlpha = e;
+      rect(140, y, W - 280, 84, PAL.paper2); rect(140, y, 8, 84, col);
+      text(ttl, 176, y + 40, `700 28px ${UI}`, PAL.ink); text(meta, 176, y + 68, `400 17px ${MONO}`, PAL.soft, 1);
+      const clickT = 58 + k * .4, on = t >= clickT;
+      const bw = 230, bx = W - 140 - bw - 24, by = y + 18;
+      if (on) { rect(bx, by, bw, 48, PAL.okL); text('✓ ON W-1', bx + bw / 2, by + 32, `700 16px ${UI}`, PAL.paper, 2, 'center'); }
+      else { g.strokeStyle = PAL.ink; g.lineWidth = 2; g.strokeRect(bx, by, bw, 48); text('ADD TO W-1', bx + bw / 2, by + 32, `700 16px ${UI}`, PAL.ink, 2, 'center'); }
+      const rp = P(t, clickT, clickT + .45);
+      if (rp > 0 && rp < 1) { g.globalAlpha = (1 - rp) * .8; g.strokeStyle = PAL.heroL; g.lineWidth = 3; g.strokeRect(bx - rp * 30, by - rp * 30, bw + rp * 60, 48 + rp * 60); }
+      g.restore();
+    });
+  }
+  // cursor (hero square)
+  reset();
+  if (t >= 54.2) {
+    let [x, y] = cursorPos(Math.min(t, 60));
+    let size = 22;
+    for (const ct of [58, 58.4, 58.8]) size -= 8 * Math.max(0, 1 - Math.abs(t - ct) / .1);
+    const mv = P(t, 60.9, 61.5), m2 = E.inOutExpo(mv);
+    x = lerp(x, W / 2, m2); y = lerp(y, H / 2, m2);
+    size = lerp(size, 56, m2);
+    // spin on the beat, with echoes
+    const spinAt = u => { let r = 0; for (const b of [62, 62.5, 63, 63.5]) r += ep(u, b - .18, .3, E.inOutExpo) * Math.PI / 2; return r; };
+    const onLight = t < 60.5;
+    if (t > 61.5) for (let k = 5; k >= 1; k--) hero(x, y, size, false, spinAt(t - k * .025), .12 * (6 - k) / 5);
+    const pulse = [62, 62.5, 63, 63.5].reduce((m, b) => Math.max(m, 1 - Math.abs(t - b) / .15), 0);
+    hero(x, y, size * (1 + .25 * cl(pulse)) * (1 + E.inExpo(P(t, 63.6, 64)) * 60), onLight, spinAt(t));
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// 5 · MANIFESTO (64–80): the square is every sentence's full stop
+const LINES = ['Drawn from the recorded plat', 'Wired to every lease', 'Watching every date', 'Answering in plain English', 'Closing every loop', 'Running while you sleep'];
+const FM = `900 104px ${DISPLAY}`, BASE = 600, SQ = 26;
+function periodAt(k) { const w = tw(LINES[k], FM, -3); return [140 + w + 10 + SQ / 2, BASE - SQ / 2]; }
+const FINAL = [['Build', 'AI', 'into', 'how'], ['you', 'actually', 'operate']];
+const FF = `900 132px ${DISPLAY}`;
+function finalLayout() {
+  const out = [];
+  FINAL.forEach((ln, r) => { const full = ln.join(' '), w = tw(full, FF, -4); let x = W / 2 - w / 2; ln.forEach(wd => { out.push({ wd, x, y: 480 + r * 150 }); x += tw(wd + ' ', FF, -4); }); });
+  return out;
+}
+function S5(t) {
+  const k = Math.min(5, Math.floor((t - 64) / 2));
+  if (t < 76) {
+    const T0 = 64 + k * 2;
+    const prevCol = k ? PAL.fields[k - 1] : PAL.night;
+    bg(prevCol);
+    const [ox, oy] = k ? periodAt(k - 1) : [W / 2, H / 2];
+    // previous line holds, then the new field opens out of the square
+    if (k) { g.globalAlpha = 1 - ep(t, T0, .25); text(LINES[k - 1], 140, BASE, FM, PAL.fieldText, -3); g.globalAlpha = 1; }
+    const rv = k ? ep(t, T0, .45, E.inOutExpo) : 1;
+    const hs = rv * 2300;
+    rect(ox - hs, oy - hs, hs * 2, hs * 2, PAL.fields[k]);
+    g.save(); g.beginPath(); g.rect(ox - hs, oy - hs, hs * 2, hs * 2); g.clip();
+    text(`${String(k + 1).padStart(2, '0')} — 06`, 140, 200, `700 18px ${MONO}`, rgba(PAL.fieldText, .7), 3);
+    rise(LINES[k], 140, BASE, FM, PAL.fieldText, t, T0 + .15, { size: 104, track: -3, stagger: .07, dur: .5, by: 'word' });
+    g.restore();
+    // the square flies from the last full stop to this one
+    const [nx, ny] = periodAt(k);
+    const fl = ep(t, T0 + .1, .5, E.inOutExpo);
+    const sx = lerp(ox, nx, fl), sy = lerp(oy, ny, fl) - Math.sin(fl * Math.PI) * 160;
+    const size = k ? SQ : lerp(56, SQ, ep(t, 64, .3));
+    const land = Math.max(0, 1 - Math.abs(t - (T0 + .6)) / .12);
+    hero(sx, sy, size * (1 + land * .35), false, (1 - fl) * Math.PI);
+    return;
+  }
+  // 76–80: the promise, one word per beat, on night
+  bg(PAL.night);
+  const [ox, oy] = periodAt(5);
+  const hs = ep(t, 76, .45, E.inOutExpo);
+  if (hs < 1) { g.save(); g.beginPath(); g.rect(0, 0, W, H); const s = (1 - hs) * 2300; g.rect(ox - s, oy - s, s * 2, s * 2); g.clip('evenodd'); rect(0, 0, W, H, PAL.fields[5]); g.restore(); }
+  const lay = finalLayout();
+  lay.forEach((o, i) => {
+    const t0 = 76 + i * .5, e = ep(t, t0, .35);
+    if (e <= 0) return;
+    g.save(); g.globalAlpha = e; g.filter = `blur(${(1 - e) * 14}px)`; const w = tw(o.wd, FF, -4);
+    g.translate(o.x + w / 2, o.y - 45); g.scale(lerp(1.35, 1, e), lerp(1.35, 1, e));
+    text(o.wd, -w / 2, 45, FF, i === 1 ? PAL.accN : PAL.paper, -4); g.restore();
+  });
+  reset();
+  const last = lay[lay.length - 1], ex = last.x + tw(last.wd, FF, -4) + 12 + 16, ey = last.y - 16;
+  const fl = ep(t, 79.05, .45, E.inOutExpo);
+  const wait = 1 + .3 * [76, 76.5, 77, 77.5, 78, 78.5, 79].reduce((m, b) => Math.max(m, 1 - Math.abs(t - b) / .12), 0);
+  hero(lerp(ox, ex, fl), lerp(oy, ey, fl) - Math.sin(fl * Math.PI) * 200, lerp(SQ * wait, 32, fl), false, fl * Math.PI);
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// 6 · THE MARK (79.6–90): the square becomes the core; the frame slams home on the beat
+const MS = 300;
+const PIECES = [ // [clip rect in mark units, from dx, dy, lands at]
+  [[0, 0, 100, 22], 0, -900, 80.5], [[0, 78, 100, 22], 0, 900, 81.0], [[0, 22, 22, 56], -1300, 0, 81.5],
+  [[78, 22, 22, 20], 1300, 0, 82.0], [[78, 61, 22, 17], 1300, 0, 82.0]];
+function S6(t) {
+  const EB = PAL.end, onLight = EB.bg === PAL.paper;
+  const lastPos = (() => { const lay = finalLayout(), last = lay[lay.length - 1]; return [last.x + tw(last.wd, FF, -4) + 28, last.y - 16]; })();
+  // end ground opens out of the square
+  bg(PAL.night);
+  const lay = finalLayout();
+  const hide = ep(t, 79.6, .4, E.inOutExpo);
+  if (hide < 1) lay.forEach((o, i) => text(o.wd, o.x, o.y, FF, i === 1 ? PAL.accN : PAL.paper, -4));
+  const s0 = hide * 2400; rect(lastPos[0] - s0, lastPos[1] - s0, s0 * 2, s0 * 2, EB.bg);
+  // lockup geometry
+  const fWm = `800 104px ${UI}`, track = 104 * .08;
+  const wmW = Math.max(tw('CYPRESS', fWm, track), tw('COMMAND', fWm, track));
+  const gap = MS * .22, lockW = MS + gap * 2 + 3 + wmW;
+  const slide = ep(t, 82.25, .5, E.inOutExpo);
+  const push = 1 + smooth(t, 83, 88) * .04;
+  const mxC = W / 2 - MS / 2, mxL = W / 2 - lockW / 2;
+  const mx = lerp(mxC, mxL, slide), my = H / 2 - MS / 2 - lerp(0, 70, slide);
+  reset(); g.translate(W / 2, H / 2); g.scale(push, push); g.translate(-W / 2, -H / 2);
+  // guides flash as each piece lands
+  for (const [, , , tl] of PIECES) { const e = P(t, tl, tl + .5); if (e > 0 && e < 1) { g.globalAlpha = (1 - e) * .5; line(0, my - 1, W, my - 1, EB.soft, 1); line(0, my + MS, W, my + MS, EB.soft, 1); line(mx - 1, 0, mx - 1, H, EB.soft, 1); line(mx + MS, 0, mx + MS, H, EB.soft, 1); g.globalAlpha = 1; } }
+  const thump = PIECES.reduce((m, p) => Math.max(m, 1 - Math.abs(t - p[3]) / .14), 0) * .03;
+  g.translate(mx + MS / 2, my + MS / 2); g.scale(1 + thump, 1 + thump); g.translate(-MS / 2, -MS / 2);
+  const u = MS / 100;
+  // core: the square arrives and becomes it
+  const arrive = ep(t, 79.85, .6, E.inOutExpo);
+  const blinkOff = (t >= 87.0 && t < 87.25) || (t >= 87.5 && t < 87.75);
+  if (arrive < 1) {
+    const [lx, ly] = lastPos, M = g.getTransform(); g.setTransform(1, 0, 0, 1, 0, 0);
+    const tx = M.e + 50 * u * M.a, ty = M.f + 50 * u * M.d;
+    const sz = lerp(32, 32 * u * M.a, arrive);
+    hero(lerp(lx, tx, arrive), lerp(ly, ty, arrive), sz, onLight, (1 - arrive) * Math.PI);
+    g.setTransform(M);
+  } else if (!blinkOff) { g.save(); g.beginPath(); g.rect(34 * u, 34 * u, 32 * u, 32 * u); g.clip(); g.scale(u, u); g.fillStyle = EB.mark; g.fill(MARK, 'evenodd'); g.restore(); }
+  for (const [[rx, ry, rw, rh], dx, dy, tl] of PIECES) {
+    const e = E.inCubic(P(t, tl - .32, tl));
+    if (e <= 0) continue;
+    g.save(); g.translate((1 - e) * dx, (1 - e) * dy);
+    g.beginPath(); g.rect((rx - .4) * u, (ry - .4) * u, (rw + .8) * u, (rh + .8) * u); g.clip(); g.scale(u, u); g.fillStyle = EB.mark; g.fill(MARK, 'evenodd'); g.restore();
+  }
+  reset(); g.translate(W / 2, H / 2); g.scale(push, push); g.translate(-W / 2, -H / 2);
+  // rule + wordmark
+  const vr = ep(t, 82.45, .35);
+  rect(mx + MS + gap, my + MS / 2 - MS / 2 * vr, 3, MS * vr, EB.text);
+  const wx = mx + MS + gap * 2 + 3;
+  ['CYPRESS', 'COMMAND'].forEach((wd, r) => {
+    g.font = fWm; g.letterSpacing = track + 'px'; let cx = wx;
+    [...wd].forEach((ch, i) => {
+      const t0 = 82.5 + r * .22 + i * .028, e = ep(t, t0, .28, E.outCubic);
+      const w = g.measureText(ch).width;
+      if (e > 0) { g.save(); g.globalAlpha = e; g.filter = `blur(${(1 - e) * 10}px)`; g.translate(cx + w / 2, my + (r ? 250 : 132) - 35); g.scale(lerp(2.2, 1, e), lerp(2.2, 1, e)); text(ch, -w / 2, 35, fWm, EB.text, 0); g.restore(); }
+      g.font = fWm; g.letterSpacing = track + 'px'; cx += w;
+    });
+    g.letterSpacing = '0px';
+  });
+  const by = my + MS + 120;
+  const rl = ep(t, 83.35, .5);
+  rect(W / 2 - 70 * rl, by - 46, 140 * rl, 4, EB.acc);
+  const f1 = `900 50px ${DISPLAY}`, f2 = `italic 400 50px ${DISPLAY}`, s1 = 'Systems under control. ', s2 = 'Results that last.';
+  const w1 = tw(s1, f1, -1), w2 = tw(s2, f2), x0 = W / 2 - (w1 + w2) / 2;
+  rise(s1, x0, by + 30, f1, EB.text, t, 83.55, { size: 50, track: -1, stagger: .09, by: 'word' });
+  rise(s2, x0 + w1, by + 30, f2, EB.acc, t, 84.0, { size: 50, stagger: .09, by: 'word' });
+  g.globalAlpha = ep(t, 84.4, .6);
+  text('THE CYPRESS COMMAND PLATFORM · CYPRESSCOMMAND.COM', W / 2, by + 100, `700 18px ${MONO}`, EB.soft, 3, 'center');
+  g.globalAlpha = 1;
+  reset();
+  if (t >= 88) bg('#000000');
+}
+
+// ── dispatcher ──────────────────────────────────────────────────────────
+function draw(t) {
+  g.save(); reset();
+  if (t < 8) S1(t); else if (t < 30.5) S2(t); else if (t < 45.6) S3(t); else if (t < 64) S4(t); else if (t < 79.6) S5(t); else S6(t);
+  g.restore();
+}
+let off = null;
+function renderFrame(t, sub = 1) {
+  if (sub <= 1) { g = main; draw(t); return; }
+  if (!off) { off = document.createElement('canvas'); off.width = W; off.height = H; }
+  const oc = off.getContext('2d');
+  for (let k = 0; k < sub; k++) {
+    g = oc; draw(t + (k / sub) * (.5 / FPS));
+    main.setTransform(1, 0, 0, 1, 0, 0); main.globalAlpha = 1 / (k + 1); main.drawImage(off, 0, 0);
+  }
+  main.globalAlpha = 1; g = main;
+}
+window.renderFrame = renderFrame; window.DUR = DUR;
+window.READY = Promise.all([
+  document.fonts.load(`900 40px ${DISPLAY}`), document.fonts.load(`italic 400 40px ${DISPLAY}`), document.fonts.load(`800 40px ${UI}`),
+  document.fonts.load(`600 40px ${UI}`), document.fonts.load(`400 40px ${MONO}`), document.fonts.load(`700 40px ${MONO}`),
+]).then(() => document.fonts.ready);
+
+if (params.has('render')) document.body.classList.add('render');
+else window.READY.then(() => {
+  const audio = new Audio('out/film-score.wav');
+  let playing = false, t0 = 0, pos = +(params.get('t') || 0);
+  renderFrame(pos);
+  const now = () => playing ? (performance.now() - t0) / 1000 : pos;
+  const play = () => { playing = true; t0 = performance.now() - pos * 1000; audio.currentTime = pos; audio.play().catch(() => {}); document.getElementById('go').style.display = 'none'; };
+  const pause = () => { pos = now(); playing = false; audio.pause(); };
+  document.getElementById('go').onclick = play;
+  addEventListener('keydown', e => {
+    if (e.code === 'Space') { playing ? pause() : play(); e.preventDefault(); }
+    if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { const was = playing; pause(); pos = cl(pos + (e.code === 'ArrowRight' ? 1 : -1), 0, DUR); renderFrame(pos); if (was) play(); }
+  });
+  (function loop() { if (playing) { const t = now(); if (t >= DUR) { pause(); pos = 0; } else renderFrame(t); } requestAnimationFrame(loop); })();
+});
+</script>
+</body>
+</html>
