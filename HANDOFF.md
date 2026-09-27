@@ -1,5 +1,31 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 27, 2026 (later) — PR #17 merged · punch list Rev 19 · twin option (a): migrations pass on the isolated branch, prod apply HELD
+
+Operator: "go — merge 17, Rev 19, then twin option a" → sources ruling: **publish all** (clock photos, 101/103 plans, model,
+aerials; meter IDs were already public via the A-1 register).
+
+- **PR #17 merged** (`004c70c`): `docs/program-review-2026-09-25.md`, `docs/operator-walkthrough-2026-09-25.md` (answers on
+  record: renew the old AC domain 1 yr auto-renew off · rotate H0-3 · Edward added as owner, brother@ is not him),
+  `docs/ac-secret-rotation-2026-09-25.md`.
+- **Punch list Rev 19** published (artifact v59) from the live body (repo copy == live, diff 0 before the rebuild), STATE r38
+  carried verbatim (no marks since Sep 22). Adds F-38 voice router · F-39 A-1 site register · F-40 portable site twin ·
+  F-41 integrated asset twin, smokes SMK-29…32; H3 wave = domain renewal ruled, confirm executed; F-10 Edward added; F-12
+  checklist; F-17 motion films; Sep 27 note (Federal Pacific contradiction still open). Repo copy CRLF.
+- **Twin (F-41) hosted rollout, step 1 done:** both migrations applied to the preview branch `hefexnqkigirmzpmeggj` and a
+  rollback-only DO-block smoke passed 21/21 — operator save + binding atomic, created_by stamped from the JWT, duplicate
+  source claim rejected with no orphan, bindings/assets append-only (42501), tenancy immutable, column-label units and
+  unit-mismatched links rejected, asset_label snapshotted, owner read-only, other-property operator sees 0 / cannot insert /
+  cannot take over an id, tenant sees no assets or common-area requests and cannot link an asset but can still file for own
+  unit, anon 42501. Storage photo policies were checked structurally only. Headers stamped "APPLIED to preview, NOT on prod".
+- **HELD — prod apply.** The new `guard_maintenance_asset_link` insert trigger rejects any `maintenance_requests` row whose
+  `unit` is blank or looks like `C12`. The voice RPCs (`a3_voice_lines`, `voice_maintenance_dedupe`) insert `p_unit` as given.
+  Before applying on prod, confirm the voice brain never files a blank unit (else a caller who can't name a suite would get a
+  failed work order). The check was classifier-blocked this session ("Production Reads"). Then: apply both files on prod →
+  `VITE_ASSET_TWIN_ENABLED=1` in Vercel Production → redeploy (Actions → deploy) → SMK-32.
+- Finding (minor): `save_physical_asset_with_bindings` uses `jsonb_populate_record`, so omitted keys insert NULL instead of
+  column defaults. The app's `cleanPhysicalAsset` sends full rows, so no live impact; direct API callers must send every field.
+
 ## September 27, 2026 - Integrated twin merged with the current site-viewer branch
 
 The integrated twin and standalone site-viewer source now share the integration branch based on current main. Existing 39-support A-1 IDs and 37 native-model column candidates are preserved; their registers are not silently merged. Both handoff histories remain below.

@@ -1,5 +1,7 @@
 -- Durable physical identity, separate model bindings and append-only evidence.
 -- Prepared migration only: applying it is a separate deployment action.
+-- 2026-09-27: APPLIED to the isolated preview branch hefexnqkigirmzpmeggj (apply_migration) and
+-- passed the 21-check RLS smoke (rolled back). NOT YET APPLIED ON PROD (kbhsghodquchkgfdzckc).
 begin;
 
 create table public.physical_assets (

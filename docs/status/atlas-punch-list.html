@@ -303,7 +303,10 @@
 <div id="root"></div>
 <script id="app">
 "use strict";
-/* Cypress Command Platform Punch List — rev 18 (2026-09-22 late: F-10 APPLIED — the operator named six owners; the seven
+/* Cypress Command Platform Punch List — rev 19 (2026-09-27: the sheet catches up with Sep 23–27 — one-number voice router (F-38),
+   A-1 site register (F-39), portable site twin (F-40), integrated asset twin merged with hosted activation under way (F-41);
+   PR #17 merged with the Sep 25 walkthrough answers (domain renew · H0-3 rotate · Edward added); smokes SMK-29…32; state r38 carried verbatim).
+   Rev 18 (2026-09-22 late: F-10 APPLIED — the operator named six owners; the seven
    other owner memberships were revoked on prod, profiles parked pending; register #24 green (18/25); Edward's pre-auth = sidebar step).
    Rev 17 (2026-09-22 late: H-3 DECIDED in chat and recorded in STATE r37 —
    owners = Adam · Catherine · Alicia · Edward, vendor = Brian Zorn, nobody else; prod holds 11 owner memberships,
@@ -344,7 +347,7 @@ const STATE = /*__STATE__*/{"rev":38,"saved":"2026-09-22T06:05:00.000Z","smokes"
 
 const APP_EL = document.currentScript;
 const FONTS = "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap";
-const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22","smk-23","smk-24","smk-25","smk-26","smk-27","smk-28"];
+const SMOKE_IDS = ["smk-1","smk-2","smk-3","smk-4","smk-5","smk-6","smk-7","smk-8","smk-9","smk-10","smk-11","smk-12","smk-13","smk-14","smk-15","smk-16","smk-17","smk-18","smk-19","smk-20","smk-21","smk-22","smk-23","smk-24","smk-25","smk-26","smk-27","smk-28","smk-29","smk-30","smk-31","smk-32"];
 const TASK_IDS = ["g-1","g-2","h0-1","h0-2","h0-3"];
 const WAVE_IDS = ["h0","h11","h12","h2","h25","h3"];
 const PRIO_WAVES = ["h11","h12","h2","h25"];
@@ -652,7 +655,7 @@ const BODY = `
   <header class="masthead">
     <div class="mast-row">
       <span class="eyebrow">Cypress Command Platform &middot; Program Status &middot; Sheet G-1</span>
-      <span class="mono mast-date">Content &middot; Sep 22, 2026 &middot; Rev 18</span>
+      <span class="mono mast-date">Content &middot; Sep 27, 2026 &middot; Rev 19</span>
     </div>
     <h1>Punch List</h1>
     <p class="lede">Everything still open across the Cypress Command Platform build (OTB deployment &middot; formerly Orange Ocean Atlas), on one working sheet.
@@ -1096,6 +1099,54 @@ const BODY = `
           <input class="note" data-note="smk-28" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
         </div>
       </div>
+      <div class="smoke" data-smoke="smk-29">
+        <div class="head"><span class="mono eyebrow">SMK-29</span><span class="name">One-number voice router &mdash; office line (F-38)</span><span class="chip open">3 min</span><span class="stamp" data-stamp="smk-29"></span></div>
+        <p class="desc">Call the office line <strong>337-769-1554</strong> (it forwards to the tenant Twilio line 337-273-0384) &rarr; the greeting asks whether you are after space to lease or calling about an existing suite &rarr; <strong>call 1:</strong> report a leak in 105 &rarr; the agent opens a work order and never says &ldquo;your tour time is not locked in&rdquo; (the Sep 23 guard fix) &rarr; L-1 shows Maintenance for 105, no &ldquo;voice-lead&rdquo; thread in AI-1 &rarr; <strong>call 2:</strong> ask about Suite 131 and decline a tour &rarr; the unbooked-lead net catches it (intent leasing) and W-1 carries the lead. Greeting text lives in <code>voice_settings.greeting_tenant</code> (SQL only; the bridge caches it 10 minutes).</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-29 result">
+            <button type="button" class="b-open" data-smk="smk-29" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-29" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-29" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-29" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-30">
+        <div class="head"><span class="mono eyebrow">SMK-30</span><span class="name">A-1 site register &mdash; 745 assets (F-39)</span><span class="chip open">2 min</span><span class="stamp" data-stamp="smk-30"></span></div>
+        <p class="desc">A-1 &rarr; <em>&#9707; Register</em> &rarr; 745 assets in 41 categories &rarr; pick a category (e.g. water meters) &rarr; markers highlight on the plan and the list filters &rarr; click a marker &rarr; the list row opens (and the reverse) &rarr; isolate / focus / labels &rarr; zone &rarr; its individual stalls &rarr; &#10515; CSV and JSON download. Placeholder pins (storm drain, backflow, FDC/riser, grease trap, roof drain, irrigation) read as placeholders, not as located assets. Findings to answer in the note: meter cluster &ldquo;behind 131&rdquo; (1 on the map vs 4 in the workbook) &middot; the 123 meter location.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-30 result">
+            <button type="button" class="b-open" data-smk="smk-30" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-30" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-30" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-30" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-31">
+        <div class="head"><span class="mono eyebrow">SMK-31</span><span class="name">Portable site twin &mdash; the Drive zip (F-40)</span><span class="chip open">2 min &middot; any PC</span><span class="stamp" data-stamp="smk-31"></span></div>
+        <p class="desc">Unzip <code>G:\\My Drive\\00 OTB\\site-twin\\OTB_Site_Twin.zip</code> &rarr; open the viewer &rarr; overview, plan (= A-1 orientation) and the walkway tour stops 1&rarr;39 &rarr; click a stall or a meter &rarr; the record shows the same A-1 register id &rarr; LUS mains / hydrants toggle &rarr; data-only rows (unit-centroid meters) list without a 3D marker. Offline, no sign-in; nothing writes anywhere.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-31 result">
+            <button type="button" class="b-open" data-smk="smk-31" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-31" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-31" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-31" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
+      <div class="smoke" data-smoke="smk-32">
+        <div class="head"><span class="mono eyebrow">SMK-32</span><span class="name">Asset twin on the hosted app (F-41)</span><span class="chip wait">after activation</span><span class="stamp" data-stamp="smk-32"></span></div>
+        <p class="desc">Once F-41 is switched on: otb.cypresscommand.com &rarr; A-2 &rarr; <em>Open asset twin</em> &rarr; Inspect / Present / Field modes &rarr; select C12 &rarr; <em>Save as physical asset</em> (hosted starts read-only: a model candidate is not a record until you save it) &rarr; add a test inspection + one photo &rarr; reload: record, inspection and photo survive &rarr; <em>Report issue</em> links a common-area work order that opens in M-1 &rarr; an owner login sees the record read-only. Only then print a field QR tag.</p>
+        <div class="ctrl">
+          <div class="seg" role="group" aria-label="SMK-32 result">
+            <button type="button" class="b-open" data-smk="smk-32" data-set="open" aria-pressed="true">Open</button>
+            <button type="button" class="b-pass" data-smk="smk-32" data-set="pass" aria-pressed="false">Pass</button>
+            <button type="button" class="b-fail" data-smk="smk-32" data-set="fail" aria-pressed="false">Fail</button>
+          </div>
+          <input class="note" data-note="smk-32" maxlength="600" placeholder="Note &mdash; what you saw (especially on fail)">
+        </div>
+      </div>
     </div>
     <details class="archive" id="arch-smokes" hidden><summary>Archive</summary><ul class="arch-list"></ul></details>
     <p class="smoke-note mono" id="save-stamp">No revision saved yet &mdash; marks publish to the sheet when you hit Save.</p>
@@ -1139,7 +1190,7 @@ const BODY = `
               <button type="button" class="b-open" data-tsk="h0-3" data-set="open" aria-pressed="true">Open</button>
               <button type="button" class="b-pass" data-tsk="h0-3" data-set="done" aria-pressed="false">Done</button>
             </div>
-            <span class="tname">AC&rsquo;s 9 exposed secrets rotated</span>
+            <span class="tname">AC&rsquo;s exposed secrets rotated &mdash; checklist <code>docs/ac-secret-rotation-2026-09-25.md</code> (ten rotations, three sittings, <code>LLM_API_KEY</code> first)</span>
             <span class="stamp" data-tstamp="h0-3"></span>
           </div>
         </div>
@@ -1233,7 +1284,7 @@ const BODY = `
         <p>AC does not retire until every register row below is parity-verified, ported, or rebuilt.
         Then: per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset
         assetcommand.orangeocean.com &rarr; archive both repos.
-        <code>orangeoceanassetcommand.com</code> lapses at its Sep 26, 2026 transfer date. <strong>Sep 22: four days out</strong> &mdash; confirm the lapse is intended; AC still holds live data and H0-3 is open. If the old domain should outlive the transfer date, renew it before Sep 26.</p>
+        <code>orangeoceanassetcommand.com</code> reached its Sep 26, 2026 transfer date. <strong>Ruled Sep 25:</strong> renew one year, auto-renew OFF &mdash; it dies with H3, not on a calendar date. <strong>Sep 27: confirm the renewal actually went through at GoDaddy</strong> (the date has passed; nothing on file says it was done).</p>
         <div class="ctrl"><input class="note" data-wnote="h3" maxlength="600" placeholder="Note for Claude on decommission (optional)"></div>
       </div>
     </div>
@@ -1529,7 +1580,7 @@ const BODY = `
     <div class="schedule-label">
       <span class="eyebrow">Schedule F</span>
       <h2>Build Backlog</h2>
-      <span class="mono sched-count">33 items &middot; snapshot Sep 22 &middot; Asset Command ports F-30&ndash;F-37 shipped</span>
+      <span class="mono sched-count">37 items &middot; snapshot Sep 27 &middot; F-38&ndash;F-41 added</span>
     </div>
     <p style="color:var(--soft); font-size:14.5px; max-width:74ch; margin:0 0 16px;">
       Everything still left to build, in one place, ranked by how much each item unlocks.
@@ -1539,7 +1590,7 @@ const BODY = `
       you, Tier 3 is the long tail outside the harvest.</p>
 
     <div class="bl-group" data-tier="1">
-      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 (PR #8, live Sep 12) &middot; F-5 rulings built Sep 17 &middot; Asset Command ports built Sep 19&ndash;20</span><span class="chip done">shipped</span></div>
+      <div class="bl-head"><span class="eyebrow">Tier 1</span><span class="bl-title">Built Sep 11 (PR #8, live Sep 12) &middot; F-5 rulings built Sep 17 &middot; Asset Command ports built Sep 19&ndash;20 &middot; voice router, site register, twins Sep 23&ndash;27</span><span class="chip done">shipped</span></div>
       <ol class="bl-list">
         <li><span class="bid">F-1</span><span class="bname">#5 Invoices + late fees &rarr; full parity <span class="chip done">built Sep 11</span></span>
           <p class="bdesc">Numbered invoices (INV-YYYYMM-unit) over the ledger, printable with the browser&rsquo;s Save-as-PDF, sent / void state stored, paid derived. Table on prod. Smoke: SMK-13.</p></li>
@@ -1625,6 +1676,14 @@ const BODY = `
           <code>healthSummary</code> added. P-1 card = five tiles + the full worst-first list with a 0&ndash;100 bar and OK / Watch / At-risk chip +
           &ldquo;How this score is calculated&rdquo; fold; rows open the drawer. Hosted-only (payment history lives in Supabase) &mdash; never painted
           locally, covered by pure tests. Smoke: SMK-27.</p></li>
+        <li><span class="bid">F-38</span><span class="bname">One-number voice router <span class="chip done">live Sep 23</span></span>
+          <p class="bdesc">One published number: the office line 337-769-1554 forwards to the tenant Twilio line 337-273-0384, whose webhook now runs the combined <code>mainPersona</code> (<code>src/lib/voicerouter.js</code>) with all three tools &mdash; work order, tour, leasing package; no live transfer. Leasing line 337-270-7044 unchanged; no Twilio console change. Review fixes: the tour-booking guard no longer fires on maintenance replies (<code>bookingGuardApplies</code>), the call summary no longer assumes every non-leasing caller is a tenant, and the unbooked-lead net now catches office-line prospects (<code>20260923130000_unbooked_leads_main_line.sql</code>, <strong>applied on prod</strong> by your paste). Greeting setting restored (<code>voice_settings.greeting_tenant</code> = the main-line greeting). Smoke: SMK-29.</p></li>
+        <li><span class="bid">F-39</span><span class="bname">A-1 site register &mdash; stage 1 of the site twin <span class="chip done">live Sep 24 &middot; PR #14</span></span>
+          <p class="bdesc">A-1 <em>&#9707; Register</em>: 745 assets in 41 categories &mdash; highlight, pick on the plan or the list, isolate, focus, labels, CSV / JSON. Parking as zones <em>and</em> individual stalls; LUS mains and hydrants in; per-unit building systems in. Data: <code>geometry.assetGeom</code> (REV 14 unchanged), <code>src/data/site-register.json</code> (gated fits per source sheet), <code>src/data/meters.json</code>. Your 39 numbered columns are the record (37 cross-linked to the model; cols 1&ndash;2 model-missing). Open flags: meter cluster behind 131 (1 vs 4) &middot; 123 meter location &middot; no time-clock photo for 111 / 135B / 139 &middot; civil sheets C1.02&ndash;C1.05 not on file &middot; <strong>the Federal Pacific flag contradicts your Sep 22 &ldquo;no FPE panels&rdquo; ruling &mdash; one of them is wrong</strong>. Basis: <code>docs/site-register-2026-09.md</code>. Smoke: SMK-30.</p></li>
+        <li><span class="bid">F-40</span><span class="bname">Portable site twin &mdash; stage 2 GLB <span class="chip done">built Sep 24 &middot; on Drive</span></span>
+          <p class="bdesc"><code>npm run site-twin</code> &rarr; <code>OTB_Site_Twin/</code>: <code>model.glb</code> (1.28 MB, 648 nodes, every node carries its A-1 register id), twin data, register CSV and an offline viewer; <code>--check</code> rebuilds byte-identical. 616 assets modeled, 129 data-only, zero placeholders modeled. Your defaults D1&ndash;D4 (canopy 10&prime; / 14&prime;, one RTU proxy per suite, historic trees hidden, plat axes). Zip on Drive under <code>00 OTB\\site-twin\\</code>. Superseded as the in-app twin by F-41; kept as the portable, offline copy. Basis: <code>docs/site-twin-2026-09.md</code>. Smoke: SMK-31.</p></li>
+        <li><span class="bid">F-41</span><span class="bname">Integrated asset twin &mdash; permanent assets, evidence, work-order links <span class="chip open">merged Sep 27 &middot; hosted activation under way</span></span>
+          <p class="bdesc">PR #19 (Codex) merged the asset twin into the app: inside A-2, <em>Open asset twin</em> &rarr; Inspect / Present / Field over the building model, upper floors of 101 / 103, benches and bins, 51 site zones / 41 common-area records, water and meter layers, and the site context. Records keep permanent <code>pa_&lt;uuid&gt;</code> ids through label and model changes; dated inspections, photos, research references and M-1 work-order links attach to them. The A-1 register (39 supports) and the model&rsquo;s 37 column candidates stay separate registers with explicit cross-links &mdash; never auto-merged. 915 tests. <strong>Hosted rollout (your pick Sep 27: option a, publish all sources):</strong> both migrations (<code>physical_assets</code>, <code>maintenance_asset_links</code>) applied to the isolated preview branch and passed a 21-check RLS smoke (operator writes, owner read-only, other-property denial, append-only evidence, duplicate-claim guard, tenant confinement, anon denied). Next: the same two on prod, then <code>VITE_ASSET_TWIN_ENABLED=1</code> in Vercel Production and a redeploy. Record: <code>docs/asset-twin-integration.md</code>. Smoke: SMK-32.</p></li>
       </ol>
     </div>
 
@@ -1645,19 +1704,19 @@ const BODY = `
           <strong>revoked the same hour</strong> &mdash; brother@brothersontheblvd.com, cortte@gmail.com, dickeydupuis@icloud.com, dylanhoyt09@gmail.com,
           rustyrandol79@gmail.com, spencer@comitdevelopers.com, spencer@comittechnologies.com: memberships deleted, pre-authorizations deleted,
           profiles parked at <em>pending</em> (they see &ldquo;Access pending&rdquo; if they sign in; re-assignable from the sidebar). Verified after:
-          allowlist = alicia + catherine; members = operator + 4 owners + Brian Zorn (vendor). <strong>One step left, yours:</strong> Edward has no
-          account &mdash; sidebar &rarr; <em>Sign-in access&hellip;</em> &rarr; <code>edward@belle-realty.com</code> &rarr; owner &rarr; assign (Claude&rsquo;s
-          insert was classifier-blocked as a permission grant); he then signs in with the magic link. Register #24 green.</p></li>
+          allowlist = alicia + catherine; members = operator + 4 owners + Brian Zorn (vendor). <strong>Sep 25:</strong> you added <code>edward@belle-realty.com</code>
+          as owner in <em>Sign-in access&hellip;</em>; <code>brother@brothersontheblvd.com</code> is not his account and stays revoked. Left: Edward&rsquo;s
+          first magic-link sign-in. Register #24 green.</p></li>
         <li><span class="bid">F-11</span><span class="bname">Voice cutover, AC side <span class="chip wait">SMK-7 + runbook</span></span>
           <p class="bdesc">Paste the numbers (SMK-7) &rarr; forward AC&rsquo;s number to the tenant line &rarr; retire the Vapi/Retell agent &rarr; tenant notice &rarr; 30-day soak &rarr; release. Lease / brief / SMS contact numbers stay yours to switch.</p></li>
         <li><span class="bid">F-12</span><span class="bname">H0-3 secret rotation <span class="chip hot">security</span></span>
-          <p class="bdesc">AC&rsquo;s 9 exposed secrets. AC holds live data until decommission.</p></li>
+          <p class="bdesc">AC&rsquo;s exposed secrets. AC holds live data until decommission. <strong>Ruled Sep 25: rotate.</strong> Checklist against the live Railway variable set: <code>docs/ac-secret-rotation-2026-09-25.md</code> &mdash; ten rotations in three sittings, the plaintext <code>LLM_API_KEY</code> first. The AC P0-1 PII check closed the same day (neither backup file is in AC&rsquo;s git history; review docs redacted) except <code>DATABASE_URL</code>.</p></li>
         <li><span class="bid">F-13</span><span class="bname">Open smokes SMK-2 / SMK-5 <span class="chip wait">passive</span></span>
           <p class="bdesc">First 6 AM SOP cron digest and the first ACH payment both self-announce in AI-1; mark them when seen.</p></li>
         <li><span class="bid">F-14</span><span class="bname">Capture drive reconnect + backfill <span class="chip hot">C3 data</span></span>
           <p class="bdesc">The E: capture drive is offline; the C3 nightly skips cleanly. Reconnect (re-letter to E: if needed), then one manual run with a wider backfill window recovers the gap.</p></li>
         <li><span class="bid">F-15</span><span class="bname">H3 decommission of Asset Command <span class="chip wait">gated 25 / 25</span></span>
-          <p class="bdesc">Per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset &rarr; archive both repos. Domain lapses Sep 26.</p></li>
+          <p class="bdesc">Per-organ verify &rarr; AC read-only &rarr; final snapshot to Drive &rarr; sunset &rarr; archive both repos. Old AC domain: renew one year (ruled Sep 25) so it dies with H3.</p></li>
         <li><span class="bid">F-16</span><span class="bname">C-3 first external pilot <span class="chip wait">waiting on the world</span></span>
           <p class="bdesc">Onboarding rail + manual are proven; the real intake starts when a pilot signs.</p></li>
       </ol>
@@ -1667,7 +1726,7 @@ const BODY = `
       <div class="bl-head"><span class="eyebrow">Tier 3</span><span class="bl-title">Long tail &mdash; outside the harvest track</span><span class="chip wait">deferred</span></div>
       <ol class="bl-list">
         <li><span class="bid">F-17</span><span class="bname">Twin-marketing set</span>
-          <p class="bdesc">B2 microsite &rarr; <strong>built Sep 18 as F-29</strong> (scans fill it in) &middot; B3 fly-through (LiDAR mesh, once cleaned) &middot; B4 public scoped leasing bot &middot; C2 sandbox login &middot; C3 LinkedIn (footage-gated).</p></li>
+          <p class="bdesc">B2 microsite &rarr; <strong>built Sep 18 as F-29</strong> (scans fill it in) &middot; B3 fly-through (LiDAR mesh, once cleaned) &middot; B4 public scoped leasing bot &middot; C2 sandbox login &middot; C3 LinkedIn (footage-gated) &middot; <strong>Sep 27:</strong> code-rendered motion films merged (PR #18, <code>tools/showreel/</code>: 48 s reel, 90 s &ldquo;A Thousand Promises&rdquo; in three palettes, 31 s vertical social cut).</p></li>
         <li><span class="bid">F-18</span><span class="bname">Error-tracking upgrade</span>
           <p class="bdesc">Sentry free tier vs Vercel log drain. The no-vendor baseline (log_client_error, Client Errors card) is live.</p></li>
         <li><span class="bid">F-19</span><span class="bname">Storage folder prefixes</span>
@@ -1827,14 +1886,15 @@ const BODY = `
       memberships revoked, profiles parked pending, allowlist trimmed; verified by a read-back. Register #24 green &rarr; <strong>18 / 25</strong>.
       Left on the register: #1 voice intake (AC-side cutover) &middot; #2 vendor uploads (F-8) &middot; #7 accounting (F-6) &middot; #9 tenant portal (F-7)
       &middot; #17 document binaries (F-9) &middot; reference rows #22 / #25. Yours now: Edward&rsquo;s sidebar assignment.</li>
+      <li>Sep 27 snapshot: state r38 read &mdash; no new marks since Sep 22. The sheet was three sessions behind; catalogued now: the one-number voice router (F-38, Sep 23), the A-1 site register (F-39, Sep 24), the portable site twin (F-40, Sep 24) and the integrated asset twin (F-41, merged Sep 27), smokes SMK-29&ndash;32. PR #17 merged the Sep 25 program review + operator walkthrough with your answers on record: renew the old AC domain one year (confirm it went through &mdash; Sep 26 has passed), rotate H0-3 by the checklist, Edward added (awaiting his first sign-in). Also merged: PR #18 motion films. Build health: 915 tests green, both production builds clean. <strong>Open data question:</strong> Federal Pacific &mdash; your Sep 22 ruling says none on the property; the Sep 24 register still flags one (unit unknown). Tell Claude which is wrong. Still yours: flyctl deploy &middot; Twilio vars &middot; Resend + <code>NOTIFY_FROM</code> &middot; re-check K-1 Property lines &middot; the 131 / 133 scans &middot; SMK-5 and SMK-21&ndash;32, SMK-27 first.</li>
     </ol>
   </section>
 
   <footer class="titleblock">
     <div class="tb"><span class="lab">Project</span><span class="val">Cypress Command Platform &mdash; OTB deployment</span></div>
     <div class="tb"><span class="lab">Sheet</span><span class="val">G-1 &middot; Punch List</span></div>
-    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-22</span></div>
-    <div class="tb"><span class="lab">Rev</span><span class="val">18</span></div>
+    <div class="tb"><span class="lab">Date</span><span class="val">2026-09-27</span></div>
+    <div class="tb"><span class="lab">Rev</span><span class="val">19</span></div>
     <div class="tb"><span class="lab">Compiled by</span><span class="val">Claude Code</span></div>
     <div class="tb"><span class="lab">Operator state</span><span class="val" id="tb-state">r0 &middot; unsaved</span></div>
   </footer>

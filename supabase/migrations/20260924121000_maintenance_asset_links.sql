@@ -1,5 +1,7 @@
 -- Optional physical-asset linkage on existing append-only work orders.
 -- Requires 20260924120000_physical_assets.sql. Prepared only; not applied.
+-- 2026-09-27: APPLIED to the isolated preview branch hefexnqkigirmzpmeggj (apply_migration) and
+-- passed the 21-check RLS smoke (rolled back). NOT YET APPLIED ON PROD (kbhsghodquchkgfdzckc).
 begin;
 
 alter table public.maintenance_requests
