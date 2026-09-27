@@ -19,7 +19,7 @@ body.render #go{display:none}
 </head>
 <body>
 <canvas id="c" width="1920" height="1080"></canvas>
-<div id="go">CLICK TO PLAY · SPACE PAUSE · ← → SCRUB · ?palette=terra|bayou|signal</div>
+<div id="go">CLICK TO PLAY · SPACE PAUSE · ← → SCRUB · ?palette=terra|bayou|signal|survey</div>
 <svg id="measure" width="0" height="0" style="position:absolute"></svg>
 <script src="site.js"></script>
 <script>
@@ -58,6 +58,17 @@ const PALETTES = {
     okL: '#1F8A4C', okN: '#4ADE80', warnL: '#B45309', warnN: '#FBBF24', alertL: '#DC2626', alertN: '#F87171',
     fields: ['#2F4BFF', '#FF4D1A', '#0A0A0B', '#8B5CF6', '#2F4BFF', '#0A0A0B'], fieldText: '#F4F4EF',
     end: { bg: '#0A0A0B', mark: '#C8F31D', text: '#F4F4EF', soft: '#A0A0A8', acc: '#C8F31D' },
+  },
+  // Unbranded pick: the plat's own colours. Cyanotype blueprint ground, drafting vellum, and the
+  // APWA uniform locate code sprayed on every site (pink = survey marks, the hero; blue water,
+  // green sewer, orange comms, purple reclaimed, yellow gas = attention, red electric = risk).
+  survey: {
+    night: '#0B1D33', night2: '#12294A', paper: '#F3F1EA', paper2: '#E3E6E6', ink: '#0B1626', soft: '#4A5A70', rule: '#C4CAD3', nsoft: '#9FB0C8', nrule: '#27405F',
+    heroN: '#FF4F8B', heroL: '#E8306F', edgeL: null, accN: '#FF4F8B', accL: '#D42A66',
+    inks: ['#1F5FBF', '#0E8A4F', '#E07A00', '#7A3FA0'], inksN: ['#5C9BFF', '#3DDC84', '#FFA23A', '#B98AE0'],
+    okL: '#0E8A4F', okN: '#3DDC84', warnL: '#B58A00', warnN: '#FFD23F', alertL: '#D11F2E', alertN: '#FF5A5F',
+    fields: ['#1F5FBF', '#0E8A4F', '#E07A00', '#7A3FA0', '#0B1626', '#12294A'], fieldText: '#F3F1EA',
+    end: { bg: '#0B1D33', mark: '#FF4F8B', text: '#F3F1EA', soft: '#9FB0C8', acc: '#FFD23F' },
   },
 };
 const PAL = PALETTES[params.get('palette')] || PALETTES.terra;

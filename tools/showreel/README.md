@@ -22,7 +22,7 @@ A terra square is the protagonist. It appears as the cursor, the stillness, the 
 | 64–80s | Manifesto | Six lines, each on a colour field that opens out of the square, which is every line's full stop. Then *"Build AI into how you actually operate"* lands one word per beat. |
 | 80–90s | The mark | The square becomes the core. The frame slams home in four pieces on four beats, then the wordmark and the sign-off land. The chord drains away to the opening clock, the core blinks twice like the first cursor, and it cuts to black. |
 
-Palettes (`?palette=`): **terra** (Brand 2.3, terra mark on paper), **bayou** (teal, copper and gold on night) and **signal** (black, chartreuse and cobalt). Each palette is one object in `PALETTES` at the top of `film.html`.
+Palettes (`?palette=`): **terra** (Brand 2.3, terra mark on paper), **bayou** (teal, copper and gold on night; operator favourite 2026-09-27), **signal** (black, chartreuse and cobalt) and **survey** (unbranded pick: cyanotype blueprint, vellum and the APWA utility-locate colour code, with survey-marking pink as the hero). Each palette is one object in `PALETTES` at the top of `film.html`.
 
 ## Run
 
