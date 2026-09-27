@@ -18,11 +18,18 @@ aerials; meter IDs were already public via the A-1 register).
   unit-mismatched links rejected, asset_label snapshotted, owner read-only, other-property operator sees 0 / cannot insert /
   cannot take over an id, tenant sees no assets or common-area requests and cannot link an asset but can still file for own
   unit, anon 42501. Storage photo policies were checked structurally only. Headers stamped "APPLIED to preview, NOT on prod".
-- **HELD — prod apply.** The new `guard_maintenance_asset_link` insert trigger rejects any `maintenance_requests` row whose
-  `unit` is blank or looks like `C12`. The voice RPCs (`a3_voice_lines`, `voice_maintenance_dedupe`) insert `p_unit` as given.
-  Before applying on prod, confirm the voice brain never files a blank unit (else a caller who can't name a suite would get a
-  failed work order). The check was classifier-blocked this session ("Production Reads"). Then: apply both files on prod →
-  `VITE_ASSET_TWIN_ENABLED=1` in Vercel Production → redeploy (Actions → deploy) → SMK-32.
+- **Prod apply — briefly held, then done on the operator's pick (b).** The original `guard_maintenance_asset_link` rejected
+  blank units as well as `C12`-style labels; the voice RPCs insert `p_unit` as given, and verifying that they never send a
+  blank was classifier-blocked ("Production Reads"). Operator ruled **(b) relax the guard**: blank units allowed, column
+  labels (trimmed, case-insensitive) still rejected; the twin UI keeps its own client-side real-suite check
+  (`maintenance-model.js`). Re-smoked on preview (blank via definer path ✓ · blank via operator ✓ · " c7 " rejected · blank +
+  asset link rejected · common-area link snapshots the label). **Both migrations APPLIED ON PROD via apply_migration**
+  (server history `20260927233330` physical_assets, `20260927233419` maintenance_asset_links). Catalog read-back: 4 tables,
+  RLS on all 4, 9 table policies, 3 photo policies, bucket private, anon has no select. **`VITE_ASSET_TWIN_ENABLED=1` set in
+  Vercel Production** (plain, via the Vercel MCP). **Not yet deployed:** Claude's `git push origin master` was
+  classifier-blocked ("Production Deploy") — the operator pushes (or Actions → deploy → Run workflow); prod keeps serving
+  the twin-less build until then. Then SMK-32 —
+  save C12 as the first hosted physical asset, then print field tags only after records exist on prod.
 - Finding (minor): `save_physical_asset_with_bindings` uses `jsonb_populate_record`, so omitted keys insert NULL instead of
   column defaults. The app's `cleanPhysicalAsset` sends full rows, so no live impact; direct API callers must send every field.
 

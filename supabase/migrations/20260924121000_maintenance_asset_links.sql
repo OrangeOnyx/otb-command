@@ -1,7 +1,8 @@
 -- Optional physical-asset linkage on existing append-only work orders.
 -- Requires 20260924120000_physical_assets.sql. Prepared only; not applied.
 -- 2026-09-27: APPLIED to the isolated preview branch hefexnqkigirmzpmeggj (apply_migration) and
--- passed the 21-check RLS smoke (rolled back). NOT YET APPLIED ON PROD (kbhsghodquchkgfdzckc).
+-- passed the 21-check RLS smoke (rolled back). Guard relaxed the same day (blank unit allowed;
+-- column labels still rejected) and re-smoked on preview. NOT YET APPLIED ON PROD (kbhsghodquchkgfdzckc).
 begin;
 
 alter table public.maintenance_requests
@@ -28,7 +29,10 @@ create function public.guard_maintenance_asset_link() returns trigger
 language plpgsql security invoker set search_path = public as $$
 declare a public.physical_assets;
 begin
-  if length(trim(new.unit)) = 0 or new.unit ~* '^C[0-9]{1,3}$' then
+  -- Blank units stay allowed (2026-09-27 operator ruling): the voice RPCs file
+  -- p_unit as given, and a caller who cannot name a suite must still get a work
+  -- order. The twin UI enforces a real suite client-side (maintenance-model.js).
+  if trim(new.unit) ~* '^C[0-9]{1,3}$' then
     raise exception 'Choose a real suite or common-area, not a model column label';
   end if;
   if new.asset_id is not null then
