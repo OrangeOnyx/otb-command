@@ -605,7 +605,7 @@ function S4(t) {
 // ═════════════════════════════════════════════════════════════════════════
 // 5 · MANIFESTO (64–80): the square is every sentence's full stop
 const LINES = ['Drawn from the recorded plat', 'Wired to every lease', 'Watching every date', 'Answering in plain English', 'Closing every loop', 'Running while you sleep'];
-const FM = `900 104px ${DISPLAY}`, BASE = 600, SQ = 26;
+const FM = `900 94px ${DISPLAY}`, BASE = 600, SQ = 24;
 function periodAt(k) { const w = tw(LINES[k], FM, -3); return [140 + w + 10 + SQ / 2, BASE - SQ / 2]; }
 const FINAL = [['Build', 'AI', 'into', 'how'], ['you', 'actually', 'operate']];
 const FF = `900 132px ${DISPLAY}`;
@@ -628,7 +628,7 @@ function S5(t) {
     rect(ox - hs, oy - hs, hs * 2, hs * 2, PAL.fields[k]);
     g.save(); g.beginPath(); g.rect(ox - hs, oy - hs, hs * 2, hs * 2); g.clip();
     text(`${String(k + 1).padStart(2, '0')} — 06`, 140, 200, `700 18px ${MONO}`, rgba(PAL.fieldText, .7), 3);
-    rise(LINES[k], 140, BASE, FM, PAL.fieldText, t, T0 + .15, { size: 104, track: -3, stagger: .07, dur: .5, by: 'word' });
+    rise(LINES[k], 140, BASE, FM, PAL.fieldText, t, T0 + .15, { size: 94, track: -3, stagger: .07, dur: .5, by: 'word' });
     g.restore();
     // the square flies from the last full stop to this one
     const [nx, ny] = periodAt(k);
@@ -636,7 +636,11 @@ function S5(t) {
     const sx = lerp(ox, nx, fl), sy = lerp(oy, ny, fl) - Math.sin(fl * Math.PI) * 160;
     const size = k ? SQ : lerp(56, SQ, ep(t, 64, .3));
     const land = Math.max(0, 1 - Math.abs(t - (T0 + .6)) / .12);
-    hero(sx, sy, size * (1 + land * .35), false, (1 - fl) * Math.PI);
+    // on a field too close to the hero colour, the full stop turns paper
+    const near = c => { const A = hex(c), B = hex(PAL.heroN); return Math.hypot(A[0] - B[0], A[1] - B[1], A[2] - B[2]) < 110; };
+    const fieldNow = fl > .5 ? PAL.fields[k] : (k ? PAL.fields[k - 1] : PAL.night);
+    if (near(fieldNow)) { g.save(); g.fillStyle = PAL.fieldText; g.translate(sx, sy); g.rotate((1 - fl) * Math.PI); const z = size * (1 + land * .35); g.fillRect(-z / 2, -z / 2, z, z); g.restore(); }
+    else hero(sx, sy, size * (1 + land * .35), false, (1 - fl) * Math.PI);
     return;
   }
   // 76–80: the promise, one word per beat, on night
