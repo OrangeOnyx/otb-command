@@ -1,0 +1,7582 @@
+{
+  "schemaVersion": 1,
+  "title": "On The Boulevard · Column Twin",
+  "modelStatus": "Source-derived working model; field verification pending",
+  "source": {
+    "file": "On_The_Boulevard.native.fml",
+    "sha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+    "projectId": 109978485,
+    "floorId": 178816737,
+    "designId": 241952337
+  },
+  "units": "meters",
+  "upAxis": "Y",
+  "originFmlCm": {
+    "x": -6403.2662401319585,
+    "y": -2511.451712902764,
+    "z": 0
+  },
+  "boundsMeters": {
+    "min": [
+      -95.23372650146484,
+      0,
+      -41.48417282104492
+    ],
+    "max": [
+      95.21627044677734,
+      3.886199951171875,
+      40.738800048828125
+    ]
+  },
+  "centerMeters": [
+    -0.00872802734375,
+    1.9430999755859375,
+    -0.37268638610839844
+  ],
+  "sizeMeters": [
+    190.4499969482422,
+    3.886199951171875,
+    82.22297286987305
+  ],
+  "categories": [
+    {
+      "id": "walls",
+      "nodeName": "walls",
+      "defaultVisible": true,
+      "nodeCount": 1
+    },
+    {
+      "id": "floors",
+      "nodeName": "floors",
+      "defaultVisible": true,
+      "nodeCount": 1
+    },
+    {
+      "id": "walkway",
+      "nodeName": "walkway",
+      "defaultVisible": true,
+      "nodeCount": 1
+    },
+    {
+      "id": "canopy",
+      "nodeName": "canopy",
+      "defaultVisible": false,
+      "nodeCount": 1
+    },
+    {
+      "id": "columns",
+      "nodeName": "columns",
+      "defaultVisible": true,
+      "nodeCount": 37
+    },
+    {
+      "id": "openings",
+      "nodeName": "openings",
+      "defaultVisible": true,
+      "nodeCount": 1
+    }
+  ],
+  "columns": [
+    {
+      "id": "column-038b4a052760",
+      "nodeName": "column_038b4a052760",
+      "label": "C01",
+      "position": [
+        94.74252425088932,
+        1.943099997046488,
+        30.49332130922663
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.7617065887065095
+      ],
+      "boundsMeters": {
+        "min": [
+          94.35921643192705,
+          0,
+          30.112468014873375
+        ],
+        "max": [
+          95.12583206985157,
+          3.886199994092976,
+          30.874174603579885
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1597,
+          1598,
+          1599,
+          1600
+        ],
+        "wallGuids": [
+          "53e40f",
+          "5b9ea1",
+          "6baffe",
+          "e06054"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 3070.99,
+        "y": 537.885
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          3032.66,
+          499.8
+        ],
+        [
+          3109.32,
+          499.8
+        ],
+        [
+          3109.32,
+          575.97
+        ],
+        [
+          3032.66,
+          575.97
+        ],
+        [
+          3032.66,
+          499.8
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          3101.82,
+          568.47
+        ],
+        [
+          3040.16,
+          568.47
+        ],
+        [
+          3040.16,
+          507.3
+        ],
+        [
+          3101.82,
+          507.3
+        ],
+        [
+          3101.82,
+          568.47
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-d2b3a3e668ba",
+      "nodeName": "column_d2b3a3e668ba",
+      "label": "C02",
+      "position": [
+        94.81907635621644,
+        1.943099997046488,
+        24.303343054838884
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.7617065887065095
+      ],
+      "boundsMeters": {
+        "min": [
+          94.43576853725419,
+          0,
+          23.92248976048563
+        ],
+        "max": [
+          95.20238417517871,
+          3.886199994092976,
+          24.68419634919214
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1589,
+          1590,
+          1591,
+          1592
+        ],
+        "wallGuids": [
+          "416f97",
+          "71a9c5",
+          "8be627",
+          "c7fc75"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 3078.64,
+        "y": -81.11500000000001
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          3040.31,
+          -119.2
+        ],
+        [
+          3116.97,
+          -119.2
+        ],
+        [
+          3116.97,
+          -43.03
+        ],
+        [
+          3040.31,
+          -43.03
+        ],
+        [
+          3040.31,
+          -119.2
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          3047.81,
+          -50.53
+        ],
+        [
+          3047.81,
+          -111.7
+        ],
+        [
+          3109.47,
+          -111.7
+        ],
+        [
+          3109.47,
+          -50.53
+        ],
+        [
+          3047.81,
+          -50.53
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-02295ca93280",
+      "nodeName": "column_02295ca93280",
+      "label": "C03",
+      "position": [
+        94.81907635621812,
+        1.943099997046488,
+        18.680049370809357
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.761706588706506
+      ],
+      "boundsMeters": {
+        "min": [
+          94.43576853725587,
+          0,
+          18.299196076456102
+        ],
+        "max": [
+          95.20238417518038,
+          3.886199994092976,
+          19.060902665162608
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1593,
+          1594,
+          1595,
+          1596
+        ],
+        "wallGuids": [
+          "0c8272",
+          "2595ac",
+          "7ffc54",
+          "a4ea96"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 3078.64,
+        "y": -643.4449999999999
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          3040.31,
+          -681.53
+        ],
+        [
+          3116.97,
+          -681.53
+        ],
+        [
+          3116.97,
+          -605.36
+        ],
+        [
+          3040.31,
+          -605.36
+        ],
+        [
+          3040.31,
+          -681.53
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          3109.47,
+          -612.86
+        ],
+        [
+          3047.81,
+          -612.86
+        ],
+        [
+          3047.81,
+          -674.03
+        ],
+        [
+          3109.47,
+          -674.03
+        ],
+        [
+          3109.47,
+          -612.86
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-aa85e5b580cf",
+      "nodeName": "column_aa85e5b580cf",
+      "label": "C04",
+      "position": [
+        94.81907635621644,
+        1.943099997046488,
+        13.048137507472212
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.7617065887065095
+      ],
+      "boundsMeters": {
+        "min": [
+          94.43576853725419,
+          0,
+          12.667284213118958
+        ],
+        "max": [
+          95.20238417517871,
+          3.886199994092976,
+          13.428990801825467
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1585,
+          1586,
+          1587,
+          1588
+        ],
+        "wallGuids": [
+          "304ccc",
+          "c3fe06",
+          "d81813",
+          "efd83b"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 3078.64,
+        "y": -1206.635
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          3040.31,
+          -1244.72
+        ],
+        [
+          3116.97,
+          -1244.72
+        ],
+        [
+          3116.97,
+          -1168.55
+        ],
+        [
+          3040.31,
+          -1168.55
+        ],
+        [
+          3040.31,
+          -1244.72
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          3047.81,
+          -1176.05
+        ],
+        [
+          3047.81,
+          -1237.22
+        ],
+        [
+          3109.47,
+          -1237.22
+        ],
+        [
+          3109.47,
+          -1176.05
+        ],
+        [
+          3047.81,
+          -1176.05
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-58ee6b101d84",
+      "nodeName": "column_58ee6b101d84",
+      "label": "C05",
+      "position": [
+        94.81907635621805,
+        1.943099997046488,
+        8.57917551393999
+      ],
+      "dimensionsMeters": [
+        0.7666156379245024,
+        3.886199994092976,
+        0.7617065887065078
+      ],
+      "boundsMeters": {
+        "min": [
+          94.4357685372558,
+          0,
+          8.198322219586737
+        ],
+        "max": [
+          95.2023841751803,
+          3.886199994092976,
+          8.960028808293245
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          255,
+          256,
+          257,
+          258
+        ],
+        "wallGuids": [
+          "acb47e",
+          "d68e3e",
+          "e76f9d",
+          "eba4b4"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 3078.64,
+        "y": -1653.5349999999999
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          3040.31,
+          -1691.62
+        ],
+        [
+          3116.97,
+          -1691.62
+        ],
+        [
+          3116.97,
+          -1615.45
+        ],
+        [
+          3040.31,
+          -1615.45
+        ],
+        [
+          3040.31,
+          -1691.62
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          3047.81,
+          -1622.95
+        ],
+        [
+          3047.81,
+          -1684.12
+        ],
+        [
+          3109.47,
+          -1684.12
+        ],
+        [
+          3109.47,
+          -1622.95
+        ],
+        [
+          3047.81,
+          -1622.95
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-b54ed1758e8b",
+      "nodeName": "column_b54ed1758e8b",
+      "label": "C06",
+      "position": [
+        92.13815005517051,
+        1.943099997046488,
+        8.570429326293215
+      ],
+      "dimensionsMeters": [
+        0.7666156379247866,
+        3.886199994092976,
+        0.7617065887065255
+      ],
+      "boundsMeters": {
+        "min": [
+          91.75484223620812,
+          0,
+          8.189576031939954
+        ],
+        "max": [
+          92.5214578741329,
+          3.886199994092976,
+          8.951282620646479
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1282,
+          1283,
+          1284,
+          1285
+        ],
+        "wallGuids": [
+          "02d4ea",
+          "626a44",
+          "9f8102",
+          "d5da78"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 2810.55,
+        "y": -1654.405
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          2772.22,
+          -1692.49
+        ],
+        [
+          2848.88,
+          -1692.49
+        ],
+        [
+          2848.88,
+          -1616.32
+        ],
+        [
+          2772.22,
+          -1616.32
+        ],
+        [
+          2772.22,
+          -1692.49
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          2779.72,
+          -1684.99
+        ],
+        [
+          2841.38,
+          -1684.99
+        ],
+        [
+          2841.38,
+          -1623.82
+        ],
+        [
+          2779.72,
+          -1623.82
+        ],
+        [
+          2779.72,
+          -1684.99
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-5bc5065cf1b8",
+      "nodeName": "column_5bc5065cf1b8",
+      "label": "C07",
+      "position": [
+        86.92279133908809,
+        1.943099997046488,
+        8.558885357271965
+      ],
+      "dimensionsMeters": [
+        0.7666156379245308,
+        3.886199994092976,
+        0.7617065887065113
+      ],
+      "boundsMeters": {
+        "min": [
+          86.53948352012583,
+          0,
+          8.17803206291871
+        ],
+        "max": [
+          87.30609915805036,
+          3.886199994092976,
+          8.939738651625222
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          201,
+          202,
+          203,
+          204
+        ],
+        "wallGuids": [
+          "320fdc",
+          "4b7663",
+          "4f12c7",
+          "75f102"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 2289.01,
+        "y": -1655.565
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          2250.68,
+          -1693.65
+        ],
+        [
+          2327.34,
+          -1693.65
+        ],
+        [
+          2327.34,
+          -1617.48
+        ],
+        [
+          2250.68,
+          -1617.48
+        ],
+        [
+          2250.68,
+          -1693.65
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          2319.84,
+          -1624.98
+        ],
+        [
+          2258.18,
+          -1624.98
+        ],
+        [
+          2258.18,
+          -1686.15
+        ],
+        [
+          2319.84,
+          -1686.15
+        ],
+        [
+          2319.84,
+          -1624.98
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-044d1f471c0c",
+      "nodeName": "column_044d1f471c0c",
+      "label": "C08",
+      "position": [
+        84.2418650380406,
+        1.943099997046488,
+        8.550139169625256
+      ],
+      "dimensionsMeters": [
+        0.7666156379245308,
+        3.886199994092976,
+        0.7617065887064491
+      ],
+      "boundsMeters": {
+        "min": [
+          83.85855721907834,
+          0,
+          8.169285875272031
+        ],
+        "max": [
+          84.62517285700287,
+          3.886199994092976,
+          8.93099246397848
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          197,
+          198,
+          199,
+          200
+        ],
+        "wallGuids": [
+          "093e18",
+          "95f271",
+          "e1f7fb",
+          "e9ab96"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 2020.92,
+        "y": -1656.435
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          1982.59,
+          -1694.52
+        ],
+        [
+          2059.25,
+          -1694.52
+        ],
+        [
+          2059.25,
+          -1618.35
+        ],
+        [
+          1982.59,
+          -1618.35
+        ],
+        [
+          1982.59,
+          -1694.52
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          1990.09,
+          -1687.02
+        ],
+        [
+          2051.75,
+          -1687.02
+        ],
+        [
+          2051.75,
+          -1625.85
+        ],
+        [
+          1990.09,
+          -1625.85
+        ],
+        [
+          1990.09,
+          -1687.02
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-b612c2a14b74",
+      "nodeName": "column_b612c2a14b74",
+      "label": "C09",
+      "position": [
+        79.74157358459905,
+        1.943099997046488,
+        8.559609508437065
+      ],
+      "dimensionsMeters": [
+        0.7666156379245308,
+        3.886199994092976,
+        0.7617065887063603
+      ],
+      "boundsMeters": {
+        "min": [
+          79.35826576563679,
+          0,
+          8.178756214083885
+        ],
+        "max": [
+          80.12488140356132,
+          3.886199994092976,
+          8.940462802790245
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1251,
+          1252,
+          1253,
+          1254
+        ],
+        "wallGuids": [
+          "0f45a0",
+          "3f6ce0",
+          "dea802",
+          "e33559"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 1570.8899999999999,
+        "y": -1655.495
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          1532.56,
+          -1693.58
+        ],
+        [
+          1609.22,
+          -1693.58
+        ],
+        [
+          1609.22,
+          -1617.41
+        ],
+        [
+          1532.56,
+          -1617.41
+        ],
+        [
+          1532.56,
+          -1693.58
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          1540.06,
+          -1686.08
+        ],
+        [
+          1601.72,
+          -1686.08
+        ],
+        [
+          1601.72,
+          -1624.91
+        ],
+        [
+          1540.06,
+          -1624.91
+        ],
+        [
+          1540.06,
+          -1686.08
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-5d259bb6c3b7",
+      "nodeName": "column_5d259bb6c3b7",
+      "label": "C10",
+      "position": [
+        77.06064728355156,
+        1.943099997046488,
+        8.550863320790365
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.7617065887064669
+      ],
+      "boundsMeters": {
+        "min": [
+          76.67733946458931,
+          0,
+          8.170010026437131
+        ],
+        "max": [
+          77.44395510251383,
+          3.886199994092976,
+          8.931716615143598
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          193,
+          194,
+          195,
+          196
+        ],
+        "wallGuids": [
+          "66e161",
+          "cff61a",
+          "d838bb",
+          "df07ad"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 1302.8000000000002,
+        "y": -1656.365
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          1264.47,
+          -1694.45
+        ],
+        [
+          1341.13,
+          -1694.45
+        ],
+        [
+          1341.13,
+          -1618.28
+        ],
+        [
+          1264.47,
+          -1618.28
+        ],
+        [
+          1264.47,
+          -1694.45
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          1271.97,
+          -1686.95
+        ],
+        [
+          1333.63,
+          -1686.95
+        ],
+        [
+          1333.63,
+          -1625.78
+        ],
+        [
+          1271.97,
+          -1625.78
+        ],
+        [
+          1271.97,
+          -1686.95
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-90181ecef8d9",
+      "nodeName": "column_90181ecef8d9",
+      "label": "C11",
+      "position": [
+        72.58360988332015,
+        1.943099997046488,
+        8.557850726338835
+      ],
+      "dimensionsMeters": [
+        0.7666156379245024,
+        3.886199994092976,
+        0.7617065887063976
+      ],
+      "boundsMeters": {
+        "min": [
+          72.2003020643579,
+          0,
+          8.176997431985637
+        ],
+        "max": [
+          72.9669177022824,
+          3.886199994092976,
+          8.938704020692034
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1247,
+          1248,
+          1249,
+          1250
+        ],
+        "wallGuids": [
+          "12a4d3",
+          "1628fe",
+          "5fc613",
+          "ea217b"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 855.095,
+        "y": -1655.665
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          816.76,
+          -1693.75
+        ],
+        [
+          893.43,
+          -1693.75
+        ],
+        [
+          893.43,
+          -1617.58
+        ],
+        [
+          816.76,
+          -1617.58
+        ],
+        [
+          816.76,
+          -1693.75
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          885.93,
+          -1686.25
+        ],
+        [
+          885.93,
+          -1625.08
+        ],
+        [
+          824.26,
+          -1625.08
+        ],
+        [
+          824.26,
+          -1686.25
+        ],
+        [
+          885.93,
+          -1686.25
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-a463a9a2acf7",
+      "nodeName": "column_a463a9a2acf7",
+      "label": "C12",
+      "position": [
+        69.90268358227266,
+        1.943099997046488,
+        8.549104538692104
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.7617065887064243
+      ],
+      "boundsMeters": {
+        "min": [
+          69.5193757633104,
+          0,
+          8.168251244338892
+        ],
+        "max": [
+          70.28599140123492,
+          3.886199994092976,
+          8.929957833045316
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          189,
+          190,
+          191,
+          192
+        ],
+        "wallGuids": [
+          "0db9a3",
+          "17caff",
+          "abac1b",
+          "fbf2a6"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": 587,
+        "y": -1656.545
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          548.67,
+          -1694.63
+        ],
+        [
+          625.33,
+          -1694.63
+        ],
+        [
+          625.33,
+          -1618.46
+        ],
+        [
+          548.67,
+          -1618.46
+        ],
+        [
+          548.67,
+          -1694.63
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          617.83,
+          -1625.96
+        ],
+        [
+          556.17,
+          -1625.96
+        ],
+        [
+          556.17,
+          -1687.13
+        ],
+        [
+          617.83,
+          -1687.13
+        ],
+        [
+          617.83,
+          -1625.96
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-47239d683e86",
+      "nodeName": "column_47239d683e86",
+      "label": "C13",
+      "position": [
+        60.59144590812883,
+        1.943099997046488,
+        8.58940505030191
+      ],
+      "dimensionsMeters": [
+        0.7666156379245166,
+        3.886199994092976,
+        0.7617065887064189
+      ],
+      "boundsMeters": {
+        "min": [
+          60.208138089166575,
+          0,
+          8.208551755948701
+        ],
+        "max": [
+          60.97475372709109,
+          3.886199994092976,
+          8.97025834465512
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          185,
+          186,
+          187,
+          188
+        ],
+        "wallGuids": [
+          "1d467f",
+          "1f33cc",
+          "ab4849",
+          "c1d75d"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -344.12,
+        "y": -1652.5149999999999
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -382.45,
+          -1690.6
+        ],
+        [
+          -305.79,
+          -1690.6
+        ],
+        [
+          -305.79,
+          -1614.43
+        ],
+        [
+          -382.45,
+          -1614.43
+        ],
+        [
+          -382.45,
+          -1690.6
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -374.95,
+          -1683.1
+        ],
+        [
+          -313.29,
+          -1683.1
+        ],
+        [
+          -313.29,
+          -1621.93
+        ],
+        [
+          -374.95,
+          -1621.93
+        ],
+        [
+          -374.95,
+          -1683.1
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-16c0ba4535cc",
+      "nodeName": "column_16c0ba4535cc",
+      "label": "C14",
+      "position": [
+        52.455361938536065,
+        1.943099997046488,
+        8.562741016193439
+      ],
+      "dimensionsMeters": [
+        0.7666156379244882,
+        3.886199994092976,
+        0.7617065887064101
+      ],
+      "boundsMeters": {
+        "min": [
+          52.07205411957382,
+          0,
+          8.181887721840233
+        ],
+        "max": [
+          52.83866975749831,
+          3.886199994092976,
+          8.943594310546644
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1239,
+          1240,
+          1241,
+          1242
+        ],
+        "wallGuids": [
+          "0171df",
+          "86fedc",
+          "b25d07",
+          "f97f4f"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -1157.73,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -1196.06,
+          -1693.26
+        ],
+        [
+          -1119.4,
+          -1693.26
+        ],
+        [
+          -1119.4,
+          -1617.09
+        ],
+        [
+          -1196.06,
+          -1617.09
+        ],
+        [
+          -1196.06,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -1126.9,
+          -1685.76
+        ],
+        [
+          -1126.9,
+          -1624.59
+        ],
+        [
+          -1188.56,
+          -1624.59
+        ],
+        [
+          -1188.56,
+          -1685.76
+        ],
+        [
+          -1126.9,
+          -1685.76
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-67175e7ffef6",
+      "nodeName": "column_67175e7ffef6",
+      "label": "C15",
+      "position": [
+        45.51012482468087,
+        1.943099997046488,
+        8.562741016193424
+      ],
+      "dimensionsMeters": [
+        0.7666156379244669,
+        3.886199994092976,
+        0.7617065887063781
+      ],
+      "boundsMeters": {
+        "min": [
+          45.12681700571864,
+          0,
+          8.181887721840235
+        ],
+        "max": [
+          45.89343264364311,
+          3.886199994092976,
+          8.943594310546613
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1243,
+          1244,
+          1245,
+          1246
+        ],
+        "wallGuids": [
+          "2d9a16",
+          "b29776",
+          "cd4566",
+          "ce5c2a"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -1852.25,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -1890.58,
+          -1693.26
+        ],
+        [
+          -1813.92,
+          -1693.26
+        ],
+        [
+          -1813.92,
+          -1617.09
+        ],
+        [
+          -1890.58,
+          -1617.09
+        ],
+        [
+          -1890.58,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -1821.42,
+          -1685.76
+        ],
+        [
+          -1821.42,
+          -1624.59
+        ],
+        [
+          -1883.08,
+          -1624.59
+        ],
+        [
+          -1883.08,
+          -1685.76
+        ],
+        [
+          -1821.42,
+          -1685.76
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-ed119356cf6a",
+      "nodeName": "column_ed119356cf6a",
+      "label": "C16",
+      "position": [
+        37.355385832572196,
+        1.943099997046488,
+        8.520853653850743
+      ],
+      "dimensionsMeters": [
+        0.7666156379247369,
+        3.886199994092976,
+        0.7617065887064083
+      ],
+      "boundsMeters": {
+        "min": [
+          36.97207801360983,
+          0,
+          8.140000359497538
+        ],
+        "max": [
+          37.73869365153457,
+          3.886199994092976,
+          8.901706948203946
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          205,
+          206,
+          207,
+          208
+        ],
+        "wallGuids": [
+          "0884d4",
+          "0b2bba",
+          "74254e",
+          "bf5348"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -2667.73,
+        "y": -1659.365
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -2706.06,
+          -1697.45
+        ],
+        [
+          -2629.4,
+          -1697.45
+        ],
+        [
+          -2629.4,
+          -1621.28
+        ],
+        [
+          -2706.06,
+          -1621.28
+        ],
+        [
+          -2706.06,
+          -1697.45
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -2698.56,
+          -1689.95
+        ],
+        [
+          -2636.9,
+          -1689.95
+        ],
+        [
+          -2636.9,
+          -1628.78
+        ],
+        [
+          -2698.56,
+          -1628.78
+        ],
+        [
+          -2698.56,
+          -1689.95
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-aee610a618a4",
+      "nodeName": "column_aee610a618a4",
+      "label": "C17",
+      "position": [
+        29.862193057087705,
+        1.943099997046488,
+        8.569098257485397
+      ],
+      "dimensionsMeters": [
+        0.7666156379246658,
+        3.886199994092976,
+        0.7617065887064509
+      ],
+      "boundsMeters": {
+        "min": [
+          29.478885238125372,
+          0,
+          8.188244963132172
+        ],
+        "max": [
+          30.245500876050038,
+          3.886199994092976,
+          8.949951551838623
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          165,
+          166,
+          167,
+          168
+        ],
+        "wallGuids": [
+          "90f29a",
+          "d3fb1f",
+          "dc341e",
+          "dc879b"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -3417.05,
+        "y": -1654.545
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -3455.38,
+          -1692.63
+        ],
+        [
+          -3378.72,
+          -1692.63
+        ],
+        [
+          -3378.72,
+          -1616.46
+        ],
+        [
+          -3455.38,
+          -1616.46
+        ],
+        [
+          -3455.38,
+          -1692.63
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -3447.88,
+          -1685.13
+        ],
+        [
+          -3386.22,
+          -1685.13
+        ],
+        [
+          -3386.22,
+          -1623.96
+        ],
+        [
+          -3447.88,
+          -1623.96
+        ],
+        [
+          -3447.88,
+          -1685.13
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-a271a91870ae",
+      "nodeName": "column_a271a91870ae",
+      "label": "C18",
+      "position": [
+        22.3618093545838,
+        1.943099997046488,
+        8.576503791255384
+      ],
+      "dimensionsMeters": [
+        0.7666156379246232,
+        3.886199994092976,
+        0.7617065887063923
+      ],
+      "boundsMeters": {
+        "min": [
+          21.97850153562149,
+          0,
+          8.195650496902187
+        ],
+        "max": [
+          22.745117173546113,
+          3.886199994092976,
+          8.95735708560858
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          169,
+          170,
+          171,
+          172
+        ],
+        "wallGuids": [
+          "1f0743",
+          "7a3d62",
+          "a4917d",
+          "b7ba37"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -4167.085,
+        "y": -1653.805
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -4205.42,
+          -1691.89
+        ],
+        [
+          -4128.75,
+          -1691.89
+        ],
+        [
+          -4128.75,
+          -1615.72
+        ],
+        [
+          -4205.42,
+          -1615.72
+        ],
+        [
+          -4205.42,
+          -1691.89
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -4197.92,
+          -1684.39
+        ],
+        [
+          -4136.25,
+          -1684.39
+        ],
+        [
+          -4136.25,
+          -1623.22
+        ],
+        [
+          -4197.92,
+          -1623.22
+        ],
+        [
+          -4197.92,
+          -1684.39
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-d785b928bb21",
+      "nodeName": "column_d785b928bb21",
+      "label": "C19",
+      "position": [
+        14.92067466850618,
+        1.943099997046488,
+        8.583466920137138
+      ],
+      "dimensionsMeters": [
+        0.7666156379246427,
+        3.886199994092976,
+        0.7617065887064616
+      ],
+      "boundsMeters": {
+        "min": [
+          14.53736684954386,
+          0,
+          8.202613625783908
+        ],
+        "max": [
+          15.303982487468502,
+          3.886199994092976,
+          8.96432021449037
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          173,
+          174,
+          175,
+          176
+        ],
+        "wallGuids": [
+          "337683",
+          "396678",
+          "c539e3",
+          "f55e26"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -4911.2,
+        "y": -1653.105
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -4949.53,
+          -1691.19
+        ],
+        [
+          -4872.87,
+          -1691.19
+        ],
+        [
+          -4872.87,
+          -1615.02
+        ],
+        [
+          -4949.53,
+          -1615.02
+        ],
+        [
+          -4949.53,
+          -1691.19
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -4942.03,
+          -1683.69
+        ],
+        [
+          -4880.37,
+          -1683.69
+        ],
+        [
+          -4880.37,
+          -1622.52
+        ],
+        [
+          -4942.03,
+          -1622.52
+        ],
+        [
+          -4942.03,
+          -1683.69
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-c26484797ec1",
+      "nodeName": "column_c26484797ec1",
+      "label": "C20",
+      "position": [
+        7.469234963334897,
+        1.943099997046488,
+        8.600193933683475
+      ],
+      "dimensionsMeters": [
+        0.7666156379245788,
+        3.886199994092976,
+        0.7617065887066499
+      ],
+      "boundsMeters": {
+        "min": [
+          7.085927144372608,
+          0,
+          8.219340639330149
+        ],
+        "max": [
+          7.852542782297187,
+          3.886199994092976,
+          8.981047228036799
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          177,
+          178,
+          179,
+          180
+        ],
+        "wallGuids": [
+          "1d444f",
+          "5e29ca",
+          "77a4b4",
+          "7e7d5f"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -5656.34,
+        "y": -1651.435
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -5694.67,
+          -1689.52
+        ],
+        [
+          -5618.01,
+          -1689.52
+        ],
+        [
+          -5618.01,
+          -1613.35
+        ],
+        [
+          -5694.67,
+          -1613.35
+        ],
+        [
+          -5694.67,
+          -1689.52
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -5687.17,
+          -1682.02
+        ],
+        [
+          -5625.51,
+          -1682.02
+        ],
+        [
+          -5625.51,
+          -1620.85
+        ],
+        [
+          -5687.17,
+          -1620.85
+        ],
+        [
+          -5687.17,
+          -1682.02
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-a8f1bedc07e9",
+      "nodeName": "column_a8f1bedc07e9",
+      "label": "C21",
+      "position": [
+        -0.0018670650617877982,
+        1.943099997046488,
+        8.565781346234074
+      ],
+      "dimensionsMeters": [
+        0.7666156379247514,
+        3.886199994092976,
+        0.7617065887062289
+      ],
+      "boundsMeters": {
+        "min": [
+          -0.3851748840241635,
+          0,
+          8.18492805188096
+        ],
+        "max": [
+          0.3814407539005879,
+          3.886199994092976,
+          8.946634640587188
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          181,
+          182,
+          183,
+          184
+        ],
+        "wallGuids": [
+          "2c4a42",
+          "b0487f",
+          "c79394",
+          "eaeabe"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -6403.45,
+        "y": -1654.875
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -6441.78,
+          -1692.96
+        ],
+        [
+          -6365.12,
+          -1692.96
+        ],
+        [
+          -6365.12,
+          -1616.79
+        ],
+        [
+          -6441.78,
+          -1616.79
+        ],
+        [
+          -6441.78,
+          -1692.96
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -6434.28,
+          -1685.46
+        ],
+        [
+          -6372.62,
+          -1685.46
+        ],
+        [
+          -6372.62,
+          -1624.29
+        ],
+        [
+          -6434.28,
+          -1624.29
+        ],
+        [
+          -6434.28,
+          -1685.46
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-1f046ab1c1c0",
+      "nodeName": "column_1f046ab1c1c0",
+      "label": "C22",
+      "position": [
+        -7.551623566784133,
+        1.943099997046488,
+        8.586542295619678
+      ],
+      "dimensionsMeters": [
+        0.7666156379247422,
+        3.886199994092976,
+        0.761706588706776
+      ],
+      "boundsMeters": {
+        "min": [
+          -7.934931385746504,
+          0,
+          8.20568900126629
+        ],
+        "max": [
+          -7.168315747821762,
+          3.886199994092976,
+          8.967395589973066
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1235,
+          1236,
+          1237,
+          1238
+        ],
+        "wallGuids": [
+          "050463",
+          "33a674",
+          "d90d6a",
+          "f01239"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -7158.43,
+        "y": -1652.795
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -7196.76,
+          -1690.88
+        ],
+        [
+          -7120.1,
+          -1690.88
+        ],
+        [
+          -7120.1,
+          -1614.71
+        ],
+        [
+          -7196.76,
+          -1614.71
+        ],
+        [
+          -7196.76,
+          -1690.88
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -7189.26,
+          -1683.38
+        ],
+        [
+          -7127.6,
+          -1683.38
+        ],
+        [
+          -7127.6,
+          -1622.21
+        ],
+        [
+          -7189.26,
+          -1622.21
+        ],
+        [
+          -7189.26,
+          -1683.38
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-a72402b949b5",
+      "nodeName": "column_a72402b949b5",
+      "label": "C23",
+      "position": [
+        -15.225043698058188,
+        1.943099997046488,
+        8.562741016195757
+      ],
+      "dimensionsMeters": [
+        0.7666156379250246,
+        3.886199994092976,
+        0.7617065887063355
+      ],
+      "boundsMeters": {
+        "min": [
+          -15.6083515170207,
+          0,
+          8.181887721842589
+        ],
+        "max": [
+          -14.841735879095676,
+          3.886199994092976,
+          8.943594310548924
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          213,
+          214,
+          215,
+          216
+        ],
+        "wallGuids": [
+          "4fe8a4",
+          "6271d3",
+          "858c19",
+          "c67fde"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -7925.77,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -7964.1,
+          -1693.26
+        ],
+        [
+          -7887.44,
+          -1693.26
+        ],
+        [
+          -7887.44,
+          -1617.09
+        ],
+        [
+          -7964.1,
+          -1617.09
+        ],
+        [
+          -7964.1,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -7956.6,
+          -1685.76
+        ],
+        [
+          -7894.94,
+          -1685.76
+        ],
+        [
+          -7894.94,
+          -1624.59
+        ],
+        [
+          -7956.6,
+          -1624.59
+        ],
+        [
+          -7956.6,
+          -1685.76
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-e8fa3fb70060",
+      "nodeName": "column_e8fa3fb70060",
+      "label": "C24",
+      "position": [
+        -22.934254337126987,
+        1.943099997046488,
+        8.562741016192708
+      ],
+      "dimensionsMeters": [
+        0.7666156379250069,
+        3.886199994092976,
+        0.761706588706339
+      ],
+      "boundsMeters": {
+        "min": [
+          -23.31756215608949,
+          0,
+          8.181887721839539
+        ],
+        "max": [
+          -22.550946518164483,
+          3.886199994092976,
+          8.943594310545878
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          209,
+          210,
+          211,
+          212
+        ],
+        "wallGuids": [
+          "53daf0",
+          "62d6b5",
+          "913ff5",
+          "e448af"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -8696.69,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -8735.02,
+          -1693.26
+        ],
+        [
+          -8658.36,
+          -1693.26
+        ],
+        [
+          -8658.36,
+          -1617.09
+        ],
+        [
+          -8735.02,
+          -1617.09
+        ],
+        [
+          -8735.02,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -8727.52,
+          -1685.76
+        ],
+        [
+          -8665.86,
+          -1685.76
+        ],
+        [
+          -8665.86,
+          -1624.59
+        ],
+        [
+          -8727.52,
+          -1624.59
+        ],
+        [
+          -8727.52,
+          -1685.76
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-45d9d6177283",
+      "nodeName": "column_45d9d6177283",
+      "label": "C25",
+      "position": [
+        -31.9171631464016,
+        1.943099997046488,
+        8.605662463846173
+      ],
+      "dimensionsMeters": [
+        0.7666156379249713,
+        3.886199994092976,
+        0.7617065887066996
+      ],
+      "boundsMeters": {
+        "min": [
+          -32.300470965364084,
+          0,
+          8.224809169492824
+        ],
+        "max": [
+          -31.533855327439113,
+          3.886199994092976,
+          8.986515758199523
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1258,
+          1259,
+          1261,
+          1262
+        ],
+        "wallGuids": [
+          "45b61e",
+          "4d6910",
+          "daca7f",
+          "f7b724"
+        ]
+      },
+      "confidence": "medium_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -9594.98,
+        "y": -1650.885
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -9633.31,
+          -1688.97
+        ],
+        [
+          -9556.65,
+          -1688.97
+        ],
+        [
+          -9556.65,
+          -1612.8
+        ],
+        [
+          -9633.31,
+          -1612.8
+        ],
+        [
+          -9633.31,
+          -1688.97
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -9625.81,
+          -1681.47
+        ],
+        [
+          -9564.15,
+          -1681.47
+        ],
+        [
+          -9564.15,
+          -1620.3
+        ],
+        [
+          -9625.81,
+          -1620.3
+        ],
+        [
+          -9625.81,
+          -1681.47
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": "Repeated square loop shares an edge with a larger narrow walkway feature and lies about 1.12 m from C26. Keep as a candidate pending source/photo review; do not claim two physically verified supports.",
+      "zone": null
+    },
+    {
+      "id": "column-887d27e648e6",
+      "nodeName": "column_887d27e648e6",
+      "label": "C26",
+      "position": [
+        -33.034533943375195,
+        1.943099997046488,
+        8.58460628512394
+      ],
+      "dimensionsMeters": [
+        0.7666156379248079,
+        3.886199994092976,
+        0.7617065887066747
+      ],
+      "boundsMeters": {
+        "min": [
+          -33.4178417623376,
+          0,
+          8.203752990770603
+        ],
+        "max": [
+          -32.651226124412794,
+          3.886199994092976,
+          8.965459579477278
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          161,
+          162,
+          163,
+          164
+        ],
+        "wallGuids": [
+          "1b7619",
+          "2163d0",
+          "aaa943",
+          "d55b47"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -9706.72,
+        "y": -1652.995
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -9745.05,
+          -1691.08
+        ],
+        [
+          -9668.39,
+          -1691.08
+        ],
+        [
+          -9668.39,
+          -1614.91
+        ],
+        [
+          -9745.05,
+          -1614.91
+        ],
+        [
+          -9745.05,
+          -1691.08
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -9737.55,
+          -1683.58
+        ],
+        [
+          -9675.89,
+          -1683.58
+        ],
+        [
+          -9675.89,
+          -1622.41
+        ],
+        [
+          -9737.55,
+          -1622.41
+        ],
+        [
+          -9737.55,
+          -1683.58
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-21818286d35d",
+      "nodeName": "column_21818286d35d",
+      "label": "C27",
+      "position": [
+        -40.06466596757888,
+        1.943099997046488,
+        8.562741016193602
+      ],
+      "dimensionsMeters": [
+        0.7666156379245876,
+        3.886199994092976,
+        0.7617065887064065
+      ],
+      "boundsMeters": {
+        "min": [
+          -40.447973786541176,
+          0,
+          8.181887721840399
+        ],
+        "max": [
+          -39.68135814861659,
+          3.886199994092976,
+          8.943594310546805
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          217,
+          218,
+          219,
+          220
+        ],
+        "wallGuids": [
+          "13c065",
+          "37ca38",
+          "cdefb3",
+          "df5235"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -10409.73,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -10448.06,
+          -1693.26
+        ],
+        [
+          -10371.4,
+          -1693.26
+        ],
+        [
+          -10371.4,
+          -1617.09
+        ],
+        [
+          -10448.06,
+          -1617.09
+        ],
+        [
+          -10448.06,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -10440.56,
+          -1685.76
+        ],
+        [
+          -10378.9,
+          -1685.76
+        ],
+        [
+          -10378.9,
+          -1624.59
+        ],
+        [
+          -10440.56,
+          -1624.59
+        ],
+        [
+          -10440.56,
+          -1685.76
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-ce943c0fb5c2",
+      "nodeName": "column_ce943c0fb5c2",
+      "label": "C28",
+      "position": [
+        -47.90319078409827,
+        1.943099997046488,
+        8.560071384905232
+      ],
+      "dimensionsMeters": [
+        0.7666156379258595,
+        3.886199994092976,
+        0.756666855155423
+      ],
+      "boundsMeters": {
+        "min": [
+          -48.2864986030612,
+          0,
+          8.18173795732752
+        ],
+        "max": [
+          -47.51988296513534,
+          3.886199994092976,
+          8.938404812482943
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          221,
+          222,
+          223,
+          224
+        ],
+        "wallGuids": [
+          "27977d",
+          "3b2f23",
+          "8a1038",
+          "915113"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -11193.585,
+        "y": -1655.445
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -11231.92,
+          -1693.28
+        ],
+        [
+          -11155.25,
+          -1693.28
+        ],
+        [
+          -11155.25,
+          -1617.61
+        ],
+        [
+          -11231.92,
+          -1617.61
+        ],
+        [
+          -11231.92,
+          -1693.28
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -11224.42,
+          -1685.78
+        ],
+        [
+          -11162.75,
+          -1685.78
+        ],
+        [
+          -11162.75,
+          -1625.13
+        ],
+        [
+          -11224.42,
+          -1625.11
+        ],
+        [
+          -11224.42,
+          -1685.78
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-9e141c322e07",
+      "nodeName": "column_9e141c322e07",
+      "label": "C29",
+      "position": [
+        -55.72933509291042,
+        1.943099997046488,
+        8.56274101619417
+      ],
+      "dimensionsMeters": [
+        0.76661563792495,
+        3.886199994092976,
+        0.7617065887066001
+      ],
+      "boundsMeters": {
+        "min": [
+          -56.11264291187289,
+          0,
+          8.181887721840871
+        ],
+        "max": [
+          -55.34602727394794,
+          3.886199994092976,
+          8.943594310547471
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          229,
+          230,
+          231,
+          232
+        ],
+        "wallGuids": [
+          "14c8ee",
+          "19c0a1",
+          "346434",
+          "d7638d"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -11976.2,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12014.53,
+          -1693.26
+        ],
+        [
+          -11937.87,
+          -1693.26
+        ],
+        [
+          -11937.87,
+          -1617.09
+        ],
+        [
+          -12014.53,
+          -1617.09
+        ],
+        [
+          -12014.53,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12007.03,
+          -1624.59
+        ],
+        [
+          -12007.03,
+          -1685.76
+        ],
+        [
+          -11945.37,
+          -1685.76
+        ],
+        [
+          -11945.37,
+          -1624.59
+        ],
+        [
+          -12007.03,
+          -1624.59
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-97dabebaad03",
+      "nodeName": "column_97dabebaad03",
+      "label": "C30",
+      "position": [
+        -63.640097177568705,
+        1.943099997046488,
+        8.562741016193284
+      ],
+      "dimensionsMeters": [
+        0.7666156379255327,
+        3.886199994092976,
+        0.7617065887070957
+      ],
+      "boundsMeters": {
+        "min": [
+          -64.02340499653147,
+          0,
+          8.181887721839736
+        ],
+        "max": [
+          -63.256789358605936,
+          3.886199994092976,
+          8.943594310546832
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          225,
+          226,
+          227,
+          228
+        ],
+        "wallGuids": [
+          "2a0dfe",
+          "49a3b3",
+          "d100d2",
+          "dfc7e7"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12767.28,
+        "y": -1655.175
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12805.61,
+          -1693.26
+        ],
+        [
+          -12728.95,
+          -1693.26
+        ],
+        [
+          -12728.95,
+          -1617.09
+        ],
+        [
+          -12805.61,
+          -1617.09
+        ],
+        [
+          -12805.61,
+          -1693.26
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12798.11,
+          -1685.76
+        ],
+        [
+          -12736.45,
+          -1685.76
+        ],
+        [
+          -12736.45,
+          -1624.59
+        ],
+        [
+          -12798.11,
+          -1624.59
+        ],
+        [
+          -12798.11,
+          -1685.76
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-e867804401a1",
+      "nodeName": "column_e867804401a1",
+      "label": "C31",
+      "position": [
+        -65.38370559779926,
+        1.943099997046488,
+        5.016825847520469
+      ],
+      "dimensionsMeters": [
+        0.7666156379249998,
+        3.886199994092976,
+        0.7617065887070957
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.76701341676176,
+          0,
+          4.635972553166921
+        ],
+        "max": [
+          -65.00039777883676,
+          3.886199994092976,
+          5.397679141874017
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          233,
+          234,
+          235,
+          236
+        ],
+        "wallGuids": [
+          "275262",
+          "735506",
+          "899f1f",
+          "ba14d2"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12941.64,
+        "y": -2009.7649999999999
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12979.97,
+          -2047.85
+        ],
+        [
+          -12903.31,
+          -2047.85
+        ],
+        [
+          -12903.31,
+          -1971.68
+        ],
+        [
+          -12979.97,
+          -1971.68
+        ],
+        [
+          -12979.97,
+          -2047.85
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12972.47,
+          -1979.18
+        ],
+        [
+          -12972.47,
+          -2040.35
+        ],
+        [
+          -12910.81,
+          -2040.35
+        ],
+        [
+          -12910.81,
+          -1979.18
+        ],
+        [
+          -12972.47,
+          -1979.18
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-3156ee7986df",
+      "nodeName": "column_3156ee7986df",
+      "label": "C32",
+      "position": [
+        -65.40031054957107,
+        1.943099997046488,
+        -2.690862844354683
+      ],
+      "dimensionsMeters": [
+        0.766615637926094,
+        3.886199994092976,
+        0.7617065887080567
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.78361836853412,
+          0,
+          -3.0717161387087115
+        ],
+        "max": [
+          -65.01700273060803,
+          3.886199994092976,
+          -2.3100095500006548
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          243,
+          244,
+          245,
+          246,
+          247
+        ],
+        "wallGuids": [
+          "6c0927",
+          "91ca46",
+          "b02889",
+          "c6c758",
+          "fd6555"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12943.3,
+        "y": -2780.535
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12981.63,
+          -2818.62
+        ],
+        [
+          -12904.97,
+          -2818.62
+        ],
+        [
+          -12904.97,
+          -2742.45
+        ],
+        [
+          -12981.63,
+          -2742.45
+        ],
+        [
+          -12981.63,
+          -2818.62
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12912.47,
+          -2811.12
+        ],
+        [
+          -12912.47,
+          -2749.95
+        ],
+        [
+          -12974.13,
+          -2749.95
+        ],
+        [
+          -12974.13,
+          -2802.15
+        ],
+        [
+          -12974.13,
+          -2811.12
+        ],
+        [
+          -12912.47,
+          -2811.12
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-81c79ff96e48",
+      "nodeName": "column_81c79ff96e48",
+      "label": "C33",
+      "position": [
+        -65.38470677738073,
+        1.943099997046488,
+        -11.25854539743958
+      ],
+      "dimensionsMeters": [
+        0.7666156379246729,
+        3.886199994092976,
+        0.7617065887080585
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.76801459634306,
+          0,
+          -11.639398691793609
+        ],
+        "max": [
+          -65.00139895841839,
+          3.886199994092976,
+          -10.87769210308555
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          237,
+          238,
+          239,
+          241,
+          242
+        ],
+        "wallGuids": [
+          "01e9ad",
+          "0339e3",
+          "09f96c",
+          "0b15e1",
+          "f28ff1"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12941.74,
+        "y": -3637.305
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12980.07,
+          -3675.39
+        ],
+        [
+          -12903.41,
+          -3675.39
+        ],
+        [
+          -12903.41,
+          -3599.22
+        ],
+        [
+          -12980.07,
+          -3599.22
+        ],
+        [
+          -12980.07,
+          -3675.39
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12910.91,
+          -3667.89
+        ],
+        [
+          -12910.91,
+          -3606.72
+        ],
+        [
+          -12972.57,
+          -3606.72
+        ],
+        [
+          -12972.57,
+          -3658.92
+        ],
+        [
+          -12972.57,
+          -3667.89
+        ],
+        [
+          -12910.91,
+          -3667.89
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-a9381f0a71be",
+      "nodeName": "column_a9381f0a71be",
+      "label": "C34",
+      "position": [
+        -65.38807849180421,
+        1.943099997046488,
+        -19.803247273148394
+      ],
+      "dimensionsMeters": [
+        0.7666156379246729,
+        3.886199994092976,
+        0.761706588708055
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.77138631076654,
+          0,
+          -20.184100567502423
+        ],
+        "max": [
+          -65.00477067284187,
+          3.886199994092976,
+          -19.422393978794368
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1270,
+          1271,
+          1272,
+          1273,
+          1274
+        ],
+        "wallGuids": [
+          "4e11b0",
+          "7181a7",
+          "90cc3c",
+          "9f659e",
+          "b424b7"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12942.07,
+        "y": -4491.775
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12980.4,
+          -4529.86
+        ],
+        [
+          -12903.74,
+          -4529.86
+        ],
+        [
+          -12903.74,
+          -4453.69
+        ],
+        [
+          -12980.4,
+          -4453.69
+        ],
+        [
+          -12980.4,
+          -4529.86
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12911.24,
+          -4522.36
+        ],
+        [
+          -12911.24,
+          -4461.19
+        ],
+        [
+          -12972.9,
+          -4461.19
+        ],
+        [
+          -12972.9,
+          -4513.39
+        ],
+        [
+          -12972.9,
+          -4522.36
+        ],
+        [
+          -12911.24,
+          -4522.36
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-77db6e0ff5af",
+      "nodeName": "column_77db6e0ff5af",
+      "label": "C35",
+      "position": [
+        -65.36551303080554,
+        1.943099997046488,
+        -28.29925675310335
+      ],
+      "dimensionsMeters": [
+        0.7666156379379743,
+        3.886199994092976,
+        0.7617065887085488
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.74882084977453,
+          0,
+          -28.680110047457624
+        ],
+        "max": [
+          -64.98220521183656,
+          3.886199994092976,
+          -27.918403458749076
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1264,
+          1265,
+          1266,
+          1268,
+          1269
+        ],
+        "wallGuids": [
+          "35e5c1",
+          "adaa44",
+          "c6cbc0",
+          "d4ce92",
+          "efd895"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12939.82,
+        "y": -5341.375
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12978.15,
+          -5379.46
+        ],
+        [
+          -12901.49,
+          -5379.46
+        ],
+        [
+          -12901.49,
+          -5303.29
+        ],
+        [
+          -12978.15,
+          -5303.29
+        ],
+        [
+          -12978.15,
+          -5379.46
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12908.99,
+          -5371.96
+        ],
+        [
+          -12908.99,
+          -5310.79
+        ],
+        [
+          -12970.65,
+          -5310.79
+        ],
+        [
+          -12970.65,
+          -5362.99
+        ],
+        [
+          -12970.65,
+          -5371.96
+        ],
+        [
+          -12908.99,
+          -5371.96
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-fc0ad1c131f2",
+      "nodeName": "column_fc0ad1c131f2",
+      "label": "C36",
+      "position": [
+        -65.38807849149575,
+        1.943099997046488,
+        -36.915653341640734
+      ],
+      "dimensionsMeters": [
+        0.7666156379271314,
+        3.886199994092976,
+        0.7617065887093233
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.77138631045932,
+          0,
+          -37.2965066359954
+        ],
+        "max": [
+          -65.00477067253219,
+          3.886199994092976,
+          -36.534800047286076
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          249,
+          250,
+          251,
+          253,
+          254
+        ],
+        "wallGuids": [
+          "25dca7",
+          "9bc7c5",
+          "9c3e2d",
+          "d125b4",
+          "d20f11"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12942.07,
+        "y": -6203.015
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12980.4,
+          -6241.1
+        ],
+        [
+          -12903.74,
+          -6241.1
+        ],
+        [
+          -12903.74,
+          -6164.93
+        ],
+        [
+          -12980.4,
+          -6164.93
+        ],
+        [
+          -12980.4,
+          -6241.1
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12911.24,
+          -6233.6
+        ],
+        [
+          -12911.24,
+          -6172.43
+        ],
+        [
+          -12972.9,
+          -6172.43
+        ],
+        [
+          -12972.9,
+          -6224.63
+        ],
+        [
+          -12972.9,
+          -6233.6
+        ],
+        [
+          -12911.24,
+          -6233.6
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    },
+    {
+      "id": "column-cd2fbfa1e062",
+      "nodeName": "column_cd2fbfa1e062",
+      "label": "C37",
+      "position": [
+        -65.38370559780603,
+        1.943099997046488,
+        -40.35794751951303
+      ],
+      "dimensionsMeters": [
+        0.7666156379385285,
+        3.886199994092976,
+        0.7617065887093304
+      ],
+      "boundsMeters": {
+        "min": [
+          -65.76701341677528,
+          0,
+          -40.7388008138677
+        ],
+        "max": [
+          -65.00039777883676,
+          3.886199994092976,
+          -39.97709422515837
+        ]
+      },
+      "sourceRefs": {
+        "designId": 241952337,
+        "wallIndices": [
+          1276,
+          1277,
+          1278,
+          1280,
+          1281
+        ],
+        "wallGuids": [
+          "342983",
+          "a0b1a7",
+          "a409fe",
+          "dcce05",
+          "e5a41a"
+        ]
+      },
+      "confidence": "high_model_pattern_match",
+      "physicalVerification": "not-verified",
+      "sourceCenterCm": {
+        "x": -12941.64,
+        "y": -6547.245
+      },
+      "sourceHeightCm": 388.6199994092976,
+      "sourceFootprintCm": [
+        [
+          -12979.97,
+          -6585.33
+        ],
+        [
+          -12903.31,
+          -6585.33
+        ],
+        [
+          -12903.31,
+          -6509.16
+        ],
+        [
+          -12979.97,
+          -6509.16
+        ],
+        [
+          -12979.97,
+          -6585.33
+        ]
+      ],
+      "sourceCenterlinePolygonCm": [
+        [
+          -12972.47,
+          -6577.83
+        ],
+        [
+          -12910.81,
+          -6577.83
+        ],
+        [
+          -12910.81,
+          -6516.66
+        ],
+        [
+          -12972.47,
+          -6516.66
+        ],
+        [
+          -12972.47,
+          -6568.86
+        ],
+        [
+          -12972.47,
+          -6577.83
+        ]
+      ],
+      "provenance": "Closed repeated near-square source wall loop, centroid within the native Walkway surface; classification is model-derived, not a physical column survey.",
+      "reviewNote": null,
+      "zone": null
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "surface-21d449",
+      "category": "walkway",
+      "sourceIndex": 0,
+      "sourceGuid": "21d449",
+      "bottomMeters": 0.12710159980680558,
+      "thicknessMeters": 0.12710159980680558
+    },
+    {
+      "id": "surface-8c7925",
+      "category": "canopy",
+      "sourceIndex": 1,
+      "sourceGuid": "8c7925",
+      "bottomMeters": 3.75909839428617,
+      "thicknessMeters": 0.12710159980680558
+    }
+  ],
+  "openings": [
+    {
+      "id": "opening-9f8696-2f9bf4",
+      "type": "door",
+      "sourceWallIndex": 100,
+      "sourceWallGuid": "9f8696",
+      "sourceOpeningGuid": "2f9bf4",
+      "sourceCatalogRef": "200",
+      "position": [
+        -25.691782235495765,
+        1.1,
+        36.28751295468136
+      ],
+      "widthMeters": 1.0174434548324165,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-ec93ff-c1a256",
+      "type": "door",
+      "sourceWallIndex": 130,
+      "sourceWallGuid": "ec93ff",
+      "sourceOpeningGuid": "c1a256",
+      "sourceCatalogRef": "201",
+      "position": [
+        -69.482043150401,
+        1.1,
+        7.930053460834847
+      ],
+      "widthMeters": 1.0356814236578413,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-e867f8-fbe746",
+      "type": "window",
+      "sourceWallIndex": 132,
+      "sourceWallGuid": "e867f8",
+      "sourceOpeningGuid": "fbe746",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48298048224473,
+        1.45,
+        9.758271058739842
+      ],
+      "widthMeters": 1.9499462124562927,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d94eac-5e8e3c",
+      "type": "window",
+      "sourceWallIndex": 146,
+      "sourceWallGuid": "d94eac",
+      "sourceOpeningGuid": "5e8e3c",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.47609192359673,
+        1.45,
+        -17.989620606761896
+      ],
+      "widthMeters": 1.2064212832479393,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d94eac-74dd4f",
+      "type": "door",
+      "sourceWallIndex": 146,
+      "sourceWallGuid": "d94eac",
+      "sourceOpeningGuid": "74dd4f",
+      "sourceCatalogRef": "208",
+      "position": [
+        -69.47737075372213,
+        1.1,
+        -19.517542562461728
+      ],
+      "widthMeters": 1.8364013627973383,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-d94eac-eb3fa5",
+      "type": "window",
+      "sourceWallIndex": 146,
+      "sourceWallGuid": "d94eac",
+      "sourceOpeningGuid": "eb3fa5",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.47959386199554,
+        1.45,
+        -22.17367012264745
+      ],
+      "widthMeters": 3.454431162767976,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d80aa6-dc0910",
+      "type": "door",
+      "sourceWallIndex": 291,
+      "sourceWallGuid": "d80aa6",
+      "sourceOpeningGuid": "dc0910",
+      "sourceCatalogRef": "200",
+      "position": [
+        48.905971585635896,
+        1.1,
+        38.75061416230645
+      ],
+      "widthMeters": 0.9411979787682889,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-95be35-497dc8",
+      "type": "door",
+      "sourceWallIndex": 308,
+      "sourceWallGuid": "95be35",
+      "sourceOpeningGuid": "497dc8",
+      "sourceCatalogRef": "200",
+      "position": [
+        48.074646222694426,
+        1.1,
+        37.740291973077625
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8b2f57-447b77",
+      "type": "door",
+      "sourceWallIndex": 313,
+      "sourceWallGuid": "8b2f57",
+      "sourceOpeningGuid": "447b77",
+      "sourceCatalogRef": "200",
+      "position": [
+        48.07464622269456,
+        1.1,
+        34.940067872839876
+      ],
+      "widthMeters": 0.8906036002208111,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2cd61c-6f3432",
+      "type": "door",
+      "sourceWallIndex": 318,
+      "sourceWallGuid": "2cd61c",
+      "sourceOpeningGuid": "6f3432",
+      "sourceCatalogRef": "200",
+      "position": [
+        47.621677596802876,
+        1.1,
+        23.331466008977067
+      ],
+      "widthMeters": 1.0400938165201228,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2cd61c-cd548a",
+      "type": "window",
+      "sourceWallIndex": 318,
+      "sourceWallGuid": "2cd61c",
+      "sourceOpeningGuid": "cd548a",
+      "sourceCatalogRef": "218",
+      "position": [
+        47.62167759680287,
+        1.45,
+        22.42163790670124
+      ],
+      "widthMeters": 0.7553318726351418,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-2cd61c-071eac",
+      "type": "window",
+      "sourceWallIndex": 318,
+      "sourceWallGuid": "2cd61c",
+      "sourceOpeningGuid": "071eac",
+      "sourceCatalogRef": "218",
+      "position": [
+        47.621677596802876,
+        1.45,
+        24.183488082649777
+      ],
+      "widthMeters": 0.6520511850144294,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-6aa4b4-6b3056",
+      "type": "door",
+      "sourceWallIndex": 333,
+      "sourceWallGuid": "6aa4b4",
+      "sourceOpeningGuid": "6b3056",
+      "sourceCatalogRef": "200",
+      "position": [
+        47.00200206782181,
+        1.1,
+        25.24491573915167
+      ],
+      "widthMeters": 1.0285011704256308,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-bebccb-a3bd9b",
+      "type": "door",
+      "sourceWallIndex": 344,
+      "sourceWallGuid": "bebccb",
+      "sourceOpeningGuid": "a3bd9b",
+      "sourceCatalogRef": "208",
+      "position": [
+        49.41829454143438,
+        1.1,
+        12.941212193315435
+      ],
+      "widthMeters": 1.857023739273346,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-bebccb-3bab20",
+      "type": "window",
+      "sourceWallIndex": 344,
+      "sourceWallGuid": "bebccb",
+      "sourceOpeningGuid": "3bab20",
+      "sourceCatalogRef": "218",
+      "position": [
+        47.515352272651526,
+        1.45,
+        12.941212193315438
+      ],
+      "widthMeters": 1.941930532355629,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-bebccb-17e42b",
+      "type": "window",
+      "sourceWallIndex": 344,
+      "sourceWallGuid": "bebccb",
+      "sourceOpeningGuid": "17e42b",
+      "sourceCatalogRef": "218",
+      "position": [
+        51.32423784741259,
+        1.45,
+        12.941212193315431
+      ],
+      "widthMeters": 1.9423313541920948,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b5dabf-a37296",
+      "type": "window",
+      "sourceWallIndex": 365,
+      "sourceWallGuid": "b5dabf",
+      "sourceOpeningGuid": "a37296",
+      "sourceCatalogRef": "218",
+      "position": [
+        53.68303691150422,
+        1.45,
+        12.942553002058379
+      ],
+      "widthMeters": 1.8550305677985035,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b5dabf-e2c3e2",
+      "type": "door",
+      "sourceWallIndex": 365,
+      "sourceWallGuid": "b5dabf",
+      "sourceOpeningGuid": "e2c3e2",
+      "sourceCatalogRef": "210",
+      "position": [
+        55.593625686465295,
+        1.1,
+        12.942623670228716
+      ],
+      "widthMeters": 1.7900000000000005,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b5dabf-80c93d",
+      "type": "window",
+      "sourceWallIndex": 365,
+      "sourceWallGuid": "b5dabf",
+      "sourceOpeningGuid": "80c93d",
+      "sourceCatalogRef": "218",
+      "position": [
+        57.45284640826696,
+        1.45,
+        12.94269243841598
+      ],
+      "widthMeters": 1.7531773978530998,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b5dabf-296483",
+      "type": "window",
+      "sourceWallIndex": 365,
+      "sourceWallGuid": "b5dabf",
+      "sourceOpeningGuid": "296483",
+      "sourceCatalogRef": "218",
+      "position": [
+        59.37582458810295,
+        1.45,
+        12.942763564841169
+      ],
+      "widthMeters": 1.8944991228650974,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-f7dff5-90b9b9",
+      "type": "window",
+      "sourceWallIndex": 369,
+      "sourceWallGuid": "f7dff5",
+      "sourceOpeningGuid": "90b9b9",
+      "sourceCatalogRef": "218",
+      "position": [
+        63.696582720841924,
+        1.45,
+        12.94291252361755
+      ],
+      "widthMeters": 1.8283341231233599,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-f7dff5-647c2f",
+      "type": "door",
+      "sourceWallIndex": 369,
+      "sourceWallGuid": "f7dff5",
+      "sourceOpeningGuid": "647c2f",
+      "sourceCatalogRef": "210",
+      "position": [
+        65.87819500710056,
+        1.1,
+        12.94291252361755
+      ],
+      "widthMeters": 1.9318034919002098,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-f7dff5-d66612",
+      "type": "window",
+      "sourceWallIndex": 369,
+      "sourceWallGuid": "f7dff5",
+      "sourceOpeningGuid": "d66612",
+      "sourceCatalogRef": "218",
+      "position": [
+        68.07077987443094,
+        1.45,
+        12.942912523617554
+      ],
+      "widthMeters": 1.8283163201919275,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-f7dff5-680d59",
+      "type": "window",
+      "sourceWallIndex": 369,
+      "sourceWallGuid": "f7dff5",
+      "sourceOpeningGuid": "680d59",
+      "sourceCatalogRef": "218",
+      "position": [
+        70.19882685478052,
+        1.45,
+        12.942912523617554
+      ],
+      "widthMeters": 1.8279626331491783,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-f7dff5-e8d481",
+      "type": "window",
+      "sourceWallIndex": 369,
+      "sourceWallGuid": "f7dff5",
+      "sourceOpeningGuid": "e8d481",
+      "sourceCatalogRef": "218",
+      "position": [
+        61.55653415624198,
+        1.45,
+        12.94291252361755
+      ],
+      "widthMeters": 1.8280651018332146,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b1a8de-16e9e9",
+      "type": "door",
+      "sourceWallIndex": 378,
+      "sourceWallGuid": "b1a8de",
+      "sourceOpeningGuid": "16e9e9",
+      "sourceCatalogRef": "208",
+      "position": [
+        41.497742156447366,
+        1.1,
+        15.821496230214887
+      ],
+      "widthMeters": 1.9740608084191553,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-51fc89-175c94",
+      "type": "window",
+      "sourceWallIndex": 382,
+      "sourceWallGuid": "51fc89",
+      "sourceOpeningGuid": "175c94",
+      "sourceCatalogRef": "218",
+      "position": [
+        43.11236242052282,
+        1.45,
+        13.731933524690655
+      ],
+      "widthMeters": 1.377374999422649,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-823125-7c3fc5",
+      "type": "window",
+      "sourceWallIndex": 383,
+      "sourceWallGuid": "823125",
+      "sourceOpeningGuid": "7c3fc5",
+      "sourceCatalogRef": "218",
+      "position": [
+        39.87624908393322,
+        1.45,
+        13.731056283820418
+      ],
+      "widthMeters": 1.3461321564804285,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-1a5d19-9a8f03",
+      "type": "window",
+      "sourceWallIndex": 385,
+      "sourceWallGuid": "1a5d19",
+      "sourceOpeningGuid": "9a8f03",
+      "sourceCatalogRef": "218",
+      "position": [
+        44.22588941205037,
+        1.45,
+        12.941778479249944
+      ],
+      "widthMeters": 0.8432413241493555,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a9ab91-e666a0",
+      "type": "window",
+      "sourceWallIndex": 389,
+      "sourceWallGuid": "a9ab91",
+      "sourceOpeningGuid": "e666a0",
+      "sourceCatalogRef": "218",
+      "position": [
+        38.77173610979127,
+        1.45,
+        12.941778479249948
+      ],
+      "widthMeters": 0.8382101805167502,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a4cd0b-8c2283",
+      "type": "window",
+      "sourceWallIndex": 392,
+      "sourceWallGuid": "a4cd0b",
+      "sourceOpeningGuid": "8c2283",
+      "sourceCatalogRef": "218",
+      "position": [
+        45.35089066442704,
+        1.45,
+        12.941778479249999
+      ],
+      "widthMeters": 0.843029777263755,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-1bcf5b-04c06f",
+      "type": "door",
+      "sourceWallIndex": 396,
+      "sourceWallGuid": "1bcf5b",
+      "sourceOpeningGuid": "04c06f",
+      "sourceCatalogRef": "208",
+      "position": [
+        44.34159101903217,
+        1.1,
+        36.230745626789215
+      ],
+      "widthMeters": 1.3839019238824672,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-fe288c-34c7ef",
+      "type": "window",
+      "sourceWallIndex": 399,
+      "sourceWallGuid": "fe288c",
+      "sourceOpeningGuid": "34c7ef",
+      "sourceCatalogRef": "218",
+      "position": [
+        37.708690471005255,
+        1.45,
+        12.94205447514204
+      ],
+      "widthMeters": 0.8371550336590394,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-abbd85-fbacba",
+      "type": "door",
+      "sourceWallIndex": 405,
+      "sourceWallGuid": "abbd85",
+      "sourceOpeningGuid": "fbacba",
+      "sourceCatalogRef": "200",
+      "position": [
+        38.86688138720229,
+        1.1,
+        37.56512326559845
+      ],
+      "widthMeters": 0.8953488974965773,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-1d2879-d470af",
+      "type": "door",
+      "sourceWallIndex": 406,
+      "sourceWallGuid": "1d2879",
+      "sourceOpeningGuid": "d470af",
+      "sourceCatalogRef": "200",
+      "position": [
+        43.64674933223134,
+        1.1,
+        38.75061416230838
+      ],
+      "widthMeters": 1.6262123655130147,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-05802a-ee601d",
+      "type": "door",
+      "sourceWallIndex": 418,
+      "sourceWallGuid": "05802a",
+      "sourceOpeningGuid": "ee601d",
+      "sourceCatalogRef": "200",
+      "position": [
+        33.943888824768614,
+        1.1,
+        36.97633544314212
+      ],
+      "widthMeters": 1.0488651571607557,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8ed968-6b9cae",
+      "type": "door",
+      "sourceWallIndex": 433,
+      "sourceWallGuid": "8ed968",
+      "sourceOpeningGuid": "6b9cae",
+      "sourceCatalogRef": "200",
+      "position": [
+        32.40773290387082,
+        1.1,
+        38.159202777075635
+      ],
+      "widthMeters": 0.896097824226739,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-f7acc9-c13509",
+      "type": "door",
+      "sourceWallIndex": 434,
+      "sourceWallGuid": "f7acc9",
+      "sourceOpeningGuid": "c13509",
+      "sourceCatalogRef": "200",
+      "position": [
+        33.11254309878618,
+        1.1,
+        38.749929608272815
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-0b0ea01d3c00-6670ba",
+      "type": "window",
+      "sourceWallIndex": 437,
+      "sourceWallGuid": "0b0ea01d3c00",
+      "sourceOpeningGuid": "6670ba",
+      "sourceCatalogRef": "218",
+      "position": [
+        31.84490431127854,
+        1.45,
+        12.943118611128805
+      ],
+      "widthMeters": 1.5255111473621679,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-0b0ea01d3c00-2acdc6",
+      "type": "door",
+      "sourceWallIndex": 437,
+      "sourceWallGuid": "0b0ea01d3c00",
+      "sourceOpeningGuid": "2acdc6",
+      "sourceCatalogRef": "208",
+      "position": [
+        33.8395285353803,
+        1.1,
+        12.942879192402629
+      ],
+      "widthMeters": 1.9648716658635885,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-0b0ea01d3c00-017c12",
+      "type": "window",
+      "sourceWallIndex": 437,
+      "sourceWallGuid": "0b0ea01d3c00",
+      "sourceOpeningGuid": "017c12",
+      "sourceCatalogRef": "218",
+      "position": [
+        35.79833855384051,
+        1.45,
+        12.942644072527028
+      ],
+      "widthMeters": 1.5254364920795973,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-6b1bac-65d32b",
+      "type": "window",
+      "sourceWallIndex": 438,
+      "sourceWallGuid": "6b1bac",
+      "sourceOpeningGuid": "65d32b",
+      "sourceCatalogRef": "218",
+      "position": [
+        29.221162513827768,
+        1.45,
+        12.943250958305304
+      ],
+      "widthMeters": 2.582928968785716,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-cb3160-9a10b3",
+      "type": "door",
+      "sourceWallIndex": 440,
+      "sourceWallGuid": "cb3160",
+      "sourceOpeningGuid": "9a10b3",
+      "sourceCatalogRef": "200",
+      "position": [
+        28.72079954227005,
+        1.1,
+        31.045085325177926
+      ],
+      "widthMeters": 1.0211254306475122,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-7f9fdf-b11e37",
+      "type": "door",
+      "sourceWallIndex": 441,
+      "sourceWallGuid": "7f9fdf",
+      "sourceOpeningGuid": "b11e37",
+      "sourceCatalogRef": "200",
+      "position": [
+        29.896534824915896,
+        1.1,
+        31.953816410509592
+      ],
+      "widthMeters": 0.9889221193164904,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-da04a0-26b9ee",
+      "type": "door",
+      "sourceWallIndex": 445,
+      "sourceWallGuid": "da04a0",
+      "sourceOpeningGuid": "26b9ee",
+      "sourceCatalogRef": "200",
+      "position": [
+        15.85323945504494,
+        1.1,
+        38.03565446289092
+      ],
+      "widthMeters": 0.9068478627379445,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-121091-a060c4",
+      "type": "window",
+      "sourceWallIndex": 447,
+      "sourceWallGuid": "121091",
+      "sourceOpeningGuid": "a060c4",
+      "sourceCatalogRef": "218",
+      "position": [
+        27.503907742762426,
+        1.45,
+        13.738459353541337
+      ],
+      "widthMeters": 1.0540988559903852,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d7e825-adafc6",
+      "type": "door",
+      "sourceWallIndex": 452,
+      "sourceWallGuid": "d7e825",
+      "sourceOpeningGuid": "adafc6",
+      "sourceCatalogRef": "200",
+      "position": [
+        28.72079954227023,
+        1.1,
+        36.54491798192952
+      ],
+      "widthMeters": 1.0210296871929958,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-506574-c183f7",
+      "type": "door",
+      "sourceWallIndex": 456,
+      "sourceWallGuid": "506574",
+      "sourceOpeningGuid": "c183f7",
+      "sourceCatalogRef": "200",
+      "position": [
+        17.91719878706308,
+        1.1,
+        38.7466302259015
+      ],
+      "widthMeters": 1.0147202598297758,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8634cd-37c86c",
+      "type": "door",
+      "sourceWallIndex": 457,
+      "sourceWallGuid": "8634cd",
+      "sourceOpeningGuid": "37c86c",
+      "sourceCatalogRef": "209",
+      "position": [
+        26.012229079063836,
+        1.1,
+        14.430166355201528
+      ],
+      "widthMeters": 1.9752397520123213,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8f4324-0aba0f",
+      "type": "door",
+      "sourceWallIndex": 460,
+      "sourceWallGuid": "8f4324",
+      "sourceOpeningGuid": "0aba0f",
+      "sourceCatalogRef": "200",
+      "position": [
+        25.91051629530265,
+        1.1,
+        38.747949486008395
+      ],
+      "widthMeters": 1.319636647389285,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-816cb9-160737",
+      "type": "window",
+      "sourceWallIndex": 462,
+      "sourceWallGuid": "816cb9",
+      "sourceOpeningGuid": "160737",
+      "sourceCatalogRef": "218",
+      "position": [
+        24.512692778199764,
+        1.45,
+        13.76768105244202
+      ],
+      "widthMeters": 1.0525359732660713,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-649706-1b891b",
+      "type": "door",
+      "sourceWallIndex": 465,
+      "sourceWallGuid": "649706",
+      "sourceOpeningGuid": "1b891b",
+      "sourceCatalogRef": "200",
+      "position": [
+        23.86404144040242,
+        1.1,
+        32.742533716923525
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-9037bb-36d43b",
+      "type": "door",
+      "sourceWallIndex": 469,
+      "sourceWallGuid": "9037bb",
+      "sourceOpeningGuid": "36d43b",
+      "sourceCatalogRef": "200",
+      "position": [
+        17.624162812871017,
+        1.1,
+        33.78326456493384
+      ],
+      "widthMeters": 1.0105394650981656,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2ff57c-0bfdea",
+      "type": "window",
+      "sourceWallIndex": 470,
+      "sourceWallGuid": "2ff57c",
+      "sourceOpeningGuid": "0bfdea",
+      "sourceCatalogRef": "218",
+      "position": [
+        22.804043498187692,
+        1.45,
+        12.94325094858794
+      ],
+      "widthMeters": 2.58411748082957,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a272ab-bdcf01",
+      "type": "window",
+      "sourceWallIndex": 474,
+      "sourceWallGuid": "a272ab",
+      "sourceOpeningGuid": "bdcf01",
+      "sourceCatalogRef": "218",
+      "position": [
+        15.086887289608194,
+        1.45,
+        12.94325094859217
+      ],
+      "widthMeters": 1.3701048301565835,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a272ab-b85a09",
+      "type": "door",
+      "sourceWallIndex": 474,
+      "sourceWallGuid": "a272ab",
+      "sourceOpeningGuid": "b85a09",
+      "sourceCatalogRef": "200",
+      "position": [
+        16.690409910276696,
+        1.1,
+        12.943250948591078
+      ],
+      "widthMeters": 1.06116703079329,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-a272ab-9d79f2",
+      "type": "window",
+      "sourceWallIndex": 474,
+      "sourceWallGuid": "a272ab",
+      "sourceOpeningGuid": "9d79f2",
+      "sourceCatalogRef": "218",
+      "position": [
+        18.302083139347623,
+        1.45,
+        12.943250948589982
+      ],
+      "widthMeters": 1.3601155306802093,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a272ab-93835b",
+      "type": "window",
+      "sourceWallIndex": 474,
+      "sourceWallGuid": "a272ab",
+      "sourceOpeningGuid": "93835b",
+      "sourceCatalogRef": "218",
+      "position": [
+        20.02278098653308,
+        1.45,
+        12.943250948588814
+      ],
+      "widthMeters": 1.3583248096341618,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b63854-023cf3",
+      "type": "door",
+      "sourceWallIndex": 482,
+      "sourceWallGuid": "b63854",
+      "sourceOpeningGuid": "023cf3",
+      "sourceCatalogRef": "200",
+      "position": [
+        0.8190203340229618,
+        1.1,
+        34.75362712912682
+      ],
+      "widthMeters": 1.0274681791691638,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-9fa7db-6bd38e",
+      "type": "door",
+      "sourceWallIndex": 493,
+      "sourceWallGuid": "9fa7db",
+      "sourceOpeningGuid": "6bd38e",
+      "sourceCatalogRef": "200",
+      "position": [
+        11.950433932017768,
+        1.1,
+        35.95675178899675
+      ],
+      "widthMeters": 0.7367685198008871,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-577473-086daa",
+      "type": "door",
+      "sourceWallIndex": 497,
+      "sourceWallGuid": "577473",
+      "sourceOpeningGuid": "086daa",
+      "sourceCatalogRef": "200",
+      "position": [
+        11.950433932017768,
+        1.1,
+        38.26581820958044
+      ],
+      "widthMeters": 0.7302549215151566,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-f63c49-6547fa",
+      "type": "door",
+      "sourceWallIndex": 505,
+      "sourceWallGuid": "f63c49",
+      "sourceOpeningGuid": "6547fa",
+      "sourceCatalogRef": "200",
+      "position": [
+        11.349060337570782,
+        1.1,
+        37.20618582314285
+      ],
+      "widthMeters": 0.8879341188678928,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-42c6f9-61042c",
+      "type": "door",
+      "sourceWallIndex": 513,
+      "sourceWallGuid": "42c6f9",
+      "sourceOpeningGuid": "61042c",
+      "sourceCatalogRef": "200",
+      "position": [
+        11.207352271013105,
+        1.1,
+        38.74754470731066
+      ],
+      "widthMeters": 0.9799999999999994,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-030e3c-4b3e26",
+      "type": "door",
+      "sourceWallIndex": 517,
+      "sourceWallGuid": "030e3c",
+      "sourceOpeningGuid": "4b3e26",
+      "sourceCatalogRef": "200",
+      "position": [
+        7.1446177899781285,
+        1.1,
+        36.03104935850993
+      ],
+      "widthMeters": 0.8641324697541086,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-daa3bf-45683d",
+      "type": "door",
+      "sourceWallIndex": 524,
+      "sourceWallGuid": "daa3bf",
+      "sourceOpeningGuid": "45683d",
+      "sourceCatalogRef": "200",
+      "position": [
+        11.467944617870543,
+        1.1,
+        17.245992787856366
+      ],
+      "widthMeters": 0.88811520563476,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-11d080-fede40",
+      "type": "door",
+      "sourceWallIndex": 531,
+      "sourceWallGuid": "11d080",
+      "sourceOpeningGuid": "fede40",
+      "sourceCatalogRef": "200",
+      "position": [
+        8.442882601081129,
+        1.1,
+        17.079840706902797
+      ],
+      "widthMeters": 0.8899988011333005,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cf2a07-b1af0c",
+      "type": "window",
+      "sourceWallIndex": 538,
+      "sourceWallGuid": "cf2a07",
+      "sourceOpeningGuid": "b1af0c",
+      "sourceCatalogRef": "218",
+      "position": [
+        1.489334872952868,
+        1.45,
+        12.943250948589522
+      ],
+      "widthMeters": 1.118436868985254,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-cf2a07-41dd15",
+      "type": "door",
+      "sourceWallIndex": 538,
+      "sourceWallGuid": "cf2a07",
+      "sourceOpeningGuid": "41dd15",
+      "sourceCatalogRef": "200",
+      "position": [
+        2.6198761180534165,
+        1.1,
+        12.943250948589522
+      ],
+      "widthMeters": 1.1162047044065178,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cf2a07-a8cdcd",
+      "type": "window",
+      "sourceWallIndex": 538,
+      "sourceWallGuid": "cf2a07",
+      "sourceOpeningGuid": "a8cdcd",
+      "sourceCatalogRef": "218",
+      "position": [
+        3.909201292652797,
+        1.45,
+        12.94325094858952
+      ],
+      "widthMeters": 1.428011064847916,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-cd8a7b-6c5fbb",
+      "type": "window",
+      "sourceWallIndex": 539,
+      "sourceWallGuid": "cd8a7b",
+      "sourceOpeningGuid": "6c5fbb",
+      "sourceCatalogRef": "218",
+      "position": [
+        7.828362098309681,
+        1.45,
+        12.943250948589567
+      ],
+      "widthMeters": 2.4432367969104987,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-cd8a7b-27f1b3",
+      "type": "door",
+      "sourceWallIndex": 539,
+      "sourceWallGuid": "cd8a7b",
+      "sourceOpeningGuid": "27f1b3",
+      "sourceCatalogRef": "208",
+      "position": [
+        9.97377264028718,
+        1.1,
+        12.943250948589569
+      ],
+      "widthMeters": 1.8280444009020562,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cd8a7b-37e643",
+      "type": "window",
+      "sourceWallIndex": 539,
+      "sourceWallGuid": "cd8a7b",
+      "sourceOpeningGuid": "37e643",
+      "sourceCatalogRef": "218",
+      "position": [
+        12.13400056275531,
+        1.45,
+        12.94325094858957
+      ],
+      "widthMeters": 2.4684617068375885,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-7c0b3b-608625",
+      "type": "door",
+      "sourceWallIndex": 544,
+      "sourceWallGuid": "7c0b3b",
+      "sourceOpeningGuid": "608625",
+      "sourceCatalogRef": "200",
+      "position": [
+        2.8924450036695633,
+        1.1,
+        30.06960543873541
+      ],
+      "widthMeters": 1.0402605192804923,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-84a08bb77bc0-07942a",
+      "type": "door",
+      "sourceWallIndex": 549,
+      "sourceWallGuid": "84a08bb77bc0",
+      "sourceOpeningGuid": "07942a",
+      "sourceCatalogRef": "200",
+      "position": [
+        3.800462986850216,
+        1.1,
+        38.74518688974977
+      ],
+      "widthMeters": 0.9402825387372548,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-db8b17-505fd5",
+      "type": "door",
+      "sourceWallIndex": 557,
+      "sourceWallGuid": "db8b17",
+      "sourceOpeningGuid": "505fd5",
+      "sourceCatalogRef": "200",
+      "position": [
+        4.715457371879047,
+        1.1,
+        32.83906337703886
+      ],
+      "widthMeters": 1.0397322659452062,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-dfbf16-4d382f",
+      "type": "door",
+      "sourceWallIndex": 560,
+      "sourceWallGuid": "dfbf16",
+      "sourceOpeningGuid": "4d382f",
+      "sourceCatalogRef": "200",
+      "position": [
+        -2.779240230298201,
+        1.1,
+        20.813484005308936
+      ],
+      "widthMeters": 1.016577513226638,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-ce8819-f577c7",
+      "type": "door",
+      "sourceWallIndex": 563,
+      "sourceWallGuid": "ce8819",
+      "sourceOpeningGuid": "f577c7",
+      "sourceCatalogRef": "208",
+      "position": [
+        -5.172683222676978,
+        1.1,
+        12.943250948590249
+      ],
+      "widthMeters": 2.0136705110199125,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-31215f-0e5801",
+      "type": "window",
+      "sourceWallIndex": 565,
+      "sourceWallGuid": "31215f",
+      "sourceOpeningGuid": "0e5801",
+      "sourceCatalogRef": "218",
+      "position": [
+        -3.23791335332362,
+        1.45,
+        12.94325094859009
+      ],
+      "widthMeters": 1.0050944774415063,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-31215f-f1f6fa",
+      "type": "window",
+      "sourceWallIndex": 565,
+      "sourceWallGuid": "31215f",
+      "sourceOpeningGuid": "f1f6fa",
+      "sourceCatalogRef": "218",
+      "position": [
+        -1.9275991584497842,
+        1.45,
+        12.943250948589876
+      ],
+      "widthMeters": 1.0093787040561752,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-31215f-a7879a",
+      "type": "window",
+      "sourceWallIndex": 565,
+      "sourceWallGuid": "31215f",
+      "sourceOpeningGuid": "a7879a",
+      "sourceCatalogRef": "218",
+      "position": [
+        -0.6121950878237566,
+        1.45,
+        12.94325094858966
+      ],
+      "widthMeters": 0.9996779642250317,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-87a5ea-6c60c6",
+      "type": "door",
+      "sourceWallIndex": 579,
+      "sourceWallGuid": "87a5ea",
+      "sourceOpeningGuid": "6c60c6",
+      "sourceCatalogRef": "200",
+      "position": [
+        -2.8669039207886273,
+        1.1,
+        34.984722551128655
+      ],
+      "widthMeters": 1.0171658772980345,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-61b0ad-e4001c",
+      "type": "door",
+      "sourceWallIndex": 590,
+      "sourceWallGuid": "61b0ad",
+      "sourceOpeningGuid": "e4001c",
+      "sourceCatalogRef": "200",
+      "position": [
+        -0.041378077124099945,
+        1.1,
+        36.5737093765305
+      ],
+      "widthMeters": 0.997798445972304,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-41b741-f7f4ac",
+      "type": "door",
+      "sourceWallIndex": 599,
+      "sourceWallGuid": "41b741",
+      "sourceOpeningGuid": "f7f4ac",
+      "sourceCatalogRef": "200",
+      "position": [
+        -0.5653363201975572,
+        1.1,
+        37.79234534619581
+      ],
+      "widthMeters": 1.0149708300298153,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-e5b2f8-5227c2",
+      "type": "door",
+      "sourceWallIndex": 611,
+      "sourceWallGuid": "e5b2f8",
+      "sourceOpeningGuid": "5227c2",
+      "sourceCatalogRef": "208",
+      "position": [
+        -26.63367850112828,
+        1.1,
+        13.655168754039941
+      ],
+      "widthMeters": 1.9297915737944686,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-5d725c-65c160",
+      "type": "window",
+      "sourceWallIndex": 614,
+      "sourceWallGuid": "5d725c",
+      "sourceOpeningGuid": "65c160",
+      "sourceCatalogRef": "218",
+      "position": [
+        -24.01698938660039,
+        1.45,
+        12.938018624546023
+      ],
+      "widthMeters": 0.749879833868937,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-5d725c-dba418",
+      "type": "window",
+      "sourceWallIndex": 614,
+      "sourceWallGuid": "5d725c",
+      "sourceOpeningGuid": "dba418",
+      "sourceCatalogRef": "218",
+      "position": [
+        -22.65181713558711,
+        1.45,
+        12.93801862454882
+      ],
+      "widthMeters": 0.7422764118979057,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-5d725c-da409f",
+      "type": "window",
+      "sourceWallIndex": 614,
+      "sourceWallGuid": "5d725c",
+      "sourceOpeningGuid": "da409f",
+      "sourceCatalogRef": "218",
+      "position": [
+        -21.268662402737547,
+        1.45,
+        12.938018624551654
+      ],
+      "widthMeters": 0.7503625492763695,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-db2c5f-f5e14c",
+      "type": "window",
+      "sourceWallIndex": 623,
+      "sourceWallGuid": "db2c5f",
+      "sourceOpeningGuid": "f5e14c",
+      "sourceCatalogRef": "218",
+      "position": [
+        -56.29412376259957,
+        1.45,
+        12.581909067807027
+      ],
+      "widthMeters": 2.918620429894057,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a87e4f-90a249",
+      "type": "door",
+      "sourceWallIndex": 625,
+      "sourceWallGuid": "a87e4f",
+      "sourceOpeningGuid": "90a249",
+      "sourceCatalogRef": "200",
+      "position": [
+        -51.17185641968515,
+        1.1,
+        12.85163643954626
+      ],
+      "widthMeters": 0.9407370712172781,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b9af4e-598beb",
+      "type": "door",
+      "sourceWallIndex": 628,
+      "sourceWallGuid": "b9af4e",
+      "sourceOpeningGuid": "598beb",
+      "sourceCatalogRef": "200",
+      "position": [
+        -58.90211336344807,
+        1.1,
+        12.849899045486065
+      ],
+      "widthMeters": 0.967860449235888,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-16dd04-099bd1",
+      "type": "window",
+      "sourceWallIndex": 633,
+      "sourceWallGuid": "16dd04",
+      "sourceOpeningGuid": "099bd1",
+      "sourceCatalogRef": "218",
+      "position": [
+        -61.09311942634079,
+        1.45,
+        12.581909067806562
+      ],
+      "widthMeters": 2.3122705390921032,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-75a35b-91c32d",
+      "type": "door",
+      "sourceWallIndex": 641,
+      "sourceWallGuid": "75a35b",
+      "sourceOpeningGuid": "91c32d",
+      "sourceCatalogRef": "200",
+      "position": [
+        -61.87879311928273,
+        1.1,
+        14.462132243505527
+      ],
+      "widthMeters": 1.016953881315955,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-9335d4-803003",
+      "type": "door",
+      "sourceWallIndex": 643,
+      "sourceWallGuid": "9335d4",
+      "sourceOpeningGuid": "803003",
+      "sourceCatalogRef": "200",
+      "position": [
+        -63.42365359692624,
+        1.1,
+        12.849899045486154
+      ],
+      "widthMeters": 0.9475995879695859,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-1f0cfe-a48fe3",
+      "type": "door",
+      "sourceWallIndex": 655,
+      "sourceWallGuid": "1f0cfe",
+      "sourceOpeningGuid": "a48fe3",
+      "sourceCatalogRef": "200",
+      "position": [
+        -78.7834642830356,
+        1.1,
+        13.582010635565261
+      ],
+      "widthMeters": 0.8893432197121075,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-d95dfa-b9da56",
+      "type": "door",
+      "sourceWallIndex": 657,
+      "sourceWallGuid": "d95dfa",
+      "sourceOpeningGuid": "b9da56",
+      "sourceCatalogRef": "200",
+      "position": [
+        -76.01323734154269,
+        1.1,
+        13.582010635564808
+      ],
+      "widthMeters": 0.9388659796043044,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b84de1-b0b0e9",
+      "type": "door",
+      "sourceWallIndex": 661,
+      "sourceWallGuid": "b84de1",
+      "sourceOpeningGuid": "b0b0e9",
+      "sourceCatalogRef": "200",
+      "position": [
+        -79.5649029312216,
+        1.1,
+        12.661259461707612
+      ],
+      "widthMeters": 1.046597381766458,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-19c229-148604",
+      "type": "door",
+      "sourceWallIndex": 688,
+      "sourceWallGuid": "19c229",
+      "sourceOpeningGuid": "148604",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.0540237239144,
+        1.1,
+        -12.296298385234572
+      ],
+      "widthMeters": 0.976520675733465,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-9715dd-3bcf5c",
+      "type": "door",
+      "sourceWallIndex": 692,
+      "sourceWallGuid": "9715dd",
+      "sourceOpeningGuid": "3bcf5c",
+      "sourceCatalogRef": "200",
+      "position": [
+        -87.88893874605601,
+        1.1,
+        -13.03610354578709
+      ],
+      "widthMeters": 1.0478831602564265,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-9e655d-703b81",
+      "type": "door",
+      "sourceWallIndex": 694,
+      "sourceWallGuid": "9e655d",
+      "sourceOpeningGuid": "703b81",
+      "sourceCatalogRef": "200",
+      "position": [
+        -94.20904485317264,
+        1.1,
+        -14.224121073354864
+      ],
+      "widthMeters": 1.0426043789041295,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8119c5-d358c1",
+      "type": "door",
+      "sourceWallIndex": 696,
+      "sourceWallGuid": "8119c5",
+      "sourceOpeningGuid": "d358c1",
+      "sourceCatalogRef": "200",
+      "position": [
+        -83.63806013823778,
+        1.1,
+        -13.036103545786919
+      ],
+      "widthMeters": 1.0429590054521862,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-868efc-12dc02",
+      "type": "window",
+      "sourceWallIndex": 701,
+      "sourceWallGuid": "868efc",
+      "sourceOpeningGuid": "12dc02",
+      "sourceCatalogRef": "218",
+      "position": [
+        -82.91049847589765,
+        1.45,
+        -11.3401178298706
+      ],
+      "widthMeters": 1.3450737945861522,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-900018-8c8318",
+      "type": "door",
+      "sourceWallIndex": 705,
+      "sourceWallGuid": "900018",
+      "sourceOpeningGuid": "8c8318",
+      "sourceCatalogRef": "200",
+      "position": [
+        -90.3300119243599,
+        1.1,
+        -15.045834228158224
+      ],
+      "widthMeters": 1.0408363232414068,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-ed95a3-2420a6",
+      "type": "window",
+      "sourceWallIndex": 707,
+      "sourceWallGuid": "ed95a3",
+      "sourceOpeningGuid": "2420a6",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581872498,
+        1.45,
+        -16.16498413799273
+      ],
+      "widthMeters": 1.1190805034048683,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-ed95a3-4d27b8",
+      "type": "door",
+      "sourceWallIndex": 707,
+      "sourceWallGuid": "ed95a3",
+      "sourceOpeningGuid": "4d27b8",
+      "sourceCatalogRef": "208",
+      "position": [
+        -69.48110581872497,
+        1.1,
+        -14.678367279502204
+      ],
+      "widthMeters": 1.827766118416353,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-ed95a3-467590",
+      "type": "window",
+      "sourceWallIndex": 707,
+      "sourceWallGuid": "ed95a3",
+      "sourceOpeningGuid": "467590",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581872497,
+        1.45,
+        -11.973489677030988
+      ],
+      "widthMeters": 3.541372164976654,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a1a0dd-231807",
+      "type": "door",
+      "sourceWallIndex": 762,
+      "sourceWallGuid": "a1a0dd",
+      "sourceOpeningGuid": "231807",
+      "sourceCatalogRef": "200",
+      "position": [
+        -92.75436036572314,
+        1.1,
+        -28.879511088409377
+      ],
+      "widthMeters": 1.0293106851215998,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-0e5bb9-adae04",
+      "type": "door",
+      "sourceWallIndex": 765,
+      "sourceWallGuid": "0e5bb9",
+      "sourceOpeningGuid": "adae04",
+      "sourceCatalogRef": "203",
+      "position": [
+        -88.40400856909407,
+        1.1,
+        -34.42884322626554
+      ],
+      "widthMeters": 1.0172481677388736,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-0e5bb9-a6508e",
+      "type": "door",
+      "sourceWallIndex": 765,
+      "sourceWallGuid": "0e5bb9",
+      "sourceOpeningGuid": "a6508e",
+      "sourceCatalogRef": "200",
+      "position": [
+        -88.40400856909407,
+        1.1,
+        -34.42884322625083
+      ],
+      "widthMeters": 0.9984737590350005,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-ce9b6d-90e819",
+      "type": "door",
+      "sourceWallIndex": 773,
+      "sourceWallGuid": "ce9b6d",
+      "sourceOpeningGuid": "90e819",
+      "sourceCatalogRef": "200",
+      "position": [
+        -90.04367997773723,
+        1.1,
+        -39.16206265845549
+      ],
+      "widthMeters": 1.0171944908089245,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-daab74-945663",
+      "type": "door",
+      "sourceWallIndex": 777,
+      "sourceWallGuid": "daab74",
+      "sourceOpeningGuid": "945663",
+      "sourceCatalogRef": "200",
+      "position": [
+        -90.68038922278102,
+        1.1,
+        -40.04496415341759
+      ],
+      "widthMeters": 1.0166578968578461,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2c52cf-c388f0",
+      "type": "window",
+      "sourceWallIndex": 781,
+      "sourceWallGuid": "2c52cf",
+      "sourceOpeningGuid": "c388f0",
+      "sourceCatalogRef": "218",
+      "position": [
+        -86.56926536812448,
+        1.45,
+        -40.66380081444238
+      ],
+      "widthMeters": 1.2457483981096993,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-2c52cf-99e454",
+      "type": "door",
+      "sourceWallIndex": 781,
+      "sourceWallGuid": "2c52cf",
+      "sourceOpeningGuid": "99e454",
+      "sourceCatalogRef": "200",
+      "position": [
+        -87.66501178247938,
+        1.1,
+        -40.66380081433698
+      ],
+      "widthMeters": 0.9152011165766999,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2c52cf-cbafaa",
+      "type": "window",
+      "sourceWallIndex": 781,
+      "sourceWallGuid": "2c52cf",
+      "sourceOpeningGuid": "cbafaa",
+      "sourceCatalogRef": "218",
+      "position": [
+        -89.36865008492921,
+        1.45,
+        -40.66380081417309
+      ],
+      "widthMeters": 2.478041495916041,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-4a2bce-1780cb",
+      "type": "window",
+      "sourceWallIndex": 783,
+      "sourceWallGuid": "4a2bce",
+      "sourceOpeningGuid": "1780cb",
+      "sourceCatalogRef": "218",
+      "position": [
+        -82.89502703129409,
+        1.45,
+        -40.663800815134735
+      ],
+      "widthMeters": 4.621541563298724,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-81e3b5-45e4e0",
+      "type": "window",
+      "sourceWallIndex": 785,
+      "sourceWallGuid": "81e3b5",
+      "sourceOpeningGuid": "45e4e0",
+      "sourceCatalogRef": "218",
+      "position": [
+        -77.5312109736788,
+        1.45,
+        -40.66380081575499
+      ],
+      "widthMeters": 4.622259666946393,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-ec3e15-f62aaa",
+      "type": "window",
+      "sourceWallIndex": 787,
+      "sourceWallGuid": "ec3e15",
+      "sourceOpeningGuid": "f62aaa",
+      "sourceCatalogRef": "218",
+      "position": [
+        -72.26987123432497,
+        1.45,
+        -40.66380081556308
+      ],
+      "widthMeters": 4.500896745364365,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-ccae48-3104a6",
+      "type": "door",
+      "sourceWallIndex": 801,
+      "sourceWallGuid": "ccae48",
+      "sourceOpeningGuid": "3104a6",
+      "sourceCatalogRef": "208",
+      "position": [
+        -69.4811058185845,
+        1.1,
+        -38.161452124892264
+      ],
+      "widthMeters": 1.867341645079878,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-ccae48-2aef23",
+      "type": "window",
+      "sourceWallIndex": 801,
+      "sourceWallGuid": "ccae48",
+      "sourceOpeningGuid": "2aef23",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.4811058185847,
+        1.45,
+        -39.6955963163544
+      ],
+      "widthMeters": 1.1813768812297485,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d5e821-efa9a6",
+      "type": "door",
+      "sourceWallIndex": 808,
+      "sourceWallGuid": "d5e821",
+      "sourceOpeningGuid": "efa9a6",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.05152689762592,
+        1.1,
+        -26.458164359580955
+      ],
+      "widthMeters": 1.0810683399373056,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-5c8789-b3efc1",
+      "type": "door",
+      "sourceWallIndex": 814,
+      "sourceWallGuid": "5c8789",
+      "sourceOpeningGuid": "b3efc1",
+      "sourceCatalogRef": "200",
+      "position": [
+        -91.00546531941971,
+        1.1,
+        -25.379207496019102
+      ],
+      "widthMeters": 1.8144597166616034,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-fc027d-89590a",
+      "type": "window",
+      "sourceWallIndex": 815,
+      "sourceWallGuid": "fc027d",
+      "sourceOpeningGuid": "89590a",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581858447,
+        1.45,
+        -32.99982615357123
+      ],
+      "widthMeters": 7.549714011540647,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-423e46-e20b71",
+      "type": "window",
+      "sourceWallIndex": 821,
+      "sourceWallGuid": "423e46",
+      "sourceOpeningGuid": "e20b71",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581858442,
+        1.45,
+        -25.255945029871633
+      ],
+      "widthMeters": 2.388646707004508,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-423e46-53bcd5",
+      "type": "door",
+      "sourceWallIndex": 821,
+      "sourceWallGuid": "423e46",
+      "sourceOpeningGuid": "53bcd5",
+      "sourceCatalogRef": "200",
+      "position": [
+        -69.48110581858442,
+        1.1,
+        -26.964410303634747
+      ],
+      "widthMeters": 1.0047547668593575,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-423e46-5fbaf3",
+      "type": "window",
+      "sourceWallIndex": 821,
+      "sourceWallGuid": "423e46",
+      "sourceOpeningGuid": "5fbaf3",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581858442,
+        1.45,
+        -28.13690615005927
+      ],
+      "widthMeters": 1.3331934043374714,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-3dec25-fb0969",
+      "type": "door",
+      "sourceWallIndex": 841,
+      "sourceWallGuid": "3dec25",
+      "sourceOpeningGuid": "fb0969",
+      "sourceCatalogRef": "200",
+      "position": [
+        -93.82604680805315,
+        1.1,
+        -19.718334282455977
+      ],
+      "widthMeters": 1.0406586466560999,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-f0e7ff-8f7238",
+      "type": "door",
+      "sourceWallIndex": 849,
+      "sourceWallGuid": "f0e7ff",
+      "sourceOpeningGuid": "8f7238",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.04994788374454,
+        1.1,
+        -20.462377068501105
+      ],
+      "widthMeters": 0.9913989589397465,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-a0f860-63e8e3",
+      "type": "door",
+      "sourceWallIndex": 860,
+      "sourceWallGuid": "a0f860",
+      "sourceOpeningGuid": "63e8e3",
+      "sourceCatalogRef": "200",
+      "position": [
+        -87.01478294715635,
+        1.1,
+        -23.113781282567164
+      ],
+      "widthMeters": 1.1198512678233181,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-bf8f00-1d64c2",
+      "type": "door",
+      "sourceWallIndex": 900,
+      "sourceWallGuid": "bf8f00",
+      "sourceOpeningGuid": "1d64c2",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.05232955549197,
+        1.1,
+        7.576930089086925
+      ],
+      "widthMeters": 1.130445909450601,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-47d63c-dd66ef",
+      "type": "door",
+      "sourceWallIndex": 902,
+      "sourceWallGuid": "47d63c",
+      "sourceOpeningGuid": "dd66ef",
+      "sourceCatalogRef": "200",
+      "position": [
+        -93.98499155299375,
+        1.1,
+        2.065966876251259
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-a20871-a1c0a0",
+      "type": "door",
+      "sourceWallIndex": 908,
+      "sourceWallGuid": "a20871",
+      "sourceOpeningGuid": "a1c0a0",
+      "sourceCatalogRef": "200",
+      "position": [
+        -93.22193375193201,
+        1.1,
+        8.868594310546666
+      ],
+      "widthMeters": 1.0123593652697775,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-9abff6-dc65b7",
+      "type": "door",
+      "sourceWallIndex": 910,
+      "sourceWallGuid": "9abff6",
+      "sourceOpeningGuid": "dc65b7",
+      "sourceCatalogRef": "200",
+      "position": [
+        -93.756847227683,
+        1.1,
+        6.67441125102439
+      ],
+      "widthMeters": 1.0138304652171575,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-aa95cd-171b07",
+      "type": "door",
+      "sourceWallIndex": 916,
+      "sourceWallGuid": "aa95cd",
+      "sourceOpeningGuid": "171b07",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.05113869011434,
+        1.1,
+        -7.260607151484983
+      ],
+      "widthMeters": 1.0048055331841317,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-c22954-4e4738",
+      "type": "door",
+      "sourceWallIndex": 917,
+      "sourceWallGuid": "c22954",
+      "sourceOpeningGuid": "4e4738",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.05113869011434,
+        1.1,
+        1.0923654140143981
+      ],
+      "widthMeters": 0.9121915470989235,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-1553da-f1aa73",
+      "type": "door",
+      "sourceWallIndex": 918,
+      "sourceWallGuid": "1553da",
+      "sourceOpeningGuid": "f1aa73",
+      "sourceCatalogRef": "200",
+      "position": [
+        -91.28774397153524,
+        1.1,
+        -6.49709046627685
+      ],
+      "widthMeters": 1.0356155586931912,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-1efe56-4c1287",
+      "type": "door",
+      "sourceWallIndex": 924,
+      "sourceWallGuid": "1efe56",
+      "sourceOpeningGuid": "4c1287",
+      "sourceCatalogRef": "200",
+      "position": [
+        -92.44327046297244,
+        1.1,
+        -5.476046062035748
+      ],
+      "widthMeters": 1.0354319812434563,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-780a33-bfcce6",
+      "type": "door",
+      "sourceWallIndex": 927,
+      "sourceWallGuid": "780a33",
+      "sourceOpeningGuid": "bfcce6",
+      "sourceCatalogRef": "200",
+      "position": [
+        -93.80556563049926,
+        1.1,
+        0.1120153252459204
+      ],
+      "widthMeters": 1.0448017348389989,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-73a0a1-aa4823",
+      "type": "door",
+      "sourceWallIndex": 931,
+      "sourceWallGuid": "73a0a1",
+      "sourceOpeningGuid": "aa4823",
+      "sourceCatalogRef": "200",
+      "position": [
+        -91.2877439715353,
+        1.1,
+        -9.224107312049746
+      ],
+      "widthMeters": 0.8752919418314872,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-6be65a-db7163",
+      "type": "door",
+      "sourceWallIndex": 935,
+      "sourceWallGuid": "6be65a",
+      "sourceOpeningGuid": "db7163",
+      "sourceCatalogRef": "200",
+      "position": [
+        -91.85331153792252,
+        1.1,
+        1.452536024838828
+      ],
+      "widthMeters": 1.0459980265573343,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-dc3283-09cb60",
+      "type": "door",
+      "sourceWallIndex": 936,
+      "sourceWallGuid": "dc3283",
+      "sourceOpeningGuid": "09cb60",
+      "sourceCatalogRef": "200",
+      "position": [
+        -88.68191601486629,
+        1.1,
+        1.4525360248388597
+      ],
+      "widthMeters": 1.0451800715997468,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-32986a-6aef3c",
+      "type": "door",
+      "sourceWallIndex": 947,
+      "sourceWallGuid": "32986a",
+      "sourceOpeningGuid": "6aef3c",
+      "sourceCatalogRef": "200",
+      "position": [
+        -93.13164563554157,
+        1.1,
+        -4.811962269587589
+      ],
+      "widthMeters": 1.0335115128365784,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-04f776-9a7a2e",
+      "type": "door",
+      "sourceWallIndex": 958,
+      "sourceWallGuid": "04f776",
+      "sourceOpeningGuid": "9a7a2e",
+      "sourceCatalogRef": "200",
+      "position": [
+        -87.29824177751507,
+        1.1,
+        7.5762684555323565
+      ],
+      "widthMeters": 0.8612540380468738,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cfa1f1-ce3a8c",
+      "type": "door",
+      "sourceWallIndex": 962,
+      "sourceWallGuid": "cfa1f1",
+      "sourceOpeningGuid": "ce3a8c",
+      "sourceCatalogRef": "200",
+      "position": [
+        -89.19910577092622,
+        1.1,
+        -1.2900106192649992
+      ],
+      "widthMeters": 1.04140286927568,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-0d8ea1-12f069",
+      "type": "door",
+      "sourceWallIndex": 967,
+      "sourceWallGuid": "0d8ea1",
+      "sourceOpeningGuid": "12f069",
+      "sourceCatalogRef": "200",
+      "position": [
+        -85.01431179646538,
+        1.1,
+        -6.10818511856367
+      ],
+      "widthMeters": 0.8758952558889598,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-c62355-5acb9e",
+      "type": "door",
+      "sourceWallIndex": 971,
+      "sourceWallGuid": "c62355",
+      "sourceOpeningGuid": "5acb9e",
+      "sourceCatalogRef": "200",
+      "position": [
+        -86.09582163182236,
+        1.1,
+        1.4525360248390098
+      ],
+      "widthMeters": 1.0360237366400418,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8b75b3-f4fbf0",
+      "type": "door",
+      "sourceWallIndex": 972,
+      "sourceWallGuid": "8b75b3",
+      "sourceOpeningGuid": "f4fbf0",
+      "sourceCatalogRef": "200",
+      "position": [
+        -87.91686989232109,
+        1.1,
+        -2.6770272911474695
+      ],
+      "widthMeters": 1.0422421105919375,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-6cc7ad-51cf22",
+      "type": "window",
+      "sourceWallIndex": 978,
+      "sourceWallGuid": "6cc7ad",
+      "sourceOpeningGuid": "51cf22",
+      "sourceCatalogRef": "218",
+      "position": [
+        -71.08156222074179,
+        1.45,
+        -2.6770272911470054
+      ],
+      "widthMeters": 1.3086375539447976,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b1ff1a-5556f6",
+      "type": "window",
+      "sourceWallIndex": 979,
+      "sourceWallGuid": "b1ff1a",
+      "sourceOpeningGuid": "5556f6",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581870205,
+        1.45,
+        -8.401374071099362
+      ],
+      "widthMeters": 2.2105997222610974,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-b1ff1a-f94fc3",
+      "type": "door",
+      "sourceWallIndex": 979,
+      "sourceWallGuid": "b1ff1a",
+      "sourceOpeningGuid": "f94fc3",
+      "sourceCatalogRef": "208",
+      "position": [
+        -69.48110581870208,
+        1.1,
+        -6.366757979220829
+      ],
+      "widthMeters": 1.8278362568007969,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b1ff1a-b9a65c",
+      "type": "window",
+      "sourceWallIndex": 979,
+      "sourceWallGuid": "b1ff1a",
+      "sourceOpeningGuid": "b9a65c",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581870212,
+        1.45,
+        -4.226061888532786
+      ],
+      "widthMeters": 2.4123822395754497,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-0b80ff-8fb6e7",
+      "type": "window",
+      "sourceWallIndex": 981,
+      "sourceWallGuid": "0b80ff",
+      "sourceOpeningGuid": "8fb6e7",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581855602,
+        1.45,
+        5.967652873182321
+      ],
+      "widthMeters": 1.9499462124562927,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-20098c-7eae35",
+      "type": "window",
+      "sourceWallIndex": 983,
+      "sourceWallGuid": "20098c",
+      "sourceOpeningGuid": "7eae35",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581870202,
+        1.45,
+        -1.1939435362681343
+      ],
+      "widthMeters": 2.3245785259854075,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-20098c-b68c49",
+      "type": "door",
+      "sourceWallIndex": 983,
+      "sourceWallGuid": "20098c",
+      "sourceOpeningGuid": "b68c49",
+      "sourceCatalogRef": "208",
+      "position": [
+        -69.481105818702,
+        1.1,
+        0.8958853969032406
+      ],
+      "widthMeters": 1.8299066217532913,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-20098c-d85e97",
+      "type": "window",
+      "sourceWallIndex": 983,
+      "sourceWallGuid": "20098c",
+      "sourceOpeningGuid": "d85e97",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.48110581870199,
+        1.45,
+        3.0257137870407904
+      ],
+      "widthMeters": 2.3622315647125243,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-72b089-b1fc15",
+      "type": "door",
+      "sourceWallIndex": 1001,
+      "sourceWallGuid": "72b089",
+      "sourceOpeningGuid": "b1fc15",
+      "sourceCatalogRef": "200",
+      "position": [
+        -23.10959701498571,
+        1.1,
+        31.411948106359738
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-7295dd-fab578",
+      "type": "door",
+      "sourceWallIndex": 1009,
+      "sourceWallGuid": "7295dd",
+      "sourceOpeningGuid": "fab578",
+      "sourceCatalogRef": "200",
+      "position": [
+        -17.653443192524584,
+        1.1,
+        12.939695719760982
+      ],
+      "widthMeters": 1.146962247981722,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b70c95-45a757",
+      "type": "window",
+      "sourceWallIndex": 1024,
+      "sourceWallGuid": "b70c95",
+      "sourceOpeningGuid": "45a757",
+      "sourceCatalogRef": "218",
+      "position": [
+        -15.278014411953745,
+        1.45,
+        12.940346742951329
+      ],
+      "widthMeters": 2.731060609632069,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-043ead-431dcc",
+      "type": "door",
+      "sourceWallIndex": 1028,
+      "sourceWallGuid": "043ead",
+      "sourceOpeningGuid": "431dcc",
+      "sourceCatalogRef": "200",
+      "position": [
+        -16.438881783579017,
+        1.1,
+        33.694808773553085
+      ],
+      "widthMeters": 0.8897560782608841,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-a825de-47c731",
+      "type": "door",
+      "sourceWallIndex": 1031,
+      "sourceWallGuid": "a825de",
+      "sourceOpeningGuid": "47c731",
+      "sourceCatalogRef": "200",
+      "position": [
+        -16.440144424493447,
+        1.1,
+        38.30188515939748
+      ],
+      "widthMeters": 0.7364244549018764,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-f2c24d-3300d2",
+      "type": "door",
+      "sourceWallIndex": 1033,
+      "sourceWallGuid": "f2c24d",
+      "sourceOpeningGuid": "3300d2",
+      "sourceCatalogRef": "200",
+      "position": [
+        -15.824953261811087,
+        1.1,
+        33.126245033056705
+      ],
+      "widthMeters": 1.0498551629118678,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-733848-87e70b",
+      "type": "door",
+      "sourceWallIndex": 1036,
+      "sourceWallGuid": "733848",
+      "sourceOpeningGuid": "87e70b",
+      "sourceCatalogRef": "201",
+      "position": [
+        -15.84964536323273,
+        1.1,
+        38.74942952545432
+      ],
+      "widthMeters": 1.0222329654947422,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b35a74-c8c8c4",
+      "type": "door",
+      "sourceWallIndex": 1038,
+      "sourceWallGuid": "b35a74",
+      "sourceOpeningGuid": "c8c8c4",
+      "sourceCatalogRef": "200",
+      "position": [
+        -15.190073578186183,
+        1.1,
+        32.450199059325044
+      ],
+      "widthMeters": 0.8929167186657146,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-d983a8-6cf733",
+      "type": "door",
+      "sourceWallIndex": 1045,
+      "sourceWallGuid": "d983a8",
+      "sourceOpeningGuid": "6cf733",
+      "sourceCatalogRef": "200",
+      "position": [
+        -12.745618968792387,
+        1.1,
+        38.7493999700627
+      ],
+      "widthMeters": 1.143053125657395,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-f6399f-12619c",
+      "type": "door",
+      "sourceWallIndex": 1072,
+      "sourceWallGuid": "f6399f",
+      "sourceOpeningGuid": "12619c",
+      "sourceCatalogRef": "200",
+      "position": [
+        -10.357554726481922,
+        1.1,
+        24.879175724870244
+      ],
+      "widthMeters": 1.027980128811448,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-4c4c11418b29-0f2451",
+      "type": "window",
+      "sourceWallIndex": 1073,
+      "sourceWallGuid": "4c4c11418b29",
+      "sourceOpeningGuid": "0f2451",
+      "sourceCatalogRef": "218",
+      "position": [
+        -11.784350931778471,
+        1.45,
+        12.939147465458875
+      ],
+      "widthMeters": 0.5473266026350757,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-4c4c11418b29-994c6d",
+      "type": "door",
+      "sourceWallIndex": 1073,
+      "sourceWallGuid": "4c4c11418b29",
+      "sourceOpeningGuid": "994c6d",
+      "sourceCatalogRef": "200",
+      "position": [
+        -10.21437013720374,
+        1.1,
+        12.93914746545888
+      ],
+      "widthMeters": 1.037275189922816,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-4c4c11418b29-bcc335",
+      "type": "window",
+      "sourceWallIndex": 1073,
+      "sourceWallGuid": "4c4c11418b29",
+      "sourceOpeningGuid": "bcc335",
+      "sourceCatalogRef": "218",
+      "position": [
+        -8.652232441564738,
+        1.45,
+        12.939147465458884
+      ],
+      "widthMeters": 0.5409265579921748,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-baac9d-1968a5",
+      "type": "door",
+      "sourceWallIndex": 1078,
+      "sourceWallGuid": "baac9d",
+      "sourceOpeningGuid": "1968a5",
+      "sourceCatalogRef": "200",
+      "position": [
+        -10.357554726481967,
+        1.1,
+        29.139247977062833
+      ],
+      "widthMeters": 1.0421603196532783,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-1defad-44f89e",
+      "type": "door",
+      "sourceWallIndex": 1081,
+      "sourceWallGuid": "1defad",
+      "sourceOpeningGuid": "44f89e",
+      "sourceCatalogRef": "200",
+      "position": [
+        -10.357554726481913,
+        1.1,
+        23.58545185812105
+      ],
+      "widthMeters": 1.042271421025655,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-395591-907481",
+      "type": "door",
+      "sourceWallIndex": 1088,
+      "sourceWallGuid": "395591",
+      "sourceOpeningGuid": "907481",
+      "sourceCatalogRef": "200",
+      "position": [
+        -10.357554726482013,
+        1.1,
+        30.894257219784993
+      ],
+      "widthMeters": 1.0161257629255351,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-fc0e12-3b2ec9",
+      "type": "door",
+      "sourceWallIndex": 1090,
+      "sourceWallGuid": "fc0e12",
+      "sourceOpeningGuid": "3b2ec9",
+      "sourceCatalogRef": "200",
+      "position": [
+        -9.590369377241514,
+        1.1,
+        20.42313840999508
+      ],
+      "widthMeters": 1.3334081518582348,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b7deff-62b3ae",
+      "type": "door",
+      "sourceWallIndex": 1096,
+      "sourceWallGuid": "b7deff",
+      "sourceOpeningGuid": "62b3ae",
+      "sourceCatalogRef": "200",
+      "position": [
+        -5.68898689900394,
+        1.1,
+        38.742377414741085
+      ],
+      "widthMeters": 1.1686072078697838,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-97da57-2c9be2",
+      "type": "door",
+      "sourceWallIndex": 1097,
+      "sourceWallGuid": "97da57",
+      "sourceOpeningGuid": "2c9be2",
+      "sourceCatalogRef": "200",
+      "position": [
+        -8.765574264473507,
+        1.1,
+        22.067295236867366
+      ],
+      "widthMeters": 1.0406708260473443,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-73850a-bb1ebb",
+      "type": "door",
+      "sourceWallIndex": 1101,
+      "sourceWallGuid": "73850a",
+      "sourceOpeningGuid": "bb1ebb",
+      "sourceCatalogRef": "200",
+      "position": [
+        -8.765574264473472,
+        1.1,
+        30.739354180760436
+      ],
+      "widthMeters": 1.3410369507790392,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-692df1-2df7dc",
+      "type": "door",
+      "sourceWallIndex": 1104,
+      "sourceWallGuid": "692df1",
+      "sourceOpeningGuid": "2df7dc",
+      "sourceCatalogRef": "200",
+      "position": [
+        -8.76557426447349,
+        1.1,
+        24.54482165906857
+      ],
+      "widthMeters": 1.0416188452783173,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-655cc8-7b4369",
+      "type": "door",
+      "sourceWallIndex": 1112,
+      "sourceWallGuid": "655cc8",
+      "sourceOpeningGuid": "7b4369",
+      "sourceCatalogRef": "200",
+      "position": [
+        -8.76557426447349,
+        1.1,
+        25.85354257662966
+      ],
+      "widthMeters": 1.041555316823435,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-451988-39253e",
+      "type": "door",
+      "sourceWallIndex": 1114,
+      "sourceWallGuid": "451988",
+      "sourceOpeningGuid": "39253e",
+      "sourceCatalogRef": "200",
+      "position": [
+        -8.015555536521406,
+        1.1,
+        29.325544222688688
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2b0f5f-c2c166",
+      "type": "door",
+      "sourceWallIndex": 1136,
+      "sourceWallGuid": "2b0f5f",
+      "sourceOpeningGuid": "c2c166",
+      "sourceCatalogRef": "200",
+      "position": [
+        63.70117115748515,
+        1.1,
+        34.90421637564587
+      ],
+      "widthMeters": 1.092601306879926,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-6320d7-294d94",
+      "type": "door",
+      "sourceWallIndex": 1142,
+      "sourceWallGuid": "6320d7",
+      "sourceOpeningGuid": "294d94",
+      "sourceCatalogRef": "200",
+      "position": [
+        67.2413131637466,
+        1.1,
+        34.9110427033858
+      ],
+      "widthMeters": 1.103609996104385,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-d43461-81c691",
+      "type": "door",
+      "sourceWallIndex": 1143,
+      "sourceWallGuid": "d43461",
+      "sourceOpeningGuid": "81c691",
+      "sourceCatalogRef": "200",
+      "position": [
+        67.88480891369989,
+        1.1,
+        34.344233187020436
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-6069d6-ace926",
+      "type": "door",
+      "sourceWallIndex": 1158,
+      "sourceWallGuid": "6069d6",
+      "sourceOpeningGuid": "ace926",
+      "sourceCatalogRef": "200",
+      "position": [
+        78.34690262801277,
+        1.1,
+        34.66562654708398
+      ],
+      "widthMeters": 0.8748572571998784,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-d0b68e-59aac3",
+      "type": "door",
+      "sourceWallIndex": 1160,
+      "sourceWallGuid": "d0b68e",
+      "sourceOpeningGuid": "59aac3",
+      "sourceCatalogRef": "200",
+      "position": [
+        83.15616426689161,
+        1.1,
+        37.281896857451166
+      ],
+      "widthMeters": 1.015702024878661,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-02c506-d09082",
+      "type": "door",
+      "sourceWallIndex": 1164,
+      "sourceWallGuid": "02c506",
+      "sourceOpeningGuid": "d09082",
+      "sourceCatalogRef": "208",
+      "position": [
+        56.573873705706276,
+        1.1,
+        30.529824583582748
+      ],
+      "widthMeters": 1.3983240116939966,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cd0d71-45eb53",
+      "type": "door",
+      "sourceWallIndex": 1167,
+      "sourceWallGuid": "cd0d71",
+      "sourceOpeningGuid": "45eb53",
+      "sourceCatalogRef": "200",
+      "position": [
+        54.35544901672455,
+        1.1,
+        37.563318387448
+      ],
+      "widthMeters": 0.9003331659661127,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-321492-40807e",
+      "type": "door",
+      "sourceWallIndex": 1173,
+      "sourceWallGuid": "321492",
+      "sourceOpeningGuid": "40807e",
+      "sourceCatalogRef": "200",
+      "position": [
+        77.84100084886234,
+        1.1,
+        34.22374935826943
+      ],
+      "widthMeters": 0.7878451477102553,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-c1e036-a7da2d",
+      "type": "door",
+      "sourceWallIndex": 1182,
+      "sourceWallGuid": "c1e036",
+      "sourceOpeningGuid": "a7da2d",
+      "sourceCatalogRef": "200",
+      "position": [
+        56.49519781744484,
+        1.1,
+        38.75061416221839
+      ],
+      "widthMeters": 1.0172846125098511,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-e2f1be-4174a5",
+      "type": "door",
+      "sourceWallIndex": 1209,
+      "sourceWallGuid": "e2f1be",
+      "sourceOpeningGuid": "4174a5",
+      "sourceCatalogRef": "208",
+      "position": [
+        84.73903080713397,
+        1.1,
+        39.37305649841778
+      ],
+      "widthMeters": 1.9319136320645958,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cc5b22-510661",
+      "type": "door",
+      "sourceWallIndex": 1221,
+      "sourceWallGuid": "cc5b22",
+      "sourceOpeningGuid": "510661",
+      "sourceCatalogRef": "208",
+      "position": [
+        83.07894177151937,
+        1.1,
+        40.66380081584276
+      ],
+      "widthMeters": 1.6249639708744397,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-e80fcf-9803d2",
+      "type": "door",
+      "sourceWallIndex": 1223,
+      "sourceWallGuid": "e80fcf",
+      "sourceOpeningGuid": "9803d2",
+      "sourceCatalogRef": "208",
+      "position": [
+        67.61189759059644,
+        1.1,
+        37.43043791345048
+      ],
+      "widthMeters": 1.930689415150728,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-50406d-a16f75",
+      "type": "door",
+      "sourceWallIndex": 1230,
+      "sourceWallGuid": "50406d",
+      "sourceOpeningGuid": "a16f75",
+      "sourceCatalogRef": "208",
+      "position": [
+        67.66160678410712,
+        1.1,
+        38.75061416208997
+      ],
+      "widthMeters": 1.68770785822652,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-1079eb-9fdd2d",
+      "type": "door",
+      "sourceWallIndex": 1300,
+      "sourceWallGuid": "1079eb",
+      "sourceOpeningGuid": "9fdd2d",
+      "sourceCatalogRef": "200",
+      "position": [
+        -85.58941141597708,
+        1.1,
+        12.676020986200113
+      ],
+      "widthMeters": 1.0490382032152592,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-328b9e-fe03a4",
+      "type": "door",
+      "sourceWallIndex": 1307,
+      "sourceWallGuid": "328b9e",
+      "sourceOpeningGuid": "fe03a4",
+      "sourceCatalogRef": "208",
+      "position": [
+        -91.78096977589298,
+        1.1,
+        22.463101352688117
+      ],
+      "widthMeters": 1.1828103960429721,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-40c19d-401359",
+      "type": "door",
+      "sourceWallIndex": 1318,
+      "sourceWallGuid": "40c19d",
+      "sourceOpeningGuid": "401359",
+      "sourceCatalogRef": "200",
+      "position": [
+        -95.04605517286899,
+        1.1,
+        13.655279730584084
+      ],
+      "widthMeters": 0.9982009066650335,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-590b7d-f2ce12",
+      "type": "window",
+      "sourceWallIndex": 1326,
+      "sourceWallGuid": "590b7d",
+      "sourceOpeningGuid": "f2ce12",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.47689158971846,
+        1.45,
+        11.960438100778154
+      ],
+      "widthMeters": 0.8900475504068959,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-4b654b-7952a4",
+      "type": "window",
+      "sourceWallIndex": 1330,
+      "sourceWallGuid": "4b654b",
+      "sourceOpeningGuid": "7952a4",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.47689158971826,
+        1.45,
+        13.288388050973658
+      ],
+      "widthMeters": 1.1434764871433976,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-4b654b-8ec437",
+      "type": "door",
+      "sourceWallIndex": 1330,
+      "sourceWallGuid": "4b654b",
+      "sourceOpeningGuid": "8ec437",
+      "sourceCatalogRef": "200",
+      "position": [
+        -69.47689158971822,
+        1.1,
+        14.321589168552645
+      ],
+      "widthMeters": 0.9129840202748837,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-4b654b-c68bf2",
+      "type": "window",
+      "sourceWallIndex": 1330,
+      "sourceWallGuid": "4b654b",
+      "sourceOpeningGuid": "c68bf2",
+      "sourceCatalogRef": "218",
+      "position": [
+        -69.47689158971806,
+        1.45,
+        18.47305122490661
+      ],
+      "widthMeters": 7.373265899278063,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d82688631e8c-a5d624",
+      "type": "door",
+      "sourceWallIndex": 1331,
+      "sourceWallGuid": "d82688631e8c",
+      "sourceOpeningGuid": "a5d624",
+      "sourceCatalogRef": "210",
+      "position": [
+        -77.65071400411247,
+        1.1,
+        22.465900033699416
+      ],
+      "widthMeters": 1.9037835388098414,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b890fd-fff841",
+      "type": "window",
+      "sourceWallIndex": 1338,
+      "sourceWallGuid": "b890fd",
+      "sourceOpeningGuid": "fff841",
+      "sourceCatalogRef": "218",
+      "position": [
+        77.20861180006912,
+        1.45,
+        12.664609007145268
+      ],
+      "widthMeters": 0.3979534427312296,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-634a50-de1bc2",
+      "type": "window",
+      "sourceWallIndex": 1340,
+      "sourceWallGuid": "634a50",
+      "sourceOpeningGuid": "de1bc2",
+      "sourceCatalogRef": "218",
+      "position": [
+        78.43040287394203,
+        1.45,
+        12.472572405634018
+      ],
+      "widthMeters": 1.8982352136486202,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-aa7014-03de22",
+      "type": "window",
+      "sourceWallIndex": 1343,
+      "sourceWallGuid": "aa7014",
+      "sourceOpeningGuid": "03de22",
+      "sourceCatalogRef": "218",
+      "position": [
+        79.63334681820997,
+        1.45,
+        12.648499853087614
+      ],
+      "widthMeters": 0.3738552115308664,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-6a2b18-9aa86c",
+      "type": "door",
+      "sourceWallIndex": 1347,
+      "sourceWallGuid": "6a2b18",
+      "sourceOpeningGuid": "9aa86c",
+      "sourceCatalogRef": "200",
+      "position": [
+        85.40637838148348,
+        1.1,
+        35.882688266440965
+      ],
+      "widthMeters": 0.9095097117846904,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-01d8dc-1eab91",
+      "type": "door",
+      "sourceWallIndex": 1348,
+      "sourceWallGuid": "01d8dc",
+      "sourceOpeningGuid": "1eab91",
+      "sourceCatalogRef": "200",
+      "position": [
+        85.93939172358037,
+        1.1,
+        35.502301089647204
+      ],
+      "widthMeters": 0.7305171261937824,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-d391d9-4ec4ed",
+      "type": "window",
+      "sourceWallIndex": 1362,
+      "sourceWallGuid": "d391d9",
+      "sourceOpeningGuid": "4ec4ed",
+      "sourceCatalogRef": "218",
+      "position": [
+        80.61256066822699,
+        1.45,
+        13.996199867142927
+      ],
+      "widthMeters": 0.5961811142432089,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d391d9-5eb1dd",
+      "type": "window",
+      "sourceWallIndex": 1362,
+      "sourceWallGuid": "d391d9",
+      "sourceOpeningGuid": "5eb1dd",
+      "sourceCatalogRef": "218",
+      "position": [
+        83.41392713101955,
+        1.45,
+        13.996199867142924
+      ],
+      "widthMeters": 0.5966985413188652,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d391d9-9a407b",
+      "type": "door",
+      "sourceWallIndex": 1362,
+      "sourceWallGuid": "d391d9",
+      "sourceOpeningGuid": "9a407b",
+      "sourceCatalogRef": "210",
+      "position": [
+        82.00747907670087,
+        1.1,
+        13.996199867142925
+      ],
+      "widthMeters": 1.8424300095601416,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-a17878-bc7afe",
+      "type": "door",
+      "sourceWallIndex": 1363,
+      "sourceWallGuid": "a17878",
+      "sourceOpeningGuid": "bc7afe",
+      "sourceCatalogRef": "200",
+      "position": [
+        85.94505613404598,
+        1.1,
+        33.68732014681616
+      ],
+      "widthMeters": 1.0028515270492238,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-58b249-e5b261",
+      "type": "window",
+      "sourceWallIndex": 1378,
+      "sourceWallGuid": "58b249",
+      "sourceOpeningGuid": "e5b261",
+      "sourceCatalogRef": "218",
+      "position": [
+        93.93441703836503,
+        1.45,
+        28.644406893872887
+      ],
+      "widthMeters": 0.4030507102546113,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-5fad00-208695",
+      "type": "window",
+      "sourceWallIndex": 1381,
+      "sourceWallGuid": "5fad00",
+      "sourceOpeningGuid": "208695",
+      "sourceCatalogRef": "218",
+      "position": [
+        84.3860004383253,
+        1.45,
+        12.63635451281923
+      ],
+      "widthMeters": 0.370496572525311,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-abc287-000539",
+      "type": "window",
+      "sourceWallIndex": 1382,
+      "sourceWallGuid": "abc287",
+      "sourceOpeningGuid": "000539",
+      "sourceCatalogRef": "218",
+      "position": [
+        94.13298696080633,
+        1.45,
+        27.46878674583379
+      ],
+      "widthMeters": 1.776998774050626,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-da8adb-aac6dd",
+      "type": "window",
+      "sourceWallIndex": 1386,
+      "sourceWallGuid": "da8adb",
+      "sourceOpeningGuid": "aac6dd",
+      "sourceCatalogRef": "218",
+      "position": [
+        85.58679303886278,
+        1.45,
+        12.461392625402565
+      ],
+      "widthMeters": 1.8888705030724346,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-dd440c-57ebb9",
+      "type": "window",
+      "sourceWallIndex": 1387,
+      "sourceWallGuid": "dd440c",
+      "sourceOpeningGuid": "57ebb9",
+      "sourceCatalogRef": "218",
+      "position": [
+        93.9347918588178,
+        1.45,
+        26.30705202691792
+      ],
+      "widthMeters": 0.3881516322955384,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a22ba6-7ba81b",
+      "type": "door",
+      "sourceWallIndex": 1389,
+      "sourceWallGuid": "a22ba6",
+      "sourceOpeningGuid": "7ba81b",
+      "sourceCatalogRef": "200",
+      "position": [
+        92.75661245067204,
+        1.1,
+        28.158951143683844
+      ],
+      "widthMeters": 0.863083946880829,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-175752-112f26",
+      "type": "window",
+      "sourceWallIndex": 1390,
+      "sourceWallGuid": "175752",
+      "sourceOpeningGuid": "112f26",
+      "sourceCatalogRef": "218",
+      "position": [
+        86.80063479148626,
+        1.45,
+        12.645785305786326
+      ],
+      "widthMeters": 0.39635457841159566,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-69eb55-0262ad",
+      "type": "window",
+      "sourceWallIndex": 1402,
+      "sourceWallGuid": "69eb55",
+      "sourceOpeningGuid": "0262ad",
+      "sourceCatalogRef": "218",
+      "position": [
+        94.14424979472395,
+        1.45,
+        21.50105590316649
+      ],
+      "widthMeters": 1.895049973782652,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-26f15a-44426b",
+      "type": "window",
+      "sourceWallIndex": 1403,
+      "sourceWallGuid": "26f15a",
+      "sourceOpeningGuid": "44426b",
+      "sourceCatalogRef": "218",
+      "position": [
+        93.95333414502198,
+        1.45,
+        22.722912381575615
+      ],
+      "widthMeters": 0.40823762768287125,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-9996b3-be186f",
+      "type": "window",
+      "sourceWallIndex": 1408,
+      "sourceWallGuid": "9996b3",
+      "sourceOpeningGuid": "be186f",
+      "sourceCatalogRef": "218",
+      "position": [
+        93.95537517887246,
+        1.45,
+        20.28429740148862
+      ],
+      "widthMeters": 0.40138207160930933,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a0821d-944061",
+      "type": "door",
+      "sourceWallIndex": 1417,
+      "sourceWallGuid": "a0821d",
+      "sourceOpeningGuid": "944061",
+      "sourceCatalogRef": "200",
+      "position": [
+        92.75661245067224,
+        1.1,
+        20.597294785308886
+      ],
+      "widthMeters": 0.8573809532309588,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-aae8da-364902",
+      "type": "window",
+      "sourceWallIndex": 1432,
+      "sourceWallGuid": "aae8da",
+      "sourceOpeningGuid": "364902",
+      "sourceCatalogRef": "218",
+      "position": [
+        -30.361675160862916,
+        1.45,
+        12.851918755367059
+      ],
+      "widthMeters": 2.399115247580832,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-9f62cd-f5962b",
+      "type": "door",
+      "sourceWallIndex": 1453,
+      "sourceWallGuid": "9f62cd",
+      "sourceOpeningGuid": "f5962b",
+      "sourceCatalogRef": "200",
+      "position": [
+        -29.95326958677374,
+        1.1,
+        33.964832525299386
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2886e5-ba7756",
+      "type": "door",
+      "sourceWallIndex": 1457,
+      "sourceWallGuid": "2886e5",
+      "sourceOpeningGuid": "ba7756",
+      "sourceCatalogRef": "200",
+      "position": [
+        -23.697822852041543,
+        1.1,
+        37.69308328586935
+      ],
+      "widthMeters": 1.0164363381097679,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-0fe4be-ace701",
+      "type": "door",
+      "sourceWallIndex": 1461,
+      "sourceWallGuid": "0fe4be",
+      "sourceOpeningGuid": "ace701",
+      "sourceCatalogRef": "200",
+      "position": [
+        -29.452886641147117,
+        1.1,
+        35.30422072526563
+      ],
+      "widthMeters": 1.0173834081377935,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-042ff5-6b26f5",
+      "type": "door",
+      "sourceWallIndex": 1463,
+      "sourceWallGuid": "042ff5",
+      "sourceOpeningGuid": "6b26f5",
+      "sourceCatalogRef": "200",
+      "position": [
+        -27.124619487640476,
+        1.1,
+        36.86360245979234
+      ],
+      "widthMeters": 1.015313763203958,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-fa9c8a-3c3dc9",
+      "type": "door",
+      "sourceWallIndex": 1464,
+      "sourceWallGuid": "fa9c8a",
+      "sourceOpeningGuid": "3c3dc9",
+      "sourceCatalogRef": "200",
+      "position": [
+        -26.542119578215452,
+        1.1,
+        38.745839733642946
+      ],
+      "widthMeters": 1.0210056375795586,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-b1ca5a-e694f3",
+      "type": "door",
+      "sourceWallIndex": 1472,
+      "sourceWallGuid": "b1ca5a",
+      "sourceOpeningGuid": "e694f3",
+      "sourceCatalogRef": "200",
+      "position": [
+        -63.13742024948368,
+        1.1,
+        24.34513452690011
+      ],
+      "widthMeters": 1.0274735611004349,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-8945df-b3a334",
+      "type": "door",
+      "sourceWallIndex": 1474,
+      "sourceWallGuid": "8945df",
+      "sourceOpeningGuid": "b3a334",
+      "sourceCatalogRef": "200",
+      "position": [
+        -59.649794933874226,
+        1.1,
+        31.505475336486732
+      ],
+      "widthMeters": 1.0165380201090215,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-82ca37-c9f2b6",
+      "type": "door",
+      "sourceWallIndex": 1486,
+      "sourceWallGuid": "82ca37",
+      "sourceOpeningGuid": "c9f2b6",
+      "sourceCatalogRef": "200",
+      "position": [
+        -64.78169423873976,
+        1.1,
+        36.95973364555671
+      ],
+      "widthMeters": 1.0174419872718792,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-78664a-bc89b3",
+      "type": "door",
+      "sourceWallIndex": 1490,
+      "sourceWallGuid": "78664a",
+      "sourceOpeningGuid": "bc89b3",
+      "sourceCatalogRef": "200",
+      "position": [
+        -61.589842896288495,
+        1.1,
+        33.729140055962354
+      ],
+      "widthMeters": 1.0158885312992425,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-21905a-9eb986",
+      "type": "door",
+      "sourceWallIndex": 1495,
+      "sourceWallGuid": "21905a",
+      "sourceOpeningGuid": "9eb986",
+      "sourceCatalogRef": "200",
+      "position": [
+        -61.589842896289035,
+        1.1,
+        36.32938626969533
+      ],
+      "widthMeters": 1.0219071299925282,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-fc94bb-d1ef72",
+      "type": "door",
+      "sourceWallIndex": 1500,
+      "sourceWallGuid": "fc94bb",
+      "sourceOpeningGuid": "d1ef72",
+      "sourceCatalogRef": "200",
+      "position": [
+        -60.86751327227768,
+        1.1,
+        34.65295427626752
+      ],
+      "widthMeters": 1.0155904485426255,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-6d8f98-8602c4",
+      "type": "door",
+      "sourceWallIndex": 1502,
+      "sourceWallGuid": "6d8f98",
+      "sourceOpeningGuid": "8602c4",
+      "sourceCatalogRef": "200",
+      "position": [
+        -61.58984289628962,
+        1.1,
+        37.61117775741387
+      ],
+      "widthMeters": 1.0231872065532435,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-729ecf-d38f24",
+      "type": "door",
+      "sourceWallIndex": 1509,
+      "sourceWallGuid": "729ecf",
+      "sourceOpeningGuid": "d38f24",
+      "sourceCatalogRef": "200",
+      "position": [
+        -60.936891893910605,
+        1.1,
+        38.75077163831923
+      ],
+      "widthMeters": 1.149802008873022,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-5dcfac-29c472",
+      "type": "door",
+      "sourceWallIndex": 1512,
+      "sourceWallGuid": "5dcfac",
+      "sourceOpeningGuid": "29c472",
+      "sourceCatalogRef": "200",
+      "position": [
+        -47.388127913410784,
+        1.1,
+        35.189543267655495
+      ],
+      "widthMeters": 1.0159283241684387,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-cc23fc-7daeb2",
+      "type": "door",
+      "sourceWallIndex": 1522,
+      "sourceWallGuid": "cc23fc",
+      "sourceOpeningGuid": "7daeb2",
+      "sourceCatalogRef": "200",
+      "position": [
+        -45.79044928577766,
+        1.1,
+        33.917133145375495
+      ],
+      "widthMeters": 1.0187488871816561,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-7b51e8-0dc026",
+      "type": "door",
+      "sourceWallIndex": 1532,
+      "sourceWallGuid": "7b51e8",
+      "sourceOpeningGuid": "0dc026",
+      "sourceCatalogRef": "200",
+      "position": [
+        -37.59128807107651,
+        1.1,
+        38.748801920354346
+      ],
+      "widthMeters": 1.1680196439207253,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-223f99-b6c6e6",
+      "type": "door",
+      "sourceWallIndex": 1534,
+      "sourceWallGuid": "223f99",
+      "sourceOpeningGuid": "b6c6e6",
+      "sourceCatalogRef": "200",
+      "position": [
+        -35.82779856793534,
+        1.1,
+        12.853918602188593
+      ],
+      "widthMeters": 1.0412148827736258,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-223f99-397326",
+      "type": "window",
+      "sourceWallIndex": 1534,
+      "sourceWallGuid": "223f99",
+      "sourceOpeningGuid": "397326",
+      "sourceCatalogRef": "218",
+      "position": [
+        -34.149427982125445,
+        1.45,
+        12.85391860218975
+      ],
+      "widthMeters": 1.9440609721500544,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-223f99-a0726e",
+      "type": "window",
+      "sourceWallIndex": 1534,
+      "sourceWallGuid": "223f99",
+      "sourceOpeningGuid": "a0726e",
+      "sourceCatalogRef": "218",
+      "position": [
+        -37.41761869209985,
+        1.45,
+        12.853918602187491
+      ],
+      "widthMeters": 1.8240577841042074,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-1fd9a9-711784",
+      "type": "door",
+      "sourceWallIndex": 1541,
+      "sourceWallGuid": "1fd9a9",
+      "sourceOpeningGuid": "711784",
+      "sourceCatalogRef": "200",
+      "position": [
+        -44.43982773498469,
+        1.1,
+        37.76049904049935
+      ],
+      "widthMeters": 1.0149936141781108,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-31d67d-537222",
+      "type": "window",
+      "sourceWallIndex": 1544,
+      "sourceWallGuid": "31d67d",
+      "sourceOpeningGuid": "537222",
+      "sourceCatalogRef": "218",
+      "position": [
+        -39.9453816989912,
+        1.45,
+        12.853918602185658
+      ],
+      "widthMeters": 1.7979676000057112,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-136e73-0dc71e",
+      "type": "door",
+      "sourceWallIndex": 1548,
+      "sourceWallGuid": "136e73",
+      "sourceOpeningGuid": "0dc71e",
+      "sourceCatalogRef": "200",
+      "position": [
+        -46.49971342376436,
+        1.1,
+        31.13614482582524
+      ],
+      "widthMeters": 0.98,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-958377-d1e8e1",
+      "type": "door",
+      "sourceWallIndex": 1552,
+      "sourceWallGuid": "958377",
+      "sourceOpeningGuid": "d1e8e1",
+      "sourceCatalogRef": "200",
+      "position": [
+        -37.15805078206565,
+        1.1,
+        34.94465681333212
+      ],
+      "widthMeters": 1.0036822461022172,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-746cb0-1b0356",
+      "type": "door",
+      "sourceWallIndex": 1561,
+      "sourceWallGuid": "746cb0",
+      "sourceOpeningGuid": "1b0356",
+      "sourceCatalogRef": "200",
+      "position": [
+        -42.14868831540184,
+        1.1,
+        12.85380175271901
+      ],
+      "widthMeters": 0.9656316204593238,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-746cb0-cf929e",
+      "type": "window",
+      "sourceWallIndex": 1561,
+      "sourceWallGuid": "746cb0",
+      "sourceOpeningGuid": "cf929e",
+      "sourceCatalogRef": "218",
+      "position": [
+        -44.22852934747802,
+        1.45,
+        12.853444696674892
+      ],
+      "widthMeters": 1.6063086953977483,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-746cb0-aebff4",
+      "type": "window",
+      "sourceWallIndex": 1561,
+      "sourceWallGuid": "746cb0",
+      "sourceOpeningGuid": "aebff4",
+      "sourceCatalogRef": "218",
+      "position": [
+        -46.59623064901688,
+        1.45,
+        12.853038222311062
+      ],
+      "widthMeters": 1.5945362553956988,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-e58810-f56f28",
+      "type": "door",
+      "sourceWallIndex": 1578,
+      "sourceWallGuid": "e58810",
+      "sourceOpeningGuid": "f56f28",
+      "sourceCatalogRef": "208",
+      "position": [
+        -39.70550512884231,
+        1.1,
+        26.81334365173893
+      ],
+      "widthMeters": 1.0416386489245204,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-12806f-3c80f2",
+      "type": "door",
+      "sourceWallIndex": 1583,
+      "sourceWallGuid": "12806f",
+      "sourceOpeningGuid": "3c80f2",
+      "sourceCatalogRef": "200",
+      "position": [
+        -37.434755958540144,
+        1.1,
+        28.10991301904224
+      ],
+      "widthMeters": 0.8917565313059014,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-7b6524-cca677",
+      "type": "window",
+      "sourceWallIndex": 1605,
+      "sourceWallGuid": "7b6524",
+      "sourceOpeningGuid": "cca677",
+      "sourceCatalogRef": "218",
+      "position": [
+        -53.87205480794978,
+        1.45,
+        12.44842611105933
+      ],
+      "widthMeters": 0.4625128230982003,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-a9c361-0c73f4",
+      "type": "window",
+      "sourceWallIndex": 1606,
+      "sourceWallGuid": "a9c361",
+      "sourceOpeningGuid": "0c73f4",
+      "sourceCatalogRef": "218",
+      "position": [
+        -53.16032843116786,
+        1.45,
+        12.24689792679285
+      ],
+      "widthMeters": 1.0376316705815776,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-d26680-6e9e5a",
+      "type": "window",
+      "sourceWallIndex": 1607,
+      "sourceWallGuid": "d26680",
+      "sourceOpeningGuid": "6e9e5a",
+      "sourceCatalogRef": "218",
+      "position": [
+        -52.42527687789984,
+        1.45,
+        12.466064360591014
+      ],
+      "widthMeters": 0.46251282309820013,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-1c0446-56ad2f",
+      "type": "window",
+      "sourceWallIndex": 1612,
+      "sourceWallGuid": "1c0446",
+      "sourceOpeningGuid": "56ad2f",
+      "sourceCatalogRef": "218",
+      "position": [
+        -49.917981874063216,
+        1.45,
+        12.455769768047787
+      ],
+      "widthMeters": 0.4625128230982002,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-0514d8-930d1b",
+      "type": "window",
+      "sourceWallIndex": 1613,
+      "sourceWallGuid": "0514d8",
+      "sourceOpeningGuid": "930d1b",
+      "sourceCatalogRef": "218",
+      "position": [
+        -49.200620543744506,
+        1.45,
+        12.25541549963342
+      ],
+      "widthMeters": 1.0376316705815776,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-61bad2-ea064a",
+      "type": "door",
+      "sourceWallIndex": 1614,
+      "sourceWallGuid": "61bad2",
+      "sourceOpeningGuid": "ea064a",
+      "sourceCatalogRef": "200",
+      "position": [
+        -51.222610040074954,
+        1.1,
+        38.74994470402788
+      ],
+      "widthMeters": 1.170614322245382,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-68b10b-008351",
+      "type": "door",
+      "sourceWallIndex": 1615,
+      "sourceWallGuid": "68b10b",
+      "sourceOpeningGuid": "008351",
+      "sourceCatalogRef": "200",
+      "position": [
+        -45.83544553939607,
+        1.1,
+        38.74908663381126
+      ],
+      "widthMeters": 1.143425332636358,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-2897e2-8535ef",
+      "type": "window",
+      "sourceWallIndex": 1616,
+      "sourceWallGuid": "2897e2",
+      "sourceOpeningGuid": "8535ef",
+      "sourceCatalogRef": "218",
+      "position": [
+        -48.472217161266464,
+        1.45,
+        12.465614015635872
+      ],
+      "widthMeters": 0.4625128230982002,
+      "heightMeters": 1.5
+    },
+    {
+      "id": "opening-88600d-9caf66",
+      "type": "door",
+      "sourceWallIndex": 1630,
+      "sourceWallGuid": "88600d",
+      "sourceOpeningGuid": "9caf66",
+      "sourceCatalogRef": "200",
+      "position": [
+        -49.81797344311278,
+        1.1,
+        36.842397324180155
+      ],
+      "widthMeters": 1.0190269497894497,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-7f6f7a-bfc2a2",
+      "type": "door",
+      "sourceWallIndex": 1634,
+      "sourceWallGuid": "7f6f7a",
+      "sourceOpeningGuid": "bfc2a2",
+      "sourceCatalogRef": "200",
+      "position": [
+        -49.81797344311256,
+        1.1,
+        33.508467679275874
+      ],
+      "widthMeters": 1.0175816731909253,
+      "heightMeters": 2.2
+    },
+    {
+      "id": "opening-74cafe-beb5d9",
+      "type": "door",
+      "sourceWallIndex": 1637,
+      "sourceWallGuid": "74cafe",
+      "sourceOpeningGuid": "beb5d9",
+      "sourceCatalogRef": "200",
+      "position": [
+        -51.42050796092556,
+        1.1,
+        32.64467319363517
+      ],
+      "widthMeters": 1.014898825702113,
+      "heightMeters": 2.2
+    }
+  ],
+  "cameraPresets": {
+    "overview": {
+      "position": [
+        66.64877090454101,
+        129.5059979248047,
+        -92.46241600036622
+      ],
+      "target": [
+        -0.00872802734375,
+        1.9430999755859375,
+        -0.37268638610839844
+      ]
+    },
+    "frontage": {
+      "position": [
+        -0.00872802734375,
+        30,
+        -79.48417282104492
+      ],
+      "target": [
+        -0.00872802734375,
+        2,
+        -32.48417282104492
+      ]
+    }
+  },
+  "limitations": [
+    "Model derived from the supplied Floorplanner export, not a measured survey or an as-built structural record.",
+    "All ground-floor wall segments have the same source height (3.8862 m); individual wall and column heights are unverified.",
+    "Column classifications are inferred from repeated wall geometry. They are physically unverified and do not establish structural capacity or condition.",
+    "Source column wall loops are retained as source-shaped perimeter solids, rather than replaced with idealized filled cubes.",
+    "Catalog door leaves, window frames, fittings, furnishings and texture assets are not included in the native geometry. Door voids are cut; window voids include a simple glazing proxy.",
+    "Floor area polygons are source planes at elevation zero; no invented floor thickness or finished-floor elevation is added.",
+    "The elevated source surface is categorized as canopy by elevation and its matching walkway footprint. No roof pitch, fascia detail or new exterior is invented.",
+    "Second Floor design 193835178 is omitted because registration to the ground floor is unverified. The native export preserves it.",
+    "Alternative ground-floor design 189209676 is omitted; this model uses design 241952337 only.",
+    "No georeferencing, surveyed coordinates, tenant area reconciliation, maintenance status or live sensor data are asserted."
+  ]
+}

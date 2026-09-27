@@ -1,0 +1,1905 @@
+{
+  "schemaVersion": 1,
+  "title": "OTB water-map annotations registered to the source model",
+  "status": "Approximate drawing references; not field-verified assets",
+  "counts": {
+    "annotations": 19,
+    "cityMeterAnnotations": 6,
+    "tenantShutoffAnnotations": 13,
+    "reportedCityMeters": 24,
+    "reportedTenantShutoffs": 37,
+    "physicalAssets": null
+  },
+  "countInterpretation": {
+    "meaning": "count at this location (confirmed by Adam 2026-09-25)",
+    "source": "user-confirmation",
+    "confirmedBy": "Adam",
+    "confirmedOn": "2026-09-25",
+    "statement": "The circle numbers are counts at each location.",
+    "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+  },
+  "countReconciliation": {
+    "mapReportedCityMeters": 24,
+    "workbookWaterMeterIds": 28,
+    "workbookMinusMap": 4,
+    "status": "unresolved",
+    "note": "The map reports 24 city meters while the workbook contains 28 water-meter IDs. Dates, coverage and individual membership are not reconciled; this does not establish four missing meters."
+  },
+  "sources": [
+    {
+      "id": "image",
+      "path": "src/assets/twin/infrastructure/water-shutoff-map.png",
+      "sha256": "6f5fa658e34a77b63ea11fad467ed925f6f6b2e7c88510215497f5c162a10929"
+    },
+    {
+      "id": "annotations",
+      "path": "src/data/twin-infrastructure.json",
+      "sha256": "55e40f73f80b9c3f65d7302a310f47aed7ee5a275deaac28cfb2af779c1c4ab9"
+    },
+    {
+      "id": "fixtures",
+      "path": "src/data/twin-site-fixtures.json",
+      "sha256": "81e8b927013dde5d2b67bb815381fc4ad4cbe1bb5179d180d8a4392e17414a3b"
+    },
+    {
+      "id": "nativeModel",
+      "path": "public/twin/model-data.json",
+      "sha256": "f0ff144da4662909758f69d9fedef4186887dc707d8fc02d70ccee458ea182fe"
+    }
+  ],
+  "modelSourceSha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+  "modelProjectId": 109978485,
+  "modelDesignId": 241952337,
+  "sourceModelOriginFmlCm": {
+    "x": -6403.266240132,
+    "y": -2511.4517129028,
+    "z": 0
+  },
+  "sourceImage": "infrastructure/water-shutoff-map.png",
+  "sourceImageSizePx": [
+    2500,
+    1164
+  ],
+  "units": "meters",
+  "upAxis": "Y",
+  "registration": {
+    "method": "Eight image/building corners, bridged through the 37-column A-1/native-model candidate fit",
+    "matrixConvention": "[sourceImageX, sourceImageY, 1] @ matrix3x2 = [modelX, modelZ]; modelY=0",
+    "matrix3x2": [
+      [
+        0.1013125835,
+        0.0003201989
+      ],
+      [
+        -0.0014240346,
+        0.0979483631
+      ],
+      [
+        -116.3144657184,
+        -62.8989965645
+      ]
+    ],
+    "controlCount": 8,
+    "rmsMeters": 0.4194585431,
+    "maxResidualMeters": 0.7916392577,
+    "leaveOneOut": {
+      "rmsMeters": 0.5652022215,
+      "maxResidualMeters": 0.941468814
+    },
+    "controls": [
+      {
+        "id": "long_133_front",
+        "sourceImagePx": [
+          507.5,
+          769
+        ],
+        "sourcePlanPx": [
+          1125.84,
+          292.56
+        ],
+        "targetModelXZ": [
+          -65.4105605265,
+          12.0500936021
+        ],
+        "residualMeters": 0.7916392577,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "long_133_rear",
+        "sourceImagePx": [
+          507.5,
+          1025
+        ],
+        "sourcePlanPx": [
+          1125.84,
+          131.35
+        ],
+        "targetModelXZ": [
+          -65.9453355526,
+          37.4668809297
+        ],
+        "residualMeters": 0.4558301166,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "long_101_front",
+        "sourceImagePx": [
+          2073.5,
+          760
+        ],
+        "sourcePlanPx": [
+          160.78,
+          292.56
+        ],
+        "targetModelXZ": [
+          92.7082849762,
+          12.1474244215
+        ],
+        "residualMeters": 0.0671490331,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "long_101_rear",
+        "sourceImagePx": [
+          2073.5,
+          1017.5
+        ],
+        "sourcePlanPx": [
+          160.78,
+          131.35
+        ],
+        "targetModelXZ": [
+          92.1735099502,
+          37.5642117492
+        ],
+        "residualMeters": 0.1920046467,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "short_149_patricia",
+        "sourceImagePx": [
+          217.5,
+          251
+        ],
+        "sourcePlanPx": [
+          1310.94,
+          610.95
+        ],
+        "targetModelXZ": [
+          -94.6818180427,
+          -38.1667689874
+        ],
+        "residualMeters": 0.0898610501,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "short_149_field",
+        "sourceImagePx": [
+          470,
+          251
+        ],
+        "sourcePlanPx": [
+          1154.51,
+          610.95
+        ],
+        "targetModelXZ": [
+          -69.0517732766,
+          -38.1509922895
+        ],
+        "residualMeters": 0.0128783287,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "short_135_patricia",
+        "sourceImagePx": [
+          217.5,
+          879
+        ],
+        "sourcePlanPx": [
+          1310.94,
+          219.31
+        ],
+        "targetModelXZ": [
+          -95.9809886351,
+          23.5802106603
+        ],
+        "residualMeters": 0.5483562804,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      },
+      {
+        "id": "short_135_field",
+        "sourceImagePx": [
+          470,
+          879
+        ],
+        "sourcePlanPx": [
+          1154.51,
+          219.31
+        ],
+        "targetModelXZ": [
+          -70.350943869,
+          23.5959873582
+        ],
+        "residualMeters": 0.4719954434,
+        "targetBasis": "A-1 building corner transformed by the 37-column candidate bridge; not directly surveyed"
+      }
+    ],
+    "sourceImageControlHullPx": [
+      [
+        217.5,
+        251
+      ],
+      [
+        470,
+        251
+      ],
+      [
+        2073.5,
+        760
+      ],
+      [
+        2073.5,
+        1017.5
+      ],
+      [
+        507.5,
+        1025
+      ],
+      [
+        217.5,
+        879
+      ]
+    ],
+    "imageToPlan": {
+      "matrix3x2": [
+        [
+          -0.6183826908,
+          -0.0016353412
+        ],
+        [
+          -0.0038867152,
+          -0.6212505232
+        ],
+        [
+          1446.1466286411,
+          767.7315814427
+        ]
+      ],
+      "rmsPlanPx": 2.5731620805,
+      "maxResidualPlanPx": 4.87133247
+    },
+    "planToNative": {
+      "matrix3x2": [
+        [
+          -0.1638435387,
+          -0.0001008547
+        ],
+        [
+          0.0033172572,
+          -0.1576625974
+        ],
+        [
+          118.0805523824,
+          58.2894093341
+        ]
+      ],
+      "controlCount": 37,
+      "rmsMeters": 0.5370138893,
+      "maxResidualMeters": 1.2938659819,
+      "controls": [
+        {
+          "sourceId": "col-03",
+          "modelColumnId": "column-038b4a052760",
+          "sourcePlanPx": [
+            148.58,
+            184.02
+          ],
+          "nativeModelXZ": [
+            94.7425242509,
+            30.4933213092
+          ],
+          "residualMeters": 1.2938659819
+        },
+        {
+          "sourceId": "col-04",
+          "modelColumnId": "column-d2b3a3e668ba",
+          "sourcePlanPx": [
+            148.58,
+            222.53
+          ],
+          "nativeModelXZ": [
+            94.8190763562,
+            24.3033430548
+          ],
+          "residualMeters": 1.1655606385
+        },
+        {
+          "sourceId": "col-05",
+          "modelColumnId": "column-02295ca93280",
+          "sourcePlanPx": [
+            148.58,
+            257.09
+          ],
+          "nativeModelXZ": [
+            94.8190763562,
+            18.6800493708
+          ],
+          "residualMeters": 0.966753456
+        },
+        {
+          "sourceId": "col-06",
+          "modelColumnId": "column-aa85e5b580cf",
+          "sourcePlanPx": [
+            148.58,
+            291.8
+          ],
+          "nativeModelXZ": [
+            94.8190763562,
+            13.0481375075
+          ],
+          "residualMeters": 0.788010487
+        },
+        {
+          "sourceId": "col-07",
+          "modelColumnId": "column-58ee6b101d84",
+          "sourcePlanPx": [
+            148.58,
+            313.35
+          ],
+          "nativeModelXZ": [
+            94.8190763562,
+            8.5791755139
+          ],
+          "residualMeters": 0.2948169763
+        },
+        {
+          "sourceId": "col-08",
+          "modelColumnId": "column-b54ed1758e8b",
+          "sourcePlanPx": [
+            164.94,
+            313.35
+          ],
+          "nativeModelXZ": [
+            92.1381500552,
+            8.5704293263
+          ],
+          "residualMeters": 0.3017761795
+        },
+        {
+          "sourceId": "col-09",
+          "modelColumnId": "column-5bc5065cf1b8",
+          "sourcePlanPx": [
+            196.03,
+            313.35
+          ],
+          "nativeModelXZ": [
+            86.9227913391,
+            8.5588853573
+          ],
+          "residualMeters": 0.3171681766
+        },
+        {
+          "sourceId": "col-10",
+          "modelColumnId": "column-044d1f471c0c",
+          "sourcePlanPx": [
+            211.95,
+            313.35
+          ],
+          "nativeModelXZ": [
+            84.241865038,
+            8.5501391696
+          ],
+          "residualMeters": 0.348930286
+        },
+        {
+          "sourceId": "col-11",
+          "modelColumnId": "column-b612c2a14b74",
+          "sourcePlanPx": [
+            239.62,
+            313.35
+          ],
+          "nativeModelXZ": [
+            79.7415735846,
+            8.5596095084
+          ],
+          "residualMeters": 0.3243806173
+        },
+        {
+          "sourceId": "col-12",
+          "modelColumnId": "column-5d259bb6c3b7",
+          "sourcePlanPx": [
+            256.57,
+            313.35
+          ],
+          "nativeModelXZ": [
+            77.0606472836,
+            8.5508633208
+          ],
+          "residualMeters": 0.3098789676
+        },
+        {
+          "sourceId": "col-13",
+          "modelColumnId": "column-90181ecef8d9",
+          "sourcePlanPx": [
+            283.2,
+            313.35
+          ],
+          "nativeModelXZ": [
+            72.5836098833,
+            8.5578507263
+          ],
+          "residualMeters": 0.3288254574
+        },
+        {
+          "sourceId": "col-14",
+          "modelColumnId": "column-a463a9a2acf7",
+          "sourcePlanPx": [
+            299.86,
+            313.35
+          ],
+          "nativeModelXZ": [
+            69.9026835823,
+            8.5491045387
+          ],
+          "residualMeters": 0.3186531937
+        },
+        {
+          "sourceId": "col-15",
+          "modelColumnId": "column-47239d683e86",
+          "sourcePlanPx": [
+            356.53,
+            313.35
+          ],
+          "nativeModelXZ": [
+            60.5914459081,
+            8.5894050503
+          ],
+          "residualMeters": 0.2840991703
+        },
+        {
+          "sourceId": "col-16",
+          "modelColumnId": "column-16c0ba4535cc",
+          "sourcePlanPx": [
+            406.51,
+            313.35
+          ],
+          "nativeModelXZ": [
+            52.4553619385,
+            8.5627410162
+          ],
+          "residualMeters": 0.288534026
+        },
+        {
+          "sourceId": "col-17",
+          "modelColumnId": "column-67175e7ffef6",
+          "sourcePlanPx": [
+            448.75,
+            313.35
+          ],
+          "nativeModelXZ": [
+            45.5101248247,
+            8.5627410162
+          ],
+          "residualMeters": 0.2905762982
+        },
+        {
+          "sourceId": "col-18",
+          "modelColumnId": "column-ed119356cf6a",
+          "sourcePlanPx": [
+            498.73,
+            313.35
+          ],
+          "nativeModelXZ": [
+            37.3553858326,
+            8.5208536539
+          ],
+          "residualMeters": 0.3187780568
+        },
+        {
+          "sourceId": "col-19",
+          "modelColumnId": "column-aee610a618a4",
+          "sourcePlanPx": [
+            544.54,
+            313.35
+          ],
+          "nativeModelXZ": [
+            29.8621930571,
+            8.5690982575
+          ],
+          "residualMeters": 0.2646267006
+        },
+        {
+          "sourceId": "col-20",
+          "modelColumnId": "column-a271a91870ae",
+          "sourcePlanPx": [
+            591.25,
+            313.35
+          ],
+          "nativeModelXZ": [
+            22.3618093546,
+            8.5765037913
+          ],
+          "residualMeters": 0.2746119139
+        },
+        {
+          "sourceId": "col-21",
+          "modelColumnId": "column-d785b928bb21",
+          "sourcePlanPx": [
+            635.87,
+            313.35
+          ],
+          "nativeModelXZ": [
+            14.9206746685,
+            8.5834669201
+          ],
+          "residualMeters": 0.2387837742
+        },
+        {
+          "sourceId": "col-22",
+          "modelColumnId": "column-c26484797ec1",
+          "sourcePlanPx": [
+            680.65,
+            313.35
+          ],
+          "nativeModelXZ": [
+            7.4692349633,
+            8.6001939337
+          ],
+          "residualMeters": 0.2533028385
+        },
+        {
+          "sourceId": "col-23",
+          "modelColumnId": "column-a8f1bedc07e9",
+          "sourcePlanPx": [
+            726.31,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -0.0018670651,
+            8.5657813462
+          ],
+          "residualMeters": 0.2747269248
+        },
+        {
+          "sourceId": "col-24",
+          "modelColumnId": "column-1f046ab1c1c0",
+          "sourcePlanPx": [
+            772.27,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -7.5516235668,
+            8.5865422956
+          ],
+          "residualMeters": 0.2620555656
+        },
+        {
+          "sourceId": "col-25",
+          "modelColumnId": "column-a72402b949b5",
+          "sourcePlanPx": [
+            818.68,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -15.2250436981,
+            8.5627410162
+          ],
+          "residualMeters": 0.3190571793
+        },
+        {
+          "sourceId": "col-26",
+          "modelColumnId": "column-e8fa3fb70060",
+          "sourcePlanPx": [
+            866.87,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -22.9342543371,
+            8.5627410162
+          ],
+          "residualMeters": 0.2368067671
+        },
+        {
+          "sourceId": "col-27",
+          "modelColumnId": "column-45d9d6177283",
+          "sourcePlanPx": [
+            916.41,
+            313.12
+          ],
+          "nativeModelXZ": [
+            -31.9171631464,
+            8.6056624638
+          ],
+          "residualMeters": 0.9163598683
+        },
+        {
+          "sourceId": "col-28",
+          "modelColumnId": "column-887d27e648e6",
+          "sourcePlanPx": [
+            930.69,
+            313.12
+          ],
+          "nativeModelXZ": [
+            -33.0345339434,
+            8.5846062851
+          ],
+          "residualMeters": 0.4132160947
+        },
+        {
+          "sourceId": "col-29",
+          "modelColumnId": "column-21818286d35d",
+          "sourcePlanPx": [
+            970.25,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -40.0646659676,
+            8.5627410162
+          ],
+          "residualMeters": 0.3117170288
+        },
+        {
+          "sourceId": "col-30",
+          "modelColumnId": "column-ce943c0fb5c2",
+          "sourcePlanPx": [
+            1017.7,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -47.9031907841,
+            8.5600713849
+          ],
+          "residualMeters": 0.3577435525
+        },
+        {
+          "sourceId": "col-31",
+          "modelColumnId": "column-9e141c322e07",
+          "sourcePlanPx": [
+            1066.79,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -55.7293350929,
+            8.5627410162
+          ],
+          "residualMeters": 0.2244389626
+        },
+        {
+          "sourceId": "col-32",
+          "modelColumnId": "column-97dabebaad03",
+          "sourcePlanPx": [
+            1113.05,
+            312.89
+          ],
+          "nativeModelXZ": [
+            -63.6400971776,
+            8.5627410162
+          ],
+          "residualMeters": 0.4841259896
+        },
+        {
+          "sourceId": "col-33",
+          "modelColumnId": "column-e867804401a1",
+          "sourcePlanPx": [
+            1131.34,
+            342.34
+          ],
+          "nativeModelXZ": [
+            -65.3837055978,
+            5.0168258475
+          ],
+          "residualMeters": 1.1168592336
+        },
+        {
+          "sourceId": "col-34",
+          "modelColumnId": "column-3156ee7986df",
+          "sourcePlanPx": [
+            1131.34,
+            390.14
+          ],
+          "nativeModelXZ": [
+            -65.4003105496,
+            -2.6908628444
+          ],
+          "residualMeters": 0.8720793945
+        },
+        {
+          "sourceId": "col-35",
+          "modelColumnId": "column-81c79ff96e48",
+          "sourcePlanPx": [
+            1131.34,
+            443.88
+          ],
+          "nativeModelXZ": [
+            -65.3847067774,
+            -11.2585453974
+          ],
+          "residualMeters": 0.6946288594
+        },
+        {
+          "sourceId": "col-36",
+          "modelColumnId": "column-a9381f0a71be",
+          "sourcePlanPx": [
+            1131.34,
+            496.7
+          ],
+          "nativeModelXZ": [
+            -65.3880784918,
+            -19.8032472731
+          ],
+          "residualMeters": 0.41383367
+        },
+        {
+          "sourceId": "col-37",
+          "modelColumnId": "column-77db6e0ff5af",
+          "sourcePlanPx": [
+            1131.2,
+            550.59
+          ],
+          "nativeModelXZ": [
+            -65.3655130308,
+            -28.2992567531
+          ],
+          "residualMeters": 0.3396048867
+        },
+        {
+          "sourceId": "col-38",
+          "modelColumnId": "column-fc0ad1c131f2",
+          "sourcePlanPx": [
+            1131.34,
+            603.72
+          ],
+          "nativeModelXZ": [
+            -65.3880784915,
+            -36.9156533416
+          ],
+          "residualMeters": 0.1430269243
+        },
+        {
+          "sourceId": "col-39",
+          "modelColumnId": "column-cd2fbfa1e062",
+          "sourcePlanPx": [
+            1131.34,
+            625.33
+          ],
+          "nativeModelXZ": [
+            -65.3837055978,
+            -40.3579475195
+          ],
+          "residualMeters": 0.1851728825
+        }
+      ]
+    },
+    "uncertaintyNote": "The eight-corner residual excludes the separate 37-column bridge error and all field error. These are internal drawing/model checks, not survey accuracy. Exterior annotations extrapolate beyond building controls."
+  },
+  "nativeModelBoundsMeters": {
+    "min": [
+      -95.2337265015,
+      0,
+      -41.484172821
+    ],
+    "max": [
+      95.2162704468,
+      3.8861999512,
+      40.7388000488
+    ]
+  },
+  "annotationBoundsMeters": {
+    "min": [
+      -96.1904643297,
+      0.0,
+      -43.9105900637
+    ],
+    "max": [
+      89.5629160757,
+      0.0,
+      43.5324852356
+    ]
+  },
+  "displayBoundsMeters": {
+    "min": [
+      -98.1904643297,
+      0.0,
+      -45.9105900637
+    ],
+    "max": [
+      97.2162704468,
+      3.8861999512,
+      45.5324852356
+    ]
+  },
+  "validationBoundsMeters": {
+    "min": [
+      -100.2337265015,
+      0.0,
+      -46.484172821
+    ],
+    "max": [
+      100.2162704468,
+      3.8861999512,
+      45.7388000488
+    ]
+  },
+  "validation": {
+    "maximumAllowedExteriorDistanceMeters": 5.0,
+    "maximumObservedExteriorDistanceMeters": 2.7936851868,
+    "outsideNativeModelAnnotationCount": 8,
+    "displayMarginMeters": 2.0,
+    "boundsMeaning": "Display/validation extents only; not a property, survey, service-area or construction boundary"
+  },
+  "limitations": [
+    "Printed numbers are reported counts at each location, confirmed by Adam on 2026-09-25; they are not individual meter or valve IDs.",
+    "The 24 reported city meters and 28 workbook water-meter IDs remain unreconciled; no membership is inferred.",
+    "No physical asset record, meter membership, served unit, pipe, operational status or shutoff procedure is inferred.",
+    "Building-corner targets are derived through the existing source-fixture correspondence, not independently measured native corners.",
+    "A-1 and Floorplanner walkway widths disagree; their candidate registration retains residual differences.",
+    "Y=0 is only a visual ground reference; utility elevation/depth and precise field location remain unknown.",
+    "The input infrastructure inventory and original map image remain unchanged."
+  ],
+  "annotations": [
+    {
+      "id": "water-map:city-meter:01",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "8",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 263.5,
+        "y": 193.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "City meter map marker 01",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 8,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -89.8934386368,
+        0.0,
+        -43.9105900637
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 2.4264172427,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:city-meter:02",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 479.5,
+        "y": 1068.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "City meter map marker 02",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 1,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -69.2559508536,
+        0.0,
+        41.8633906395
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 1.1245905907,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:city-meter:03",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "8",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1136.0,
+        "y": 1068.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "City meter map marker 03",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 8,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -2.744239779,
+        0.0,
+        42.073601236
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 1.3348011872,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:city-meter:04",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1585.5,
+        "y": 1073.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "City meter map marker 04",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 4,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        42.7886463361,
+        0.0,
+        42.7072724699
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 1.9684724211,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:city-meter:05",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1715.5,
+        "y": 1081.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "City meter map marker 05",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 1,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        55.9478899159,
+        0.0,
+        43.5324852356
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 2.7936851868,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:city-meter:06",
+      "category": "city-meter",
+      "legendText": "City meter",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1811.5,
+        "y": 1065.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "City meter map marker 06",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 2,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        65.6966824861,
+        0.0,
+        41.9960505227
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 1.2572504739,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:01",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 208.5,
+        "y": 702.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 01",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 2,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -96.1904643297,
+        0.0,
+        5.9275158261
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 0.9567378282,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:02",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 236.0,
+        "y": 925.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 02",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 1,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -93.7219279939,
+        0.0,
+        27.7788062735
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:03",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 460.5,
+        "y": 1041.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 03",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 4,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -71.1424410068,
+        0.0,
+        39.2127010555
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:04",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 864.5,
+        "y": 1041.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 04",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 1,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -30.2121572685,
+        0.0,
+        39.3420614226
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:05",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "10",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1136.0,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 05",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 10,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        -2.6986706725,
+        0.0,
+        38.939253616
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:06",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1347.0,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 06",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 2,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        18.6782844482,
+        0.0,
+        39.0068155899
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:07",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1432.5,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 07",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 4,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        27.3405103384,
+        0.0,
+        39.0341925982
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:08",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1508.5,
+        "y": 1036.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 08",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 2,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        35.0402666852,
+        0.0,
+        39.0585277168
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:09",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "4",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1585.5,
+        "y": 1041.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 09",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 4,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        42.8342154426,
+        0.0,
+        39.5729248499
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:10",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "2",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1656.5,
+        "y": 1033.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 10",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 2,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        50.0388011485,
+        0.0,
+        38.8120720688
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:11",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1715.5,
+        "y": 1049.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 11",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 1,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        55.9934590223,
+        0.0,
+        40.3981376156
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:12",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "3",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 1787.5,
+        "y": 1043.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 12",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 3,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        63.2965092426,
+        0.0,
+        39.8335017597
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": false,
+        "outsideNativeModelDistanceMeters": 0.0,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    },
+    {
+      "id": "water-map:tenant-shutoff:13",
+      "category": "tenant-shutoff",
+      "legendText": "Tenant Shut Off",
+      "markerLabelRaw": "1",
+      "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+      "physicalAssetCount": null,
+      "memberMeterIds": [],
+      "servedUnits": [],
+      "sourceImage": "infrastructure/water-shutoff-map.png",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "aliases": [
+            "All Water Shutoffs.png"
+          ]
+        }
+      ],
+      "imagePoint": {
+        "x": 2047.0,
+        "y": 1060.0,
+        "width": 2500,
+        "height": 1164,
+        "units": "source-image-pixels",
+        "method": "colored circle bounding-box center"
+      },
+      "registration": "Approximate source-image registration to native GLB; field verification pending",
+      "label": "Tenant shutoff map marker 13",
+      "sourceMarkerLabelMeaning": "unresolved: source does not define counts versus IDs",
+      "reportedCount": 1,
+      "countBasis": "Printed source-map count; meaning confirmed by Adam on 2026-09-25",
+      "countProvenance": {
+        "source": "user-confirmation",
+        "confirmedBy": "Adam",
+        "confirmedOn": "2026-09-25",
+        "statement": "The circle numbers are counts at each location.",
+        "scope": "Meaning of the printed numbers; not individual meter membership or a new field inventory"
+      },
+      "referenceType": "source-map-annotation",
+      "physicalAssetId": null,
+      "seedPolicy": "reference_only",
+      "sourceRegistrationStatus": "2D source image only; no 3D or geographic transform",
+      "modelPositionMeters": [
+        89.5629160757,
+        0.0,
+        41.5817155547
+      ],
+      "positionStatus": "approximate_source_registered",
+      "physicalVerification": "not-field-verified",
+      "elevationStatus": "Y=0 is a display reference; marker elevation/depth is unknown",
+      "validation": {
+        "outsideNativeModelBounds": true,
+        "outsideNativeModelDistanceMeters": 0.8429155059,
+        "extrapolatedBeyondBuildingControlHull": true
+      }
+    }
+  ]
+}

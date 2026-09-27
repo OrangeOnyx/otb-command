@@ -1,0 +1,1073 @@
+{
+  "schemaVersion": 1,
+  "title": "Candidate workbook meter groups for source-map locations",
+  "reviewedAt": "2026-09-25",
+  "status": "candidate-not-confirmed",
+  "supportedRelation": "meter-to-map-location",
+  "sources": [
+    {
+      "id": "Water Meter Number Reference.xlsx",
+      "filename": "Water Meter Number Reference.xlsx",
+      "kind": "workbook",
+      "sha256": "4f7cdb76e077b572f5d0a1230cfa04afe63cdd37cd4be8f5f413a88f9c132900"
+    },
+    {
+      "id": "Water Shutoff Clusters.png",
+      "filename": "Water Shutoff Clusters.png",
+      "kind": "annotated-water-map",
+      "sha256": "6f5fa658e34a77b63ea11fad467ed925f6f6b2e7c88510215497f5c162a10929"
+    },
+    {
+      "id": "image001 (1).png",
+      "filename": "image001 (1).png",
+      "kind": "historical-gis-screenshot",
+      "sha256": "5a3f2b58d00165da8f5dbe89b549c5ae1d3960f0046baddd0890596197a82477",
+      "dateVisibleInScreenshot": "2021-07-14",
+      "dateBasis": "Windows taskbar display; not a guaranteed GIS survey date",
+      "geographicRegistration": "Unavailable: cursor coordinates are not image control points"
+    },
+    {
+      "id": "image002.png",
+      "filename": "image002.png",
+      "kind": "historical-gis-screenshot",
+      "sha256": "964ede3e73eb7a9ee4e4432dc538c548ade81e39ecbe1ce251814c65c3bfea3c",
+      "dateVisibleInScreenshot": "2021-07-14",
+      "dateBasis": "Windows taskbar display; not a guaranteed GIS survey date",
+      "geographicRegistration": "Unavailable: cursor coordinates are not image control points"
+    },
+    {
+      "id": "image004.png",
+      "filename": "image004.png",
+      "kind": "historical-gis-screenshot",
+      "sha256": "e5bdef271a65be5207ffa86e571fe20160c7e4ef516643536c77fd50390b6def",
+      "dateVisibleInScreenshot": "2021-07-14",
+      "dateBasis": "Windows taskbar display; not a guaranteed GIS survey date",
+      "geographicRegistration": "Unavailable: cursor coordinates are not image control points"
+    },
+    {
+      "id": "owner-count-confirmation",
+      "kind": "user-confirmation",
+      "confirmedBy": "Adam",
+      "confirmedOn": "2026-09-25",
+      "statement": "The numbers in the circles are counts at each location."
+    }
+  ],
+  "summary": {
+    "mapCityMeterLocations": 6,
+    "mapReportedCityMeters": 24,
+    "mapTenantShutoffLocations": 13,
+    "mapReportedTenantShutoffs": 37,
+    "workbookWaterMeterIds": 28,
+    "workbookMinusMap": 4,
+    "proposedMeterIds": 26,
+    "unassignedMeterIds": 2,
+    "strongerLocationAndCountGroups": 2,
+    "locationWithCountConflictGroups": 2,
+    "needsReviewGroups": 2,
+    "confirmedMemberships": 0
+  },
+  "candidates": [
+    {
+      "id": "water-candidate:M01",
+      "mapAnnotationId": "water-map:city-meter:01",
+      "code": "M01",
+      "status": "candidate-not-confirmed",
+      "supportedRelation": "meter-to-map-location",
+      "classification": "stronger-location-and-count",
+      "locationContext": "Arnould Boulevard end of the short building, beside Unit 149.",
+      "sourceLocationTexts": [
+        "Back Right of 149",
+        "Right of 149"
+      ],
+      "proposedMeterIds": [
+        "W1263981",
+        "W1217175",
+        "W1252591",
+        "W1264168",
+        "W1260034",
+        "W1203617",
+        "W1267364",
+        "W1217545"
+      ],
+      "proposedMeterSourceKeys": [
+        "utility-meter:water:W1263981",
+        "utility-meter:water:W1217175",
+        "utility-meter:water:W1252591",
+        "utility-meter:water:W1264168",
+        "utility-meter:water:W1260034",
+        "utility-meter:water:W1203617",
+        "utility-meter:water:W1267364",
+        "utility-meter:water:W1217545"
+      ],
+      "sourceAddressLabels": [
+        "135 #A",
+        "135 #B",
+        "137",
+        "139",
+        "141",
+        "143",
+        "145",
+        "149"
+      ],
+      "proposedMeterCount": 8,
+      "reportedMapCount": 8,
+      "proposedMinusReportedCount": 0,
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:city-meter:01",
+          "imagePoint": {
+            "x": 263.5,
+            "y": 193.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 24,
+          "meterCell": "E24",
+          "locationCell": "H24",
+          "addressRange": "A24:C24"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 25,
+          "meterCell": "E25",
+          "locationCell": "H25",
+          "addressRange": "A25:C25"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 26,
+          "meterCell": "E26",
+          "locationCell": "H26",
+          "addressRange": "A26:C26"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 28,
+          "meterCell": "E28",
+          "locationCell": "H28",
+          "addressRange": "A28:C28"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 29,
+          "meterCell": "E29",
+          "locationCell": "H29",
+          "addressRange": "A29:C29"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 30,
+          "meterCell": "E30",
+          "locationCell": "H30",
+          "addressRange": "A30:C30"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 31,
+          "meterCell": "E31",
+          "locationCell": "H31",
+          "addressRange": "A31:C31"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 32,
+          "meterCell": "E32",
+          "locationCell": "H32",
+          "addressRange": "A32:C32"
+        },
+        {
+          "sourceId": "owner-count-confirmation"
+        }
+      ],
+      "rationale": "The workbook locates eight meters right or back-right of 149; the plan places its blue count of eight beside the same end of the building.",
+      "contradictions": [
+        "Right and back-right are relative descriptions without a defined viewing direction. Two descriptions are grouped as one candidate area, not proven to be one physical bank."
+      ],
+      "confidenceBasis": [
+        "Workbook location text and nearby source-plan geography agree at an area level.",
+        "Proposed group count equals the owner-confirmed map count.",
+        "No individual meter serial number is visible at this marker.",
+        "GIS screenshots provide broad site context but no confirmed membership or tenant isolation relationship."
+      ]
+    },
+    {
+      "id": "water-candidate:M02",
+      "mapAnnotationId": "water-map:city-meter:02",
+      "code": "M02",
+      "status": "candidate-not-confirmed",
+      "supportedRelation": "meter-to-map-location",
+      "classification": "location-with-count-conflict",
+      "locationContext": "Marie Antoinette Street / Patricia Street end, outside the rear corner of the long building labeled 131/133.",
+      "sourceLocationTexts": [
+        "Behind 131"
+      ],
+      "proposedMeterIds": [
+        "W1210783",
+        "W1273864",
+        "W1243719",
+        "W1204099"
+      ],
+      "proposedMeterSourceKeys": [
+        "utility-meter:water:W1210783",
+        "utility-meter:water:W1273864",
+        "utility-meter:water:W1243719",
+        "utility-meter:water:W1204099"
+      ],
+      "sourceAddressLabels": [
+        "125",
+        "127",
+        "129",
+        "131"
+      ],
+      "proposedMeterCount": 4,
+      "reportedMapCount": 1,
+      "proposedMinusReportedCount": 3,
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:city-meter:02",
+          "imagePoint": {
+            "x": 479.5,
+            "y": 1068.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 20,
+          "meterCell": "E20",
+          "locationCell": "H20",
+          "addressRange": "A20:C20"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 21,
+          "meterCell": "E21",
+          "locationCell": "H21",
+          "addressRange": "A21:C21"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 22,
+          "meterCell": "E22",
+          "locationCell": "H22",
+          "addressRange": "A22:C22"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 23,
+          "meterCell": "E23",
+          "locationCell": "H23",
+          "addressRange": "A23:C23"
+        },
+        {
+          "sourceId": "owner-count-confirmation"
+        }
+      ],
+      "rationale": "The four workbook records say Behind 131, near the rear-end area occupied by the M02 map reference.",
+      "contradictions": [
+        "The map reports one city meter here but the proposed workbook group contains four IDs.",
+        "The neighboring red count of four denotes tenant shutoffs, so it cannot be substituted for the blue city-meter count."
+      ],
+      "confidenceBasis": [
+        "Workbook location text and nearby source-plan geography agree at an area level.",
+        "Proposed group has 4 meter IDs; the owner-confirmed map count is 1.",
+        "No individual meter serial number is visible at this marker.",
+        "GIS screenshots provide broad site context but no confirmed membership or tenant isolation relationship."
+      ]
+    },
+    {
+      "id": "water-candidate:M03",
+      "mapAnnotationId": "water-map:city-meter:03",
+      "code": "M03",
+      "status": "candidate-not-confirmed",
+      "supportedRelation": "meter-to-map-location",
+      "classification": "location-with-count-conflict",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 119.",
+      "sourceLocationTexts": [
+        "Behind 119"
+      ],
+      "proposedMeterIds": [
+        "W1202593",
+        "W1276245",
+        "W1277282",
+        "W1214160",
+        "W1219561",
+        "W1248531",
+        "W1261861"
+      ],
+      "proposedMeterSourceKeys": [
+        "utility-meter:water:W1202593",
+        "utility-meter:water:W1276245",
+        "utility-meter:water:W1277282",
+        "utility-meter:water:W1214160",
+        "utility-meter:water:W1219561",
+        "utility-meter:water:W1248531",
+        "utility-meter:water:W1261861"
+      ],
+      "sourceAddressLabels": [
+        "113",
+        "115",
+        "117",
+        "117.5",
+        "119",
+        "119.5",
+        "121"
+      ],
+      "proposedMeterCount": 7,
+      "reportedMapCount": 8,
+      "proposedMinusReportedCount": -1,
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:city-meter:03",
+          "imagePoint": {
+            "x": 1136.0,
+            "y": 1068.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 11,
+          "meterCell": "E11",
+          "locationCell": "H11",
+          "addressRange": "A11:C11"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 12,
+          "meterCell": "E12",
+          "locationCell": "H12",
+          "addressRange": "A12:C12"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 13,
+          "meterCell": "E13",
+          "locationCell": "H13",
+          "addressRange": "A13:C13"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 14,
+          "meterCell": "E14",
+          "locationCell": "H14",
+          "addressRange": "A14:C14"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 15,
+          "meterCell": "E15",
+          "locationCell": "H15",
+          "addressRange": "A15:C15"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 16,
+          "meterCell": "E16",
+          "locationCell": "H16",
+          "addressRange": "A16:C16"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 17,
+          "meterCell": "E17",
+          "locationCell": "H17",
+          "addressRange": "A17:C17"
+        },
+        {
+          "sourceId": "owner-count-confirmation"
+        }
+      ],
+      "rationale": "Seven workbook meter records explicitly say Behind 119, and M03 is drawn behind the plan-labeled 119 area.",
+      "contradictions": [
+        "The map reports eight city meters here but only seven workbook IDs have this location description.",
+        "Unit 123 meter W1276858 has an unknown location and must not be inserted to fill the one-meter difference."
+      ],
+      "confidenceBasis": [
+        "Workbook location text and nearby source-plan geography agree at an area level.",
+        "Proposed group has 7 meter IDs; the owner-confirmed map count is 8.",
+        "No individual meter serial number is visible at this marker.",
+        "GIS screenshots provide broad site context but no confirmed membership or tenant isolation relationship."
+      ]
+    },
+    {
+      "id": "water-candidate:M04",
+      "mapAnnotationId": "water-map:city-meter:04",
+      "code": "M04",
+      "status": "candidate-not-confirmed",
+      "supportedRelation": "meter-to-map-location",
+      "classification": "stronger-location-and-count",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 109.",
+      "sourceLocationTexts": [
+        "Behind 109"
+      ],
+      "proposedMeterIds": [
+        "W1248504",
+        "W1206964",
+        "W1203728",
+        "W1252003"
+      ],
+      "proposedMeterSourceKeys": [
+        "utility-meter:water:W1248504",
+        "utility-meter:water:W1206964",
+        "utility-meter:water:W1203728",
+        "utility-meter:water:W1252003"
+      ],
+      "sourceAddressLabels": [
+        "107",
+        "109",
+        "111",
+        "113"
+      ],
+      "proposedMeterCount": 4,
+      "reportedMapCount": 4,
+      "proposedMinusReportedCount": 0,
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:city-meter:04",
+          "imagePoint": {
+            "x": 1585.5,
+            "y": 1073.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 7,
+          "meterCell": "E7",
+          "locationCell": "H7",
+          "addressRange": "A7:C7"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 8,
+          "meterCell": "E8",
+          "locationCell": "H8",
+          "addressRange": "A8:C8"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 9,
+          "meterCell": "E9",
+          "locationCell": "H9",
+          "addressRange": "A9:C9"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 10,
+          "meterCell": "E10",
+          "locationCell": "H10",
+          "addressRange": "A10:C10"
+        },
+        {
+          "sourceId": "owner-count-confirmation"
+        }
+      ],
+      "rationale": "Four workbook records explicitly say Behind 109, matching the blue count of four drawn behind 109.",
+      "contradictions": [
+        "Equal counts and nearby location do not prove which individual meter IDs occupy the mapped bank."
+      ],
+      "confidenceBasis": [
+        "Workbook location text and nearby source-plan geography agree at an area level.",
+        "Proposed group count equals the owner-confirmed map count.",
+        "No individual meter serial number is visible at this marker.",
+        "GIS screenshots provide broad site context but no confirmed membership or tenant isolation relationship."
+      ]
+    },
+    {
+      "id": "water-candidate:M05",
+      "mapAnnotationId": "water-map:city-meter:05",
+      "code": "M05",
+      "status": "candidate-not-confirmed",
+      "supportedRelation": "meter-to-map-location",
+      "classification": "needs-review",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 105 on the supplied plan.",
+      "sourceLocationTexts": [
+        "Behind 107"
+      ],
+      "proposedMeterIds": [
+        "W1222193"
+      ],
+      "proposedMeterSourceKeys": [
+        "utility-meter:water:W1222193"
+      ],
+      "sourceAddressLabels": [
+        "105 #2"
+      ],
+      "proposedMeterCount": 1,
+      "reportedMapCount": 1,
+      "proposedMinusReportedCount": 0,
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:city-meter:05",
+          "imagePoint": {
+            "x": 1715.5,
+            "y": 1081.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 6,
+          "meterCell": "E6",
+          "locationCell": "H6",
+          "addressRange": "A6:C6"
+        },
+        {
+          "sourceId": "owner-count-confirmation"
+        }
+      ],
+      "rationale": "The workbook has one Behind 107 meter, making it a possible candidate for this nearby one-meter map location.",
+      "contradictions": [
+        "The map point is drawn behind the plan-labeled 105 area, while the workbook says Behind 107. The location descriptions are offset by an adjacent suite.",
+        "A matching count of one does not resolve that location mismatch."
+      ],
+      "confidenceBasis": [
+        "Matching count and adjacent geography only; workbook location wording does not match the suite directly above the marker.",
+        "Proposed group count equals the owner-confirmed map count.",
+        "No individual meter serial number is visible at this marker.",
+        "GIS screenshots provide broad site context but no confirmed membership or tenant isolation relationship."
+      ]
+    },
+    {
+      "id": "water-candidate:M06",
+      "mapAnnotationId": "water-map:city-meter:06",
+      "code": "M06",
+      "status": "candidate-not-confirmed",
+      "supportedRelation": "meter-to-map-location",
+      "classification": "needs-review",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 103, near its 101-side end on the supplied plan.",
+      "sourceLocationTexts": [
+        "Behind 105"
+      ],
+      "proposedMeterIds": [
+        "W1204084",
+        "W1200836"
+      ],
+      "proposedMeterSourceKeys": [
+        "utility-meter:water:W1204084",
+        "utility-meter:water:W1200836"
+      ],
+      "sourceAddressLabels": [
+        "101",
+        "103"
+      ],
+      "proposedMeterCount": 2,
+      "reportedMapCount": 2,
+      "proposedMinusReportedCount": 0,
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:city-meter:06",
+          "imagePoint": {
+            "x": 1811.5,
+            "y": 1065.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 3,
+          "meterCell": "E3",
+          "locationCell": "H3",
+          "addressRange": "A3:C3"
+        },
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 5,
+          "meterCell": "E5",
+          "locationCell": "H5",
+          "addressRange": "A5:C5"
+        },
+        {
+          "sourceId": "owner-count-confirmation"
+        }
+      ],
+      "rationale": "Two workbook records say Behind 105, making them possible candidates for this nearby two-meter map location.",
+      "contradictions": [
+        "The map point is drawn behind the plan-labeled 103 area, while both workbook records say Behind 105. The location descriptions are offset by an adjacent suite.",
+        "A matching count of two does not resolve that location mismatch."
+      ],
+      "confidenceBasis": [
+        "Matching count and adjacent geography only; workbook location wording does not match the suite directly above the marker.",
+        "Proposed group count equals the owner-confirmed map count.",
+        "No individual meter serial number is visible at this marker.",
+        "GIS screenshots provide broad site context but no confirmed membership or tenant isolation relationship."
+      ]
+    }
+  ],
+  "unassignedMeters": [
+    {
+      "meterId": "W1276858",
+      "sourceKey": "utility-meter:water:W1276858",
+      "sourceAddressLabel": "123",
+      "sourceLocationText": "?",
+      "purpose": null,
+      "status": "unassigned",
+      "reason": "Workbook location is ?, so no source-supported candidate map location can be selected.",
+      "sourceRefs": [
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 18,
+          "meterCell": "E18",
+          "locationCell": "H18",
+          "addressRange": "A18:C18"
+        }
+      ]
+    },
+    {
+      "meterId": "W1217102",
+      "sourceKey": "utility-meter:water:W1217102",
+      "sourceAddressLabel": "101 House",
+      "sourceLocationText": "Grass near Blvd",
+      "purpose": "Sprinkler",
+      "status": "unassigned",
+      "reason": "House sprinkler location Grass near Blvd is too broad to select one of the six city-meter map points. It remains separate from tenant service.",
+      "sourceRefs": [
+        {
+          "file": "Water Meter Number Reference.xlsx",
+          "sheet": "Sheet1",
+          "row": 4,
+          "meterCell": "E4",
+          "locationCell": "H4",
+          "addressRange": "A4:C4"
+        }
+      ]
+    }
+  ],
+  "shutoffContexts": [
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:01",
+      "code": "S01",
+      "reportedCount": 2,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Patricia Street side of the short building, beside the suite labeled 137.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:01",
+          "imagePoint": {
+            "x": 208.5,
+            "y": 702.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:02",
+      "code": "S02",
+      "reportedCount": 1,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Patricia Street side parking area beyond the end labeled 135B.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:02",
+          "imagePoint": {
+            "x": 236.0,
+            "y": 925.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:03",
+      "code": "S03",
+      "reportedCount": 4,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street / Patricia Street corner area, outside the rear end labeled 131/133.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:03",
+          "imagePoint": {
+            "x": 460.5,
+            "y": 1041.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:04",
+      "code": "S04",
+      "reportedCount": 1,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 123.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:04",
+          "imagePoint": {
+            "x": 864.5,
+            "y": 1041.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:05",
+      "code": "S05",
+      "reportedCount": 10,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 119.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:05",
+          "imagePoint": {
+            "x": 1136.0,
+            "y": 1036.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:06",
+      "code": "S06",
+      "reportedCount": 2,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 115, toward the 113 boundary.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:06",
+          "imagePoint": {
+            "x": 1347.0,
+            "y": 1036.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:07",
+      "code": "S07",
+      "reportedCount": 4,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 113.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:07",
+          "imagePoint": {
+            "x": 1432.5,
+            "y": 1036.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:08",
+      "code": "S08",
+      "reportedCount": 2,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 111.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:08",
+          "imagePoint": {
+            "x": 1508.5,
+            "y": 1036.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:09",
+      "code": "S09",
+      "reportedCount": 4,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 109.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:09",
+          "imagePoint": {
+            "x": 1585.5,
+            "y": 1041.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:10",
+      "code": "S10",
+      "reportedCount": 2,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 107.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:10",
+          "imagePoint": {
+            "x": 1656.5,
+            "y": 1033.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:11",
+      "code": "S11",
+      "reportedCount": 1,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 105.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:11",
+          "imagePoint": {
+            "x": 1715.5,
+            "y": 1049.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:12",
+      "code": "S12",
+      "reportedCount": 3,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 103.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:12",
+          "imagePoint": {
+            "x": 1787.5,
+            "y": 1043.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    },
+    {
+      "mapAnnotationId": "water-map:tenant-shutoff:13",
+      "code": "S13",
+      "reportedCount": 1,
+      "status": "geographic-context-only",
+      "supportedRelation": "marker-to-nearby-site-feature",
+      "locationContext": "Marie Antoinette Street rear of the suite labeled 101, beside the rear projection.",
+      "sourceRefs": [
+        {
+          "file": "Water Shutoff Clusters.png",
+          "alias": "All Water Shutoffs.png",
+          "annotationId": "water-map:tenant-shutoff:13",
+          "imagePoint": {
+            "x": 2047.0,
+            "y": 1060.0,
+            "width": 2500,
+            "height": 1164,
+            "units": "source-image-pixels",
+            "method": "colored circle bounding-box center"
+          }
+        }
+      ],
+      "serviceConnectionEstablished": false,
+      "note": "The nearby suite identifies a search area only. It does not establish which suite or meter these shutoffs serve."
+    }
+  ],
+  "gisEvidence": [
+    {
+      "file": "image001 (1).png",
+      "observation": "Shows the long building, rear Marie Antoinette Street edge, roof address labels, and red boxed M symbols at several positions along that street edge.",
+      "supports": "Broad rear-building utility-search context near the 101-121 portion of the building.",
+      "doesNotEstablish": [
+        "The visible red M symbols have no legend in the screenshot; their type is not independently established.",
+        "No workbook W-prefixed meter ID is visible at these symbols.",
+        "Overlapping symbols cannot be counted reliably as individual devices.",
+        "The screenshot does not identify private tenant shutoffs or valve-to-meter connections."
+      ],
+      "dateVisibleInTaskbar": "2021-07-14",
+      "dateMeaning": "Displayed taskbar date only; not the imagery acquisition date or a guaranteed utility survey date.",
+      "geographicRegistration": "No coordinate control points supplied. The status-bar cursor coordinate is not assigned to a fixed image pixel.",
+      "sourceSha256": "5a3f2b58d00165da8f5dbe89b549c5ae1d3960f0046baddd0890596197a82477"
+    },
+    {
+      "file": "image004.png",
+      "observation": "Shows the short building with the 149 end, the 131/129 portion of the long building, named streets, and red boxed M symbols near the property edges.",
+      "supports": "Broad context for checking the 149-side and rear 131-side candidate areas.",
+      "doesNotEstablish": [
+        "No symbol legend or exact device identity is supplied in the image.",
+        "The M01 eight-member group and M02 one-versus-four discrepancy cannot be resolved by the screenshot.",
+        "Pink address labels are not an individual meter or shutoff inventory."
+      ],
+      "dateVisibleInTaskbar": "2021-07-14",
+      "dateMeaning": "Displayed taskbar date only; not the imagery acquisition date or a guaranteed utility survey date.",
+      "geographicRegistration": "No coordinate control points supplied. The status-bar cursor coordinate is not assigned to a fixed image pixel.",
+      "sourceSha256": "e5bdef271a65be5207ffa86e571fe20160c7e4ef516643536c77fd50390b6def"
+    },
+    {
+      "file": "image002.png",
+      "observation": "Shows the whole center within the surrounding street network with utility linework and point symbols.",
+      "supports": "Recognizing the property and the Arnould Boulevard, Marie Antoinette Street, Patricia Street and Johnston Street edges.",
+      "doesNotEstablish": [
+        "The line colors and boxed M glyphs are not interpreted as specific utility types without a legend.",
+        "No private service route or tenant isolation relationship can be traced from this screenshot alone."
+      ],
+      "dateVisibleInTaskbar": "2021-07-14",
+      "dateMeaning": "Displayed taskbar date only; not the imagery acquisition date or a guaranteed utility survey date.",
+      "geographicRegistration": "No coordinate control points supplied. The status-bar cursor coordinate is not assigned to a fixed image pixel.",
+      "sourceSha256": "964ede3e73eb7a9ee4e4432dc538c548ade81e39ecbe1ce251814c65c3bfea3c"
+    }
+  ],
+  "limitations": [
+    "Candidates are review suggestions only and must not populate confirmed memberMeterIds, servedUnits, physicalAssetId, model coordinates or service connections.",
+    "The map reports 24 city meters while the workbook has 28 distinct water IDs; source coverage and the reason for the difference remain unresolved.",
+    "Aerial imagery and GIS overlays can help find an area but do not identify hidden valves, underground pipe routes, or the tenant isolated by a shutoff.",
+    "All original map marker IDs, meter IDs, workbook address qualifiers, and permanent physical asset IDs remain unchanged."
+  ]
+}

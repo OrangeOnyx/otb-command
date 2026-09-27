@@ -1,0 +1,6094 @@
+{
+  "schemaVersion": 1,
+  "title": "OTB · source-derived upper floors 101 and 103",
+  "units": "meters",
+  "upAxis": "Y",
+  "modelFile": "upper-floors.glb",
+  "sourceModelOriginFmlCm": {
+    "x": -6403.2662401319585,
+    "y": -2511.451712902764,
+    "z": 0
+  },
+  "sources": [
+    {
+      "id": "native-upper",
+      "name": "On_The_Boulevard.native.fml",
+      "sha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+      "floorId": 183163884,
+      "designId": 193835178
+    },
+    {
+      "id": "101---first-floor",
+      "name": "Floor Plans/101 - First Floor.png",
+      "sha256": "73016e0cf65603b1349bc511e129264a37cf993465b7bc17d5fd3714be3c461f"
+    },
+    {
+      "id": "101---second-floor",
+      "name": "Floor Plans/101 - Second Floor.png",
+      "sha256": "62f0c484a9cdea6fec81401644534beefdeae96d58c90bf263efdbcccf2bdbdb"
+    },
+    {
+      "id": "103---first-floor",
+      "name": "Floor Plans/103 - First Floor.png",
+      "sha256": "e8c6b7bee846606ce7e978e4ee9633bd0a2b3a2b6b98667f23835896319fc4a9"
+    },
+    {
+      "id": "103---second-floor",
+      "name": "Floor Plans/103 - Second Floor.png",
+      "sha256": "936390d5edb8b3d9094aab07769a7639ab678c9ff9ff2daa5463b7b67aab46ea"
+    },
+    {
+      "id": "project.pdf",
+      "name": "101 103/project.pdf",
+      "sha256": "b92521b5fa4c0c24ffed220e7b4cef0bd2d2f34d486d93b4f30f6e91fabf670f",
+      "status": "Historical architectural drawing; visual corroboration, not current as-built certification"
+    },
+    {
+      "id": "A2.3.pdf",
+      "name": "103/June 14, 1993 - 93-003/A2.3.pdf",
+      "sha256": "d79d1288b9abf982a8fdfdb0074bc89ff3af271599f180da9cbd1daee34314c6",
+      "status": "Historical architectural drawing; visual corroboration, not current as-built certification"
+    },
+    {
+      "id": "A5.1.pdf",
+      "name": "103/June 14, 1993 - 93-003/A5.1.pdf",
+      "sha256": "76838042a699593435e4ef404954f9c8fac7742b2f68a1afde3b23358200504b",
+      "status": "Historical architectural drawing; visual corroboration, not current as-built certification"
+    }
+  ],
+  "registration": {
+    "method": "Rigid translation only; no scaling or rotation",
+    "translationFmlCm": [
+      -78.9476490220759,
+      -2908.036366996171
+    ],
+    "rotationDegrees": 0,
+    "scale": 1,
+    "controls": [
+      {
+        "name": "103 facade / shared 103-105 wall",
+        "upper": {
+          "x": -269.54861949644146,
+          "y": 1690.8759064551625
+        },
+        "ground": {
+          "x": -348.49581468817917,
+          "y": -1217.160460541009
+        },
+        "residualMeters": 0.000004538303381877995
+      },
+      {
+        "name": "103 facade / shared 101-103 wall",
+        "upper": {
+          "x": 796.9773805035584,
+          "y": 1690.8759064551625
+        },
+        "ground": {
+          "x": 718.0292776511443,
+          "y": -1217.1604605410087
+        },
+        "residualMeters": 0.000004538303381877995
+      }
+    ],
+    "independentCheck": {
+      "name": "103 rear wall",
+      "upperFmlCm": [
+        796.9773805035584,
+        4255.67027827759
+      ],
+      "groundFmlCm": [
+        718.032865686532,
+        1363.60969784303
+      ],
+      "residualMeters": 0.1597578656161113,
+      "status": "Unresolved native drawing discrepancy; not scaled away"
+    },
+    "confidence": "high model-pattern correspondence, not surveyed registration"
+  },
+  "layers": [
+    {
+      "id": "upper-101",
+      "nodeName": "upper-101",
+      "unit": "101",
+      "level": 2,
+      "label": "Unit 101 · upper floor",
+      "defaultVisible": true,
+      "elevationMeters": 3.05,
+      "elevationStatus": "native-floor-height-metadata-unverified",
+      "nativeFloorHeightMeters": 3.05,
+      "nativeWallHeightMeters": 3.886199994092976,
+      "registration": {
+        "method": "Rigid translation only; no scaling or rotation",
+        "translationFmlCm": [
+          -78.9476490220759,
+          -2908.036366996171
+        ],
+        "rotationDegrees": 0,
+        "scale": 1,
+        "controls": [
+          {
+            "name": "103 facade / shared 103-105 wall",
+            "upper": {
+              "x": -269.54861949644146,
+              "y": 1690.8759064551625
+            },
+            "ground": {
+              "x": -348.49581468817917,
+              "y": -1217.160460541009
+            },
+            "residualMeters": 0.000004538303381877995
+          },
+          {
+            "name": "103 facade / shared 101-103 wall",
+            "upper": {
+              "x": 796.9773805035584,
+              "y": 1690.8759064551625
+            },
+            "ground": {
+              "x": 718.0292776511443,
+              "y": -1217.1604605410087
+            },
+            "residualMeters": 0.000004538303381877995
+          }
+        ],
+        "independentCheck": {
+          "name": "103 rear wall",
+          "upperFmlCm": [
+            796.9773805035584,
+            4255.67027827759
+          ],
+          "groundFmlCm": [
+            718.032865686532,
+            1363.60969784303
+          ],
+          "residualMeters": 0.1597578656161113,
+          "status": "Unresolved native drawing discrepancy; not scaled away"
+        },
+        "confidence": "high model-pattern correspondence, not surveyed registration"
+      },
+      "walls": [
+        {
+          "id": "upper-101-wall-44",
+          "a": [
+            83.31905122172185,
+            3.05,
+            37.46320580500218
+          ],
+          "b": [
+            83.319051221722,
+            3.05,
+            38.07947319096842
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 44,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-45",
+          "a": [
+            77.49269100127157,
+            3.05,
+            37.46320580500218
+          ],
+          "b": [
+            83.31905122172185,
+            3.05,
+            37.46320580500218
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 45,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-57",
+          "a": [
+            80.33231192633612,
+            3.05,
+            33.44234445874174
+          ],
+          "b": [
+            80.16520833867106,
+            3.05,
+            33.442344458740926
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 57,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-58",
+          "a": [
+            76.06851093837332,
+            3.05,
+            37.463205805001806
+          ],
+          "b": [
+            76.6179901620338,
+            3.05,
+            37.46320580500193
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 58,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-59",
+          "a": [
+            84.3014578850288,
+            3.05,
+            37.54141109796846
+          ],
+          "b": [
+            86.48134491619525,
+            3.05,
+            37.54141109796862
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-59-0",
+              "type": "door",
+              "t": 0.5037419305904939,
+              "widthMeters": 1.9612293318153218,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "206"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 59,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-60",
+          "a": [
+            86.48134491619676,
+            3.05,
+            37.54141109796861
+          ],
+          "b": [
+            86.48139741559775,
+            3.05,
+            37.46320580500218
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 60,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-61",
+          "a": [
+            84.30145788502878,
+            3.05,
+            38.59256688909399
+          ],
+          "b": [
+            84.30145788502875,
+            3.05,
+            37.54141109796854
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 61,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-62",
+          "a": [
+            86.48072589385706,
+            3.05,
+            38.463532529033735
+          ],
+          "b": [
+            86.48134491619604,
+            3.05,
+            37.54141109796868
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 62,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-63",
+          "a": [
+            92.76973647032108,
+            3.05,
+            38.46353252906514
+          ],
+          "b": [
+            86.48072589385767,
+            3.05,
+            38.463532529065084
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 63,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-64",
+          "a": [
+            84.3014578850288,
+            3.05,
+            38.592566889094094
+          ],
+          "b": [
+            86.47877517606113,
+            3.05,
+            38.59256688909418
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 64,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-65",
+          "a": [
+            86.48072589385689,
+            3.05,
+            38.4635325290707
+          ],
+          "b": [
+            86.47877517606229,
+            3.05,
+            38.59256688909411
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 65,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-66",
+          "a": [
+            86.47877517606274,
+            3.05,
+            38.592566889094215
+          ],
+          "b": [
+            86.47764586556346,
+            3.05,
+            38.66726752378111
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 66,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-67",
+          "a": [
+            76.8373964441222,
+            3.05,
+            33.295538113498786
+          ],
+          "b": [
+            76.83739644412191,
+            3.05,
+            33.62156520744792
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 67,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-68",
+          "a": [
+            76.83739644412209,
+            3.05,
+            33.62156520744832
+          ],
+          "b": [
+            76.9455968024124,
+            3.05,
+            33.62156520744873
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 68,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-69",
+          "a": [
+            80.33231192633622,
+            3.05,
+            33.2955381134984
+          ],
+          "b": [
+            80.02066587817308,
+            3.05,
+            33.2955381134984
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 69,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-70",
+          "a": [
+            80.3323119263364,
+            3.05,
+            33.295538113498594
+          ],
+          "b": [
+            80.33231192633622,
+            3.05,
+            33.442344458741154
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 70,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-71",
+          "a": [
+            81.59463773417112,
+            3.05,
+            33.54246994006462
+          ],
+          "b": [
+            81.2556162819885,
+            3.05,
+            33.5424699400645
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 71,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-72",
+          "a": [
+            81.2556162819885,
+            3.05,
+            33.5424699400645
+          ],
+          "b": [
+            81.25561628198784,
+            3.05,
+            33.4423444587411
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 72,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-73",
+          "a": [
+            81.25561628198783,
+            3.05,
+            33.44234445874094
+          ],
+          "b": [
+            81.2556162819883,
+            3.05,
+            33.295538113498424
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 73,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-74",
+          "a": [
+            81.25561628198805,
+            3.05,
+            33.29553811349837
+          ],
+          "b": [
+            80.33231192633666,
+            3.05,
+            33.29553811349849
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 74,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-75",
+          "a": [
+            81.59463773417167,
+            3.05,
+            33.388635211258205
+          ],
+          "b": [
+            81.5946377341714,
+            3.05,
+            33.54246994006448
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 75,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-76",
+          "a": [
+            81.59463773417092,
+            3.05,
+            33.38863521125816
+          ],
+          "b": [
+            81.25561628198847,
+            3.05,
+            33.44234445874085
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 76,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-77",
+          "a": [
+            81.59463773417079,
+            3.05,
+            33.29553811349837
+          ],
+          "b": [
+            81.25561628198857,
+            3.05,
+            33.29553811349833
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 77,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-78",
+          "a": [
+            81.59463773417114,
+            3.05,
+            33.295538113498395
+          ],
+          "b": [
+            81.59463773417127,
+            3.05,
+            33.38863521125808
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 78,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-79",
+          "a": [
+            92.76973647032109,
+            3.05,
+            33.29553811349843
+          ],
+          "b": [
+            92.76973647032108,
+            3.05,
+            38.46353252906514
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 79,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-80",
+          "a": [
+            83.43741266980994,
+            3.05,
+            33.29553811349829
+          ],
+          "b": [
+            81.59463773417134,
+            3.05,
+            33.29553811349835
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 80,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-81",
+          "a": [
+            83.43741266981014,
+            3.05,
+            33.29553811349827
+          ],
+          "b": [
+            83.59445738131112,
+            3.05,
+            33.2955381134984
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 81,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-82",
+          "a": [
+            84.39264336900149,
+            3.05,
+            33.770915772770415
+          ],
+          "b": [
+            84.39264336900155,
+            3.05,
+            33.69232160324038
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 82,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-83",
+          "a": [
+            84.39264336900142,
+            3.05,
+            33.770915772770486
+          ],
+          "b": [
+            84.03609670476578,
+            3.05,
+            33.77091577277062
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 83,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-84",
+          "a": [
+            86.48139741559775,
+            3.05,
+            37.46320580500218
+          ],
+          "b": [
+            86.48226959336316,
+            3.05,
+            36.16397351824623
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-84-0",
+              "type": "door",
+              "t": 0.5012507846381302,
+              "widthMeters": 1.1037810439681583,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 84,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-85",
+          "a": [
+            92.76973647032108,
+            3.05,
+            33.2955381134984
+          ],
+          "b": [
+            88.78524205555458,
+            3.05,
+            33.295538113498466
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 85,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-86",
+          "a": [
+            86.48226959336316,
+            3.05,
+            36.16397351824619
+          ],
+          "b": [
+            88.78524205555372,
+            3.05,
+            36.1639735182462
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 86,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-87",
+          "a": [
+            87.0401465651712,
+            3.05,
+            33.295538113498324
+          ],
+          "b": [
+            84.03609670476523,
+            3.05,
+            33.29553811349836
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 87,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-88",
+          "a": [
+            84.03609670476571,
+            3.05,
+            33.77091577277042
+          ],
+          "b": [
+            84.03609670476516,
+            3.05,
+            33.2955381134984
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 88,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-89",
+          "a": [
+            84.03609670476504,
+            3.05,
+            33.29553811349825
+          ],
+          "b": [
+            83.59445738131112,
+            3.05,
+            33.2955381134984
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 89,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-90",
+          "a": [
+            88.78524205555367,
+            3.05,
+            33.29553811349848
+          ],
+          "b": [
+            88.78524205555324,
+            3.05,
+            33.442344458739456
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 90,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-91",
+          "a": [
+            88.78524205555318,
+            3.05,
+            33.442344458739534
+          ],
+          "b": [
+            88.7852420555538,
+            3.05,
+            36.163973518246145
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 91,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-92",
+          "a": [
+            87.04014656517101,
+            3.05,
+            33.442344458739456
+          ],
+          "b": [
+            87.0401465651712,
+            3.05,
+            33.295538113498324
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 92,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-93",
+          "a": [
+            88.78524205555256,
+            3.05,
+            33.44234445873953
+          ],
+          "b": [
+            87.04014656517134,
+            3.05,
+            33.44234445873952
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 93,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-94",
+          "a": [
+            76.71817570954359,
+            3.05,
+            33.62416379708067
+          ],
+          "b": [
+            76.83739644412184,
+            3.05,
+            33.62416379708078
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 94,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-95",
+          "a": [
+            76.83739644412194,
+            3.05,
+            33.29553811349866
+          ],
+          "b": [
+            76.71817570954343,
+            3.05,
+            33.295538113498175
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 95,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-96",
+          "a": [
+            76.71817570954336,
+            3.05,
+            33.29553811349921
+          ],
+          "b": [
+            76.71817570954346,
+            3.05,
+            33.62416379708011
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 96,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-97",
+          "a": [
+            76.61799016203503,
+            3.05,
+            33.62416379708055
+          ],
+          "b": [
+            76.71817570954316,
+            3.05,
+            33.624163797080755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 97,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-98",
+          "a": [
+            76.94559680241295,
+            3.05,
+            33.2955381134984
+          ],
+          "b": [
+            76.83739644412239,
+            3.05,
+            33.295538113497464
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 98,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-99",
+          "a": [
+            76.94559680241251,
+            3.05,
+            33.621565207448405
+          ],
+          "b": [
+            76.94559680241319,
+            3.05,
+            33.29553811349896
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 99,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-100",
+          "a": [
+            83.43925510641677,
+            3.05,
+            33.77091577277071
+          ],
+          "b": [
+            83.43741266981002,
+            3.05,
+            33.29553811349863
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 100,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-101",
+          "a": [
+            84.03609670476548,
+            3.05,
+            33.77091577277064
+          ],
+          "b": [
+            83.4392551064169,
+            3.05,
+            33.77091577277074
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 101,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-102",
+          "a": [
+            76.06851093837321,
+            3.05,
+            37.78408132803547
+          ],
+          "b": [
+            76.06851093837318,
+            3.05,
+            37.463205805001934
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 102,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-103",
+          "a": [
+            83.319051221722,
+            3.05,
+            38.07947319096842
+          ],
+          "b": [
+            83.31905122172208,
+            3.05,
+            38.59256688909403
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 103,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-104",
+          "a": [
+            83.31905122172223,
+            3.05,
+            38.59256688909412
+          ],
+          "b": [
+            84.30145788502873,
+            3.05,
+            38.592566889094094
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 104,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-113",
+          "a": [
+            76.71817570954335,
+            3.05,
+            33.295538113498864
+          ],
+          "b": [
+            76.61799016203405,
+            3.05,
+            33.295538113498154
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 113,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-114",
+          "a": [
+            76.6179901620339,
+            3.05,
+            33.29553811349936
+          ],
+          "b": [
+            76.617990162035,
+            3.05,
+            33.62416379708005
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 114,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-115",
+          "a": [
+            78.8039688683677,
+            3.05,
+            33.29553811349839
+          ],
+          "b": [
+            76.94559680241326,
+            3.05,
+            33.29553811349838
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 115,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-116",
+          "a": [
+            80.02066587817308,
+            3.05,
+            33.2955381134984
+          ],
+          "b": [
+            78.80396886836773,
+            3.05,
+            33.2955381134984
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 116,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-117",
+          "a": [
+            76.0685109383731,
+            3.05,
+            37.78408132803551
+          ],
+          "b": [
+            76.06851093837186,
+            3.05,
+            38.59256688909412
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 117,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-118",
+          "a": [
+            76.06851093837209,
+            3.05,
+            38.59256688909412
+          ],
+          "b": [
+            83.31905122172195,
+            3.05,
+            38.59256688909412
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 118,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-119",
+          "a": [
+            76.06851093837192,
+            3.05,
+            38.59256688909416
+          ],
+          "b": [
+            76.06851093837173,
+            3.05,
+            38.66928968286623
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 119,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-126",
+          "a": [
+            75.59975129426569,
+            3.05,
+            33.2955381134984
+          ],
+          "b": [
+            71.21295971613723,
+            3.05,
+            33.2955381134984
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 126,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-127",
+          "a": [
+            76.6179901620338,
+            3.05,
+            33.29553811349843
+          ],
+          "b": [
+            75.59975129426573,
+            3.05,
+            33.29553811349843
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 127,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-128",
+          "a": [
+            74.28174285008278,
+            3.05,
+            38.59256688909412
+          ],
+          "b": [
+            76.06851093837103,
+            3.05,
+            38.59256688909416
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 128,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-129",
+          "a": [
+            71.22218850000871,
+            3.05,
+            38.59256688909412
+          ],
+          "b": [
+            74.28174285008262,
+            3.05,
+            38.59256688909411
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 129,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-135",
+          "a": [
+            75.59975129426508,
+            3.05,
+            36.194393284187065
+          ],
+          "b": [
+            75.59975129426573,
+            3.05,
+            33.295538113498516
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 135,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-136",
+          "a": [
+            74.28174285008295,
+            3.05,
+            37.78408132803549
+          ],
+          "b": [
+            76.0685109383731,
+            3.05,
+            37.78408132803551
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-136-0",
+              "type": "door",
+              "t": 0.5004673661944714,
+              "widthMeters": 1.6352569999070057,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "206"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 136,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-137",
+          "a": [
+            74.2817428500829,
+            3.05,
+            37.78408132803549
+          ],
+          "b": [
+            74.28174285008264,
+            3.05,
+            38.592566889094094
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 137,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-143",
+          "a": [
+            75.59975129426508,
+            3.05,
+            36.19439328418709
+          ],
+          "b": [
+            74.2817428500833,
+            3.05,
+            36.19950153224663
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-143-0",
+              "type": "door",
+              "t": 0.4721548053676592,
+              "widthMeters": 1.0037027297467418,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 143,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-144",
+          "a": [
+            74.28174285008319,
+            3.05,
+            36.19950153224668
+          ],
+          "b": [
+            74.28174285008288,
+            3.05,
+            37.784081328035455
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-144-0",
+              "type": "door",
+              "t": 0.4469549165139957,
+              "widthMeters": 1.220796096942761,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 144,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-145",
+          "a": [
+            71.21295971613546,
+            3.05,
+            38.59256688909412
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            38.669289682798855
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 145,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-149",
+          "a": [
+            74.2817428500831,
+            3.05,
+            36.19950153224663
+          ],
+          "b": [
+            74.28174285008318,
+            3.05,
+            35.93540036299457
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 149,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-150",
+          "a": [
+            74.28174285008302,
+            3.05,
+            36.199501532246636
+          ],
+          "b": [
+            71.21295971613549,
+            3.05,
+            36.211395314534954
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 150,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-151",
+          "a": [
+            71.21295971613443,
+            3.05,
+            36.21139531453497
+          ],
+          "b": [
+            71.21295971613443,
+            3.05,
+            38.59085621175059
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 151,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-152",
+          "a": [
+            74.28174285008308,
+            3.05,
+            35.93540036299455
+          ],
+          "b": [
+            71.21295971613566,
+            3.05,
+            35.935400362993434
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 152,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-153",
+          "a": [
+            71.21295971613453,
+            3.05,
+            35.93540036299344
+          ],
+          "b": [
+            71.21295971613445,
+            3.05,
+            36.21139531453495
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 153,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-157",
+          "a": [
+            71.2129597161344,
+            3.05,
+            35.63019460701182
+          ],
+          "b": [
+            71.21295971613448,
+            3.05,
+            35.93540036299342
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 157,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-159",
+          "a": [
+            71.21295971613439,
+            3.05,
+            34.429307188924106
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            33.29553811349841
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 159,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-161",
+          "a": [
+            71.21295971613434,
+            3.05,
+            34.911042523617326
+          ],
+          "b": [
+            71.21295971613438,
+            3.05,
+            34.429307188924575
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 161,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-162",
+          "a": [
+            71.2129597161344,
+            3.05,
+            34.91104252361781
+          ],
+          "b": [
+            71.21295971613443,
+            3.05,
+            35.6301946070118
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 162,
+            "sharedBoundary": true
+          }
+        },
+        {
+          "id": "upper-101-wall-170",
+          "a": [
+            78.80396886836772,
+            3.05,
+            33.29553811349843
+          ],
+          "b": [
+            78.80396886836733,
+            3.05,
+            36.18197459424803
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 170,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-171",
+          "a": [
+            78.80396886836733,
+            3.05,
+            36.18197459424803
+          ],
+          "b": [
+            75.5997512942651,
+            3.05,
+            36.19439328418709
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-171-0",
+              "type": "door",
+              "t": 0.8200613539475068,
+              "widthMeters": 1.0047112518478682,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 171,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-172",
+          "a": [
+            83.44852995790859,
+            3.05,
+            36.163973518247346
+          ],
+          "b": [
+            83.43925510641677,
+            3.05,
+            33.77091577277082
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-172-0",
+              "type": "door",
+              "t": 0.49397183426461194,
+              "widthMeters": 0.7746369395776879,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "3768"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 172,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-173",
+          "a": [
+            83.44852995789527,
+            3.05,
+            36.16397351824746
+          ],
+          "b": [
+            78.80396886836735,
+            3.05,
+            36.18197459424805
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-173-0",
+              "type": "door",
+              "t": 0.8748906485404933,
+              "widthMeters": 1.0047202917538274,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 173,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-174",
+          "a": [
+            84.39264336900229,
+            3.05,
+            36.16397351824687
+          ],
+          "b": [
+            84.3926433690016,
+            3.05,
+            33.77091577277077
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-174-0",
+              "type": "door",
+              "t": 0.49632064408777443,
+              "widthMeters": 0.7818747513509868,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "3768"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 174,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-175",
+          "a": [
+            86.48226959336306,
+            3.05,
+            36.16397351824617
+          ],
+          "b": [
+            84.39264336900233,
+            3.05,
+            36.163973518247005
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-101-opening-175-0",
+              "type": "door",
+              "t": 0.6834750599158786,
+              "widthMeters": 0.9915753057945892,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 175,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-176",
+          "a": [
+            84.30145788502875,
+            3.05,
+            36.163973518247076
+          ],
+          "b": [
+            83.4485299579261,
+            3.05,
+            36.16397351824734
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 176,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-177",
+          "a": [
+            84.39264336900229,
+            3.05,
+            36.163973518248184
+          ],
+          "b": [
+            84.30145788503003,
+            3.05,
+            36.16397351824802
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 177,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-101-wall-178",
+          "a": [
+            84.30145788503003,
+            3.05,
+            36.16397351824802
+          ],
+          "b": [
+            84.30145788502824,
+            3.05,
+            36.33178370666613
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 178,
+            "sharedBoundary": false
+          }
+        }
+      ],
+      "floors": [
+        {
+          "id": "upper-101-floor-7",
+          "outer": [
+            [
+              71.28795971613441,
+              34.91104252361781
+            ],
+            [
+              71.28795971613442,
+              35.6301946070118
+            ],
+            [
+              71.28795971613461,
+              35.860400362993445
+            ],
+            [
+              74.35674285008281,
+              35.8604003629946
+            ],
+            [
+              74.35674285008376,
+              36.12421028901819
+            ],
+            [
+              75.52475129426513,
+              36.119683400822076
+            ],
+            [
+              75.52475129426568,
+              33.37053811349843
+            ],
+            [
+              71.28795971613441,
+              33.37053811349841
+            ],
+            [
+              71.2879597161344,
+              34.429307188924106
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 7,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-8",
+          "outer": [
+            [
+              71.28795971613461,
+              36.13610407130662
+            ],
+            [
+              74.20674285008265,
+              36.12479164888159
+            ],
+            [
+              74.20674285008306,
+              36.010400362994545
+            ],
+            [
+              71.28795971613447,
+              36.01040036299346
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 8,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-9",
+          "outer": [
+            [
+              74.3567428500827,
+              38.51756688909413
+            ],
+            [
+              75.99351093837191,
+              38.517566889094084
+            ],
+            [
+              75.99351093837298,
+              37.85908132803548
+            ],
+            [
+              74.35674285008295,
+              37.85908132803548
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 9,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-10",
+          "outer": [
+            [
+              74.35674285008288,
+              37.70908132803551
+            ],
+            [
+              75.99351093837305,
+              37.70908132803551
+            ],
+            [
+              76.1435109383731,
+              37.784081328035626
+            ],
+            [
+              76.14351093837195,
+              38.517566889094084
+            ],
+            [
+              83.24405122172237,
+              38.517566889094105
+            ],
+            [
+              83.3940512217225,
+              38.51756688909444
+            ],
+            [
+              84.22645788502864,
+              38.517566889094184
+            ],
+            [
+              84.2264578850288,
+              37.46641109796854
+            ],
+            [
+              86.40639524697364,
+              37.466411097968574
+            ],
+            [
+              86.406397432497,
+              37.463155457333414
+            ],
+            [
+              86.4072192287833,
+              36.23897351824623
+            ],
+            [
+              84.39264336900236,
+              36.238973518247
+            ],
+            [
+              84.37645788502934,
+              36.23897351824526
+            ],
+            [
+              84.22645788502692,
+              36.23897351824703
+            ],
+            [
+              83.44867529735798,
+              36.238973518247306
+            ],
+            [
+              78.80425954611583,
+              36.25697403095557
+            ],
+            [
+              75.60004197201357,
+              36.26939272089462
+            ],
+            [
+              74.35674285008312,
+              36.274211415611575
+            ]
+          ],
+          "holes": [
+            [
+              [
+                77.49269102109882,
+                37.53820575906593
+              ],
+              [
+                81.63518591109883,
+                37.53820575906593
+              ],
+              [
+                81.63518591109883,
+                38.442566829065925
+              ],
+              [
+                77.49269102109882,
+                38.442566829065925
+              ]
+            ]
+          ],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 10,
+            "areaGuid": null
+          },
+          "holeStatus": "source-plan interpretation; see void records"
+        },
+        {
+          "id": "upper-101-floor-11",
+          "outer": [
+            [
+              76.69299016203412,
+              33.370538113501
+            ],
+            [
+              76.692990162035,
+              33.54916379707813
+            ],
+            [
+              76.6431757095429,
+              33.54916379707951
+            ],
+            [
+              76.64317570954303,
+              33.37053811349757
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 11,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-12",
+          "outer": [
+            [
+              76.91239644412168,
+              33.54656520744711
+            ],
+            [
+              76.87059680241266,
+              33.546565207445454
+            ],
+            [
+              76.8705968024127,
+              33.370538113500395
+            ],
+            [
+              76.91239644412212,
+              33.370538113500515
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 12,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-13",
+          "outer": [
+            [
+              78.87896886836734,
+              36.10668335101968
+            ],
+            [
+              83.37323984345254,
+              36.089264759288326
+            ],
+            [
+              83.36425566970924,
+              33.7712064505193
+            ],
+            [
+              83.36270278644504,
+              33.370538113498284
+            ],
+            [
+              81.66963773416502,
+              33.37053811349845
+            ],
+            [
+              81.66963773417126,
+              33.38863521125797
+            ],
+            [
+              81.66963773417156,
+              33.617469940064545
+            ],
+            [
+              81.18061628198951,
+              33.617469940064524
+            ],
+            [
+              81.18061628198784,
+              33.44234445874159
+            ],
+            [
+              81.18061628198657,
+              33.37053811349833
+            ],
+            [
+              80.40731192633686,
+              33.37053811349832
+            ],
+            [
+              80.25731192634295,
+              33.37053811349849
+            ],
+            [
+              80.02066587817308,
+              33.370538113498405
+            ],
+            [
+              78.87896886836774,
+              33.370538113498334
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 13,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-14",
+          "outer": [
+            [
+              81.33061628198823,
+              33.5063979862926
+            ],
+            [
+              81.3306162819879,
+              33.467469940064895
+            ],
+            [
+              81.5196377341674,
+              33.46746994006454
+            ],
+            [
+              81.51963773417441,
+              33.476452388781055
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 14,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-15",
+          "outer": [
+            [
+              81.33061628198753,
+              33.35452728121758
+            ],
+            [
+              81.5196377341714,
+              33.32458168370643
+            ],
+            [
+              81.51963773417047,
+              33.37053811349863
+            ],
+            [
+              81.33061628198936,
+              33.37053811349898
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 15,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-16",
+          "outer": [
+            [
+              83.5127039130385,
+              33.37053811349781
+            ],
+            [
+              83.51396498978197,
+              33.69591577277084
+            ],
+            [
+              83.96109670476544,
+              33.6959157727706
+            ],
+            [
+              83.96109670476503,
+              33.37053811349819
+            ],
+            [
+              83.59445738131114,
+              33.370538113498405
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 16,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-17",
+          "outer": [
+            [
+              83.51454634964512,
+              33.8459157727707
+            ],
+            [
+              83.52323984127361,
+              36.088973518247506
+            ],
+            [
+              84.30145788502873,
+              36.08897351824707
+            ],
+            [
+              84.31764336900225,
+              36.088973518248125
+            ],
+            [
+              84.31764336900173,
+              33.845915772770525
+            ],
+            [
+              84.03609670476581,
+              33.84591577277062
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 17,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-18",
+          "outer": [
+            [
+              84.11109670476522,
+              33.37053811349839
+            ],
+            [
+              84.11109670476573,
+              33.6959157727707
+            ],
+            [
+              84.3176433689783,
+              33.69591577277048
+            ],
+            [
+              84.46764336900159,
+              33.77091577277074
+            ],
+            [
+              84.46764336900233,
+              36.08897351824686
+            ],
+            [
+              86.48226959336303,
+              36.08897351824617
+            ],
+            [
+              88.7102420555539,
+              36.08897351824627
+            ],
+            [
+              88.71024205555314,
+              33.517344458739686
+            ],
+            [
+              86.96514656517134,
+              33.517344458739615
+            ],
+            [
+              86.96514656517094,
+              33.37053811349831
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 18,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-19",
+          "outer": [
+            [
+              84.37645788502883,
+              38.517566889094
+            ],
+            [
+              86.40490044223385,
+              38.51756688909426
+            ],
+            [
+              86.40572627440775,
+              38.46294047112098
+            ],
+            [
+              86.40629455161604,
+              37.6164110979686
+            ],
+            [
+              84.37645788502894,
+              37.61641109796844
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 19,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-101-floor-20",
+          "outer": [
+            [
+              86.5557762584369,
+              38.38853252906509
+            ],
+            [
+              92.69473647032108,
+              38.388532529065145
+            ],
+            [
+              92.69473647032109,
+              33.370538113498384
+            ],
+            [
+              88.86024205555441,
+              33.37053811349851
+            ],
+            [
+              88.86024205555324,
+              33.442344458739676
+            ],
+            [
+              88.86024205555387,
+              36.238973518246205
+            ],
+            [
+              86.55721926258165,
+              36.23897351824609
+            ],
+            [
+              86.55639739869848,
+              37.46325615267159
+            ],
+            [
+              86.55634489929751,
+              37.54146144563738
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 20,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        }
+      ],
+      "voids": [
+        {
+          "id": "upper-101-rear-stair-void",
+          "outer": [
+            [
+              77.49269102109882,
+              37.53820575906593
+            ],
+            [
+              81.63518591109883,
+              37.53820575906593
+            ],
+            [
+              81.63518591109883,
+              38.442566829065925
+            ],
+            [
+              77.49269102109882,
+              38.442566829065925
+            ]
+          ],
+          "elevationMeters": 3.05,
+          "role": "rear-stair-opening",
+          "source": "Native wall 45 / area 10; 101 - Second Floor.png",
+          "confidence": "stair symbol interpreted within native wall bounds"
+        }
+      ],
+      "stairs": [
+        {
+          "id": "upper-101-rear-flight",
+          "kind": "schematic-stair-flight-envelope",
+          "quad": [
+            [
+              77.49269102109882,
+              0,
+              37.53820575906593
+            ],
+            [
+              77.49269102109882,
+              0,
+              38.442566829065925
+            ],
+            [
+              81.63518591109883,
+              3.05,
+              38.442566829065925
+            ],
+            [
+              81.63518591109883,
+              3.05,
+              37.53820575906593
+            ]
+          ],
+          "source": "101 second-floor PNG gray flight at native rear stair bay; tan landing preserved",
+          "confidence": "plan-symbol location; vertical interpolation assumes native 3.05 m floor level",
+          "treadsModeled": false
+        }
+      ],
+      "omittedGuardBoundaryWallIndices": [],
+      "provenance": {
+        "sourceDesignId": 193835178,
+        "sourceFloorId": 183163884,
+        "sourceIds": [
+          "native-upper",
+          "101---second-floor",
+          "project.pdf"
+        ],
+        "physicalVerification": "unverified",
+        "occupancyExtent": "Partial rear strip only"
+      },
+      "boundsMeters": {
+        "min": [
+          71.1379623413086,
+          0,
+          33.22053909301758
+        ],
+        "max": [
+          92.84473419189453,
+          6.936200141906738,
+          38.669288635253906
+        ]
+      }
+    },
+    {
+      "id": "upper-103",
+      "nodeName": "upper-103",
+      "unit": "103",
+      "level": 2,
+      "label": "Unit 103 · upper floor",
+      "defaultVisible": true,
+      "elevationMeters": 3.05,
+      "elevationStatus": "native-floor-height-metadata-unverified",
+      "nativeFloorHeightMeters": 3.05,
+      "nativeWallHeightMeters": 3.886199994092976,
+      "registration": {
+        "method": "Rigid translation only; no scaling or rotation",
+        "translationFmlCm": [
+          -78.9476490220759,
+          -2908.036366996171
+        ],
+        "rotationDegrees": 0,
+        "scale": 1,
+        "controls": [
+          {
+            "name": "103 facade / shared 103-105 wall",
+            "upper": {
+              "x": -269.54861949644146,
+              "y": 1690.8759064551625
+            },
+            "ground": {
+              "x": -348.49581468817917,
+              "y": -1217.160460541009
+            },
+            "residualMeters": 0.000004538303381877995
+          },
+          {
+            "name": "103 facade / shared 101-103 wall",
+            "upper": {
+              "x": 796.9773805035584,
+              "y": 1690.8759064551625
+            },
+            "ground": {
+              "x": 718.0292776511443,
+              "y": -1217.1604605410087
+            },
+            "residualMeters": 0.000004538303381877995
+          }
+        ],
+        "independentCheck": {
+          "name": "103 rear wall",
+          "upperFmlCm": [
+            796.9773805035584,
+            4255.67027827759
+          ],
+          "groundFmlCm": [
+            718.032865686532,
+            1363.60969784303
+          ],
+          "residualMeters": 0.1597578656161113,
+          "status": "Unresolved native drawing discrepancy; not scaled away"
+        },
+        "confidence": "high model-pattern correspondence, not surveyed registration"
+      },
+      "walls": [
+        {
+          "id": "upper-103-wall-0",
+          "a": [
+            60.54769971613441,
+            3.05,
+            24.749952523617548
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            24.90282252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 0,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-1",
+          "a": [
+            60.54769971613441,
+            3.05,
+            21.783812523617552
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            21.92489252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 1,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-2",
+          "a": [
+            60.54769971613441,
+            3.05,
+            17.54604252361755
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            17.82223252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 2,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-3",
+          "a": [
+            60.5476997161344,
+            3.05,
+            16.594267324236306
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            17.54604252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 3,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-4",
+          "a": [
+            60.65677971613438,
+            3.05,
+            16.59426732423625
+          ],
+          "b": [
+            60.54769971613442,
+            3.05,
+            16.59426732423614
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 4,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-5",
+          "a": [
+            60.54769971613441,
+            3.05,
+            21.92489252361755
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            23.429072694630786
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 5,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-6",
+          "a": [
+            60.54769971613441,
+            3.05,
+            23.429072694630865
+          ],
+          "b": [
+            60.65677971613439,
+            3.05,
+            23.429072694630854
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 6,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-7",
+          "a": [
+            60.65677971613441,
+            3.05,
+            23.429072694630896
+          ],
+          "b": [
+            60.65677971613442,
+            3.05,
+            23.89138926824561
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 7,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-8",
+          "a": [
+            60.656779716134395,
+            3.05,
+            23.891389268245693
+          ],
+          "b": [
+            60.54769971613443,
+            3.05,
+            23.891389268245685
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 8,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-9",
+          "a": [
+            60.5476997161344,
+            3.05,
+            23.89138926824574
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            24.749952523617548
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 9,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-10",
+          "a": [
+            60.54769971613441,
+            3.05,
+            17.82223252361755
+          ],
+          "b": [
+            60.54769971613442,
+            3.05,
+            19.791196120086717
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 10,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-11",
+          "a": [
+            60.54769971613442,
+            3.05,
+            19.791196120086717
+          ],
+          "b": [
+            60.65677971613441,
+            3.05,
+            19.791196120086955
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 11,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-12",
+          "a": [
+            60.65677971613443,
+            3.05,
+            19.791196120087058
+          ],
+          "b": [
+            60.65677971613442,
+            3.05,
+            20.24176252361749
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 12,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-13",
+          "a": [
+            60.656779716134416,
+            3.05,
+            20.24176252361751
+          ],
+          "b": [
+            60.54769971613444,
+            3.05,
+            20.24176252361757
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 13,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-14",
+          "a": [
+            60.54769971613443,
+            3.05,
+            20.24176252361769
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            21.783812523617552
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 14,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-15",
+          "a": [
+            71.2129597161344,
+            3.05,
+            16.5942673242359
+          ],
+          "b": [
+            71.21295971613438,
+            3.05,
+            19.79119612008705
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 15,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-16",
+          "a": [
+            71.21295971613438,
+            3.05,
+            19.791196120087225
+          ],
+          "b": [
+            71.0906607459097,
+            3.05,
+            19.79119612008792
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 16,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-17",
+          "a": [
+            71.0906607459097,
+            3.05,
+            19.79119612008792
+          ],
+          "b": [
+            71.09516362724456,
+            3.05,
+            20.241762523617364
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 17,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-18",
+          "a": [
+            71.09516362724456,
+            3.05,
+            20.241762523617425
+          ],
+          "b": [
+            71.21295971613046,
+            3.05,
+            20.24176252361781
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 18,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-19",
+          "a": [
+            71.21295971613046,
+            3.05,
+            20.241762523617826
+          ],
+          "b": [
+            71.21295971613046,
+            3.05,
+            23.429072694631135
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 19,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-20",
+          "a": [
+            71.21295971613046,
+            3.05,
+            23.42907269463123
+          ],
+          "b": [
+            71.1049597161306,
+            3.05,
+            23.429072694631376
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 20,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-21",
+          "a": [
+            71.10495971613057,
+            3.05,
+            23.42907269463147
+          ],
+          "b": [
+            71.10495971613034,
+            3.05,
+            23.891389268250222
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 21,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-22",
+          "a": [
+            71.10495971613037,
+            3.05,
+            23.89138926825034
+          ],
+          "b": [
+            71.21295971613046,
+            3.05,
+            23.89138926825027
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 22,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-23",
+          "a": [
+            60.95321563041853,
+            3.05,
+            38.59085621175067
+          ],
+          "b": [
+            64.1612697161344,
+            3.05,
+            38.59085621175069
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 23,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-24",
+          "a": [
+            60.95321563041847,
+            3.05,
+            38.59085621175073
+          ],
+          "b": [
+            60.9532156304183,
+            3.05,
+            38.669289682807275
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 24,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-25",
+          "a": [
+            60.54769971613011,
+            3.05,
+            38.59085621175069
+          ],
+          "b": [
+            60.953215630418256,
+            3.05,
+            38.5908562117507
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 25,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-26",
+          "a": [
+            60.54769971613012,
+            3.05,
+            37.05393252361755
+          ],
+          "b": [
+            60.5476997161301,
+            3.05,
+            38.590856211750676
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 26,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-27",
+          "a": [
+            60.54769971613028,
+            3.05,
+            36.02790252361748
+          ],
+          "b": [
+            60.547699716130275,
+            3.05,
+            37.0539325236176
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 27,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-28",
+          "a": [
+            60.54769971613053,
+            3.05,
+            34.9110425236183
+          ],
+          "b": [
+            60.54769971613055,
+            3.05,
+            36.02790252361747
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 28,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-29",
+          "a": [
+            60.54769971613441,
+            3.05,
+            29.45431252361755
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            30.780162147619986
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 29,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-30",
+          "a": [
+            71.21295971613478,
+            3.05,
+            31.24089275688838
+          ],
+          "b": [
+            71.21295971613442,
+            3.05,
+            31.45065252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 30,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-31",
+          "a": [
+            71.10495971613449,
+            3.05,
+            31.24089275688779
+          ],
+          "b": [
+            71.21295971613458,
+            3.05,
+            31.240892756888098
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 31,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-32",
+          "a": [
+            71.10495971613453,
+            3.05,
+            27.57587768098691
+          ],
+          "b": [
+            71.21295971613432,
+            3.05,
+            27.57587768098717
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 32,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-33",
+          "a": [
+            60.54769971613441,
+            3.05,
+            24.90282252361755
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            27.10242177124758
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 33,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-34",
+          "a": [
+            60.54769971613441,
+            3.05,
+            27.102421771247663
+          ],
+          "b": [
+            60.656779716132405,
+            3.05,
+            27.102421771247595
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 34,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-35",
+          "a": [
+            60.65677971613241,
+            3.05,
+            27.10242177124764
+          ],
+          "b": [
+            60.65677971613235,
+            3.05,
+            27.575877680993298
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 35,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-46",
+          "a": [
+            60.54769971613443,
+            3.05,
+            30.780162147620086
+          ],
+          "b": [
+            60.62356971613434,
+            3.05,
+            30.780162147620334
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 46,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-47",
+          "a": [
+            60.62356971613436,
+            3.05,
+            30.780162147620413
+          ],
+          "b": [
+            60.6235697161344,
+            3.05,
+            31.240892756874583
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 47,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-48",
+          "a": [
+            60.65677971613105,
+            3.05,
+            34.91104252361893
+          ],
+          "b": [
+            60.54769971613055,
+            3.05,
+            34.91104252361823
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 48,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-49",
+          "a": [
+            60.65677971613111,
+            3.05,
+            34.42930718892412
+          ],
+          "b": [
+            60.65677971613108,
+            3.05,
+            34.911042523618846
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 49,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-50",
+          "a": [
+            60.656779716132334,
+            3.05,
+            27.5758776809934
+          ],
+          "b": [
+            60.54769971613443,
+            3.05,
+            27.57587768099331
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 50,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-51",
+          "a": [
+            60.617089716134416,
+            3.05,
+            28.444332523617554
+          ],
+          "b": [
+            60.54769971613447,
+            3.05,
+            28.444332523617394
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 51,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-52",
+          "a": [
+            60.547699716134396,
+            3.05,
+            28.444332523617632
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            29.45431252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 52,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-53",
+          "a": [
+            71.21295971613435,
+            3.05,
+            27.57587768098754
+          ],
+          "b": [
+            71.21295971613445,
+            3.05,
+            27.99004252361751
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 53,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-54",
+          "a": [
+            71.10495971613439,
+            3.05,
+            30.780162147619954
+          ],
+          "b": [
+            71.10495971613443,
+            3.05,
+            31.240892756887614
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 54,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-55",
+          "a": [
+            71.21295971613438,
+            3.05,
+            30.780162147619556
+          ],
+          "b": [
+            71.10495971613443,
+            3.05,
+            30.780162147619826
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 55,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-56",
+          "a": [
+            60.62190266031997,
+            3.05,
+            37.43951410996657
+          ],
+          "b": [
+            65.6525641424184,
+            3.05,
+            37.43951410996657
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-56-0",
+              "type": "door",
+              "t": 0.11084651748731174,
+              "widthMeters": 1.0164932883067486,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 56,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-105",
+          "a": [
+            64.1612697161344,
+            3.05,
+            38.59085621175069
+          ],
+          "b": [
+            65.65256414241813,
+            3.05,
+            38.590856211750676
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 105,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-106",
+          "a": [
+            65.6525641424184,
+            3.05,
+            37.43951410996657
+          ],
+          "b": [
+            65.65256414241813,
+            3.05,
+            38.590856211750676
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 106,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-107",
+          "a": [
+            60.62356971613436,
+            3.05,
+            31.240892756874697
+          ],
+          "b": [
+            60.54769971613442,
+            3.05,
+            31.240892756874835
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 107,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-108",
+          "a": [
+            60.54769971613444,
+            3.05,
+            34.42930718892401
+          ],
+          "b": [
+            60.65677971613111,
+            3.05,
+            34.42930718892412
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 108,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-109",
+          "a": [
+            60.54769971613442,
+            3.05,
+            27.575877680993422
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            28.262501622532547
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 109,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-110",
+          "a": [
+            60.54769971613441,
+            3.05,
+            28.262501622532554
+          ],
+          "b": [
+            60.54769971613447,
+            3.05,
+            28.444332523617394
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 110,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-111",
+          "a": [
+            71.21295971613442,
+            3.05,
+            27.99004252361755
+          ],
+          "b": [
+            71.21295971613445,
+            3.05,
+            28.26250162253227
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 111,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-112",
+          "a": [
+            71.2129597161344,
+            3.05,
+            28.262501622532287
+          ],
+          "b": [
+            71.21295971613439,
+            3.05,
+            30.780162147619393
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 112,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-120",
+          "a": [
+            65.65256414241813,
+            3.05,
+            38.5908562117507
+          ],
+          "b": [
+            68.6841597161344,
+            3.05,
+            38.59085621175069
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 120,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-121",
+          "a": [
+            60.547699716134396,
+            3.05,
+            31.240892756875095
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            31.93748730971808
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 121,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-122",
+          "a": [
+            60.54769971613443,
+            3.05,
+            31.937487309718104
+          ],
+          "b": [
+            60.54769971613442,
+            3.05,
+            34.42930718892379
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 122,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-123",
+          "a": [
+            60.54769971613442,
+            3.05,
+            28.26250162253255
+          ],
+          "b": [
+            64.86037117869085,
+            3.05,
+            28.262501622532433
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 123,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-124",
+          "a": [
+            68.6047831721297,
+            3.05,
+            28.26250162253233
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            28.26250162253228
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 124,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-125",
+          "a": [
+            64.86037117869085,
+            3.05,
+            28.26250162253244
+          ],
+          "b": [
+            68.6047831721297,
+            3.05,
+            28.262501622532326
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-125-0",
+              "type": "door",
+              "t": 0.2928617370437066,
+              "widthMeters": 2.0316549762590013,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "208"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 125,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-130",
+          "a": [
+            68.6841597161344,
+            3.05,
+            38.5908562117507
+          ],
+          "b": [
+            70.2936787791883,
+            3.05,
+            38.590856211750676
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 130,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-131",
+          "a": [
+            60.54769971613443,
+            3.05,
+            31.937487309718097
+          ],
+          "b": [
+            64.86037117869117,
+            3.05,
+            31.93748730971821
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 131,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-132",
+          "a": [
+            64.86037117869117,
+            3.05,
+            31.937487309718207
+          ],
+          "b": [
+            64.86037117869085,
+            3.05,
+            28.262501622532444
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-132-0",
+              "type": "door",
+              "t": 0.15920166889917037,
+              "widthMeters": 1.0036207250711913,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 132,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-133",
+          "a": [
+            68.6047831721297,
+            3.05,
+            28.26250162253234
+          ],
+          "b": [
+            68.60172431930698,
+            3.05,
+            31.93748730971835
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-133-0",
+              "type": "door",
+              "t": 0.8419479303278391,
+              "widthMeters": 1.0036207250711913,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 133,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-134",
+          "a": [
+            71.2129597161344,
+            3.05,
+            33.29553811349841
+          ],
+          "b": [
+            71.21295971613439,
+            3.05,
+            32.9441425236176
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 134,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-138",
+          "a": [
+            70.29367877918834,
+            3.05,
+            38.590856211750605
+          ],
+          "b": [
+            70.49729971613431,
+            3.05,
+            38.590856211750754
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 138,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-139",
+          "a": [
+            64.86037117869118,
+            3.05,
+            31.93748730971821
+          ],
+          "b": [
+            66.80052010496748,
+            3.05,
+            31.937487309718275
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-139-0",
+              "type": "door",
+              "t": 0.6834698784650068,
+              "widthMeters": 1.0150530493628935,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 139,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-140",
+          "a": [
+            66.8005201049675,
+            3.05,
+            31.937487309718286
+          ],
+          "b": [
+            68.60172431930697,
+            3.05,
+            31.937487309718364
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 140,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-141",
+          "a": [
+            71.21295971613434,
+            3.05,
+            31.93748730971839
+          ],
+          "b": [
+            71.21295971613442,
+            3.05,
+            31.45065252361755
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 141,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-142",
+          "a": [
+            71.21295971613442,
+            3.05,
+            32.94414252361755
+          ],
+          "b": [
+            71.21295971613445,
+            3.05,
+            31.937487309718406
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 142,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-145",
+          "a": [
+            71.21295971613546,
+            3.05,
+            38.59256688909412
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            38.669289682798855
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 145,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-146",
+          "a": [
+            71.21295971613442,
+            3.05,
+            38.590856211750626
+          ],
+          "b": [
+            70.49729971613436,
+            3.05,
+            38.5908562117507
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 146,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-147",
+          "a": [
+            66.80052010496749,
+            3.05,
+            31.937487309718286
+          ],
+          "b": [
+            66.80052010496748,
+            3.05,
+            33.49628205317666
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-147-0",
+              "type": "door",
+              "t": 0.6665102867720062,
+              "widthMeters": 0.7988875102773045,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 147,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-148",
+          "a": [
+            68.60478317213436,
+            3.05,
+            31.93748730971835
+          ],
+          "b": [
+            71.21295971613429,
+            3.05,
+            31.937487309718403
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-148-0",
+              "type": "door",
+              "t": 0.7712713178574248,
+              "widthMeters": 0.98,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 148,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-151",
+          "a": [
+            71.21295971613443,
+            3.05,
+            36.21139531453497
+          ],
+          "b": [
+            71.21295971613443,
+            3.05,
+            38.59085621175059
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 151,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-153",
+          "a": [
+            71.21295971613453,
+            3.05,
+            35.93540036299344
+          ],
+          "b": [
+            71.21295971613445,
+            3.05,
+            36.21139531453495
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 153,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-154",
+          "a": [
+            66.80052010496748,
+            3.05,
+            33.496282053176664
+          ],
+          "b": [
+            68.60478317212942,
+            3.05,
+            33.49628205317664
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 154,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-155",
+          "a": [
+            68.60478317212942,
+            3.05,
+            33.496282053176635
+          ],
+          "b": [
+            68.60478317213435,
+            3.05,
+            31.937487309718353
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 155,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-156",
+          "a": [
+            68.60478317212946,
+            3.05,
+            33.49628205317676
+          ],
+          "b": [
+            68.60478317213177,
+            3.05,
+            35.630194607011795
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-156-0",
+              "type": "door",
+              "t": 0.5531739314939775,
+              "widthMeters": 1.0031205991286607,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 156,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-157",
+          "a": [
+            71.2129597161344,
+            3.05,
+            35.63019460701182
+          ],
+          "b": [
+            71.21295971613448,
+            3.05,
+            35.93540036299342
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 157,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-158",
+          "a": [
+            71.21295971613438,
+            3.05,
+            35.63019460701181
+          ],
+          "b": [
+            68.60478317213179,
+            3.05,
+            35.63019460701181
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [
+            {
+              "id": "upper-103-opening-158-0",
+              "type": "door",
+              "t": 0.2732018276203668,
+              "widthMeters": 1.042343804424736,
+              "bottomMeters": 0,
+              "heightMeters": 2.2,
+              "sourceCatalogRef": "200"
+            }
+          ],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 158,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-159",
+          "a": [
+            71.21295971613439,
+            3.05,
+            34.429307188924106
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            33.29553811349841
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 159,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-160",
+          "a": [
+            71.1049597161345,
+            3.05,
+            34.42930718892403
+          ],
+          "b": [
+            71.21295971613432,
+            3.05,
+            34.42930718892456
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 160,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-161",
+          "a": [
+            71.21295971613434,
+            3.05,
+            34.911042523617326
+          ],
+          "b": [
+            71.21295971613438,
+            3.05,
+            34.429307188924575
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 161,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-162",
+          "a": [
+            71.2129597161344,
+            3.05,
+            34.91104252361781
+          ],
+          "b": [
+            71.21295971613443,
+            3.05,
+            35.6301946070118
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 162,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-163",
+          "a": [
+            71.10495971613436,
+            3.05,
+            34.91104252361777
+          ],
+          "b": [
+            71.10495971613446,
+            3.05,
+            34.429307188924405
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 163,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-164",
+          "a": [
+            71.21295971613434,
+            3.05,
+            34.911042523617425
+          ],
+          "b": [
+            71.10495971613443,
+            3.05,
+            34.91104252361788
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 164,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-165",
+          "a": [
+            71.21295971613046,
+            3.05,
+            23.891389268250542
+          ],
+          "b": [
+            71.21295971613046,
+            3.05,
+            25.9271472554766
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 165,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-166",
+          "a": [
+            71.21295971613122,
+            3.05,
+            25.927147257801906
+          ],
+          "b": [
+            71.21295971613047,
+            3.05,
+            26.00447252361746
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 166,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-167",
+          "a": [
+            71.21334046068708,
+            3.05,
+            27.098991834276898
+          ],
+          "b": [
+            71.21295971613122,
+            3.05,
+            25.927147257801906
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 167,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-168",
+          "a": [
+            71.21334046068705,
+            3.05,
+            27.098991834277143
+          ],
+          "b": [
+            71.10495971613443,
+            3.05,
+            27.099152398343577
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 168,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-169",
+          "a": [
+            71.10495971613433,
+            3.05,
+            27.099152398343776
+          ],
+          "b": [
+            71.10495971613446,
+            3.05,
+            27.575877680986515
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 169,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-179",
+          "a": [
+            60.656779716134416,
+            3.05,
+            16.132095112453825
+          ],
+          "b": [
+            60.656779716134416,
+            3.05,
+            16.594267324236075
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 179,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-180",
+          "a": [
+            71.10495971613442,
+            3.05,
+            16.594267324235705
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            16.594267324235844
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 180,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-181",
+          "a": [
+            71.10495971613442,
+            3.05,
+            16.132095112454557
+          ],
+          "b": [
+            71.1049597161344,
+            3.05,
+            16.5942673242355
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 181,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-182",
+          "a": [
+            60.54769971613441,
+            3.05,
+            16.13209511245369
+          ],
+          "b": [
+            60.656779716134366,
+            3.05,
+            16.132095112453744
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 182,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-183",
+          "a": [
+            71.2129597161344,
+            3.05,
+            16.132095112454508
+          ],
+          "b": [
+            71.10495971613442,
+            3.05,
+            16.132095112454348
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 183,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-184",
+          "a": [
+            60.54769971613441,
+            3.05,
+            12.942912523617558
+          ],
+          "b": [
+            60.54769971613441,
+            3.05,
+            16.132095112453673
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 184,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-185",
+          "a": [
+            71.2129597161344,
+            3.05,
+            12.942912523617556
+          ],
+          "b": [
+            71.21295971613442,
+            3.05,
+            16.132095112454426
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 185,
+            "sharedBoundary": false
+          }
+        },
+        {
+          "id": "upper-103-wall-186",
+          "a": [
+            60.54769971613441,
+            3.05,
+            12.942912523617554
+          ],
+          "b": [
+            71.2129597161344,
+            3.05,
+            12.942912523617554
+          ],
+          "heightMeters": 3.886199994092976,
+          "thicknessMeters": 0.15,
+          "balance": 0.5,
+          "openings": [],
+          "sourceRefs": {
+            "designId": 193835178,
+            "wallIndex": 186,
+            "sharedBoundary": false
+          }
+        }
+      ],
+      "floors": [
+        {
+          "id": "upper-103-floor-0",
+          "outer": [
+            [
+              60.62269971613012,
+              38.515856211750744
+            ],
+            [
+              60.953215630418256,
+              38.515856211750695
+            ],
+            [
+              64.1612697161344,
+              38.51585621175069
+            ],
+            [
+              65.57756414241815,
+              38.51585621175066
+            ],
+            [
+              65.72756414241817,
+              38.51585621175069
+            ],
+            [
+              68.6841597161344,
+              38.51585621175069
+            ],
+            [
+              70.2936787791883,
+              38.51585621175068
+            ],
+            [
+              70.49729971613436,
+              38.51585621175075
+            ],
+            [
+              71.1379597161344,
+              38.515856211750695
+            ],
+            [
+              71.13795971613443,
+              36.21139531453497
+            ],
+            [
+              71.13795971613453,
+              35.93540036299342
+            ],
+            [
+              71.13795971613428,
+              35.705194607011805
+            ],
+            [
+              68.52978317213189,
+              35.705194607011805
+            ],
+            [
+              68.52978317212954,
+              33.57128205317663
+            ],
+            [
+              66.72552010496746,
+              33.57128205317665
+            ],
+            [
+              66.72552010496746,
+              32.012487309718274
+            ],
+            [
+              64.86037117869117,
+              32.01248730971821
+            ],
+            [
+              60.62269971613442,
+              32.01248730971809
+            ],
+            [
+              60.62269971613442,
+              34.354307188924096
+            ],
+            [
+              60.731779716131115,
+              34.354307188924224
+            ],
+            [
+              60.73177971613108,
+              34.986042523619524
+            ],
+            [
+              60.622699716130526,
+              34.98604252361871
+            ],
+            [
+              60.622699716130555,
+              36.02790252361747
+            ],
+            [
+              60.62269971613027,
+              37.0539325236176
+            ]
+          ],
+          "holes": [
+            [
+              [
+                62.043185911098824,
+                37.51451412206593
+              ],
+              [
+                65.57756412109883,
+                37.51451412206593
+              ],
+              [
+                65.57756412109883,
+                38.44085345906593
+              ],
+              [
+                62.043185911098824,
+                38.44085345906593
+              ]
+            ]
+          ],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 0,
+            "areaGuid": null
+          },
+          "holeStatus": "source-plan interpretation; see void records"
+        },
+        {
+          "id": "upper-103-floor-1",
+          "outer": [
+            [
+              60.62269971613439,
+              28.51933252361714
+            ],
+            [
+              60.62269971613441,
+              29.45431252361755
+            ],
+            [
+              60.62269971613441,
+              30.705162147622868
+            ],
+            [
+              60.69856971613435,
+              30.705162147393843
+            ],
+            [
+              60.69856971613439,
+              31.315892756874618
+            ],
+            [
+              60.622699716134406,
+              31.315892756874767
+            ],
+            [
+              60.622699716134406,
+              31.862487309718112
+            ],
+            [
+              64.78537117869116,
+              31.86248730971822
+            ],
+            [
+              64.78537117869085,
+              28.337501622532432
+            ],
+            [
+              60.62269971613497,
+              28.33750162253255
+            ],
+            [
+              60.62269971613451,
+              28.369332523616677
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 1,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-103-floor-2",
+          "outer": [
+            [
+              60.622699716134406,
+              16.669267324236234
+            ],
+            [
+              60.62269971613441,
+              17.54604252361755
+            ],
+            [
+              60.62269971613441,
+              17.82223252361755
+            ],
+            [
+              60.62269971613442,
+              19.716196120086853
+            ],
+            [
+              60.731779716134454,
+              19.716196120087357
+            ],
+            [
+              60.731779716134405,
+              20.31676252361741
+            ],
+            [
+              60.62269971613442,
+              20.316762523617534
+            ],
+            [
+              60.62269971613441,
+              21.783812523617552
+            ],
+            [
+              60.62269971613441,
+              21.92489252361755
+            ],
+            [
+              60.62269971613441,
+              23.354072694630954
+            ],
+            [
+              60.7317797161344,
+              23.35407269463084
+            ],
+            [
+              60.73177971613444,
+              23.966389268245813
+            ],
+            [
+              60.62269971613439,
+              23.966389268245674
+            ],
+            [
+              60.62269971613441,
+              24.749952523617548
+            ],
+            [
+              60.62269971613441,
+              24.90282252361755
+            ],
+            [
+              60.622699716134406,
+              27.027421771247454
+            ],
+            [
+              60.73177971613243,
+              27.027421771247976
+            ],
+            [
+              60.73177971613235,
+              27.650877680993528
+            ],
+            [
+              60.622699716134406,
+              27.650877680993407
+            ],
+            [
+              60.62269971613439,
+              28.187501622532555
+            ],
+            [
+              64.86037117869085,
+              28.18750162253243
+            ],
+            [
+              68.60478317212969,
+              28.187501622532327
+            ],
+            [
+              71.13795971613439,
+              28.18750162253231
+            ],
+            [
+              71.13795971613442,
+              27.990042523617557
+            ],
+            [
+              71.13795971613435,
+              27.650877680987172
+            ],
+            [
+              71.02995971613443,
+              27.65087768098686
+            ],
+            [
+              71.02995971613431,
+              27.024263427150537
+            ],
+            [
+              71.13831612453022,
+              27.024102899137425
+            ],
+            [
+              71.13795972008997,
+              25.92717162608483
+            ],
+            [
+              71.13795971613048,
+              23.96638926825092
+            ],
+            [
+              71.02995971613032,
+              23.966389268250595
+            ],
+            [
+              71.02995971613059,
+              23.354072694632627
+            ],
+            [
+              71.13795971613045,
+              23.354072694631103
+            ],
+            [
+              71.13795971613047,
+              20.31676252361773
+            ],
+            [
+              71.02090941876826,
+              20.316762523617257
+            ],
+            [
+              71.01490746383419,
+              19.716196120088203
+            ],
+            [
+              71.1379597161344,
+              19.716196120087883
+            ],
+            [
+              71.1379597161344,
+              16.669267324235562
+            ],
+            [
+              71.02995971613439,
+              16.66926732423566
+            ],
+            [
+              71.02995971613441,
+              16.05709511245431
+            ],
+            [
+              71.13795971613442,
+              16.05709511245438
+            ],
+            [
+              71.1379597161344,
+              13.017912523617554
+            ],
+            [
+              60.62269971613441,
+              13.017912523617555
+            ],
+            [
+              60.62269971613441,
+              16.05709511245369
+            ],
+            [
+              60.731779716134405,
+              16.057095112453773
+            ],
+            [
+              60.73177971613441,
+              16.66926732423613
+            ]
+          ],
+          "holes": [
+            [
+              [
+                63.900300386826736,
+                23.97461555159079
+              ],
+              [
+                64.14388210094725,
+                23.97461555159081
+              ],
+              [
+                64.143882100947,
+                25.57082712506547
+              ],
+              [
+                67.66051269821077,
+                25.570827125065467
+              ],
+              [
+                67.66051269821081,
+                23.974615551593093
+              ],
+              [
+                67.90919855583478,
+                23.97461555159314
+              ],
+              [
+                67.90919855583586,
+                16.207095112454468
+              ],
+              [
+                63.900300386827546,
+                16.207095112453825
+              ]
+            ]
+          ],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 2,
+            "areaGuid": null
+          },
+          "holeStatus": "source-plan interpretation; see void records"
+        },
+        {
+          "id": "upper-103-floor-4",
+          "outer": [
+            [
+              64.93537117869086,
+              28.337501622532432
+            ],
+            [
+              64.93537117869117,
+              31.862487309718205
+            ],
+            [
+              66.80052010496748,
+              31.862487309718276
+            ],
+            [
+              68.52678671913803,
+              31.86248730971836
+            ],
+            [
+              68.52972072033889,
+              28.337501622532315
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 4,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-103-floor-5",
+          "outer": [
+            [
+              68.67978317212946,
+              33.496282053176685
+            ],
+            [
+              68.67978317213168,
+              35.555194607011785
+            ],
+            [
+              71.1379597161344,
+              35.55519460701181
+            ],
+            [
+              71.13795971613452,
+              34.9860425236185
+            ],
+            [
+              71.02995971613434,
+              34.98604252361647
+            ],
+            [
+              71.02995971613451,
+              34.35430718892306
+            ],
+            [
+              71.13795971613439,
+              34.35430718892396
+            ],
+            [
+              71.1379597161344,
+              33.29553811349841
+            ],
+            [
+              71.13795971613439,
+              32.9441425236176
+            ],
+            [
+              71.13795971613442,
+              32.012487309718374
+            ],
+            [
+              68.67978317213411,
+              32.01248730971835
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 5,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        },
+        {
+          "id": "upper-103-floor-6",
+          "outer": [
+            [
+              71.1799597161344,
+              34.83604252361762
+            ],
+            [
+              71.13795971613443,
+              34.836042523617486
+            ],
+            [
+              71.13795971613423,
+              34.50430718892352
+            ],
+            [
+              71.17995971613442,
+              34.5043071889236
+            ]
+          ],
+          "holes": [],
+          "elevationMeters": 3.05,
+          "thicknessMeters": 0,
+          "sourceRefs": {
+            "designId": 193835178,
+            "areaIndex": 6,
+            "areaGuid": null
+          },
+          "holeStatus": null
+        }
+      ],
+      "voids": [
+        {
+          "id": "upper-103-central-void",
+          "outer": [
+            [
+              63.900300386826736,
+              23.97461555159079
+            ],
+            [
+              64.14388210094725,
+              23.97461555159081
+            ],
+            [
+              64.143882100947,
+              25.57082712506547
+            ],
+            [
+              67.66051269821077,
+              25.570827125065467
+            ],
+            [
+              67.66051269821081,
+              23.974615551593093
+            ],
+            [
+              67.90919855583478,
+              23.97461555159314
+            ],
+            [
+              67.90919855583586,
+              16.207095112454468
+            ],
+            [
+              63.900300386827546,
+              16.207095112453825
+            ]
+          ],
+          "elevationMeters": 3.05,
+          "role": "central-open-to-below",
+          "source": "Native area 3 and walls 36–43; 103 - Second Floor.png; A2.3.pdf",
+          "confidence": "native outline corroborated by PNG and historical mezzanine plan"
+        },
+        {
+          "id": "upper-103-rear-stair-void",
+          "outer": [
+            [
+              62.043185911098824,
+              37.51451412206593
+            ],
+            [
+              65.57756412109883,
+              37.51451412206593
+            ],
+            [
+              65.57756412109883,
+              38.44085345906593
+            ],
+            [
+              62.043185911098824,
+              38.44085345906593
+            ]
+          ],
+          "elevationMeters": 3.05,
+          "role": "rear-stair-opening",
+          "source": "Native rear stair enclosure wall 56; 103 - Second Floor.png",
+          "confidence": "stair symbol interpreted within native wall bounds"
+        }
+      ],
+      "stairs": [
+        {
+          "id": "upper-103-central-lower-flight",
+          "kind": "schematic-stair-flight-envelope",
+          "quad": [
+            [
+              65.46318591109883,
+              0,
+              22.354153459065927
+            ],
+            [
+              66.48318591109883,
+              0,
+              22.354153459065927
+            ],
+            [
+              66.48318591109883,
+              1.525,
+              24.334153459065927
+            ],
+            [
+              65.46318591109883,
+              1.525,
+              24.334153459065927
+            ]
+          ],
+          "source": "103 first/second-floor PNG central Y-shaped stair symbol; approximate symbol bounds within native opening",
+          "confidence": "plan-symbol location; vertical interpolation assumes native 3.05 m floor level",
+          "treadsModeled": false
+        },
+        {
+          "id": "upper-103-central-landing",
+          "kind": "schematic-stair-flight-envelope",
+          "quad": [
+            [
+              65.46318591109883,
+              1.525,
+              24.334153459065927
+            ],
+            [
+              66.48318591109883,
+              1.525,
+              24.334153459065927
+            ],
+            [
+              66.48318591109883,
+              1.525,
+              25.28415345906593
+            ],
+            [
+              65.46318591109883,
+              1.525,
+              25.28415345906593
+            ]
+          ],
+          "source": "103 second-floor PNG central stair landing; elevation is illustrative midpoint",
+          "confidence": "plan-symbol location; vertical interpolation assumes native 3.05 m floor level",
+          "treadsModeled": false
+        },
+        {
+          "id": "upper-103-central-left-flight",
+          "kind": "schematic-stair-flight-envelope",
+          "quad": [
+            [
+              65.46318591109883,
+              1.525,
+              24.334153459065927
+            ],
+            [
+              65.46318591109883,
+              1.525,
+              25.28415345906593
+            ],
+            [
+              64.14418591109883,
+              3.05,
+              25.28415345906593
+            ],
+            [
+              64.14418591109883,
+              3.05,
+              24.334153459065927
+            ]
+          ],
+          "source": "103 second-floor PNG left branch of central Y-shaped stair",
+          "confidence": "plan-symbol location; vertical interpolation assumes native 3.05 m floor level",
+          "treadsModeled": false
+        },
+        {
+          "id": "upper-103-central-right-flight",
+          "kind": "schematic-stair-flight-envelope",
+          "quad": [
+            [
+              66.48318591109883,
+              1.525,
+              25.28415345906593
+            ],
+            [
+              66.48318591109883,
+              1.525,
+              24.334153459065927
+            ],
+            [
+              67.66018591109882,
+              3.05,
+              24.334153459065927
+            ],
+            [
+              67.66018591109882,
+              3.05,
+              25.28415345906593
+            ]
+          ],
+          "source": "103 second-floor PNG right branch of central Y-shaped stair",
+          "confidence": "plan-symbol location; vertical interpolation assumes native 3.05 m floor level",
+          "treadsModeled": false
+        },
+        {
+          "id": "upper-103-rear-flight",
+          "kind": "schematic-stair-flight-envelope",
+          "quad": [
+            [
+              65.57756412109883,
+              0,
+              37.51451412206593
+            ],
+            [
+              65.57756412109883,
+              0,
+              38.44085345906593
+            ],
+            [
+              62.043185911098824,
+              3.05,
+              38.44085345906593
+            ],
+            [
+              62.043185911098824,
+              3.05,
+              37.51451412206593
+            ]
+          ],
+          "source": "103 second-floor PNG rear stair flight; source wall enclosure retained",
+          "confidence": "plan-symbol location; vertical interpolation assumes native 3.05 m floor level",
+          "treadsModeled": false
+        }
+      ],
+      "omittedGuardBoundaryWallIndices": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "provenance": {
+        "sourceDesignId": 193835178,
+        "sourceFloorId": 183163884,
+        "sourceIds": [
+          "native-upper",
+          "103---second-floor",
+          "A2.3.pdf",
+          "A5.1.pdf"
+        ],
+        "physicalVerification": "unverified",
+        "occupancyExtent": "Native 103 upper footprint with central void and rear stair opening"
+      },
+      "boundsMeters": {
+        "min": [
+          60.47269821166992,
+          0,
+          12.867912292480469
+        ],
+        "max": [
+          71.28833770751953,
+          6.936200141906738,
+          38.669288635253906
+        ]
+      }
+    }
+  ],
+  "boundsMeters": {
+    "min": [
+      60.47269821166992,
+      0,
+      12.867912292480469
+    ],
+    "max": [
+      92.84473419189453,
+      6.936200141906738,
+      38.669288635253906
+    ]
+  },
+  "limitations": [
+    "User confirms Units 101 and 103 have upper floors; geometry is source-derived and not a field survey.",
+    "Native story metadata places the upper floor at 3.05 m. All existing ground-wall heights are 3.8862 m, an unresolved 0.8362 m conflict. Existing ground geometry is preserved and therefore extends above the displayed upper-floor plane.",
+    "Upper walls retain native 3.8862 m extrusion heights. These uniform heights are unverified defaults and must not be treated as measured upper-story heights.",
+    "Unit 101 receives only the native narrow rear upper-floor strip. No slab or rooms are added across the large front ground-floor space.",
+    "The 103 central opening is cut out, rather than filled by the native auto-generated area polygon. The source PNG and historical mezzanine plan show the opening and stair arrangement.",
+    "Eight native segments around the 103 central opening are interpreted as guard boundaries from the historical section, not full-height room partitions. Their actual guardrail height/detail is unknown, so vertical guardrail geometry is omitted.",
+    "Stairs are schematic sloped flight envelopes located from the supplied floor-plan symbols. Riser counts, tread dimensions, landing elevation and construction are unverified; no individual treads or code-compliance claims are modeled.",
+    "Rear stair openings are derived from the visible stair symbols within native wall bounds. The floor planes have zero thickness because no reliable slab thickness was supplied.",
+    "Door voids use native positions and dimensions. Door leaves, frames, finishes, roof structure, lights and furniture are omitted.",
+    "A roughly 0.16 m rear-edge registration discrepancy is preserved and disclosed. No scaling is applied to force the separate source drawings to agree."
+  ],
+  "verticalDiscrepancy": {
+    "upperBaseMeters": 3.05,
+    "upperBaseBasis": "native ground-floor height metadata",
+    "existingGroundWallHeightMeters": 3.886199994092976,
+    "overlapMeters": 0.8361999940929761,
+    "physicalFloorToFloorHeightMeters": null
+  },
+  "preservation": {
+    "baseModelSha256": "f93acd33d80b4296ec07fa09c1cf7f8d4c888f98cf25f763f1e59d8c6a3628cf",
+    "originalColumnIds": [
+      "column-038b4a052760",
+      "column-d2b3a3e668ba",
+      "column-02295ca93280",
+      "column-aa85e5b580cf",
+      "column-58ee6b101d84",
+      "column-b54ed1758e8b",
+      "column-5bc5065cf1b8",
+      "column-044d1f471c0c",
+      "column-b612c2a14b74",
+      "column-5d259bb6c3b7",
+      "column-90181ecef8d9",
+      "column-a463a9a2acf7",
+      "column-47239d683e86",
+      "column-16c0ba4535cc",
+      "column-67175e7ffef6",
+      "column-ed119356cf6a",
+      "column-aee610a618a4",
+      "column-a271a91870ae",
+      "column-d785b928bb21",
+      "column-c26484797ec1",
+      "column-a8f1bedc07e9",
+      "column-1f046ab1c1c0",
+      "column-a72402b949b5",
+      "column-e8fa3fb70060",
+      "column-45d9d6177283",
+      "column-887d27e648e6",
+      "column-21818286d35d",
+      "column-ce943c0fb5c2",
+      "column-9e141c322e07",
+      "column-97dabebaad03",
+      "column-e867804401a1",
+      "column-3156ee7986df",
+      "column-81c79ff96e48",
+      "column-a9381f0a71be",
+      "column-77db6e0ff5af",
+      "column-fc0ad1c131f2",
+      "column-cd2fbfa1e062"
+    ],
+    "existingModelChanged": false
+  },
+  "validation": {
+    "glbBytes": 211940,
+    "nodes": 8,
+    "meshes": 6,
+    "sourceUpperWalls": 187,
+    "sourceUpperAreas": 21,
+    "centralVoidAutoFillOmitted": true,
+    "guardBoundarySegmentsOmitted": 8,
+    "doorVoidCount": 19
+  }
+}

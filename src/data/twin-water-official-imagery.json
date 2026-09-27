@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "dotd-2024",
+      "label": "2024 DOTD aerial",
+      "sourceImage": "infrastructure/dotd-2024-aerial.jpg",
+      "imageSizePx": [
+        3072,
+        3072
+      ],
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 3072,
+        "height": 3072
+      },
+      "dateDisplay": "2024",
+      "dateStatus": "DOTD service imagery year",
+      "registrationStatus": "unregistered-context-only",
+      "attribution": "Louisiana DOTD",
+      "sourceURL": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer",
+      "annotations": [],
+      "role": "Official aerial context for roofs, curbs, rear service lanes and surrounding streets.",
+      "limitations": "This image does not establish water shutoff locations, meter-to-unit connections, ownership, operability or below-ground pipe routes. No individual valve or meter was identified from the image.",
+      "registrationNote": "North-up georeferenced image crop; water-source markers have not been registered to this source. Existing repository footprints use a visually fitted georeference, not surveyed control."
+    }
+  ],
+  "provenance": {
+    "retrievedAtUtc": "2026-09-25T05:44:21.5858111Z",
+    "provider": "Louisiana Department of Transportation and Development",
+    "officialServiceURL": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer",
+    "exportRequestURL": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer/exportImage?f=pjson&bbox=-10247606.63408044,3529326.9070114414,-10247148.011910727,3529785.529181153&bboxSR=3857&imageSR=3857&size=3072,3072&format=jpg&compressionQuality=95&bandIds=0,1,2&interpolation=RSP_BilinearInterpolation&noDataInterpretation=esriNoDataMatchAny",
+    "imageSHA256": "2ea723da13726d3eae86dd0417acb8ca058217dc6cfcd0ce754069b31028d71f",
+    "imageBytes": 2979845,
+    "sourceImageryYear": 2024,
+    "exactFlightDate": null,
+    "yearEvidence": "The ImageServer service description identifies 2024 imagery. Its January 1 time extent is not treated as an exact collection date.",
+    "sourceServiceNominalResolution": "Approximately 6 inches",
+    "sourceServicePixelSizeMeters": [
+      0.14998546091759923,
+      0.14998546091759654
+    ],
+    "allowedUse": "The official service metadata says the data is free to use in any product or publication, supplied as-is for informational purposes. It is not authoritative for site-specific engineering, legal or other high-precision applications.",
+    "processing": "One bounded ArcGIS exportImage request, RGB bands 0,1,2, JPEG quality 95, bilinear interpolation, 3072 by 3072 pixels. The returned JPEG bytes are stored unchanged. No color editing, compositing, annotation burning, or model/basemap replacement.",
+    "publicAccess": "The service metadata and this image export were accessed without an account or paywall."
+  },
+  "georeferencing": {
+    "imageCoordinateSystem": {
+      "epsg": 3857,
+      "name": "WGS 84 / Pseudo-Mercator",
+      "arcgisWkid": 102100,
+      "latestWkid": 3857
+    },
+    "sourceNativeCoordinateSystem": {
+      "epsg": 6344,
+      "name": "NAD 1983 (2011) UTM Zone 15N"
+    },
+    "sourceBoundsFile": "src/data/sat-base.json",
+    "referenceFootprintsFile": "src/data/footprints-geo.json",
+    "bboxWgs84": [
+      -92.05581665039062,
+      30.200333349994068,
+      -92.05169677734375,
+      30.203893976001527
+    ],
+    "requestedBbox3857": [
+      -10247606.63408044,
+      3529326.9070114414,
+      -10247148.011910727,
+      3529785.529181153
+    ],
+    "returnedBbox3857": [
+      -10247606.63408044,
+      3529326.907011441,
+      -10247148.011910727,
+      3529785.5291811535
+    ],
+    "bboxOrder": "xmin,ymin,xmax,ymax",
+    "imageOrientation": "North-up; image x increases east/right and image y increases south/down.",
+    "imagePixelSizeMapUnits": [
+      0.14929107086997342,
+      0.14929107086997342
+    ],
+    "pixelConvention": "Coordinates refer to pixel edges. Pixel center (column,row) is (column+0.5,row+0.5).",
+    "pixelToProjectedFormula": {
+      "x": "xmin + pixelX / imageWidth * (xmax - xmin)",
+      "y": "ymax - pixelY / imageHeight * (ymax - ymin)"
+    },
+    "precisionNote": "Web Mercator map-unit pixel spacing is not a surveyed ground distance. Existing footprint alignment is approximate and visually fitted."
+  },
+  "validation": {
+    "checkedAtUtc": "2026-09-25T05:44:21.5858111Z",
+    "imageVisuallyInspected": true,
+    "visibleSiteFeatures": [
+      "On The Boulevard L-shaped shopping center",
+      "Main parking area",
+      "Arnould Boulevard",
+      "Johnston Street",
+      "Marie Antoinette rear service lane",
+      "Patricia Street edge"
+    ],
+    "propertyIdentityConclusion": "The overall building and surrounding road arrangement match the user-provided OTB GIS screenshots and repository basemap extent.",
+    "valveOrMeterIdentification": "Not established from this imagery.",
+    "existingFrozenBasemapModified": false
+  }
+}

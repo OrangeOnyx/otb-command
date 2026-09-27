@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const vite = fileURLToPath(new URL("../node_modules/vite/bin/vite.js", import.meta.url));
-const child = spawn(process.execPath, [vite, "--host", "127.0.0.1", "--port", "5174", "--strictPort"], {
+const child = spawn(process.execPath, [vite, "--configLoader", "runner", "--host", "127.0.0.1", "--port", "5174", "--strictPort"], {
   cwd: root,
   env: { ...process.env, VITE_LOCAL_REVIEW: "1" },
   stdio: "inherit",

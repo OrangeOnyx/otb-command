@@ -1,0 +1,4799 @@
+{
+  "schemaVersion": 1,
+  "title": "OTB operator fixture inventory reconciliation",
+  "modelSourceSha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+  "counts": {
+    "sourceColumns": 39,
+    "linkedNativeColumns": 37,
+    "sourceOnlyColumns": 2,
+    "benches": 10,
+    "wasteBins": 20
+  },
+  "sources": [
+    {
+      "id": "columns-benches-cans",
+      "file": "07 Columns, Benches, and Cans.pdf",
+      "sha256": "8a9b7b7a24e1a5d6a8443b2291d62b4b6ad45e0feb150068ac1c6857c018d1d2",
+      "page": 1,
+      "imageSizePx": [
+        2500,
+        1320
+      ]
+    },
+    {
+      "id": "site-twin-package",
+      "file": "OTB_Site_Twin.zip",
+      "sha256": "552d6f9a7ddde36296c46948a57a4dffa43b1262ea4e6f92549ccbe93976bb2c",
+      "usedEntries": [
+        "twin-data.json (fixture and utility entries only)",
+        "site-register.csv (fixture and utility entries only)"
+      ]
+    },
+    {
+      "id": "water-shutoff-clusters",
+      "file": "Water Shutoff Clusters.png",
+      "sha256": "6f5fa658e34a77b63ea11fad467ed925f6f6b2e7c88510215497f5c162a10929",
+      "imageSizePx": [
+        2500,
+        1164
+      ]
+    }
+  ],
+  "coordinateSystem": {
+    "model": "Current native FML-derived GLB, metres, Y up",
+    "plan": "A-1 drawing pixels",
+    "sourceImages": "Origin top-left, x right, y down",
+    "matrixConvention": "[x,y,1] @ matrix3x2 = [modelX,modelZ]",
+    "modelY": "Ground reference Y=0; no source fixture height asserted"
+  },
+  "registration": {
+    "planToNative": {
+      "matrix3x2": [
+        [
+          -0.16384354,
+          -0.00010084
+        ],
+        [
+          0.00331724,
+          -0.15766261
+        ],
+        [
+          118.08055643,
+          58.28941254
+        ]
+      ],
+      "controlCount": 37,
+      "rmsMeters": 0.53702082,
+      "maxResidualMeters": 1.29391791,
+      "leaveOneOutRmsMeters": 0.58750415,
+      "leaveOneOutMaxMeters": 1.4545219,
+      "controls": [
+        {
+          "sourceId": "col-03",
+          "modelColumnId": "column-038b4a052760",
+          "sourcePlanPx": [
+            148.58,
+            184.02
+          ],
+          "nativeModelXZ": [
+            94.7425624,
+            30.49336713
+          ],
+          "residualMeters": 1.29391791
+        },
+        {
+          "sourceId": "col-04",
+          "modelColumnId": "column-d2b3a3e668ba",
+          "sourcePlanPx": [
+            148.58,
+            222.53
+          ],
+          "nativeModelXZ": [
+            94.8190624,
+            24.30336713
+          ],
+          "residualMeters": 1.16557673
+        },
+        {
+          "sourceId": "col-05",
+          "modelColumnId": "column-02295ca93280",
+          "sourcePlanPx": [
+            148.58,
+            257.09
+          ],
+          "nativeModelXZ": [
+            94.8190624,
+            18.68006713
+          ],
+          "residualMeters": 0.96676508
+        },
+        {
+          "sourceId": "col-06",
+          "modelColumnId": "column-aa85e5b580cf",
+          "sourcePlanPx": [
+            148.58,
+            291.8
+          ],
+          "nativeModelXZ": [
+            94.8190624,
+            13.04816713
+          ],
+          "residualMeters": 0.78803587
+        },
+        {
+          "sourceId": "col-07",
+          "modelColumnId": "column-58ee6b101d84",
+          "sourcePlanPx": [
+            148.58,
+            313.35
+          ],
+          "nativeModelXZ": [
+            94.8190624,
+            8.57916713
+          ],
+          "residualMeters": 0.29482511
+        },
+        {
+          "sourceId": "col-08",
+          "modelColumnId": "column-b54ed1758e8b",
+          "sourcePlanPx": [
+            164.94,
+            313.35
+          ],
+          "nativeModelXZ": [
+            92.1381624,
+            8.57046713
+          ],
+          "residualMeters": 0.30174257
+        },
+        {
+          "sourceId": "col-09",
+          "modelColumnId": "column-5bc5065cf1b8",
+          "sourcePlanPx": [
+            196.03,
+            313.35
+          ],
+          "nativeModelXZ": [
+            86.9227624,
+            8.55886713
+          ],
+          "residualMeters": 0.31719513
+        },
+        {
+          "sourceId": "col-10",
+          "modelColumnId": "column-044d1f471c0c",
+          "sourcePlanPx": [
+            211.95,
+            313.35
+          ],
+          "nativeModelXZ": [
+            84.2418624,
+            8.55016713
+          ],
+          "residualMeters": 0.34890821
+        },
+        {
+          "sourceId": "col-11",
+          "modelColumnId": "column-b612c2a14b74",
+          "sourcePlanPx": [
+            239.62,
+            313.35
+          ],
+          "nativeModelXZ": [
+            79.7415624,
+            8.55956713
+          ],
+          "residualMeters": 0.32442659
+        },
+        {
+          "sourceId": "col-12",
+          "modelColumnId": "column-5d259bb6c3b7",
+          "sourcePlanPx": [
+            256.57,
+            313.35
+          ],
+          "nativeModelXZ": [
+            77.0606624,
+            8.55086713
+          ],
+          "residualMeters": 0.30987719
+        },
+        {
+          "sourceId": "col-13",
+          "modelColumnId": "column-90181ecef8d9",
+          "sourcePlanPx": [
+            283.2,
+            313.35
+          ],
+          "nativeModelXZ": [
+            72.5836124,
+            8.55786713
+          ],
+          "residualMeters": 0.32881232
+        },
+        {
+          "sourceId": "col-14",
+          "modelColumnId": "column-a463a9a2acf7",
+          "sourcePlanPx": [
+            299.86,
+            313.35
+          ],
+          "nativeModelXZ": [
+            69.9026624,
+            8.54906713
+          ],
+          "residualMeters": 0.31869831
+        },
+        {
+          "sourceId": "col-15",
+          "modelColumnId": "column-47239d683e86",
+          "sourcePlanPx": [
+            356.53,
+            313.35
+          ],
+          "nativeModelXZ": [
+            60.5914624,
+            8.58936713
+          ],
+          "residualMeters": 0.28413109
+        },
+        {
+          "sourceId": "col-16",
+          "modelColumnId": "column-16c0ba4535cc",
+          "sourcePlanPx": [
+            406.51,
+            313.35
+          ],
+          "nativeModelXZ": [
+            52.4553624,
+            8.56276713
+          ],
+          "residualMeters": 0.2885132
+        },
+        {
+          "sourceId": "col-17",
+          "modelColumnId": "column-67175e7ffef6",
+          "sourcePlanPx": [
+            448.75,
+            313.35
+          ],
+          "nativeModelXZ": [
+            45.5101624,
+            8.56276713
+          ],
+          "residualMeters": 0.29054546
+        },
+        {
+          "sourceId": "col-18",
+          "modelColumnId": "column-ed119356cf6a",
+          "sourcePlanPx": [
+            498.73,
+            313.35
+          ],
+          "nativeModelXZ": [
+            37.3553624,
+            8.52086713
+          ],
+          "residualMeters": 0.31877456
+        },
+        {
+          "sourceId": "col-19",
+          "modelColumnId": "column-aee610a618a4",
+          "sourcePlanPx": [
+            544.54,
+            313.35
+          ],
+          "nativeModelXZ": [
+            29.8621624,
+            8.56906713
+          ],
+          "residualMeters": 0.26466863
+        },
+        {
+          "sourceId": "col-20",
+          "modelColumnId": "column-a271a91870ae",
+          "sourcePlanPx": [
+            591.25,
+            313.35
+          ],
+          "nativeModelXZ": [
+            22.3618124,
+            8.57646713
+          ],
+          "residualMeters": 0.2746537
+        },
+        {
+          "sourceId": "col-21",
+          "modelColumnId": "column-d785b928bb21",
+          "sourcePlanPx": [
+            635.87,
+            313.35
+          ],
+          "nativeModelXZ": [
+            14.9206624,
+            8.58346713
+          ],
+          "residualMeters": 0.23879238
+        },
+        {
+          "sourceId": "col-22",
+          "modelColumnId": "column-c26484797ec1",
+          "sourcePlanPx": [
+            680.65,
+            313.35
+          ],
+          "nativeModelXZ": [
+            7.4692624,
+            8.60016713
+          ],
+          "residualMeters": 0.25331857
+        },
+        {
+          "sourceId": "col-23",
+          "modelColumnId": "column-a8f1bedc07e9",
+          "sourcePlanPx": [
+            726.31,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -0.0018376,
+            8.56576713
+          ],
+          "residualMeters": 0.27473464
+        },
+        {
+          "sourceId": "col-24",
+          "modelColumnId": "column-1f046ab1c1c0",
+          "sourcePlanPx": [
+            772.27,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -7.5516376,
+            8.58656713
+          ],
+          "residualMeters": 0.26204989
+        },
+        {
+          "sourceId": "col-25",
+          "modelColumnId": "column-a72402b949b5",
+          "sourcePlanPx": [
+            818.68,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -15.2250376,
+            8.56276713
+          ],
+          "residualMeters": 0.31904072
+        },
+        {
+          "sourceId": "col-26",
+          "modelColumnId": "column-e8fa3fb70060",
+          "sourcePlanPx": [
+            866.87,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -22.9342376,
+            8.56276713
+          ],
+          "residualMeters": 0.23679004
+        },
+        {
+          "sourceId": "col-27",
+          "modelColumnId": "column-45d9d6177283",
+          "sourcePlanPx": [
+            916.41,
+            313.12
+          ],
+          "nativeModelXZ": [
+            -31.9171376,
+            8.60566713
+          ],
+          "residualMeters": 0.91633588
+        },
+        {
+          "sourceId": "col-28",
+          "modelColumnId": "column-887d27e648e6",
+          "sourcePlanPx": [
+            930.69,
+            313.12
+          ],
+          "nativeModelXZ": [
+            -33.0345376,
+            8.58456713
+          ],
+          "residualMeters": 0.41324401
+        },
+        {
+          "sourceId": "col-29",
+          "modelColumnId": "column-21818286d35d",
+          "sourcePlanPx": [
+            970.25,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -40.0646376,
+            8.56276713
+          ],
+          "residualMeters": 0.31168682
+        },
+        {
+          "sourceId": "col-30",
+          "modelColumnId": "column-ce943c0fb5c2",
+          "sourcePlanPx": [
+            1017.7,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -47.9031876,
+            8.56006713
+          ],
+          "residualMeters": 0.35775105
+        },
+        {
+          "sourceId": "col-31",
+          "modelColumnId": "column-9e141c322e07",
+          "sourcePlanPx": [
+            1066.79,
+            313.35
+          ],
+          "nativeModelXZ": [
+            -55.7293376,
+            8.56276713
+          ],
+          "residualMeters": 0.2244274
+        },
+        {
+          "sourceId": "col-32",
+          "modelColumnId": "column-97dabebaad03",
+          "sourcePlanPx": [
+            1113.05,
+            312.89
+          ],
+          "nativeModelXZ": [
+            -63.6401376,
+            8.56276713
+          ],
+          "residualMeters": 0.48415101
+        },
+        {
+          "sourceId": "col-33",
+          "modelColumnId": "column-e867804401a1",
+          "sourcePlanPx": [
+            1131.34,
+            342.34
+          ],
+          "nativeModelXZ": [
+            -65.3837376,
+            5.01686713
+          ],
+          "residualMeters": 1.11685818
+        },
+        {
+          "sourceId": "col-34",
+          "modelColumnId": "column-3156ee7986df",
+          "sourcePlanPx": [
+            1131.34,
+            390.14
+          ],
+          "nativeModelXZ": [
+            -65.4003376,
+            -2.69083287
+          ],
+          "residualMeters": 0.87207471
+        },
+        {
+          "sourceId": "col-35",
+          "modelColumnId": "column-81c79ff96e48",
+          "sourcePlanPx": [
+            1131.34,
+            443.88
+          ],
+          "nativeModelXZ": [
+            -65.3847376,
+            -11.25853287
+          ],
+          "residualMeters": 0.69461143
+        },
+        {
+          "sourceId": "col-36",
+          "modelColumnId": "column-a9381f0a71be",
+          "sourcePlanPx": [
+            1131.34,
+            496.7
+          ],
+          "nativeModelXZ": [
+            -65.3880376,
+            -19.80323287
+          ],
+          "residualMeters": 0.41386184
+        },
+        {
+          "sourceId": "col-37",
+          "modelColumnId": "column-77db6e0ff5af",
+          "sourcePlanPx": [
+            1131.2,
+            550.59
+          ],
+          "nativeModelXZ": [
+            -65.3655376,
+            -28.29923287
+          ],
+          "residualMeters": 0.33961267
+        },
+        {
+          "sourceId": "col-38",
+          "modelColumnId": "column-fc0ad1c131f2",
+          "sourcePlanPx": [
+            1131.34,
+            603.72
+          ],
+          "nativeModelXZ": [
+            -65.3880376,
+            -36.91563287
+          ],
+          "residualMeters": 0.14299764
+        },
+        {
+          "sourceId": "col-39",
+          "modelColumnId": "column-cd2fbfa1e062",
+          "sourcePlanPx": [
+            1131.34,
+            625.33
+          ],
+          "nativeModelXZ": [
+            -65.3837376,
+            -40.35793287
+          ],
+          "residualMeters": 0.18519884
+        }
+      ],
+      "status": "approximate_model_derived",
+      "note": "Controls are candidate correspondences supplied by the same source package, not independent surveyed controls. Residuals describe internal drawing/model agreement only."
+    },
+    "utilityImageToPlan": {
+      "matrix3x2": [
+        [
+          -0.61838269,
+          -0.00163534
+        ],
+        [
+          -0.00388672,
+          -0.62125052
+        ],
+        [
+          1446.14662864,
+          767.73158144
+        ]
+      ],
+      "rmsPlanPx": 2.57316208,
+      "maxResidualPlanPx": 4.87133247,
+      "controls": [
+        {
+          "id": "long_133_front",
+          "sourceImagePx": [
+            507.5,
+            769
+          ],
+          "targetPlanPx": [
+            1125.84,
+            292.56
+          ],
+          "residualPlanPx": 4.87133247
+        },
+        {
+          "id": "long_133_rear",
+          "sourceImagePx": [
+            507.5,
+            1025
+          ],
+          "targetPlanPx": [
+            1125.84,
+            131.35
+          ],
+          "residualPlanPx": 2.78045638
+        },
+        {
+          "id": "long_101_front",
+          "sourceImagePx": [
+            2073.5,
+            760
+          ],
+          "targetPlanPx": [
+            160.78,
+            292.56
+          ],
+          "residualPlanPx": 0.41854018
+        },
+        {
+          "id": "long_101_rear",
+          "sourceImagePx": [
+            2073.5,
+            1017.5
+          ],
+          "targetPlanPx": [
+            160.78,
+            131.35
+          ],
+          "residualPlanPx": 1.18378096
+        },
+        {
+          "id": "short_149_patricia",
+          "sourceImagePx": [
+            217.5,
+            251
+          ],
+          "targetPlanPx": [
+            1310.94,
+            610.95
+          ],
+          "residualPlanPx": 0.55987331
+        },
+        {
+          "id": "short_149_field",
+          "sourceImagePx": [
+            470,
+            251
+          ],
+          "targetPlanPx": [
+            1154.51,
+            610.95
+          ],
+          "residualPlanPx": 0.0818814
+        },
+        {
+          "id": "short_135_patricia",
+          "sourceImagePx": [
+            217.5,
+            879
+          ],
+          "targetPlanPx": [
+            1310.94,
+            219.31
+          ],
+          "residualPlanPx": 3.35862157
+        },
+        {
+          "id": "short_135_field",
+          "sourceImagePx": [
+            470,
+            879
+          ],
+          "targetPlanPx": [
+            1154.51,
+            219.31
+          ],
+          "residualPlanPx": 2.88642897
+        }
+      ],
+      "source": "Eight building-corner controls documented in tools/digitize-site-sources.py of the supplied site-register implementation."
+    },
+    "utilityImageToNative": {
+      "matrix3x2": [
+        [
+          0.10131258,
+          0.00032019
+        ],
+        [
+          -0.00142402,
+          0.09794837
+        ],
+        [
+          -116.31447382,
+          -62.89898291
+        ]
+      ],
+      "controlResidualRmsMeters": 0.41945855,
+      "status": "approximate_two_stage_registration",
+      "note": "Composed utility image→A-1→native model. The reported eight-control residual excludes the separate 37-column fit error and all field uncertainty. Utility locations beyond the column-control envelope are extrapolated. Suitable for approximate visual reference only; source image remains authoritative for symbol/count reading."
+    }
+  },
+  "limitations": [
+    "These inventory positions and crosslinks are drawing/model-derived, not surveyed or field verified.",
+    "A-1 fixture positions were adjusted proportionally across the walks because source drawings disagree on walkway depth; the affine cannot make both sources exact.",
+    "Source columns 1 and 2 have no matching native geometry; do not create duplicate or replacement column records automatically.",
+    "Source Column 27 supports a separately numbered object at C25, but C25 native geometry remains ambiguous and requires field review.",
+    "Preserve all 37 existing native asset IDs and labels. Source Column n labels are a separate inventory namespace.",
+    "Bench/can labels are register sequence IDs for colored symbols, not physical field tags. Dimensions and elevation are unverified."
+  ],
+  "items": [
+    {
+      "id": "col-01",
+      "sourceKey": "otb-a1-register:col-01",
+      "label": "Column 1",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        121.61
+      ],
+      "sourceImagePx": [
+        2435.4,
+        1276.56
+      ],
+      "modelPositionMeters": [
+        94.14009318,
+        0,
+        39.10107969
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -40.315
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-01",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "101 end",
+      "crosswalk": {
+        "status": "source_only_unmatched",
+        "modelColumnId": null,
+        "modelLabel": null,
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-038b4a052760",
+            "modelLabel": "C01",
+            "distanceMeters": 8.62877076
+          },
+          {
+            "modelColumnId": "column-d2b3a3e668ba",
+            "modelLabel": "C02",
+            "distanceMeters": 14.81328108
+          }
+        ],
+        "candidatesWithinTolerance": [],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation."
+      }
+    },
+    {
+      "id": "col-02",
+      "sourceKey": "otb-a1-register:col-02",
+      "label": "Column 2",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        150.68
+      ],
+      "sourceImagePx": [
+        2435.4,
+        1207.8
+      ],
+      "modelPositionMeters": [
+        94.23652539,
+        0,
+        34.51782768
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -35.619
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-02",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "101 end",
+      "crosswalk": {
+        "status": "source_only_unmatched",
+        "modelColumnId": null,
+        "modelLabel": null,
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-038b4a052760",
+            "modelLabel": "C01",
+            "distanceMeters": 4.05615041
+          },
+          {
+            "modelColumnId": "column-d2b3a3e668ba",
+            "modelLabel": "C02",
+            "distanceMeters": 10.23105829
+          }
+        ],
+        "candidatesWithinTolerance": [],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation."
+      }
+    },
+    {
+      "id": "col-03",
+      "sourceKey": "otb-a1-register:col-03",
+      "label": "Column 3",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        184.02
+      ],
+      "sourceImagePx": [
+        2435.4,
+        1128.96
+      ],
+      "modelPositionMeters": [
+        94.34712223,
+        0,
+        29.26135632
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -30.232
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-03",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "101 end",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-038b4a052760",
+        "modelLabel": "C01",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-038b4a052760",
+            "modelLabel": "C01",
+            "distanceMeters": 1.29391791
+          },
+          {
+            "modelColumnId": "column-d2b3a3e668ba",
+            "modelLabel": "C02",
+            "distanceMeters": 4.98040002
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-038b4a052760"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 1.29391791,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-038b4a052760",
+      "linkedModelPositionMeters": [
+        94.7425624,
+        0,
+        30.49336713
+      ]
+    },
+    {
+      "id": "col-04",
+      "sourceKey": "otb-a1-register:col-04",
+      "label": "Column 4",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        222.53
+      ],
+      "sourceImagePx": [
+        2435.4,
+        1037.88
+      ],
+      "modelPositionMeters": [
+        94.47486921,
+        0,
+        23.18976928
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -24.011
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-04",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "101 end",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-d2b3a3e668ba",
+        "modelLabel": "C02",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-d2b3a3e668ba",
+            "modelLabel": "C02",
+            "distanceMeters": 1.16557673
+          },
+          {
+            "modelColumnId": "column-02295ca93280",
+            "modelLabel": "C03",
+            "distanceMeters": 4.52281798
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-d2b3a3e668ba"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 1.16557673,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-d2b3a3e668ba",
+      "linkedModelPositionMeters": [
+        94.8190624,
+        0,
+        24.30336713
+      ]
+    },
+    {
+      "id": "col-05",
+      "sourceKey": "otb-a1-register:col-05",
+      "label": "Column 5",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        257.09
+      ],
+      "sourceImagePx": [
+        2435.4,
+        956.16
+      ],
+      "modelPositionMeters": [
+        94.58951308,
+        0,
+        17.74094955
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -18.427
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-05",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "101 end",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-02295ca93280",
+        "modelLabel": "C03",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-02295ca93280",
+            "modelLabel": "C03",
+            "distanceMeters": 0.96676508
+          },
+          {
+            "modelColumnId": "column-aa85e5b580cf",
+            "modelLabel": "C04",
+            "distanceMeters": 4.69839331
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-02295ca93280"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.96676508,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-02295ca93280",
+      "linkedModelPositionMeters": [
+        94.8190624,
+        0,
+        18.68006713
+      ]
+    },
+    {
+      "id": "col-06",
+      "sourceKey": "otb-a1-register:col-06",
+      "label": "Column 6",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        291.8
+      ],
+      "sourceImagePx": [
+        2435.4,
+        874.08
+      ],
+      "modelPositionMeters": [
+        94.70465453,
+        0,
+        12.26848042
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -12.82
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-06",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "101 end",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-aa85e5b580cf",
+        "modelLabel": "C04",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-aa85e5b580cf",
+            "modelLabel": "C04",
+            "distanceMeters": 0.78803587
+          },
+          {
+            "modelColumnId": "column-58ee6b101d84",
+            "modelLabel": "C05",
+            "distanceMeters": 3.69108679
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-aa85e5b580cf"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.78803587,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-aa85e5b580cf",
+      "linkedModelPositionMeters": [
+        94.8190624,
+        0,
+        13.04816713
+      ]
+    },
+    {
+      "id": "col-07",
+      "sourceKey": "otb-a1-register:col-07",
+      "label": "Column 7",
+      "kind": "column",
+      "sourcePlanPx": [
+        148.58,
+        313.35
+      ],
+      "sourceImagePx": [
+        2435.4,
+        807.48
+      ],
+      "modelPositionMeters": [
+        94.77614109,
+        0,
+        8.87085121
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -96.68,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-07",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-58ee6b101d84",
+        "modelLabel": "C05",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-58ee6b101d84",
+            "modelLabel": "C05",
+            "distanceMeters": 0.29482511
+          },
+          {
+            "modelColumnId": "column-b54ed1758e8b",
+            "modelLabel": "C06",
+            "distanceMeters": 2.65502583
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-58ee6b101d84"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.29482511,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-58ee6b101d84",
+      "linkedModelPositionMeters": [
+        94.8190624,
+        0,
+        8.57916713
+      ]
+    },
+    {
+      "id": "col-08",
+      "sourceKey": "otb-a1-register:col-08",
+      "label": "Column 8",
+      "kind": "column",
+      "sourcePlanPx": [
+        164.94,
+        313.35
+      ],
+      "sourceImagePx": [
+        2395.8,
+        807.48
+      ],
+      "modelPositionMeters": [
+        92.0956608,
+        0,
+        8.86920144
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -93.987,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-08",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-b54ed1758e8b",
+        "modelLabel": "C06",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-b54ed1758e8b",
+            "modelLabel": "C06",
+            "distanceMeters": 0.30174257
+          },
+          {
+            "modelColumnId": "column-58ee6b101d84",
+            "modelLabel": "C05",
+            "distanceMeters": 2.73880197
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-b54ed1758e8b"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.30174257,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-b54ed1758e8b",
+      "linkedModelPositionMeters": [
+        92.1381624,
+        0,
+        8.57046713
+      ]
+    },
+    {
+      "id": "col-09",
+      "sourceKey": "otb-a1-register:col-09",
+      "label": "Column 9",
+      "kind": "column",
+      "sourcePlanPx": [
+        196.03,
+        313.35
+      ],
+      "sourceImagePx": [
+        2320.56,
+        807.48
+      ],
+      "modelPositionMeters": [
+        87.00176517,
+        0,
+        8.86606627
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -88.869,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-09",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-5bc5065cf1b8",
+        "modelLabel": "C07",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-5bc5065cf1b8",
+            "modelLabel": "C07",
+            "distanceMeters": 0.31719513
+          },
+          {
+            "modelColumnId": "column-044d1f471c0c",
+            "modelLabel": "C08",
+            "distanceMeters": 2.77792289
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-5bc5065cf1b8"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.31719513,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-5bc5065cf1b8",
+      "linkedModelPositionMeters": [
+        86.9227624,
+        0,
+        8.55886713
+      ]
+    },
+    {
+      "id": "col-10",
+      "sourceKey": "otb-a1-register:col-10",
+      "label": "Column 10",
+      "kind": "column",
+      "sourcePlanPx": [
+        211.95,
+        313.35
+      ],
+      "sourceImagePx": [
+        2282.04,
+        807.48
+      ],
+      "modelPositionMeters": [
+        84.39337603,
+        0,
+        8.86446087
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -86.248,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-10",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-044d1f471c0c",
+        "modelLabel": "C08",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-044d1f471c0c",
+            "modelLabel": "C08",
+            "distanceMeters": 0.34890821
+          },
+          {
+            "modelColumnId": "column-5bc5065cf1b8",
+            "modelLabel": "C07",
+            "distanceMeters": 2.54778
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-044d1f471c0c"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.34890821,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-044d1f471c0c",
+      "linkedModelPositionMeters": [
+        84.2418624,
+        0,
+        8.55016713
+      ]
+    },
+    {
+      "id": "col-11",
+      "sourceKey": "otb-a1-register:col-11",
+      "label": "Column 11",
+      "kind": "column",
+      "sourcePlanPx": [
+        239.62,
+        313.35
+      ],
+      "sourceImagePx": [
+        2215.08,
+        807.48
+      ],
+      "modelPositionMeters": [
+        79.85982531,
+        0,
+        8.86167058
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -81.693,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-11",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-b612c2a14b74",
+        "modelLabel": "C09",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-b612c2a14b74",
+            "modelLabel": "C09",
+            "distanceMeters": 0.32442659
+          },
+          {
+            "modelColumnId": "column-5d259bb6c3b7",
+            "modelLabel": "C10",
+            "distanceMeters": 2.81636499
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-b612c2a14b74"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.32442659,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-b612c2a14b74",
+      "linkedModelPositionMeters": [
+        79.7415624,
+        0,
+        8.55956713
+      ]
+    },
+    {
+      "id": "col-12",
+      "sourceKey": "otb-a1-register:col-12",
+      "label": "Column 12",
+      "kind": "column",
+      "sourcePlanPx": [
+        256.57,
+        313.35
+      ],
+      "sourceImagePx": [
+        2174.04,
+        807.48
+      ],
+      "modelPositionMeters": [
+        77.08267732,
+        0,
+        8.85996131
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -78.902,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-12",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-5d259bb6c3b7",
+        "modelLabel": "C10",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-5d259bb6c3b7",
+            "modelLabel": "C10",
+            "distanceMeters": 0.30987719
+          },
+          {
+            "modelColumnId": "column-b612c2a14b74",
+            "modelLabel": "C09",
+            "distanceMeters": 2.67580016
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-5d259bb6c3b7"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.30987719,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-5d259bb6c3b7",
+      "linkedModelPositionMeters": [
+        77.0606624,
+        0,
+        8.55086713
+      ]
+    },
+    {
+      "id": "col-13",
+      "sourceKey": "otb-a1-register:col-13",
+      "label": "Column 13",
+      "kind": "column",
+      "sourcePlanPx": [
+        283.2,
+        313.35
+      ],
+      "sourceImagePx": [
+        2109.6,
+        807.48
+      ],
+      "modelPositionMeters": [
+        72.71952388,
+        0,
+        8.8572759
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -74.518,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-13",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-90181ecef8d9",
+        "modelLabel": "C11",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-90181ecef8d9",
+            "modelLabel": "C11",
+            "distanceMeters": 0.32881232
+          },
+          {
+            "modelColumnId": "column-a463a9a2acf7",
+            "modelLabel": "C12",
+            "distanceMeters": 2.83367275
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-90181ecef8d9"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.32881232,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-90181ecef8d9",
+      "linkedModelPositionMeters": [
+        72.5836124,
+        0,
+        8.55786713
+      ]
+    },
+    {
+      "id": "col-14",
+      "sourceKey": "otb-a1-register:col-14",
+      "label": "Column 14",
+      "kind": "column",
+      "sourcePlanPx": [
+        299.86,
+        313.35
+      ],
+      "sourceImagePx": [
+        2069.28,
+        807.48
+      ],
+      "modelPositionMeters": [
+        69.98989052,
+        0,
+        8.85559587
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -71.776,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-14",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-a463a9a2acf7",
+        "modelLabel": "C12",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-a463a9a2acf7",
+            "modelLabel": "C12",
+            "distanceMeters": 0.31869831
+          },
+          {
+            "modelColumnId": "column-90181ecef8d9",
+            "modelLabel": "C11",
+            "distanceMeters": 2.61075383
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-a463a9a2acf7"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.31869831,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-a463a9a2acf7",
+      "linkedModelPositionMeters": [
+        69.9026624,
+        0,
+        8.54906713
+      ]
+    },
+    {
+      "id": "col-15",
+      "sourceKey": "otb-a1-register:col-15",
+      "label": "Column 15",
+      "kind": "column",
+      "sourcePlanPx": [
+        356.53,
+        313.35
+      ],
+      "sourceImagePx": [
+        1932.12,
+        807.48
+      ],
+      "modelPositionMeters": [
+        60.70487717,
+        0,
+        8.84988117
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -62.447,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-15",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-47239d683e86",
+        "modelLabel": "C13",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-47239d683e86",
+            "modelLabel": "C13",
+            "distanceMeters": 0.28413109
+          },
+          {
+            "modelColumnId": "column-16c0ba4535cc",
+            "modelLabel": "C14",
+            "distanceMeters": 8.25450958
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-47239d683e86"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.28413109,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-47239d683e86",
+      "linkedModelPositionMeters": [
+        60.5914624,
+        0,
+        8.58936713
+      ]
+    },
+    {
+      "id": "col-16",
+      "sourceKey": "otb-a1-register:col-16",
+      "label": "Column 16",
+      "kind": "column",
+      "sourcePlanPx": [
+        406.51,
+        313.35
+      ],
+      "sourceImagePx": [
+        1811.16,
+        807.48
+      ],
+      "modelPositionMeters": [
+        52.5159771,
+        0,
+        8.8448411
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -54.219,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-16",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-16c0ba4535cc",
+        "modelLabel": "C14",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-16c0ba4535cc",
+            "modelLabel": "C14",
+            "distanceMeters": 0.2885132
+          },
+          {
+            "modelColumnId": "column-67175e7ffef6",
+            "modelLabel": "C15",
+            "distanceMeters": 7.01149095
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-16c0ba4535cc"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.2885132,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-16c0ba4535cc",
+      "linkedModelPositionMeters": [
+        52.4553624,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-17",
+      "sourceKey": "otb-a1-register:col-17",
+      "label": "Column 17",
+      "kind": "column",
+      "sourcePlanPx": [
+        448.75,
+        313.35
+      ],
+      "sourceImagePx": [
+        1708.92,
+        807.48
+      ],
+      "modelPositionMeters": [
+        45.59522602,
+        0,
+        8.84058154
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -47.265,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-17",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-67175e7ffef6",
+        "modelLabel": "C15",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-67175e7ffef6",
+            "modelLabel": "C15",
+            "distanceMeters": 0.29054546
+          },
+          {
+            "modelColumnId": "column-16c0ba4535cc",
+            "modelLabel": "C14",
+            "distanceMeters": 6.8657594
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-67175e7ffef6"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.29054546,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-67175e7ffef6",
+      "linkedModelPositionMeters": [
+        45.5101624,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-18",
+      "sourceKey": "otb-a1-register:col-18",
+      "label": "Column 18",
+      "kind": "column",
+      "sourcePlanPx": [
+        498.73,
+        313.35
+      ],
+      "sourceImagePx": [
+        1587.96,
+        807.48
+      ],
+      "modelPositionMeters": [
+        37.40632594,
+        0,
+        8.83554147
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -39.037,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-18",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-ed119356cf6a",
+        "modelLabel": "C16",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-ed119356cf6a",
+            "modelLabel": "C16",
+            "distanceMeters": 0.31877456
+          },
+          {
+            "modelColumnId": "column-aee610a618a4",
+            "modelLabel": "C17",
+            "distanceMeters": 7.54886826
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-ed119356cf6a"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.31877456,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-ed119356cf6a",
+      "linkedModelPositionMeters": [
+        37.3553624,
+        0,
+        8.52086713
+      ]
+    },
+    {
+      "id": "col-19",
+      "sourceKey": "otb-a1-register:col-19",
+      "label": "Column 19",
+      "kind": "column",
+      "sourcePlanPx": [
+        544.54,
+        313.35
+      ],
+      "sourceImagePx": [
+        1477.08,
+        807.48
+      ],
+      "modelPositionMeters": [
+        29.90065342,
+        0,
+        8.83092191
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -31.496,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-19",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-aee610a618a4",
+        "modelLabel": "C17",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-aee610a618a4",
+            "modelLabel": "C17",
+            "distanceMeters": 0.26466863
+          },
+          {
+            "modelColumnId": "column-ed119356cf6a",
+            "modelLabel": "C16",
+            "distanceMeters": 7.46115406
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-aee610a618a4"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.26466863,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-aee610a618a4",
+      "linkedModelPositionMeters": [
+        29.8621624,
+        0,
+        8.56906713
+      ]
+    },
+    {
+      "id": "col-20",
+      "sourceKey": "otb-a1-register:col-20",
+      "label": "Column 20",
+      "kind": "column",
+      "sourcePlanPx": [
+        591.25,
+        313.35
+      ],
+      "sourceImagePx": [
+        1364.04,
+        807.48
+      ],
+      "modelPositionMeters": [
+        22.24752172,
+        0,
+        8.82621159
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -23.806,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-20",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-a271a91870ae",
+        "modelLabel": "C18",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-a271a91870ae",
+            "modelLabel": "C18",
+            "distanceMeters": 0.2746537
+          },
+          {
+            "modelColumnId": "column-d785b928bb21",
+            "modelLabel": "C19",
+            "distanceMeters": 7.33087937
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-a271a91870ae"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.2746537,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-a271a91870ae",
+      "linkedModelPositionMeters": [
+        22.3618124,
+        0,
+        8.57646713
+      ]
+    },
+    {
+      "id": "col-21",
+      "sourceKey": "otb-a1-register:col-21",
+      "label": "Column 21",
+      "kind": "column",
+      "sourcePlanPx": [
+        635.87,
+        313.35
+      ],
+      "sourceImagePx": [
+        1256.04,
+        807.48
+      ],
+      "modelPositionMeters": [
+        14.93682301,
+        0,
+        8.82171203
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -16.461,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-21",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-d785b928bb21",
+        "modelLabel": "C19",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-d785b928bb21",
+            "modelLabel": "C19",
+            "distanceMeters": 0.23879238
+          },
+          {
+            "modelColumnId": "column-a271a91870ae",
+            "modelLabel": "C18",
+            "distanceMeters": 7.42903846
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-d785b928bb21"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.23879238,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-d785b928bb21",
+      "linkedModelPositionMeters": [
+        14.9206624,
+        0,
+        8.58346713
+      ]
+    },
+    {
+      "id": "col-22",
+      "sourceKey": "otb-a1-register:col-22",
+      "label": "Column 22",
+      "kind": "column",
+      "sourcePlanPx": [
+        680.65,
+        313.35
+      ],
+      "sourceImagePx": [
+        1147.68,
+        807.48
+      ],
+      "modelPositionMeters": [
+        7.59990934,
+        0,
+        8.81719634
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -9.089,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-22",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-c26484797ec1",
+        "modelLabel": "C20",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-c26484797ec1",
+            "modelLabel": "C20",
+            "distanceMeters": 0.25331857
+          },
+          {
+            "modelColumnId": "column-d785b928bb21",
+            "modelLabel": "C19",
+            "distanceMeters": 7.32448324
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-c26484797ec1"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.25331857,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-c26484797ec1",
+      "linkedModelPositionMeters": [
+        7.4692624,
+        0,
+        8.60016713
+      ]
+    },
+    {
+      "id": "col-23",
+      "sourceKey": "otb-a1-register:col-23",
+      "label": "Column 23",
+      "kind": "column",
+      "sourcePlanPx": [
+        726.31,
+        313.35
+      ],
+      "sourceImagePx": [
+        1037.16,
+        807.48
+      ],
+      "modelPositionMeters": [
+        0.11881335,
+        0,
+        8.8125919
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -1.572,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-23",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-a8f1bedc07e9",
+        "modelLabel": "C21",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-a8f1bedc07e9",
+            "modelLabel": "C21",
+            "distanceMeters": 0.27473464
+          },
+          {
+            "modelColumnId": "column-c26484797ec1",
+            "modelLabel": "C20",
+            "distanceMeters": 7.3535179
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-a8f1bedc07e9"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.27473464,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-a8f1bedc07e9",
+      "linkedModelPositionMeters": [
+        -0.0018376,
+        0,
+        8.56576713
+      ]
+    },
+    {
+      "id": "col-24",
+      "sourceKey": "otb-a1-register:col-24",
+      "label": "Column 24",
+      "kind": "column",
+      "sourcePlanPx": [
+        772.27,
+        313.35
+      ],
+      "sourceImagePx": [
+        925.92,
+        807.48
+      ],
+      "modelPositionMeters": [
+        -7.4114357,
+        0,
+        8.80795721
+      ],
+      "sourceSiteTwinPositionMeters": [
+        5.994,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-24",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-1f046ab1c1c0",
+        "modelLabel": "C22",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-1f046ab1c1c0",
+            "modelLabel": "C22",
+            "distanceMeters": 0.26204989
+          },
+          {
+            "modelColumnId": "column-a8f1bedc07e9",
+            "modelLabel": "C21",
+            "distanceMeters": 7.41355515
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-1f046ab1c1c0"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.26204989,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-1f046ab1c1c0",
+      "linkedModelPositionMeters": [
+        -7.5516376,
+        0,
+        8.58656713
+      ]
+    },
+    {
+      "id": "col-25",
+      "sourceKey": "otb-a1-register:col-25",
+      "label": "Column 25",
+      "kind": "column",
+      "sourcePlanPx": [
+        818.68,
+        313.35
+      ],
+      "sourceImagePx": [
+        813.6,
+        807.48
+      ],
+      "modelPositionMeters": [
+        -15.01541434,
+        0,
+        8.80327715
+      ],
+      "sourceSiteTwinPositionMeters": [
+        13.634,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-25",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-a72402b949b5",
+        "modelLabel": "C23",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-a72402b949b5",
+            "modelLabel": "C23",
+            "distanceMeters": 0.31904072
+          },
+          {
+            "modelColumnId": "column-1f046ab1c1c0",
+            "modelLabel": "C22",
+            "distanceMeters": 7.46692215
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-a72402b949b5"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.31904072,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-a72402b949b5",
+      "linkedModelPositionMeters": [
+        -15.2250376,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-26",
+      "sourceKey": "otb-a1-register:col-26",
+      "label": "Column 26",
+      "kind": "column",
+      "sourcePlanPx": [
+        866.87,
+        313.35
+      ],
+      "sourceImagePx": [
+        696.96,
+        807.48
+      ],
+      "modelPositionMeters": [
+        -22.91103448,
+        0,
+        8.79841758
+      ],
+      "sourceSiteTwinPositionMeters": [
+        21.567,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-26",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-e8fa3fb70060",
+        "modelLabel": "C24",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-e8fa3fb70060",
+            "modelLabel": "C24",
+            "distanceMeters": 0.23679004
+          },
+          {
+            "modelColumnId": "column-a72402b949b5",
+            "modelLabel": "C23",
+            "distanceMeters": 7.68960852
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-e8fa3fb70060"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.23679004,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-e8fa3fb70060",
+      "linkedModelPositionMeters": [
+        -22.9342376,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-27",
+      "sourceKey": "otb-a1-register:col-27",
+      "label": "Column 27",
+      "kind": "column",
+      "sourcePlanPx": [
+        916.41,
+        313.12
+      ],
+      "sourceImagePx": [
+        577.08,
+        808.2
+      ],
+      "modelPositionMeters": [
+        -31.02860636,
+        0,
+        8.82968428
+      ],
+      "sourceSiteTwinPositionMeters": [
+        29.723,
+        3.048,
+        -9.375
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-27",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-45d9d6177283",
+        "modelLabel": "C25",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-45d9d6177283",
+            "modelLabel": "C25",
+            "distanceMeters": 0.91633588
+          },
+          {
+            "modelColumnId": "column-887d27e648e6",
+            "modelLabel": "C26",
+            "distanceMeters": 2.02085194
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-45d9d6177283"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.91633588,
+        "nativeModelConfidence": "medium_model_pattern_match"
+      },
+      "modelColumnId": "column-45d9d6177283",
+      "linkedModelPositionMeters": [
+        -31.9171376,
+        0,
+        8.60566713
+      ],
+      "reviewNote": "The inventory labels two separate columns here (27/28), linked to C25/C26. C25 remains a medium-confidence native footprint because it shares a side with a larger narrow wall feature. Preserve both existing IDs pending field review."
+    },
+    {
+      "id": "col-28",
+      "sourceKey": "otb-a1-register:col-28",
+      "label": "Column 28",
+      "kind": "column",
+      "sourcePlanPx": [
+        930.69,
+        313.12
+      ],
+      "sourceImagePx": [
+        542.52,
+        808.2
+      ],
+      "modelPositionMeters": [
+        -33.3682921,
+        0,
+        8.82824426
+      ],
+      "sourceSiteTwinPositionMeters": [
+        32.074,
+        3.048,
+        -9.375
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-28",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-887d27e648e6",
+        "modelLabel": "C26",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-887d27e648e6",
+            "modelLabel": "C26",
+            "distanceMeters": 0.41324401
+          },
+          {
+            "modelColumnId": "column-45d9d6177283",
+            "modelLabel": "C25",
+            "distanceMeters": 1.46812464
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-887d27e648e6",
+          "column-45d9d6177283"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.41324401,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-887d27e648e6",
+      "linkedModelPositionMeters": [
+        -33.0345376,
+        0,
+        8.58456713
+      ],
+      "reviewNote": "The inventory labels two separate columns here (27/28), linked to C25/C26. C25 remains a medium-confidence native footprint because it shares a side with a larger narrow wall feature. Preserve both existing IDs pending field review."
+    },
+    {
+      "id": "col-29",
+      "sourceKey": "otb-a1-register:col-29",
+      "label": "Column 29",
+      "kind": "column",
+      "sourcePlanPx": [
+        970.25,
+        313.35
+      ],
+      "sourceImagePx": [
+        446.76,
+        807.48
+      ],
+      "modelPositionMeters": [
+        -39.84917953,
+        0,
+        8.78799256
+      ],
+      "sourceSiteTwinPositionMeters": [
+        38.586,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-29",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-21818286d35d",
+        "modelLabel": "C27",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-21818286d35d",
+            "modelLabel": "C27",
+            "distanceMeters": 0.31168682
+          },
+          {
+            "modelColumnId": "column-887d27e648e6",
+            "modelLabel": "C26",
+            "distanceMeters": 6.8176775
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-21818286d35d"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.31168682,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-21818286d35d",
+      "linkedModelPositionMeters": [
+        -40.0646376,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-30",
+      "sourceKey": "otb-a1-register:col-30",
+      "label": "Column 30",
+      "kind": "column",
+      "sourcePlanPx": [
+        1017.7,
+        313.35
+      ],
+      "sourceImagePx": [
+        331.92,
+        807.48
+      ],
+      "modelPositionMeters": [
+        -47.62355545,
+        0,
+        8.78320762
+      ],
+      "sourceSiteTwinPositionMeters": [
+        46.397,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-30",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-ce943c0fb5c2",
+        "modelLabel": "C28",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-ce943c0fb5c2",
+            "modelLabel": "C28",
+            "distanceMeters": 0.35775105
+          },
+          {
+            "modelColumnId": "column-21818286d35d",
+            "modelLabel": "C27",
+            "distanceMeters": 7.56213152
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-ce943c0fb5c2"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.35775105,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-ce943c0fb5c2",
+      "linkedModelPositionMeters": [
+        -47.9031876,
+        0,
+        8.56006713
+      ]
+    },
+    {
+      "id": "col-31",
+      "sourceKey": "otb-a1-register:col-31",
+      "label": "Column 31",
+      "kind": "column",
+      "sourcePlanPx": [
+        1066.79,
+        313.35
+      ],
+      "sourceImagePx": [
+        213.12,
+        807.48
+      ],
+      "modelPositionMeters": [
+        -55.66663478,
+        0,
+        8.7782573
+      ],
+      "sourceSiteTwinPositionMeters": [
+        54.479,
+        3.048,
+        -9.338
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-31",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-9e141c322e07",
+        "modelLabel": "C29",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-9e141c322e07",
+            "modelLabel": "C29",
+            "distanceMeters": 0.2244274
+          },
+          {
+            "modelColumnId": "column-ce943c0fb5c2",
+            "modelLabel": "C28",
+            "distanceMeters": 7.76651267
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-9e141c322e07"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.2244274,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-9e141c322e07",
+      "linkedModelPositionMeters": [
+        -55.7293376,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-32",
+      "sourceKey": "otb-a1-register:col-32",
+      "label": "Column 32",
+      "kind": "column",
+      "sourcePlanPx": [
+        1113.05,
+        312.89
+      ],
+      "sourceImagePx": [
+        101.16,
+        808.92
+      ],
+      "modelPositionMeters": [
+        -63.24756282,
+        0,
+        8.84611716
+      ],
+      "sourceSiteTwinPositionMeters": [
+        62.094,
+        3.048,
+        -9.412
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-32",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "long-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-97dabebaad03",
+        "modelLabel": "C30",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-97dabebaad03",
+            "modelLabel": "C30",
+            "distanceMeters": 0.48415101
+          },
+          {
+            "modelColumnId": "column-e867804401a1",
+            "modelLabel": "C31",
+            "distanceMeters": 4.38479172
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-97dabebaad03"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.48415101,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-97dabebaad03",
+      "linkedModelPositionMeters": [
+        -63.6401376,
+        0,
+        8.56276713
+      ]
+    },
+    {
+      "id": "col-33",
+      "sourceKey": "otb-a1-register:col-33",
+      "label": "Column 33",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.34,
+        342.34
+      ],
+      "sourceImagePx": [
+        71.64,
+        754.56
+      ],
+      "modelPositionMeters": [
+        -66.14656838,
+        0,
+        4.20110895
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.105,
+        3.048,
+        -4.654
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-33",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-e867804401a1",
+        "modelLabel": "C31",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-e867804401a1",
+            "modelLabel": "C31",
+            "distanceMeters": 1.11685818
+          },
+          {
+            "modelColumnId": "column-97dabebaad03",
+            "modelLabel": "C30",
+            "distanceMeters": 5.03053251
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-e867804401a1"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 1.11685818,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-e867804401a1",
+      "linkedModelPositionMeters": [
+        -65.3837376,
+        0,
+        5.01686713
+      ]
+    },
+    {
+      "id": "col-34",
+      "sourceKey": "otb-a1-register:col-34",
+      "label": "Column 34",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.34,
+        390.14
+      ],
+      "sourceImagePx": [
+        71.64,
+        641.52
+      ],
+      "modelPositionMeters": [
+        -65.98800423,
+        0,
+        -3.33516372
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.105,
+        3.048,
+        3.068
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-34",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-3156ee7986df",
+        "modelLabel": "C32",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-3156ee7986df",
+            "modelLabel": "C32",
+            "distanceMeters": 0.87207471
+          },
+          {
+            "modelColumnId": "column-81c79ff96e48",
+            "modelLabel": "C33",
+            "distanceMeters": 7.94630162
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-3156ee7986df"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.87207471,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-3156ee7986df",
+      "linkedModelPositionMeters": [
+        -65.4003376,
+        0,
+        -2.69083287
+      ]
+    },
+    {
+      "id": "col-35",
+      "sourceKey": "otb-a1-register:col-35",
+      "label": "Column 35",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.34,
+        443.88
+      ],
+      "sourceImagePx": [
+        71.64,
+        514.44
+      ],
+      "modelPositionMeters": [
+        -65.80973566,
+        0,
+        -11.80795228
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.105,
+        3.048,
+        11.75
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-35",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-81c79ff96e48",
+        "modelLabel": "C33",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-81c79ff96e48",
+            "modelLabel": "C33",
+            "distanceMeters": 0.69461143
+          },
+          {
+            "modelColumnId": "column-a9381f0a71be",
+            "modelLabel": "C34",
+            "distanceMeters": 8.00639376
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-81c79ff96e48"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.69461143,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-81c79ff96e48",
+      "linkedModelPositionMeters": [
+        -65.3847376,
+        0,
+        -11.25853287
+      ]
+    },
+    {
+      "id": "col-36",
+      "sourceKey": "otb-a1-register:col-36",
+      "label": "Column 36",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.34,
+        496.7
+      ],
+      "sourceImagePx": [
+        71.64,
+        389.52
+      ],
+      "modelPositionMeters": [
+        -65.63451896,
+        0,
+        -20.13569124
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.105,
+        3.048,
+        20.284
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-36",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-a9381f0a71be",
+        "modelLabel": "C34",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-a9381f0a71be",
+            "modelLabel": "C34",
+            "distanceMeters": 0.41386184
+          },
+          {
+            "modelColumnId": "column-77db6e0ff5af",
+            "modelLabel": "C35",
+            "distanceMeters": 8.16797178
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-a9381f0a71be"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.41386184,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-a9381f0a71be",
+      "linkedModelPositionMeters": [
+        -65.3880376,
+        0,
+        -19.80323287
+      ]
+    },
+    {
+      "id": "col-37",
+      "sourceKey": "otb-a1-register:col-37",
+      "label": "Column 37",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.2,
+        550.59
+      ],
+      "sourceImagePx": [
+        72.0,
+        262.08
+      ],
+      "modelPositionMeters": [
+        -65.43281471,
+        0,
+        -28.63211507
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.082,
+        3.048,
+        28.99
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-37",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-77db6e0ff5af",
+        "modelLabel": "C35",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-77db6e0ff5af",
+            "modelLabel": "C35",
+            "distanceMeters": 0.33961267
+          },
+          {
+            "modelColumnId": "column-fc0ad1c131f2",
+            "modelLabel": "C36",
+            "distanceMeters": 8.28363882
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-77db6e0ff5af"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.33961267,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-77db6e0ff5af",
+      "linkedModelPositionMeters": [
+        -65.3655376,
+        0,
+        -28.29923287
+      ]
+    },
+    {
+      "id": "col-38",
+      "sourceKey": "otb-a1-register:col-38",
+      "label": "Column 38",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.34,
+        603.72
+      ],
+      "sourceImagePx": [
+        71.64,
+        136.44
+      ],
+      "modelPositionMeters": [
+        -65.27950776,
+        0,
+        -37.00874356
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.105,
+        3.048,
+        37.574
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-38",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-fc0ad1c131f2",
+        "modelLabel": "C36",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-fc0ad1c131f2",
+            "modelLabel": "C36",
+            "distanceMeters": 0.14299764
+          },
+          {
+            "modelColumnId": "column-cd2fbfa1e062",
+            "modelLabel": "C37",
+            "distanceMeters": 3.35081078
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-fc0ad1c131f2"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.14299764,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-fc0ad1c131f2",
+      "linkedModelPositionMeters": [
+        -65.3880376,
+        0,
+        -36.91563287
+      ]
+    },
+    {
+      "id": "col-39",
+      "sourceKey": "otb-a1-register:col-39",
+      "label": "Column 39",
+      "kind": "column",
+      "sourcePlanPx": [
+        1131.34,
+        625.33
+      ],
+      "sourceImagePx": [
+        71.64,
+        85.32
+      ],
+      "modelPositionMeters": [
+        -65.20782217,
+        0,
+        -40.41583252
+      ],
+      "sourceSiteTwinPositionMeters": [
+        65.105,
+        3.048,
+        41.065
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "col-39",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Approximate column-square point from the supplied generator numbered-tag coordinates plus its 68-pixel vertical offset at 200 dpi; crowded labels 27/28 are offset from their squares",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      },
+      "locationNote": "short-building walk",
+      "crosswalk": {
+        "status": "candidate_link",
+        "modelColumnId": "column-cd2fbfa1e062",
+        "modelLabel": "C37",
+        "toleranceMeters": 1.5,
+        "nearestCandidates": [
+          {
+            "modelColumnId": "column-cd2fbfa1e062",
+            "modelLabel": "C37",
+            "distanceMeters": 0.18519884
+          },
+          {
+            "modelColumnId": "column-fc0ad1c131f2",
+            "modelLabel": "C36",
+            "distanceMeters": 3.50483597
+          }
+        ],
+        "candidatesWithinTolerance": [
+          "column-cd2fbfa1e062"
+        ],
+        "basis": "Stable native-column hash already supplied in the ZIP; independently checked against affine distances. Candidate only, not field confirmation.",
+        "distanceMeters": 0.18519884,
+        "nativeModelConfidence": "high_model_pattern_match"
+      },
+      "modelColumnId": "column-cd2fbfa1e062",
+      "linkedModelPositionMeters": [
+        -65.3837376,
+        0,
+        -40.35793287
+      ]
+    },
+    {
+      "id": "can-01",
+      "sourceKey": "otb-a1-register:can-01",
+      "label": "Trash can 1",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        173.19,
+        296.19
+      ],
+      "sourceImagePx": [
+        2375.00339559,
+        860.41935484
+      ],
+      "modelPositionMeters": [
+        90.68702773,
+        0,
+        11.57385985
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -92.629,
+        0.975,
+        -12.11
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-01",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-02",
+      "sourceKey": "otb-a1-register:can-02",
+      "label": "Trash can 2",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        282.31,
+        296.18
+      ],
+      "sourceImagePx": [
+        2111.01190476,
+        860.40816327
+      ],
+      "modelPositionMeters": [
+        72.80838759,
+        0,
+        11.56443263
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -74.665,
+        0.975,
+        -12.112
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-02",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-03",
+      "sourceKey": "otb-a1-register:can-03",
+      "label": "Trash can 3",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        404.58,
+        296.19
+      ],
+      "sourceImagePx": [
+        1814.96391753,
+        860.29381443
+      ],
+      "modelPositionMeters": [
+        52.77527126,
+        0,
+        11.55052608
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -54.536,
+        0.975,
+        -12.11
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-03",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-04",
+      "sourceKey": "otb-a1-register:can-04",
+      "label": "Trash can 4",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        440.2,
+        296.21
+      ],
+      "sourceImagePx": [
+        1728.77430556,
+        860.33333333
+      ],
+      "modelPositionMeters": [
+        46.93923075,
+        0,
+        11.54378084
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -48.673,
+        0.975,
+        -12.107
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-04",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-05",
+      "sourceKey": "otb-a1-register:can-05",
+      "label": "Trash can 5",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        500.28,
+        296.21
+      ],
+      "sourceImagePx": [
+        1583.47194719,
+        860.33333333
+      ],
+      "modelPositionMeters": [
+        37.09551093,
+        0,
+        11.53772227
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -38.782,
+        0.975,
+        -12.107
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-05",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-06",
+      "sourceKey": "otb-a1-register:can-06",
+      "label": "Trash can 6",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        595.99,
+        296.21
+      ],
+      "sourceImagePx": [
+        1352.01194539,
+        860.3668942
+      ],
+      "modelPositionMeters": [
+        21.41404582,
+        0,
+        11.5280707
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -23.026,
+        0.975,
+        -12.107
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-06",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-07",
+      "sourceKey": "otb-a1-register:can-07",
+      "label": "Trash can 7",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        642.23,
+        296.19
+      ],
+      "sourceImagePx": [
+        1240.10750853,
+        860.37372014
+      ],
+      "modelPositionMeters": [
+        13.83785424,
+        0,
+        11.52656103
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -15.414,
+        0.975,
+        -12.11
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-07",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-08",
+      "sourceKey": "otb-a1-register:can-08",
+      "label": "Trash can 8",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        723.23,
+        296.2
+      ],
+      "sourceImagePx": [
+        1044.05299145,
+        860.39487179
+      ],
+      "modelPositionMeters": [
+        0.56656076,
+        0,
+        11.51681622
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -2.079,
+        0.975,
+        -12.109
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-08",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-09",
+      "sourceKey": "otb-a1-register:can-09",
+      "label": "Trash can 9",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        769.7,
+        296.17
+      ],
+      "sourceImagePx": [
+        931.48019802,
+        860.39768977
+      ],
+      "modelPositionMeters": [
+        -7.04734801,
+        0,
+        11.51685998
+      ],
+      "sourceSiteTwinPositionMeters": [
+        5.571,
+        0.975,
+        -12.114
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-09",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-10",
+      "sourceKey": "otb-a1-register:can-10",
+      "label": "Trash can 10",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        850.26,
+        296.19
+      ],
+      "sourceImagePx": [
+        736.54867257,
+        860.35752212
+      ],
+      "modelPositionMeters": [
+        -20.24651716,
+        0,
+        11.50558292
+      ],
+      "sourceSiteTwinPositionMeters": [
+        18.833,
+        0.975,
+        -12.11
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-10",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-11",
+      "sourceKey": "otb-a1-register:can-11",
+      "label": "Trash can 11",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        963.25,
+        296.25
+      ],
+      "sourceImagePx": [
+        463.39285714,
+        860.06122449
+      ],
+      "modelPositionMeters": [
+        -38.75899959,
+        0,
+        11.48472905
+      ],
+      "sourceSiteTwinPositionMeters": [
+        37.434,
+        0.975,
+        -12.101
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-11",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-12",
+      "sourceKey": "otb-a1-register:can-12",
+      "label": "Trash can 12",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1015.01,
+        296.22
+      ],
+      "sourceImagePx": [
+        337.96869565,
+        860.28173913
+      ],
+      "modelPositionMeters": [
+        -47.23964068,
+        0,
+        11.48423936
+      ],
+      "sourceSiteTwinPositionMeters": [
+        45.955,
+        0.975,
+        -12.106
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-12",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-13",
+      "sourceKey": "otb-a1-register:can-13",
+      "label": "Trash can 13",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1120.78,
+        296.52
+      ],
+      "sourceImagePx": [
+        82.03626943,
+        859.66321244
+      ],
+      "modelPositionMeters": [
+        -64.56837662,
+        0,
+        11.42627455
+      ],
+      "sourceSiteTwinPositionMeters": [
+        63.367,
+        0.975,
+        -12.057
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-13",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-14",
+      "sourceKey": "otb-a1-register:can-14",
+      "label": "Trash can 14",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1144.02,
+        297.59
+      ],
+      "sourceImagePx": [
+        25.88732394,
+        859.91021127
+      ],
+      "modelPositionMeters": [
+        -68.37255102,
+        0,
+        11.25523199
+      ],
+      "sourceSiteTwinPositionMeters": [
+        67.193,
+        0.975,
+        -11.884
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-14",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-15",
+      "sourceKey": "otb-a1-register:can-15",
+      "label": "Trash can 15",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1149.36,
+        345.55
+      ],
+      "sourceImagePx": [
+        25.72093023,
+        746.5282392
+      ],
+      "modelPositionMeters": [
+        -69.0883806,
+        0,
+        3.69319481
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.072,
+        0.975,
+        -4.136
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-15",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-16",
+      "sourceKey": "otb-a1-register:can-16",
+      "label": "Trash can 16",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1149.37,
+        388.47
+      ],
+      "sourceImagePx": [
+        25.68367347,
+        645.36904762
+      ],
+      "modelPositionMeters": [
+        -68.94764303,
+        0,
+        -3.07368534
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.073,
+        0.975,
+        2.798
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-16",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-17",
+      "sourceKey": "otb-a1-register:can-17",
+      "label": "Trash can 17",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1149.3,
+        438.96
+      ],
+      "sourceImagePx": [
+        25.85591767,
+        525.54716981
+      ],
+      "modelPositionMeters": [
+        -68.76868645,
+        0,
+        -11.03406336
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.062,
+        0.975,
+        10.955
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-17",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-18",
+      "sourceKey": "otb-a1-register:can-18",
+      "label": "Trash can 18",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1149.36,
+        478.84
+      ],
+      "sourceImagePx": [
+        25.75042159,
+        431.37436762
+      ],
+      "modelPositionMeters": [
+        -68.64622547,
+        0,
+        -17.32165422
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.072,
+        0.975,
+        17.398
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-18",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-19",
+      "sourceKey": "otb-a1-register:can-19",
+      "label": "Trash can 19",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1149.29,
+        521.95
+      ],
+      "sourceImagePx": [
+        25.88494078,
+        329.52622673
+      ],
+      "modelPositionMeters": [
+        -68.49175013,
+        0,
+        -24.1184822
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.06,
+        0.975,
+        24.363
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-19",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "can-20",
+      "sourceKey": "otb-a1-register:can-20",
+      "label": "Trash can 20",
+      "kind": "waste_bin",
+      "sourcePlanPx": [
+        1149.34,
+        622.66
+      ],
+      "sourceImagePx": [
+        25.79124579,
+        91.38888889
+      ],
+      "modelPositionMeters": [
+        -68.1658629,
+        0,
+        -39.99668851
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.068,
+        0.975,
+        40.633
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "can-20",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-01",
+      "sourceKey": "otb-a1-register:bench-01",
+      "label": "Bench 1",
+      "kind": "bench",
+      "sourcePlanPx": [
+        187.87,
+        296.26
+      ],
+      "sourceImagePx": [
+        2339.60728218,
+        860.21846554
+      ],
+      "modelPositionMeters": [
+        88.28203679,
+        0,
+        11.56134311
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -90.212,
+        0.457,
+        -12.099
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-01",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-02",
+      "sourceKey": "otb-a1-register:bench-02",
+      "label": "Bench 2",
+      "kind": "bench",
+      "sourcePlanPx": [
+        266.43,
+        296.28
+      ],
+      "sourceImagePx": [
+        2149.4986911,
+        860.22120419
+      ],
+      "modelPositionMeters": [
+        75.41055472,
+        0,
+        11.55026773
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -77.279,
+        0.457,
+        -12.096
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-02",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-03",
+      "sourceKey": "otb-a1-register:bench-03",
+      "label": "Bench 3",
+      "kind": "bench",
+      "sourcePlanPx": [
+        366.13,
+        296.23
+      ],
+      "sourceImagePx": [
+        1908.20807062,
+        860.37326608
+      ],
+      "modelPositionMeters": [
+        59.07518802,
+        0,
+        11.54809694
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -60.866,
+        0.457,
+        -12.104
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-03",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-04",
+      "sourceKey": "otb-a1-register:bench-04",
+      "label": "Bench 4",
+      "kind": "bench",
+      "sourcePlanPx": [
+        453.56,
+        296.19
+      ],
+      "sourceImagePx": [
+        1696.43619792,
+        860.32942708
+      ],
+      "modelPositionMeters": [
+        44.75021473,
+        0,
+        11.54558685
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -46.473,
+        0.457,
+        -12.11
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-04",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-05",
+      "sourceKey": "otb-a1-register:bench-05",
+      "label": "Bench 5",
+      "kind": "bench",
+      "sourcePlanPx": [
+        534.86,
+        296.25
+      ],
+      "sourceImagePx": [
+        1499.66059818,
+        860.15084525
+      ],
+      "modelPositionMeters": [
+        31.42993405,
+        0,
+        11.52792866
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -33.089,
+        0.457,
+        -12.101
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-05",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-06",
+      "sourceKey": "otb-a1-register:bench-06",
+      "label": "Bench 6",
+      "kind": "bench",
+      "sourcePlanPx": [
+        683.95,
+        296.26
+      ],
+      "sourceImagePx": [
+        1139.09426752,
+        860.21528662
+      ],
+      "modelPositionMeters": [
+        7.002534,
+        0,
+        11.51131753
+      ],
+      "sourceSiteTwinPositionMeters": [
+        -8.546,
+        0.457,
+        -12.099
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-06",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-07",
+      "sourceKey": "otb-a1-register:bench-07",
+      "label": "Bench 7",
+      "kind": "bench",
+      "sourcePlanPx": [
+        812.89,
+        296.25
+      ],
+      "sourceImagePx": [
+        827.35370611,
+        860.22626788
+      ],
+      "modelPositionMeters": [
+        -14.12348508,
+        0,
+        11.49989162
+      ],
+      "sourceSiteTwinPositionMeters": [
+        12.681,
+        0.457,
+        -12.101
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-07",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-08",
+      "sourceKey": "otb-a1-register:bench-08",
+      "label": "Bench 8",
+      "kind": "bench",
+      "sourcePlanPx": [
+        863.3,
+        296.25
+      ],
+      "sourceImagePx": [
+        704.51432292,
+        860.27213542
+      ],
+      "modelPositionMeters": [
+        -22.38283788,
+        0,
+        11.49480819
+      ],
+      "sourceSiteTwinPositionMeters": [
+        20.98,
+        0.457,
+        -12.101
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-08",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-09",
+      "sourceKey": "otb-a1-register:bench-09",
+      "label": "Bench 9",
+      "kind": "bench",
+      "sourcePlanPx": [
+        1145.7,
+        309.34
+      ],
+      "sourceImagePx": [
+        21.76470588,
+        832.06677266
+      ],
+      "modelPositionMeters": [
+        -68.60883057,
+        0,
+        9.40252693
+      ],
+      "sourceSiteTwinPositionMeters": [
+        67.469,
+        0.457,
+        -9.986
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-09",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    },
+    {
+      "id": "bench-10",
+      "sourceKey": "otb-a1-register:bench-10",
+      "label": "Bench 10",
+      "kind": "bench",
+      "sourcePlanPx": [
+        1150.89,
+        427.16
+      ],
+      "sourceImagePx": [
+        21.91047297,
+        553.48986486
+      ],
+      "modelPositionMeters": [
+        -69.06834113,
+        0,
+        -9.17380492
+      ],
+      "sourceSiteTwinPositionMeters": [
+        68.324,
+        0.457,
+        9.049
+      ],
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "new_asset_candidate",
+      "provenance": {
+        "sourceId": "columns-benches-cans",
+        "sourceFile": "07 Columns, Benches, and Cans.pdf",
+        "registerAssetId": "bench-10",
+        "registerStatus": "digitized",
+        "locationMethod": "Supplied A-1 register position, affine registered to 37 linked native-model column centers.",
+        "imagePointMethod": "Colored symbol centroid in embedded PDF image; numbering inherited from supplied register",
+        "heightNote": "modelPositionMeters is a ground reference (Y=0); sourceSiteTwinPositionMeters Y is presentation geometry, not a measured fixture height."
+      }
+    }
+  ],
+  "utilityMapReferences": [
+    {
+      "sourceId": "mclu-149",
+      "label": "City meter cluster — Right of 149 / Back Right of 149",
+      "kind": "meter-cluster",
+      "sourceImagePx": [
+        263.69872702,
+        193.34512023
+      ],
+      "sourcePlanPx": [
+        1282.33,
+        647.18
+      ],
+      "modelPositionMeters": [
+        -89.87380276,
+        0,
+        -43.87670964
+      ],
+      "countMarkedOnSource": 8,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "mclu-131",
+      "label": "City meter cluster — Behind 131",
+      "kind": "meter-cluster",
+      "sourceImagePx": [
+        479.42987013,
+        1067.88701299
+      ],
+      "sourcePlanPx": [
+        1145.52,
+        103.52
+      ],
+      "modelPositionMeters": [
+        -69.26289274,
+        0,
+        41.85231818
+      ],
+      "countMarkedOnSource": 1,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "mclu-119",
+      "label": "City meter cluster — Behind 119",
+      "kind": "meter-cluster",
+      "sourceImagePx": [
+        1136.24255319,
+        1067.90921986
+      ],
+      "sourcePlanPx": [
+        739.36,
+        102.43
+      ],
+      "modelPositionMeters": [
+        -2.71953448,
+        0,
+        42.06479879
+      ],
+      "countMarkedOnSource": 8,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "mclu-109",
+      "label": "City meter cluster — Behind 109",
+      "kind": "meter-cluster",
+      "sourceImagePx": [
+        1585.51023192,
+        1072.76671214
+      ],
+      "sourcePlanPx": [
+        461.53,
+        98.68
+      ],
+      "modelPositionMeters": [
+        42.79001761,
+        0,
+        42.68443369
+      ],
+      "countMarkedOnSource": 4,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "mclu-107",
+      "label": "City meter cluster — Behind 107",
+      "kind": "meter-cluster",
+      "sourceImagePx": [
+        1715.24770642,
+        1081.0406291
+      ],
+      "sourcePlanPx": [
+        381.27,
+        93.33
+      ],
+      "modelPositionMeters": [
+        55.92227408,
+        0,
+        43.53639113
+      ],
+      "countMarkedOnSource": 1,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "mclu-105",
+      "label": "City meter cluster — Behind 105",
+      "kind": "meter-cluster",
+      "sourceImagePx": [
+        1811.45765027,
+        1064.98360656
+      ],
+      "sourcePlanPx": [
+        321.83,
+        103.15
+      ],
+      "modelPositionMeters": [
+        65.69241767,
+        0,
+        41.99443751
+      ],
+      "countMarkedOnSource": 2,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-01",
+      "label": "Tenant shut-off cluster 1",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        208.868,
+        702.39733333
+      ],
+      "sourcePlanPx": [
+        1314.26,
+        331.03
+      ],
+      "modelPositionMeters": [
+        -96.15374842,
+        0,
+        5.96656844
+      ],
+      "countMarkedOnSource": 2,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-02",
+      "label": "Tenant shut-off cluster 2",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        236.13989637,
+        925.26813472
+      ],
+      "sourcePlanPx": [
+        1296.53,
+        192.52
+      ],
+      "modelPositionMeters": [
+        -93.70813572,
+        0,
+        27.80513231
+      ],
+      "countMarkedOnSource": 1,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-03",
+      "label": "Tenant shut-off cluster 3",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        460.7902571,
+        1041.03112314
+      ],
+      "sourcePlanPx": [
+        1157.16,
+        120.24
+      ],
+      "modelPositionMeters": [
+        -71.11307664,
+        0,
+        39.21585932
+      ],
+      "countMarkedOnSource": 4,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-04",
+      "label": "Tenant shut-off cluster 4",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        864.84796855,
+        1040.88859764
+      ],
+      "sourcePlanPx": [
+        907.29,
+        119.66
+      ],
+      "modelPositionMeters": [
+        -30.17674299,
+        0,
+        39.3312748
+      ],
+      "countMarkedOnSource": 1,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-05",
+      "label": "Tenant shut-off cluster 5",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1135.6231003,
+        1036.10790274
+      ],
+      "sourcePlanPx": [
+        739.87,
+        122.19
+      ],
+      "modelPositionMeters": [
+        -2.73700698,
+        0,
+        38.94971328
+      ],
+      "countMarkedOnSource": 10,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-06",
+      "label": "Tenant shut-off cluster 6",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1347.16983696,
+        1036.00543478
+      ],
+      "sourcePlanPx": [
+        609.05,
+        121.91
+      ],
+      "modelPositionMeters": [
+        18.69548539,
+        0,
+        39.00741206
+      ],
+      "countMarkedOnSource": 2,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-07",
+      "label": "Tenant shut-off cluster 7",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1432.31317204,
+        1035.96236559
+      ],
+      "sourcePlanPx": [
+        556.4,
+        121.8
+      ],
+      "modelPositionMeters": [
+        27.32163798,
+        0,
+        39.03045563
+      ],
+      "countMarkedOnSource": 4,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-08",
+      "label": "Tenant shut-off cluster 8",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1508.91156463,
+        1035.96462585
+      ],
+      "sourcePlanPx": [
+        509.04,
+        121.67
+      ],
+      "modelPositionMeters": [
+        35.08201581,
+        0,
+        39.05520313
+      ],
+      "countMarkedOnSource": 2,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-09",
+      "label": "Tenant shut-off cluster 9",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1585.4498645,
+        1040.7899729
+      ],
+      "sourcePlanPx": [
+        461.69,
+        118.55
+      ],
+      "modelPositionMeters": [
+        42.82943731,
+        0,
+        39.55234488
+      ],
+      "countMarkedOnSource": 4,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-10",
+      "label": "Tenant shut-off cluster 10",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1656.57795699,
+        1033.27150538
+      ],
+      "sourcePlanPx": [
+        417.73,
+        123.1
+      ],
+      "modelPositionMeters": [
+        50.04631461,
+        0,
+        38.83869782
+      ],
+      "countMarkedOnSource": 2,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-11",
+      "label": "Tenant shut-off cluster 11",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1715.29806452,
+        1049.18451613
+      ],
+      "sourcePlanPx": [
+        381.36,
+        113.12
+      ],
+      "modelPositionMeters": [
+        55.97273989,
+        0,
+        40.41615293
+      ],
+      "countMarkedOnSource": 1,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-12",
+      "label": "Tenant shut-off cluster 12",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        1787.34993271,
+        1043.12920592
+      ],
+      "sourcePlanPx": [
+        336.83,
+        116.76
+      ],
+      "modelPositionMeters": [
+        63.28112373,
+        0,
+        39.84611552
+      ],
+      "countMarkedOnSource": 3,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    },
+    {
+      "sourceId": "shutoff-13",
+      "label": "Tenant shut-off cluster 13",
+      "kind": "shutoff",
+      "sourceImagePx": [
+        2047.09934641,
+        1060.05751634
+      ],
+      "sourcePlanPx": [
+        176.14,
+        105.82
+      ],
+      "modelPositionMeters": [
+        89.57290159,
+        0,
+        41.58738534
+      ],
+      "countMarkedOnSource": 1,
+      "positionStatus": "approximate_source_registered",
+      "verificationStatus": "not_field_verified",
+      "seedPolicy": "reference_only"
+    }
+  ]
+}

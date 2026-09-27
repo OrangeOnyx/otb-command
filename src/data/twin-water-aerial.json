@@ -1,0 +1,867 @@
+{
+  "schemaVersion": 1,
+  "title": "Aerial comparison for existing water-map references",
+  "purpose": "Comparison overlay only; does not establish or move utility locations",
+  "modelSourceSha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+  "waterMapDataSha256": "bff7955f8c305798f0c4b056208af575677a2ecbd9326138aab5f59a2404be02",
+  "coordinateConvention": "[modelX,modelZ,1] @ transformModelXZToImage3x2 = full screenshot [x,y] pixels; crop does not change coordinates",
+  "sources": [
+    {
+      "id": "gis-overview",
+      "label": "Historical aerial overview",
+      "sourceImage": "infrastructure/gis-overview.png",
+      "originalFilename": "image002.png",
+      "sha256": "964ede3e73eb7a9ee4e4432dc538c548ade81e39ecbe1ce251814c65c3bfea3c",
+      "imageSizePx": [
+        1440,
+        900
+      ],
+      "crop": {
+        "x": 0,
+        "y": 100,
+        "width": 1420,
+        "height": 723
+      },
+      "dateDisplay": "2021-07-14",
+      "dateStatus": "taskbar date; aerial acquisition unknown",
+      "providerVisible": "LUS Map · ArcMap screenshot",
+      "geographicRegistration": "None; screenshot cursor coordinates are not georeferencing controls",
+      "registrationStatus": "approximate-visual-registration",
+      "controls": [
+        {
+          "id": "long_133_rear",
+          "description": "Long wing, 133 end / Marie Antoinette rear outline intersection",
+          "modelXZ": [
+            -65.9453355526,
+            37.4668809297
+          ],
+          "observedImagePoint": {
+            "x": 331,
+            "y": 390
+          },
+          "projectedImagePoint": [
+            333.920799665,
+            379.7013334544
+          ],
+          "residualImagePixels": 10.704840181,
+          "modelReference": "twin-water-map.json registration.controls[long_133_rear]",
+          "observedFeature": "Visually traced rear/end roof-or-wall outline; exact wall/eave boundary is uncertain",
+          "leaveOneOutResidualImagePixels": 15.0693985725
+        },
+        {
+          "id": "long_101_rear",
+          "description": "Long wing, 101 end / Marie Antoinette rear outline intersection",
+          "modelXZ": [
+            92.1735099502,
+            37.5642117492
+          ],
+          "observedImagePoint": {
+            "x": 631,
+            "y": 764
+          },
+          "projectedImagePoint": [
+            630.4541942305,
+            765.0973879481
+          ],
+          "residualImagePixels": 1.2256281029,
+          "modelReference": "twin-water-map.json registration.controls[long_101_rear]",
+          "observedFeature": "Visually traced rear/end roof-or-wall outline; exact wall/eave boundary is uncertain",
+          "leaveOneOutResidualImagePixels": 12.0582450537
+        },
+        {
+          "id": "short_135_patricia",
+          "description": "Short wing, 135 end / Patricia rear outline intersection",
+          "modelXZ": [
+            -95.9809886351,
+            23.5802106603
+          ],
+          "observedImagePoint": {
+            "x": 316,
+            "y": 269
+          },
+          "projectedImagePoint": [
+            311.378483014,
+            280.4640189251
+          ],
+          "residualImagePixels": 12.3605076419,
+          "modelReference": "twin-water-map.json registration.controls[short_135_patricia]",
+          "observedFeature": "Visually traced rear/end roof-or-wall outline; exact wall/eave boundary is uncertain",
+          "leaveOneOutResidualImagePixels": 19.2954369858
+        },
+        {
+          "id": "short_149_patricia",
+          "description": "Short wing, 149 end / Patricia rear outline intersection",
+          "modelXZ": [
+            -94.6818180427,
+            -38.1667689874
+          ],
+          "observedImagePoint": {
+            "x": 462,
+            "y": 170
+          },
+          "projectedImagePoint": [
+            464.2465230904,
+            167.7372596725
+          ],
+          "residualImagePixels": 3.1885513616,
+          "modelReference": "twin-water-map.json registration.controls[short_149_patricia]",
+          "observedFeature": "Visually traced rear/end roof-or-wall outline; exact wall/eave boundary is uncertain",
+          "leaveOneOutResidualImagePixels": 5.8249448778
+        }
+      ],
+      "transformModelXZToImage3x2": [
+        [
+          1.8768826295,
+          2.4362268441
+        ],
+        [
+          -2.4362268441,
+          1.8768826295
+        ],
+        [
+          548.9702755452,
+          470.0381921712
+        ]
+      ],
+      "rmsImagePixels": 8.3523166921,
+      "annotations": [
+        {
+          "id": "water-map:city-meter:01",
+          "category": "city-meter",
+          "label": "City meter map marker 01",
+          "markerLabelRaw": "8",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 8,
+          "modelPositionMeters": [
+            -89.8934386368,
+            0.0,
+            -43.9105900637
+          ],
+          "imagePoint": {
+            "x": 487.2270003145,
+            "y": 168.6223601157
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:city-meter:02",
+          "category": "city-meter",
+          "label": "City meter map marker 02",
+          "markerLabelRaw": "1",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 1,
+          "modelPositionMeters": [
+            -69.2559508536,
+            0.0,
+            41.8633906395
+          ],
+          "imagePoint": {
+            "x": 316.9962683383,
+            "y": 379.8876562924
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:city-meter:03",
+          "category": "city-meter",
+          "label": "City meter map marker 03",
+          "markerLabelRaw": "8",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 8,
+          "modelPositionMeters": [
+            -2.744239779,
+            0.0,
+            42.073601236
+          ],
+          "imagePoint": {
+            "x": 441.3188228144,
+            "y": 542.3198128753
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:city-meter:04",
+          "category": "city-meter",
+          "label": "City meter map marker 04",
+          "markerLabelRaw": "4",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 4,
+          "modelPositionMeters": [
+            42.7886463361,
+            0.0,
+            42.7072724699
+          ],
+          "imagePoint": {
+            "x": 525.2349389645,
+            "y": 654.4375788492
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:city-meter:05",
+          "category": "city-meter",
+          "label": "City meter map marker 05",
+          "markerLabelRaw": "1",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 1,
+          "modelPositionMeters": [
+            55.9478899159,
+            0.0,
+            43.5324852356
+          ],
+          "imagePoint": {
+            "x": 547.9228891649,
+            "y": 688.0453088117
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:city-meter:06",
+          "category": "city-meter",
+          "label": "City meter map marker 06",
+          "markerLabelRaw": "2",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 2,
+          "modelPositionMeters": [
+            65.6966824861,
+            0.0,
+            41.9960505227
+          ],
+          "imagePoint": {
+            "x": 569.9633320903,
+            "y": 708.9118713446
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:01",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 01",
+          "markerLabelRaw": "2",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 2,
+          "modelPositionMeters": [
+            -96.1904643297,
+            0.0,
+            5.9275158261
+          ],
+          "imagePoint": {
+            "x": 353.991290747,
+            "y": 246.8216523165
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:02",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 02",
+          "markerLabelRaw": "1",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 1,
+          "modelPositionMeters": [
+            -93.7219279939,
+            0.0,
+            27.7788062735
+          ],
+          "imagePoint": {
+            "x": 305.3897433502,
+            "y": 293.8478742763
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:03",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 03",
+          "markerLabelRaw": "4",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 4,
+          "modelPositionMeters": [
+            -71.1424410068,
+            0.0,
+            39.2127010555
+          ],
+          "imagePoint": {
+            "x": 319.9132288589,
+            "y": 370.3167051037
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:04",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 04",
+          "markerLabelRaw": "1",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 1,
+          "modelPositionMeters": [
+            -30.2121572685,
+            0.0,
+            39.3420614226
+          ],
+          "imagePoint": {
+            "x": 396.419416229,
+            "y": 470.2749553088
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:05",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 05",
+          "markerLabelRaw": "10",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 10,
+          "modelPositionMeters": [
+            -2.6986706725,
+            0.0,
+            38.939253616
+          ],
+          "imagePoint": {
+            "x": 449.0403324894,
+            "y": 536.5480269531
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:06",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 06",
+          "markerLabelRaw": "2",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 2,
+          "modelPositionMeters": [
+            18.6782844482,
+            0.0,
+            39.0068155899
+          ],
+          "imagePoint": {
+            "x": 488.9977719326,
+            "y": 588.7539447581
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:07",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 07",
+          "markerLabelRaw": "4",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 4,
+          "modelPositionMeters": [
+            27.3405103384,
+            0.0,
+            39.0341925982
+          ],
+          "imagePoint": {
+            "x": 505.1890566362,
+            "y": 609.9084754326
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:08",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 08",
+          "markerLabelRaw": "2",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 2,
+          "modelPositionMeters": [
+            35.0402666852,
+            0.0,
+            39.0585277168
+          ],
+          "imagePoint": {
+            "x": 519.5813097057,
+            "y": 628.712502699
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:09",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 09",
+          "markerLabelRaw": "4",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 4,
+          "modelPositionMeters": [
+            42.8342154426,
+            0.0,
+            39.5729248499
+          ],
+          "imagePoint": {
+            "x": 532.9564486395,
+            "y": 648.6657929269
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:10",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 10",
+          "markerLabelRaw": "2",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 2,
+          "modelPositionMeters": [
+            50.0388011485,
+            0.0,
+            38.8120720688
+          ],
+          "imagePoint": {
+            "x": 548.3322203733,
+            "y": 664.7897666557
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:11",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 11",
+          "markerLabelRaw": "1",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 1,
+          "modelPositionMeters": [
+            55.9934590223,
+            0.0,
+            40.3981376156
+          ],
+          "imagePoint": {
+            "x": 555.6443988397,
+            "y": 682.2735228892
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:12",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 12",
+          "markerLabelRaw": "3",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 3,
+          "modelPositionMeters": [
+            63.2965092426,
+            0.0,
+            39.8335017597
+          ],
+          "imagePoint": {
+            "x": 570.7269479698,
+            "y": 699.0056546496
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        },
+        {
+          "id": "water-map:tenant-shutoff:13",
+          "category": "tenant-shutoff",
+          "label": "Tenant shutoff map marker 13",
+          "markerLabelRaw": "1",
+          "markerLabelMeaning": "count at this location (confirmed by Adam 2026-09-25)",
+          "reportedCount": 1,
+          "modelPositionMeters": [
+            89.5629160757,
+            0.0,
+            41.5817155547
+          ],
+          "imagePoint": {
+            "x": 615.7668653177,
+            "y": 766.2777721785
+          },
+          "inCrop": true,
+          "positionStatus": "projected-existing-reference",
+          "physicalVerification": "not-field-verified",
+          "independentLocationConfirmation": false,
+          "physicalAssetId": null,
+          "memberMeterIds": [],
+          "servedUnits": []
+        }
+      ],
+      "registrationModel": "Uniform scale + rotation + translation; constrained affine, no shear",
+      "maxResidualImagePixels": 12.3605076419,
+      "leaveOneOutRmsImagePixels": 13.9528842754,
+      "leaveOneOutMaxImagePixels": 19.2954369858,
+      "scalePixelsPerModelMeter": [
+        3.0753682122,
+        3.0753682122
+      ],
+      "scaleAnisotropyRatio": 1.0,
+      "registrationLimitations": [
+        "Four manually observed outline corners; low-resolution roofing, shadows and overhang obscure exact wall positions.",
+        "Only rear/end outline corners are controls; parking-side eaves are excluded because they include covered walks.",
+        "Corner residuals are fit consistency, not physical utility-location accuracy. The native/model-to-water-map registration adds separate uncertainty.",
+        "Four controls provide limited redundancy; leave-one-out sensitivity is reported and is larger than the fitted residual.",
+        "Existing marker positions are projected onto an aerial of unknown acquisition date. No meter or valve has been independently identified."
+      ]
+    },
+    {
+      "id": "gis-south",
+      "label": "Historical aerial · south wing",
+      "sourceImage": "infrastructure/gis-south.png",
+      "originalFilename": "image001 (1).png",
+      "sha256": "5a3f2b58d00165da8f5dbe89b549c5ae1d3960f0046baddd0890596197a82477",
+      "imageSizePx": [
+        1440,
+        900
+      ],
+      "crop": {
+        "x": 0,
+        "y": 100,
+        "width": 1420,
+        "height": 723
+      },
+      "dateDisplay": "2021-07-14",
+      "dateStatus": "taskbar date; aerial acquisition unknown",
+      "providerVisible": "LUS Map · ArcMap screenshot",
+      "geographicRegistration": "None; screenshot cursor coordinates are not georeferencing controls",
+      "registrationStatus": "unregistered-support-image",
+      "controls": [],
+      "transformModelXZToImage3x2": null,
+      "rmsImagePixels": null,
+      "annotations": [],
+      "registrationReason": "Closeup clips part of the building/site; retained as visual support without independently established control points."
+    },
+    {
+      "id": "gis-west",
+      "label": "Historical aerial · west wing",
+      "sourceImage": "infrastructure/gis-west.png",
+      "originalFilename": "image004.png",
+      "sha256": "e5bdef271a65be5207ffa86e571fe20160c7e4ef516643536c77fd50390b6def",
+      "imageSizePx": [
+        1440,
+        900
+      ],
+      "crop": {
+        "x": 0,
+        "y": 100,
+        "width": 1420,
+        "height": 723
+      },
+      "dateDisplay": "2021-07-14",
+      "dateStatus": "taskbar date; aerial acquisition unknown",
+      "providerVisible": "LUS Map · ArcMap screenshot",
+      "geographicRegistration": "None; screenshot cursor coordinates are not georeferencing controls",
+      "registrationStatus": "unregistered-support-image",
+      "controls": [],
+      "transformModelXZToImage3x2": null,
+      "rmsImagePixels": null,
+      "annotations": [],
+      "registrationReason": "Closeup clips part of the building/site; retained as visual support without independently established control points."
+    }
+  ],
+  "withheldRegistrations": [
+    {
+      "id": "dotd-2024-registration-attempt",
+      "label": "2024 DOTD registration attempt · withheld",
+      "sourceImage": "infrastructure/dotd-2024-aerial.jpg",
+      "imageSizePx": [
+        3072,
+        3072
+      ],
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 3072,
+        "height": 3072
+      },
+      "dateDisplay": "2024",
+      "dateStatus": "DOTD service imagery year",
+      "registrationStatus": "withheld-insufficient-control",
+      "attribution": "Louisiana DOTD",
+      "sourceURL": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer",
+      "annotations": [],
+      "role": "Official aerial context for roofs, curbs, rear service lanes and surrounding streets.",
+      "limitations": "This image does not establish water shutoff locations, meter-to-unit connections, ownership, operability or below-ground pipe routes. No individual valve or meter was identified from the image.",
+      "registrationNote": "Not released as an overlay: sparse-control holdout error and inconsistent wing scales are too large for trustworthy marker placement. Use the unchanged official dataset as context only.",
+      "sourceRegistrationStatus": "unregistered-context-only",
+      "registrationModel": "Uniform scale + rotation + translation; constrained affine, no shear",
+      "controls": [
+        {
+          "id": "long_133_rear",
+          "description": "Long wing, 133 end / rear outline intersection",
+          "modelXZ": [
+            -65.9453355526,
+            37.4668809297
+          ],
+          "observedImagePoint": {
+            "x": 518,
+            "y": 1006
+          },
+          "projectedImagePoint": [
+            502.7788745001,
+            1003.6892418296
+          ],
+          "residualImagePixels": 15.3955274286,
+          "modelReference": "twin-water-map.json registration.controls[long_133_rear]",
+          "observedFeature": "Approximate rear/end roof-or-wall outline; read on 1600 px preview and converted to full 3072 px image coordinates",
+          "leaveOneOutResidualImagePixels": 21.6725644786
+        },
+        {
+          "id": "long_101_rear",
+          "description": "Long wing, 101 end / rear outline intersection",
+          "modelXZ": [
+            92.1735099502,
+            37.5642117492
+          ],
+          "observedImagePoint": {
+            "x": 1236,
+            "y": 2033
+          },
+          "projectedImagePoint": [
+            1238.8974545243,
+            2022.6054203278
+          ],
+          "residualImagePixels": 10.7908539644,
+          "modelReference": "twin-water-map.json registration.controls[long_101_rear]",
+          "observedFeature": "Approximate rear/end roof-or-wall outline; read on 1600 px preview and converted to full 3072 px image coordinates",
+          "leaveOneOutResidualImagePixels": 106.1649623877
+        },
+        {
+          "id": "short_135_patricia",
+          "description": "Short wing, 135 end / Patricia rear outline intersection",
+          "modelXZ": [
+            -95.9809886351,
+            23.5802106603
+          ],
+          "observedImagePoint": {
+            "x": 470,
+            "y": 732
+          },
+          "projectedImagePoint": [
+            452.2752364631,
+            745.5218287853
+          ],
+          "residualImagePixels": 22.2936559617,
+          "modelReference": "twin-water-map.json registration.controls[short_135_patricia]",
+          "observedFeature": "Approximate rear/end roof-or-wall outline; read on 1600 px preview and converted to full 3072 px image coordinates",
+          "leaveOneOutResidualImagePixels": 34.8016316363
+        },
+        {
+          "id": "short_149_patricia",
+          "description": "Short wing, 149 end / Patricia rear outline intersection",
+          "modelXZ": [
+            -94.6818180427,
+            -38.1667689874
+          ],
+          "observedImagePoint": {
+            "x": 826,
+            "y": 467
+          },
+          "projectedImagePoint": [
+            856.0484345125,
+            466.1835090573
+          ],
+          "residualImagePixels": 30.0595255138,
+          "modelReference": "twin-water-map.json registration.controls[short_149_patricia]",
+          "observedFeature": "Approximate rear/end roof-or-wall outline; read on 1600 px preview and converted to full 3072 px image coordinates",
+          "leaveOneOutResidualImagePixels": 54.9136768754
+        }
+      ],
+      "sha256": "2ea723da13726d3eae86dd0417acb8ca058217dc6cfcd0ce754069b31028d71f",
+      "rmsImagePixels": 20.9406719349,
+      "maxResidualImagePixels": 30.0595255138,
+      "leaveOneOutRmsImagePixels": 63.1810192272,
+      "leaveOneOutMaxImagePixels": 106.1649623877,
+      "scalePixelsPerModelMeter": [
+        7.9497445656,
+        7.9497445656
+      ],
+      "scaleAnisotropyRatio": 1.0,
+      "officialProvenance": {
+        "retrievedAtUtc": "2026-09-25T05:44:21.5858111Z",
+        "provider": "Louisiana Department of Transportation and Development",
+        "officialServiceURL": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer",
+        "exportRequestURL": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer/exportImage?f=pjson&bbox=-10247606.63408044,3529326.9070114414,-10247148.011910727,3529785.529181153&bboxSR=3857&imageSR=3857&size=3072,3072&format=jpg&compressionQuality=95&bandIds=0,1,2&interpolation=RSP_BilinearInterpolation&noDataInterpretation=esriNoDataMatchAny",
+        "imageSHA256": "2ea723da13726d3eae86dd0417acb8ca058217dc6cfcd0ce754069b31028d71f",
+        "imageBytes": 2979845,
+        "sourceImageryYear": 2024,
+        "exactFlightDate": null,
+        "yearEvidence": "The ImageServer service description identifies 2024 imagery. Its January 1 time extent is not treated as an exact collection date.",
+        "sourceServiceNominalResolution": "Approximately 6 inches",
+        "sourceServicePixelSizeMeters": [
+          0.14998546091759923,
+          0.14998546091759654
+        ],
+        "allowedUse": "The official service metadata says the data is free to use in any product or publication, supplied as-is for informational purposes. It is not authoritative for site-specific engineering, legal or other high-precision applications.",
+        "processing": "One bounded ArcGIS exportImage request, RGB bands 0,1,2, JPEG quality 95, bilinear interpolation, 3072 by 3072 pixels. The returned JPEG bytes are stored unchanged. No color editing, compositing, annotation burning, or model/basemap replacement.",
+        "publicAccess": "The service metadata and this image export were accessed without an account or paywall."
+      },
+      "officialImageGeoreferencing": {
+        "imageCoordinateSystem": {
+          "epsg": 3857,
+          "name": "WGS 84 / Pseudo-Mercator",
+          "arcgisWkid": 102100,
+          "latestWkid": 3857
+        },
+        "sourceNativeCoordinateSystem": {
+          "epsg": 6344,
+          "name": "NAD 1983 (2011) UTM Zone 15N"
+        },
+        "sourceBoundsFile": "src/data/sat-base.json",
+        "referenceFootprintsFile": "src/data/footprints-geo.json",
+        "bboxWgs84": [
+          -92.05581665039062,
+          30.200333349994068,
+          -92.05169677734375,
+          30.203893976001527
+        ],
+        "requestedBbox3857": [
+          -10247606.63408044,
+          3529326.9070114414,
+          -10247148.011910727,
+          3529785.529181153
+        ],
+        "returnedBbox3857": [
+          -10247606.63408044,
+          3529326.907011441,
+          -10247148.011910727,
+          3529785.5291811535
+        ],
+        "bboxOrder": "xmin,ymin,xmax,ymax",
+        "imageOrientation": "North-up; image x increases east/right and image y increases south/down.",
+        "imagePixelSizeMapUnits": [
+          0.14929107086997342,
+          0.14929107086997342
+        ],
+        "pixelConvention": "Coordinates refer to pixel edges. Pixel center (column,row) is (column+0.5,row+0.5).",
+        "pixelToProjectedFormula": {
+          "x": "xmin + pixelX / imageWidth * (xmax - xmin)",
+          "y": "ymax - pixelY / imageHeight * (ymax - ymin)"
+        },
+        "precisionNote": "Web Mercator map-unit pixel spacing is not a surveyed ground distance. Existing footprint alignment is approximate and visually fitted."
+      },
+      "registrationLimitations": [
+        "Four visually read rooftop/end-outline controls; exact wall/eave boundaries and roof overhangs are uncertain.",
+        "The affine is constrained to uniform scale/rotation to avoid unsupported shear from sparse controls.",
+        "Leave-one-out far-end sensitivity exceeds the fitted residual. This is comparison context, not utility-location accuracy.",
+        "Existing water-map/model positions are unchanged. No individual meter, valve or connection was identified in the aerial.",
+        "The official image georeference remains intact; it does not convert the source model into surveyed geometry."
+      ],
+      "wingScaleCheck": {
+        "longWingPixelsPerModelMeter": 7.925033358,
+        "shortWingPixelsPerModelMeter": 7.1858524171,
+        "longToShortRatio": 1.1028661456,
+        "interpretation": "Traced rear endpoints imply inconsistent wing scales. Corner choice/eave/shadow uncertainty and model proportions cannot be separated from these controls."
+      },
+      "candidateTransformModelXZToImage3x2": [
+        [
+          4.6594414303,
+          6.4411213477
+        ],
+        [
+          -6.4411213477,
+          4.6594414303
+        ],
+        [
+          1051.3760296964,
+          1253.8764131731
+        ]
+      ]
+    }
+  ]
+}
