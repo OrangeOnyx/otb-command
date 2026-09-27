@@ -26,8 +26,11 @@ body.render #go{display:none}
 // "A Thousand Promises" — Cypress Command Platform film (90 s).
 // Every frame is a pure function of t, so it plays live and renders frame-exact (render.mjs).
 'use strict';
-const W = 1920, H = 1080, FPS = 60, DUR = 90;
+const VERT = new URLSearchParams(location.search).get('format') === 'vertical'; // 1080×1920 social layout (shots in social-cut.mjs)
+const W = VERT ? 1080 : 1920, H = VERT ? 1920 : 1080, FPS = 60, DUR = 90;
 const cv = document.getElementById('c');
+cv.width = W; cv.height = H;
+if (VERT) cv.style.cssText = 'width:auto;height:min(100vh,177.78vw)';
 const main = cv.getContext('2d');
 let g = main;
 const params = new URLSearchParams(location.search);
@@ -155,6 +158,7 @@ S.rows.forEach((r, ri) => { const [p0, p1, p2, p3] = r.q; for (let k = 0; k <= r
 const L1 = 'Every property runs on', L2a = 'a thousand small ', L2b = 'promises.';
 const FT = `900 84px ${DISPLAY}`;
 function S1(t) {
+  if (VERT) return S1v(t);
   bg(PAL.night);
   const x0 = 170, y1 = 520;
   const lift = ep(t, 2.9, .5, E.inOutCubic);
@@ -199,6 +203,40 @@ function S1(t) {
   if (t > 6) storm(t, false, ep(t, 6, 2, E.inCubic));
 }
 
+// Vertical: the same typing, stacked to fit the tall frame; "promises." gets its own big line.
+function S1v(t) {
+  bg(PAL.night);
+  const x0 = 90, F1 = `900 92px ${DISPLAY}`, F2 = `900 170px ${DISPLAY}`, tr = -1.5;
+  const n1 = Math.floor(cl((t - 1) * 16, 0, L1.length));
+  const l1a = L1.slice(0, Math.min(n1, 14)), l1b = n1 > 15 ? L1.slice(15, n1) : '';
+  const dim = lerp(1, .38, ep(t, 2.9, .5, E.inOutCubic));
+  g.globalAlpha = dim; text(l1a, x0, 700, F1, PAL.paper, tr); text(l1b, x0, 806, F1, PAL.paper, tr); g.globalAlpha = 1;
+  const n2 = Math.floor(cl((t - 3.05) * 14, 0, L2a.length + L2b.length));
+  const a = L2a.slice(0, n2).trimEnd(), b = n2 > L2a.length ? L2b.slice(0, n2 - L2a.length) : '';
+  const shatter = P(t, 5.9, 8), yb = 1090;
+  if (t >= 3.05) {
+    text(a, x0, 940, F1, PAL.paper, tr);
+    if (shatter <= 0) text(b, x0, yb, F2, PAL.heroN, -4);
+    else {
+      g.font = F2; let cx = x0;
+      [...L2b].forEach((ch, i) => {
+        const w = g.measureText(ch).width, Rr = rng(i + 3), e = E.inCubic(cl(shatter * 1.25 - i * .03)), sc = 1 + e * (3 + Rr() * 6);
+        g.save(); g.globalAlpha = 1 - e; g.translate(cx + w / 2 + (Rr() - .5) * 700 * e, yb - 55 + (Rr() - .5) * 1100 * e);
+        g.rotate((Rr() - .5) * 4 * e); g.scale(sc, sc); text(ch, -w / 2, 55, F2, PAL.heroN, 0); g.restore();
+        cx += w - 4;
+      });
+    }
+  }
+  let cx, cy, cs;
+  if (t < 3.05) { cx = x0 + tw(l1b || l1a, F1, tr); cy = (l1b ? 806 : 700) - 30; cs = 38; }
+  else if (!b) { cx = x0 + tw(a, F1, tr); cy = 910; cs = 38; }
+  else { cx = x0 + tw(b, F2, -4); cy = yb - 55; cs = 60; }
+  const typingNow = (t > 1 && t < 2.45) || (t > 3.05 && t < 4.9);
+  const fade = 1 - ep(t, 5.6, .4);
+  if ((typingNow || Math.floor(t * 2) % 2 === 0) && fade > 0 && t > .5) hero(cx + cs * .8, cy, cs, false, 0, fade);
+  if (t > 6) storm(t, false, ep(t, 6, 2, E.inCubic));
+}
+
 // ═════════════════════════════════════════════════════════════════════════
 // 2 · THE PILE (6–28): a flight through everything a property promises
 const NF = 220, FR = rng(42);
@@ -207,7 +245,7 @@ const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT
 const SIZES = [[200, 150], [120, 130], [130, 130], [170, 200], [300, 64], [220, 120], [190, 110]];
 const frags = [...Array(NF)].map((_, i) => {
   const type = Math.floor(FR() * 7);
-  return { i, type, x: (FR() - .5) * 3800, y: (FR() - .5) * 2200, z: FR() * 3000, r0: (FR() - .5) * 1.2, spin: (FR() - .5) * .5,
+  return { i, type, x: (FR() - .5) * (VERT ? 2300 : 3800), y: (FR() - .5) * (VERT ? 4000 : 2200), z: FR() * 3000, r0: (FR() - .5) * 1.2, spin: (FR() - .5) * .5,
     a: ALERTS[Math.floor(FR() * ALERTS.length)], mo: MON[Math.floor(FR() * 12)], d: 1 + Math.floor(FR() * 28), wo: 1000 + Math.floor(FR() * 8999), seed: Math.floor(FR() * 1e6), w: SIZES[type][0], h: SIZES[type][1] };
 });
 const FOCAL = 900, FREEZE = 26;
@@ -262,7 +300,7 @@ function drawFrag(f, detail) {
   }
 }
 // Snap targets: the 144 nearest fragments at the freeze lock into a 16×9 wall.
-const COLS = 16, ROWS = 9, CELL = 104, GAP = 16;
+const COLS = VERT ? 9 : 16, ROWS = VERT ? 16 : 9, CELL = 104, GAP = 16;
 const frozen = frags.map(f => ({ f, st: fragState(f, FREEZE) }));
 const nearest = frozen.filter(o => o.st.alpha > .05).sort((a, b) => a.st.z - b.st.z).slice(0, COLS * ROWS);
 nearest.sort((a, b) => a.st.sy - b.st.sy);
@@ -307,7 +345,8 @@ function S2(t) {
     if (t > 8.5) {
       g.globalAlpha = ep(t, 8.5, .5);
       const lab = `${unread} UNREAD`, f = `700 22px ${MONO}`, w = tw(lab, f, 1.5);
-      rrect(W - 90 - w - 50, 60, w + 60, 50, 25, PAL.alertN); text(lab, W - 90 - w / 2 - 20, 93, f, PAL.night, 1.5, 'center');
+      const by = VERT ? 300 : 60;
+      rrect(W - 90 - w - 50, by, w + 60, 50, 25, PAL.alertN); text(lab, W - 90 - w / 2 - 20, by + 33, f, PAL.night, 1.5, 'center');
       g.globalAlpha = 1;
     }
     // words hit on the beat
@@ -319,13 +358,13 @@ function S2(t) {
         g.globalAlpha = e * (1 - out); g.filter = `blur(${(1 - e) * 16}px)`; g.shadowColor = PAL.night; g.shadowBlur = 60;
         const sc = lerp(1.25, 1, e) + lt * .03;
         g.translate(W / 2, H / 2 + 60); g.scale(sc, sc);
-        text(wd, 0, 0, `900 ${t0 < 18 ? 190 : 170}px ${DISPLAY}`, PAL.paper, -5, 'center');
+        text(wd, 0, 0, `900 ${VERT ? (t0 < 18 ? 150 : 128) : (t0 < 18 ? 190 : 170)}px ${DISPLAY}`, PAL.paper, -5, 'center');
         reset();
       }
       if (t >= 22) { // flash words: chromatic split, every 16th
         const k = Math.floor((t - 22) * 4), wd = FLASH[k % FLASH.length];
-        const R = rng(k + 9), x = W / 2 + (R() - .5) * 700, y = H / 2 + (R() - .5) * 420;
-        const f = `900 ${150 + R() * 110}px ${DISPLAY}`;
+        const R = rng(k + 9), x = W / 2 + (R() - .5) * (VERT ? 300 : 700), y = H / 2 + (R() - .5) * (VERT ? 900 : 420);
+        const f = `900 ${VERT ? 110 + R() * 70 : 150 + R() * 110}px ${DISPLAY}`;
         g.globalAlpha = .85; text(wd, x - 8, y, f, PAL.alertN, -4, 'center'); text(wd, x + 8, y, f, PAL.accN, -4, 'center');
         g.globalAlpha = 1; text(wd, x, y, f, PAL.paper, -4, 'center');
       }
@@ -353,7 +392,10 @@ function S2(t) {
     if (t > 28.9) {
       g.globalAlpha = 1 - dim; rect(0, 0, W, H, PAL.paper); g.globalAlpha = 1;
       g.globalAlpha = 1 - ep(t, 30.35, .25);
-      rise('Everything has a place.', W / 2, H / 2 + 40, `900 128px ${DISPLAY}`, PAL.ink, t, 28.95, { size: 128, track: -3.5, stagger: .06, dur: .5, by: 'word', align: 'center' });
+      if (VERT) {
+        rise('Everything', W / 2, H / 2 - 10, `900 136px ${DISPLAY}`, PAL.ink, t, 28.95, { size: 136, track: -3.5, stagger: .06, dur: .5, by: 'word', align: 'center' });
+        rise('has a place.', W / 2, H / 2 + 130, `900 136px ${DISPLAY}`, PAL.ink, t, 29.07, { size: 136, track: -3.5, stagger: .06, dur: .5, by: 'word', align: 'center' });
+      } else rise('Everything has a place.', W / 2, H / 2 + 40, `900 128px ${DISPLAY}`, PAL.ink, t, 28.95, { size: 128, track: -3.5, stagger: .06, dur: .5, by: 'word', align: 'center' });
       g.globalAlpha = 1;
     }
   }
@@ -365,9 +407,9 @@ const PICK = units[11];
 function cam3(t) {
   const tilt = ep(t, 33, 2.2, E.inOutCubic);
   const phi = tilt * 55 * Math.PI / 180;
-  const th = (-tilt * 25 - smooth(t, 35, 45.6) * 50) * Math.PI / 180;
-  let s = lerp(.95, 1.12, tilt) + smooth(t, 35, 43.4) * .12;
-  let ox = 704, oy = lerp(300, 390, tilt), cx = W / 2, cy = lerp(560, 600, tilt);
+  const th = ((VERT ? -90 : 0) - tilt * 25 - smooth(t, 35, 45.6) * 50) * Math.PI / 180;
+  let s = (VERT ? lerp(1.0, 1.32, tilt) : lerp(.95, 1.12, tilt)) + smooth(t, 35, 43.4) * .12;
+  let ox = 704, oy = lerp(300, 390, tilt), cx = W / 2, cy = VERT ? lerp(H / 2 + 70, H / 2 + 20, tilt) : lerp(560, 600, tilt);
   const dive = E.inExpo(P(t, 43.4, 45.6));
   const zf0 = s * Math.sin(phi);
   if (dive > 0) {
@@ -479,16 +521,18 @@ function S3(t) {
   const tc = mix(PAL.ink, PAL.paper, night), acc = mix(PAL.accL, PAL.accN, night);
   const outA = 1 - ep(t, 43.2, .3);
   g.globalAlpha = (1 - ep(t, 33.8, .4));
-  rise('EVERY PROMISE BELONGS TO A PLACE', 110, 120, `700 16px ${UI}`, acc, t, 31.0, { size: 16, track: 3, stagger: .012 });
-  rise('Traced from the recorded plat · Lafayette, Louisiana', 110, 152, `400 20px ${MONO}`, PAL.soft, t, 31.3, { size: 20, stagger: .006 });
+  const TX = VERT ? 90 : 110, TY = VERT ? 200 : 120, BY = VERT ? 1440 : 960;
+  rise('EVERY PROMISE BELONGS TO A PLACE', TX, TY, `700 16px ${UI}`, acc, t, 31.0, { size: 16, track: 3, stagger: .012 });
+  rise(VERT ? 'Traced from the recorded plat' : 'Traced from the recorded plat · Lafayette, Louisiana', TX, TY + 32, `400 20px ${MONO}`, PAL.soft, t, 31.3, { size: 20, stagger: .006 });
   g.globalAlpha = outA * (1 - ep(t, 38.6, .3));
-  rise('Dates that keep themselves.', 110, 960, `900 88px ${DISPLAY}`, tc, t, 35.2, { size: 88, track: -2, stagger: .07, by: 'word' });
+  if (VERT) { rise('Dates that keep', TX, BY - 100, `900 88px ${DISPLAY}`, tc, t, 35.2, { size: 88, track: -2, stagger: .07, by: 'word' }); rise('themselves.', TX, BY, `900 88px ${DISPLAY}`, tc, t, 35.41, { size: 88, track: -2, stagger: .07, by: 'word' }); }
+  else rise('Dates that keep themselves.', TX, BY, `900 88px ${DISPLAY}`, tc, t, 35.2, { size: 88, track: -2, stagger: .07, by: 'word' });
   g.globalAlpha = outA;
-  if (t > 39) rise('Nothing slips.', 110, 960, `900 88px ${DISPLAY}`, tc, t, 39.2, { size: 88, track: -2, stagger: .09, by: 'word' });
+  if (t > 39) rise('Nothing slips.', TX, BY, `900 ${VERT ? 104 : 88}px ${DISPLAY}`, tc, t, 39.2, { size: 88, track: -2, stagger: .09, by: 'word' });
   g.globalAlpha = outA * ep(t, 34.6, .5);
   const day = Math.max(1, Math.round(1 + 364 * smooth(t, 35, 43)));
-  text(`DAY ${String(day).padStart(3, '0')} / 365`, W - 110, 110, `700 30px ${MONO}`, tc, 2, 'right');
-  text(`${String(closed).padStart(2, '0')} ITEMS CLOSED`, W - 110, 146, `700 16px ${UI}`, acc, 2.5, 'right');
+  text(`DAY ${String(day).padStart(3, '0')} / 365`, W - TX, TY, `700 30px ${MONO}`, tc, 2, 'right');
+  text(`${String(closed).padStart(2, '0')} ITEMS CLOSED`, W - TX, TY + 36, `700 16px ${UI}`, acc, 2.5, 'right');
   g.globalAlpha = 1;
   // the roof becomes the screen
   const white = ep(t, 45.2, .4, E.inCubic);
@@ -543,16 +587,18 @@ function S4(t) {
     g.globalAlpha = 1;
     const front = ((Math.round(ringA(t) / STEP) % 13) + 13) % 13;
     let ix = 560;
+    if (!VERT) {
     SHEETS.forEach(([c], k) => { const e = ep(t, 46 + k * .04, .4); g.globalAlpha = e; text(c, ix + 32, 104 + (1 - e) * 20, `700 14px ${MONO}`, k === front && t < 54 ? PAL.ink : PAL.soft, 1, 'center'); g.globalAlpha = 1; ix += 94; });
     if (t < 54) { const A = ringA(t) / STEP, fx = 560 + 32 + A % 13 * 94; rect(fx - 26, 124, 52, 4, PAL.heroL); }
+    }
   }
   // carousel
   if (t >= 46.1 && t < 54.4) {
-    const A = ringA(t), R = 760, Dc = 2300, f = 1900, cx = W / 2, cy = 600;
+    const A = ringA(t), R = VERT ? 380 : 760, Dc = VERT ? 1900 : 2300, f = VERT ? 1750 : 1900, cx = W / 2, cy = VERT ? H / 2 : 600;
     const k = Math.min(10, Math.floor((t - 46.5) / .5)), frontIdx = ((Math.round(A / STEP) % 13) + 13) % 13;
     const bgLt = t - (46.5 + Math.max(0, k) * .5);
     g.globalAlpha = .9 * (1 - ep(t, 53.7, .3));
-    rise(SHEETS[frontIdx][1], W / 2, 690, `900 230px ${DISPLAY}`, mix(PAL.paper2, PAL.rule, .55), bgLt, 0, { size: 210, track: -6, stagger: .015, dur: .35, align: 'center' });
+    rise(SHEETS[frontIdx][1], W / 2, VERT ? cy + 60 : 690, `900 ${VERT ? 128 : 230}px ${DISPLAY}`, mix(PAL.paper2, PAL.rule, .55), bgLt, 0, { size: 210, track: -6, stagger: .015, dur: .35, align: 'center' });
     g.globalAlpha = 1;
     const enter = ep(t, 46.1, .7, E.outCubic), zoom = E.inExpo(P(t, 53.6, 54.3));
     const cards = SHEETS.map((_, i) => { const a = i * STEP - A; return { i, a, z: Math.cos(a) * R, x: Math.sin(a) * R }; }).sort((p, q) => p.z - q.z);
@@ -618,11 +664,11 @@ function S4(t) {
 const LINES = ['Drawn from the recorded plat', 'Wired to every lease', 'Watching every date', 'Answering in plain English', 'Closing every loop', 'Running while you sleep'];
 const FM = `900 94px ${DISPLAY}`, BASE = 600, SQ = 24;
 function periodAt(k) { const w = tw(LINES[k], FM, -3); return [140 + w + 10 + SQ / 2, BASE - SQ / 2]; }
-const FINAL = [['Build', 'AI', 'into', 'how'], ['you', 'actually', 'operate']];
-const FF = `900 132px ${DISPLAY}`;
+const FINAL = VERT ? [['Build', 'AI'], ['into', 'how', 'you'], ['actually'], ['operate']] : [['Build', 'AI', 'into', 'how'], ['you', 'actually', 'operate']];
+const FF = `900 ${VERT ? 124 : 132}px ${DISPLAY}`;
 function finalLayout() {
   const out = [];
-  FINAL.forEach((ln, r) => { const full = ln.join(' '), w = tw(full, FF, -4); let x = W / 2 - w / 2; ln.forEach(wd => { out.push({ wd, x, y: 480 + r * 150 }); x += tw(wd + ' ', FF, -4); }); });
+  FINAL.forEach((ln, r) => { const full = ln.join(' '), w = tw(full, FF, -4); let x = W / 2 - w / 2; ln.forEach(wd => { out.push({ wd, x, y: (VERT ? 760 : 480) + r * (VERT ? 140 : 150) }); x += tw(wd + ' ', FF, -4); }); });
   return out;
 }
 function S5(t) {
@@ -676,7 +722,7 @@ function S5(t) {
 
 // ═════════════════════════════════════════════════════════════════════════
 // 6 · THE MARK (79.6–90): the square becomes the core; the frame slams home on the beat
-const MS = 300;
+const MS = VERT ? 240 : 300, MK = MS / 300;
 const PIECES = [ // [clip rect in mark units, from dx, dy, lands at]
   [[0, 0, 100, 22], 0, -900, 80.5], [[0, 78, 100, 22], 0, 900, 81.0], [[0, 22, 22, 56], -1300, 0, 81.5],
   [[78, 22, 22, 20], 1300, 0, 82.0], [[78, 61, 22, 17], 1300, 0, 82.0]];
@@ -690,13 +736,13 @@ function S6(t) {
   if (hide < 1) lay.forEach((o, i) => text(o.wd, o.x, o.y, FF, i === 1 ? PAL.accN : PAL.paper, -4));
   const s0 = hide * 2400; rect(lastPos[0] - s0, lastPos[1] - s0, s0 * 2, s0 * 2, EB.bg);
   // lockup geometry
-  const fWm = `800 104px ${UI}`, track = 104 * .08;
+  const fWm = `800 ${Math.round(104 * MK)}px ${UI}`, track = 104 * MK * .08;
   const wmW = Math.max(tw('CYPRESS', fWm, track), tw('COMMAND', fWm, track));
   const gap = MS * .22, lockW = MS + gap * 2 + 3 + wmW;
   const slide = ep(t, 82.25, .5, E.inOutExpo);
   const push = 1 + smooth(t, 83, 88) * .04;
   const mxC = W / 2 - MS / 2, mxL = W / 2 - lockW / 2;
-  const mx = lerp(mxC, mxL, slide), my = H / 2 - MS / 2 - lerp(0, 70, slide);
+  const mx = lerp(mxC, mxL, slide), my = H / 2 - MS / 2 - lerp(0, VERT ? 150 : 70, slide);
   reset(); g.translate(W / 2, H / 2); g.scale(push, push); g.translate(-W / 2, -H / 2);
   // guides flash as each piece lands
   for (const [, , , tl] of PIECES) { const e = P(t, tl, tl + .5); if (e > 0 && e < 1) { g.globalAlpha = (1 - e) * .5; line(0, my - 1, W, my - 1, EB.soft, 1); line(0, my + MS, W, my + MS, EB.soft, 1); line(mx - 1, 0, mx - 1, H, EB.soft, 1); line(mx + MS, 0, mx + MS, H, EB.soft, 1); g.globalAlpha = 1; } }
@@ -729,7 +775,7 @@ function S6(t) {
     [...wd].forEach((ch, i) => {
       const t0 = 82.5 + r * .22 + i * .028, e = ep(t, t0, .28, E.outCubic);
       const w = g.measureText(ch).width;
-      if (e > 0) { g.save(); g.globalAlpha = e; g.filter = `blur(${(1 - e) * 10}px)`; g.translate(cx + w / 2, my + (r ? 250 : 132) - 35); g.scale(lerp(2.2, 1, e), lerp(2.2, 1, e)); text(ch, -w / 2, 35, fWm, EB.text, 0); g.restore(); }
+      if (e > 0) { g.save(); g.globalAlpha = e; g.filter = `blur(${(1 - e) * 10}px)`; g.translate(cx + w / 2, my + (r ? 250 : 132) * MK - 35 * MK); g.scale(lerp(2.2, 1, e), lerp(2.2, 1, e)); text(ch, -w / 2, 35 * MK, fWm, EB.text, 0); g.restore(); }
       g.font = fWm; g.letterSpacing = track + 'px'; cx += w;
     });
     g.letterSpacing = '0px';
@@ -737,12 +783,20 @@ function S6(t) {
   const by = my + MS + 120;
   const rl = ep(t, 83.35, .5);
   rect(W / 2 - 70 * rl, by - 46, 140 * rl, 4, EB.acc);
+  if (VERT) {
+    rise('Systems under control.', W / 2, by + 36, `900 62px ${DISPLAY}`, EB.text, t, 83.55, { size: 62, track: -1, stagger: .09, by: 'word', align: 'center' });
+    rise('Results that last.', W / 2, by + 116, `italic 400 62px ${DISPLAY}`, EB.acc, t, 84.0, { size: 62, stagger: .09, by: 'word', align: 'center' });
+    g.globalAlpha = ep(t, 84.4, .6);
+    text('THE CYPRESS COMMAND PLATFORM', W / 2, by + 196, `700 17px ${MONO}`, EB.soft, 3, 'center');
+    text('CYPRESSCOMMAND.COM', W / 2, by + 228, `700 17px ${MONO}`, EB.soft, 3, 'center');
+  } else {
   const f1 = `900 50px ${DISPLAY}`, f2 = `italic 400 50px ${DISPLAY}`, s1 = 'Systems under control. ', s2 = 'Results that last.';
   const w1 = tw(s1, f1, -1), w2 = tw(s2, f2), x0 = W / 2 - (w1 + w2) / 2;
   rise(s1, x0, by + 30, f1, EB.text, t, 83.55, { size: 50, track: -1, stagger: .09, by: 'word' });
   rise(s2, x0 + w1, by + 30, f2, EB.acc, t, 84.0, { size: 50, stagger: .09, by: 'word' });
   g.globalAlpha = ep(t, 84.4, .6);
   text('THE CYPRESS COMMAND PLATFORM · CYPRESSCOMMAND.COM', W / 2, by + 100, `700 18px ${MONO}`, EB.soft, 3, 'center');
+  }
   g.globalAlpha = 1;
   reset();
   if (t >= 88) bg('#000000');
