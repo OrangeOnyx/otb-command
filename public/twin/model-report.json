@@ -1,0 +1,148 @@
+{
+  "source": {
+    "file": "On_The_Boulevard.native.fml",
+    "sha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+    "projectId": 109978485,
+    "floorId": 178816737,
+    "designId": 241952337
+  },
+  "conversion": {
+    "sourceUnit": "centimeter",
+    "unit": "meter",
+    "upAxis": "Y",
+    "originFmlCm": {
+      "x": -6403.2662401319585,
+      "y": -2511.451712902764,
+      "z": 0
+    },
+    "mapping": "[ (FML.x-origin.x)/100, FML.z/100, (FML.y-origin.y)/100 ]",
+    "surfaceConvention": "Source surface point z treated as the lower elevation; source thickness extruded upward. This interpretation has not been independently verified in Floorplanner."
+  },
+  "input": {
+    "walls": 1646,
+    "areas": 277,
+    "surfaces": 2,
+    "openings": 257
+  },
+  "output": {
+    "modelFile": "model.glb",
+    "columns": 37,
+    "columnWallSegments": 154,
+    "wallSolidSections": 2090,
+    "doorsCut": 166,
+    "windowsCut": 91,
+    "windowGlazingProxies": 91,
+    "sourceFloorPolygons": 277,
+    "sourceSurfaces": 2,
+    "meshes": 42,
+    "nodes": 48,
+    "triangles": 29949,
+    "boundsMeters": {
+      "min": [
+        -95.23372650146484,
+        0,
+        -41.48417282104492
+      ],
+      "max": [
+        95.21627044677734,
+        3.886199951171875,
+        40.738800048828125
+      ]
+    }
+  },
+  "limitations": [
+    "Model derived from the supplied Floorplanner export, not a measured survey or an as-built structural record.",
+    "All ground-floor wall segments have the same source height (3.8862 m); individual wall and column heights are unverified.",
+    "Column classifications are inferred from repeated wall geometry. They are physically unverified and do not establish structural capacity or condition.",
+    "Source column wall loops are retained as source-shaped perimeter solids, rather than replaced with idealized filled cubes.",
+    "Catalog door leaves, window frames, fittings, furnishings and texture assets are not included in the native geometry. Door voids are cut; window voids include a simple glazing proxy.",
+    "Floor area polygons are source planes at elevation zero; no invented floor thickness or finished-floor elevation is added.",
+    "The elevated source surface is categorized as canopy by elevation and its matching walkway footprint. No roof pitch, fascia detail or new exterior is invented.",
+    "Second Floor design 193835178 is omitted because registration to the ground floor is unverified. The native export preserves it.",
+    "Alternative ground-floor design 189209676 is omitted; this model uses design 241952337 only.",
+    "No georeferencing, surveyed coordinates, tenant area reconciliation, maintenance status or live sensor data are asserted."
+  ],
+  "warnings": [
+    {
+      "type": "opening-clipped-at-wall-end",
+      "wallIndex": 130,
+      "openingIndex": 0,
+      "overhangCm": [
+        9.036782364646832,
+        2.1030555774771926
+      ]
+    },
+    {
+      "type": "opening-clipped-at-wall-end",
+      "wallIndex": 318,
+      "openingIndex": 1,
+      "overhangCm": [
+        0.6712344937533103,
+        0
+      ]
+    },
+    {
+      "type": "opening-clipped-at-wall-end",
+      "wallIndex": 787,
+      "openingIndex": 0,
+      "overhangCm": [
+        12.26394119492997,
+        0
+      ]
+    },
+    {
+      "type": "opening-clipped-at-wall-end",
+      "wallIndex": 917,
+      "openingIndex": 0,
+      "overhangCm": [
+        0,
+        6.455625126926179
+      ]
+    },
+    {
+      "type": "opening-clipped-at-wall-end",
+      "wallIndex": 1307,
+      "openingIndex": 0,
+      "overhangCm": [
+        0,
+        71.52463783478595
+      ]
+    },
+    {
+      "type": "opening-clipped-at-wall-end",
+      "wallIndex": 1348,
+      "openingIndex": 0,
+      "overhangCm": [
+        6.843639309652566,
+        0
+      ]
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "glbBytes": 2201460,
+    "bufferBytes": 2156328,
+    "bufferViews": 84,
+    "accessors": 84,
+    "nodeReferencesChecked": true,
+    "allValuesFinite": true,
+    "uniqueColumnIds": true,
+    "sourceSha256Unchanged": true
+  },
+  "loaderValidation": {
+    "passed": true,
+    "engine": "Three.js GLTFLoader",
+    "counts": {
+      "meshes": 42,
+      "columns": 37,
+      "vertices": 89847
+    },
+    "sizeMeters": [
+      190.4499969482422,
+      3.886199951171875,
+      82.22297286987305
+    ],
+    "issues": []
+  }
+}

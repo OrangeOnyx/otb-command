@@ -428,6 +428,12 @@ function initViews(account) {
   initConcierge();
   initVendorPortal(account);
   initMaintenance(account);
+  // Keep twin references outside the production module graph until
+  // hosted persistence and the source-publication review are explicitly enabled.
+  if (import.meta.env.DEV || import.meta.env.VITE_ASSET_TWIN_ENABLED === '1') {
+    import('./views/asset-twin.js').then(({ initAssetTwin }) => initAssetTwin(account))
+      .catch(error => console.error('Asset twin could not load:', error));
+  }
   initSop(account);
   initPortfolio();
   initComms(account);

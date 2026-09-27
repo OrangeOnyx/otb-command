@@ -1,5 +1,25 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 27, 2026 - Integrated twin merged with the current site-viewer branch
+
+The integrated twin and standalone site-viewer source now share the integration branch based on current main. Existing 39-support A-1 IDs and 37 native-model column candidates are preserved; their registers are not silently merged. Both handoff histories remain below.
+
+Hosted activation is default-off pending the prepared database migrations and hosted acceptance; local review remains available through the existing launcher. Default production builds exclude the integrated twin source bundle and public model package. No database migration or browser-record migration is performed by the merge. See `docs/asset-twin-integration.md` for the release boundary and validation contract.
+
+## September 25, 2026 - Parking/common areas and site-capture handoff
+
+Added 51 visual site zones with 41 permanent common-area records, selectable geometry, layer controls, W1217102 broad grass search, and a complete editable GLB including site context. Five historical architectural sheets are reviewed; Insta360 and iPhone/iPad LiDAR field checklist is available from Sources. Existing asset IDs and native building geometry are preserved. Local review only; no production deployment or live database writes.
+
+Validation: 886 tests covered (one environment-blocked config test passed in its 10-test normal-access rerun), production build passed, live browser selection/reload/search/upper-floor/presentation checks passed. See `docs/asset-twin-site-context-release.md` and `docs/asset-twin-site-context.md`. Handoff package: `outputs/OTB_Site_Context_2026-09-25` in the task workspace, outside this checkout.
+
+## September 25, 2026 — Permanent asset research evidence (isolated twin branch)
+
+In `codex/otb-asset-twin`, the twin's Record → References section now saves source links, dated Earth views and verification notes against permanent asset IDs. Local review attaches the curated research catalog atomically and idempotently; manual notes and per-record JSON exports are available. Dates retain selector/source-year caveats, and applicable water/column/fixture/upper-floor checks remain explicitly unverified. No imagery or field certainty is manufactured.
+
+The existing append-only bindings table stores evidence snapshots without geometry; no new migration. Hosted candidates require an explicit operator save/attach action. No deployment, migration application or live Supabase write was performed. Canonical checkout unchanged. See `docs/asset-twin-research-evidence.md` for storage/API details and verification.
+
+Validation: 873 automated tests covered; 872 passed in sandbox, and the one config-loader permission failure passed with normal filesystem access. Production build passed with the runner config loader. C12 and water-meter evidence inspected live; a clearly labeled evidence note on the pre-existing QA record survived reload with unchanged asset ID, inspection and verification status. Browser console had no errors.
+
 ## September 24, 2026 (later) — OTB SITE TWIN (Stage 2) BUILT on branch `site-twin-stage2` · 809 tests green
 
 Operator: "1, then write the Stage 2 plan" → Stage 1 merged (PR #14, live) → plan (PR #15) → "go" on defaults D1–D4.

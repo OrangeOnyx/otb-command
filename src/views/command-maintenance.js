@@ -17,9 +17,9 @@ export function createCommandMaintenance({localReview,onProperty,onSource,onDraf
   return {update(evidence) {
     const issue=evidence?.issue, read=issue?.systemRecord;
     host.hidden=!issue;
-    if (localReview) queue.hidden=!!issue;
+    if (localReview) queue.hidden=false;
     if (!issue) {host.replaceChildren();return;}
-    if (localReview) page.querySelector('.page-head .sub').textContent='M-1 · DATED RECORD REVIEW';
+    if (localReview) page.querySelector('.page-head .sub').textContent='M-1 · LOCAL REVIEW + DATED RECORD';
     const checked=read?.state==='verified';
     const photoText=read?.photos?.state==='checked'
       ? `${read.photos.complete?'':'At least '}${read.photos.count} visible ${read.photos.count===1?'file':'files'}` : 'Folder not verified';

@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-25",
+  "purpose": "Curated references suggested for attachment to permanent asset IDs; site context does not verify an asset. Catalog entries do not create inspections, geometry, assets or service relationships.",
+  "provenance": {
+    "package": "OTB_Google_Earth_2026-09-25",
+    "files": [
+      {
+        "name": "manifest.json",
+        "sha256": "5297f6fbdf1c78ec251dae678b9dc9313ae8a7be9a1600ff9c9850b8baaef9e0"
+      },
+      {
+        "name": "imagery-timeline.json",
+        "sha256": "2b8e99e2827f10fe47b668768c503ba4e85054bbd2f38684e89bced5e1291efd"
+      },
+      {
+        "name": "Source-Gaps.md",
+        "sha256": "7e792cd33fe8084a637ab1974664b9ee380457252d688f4f1fd8f18e1012e028"
+      }
+    ],
+    "repositoryReferences": [
+      "docs/twin-water-source-review.md",
+      "docs/twin-fixture-reconciliation.md",
+      "docs/asset-twin-fixture-models.md",
+      "docs/asset-twin-upper-floors.md",
+      "src/data/twin-water-official-imagery.json"
+    ],
+    "googleMediaCopied": false
+  },
+  "siteEvidenceIds": [
+    "otb-earth-site-project",
+    "otb-earth-view-2026-01-27",
+    "otb-earth-view-2024-03-19",
+    "otb-dotd-2024-site-context"
+  ],
+  "assetEvidenceIds": {
+    "waterMeter": [
+      "otb-water-meter-inventory-gap"
+    ],
+    "waterShutoff": [
+      "otb-water-shutoff-service-gap"
+    ],
+    "column": [
+      "otb-column-source-reconciliation"
+    ],
+    "bench": [
+      "otb-bench-model-assumptions"
+    ],
+    "waste_bin": [
+      "otb-waste-bin-model-assumptions"
+    ],
+    "unit101": [
+      "otb-unit-101-upper-floor-verification"
+    ],
+    "unit103": [
+      "otb-unit-103-upper-floor-verification"
+    ]
+  },
+  "evidence": [
+    {
+      "id": "otb-earth-site-project",
+      "title": "Google Earth site research project",
+      "kind": "source",
+      "status": "reference",
+      "scope": "site-context",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "Google Earth",
+      "notes": "Native site-context project with reference layers. Layers and imagery can change or load incompletely. Layer update dates are not asset observation dates, and maintenance covers are not tenant shutoff valves. This link does not verify this asset's position, identity, condition or service connections. No Google imagery or catalog features are copied into the twin.",
+      "dateMeaning": "unknown",
+      "url": "https://earth.google.com/web/@30.20240769,-92.05435711,9.37362852a,728.94254585d,30y,-0h,0t,0r/data=CgRCAggBMikKJwolCiExaHFKZFY5T3dDWm5PVUFhbnJyRTNhSkNuY3h2SzJORV8gAToDCgEwQgIIAEoICJ-TmtkBEAE"
+    },
+    {
+      "id": "otb-earth-view-2026-01-27",
+      "title": "Google Earth site view — January 27, 2026 selector",
+      "kind": "dated-view",
+      "status": "reference",
+      "scope": "site-context",
+      "sourceDate": "2026-01-27",
+      "reviewedAt": "2026-09-25",
+      "provider": "Google Earth / Airbus (displayed attribution)",
+      "notes": "Latest visible selector recorded during the September 25, 2026 review. Displayed range: older–1/27/2026; provider shown: Airbus. Pixels may be older and the link may reopen Earth with its current available imagery. This is site context, not a verified acquisition date for every pixel or evidence of this asset's location or condition. No asset was inspected from this link.",
+      "dateMeaning": "imagery-selector",
+      "url": "https://earth.google.com/web/search/101+arnould+blvd/@30.2024353,-92.05431795,9.0837345a,718.70655637d,35y,0h,0t,0r/data=CjQiJgokCXm5rNuPgjlAEXq5rNuPgjnAGXjn_HBh6kpAIddGISVHR0vAKgYIARIAGAFCAggBOgMKATBCAggASg0I____________ARAA",
+      "sourceDateLabel": "Jan 27, 2026 selector; pixels may be older"
+    },
+    {
+      "id": "otb-earth-view-2024-03-19",
+      "title": "Google Earth site view — March 19, 2024 selector",
+      "kind": "dated-view",
+      "status": "reference",
+      "scope": "site-context",
+      "sourceDate": "2024-03-19",
+      "reviewedAt": "2026-09-25",
+      "provider": "Google Earth",
+      "notes": "Recorded historical date-selector option; this option was not individually reviewed. Provider attribution and pixel acquisition dates for this selected view are unverified. The link opens native Earth for comparison and may depend on current imagery availability. It does not verify this asset's location, identity or condition.",
+      "dateMeaning": "imagery-selector",
+      "url": "https://earth.google.com/web/search/101+arnould+blvd/@30.2024353,-92.05431795,9.0837345a,718.70655637d,35y,0h,0t,0r/data=Cj4iJgokCXm5rNuPgjlAEXq5rNuPgjnAGXjn_HBh6kpAIddGISVHR0vAKhAIARIKMjAyNC0wMy0xORgBQgIIAToDCgEwQgIIAEoNCP___________wEQAA",
+      "sourceDateLabel": "Mar 19, 2024 selector; option not individually reviewed"
+    },
+    {
+      "id": "otb-dotd-2024-site-context",
+      "title": "Louisiana DOTD 2024 aerial source",
+      "kind": "source",
+      "status": "reference",
+      "scope": "site-context",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "Louisiana DOTD",
+      "notes": "Official 2024 Lafayette imagery service. The exact flight date is unknown. The image is geographic site context; native-model registration was withheld because control checks were too weak. No meter, shutoff or other asset location or condition is independently confirmed by this source.",
+      "dateMeaning": "source-year",
+      "url": "https://maps.dotd.la.gov/imagery/rest/services/Imagery/2024_Lafayette_6IN_RGBI/ImageServer",
+      "sourceDateLabel": "2024 imagery service; exact flight date unknown"
+    },
+    {
+      "id": "otb-water-meter-inventory-gap",
+      "title": "Verify water-meter identity and source totals",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "The source map reports 24 city meters; the workbook contains 28 distinct water-meter IDs. The four-record difference does not establish four missing meters. Map count meanings were confirmed by Adam on September 25, 2026; coverage, source dates, individual cluster membership and current field inventory remain unresolved. The map also reports 37 tenant shutoffs with unassigned individual service connections. Confirm this meter by readable ID and locating photographs; proximity does not prove a served unit or valve connection.",
+      "dateMeaning": "unknown"
+    },
+    {
+      "id": "otb-water-shutoff-service-gap",
+      "title": "Verify shutoff identity and service",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "The supplied water map reports 37 tenant shutoffs, with count meanings confirmed by Adam on September 25, 2026. Individual identities and meter/served-unit connections remain unassigned. A source circle represents a reported group, not a verified physical valve. Confirm this asset's utility, identity, position and service relationship onsite; a nearby meter, cover or imagery symbol does not establish the connection.",
+      "dateMeaning": "unknown"
+    },
+    {
+      "id": "otb-column-source-reconciliation",
+      "title": "Verify column source correspondence",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "The supplied fixture plan has 39 numbered columns; the native model has 37 stable column candidates. The 37 correspondences are model/source candidates, not field-confirmed identities. Two source columns have no native match; the C25/C26 neighborhood remains ambiguous. Preserve permanent asset identity and source history. Verify this column with locating photographs and measured footprint/position before reconciling any numbering.",
+      "dateMeaning": "unknown"
+    },
+    {
+      "id": "otb-bench-model-assumptions",
+      "title": "Verify bench dimensions and placement",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "Bench position is approximately registered from the supplied fixture plan. The display envelope is an assumption: 1.80 m wide × 0.65 m deep × 0.90 m high. Orientation and broad appearance are visual assumptions; manufacturer, exact dimensions, fixture identity, current position and condition are unverified. Registration residuals are not fixture-specific accuracy. Measure and photograph this bench before replacing the assumptions.",
+      "dateMeaning": "unknown"
+    },
+    {
+      "id": "otb-waste-bin-model-assumptions",
+      "title": "Verify bin dimensions and placement",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "Bin position is approximately registered from the supplied fixture plan. The display envelope is an assumption: 0.55 m wide × 0.55 m deep × 0.85 m high. Orientation and broad appearance are visual assumptions; manufacturer, exact dimensions, fixture identity, current position and condition are unverified. Registration residuals are not fixture-specific accuracy. Measure and photograph this bin before replacing the assumptions.",
+      "dateMeaning": "unknown"
+    },
+    {
+      "id": "otb-unit-101-upper-floor-verification",
+      "title": "Unit 101 upper-floor verification",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "A second floor is owner-confirmed, but the modeled footprint is only the source-derived narrow rear strip. Its displayed elevation of 3.05 m comes from native story metadata; actual floor-to-floor and wall heights are unverified. Unchanged 3.8862 m ground walls extend above that display plane. Stair envelopes and midpoint elevation illustrate connectivity, not measured tread/riser or fabrication geometry. Verify registration, dimensions, openings, landings and stairs onsite.",
+      "dateMeaning": "unknown"
+    },
+    {
+      "id": "otb-unit-103-upper-floor-verification",
+      "title": "Unit 103 upper-floor verification",
+      "kind": "verification-note",
+      "status": "needs-verification",
+      "scope": "asset-specific",
+      "sourceDate": null,
+      "reviewedAt": "2026-09-25",
+      "provider": "OTB supplied plans and source records",
+      "notes": "A second floor is owner-confirmed; its footprint, central opening and rear stair openings are source-derived. The displayed elevation of 3.05 m comes from native story metadata; actual floor-to-floor and wall heights are unverified. Unchanged 3.8862 m ground walls extend above that display plane. Stair envelopes and midpoint elevation illustrate connectivity, not measured tread/riser or fabrication geometry. Verify registration, dimensions, openings, landings and stairs onsite.",
+      "dateMeaning": "unknown"
+    }
+  ]
+}

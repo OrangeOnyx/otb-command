@@ -14,7 +14,9 @@ function middleware(options, flag) {
     else process.env.VITE_LOCAL_REVIEW = before;
   }
   let handler;
-  settings.plugins[0].configureServer({ middlewares: { use(fn) { handler = fn; } } });
+  const evidencePlugin = settings.plugins.find(plugin => plugin.name === 'otb-local-review-evidence');
+  assert.ok(evidencePlugin, 'the local review evidence plugin is configured');
+  evidencePlugin.configureServer({ middlewares: { use(fn) { handler = fn; } } });
   return { handler, settings };
 }
 async function request(handler, patch = {}) {
