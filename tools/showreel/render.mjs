@@ -20,7 +20,7 @@ const out = path.join(here, 'out'); mkdirSync(out, { recursive: true });
 const total = Math.round((TO - FROM) * FPS);
 const per = Math.ceil(total / WORKERS);
 const url = pathToFileURL(path.join(here, PAGE)).href + '?render' + (PALETTE ? '&palette=' + PALETTE : '');
-const tag = isFilm ? `film-${PALETTE || 'terra'}` : 'reel';
+const tag = isFilm ? `film-${PALETTE || 'bayou'}` : 'reel';
 const t0 = Date.now();
 
 const browser = await chromium.launch();

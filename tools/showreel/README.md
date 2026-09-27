@@ -22,6 +22,8 @@ A terra square is the protagonist. It appears as the cursor, the stillness, the 
 | 64–80s | Manifesto | Six lines, each on a colour field that opens out of the square, which is every line's full stop. Then *"Build AI into how you actually operate"* lands one word per beat. |
 | 80–90s | The mark | The square becomes the core. The frame slams home in four pieces on four beats, then the wordmark and the sign-off land. The chord drains away to the opening clock, the core blinks twice like the first cursor, and it cuts to black. |
 
+**Default palette: Bayou** (operator's pick, 2026-09-27). A 31s social edit (`social-cut.mjs`) cuts the master on the 120 BPM beat grid: hook → pile → freeze → snap → the place → dive → carousel → the mark.
+
 Palettes (`?palette=`): **terra** (Brand 2.3, terra mark on paper), **bayou** (teal, copper and gold on night; operator favourite 2026-09-27), **signal** (black, chartreuse and cobalt) and **survey** (unbranded pick: cyanotype blueprint, vellum and the APWA utility-locate colour code, with survey-marking pink as the hero). Each palette is one object in `PALETTES` at the top of `film.html`.
 
 ## Run
@@ -32,6 +34,7 @@ python3 extract-site.py                                      # plan geometry →
 python3 film_score.py                                        # → out/film-score.wav
 node render.mjs --page film.html --palette bayou --share     # → out/film-bayou.mp4 (+ -share.mp4 under 30 MB)
 node stills.mjs --page film.html --palette signal 28.4 83    # spot-check frames → out/still-<t>.png
+node social-cut.mjs --palette bayou                          # 31s social edit from the master → out/social-bayou.mp4
 open film.html                                               # live: click to play · space · ←/→ · ?t=64&palette=terra
 
 python3 score.py && node render.mjs                          # the 48s v1 reel → out/cypress-command-reel.mp4
