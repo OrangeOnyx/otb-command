@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readCurrentMaintenance} from '../api/_maintenance-read.mjs';
-import {maintenanceEvidence,attachMaintenanceRead} from '../src/lib/maintenance-evidence.js';
+import {maintenanceEvidence,attachMaintenanceRead,issueResolved} from '../src/lib/maintenance-evidence.js';
 import {loadCommandEvidence} from '../tools/command-evidence-data.mjs';
 import {buildOwnerUpdate,COMMAND_PREVIEW,ownerUpdateExportText} from '../src/lib/command-evidence.js';
 
@@ -115,4 +115,12 @@ test('preview read and edited exports retain the production snapshot boundary',a
   assert.match(buildOwnerUpdate({issue:unavailable.issue,generatedAt:'2026-09-09'}).text,/^PREVIEW · ISOLATED TEST DATA/);
   assert.equal(base.issue.preview,undefined);
   assert.equal(read.preview,undefined);
+});
+
+test('a work order marked done or closed clears the A-2 frontage marker', () => {
+  assert.equal(issueResolved({ systemRecord: { status: 'done' } }), true);
+  assert.equal(issueResolved({ systemRecord: { status: 'closed' } }), true);
+  for (const status of ['open', 'assigned', 'in_progress']) assert.equal(issueResolved({ systemRecord: { status } }), false);
+  assert.equal(issueResolved({ systemRecord: null }), false);
+  assert.equal(issueResolved(null), false);
 });

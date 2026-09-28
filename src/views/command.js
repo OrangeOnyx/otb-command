@@ -10,6 +10,7 @@ import { createCommandMap } from '../lib/command-map.js';
 import { suiteEvidence } from '../lib/command-evidence.js';
 import { createCommandReview } from './command-review.js';
 import { createCommandMaintenance, maintenanceReadTime } from './command-maintenance.js';
+import { issueResolved } from '../lib/maintenance-evidence.js';
 import { clearCommandDraftSessions } from '../lib/command-draft-session.js';
 import { createCommandNumbers } from './command-numbers.js';
 
@@ -262,11 +263,14 @@ export function initCommand(account) {
       if (generation !== evidenceGeneration) return;
       if (!payload.issue || !Array.isArray(payload.sources)) throw new Error('The evidence response is incomplete.');
       evidence = payload; maintenance.update(evidence);
-      map.setIssueVisible?.(true);
-      $('cmdDraft').disabled = false; $('cmdOpenIssue').disabled = false; $('cmdIssueCount').textContent = '1';
+      const resolved = issueResolved(evidence.issue);
+      map.setIssueVisible?.(!resolved);
+      $('cmdDraft').disabled = false; $('cmdOpenIssue').disabled = false; $('cmdIssueCount').textContent = resolved ? '0' : '1';
       $('cmdRecordTitle').textContent = evidence.issue.title;
       $('cmdRecordDescription').textContent = `“${evidence.issue.description}” The tenant roster connects this report to suites ${evidence.issue.location.suiteIds.join(' / ')}.`;
-      $('cmdRecordFoot').textContent = `${evidence.issue.archivedStatus} in the ${evidence.issue.asOf} archive · current condition unverified`;
+      $('cmdRecordFoot').textContent = resolved
+        ? `Marked ${evidence.issue.systemRecord.status} in M-1 · ${maintenanceReadTime(evidence.issue.systemRecord.readAt)} · map marker cleared`
+        : `${evidence.issue.archivedStatus} in the ${evidence.issue.asOf} archive · current condition unverified`;
       renderDetail();
     } catch (error) {
       if (generation !== evidenceGeneration) return;

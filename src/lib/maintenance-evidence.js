@@ -16,6 +16,10 @@ export function maintenanceEvidence({request,events,photos,readAt,mode='snapshot
   };
 }
 
+// A work order marked Done or Closed in M-1 no longer paints the A-2 frontage
+// marker; its records stay available from the property workspace.
+export const issueResolved = issue => ['done', 'closed'].includes(issue?.systemRecord?.status);
+
 export function maintenanceReadSource(read) {
   if (read?.state !== 'verified') return null;
   return {
