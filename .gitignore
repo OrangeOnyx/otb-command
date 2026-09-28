@@ -30,6 +30,8 @@ docs/lidar/data/
 # knowledge graph outputs (regenerable: /graphify from docs/graph; see HANDOFF graphify note)
 docs/graph/graphify-out/
 docs/graph/.graphify_*
+# community names keyed to the local graph.json ids; the post-commit refresh renumbers them
+docs/graph/labels.json
 graphify-out/
 capture/
 
