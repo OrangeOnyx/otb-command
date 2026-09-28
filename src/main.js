@@ -118,6 +118,7 @@ function buildShell(account) {
       document.getElementById("pg-" + id).classList.add("on");
       if (currentPage !== id) document.querySelector(".main").scrollTop = 0;
       currentPage = id;
+      window.dispatchEvent(new CustomEvent("sheetchange", { detail: { id } }));
       document.body.classList.remove("nav-open");
       syncMobileNav();
       closeDrawer();
@@ -368,7 +369,7 @@ function applyRole(role) {
   }
   if (owner) {
     const vis = new Set(getOwnerSheets());
-    PAGES.forEach(([id]) => { navBtn[id].style.display = vis.has(id) ? "" : "none"; });
+    PAGES.forEach(([id]) => { navBtn[id].style.display = vis.has(id) && !navBtn[id].dataset.gated ? "" : "none"; });
     const active = document.querySelector(".nav button.on");
     if (!active || active.style.display === "none") {
       const first = PAGES.find(([id]) => vis.has(id));
@@ -430,9 +431,18 @@ function initViews(account) {
   initMaintenance(account);
   // Keep twin references outside the production module graph until
   // hosted persistence and the source-publication review are explicitly enabled.
-  if (import.meta.env.DEV || import.meta.env.VITE_ASSET_TWIN_ENABLED === '1') {
+  // Mirrors assetTwinAvailable() — not imported: the release gate keeps every
+  // lib/asset-twin* module out of builds where the twin is switched off.
+  const twinOn = LOCAL_REVIEW || (import.meta.env.VITE_ASSET_TWIN_ENABLED === '1' && REMOTE
+    && ['operator', 'owner'].includes(account?.role));
+  if ((import.meta.env.DEV || import.meta.env.VITE_ASSET_TWIN_ENABLED === '1') && twinOn) {
     import('./views/asset-twin.js').then(({ initAssetTwin }) => initAssetTwin(account))
       .catch(error => console.error('Asset twin could not load:', error));
+    import('./views/site-evidence.js').then(({ initSiteEvidence }) => initSiteEvidence())
+      .catch(error => console.error('Site evidence could not load:', error));
+  } else {
+    // A-3 / A-4 exist only where the twin is released for this account.
+    for (const id of ['twin', 'evidence']) if (navBtn[id]) { navBtn[id].dataset.gated = '1'; navBtn[id].style.display = 'none'; }
   }
   initSop(account);
   initPortfolio();

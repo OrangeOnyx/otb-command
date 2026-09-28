@@ -1,5 +1,26 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 28, 2026 — A-2 capture lenses back on top · A-3 Asset Twin + A-4 Site Evidence are sheets · 919 tests
+
+Operator: "put the drone views back at the top of A-2 … incorporate the digital twin more prominently … A-3 … Google
+Earth assets as A-4? I'd rather the main things showcase as sheets." Also: the 243-record setup ran on prod.
+
+- **A-2:** the capture block (iso · 3D · satellite · Reality) now leads the sheet (`command.js`, `.cmd-capture`); the
+  footer "Capture & legacy views" toggle is gone; footer + heading link to A-3.
+- **A-3 Asset Twin** (`pages.js` "twin"): the workspace docks into `#twinHost` (`.at-workspace.is-docked`, no inert /
+  full-screen overlay); main.js fires `sheetchange` on every nav switch — showing A-3 opens the twin, leaving disposes the
+  3D scene. New asset links / QR = `/?asset=pa_…#twin`; legacy `?view=twin&asset=…#spatial` links still forward (fresh
+  navigation only). Header back button → A-2.
+- **A-4 Site Evidence** (`src/views/site-evidence.js` + `.css`, labels in `src/lib/site-evidence-labels.js`): Google
+  Earth project + two dated views + DOTD 2024 aerial (date *meaning* shown), aerial/GIS images, 101/103 floor plans +
+  1993 plan review, water/shutoff source map, 24 time-clock photos (Nov 2021), 7 verification notes; buttons jump into A-3
+  (exterior / interior / water) without reloading.
+- **Gate:** A-3/A-4 only where the twin is released (local review, or hosted flag + operator/owner); otherwise their nav
+  buttons are hidden (`data-gated`, respected by the owner-sheets branch). The availability rule is inlined in main.js —
+  importing `lib/asset-twin-availability.js` there tripped the release-gate build guard (disabled builds must contain no
+  `lib/asset-twin*`). Both builds verified (disabled: clean; enabled: site-evidence chunk present).
+- Owners: A-3/A-4 are not in `DEFAULT_OWNER_SHEETS`; tick them in the owner-sheets panel to show owners.
+
 ## September 27, 2026 (late night) — frontage marker clears when done · drone lenses restored on prod via Git LFS · 918 tests
 
 - **Frontage marker:** A-2's orange "REPORTED FRONTAGE" (the archived Pothole Repair, 101/103) was drawn whenever the

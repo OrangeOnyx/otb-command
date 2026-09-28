@@ -23,6 +23,10 @@
 > available: Atlas (spatial) · Almanac (dates) · Ledger · Desk · Register.
 
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
+> **Sheets (2026-09-27): 20 in `src/lib/pages.js`** — A-2 Spatial opens with the capture lenses
+> (iso · 3D · satellite · drone Reality) on top; **A-3 Asset Twin** (docked 3D twin, permanent
+> records) and **A-4 Site Evidence** (Google Earth views, aerials, plans, field photos) are sheets,
+> both gated like the twin (`VITE_ASSET_TWIN_ENABLED` + operator/owner). The list below is older.
 > Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial [property
 > workspace since 2026-09-11: plat-based model + suite inspector + evidence/owner-brief
 > flow + dated ledger strip; iso/3D/satellite/reality under "Capture & legacy views"] ·

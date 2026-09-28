@@ -106,6 +106,7 @@ body.role-owner #pg-spatial input,body.role-owner #pg-spatial select{pointer-eve
 .cmd-foot { display:flex; justify-content:space-between; align-items:center; gap:20px; border-top:1px solid #DEE3D5; margin-top:27px; padding:15px 0 0; font-size:11px; color:var(--cc-muted); }
 .cmd-foot>.cmd-quiet { font-size:12px; }
 .cmd-legacy { margin-top:30px; padding:24px; border:1px solid #CCD5C4; background:#EFF3E8; border-radius:8px; }
+.cmd-legacy.cmd-capture { margin:0 0 28px; }
 .cmd-legacy[hidden] { display:none; }
 .cmd-empty { padding:20px 0; font-size:12px; color:#6C7F60; }
 .cmd-empty h2 { margin-bottom:12px; }

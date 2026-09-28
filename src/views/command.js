@@ -35,7 +35,9 @@ export function initCommand(account) {
   const page = document.getElementById('pg-spatial');
   if (!page) return;
   const legacy = document.createElement('div');
-  legacy.className = 'cmd-legacy'; legacy.hidden = true;
+  // Capture views (iso · 3D · satellite · drone Reality) lead the sheet again
+  // (operator, 2026-09-27); the property workspace follows below.
+  legacy.className = 'cmd-legacy cmd-capture';
   while (page.firstChild) legacy.append(page.firstChild);
   page.innerHTML = `
     <header class="cmd-heading">
@@ -78,10 +80,10 @@ export function initCommand(account) {
       </section>
     </div>
     <footer class="cmd-foot"><span>Cypress Command Platform <span class="cmd-dot"></span> A-2 property workspace</span>
-      <button id="cmdLegacy" class="cmd-quiet" aria-expanded="false">Capture & legacy views</button></footer>
+      <a class="cmd-quiet" href="#twin">Asset twin · A-3 ${icon('arrow')}</a></footer>
     <dialog class="cmd-dialog" id="cmdSourceDialog" aria-labelledby="cmdSourceTitle"><div class="cmd-dialog-head"><span>Source library</span><button class="cmd-close" aria-label="Close source" data-close>${icon('close')}</button></div><div id="cmdSourceContent"></div></dialog>
     <dialog class="cmd-dialog" id="cmdDraftDialog" aria-labelledby="cmdDraftTitle"></dialog>`;
-  page.append(legacy);
+  page.prepend(legacy);
   const $ = id => document.getElementById(id);
   let evidence = null, active = '101', tab = 'suite', sourceReturn = null, evidenceScope = null, evidenceGeneration = 0;
   const map = createCommandMap($('cmdMap'), { units: UNITS, onPick: id => select(id, false, true), onIssue: () => showIssue(true) });
@@ -236,7 +238,6 @@ export function initCommand(account) {
   // A plan uses the narrow mobile canvas more effectively; both views remain
   // available and subsequent viewport changes preserve the user's choice.
   if (window.matchMedia('(max-width:660px)').matches) $('cmdPlan').click();
-  $('cmdLegacy').onclick = () => { legacy.hidden = !legacy.hidden; $('cmdLegacy').setAttribute('aria-expanded', String(!legacy.hidden)); if (!legacy.hidden) revealInWorkspace(legacy); };
   subscribe(type => { if (type === 'selection' && getSelected() && getSelected() !== active) select(getSelected()); });
   renderDirectory(); select('101');
   loadEvidence();

@@ -46,12 +46,15 @@ const icon = name => {
 export function initAssetTwin(account) {
   if (!assetTwinAvailable({ localReview: LOCAL_REVIEW, remote: REMOTE,
     hostedEnabled: import.meta.env.VITE_ASSET_TWIN_ENABLED === '1', role: account?.role })) return;
+  // A-3 sheet since 2026-09-27: the workspace docks into #twinHost and opens
+  // when the sheet is shown (was a full-screen overlay launched from A-2).
+  const host=document.getElementById('twinHost');
+  if(!host || document.getElementById('openAssetTwin'))return;
   const heading=document.querySelector('#pg-spatial .cmd-heading-right');
-  if(!heading || document.getElementById('openAssetTwin'))return;
-  const launch=document.createElement('button');launch.id='openAssetTwin';launch.className='cmd-secondary';launch.innerHTML=`${icon('cube')} Open asset twin`;heading.append(launch);
+  const launch=document.createElement('a');launch.id='openAssetTwin';launch.className='cmd-secondary';launch.href='#twin';launch.innerHTML=`${icon('cube')} Asset twin · A-3`;heading?.append(launch);
   const root=document.createElement('section');root.className='at-workspace';root.hidden=true;root.setAttribute('aria-label','On The Boulevard asset twin');
   root.innerHTML=`
-    <header class="at-header"><button data-action="close" class="at-back">${icon('back')}<span>Property workspace</span></button><div class="at-heading"><h1>On The Boulevard</h1><p>Asset twin <span id="atPersistence">Loading records</span></p></div><div class="at-mode" aria-label="Workspace mode"><button data-mode="inspect" aria-pressed="true">Inspect</button><button data-mode="present" aria-pressed="false">Present</button><button data-mode="field" aria-pressed="false">Field</button></div></header>
+    <header class="at-header"><button data-action="close" class="at-back">${icon('back')}<span>A-2 Spatial</span></button><div class="at-heading"><h1>On The Boulevard</h1><p>Asset twin <span id="atPersistence">Loading records</span></p></div><div class="at-mode" aria-label="Workspace mode"><button data-mode="inspect" aria-pressed="true">Inspect</button><button data-mode="present" aria-pressed="false">Present</button><button data-mode="field" aria-pressed="false">Field</button></div></header>
     <div class="at-body"><section class="at-model" aria-label="3D model and tools"><div class="at-toolbar"><div class="at-camera-tabs"><button data-camera="overview" aria-pressed="true">Overview</button><button data-camera="plan" aria-pressed="false">Plan</button><button data-camera="eye" aria-pressed="false">Eye level</button></div><div class="at-tool-actions"><button data-action="measure">Measure</button><button data-action="save-view">Save view</button><button data-action="reset">Fit model</button></div></div>
       <div class="at-layout-row" aria-label="Building and site views"><button data-action="interior-plans">Interior floor plans</button><button data-action="building-exterior">Exterior &amp; site</button><span>Same model and asset records</span></div><div class="at-level-row"><label for="atLevel">Level</label><select id="atLevel"><option value="all">All levels</option><option value="ground">Ground floor</option><option value="upper-101">Unit 101 · Upper floor</option><option value="upper-103">Unit 103 · Upper floor</option><option value="custom" hidden>Custom layers</option></select><button data-action="site-overview">Site overview</button><button data-water-action="overview">Water & shutoffs</button><button data-tab="sources">Plans & sources</button></div><div class="at-canvas" id="atCanvas"><div class="at-loading" id="atLoading">Loading the source model…</div></div>
       <div class="at-scene-note"><span id="atSceneNote">Source geometry · Model dimensions unverified</span><span id="atMeasureReadout" aria-live="polite"></span></div>
@@ -65,7 +68,7 @@ export function initAssetTwin(account) {
       <section id="atSourcesPane" class="at-pane" hidden>${sourcePaneHTML()}</section>
     </aside></div><div id="atMessage" class="at-message" role="status" aria-live="polite" hidden></div>
     <dialog id="atDialog" class="at-dialog"></dialog>`;
-  document.body.append(root);
+  root.classList.add('is-docked');host.append(root);
   const $=id=>root.querySelector(`#${id}`);
   const canWrite=()=>!document.body.classList.contains('state-recovery') && (LOCAL_REVIEW || REMOTE && account?.role==='operator');
   let scene=null,data=null,upperData=null,siteData=null,selectedId=null,selectedWaterId=null,loaded=false,loading=null,busy=false,mode='inspect',activeTab='assets',tourIndex=0,photoGeneration=0,viewStorageKey='';
@@ -81,13 +84,12 @@ export function initAssetTwin(account) {
     try{localStorage.setItem(viewStorageKey,JSON.stringify(next));savedViews=next;}catch{throw new Error('This browser could not save the viewpoints. Free browser storage and retry.');}
   }
   function updateURL(assetId=selectedId){
-    const url=new URL(location.href);url.searchParams.set('view','twin');if(assetId)url.searchParams.set('asset',assetId);else url.searchParams.delete('asset');if(selectedWaterId||activeTab==='water'){url.searchParams.set('water',selectedWaterId||'all');url.searchParams.delete('asset');}else url.searchParams.delete('water');url.hash='spatial';history.replaceState(null,'',url);
+    const url=new URL(location.href);url.searchParams.delete('view');if(assetId)url.searchParams.set('asset',assetId);else url.searchParams.delete('asset');if(selectedWaterId||activeTab==='water'){url.searchParams.set('water',selectedWaterId||'all');url.searchParams.delete('asset');}else url.searchParams.delete('water');url.hash='twin';history.replaceState(null,'',url);
   }
   function close(){
     openGeneration++;photoGeneration++;loading=null;pendingSelection=null;clearTimeout(messageTimer);$('atMessage').hidden=true;$('atDialog').close();
-    scene?.stopTour();scene?.dispose();scene=null;loaded=false;root.hidden=true;document.body.classList.remove('asset-twin-open');
-    for(const [element,previous] of inertSiblings)element.inert=previous;inertSiblings.clear();
-    const url=new URL(location.href);url.searchParams.delete('view');url.searchParams.delete('asset');url.searchParams.delete('water');history.replaceState(null,'',url);launch.focus();
+    scene?.stopTour();scene?.dispose();scene=null;loaded=false;root.hidden=true;
+    const url=new URL(location.href);for(const key of ['view','asset','water','layout'])url.searchParams.delete(key);history.replaceState(null,'',url);
     for(const photo of currentPhotos)if(photo.url?.startsWith('blob:'))URL.revokeObjectURL(photo.url);currentPhotos=[];
   }
   function setTab(tab){
@@ -346,9 +348,7 @@ export function initAssetTwin(account) {
     const requestedWater=new URL(location.href).searchParams.get('water')||(!incomingAsset&&(selectedWaterId||(activeTab==='water'?'all':null)));
     if(!loading&&!loaded)pendingSelection=requestedWater?{kind:'water',id:requestedWater}:requestedAsset?{kind:'asset',id:requestedAsset}:null;
     if(incomingAsset){selectedWaterId=null;activeTab='record';}
-    root.hidden=false;document.body.classList.add('asset-twin-open');updateURL(requestedAsset);
-    for(const element of document.body.children)if(element!==root&&!inertSiblings.has(element)){inertSiblings.set(element,element.inert);element.inert=true;}
-    root.querySelector('[data-action="close"]').focus();
+    root.hidden=false;updateURL(requestedAsset);
     if(loaded){scene?.resize();return;}if(loading)return loading;const generation=++openGeneration;
     $('atLoading').hidden=false;$('atLoading').textContent='Loading the source model…';
     loading=(async()=>{
@@ -376,7 +376,6 @@ export function initAssetTwin(account) {
       $('atSetup').hidden=!(REMOTE&&canWrite()&&planResearchSetup(Assets.listPhysicalAssets(),Assets.listPhysicalAssetEvidence).length);
     })().catch(error=>{if(generation!==openGeneration)return;scene?.dispose();scene=null;$('atLoading').textContent=`The asset twin could not open: ${error.message}`;showMessage(error.message,true);}).finally(()=>{if(generation===openGeneration)loading=null;});return loading;
   }
-  launch.onclick=open;
   root.addEventListener('click',e=>{
     const button=e.target.closest('button');if(!button)return;
     if(button.dataset.siteSearch){if(scene?.focusSiteSearchArea(button.dataset.siteSearch))showMessage('Highlighted grass areas are a search guide for W1217102. No exact meter position has been assigned.');return;}
@@ -393,7 +392,7 @@ export function initAssetTwin(account) {
     if(button.dataset.restoreView!=null){scene?.restoreView(savedViews[+button.dataset.restoreView].view);return;}
     if(button.dataset.removeView!=null){run(async()=>{persistViews(savedViews.filter((_,i)=>i!==+button.dataset.removeView));renderViews();});return;}
     const action=button.dataset.action;
-    if(action==='close')close();
+    if(action==='close')location.hash='spatial';
     if(action==='reset')scene?.setView(interiorMode?'plan':'overview');
     if(action==='interior-plans')showInterior($('atLevel').value);
     if(action==='building-exterior')showExterior();
@@ -426,10 +425,18 @@ export function initAssetTwin(account) {
   $('atFinish').onchange=applyFinish;
   Assets.onPhysicalAssetsChange(()=>{if(!root.hidden){renderDirectory();refreshPins();}});onMaintChange(()=>{if(!root.hidden)renderWorkOrders();});
   window.addEventListener('keydown',event=>{if(event.key==='Escape'&&!root.hidden){scene?.cancelPlacement();scene?.stopTour();}});
-  window.addEventListener('popstate',()=>{if(!readAssetTwinLink(location.href).open&&!root.hidden)close();});
+  // The sheet drives the workspace: showing A-3 opens it, leaving A-3 disposes
+  // the 3D scene (frees the GPU) and clears the twin's URL state.
+  window.addEventListener('sheetchange',event=>{if(event.detail?.id==='twin'){if(root.hidden)open();}else if(!root.hidden)close();});
   if(REMOTE)sb.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT')close();});
-  const navType=performance.getEntriesByType?.('navigation')?.[0]?.type||'navigate';
-  if(shouldAutoOpenTwin(location.href,navType))open();
-  else if(readAssetTwinLink(location.href).open){const url=new URL(location.href);for(const key of ['view','asset','water','layout'])url.searchParams.delete(key);history.replaceState(null,'',url);}
+  // Legacy links (?view=twin&asset=…#spatial, printed before A-3 existed): a
+  // fresh shared asset link is forwarded to A-3; anything else is dropped.
+  if(new URL(location.href).searchParams.get('view')==='twin'){
+    const navType=performance.getEntriesByType?.('navigation')?.[0]?.type||'navigate';
+    const url=new URL(location.href);url.searchParams.delete('view');
+    if(shouldAutoOpenTwin(location.href,navType))url.hash='twin';else for(const key of ['asset','water','layout'])url.searchParams.delete(key);
+    history.replaceState(null,'',url);if(url.hash==='#twin')window.dispatchEvent(new HashChangeEvent('hashchange'));
+  }
+  if(document.getElementById('pg-twin')?.classList.contains('on'))open();
   return {open,close};
 }

@@ -5,7 +5,8 @@ import {cleanSourceBinding} from '../src/lib/physical-assets-model.js';
 const id='pa_a54bac91-97f6-4a3a-9c67-ac35829dff53';
 test('asset link retains permanent ID and drops unrelated query credentials',()=>{
   const link=assetTwinLink('https://example.com/app?token=secret#roll',id);
-  assert.equal(link,`https://example.com/app?view=twin&asset=${id}#spatial`);
+  assert.equal(link,`https://example.com/app?asset=${id}#twin`);
+  assert.deepEqual(readAssetTwinLink(`https://example.com/app?view=twin&asset=${id}#spatial`),{open:true,assetId:id}); // legacy A-2 link
   assert.deepEqual(readAssetTwinLink(link),{open:true,assetId:id});
   assert.equal(readAssetTwinLink('https://example.com/?view=twin&asset=C12').assetId,null);
   assert.throws(()=>assetTwinLink('javascript:alert(1)',id));

@@ -5,18 +5,18 @@ export function assetTwinLink(base, assetId) {
   if (!assetPattern.test(String(assetId))) throw new Error('Save a permanent asset record before creating a link.');
   const url = new URL(base);
   if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) throw new Error('Use an HTTP or HTTPS application address without credentials.');
-  url.search = ''; url.hash = 'spatial';
-  url.searchParams.set('view', 'twin'); url.searchParams.set('asset', assetId);
+  url.search = ''; url.hash = 'twin';
+  url.searchParams.set('asset', assetId);
   return url.href;
 }
 export function readAssetTwinLink(href) {
   const url = new URL(href);
   const assetId = url.searchParams.get('asset');
-  return { open: url.searchParams.get('view') === 'twin', assetId: assetPattern.test(assetId || '') ? assetId : null };
+  // A-3 links (#twin) and legacy A-2 overlay links (?view=twin) both count.
+  return { open: url.hash === '#twin' || url.searchParams.get('view') === 'twin', assetId: assetPattern.test(assetId || '') ? assetId : null };
 }
-// Only a shared asset link (QR tag, pasted URL) opens the twin on page load.
-// A reload or back/forward lands on the A-2 property workspace underneath —
-// the twin is a layer over A-2, not its replacement (operator, 2026-09-27).
+// Legacy ?view=twin links: only a fresh shared asset link (QR tag, pasted URL)
+// is forwarded to the A-3 sheet; a reload or back/forward drops the twin state.
 export function shouldAutoOpenTwin(href, navigationType = 'navigate') {
   const link = readAssetTwinLink(href);
   return link.open && !!link.assetId && navigationType !== 'reload' && navigationType !== 'back_forward';

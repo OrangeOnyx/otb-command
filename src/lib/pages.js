@@ -8,6 +8,8 @@ export const PAGES = [
   ["dash", "D-1", "Dashboard"],
   ["plan", "A-1", "Site Plan"],
   ["spatial", "A-2", "Spatial"],
+  ["twin", "A-3", "Asset Twin"],
+  ["evidence", "A-4", "Site Evidence"],
   ["roll", "R-1", "Rent Roll"],
   ["comp", "C-1", "Compliance"],
   ["fin", "P-1", "Financial"],
