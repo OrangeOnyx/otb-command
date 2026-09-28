@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import { fileURLToPath } from "node:url";
 import { assertPreviewIsolation } from "./tools/check-preview-isolation.mjs";
 import { assetTwinBuildGuard } from './tools/asset-twin-build-guard.mjs';
+import { siteTwinWebPlugin } from './tools/site-twin/vite-plugin.mjs';
 
 /* Private review evidence is read server-side on demand and never enters
    Vite's client module graph or public directory. The production API has its
@@ -21,7 +22,7 @@ export default defineConfig(({ command, mode }) => {
       tour: fileURLToPath(new URL("./tour.html", import.meta.url)),
     } } },
     ...(review ? { server: { host: "127.0.0.1", port: 5174, strictPort: true } } : {}),
-    plugins: [assetTwinBuildGuard(hostedTwin), {
+    plugins: [assetTwinBuildGuard(hostedTwin), siteTwinWebPlugin({ enabled: hostedTwin || review }), {
       name: "otb-local-review-evidence",
       configureServer(server) {
         server.middlewares.use(async (req, res, next) => {

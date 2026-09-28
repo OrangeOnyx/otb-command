@@ -10,6 +10,7 @@ export const PAGES = [
   ["spatial", "A-2", "Spatial"],
   ["twin", "A-3", "Asset Twin"],
   ["evidence", "A-4", "Site Evidence"],
+  ["exterior", "A-5", "Exterior & Site"],
   ["roll", "R-1", "Rent Roll"],
   ["comp", "C-1", "Compliance"],
   ["fin", "P-1", "Financial"],

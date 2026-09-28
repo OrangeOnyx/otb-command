@@ -15,6 +15,20 @@ export function readAssetTwinLink(href) {
   // A-3 links (#twin) and legacy A-2 overlay links (?view=twin) both count.
   return { open: url.hash === '#twin' || url.searchParams.get('view') === 'twin', assetId: assetPattern.test(assetId || '') ? assetId : null };
 }
+// An explicit sheet link wins over a previous visit's selection. Asset and
+// water deep links remain more specific than a general layout request.
+export function assetTwinOpenIntent(href, remembered = {}) {
+  const url = new URL(href);
+  const waterId = url.searchParams.get('water');
+  const assetId = readAssetTwinLink(href).assetId;
+  const layout = url.searchParams.get('layout');
+  if (waterId) return { kind: 'water', id: waterId };
+  if (assetId) return { kind: 'asset', id: assetId };
+  if (['interior', 'exterior'].includes(layout)) return { kind: 'layout', id: layout };
+  if (remembered.waterId || remembered.tab === 'water') return { kind: 'water', id: remembered.waterId || 'all' };
+  if (remembered.assetId) return { kind: 'asset', id: remembered.assetId };
+  return null;
+}
 // Legacy ?view=twin links: only a fresh shared asset link (QR tag, pasted URL)
 // is forwarded to the A-3 sheet; a reload or back/forward drops the twin state.
 export function shouldAutoOpenTwin(href, navigationType = 'navigate') {

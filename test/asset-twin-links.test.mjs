@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {assetTwinLink,readAssetTwinLink,shouldAutoOpenTwin,assetQrSvg,latestLocatedBinding,sourceObjectForAsset} from '../src/lib/asset-twin-links.js';
+import {assetTwinLink,readAssetTwinLink,assetTwinOpenIntent,shouldAutoOpenTwin,assetQrSvg,latestLocatedBinding,sourceObjectForAsset} from '../src/lib/asset-twin-links.js';
 import {cleanSourceBinding} from '../src/lib/physical-assets-model.js';
 const id='pa_a54bac91-97f6-4a3a-9c67-ac35829dff53';
 test('asset link retains permanent ID and drops unrelated query credentials',()=>{
@@ -51,4 +51,22 @@ test('only a fresh shared asset link reopens the twin; reloads land on A-2',()=>
   assert.equal(shouldAutoOpenTwin('https://otb.example/?view=twin#spatial','navigate'),false);
   assert.equal(shouldAutoOpenTwin('https://otb.example/?view=twin&layout=interior#spatial'),false);
   assert.equal(shouldAutoOpenTwin('https://otb.example/#spatial'),false);
+});
+
+test('A-5 interior and A-4 exterior links override the asset or water selection remembered by A-3',()=>{
+  for(const layout of ['interior','exterior']){
+    for(const remembered of [{assetId:id},{waterId:'water-03',tab:'water'},{tab:'water'}]){
+      assert.deepEqual(assetTwinOpenIntent(`https://otb.example/?layout=${layout}#twin`,remembered),{kind:'layout',id:layout});
+    }
+  }
+});
+test('explicit asset and water links keep priority over layout and remembered selections',()=>{
+  assert.deepEqual(assetTwinOpenIntent(`https://otb.example/?asset=${id}&layout=interior#twin`,{waterId:'water-old',tab:'water'}),{kind:'asset',id});
+  assert.deepEqual(assetTwinOpenIntent(`https://otb.example/?water=all&asset=${id}&layout=interior#twin`,{assetId:id}),{kind:'water',id:'all'});
+});
+test('a plain A-3 visit restores its selection, while invalid layout or asset values do not replace it',()=>{
+  assert.deepEqual(assetTwinOpenIntent('https://otb.example/#twin',{assetId:id}),{kind:'asset',id});
+  assert.deepEqual(assetTwinOpenIntent('https://otb.example/#twin',{tab:'water'}),{kind:'water',id:'all'});
+  assert.deepEqual(assetTwinOpenIntent('https://otb.example/?layout=unknown&asset=C12#twin',{waterId:'water-03'}),{kind:'water',id:'water-03'});
+  assert.equal(assetTwinOpenIntent('https://otb.example/#twin'),null);
 });

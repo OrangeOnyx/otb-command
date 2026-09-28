@@ -7,6 +7,11 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const embedded = new URLSearchParams(location.search).get('embedded') === '1';
+if (embedded) document.documentElement.classList.add('embedded');
+const reportStatus = status => {
+  if (embedded && window.parent !== window) window.parent.postMessage({ type: 'otb-site-twin-status', status }, location.origin);
+};
 const stage = $("stage");
 const S = { mode: "overview", look: "presentation", sel: null, isolate: false, labels: false, q: "", catState: new Map(), tourIdx: 0 };
 let renderer, scene, camera, persp, ortho, controls, model, data, pending = false;
@@ -258,9 +263,11 @@ async function start() {
     camera.position.add(dv); controls.target.add(dv); camera.lookAt(controls.target); invalidate();
   });
   announce(`Site twin ready. ${data.assets.length} register assets, ${drawn} modeled.`);
+  reportStatus("ready");
 }
 
 start().catch(err => {
+  reportStatus("error");
   console.error(err); stage.setAttribute("aria-busy", "false");
   $("loading").innerHTML = `<strong>The model could not open</strong><p>${location.protocol === "file:" ? "Run Start Viewer.cmd in this folder, then open the address it prints." : esc(err.message) + " Enable WebGL and reload."}</p>`;
 });

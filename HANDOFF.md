@@ -1,5 +1,15 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 28, 2026 — A-5 Exterior & Site integrated into the sheet menu
+
+- **A-5** (`#exterior`) now hosts the existing A-1-register exterior model inside the main app: building surfaces, individual parking stalls, columns, benches, cans, utility clusters and site systems. A-3 remains the interior/permanent-record workspace; A-4 remains the evidence library.
+- Model has **745 register entries / 616 modeled**, including 324 stall objects (314 plat-derived + 10 CAD candidates), 39 A-1 columns, 10 benches and 20 cans. These counts do not establish field verification or merge the A-1/A-3 ID schemes.
+- **No 8770 dependency:** `tools/site-twin/web-package.mjs` builds from the existing model generator; Vite serves/emits `/site-twin/`. The portable viewer stays the source for both standalone and in-app use. Enabled builds include the model, CSV, asset data, report and vendored Three modules. Disabled builds omit them.
+- A-5 follows the existing twin release/account gate; owners can be granted the sheet, default off. Owner preview now preserves gated nav visibility. Only `/site-twin/` permits same-origin framing; the app keeps its anti-framing policy. No inline scripts are required for the embedded viewer.
+- Loads on entering A-5 and unloads on leaving to free its WebGL context; includes expansion, loading/error recovery and model/CSV download links. Links to A-3 interior plans now override a remembered water or asset selection, with explicit asset/water deep links retaining priority.
+- **Validation:** 927 tests passed; disabled and enabled production builds passed (existing JSON-import and chunk-size warnings remain). Live browser: A-5 reload, stall `stall-lot8-003` selection/source, Plan view, walkway Column 1 → 2, expanded view, 390 × 844 layout, A-4 navigation, and A-3 interior link after a water view verified. A-5 iframe removed on leaving; no browser errors observed.
+- This is a local source/repo integration, **not a deployment or database migration**. The standalone 8770 export remains available separately.
+
 ## September 28, 2026 — A-2 capture lenses back on top · A-3 Asset Twin + A-4 Site Evidence are sheets · 919 tests
 
 Operator: "put the drone views back at the top of A-2 … incorporate the digital twin more prominently … A-3 … Google

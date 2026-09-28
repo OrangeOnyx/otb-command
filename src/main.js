@@ -304,11 +304,11 @@ function buildShell(account) {
   function applyOwner() {
     const vis = new Set(getOwnerSheets());
     document.body.classList.toggle("owner-preview", ownerPreview);
-    PAGES.forEach(([id]) => { navBtn[id].style.display = (ownerPreview && !vis.has(id)) ? "none" : ""; });
+    PAGES.forEach(([id]) => { navBtn[id].style.display = navBtn[id].dataset.gated || (ownerPreview && !vis.has(id)) ? "none" : ""; });
     if (ownerPreview) {
       const active = document.querySelector(".nav button.on");
       if (!active || active.style.display === "none") {
-        const first = PAGES.find(([id]) => vis.has(id));
+        const first = PAGES.find(([id]) => vis.has(id) && !navBtn[id].dataset.gated);
         if (first) navBtn[first[0]].click();
       }
     }
@@ -372,7 +372,7 @@ function applyRole(role) {
     PAGES.forEach(([id]) => { navBtn[id].style.display = vis.has(id) && !navBtn[id].dataset.gated ? "" : "none"; });
     const active = document.querySelector(".nav button.on");
     if (!active || active.style.display === "none") {
-      const first = PAGES.find(([id]) => vis.has(id));
+      const first = PAGES.find(([id]) => vis.has(id) && !navBtn[id].dataset.gated);
       if (first) navBtn[first[0]].click();
     }
     if (ovWrap) ovWrap.style.display = "none"; // owners don't configure visibility
@@ -440,9 +440,11 @@ function initViews(account) {
       .catch(error => console.error('Asset twin could not load:', error));
     import('./views/site-evidence.js').then(({ initSiteEvidence }) => initSiteEvidence())
       .catch(error => console.error('Site evidence could not load:', error));
+    import('./views/site-exterior.js').then(({ initSiteExterior }) => initSiteExterior())
+      .catch(error => console.error('Exterior site model could not load:', error));
   } else {
-    // A-3 / A-4 exist only where the twin is released for this account.
-    for (const id of ['twin', 'evidence']) if (navBtn[id]) { navBtn[id].dataset.gated = '1'; navBtn[id].style.display = 'none'; }
+    // A-3 / A-4 / A-5 exist only where the twin is released for this account.
+    for (const id of ['twin', 'evidence', 'exterior']) if (navBtn[id]) { navBtn[id].dataset.gated = '1'; navBtn[id].style.display = 'none'; }
   }
   initSop(account);
   initPortfolio();

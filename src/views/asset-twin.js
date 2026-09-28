@@ -7,7 +7,7 @@ import * as Assets from '../lib/physical-assets.js';
 import { getMaintCache, refreshMaint, submitRequest, MR_STATUS, onMaintChange } from '../lib/maintenance.js';
 import { openMaintenanceRequest } from './maintenance.js';
 import { listHvacUnits } from '../lib/hvac.js';
-import { assetTwinLink, readAssetTwinLink, shouldAutoOpenTwin, assetQrSvg, latestLocatedBinding, sourceObjectForAsset } from '../lib/asset-twin-links.js';
+import { assetTwinLink, readAssetTwinLink, assetTwinOpenIntent, shouldAutoOpenTwin, assetQrSvg, latestLocatedBinding, sourceObjectForAsset } from '../lib/asset-twin-links.js';
 import storefrontReference from '../assets/twin/storefront-reference.jpg';
 import aerialReference from '../assets/twin/aerial-reference.jpg';
 import { sourceItems, sourceItemForAsset, sourceSearchText, sourceAssetKind, sourceTypeLabels } from '../lib/asset-twin-source-data.js';
@@ -343,12 +343,11 @@ export function initAssetTwin(account) {
     if('sectionHeight' in event){$('atSection').value=event.sectionHeight??Number($('atSection').max);$('atSectionValue').textContent=event.sectionHeight==null?'Full model':`${(event.sectionHeight/.3048).toFixed(1)} ft`;}
   }
   async function open(){
-    const incomingAsset=readAssetTwinLink(location.href).assetId;
-    const requestedAsset=incomingAsset||selectedId;
-    const requestedWater=new URL(location.href).searchParams.get('water')||(!incomingAsset&&(selectedWaterId||(activeTab==='water'?'all':null)));
-    if(!loading&&!loaded)pendingSelection=requestedWater?{kind:'water',id:requestedWater}:requestedAsset?{kind:'asset',id:requestedAsset}:null;
-    if(incomingAsset){selectedWaterId=null;activeTab='record';}
-    root.hidden=false;updateURL(requestedAsset);
+    const requested=assetTwinOpenIntent(location.href,{assetId:selectedId,waterId:selectedWaterId,tab:activeTab});
+    if(!loading&&!loaded)pendingSelection=requested;
+    if(readAssetTwinLink(location.href).assetId){selectedWaterId=null;activeTab='record';}
+    if(requested?.kind==='layout'){selectedId=null;selectedWaterId=null;activeTab='assets';}
+    root.hidden=false;updateURL(requested?.kind==='asset'?requested.id:null);
     if(loaded){scene?.resize();return;}if(loading)return loading;const generation=++openGeneration;
     $('atLoading').hidden=false;$('atLoading').textContent='Loading the source model…';
     loading=(async()=>{
@@ -370,7 +369,7 @@ export function initAssetTwin(account) {
       const intent=pendingSelection;pendingSelection=null;
       if(intent?.kind==='water')openWaterMap(intent.id);
       else if(intent?.kind==='asset'){if(Assets.getPhysicalAsset(intent.id))selectAsset(intent.id);else showMessage('This asset record is not available in this property or browser. Select a record from the register.',true);}
-      else if(new URL(location.href).searchParams.get('layout')==='exterior')showExterior();
+      else if(intent?.kind==='layout'&&intent.id==='exterior')showExterior();
       else showInterior();
       root.querySelector('[data-action="new-asset"]').disabled=!canWrite();
       $('atSetup').hidden=!(REMOTE&&canWrite()&&planResearchSetup(Assets.listPhysicalAssets(),Assets.listPhysicalAssetEvidence).length);
