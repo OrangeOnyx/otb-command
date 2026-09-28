@@ -5,6 +5,7 @@
       "Bash(npx vercel deploy --prod:*)",
       "Bash(git push origin master)",
       "Bash(git push origin master:*)",
+      "Bash(curl -s https://otb.cypresscommand.com/:*)",
       "PowerShell(npx vercel deploy --prod)",
       "PowerShell(npx vercel deploy --prod:*)",
       "PowerShell(git push origin master)",
