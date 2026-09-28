@@ -19,11 +19,9 @@ export-buyer/
 # brainstorming visual companion
 .superpowers/
 
-# splat (regenerable: node tools/convert-splat.mjs)
-public/OTB-splat.ksplat
+# splat (regenerable: node tools/convert-splat.mjs) — shipped via Git LFS since 2026-09-27 (see .gitattributes)
 
-# photogrammetry mesh (regenerable: npm run mesh-glb)
-public/OTB-mesh.glb
+# photogrammetry mesh (regenerable: npm run mesh-glb) — shipped via Git LFS since 2026-09-27
 
 # USGS LiDAR pack (regenerable: node tools/fetch-otb-lidar.mjs)
 public/elevation/

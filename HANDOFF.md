@@ -1,5 +1,18 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 27, 2026 (late night) — frontage marker clears when done · drone lenses restored on prod via Git LFS · 918 tests
+
+- **Frontage marker:** A-2's orange "REPORTED FRONTAGE" (the archived Pothole Repair, 101/103) was drawn whenever the
+  evidence loaded, regardless of the live M-1 status. Now `issueResolved` (`src/lib/maintenance-evidence.js`, tested) hides
+  it when the live read says `done` or `closed`; the records stay reachable and the record foot says "map marker cleared".
+  Operator: if it still shows, M-1 → Pothole Repair → ✓ Done (then Close). Commit dfc9c1e.
+- **Drone lenses were 404 on prod since Sep 11:** `public/OTB-splat.ksplat` (Reality, 17 MB) and `public/OTB-mesh.glb`
+  (3D photo skin, 3 MB) were gitignored; CLI deploys from this PC shipped them, GitHub Actions deploys (from Sep 11) did
+  not. Operator ruling: **Git LFS**. `.gitattributes` tracks both, `.gitignore` lines removed, `deploy.yml` checkout
+  `lfs: true`, CLAUDE.md binaries rule carries the exception. LFS hooks merged by hand into `.git/hooks` (post-commit keeps
+  the graphify block; post-merge added). The lenses themselves still live under A-2 → **Capture & legacy views** (footer
+  link, since Sep 11).
+
 ## September 27, 2026 (night) — twin: one-click research setup on hosted + reloads land on A-2 · 917 tests
 
 Operator: "the old spatial site is no more … the google earth resources I added are not available" → explained (the twin

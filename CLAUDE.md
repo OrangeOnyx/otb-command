@@ -212,6 +212,9 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   Downloads path is stale â€” correct it rather than following it.
 - **Capture data:** `E:\OTB-CAPTURE\Drone-Footage-RAW-2026-07\` (external drive).
   Never commit capture frames, drone footage, or other large binaries to this repo.
+  Exception (operator ruling 2026-09-27): the two derived web assets the A-2 lenses load —
+  `public/OTB-splat.ksplat` (Reality) and `public/OTB-mesh.glb` (3D skin) — ship via **Git LFS**
+  (`.gitattributes`; deploy.yml checks out with `lfs: true`). Raw captures still never go in git.
 - **Remote:** `https://github.com/OrangeOnyx/otb-command` (private).
 
 Save generated documentation and reports under `docs/` so they are versioned.

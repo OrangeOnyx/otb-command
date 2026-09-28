@@ -2,3 +2,5 @@
 # so the SHA-256 table in docs/cypress-command-brand-provenance.md stays true
 # on Windows checkouts with core.autocrlf=true.
 public/brand/cypress/** -text
+public/OTB-splat.ksplat filter=lfs diff=lfs merge=lfs -text
+public/OTB-mesh.glb filter=lfs diff=lfs merge=lfs -text
