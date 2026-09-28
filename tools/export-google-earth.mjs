@@ -1,4 +1,9 @@
-/* Google Earth export: every georeferencable layer in the repo -> one KMZ (+ CSV of point assets).
+/* Google Earth export: every georeferencable layer in the repo -> three KMZs (+ CSV of point assets):
+     OTB-Google-Earth.kmz          vectors, A-1 plan ground overlays, narrated viewpoints (web + Pro)
+     OTB-Drone-Photos-<date>.kmz   Skydio photos at their RTK capture pose (web + Pro)
+     OTB-Google-Earth-Pro.kmz      COLLADA site twin, 3D PhotoOverlays, narrated gx:Tour (Earth Pro only)
+   Raster inputs come from tools/ge-media.py (npm run export-google-earth runs both). */
+/* Layers:
    Coordinates: plan px (A-1 viewBox) -> CAD ft -> WGS84 through src/lib/geoproject.js and the georef
    shipped in footprints-geo.json — the same seam the A-2 satellite lens uses (icon-grade, ~2 m; NOT survey).
    Rent/economics are deliberately left out of every balloon: the project lives in Google's cloud and
@@ -8,6 +13,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { zipSync, strToU8 } from 'fflate';
 import { planToLL, ringCentroid, planBearing } from '../src/lib/geoproject.js';
+import { buildTwin } from './build-site-twin.mjs';
+import { glbToCollada } from './site-twin/collada.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const J = f => JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'data', f), 'utf8'));
@@ -91,7 +98,7 @@ const lookAt = ([lng, lat], range, tilt = 50, heading = planBearing(G)) =>
   `<LookAt><longitude>${lng}</longitude><latitude>${lat}</latitude><altitude>0</altitude><heading>${heading}</heading><tilt>${tilt}</tilt><range>${range}</range><altitudeMode>relativeToGround</altitudeMode></LookAt>`;
 
 /* ---------- palette (plan-room + 04C brand) ---------- */
-const CAT = { retail: '#2F6B4F', food: '#D97706', services: '#5F6E64', office: '#1E4D3A', vacant: '#FFFFFF' };
+const CAT = { retail: '#2F6B4F', food: '#C25E33', services: '#3A5570', medical: '#2F6B6B', financial: '#6B4E71', office: '#5F6E64', vacant: '#FFFFFF' }; // = src/lib/colors.js CAT_META
 const STATUS_ANCHOR = '#1E4F3C';
 const csv = [['layer', 'id', 'name', 'category', 'latitude', 'longitude', 'notes']];
 const addCsv = (layer, id, name, cat, [lng, lat], notes = '') => csv.push([layer, id, name, cat, lat.toFixed(7), lng.toFixed(7), notes]);
@@ -207,24 +214,137 @@ for (const c of cams.cameras) {
   addCsv('Security cameras', c.id, c.name, 'camera', ll(o), c.zone);
 }
 
-/* 7 — Presentation viewpoints (heading matches the A-1 plan orientation) */
+/* 7 — Presentation viewpoints (heading matches the A-1 plan orientation). The captions double as the
+   Google Earth web "Present" script and the Earth Pro tour narration. Facts only — no rent. */
 const mainRing = pathPoints(geo.assetGeom.parcels[0].d).map(ll), center = ringCentroid(mainRing);
+const lot7Ring = pathPoints(geo.assetGeom.parcels[1].d).map(ll);
 const VIEWS = [
-  ['Property overview (A-1 orientation)', center, 420, 0], ['Property oblique', center, 380, 55],
-  ['Long building 101–133 storefronts', ll([640, 300]), 220, 60], ['Short building 135–149', ll([1250, 380]), 170, 60],
-  ["Jason's Deli anchor (149)", ll([1200, 560]), 110, 55], ['Main field & Driveway A', ll([940, 560]), 200, 50],
-  ['Lot 8 pocket', ll([1230, 190]), 110, 50], ['Lot 7 remote lot', ll([1265, -120]), 140, 45],
-  ['Johnston frontage & pylon', ll([100, 400]), 140, 55]
+  ['Property overview', center, 420, 0,
+    'On The Boulevard Shopping Center · 101–149 Arnould Blvd, Lafayette, LA 70506. 62,883 SF GLA · 27 demised suites · 2 buildings · 4.84 ac · zoned CH. Owned by Belle Realty of Lafayette, LLC.'],
+  ['Property oblique', center, 380, 55,
+    'Plan orientation: Marie Antoinette St at the top, Arnould Blvd at the bottom, Johnston St / US 167 at left, Patricia St at right.'],
+  ['Long building 101–133 storefronts', ll([640, 300]), 220, 60,
+    'Long building 101–133 backs Marie Antoinette; storefronts face the main field. Suite 101 sits at the Johnston end. Vacant: 131 (LOI pending) and 133.'],
+  ['Short building 135–149', ll([1250, 380]), 170, 60,
+    "Short building along Patricia: 135A C. Wolf Barber, 135B Belle management office, 137–145 inline, anchored by Jason's Deli at the Patricia × Arnould corner."],
+  ["Jason's Deli anchor (149)", ll([1200, 560]), 110, 55,
+    "Anchor tenant Jason's Deli, Suite 149 — 4,613 SF. Lease §9.01: monthly HVAC PM contract with Butcher Air Conditioning; tenant maintains 100% of the Unit 149 HVAC."],
+  ['Liquor line', ll([700, 350]), 230, 45,
+    "Our Savior's Church easement §3a: restaurants are permitted within 175 ft on the permitted side of this line, and the waiver survives termination of the easement."],
+  ['Main field & Driveway A', ll([940, 560]), 200, 50,
+    "The main field fills first. Driveway A on Arnould is the only full-movement cut (55′ median opening). Parking variance Entry 99-11797: 324 provided / 344 required."],
+  ['Lot 8 pocket', ll([1230, 190]), 110, 50,
+    'Lot 8 pocket at Patricia × Marie Antoinette — 19 spaces, second in the fill order.'],
+  ['Lot 7 remote lot', ll([1265, -120]), 140, 45,
+    'Lot 7, Block M — 110 Marie Antoinette St, parcel 6009649. 32 spaces under mature oaks (invisible in aerials); third in the fill order.'],
+  ['Johnston frontage & pylon', ll([100, 400]), 140, 55,
+    'Johnston St / US 167 frontage: 14-panel pylon sign and the 10-space strip. The JD Bank corner parcel is NOT A PART — 13 reciprocal-easement spaces, expiring 12/30/2034.']
 ];
-const views = VIEWS.map(([n, p, r, t]) => pm(n, style('view', { icon: 'https://maps.google.com/mapfiles/kml/shapes/flag.png', scale: 0.7 }), point(p), '', lookAt(p, r, t)));
+const vst = style('view', { icon: 'https://maps.google.com/mapfiles/kml/shapes/flag.png', scale: 0.7 });
+const views = VIEWS.map(([n, p, r, t, cap]) => pm(n, vst, point(p), `<p>${esc(cap)}</p>`, lookAt(p, r, t)));
+
+/* 8 — Media from tools/ge-media.py (optional: skipped if the raster stage has not run) */
+const MEDIA = path.join(OUT, 'media'), manPath = path.join(MEDIA, 'manifest.json');
+const media = fs.existsSync(manPath) ? JSON.parse(fs.readFileSync(manPath, 'utf8')) : null;
+const LAT_M = 111320;
+
+/* Rotated LatLonBox for a plan-viewBox raster. Plan screen-up maps to azimuth planBearing (a rotation,
+   not a mirror — geoproject.js), so the image stays a rectangle on the ground; self-checked to 0.5 m. */
+function planBox([x0, y0, w, h]) {
+  const C = [ll([x0, y0]), ll([x0 + w, y0]), ll([x0 + w, y0 + h]), ll([x0, y0 + h])];
+  const lng0 = C.reduce((s, p) => s + p[0], 0) / 4, lat0 = C.reduce((s, p) => s + p[1], 0) / 4;
+  const k = LAT_M * Math.cos(lat0 * Math.PI / 180), enu = p => [(p[0] - lng0) * k, (p[1] - lat0) * LAT_M];
+  const [tl, tr, br, bl] = C.map(enu);
+  const up = [(tl[0] + tr[0] - bl[0] - br[0]) / 2, (tl[1] + tr[1] - bl[1] - br[1]) / 2];
+  const rt = [(tr[0] + br[0] - tl[0] - bl[0]) / 2, (tr[1] + br[1] - tl[1] - bl[1]) / 2];
+  const H = Math.hypot(...up), W = Math.hypot(...rt);
+  let rot = -Math.atan2(up[0], up[1]) * 180 / Math.PI; // KML rotation is counter-clockwise
+  if (rot <= -180) rot += 360; if (rot > 180) rot -= 360;
+  const r = rot * Math.PI / 180, x = -W / 2, y = H / 2;
+  const err = Math.hypot(x * Math.cos(r) - y * Math.sin(r) - tl[0], x * Math.sin(r) + y * Math.cos(r) - tl[1]);
+  if (err > 0.5) throw new Error(`plan overlay box misfit ${err.toFixed(2)} m`);
+  return `<LatLonBox><north>${(lat0 + H / 2 / LAT_M).toFixed(8)}</north><south>${(lat0 - H / 2 / LAT_M).toFixed(8)}</south>` +
+    `<east>${(lng0 + W / 2 / k).toFixed(8)}</east><west>${(lng0 - W / 2 / k).toFixed(8)}</west><rotation>${rot.toFixed(4)}</rotation></LatLonBox>`;
+}
+const mainFiles = {}, planOverlays = [];
+if (media?.plan) {
+  const box = planBox(media.plan.viewBox);
+  for (const [name, file, vis, desc] of [
+    [`A-1 site plan — full sheet (${media.plan.rev})`, media.plan.sheet, 0, 'Opaque A-1 sheet draped on the terrain. Toggle on to compare the plan against the imagery.'],
+    [`A-1 site plan — linework (${media.plan.rev})`, media.plan.lines, 1, 'Transparent A-1 linework and suites over the imagery.']]) {
+    mainFiles[`media/${file}`] = fs.readFileSync(path.join(MEDIA, file));
+    planOverlays.push(`<GroundOverlay><name>${esc(name)}</name><visibility>${vis}</visibility><description>${esc(desc)}</description>` +
+      `<color>${vis ? 'ccffffff' : 'ffffffff'}</color><drawOrder>${vis ? 2 : 1}</drawOrder><Icon><href>media/${file}</href></Icon>${box}</GroundOverlay>`);
+  }
+}
+
+/* 9 — Drone photos (Skydio X10, RTK): pins at the capture position with the drone's own camera view */
+const inRing = ([x, y], ring) => {
+  let c = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++)
+    if ((ring[i][1] > y) !== (ring[j][1] > y) && x < (ring[j][0] - ring[i][0]) * (y - ring[i][1]) / (ring[j][1] - ring[i][1]) + ring[i][0]) c = !c;
+  return c;
+};
+const photos = (media?.photos || []).map(p => ({ ...p, onSite: inRing([p.lng, p.lat], mainRing) || inRing([p.lng, p.lat], lot7Ring) }));
+const photoFiles = {};
+const camView = p => `<Camera><longitude>${p.lng.toFixed(8)}</longitude><latitude>${p.lat.toFixed(8)}</latitude><altitude>${p.relAltM.toFixed(2)}</altitude>` +
+  `<heading>${(p.yaw ?? 0).toFixed(2)}</heading><tilt>${Math.max(0, 90 + (p.pitch ?? -90)).toFixed(2)}</tilt><roll>0</roll><altitudeMode>relativeToGround</altitudeMode></Camera>`;
+const airPoint = p => `<Point><extrude>1</extrude><altitudeMode>relativeToGround</altitudeMode><coordinates>${p.lng.toFixed(8)},${p.lat.toFixed(8)},${p.relAltM.toFixed(2)}</coordinates></Point>`;
+const photoDesc = p => `<img src="${p.file}" width="640"/><br/>` + table([['Photo', p.source], ['Taken (UTC)', p.taken], ['Height above takeoff', `${p.relAltM.toFixed(1)} m`],
+  ['Camera heading / pitch', `${(p.yaw ?? 0).toFixed(1)}° / ${(p.pitch ?? 0).toFixed(1)}°`], ['GPS accuracy', p.hAccM != null ? `±${p.hAccM.toFixed(2)} m` : ''],
+  ['Where', p.onSite ? 'Over OTB (Belle parcels)' : 'Adjacent property']]);
+const pst = style('photo', { icon: 'https://maps.google.com/mapfiles/kml/shapes/camera.png', iconColor: '#D97706', scale: 0.6 });
+const photoPms = { on: [], off: [] };
+for (const p of photos) {
+  photoFiles[p.file] = fs.readFileSync(path.join(MEDIA, p.file));
+  photoPms[p.onSite ? 'on' : 'off'].push(pm(p.source, pst, airPoint(p), photoDesc(p), camView(p)));
+}
+const byTime = [...photos].sort((a, b) => a.taken.localeCompare(b.taken));
+const flightPath = photos.length ? pm(`Flight path ${byTime[0].taken.slice(0, 10)}`, style('flight', { line: '#D97706', width: 2 }),
+  `<LineString><altitudeMode>relativeToGround</altitudeMode><coordinates>${byTime.map(p => `${p.lng.toFixed(8)},${p.lat.toFixed(8)},${p.relAltM.toFixed(2)}`).join(' ')}</coordinates></LineString>`) : '';
+
+/* 10 — Earth Pro: COLLADA site twin, 3D photo overlays, narrated tour */
+const twin = buildTwin(), T = geo.boundary.transform;
+const [a0, b0] = twin.data.transform.originPlatFt;
+const modelToLL = (X, Z) => {
+  const a = -X / FT_M + a0, b = Z / FT_M + b0;
+  return ll([T.envelope.xRight - (a - T.aRangeFt[0]) * T.kxPxPerFt, T.envelope.yBottom + (b - T.bRangeFt[1]) * T.kyPxPerFt]);
+};
+const [mLng, mLat] = modelToLL(0, 0), mk = LAT_M * Math.cos(mLat * Math.PI / 180);
+const { dae, stats } = glbToCollada(twin.glb, (X, Y, Z) => { const [lng, lat] = modelToLL(X, Z); return [(lng - mLng) * mk, (lat - mLat) * LAT_M, Y]; },
+  { title: 'OTB site twin' });
+const model = `<Placemark><name>OTB site twin (3D)</name><description><![CDATA[${table([['Source', 'tools/build-site-twin.mjs (same model as dist-twin/OTB_Site_Twin/model.glb)'],
+  ['Geometry', `${stats.meshes} meshes · ${stats.triangles.toLocaleString('en-US')} triangles`], ['Placement', 'Baked into local east-north-up metres through the A-2 georef (~2 m)']])}]]></description>` +
+  `<Model><altitudeMode>relativeToGround</altitudeMode><Location><longitude>${mLng.toFixed(8)}</longitude><latitude>${mLat.toFixed(8)}</latitude><altitude>0</altitude></Location>` +
+  `<Orientation><heading>0</heading><tilt>0</tilt><roll>0</roll></Orientation><Scale><x>1</x><y>1</y><z>1</z></Scale><Link><href>models/otb-site-twin.dae</href></Link></Model></Placemark>`;
+const photoOverlays = photos.map(p => `<PhotoOverlay><name>${esc(p.source)}</name><visibility>0</visibility>${camView(p)}` +
+  `<Icon><href>${p.file}</href></Icon><ViewVolume><leftFov>${(-p.hfov / 2).toFixed(2)}</leftFov><rightFov>${(p.hfov / 2).toFixed(2)}</rightFov>` +
+  `<bottomFov>${(-p.vfov / 2).toFixed(2)}</bottomFov><topFov>${(p.vfov / 2).toFixed(2)}</topFov><near>${Math.max(5, p.relAltM * 0.6).toFixed(1)}</near></ViewVolume>` +
+  `<Point><altitudeMode>relativeToGround</altitudeMode><coordinates>${p.lng.toFixed(8)},${p.lat.toFixed(8)},${p.relAltM.toFixed(2)}</coordinates></Point><shape>rectangle</shape></PhotoOverlay>`);
+const tourStops = VIEWS.map(([n, p, r, t, cap], i) => `<Placemark id="stop${i}"><name>${esc(n)}</name><description><![CDATA[<p>${esc(cap)}</p>]]></description>` +
+  `<styleUrl>${vst}</styleUrl>${point(p)}</Placemark>`);
+const balloon = (i, on) => `<gx:AnimatedUpdate><gx:duration>0.0</gx:duration><Update><targetHref/><Change><Placemark targetId="stop${i}"><gx:balloonVisibility>${on}</gx:balloonVisibility></Placemark></Change></Update></gx:AnimatedUpdate>`;
+const tour = `<gx:Tour><name>▶ OTB narrated fly-through</name><description>Double-click to play in Google Earth Pro. ${VIEWS.length} stops with captions.</description><gx:Playlist>` +
+  [...VIEWS, VIEWS[0]].map(([, p, r, t], i) => {
+    const s = i % VIEWS.length, last = i === VIEWS.length;
+    return `<gx:FlyTo><gx:duration>${i === 0 ? 3 : 5}</gx:duration><gx:flyToMode>smooth</gx:flyToMode>${lookAt(p, r, t)}</gx:FlyTo>` +
+      (last ? '' : `${balloon(s, 1)}<gx:Wait><gx:duration>7</gx:duration></gx:Wait>${balloon(s, 0)}`);
+  }).join('') + `</gx:Playlist></gx:Tour>`;
 
 /* ---------- assemble ---------- */
 const readme = `Generated ${new Date().toISOString().slice(0, 10)} by tools/export-google-earth.mjs from geometry ${geo.rev}. ` +
   `Georef: CAD-feet local-tangent affine fitted to Esri imagery (anchor ${G.anchorLL.join(', ')}, azY ${G.azY}°) — icon-grade (~2 m), not survey. ` +
   'Rent and lease economics are intentionally excluded.';
-const body = [
+const doc = (name, desc, parts) => `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document>
+<name>${esc(name)}</name><description>${esc(desc)}</description>${lookAt(center, 420, 0)}<open>1</open>
+${[...styles.values()].join('\n')}
+${parts.join('')}
+</Document></kml>`;
+const mainKml = doc(TITLE, readme, [
   folder('Tenant Zoning & POI Directory', [folder('Suite footprints', tenantPolys), folder('Tenant pins', tenantPins)]),
   folder('3D Massing & Solar Glare Exposure', massing, 'Suites extruded to measured roof heights (src/data/heights.json).'),
+  folder('Site Plan Overlay (A-1)', planOverlays),
   folder('Parcels, Easements & Liquor Line', legal),
   folder('Parking Utilization & Logistics Zones', zoneFolders, parkingNote),
   folder('Ingress, Aisles & Islands', [folder('Driveways & aisles', circ), folder('Planting islands', islands)]),
@@ -232,22 +352,30 @@ const body = [
   folder('Exterior Lighting & Photometric Coverage', regFolder(['lighting'])),
   folder('Digital Twin Master Asset Inventory & POI Directory', regFolder(['column', 'bench', 'can', 'bollard', 'ada', 'sign', 'fence', 'walk', 'tree', ...unknownCats])),
   folder('Security Cameras', camItems),
-  folder('3D Presentation Keyframes & Fly-Through Viewpoints', views)
-].join('');
-const kml = `<?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document>
-<name>${esc(TITLE)}</name><description>${esc(readme)}</description>${lookAt(center, 420, 0)}<open>1</open>
-${[...styles.values()].join('\n')}
-${body}
-</Document></kml>`;
+  folder('3D Presentation Keyframes & Fly-Through Viewpoints', views, 'Use Present in Google Earth to step through these views with their captions.')
+]);
+const shotDate = byTime[0]?.taken.slice(0, 10) || '';
+const photosKml = doc(`OTB drone photos ${shotDate} (Skydio X10)`, `${photos.length} geotagged photos. Click a pin to open the photo; double-click to fly to the drone's exact viewpoint.`, [
+  folder(`Over OTB (${photoPms.on.length})`, photoPms.on), folder(`Adjacent properties (${photoPms.off.length})`, photoPms.off), flightPath]);
+const proKml = doc(`${TITLE} — Google Earth Pro extras`, 'COLLADA site twin, 3D photo overlays and a narrated tour. Google Earth Pro (desktop) only; the web client ignores models, photo overlays and tours.', [
+  tour, folder('Site twin model', [model]), folder('Tour captions', tourStops),
+  folder(`Drone photos in 3D — ${shotDate} (toggle on)`, photoOverlays, 'Each photo is hung in 3D at the drone camera’s pose; double-click one to look through it.')]);
 
 fs.mkdirSync(OUT, { recursive: true });
-fs.writeFileSync(path.join(OUT, 'OTB-Google-Earth.kml'), kml);
-fs.writeFileSync(path.join(OUT, 'OTB-Google-Earth.kmz'), zipSync({ 'doc.kml': strToU8(kml) }, { level: 9 }));
+for (const f of ['OTB-Google-Earth.kml']) fs.rmSync(path.join(OUT, f), { force: true }); // superseded: images need the KMZ
+const writeKmz = (name, kml, files) => {
+  const buf = zipSync({ 'doc.kml': strToU8(kml), ...Object.fromEntries(Object.entries(files).map(([k, v]) => [k, [new Uint8Array(v), { level: 0 }]])) }, { level: 9 });
+  fs.writeFileSync(path.join(OUT, name), buf);
+  return `${name} ${(buf.length / 1e6).toFixed(1)} MB · ${(kml.match(/<(Placemark|GroundOverlay|PhotoOverlay)[ >]/g) || []).length} features`;
+};
+const out = [writeKmz('OTB-Google-Earth.kmz', mainKml, mainFiles)];
+if (photos.length) out.push(writeKmz(`OTB-Drone-Photos-${shotDate}.kmz`, photosKml, photoFiles));
+out.push(writeKmz('OTB-Google-Earth-Pro.kmz', proKml, { 'models/otb-site-twin.dae': Buffer.from(dae), ...photoFiles }));
 fs.writeFileSync(path.join(OUT, 'OTB-assets.csv'),
   csv.map(r => r.map(v => /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v).join(',')).join('\n'));
-const n = (kml.match(/<Placemark>/g) || []).length;
-const lls = [...kml.matchAll(/(-9\d\.\d+),(3\d\.\d+),/g)].map(m => [+m[1], +m[2]]);
-console.log(`OK -> export/google-earth | ${n} placemarks | ${csv.length - 1} CSV points | kml ${(kml.length / 1024).toFixed(0)} KB`);
+const lls = [...mainKml.matchAll(/(-9\d\.\d+),(3\d\.\d+),/g)].map(m => [+m[1], +m[2]]);
+console.log('OK -> export/google-earth\n  ' + out.join('\n  ') + `\n  OTB-assets.csv ${csv.length - 1} points`);
+console.log(`media: ${media ? `plan ${media.plan ? 'yes' : 'no'} · photos ${photos.length} (${photoPms.on.length} over OTB)` : 'none — run python tools/ge-media.py first'}`);
+console.log(`model: ${stats.meshes} meshes · ${stats.triangles} tris · origin ${mLat.toFixed(6)}, ${mLng.toFixed(6)} · reflected ${stats.reflected}`);
 console.log(`register items without geometry (not exported): ${skipped.join(', ') || 'none'}`);
 console.log(`bbox lng ${Math.min(...lls.map(p => p[0])).toFixed(5)}..${Math.max(...lls.map(p => p[0])).toFixed(5)} lat ${Math.min(...lls.map(p => p[1])).toFixed(5)}..${Math.max(...lls.map(p => p[1])).toFixed(5)}`);
