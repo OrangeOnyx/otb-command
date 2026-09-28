@@ -220,6 +220,10 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   `public/OTB-splat.ksplat` (Reality) and `public/OTB-mesh.glb` (3D skin) — ship via **Git LFS**
   (`.gitattributes`; deploy.yml checks out with `lfs: true`). Raw captures still never go in git.
 - **Remote:** `https://github.com/OrangeOnyx/otb-command` (private).
+- **Digital-twin frame (2026-09-28):** every twin asset (Blender, Unreal, meshes, splats, scans) registers to
+  **EPSG:6344 + NAVD88, local origin E 591000 N 3341600** (the 3DEP LiDAR frame). Pipeline: `tools/skydio-rectify.py` →
+  `tools/build-twin-mesh.py` → `tools/register-polycam.py` → `tools/build-twin-pack.py` (README `docs/twin-pack-README.md`).
+  The LiDAR, not phone/drone GPS, sets position; never renumber asset IDs when geometry improves.
 
 Save generated documentation and reports under `docs/` so they are versioned.
 Throwaway scratch output belongs outside the repo entirely.

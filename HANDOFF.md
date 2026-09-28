@@ -1,5 +1,34 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 28, 2026 (later) — Digital twin workflow: Skydio rescue · georeferenced mesh · Blender/Unreal asset pack
+
+Operator picks "1 then 2 then 3". **Canonical twin frame from here on: EPSG:6344 (NAD83(2011)/UTM 15N) + NAVD88,
+local origin E 591000 N 3341600** = the USGS 3DEP LiDAR frame (`npm run fetch-lidar -- --with-laz`).
+- **1 · Skydio rescue** (`tools/skydio-rectify.py`, `docs/skydio-rectify-2026-09-28.md`). Four measured defects: ellipsoidal
+  altitude (26.28 m), per-flight vertical bias (35D0 −0.16 · 7DD7 −1.90 · B3A7 +9.05 m), two lenses, **per-photo digital zoom
+  1.01–18.31×** (the July "all 165 registered" model used one camera at f≈10,864 px = warped). Fix: fixed per-photo cameras,
+  RTK priors, cull mis-registered frames, vertical lock to the LiDAR height field. **50/165 posed, 38 LiDAR-locked
+  (0.21–0.26 m).** Tele roof close-ups cannot reconstruct; roofs need the fixed-1× re-fly.
+- **Side finding (NOT applied):** the Esri-tuned footprints (`footprints-geo.json`) are 2.6 m W / 4.9 m N / 1.25° off the
+  LiDAR roofs, and the Reality-lens splat/mesh alignment (`splat-align.json`) is also **~6 % too large**. LiDAR-registered set:
+  `export/skydio-rectify/footprints-lidar.geojson`. Adopting it moves A-2 / Google Earth / twin placement → operator ruling.
+- **2 · Mesh** (`tools/build-twin-mesh.py`): DJI dense re-seated via façades→LiDAR roof edges + height field (roof −0.03 /
+  ground +0.01 m vs LiDAR; 91 % of Skydio points within 1.5 m), Poisson depth 10 (≥11 segfaults; poisson_mesher must run
+  from `tools3dgs/`), 600k-face vertex-colour GLB + photogrammetry LAZ. Skydio dense merge hit CUDA OOM → DJI-only for now.
+- **Polycam** (`tools/register-polycam.py`): 8/18 (149 corner) registered (75 % of overlap ≤0.3 m); **9/28 (101 end-cap)
+  rejected at 49.7 %** vs the 50 % bar.
+- **3 · Pack** (`tools/build-twin-pack.py`, README = `docs/twin-pack-README.md`) → `export/twin-pack/OTB_Twin_Pack/` +
+  `G:\My Drive\00 OTB\twin-pack\`. Every GLB pre-registered (wrapper node matrix): site twin (27 units, 0.78 m RMS), interior
+  (37 columns C*k*=col-*k*+2, 0.63 m), mesh, terrain, Polycam; 3DEP + photogrammetry LAZ; DJI splat re-seated (SH band 1
+  rotated, 2–3 zeroed); heightmap for UE Landscape; register CSV in twin coords; Blender + Unreal import scripts. Overlay
+  proof `data/check-overlay-topview.jpg`.
+- **Not verified here:** headless Blender 5.2 hangs at start-up on this machine (even `--python-expr print`, sandbox off),
+  so no `.blend` was built and the texture bake is opt-in (`--blender`); the Unreal script was not executed (no UE run).
+  Operator next: run `blender/import_otb_twin.py` in the Blender UI; run `unreal/import_otb_twin.py` in a UE 5.8 project and
+  check `frame.json → unreal_checks`.
+
+---
+
 ## September 28, 2026 — A-5 Exterior & Site integrated into the sheet menu
 
 - **A-5** (`#exterior`) now hosts the existing A-1-register exterior model inside the main app: building surfaces, individual parking stalls, columns, benches, cans, utility clusters and site systems. A-3 remains the interior/permanent-record workspace; A-4 remains the evidence library.

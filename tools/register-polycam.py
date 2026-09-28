@@ -1,0 +1,112 @@
+# Register the Polycam iPhone LiDAR scans to the OTB twin frame (EPSG:6344 + NAVD88, origin 591000/3341600).
+#
+#   python tools/register-polycam.py          # -> export/polycam-twin/ (+ copies into the twin pack build)
+#
+# Per scan (E:/OTB-CAPTURE/OTB_Capture_<date>/04_model_exports/<m_d_yyyy>.*):
+#   1. local PLY <-> geo LAZ: same points, same order -> exact similarity (index-matched Umeyama);
+#   2. geo (phone GPS, unknown vertical datum) -> twin local: vertical seeded from the LiDAR ground;
+#   3. 4-DoF point-to-plane ICP (heading + shift) onto the DJI dense cloud already in the twin frame
+#      (build-twin-mesh.py). Phone LiDAR is metric (no scale) and its gravity is better than the reference, so
+#      tilt is not solved; a free 6-DoF fit put 1.2-1.4 deg into heading (compass error) and only 0.2-0.3 deg
+#      into tilt. Accepted when >= 50 % of the points the DJI cloud covers (NN < 1 m) sit within 0.3 m;
+#      the DJI dense cloud's own noise (~0.15-0.3 m) bounds what this can prove.
+# Outputs: <date>-twin.laz (absolute coords, CRS embedded), <date>-twin.glb (textured mesh, registered), report.json
+import json, math, struct
+from pathlib import Path
+import numpy as np
+from scipy.spatial import cKDTree
+from pyproj import Transformer
+import importlib.util
+
+ROOT = Path(__file__).resolve().parent.parent
+CAP = Path("E:/OTB-CAPTURE")
+OUT = ROOT / "export/polycam-twin"
+ORIGIN = np.array([591000.0, 3341600.0, 0.0])
+SCANS = {"2026-08-18": "OTB_Capture_2026-08-18/04_model_exports/8_18_2026",
+         "2026-09-28": "OTB_Capture_2026-09-28/04_model_exports/9_28_2026"}
+to_utm = Transformer.from_crs(4326, 6344, always_xy=True)
+
+def _mod(name, path):
+    spec = importlib.util.spec_from_file_location(name, path); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m
+mesh = _mod("btm", ROOT / "tools/build-twin-mesh.py")
+pack = _mod("btp", ROOT / "tools/build-twin-pack.py")
+
+def umeyama(A, B, scale=True):
+    ma, mb = A.mean(0), B.mean(0)
+    U, D, Vt = np.linalg.svd((B - mb).T @ (A - ma))
+    E = np.diag([1, 1, np.sign(np.linalg.det(U @ Vt))]); R = U @ E @ Vt
+    s = np.trace(np.diag(D) @ E) / ((A - ma) ** 2).sum() if scale else 1.0
+    return s, R, mb - s * R @ ma
+
+def icp_rigid(src, dst, dn, tree, iters=45, trims=(1.5, 0.6, 0.3, 0.15)):
+    R, t = np.eye(3), np.zeros(3); c = src.mean(0); hist = []
+    for it in range(iters):
+        trim = trims[min(it // 12, len(trims) - 1)]
+        X = (R @ (src - c).T).T + c + t
+        d, j = tree.query(X); m = d < trim
+        if m.sum() < 500:
+            break
+        n, q, x = dn[j[m]], dst[j[m]], X[m]
+        r = np.einsum("ij,ij->i", x - q, n)
+        A = np.hstack([np.cross(x - c, n)[:, 2:3], n])                      # yaw about z + 3-D shift
+        sol = np.linalg.lstsq(A, -r, rcond=None)[0]
+        wz, dt = sol[0], sol[1:]
+        dR = np.array([[math.cos(wz), -math.sin(wz), 0], [math.sin(wz), math.cos(wz), 0], [0, 0, 1.0]])
+        R = dR @ R; t = dR @ t + dt
+        hist.append((trim, int(m.sum()), float(np.sqrt(np.mean(r ** 2)))))
+    return R, t, c, hist
+
+def main():
+    import laspy
+    OUT.mkdir(parents=True, exist_ok=True)
+    L = mesh.lidar()
+    d = np.load(ROOT / ".cache/twin-mesh/dji-twin.npz", allow_pickle=True)
+    D, DN = d["P"].astype(np.float64), d["N"].astype(np.float64)
+    rep = {}
+    for date, stem in SCANS.items():
+        las = laspy.read(CAP / f"{stem}.laz"); ply = mesh.read_ply(CAP / f"{stem}.ply")
+        Ploc = np.stack([ply["x"], ply["y"], ply["z"]], 1).astype(np.float64)
+        C = np.stack([ply["red"], ply["green"], ply["blue"]], 1).astype(np.uint8)
+        E, N = to_utm.transform(np.asarray(las.x), np.asarray(las.y))
+        G = np.stack([E - ORIGIN[0], N - ORIGIN[1], np.asarray(las.z)], 1)
+        idx = np.random.default_rng(0).choice(len(G), 50_000, replace=False)
+        s0, R0, t0 = umeyama(Ploc[idx], G[idx])                           # local -> geo (exact pairing)
+        P = (s0 * (R0 @ Ploc.T)).T + t0
+        # vertical seed: scan's low percentile vs LiDAR ground under it
+        ix = ((P[:, 0] + ORIGIN[0] - L["X0"]) / L["res"]).astype(int); iy = ((P[:, 1] + ORIGIN[1] - L["Y0"]) / L["res"]).astype(int)
+        dz = float(np.median(L["dtm"][iy, ix]) - np.percentile(P[:, 2], 5)); P[:, 2] += dz
+        lo, hi = P.min(0) - 15, P.max(0) + 15
+        mk = np.all((D > lo) & (D < hi), 1)
+        dst, dn = D[mk], DN[mk]
+        tree = cKDTree(dst)
+        sub = P[np.random.default_rng(1).choice(len(P), min(len(P), 200_000), replace=False)]
+        R1, t1, c1, hist = icp_rigid(sub, dst, dn, tree)
+        Pf = (R1 @ (P - c1).T).T + c1 + t1
+        dd, _ = tree.query(Pf[np.random.default_rng(2).choice(len(Pf), 100_000, replace=False)])
+        near = dd < 1.0
+        inl = float(np.mean(dd[near] < 0.3))
+        ok = inl >= 0.5
+        # full local -> twin-local (Z-up) similarity
+        S = s0; Rf = R1 @ R0; tf = R1 @ (t0 + np.array([0, 0, dz]) - c1) + c1 + t1
+        rep[date] = {"points": int(len(P)), "local_to_geo_scale": round(float(s0), 5), "vertical_seed_m": round(dz, 2),
+                     "icp_shift_m": np.round(t1 + (R1 @ -c1) + c1, 2).tolist(),
+                     "icp_rotation_deg": round(math.degrees(math.acos(np.clip((np.trace(R1) - 1) / 2, -1, 1))), 3),
+                     "icp_final": hist[-1] if hist else None, "overlap_fraction": round(float(near.mean()), 3),
+                     "overlap_within_0p3m_of_dji": round(inl, 3),
+                     "median_distance_m": round(float(np.median(dd)), 3), "accepted": ok,
+                     "local_to_twin": {"scale": float(S), "R": Rf.tolist(), "t": tf.tolist()}}
+        print(date, json.dumps({k: v for k, v in rep[date].items() if k != "local_to_twin"}))
+        if not ok:
+            continue
+        mesh.write_laz(OUT / f"OTB-polycam-{date}-twin.laz", Pf.astype(np.float32), C)
+        # textured mesh: Polycam GLB is the PLY frame in glTF Y-up (x, z, -y); wrap with local->twin (glTF)
+        Mz = np.eye(4); Mz[:3, :3] = S * Rf; Mz[:3, 3] = tf                       # local Z-up -> twin Z-up
+        Y2Z = np.array([[1, 0, 0, 0], [0, 0, -1, 0], [0, 1, 0, 0], [0, 0, 0, 1.0]])   # glTF (x,y,z) -> Z-up (x,-z,y)
+        Z2Y = np.linalg.inv(Y2Z)
+        pack.wrap_glb(CAP / f"{stem}.glb", OUT / f"OTB-polycam-{date}-twin.glb", Z2Y @ Mz @ Y2Z,
+                      f"OTB_Polycam_{date}_TwinFrame", {"otb_frame": "EPSG:6344 + NAVD88", "otb_local_origin": "E 591000 N 3341600",
+                                                         "overlap_within_0p3m_of_dji": inl})
+    json.dump(rep, open(OUT / "report.json", "w"), indent=2)
+
+if __name__ == "__main__":
+    main()
