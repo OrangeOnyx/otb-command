@@ -41,20 +41,6 @@
         "8770"
       ],
       "port": 8770
-    },
-    {
-      "name": "ge-check-8791",
-      "runtimeExecutable": "python",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8791",
-        "--bind",
-        "127.0.0.1",
-        "--directory",
-        "C:/Users/adam/AppData/Local/Temp/claude/C--Users-adam-Projects-otb-command-claude-code-kit-otb-command/40f65b2a-235a-4359-a627-2d49e2723ca5/scratchpad"
-      ],
-      "port": 8791
     }
   ]
 }
