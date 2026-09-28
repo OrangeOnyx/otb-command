@@ -5,7 +5,8 @@ from graphify.detect import detect
 repo = Path(r'C:\Users\adam\Projects\otb-command-claude-code-kit\otb-command')
 result = detect(repo)
 
-EXCLUDE_DIRS = {'node_modules', 'dist', '.vercel', '.git', 'marketing', 'public', 'baseline'}
+# dist-twin = standalone 8770 viewer build; vendor = bundled third-party code (three.js)
+EXCLUDE_DIRS = {'node_modules', 'dist', 'dist-twin', 'vendor', '.vercel', '.git', 'marketing', 'public', 'baseline'}
 
 def excluded(p):
     p = Path(p)

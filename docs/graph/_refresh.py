@@ -33,7 +33,15 @@ def main():
     new_ids = {n['id'] for n in ast['nodes']}
     old_nodes = old.get('nodes', [])
     old_links = old.get('links', old.get('edges', []))
-    preserved_nodes = [n for n in old_nodes if n['id'] not in new_ids]
+    # build output / vendored code is never semantic; drop it even if an older
+    # run extracted it (keep in step with EXCLUDE_DIRS in _detect.py)
+    stale_dirs = {'dist', 'dist-twin', 'vendor', 'node_modules'}
+
+    def stale(n):
+        parts = (n.get('source_file') or '').replace('\\', '/').split('/')
+        return any(p in stale_dirs for p in parts)
+
+    preserved_nodes = [n for n in old_nodes if n['id'] not in new_ids and not stale(n)]
     kept_ids = new_ids | {n['id'] for n in preserved_nodes}
 
     def endpoint(e, k):
@@ -92,8 +100,13 @@ def main():
     repo = str(here.parent.parent)
     report = generate(G, communities, cohesion, labels, gods, surprises, detection,
                       {'input': 0, 'output': 0}, repo, suggested_questions=questions)
+    # write graph.json first: if graphify refuses (node-count drop), leave the
+    # report / html / labels untouched so they stay keyed to the old graph.
+    # Pass --force when the drop is an intended exclusion.
+    if to_json(G, communities, str(out / 'graph.json'), force='--force' in sys.argv) is False:
+        print('graph.json not written; report, html and labels left unchanged')
+        return 1
     (out / 'GRAPH_REPORT.md').write_text(report, encoding='utf-8')
-    to_json(G, communities, str(out / 'graph.json'))
     to_html(G, communities, str(out / 'graph.html'), community_labels=labels)
     # snapshot current labels keyed by NEW community ids for the next refresh
     (here / 'labels.json').write_text(json.dumps(
