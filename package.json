@@ -24,7 +24,8 @@
     "mesh-glb": "python tools/build-mesh-glb.py",
     "cube-frames": "node tools/cube-frames.mjs",
     "fetch-lidar": "node tools/fetch-otb-lidar.mjs",
-    "site-twin": "node tools/build-site-twin.mjs"
+    "site-twin": "node tools/build-site-twin.mjs",
+    "export-google-earth": "node tools/export-google-earth.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0"
