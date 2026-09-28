@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {assetTwinLink,readAssetTwinLink,assetQrSvg,latestLocatedBinding,sourceObjectForAsset} from '../src/lib/asset-twin-links.js';
+import {assetTwinLink,readAssetTwinLink,shouldAutoOpenTwin,assetQrSvg,latestLocatedBinding,sourceObjectForAsset} from '../src/lib/asset-twin-links.js';
 import {cleanSourceBinding} from '../src/lib/physical-assets-model.js';
 const id='pa_a54bac91-97f6-4a3a-9c67-ac35829dff53';
 test('asset link retains permanent ID and drops unrelated query credentials',()=>{
@@ -40,4 +40,14 @@ test('latest explicit upper-floor placement keeps its source level across JSON p
   assert.equal(binding.asset_id,id);
   assert.equal(restored.id,id);
   assert.equal(restored.bindings.length,3,'Finding a location does not remove older source associations');
+});
+
+test('only a fresh shared asset link reopens the twin; reloads land on A-2',()=>{
+  const link=`https://otb.example/?view=twin&asset=${id}#spatial`;
+  assert.equal(shouldAutoOpenTwin(link,'navigate'),true);
+  assert.equal(shouldAutoOpenTwin(link,'reload'),false);
+  assert.equal(shouldAutoOpenTwin(link,'back_forward'),false);
+  assert.equal(shouldAutoOpenTwin('https://otb.example/?view=twin#spatial','navigate'),false);
+  assert.equal(shouldAutoOpenTwin('https://otb.example/?view=twin&layout=interior#spatial'),false);
+  assert.equal(shouldAutoOpenTwin('https://otb.example/#spatial'),false);
 });

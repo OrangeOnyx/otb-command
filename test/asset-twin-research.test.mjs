@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { researchEvidenceForAsset, siteResearch } from '../src/lib/asset-twin-research.js';
+import { researchEvidenceForAsset, siteResearch, planResearchSetup } from '../src/lib/asset-twin-research.js';
 import { infrastructure, fixtureSeeds } from '../src/lib/asset-twin-source-data.js';
 import { PHYSICAL_ASSET_TYPES } from '../src/lib/physical-assets-model.js';
 
@@ -142,4 +142,21 @@ test('suggestions are fresh copies and never mutate permanent asset identity or 
   assert.deepEqual(asset.evidence, attached, 'Binding changes do not detach existing evidence');
   assert.ok(asset.evidence.every(item => item.asset_id === asset.id));
   assert.ok(next.every(item => item.status === 'reference'), 'An inspected asset does not turn source references into field observations');
+});
+
+test('hosted setup plan saves candidates, attaches only missing references, and is re-runnable', () => {
+  const a = { id: 'pa_a54bac91-97f6-4a3a-9c67-ac35829dff53', type: 'column', label: 'C12', persisted: false, bindings: [] };
+  const b = { id: 'pa_b54bac91-97f6-4a3a-9c67-ac35829dff53', type: 'other', label: 'Sign', persisted: true, bindings: [] };
+  const all = { [a.id]: researchEvidenceForAsset(a), [b.id]: researchEvidenceForAsset(b) };
+  const none = () => [];
+  const first = planResearchSetup([a, b], none);
+  assert.equal(first.length, 2);
+  assert.equal(first[0].needsSave, true);
+  assert.equal(first[1].needsSave, false);
+  assert.deepEqual(first[0].pending.map(e => e.id), all[a.id].map(e => e.id));
+  const partial = planResearchSetup([{ ...a, persisted: true }, b], id => id === a.id ? all[a.id].slice(0, 2) : all[b.id]);
+  assert.equal(partial.length, 1);
+  assert.equal(partial[0].needsSave, false);
+  assert.deepEqual(partial[0].pending.map(e => e.id), all[a.id].slice(2).map(e => e.id));
+  assert.deepEqual(planResearchSetup([{ ...a, persisted: true }, b], id => all[id]), []);
 });

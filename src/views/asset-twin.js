@@ -7,7 +7,7 @@ import * as Assets from '../lib/physical-assets.js';
 import { getMaintCache, refreshMaint, submitRequest, MR_STATUS, onMaintChange } from '../lib/maintenance.js';
 import { openMaintenanceRequest } from './maintenance.js';
 import { listHvacUnits } from '../lib/hvac.js';
-import { assetTwinLink, readAssetTwinLink, assetQrSvg, latestLocatedBinding, sourceObjectForAsset } from '../lib/asset-twin-links.js';
+import { assetTwinLink, readAssetTwinLink, shouldAutoOpenTwin, assetQrSvg, latestLocatedBinding, sourceObjectForAsset } from '../lib/asset-twin-links.js';
 import storefrontReference from '../assets/twin/storefront-reference.jpg';
 import aerialReference from '../assets/twin/aerial-reference.jpg';
 import { sourceItems, sourceItemForAsset, sourceSearchText, sourceAssetKind, sourceTypeLabels } from '../lib/asset-twin-source-data.js';
@@ -18,7 +18,7 @@ import { infrastructure } from '../lib/asset-twin-source-data.js';
 import { waterLocations, waterLocationsCSV } from '../lib/asset-twin-water.js';
 import { waterPaneHTML, waterLocationRows, waterDetailHTML, waterMeterRows } from './asset-twin-water.js';
 import { openWaterAerial, waterEvidencePackage } from './asset-twin-water-aerial.js';
-import { researchEvidenceForAsset } from '../lib/asset-twin-research.js';
+import { researchEvidenceForAsset, planResearchSetup } from '../lib/asset-twin-research.js';
 import { evidenceSectionHTML } from './asset-twin-evidence.js';
 import { cleanPhysicalAssetEvidence } from '../lib/physical-asset-evidence-model.js';
 import { SITE_LAYER_LABELS, siteLayerKey, siteAreaSeeds, siteZoneForAsset, siteZoneSourceKey } from '../lib/asset-twin-site-records.js';
@@ -58,7 +58,7 @@ export function initAssetTwin(account) {
       <div class="at-presentation-bar"><button data-action="tour-prev">Previous stop</button><span id="atTourLabel">Guided walkway tour</span><button data-action="tour-next">Next stop</button><button data-action="tour-play">Play tour</button><button data-action="tour-stop">Stop</button></div>
       <details class="at-model-tools" open><summary>Layers & viewing tools</summary><div class="at-layer-grid"><label><input id="atColumns" type="checkbox" checked> Highlight columns</label><label><input id="atCanopy" type="checkbox"> Show canopy</label><label><input id="atWalls" type="checkbox" checked> Building walls</label><label><input id="atWalkway" type="checkbox" checked> Walkway</label><label><input id="atFade" type="checkbox"> Fade walls</label><label><input id="atCondition" type="checkbox"> Color by inspection</label><label><input id="atSuitePins" type="checkbox" checked> Suite labels</label><label><input id="atEquipmentPins" type="checkbox" checked> Equipment pins</label><label><input id="atBenches" type="checkbox" checked> Bench models</label><label><input id="atWasteBins" type="checkbox" checked> Trash-can models</label><label><input id="atFixtureLabels" type="checkbox"> Fixture labels</label><label><input id="atWaterCity" type="checkbox"> City meter map points</label><label><input id="atWaterShutoffs" type="checkbox"> Tenant shutoff map points</label><label><input id="atSiteContext" type="checkbox" checked> Site & common areas</label>${Object.entries(SITE_LAYER_LABELS).map(([kind,label])=>`<label><input data-site-layer="${kind}" type="checkbox" ${kind!=='off-parcel'?'checked':''}> ${label}</label>`).join('')}</div><div class="at-section-row"><label for="atSection">Section height</label><input id="atSection" type="range" min="0.4" max="4" step="0.1" value="4"><output id="atSectionValue">Full model</output><button data-action="clear-measure">Clear measure</button></div><div class="at-condition-key" id="atConditionKey" hidden>${Object.entries(conditions).map(([key,label])=>`<span><i style="background:${conditionColors[key]}"></i>${esc(label)}</span>`).join('')}</div></details>
     </section><aside class="at-panel" aria-label="Asset records"><nav class="at-panel-tabs"><button data-tab="assets" aria-pressed="true">Assets <span id="atAssetCount"></span></button><button data-tab="record" aria-pressed="false">Record</button><button data-tab="water" aria-pressed="false">Water</button><button data-tab="views" aria-pressed="false">Views</button><button data-tab="sources" aria-pressed="false">Sources</button></nav>
-      <section id="atAssetsPane" class="at-pane"><div class="at-panel-head"><h2>Units & physical assets</h2><button data-action="new-asset" aria-label="Add an asset">${icon('plus')}</button></div><p class="at-muted">Permanent records, connected to the model.</p><label class="at-search"><span class="at-sr">Search assets</span><input id="atSearch" type="search" placeholder="Find C12, unit, equipment…"></label><label class="at-filter"><span>Show</span><select id="atType"><option value="all">All asset types</option>${options(types,'')}<option value="time_clock">Time clocks</option><option value="bench">Benches</option><option value="waste_bin">Trash cans</option><option value="site_area">Common areas</option></select></label><div id="atAssetList" class="at-asset-list"></div><p class="at-muted" id="atRegisterNote"></p></section>
+      <section id="atAssetsPane" class="at-pane"><div class="at-panel-head"><h2>Units & physical assets</h2><button data-action="new-asset" aria-label="Add an asset">${icon('plus')}</button></div><p class="at-muted">Permanent records, connected to the model.</p><div class="at-setup" id="atSetup" hidden><button class="at-primary at-full" data-action="setup-research">Save all records &amp; attach research</button><p class="at-muted" id="atSetupNote">Saves every model candidate as a permanent record and attaches the Google Earth, DOTD and verification references. Safe to re-run; finished items are skipped.</p></div><label class="at-search"><span class="at-sr">Search assets</span><input id="atSearch" type="search" placeholder="Find C12, unit, equipment…"></label><label class="at-filter"><span>Show</span><select id="atType"><option value="all">All asset types</option>${options(types,'')}<option value="time_clock">Time clocks</option><option value="bench">Benches</option><option value="waste_bin">Trash cans</option><option value="site_area">Common areas</option></select></label><div id="atAssetList" class="at-asset-list"></div><p class="at-muted" id="atRegisterNote"></p></section>
       <section id="atRecordPane" class="at-pane" hidden><div id="atRecord"><h2>Select an asset</h2><p class="at-muted">Choose a column in the model or an item in the register.</p></div></section>
       <section id="atViewsPane" class="at-pane" hidden><h2>Views & finishes</h2><p class="at-muted">Create a repeatable tour and compare the model with the actual center.</p><button class="at-primary at-full" data-action="tour-start">Start guided walkway tour</button><div class="at-saved-views" id="atSavedViews"></div><div class="at-divider"></div><h3>Exterior reference</h3><label class="at-filter"><span>Materials</span><select id="atFinish"><option value="reference">Brochure reference</option><option value="neutral">Source neutral</option></select></label><p class="at-muted">Ivory columns, cream fascia and concrete walkway, based on your brochure. Roof profiles and sign geometry still follow the available model.</p><div class="at-reference-gallery"><figure><img src="${storefrontReference}" alt="Shopping center storefront and painted columns from the supplied marketing package"><figcaption>Storefront materials · Brochure p. 2</figcaption></figure><figure><img src="${aerialReference}" alt="Aerial view of the shopping center"><figcaption>Site and exterior · Brochure p. 4</figcaption></figure><figure><img src="${nightReference}" alt="Shopping center illuminated at night"><figcaption>Lighting reference · Brochure p. 6</figcaption></figure></div><p class="at-muted">Provided and generally confirmed current by Adam on September 24, 2026. Signage in photographs is a visual reference, not a tenant-status update.</p></section>
       <section id="atWaterPane" class="at-pane" hidden>${waterPaneHTML()}</section>
@@ -220,6 +220,33 @@ export function initAssetTwin(account) {
     host.innerHTML=requests.length?requests.map(r=>`<button class="at-work-order" data-work-order="${esc(r.id)}"><strong>${esc(r.title)}</strong><span>${esc(MR_STATUS[r.displayStatus]?.[0]||r.displayStatus)}${r.vendorId?` · Assigned vendor`:''}</span><small>Open in OTB maintenance ${icon('arrow')}</small></button>`).join(''):'<p class="at-muted">No maintenance requests linked to this asset.</p>';
     host.querySelectorAll('[data-work-order]').forEach(button=>button.onclick=()=>run(async()=>{const id=button.dataset.workOrder;close();await openMaintenanceRequest(id);},button));
   }
+  function setupResearch(button){
+    if(!REMOTE||!canWrite())return;
+    const steps=planResearchSetup(Assets.listPhysicalAssets(),Assets.listPhysicalAssetEvidence);
+    if(!steps.length){$('atSetup').hidden=true;showMessage('Every record is saved and its research references are attached.');return;}
+    const saves=steps.filter(s=>s.needsSave).length,refs=steps.reduce((n,s)=>n+s.pending.length,0);
+    if(!confirm(`Save ${saves} record(s) and attach ${refs} research reference(s) to the shared OTB register? This takes a few minutes; keep this tab open.`))return;
+    run(async()=>{
+      let done=0,savedCount=0,attached=0;const failures=[];
+      for(const step of steps){
+        $('atSetupNote').textContent=`Working… ${done} of ${steps.length} records`;
+        try{
+          let asset=Assets.getPhysicalAsset(step.assetId);if(!asset)throw new Error('record no longer exists');
+          if(step.needsSave){await ensureSaved(asset);savedCount++;asset=Assets.getPhysicalAsset(step.assetId);}
+          const have=new Set(Assets.listPhysicalAssetEvidence(step.assetId).map(e=>e.id));
+          const pending=researchEvidenceForAsset(asset).filter(item=>!have.has(item.id));
+          if(pending.length){await Assets.appendPhysicalAssetEvidenceBatch(pending.map(evidence=>({assetId:step.assetId,evidence})));attached+=pending.length;}
+        }catch(error){failures.push(`${Assets.getPhysicalAsset(step.assetId)?.label||step.assetId}: ${error.message||error}`);}
+        done++;
+      }
+      renderDirectory();refreshPins();if(selectedId)renderRecord();
+      const left=planResearchSetup(Assets.listPhysicalAssets(),Assets.listPhysicalAssetEvidence).length;
+      $('atSetup').hidden=!left;
+      $('atSetupNote').textContent=left?`${left} record(s) still need setup. Run again to retry.`:'All records saved with their research references.';
+      if(failures.length)showMessage(`Saved ${savedCount} record(s), attached ${attached} reference(s). ${failures.length} failed — first: ${failures[0]}. Run again to retry.`,true);
+      else showMessage(`Saved ${savedCount} record(s) and attached ${attached} research reference(s).`);
+    },button);
+  }
   async function ensureSaved(asset){return asset.persisted?asset:Assets.savePhysicalAsset(asset);}
   function dialog(title,body){
     const d=$('atDialog');d.classList.remove('at-map-dialog');d.innerHTML=`<header><h2>${esc(title)}</h2><button aria-label="Close dialog" data-dialog-close>${icon('close')}</button></header>${body}`;d.querySelector('[data-dialog-close]').onclick=()=>d.close();d.showModal();return d;
@@ -346,6 +373,7 @@ export function initAssetTwin(account) {
       else if(new URL(location.href).searchParams.get('layout')==='exterior')showExterior();
       else showInterior();
       root.querySelector('[data-action="new-asset"]').disabled=!canWrite();
+      $('atSetup').hidden=!(REMOTE&&canWrite()&&planResearchSetup(Assets.listPhysicalAssets(),Assets.listPhysicalAssetEvidence).length);
     })().catch(error=>{if(generation!==openGeneration)return;scene?.dispose();scene=null;$('atLoading').textContent=`The asset twin could not open: ${error.message}`;showMessage(error.message,true);}).finally(()=>{if(generation===openGeneration)loading=null;});return loading;
   }
   launch.onclick=open;
@@ -373,6 +401,7 @@ export function initAssetTwin(account) {
     if(action==='measure'){scene?.beginMeasurement();showMessage('Pick two visible model surfaces. Distances are based on unverified model geometry.');}
     if(action==='clear-measure')scene?.clearMeasurement();
     if(action==='new-asset')newAsset();
+    if(action==='setup-research')setupResearch(button);
     if(action==='save-view'){
       if(!scene)return;const view=scene.saveView();const d=dialog('Save viewpoint','<form><label>View name<input name="name" required maxlength="80" placeholder="e.g. West walkway"></label><button class="at-primary" type="submit">Save viewpoint</button></form>');
       d.querySelector('form').onsubmit=event=>{event.preventDefault();const name=String(new FormData(event.currentTarget).get('name')).trim();if(!name)return;run(async()=>{persistViews([...savedViews,{name,view}]);d.close();renderViews();showMessage('Viewpoint saved in this browser.');},event.submitter);};
@@ -399,6 +428,8 @@ export function initAssetTwin(account) {
   window.addEventListener('keydown',event=>{if(event.key==='Escape'&&!root.hidden){scene?.cancelPlacement();scene?.stopTour();}});
   window.addEventListener('popstate',()=>{if(!readAssetTwinLink(location.href).open&&!root.hidden)close();});
   if(REMOTE)sb.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT')close();});
-  if(readAssetTwinLink(location.href).open)open();
+  const navType=performance.getEntriesByType?.('navigation')?.[0]?.type||'navigate';
+  if(shouldAutoOpenTwin(location.href,navType))open();
+  else if(readAssetTwinLink(location.href).open){const url=new URL(location.href);for(const key of ['view','asset','water','layout'])url.searchParams.delete(key);history.replaceState(null,'',url);}
   return {open,close};
 }

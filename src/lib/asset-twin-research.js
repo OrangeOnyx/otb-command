@@ -6,6 +6,17 @@ export { catalog as siteResearch };
 const evidenceById = new Map(catalog.evidence.map(item => [item.id, item]));
 const normalized = value => String(value ?? '').trim().toLowerCase();
 
+// One-click hosted setup: which records still need a first save and which
+// catalog references are not yet attached. Already-saved records and already-
+// attached evidence IDs are skipped, so a partial run can simply be re-run.
+export function planResearchSetup(assets, listEvidence) {
+  return (assets || []).map(asset => {
+    const saved = new Set((listEvidence(asset.id) || []).map(e => e.id));
+    return { assetId: asset.id, needsSave: !asset.persisted,
+      pending: researchEvidenceForAsset(asset).filter(item => !saved.has(item.id)) };
+  }).filter(step => step.needsSave || step.pending.length);
+}
+
 // Suggestions only. Once attached, evidence belongs to the permanent asset ID;
 // source-binding changes must not replace or filter that persisted history.
 export function researchEvidenceForAsset(asset) {

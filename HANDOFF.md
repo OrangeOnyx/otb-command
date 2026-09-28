@@ -1,5 +1,23 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 27, 2026 (night) — twin: one-click research setup on hosted + reloads land on A-2 · 917 tests
+
+Operator: "the old spatial site is no more … the google earth resources I added are not available" → explained (the twin
+is a layer over A-2 that `?view=twin` reopened on every reload; hosted starts with zero saved records and research only
+auto-attached in local review) → picks **1 and 2**.
+
+- **1 · One-click setup (hosted, operator only):** Assets pane → *Save all records & attach research*. Saves every model
+  candidate as a permanent record, then attaches the catalog (`src/data/twin-site-research.json`: Google Earth project, the
+  Jan 27 2026 + Mar 19 2024 Earth views, DOTD 2024 aerial, plus type-specific verification notes). Sequential, confirm
+  first, progress in the note, failures summarized; re-runnable (saved records + attached IDs skipped). Button hides when
+  nothing is left. Plan logic = `planResearchSetup` (`src/lib/asset-twin-research.js`, tested).
+- **2 · Reloads land on A-2:** `shouldAutoOpenTwin` (`src/lib/asset-twin-links.js`, tested) — only a fresh navigation to
+  a shared asset link (`?view=twin&asset=pa_…`, i.e. a QR tag) opens the twin; reload / back-forward / bare `?view=twin`
+  strip the twin params and show A-2. Browser-verified on the 5213 review preview (open → reload → A-2, URL clean; asset
+  link → twin with C12 and its 5 references).
+- Operator next: sign in on prod → A-2 → Open asset twin → *Save all records & attach research* (a few minutes, keep the
+  tab open) → then SMK-32.
+
 ## September 27, 2026 (later) — PR #17 merged · punch list Rev 19 · twin option (a): migrations pass on the isolated branch, prod apply HELD
 
 Operator: "go — merge 17, Rev 19, then twin option a" → sources ruling: **publish all** (clock photos, 101/103 plans, model,

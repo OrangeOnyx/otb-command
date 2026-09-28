@@ -14,6 +14,13 @@ export function readAssetTwinLink(href) {
   const assetId = url.searchParams.get('asset');
   return { open: url.searchParams.get('view') === 'twin', assetId: assetPattern.test(assetId || '') ? assetId : null };
 }
+// Only a shared asset link (QR tag, pasted URL) opens the twin on page load.
+// A reload or back/forward lands on the A-2 property workspace underneath —
+// the twin is a layer over A-2, not its replacement (operator, 2026-09-27).
+export function shouldAutoOpenTwin(href, navigationType = 'navigate') {
+  const link = readAssetTwinLink(href);
+  return link.open && !!link.assetId && navigationType !== 'reload' && navigationType !== 'back_forward';
+}
 export function assetQrSvg(link) {
   const url = new URL(link);
   if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Invalid tag address.');
