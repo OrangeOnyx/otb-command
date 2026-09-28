@@ -197,6 +197,20 @@ async function openReal(generation = lensGeneration) {
   realScene.setSelected(getSelected());
 }
 
+let googleScene = null;  // Lens E handle (null until Google 3D opened)
+
+async function openGoogle(generation = lensGeneration) {
+  const host = document.getElementById("spatialGoogle");
+  if (!host || googleScene) return;
+  const { createGoogleTilesScene } = await import("../lib/scenegoogle.js");
+  if (!canOpen(generation, "google", host) || googleScene) return;
+  host.querySelector(".spatial-load-error")?.remove();
+  googleScene = createGoogleTilesScene(host, unitData(), { onPick: openDrawer });
+  googleScene.setSelected(getSelected());
+}
+
+const LENSES = [["lensIso", "iso"], ["lens3d", "3d"], ["lensSat", "sat"], ["lensReal", "real"], ["lensGoogle", "google"]];
+
 function setLens(next) {
   const generation = ++lensGeneration;
   activeLens = next;
@@ -204,11 +218,10 @@ function setLens(next) {
     iso: document.getElementById("spatial"),
     "3d": document.getElementById("spatial3d"),
     sat: document.getElementById("spatialSat"),
-    real: document.getElementById("spatialReal")
+    real: document.getElementById("spatialReal"),
+    google: document.getElementById("spatialGoogle")
   };
-  ["lensIso", "lens3d", "lensSat", "lensReal"].forEach((id, i) => {
-    document.getElementById(id)?.classList.toggle("on", ["iso", "3d", "sat", "real"][i] === next);
-  });
+  LENSES.forEach(([id, lens]) => document.getElementById(id)?.classList.toggle("on", lens === next));
   Object.entries(panes).forEach(([k, el]) => {
     if (!el) return;
     if (k === next) el.removeAttribute("hidden"); else el.setAttribute("hidden", "");
@@ -216,15 +229,17 @@ function setLens(next) {
   if (next !== "3d" && scene) { scene.dispose(); scene = null; }
   if (next !== "sat" && geoScene) { geoScene.dispose(); geoScene = null; }
   if (next !== "real" && realScene) { realScene.dispose(); realScene = null; }
+  if (next !== "google" && googleScene) { googleScene.dispose(); googleScene = null; }
   if (next === "3d") open3d(generation).then(() => scene?.resize()).catch(e => lensError(e, panes["3d"], generation));
   if (next === "sat") openSat(generation).then(() => geoScene?.resize()).catch(e => lensError(e, panes.sat, generation));
   if (next === "real") openReal(generation).catch(e => lensError(e, panes.real, generation));
+  if (next === "google") openGoogle(generation).then(() => googleScene?.resize()).catch(e => lensError(e, panes.google, generation));
 }
 
 export function initSpatial() {
   renderLegend();
   drawSpatial();
-  [["lensIso", "iso"], ["lens3d", "3d"], ["lensSat", "sat"], ["lensReal", "real"]].forEach(([id, lens]) => {
+  LENSES.forEach(([id, lens]) => {
     const b = document.getElementById(id);
     if (b) b.onclick = () => setLens(lens);
   });
@@ -245,7 +260,7 @@ export function initSpatial() {
   const page = document.getElementById("pg-spatial");
   if (page) new MutationObserver(() => {
     const hidden = !page.classList.contains("on") || document.getElementById("spatial")?.closest(".cmd-legacy")?.hidden;
-    if (hidden && (scene || geoScene || realScene || activeLens !== "iso")) setLens("iso");
+    if (hidden && (scene || geoScene || realScene || googleScene || activeLens !== "iso")) setLens("iso");
   }).observe(page, { attributes: true, attributeFilter: ["class", "hidden"], subtree: true, childList: true });
   subscribe(type => {
     if (type === "selection") {
@@ -253,6 +268,7 @@ export function initSpatial() {
       if (scene) scene.setSelected(getSelected());
       if (geoScene) geoScene.setSelected(getSelected());
       if (realScene) realScene.setSelected(getSelected());
+      if (googleScene) googleScene.setSelected(getSelected());
     }
     if (type === "features" && geoScene) geoScene.refreshPins();
   });
