@@ -139,6 +139,102 @@ for f in files:
 print("photos", len(photos))
 manifest["photos"] = photos
 
+# ---------------------------------------------------------------- 3. LiDAR terrain (USGS 3DEP 1 m DEM, public domain)
+# public/elevation/OTB-dem-1m.tif (npm: node tools/fetch-otb-lidar.mjs). Bare-earth, NAVD88 metres, 2017 flight —
+# regrading since then is not reflected. Output: color relief + hillshade overlay (north-up WGS84 resample),
+# 0.1 m contours, and local low spots (candidate ponding / inlet locations) for the exporter to clip to the parcels.
+DEM = os.path.join(ROOT, "public", "elevation", "OTB-dem-1m.tif")
+if os.path.exists(DEM):
+    import numpy as np
+    from scipy import ndimage
+    from pyproj import Transformer
+    im = Image.open(DEM)
+    z = np.array(im, dtype="float64")
+    z[z < -1000] = np.nan
+    x0u, y0u = im.tag_v2[33922][3], im.tag_v2[33922][4]  # UTM 15N top-left, 1 m pixels
+    zf = ndimage.gaussian_filter(np.nan_to_num(z, nan=np.nanmean(z)), 1.5)
+    to_utm = Transformer.from_crs("EPSG:4326", "EPSG:26915", always_xy=True)
+    W_, E_, S_, N_ = -92.0564, -92.0527, 30.2010, 30.2040  # parcels + ~40 m margin
+    def sample(step):
+        lngs = np.arange(W_, E_, step); lats = np.arange(N_, S_, -step)
+        LG, LT = np.meshgrid(lngs, lats)
+        ux, uy = to_utm.transform(LG, LT)
+        rows, cols = (y0u - uy) - 0.5, (ux - x0u) - 0.5
+        return lngs, lats, ndimage.map_coordinates(zf, [rows, cols], order=1, mode="nearest")
+    # color relief x hillshade, 0.5 m pixels
+    lngs, lats, g = sample(0.000005)
+    lo, hi = np.percentile(g, 2), np.percentile(g, 98)
+    t = np.clip((g - lo) / (hi - lo), 0, 1)
+    ramp = np.array([[33, 102, 172], [103, 169, 207], [209, 229, 240], [199, 234, 180], [120, 198, 121], [217, 180, 106], [166, 97, 26]], float)
+    idx = t * (len(ramp) - 1); i0 = np.floor(idx).astype(int).clip(0, len(ramp) - 2); fr = (idx - i0)[..., None]
+    rgb = ramp[i0] * (1 - fr) + ramp[i0 + 1] * fr
+    dy, dx = np.gradient(g, 0.555, 0.48)  # metres per 0.5 m-ish pixel (lat, lng)
+    slope = np.arctan(np.hypot(dx, dy) * 3.0); aspect = np.arctan2(-dx, dy)
+    az, alt = np.radians(315), np.radians(45)
+    hs = np.sin(alt) * np.cos(slope) + np.cos(alt) * np.sin(slope) * np.cos(az - aspect)
+    rgb = (rgb * (0.55 + 0.45 * hs[..., None])).clip(0, 255).astype("uint8")
+    a = np.full(g.shape, 190, "uint8")
+    Image.fromarray(np.dstack([rgb, a]), "RGBA").save(os.path.join(OUT, "relief.png"), optimize=True)
+    relief_box = {"north": float(lats[0]), "south": float(lats[-1]), "west": float(lngs[0]), "east": float(lngs[-1])}
+    # contours by marching squares on a ~1 m grid, chained into polylines
+    lngs, lats, g = sample(0.00001)
+    STEP = 0.1  # site relief is only ~1.2 m — 0.1 m minor / 0.5 m major contours read the drainage
+    levels = [round(float(v), 2) for v in np.arange(np.ceil(np.nanmin(g) / STEP) * STEP, np.nanmax(g), STEP)]
+    def contour(level):
+        segs = []
+        H, W = g.shape
+        ab = g >= level
+        for r in range(H - 1):
+            for c in range(W - 1):
+                q = (ab[r, c], ab[r, c + 1], ab[r + 1, c + 1], ab[r + 1, c])
+                if all(q) or not any(q):
+                    continue
+                v = (g[r, c], g[r, c + 1], g[r + 1, c + 1], g[r + 1, c])
+                P = ((c, r), (c + 1, r), (c + 1, r + 1), (c, r + 1))
+                pts = []
+                for k in range(4):
+                    a_, b_ = k, (k + 1) % 4
+                    if q[a_] != q[b_]:
+                        f_ = (level - v[a_]) / (v[b_] - v[a_])
+                        pts.append((P[a_][0] + f_ * (P[b_][0] - P[a_][0]), P[a_][1] + f_ * (P[b_][1] - P[a_][1])))
+                for k in range(0, len(pts) - 1, 2):
+                    segs.append((pts[k], pts[k + 1]))
+        # chain
+        key = lambda p: (round(p[0], 4), round(p[1], 4))
+        ends = {}
+        for i, (p, q_) in enumerate(segs):
+            ends.setdefault(key(p), []).append((i, 0)); ends.setdefault(key(q_), []).append((i, 1))
+        used, lines = set(), []
+        for i in range(len(segs)):
+            if i in used:
+                continue
+            used.add(i); line = [segs[i][0], segs[i][1]]
+            for end in (1, 0):
+                while True:
+                    tip = line[-1] if end else line[0]
+                    nxt = next(((j, s) for j, s in ends.get(key(tip), []) if j not in used), None)
+                    if not nxt:
+                        break
+                    j, s = nxt; used.add(j); other = segs[j][1 - s]
+                    line.append(other) if end else line.insert(0, other)
+            if len(line) >= 4:
+                lines.append([[round(float(lngs[0] + x * 0.00001), 7), round(float(lats[0] - y * 0.00001), 7)] for x, y in line[::2] + [line[-1]]])
+        return lines
+    contours = [{"elevM": lv, "major": bool(abs(lv * 2 - round(lv * 2)) < 1e-6), "lines": contour(lv)} for lv in levels]
+    # low spots: local minima over ~25 m, at least 5 cm below the neighbourhood mean
+    zs = ndimage.gaussian_filter(g, 2)
+    mn = ndimage.minimum_filter(zs, size=25); avg = ndimage.uniform_filter(zs, size=25)
+    lows = []
+    for r, c in zip(*np.where((zs == mn) & (avg - zs >= 0.05))):
+        if 12 < r < zs.shape[0] - 12 and 12 < c < zs.shape[1] - 12:
+            lows.append({"lng": round(float(lngs[c]), 7), "lat": round(float(lats[r]), 7), "elevM": round(float(zs[r, c]), 2), "depthM": round(float(avg[r, c] - zs[r, c]), 2)})
+    manifest["terrain"] = {"relief": "relief.png", "box": relief_box, "minM": round(float(lo), 2), "maxM": round(float(hi), 2),
+                           "contourStepM": STEP, "contours": contours, "lows": lows,
+                           "source": "USGS 3DEP LA_Catahoula_Concordia_2017_D17 1 m DEM (bare earth, NAVD88) — public domain"}
+    print("terrain", f"{lo:.2f}..{hi:.2f} m", len(levels), "contour levels", sum(len(c["lines"]) for c in contours), "lines", len(lows), "low spots")
+else:
+    print("terrain skipped — run node tools/fetch-otb-lidar.mjs")
+
 # The 2025-10-15 roof orthomosaic on E: is deliberately NOT exported: it is plane-projected without
 # SfM and does not register against the imagery (roof fragments land on the parking field, 2026-09-28
 # check). Re-add only after a proper photogrammetric ortho exists.

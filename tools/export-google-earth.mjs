@@ -2,7 +2,8 @@
      OTB-Google-Earth.kmz          vectors, A-1 plan ground overlays, narrated viewpoints (web + Pro)
      OTB-Drone-Photos-<date>.kmz   Skydio photos at their RTK capture pose (web + Pro)
      OTB-Google-Earth-Pro.kmz      COLLADA site twin, 3D PhotoOverlays, narrated gx:Tour (Earth Pro only)
-   Raster inputs come from tools/ge-media.py (npm run export-google-earth runs both). */
+   Raster + LiDAR inputs come from tools/ge-media.py (npm run export-google-earth runs both); Google Maps
+   Platform layers come from the dated snapshot tools/ge-google.mjs writes (npm run ge-google, ≤30-day cache). */
 /* Layers:
    Coordinates: plan px (A-1 viewBox) -> CAD ft -> WGS84 through src/lib/geoproject.js and the georef
    shipped in footprints-geo.json — the same seam the A-2 satellite lens uses (icon-grade, ~2 m; NOT survey).
@@ -303,7 +304,67 @@ const byTime = [...photos].sort((a, b) => a.taken.localeCompare(b.taken));
 const flightPath = photos.length ? pm(`Flight path ${byTime[0].taken.slice(0, 10)}`, style('flight', { line: '#D97706', width: 2 }),
   `<LineString><altitudeMode>relativeToGround</altitudeMode><coordinates>${byTime.map(p => `${p.lng.toFixed(8)},${p.lat.toFixed(8)},${p.relAltM.toFixed(2)}`).join(' ')}</coordinates></LineString>`) : '';
 
-/* 10 — Earth Pro: COLLADA site twin, 3D photo overlays, narrated tour */
+/* 10 — Terrain (USGS 3DEP 1 m LiDAR via ge-media.py): relief overlay, 0.1 m contours, low spots on the parcels */
+const terr = media?.terrain, terrain = [];
+if (terr) {
+  const b = terr.box;
+  mainFiles[`media/${terr.relief}`] = fs.readFileSync(path.join(MEDIA, terr.relief));
+  terrain.push(`<GroundOverlay><name>Color relief + hillshade (${terr.minM}–${terr.maxM} m NAVD88)</name><visibility>0</visibility>` +
+    `<description>${esc(`${terr.source}. Blue = low, brown = high. 2017 flight — later regrading is not reflected.`)}</description><drawOrder>3</drawOrder>` +
+    `<Icon><href>media/${terr.relief}</href></Icon><LatLonBox><north>${b.north}</north><south>${b.south}</south><east>${b.east}</east><west>${b.west}</west></LatLonBox></GroundOverlay>`);
+  const cmaj = style('contour-major', { line: '#3B2A1A', width: 2, label: 0.7 }), cmin = style('contour-minor', { line: '#6B5A48', lineA: 'b3', width: 1 });
+  terrain.push(folder(`Contours (${terr.contourStepM} m, major every 0.5 m)`, terr.contours.filter(c => c.lines.length).map(c =>
+    pm(`${c.elevM.toFixed(1)} m`, c.major ? cmaj : cmin, `<MultiGeometry>${c.lines.map(lineStr).join('')}</MultiGeometry>`, table([['Elevation', `${c.elevM.toFixed(2)} m NAVD88 (${(c.elevM / FT_M).toFixed(1)} ft)`], ['Source', terr.source]])))));
+  const lows = terr.lows.filter(l => inRing([l.lng, l.lat], mainRing) || inRing([l.lng, l.lat], lot7Ring)).sort((a, b) => a.elevM - b.elevM);
+  terrain.push(folder(`Low spots on the parcels (${lows.length})`, lows.map((l, i) => pm(`Low ${i + 1} · ${l.elevM.toFixed(2)} m`,
+    style('low', { icon: 'https://maps.google.com/mapfiles/kml/shapes/water.png', scale: 0.7 }), point([l.lng, l.lat]),
+    table([['Ground', `${l.elevM.toFixed(2)} m NAVD88 (${(l.elevM / FT_M).toFixed(1)} ft)`], ['Depth below the 25 m neighbourhood', `${Math.round(l.depthM * 100)} cm`],
+      ['Read as', 'Candidate ponding spot or storm inlet — confirm on the ground (2017 LiDAR)']])))));
+}
+
+/* 11 — Google Maps Platform snapshot (tools/ge-google.mjs): Street View poses, corridor routes, drive-time catchments, Places */
+const gPath = path.join(OUT, 'google', 'snapshot.json');
+const gs = fs.existsSync(gPath) ? JSON.parse(fs.readFileSync(gPath, 'utf8')) : null;
+const decodePolyline = s => {
+  const pts = []; let i = 0, lat = 0, lng = 0;
+  while (i < s.length) for (const k of [0, 1]) {
+    let r = 0, sh = 0, b; do { b = s.charCodeAt(i++) - 63; r |= (b & 31) << sh; sh += 5; } while (b >= 32);
+    const d = r & 1 ? ~(r >> 1) : r >> 1; if (k === 0) lat += d; else { lng += d; pts.push([lng / 1e5, lat / 1e5]); }
+  }
+  return pts;
+};
+const circle = ([lng, lat], m, n = 72) => Array.from({ length: n + 1 }, (_, i) => {
+  const t = 2 * Math.PI * i / n; return [lng + m * Math.sin(t) / (LAT_M * Math.cos(lat * Math.PI / 180)), lat + m * Math.cos(t) / LAT_M];
+});
+const gAsOf = gs ? gs.asOf.slice(0, 10) : '', gNote = gs ? `Google Maps Platform data as of ${gAsOf} — © Google. Temporary cache (≤30 days); refresh with node tools/ge-google.mjs.` : '';
+const streetView = [], trade = [], catchment = [], nearby = [];
+if (gs) {
+  const svst = style('sv', { icon: 'https://maps.google.com/mapfiles/kml/shapes/camera.png', iconColor: '#1976D2', scale: 0.6 });
+  const bySt = {};
+  for (const p of gs.streetView) {
+    const url = `https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;pano=${encodeURIComponent(p.id)}&amp;heading=${p.heading}&amp;pitch=0&amp;fov=80`;
+    const cam = `<Camera><longitude>${p.lng}</longitude><latitude>${p.lat}</latitude><altitude>2.5</altitude><heading>${p.heading}</heading><tilt>85</tilt><roll>0</roll><altitudeMode>relativeToGround</altitudeMode></Camera>`;
+    (bySt[p.street] ||= []).push(pm(`${p.street} · ${p.date}`, svst, point([p.lng, p.lat]),
+      `<p><a href="${url}">Open Google Street View here (captured ${esc(p.date)})</a></p><p>Double-click the pin for a street-level view of Google Earth's 3D, facing the property.</p><p style="font-size:smaller">© Google</p>`, cam));
+  }
+  for (const [st, items] of Object.entries(bySt)) streetView.push(folder(`${st} (${items.length})`, items));
+  const rst = style('route', { line: '#1976D2', width: 4 });
+  for (const r of gs.routes) trade.push(pm(`${r.name} — ${r.minutes} min, ${r.miles} mi`, rst, lineStr(decodePolyline(r.polyline)), table([['Destination', r.name], ['Drive (traffic-aware)', `${r.minutes} min`], ['Distance', `${r.miles} mi`], ['As of', gAsOf]])));
+  for (const mi of [1, 3, 5]) trade.push(pm(`${mi}-mile ring`, style('ring', { line: '#A87E2F', width: 2 }), lineStr(circle(gs.site, mi * 1609.34)), table([['Radius', `${mi} mi from the main field`]])));
+  const CC = { 5: '#2F6B4E', 10: '#D97706', 15: '#C25E33' };
+  for (const c of [...gs.catchments].reverse()) catchment.push(pm(`${c.minutes}-minute drive-time catchment`, style(`iso${c.minutes}`, { line: CC[c.minutes], width: 2, fill: CC[c.minutes], fillA: '30' }),
+    poly(c.ring), table([['Catchment', `Area within ${c.minutes} min drive of the main field (inbound, free-flow)`], ['Method', 'Google Route Matrix from a 24-bearing × 12-radius grid, interpolated per bearing'], ['As of', gAsOf]])));
+  const PC = ['#C25E33', '#2F6B4F', '#1976D2', '#8E24AA', '#00838F', '#5F6E64', '#D97706'];
+  const cats = [...new Set(gs.places.map(p => p.cat))];
+  for (const [ci, cat] of cats.entries()) {
+    const st = style(`pl${ci}`, { icon: DOT, iconColor: PC[ci % PC.length], scale: 0.6 });
+    nearby.push(folder(`${cat} (${gs.places.filter(p => p.cat === cat).length})`, gs.places.filter(p => p.cat === cat).map(p =>
+      pm(p.name, st, point([p.lng, p.lat]), table([['Business', p.name], ['Type', p.type], ['Rating', p.rating ? `${p.rating} (${p.ratings.toLocaleString('en-US')} reviews)` : ''],
+        ['Address', p.address]]) + (p.url ? `<p><a href="${esc(p.url)}">Open in Google Maps</a></p>` : '') + '<p style="font-size:smaller">© Google</p>'))));
+  }
+}
+
+/* 12 — Earth Pro: COLLADA site twin, 3D photo overlays, narrated tour */
 const twin = buildTwin(), T = geo.boundary.transform;
 const [a0, b0] = twin.data.transform.originPlatFt;
 const modelToLL = (X, Z) => {
@@ -352,6 +413,11 @@ const mainKml = doc(TITLE, readme, [
   folder('Exterior Lighting & Photometric Coverage', regFolder(['lighting'])),
   folder('Digital Twin Master Asset Inventory & POI Directory', regFolder(['column', 'bench', 'can', 'bollard', 'ada', 'sign', 'fence', 'walk', 'tree', ...unknownCats])),
   folder('Security Cameras', camItems),
+  folder('Stormwater & Drainage — LiDAR Terrain', terrain, terr?.source || ''),
+  folder('Street View — Frontages', streetView, gNote),
+  folder('Circulation & Trade Area Analysis', trade, gNote),
+  folder('Catchment Zones — Drive Time', catchment, gNote),
+  folder('Tenant Mix — Nearby Businesses (Google Places, 1 mi)', nearby, gNote),
   folder('3D Presentation Keyframes & Fly-Through Viewpoints', views, 'Use Present in Google Earth to step through these views with their captions.')
 ]);
 const shotDate = byTime[0]?.taken.slice(0, 10) || '';
@@ -376,6 +442,11 @@ fs.writeFileSync(path.join(OUT, 'OTB-assets.csv'),
 const lls = [...mainKml.matchAll(/(-9\d\.\d+),(3\d\.\d+),/g)].map(m => [+m[1], +m[2]]);
 console.log('OK -> export/google-earth\n  ' + out.join('\n  ') + `\n  OTB-assets.csv ${csv.length - 1} points`);
 console.log(`media: ${media ? `plan ${media.plan ? 'yes' : 'no'} · photos ${photos.length} (${photoPms.on.length} over OTB)` : 'none — run python tools/ge-media.py first'}`);
+console.log(`terrain: ${terr ? `${terr.contours.length} contour levels · ${terrain.length ? 'relief overlay' : ''}` : 'none — node tools/fetch-otb-lidar.mjs, then python tools/ge-media.py'}`);
+if (gs) {
+  const ageD = (Date.now() - Date.parse(gs.asOf)) / 864e5;
+  console.log(`google: ${gs.streetView.length} panos · ${gs.places.length} places · ${gs.routes.length} routes · ${gs.catchments.length} catchments · as of ${gAsOf}${ageD > 30 ? ' — OLDER THAN 30 DAYS: re-run node tools/ge-google.mjs' : ''}`);
+} else console.log('google: none — run node tools/ge-google.mjs');
 console.log(`model: ${stats.meshes} meshes · ${stats.triangles} tris · origin ${mLat.toFixed(6)}, ${mLng.toFixed(6)} · reflected ${stats.reflected}`);
 console.log(`register items without geometry (not exported): ${skipped.join(', ') || 'none'}`);
 console.log(`bbox lng ${Math.min(...lls.map(p => p[0])).toFixed(5)}..${Math.max(...lls.map(p => p[0])).toFixed(5)} lat ${Math.min(...lls.map(p => p[1])).toFixed(5)}..${Math.max(...lls.map(p => p[1])).toFixed(5)}`);
