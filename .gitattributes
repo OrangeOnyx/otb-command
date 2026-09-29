@@ -4,3 +4,6 @@
 public/brand/cypress/** -text
 public/OTB-splat.ksplat filter=lfs diff=lfs merge=lfs -text
 public/OTB-mesh.glb filter=lfs diff=lfs merge=lfs -text
+# CRE asset library: records pin SHA-256 of exact bytes (MANIFEST + provenance),
+# so keep LF bytes on Windows checkouts too.
+docs/design/cypress-command/cre-asset-library/** -text
