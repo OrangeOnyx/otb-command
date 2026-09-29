@@ -1,0 +1,100 @@
+{
+  "layer": "meter-cluster",
+  "title": "City water meter clusters",
+  "asset_type": "utilities",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-mclu-149",
+      "register_id": "mclu-149",
+      "cat": "meter-cluster",
+      "label": "City meter cluster — Right of 149 / Back Right of 149",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "8 meter(s) marked on the map",
+      "count": 8,
+      "suite_entity_id": null,
+      "point": [
+        1282.33,
+        647.18
+      ]
+    },
+    {
+      "id": "asset-otb-mclu-131",
+      "register_id": "mclu-131",
+      "cat": "meter-cluster",
+      "label": "City meter cluster — Behind 131",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "1 meter(s) marked on the map",
+      "count": 1,
+      "suite_entity_id": null,
+      "point": [
+        1145.52,
+        103.52
+      ]
+    },
+    {
+      "id": "asset-otb-mclu-119",
+      "register_id": "mclu-119",
+      "cat": "meter-cluster",
+      "label": "City meter cluster — Behind 119",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "8 meter(s) marked on the map",
+      "count": 8,
+      "suite_entity_id": null,
+      "point": [
+        739.36,
+        102.43
+      ]
+    },
+    {
+      "id": "asset-otb-mclu-109",
+      "register_id": "mclu-109",
+      "cat": "meter-cluster",
+      "label": "City meter cluster — Behind 109",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "4 meter(s) marked on the map",
+      "count": 4,
+      "suite_entity_id": null,
+      "point": [
+        461.53,
+        98.68
+      ]
+    },
+    {
+      "id": "asset-otb-mclu-107",
+      "register_id": "mclu-107",
+      "cat": "meter-cluster",
+      "label": "City meter cluster — Behind 107",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "1 meter(s) marked on the map",
+      "count": 1,
+      "suite_entity_id": null,
+      "point": [
+        381.27,
+        93.33
+      ]
+    },
+    {
+      "id": "asset-otb-mclu-105",
+      "register_id": "mclu-105",
+      "cat": "meter-cluster",
+      "label": "City meter cluster — Behind 105",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "2 meter(s) marked on the map",
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        321.83,
+        103.15
+      ]
+    }
+  ]
+}

@@ -59,7 +59,7 @@ export function pylonSVG(pylon, unitsByUnit, { selected = "" } = {}) {
   const L = pylonLayout(pylon);
   const cabH = 64, capH = 10;
   const parts = [];
-  parts.push('<svg class="pylon" viewBox="0 0 ' + L.width + ' ' + L.height + '" role="img" aria-label="' + esc(pylon.name || "Monument sign") + ' — ' + (pylon.panels || []).length + ' panels">');
+  parts.push('<svg class="pylon" viewBox="0 0 ' + L.width + ' ' + L.height + '" role="img" aria-label="' + esc(pylon.name || "Pylon sign") + ' — ' + (pylon.panels || []).length + ' panels">');
   parts.push('<defs><pattern id="pyHatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#9AA3A0" stroke-width="1"/></pattern></defs>');
   // posts
   const postW = 14;

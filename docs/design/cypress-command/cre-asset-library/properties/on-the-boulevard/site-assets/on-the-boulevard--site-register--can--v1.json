@@ -1,0 +1,310 @@
+{
+  "layer": "can",
+  "title": "Trash cans",
+  "asset_type": "other",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-can-01",
+      "register_id": "can-01",
+      "cat": "can",
+      "label": "Trash can 1",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        173.19,
+        296.19
+      ]
+    },
+    {
+      "id": "asset-otb-can-02",
+      "register_id": "can-02",
+      "cat": "can",
+      "label": "Trash can 2",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        282.31,
+        296.18
+      ]
+    },
+    {
+      "id": "asset-otb-can-03",
+      "register_id": "can-03",
+      "cat": "can",
+      "label": "Trash can 3",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        404.58,
+        296.19
+      ]
+    },
+    {
+      "id": "asset-otb-can-04",
+      "register_id": "can-04",
+      "cat": "can",
+      "label": "Trash can 4",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        440.2,
+        296.21
+      ]
+    },
+    {
+      "id": "asset-otb-can-05",
+      "register_id": "can-05",
+      "cat": "can",
+      "label": "Trash can 5",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        500.28,
+        296.21
+      ]
+    },
+    {
+      "id": "asset-otb-can-06",
+      "register_id": "can-06",
+      "cat": "can",
+      "label": "Trash can 6",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        595.99,
+        296.21
+      ]
+    },
+    {
+      "id": "asset-otb-can-07",
+      "register_id": "can-07",
+      "cat": "can",
+      "label": "Trash can 7",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        642.23,
+        296.19
+      ]
+    },
+    {
+      "id": "asset-otb-can-08",
+      "register_id": "can-08",
+      "cat": "can",
+      "label": "Trash can 8",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        723.23,
+        296.2
+      ]
+    },
+    {
+      "id": "asset-otb-can-09",
+      "register_id": "can-09",
+      "cat": "can",
+      "label": "Trash can 9",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        769.7,
+        296.17
+      ]
+    },
+    {
+      "id": "asset-otb-can-10",
+      "register_id": "can-10",
+      "cat": "can",
+      "label": "Trash can 10",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        850.26,
+        296.19
+      ]
+    },
+    {
+      "id": "asset-otb-can-11",
+      "register_id": "can-11",
+      "cat": "can",
+      "label": "Trash can 11",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        963.25,
+        296.25
+      ]
+    },
+    {
+      "id": "asset-otb-can-12",
+      "register_id": "can-12",
+      "cat": "can",
+      "label": "Trash can 12",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1015.01,
+        296.22
+      ]
+    },
+    {
+      "id": "asset-otb-can-13",
+      "register_id": "can-13",
+      "cat": "can",
+      "label": "Trash can 13",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1120.78,
+        296.52
+      ]
+    },
+    {
+      "id": "asset-otb-can-14",
+      "register_id": "can-14",
+      "cat": "can",
+      "label": "Trash can 14",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1144.02,
+        297.59
+      ]
+    },
+    {
+      "id": "asset-otb-can-15",
+      "register_id": "can-15",
+      "cat": "can",
+      "label": "Trash can 15",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1149.36,
+        345.55
+      ]
+    },
+    {
+      "id": "asset-otb-can-16",
+      "register_id": "can-16",
+      "cat": "can",
+      "label": "Trash can 16",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1149.37,
+        388.47
+      ]
+    },
+    {
+      "id": "asset-otb-can-17",
+      "register_id": "can-17",
+      "cat": "can",
+      "label": "Trash can 17",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1149.3,
+        438.96
+      ]
+    },
+    {
+      "id": "asset-otb-can-18",
+      "register_id": "can-18",
+      "cat": "can",
+      "label": "Trash can 18",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1149.36,
+        478.84
+      ]
+    },
+    {
+      "id": "asset-otb-can-19",
+      "register_id": "can-19",
+      "cat": "can",
+      "label": "Trash can 19",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1149.29,
+        521.95
+      ]
+    },
+    {
+      "id": "asset-otb-can-20",
+      "register_id": "can-20",
+      "cat": "can",
+      "label": "Trash can 20",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1149.34,
+        622.66
+      ]
+    }
+  ]
+}

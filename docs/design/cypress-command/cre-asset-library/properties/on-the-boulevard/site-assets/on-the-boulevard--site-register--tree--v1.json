@@ -1,0 +1,580 @@
+{
+  "layer": "tree",
+  "title": "Trees",
+  "asset_type": "landscaping",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-tree-01",
+      "register_id": "tree-01",
+      "cat": "tree",
+      "label": "Tree 1",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        705.39,
+        725.78
+      ]
+    },
+    {
+      "id": "asset-otb-tree-02",
+      "register_id": "tree-02",
+      "cat": "tree",
+      "label": "Tree 2",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        658.67,
+        728.89
+      ]
+    },
+    {
+      "id": "asset-otb-tree-03",
+      "register_id": "tree-03",
+      "cat": "tree",
+      "label": "Tree 3",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        612.34,
+        728.53
+      ]
+    },
+    {
+      "id": "asset-otb-tree-04",
+      "register_id": "tree-04",
+      "cat": "tree",
+      "label": "Tree 4",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        566.26,
+        729.81
+      ]
+    },
+    {
+      "id": "asset-otb-tree-05",
+      "register_id": "tree-05",
+      "cat": "tree",
+      "label": "Tree 5",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        521.38,
+        729.66
+      ]
+    },
+    {
+      "id": "asset-otb-tree-06",
+      "register_id": "tree-06",
+      "cat": "tree",
+      "label": "Tree 6",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        474.46,
+        728.86
+      ]
+    },
+    {
+      "id": "asset-otb-tree-07",
+      "register_id": "tree-07",
+      "cat": "tree",
+      "label": "Tree 7",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        430.35,
+        728.64
+      ]
+    },
+    {
+      "id": "asset-otb-tree-08",
+      "register_id": "tree-08",
+      "cat": "tree",
+      "label": "Tree 8",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        381.01,
+        728.76
+      ]
+    },
+    {
+      "id": "asset-otb-tree-09",
+      "register_id": "tree-09",
+      "cat": "tree",
+      "label": "Tree 9",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        859.37,
+        717.46
+      ]
+    },
+    {
+      "id": "asset-otb-tree-10",
+      "register_id": "tree-10",
+      "cat": "tree",
+      "label": "Tree 10",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        806.31,
+        715.53
+      ]
+    },
+    {
+      "id": "asset-otb-tree-11",
+      "register_id": "tree-11",
+      "cat": "tree",
+      "label": "Tree 11",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "Arnould R/W planting (city) — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        753.97,
+        720.27
+      ]
+    },
+    {
+      "id": "asset-otb-tree-12",
+      "register_id": "tree-12",
+      "cat": "tree",
+      "label": "Tree 12",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1389.22,
+        617.15
+      ]
+    },
+    {
+      "id": "asset-otb-tree-13",
+      "register_id": "tree-13",
+      "cat": "tree",
+      "label": "Tree 13",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1297.2,
+        636.91
+      ]
+    },
+    {
+      "id": "asset-otb-tree-14",
+      "register_id": "tree-14",
+      "cat": "tree",
+      "label": "Tree 14",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1262.04,
+        637.21
+      ]
+    },
+    {
+      "id": "asset-otb-tree-15",
+      "register_id": "tree-15",
+      "cat": "tree",
+      "label": "Tree 15",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1186.63,
+        637.7
+      ]
+    },
+    {
+      "id": "asset-otb-tree-16",
+      "register_id": "tree-16",
+      "cat": "tree",
+      "label": "Tree 16",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1104.44,
+        599.06
+      ]
+    },
+    {
+      "id": "asset-otb-tree-17",
+      "register_id": "tree-17",
+      "cat": "tree",
+      "label": "Tree 17",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        992.5,
+        642.7
+      ]
+    },
+    {
+      "id": "asset-otb-tree-18",
+      "register_id": "tree-18",
+      "cat": "tree",
+      "label": "Tree 18",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        721.88,
+        629.83
+      ]
+    },
+    {
+      "id": "asset-otb-tree-19",
+      "register_id": "tree-19",
+      "cat": "tree",
+      "label": "Tree 19",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        528.4,
+        635.21
+      ]
+    },
+    {
+      "id": "asset-otb-tree-20",
+      "register_id": "tree-20",
+      "cat": "tree",
+      "label": "Tree 20",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        367.7,
+        633.8
+      ]
+    },
+    {
+      "id": "asset-otb-tree-21",
+      "register_id": "tree-21",
+      "cat": "tree",
+      "label": "Tree 21",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1005.58,
+        537.47
+      ]
+    },
+    {
+      "id": "asset-otb-tree-22",
+      "register_id": "tree-22",
+      "cat": "tree",
+      "label": "Tree 22",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        902.65,
+        543.31
+      ]
+    },
+    {
+      "id": "asset-otb-tree-23",
+      "register_id": "tree-23",
+      "cat": "tree",
+      "label": "Tree 23",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        523.66,
+        545.05
+      ]
+    },
+    {
+      "id": "asset-otb-tree-24",
+      "register_id": "tree-24",
+      "cat": "tree",
+      "label": "Tree 24",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        364.2,
+        545.22
+      ]
+    },
+    {
+      "id": "asset-otb-tree-25",
+      "register_id": "tree-25",
+      "cat": "tree",
+      "label": "Tree 25",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1393.79,
+        495.22
+      ]
+    },
+    {
+      "id": "asset-otb-tree-26",
+      "register_id": "tree-26",
+      "cat": "tree",
+      "label": "Tree 26",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        903.82,
+        430.45
+      ]
+    },
+    {
+      "id": "asset-otb-tree-27",
+      "register_id": "tree-27",
+      "cat": "tree",
+      "label": "Tree 27",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        636.24,
+        433.44
+      ]
+    },
+    {
+      "id": "asset-otb-tree-28",
+      "register_id": "tree-28",
+      "cat": "tree",
+      "label": "Tree 28",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1394.55,
+        374.41
+      ]
+    },
+    {
+      "id": "asset-otb-tree-29",
+      "register_id": "tree-29",
+      "cat": "tree",
+      "label": "Tree 29",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1007.46,
+        393.59
+      ]
+    },
+    {
+      "id": "asset-otb-tree-30",
+      "register_id": "tree-30",
+      "cat": "tree",
+      "label": "Tree 30",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        371.01,
+        429.04
+      ]
+    },
+    {
+      "id": "asset-otb-tree-31",
+      "register_id": "tree-31",
+      "cat": "tree",
+      "label": "Tree 31",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1097.72,
+        327.76
+      ]
+    },
+    {
+      "id": "asset-otb-tree-32",
+      "register_id": "tree-32",
+      "cat": "tree",
+      "label": "Tree 32",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        82.65,
+        344.89
+      ]
+    },
+    {
+      "id": "asset-otb-tree-33",
+      "register_id": "tree-33",
+      "cat": "tree",
+      "label": "Tree 33",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1290.06,
+        89.33
+      ]
+    },
+    {
+      "id": "asset-otb-tree-34",
+      "register_id": "tree-34",
+      "cat": "tree",
+      "label": "Tree 34",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1166.92,
+        99.39
+      ]
+    },
+    {
+      "id": "asset-otb-tree-35",
+      "register_id": "tree-35",
+      "cat": "tree",
+      "label": "Tree 35",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        75.21,
+        116.62
+      ]
+    },
+    {
+      "id": "asset-otb-tree-36",
+      "register_id": "tree-36",
+      "cat": "tree",
+      "label": "Tree 36",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1211.1,
+        -22.45
+      ]
+    },
+    {
+      "id": "asset-otb-tree-37",
+      "register_id": "tree-37",
+      "cat": "tree",
+      "label": "Tree 37",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1395.68,
+        -124.12
+      ]
+    },
+    {
+      "id": "asset-otb-tree-38",
+      "register_id": "tree-38",
+      "cat": "tree",
+      "label": "Tree 38",
+      "status": "historic-source",
+      "source": "Greenspace.pdf — Guidry Beazley 9201.0C 'Site plan for zoning request' (1990s photo of the sheet)",
+      "note": "site landscape — 1990s zoning plan; confirm against current aerials",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1215.92,
+        -218.85
+      ]
+    }
+  ]
+}

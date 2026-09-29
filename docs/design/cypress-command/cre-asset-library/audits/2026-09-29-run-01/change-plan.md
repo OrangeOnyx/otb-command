@@ -36,3 +36,28 @@ Nothing here is pushed or deployed. None of it touches canonical data, productio
 - **Parking reconciliation.** 314 counted vs 324 claimed; needs a ground count (C01).
 - **LiDAR frame labelling.** The LiDAR is labelled EPSG:26915 but the twin frame is EPSG:6344 (C11). Also, the `public/elevation` hillshade is gitignored and therefore absent from production builds.
 - **`.cache/twin-*` PLY files.** These may be the only copies. Do not clean them.
+
+## D. Operator decisions 2026-09-29 (second pass) — executed
+
+| # | Decision | Executed |
+|---|---|---|
+| B1 | **1b**: keep the package tokens as delivered | Kept as-is; no remap into the app |
+| B3 | Re-skin P13 when the new pylon sign is installed | `pylon.json` P13 note; the overlay shows "Scheduled: re-skin…" |
+| B2 | It is a pylon sign | `pylon.json` `sign.name`, the site-register label (source script + JSON), the directory entry, and the `pylonsvg.js` fallback |
+| B4 | Extend the tool to the site register | 270 items → 21 layer files with library IDs, an alias table and a site-plan vector. HVAC cost caps are stripped. Utility layers are operator-only |
+| B5 | Roof heights | New `tools/measure-roof-heights.py` (USGS 3DEP 2017 LiDAR) replaces the CAD label matching; see the table below. `heights.json` keeps its shape; evidence is in `src/data/heights-provenance.json` |
+| B6 | Preview as an app sheet | A-6 Asset Library (`src/lib/pages.js`, `index.html`, `src/views/asset-library.js`, shared `src/lib/cre-library-view.js`). It is lazy-loaded and uses live store units |
+| — | House style vocabulary | `shared/style-vocabulary.md`. Elevations are restyled as Architectural Leasing Asset Illustrations; the pylon is a Directory Sign Vector Render with editable tenant slots |
+
+### Roofline heights (LiDAR, feet above the parking field)
+
+| Section | Height | Attested vs measured |
+|---|---|---|
+| Typical roofline (all remaining units) | 18.5 | matches |
+| 105 | 15.2 | lower, matches |
+| 101 end cap | 25.8 | taller, matches |
+| 149 (Jason's), raised section | 23.5 | taller, matches; main deck 18.6 |
+| Bell tower at the 133/135 junction | 28.5 median, 32.1 peak | recorded as a feature |
+| **103** | **21.7** | **CONFLICT: you said typical.** The LiDAR shows a ~30 ft roof section at 21.7 ft between 105 and the 101 end cap. The value stays as measured and flagged until you rule |
+
+**Side finding:** the LAZ point cloud is EPSG:6344 + NAVD88, the same frame as the twin. The EPSG:26915 label belongs to the DEM only. This partly resolves conflict C11.

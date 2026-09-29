@@ -1,0 +1,235 @@
+{
+  "layer": "lus-point",
+  "title": "LUS public water structures",
+  "asset_type": "utilities",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-lus-6-3861",
+      "register_id": "lus-6-3861",
+      "cat": "lus-point",
+      "label": "LUS 6-3861",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water valve/structure — Arnould",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        931.9,
+        671.43
+      ]
+    },
+    {
+      "id": "asset-otb-lus-6-3823",
+      "register_id": "lus-6-3823",
+      "cat": "lus-point",
+      "label": "LUS 6-3823",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water valve/structure — Arnould, mid-frontage",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        526.36,
+        671.43
+      ]
+    },
+    {
+      "id": "asset-otb-lus-8-1782",
+      "register_id": "lus-8-1782",
+      "cat": "lus-point",
+      "label": "LUS 8-1782",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water structure — Arnould × Johnston",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        113.03,
+        671.43
+      ]
+    },
+    {
+      "id": "asset-otb-lus-6-3790",
+      "register_id": "lus-6-3790",
+      "cat": "lus-point",
+      "label": "LUS 6-3790",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water structure — Arnould × Johnston",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        113.24,
+        671.43
+      ]
+    },
+    {
+      "id": "asset-otb-lus-2-2401",
+      "register_id": "lus-2-2401",
+      "cat": "lus-point",
+      "label": "LUS 2-2401",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water valve/structure — Marie Antoinette, behind 121",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        768.53,
+        86.57
+      ]
+    },
+    {
+      "id": "asset-otb-lus-2-2419",
+      "register_id": "lus-2-2419",
+      "cat": "lus-point",
+      "label": "LUS 2-2419",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water valve/structure — Marie Antoinette near Lot 8",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1187.37,
+        86.57
+      ]
+    },
+    {
+      "id": "asset-otb-lus-2-2436",
+      "register_id": "lus-2-2436",
+      "cat": "lus-point",
+      "label": "LUS 2-2436",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "water valve/structure — Patricia × Marie Antoinette",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1392.71,
+        86.57
+      ]
+    },
+    {
+      "id": "asset-otb-lus-mh-01",
+      "register_id": "lus-mh-01",
+      "cat": "lus-point",
+      "label": "LUS sewer manhole 1",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Arnould (1795, sta 3+08)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        843.44,
+        731.81
+      ]
+    },
+    {
+      "id": "asset-otb-lus-mh-02",
+      "register_id": "lus-mh-02",
+      "cat": "lus-point",
+      "label": "LUS sewer manhole 2",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Arnould, 101 end (1796)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        245.47,
+        731.81
+      ]
+    },
+    {
+      "id": "asset-otb-lus-mh-03",
+      "register_id": "lus-mh-03",
+      "cat": "lus-point",
+      "label": "LUS sewer manhole 3",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Marie Antoinette, behind 121 (1790)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        844.65,
+        41.29
+      ]
+    },
+    {
+      "id": "asset-otb-lus-mh-04",
+      "register_id": "lus-mh-04",
+      "cat": "lus-point",
+      "label": "LUS sewer manhole 4",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Marie Antoinette, behind 103 (8971 D)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        302.42,
+        41.29
+      ]
+    },
+    {
+      "id": "asset-otb-lus-mh-05",
+      "register_id": "lus-mh-05",
+      "cat": "lus-point",
+      "label": "LUS sewer manhole 5",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Patricia × Marie Antoinette (1787)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1406.29,
+        41.29
+      ]
+    },
+    {
+      "id": "asset-otb-lus-red-01",
+      "register_id": "lus-red-01",
+      "cat": "lus-point",
+      "label": "LUS red point symbol 1",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Arnould — hydrant or valve per the LUS legend (legend not on the capture; unconfirmed)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        879.12,
+        671.43
+      ]
+    },
+    {
+      "id": "asset-otb-lus-red-02",
+      "register_id": "lus-red-02",
+      "cat": "lus-point",
+      "label": "LUS red point symbol 2",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Marie Antoinette, behind 121 — hydrant or valve per the LUS legend (legend not on the capture; unconfirmed)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        801.01,
+        86.57
+      ]
+    },
+    {
+      "id": "asset-otb-lus-red-03",
+      "register_id": "lus-red-03",
+      "cat": "lus-point",
+      "label": "LUS red point symbol 3",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "Marie Antoinette near Lot 8 — hydrant or valve per the LUS legend (legend not on the capture; unconfirmed)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1176.11,
+        86.57
+      ]
+    }
+  ]
+}

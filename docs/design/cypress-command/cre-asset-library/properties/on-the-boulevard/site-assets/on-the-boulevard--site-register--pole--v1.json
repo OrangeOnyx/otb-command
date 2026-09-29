@@ -1,0 +1,25 @@
+{
+  "layer": "pole",
+  "title": "Utility poles",
+  "asset_type": "utilities",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-pole-patricia",
+      "register_id": "pole-patricia",
+      "cat": "pole",
+      "label": "Utility pole — Patricia St (4\" primary to T2)",
+      "status": "approximate",
+      "source": "Main.pdf E1.02 'Modifications to existing improvements — electrical site plan' (Guidry Beazley 9201.C1, 2006; photo)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1346.94,
+        286
+      ]
+    }
+  ]
+}

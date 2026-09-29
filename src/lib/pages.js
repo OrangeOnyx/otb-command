@@ -11,6 +11,7 @@ export const PAGES = [
   ["twin", "A-3", "Asset Twin"],
   ["evidence", "A-4", "Site Evidence"],
   ["exterior", "A-5", "Exterior & Site"],
+  ["library", "A-6", "Asset Library"],
   ["roll", "R-1", "Rent Roll"],
   ["rentws", "R-2", "Rent Worksheet"],
   ["comp", "C-1", "Compliance"],

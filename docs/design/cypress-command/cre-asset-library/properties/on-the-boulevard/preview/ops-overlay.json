@@ -1,5 +1,5 @@
 {
-  "_comment": "Operations overlay for the preview. Bound to geometry by entity ID only; regenerate from the sources, never edit here.",
+  "_comment": "Operations overlay snapshot for the standalone preview. Bound to geometry by entity ID only; the app sheet rebuilds it from live unit records.",
   "sources": [
     {
       "source_id": "source-otb-units-public",
@@ -8,8 +8,8 @@
     },
     {
       "source_id": "source-otb-pylon-register",
-      "revision": "worktree-sha256:9f89be5da714cd77",
-      "sha256": "9f89be5da714cd77210f201d63cb2b9bb3f50c0c9196dda87a546f65fd679421"
+      "revision": "worktree-sha256:6c5274d02b5e57cc",
+      "sha256": "6c5274d02b5e57ccf53258952c1af79569065c859569dd52b1813ea04dc4759f"
     }
   ],
   "suites": [
@@ -386,7 +386,7 @@
       "display_name": "Upstream Rehabilitation",
       "installed_reads": "Boulevard Nutrition",
       "state": "conflict",
-      "note": "Installed panel reads \"Boulevard Nutrition\"; tenant of record for 145 is \"Upstream Rehabilitation\"."
+      "note": "Installed panel reads \"Boulevard Nutrition\"; tenant of record for 145 is \"Upstream Rehabilitation\". Scheduled: re-skin when the new pylon sign is installed."
     },
     {
       "entity_id": "panel-otb-johnston-pylon-p14",

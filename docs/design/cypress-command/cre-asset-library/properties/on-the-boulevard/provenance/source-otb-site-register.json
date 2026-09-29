@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-site-register",
+  "name": "Digitized site register (270 items)",
+  "kind": "operational-record",
+  "authority_domains": [
+    "operations",
+    "context"
+  ],
+  "location": {
+    "repository_path": "src/data/site-register.json"
+  },
+  "revision": "worktree-sha256:fdcb2c5b1b3cd2f7",
+  "sha256": "fdcb2c5b1b3cd2f704e18cf107d93584600f3b0c977915b5daaaae3896facf23",
+  "verification": {
+    "state": "unverified",
+    "notes": "Digitized site register (tools/digitize-site-sources.py): 270 items positioned from drawings/photos via anchor fits (RMS up to 17 px), NOT surveyed. Operational identity and context only — no geometry authority."
+  }
+}

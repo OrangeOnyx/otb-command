@@ -1,0 +1,100 @@
+{
+  "layer": "ground-hp",
+  "title": "Ground heat pumps",
+  "asset_type": "hvac",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-ghp-1a",
+      "register_id": "ghp-1a",
+      "cat": "ground-hp",
+      "label": "Ground heat pump 1A",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": "Patricia side, group 1 of 3 (2007 addition)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1318.94,
+        276.97
+      ]
+    },
+    {
+      "id": "asset-otb-ghp-1b",
+      "register_id": "ghp-1b",
+      "cat": "ground-hp",
+      "label": "Ground heat pump 1B",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": "Patricia side, group 1 of 3 (2007 addition)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1318.94,
+        286.97
+      ]
+    },
+    {
+      "id": "asset-otb-ghp-2a",
+      "register_id": "ghp-2a",
+      "cat": "ground-hp",
+      "label": "Ground heat pump 2A",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": "Patricia side, group 2 of 3 (2007 addition)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1318.94,
+        370.97
+      ]
+    },
+    {
+      "id": "asset-otb-ghp-2b",
+      "register_id": "ghp-2b",
+      "cat": "ground-hp",
+      "label": "Ground heat pump 2B",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": "Patricia side, group 2 of 3 (2007 addition)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1318.94,
+        380.97
+      ]
+    },
+    {
+      "id": "asset-otb-ghp-3a",
+      "register_id": "ghp-3a",
+      "cat": "ground-hp",
+      "label": "Ground heat pump 3A",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": "Patricia side, group 3 of 3 (2007 addition)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1318.94,
+        464.96
+      ]
+    },
+    {
+      "id": "asset-otb-ghp-3b",
+      "register_id": "ghp-3b",
+      "cat": "ground-hp",
+      "label": "Ground heat pump 3B",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": "Patricia side, group 3 of 3 (2007 addition)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1318.94,
+        474.96
+      ]
+    }
+  ]
+}

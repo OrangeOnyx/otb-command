@@ -1,0 +1,58 @@
+{
+  "layer": "lighting",
+  "title": "Site lighting",
+  "asset_type": "lighting",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-light-pole-corner",
+      "register_id": "light-pole-corner",
+      "cat": "lighting",
+      "label": "Existing pole + luminaire (Arnould × Patricia corner)",
+      "status": "approximate",
+      "source": "Main.pdf E1.02 'Modifications to existing improvements — electrical site plan' (Guidry Beazley 9201.C1, 2006; photo)",
+      "note": "E1.02 keynote 'existing pole and luminaire to remain'",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1340,
+        640
+      ]
+    },
+    {
+      "id": "asset-otb-light-type-a",
+      "register_id": "light-type-a",
+      "cat": "lighting",
+      "label": "Fixture type A — recessed canopy downlight",
+      "status": "records",
+      "source": "Main.pdf E1.02 lighting fixture schedule (2006)",
+      "note": "fixture positions not yet counted",
+      "count": null,
+      "suite_entity_id": null
+    },
+    {
+      "id": "asset-otb-light-type-b",
+      "register_id": "light-type-b",
+      "cat": "lighting",
+      "label": "Fixture type B — decorative lantern post",
+      "status": "records",
+      "source": "Main.pdf E1.02 lighting fixture schedule (2006)",
+      "note": "fixture positions not yet counted",
+      "count": null,
+      "suite_entity_id": null
+    },
+    {
+      "id": "asset-otb-light-type-c",
+      "register_id": "light-type-c",
+      "cat": "lighting",
+      "label": "Fixture type C — wall bracket",
+      "status": "records",
+      "source": "Main.pdf E1.02 lighting fixture schedule (2006)",
+      "note": "fixture positions not yet counted",
+      "count": null,
+      "suite_entity_id": null
+    }
+  ]
+}

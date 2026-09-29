@@ -1,6 +1,6 @@
 {
   "tool": "tools/cre-library/build-otb-slice.mjs",
-  "tool_version": "1.0.0",
+  "tool_version": "1.1.0",
   "checks": [
     {
       "check": "long-frontage-closure",
@@ -246,13 +246,13 @@
       "basis": "Plat footprint (bay 54.6 ft × depth 84.49 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
     },
     {
-      "check": "parapet-height-provenance",
-      "observed": 22,
-      "expected": null,
+      "check": "roofline-attestation",
+      "observed": 1,
+      "expected": 0,
       "unit": "count",
-      "delta": null,
+      "delta": 1,
       "result": "unresolved",
-      "basis": "22/27 units carry 16.4 ft, which tools/extract-heights.py also uses as its no-annotation FALLBACK; heights.json does not record which values were annotated vs defaulted."
+      "basis": "LiDAR roofline per unit vs operator attestation (typical 18.5 ft; 101/149 taller, 105 lower). Open: 103 (Operator attests 'typical'; LiDAR measures 21.7 ft vs typical 18.5 ft. Roof steps need not follow demising lines, and this outline is SF-derived — operator to confirm.)"
     },
     {
       "check": "units-to-suite-records",

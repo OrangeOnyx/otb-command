@@ -198,7 +198,7 @@ def sheet_survey(Mshut):
     f = [sv(422, 701), sv(476, 701), sv(476, 846), sv(422, 846)]
     items.append({"id": "freezer-149", "cat": "fence", "label": "Walk-in freezer (Jason's Deli, 149 rear)", "status": "digitized",
                   "source": lab, "polys": [f], "unit": "149"})
-    add("sign-pylon", "sign", "Monument / pylon sign — Johnston St frontage", sv(4773, 1290), lab,
+    add("sign-pylon", "sign", "Pylon sign — Johnston St frontage", sv(4773, 1290), lab,
         sub="14 panels (P1 2x8 · P2 4x8 anchor · P3–P14 2x4) — src/data/pylon.json · zoning Entry 99-041054")
 
 

@@ -1,0 +1,595 @@
+{
+  "layer": "column",
+  "title": "Walkway columns",
+  "asset_type": "other",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-col-01",
+      "register_id": "col-01",
+      "cat": "column",
+      "label": "Column 1",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "101 end",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        121.61
+      ]
+    },
+    {
+      "id": "asset-otb-col-02",
+      "register_id": "col-02",
+      "cat": "column",
+      "label": "Column 2",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "101 end",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        150.68
+      ]
+    },
+    {
+      "id": "asset-otb-col-03",
+      "register_id": "col-03",
+      "cat": "column",
+      "label": "Column 3",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "101 end",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        184.02
+      ]
+    },
+    {
+      "id": "asset-otb-col-04",
+      "register_id": "col-04",
+      "cat": "column",
+      "label": "Column 4",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "101 end",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        222.53
+      ]
+    },
+    {
+      "id": "asset-otb-col-05",
+      "register_id": "col-05",
+      "cat": "column",
+      "label": "Column 5",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "101 end",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        257.09
+      ]
+    },
+    {
+      "id": "asset-otb-col-06",
+      "register_id": "col-06",
+      "cat": "column",
+      "label": "Column 6",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "101 end",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        291.8
+      ]
+    },
+    {
+      "id": "asset-otb-col-07",
+      "register_id": "col-07",
+      "cat": "column",
+      "label": "Column 7",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        148.58,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-08",
+      "register_id": "col-08",
+      "cat": "column",
+      "label": "Column 8",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        164.94,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-09",
+      "register_id": "col-09",
+      "cat": "column",
+      "label": "Column 9",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        196.03,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-10",
+      "register_id": "col-10",
+      "cat": "column",
+      "label": "Column 10",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        211.95,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-11",
+      "register_id": "col-11",
+      "cat": "column",
+      "label": "Column 11",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        239.62,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-12",
+      "register_id": "col-12",
+      "cat": "column",
+      "label": "Column 12",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        256.57,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-13",
+      "register_id": "col-13",
+      "cat": "column",
+      "label": "Column 13",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        283.2,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-14",
+      "register_id": "col-14",
+      "cat": "column",
+      "label": "Column 14",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        299.86,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-15",
+      "register_id": "col-15",
+      "cat": "column",
+      "label": "Column 15",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        356.53,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-16",
+      "register_id": "col-16",
+      "cat": "column",
+      "label": "Column 16",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        406.51,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-17",
+      "register_id": "col-17",
+      "cat": "column",
+      "label": "Column 17",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        448.75,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-18",
+      "register_id": "col-18",
+      "cat": "column",
+      "label": "Column 18",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        498.73,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-19",
+      "register_id": "col-19",
+      "cat": "column",
+      "label": "Column 19",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        544.54,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-20",
+      "register_id": "col-20",
+      "cat": "column",
+      "label": "Column 20",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        591.25,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-21",
+      "register_id": "col-21",
+      "cat": "column",
+      "label": "Column 21",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        635.87,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-22",
+      "register_id": "col-22",
+      "cat": "column",
+      "label": "Column 22",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        680.65,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-23",
+      "register_id": "col-23",
+      "cat": "column",
+      "label": "Column 23",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        726.31,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-24",
+      "register_id": "col-24",
+      "cat": "column",
+      "label": "Column 24",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        772.27,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-25",
+      "register_id": "col-25",
+      "cat": "column",
+      "label": "Column 25",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        818.68,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-26",
+      "register_id": "col-26",
+      "cat": "column",
+      "label": "Column 26",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        866.87,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-27",
+      "register_id": "col-27",
+      "cat": "column",
+      "label": "Column 27",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        916.41,
+        313.12
+      ]
+    },
+    {
+      "id": "asset-otb-col-28",
+      "register_id": "col-28",
+      "cat": "column",
+      "label": "Column 28",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        930.69,
+        313.12
+      ]
+    },
+    {
+      "id": "asset-otb-col-29",
+      "register_id": "col-29",
+      "cat": "column",
+      "label": "Column 29",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        970.25,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-30",
+      "register_id": "col-30",
+      "cat": "column",
+      "label": "Column 30",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1017.7,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-31",
+      "register_id": "col-31",
+      "cat": "column",
+      "label": "Column 31",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1066.79,
+        313.35
+      ]
+    },
+    {
+      "id": "asset-otb-col-32",
+      "register_id": "col-32",
+      "cat": "column",
+      "label": "Column 32",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "long-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1113.05,
+        312.89
+      ]
+    },
+    {
+      "id": "asset-otb-col-33",
+      "register_id": "col-33",
+      "cat": "column",
+      "label": "Column 33",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.34,
+        342.34
+      ]
+    },
+    {
+      "id": "asset-otb-col-34",
+      "register_id": "col-34",
+      "cat": "column",
+      "label": "Column 34",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.34,
+        390.14
+      ]
+    },
+    {
+      "id": "asset-otb-col-35",
+      "register_id": "col-35",
+      "cat": "column",
+      "label": "Column 35",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.34,
+        443.88
+      ]
+    },
+    {
+      "id": "asset-otb-col-36",
+      "register_id": "col-36",
+      "cat": "column",
+      "label": "Column 36",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.34,
+        496.7
+      ]
+    },
+    {
+      "id": "asset-otb-col-37",
+      "register_id": "col-37",
+      "cat": "column",
+      "label": "Column 37",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.2,
+        550.59
+      ]
+    },
+    {
+      "id": "asset-otb-col-38",
+      "register_id": "col-38",
+      "cat": "column",
+      "label": "Column 38",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.34,
+        603.72
+      ]
+    },
+    {
+      "id": "asset-otb-col-39",
+      "register_id": "col-39",
+      "cat": "column",
+      "label": "Column 39",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": "short-building walk",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1131.34,
+        625.33
+      ]
+    }
+  ]
+}

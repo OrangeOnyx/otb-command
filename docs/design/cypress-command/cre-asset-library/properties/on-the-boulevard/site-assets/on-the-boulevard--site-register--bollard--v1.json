@@ -1,0 +1,55 @@
+{
+  "layer": "bollard",
+  "title": "Bollards",
+  "asset_type": "utilities",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-bollard-1",
+      "register_id": "bollard-1",
+      "cat": "bollard",
+      "label": "Pipe bollards, pair 1",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": null,
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        1327.94,
+        281.97
+      ]
+    },
+    {
+      "id": "asset-otb-bollard-2",
+      "register_id": "bollard-2",
+      "cat": "bollard",
+      "label": "Pipe bollards, pair 2",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": null,
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        1327.94,
+        375.97
+      ]
+    },
+    {
+      "id": "asset-otb-bollard-3",
+      "register_id": "bollard-3",
+      "cat": "bollard",
+      "label": "Pipe bollards, pair 3",
+      "status": "approximate",
+      "source": "Crist A-1, May 22 2007 (final version June 1 2007) — 'new heat pumps, protect w/ 2 pipe bollards'",
+      "note": null,
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        1327.94,
+        469.96
+      ]
+    }
+  ]
+}

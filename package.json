@@ -18,7 +18,7 @@
     "poster": "python tools/poster.py",
     "pylon": "python tools/pylon.py",
     "plat": "python tools/plat.py",
-    "extract-heights": "python tools/extract-heights.py",
+    "extract-heights": "python tools/measure-roof-heights.py",
     "extract-georef": "python tools/extract-georef.py",
     "logo-thumbs": "python tools/make-logo-thumbs.py",
     "mesh-glb": "python tools/build-mesh-glb.py",

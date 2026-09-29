@@ -1,0 +1,160 @@
+{
+  "layer": "bench",
+  "title": "Benches",
+  "asset_type": "other",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-bench-01",
+      "register_id": "bench-01",
+      "cat": "bench",
+      "label": "Bench 1",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        187.87,
+        296.26
+      ]
+    },
+    {
+      "id": "asset-otb-bench-02",
+      "register_id": "bench-02",
+      "cat": "bench",
+      "label": "Bench 2",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        266.43,
+        296.28
+      ]
+    },
+    {
+      "id": "asset-otb-bench-03",
+      "register_id": "bench-03",
+      "cat": "bench",
+      "label": "Bench 3",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        366.13,
+        296.23
+      ]
+    },
+    {
+      "id": "asset-otb-bench-04",
+      "register_id": "bench-04",
+      "cat": "bench",
+      "label": "Bench 4",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        453.56,
+        296.19
+      ]
+    },
+    {
+      "id": "asset-otb-bench-05",
+      "register_id": "bench-05",
+      "cat": "bench",
+      "label": "Bench 5",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        534.86,
+        296.25
+      ]
+    },
+    {
+      "id": "asset-otb-bench-06",
+      "register_id": "bench-06",
+      "cat": "bench",
+      "label": "Bench 6",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        683.95,
+        296.26
+      ]
+    },
+    {
+      "id": "asset-otb-bench-07",
+      "register_id": "bench-07",
+      "cat": "bench",
+      "label": "Bench 7",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        812.89,
+        296.25
+      ]
+    },
+    {
+      "id": "asset-otb-bench-08",
+      "register_id": "bench-08",
+      "cat": "bench",
+      "label": "Bench 8",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        863.3,
+        296.25
+      ]
+    },
+    {
+      "id": "asset-otb-bench-09",
+      "register_id": "bench-09",
+      "cat": "bench",
+      "label": "Bench 9",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1145.7,
+        309.34
+      ]
+    },
+    {
+      "id": "asset-otb-bench-10",
+      "register_id": "bench-10",
+      "cat": "bench",
+      "label": "Bench 10",
+      "status": "digitized",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1150.89,
+        427.16
+      ]
+    }
+  ]
+}

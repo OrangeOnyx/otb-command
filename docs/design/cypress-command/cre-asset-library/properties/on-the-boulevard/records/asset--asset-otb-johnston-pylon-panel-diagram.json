@@ -2,16 +2,16 @@
   "schema_version": "1.0.0",
   "record_type": "asset",
   "id": "asset-otb-johnston-pylon-panel-diagram",
-  "name": "Johnston St pylon — panel schedule diagram",
+  "name": "Johnston St pylon — directory sign vector render",
   "verification": {
     "state": "unverified",
-    "notes": "Diagram of the operator panel schedule (P1 2x8 · P2 4x8 · P3–P14 2x4 pairs). Nominal panel sizes only; cabinet, header, posts and gaps are unmeasured and not drawn to scale."
+    "notes": "Panel stack = operator schedule (P1 2x8 · P2 4x8 · P3–P14 2x4 pairs), nominal feet. Cabinet, header and posts are illustrative proportions (no measured sign drawing in the repo). Tenant slots empty and editable."
   },
   "source_refs": [
     {
       "source_id": "source-otb-pylon-register",
-      "revision": "worktree-sha256:9f89be5da714cd77",
-      "sha256": "9f89be5da714cd77210f201d63cb2b9bb3f50c0c9196dda87a546f65fd679421"
+      "revision": "worktree-sha256:6c5274d02b5e57cc",
+      "sha256": "6c5274d02b5e57ccf53258952c1af79569065c859569dd52b1813ea04dc4759f"
     }
   ],
   "release": {
@@ -87,11 +87,11 @@
     "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/signage/on-the-boulevard--sign-johnston-pylon--front--neutral--v1.svg"
   },
   "revision": "v1",
-  "sha256": "edb209493b187fd1cc72761dca6ab4f0245af57b8ae679db4acc470f124928d2",
+  "sha256": "ab8dd2791fd8d6e9314ebf5e011b798385e87a464234698c49500c1d4fa2781f",
   "view": "front",
   "theme": "neutral",
   "style_reference_source_ids": [
     "source-cc-cre-master-board"
   ],
-  "display_label": "DIAGRAM — nominal panel schedule; not a measured sign drawing"
+  "display_label": "DIRECTORY SIGN RENDER — nominal panels; cabinet/posts illustrative, not measured"
 }

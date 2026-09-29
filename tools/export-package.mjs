@@ -241,7 +241,7 @@ ${Object.entries(regCount).map(([c, v]) => `| ${CAT_LABEL[c] || c} | ${v.n} | ${
 - **Water map (operator utility map on the Oct 2020 survey):** ${wc.cityMeterAnnotations} city-meter locations holding ${wc.reportedCityMeters} meters · ${wc.tenantShutoffAnnotations} tenant shut-off locations holding ${wc.reportedTenantShutoffs} shut-offs (circle numbers are counts per location — confirmed by ${waterMap.countInterpretation.confirmedBy} ${waterMap.countInterpretation.confirmedOn}). **Unresolved:** map shows ${wr.mapReportedCityMeters} city meters vs ${wr.workbookWaterMeterIds} water-meter IDs in the workbook; this does not establish ${wr.workbookMinusMap} missing meters. Physical shut-off count not field-verified.
 - Utility-source open items (preserved as recorded, not "fixed"):
 ${infrastructure.ambiguities.filter(a => !/legend defines colors/.test(a.detail)).map(a => "  - " + a.detail.replace(/\s+/g, " ")).join("\n")}
-- **Building heights (CAD parapet, ft):** ${Object.entries(heights).map(([u, h]) => `${u} ${h}`).join(" · ")}.
+- **Building rooflines (LiDAR-measured, ft above parking field):** ${Object.entries(heights).map(([u, h]) => `${u} ${h}`).join(" · ")}.
 `;
 const twinSection = `## Digital twin & georeference
 - **One frame for every twin asset:** horizontal EPSG:6344 (NAD83(2011) / UTM 15N, metres) · vertical NAVD88 (GEOID12B) · local origin E 591000 N 3341600. The USGS 3DEP LiDAR — not phone/drone GPS — sets position.

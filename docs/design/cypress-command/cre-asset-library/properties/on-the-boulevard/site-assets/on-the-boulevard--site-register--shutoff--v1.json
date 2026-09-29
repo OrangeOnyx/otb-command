@@ -1,0 +1,205 @@
+{
+  "layer": "shutoff",
+  "title": "Tenant water shut-offs",
+  "asset_type": "utilities",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-shutoff-01",
+      "register_id": "shutoff-01",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 1",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "2 tenant water shut-off(s)",
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        1314.26,
+        331.03
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-02",
+      "register_id": "shutoff-02",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 2",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "1 tenant water shut-off(s)",
+      "count": 1,
+      "suite_entity_id": null,
+      "point": [
+        1296.53,
+        192.52
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-03",
+      "register_id": "shutoff-03",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 3",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "4 tenant water shut-off(s)",
+      "count": 4,
+      "suite_entity_id": null,
+      "point": [
+        1157.16,
+        120.24
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-04",
+      "register_id": "shutoff-04",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 4",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "1 tenant water shut-off(s)",
+      "count": 1,
+      "suite_entity_id": null,
+      "point": [
+        907.29,
+        119.66
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-05",
+      "register_id": "shutoff-05",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 5",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "10 tenant water shut-off(s)",
+      "count": 10,
+      "suite_entity_id": null,
+      "point": [
+        739.87,
+        122.19
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-06",
+      "register_id": "shutoff-06",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 6",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "2 tenant water shut-off(s)",
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        609.05,
+        121.91
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-07",
+      "register_id": "shutoff-07",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 7",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "4 tenant water shut-off(s)",
+      "count": 4,
+      "suite_entity_id": null,
+      "point": [
+        556.4,
+        121.8
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-08",
+      "register_id": "shutoff-08",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 8",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "2 tenant water shut-off(s)",
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        509.04,
+        121.67
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-09",
+      "register_id": "shutoff-09",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 9",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "4 tenant water shut-off(s)",
+      "count": 4,
+      "suite_entity_id": null,
+      "point": [
+        461.69,
+        118.55
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-10",
+      "register_id": "shutoff-10",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 10",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "2 tenant water shut-off(s)",
+      "count": 2,
+      "suite_entity_id": null,
+      "point": [
+        417.73,
+        123.1
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-11",
+      "register_id": "shutoff-11",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 11",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "1 tenant water shut-off(s)",
+      "count": 1,
+      "suite_entity_id": null,
+      "point": [
+        381.36,
+        113.12
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-12",
+      "register_id": "shutoff-12",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 12",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "3 tenant water shut-off(s)",
+      "count": 3,
+      "suite_entity_id": null,
+      "point": [
+        336.83,
+        116.76
+      ]
+    },
+    {
+      "id": "asset-otb-shutoff-13",
+      "register_id": "shutoff-13",
+      "cat": "shutoff",
+      "label": "Tenant shut-off cluster 13",
+      "status": "digitized",
+      "source": "Water Shutoff Clusters.png (operator utility map on the Oct 2020 survey)",
+      "note": "1 tenant water shut-off(s)",
+      "count": 1,
+      "suite_entity_id": null,
+      "point": [
+        176.14,
+        105.82
+      ]
+    }
+  ]
+}

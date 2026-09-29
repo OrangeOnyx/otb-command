@@ -1,0 +1,175 @@
+{
+  "layer": "ada",
+  "title": "ADA stalls",
+  "asset_type": "parking",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-ada-01",
+      "register_id": "ada-01",
+      "cat": "ada",
+      "label": "ADA stall 1",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "short-building walk row, north of the pad",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1108.63,
+        564.38
+      ]
+    },
+    {
+      "id": "asset-otb-ada-02",
+      "register_id": "ada-02",
+      "cat": "ada",
+      "label": "ADA stall 2",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "short-building walk row, south of the pad",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1108.37,
+        523.33
+      ]
+    },
+    {
+      "id": "asset-otb-ada-03",
+      "register_id": "ada-03",
+      "cat": "ada",
+      "label": "ADA stall 3",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "short-building walk row at the liquor line",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1106.92,
+        381.74
+      ]
+    },
+    {
+      "id": "asset-otb-ada-04",
+      "register_id": "ada-04",
+      "cat": "ada",
+      "label": "ADA stall 4",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "storefront row (west)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        917.2,
+        330.28
+      ]
+    },
+    {
+      "id": "asset-otb-ada-05",
+      "register_id": "ada-05",
+      "cat": "ada",
+      "label": "ADA stall 5",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "storefront row (middle)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        732.02,
+        329.79
+      ]
+    },
+    {
+      "id": "asset-otb-ada-06",
+      "register_id": "ada-06",
+      "cat": "ada",
+      "label": "ADA stall 6",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "storefront row (east)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        567.71,
+        329.35
+      ]
+    },
+    {
+      "id": "asset-otb-ada-pad-01",
+      "register_id": "ada-pad-01",
+      "cat": "ada",
+      "label": "ADA access aisle / loading pad 1",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "short-building walk row",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1113.02,
+        544.57
+      ]
+    },
+    {
+      "id": "asset-otb-ada-pad-02",
+      "register_id": "ada-pad-02",
+      "cat": "ada",
+      "label": "ADA access aisle / loading pad 2",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "short-building walk row, liquor line",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1111.63,
+        368.45
+      ]
+    },
+    {
+      "id": "asset-otb-ada-pad-03",
+      "register_id": "ada-pad-03",
+      "cat": "ada",
+      "label": "ADA access aisle / loading pad 3",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "storefront row (west)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        935.26,
+        333.44
+      ]
+    },
+    {
+      "id": "asset-otb-ada-pad-04",
+      "register_id": "ada-pad-04",
+      "cat": "ada",
+      "label": "ADA access aisle / loading pad 4",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "storefront row (middle)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        752.34,
+        332.95
+      ]
+    },
+    {
+      "id": "asset-otb-ada-pad-05",
+      "register_id": "ada-pad-05",
+      "cat": "ada",
+      "label": "ADA access aisle / loading pad 5",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "storefront row (east)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        586.33,
+        332.52
+      ]
+    }
+  ]
+}

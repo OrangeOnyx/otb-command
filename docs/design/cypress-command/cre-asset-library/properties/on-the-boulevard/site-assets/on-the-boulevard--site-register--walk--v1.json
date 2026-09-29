@@ -1,0 +1,155 @@
+{
+  "layer": "walk",
+  "title": "Covered walkways",
+  "asset_type": "other",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-walk-long",
+      "register_id": "walk-long",
+      "cat": "walk",
+      "label": "Covered walkway — long building storefront",
+      "status": "derived",
+      "source": "derived from the A-1 building faces + the digitized column lines (Plat of Survey 2020 'covered walkway')",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "polys": [
+        [
+          [
+            160.78,
+            292.56
+          ],
+          [
+            1125.84,
+            292.56
+          ],
+          [
+            1125.84,
+            313.35
+          ],
+          [
+            160.78,
+            313.35
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-walk-101-end",
+      "register_id": "walk-101-end",
+      "cat": "walk",
+      "label": "Covered walkway — 101 end (Johnston)",
+      "status": "derived",
+      "source": "derived from the A-1 building faces + the digitized column lines (Plat of Survey 2020 'covered walkway')",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "polys": [
+        [
+          [
+            146.58,
+            121.35
+          ],
+          [
+            160.78,
+            121.35
+          ],
+          [
+            160.78,
+            313.35
+          ],
+          [
+            146.58,
+            313.35
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-walk-short",
+      "register_id": "walk-short",
+      "cat": "walk",
+      "label": "Covered walkway — short building",
+      "status": "derived",
+      "source": "derived from the A-1 building faces + the digitized column lines (Plat of Survey 2020 'covered walkway')",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "polys": [
+        [
+          [
+            1131.34,
+            219.31
+          ],
+          [
+            1154.51,
+            219.31
+          ],
+          [
+            1154.51,
+            627.33
+          ],
+          [
+            1131.34,
+            627.33
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-breezeway",
+      "register_id": "breezeway",
+      "cat": "walk",
+      "label": "Breezeway (133 end ↔ 135A)",
+      "status": "derived",
+      "source": "derived from the A-1 building faces + the digitized column lines (Plat of Survey 2020 'covered walkway')",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "polys": [
+        [
+          [
+            1125.84,
+            219.31
+          ],
+          [
+            1154.51,
+            219.31
+          ],
+          [
+            1154.51,
+            292.56
+          ],
+          [
+            1125.84,
+            292.56
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-sidewalk-arnould",
+      "register_id": "sidewalk-arnould",
+      "cat": "walk",
+      "label": "4' public sidewalk — Arnould R/W",
+      "status": "derived",
+      "source": "Plat of Survey 2020 '4' Sidewalk (Existing)' on the R/W",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          70,
+          668
+        ],
+        [
+          1360,
+          668
+        ]
+      ]
+    }
+  ]
+}

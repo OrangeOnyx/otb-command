@@ -259,7 +259,7 @@
     },
     {
       "id": "pd:pylon",
-      "name": "Monument / pylon sign artwork",
+      "name": "Pylon sign artwork",
       "type": "Marketing",
       "ref": "OTB-pylon-blank / -tenants.svg · npm run pylon",
       "link": "",

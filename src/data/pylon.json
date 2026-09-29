@@ -2,7 +2,7 @@
   "_comment": "D-19b option 1 (operator 2026-09-17): the monument/pylon panel register as DATA. panel→unit is the operator's physical sign order (was PANEL_UNIT in tools/pylon.py; the tool now reads this file). Panel schedule per the sign: P1 2x8 · P2 4x8 (anchor) · P3–P14 2x4 pairs. AC kept 28 pylon_slots across two signs; the second sign (c3fb7756…, 14 vacant slots, no tenant) was the AC example sign and is NOT carried. acSlot = AC slot number on the real sign (1d805bb9…). physicalReads records what the installed panel actually says when it differs from the tenant of record.",
   "source": "tools/pylon.py PANEL_UNIT (operator) + ac:pylon_slots sign 1d805bb9-efa4-46e8-8a81-c924bc07c0b8 (docs/harvest/ac-archive-2026-08-29/pylon_slots.json)",
   "sign": {
-    "name": "Monument sign — Johnston St frontage",
+    "name": "Pylon sign — Johnston St frontage",
     "panels": 14,
     "schedule": "P1 2x8 · P2 4x8 · P3–P14 2x4 pairs",
     "zoning": "Entry 99-041054 (title exception #25)"
@@ -124,7 +124,7 @@
       "acSlot": 13,
       "acStatus": "occupied",
       "physicalReads": "Boulevard Nutrition",
-      "note": "Boulevard Nutrition closed; space taken by Upstream Rehabilitation (Unit 145). PHYSICAL PANEL STILL READS \"Boulevard Nutrition\" — reprint needed."
+      "note": "Boulevard Nutrition closed; space taken by Upstream Rehabilitation (Unit 145). PHYSICAL PANEL STILL READS \"Boulevard Nutrition\" — operator 2026-09-29: re-skin P13 when the new pylon sign is installed (no interim reprint)."
     },
     {
       "panel": "P14",

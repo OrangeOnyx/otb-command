@@ -10,8 +10,8 @@
   "source_refs": [
     {
       "source_id": "source-otb-pylon-register",
-      "revision": "worktree-sha256:9f89be5da714cd77",
-      "sha256": "9f89be5da714cd77210f201d63cb2b9bb3f50c0c9196dda87a546f65fd679421",
+      "revision": "worktree-sha256:6c5274d02b5e57cc",
+      "sha256": "6c5274d02b5e57ccf53258952c1af79569065c859569dd52b1813ea04dc4759f",
       "locator": "panels[P4]"
     }
   ],

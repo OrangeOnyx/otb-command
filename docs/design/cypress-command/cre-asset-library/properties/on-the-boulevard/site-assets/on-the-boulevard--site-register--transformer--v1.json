@@ -1,0 +1,40 @@
+{
+  "layer": "transformer",
+  "title": "Transformers",
+  "asset_type": "utilities",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-xfmr-t1",
+      "register_id": "xfmr-t1",
+      "cat": "transformer",
+      "label": "Transformer T1 (existing)",
+      "status": "approximate",
+      "source": "Main.pdf E1.02 'Modifications to existing improvements — electrical site plan' (Guidry Beazley 9201.C1, 2006; photo)",
+      "note": "rear of the long building at the 133 end (Marie Antoinette side)",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1107.84,
+        121.35
+      ]
+    },
+    {
+      "id": "asset-otb-xfmr-t2",
+      "register_id": "xfmr-t2",
+      "cat": "transformer",
+      "label": "Transformer T2 (new padmount by utility, 2006)",
+      "status": "approximate",
+      "source": "Main.pdf E1.02 'Modifications to existing improvements — electrical site plan' (Guidry Beazley 9201.C1, 2006; photo)",
+      "note": "Patricia side of the short building at 135B/137, fed from the Patricia pole",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        1322.94,
+        292
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "layer": "fence",
+  "title": "Fences",
+  "asset_type": "other",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-fence-01",
+      "register_id": "fence-01",
+      "cat": "fence",
+      "label": "6' wood fence (149 rear, Arnould leg)",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          1310.84,
+          584.74
+        ],
+        [
+          1354.25,
+          584.85
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-fence-02",
+      "register_id": "fence-02",
+      "cat": "fence",
+      "label": "6' wood fence (149 rear, freezer leg)",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          1354.25,
+          584.85
+        ],
+        [
+          1354.08,
+          558.52
+        ],
+        [
+          1325.9,
+          558.45
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-freezer-149",
+      "register_id": "freezer-149",
+      "cat": "fence",
+      "label": "Walk-in freezer (Jason's Deli, 149 rear)",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": null,
+      "count": null,
+      "suite_entity_id": "suite-otb-149",
+      "polys": [
+        [
+          [
+            1325.96,
+            568.92
+          ],
+          [
+            1310.74,
+            568.88
+          ],
+          [
+            1310.49,
+            527.82
+          ],
+          [
+            1325.71,
+            527.86
+          ]
+        ]
+      ]
+    }
+  ]
+}

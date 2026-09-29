@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "asset",
+  "id": "asset-otb-site-layer-rtu",
+  "name": "Site layer — Rooftop HVAC",
+  "verification": {
+    "state": "unverified",
+    "notes": "27 register item(s); positions digitized, not surveyed. Cost caps stripped from notes."
+  },
+  "source_refs": [
+    {
+      "source_id": "source-otb-site-register",
+      "revision": "worktree-sha256:fdcb2c5b1b3cd2f7",
+      "sha256": "fdcb2c5b1b3cd2f704e18cf107d93584600f3b0c977915b5daaaae3896facf23"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "scope": "property",
+  "property_id": "on-the-boulevard",
+  "subject_refs": [
+    {
+      "record_type": "site",
+      "id": "site-otb-main"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-101"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-103"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-105"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-107"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-109"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-111"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-113"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-115"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-117"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-119"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-121"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-123"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-125"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-127"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-129"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-131"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-133"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-137"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-139"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-141"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-143"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-145"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-149"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-119-5"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-117-5"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-135a"
+    },
+    {
+      "record_type": "suite",
+      "id": "suite-otb-135b"
+    }
+  ],
+  "asset_type": "hvac",
+  "representation": "diagram",
+  "location": {
+    "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/site-assets/on-the-boulevard--site-register--rtu--v1.json"
+  },
+  "revision": "v1",
+  "sha256": "6b7e6c17be9bb92e8df491649e22a3cf3691022b3e4a464429659a8bdd76ebe5",
+  "view": "plan",
+  "theme": "neutral",
+  "display_label": "Rooftop HVAC — digitized positions, not surveyed"
+}

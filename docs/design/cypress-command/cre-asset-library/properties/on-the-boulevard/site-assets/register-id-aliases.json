@@ -1,0 +1,1625 @@
+{
+  "_comment": "site-register id → library id. Register ids stay canonical in src/data/site-register.json.",
+  "aliases": [
+    {
+      "register_id": "col-01",
+      "library_id": "asset-otb-col-01",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-02",
+      "library_id": "asset-otb-col-02",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-03",
+      "library_id": "asset-otb-col-03",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-04",
+      "library_id": "asset-otb-col-04",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-05",
+      "library_id": "asset-otb-col-05",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-06",
+      "library_id": "asset-otb-col-06",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-07",
+      "library_id": "asset-otb-col-07",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-08",
+      "library_id": "asset-otb-col-08",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-09",
+      "library_id": "asset-otb-col-09",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-10",
+      "library_id": "asset-otb-col-10",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-11",
+      "library_id": "asset-otb-col-11",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-12",
+      "library_id": "asset-otb-col-12",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-13",
+      "library_id": "asset-otb-col-13",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-14",
+      "library_id": "asset-otb-col-14",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-15",
+      "library_id": "asset-otb-col-15",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-16",
+      "library_id": "asset-otb-col-16",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-17",
+      "library_id": "asset-otb-col-17",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-18",
+      "library_id": "asset-otb-col-18",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-19",
+      "library_id": "asset-otb-col-19",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-20",
+      "library_id": "asset-otb-col-20",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-21",
+      "library_id": "asset-otb-col-21",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-22",
+      "library_id": "asset-otb-col-22",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-23",
+      "library_id": "asset-otb-col-23",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-24",
+      "library_id": "asset-otb-col-24",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-25",
+      "library_id": "asset-otb-col-25",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-26",
+      "library_id": "asset-otb-col-26",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-27",
+      "library_id": "asset-otb-col-27",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-28",
+      "library_id": "asset-otb-col-28",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-29",
+      "library_id": "asset-otb-col-29",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-30",
+      "library_id": "asset-otb-col-30",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-31",
+      "library_id": "asset-otb-col-31",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-32",
+      "library_id": "asset-otb-col-32",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-33",
+      "library_id": "asset-otb-col-33",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-34",
+      "library_id": "asset-otb-col-34",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-35",
+      "library_id": "asset-otb-col-35",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-36",
+      "library_id": "asset-otb-col-36",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-37",
+      "library_id": "asset-otb-col-37",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-38",
+      "library_id": "asset-otb-col-38",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "col-39",
+      "library_id": "asset-otb-col-39",
+      "cat": "column",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-01",
+      "library_id": "asset-otb-can-01",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-02",
+      "library_id": "asset-otb-can-02",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-03",
+      "library_id": "asset-otb-can-03",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-04",
+      "library_id": "asset-otb-can-04",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-05",
+      "library_id": "asset-otb-can-05",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-06",
+      "library_id": "asset-otb-can-06",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-07",
+      "library_id": "asset-otb-can-07",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-08",
+      "library_id": "asset-otb-can-08",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-09",
+      "library_id": "asset-otb-can-09",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-10",
+      "library_id": "asset-otb-can-10",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-11",
+      "library_id": "asset-otb-can-11",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-12",
+      "library_id": "asset-otb-can-12",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-13",
+      "library_id": "asset-otb-can-13",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-14",
+      "library_id": "asset-otb-can-14",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-15",
+      "library_id": "asset-otb-can-15",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-16",
+      "library_id": "asset-otb-can-16",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-17",
+      "library_id": "asset-otb-can-17",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-18",
+      "library_id": "asset-otb-can-18",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-19",
+      "library_id": "asset-otb-can-19",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "can-20",
+      "library_id": "asset-otb-can-20",
+      "cat": "can",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-01",
+      "library_id": "asset-otb-bench-01",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-02",
+      "library_id": "asset-otb-bench-02",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-03",
+      "library_id": "asset-otb-bench-03",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-04",
+      "library_id": "asset-otb-bench-04",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-05",
+      "library_id": "asset-otb-bench-05",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-06",
+      "library_id": "asset-otb-bench-06",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-07",
+      "library_id": "asset-otb-bench-07",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-08",
+      "library_id": "asset-otb-bench-08",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-09",
+      "library_id": "asset-otb-bench-09",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bench-10",
+      "library_id": "asset-otb-bench-10",
+      "cat": "bench",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "mclu-149",
+      "library_id": "asset-otb-mclu-149",
+      "cat": "meter-cluster",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "mclu-131",
+      "library_id": "asset-otb-mclu-131",
+      "cat": "meter-cluster",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "mclu-119",
+      "library_id": "asset-otb-mclu-119",
+      "cat": "meter-cluster",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "mclu-109",
+      "library_id": "asset-otb-mclu-109",
+      "cat": "meter-cluster",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "mclu-107",
+      "library_id": "asset-otb-mclu-107",
+      "cat": "meter-cluster",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "mclu-105",
+      "library_id": "asset-otb-mclu-105",
+      "cat": "meter-cluster",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-01",
+      "library_id": "asset-otb-shutoff-01",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-02",
+      "library_id": "asset-otb-shutoff-02",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-03",
+      "library_id": "asset-otb-shutoff-03",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-04",
+      "library_id": "asset-otb-shutoff-04",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-05",
+      "library_id": "asset-otb-shutoff-05",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-06",
+      "library_id": "asset-otb-shutoff-06",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-07",
+      "library_id": "asset-otb-shutoff-07",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-08",
+      "library_id": "asset-otb-shutoff-08",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-09",
+      "library_id": "asset-otb-shutoff-09",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-10",
+      "library_id": "asset-otb-shutoff-10",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-11",
+      "library_id": "asset-otb-shutoff-11",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-12",
+      "library_id": "asset-otb-shutoff-12",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "shutoff-13",
+      "library_id": "asset-otb-shutoff-13",
+      "cat": "shutoff",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-01",
+      "library_id": "asset-otb-ada-01",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-02",
+      "library_id": "asset-otb-ada-02",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-03",
+      "library_id": "asset-otb-ada-03",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-04",
+      "library_id": "asset-otb-ada-04",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-05",
+      "library_id": "asset-otb-ada-05",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-06",
+      "library_id": "asset-otb-ada-06",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-pad-01",
+      "library_id": "asset-otb-ada-pad-01",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-pad-02",
+      "library_id": "asset-otb-ada-pad-02",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-pad-03",
+      "library_id": "asset-otb-ada-pad-03",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-pad-04",
+      "library_id": "asset-otb-ada-pad-04",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ada-pad-05",
+      "library_id": "asset-otb-ada-pad-05",
+      "cat": "ada",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "fence-01",
+      "library_id": "asset-otb-fence-01",
+      "cat": "fence",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "fence-02",
+      "library_id": "asset-otb-fence-02",
+      "cat": "fence",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "freezer-149",
+      "library_id": "asset-otb-freezer-149",
+      "cat": "fence",
+      "suite_entity_id": "suite-otb-149"
+    },
+    {
+      "register_id": "sign-pylon",
+      "library_id": "asset-otb-sign-pylon",
+      "cat": "sign",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-01",
+      "library_id": "asset-otb-tree-01",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-02",
+      "library_id": "asset-otb-tree-02",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-03",
+      "library_id": "asset-otb-tree-03",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-04",
+      "library_id": "asset-otb-tree-04",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-05",
+      "library_id": "asset-otb-tree-05",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-06",
+      "library_id": "asset-otb-tree-06",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-07",
+      "library_id": "asset-otb-tree-07",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-08",
+      "library_id": "asset-otb-tree-08",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-09",
+      "library_id": "asset-otb-tree-09",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-10",
+      "library_id": "asset-otb-tree-10",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-11",
+      "library_id": "asset-otb-tree-11",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-12",
+      "library_id": "asset-otb-tree-12",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-13",
+      "library_id": "asset-otb-tree-13",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-14",
+      "library_id": "asset-otb-tree-14",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-15",
+      "library_id": "asset-otb-tree-15",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-16",
+      "library_id": "asset-otb-tree-16",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-17",
+      "library_id": "asset-otb-tree-17",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-18",
+      "library_id": "asset-otb-tree-18",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-19",
+      "library_id": "asset-otb-tree-19",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-20",
+      "library_id": "asset-otb-tree-20",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-21",
+      "library_id": "asset-otb-tree-21",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-22",
+      "library_id": "asset-otb-tree-22",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-23",
+      "library_id": "asset-otb-tree-23",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-24",
+      "library_id": "asset-otb-tree-24",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-25",
+      "library_id": "asset-otb-tree-25",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-26",
+      "library_id": "asset-otb-tree-26",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-27",
+      "library_id": "asset-otb-tree-27",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-28",
+      "library_id": "asset-otb-tree-28",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-29",
+      "library_id": "asset-otb-tree-29",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-30",
+      "library_id": "asset-otb-tree-30",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-31",
+      "library_id": "asset-otb-tree-31",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-32",
+      "library_id": "asset-otb-tree-32",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-33",
+      "library_id": "asset-otb-tree-33",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-34",
+      "library_id": "asset-otb-tree-34",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-35",
+      "library_id": "asset-otb-tree-35",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-36",
+      "library_id": "asset-otb-tree-36",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-37",
+      "library_id": "asset-otb-tree-37",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tree-38",
+      "library_id": "asset-otb-tree-38",
+      "cat": "tree",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-6-3861",
+      "library_id": "asset-otb-lus-6-3861",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-6-3823",
+      "library_id": "asset-otb-lus-6-3823",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-8-1782",
+      "library_id": "asset-otb-lus-8-1782",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-6-3790",
+      "library_id": "asset-otb-lus-6-3790",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-2-2401",
+      "library_id": "asset-otb-lus-2-2401",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-2-2419",
+      "library_id": "asset-otb-lus-2-2419",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-2-2436",
+      "library_id": "asset-otb-lus-2-2436",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-mh-01",
+      "library_id": "asset-otb-lus-mh-01",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-mh-02",
+      "library_id": "asset-otb-lus-mh-02",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-mh-03",
+      "library_id": "asset-otb-lus-mh-03",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-mh-04",
+      "library_id": "asset-otb-lus-mh-04",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-mh-05",
+      "library_id": "asset-otb-lus-mh-05",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-red-01",
+      "library_id": "asset-otb-lus-red-01",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-red-02",
+      "library_id": "asset-otb-lus-red-02",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-red-03",
+      "library_id": "asset-otb-lus-red-03",
+      "cat": "lus-point",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-water-arnould",
+      "library_id": "asset-otb-lus-water-arnould",
+      "cat": "lus-main",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-sewer-arnould",
+      "library_id": "asset-otb-lus-sewer-arnould",
+      "cat": "lus-main",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-water-ma",
+      "library_id": "asset-otb-lus-water-ma",
+      "cat": "lus-main",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-sewer-ma",
+      "library_id": "asset-otb-lus-sewer-ma",
+      "cat": "lus-main",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "lus-sewer-patricia",
+      "library_id": "asset-otb-lus-sewer-patricia",
+      "cat": "lus-main",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "xfmr-t1",
+      "library_id": "asset-otb-xfmr-t1",
+      "cat": "transformer",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "xfmr-t2",
+      "library_id": "asset-otb-xfmr-t2",
+      "cat": "transformer",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "pole-patricia",
+      "library_id": "asset-otb-pole-patricia",
+      "cat": "pole",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "light-pole-corner",
+      "library_id": "asset-otb-light-pole-corner",
+      "cat": "lighting",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ghp-1a",
+      "library_id": "asset-otb-ghp-1a",
+      "cat": "ground-hp",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ghp-1b",
+      "library_id": "asset-otb-ghp-1b",
+      "cat": "ground-hp",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bollard-1",
+      "library_id": "asset-otb-bollard-1",
+      "cat": "bollard",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ghp-2a",
+      "library_id": "asset-otb-ghp-2a",
+      "cat": "ground-hp",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ghp-2b",
+      "library_id": "asset-otb-ghp-2b",
+      "cat": "ground-hp",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bollard-2",
+      "library_id": "asset-otb-bollard-2",
+      "cat": "bollard",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ghp-3a",
+      "library_id": "asset-otb-ghp-3a",
+      "cat": "ground-hp",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "ghp-3b",
+      "library_id": "asset-otb-ghp-3b",
+      "cat": "ground-hp",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "bollard-3",
+      "library_id": "asset-otb-bollard-3",
+      "cat": "bollard",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "walk-long",
+      "library_id": "asset-otb-walk-long",
+      "cat": "walk",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "walk-101-end",
+      "library_id": "asset-otb-walk-101-end",
+      "cat": "walk",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "walk-short",
+      "library_id": "asset-otb-walk-short",
+      "cat": "walk",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "breezeway",
+      "library_id": "asset-otb-breezeway",
+      "cat": "walk",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "sidewalk-arnould",
+      "library_id": "asset-otb-sidewalk-arnould",
+      "cat": "walk",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "firewall-4hr-123-125",
+      "library_id": "asset-otb-firewall-4hr-123-125",
+      "cat": "firewall",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "firewall-2hr-135-137",
+      "library_id": "asset-otb-firewall-2hr-135-137",
+      "cat": "firewall",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "firewall-2hr-145-149",
+      "library_id": "asset-otb-firewall-2hr-145-149",
+      "cat": "firewall",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "rtu-101",
+      "library_id": "asset-otb-rtu-101",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-101"
+    },
+    {
+      "register_id": "panel-101",
+      "library_id": "asset-otb-panel-101",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-101"
+    },
+    {
+      "register_id": "rtu-103",
+      "library_id": "asset-otb-rtu-103",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-103"
+    },
+    {
+      "register_id": "panel-103",
+      "library_id": "asset-otb-panel-103",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-103"
+    },
+    {
+      "register_id": "rtu-105",
+      "library_id": "asset-otb-rtu-105",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-105"
+    },
+    {
+      "register_id": "panel-105",
+      "library_id": "asset-otb-panel-105",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-105"
+    },
+    {
+      "register_id": "rtu-107",
+      "library_id": "asset-otb-rtu-107",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-107"
+    },
+    {
+      "register_id": "panel-107",
+      "library_id": "asset-otb-panel-107",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-107"
+    },
+    {
+      "register_id": "rtu-109",
+      "library_id": "asset-otb-rtu-109",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-109"
+    },
+    {
+      "register_id": "panel-109",
+      "library_id": "asset-otb-panel-109",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-109"
+    },
+    {
+      "register_id": "rtu-111",
+      "library_id": "asset-otb-rtu-111",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-111"
+    },
+    {
+      "register_id": "panel-111",
+      "library_id": "asset-otb-panel-111",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-111"
+    },
+    {
+      "register_id": "rtu-113",
+      "library_id": "asset-otb-rtu-113",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-113"
+    },
+    {
+      "register_id": "panel-113",
+      "library_id": "asset-otb-panel-113",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-113"
+    },
+    {
+      "register_id": "rtu-115",
+      "library_id": "asset-otb-rtu-115",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-115"
+    },
+    {
+      "register_id": "panel-115",
+      "library_id": "asset-otb-panel-115",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-115"
+    },
+    {
+      "register_id": "rtu-117",
+      "library_id": "asset-otb-rtu-117",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-117"
+    },
+    {
+      "register_id": "panel-117",
+      "library_id": "asset-otb-panel-117",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-117"
+    },
+    {
+      "register_id": "rtu-119",
+      "library_id": "asset-otb-rtu-119",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-119"
+    },
+    {
+      "register_id": "panel-119",
+      "library_id": "asset-otb-panel-119",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-119"
+    },
+    {
+      "register_id": "rtu-121",
+      "library_id": "asset-otb-rtu-121",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-121"
+    },
+    {
+      "register_id": "panel-121",
+      "library_id": "asset-otb-panel-121",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-121"
+    },
+    {
+      "register_id": "rtu-123",
+      "library_id": "asset-otb-rtu-123",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-123"
+    },
+    {
+      "register_id": "panel-123",
+      "library_id": "asset-otb-panel-123",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-123"
+    },
+    {
+      "register_id": "rtu-125",
+      "library_id": "asset-otb-rtu-125",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-125"
+    },
+    {
+      "register_id": "panel-125",
+      "library_id": "asset-otb-panel-125",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-125"
+    },
+    {
+      "register_id": "rtu-127",
+      "library_id": "asset-otb-rtu-127",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-127"
+    },
+    {
+      "register_id": "panel-127",
+      "library_id": "asset-otb-panel-127",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-127"
+    },
+    {
+      "register_id": "rtu-129",
+      "library_id": "asset-otb-rtu-129",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-129"
+    },
+    {
+      "register_id": "panel-129",
+      "library_id": "asset-otb-panel-129",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-129"
+    },
+    {
+      "register_id": "rtu-131",
+      "library_id": "asset-otb-rtu-131",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-131"
+    },
+    {
+      "register_id": "panel-131",
+      "library_id": "asset-otb-panel-131",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-131"
+    },
+    {
+      "register_id": "rtu-133",
+      "library_id": "asset-otb-rtu-133",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-133"
+    },
+    {
+      "register_id": "panel-133",
+      "library_id": "asset-otb-panel-133",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-133"
+    },
+    {
+      "register_id": "rtu-137",
+      "library_id": "asset-otb-rtu-137",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-137"
+    },
+    {
+      "register_id": "panel-137",
+      "library_id": "asset-otb-panel-137",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-137"
+    },
+    {
+      "register_id": "rtu-139",
+      "library_id": "asset-otb-rtu-139",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-139"
+    },
+    {
+      "register_id": "panel-139",
+      "library_id": "asset-otb-panel-139",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-139"
+    },
+    {
+      "register_id": "rtu-141",
+      "library_id": "asset-otb-rtu-141",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-141"
+    },
+    {
+      "register_id": "panel-141",
+      "library_id": "asset-otb-panel-141",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-141"
+    },
+    {
+      "register_id": "rtu-143",
+      "library_id": "asset-otb-rtu-143",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-143"
+    },
+    {
+      "register_id": "panel-143",
+      "library_id": "asset-otb-panel-143",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-143"
+    },
+    {
+      "register_id": "rtu-145",
+      "library_id": "asset-otb-rtu-145",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-145"
+    },
+    {
+      "register_id": "panel-145",
+      "library_id": "asset-otb-panel-145",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-145"
+    },
+    {
+      "register_id": "rtu-149",
+      "library_id": "asset-otb-rtu-149",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-149"
+    },
+    {
+      "register_id": "panel-149",
+      "library_id": "asset-otb-panel-149",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-149"
+    },
+    {
+      "register_id": "rtu-119.5",
+      "library_id": "asset-otb-rtu-119-5",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-119-5"
+    },
+    {
+      "register_id": "panel-119.5",
+      "library_id": "asset-otb-panel-119-5",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-119-5"
+    },
+    {
+      "register_id": "rtu-117.5",
+      "library_id": "asset-otb-rtu-117-5",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-117-5"
+    },
+    {
+      "register_id": "panel-117.5",
+      "library_id": "asset-otb-panel-117-5",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-117-5"
+    },
+    {
+      "register_id": "rtu-135a",
+      "library_id": "asset-otb-rtu-135a",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-135a"
+    },
+    {
+      "register_id": "panel-135a",
+      "library_id": "asset-otb-panel-135a",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-135a"
+    },
+    {
+      "register_id": "rtu-135b",
+      "library_id": "asset-otb-rtu-135b",
+      "cat": "rtu",
+      "suite_entity_id": "suite-otb-135b"
+    },
+    {
+      "register_id": "panel-135b",
+      "library_id": "asset-otb-panel-135b",
+      "cat": "panel",
+      "suite_entity_id": "suite-otb-135b"
+    },
+    {
+      "register_id": "panel-fpe",
+      "library_id": "asset-otb-panel-fpe",
+      "cat": "panel",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "tc-101",
+      "library_id": "asset-otb-tc-101",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-101"
+    },
+    {
+      "register_id": "tc-103",
+      "library_id": "asset-otb-tc-103",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-103"
+    },
+    {
+      "register_id": "tc-105",
+      "library_id": "asset-otb-tc-105",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-105"
+    },
+    {
+      "register_id": "tc-107",
+      "library_id": "asset-otb-tc-107",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-107"
+    },
+    {
+      "register_id": "tc-109",
+      "library_id": "asset-otb-tc-109",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-109"
+    },
+    {
+      "register_id": "tc-113",
+      "library_id": "asset-otb-tc-113",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-113"
+    },
+    {
+      "register_id": "tc-115",
+      "library_id": "asset-otb-tc-115",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-115"
+    },
+    {
+      "register_id": "tc-117",
+      "library_id": "asset-otb-tc-117",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-117"
+    },
+    {
+      "register_id": "tc-117.5",
+      "library_id": "asset-otb-tc-117-5",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-117-5"
+    },
+    {
+      "register_id": "tc-119",
+      "library_id": "asset-otb-tc-119",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-119"
+    },
+    {
+      "register_id": "tc-119.5-1",
+      "library_id": "asset-otb-tc-119-5-1",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-119-5"
+    },
+    {
+      "register_id": "tc-119.5-2",
+      "library_id": "asset-otb-tc-119-5-2",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-119-5"
+    },
+    {
+      "register_id": "tc-121",
+      "library_id": "asset-otb-tc-121",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-121"
+    },
+    {
+      "register_id": "tc-123",
+      "library_id": "asset-otb-tc-123",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-123"
+    },
+    {
+      "register_id": "tc-125",
+      "library_id": "asset-otb-tc-125",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-125"
+    },
+    {
+      "register_id": "tc-127",
+      "library_id": "asset-otb-tc-127",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-127"
+    },
+    {
+      "register_id": "tc-129",
+      "library_id": "asset-otb-tc-129",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-129"
+    },
+    {
+      "register_id": "tc-131-1",
+      "library_id": "asset-otb-tc-131-1",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-131"
+    },
+    {
+      "register_id": "tc-131-2",
+      "library_id": "asset-otb-tc-131-2",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-131"
+    },
+    {
+      "register_id": "tc-135a",
+      "library_id": "asset-otb-tc-135a",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-135a"
+    },
+    {
+      "register_id": "tc-137",
+      "library_id": "asset-otb-tc-137",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-137"
+    },
+    {
+      "register_id": "tc-141",
+      "library_id": "asset-otb-tc-141",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-141"
+    },
+    {
+      "register_id": "tc-143",
+      "library_id": "asset-otb-tc-143",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-143"
+    },
+    {
+      "register_id": "tc-145",
+      "library_id": "asset-otb-tc-145",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-145"
+    },
+    {
+      "register_id": "tc-149",
+      "library_id": "asset-otb-tc-149",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-149"
+    },
+    {
+      "register_id": "tc-111",
+      "library_id": "asset-otb-tc-111",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-111"
+    },
+    {
+      "register_id": "tc-135b",
+      "library_id": "asset-otb-tc-135b",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-135b"
+    },
+    {
+      "register_id": "tc-139",
+      "library_id": "asset-otb-tc-139",
+      "cat": "timeclock",
+      "suite_entity_id": "suite-otb-139"
+    },
+    {
+      "register_id": "light-type-a",
+      "library_id": "asset-otb-light-type-a",
+      "cat": "lighting",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "light-type-b",
+      "library_id": "asset-otb-light-type-b",
+      "cat": "lighting",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "light-type-c",
+      "library_id": "asset-otb-light-type-c",
+      "cat": "lighting",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "sign-lantern-post",
+      "library_id": "asset-otb-sign-lantern-post",
+      "cat": "sign",
+      "suite_entity_id": null
+    },
+    {
+      "register_id": "sign-fire-lane",
+      "library_id": "asset-otb-sign-fire-lane",
+      "cat": "sign",
+      "suite_entity_id": null
+    }
+  ]
+}

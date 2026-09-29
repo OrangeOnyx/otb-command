@@ -1,132 +1,143 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -35.6 534.31 46.6" role="img" aria-labelledby="t d" data-geometry-id="geom-otb-long-frontage-elevation" data-units="ft">
-  <title id="t">On The Boulevard — Long building (101–133) storefront elevation (schematic, draft)</title>
-  <desc id="d">Schematic storefront elevation, 1 unit = 1 ft. Bay widths from recorded-plat demising strings (dashed = derived SF split); heights from CAD BLD_HT annotations. Openings, awnings and signage are not drawn. Draft — not field-verified.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -37.8 534.31 48.8" role="img" aria-labelledby="t d" data-geometry-id="geom-otb-long-frontage-elevation" data-units="ft">
+  <title id="t">On The Boulevard — Long building (101–133) storefront elevation (leasing illustration, draft)</title>
+  <desc id="d">Architectural leasing elevation (orthographic, 1 unit = 1 ft). Massing = plat demising-string bay widths × USGS 3DEP 2017 LiDAR roofline heights; dashed demising = derived SF split. Storefront glazing, canopy, columns and signage are not drawn (no measured source). Draft — not field-verified.</desc>
+  <defs><filter id="cc-shadow" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0.5" dy="0.5" stdDeviation="0.5" flood-color="#3B342A" flood-opacity=".16"/></filter></defs>
   <style>
-    .cc-face{fill:var(--cc-cre-surface-raised,#FCF9F1);stroke:var(--cc-cre-text,#1E1B16);stroke-width:1.25;vector-effect:non-scaling-stroke}
-    .cc-face--derived{stroke-dasharray:4 3}
-    .cc-grade{stroke:var(--cc-cre-text,#1E1B16);stroke-width:2;vector-effect:non-scaling-stroke}
+    .cc-mass{fill:#EFE6D2}
+    .cc-roof{fill:none;stroke:#6F6250;stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+    .cc-demise{stroke:#6F6250;stroke-width:.8;vector-effect:non-scaling-stroke;opacity:.75}
+    .cc-demise--derived{stroke-dasharray:3 3}
+    .cc-hit{fill:transparent;stroke:none}
+    .cc-grade{stroke:#6F6250;stroke-width:1.6;vector-effect:non-scaling-stroke}
+    .cc-face{fill:#FBF7EE;stroke:#B9A57E;stroke-width:1;vector-effect:non-scaling-stroke}
+    .cc-cab{fill:#E8DEC8;stroke:#6F6250;stroke-width:1;vector-effect:non-scaling-stroke}
+    .cc-head{fill:#D9C9A6;stroke:#6F6250;stroke-width:1;vector-effect:non-scaling-stroke}
+    .cc-wordmark{fill:#FBF7EE;font-family:var(--cc-cre-font-display,Besley,Georgia,serif);font-weight:700;letter-spacing:.04em}
+    .cc-slot{fill:#3B342A;font-family:var(--cc-cre-font-ui,Archivo,Arial,sans-serif)}
     .cc-dim{stroke:var(--cc-cre-text-muted,#5C554A);stroke-width:1;vector-effect:non-scaling-stroke;fill:none}
     .cc-label{fill:var(--cc-cre-text,#1E1B16);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
     .cc-muted{fill:var(--cc-cre-text-muted,#5C554A);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
-    .cc-frame{fill:none;stroke:var(--cc-cre-text-muted,#5C554A);stroke-width:1;stroke-dasharray:6 4;vector-effect:non-scaling-stroke}
   </style>
+  <path class="cc-mass" filter="url(#cc-shadow)" d="M0 0 V-25.8 H74.79 V-21.7 H108 V-15.2 H134 V-18.5 H154.4 V-18.5 H184.47 V-18.5 H204.43 V-18.5 H235.21 V-18.5 H260.61 V-18.5 H286.01 V-18.5 H306.21 V-18.5 H329.41 V-18.5 H352.51 V-18.5 H372.51 V-18.5 H414.21 V-18.5 H434.51 V-18.5 H464.21 V-18.5 H485.11 V-18.5 H507.43 V-18.5 H522.31 V0"/>
+  <g class="cc-demising"><line class="cc-demise cc-demise--derived" x1="74.79" y1="0" x2="74.79" y2="-21.7"/><line class="cc-demise" x1="108" y1="0" x2="108" y2="-15.2"/><line class="cc-demise" x1="134" y1="0" x2="134" y2="-15.2"/><line class="cc-demise" x1="154.4" y1="0" x2="154.4" y2="-18.5"/><line class="cc-demise cc-demise--derived" x1="184.47" y1="0" x2="184.47" y2="-18.5"/><line class="cc-demise cc-demise--derived" x1="204.43" y1="0" x2="204.43" y2="-18.5"/><line class="cc-demise" x1="235.21" y1="0" x2="235.21" y2="-18.5"/><line class="cc-demise" x1="260.61" y1="0" x2="260.61" y2="-18.5"/><line class="cc-demise" x1="286.01" y1="0" x2="286.01" y2="-18.5"/><line class="cc-demise" x1="306.21" y1="0" x2="306.21" y2="-18.5"/><line class="cc-demise" x1="329.41" y1="0" x2="329.41" y2="-18.5"/><line class="cc-demise" x1="352.51" y1="0" x2="352.51" y2="-18.5"/><line class="cc-demise" x1="372.51" y1="0" x2="372.51" y2="-18.5"/><line class="cc-demise" x1="414.21" y1="0" x2="414.21" y2="-18.5"/><line class="cc-demise" x1="434.51" y1="0" x2="434.51" y2="-18.5"/><line class="cc-demise" x1="464.21" y1="0" x2="464.21" y2="-18.5"/><line class="cc-demise" x1="485.11" y1="0" x2="485.11" y2="-18.5"/><line class="cc-demise cc-demise--derived" x1="507.43" y1="0" x2="507.43" y2="-18.5"/></g>
+  <path class="cc-roof" d="M0 0 V-25.8 H74.79 V-21.7 H108 V-15.2 H134 V-18.5 H154.4 V-18.5 H184.47 V-18.5 H204.43 V-18.5 H235.21 V-18.5 H260.61 V-18.5 H286.01 V-18.5 H306.21 V-18.5 H329.41 V-18.5 H352.51 V-18.5 H372.51 V-18.5 H414.21 V-18.5 H434.51 V-18.5 H464.21 V-18.5 H485.11 V-18.5 H507.43 V-18.5 H522.31 V0"/>
   <g id="suite-otb-101" class="cc-entity" data-entity-id="suite-otb-101" data-entity-ids="suite-otb-101" data-suite-label="101" data-width-basis="derived">
-    <title>Suite 101 — frontage 74.79 ft (derived SF split) · parapet 13.5 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="0" y="-13.5" width="74.79" height="13.5"/>
+    <title>Suite 101 — frontage 74.79 ft (derived SF split) · roofline 25.8 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="0" y="-25.8" width="74.79" height="25.8"/>
     <text class="cc-label" x="37.4" y="4.2" font-size="2.6" text-anchor="middle">101</text>
-    <text class="cc-muted" x="37.4" y="7.6" font-size="1.7" text-anchor="middle">74.79′</text>
+    <text class="cc-muted" x="37.4" y="7.6" font-size="1.7" text-anchor="middle">74.79′ · 25.8′h</text>
   </g>
   <g id="suite-otb-103" class="cc-entity" data-entity-id="suite-otb-103" data-entity-ids="suite-otb-103" data-suite-label="103" data-width-basis="derived">
-    <title>Suite 103 — frontage 33.21 ft (derived SF split) · parapet 23.6 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="74.79" y="-23.6" width="33.21" height="23.6"/>
+    <title>Suite 103 — frontage 33.21 ft (derived SF split) · roofline 21.7 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="74.79" y="-21.7" width="33.21" height="21.7"/>
     <text class="cc-label" x="91.4" y="4.2" font-size="2.6" text-anchor="middle">103</text>
-    <text class="cc-muted" x="91.4" y="7.6" font-size="1.7" text-anchor="middle">33.21′</text>
+    <text class="cc-muted" x="91.4" y="7.6" font-size="1.7" text-anchor="middle">33.21′ · 21.7′h</text>
   </g>
   <g id="suite-otb-105" class="cc-entity" data-entity-id="suite-otb-105" data-entity-ids="suite-otb-105" data-suite-label="105" data-width-basis="plat">
-    <title>Suite 105 — frontage 26 ft (plat) · parapet 13.2 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="108" y="-13.2" width="26" height="13.2"/>
+    <title>Suite 105 — frontage 26 ft (plat) · roofline 15.2 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="108" y="-15.2" width="26" height="15.2"/>
     <text class="cc-label" x="121" y="4.2" font-size="2.6" text-anchor="middle">105</text>
-    <text class="cc-muted" x="121" y="7.6" font-size="1.7" text-anchor="middle">26′</text>
+    <text class="cc-muted" x="121" y="7.6" font-size="1.7" text-anchor="middle">26′ · 15.2′h</text>
   </g>
   <g id="suite-otb-107" class="cc-entity" data-entity-id="suite-otb-107" data-entity-ids="suite-otb-107" data-suite-label="107" data-width-basis="plat">
-    <title>Suite 107 — frontage 20.4 ft (plat) · parapet 13.2 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="134" y="-13.2" width="20.4" height="13.2"/>
+    <title>Suite 107 — frontage 20.4 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="134" y="-18.5" width="20.4" height="18.5"/>
     <text class="cc-label" x="144.2" y="4.2" font-size="2.6" text-anchor="middle">107</text>
-    <text class="cc-muted" x="144.2" y="7.6" font-size="1.7" text-anchor="middle">20.4′</text>
+    <text class="cc-muted" x="144.2" y="7.6" font-size="1.7" text-anchor="middle">20.4′ · 18.5′h</text>
   </g>
   <g id="suite-otb-109" class="cc-entity" data-entity-id="suite-otb-109" data-entity-ids="suite-otb-109" data-suite-label="109" data-width-basis="derived">
-    <title>Suite 109 — frontage 30.07 ft (derived SF split) · parapet 13.2 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="154.4" y="-13.2" width="30.07" height="13.2"/>
+    <title>Suite 109 — frontage 30.07 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="154.4" y="-18.5" width="30.07" height="18.5"/>
     <text class="cc-label" x="169.44" y="4.2" font-size="2.6" text-anchor="middle">109</text>
-    <text class="cc-muted" x="169.44" y="7.6" font-size="1.7" text-anchor="middle">30.07′</text>
+    <text class="cc-muted" x="169.44" y="7.6" font-size="1.7" text-anchor="middle">30.07′ · 18.5′h</text>
   </g>
   <g id="suite-otb-111" class="cc-entity" data-entity-id="suite-otb-111" data-entity-ids="suite-otb-111" data-suite-label="111" data-width-basis="derived">
-    <title>Suite 111 — frontage 19.96 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="184.47" y="-16.4" width="19.96" height="16.4"/>
+    <title>Suite 111 — frontage 19.96 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="184.47" y="-18.5" width="19.96" height="18.5"/>
     <text class="cc-label" x="194.45" y="4.2" font-size="2.6" text-anchor="middle">111</text>
-    <text class="cc-muted" x="194.45" y="7.6" font-size="1.7" text-anchor="middle">19.96′</text>
+    <text class="cc-muted" x="194.45" y="7.6" font-size="1.7" text-anchor="middle">19.96′ · 18.5′h</text>
   </g>
   <g id="suite-otb-113" class="cc-entity" data-entity-id="suite-otb-113" data-entity-ids="suite-otb-113" data-suite-label="113" data-width-basis="derived">
-    <title>Suite 113 — frontage 30.78 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="204.43" y="-16.4" width="30.78" height="16.4"/>
+    <title>Suite 113 — frontage 30.78 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="204.43" y="-18.5" width="30.78" height="18.5"/>
     <text class="cc-label" x="219.82" y="4.2" font-size="2.6" text-anchor="middle">113</text>
-    <text class="cc-muted" x="219.82" y="7.6" font-size="1.7" text-anchor="middle">30.78′</text>
+    <text class="cc-muted" x="219.82" y="7.6" font-size="1.7" text-anchor="middle">30.78′ · 18.5′h</text>
   </g>
   <g id="suite-otb-115" class="cc-entity" data-entity-id="suite-otb-115" data-entity-ids="suite-otb-115" data-suite-label="115" data-width-basis="plat">
-    <title>Suite 115 — frontage 25.4 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="235.21" y="-16.4" width="25.4" height="16.4"/>
+    <title>Suite 115 — frontage 25.4 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="235.21" y="-18.5" width="25.4" height="18.5"/>
     <text class="cc-label" x="247.91" y="4.2" font-size="2.6" text-anchor="middle">115</text>
-    <text class="cc-muted" x="247.91" y="7.6" font-size="1.7" text-anchor="middle">25.4′</text>
+    <text class="cc-muted" x="247.91" y="7.6" font-size="1.7" text-anchor="middle">25.4′ · 18.5′h</text>
   </g>
   <g id="suite-otb-117" class="cc-entity" data-entity-id="suite-otb-117" data-entity-ids="suite-otb-117" data-suite-label="117" data-width-basis="plat">
-    <title>Suite 117 — frontage 25.4 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="260.61" y="-16.4" width="25.4" height="16.4"/>
+    <title>Suite 117 — frontage 25.4 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="260.61" y="-18.5" width="25.4" height="18.5"/>
     <text class="cc-label" x="273.31" y="4.2" font-size="2.6" text-anchor="middle">117</text>
-    <text class="cc-muted" x="273.31" y="7.6" font-size="1.7" text-anchor="middle">25.4′</text>
+    <text class="cc-muted" x="273.31" y="7.6" font-size="1.7" text-anchor="middle">25.4′ · 18.5′h</text>
   </g>
   <g id="suite-otb-117-5" class="cc-entity" data-entity-id="suite-otb-117-5" data-entity-ids="suite-otb-117-5" data-suite-label="117.5" data-width-basis="plat">
-    <title>Suite 117.5 — frontage 20.2 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="286.01" y="-16.4" width="20.2" height="16.4"/>
+    <title>Suite 117.5 — frontage 20.2 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="286.01" y="-18.5" width="20.2" height="18.5"/>
     <text class="cc-label" x="296.11" y="4.2" font-size="2.6" text-anchor="middle">117.5</text>
-    <text class="cc-muted" x="296.11" y="7.6" font-size="1.7" text-anchor="middle">20.2′</text>
+    <text class="cc-muted" x="296.11" y="7.6" font-size="1.7" text-anchor="middle">20.2′ · 18.5′h</text>
   </g>
   <g id="suite-otb-119" class="cc-entity" data-entity-id="suite-otb-119" data-entity-ids="suite-otb-119" data-suite-label="119" data-width-basis="plat">
-    <title>Suite 119 — frontage 23.2 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="306.21" y="-16.4" width="23.2" height="16.4"/>
+    <title>Suite 119 — frontage 23.2 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="306.21" y="-18.5" width="23.2" height="18.5"/>
     <text class="cc-label" x="317.81" y="4.2" font-size="2.6" text-anchor="middle">119</text>
-    <text class="cc-muted" x="317.81" y="7.6" font-size="1.7" text-anchor="middle">23.2′</text>
+    <text class="cc-muted" x="317.81" y="7.6" font-size="1.7" text-anchor="middle">23.2′ · 18.5′h</text>
   </g>
   <g id="suite-otb-119-5" class="cc-entity" data-entity-id="suite-otb-119-5" data-entity-ids="suite-otb-119-5" data-suite-label="119.5" data-width-basis="plat">
-    <title>Suite 119.5 — frontage 23.1 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="329.41" y="-16.4" width="23.1" height="16.4"/>
+    <title>Suite 119.5 — frontage 23.1 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="329.41" y="-18.5" width="23.1" height="18.5"/>
     <text class="cc-label" x="340.96" y="4.2" font-size="2.6" text-anchor="middle">119.5</text>
-    <text class="cc-muted" x="340.96" y="7.6" font-size="1.7" text-anchor="middle">23.1′</text>
+    <text class="cc-muted" x="340.96" y="7.6" font-size="1.7" text-anchor="middle">23.1′ · 18.5′h</text>
   </g>
   <g id="suite-otb-121" class="cc-entity" data-entity-id="suite-otb-121" data-entity-ids="suite-otb-121" data-suite-label="121" data-width-basis="plat">
-    <title>Suite 121 — frontage 20 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="352.51" y="-16.4" width="20" height="16.4"/>
+    <title>Suite 121 — frontage 20 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="352.51" y="-18.5" width="20" height="18.5"/>
     <text class="cc-label" x="362.51" y="4.2" font-size="2.6" text-anchor="middle">121</text>
-    <text class="cc-muted" x="362.51" y="7.6" font-size="1.7" text-anchor="middle">20′</text>
+    <text class="cc-muted" x="362.51" y="7.6" font-size="1.7" text-anchor="middle">20′ · 18.5′h</text>
   </g>
   <g id="suite-otb-123" class="cc-entity" data-entity-id="suite-otb-123" data-entity-ids="suite-otb-123" data-suite-label="123" data-width-basis="plat">
-    <title>Suite 123 — frontage 41.7 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="372.51" y="-16.4" width="41.7" height="16.4"/>
+    <title>Suite 123 — frontage 41.7 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="372.51" y="-18.5" width="41.7" height="18.5"/>
     <text class="cc-label" x="393.36" y="4.2" font-size="2.6" text-anchor="middle">123</text>
-    <text class="cc-muted" x="393.36" y="7.6" font-size="1.7" text-anchor="middle">41.7′</text>
+    <text class="cc-muted" x="393.36" y="7.6" font-size="1.7" text-anchor="middle">41.7′ · 18.5′h</text>
   </g>
   <g id="suite-otb-125" class="cc-entity" data-entity-id="suite-otb-125" data-entity-ids="suite-otb-125" data-suite-label="125" data-width-basis="plat">
-    <title>Suite 125 — frontage 20.3 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="414.21" y="-16.4" width="20.3" height="16.4"/>
+    <title>Suite 125 — frontage 20.3 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="414.21" y="-18.5" width="20.3" height="18.5"/>
     <text class="cc-label" x="424.36" y="4.2" font-size="2.6" text-anchor="middle">125</text>
-    <text class="cc-muted" x="424.36" y="7.6" font-size="1.7" text-anchor="middle">20.3′</text>
+    <text class="cc-muted" x="424.36" y="7.6" font-size="1.7" text-anchor="middle">20.3′ · 18.5′h</text>
   </g>
   <g id="suite-otb-127" class="cc-entity" data-entity-id="suite-otb-127" data-entity-ids="suite-otb-127" data-suite-label="127" data-width-basis="plat">
-    <title>Suite 127 — frontage 29.7 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="434.51" y="-16.4" width="29.7" height="16.4"/>
+    <title>Suite 127 — frontage 29.7 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="434.51" y="-18.5" width="29.7" height="18.5"/>
     <text class="cc-label" x="449.36" y="4.2" font-size="2.6" text-anchor="middle">127</text>
-    <text class="cc-muted" x="449.36" y="7.6" font-size="1.7" text-anchor="middle">29.7′</text>
+    <text class="cc-muted" x="449.36" y="7.6" font-size="1.7" text-anchor="middle">29.7′ · 18.5′h</text>
   </g>
   <g id="suite-otb-129" class="cc-entity" data-entity-id="suite-otb-129" data-entity-ids="suite-otb-129" data-suite-label="129" data-width-basis="plat">
-    <title>Suite 129 — frontage 20.9 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face" x="464.21" y="-16.4" width="20.9" height="16.4"/>
+    <title>Suite 129 — frontage 20.9 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="464.21" y="-18.5" width="20.9" height="18.5"/>
     <text class="cc-label" x="474.66" y="4.2" font-size="2.6" text-anchor="middle">129</text>
-    <text class="cc-muted" x="474.66" y="7.6" font-size="1.7" text-anchor="middle">20.9′</text>
+    <text class="cc-muted" x="474.66" y="7.6" font-size="1.7" text-anchor="middle">20.9′ · 18.5′h</text>
   </g>
   <g id="suite-otb-131" class="cc-entity" data-entity-id="suite-otb-131" data-entity-ids="suite-otb-131" data-suite-label="131" data-width-basis="derived">
-    <title>Suite 131 — frontage 22.32 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="485.11" y="-16.4" width="22.32" height="16.4"/>
+    <title>Suite 131 — frontage 22.32 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="485.11" y="-18.5" width="22.32" height="18.5"/>
     <text class="cc-label" x="496.27" y="4.2" font-size="2.6" text-anchor="middle">131</text>
-    <text class="cc-muted" x="496.27" y="7.6" font-size="1.7" text-anchor="middle">22.32′</text>
+    <text class="cc-muted" x="496.27" y="7.6" font-size="1.7" text-anchor="middle">22.32′ · 18.5′h</text>
   </g>
   <g id="suite-otb-133" class="cc-entity" data-entity-id="suite-otb-133" data-entity-ids="suite-otb-133" data-suite-label="133" data-width-basis="derived">
-    <title>Suite 133 — frontage 14.88 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
-    <rect class="cc-face cc-face--derived" x="507.43" y="-16.4" width="14.88" height="16.4"/>
+    <title>Suite 133 — frontage 14.88 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
+    <rect class="cc-hit" x="507.43" y="-18.5" width="14.88" height="18.5"/>
     <text class="cc-label" x="514.87" y="4.2" font-size="2.6" text-anchor="middle">133</text>
-    <text class="cc-muted" x="514.87" y="7.6" font-size="1.7" text-anchor="middle">14.88′</text>
+    <text class="cc-muted" x="514.87" y="7.6" font-size="1.7" text-anchor="middle">14.88′ · 18.5′h</text>
   </g>
   <line class="cc-grade" x1="-6" y1="0" x2="528.31" y2="0"/>
   <g class="cc-dimstring">
-    <path class="cc-dim" d="M0 -28.6 H522.31 M0 -30.1 V-27.1 M522.31 -30.1 V-27.1"/>
-    <text class="cc-muted" x="261.15" y="-30.1" font-size="2" text-anchor="middle">Σ bays 522.31′ · recorded length 522.31′</text>
+    <path class="cc-dim" d="M0 -30.8 H522.31 M0 -32.3 V-29.3 M522.31 -32.3 V-29.3"/>
+    <text class="cc-muted" x="261.15" y="-32.3" font-size="2" text-anchor="middle">Σ bays 522.31′ · recorded length 522.31′</text>
   </g>
 </svg>

@@ -1,0 +1,73 @@
+{
+  "layer": "firewall",
+  "title": "Fire-rated walls",
+  "asset_type": "other",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-firewall-4hr-123-125",
+      "register_id": "firewall-4hr-123-125",
+      "cat": "firewall",
+      "label": "4-hr fire-rated wall + canopy fire curtain (123 | 125)",
+      "status": "approximate",
+      "source": "Main.pdf M1.02 / E1.02 fire-rated wall notes (2006; photo, positions approximate)",
+      "note": "separates converted area 'A' (125–133, 9,265 SF) from the 35,025 SF block",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          926.695,
+          131.35
+        ],
+        [
+          926.695,
+          313.35
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-firewall-2hr-135-137",
+      "register_id": "firewall-2hr-135-137",
+      "cat": "firewall",
+      "label": "2-hr fire-rated wall (135 | 137)",
+      "status": "approximate",
+      "source": "Main.pdf M1.02 / E1.02 fire-rated wall notes (2006; photo, positions approximate)",
+      "note": "confirm on the originals",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          1154.51,
+          288.87
+        ],
+        [
+          1310.94,
+          288.87
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-firewall-2hr-145-149",
+      "register_id": "firewall-2hr-145-149",
+      "cat": "firewall",
+      "label": "2-hr fire-rated wall (145 | 149)",
+      "status": "approximate",
+      "source": "Main.pdf M1.02 / E1.02 fire-rated wall notes (2006; photo, positions approximate)",
+      "note": "confirm on the originals",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          1154.51,
+          508.94
+        ],
+        [
+          1310.94,
+          508.94
+        ]
+      ]
+    }
+  ]
+}

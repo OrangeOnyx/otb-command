@@ -6,7 +6,7 @@
   "location": {
     "repository_path": "docs/design/cypress-command/cre-asset-library/references/cypress-command-cre-asset-library-master-board.png"
   },
-  "revision": "worktree-sha256:d86e6ab3ebd943c5",
+  "revision": "git-blob:c0e90a16c0c3468f9b02a7e52f61b62ce36849ef",
   "sha256": "d86e6ab3ebd943c590e0480b45d101d08e128d9081d49b9dc0b3867ad04c353e",
   "kind": "generated-image",
   "authority_domains": [

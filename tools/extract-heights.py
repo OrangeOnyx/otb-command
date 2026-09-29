@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 """
+SUPERSEDED 2026-09-29 by tools/measure-roof-heights.py (USGS LiDAR). Nearest-label
+matching mis-assigned the CAD labels (103 read tallest; 101/149/bell tower missed).
+Kept for lineage only — do not run; it would overwrite the measured heights.json.
+
 Assign each demised unit its real parapet height from the CAD BLD_HT layer.
 
 Method: replicate poster.py's bay-rectangle layout (CAD feet space) to get each

@@ -1,0 +1,115 @@
+{
+  "layer": "lus-main",
+  "title": "LUS public water mains",
+  "asset_type": "utilities",
+  "sensitive": true,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-lus-water-arnould",
+      "register_id": "lus-water-arnould",
+      "cat": "lus-main",
+      "label": "8\" PVC water main — Arnould Blvd (property side)",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "street-parallel; across-street offset from the line spacing in the LUS capture",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          70,
+          671.43
+        ],
+        [
+          1360,
+          671.43
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-lus-sewer-arnould",
+      "register_id": "lus-sewer-arnould",
+      "cat": "lus-main",
+      "label": "8\" VCP sewer main — Arnould Blvd",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "street-parallel; across-street offset from the line spacing in the LUS capture",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          70,
+          731.81
+        ],
+        [
+          1360,
+          731.81
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-lus-water-ma",
+      "register_id": "lus-water-ma",
+      "cat": "lus-main",
+      "label": "2\" PVC water line — Marie Antoinette (property side)",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "street-parallel; across-street offset from the line spacing in the LUS capture",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          70,
+          86.57
+        ],
+        [
+          1360,
+          86.57
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-lus-sewer-ma",
+      "register_id": "lus-sewer-ma",
+      "cat": "lus-main",
+      "label": "8\" VCP sewer main — Marie Antoinette",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "street-parallel; across-street offset from the line spacing in the LUS capture",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          70,
+          41.29
+        ],
+        [
+          1360,
+          41.29
+        ]
+      ]
+    },
+    {
+      "id": "asset-otb-lus-sewer-patricia",
+      "register_id": "lus-sewer-patricia",
+      "cat": "lus-main",
+      "label": "8\" VCP sewer main — Patricia St",
+      "status": "public-utility-context",
+      "source": "LUS ArcMap capture 7/14/2021 (image002.png, 1:1,250) — Lafayette Utilities System public assets",
+      "note": "street-parallel; across-street offset from the line spacing in the LUS capture",
+      "count": null,
+      "suite_entity_id": null,
+      "line": [
+        [
+          1406.29,
+          96
+        ],
+        [
+          1406.29,
+          662
+        ]
+      ]
+    }
+  ]
+}

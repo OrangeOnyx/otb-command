@@ -434,6 +434,13 @@ function initViews(account) {
   renderRoll();
   renderWorksheet();
   window.addEventListener("sheetchange", e => { if (e.detail.id === "rentws") renderWorksheet(); });
+  /* A-6 Asset Library: ~220 KB bundle, loaded the first time the sheet opens.
+     Utility layers (sensitive infrastructure) are operator-only. */
+  const openLibrary = () => import("./views/asset-library.js")
+    .then(({ initAssetLibrary }) => initAssetLibrary({ showSensitive: account?.role === "operator" }))
+    .catch(error => console.error("Asset library could not load:", error));
+  window.addEventListener("sheetchange", e => { if (e.detail.id === "library") openLibrary(); });
+  if (document.getElementById("pg-library")?.classList.contains("on")) openLibrary();
   initMatrix();
   initDates();
   initBoard();

@@ -1,5 +1,27 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 29, 2026 — A-6 Asset Library · LiDAR roof heights · pylon naming · 946 tests
+
+- **CRE Asset Library (Cypress Command Platform)**
+  - Package v1.0.0 is at `docs/design/cypress-command/cre-asset-library/`.
+  - The repo audit is in `audits/2026-09-29-run-01/`; start with `audit-report.md` and `change-plan.md`.
+  - `tools/cre-library/build-otb-slice.mjs` builds 78 validated records (SHA-pinned), leasing elevations, the pylon directory-sign render and the site-plan vector. It also turns the 270-item site register into library layers, stripping HVAC cost caps and keeping utility layers operator-only.
+  - It also builds `src/data/cre-library-otb.json`. **Rerun the builder after any change to geometry, heights, pylon, units or site-register data.**
+- **A-6 Asset Library sheet**
+  - Lazy-loaded; not an owner default.
+  - Tenancy binds live from the store by entity ID.
+  - Utility layers are shown to the operator role only.
+- **Roof heights**
+  - Now measured from USGS LiDAR (`tools/measure-roof-heights.py`; `npm run extract-heights` points at it).
+  - The CAD label matcher had put the tall labels on 103.
+  - **Open:** 103 measures 21.7 ft against the operator's "typical". Operator ruling needed.
+  - Consumer labels updated in `command-map.js`, `command.js`, the site-twin notes and `export-package.mjs`.
+- **Pylon**
+  - The sign is named pylon everywhere.
+  - P13 re-skin is deferred to the new sign install.
+- **House style:** `shared/style-vocabulary.md` (Architectural Leasing Asset Illustration · Directory Sign Vector Render · site plan vectorization).
+- **Pre-existing, not touched:** the header `.stamp` causes about 50 px of horizontal page overflow at 1400 px on every sheet.
+
 ## September 28, 2026 (later) — Digital twin workflow: Skydio rescue · georeferenced mesh · Blender/Unreal asset pack
 
 Operator picks "1 then 2 then 3". **Canonical twin frame from here on: EPSG:6344 (NAD83(2011)/UTM 15N) + NAVD88,

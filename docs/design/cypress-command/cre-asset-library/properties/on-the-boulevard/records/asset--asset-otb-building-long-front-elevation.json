@@ -5,7 +5,7 @@
   "name": "Long building (101–133) — storefront elevation (schematic)",
   "verification": {
     "state": "unverified",
-    "notes": "Deterministic derivative of unverified transcribed sources. Bay widths and parapet heights only; openings, awnings, columns and signage are NOT drawn because no measured source for them was used."
+    "notes": "Deterministic derivative of unverified transcribed sources. Bay widths and LiDAR roofline heights only; openings, awnings, columns and signage are NOT drawn because no measured source for them was used."
   },
   "source_refs": [
     {
@@ -15,8 +15,8 @@
     },
     {
       "source_id": "source-otb-heights-json",
-      "revision": "worktree-sha256:8249e0e8c2de8221",
-      "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+      "revision": "worktree-sha256:48ce8ca7dc3fa885",
+      "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
     }
   ],
   "release": {
@@ -36,7 +36,7 @@
     "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-long--front--neutral--v1.svg"
   },
   "revision": "v1",
-  "sha256": "d926f5cb4f6dadd2cf43cef1c0fb8de2576285729cfd5207d8774108d6841255",
+  "sha256": "7c4b61e3c9a6d178bd0a6f4aed90246ef3cc91ddcef165121875b90c524fc832",
   "view": "front",
   "theme": "neutral",
   "style_reference_source_ids": [
@@ -51,7 +51,7 @@
       "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-long--front--neutral--v1.geometry.json"
     },
     "revision": "v1",
-    "sha256": "8d0dcf62f6e3a2229d10e34eb5c401eced3dc99ce93f0bfe6474af198a250e4a",
+    "sha256": "627486157464a00005d95f89868b6f2dbebb13858c33939bb4afd662b1e95ac0",
     "source_refs": [
       {
         "source_id": "source-otb-geometry-json",
@@ -60,8 +60,8 @@
       },
       {
         "source_id": "source-otb-heights-json",
-        "revision": "worktree-sha256:8249e0e8c2de8221",
-        "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+        "revision": "worktree-sha256:48ce8ca7dc3fa885",
+        "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
       }
     ],
     "length_unit": "ft",
@@ -79,17 +79,17 @@
           0,
           0
         ],
-        "description": "x = 0 at the Johnston-end wall of unit 101, increasing along the storefront toward Patricia; z = 0 at the (unstated) datum of the CAD BLD_HT height annotations."
+        "description": "x = 0 at the Johnston-end wall of unit 101, increasing along the storefront toward Patricia; z = 0 at the parking-field ground (median LiDAR ground return, NAVD88 per heights-provenance.json)."
       }
     },
     "verification": {
       "state": "unverified",
-      "notes": "Frontage closure checked against recorded building length; see geometry-validation.csv. Foot definition and height datum unresolved."
+      "notes": "Frontage closure checked against recorded building length; see geometry-validation.csv. Plat foot definition unresolved; heights LiDAR-measured with 103 in conflict."
     },
     "derivation": {
-      "method": "Cumulative sum of demising-string bay widths (plat order, reversed for viewer-left) × per-unit parapet height; no simplification.",
+      "method": "Cumulative sum of demising-string bay widths (plat order, reversed for viewer-left) × per-unit LiDAR roofline height; no simplification.",
       "tool": "tools/cre-library/build-otb-slice.mjs",
-      "tool_version": "1.0.0",
+      "tool_version": "1.1.0",
       "input_source_refs": [
         {
           "source_id": "source-otb-geometry-json",
@@ -98,8 +98,8 @@
         },
         {
           "source_id": "source-otb-heights-json",
-          "revision": "worktree-sha256:8249e0e8c2de8221",
-          "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+          "revision": "worktree-sha256:48ce8ca7dc3fa885",
+          "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
         }
       ]
     }
@@ -107,7 +107,7 @@
   "render_derivation": {
     "method": "SVG, 1 user unit = 1 ft, y = −z; theme via --cc-cre-* custom properties with light fallbacks.",
     "tool": "tools/cre-library/build-otb-slice.mjs",
-    "tool_version": "1.0.0",
+    "tool_version": "1.1.0",
     "input_source_refs": [
       {
         "source_id": "source-otb-geometry-json",
@@ -116,12 +116,12 @@
       },
       {
         "source_id": "source-otb-heights-json",
-        "revision": "worktree-sha256:8249e0e8c2de8221",
-        "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+        "revision": "worktree-sha256:48ce8ca7dc3fa885",
+        "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
       },
       {
         "source_id": "source-cc-cre-master-board",
-        "revision": "worktree-sha256:d86e6ab3ebd943c5",
+        "revision": "git-blob:c0e90a16c0c3468f9b02a7e52f61b62ce36849ef",
         "sha256": "d86e6ab3ebd943c590e0480b45d101d08e128d9081d49b9dc0b3867ad04c353e"
       }
     ],

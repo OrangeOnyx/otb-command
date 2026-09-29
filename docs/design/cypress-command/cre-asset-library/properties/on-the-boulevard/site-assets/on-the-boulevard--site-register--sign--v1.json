@@ -1,0 +1,47 @@
+{
+  "layer": "sign",
+  "title": "Signs",
+  "asset_type": "signage",
+  "sensitive": false,
+  "frame": "a1-plan-px (digitized, not surveyed)",
+  "source": "src/data/site-register.json",
+  "features": [
+    {
+      "id": "asset-otb-sign-pylon",
+      "register_id": "sign-pylon",
+      "cat": "sign",
+      "label": "Pylon sign — Johnston St frontage",
+      "status": "digitized",
+      "source": "Plat of Survey October 2020.png (read at zoom; registered through the shut-off map fit)",
+      "note": "14 panels (P1 2x8 · P2 4x8 anchor · P3–P14 2x4) — src/data/pylon.json · zoning Entry 99-041054",
+      "count": null,
+      "suite_entity_id": null,
+      "point": [
+        98.58,
+        398.9
+      ]
+    },
+    {
+      "id": "asset-otb-sign-lantern-post",
+      "register_id": "sign-lantern-post",
+      "cat": "sign",
+      "label": "Lantern post (1999 sign sheet)",
+      "status": "records",
+      "source": "Center/Scanned Documents.pdf — Guidry Beazley PA1.01 'New Sign' (08/19/99)",
+      "note": "position to confirm",
+      "count": null,
+      "suite_entity_id": null
+    },
+    {
+      "id": "asset-otb-sign-fire-lane",
+      "register_id": "sign-fire-lane",
+      "cat": "sign",
+      "label": "Fire-lane / no-parking signs",
+      "status": "records",
+      "source": "Main.pdf T1.02 (2006)",
+      "note": "count and positions to confirm on a walk",
+      "count": null,
+      "suite_entity_id": null
+    }
+  ]
+}
