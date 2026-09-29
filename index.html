@@ -169,8 +169,10 @@
     <!-- R-1 RENT ROLL -->
     <section class="page" id="pg-roll">
       <div class="page-head"><h1>Rent Roll</h1><div class="sub">R-1 · CLICK HEADERS TO SORT · CLICK ROW FOR DETAIL</div>
-        <div class="right"><span class="chip" id="rollStamp"></span></div></div>
+        <div class="right"><span class="ws-seg" id="rollMode"><button type="button" data-m="roll">Roll</button><button type="button" data-m="ws">Monthly worksheet</button></span>
+          <span class="chip" id="rollStamp"></span></div></div>
       <div class="card tablecard" id="rollTable"></div>
+      <div class="card tablecard" id="rollWorksheet" hidden></div>
     </section>
 
     <!-- C-1 COMPLIANCE -->

@@ -156,7 +156,11 @@ function buildShell(account) {
     const roll = document.getElementById("pg-roll");
     if (roll && roll.classList.contains("on")) {
       roll.classList.add("print-fit");
-      roll.style.zoom = fitZoom(roll.offsetHeight, 590);
+      // Worksheet mode prints on a portrait page (@page wsheet): measure at the
+      // paper's printable width (~740px) so wrapping matches paper; ~980px tall.
+      const ws = roll.classList.contains("ws-mode");
+      if (ws) roll.style.width = "740px";
+      roll.style.zoom = fitZoom(roll.offsetHeight, ws ? 830 : 590);
     }
   };
   window.addEventListener("beforeprint", stampPrint);
@@ -164,7 +168,7 @@ function buildShell(account) {
     document.title = (isCommandPreview?'Preview · ':'')+"Cypress Command Platform — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
-    if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }
+    if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; roll.style.width = ""; }
   });
   document.getElementById("btnPrintSheet").onclick = () => { stampPrint(); window.print(); };
   document.getElementById("todayStamp").textContent = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
