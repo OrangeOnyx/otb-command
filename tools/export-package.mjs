@@ -21,6 +21,15 @@ const hvac = rd("hvac.json");
 const recoveries = rd("recoveries.json");
 const directory = rd("directory.json");
 const vendors = rd("vendors.json");
+const siteRegister = rd("site-register.json");
+const meters = rd("meters.json");
+const instruments = rd("instruments.json");
+const renewalOptions = rd("renewal-options.json");
+const recoveryTerms = rd("recovery-terms.json");
+const heights = rd("heights.json");
+const elevation = rd("elevation.json");
+const waterMap = rd("twin-water-map.json");
+const infrastructure = rd("twin-infrastructure.json");
 const NOFIN = process.argv.includes("nofin"); // buyer overview: strip all $ figures
 /* OTB_EXPORT_DIR: test override so the freshness guard can regenerate into a
    scratch dir without touching the repo's export/ snapshots. */
@@ -177,6 +186,69 @@ ${units.map(u => `| ${u.unit} | ${u.dba} | ${hvacRow(u)} |`).join("\n")}
 - Fully tenant-responsible (zero landlord HVAC exposure): ${units.filter(u => { const h = hvac.units[u.unit]; return h && h.repair === "100%" && h.replace === "100%"; }).map(u => u.unit).join(", ")}.
 
 `;
+/* ── site, instruments, lease-option and twin sections (2026-09 data) ── */
+// Buyer overview strips dollar figures that ride inside instrument titles / register notes.
+const noMoney = s => !NOFIN || s == null ? s : String(s).replace(/\s*\([^)]*\$[^)]*\)/g, "").replace(/\s*·?\s*tenant repair cap \$[^·]*(·[^·]*\$[^·]*)?/g, "").replace(/\$[\d,]+(\.\d+)?(\/mo)?/g, "[withheld]");
+const dw = geometry.access.driveways;
+const throat = d => d.throatWidthFt != null ? `${d.throatWidthFt}'` : "—";
+const accessSection = `## Site access & circulation (A-1 ${geometry.rev}, from the architect CAD)
+*Traced from Boulev_CLEAN.dxf and confirmed against the satellite base. All interior aisles are two-way per the plat flow arrows.*
+| Cut | Street | Name | Movement | Throat |
+|---|---|---|---|---|
+${dw.map(d => `| ${d.id} | ${d.street} | ${d.name} | ${d.movement} | ${throat(d)} |`).join("\n")}
+- **Arnould raised median:** ${geometry.access.arnouldMedian.widthFt}' wide; ${geometry.access.arnouldMedian.openings.map(o => `${o.widthFt}' opening at ${o.at}`).join("; ")}. ${geometry.access.arnouldMedian.note.replace(/^./, c => c.toUpperCase())}.
+${geometry.access.openFrontage.map(f => `- **${f.where}:** ${f.detail}`).join("\n")}
+- JD Bank parcel (NOT A PART) is reached through Driveway B and the Johnston drive; the reciprocal servitude area (Entry 2004-00057697, superseded 2020) is not drawn — exhibit not yet pulled.
+`;
+const tx = instruments.titleExceptions;
+const instrumentsSection = `## Recorded instruments & title exceptions (set of record)
+*${tx.items.length} recorded agreements verbatim from the AC archive (2026-08-29). The owner's title policy is still MISSING — reconcile against it when ordered.*
+| Entry | Instrument | Status |
+|---|---|---|
+${tx.items.map(i => `| ${i.entryNumber} | ${noMoney(i.title)} | ${i.status} |`).join("\n")}
+- **Exclusive-use watch:** ${instruments.exclusives.map(e => `${e.tenant} (${e.unit}, signed ${e.signed}, ${e.watch})`).join(" vs ")}.
+`;
+const a19 = instruments.appraisal2019;
+const appraisalSection = NOFIN ? "" : `## 2019 appraisal (historical reference — not current value)
+- ${a19.title} · ${a19.appraiser}, ${a19.firm} · effective ${a19.effectiveDate} (as-developed ${a19.effectiveDateAsDeveloped}) · ${a19.propertyRights}.
+- As-is ${fmt$(a19.asIsValue)} · as-developed ${fmt$(a19.asDevelopedValue)} (income ${fmt$(a19.incomeApproachValue)} · sales ${fmt$(a19.salesComparisonValue)} · cost ${fmt$(a19.costApproachValue)}) · land ${fmt$(a19.landValue)} (${a19.landSf.toLocaleString()} SF, $${a19.landPsf}/SF).
+- Appraiser's NOI ${fmt$(a19.noi)} at ${a19.capRatePct}% cap · 2019 property tax ${fmt$(a19.propertyTax2019)} (${a19.millage} mills).
+- Building SF ${a19.buildingSf.toLocaleString()} is the appraiser's figure; the audit-grade GLA is 62,883 SF — cite the GLA. These are 2019 stabilized projections, not current rent-roll actuals.
+`;
+const capText = t => !t || t.capPct == null ? "no cap stated" :
+  `${(t.capPct * 100).toFixed(0)}% over ${t.capBasis === "prior_year_actuals" ? "prior-year actuals" : t.capBasis}${t.capComponents?.length ? " on " + t.capComponents.join("/").toUpperCase() : ""}${t.capFromLeaseYear ? " from lease yr " + t.capFromLeaseYear : ""}`;
+const leaseTermsSection = NOFIN ? "" : `## Renewal options & recovery caps (REFERENCE ONLY — verify against the executed lease)
+*AI-extracted from the executed leases (AC lease-abstraction harvest 2026-08-29). The signed rent roll and the September 2026 lease review stay the source for term dates. No base-year stop is recorded for any suite. Tenant audit rights recorded for: ${Object.entries(recoveryTerms.units).filter(([, t]) => t.auditRights).map(([u]) => u).join(", ") || "none"}.*
+| Unit | Tenant | Renewal option | Notice | Option rent basis | CAM/Tax/Ins cap |
+|---|---|---|---|---|---|
+${units.map(u => {
+  const o = renewalOptions.units[u.unit];
+  return `| ${u.unit} | ${u.dba} | ${o ? `${o.count} × ${o.term}` : "—"} | ${o ? o.noticeText : "—"} | ${o ? o.rentBasis : "—"} | ${capText(recoveryTerms.units[u.unit])} |`;
+}).join("\n")}
+`;
+const regCount = {};
+for (const i of siteRegister.items) (regCount[i.cat] ||= { n: 0, status: new Set() }), regCount[i.cat].n++, regCount[i.cat].status.add(i.status);
+const CAT_LABEL = { column: "Walkway columns", can: "Trash cans", bench: "Benches", "meter-cluster": "City water-meter clusters", shutoff: "Tenant water shut-off clusters", ada: "ADA stalls", fence: "Fences", sign: "Signs", tree: "Trees", "lus-point": "LUS public utility points", "lus-main": "LUS water/sewer mains", transformer: "Transformers", pole: "Utility poles", lighting: "Site lighting", "ground-hp": "Ground heat pumps", bollard: "Bollards", walk: "Walks", firewall: "Firewalls", rtu: "Rooftop HVAC (per suite)", panel: "Electrical panels (per suite)", timeclock: "Lighting time clocks (per suite)" };
+const wm = meters.meters.filter(m => m.kind === "wmeter"), em = meters.meters.filter(m => m.kind === "emeter");
+const wc = waterMap.counts, wr = waterMap.countReconciliation;
+const siteRegisterSection = `## Site register & physical assets (A-1 register, stable IDs)
+*${siteRegister.items.length} digitized/recorded items with permanent IDs (e.g. col-01, can-01, shutoff-01, rtu-101) — the same IDs key the 3D twin. Positions are digitized from drawings (max fit RMS ${siteRegister.maxRmsPx}px), NOT surveyed. Stalls (${geometry.parking.totalStriped}), curb cuts and aisles are generated from the plat geometry and carry register IDs in the app.*
+| Category | Count | Status |
+|---|---|---|
+${Object.entries(regCount).map(([c, v]) => `| ${CAT_LABEL[c] || c} | ${v.n} | ${[...v.status].join(", ")} |`).join("\n")}
+- **Utility meters (Rev Belle Realty Arnould Blvd Property.xlsx):** ${wm.length} water · ${em.length} electric, each tied to a suite or house account (account names may lag the rent roll). Full list in the data JSON → meters.
+- **Water map (operator utility map on the Oct 2020 survey):** ${wc.cityMeterAnnotations} city-meter locations holding ${wc.reportedCityMeters} meters · ${wc.tenantShutoffAnnotations} tenant shut-off locations holding ${wc.reportedTenantShutoffs} shut-offs (circle numbers are counts per location — confirmed by ${waterMap.countInterpretation.confirmedBy} ${waterMap.countInterpretation.confirmedOn}). **Unresolved:** map shows ${wr.mapReportedCityMeters} city meters vs ${wr.workbookWaterMeterIds} water-meter IDs in the workbook; this does not establish ${wr.workbookMinusMap} missing meters. Physical shut-off count not field-verified.
+- Utility-source open items (preserved as recorded, not "fixed"):
+${infrastructure.ambiguities.filter(a => !/legend defines colors/.test(a.detail)).map(a => "  - " + a.detail.replace(/\s+/g, " ")).join("\n")}
+- **Building heights (CAD parapet, ft):** ${Object.entries(heights).map(([u, h]) => `${u} ${h}`).join(" · ")}.
+`;
+const twinSection = `## Digital twin & georeference
+- **One frame for every twin asset:** horizontal EPSG:6344 (NAD83(2011) / UTM 15N, metres) · vertical NAVD88 (GEOID12B) · local origin E 591000 N 3341600. The USGS 3DEP LiDAR — not phone/drone GPS — sets position.
+- **LiDAR:** ${elevation.source.split(" (")[0]} (${elevation.release}); 1 m bare-earth terrain + hillshade; AOI ${elevation.aoi.west}…${elevation.aoi.east} W, ${elevation.aoi.south}…${elevation.aoi.north} N.
+- **Registered models:** A-1 register exterior twin (27 suites, ${geometry.parking.totalStriped} stalls, 39 columns, benches, cans, utilities; 0.78 m RMS vs LiDAR) · Floorplanner interior incl. upper floors (0.63 m RMS) · DJI photogrammetry mesh + Gaussian splat (Jul 2026 orbit) · Skydio survey poses (Oct 15 2025, 38 photos LiDAR-locked to 0.21–0.26 m) · Polycam iPhone LiDAR scan of the 149 corner + 145/143 frontage (Aug 18 2026).
+- **Deliverables:** Blender/Unreal twin pack (docs/twin-pack-README.md), Google Earth KMZ (plan overlay, drone photos, COLLADA twin, LiDAR terrain), in-app A-2 lenses (iso · 3D · satellite · Google photorealistic 3D · drone Reality) and A-3 Asset Twin / A-4 Site Evidence / A-5 Exterior sheets.
+- Asset IDs never renumber when geometry improves; coordinates for every register asset (local + EPSG:6344) ship in the twin pack's assets-twin-frame.csv.
+`;
 const depositAnomaly = NOFIN ? "" : " · missing deposits 107/137/143/149";
 const docTitle = NOFIN ? "Property Overview" : "Property Dossier";
 const md = `# On The Boulevard Shopping Center — ${docTitle}
@@ -205,7 +277,9 @@ ${units.map(row).join("\n")}
 
 ${finSection}
 
+${appraisalSection}
 ${leaseReviewSection}
+${leaseTermsSection}
 
 ## Buildings & demising (plat-traced)
 - **Long building (101–133):** 85.45' deep × 522.31' long, 19 bays; backs Marie Antoinette St with rear face 18.73' off the R/W (rear strip holds parallel parking over a 10' utility easement); storefronts face the main field; 101 at the Johnston end.
@@ -219,6 +293,7 @@ ${leaseReviewSection}
 ${geometry.parking.zones.map(z => `| ${z.zone} | ${z.count} | ${z.detail} |`).join("\n")}
 
 **Total per plat labels: ${geometry.parking.totalPlat}** vs variance Entry 99-11797 "324 provided / 344 required" — **Δ −10 unreconciled** (variance-era striping may differ from the 7/19/2019 plat revision; treat 324 as the legal figure and 314 as the drawn striping count).
+**CANDIDATE reconciliation (REV 13):** ${geometry.parking.reconciliation} Ground confirmation owed — cite 324 legally, plan operations on ${geometry.parking.totalPlat} until confirmed.
 Fill order: Main field → Lot 8 (19 sp, Patricia/M.A. corner) → Lot 7 (remote, Block M, 110 Marie Antoinette St, parcel 6009649, 32 sp). Cross-parking licenses are non-exclusive — no assigned stalls.
 
 ## Liquor line (key for restaurant leasing)
@@ -234,6 +309,9 @@ Our Savior's Church easement §3a carries a **liquor waiver that survives termin
 - 5×5' guy easement at the pylon sign (Johnston-side boundary, sign has 2 adjacent spaces).
 - Expired (of record only): three 15' temporary drainage easements, Entries 77-0783 / 77-000784 / 77-000785.
 
+${accessSection}
+${instrumentsSection}
+
 ${hvacSection}## Covenants & operations notes
 - **Jason's Deli §9.01:** landlord-side requirement that HVAC PM run monthly with **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC.
 - **Exclusive-use watch:** HotWorx (129, Mar 2024) vs C. Wolf Barber (135A, Nov 2024).
@@ -247,6 +325,8 @@ ${hvacSection}## Covenants & operations notes
 - **Recorded instruments / key files:** ${directory.propertyDocuments.map(d => d.name + (d.ref && d.ref !== "—" ? " — " + d.ref : "")).join(" · ")}.
 ${NOFIN ? "" : `- **Service vendors on file (V-1 roster, from the AP vendor list):** ${vendors.filter(v => v.kind === "service").map(v => v.company).join(" · ")}. Full roster incl. payees in the data JSON.`}
 
+${siteRegisterSection}
+${twinSection}
 ## Center performance (Jul-2025 marketing package — marketing-grade, non-financial)
 - 95% occupancy (industry benchmark cited 85%) · 88% tenant retention (industry 75–85%) · **14 businesses on the waiting list**.
 - Transformation story: ~50% → 95% occupancy since the late-2019 renovation.
@@ -256,7 +336,7 @@ ${NOFIN ? "" : `- **Service vendors on file (V-1 roster, from the AP vendor list
 ${NOFIN ? "" : `## Known anomalies (surfaced, unresolved — do not "fix")
 - Headline GLA 62,883 SF vs unit-SF sum ${sfSum.toLocaleString()} SF (Δ ${(62883 - sfSum)} SF).
 - Workbook: 101 SF 6,877 vs 6,677 · 117.5 SF 1,769 vs plat-implied 1,789 · 145 term-months "1572"${depositAnomaly}.
-- Parking Δ −10 (plat 314 vs variance 324) — reconciliation memo pending.
+- Parking Δ −10 (plat labels 314 vs variance 324) — candidate CAD reconciliation to 324 pending ground confirmation.
 - Plat internal conflicts: 117.5 dimension string 20.2' vs its SF label (implies 20.7'); LOT 12 block string 80.8' vs SF label (implies 79.6'). Strings govern in the drawing.
 
 ## Marketing angles (grounded)
@@ -294,7 +374,22 @@ const jsonObj = {
   contacts: directory.propertyContacts, documents: directory.propertyDocuments,
   ...(NOFIN ? {} : { vendors }),
   demising: geometry.demising, parking: geometry.parking, liquorLine: geometry.liquorLine,
-  easements: geometry.easements, streets: geometry.streets, boundary: geometry.boundary
+  easements: geometry.easements, streets: geometry.streets, boundary: geometry.boundary,
+  access: NOFIN ? JSON.parse(JSON.stringify(geometry.access).replace(/\$[\d,]+(\.\d+)?(\/mo)?/g, "[withheld]")) : geometry.access,
+  instruments: {
+    exclusives: instruments.exclusives, hvac149: instruments.hvac149,
+    recordedAgreements: tx.items.map(i => ({ ...i, title: noMoney(i.title) })),
+    ...(NOFIN ? {} : { jdBank: instruments.jdBank, appraisal2019: a19 })
+  },
+  ...(NOFIN ? {} : { renewalOptions: renewalOptions.units, recoveryTerms: recoveryTerms.units }),
+  siteRegister: {
+    note: "Positions digitized from drawings in A-1 plan pixels, NOT surveyed. IDs are permanent and key the 3D twin.",
+    items: siteRegister.items.map(i => (NOFIN && i.sub ? { ...i, sub: noMoney(i.sub) } : i))
+  },
+  meters: meters.meters,
+  water: { counts: waterMap.counts, countInterpretation: waterMap.countInterpretation, countReconciliation: waterMap.countReconciliation, sourceAmbiguities: infrastructure.ambiguities },
+  buildingHeightsFt: heights,
+  twinFrame: { horizontal: "EPSG:6344 NAD83(2011) / UTM 15N (m)", vertical: "NAVD88 GEOID12B (m)", localOrigin: { E: 591000, N: 3341600, H: 0 }, lidar: { source: elevation.source, release: elevation.release, aoi: elevation.aoi }, readme: "docs/twin-pack-README.md" }
 };
 writeFileSync(join(out, NOFIN ? "OTB-Property-Data-NoFinancials.json" : "OTB-Property-Data.json"), JSON.stringify(jsonObj, null, 1));
 
