@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/suite.schema.json",
+  "title": "Cypress Command CRE suite",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/record"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "record_type": {
+          "const": "suite"
+        },
+        "property_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "building_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "suite_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "record_type",
+        "property_id",
+        "building_id",
+        "suite_label"
+      ]
+    }
+  ],
+  "unevaluatedProperties": false
+}

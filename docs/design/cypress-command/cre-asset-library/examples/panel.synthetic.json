@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "panel",
+  "id": "synthetic-panel",
+  "name": "SYNTHETIC TEST DATA - panel",
+  "verification": {
+    "state": "draft",
+    "notes": "Schema fixture only. No actual property facts."
+  },
+  "source_refs": [
+    {
+      "source_id": "synthetic-cad-source",
+      "revision": "synthetic-r1",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "property_id": "synthetic-property",
+  "sign_id": "synthetic-sign",
+  "panel_key": "synthetic-panel-a"
+}

@@ -1,0 +1,2520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/common.schema.json",
+  "title": "Cypress Command CRE common definitions",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceRef": {
+      "type": "object",
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "source_id",
+        "revision",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "repository_path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "external_uri": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "repository_path"
+          ]
+        },
+        {
+          "required": [
+            "external_uri"
+          ]
+        }
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "draft",
+            "unverified",
+            "verified",
+            "conflict",
+            "superseded"
+          ]
+        },
+        "reviewed_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "required": [
+              "reviewed_by",
+              "reviewed_at",
+              "method",
+              "evidence_source_ids"
+            ]
+          }
+        }
+      ]
+    },
+    "coordinateReference": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "projected",
+            "geographic",
+            "local"
+          ]
+        },
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "horizontal_datum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vertical_datum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handedness": {
+          "enum": [
+            "right-handed",
+            "left-handed"
+          ]
+        },
+        "axis_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "origin": {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 3
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "coordinates",
+            "description"
+          ],
+          "additionalProperties": false
+        },
+        "units": {
+          "enum": [
+            "m",
+            "mm",
+            "cm",
+            "ft",
+            "ft-us-survey",
+            "degree"
+          ]
+        },
+        "transform_to_repository_frame": {
+          "type": "object",
+          "properties": {
+            "target_frame": {
+              "type": "string",
+              "minLength": 1
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "parameters_location": {
+              "type": "object",
+              "properties": {
+                "repository_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                },
+                "external_uri": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "required": [
+                    "repository_path"
+                  ]
+                },
+                {
+                  "required": [
+                    "external_uri"
+                  ]
+                }
+              ]
+            },
+            "verified": {
+              "const": true
+            }
+          },
+          "required": [
+            "target_frame",
+            "method",
+            "parameters_location",
+            "verified"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "axis_order",
+        "units"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "local"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "origin",
+              "handedness"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "projected"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "horizontal_datum"
+            ],
+            "properties": {
+              "units": {
+                "enum": [
+                  "m",
+                  "mm",
+                  "cm",
+                  "ft",
+                  "ft-us-survey"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "geographic"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "horizontal_datum"
+            ],
+            "properties": {
+              "units": {
+                "const": "degree"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "geometry_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "mode": {
+          "enum": [
+            "measured",
+            "derived-from-measurement",
+            "illustrative"
+          ]
+        },
+        "basis_kind": {
+          "enum": [
+            "cad",
+            "survey-plat",
+            "floor-plan",
+            "verified-property-data",
+            "digital-twin",
+            "lidar",
+            "scan",
+            "generated-image",
+            "unmeasured-illustration"
+          ]
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "repository_path": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+            },
+            "external_uri": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [],
+          "additionalProperties": false,
+          "oneOf": [
+            {
+              "required": [
+                "repository_path"
+              ]
+            },
+            {
+              "required": [
+                "external_uri"
+              ]
+            }
+          ]
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "source_id",
+              "revision",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "length_unit": {
+          "enum": [
+            "m",
+            "mm",
+            "cm",
+            "ft",
+            "ft-us-survey"
+          ]
+        },
+        "coordinate_reference": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": [
+                "projected",
+                "geographic",
+                "local"
+              ]
+            },
+            "identifier": {
+              "type": "string",
+              "minLength": 1
+            },
+            "horizontal_datum": {
+              "type": "string",
+              "minLength": 1
+            },
+            "vertical_datum": {
+              "type": "string",
+              "minLength": 1
+            },
+            "handedness": {
+              "enum": [
+                "right-handed",
+                "left-handed"
+              ]
+            },
+            "axis_order": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 2,
+              "maxItems": 3,
+              "uniqueItems": true
+            },
+            "origin": {
+              "type": "object",
+              "properties": {
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2,
+                  "maxItems": 3
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "coordinates",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "units": {
+              "enum": [
+                "m",
+                "mm",
+                "cm",
+                "ft",
+                "ft-us-survey",
+                "degree"
+              ]
+            },
+            "transform_to_repository_frame": {
+              "type": "object",
+              "properties": {
+                "target_frame": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "method": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "parameters_location": {
+                  "type": "object",
+                  "properties": {
+                    "repository_path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                    },
+                    "external_uri": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": false,
+                  "oneOf": [
+                    {
+                      "required": [
+                        "repository_path"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "external_uri"
+                      ]
+                    }
+                  ]
+                },
+                "verified": {
+                  "const": true
+                }
+              },
+              "required": [
+                "target_frame",
+                "method",
+                "parameters_location",
+                "verified"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type",
+            "identifier",
+            "axis_order",
+            "units"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "type": {
+                    "const": "local"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              "then": {
+                "required": [
+                  "origin",
+                  "handedness"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "type": {
+                    "const": "projected"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              "then": {
+                "required": [
+                  "horizontal_datum"
+                ],
+                "properties": {
+                  "units": {
+                    "enum": [
+                      "m",
+                      "mm",
+                      "cm",
+                      "ft",
+                      "ft-us-survey"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "type": {
+                    "const": "geographic"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              },
+              "then": {
+                "required": [
+                  "horizontal_datum"
+                ],
+                "properties": {
+                  "units": {
+                    "const": "degree"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "verification": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "enum": [
+                "draft",
+                "unverified",
+                "verified",
+                "conflict",
+                "superseded"
+              ]
+            },
+            "reviewed_by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reviewed_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "state"
+                ]
+              },
+              "then": {
+                "required": [
+                  "reviewed_by",
+                  "reviewed_at",
+                  "method",
+                  "evidence_source_ids"
+                ]
+              }
+            }
+          ]
+        },
+        "derivation": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tool": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tool_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "parameters_location": {
+              "type": "object",
+              "properties": {
+                "repository_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                },
+                "external_uri": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "required": [
+                    "repository_path"
+                  ]
+                },
+                {
+                  "required": [
+                    "external_uri"
+                  ]
+                }
+              ]
+            },
+            "input_source_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                  },
+                  "revision": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "revision",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "method",
+            "tool",
+            "tool_version",
+            "input_source_refs"
+          ],
+          "additionalProperties": false
+        },
+        "calibration": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "enum": [
+                "verified",
+                "unverified"
+              ]
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "tolerance": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "unit": {
+              "enum": [
+                "m",
+                "mm",
+                "cm",
+                "ft",
+                "ft-us-survey"
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "method",
+            "evidence_source_ids",
+            "tolerance",
+            "unit"
+          ],
+          "additionalProperties": false
+        },
+        "display_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "geometry_id",
+        "mode",
+        "basis_kind",
+        "location",
+        "revision",
+        "sha256",
+        "source_refs",
+        "length_unit",
+        "coordinate_reference",
+        "verification"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "measured",
+                  "derived-from-measurement"
+                ]
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "basis_kind": {
+                "enum": [
+                  "cad",
+                  "survey-plat",
+                  "floor-plan",
+                  "verified-property-data",
+                  "digital-twin",
+                  "lidar",
+                  "scan"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "derived-from-measurement"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "required": [
+              "derivation"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "illustrative"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "required": [
+              "display_label"
+            ],
+            "properties": {
+              "verification": {
+                "properties": {
+                  "state": {
+                    "not": {
+                      "const": "verified"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "basis_kind": {
+                "enum": [
+                  "generated-image",
+                  "unmeasured-illustration"
+                ]
+              }
+            },
+            "required": [
+              "basis_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "mode": {
+                "const": "illustrative"
+              },
+              "verification": {
+                "properties": {
+                  "state": {
+                    "not": {
+                      "const": "verified"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "basis_kind": {
+                "enum": [
+                  "digital-twin",
+                  "lidar",
+                  "scan"
+                ]
+              },
+              "verification": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "state"
+                ]
+              }
+            },
+            "required": [
+              "basis_kind",
+              "verification"
+            ]
+          },
+          "then": {
+            "required": [
+              "calibration"
+            ],
+            "properties": {
+              "calibration": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "measurement": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "value": {
+          "type": "number"
+        },
+        "quantity": {
+          "enum": [
+            "length",
+            "area",
+            "angle",
+            "count"
+          ]
+        },
+        "unit": {
+          "enum": [
+            "m",
+            "mm",
+            "cm",
+            "ft",
+            "ft-us-survey",
+            "m2",
+            "sqft",
+            "sqft-us-survey",
+            "degree",
+            "count"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "source_id",
+              "revision",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "verification": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "enum": [
+                "draft",
+                "unverified",
+                "verified",
+                "conflict",
+                "superseded"
+              ]
+            },
+            "reviewed_by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reviewed_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "state"
+                ]
+              },
+              "then": {
+                "required": [
+                  "reviewed_by",
+                  "reviewed_at",
+                  "method",
+                  "evidence_source_ids"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "quantity",
+        "unit",
+        "basis",
+        "source_refs",
+        "verification"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "quantity": {
+                "const": "length"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "m",
+                  "mm",
+                  "cm",
+                  "ft",
+                  "ft-us-survey"
+                ]
+              },
+              "value": {
+                "minimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "quantity": {
+                "const": "area"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "m2",
+                  "sqft",
+                  "sqft-us-survey"
+                ]
+              },
+              "value": {
+                "minimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "quantity": {
+                "const": "angle"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "const": "degree"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "quantity": {
+                "const": "count"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "unit": {
+                "const": "count"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "release": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "candidate",
+            "approved",
+            "retired"
+          ]
+        },
+        "approved_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "approved"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "approved_by",
+              "approved_at",
+              "evidence_source_ids"
+            ]
+          }
+        }
+      ]
+    },
+    "record": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "enum": [
+                "draft",
+                "unverified",
+                "verified",
+                "conflict",
+                "superseded"
+              ]
+            },
+            "reviewed_by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reviewed_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "state"
+                ]
+              },
+              "then": {
+                "required": [
+                  "reviewed_by",
+                  "reviewed_at",
+                  "method",
+                  "evidence_source_ids"
+                ]
+              }
+            }
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "source_id",
+              "revision",
+              "sha256"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "existing_operations_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {
+                "type": "string",
+                "minLength": 1
+              },
+              "entity_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "entity_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "record_location": {
+                "type": "object",
+                "properties": {
+                  "repository_path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                  },
+                  "external_uri": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "required": [],
+                "additionalProperties": false,
+                "oneOf": [
+                  {
+                    "required": [
+                      "repository_path"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "external_uri"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "system",
+              "entity_type",
+              "entity_id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "geometry": {
+          "type": "object",
+          "properties": {
+            "geometry_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+            },
+            "mode": {
+              "enum": [
+                "measured",
+                "derived-from-measurement",
+                "illustrative"
+              ]
+            },
+            "basis_kind": {
+              "enum": [
+                "cad",
+                "survey-plat",
+                "floor-plan",
+                "verified-property-data",
+                "digital-twin",
+                "lidar",
+                "scan",
+                "generated-image",
+                "unmeasured-illustration"
+              ]
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "repository_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                },
+                "external_uri": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "required": [
+                    "repository_path"
+                  ]
+                },
+                {
+                  "required": [
+                    "external_uri"
+                  ]
+                }
+              ]
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                  },
+                  "revision": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "revision",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "length_unit": {
+              "enum": [
+                "m",
+                "mm",
+                "cm",
+                "ft",
+                "ft-us-survey"
+              ]
+            },
+            "coordinate_reference": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "enum": [
+                    "projected",
+                    "geographic",
+                    "local"
+                  ]
+                },
+                "identifier": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "horizontal_datum": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "vertical_datum": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "handedness": {
+                  "enum": [
+                    "right-handed",
+                    "left-handed"
+                  ]
+                },
+                "axis_order": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 2,
+                  "maxItems": 3,
+                  "uniqueItems": true
+                },
+                "origin": {
+                  "type": "object",
+                  "properties": {
+                    "coordinates": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      },
+                      "minItems": 2,
+                      "maxItems": 3
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "coordinates",
+                    "description"
+                  ],
+                  "additionalProperties": false
+                },
+                "units": {
+                  "enum": [
+                    "m",
+                    "mm",
+                    "cm",
+                    "ft",
+                    "ft-us-survey",
+                    "degree"
+                  ]
+                },
+                "transform_to_repository_frame": {
+                  "type": "object",
+                  "properties": {
+                    "target_frame": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "method": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "parameters_location": {
+                      "type": "object",
+                      "properties": {
+                        "repository_path": {
+                          "type": "string",
+                          "minLength": 1,
+                          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                        },
+                        "external_uri": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      },
+                      "required": [],
+                      "additionalProperties": false,
+                      "oneOf": [
+                        {
+                          "required": [
+                            "repository_path"
+                          ]
+                        },
+                        {
+                          "required": [
+                            "external_uri"
+                          ]
+                        }
+                      ]
+                    },
+                    "verified": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "target_frame",
+                    "method",
+                    "parameters_location",
+                    "verified"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "type",
+                "identifier",
+                "axis_order",
+                "units"
+              ],
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "local"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ]
+                  },
+                  "then": {
+                    "required": [
+                      "origin",
+                      "handedness"
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "projected"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ]
+                  },
+                  "then": {
+                    "required": [
+                      "horizontal_datum"
+                    ],
+                    "properties": {
+                      "units": {
+                        "enum": [
+                          "m",
+                          "mm",
+                          "cm",
+                          "ft",
+                          "ft-us-survey"
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "geographic"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ]
+                  },
+                  "then": {
+                    "required": [
+                      "horizontal_datum"
+                    ],
+                    "properties": {
+                      "units": {
+                        "const": "degree"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "verification": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "enum": [
+                    "draft",
+                    "unverified",
+                    "verified",
+                    "conflict",
+                    "superseded"
+                  ]
+                },
+                "reviewed_by": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "reviewed_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "method": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence_source_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "notes": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "state"
+              ],
+              "additionalProperties": false,
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "state": {
+                        "const": "verified"
+                      }
+                    },
+                    "required": [
+                      "state"
+                    ]
+                  },
+                  "then": {
+                    "required": [
+                      "reviewed_by",
+                      "reviewed_at",
+                      "method",
+                      "evidence_source_ids"
+                    ]
+                  }
+                }
+              ]
+            },
+            "derivation": {
+              "type": "object",
+              "properties": {
+                "method": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "tool": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "tool_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "parameters_location": {
+                  "type": "object",
+                  "properties": {
+                    "repository_path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                    },
+                    "external_uri": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": false,
+                  "oneOf": [
+                    {
+                      "required": [
+                        "repository_path"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "external_uri"
+                      ]
+                    }
+                  ]
+                },
+                "input_source_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "source_id": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                      },
+                      "revision": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      },
+                      "locator": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "source_id",
+                      "revision",
+                      "sha256"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "method",
+                "tool",
+                "tool_version",
+                "input_source_refs"
+              ],
+              "additionalProperties": false
+            },
+            "calibration": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "enum": [
+                    "verified",
+                    "unverified"
+                  ]
+                },
+                "method": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence_source_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "tolerance": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "unit": {
+                  "enum": [
+                    "m",
+                    "mm",
+                    "cm",
+                    "ft",
+                    "ft-us-survey"
+                  ]
+                }
+              },
+              "required": [
+                "state",
+                "method",
+                "evidence_source_ids",
+                "tolerance",
+                "unit"
+              ],
+              "additionalProperties": false
+            },
+            "display_label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "geometry_id",
+            "mode",
+            "basis_kind",
+            "location",
+            "revision",
+            "sha256",
+            "source_refs",
+            "length_unit",
+            "coordinate_reference",
+            "verification"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "mode": {
+                    "enum": [
+                      "measured",
+                      "derived-from-measurement"
+                    ]
+                  }
+                },
+                "required": [
+                  "mode"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "basis_kind": {
+                    "enum": [
+                      "cad",
+                      "survey-plat",
+                      "floor-plan",
+                      "verified-property-data",
+                      "digital-twin",
+                      "lidar",
+                      "scan"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "mode": {
+                    "const": "derived-from-measurement"
+                  }
+                },
+                "required": [
+                  "mode"
+                ]
+              },
+              "then": {
+                "required": [
+                  "derivation"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "mode": {
+                    "const": "illustrative"
+                  }
+                },
+                "required": [
+                  "mode"
+                ]
+              },
+              "then": {
+                "required": [
+                  "display_label"
+                ],
+                "properties": {
+                  "verification": {
+                    "properties": {
+                      "state": {
+                        "not": {
+                          "const": "verified"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "basis_kind": {
+                    "enum": [
+                      "generated-image",
+                      "unmeasured-illustration"
+                    ]
+                  }
+                },
+                "required": [
+                  "basis_kind"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "mode": {
+                    "const": "illustrative"
+                  },
+                  "verification": {
+                    "properties": {
+                      "state": {
+                        "not": {
+                          "const": "verified"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "basis_kind": {
+                    "enum": [
+                      "digital-twin",
+                      "lidar",
+                      "scan"
+                    ]
+                  },
+                  "verification": {
+                    "properties": {
+                      "state": {
+                        "const": "verified"
+                      }
+                    },
+                    "required": [
+                      "state"
+                    ]
+                  }
+                },
+                "required": [
+                  "basis_kind",
+                  "verification"
+                ]
+              },
+              "then": {
+                "required": [
+                  "calibration"
+                ],
+                "properties": {
+                  "calibration": {
+                    "properties": {
+                      "state": {
+                        "const": "verified"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "value": {
+                "type": "number"
+              },
+              "quantity": {
+                "enum": [
+                  "length",
+                  "area",
+                  "angle",
+                  "count"
+                ]
+              },
+              "unit": {
+                "enum": [
+                  "m",
+                  "mm",
+                  "cm",
+                  "ft",
+                  "ft-us-survey",
+                  "m2",
+                  "sqft",
+                  "sqft-us-survey",
+                  "degree",
+                  "count"
+                ]
+              },
+              "basis": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source_id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                    },
+                    "revision": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "locator": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "source_id",
+                    "revision",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "verification": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "enum": [
+                      "draft",
+                      "unverified",
+                      "verified",
+                      "conflict",
+                      "superseded"
+                    ]
+                  },
+                  "reviewed_by": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "reviewed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "method": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "evidence_source_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "notes": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "state"
+                ],
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "state": {
+                          "const": "verified"
+                        }
+                      },
+                      "required": [
+                        "state"
+                      ]
+                    },
+                    "then": {
+                      "required": [
+                        "reviewed_by",
+                        "reviewed_at",
+                        "method",
+                        "evidence_source_ids"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "value",
+              "quantity",
+              "unit",
+              "basis",
+              "source_refs",
+              "verification"
+            ],
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "quantity": {
+                      "const": "length"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "unit": {
+                      "enum": [
+                        "m",
+                        "mm",
+                        "cm",
+                        "ft",
+                        "ft-us-survey"
+                      ]
+                    },
+                    "value": {
+                      "minimum": 0
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "quantity": {
+                      "const": "area"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "unit": {
+                      "enum": [
+                        "m2",
+                        "sqft",
+                        "sqft-us-survey"
+                      ]
+                    },
+                    "value": {
+                      "minimum": 0
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "quantity": {
+                      "const": "angle"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "unit": {
+                      "const": "degree"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "quantity": {
+                      "const": "count"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "unit": {
+                      "const": "count"
+                    },
+                    "value": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "release": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "enum": [
+                "candidate",
+                "approved",
+                "retired"
+              ]
+            },
+            "approved_by": {
+              "type": "string",
+              "minLength": 1
+            },
+            "approved_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "evidence_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "approved"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "approved_by",
+                  "approved_at",
+                  "evidence_source_ids"
+                ]
+              }
+            }
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "verification",
+        "source_refs",
+        "release"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "state"
+                ]
+              }
+            },
+            "required": [
+              "verification"
+            ]
+          },
+          "then": {
+            "properties": {
+              "source_refs": {
+                "minItems": 1
+              },
+              "geometry": {
+                "properties": {
+                  "mode": {
+                    "enum": [
+                      "measured",
+                      "derived-from-measurement"
+                    ]
+                  },
+                  "verification": {
+                    "properties": {
+                      "state": {
+                        "const": "verified"
+                      }
+                    }
+                  }
+                }
+              },
+              "measurements": {
+                "items": {
+                  "properties": {
+                    "verification": {
+                      "properties": {
+                        "state": {
+                          "const": "verified"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "release": {
+                "properties": {
+                  "state": {
+                    "const": "approved"
+                  }
+                },
+                "required": [
+                  "state"
+                ]
+              }
+            },
+            "required": [
+              "release"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "state": {
+                    "const": "verified"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

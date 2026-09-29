@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "synthetic-lidar-source",
+  "name": "SYNTHETIC TEST DATA - calibrated LiDAR source",
+  "kind": "lidar",
+  "authority_domains": [
+    "geometry",
+    "dimensions"
+  ],
+  "location": {
+    "repository_path": "SYNTHETIC-NOT-FOR-RELEASE/geometry.dxf"
+  },
+  "revision": "synthetic-r1",
+  "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "verification": {
+    "state": "verified",
+    "reviewed_by": "SYNTHETIC FIXTURE REVIEWER",
+    "reviewed_at": "2026-01-01T00:00:00Z",
+    "method": "Synthetic fixture only; no real evidence was reviewed.",
+    "evidence_source_ids": [
+      "synthetic-cad-source"
+    ]
+  },
+  "owner": {
+    "party": "SYNTHETIC FIXTURE OWNER"
+  },
+  "usage_restrictions": "Synthetic testing only; never release.",
+  "units": [
+    "ft"
+  ],
+  "coordinate_reference": {
+    "type": "local",
+    "identifier": "synthetic-local-frame",
+    "axis_order": [
+      "x",
+      "y",
+      "z"
+    ],
+    "handedness": "right-handed",
+    "units": "ft",
+    "origin": {
+      "coordinates": [
+        0,
+        0,
+        0
+      ],
+      "description": "Synthetic origin only; no relation to any property."
+    }
+  },
+  "calibration": {
+    "state": "verified",
+    "method": "SYNTHETIC fixture calibration",
+    "evidence_source_ids": [
+      "synthetic-cad-source"
+    ],
+    "tolerance": 0.01,
+    "unit": "m"
+  }
+}

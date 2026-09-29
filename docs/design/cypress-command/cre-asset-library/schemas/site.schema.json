@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/site.schema.json",
+  "title": "Cypress Command CRE site",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/record"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "record_type": {
+          "const": "site"
+        },
+        "property_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "building_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "sign_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "record_type",
+        "property_id"
+      ]
+    }
+  ],
+  "unevaluatedProperties": false
+}

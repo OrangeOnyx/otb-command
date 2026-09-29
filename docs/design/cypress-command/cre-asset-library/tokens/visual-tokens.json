@@ -1,0 +1,96 @@
+{
+  "contract_version": "1.0.0",
+  "status": "opt-in implementation defaults",
+  "authority": "style-spec.md; visual presentation only",
+  "provenance_note": "Palette names and meanings follow the included supporting Cypress boards. Exact values are package implementation choices, not sampled measured truth from the generated CRE board. Dark and sign-panel values are implementation extensions. Light watch text uses the accessible alias #7D5F0A while the mustard primitive #8F6D0C remains unchanged.",
+  "primitives": {
+    "paper": "#F4EFE2",
+    "paper-deep": "#EAE2CD",
+    "ink": "#1E1B16",
+    "ink-soft": "#5C554A",
+    "rule": "#C9BFA8",
+    "terra": "#A44E12",
+    "olive": "#49573C",
+    "mustard": "#8F6D0C",
+    "oxblood": "#8A2F1F"
+  },
+  "themes": {
+    "light": {
+      "surface": "#F4EFE2",
+      "surface-raised": "#FCF9F1",
+      "text": "#1E1B16",
+      "text-muted": "#5C554A",
+      "rule": "#C9BFA8",
+      "action": "#A44E12",
+      "success": "#49573C",
+      "watch": "#7D5F0A",
+      "stop": "#8A2F1F",
+      "action-fill": "#803816",
+      "action-text": "#FCF9F1",
+      "focus": "#A44E12"
+    },
+    "dark": {
+      "surface": "#161A15",
+      "surface-raised": "#22271F",
+      "text": "#F4EFE2",
+      "text-muted": "#C9C0AB",
+      "rule": "#626951",
+      "action": "#E28B59",
+      "success": "#B3C58B",
+      "watch": "#E5BD51",
+      "stop": "#E7978C",
+      "action-fill": "#803816",
+      "action-text": "#FCF9F1",
+      "focus": "#E28B59"
+    }
+  },
+  "sign_panels": {
+    "empty": {
+      "fill": "#F4EFE2",
+      "text": "#1E1B16"
+    },
+    "tenant": {
+      "fill": "#FCF9F1",
+      "text": "#1E1B16"
+    },
+    "new-tenant": {
+      "fill": "#3C4C3F",
+      "text": "#FCF9F1"
+    },
+    "vacant": {
+      "fill": "#A44E12",
+      "text": "#FCF9F1"
+    },
+    "coming-soon": {
+      "fill": "#879080",
+      "text": "#1E1B16"
+    },
+    "under-renovation": {
+      "fill": "#EAE2CD",
+      "text": "#1E1B16"
+    },
+    "not-available": {
+      "fill": "#8A2F1F",
+      "text": "#FCF9F1"
+    },
+    "unknown": {
+      "fill": "#F4EFE2",
+      "text": "#5C554A"
+    }
+  },
+  "fonts": {
+    "display": "Besley, Georgia, serif",
+    "ui": "Archivo, Arial, sans-serif",
+    "metadata": "Courier Prime, monospace"
+  },
+  "spacing_px": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    48
+  ],
+  "note": "Logo is a content mode, not a color state. These are presentation keys; map to actual operational schemas through a reviewed adapter."
+}

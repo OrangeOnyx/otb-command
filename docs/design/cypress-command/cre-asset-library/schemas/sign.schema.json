@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/sign.schema.json",
+  "title": "Cypress Command CRE sign",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/record"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "record_type": {
+          "const": "sign"
+        },
+        "property_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "site_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "sign_type": {
+          "enum": [
+            "pylon",
+            "monument",
+            "wall",
+            "directional",
+            "other"
+          ]
+        },
+        "panel_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "record_type",
+        "property_id",
+        "site_id",
+        "sign_type"
+      ]
+    }
+  ],
+  "unevaluatedProperties": false
+}

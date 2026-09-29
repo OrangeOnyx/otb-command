@@ -1,0 +1,370 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/asset.schema.json",
+  "title": "Cypress Command CRE asset",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/record"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "record_type": {
+          "const": "asset"
+        },
+        "scope": {
+          "enum": [
+            "shared",
+            "property"
+          ]
+        },
+        "property_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "subject_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "record_type": {
+                "enum": [
+                  "property",
+                  "site",
+                  "building",
+                  "suite",
+                  "sign",
+                  "panel"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+              }
+            },
+            "required": [
+              "record_type",
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "asset_type": {
+          "enum": [
+            "property-overview",
+            "site-plan",
+            "map",
+            "elevation",
+            "floor-plan",
+            "suite",
+            "signage",
+            "parking",
+            "landscaping",
+            "lighting",
+            "hvac",
+            "utilities",
+            "model",
+            "scan",
+            "ui-component",
+            "icon",
+            "other"
+          ]
+        },
+        "representation": {
+          "enum": [
+            "measured-2d",
+            "measured-3d",
+            "styled-measured-2d",
+            "styled-measured-3d",
+            "photograph",
+            "generated-illustration",
+            "diagram",
+            "ui"
+          ]
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "repository_path": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+            },
+            "external_uri": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [],
+          "additionalProperties": false,
+          "oneOf": [
+            {
+              "required": [
+                "repository_path"
+              ]
+            },
+            {
+              "required": [
+                "external_uri"
+              ]
+            }
+          ]
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "view": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "enum": [
+            "light",
+            "dark",
+            "neutral"
+          ]
+        },
+        "style_reference_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "display_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "render_derivation": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tool": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tool_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "input_source_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+                  },
+                  "revision": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "locator": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "source_id",
+                  "revision",
+                  "sha256"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "geometry_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+            },
+            "parameters_location": {
+              "type": "object",
+              "properties": {
+                "repository_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                },
+                "external_uri": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "required": [
+                    "repository_path"
+                  ]
+                },
+                {
+                  "required": [
+                    "external_uri"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "method",
+            "tool",
+            "tool_version",
+            "input_source_refs"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "record_type",
+        "scope",
+        "asset_type",
+        "representation",
+        "location",
+        "revision",
+        "sha256"
+      ]
+    },
+    {
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "property"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "property_id"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "property_id"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "representation": {
+            "enum": [
+              "measured-2d",
+              "measured-3d",
+              "styled-measured-2d",
+              "styled-measured-3d"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "geometry"
+        ],
+        "properties": {
+          "geometry": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "measured",
+                  "derived-from-measurement"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "representation": {
+            "enum": [
+              "styled-measured-2d",
+              "styled-measured-3d"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "render_derivation"
+        ],
+        "properties": {
+          "render_derivation": {
+            "required": [
+              "geometry_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "representation": {
+            "const": "generated-illustration"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "display_label"
+        ],
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "geometry"
+              ]
+            },
+            {
+              "required": [
+                "measurements"
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "verification": {
+            "properties": {
+              "state": {
+                "not": {
+                  "const": "verified"
+                }
+              }
+            }
+          },
+          "release": {
+            "properties": {
+              "state": {
+                "const": "candidate"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "synthetic-style-source",
+  "name": "SYNTHETIC TEST DATA - generated style source",
+  "kind": "generated-image",
+  "authority_domains": [
+    "appearance"
+  ],
+  "location": {
+    "repository_path": "SYNTHETIC-NOT-FOR-RELEASE/geometry.dxf"
+  },
+  "revision": "synthetic-r1",
+  "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "verification": {
+    "state": "unverified",
+    "notes": "Visual styling only; not a measured source."
+  },
+  "owner": {
+    "party": "SYNTHETIC FIXTURE OWNER"
+  },
+  "usage_restrictions": "Synthetic testing only; never release.",
+  "units": [
+    "ft"
+  ],
+  "coordinate_reference": {
+    "type": "local",
+    "identifier": "synthetic-local-frame",
+    "axis_order": [
+      "x",
+      "y",
+      "z"
+    ],
+    "handedness": "right-handed",
+    "units": "ft",
+    "origin": {
+      "coordinates": [
+        0,
+        0,
+        0
+      ],
+      "description": "Synthetic origin only; no relation to any property."
+    }
+  }
+}

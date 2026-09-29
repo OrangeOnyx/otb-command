@@ -1,0 +1,92 @@
+[
+  {
+    "file": "negative/generated-image-claims-geometry.json",
+    "schema": "source.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Generated imagery cannot have geometry or dimensions authority."
+  },
+  {
+    "file": "negative/verified-generated-geometry.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Generated imagery cannot be the basis of measured or verified geometry."
+  },
+  {
+    "file": "negative/verified-without-review-evidence.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Verified records need reviewer, timestamp, method, and evidence source IDs."
+  },
+  {
+    "file": "negative/ambiguous-feet-unit.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Use ft for international feet or ft-us-survey; ambiguous feet is rejected."
+  },
+  {
+    "file": "negative/local-frame-missing-origin.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Local coordinate reference requires an origin."
+  },
+  {
+    "file": "negative/verified-scan-without-calibration.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Verified scan geometry requires verified calibration and tolerance evidence."
+  },
+  {
+    "file": "negative/verified-record-with-unverified-geometry.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Record verification cannot conceal unverified geometry."
+  },
+  {
+    "file": "negative/approved-without-release-evidence.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Approved release requires approver, timestamp, evidence, and verified record."
+  },
+  {
+    "file": "negative/source-snapshot-hash-mismatch.json",
+    "schema": "asset.schema.json",
+    "layer": "cross-record",
+    "must_fail_because": "Source references must match the registered snapshot hash."
+  },
+  {
+    "file": "negative/source-kind-laundering.json",
+    "schema": "asset.schema.json",
+    "layer": "cross-record",
+    "must_fail_because": "Geometry basis must match a registered geometry-authoritative source kind."
+  },
+  {
+    "file": "negative/missing-property-reference.json",
+    "schema": "asset.schema.json",
+    "layer": "cross-record",
+    "must_fail_because": "Every property relationship must resolve to a property record."
+  },
+  {
+    "file": "negative/verified-scan-source-without-calibration.json",
+    "schema": "source.schema.json",
+    "layer": "schema",
+    "must_fail_because": "A scan source claiming verified geometry/dimensions authority needs verified calibration."
+  },
+  {
+    "file": "negative/generated-illustration-marked-verified.json",
+    "schema": "asset.schema.json",
+    "layer": "schema",
+    "must_fail_because": "Generated illustrations must remain unverified candidate visual guidance."
+  },
+  {
+    "file": "negative/generated-input-laundered-through-derived-geometry.json",
+    "schema": "asset.schema.json",
+    "layer": "cross-record",
+    "must_fail_because": "Actual geometry derivation inputs must equal measured geometry sources and carry geometry authority."
+  },
+  {
+    "file": "negative/unverified-scan-input-in-verified-derivation.json",
+    "schema": "asset.schema.json",
+    "layer": "cross-record",
+    "must_fail_because": "Verified geometry and its derivation cannot rely on an unverified scan source."
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "date": "2026-09-29",
+  "schema_draft": "2020-12",
+  "schema_count": 9,
+  "positive_fixtures": 16,
+  "negative_fixtures_rejected": 15,
+  "malformed_collection_regression_checks": 4,
+  "command": "python docs/design/cypress-command/cre-asset-library/schemas/validate_examples.py",
+  "scope": "Package metadata contracts and synthetic fixtures, including cross-record authority, lineage, ownership and calibration rules",
+  "limits": "No actual OTB geometry, operational data, measured files, external source integrity, production integration or rendered UI validated"
+}

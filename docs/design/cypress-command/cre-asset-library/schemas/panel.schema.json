@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/panel.schema.json",
+  "title": "Cypress Command CRE panel",
+  "allOf": [
+    {
+      "$ref": "common.schema.json#/$defs/record"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "record_type": {
+          "const": "panel"
+        },
+        "property_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "sign_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "panel_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "record_type",
+        "property_id",
+        "sign_id",
+        "panel_key"
+      ]
+    }
+  ],
+  "unevaluatedProperties": false
+}

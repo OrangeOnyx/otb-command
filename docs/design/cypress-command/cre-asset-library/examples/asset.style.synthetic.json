@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "asset",
+  "id": "synthetic-style-asset",
+  "name": "SYNTHETIC TEST DATA - asset",
+  "verification": {
+    "state": "draft",
+    "notes": "Schema fixture only. No actual property facts."
+  },
+  "source_refs": [
+    {
+      "source_id": "synthetic-style-source",
+      "revision": "synthetic-r1",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "scope": "shared",
+  "asset_type": "signage",
+  "representation": "generated-illustration",
+  "location": {
+    "repository_path": "SYNTHETIC-NOT-FOR-RELEASE/model.glb"
+  },
+  "revision": "synthetic-r1",
+  "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "display_label": "SYNTHETIC CONCEPT - VISUAL STYLING ONLY - DO NOT MEASURE",
+  "style_reference_source_ids": [
+    "synthetic-style-source"
+  ]
+}

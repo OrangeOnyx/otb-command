@@ -1,0 +1,661 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cypress-command.invalid/cre/1.0.0/source.schema.json",
+  "title": "Cypress Command CRE source snapshot",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "record_type": {
+      "const": "source"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "cad",
+        "survey-plat",
+        "floor-plan",
+        "verified-property-data",
+        "digital-twin",
+        "lidar",
+        "scan",
+        "photograph",
+        "generated-image",
+        "style-reference",
+        "operational-record",
+        "other"
+      ]
+    },
+    "authority_domains": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "geometry",
+          "dimensions",
+          "appearance",
+          "operations",
+          "context"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "repository_path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "external_uri": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "repository_path"
+          ]
+        },
+        {
+          "required": [
+            "external_uri"
+          ]
+        }
+      ]
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "draft",
+            "unverified",
+            "verified",
+            "conflict",
+            "superseded"
+          ]
+        },
+        "reviewed_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "required": [
+              "reviewed_by",
+              "reviewed_at",
+              "method",
+              "evidence_source_ids"
+            ]
+          }
+        }
+      ]
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "document_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "minLength": 1
+        },
+        "system": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "party"
+          ]
+        },
+        {
+          "required": [
+            "system"
+          ]
+        }
+      ]
+    },
+    "usage_restrictions": {
+      "type": "string",
+      "minLength": 1
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "m",
+          "mm",
+          "cm",
+          "ft",
+          "ft-us-survey",
+          "m2",
+          "sqft",
+          "sqft-us-survey",
+          "degree",
+          "count"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "coordinate_reference": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "projected",
+            "geographic",
+            "local"
+          ]
+        },
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "horizontal_datum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "vertical_datum": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handedness": {
+          "enum": [
+            "right-handed",
+            "left-handed"
+          ]
+        },
+        "axis_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 2,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "origin": {
+          "type": "object",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 3
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "coordinates",
+            "description"
+          ],
+          "additionalProperties": false
+        },
+        "units": {
+          "enum": [
+            "m",
+            "mm",
+            "cm",
+            "ft",
+            "ft-us-survey",
+            "degree"
+          ]
+        },
+        "transform_to_repository_frame": {
+          "type": "object",
+          "properties": {
+            "target_frame": {
+              "type": "string",
+              "minLength": 1
+            },
+            "method": {
+              "type": "string",
+              "minLength": 1
+            },
+            "parameters_location": {
+              "type": "object",
+              "properties": {
+                "repository_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+                },
+                "external_uri": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [],
+              "additionalProperties": false,
+              "oneOf": [
+                {
+                  "required": [
+                    "repository_path"
+                  ]
+                },
+                {
+                  "required": [
+                    "external_uri"
+                  ]
+                }
+              ]
+            },
+            "verified": {
+              "const": true
+            }
+          },
+          "required": [
+            "target_frame",
+            "method",
+            "parameters_location",
+            "verified"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "axis_order",
+        "units"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "local"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "origin",
+              "handedness"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "projected"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "horizontal_datum"
+            ],
+            "properties": {
+              "units": {
+                "enum": [
+                  "m",
+                  "mm",
+                  "cm",
+                  "ft",
+                  "ft-us-survey"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "geographic"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "horizontal_datum"
+            ],
+            "properties": {
+              "units": {
+                "const": "degree"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "supersedes_source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "calibration": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "enum": [
+            "verified",
+            "unverified"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "tolerance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unit": {
+          "enum": [
+            "m",
+            "mm",
+            "cm",
+            "ft",
+            "ft-us-survey"
+          ]
+        }
+      },
+      "required": [
+        "state",
+        "method",
+        "evidence_source_ids",
+        "tolerance",
+        "unit"
+      ],
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "id",
+    "kind",
+    "authority_domains",
+    "location",
+    "revision",
+    "sha256",
+    "verification"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "generated-image",
+              "style-reference",
+              "photograph"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "authority_domains": {
+            "items": {
+              "enum": [
+                "appearance",
+                "context"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "authority_domains": {
+            "contains": {
+              "enum": [
+                "geometry",
+                "dimensions"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "cad",
+              "survey-plat",
+              "floor-plan",
+              "verified-property-data",
+              "digital-twin",
+              "lidar",
+              "scan"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "owner",
+          "usage_restrictions"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "authority_domains": {
+            "contains": {
+              "const": "dimensions"
+            }
+          },
+          "verification": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "units"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "authority_domains": {
+            "contains": {
+              "const": "geometry"
+            }
+          },
+          "verification": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "coordinate_reference"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "digital-twin",
+              "lidar",
+              "scan"
+            ]
+          },
+          "authority_domains": {
+            "contains": {
+              "enum": [
+                "geometry",
+                "dimensions"
+              ]
+            }
+          },
+          "verification": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "calibration"
+        ],
+        "properties": {
+          "calibration": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

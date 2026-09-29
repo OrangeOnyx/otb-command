@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "asset",
+  "id": "synthetic-verified-asset",
+  "name": "SYNTHETIC TEST DATA - asset",
+  "verification": {
+    "state": "verified"
+  },
+  "source_refs": [
+    {
+      "source_id": "synthetic-cad-source",
+      "revision": "synthetic-r1",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "release": {
+    "state": "approved",
+    "approved_by": "SYNTHETIC FIXTURE APPROVER",
+    "approved_at": "2026-01-01T00:00:00Z",
+    "evidence_source_ids": [
+      "synthetic-cad-source"
+    ],
+    "notes": "Synthetic metadata only. Not a release authorization."
+  },
+  "scope": "property",
+  "property_id": "synthetic-property",
+  "subject_refs": [
+    {
+      "record_type": "property",
+      "id": "synthetic-property"
+    }
+  ],
+  "asset_type": "model",
+  "representation": "measured-3d",
+  "location": {
+    "repository_path": "SYNTHETIC-NOT-FOR-RELEASE/model.glb"
+  },
+  "revision": "synthetic-r1",
+  "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "geometry": {
+    "geometry_id": "synthetic-geometry",
+    "mode": "measured",
+    "basis_kind": "cad",
+    "location": {
+      "repository_path": "SYNTHETIC-NOT-FOR-RELEASE/geometry.dxf"
+    },
+    "revision": "synthetic-r1",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "source_refs": [
+      {
+        "source_id": "synthetic-cad-source",
+        "revision": "synthetic-r1",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    ],
+    "length_unit": "ft",
+    "coordinate_reference": {
+      "type": "local",
+      "identifier": "synthetic-local-frame",
+      "axis_order": [
+        "x",
+        "y",
+        "z"
+      ],
+      "handedness": "right-handed",
+      "units": "ft",
+      "origin": {
+        "coordinates": [
+          0,
+          0,
+          0
+        ],
+        "description": "Synthetic origin only; no relation to any property."
+      }
+    },
+    "verification": {
+      "state": "verified",
+      "reviewed_by": "SYNTHETIC FIXTURE REVIEWER",
+      "reviewed_at": "2026-01-01T00:00:00Z",
+      "method": "Synthetic fixture only; no real evidence was reviewed.",
+      "evidence_source_ids": [
+        "synthetic-cad-source"
+      ]
+    }
+  }
+}

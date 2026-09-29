@@ -1,0 +1,272 @@
+{
+  "status": "PASS",
+  "method": "sRGB relative luminance; declared pairs only, no rendered state claim",
+  "pairs": [
+    {
+      "scope": "light",
+      "foreground": "text",
+      "background": "surface",
+      "ratio": 14.949,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "text",
+      "background": "surface-raised",
+      "ratio": 16.313,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "text-muted",
+      "background": "surface",
+      "ratio": 6.411,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "text-muted",
+      "background": "surface-raised",
+      "ratio": 6.995,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "action",
+      "background": "surface",
+      "ratio": 4.975,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "action",
+      "background": "surface-raised",
+      "ratio": 5.428,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "success",
+      "background": "surface",
+      "ratio": 6.745,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "success",
+      "background": "surface-raised",
+      "ratio": 7.36,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "watch",
+      "background": "surface",
+      "ratio": 5.206,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "watch",
+      "background": "surface-raised",
+      "ratio": 5.681,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "stop",
+      "background": "surface",
+      "ratio": 7.296,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "stop",
+      "background": "surface-raised",
+      "ratio": 7.961,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "focus",
+      "background": "surface",
+      "ratio": 4.975,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "focus",
+      "background": "surface-raised",
+      "ratio": 5.428,
+      "minimum": 4.5
+    },
+    {
+      "scope": "light",
+      "foreground": "action-text",
+      "background": "action-fill",
+      "ratio": 8.0,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "text",
+      "background": "surface",
+      "ratio": 15.336,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "text",
+      "background": "surface-raised",
+      "ratio": 13.274,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "text-muted",
+      "background": "surface",
+      "ratio": 9.735,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "text-muted",
+      "background": "surface-raised",
+      "ratio": 8.426,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "action",
+      "background": "surface",
+      "ratio": 6.767,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "action",
+      "background": "surface-raised",
+      "ratio": 5.857,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "success",
+      "background": "surface",
+      "ratio": 9.454,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "success",
+      "background": "surface-raised",
+      "ratio": 8.183,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "watch",
+      "background": "surface",
+      "ratio": 9.834,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "watch",
+      "background": "surface-raised",
+      "ratio": 8.512,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "stop",
+      "background": "surface",
+      "ratio": 7.716,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "stop",
+      "background": "surface-raised",
+      "ratio": 6.679,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "focus",
+      "background": "surface",
+      "ratio": 6.767,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "focus",
+      "background": "surface-raised",
+      "ratio": 5.857,
+      "minimum": 4.5
+    },
+    {
+      "scope": "dark",
+      "foreground": "action-text",
+      "background": "action-fill",
+      "ratio": 8.0,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-empty",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 14.949,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-tenant",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 16.313,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-new-tenant",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 8.687,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-vacant",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 5.428,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-coming-soon",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 5.174,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-under-renovation",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 13.288,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-not-available",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 7.961,
+      "minimum": 4.5
+    },
+    {
+      "scope": "panel-unknown",
+      "foreground": "text",
+      "background": "fill",
+      "ratio": 6.411,
+      "minimum": 4.5
+    }
+  ]
+}

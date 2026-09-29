@@ -1,0 +1,102 @@
+{
+  "retrieved_date": "2026-09-29",
+  "source_conversation_id": "6a205d51-5ac0-8327-8619-c26e923a6d08",
+  "source_title": "Blank Pylon Sign Design",
+  "source_url": "https://chatgpt.com/c/6a205d51-5ac0-8327-8619-c26e923a6d08",
+  "selection_basis": "User requested latest CRE board; visually confirmed latest relevant assistant image in original chat image viewer.",
+  "generated_at": null,
+  "current_reference": "cypress-command-cre-asset-library-master-board.png",
+  "unverified_contents": "All illustrated geometry, dimensions, counts, addresses/road labels, tenants, logos/assignments, areas, statuses and dates are illustrative, not operational evidence.",
+  "files": [
+    {
+      "path": "cypress-command-cre-asset-library-master-board.png",
+      "original_download_or_attachment_filename": "ChatGPT Image Sep 29, 2026, 03_49_16 AM.png",
+      "role": "current-visual-north-star",
+      "source_locator": "Original chat image viewer: Generated image 4; assistant image after user request for another Cypress Command example and before repo-placement question.",
+      "sha256": "d86e6ab3ebd943c590e0480b45d101d08e128d9081d49b9dc0b3867ad04c353e",
+      "bytes": 2305201,
+      "copied_unmodified": true,
+      "geometry_authority": false,
+      "pixel_dimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "path": "cypress-command-light-master.png",
+      "original_download_or_attachment_filename": "Master_Board_Light (1).png",
+      "role": "supporting-brand-light",
+      "source_locator": "User attachment returned by read_thread.",
+      "sha256": "fb4f9ad59227b65b6779afc0ca3a668860a6d8cb6c59beafa1a05807a45bc0da",
+      "bytes": 131669,
+      "copied_unmodified": true,
+      "geometry_authority": false,
+      "pixel_dimensions": {
+        "width": 1652,
+        "height": 1175
+      }
+    },
+    {
+      "path": "cypress-command-dark-master.png",
+      "original_download_or_attachment_filename": "Master_Board_Dark (1).png",
+      "role": "supporting-brand-dark",
+      "source_locator": "User attachment returned by read_thread.",
+      "sha256": "95aa92496286f9caba039868bda81528d523827ae919e7cd098a7fa2d6295c5e",
+      "bytes": 130602,
+      "copied_unmodified": true,
+      "geometry_authority": false,
+      "pixel_dimensions": {
+        "width": 1652,
+        "height": 1175
+      }
+    },
+    {
+      "path": "brand-reference/cypress-command-applications-light.png",
+      "original_download_or_attachment_filename": "ChatGPT Image Sep 20, 2026, 05_46_25 PM (1).png",
+      "role": "supporting-application-light",
+      "source_locator": "User attachment returned by read_thread.",
+      "sha256": "3eaa40551a400917621ccdafae92f969c20bd10258e2ebc3736efe95cf010df6",
+      "bytes": 3000496,
+      "copied_unmodified": true,
+      "geometry_authority": false,
+      "pixel_dimensions": {
+        "width": 1312,
+        "height": 1199
+      }
+    },
+    {
+      "path": "brand-reference/cypress-command-applications-dark.png",
+      "original_download_or_attachment_filename": "ChatGPT Image Sep 20, 2026, 05_52_51 PM (1).png",
+      "role": "supporting-application-dark",
+      "source_locator": "User attachment returned by read_thread.",
+      "sha256": "1a620a48efeb418a211a2b621b463366e671965895023b0b05ac6724c978beb0",
+      "bytes": 2925641,
+      "copied_unmodified": true,
+      "geometry_authority": false,
+      "pixel_dimensions": {
+        "width": 1448,
+        "height": 1086
+      }
+    },
+    {
+      "path": "brand-reference/cypress-command-logo-horizontal.jpg",
+      "original_download_or_attachment_filename": "image.jpg",
+      "role": "logo-reference-only",
+      "source_locator": "User attachment returned by read_thread.",
+      "sha256": "949c2242d994a20a0cd2635f5c26e9c796ba68e8db7815cc4ffc116279375758",
+      "bytes": 201131,
+      "copied_unmodified": true,
+      "geometry_authority": false
+    },
+    {
+      "path": "brand-reference/cypress-command-logo-stacked.jpg",
+      "original_download_or_attachment_filename": "image (2).jpg",
+      "role": "logo-reference-only",
+      "source_locator": "User attachment returned by read_thread.",
+      "sha256": "366b5f07eee864baec7836eabd4f17784a4016f5151c1dad8ebcf05ff452ad66",
+      "bytes": 162528,
+      "copied_unmodified": true,
+      "geometry_authority": false
+    }
+  ]
+}

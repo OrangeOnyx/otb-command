@@ -1,0 +1,33 @@
+/* Cypress CRE: opt-in defaults. See style-spec.md. No global selectors. */
+.cc-cre {
+  --cc-cre-surface: #F4EFE2;
+  --cc-cre-surface-raised: #FCF9F1;
+  --cc-cre-text: #1E1B16;
+  --cc-cre-text-muted: #5C554A;
+  --cc-cre-rule: #C9BFA8;
+  --cc-cre-action: #A44E12;
+  --cc-cre-success: #49573C;
+  --cc-cre-watch: #7D5F0A;
+  --cc-cre-stop: #8A2F1F;
+  --cc-cre-action-fill: #803816;
+  --cc-cre-action-text: #FCF9F1;
+  --cc-cre-focus: #A44E12;
+  --cc-cre-font-display: Besley, Georgia, serif;
+  --cc-cre-font-ui: Archivo, Arial, sans-serif;
+  --cc-cre-font-meta: "Courier Prime", monospace;
+}
+.cc-cre[data-cc-theme="dark"] {
+  --cc-cre-surface: #161A15;
+  --cc-cre-surface-raised: #22271F;
+  --cc-cre-text: #F4EFE2;
+  --cc-cre-text-muted: #C9C0AB;
+  --cc-cre-rule: #626951;
+  --cc-cre-action: #E28B59;
+  --cc-cre-success: #B3C58B;
+  --cc-cre-watch: #E5BD51;
+  --cc-cre-stop: #E7978C;
+  --cc-cre-action-fill: #803816;
+  --cc-cre-action-text: #FCF9F1;
+  --cc-cre-focus: #E28B59;
+}
+/* Scope visual components to .cc-cre; preserve existing application tokens via adapters. */

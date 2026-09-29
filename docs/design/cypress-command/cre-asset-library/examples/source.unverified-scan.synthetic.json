@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "synthetic-unverified-lidar-source",
+  "name": "SYNTHETIC TEST DATA - unverified scan",
+  "kind": "lidar",
+  "authority_domains": [
+    "geometry",
+    "dimensions"
+  ],
+  "location": {
+    "repository_path": "SYNTHETIC-NOT-FOR-RELEASE/geometry.dxf"
+  },
+  "revision": "synthetic-r1",
+  "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "verification": {
+    "state": "unverified"
+  },
+  "owner": {
+    "party": "SYNTHETIC FIXTURE OWNER"
+  },
+  "usage_restrictions": "Synthetic testing only; never release.",
+  "units": [
+    "ft"
+  ],
+  "coordinate_reference": {
+    "type": "local",
+    "identifier": "synthetic-local-frame",
+    "axis_order": [
+      "x",
+      "y",
+      "z"
+    ],
+    "handedness": "right-handed",
+    "units": "ft",
+    "origin": {
+      "coordinates": [
+        0,
+        0,
+        0
+      ],
+      "description": "Synthetic origin only; no relation to any property."
+    }
+  },
+  "calibration": {
+    "state": "unverified",
+    "method": "SYNTHETIC fixture calibration",
+    "evidence_source_ids": [
+      "synthetic-cad-source"
+    ],
+    "tolerance": 0.01,
+    "unit": "m"
+  }
+}
