@@ -23,6 +23,7 @@ import { printFootText, printDocTitle } from "./lib/printsheet.js";
 import { stateStorageKey, sameStateScope } from "./lib/state-storage.js";
 import { fitZoom } from "./lib/roll.js";
 import { renderRoll } from "./views/rentroll.js";
+import { renderWorksheet } from "./views/rentworksheet.js";
 import { initMatrix } from "./views/compliance.js";
 import { initDates } from "./views/dates.js";
 import { initBoard } from "./views/board.js";
@@ -156,11 +157,15 @@ function buildShell(account) {
     const roll = document.getElementById("pg-roll");
     if (roll && roll.classList.contains("on")) {
       roll.classList.add("print-fit");
-      // Worksheet mode prints on a portrait page (@page wsheet): measure at the
-      // paper's printable width (~740px) so wrapping matches paper; ~980px tall.
-      const ws = roll.classList.contains("ws-mode");
-      if (ws) roll.style.width = "740px";
-      roll.style.zoom = fitZoom(roll.offsetHeight, ws ? 830 : 590);
+      roll.style.zoom = fitZoom(roll.offsetHeight, 590);
+    }
+    /* R-2 worksheet prints on a portrait page (@page wsheet): measure at the
+       paper's printable width (~740px) so wrapping matches paper; ~980px tall. */
+    const ws = document.getElementById("pg-rentws");
+    if (ws && ws.classList.contains("on")) {
+      ws.classList.add("print-fit");
+      ws.style.width = "740px";
+      ws.style.zoom = fitZoom(ws.offsetHeight, 830);
     }
   };
   window.addEventListener("beforeprint", stampPrint);
@@ -168,7 +173,9 @@ function buildShell(account) {
     document.title = (isCommandPreview?'Preview · ':'')+"Cypress Command Platform — On The Boulevard";
     if (printTheme !== null) { document.documentElement.dataset.theme = printTheme; printTheme = null; }
     const roll = document.getElementById("pg-roll");
-    if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; roll.style.width = ""; }
+    if (roll) { roll.classList.remove("print-fit"); roll.style.zoom = ""; }
+    const ws = document.getElementById("pg-rentws");
+    if (ws) { ws.classList.remove("print-fit"); ws.style.zoom = ""; ws.style.width = ""; }
   });
   document.getElementById("btnPrintSheet").onclick = () => { stampPrint(); window.print(); };
   document.getElementById("todayStamp").textContent = TODAY.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }).toUpperCase();
@@ -425,6 +432,8 @@ function initViews(account) {
   initSafe();
   initSearch();
   renderRoll();
+  renderWorksheet();
+  window.addEventListener("sheetchange", e => { if (e.detail.id === "rentws") renderWorksheet(); });
   initMatrix();
   initDates();
   initBoard();

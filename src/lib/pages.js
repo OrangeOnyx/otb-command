@@ -12,6 +12,7 @@ export const PAGES = [
   ["evidence", "A-4", "Site Evidence"],
   ["exterior", "A-5", "Exterior & Site"],
   ["roll", "R-1", "Rent Roll"],
+  ["rentws", "R-2", "Rent Worksheet"],
   ["comp", "C-1", "Compliance"],
   ["fin", "P-1", "Financial"],
   ["safe", "S-1", "Owner Safe"],
@@ -47,4 +48,5 @@ export const DEFAULT_PAGE = "dash";
    - "spatial" OUT: A-2 is heavy (3D/satellite/splat) — operator opt-in.
    - "ai", "comp", "dates", "board", "dir" OUT: operator working sheets;
      AI-1 owner visibility is off by default per the P4 ship note. */
-export const DEFAULT_OWNER_SHEETS = ["dash", "plan", "roll", "fin", "safe"];
+export const DEFAULT_OWNER_SHEETS = ["dash", "plan", "roll", "rentws", "fin", "safe"];
+/* "rentws" IN: R-2 is built for the owners (their request 2026-09-29). */
