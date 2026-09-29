@@ -459,7 +459,7 @@ body.role-owner .hvac-acts,body.role-owner .hvac-add,body.role-tenant .hvac-acts
 .ov-cfg summary{cursor:pointer;letter-spacing:.04em}
 .ov-list{display:flex;flex-direction:column;gap:5px;margin-top:6px}
 .ov-list label{display:flex;align-items:center;gap:6px;cursor:pointer}
-body.owner-preview .tb-actions{display:none}
+body.owner-preview #btnExport,body.owner-preview #btnImport{display:none}
 body.owner-preview .ov-cfg{display:none}
 body.owner-preview .main::before{content:"OWNER PREVIEW — read-only · limited sheets";display:block;background:var(--anchor);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-align:center;padding:6px}
 
@@ -494,7 +494,8 @@ body.state-recovery input,body.state-recovery select,body.state-recovery textare
 .acct{padding:10px 14px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
 .acct-who{font-family:var(--mono);font-size:10px;color:var(--slate);overflow:hidden;text-overflow:ellipsis}
 .acct-out{font-family:var(--mono);font-size:11px;padding:5px 8px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:4px;cursor:pointer}
-body.role-owner .tb-actions{display:none}
+/* owners keep ⤓ SHEET (visual export); raw JSON export/import stays operator-only */
+body.role-owner #btnExport,body.role-owner #btnImport{display:none}
 body.role-owner input,body.role-owner select,body.role-owner textarea{pointer-events:none;opacity:.85}
 body.role-owner .rec-edit,body.role-owner .rec-x,body.role-owner .rec-add{display:none}
 body.role-owner .asset-add,body.role-owner .asset-x{display:none}
