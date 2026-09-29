@@ -1,0 +1,276 @@
+{
+  "tool": "tools/cre-library/build-otb-slice.mjs",
+  "tool_version": "1.0.0",
+  "checks": [
+    {
+      "check": "long-frontage-closure",
+      "observed": 522.31,
+      "expected": 522.31,
+      "unit": "ft",
+      "delta": 0,
+      "result": "pass",
+      "basis": "Sum of plat demising-string bay widths vs recorded building length in geometry.json. 0.05 ft = the 2-decimal rounding of the transcribed strings; a closure check, not a survey tolerance."
+    },
+    {
+      "check": "short-frontage-closure",
+      "observed": 208.65,
+      "expected": 208.65,
+      "unit": "ft",
+      "delta": 0,
+      "result": "pass",
+      "basis": "Sum of plat demising-string bay widths vs recorded building length in geometry.json. 0.05 ft = the 2-decimal rounding of the transcribed strings; a closure check, not a survey tolerance."
+    },
+    {
+      "check": "area-133",
+      "observed": 1271.5,
+      "expected": 1272,
+      "unit": "sqft",
+      "delta": -0.5,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 14.88 ft × depth 85.45 ft; derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-131",
+      "observed": 1907.24,
+      "expected": 1907,
+      "unit": "sqft",
+      "delta": 0.24,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 22.32 ft × depth 85.45 ft; derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-129",
+      "observed": 1785.91,
+      "expected": 1789,
+      "unit": "sqft",
+      "delta": -3.09,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 20.9 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-127",
+      "observed": 2537.87,
+      "expected": 2538,
+      "unit": "sqft",
+      "delta": -0.13,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 29.7 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-125",
+      "observed": 1734.64,
+      "expected": 1735,
+      "unit": "sqft",
+      "delta": -0.36,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 20.3 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-123",
+      "observed": 3563.27,
+      "expected": 3563,
+      "unit": "sqft",
+      "delta": 0.27,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 41.7 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-121",
+      "observed": 1709,
+      "expected": 1709,
+      "unit": "sqft",
+      "delta": 0,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 20 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-119.5",
+      "observed": 1973.9,
+      "expected": 1974,
+      "unit": "sqft",
+      "delta": -0.1,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 23.1 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-119",
+      "observed": 1982.44,
+      "expected": 1982,
+      "unit": "sqft",
+      "delta": 0.44,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 23.2 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-117.5",
+      "observed": 1726.09,
+      "expected": 1769,
+      "unit": "sqft",
+      "delta": -42.91,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 20.2 ft × depth 85.45 ft; plat (string conflicts with plat SF 1,769 → 20.7'; string governs)) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-117",
+      "observed": 2170.43,
+      "expected": 2170,
+      "unit": "sqft",
+      "delta": 0.43,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 25.4 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-115",
+      "observed": 2170.43,
+      "expected": 2170,
+      "unit": "sqft",
+      "delta": 0.43,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 25.4 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-113",
+      "observed": 2630.15,
+      "expected": 2606,
+      "unit": "sqft",
+      "delta": 24.15,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 30.78 ft × depth 85.45 ft; derived: SF split of plat 80.8' (LOT 12) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-111",
+      "observed": 1705.58,
+      "expected": 1690,
+      "unit": "sqft",
+      "delta": 15.58,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 19.96 ft × depth 85.45 ft; derived: SF split of plat 80.8' (LOT 12) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-109",
+      "observed": 2569.48,
+      "expected": 2546,
+      "unit": "sqft",
+      "delta": 23.48,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 30.07 ft × depth 85.45 ft; derived: SF split of plat 80.8' (LOT 12) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-107",
+      "observed": 1743.18,
+      "expected": 1743,
+      "unit": "sqft",
+      "delta": 0.18,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 20.4 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-105",
+      "observed": 2221.7,
+      "expected": 2222,
+      "unit": "sqft",
+      "delta": -0.3,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 26 ft × depth 85.45 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-103",
+      "observed": 2837.79,
+      "expected": 3054,
+      "unit": "sqft",
+      "delta": -216.21,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 33.21 ft × depth 85.45 ft; derived: SF split of plat 108.00' (BROTHER'S) end block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-101",
+      "observed": 6390.81,
+      "expected": 6877,
+      "unit": "sqft",
+      "delta": -486.19,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 74.79 ft × depth 85.45 ft; derived: SF split of plat 108.00' (BROTHER'S) end block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-137",
+      "observed": 2053.11,
+      "expected": 2053,
+      "unit": "sqft",
+      "delta": 0.11,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 24.3 ft × depth 84.49 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-139",
+      "observed": 1950.66,
+      "expected": 1917,
+      "unit": "sqft",
+      "delta": 33.66,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 23.0875 ft × depth 84.49 ft; derived: (208.65 − 54.6 − 24.3 − 37.4) / 4) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-141",
+      "observed": 1950.66,
+      "expected": 1917,
+      "unit": "sqft",
+      "delta": 33.66,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 23.0875 ft × depth 84.49 ft; derived) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-143",
+      "observed": 1950.66,
+      "expected": 1917,
+      "unit": "sqft",
+      "delta": 33.66,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 23.0875 ft × depth 84.49 ft; derived) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-145",
+      "observed": 1950.66,
+      "expected": 1917,
+      "unit": "sqft",
+      "delta": 33.66,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 23.0875 ft × depth 84.49 ft; derived) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "area-149",
+      "observed": 4613.15,
+      "expected": 4613,
+      "unit": "sqft",
+      "delta": 0.15,
+      "result": "not_applicable",
+      "basis": "Plat footprint (bay 54.6 ft × depth 84.49 ft; plat) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+    },
+    {
+      "check": "parapet-height-provenance",
+      "observed": 22,
+      "expected": null,
+      "unit": "count",
+      "delta": null,
+      "result": "unresolved",
+      "basis": "22/27 units carry 16.4 ft, which tools/extract-heights.py also uses as its no-annotation FALLBACK; heights.json does not record which values were annotated vs defaulted."
+    },
+    {
+      "check": "units-to-suite-records",
+      "observed": 27,
+      "expected": 27,
+      "unit": "count",
+      "delta": 0,
+      "result": "pass",
+      "basis": "Every units.public.json unit resolves to exactly one suite record by normalized lookup key."
+    },
+    {
+      "check": "pylon-panels-to-suites",
+      "observed": 14,
+      "expected": 14,
+      "unit": "count",
+      "delta": 0,
+      "result": "pass",
+      "basis": "Every pylon.json panel→unit assignment resolves to a suite record."
+    }
+  ]
+}

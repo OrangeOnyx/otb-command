@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-heights-json",
+  "name": "OTB parapet heights (CAD BLD_HT annotations)",
+  "location": {
+    "repository_path": "src/data/heights.json"
+  },
+  "revision": "worktree-sha256:8249e0e8c2de8221",
+  "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde",
+  "kind": "verified-property-data",
+  "authority_domains": [
+    "geometry",
+    "dimensions"
+  ],
+  "units": [
+    "ft"
+  ],
+  "verification": {
+    "state": "unverified",
+    "notes": "Parapet heights matched to CAD 'BUILDING HEIGHT' annotations (layer BLD_HT) by tools/extract-heights.py; 16.4 ft is also the script's fallback when no annotation is in range, and the output does not flag which values defaulted. Height datum (finished floor vs grade) not stated."
+  }
+}

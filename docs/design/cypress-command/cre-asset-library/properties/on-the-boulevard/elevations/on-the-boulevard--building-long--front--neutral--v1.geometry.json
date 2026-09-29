@@ -1,0 +1,223 @@
+{
+  "geometry_id": "geom-otb-long-frontage-elevation",
+  "units": "ft",
+  "frame": "otb-long-frontage-elevation",
+  "axis_order": [
+    "x",
+    "z"
+  ],
+  "building_id": "building-otb-long",
+  "recorded_length_ft": 522.31,
+  "depth_ft": 85.45,
+  "bays": [
+    {
+      "label": "101",
+      "x0Ft": 0,
+      "widthFt": 74.79,
+      "heightFt": 13.5,
+      "widthBasis": "derived",
+      "basisNote": "derived: SF split of plat 108.00' (BROTHER'S) end block",
+      "entityIds": [
+        "suite-otb-101"
+      ]
+    },
+    {
+      "label": "103",
+      "x0Ft": 74.79,
+      "widthFt": 33.21,
+      "heightFt": 23.6,
+      "widthBasis": "derived",
+      "basisNote": "derived: SF split of plat 108.00' (BROTHER'S) end block",
+      "entityIds": [
+        "suite-otb-103"
+      ]
+    },
+    {
+      "label": "105",
+      "x0Ft": 108,
+      "widthFt": 26,
+      "heightFt": 13.2,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-105"
+      ]
+    },
+    {
+      "label": "107",
+      "x0Ft": 134,
+      "widthFt": 20.4,
+      "heightFt": 13.2,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-107"
+      ]
+    },
+    {
+      "label": "109",
+      "x0Ft": 154.4,
+      "widthFt": 30.07,
+      "heightFt": 13.2,
+      "widthBasis": "derived",
+      "basisNote": "derived: SF split of plat 80.8' (LOT 12) block",
+      "entityIds": [
+        "suite-otb-109"
+      ]
+    },
+    {
+      "label": "111",
+      "x0Ft": 184.47,
+      "widthFt": 19.96,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived: SF split of plat 80.8' (LOT 12) block",
+      "entityIds": [
+        "suite-otb-111"
+      ]
+    },
+    {
+      "label": "113",
+      "x0Ft": 204.43,
+      "widthFt": 30.78,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived: SF split of plat 80.8' (LOT 12) block",
+      "entityIds": [
+        "suite-otb-113"
+      ]
+    },
+    {
+      "label": "115",
+      "x0Ft": 235.21,
+      "widthFt": 25.4,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-115"
+      ]
+    },
+    {
+      "label": "117",
+      "x0Ft": 260.61,
+      "widthFt": 25.4,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-117"
+      ]
+    },
+    {
+      "label": "117.5",
+      "x0Ft": 286.01,
+      "widthFt": 20.2,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat (string conflicts with plat SF 1,769 → 20.7'; string governs)",
+      "entityIds": [
+        "suite-otb-117-5"
+      ]
+    },
+    {
+      "label": "119",
+      "x0Ft": 306.21,
+      "widthFt": 23.2,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-119"
+      ]
+    },
+    {
+      "label": "119.5",
+      "x0Ft": 329.41,
+      "widthFt": 23.1,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-119-5"
+      ]
+    },
+    {
+      "label": "121",
+      "x0Ft": 352.51,
+      "widthFt": 20,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-121"
+      ]
+    },
+    {
+      "label": "123",
+      "x0Ft": 372.51,
+      "widthFt": 41.7,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-123"
+      ]
+    },
+    {
+      "label": "125",
+      "x0Ft": 414.21,
+      "widthFt": 20.3,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-125"
+      ]
+    },
+    {
+      "label": "127",
+      "x0Ft": 434.51,
+      "widthFt": 29.7,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-127"
+      ]
+    },
+    {
+      "label": "129",
+      "x0Ft": 464.21,
+      "widthFt": 20.9,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-129"
+      ]
+    },
+    {
+      "label": "131",
+      "x0Ft": 485.11,
+      "widthFt": 22.32,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block",
+      "entityIds": [
+        "suite-otb-131"
+      ]
+    },
+    {
+      "label": "133",
+      "x0Ft": 507.43,
+      "widthFt": 14.88,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block",
+      "entityIds": [
+        "suite-otb-133"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -2.5 11 22.5" role="img" aria-labelledby="t d" data-units="ft-nominal">
+  <title id="t">On The Boulevard — Johnston St pylon panel schedule (diagram)</title>
+  <desc id="d">Panel schedule diagram: nominal panel sizes and order from the operator register (src/data/pylon.json). Cabinet, header, posts and gaps are unmeasured and not drawn. Not a sign shop drawing.</desc>
+  <style>
+    .cc-face{fill:var(--cc-cre-surface-raised,#FCF9F1);stroke:var(--cc-cre-text,#1E1B16);stroke-width:1.25;vector-effect:non-scaling-stroke}
+    .cc-face--derived{stroke-dasharray:4 3}
+    .cc-grade{stroke:var(--cc-cre-text,#1E1B16);stroke-width:2;vector-effect:non-scaling-stroke}
+    .cc-dim{stroke:var(--cc-cre-text-muted,#5C554A);stroke-width:1;vector-effect:non-scaling-stroke;fill:none}
+    .cc-label{fill:var(--cc-cre-text,#1E1B16);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
+    .cc-muted{fill:var(--cc-cre-text-muted,#5C554A);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
+    .cc-frame{fill:none;stroke:var(--cc-cre-text-muted,#5C554A);stroke-width:1;stroke-dasharray:6 4;vector-effect:non-scaling-stroke}
+  </style>
+  <rect class="cc-frame" x="-0.6" y="-0.6" width="9.2" height="19.2"/>
+  <text class="cc-muted" x="4" y="-1.2" font-size="0.5" text-anchor="middle">CABINET / HEADER / POSTS — NOT MEASURED</text>
+  <g id="panel-otb-johnston-pylon-p1" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p1" data-panel-key="P1">
+    <title>Panel P1 — nominal 2′ × 8′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="0.12" width="7.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="0.75" font-size="0.42">P1</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p2" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p2" data-panel-key="P2">
+    <title>Panel P2 — nominal 4′ × 8′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="2.12" width="7.76" height="3.76"/>
+    <text class="cc-muted" x="0.35" y="2.75" font-size="0.42">P2</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p3" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p3" data-panel-key="P3">
+    <title>Panel P3 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="6.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="6.75" font-size="0.42">P3</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p4" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p4" data-panel-key="P4">
+    <title>Panel P4 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="4.12" y="6.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="4.35" y="6.75" font-size="0.42">P4</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p5" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p5" data-panel-key="P5">
+    <title>Panel P5 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="8.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="8.75" font-size="0.42">P5</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p6" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p6" data-panel-key="P6">
+    <title>Panel P6 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="4.12" y="8.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="4.35" y="8.75" font-size="0.42">P6</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p7" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p7" data-panel-key="P7">
+    <title>Panel P7 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="10.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="10.75" font-size="0.42">P7</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p8" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p8" data-panel-key="P8">
+    <title>Panel P8 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="4.12" y="10.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="4.35" y="10.75" font-size="0.42">P8</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p9" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p9" data-panel-key="P9">
+    <title>Panel P9 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="12.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="12.75" font-size="0.42">P9</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p10" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p10" data-panel-key="P10">
+    <title>Panel P10 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="4.12" y="12.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="4.35" y="12.75" font-size="0.42">P10</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p11" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p11" data-panel-key="P11">
+    <title>Panel P11 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="14.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="14.75" font-size="0.42">P11</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p12" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p12" data-panel-key="P12">
+    <title>Panel P12 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="4.12" y="14.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="4.35" y="14.75" font-size="0.42">P12</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p13" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p13" data-panel-key="P13">
+    <title>Panel P13 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="0.12" y="16.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="0.35" y="16.75" font-size="0.42">P13</text>
+  </g>
+  <g id="panel-otb-johnston-pylon-p14" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p14" data-panel-key="P14">
+    <title>Panel P14 — nominal 2′ × 4′ (operator schedule)</title>
+    <rect class="cc-face" x="4.12" y="16.12" width="3.76" height="1.76"/>
+    <text class="cc-muted" x="4.35" y="16.75" font-size="0.42">P14</text>
+  </g>
+  <text class="cc-muted" x="4" y="19.5" font-size="0.34" text-anchor="middle">P1 2x8 · P2 4x8 · P3–P14 2x4 pairs · nominal feet</text>
+</svg>

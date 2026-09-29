@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "asset",
+  "id": "asset-otb-building-short-front-elevation",
+  "name": "Short building (135–149) — storefront elevation (schematic)",
+  "verification": {
+    "state": "unverified",
+    "notes": "Deterministic derivative of unverified transcribed sources. Bay widths and parapet heights only; openings, awnings, columns and signage are NOT drawn because no measured source for them was used."
+  },
+  "source_refs": [
+    {
+      "source_id": "source-otb-geometry-json",
+      "revision": "worktree-sha256:452a914440a0f9fe",
+      "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+    },
+    {
+      "source_id": "source-otb-heights-json",
+      "revision": "worktree-sha256:8249e0e8c2de8221",
+      "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "scope": "property",
+  "property_id": "on-the-boulevard",
+  "subject_refs": [
+    {
+      "record_type": "building",
+      "id": "building-otb-short"
+    }
+  ],
+  "asset_type": "elevation",
+  "representation": "styled-measured-2d",
+  "location": {
+    "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-short--front--neutral--v1.svg"
+  },
+  "revision": "v1",
+  "sha256": "a6d8fd3c8cf5608c803305c68d0551ee16c07a2db65b71b0e40aab6ccea11be4",
+  "view": "front",
+  "theme": "neutral",
+  "style_reference_source_ids": [
+    "source-cc-cre-master-board"
+  ],
+  "display_label": "DRAFT — schematic massing from plat strings + CAD heights; not field-verified",
+  "geometry": {
+    "geometry_id": "geom-otb-short-frontage-elevation",
+    "mode": "derived-from-measurement",
+    "basis_kind": "verified-property-data",
+    "location": {
+      "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-short--front--neutral--v1.geometry.json"
+    },
+    "revision": "v1",
+    "sha256": "d281f0c6c4cf57e82ce2451d858b53019f1f54460df53f5a5fd7dedfa00b6fe7",
+    "source_refs": [
+      {
+        "source_id": "source-otb-geometry-json",
+        "revision": "worktree-sha256:452a914440a0f9fe",
+        "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+      },
+      {
+        "source_id": "source-otb-heights-json",
+        "revision": "worktree-sha256:8249e0e8c2de8221",
+        "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+      }
+    ],
+    "length_unit": "ft",
+    "coordinate_reference": {
+      "type": "local",
+      "identifier": "otb-short-frontage-elevation",
+      "axis_order": [
+        "x",
+        "z"
+      ],
+      "handedness": "right-handed",
+      "units": "ft",
+      "origin": {
+        "coordinates": [
+          0,
+          0
+        ],
+        "description": "x = 0 at the Marie Antoinette-end wall of the 135 section, increasing toward Arnould (149); z = 0 at the (unstated) datum of the CAD BLD_HT height annotations."
+      }
+    },
+    "verification": {
+      "state": "unverified",
+      "notes": "Frontage closure checked against recorded building length; see geometry-validation.csv. Foot definition and height datum unresolved."
+    },
+    "derivation": {
+      "method": "Cumulative sum of demising-string bay widths (plat order, reversed for viewer-left) × per-unit parapet height; no simplification.",
+      "tool": "tools/cre-library/build-otb-slice.mjs",
+      "tool_version": "1.0.0",
+      "input_source_refs": [
+        {
+          "source_id": "source-otb-geometry-json",
+          "revision": "worktree-sha256:452a914440a0f9fe",
+          "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+        },
+        {
+          "source_id": "source-otb-heights-json",
+          "revision": "worktree-sha256:8249e0e8c2de8221",
+          "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+        }
+      ]
+    }
+  },
+  "render_derivation": {
+    "method": "SVG, 1 user unit = 1 ft, y = −z; theme via --cc-cre-* custom properties with light fallbacks.",
+    "tool": "tools/cre-library/build-otb-slice.mjs",
+    "tool_version": "1.0.0",
+    "input_source_refs": [
+      {
+        "source_id": "source-otb-geometry-json",
+        "revision": "worktree-sha256:452a914440a0f9fe",
+        "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+      },
+      {
+        "source_id": "source-otb-heights-json",
+        "revision": "worktree-sha256:8249e0e8c2de8221",
+        "sha256": "8249e0e8c2de8221ace242697f390e6ed743abeee03f98ebfb4bf35db2df0cde"
+      },
+      {
+        "source_id": "source-cc-cre-master-board",
+        "revision": "worktree-sha256:d86e6ab3ebd943c5",
+        "sha256": "d86e6ab3ebd943c590e0480b45d101d08e128d9081d49b9dc0b3867ad04c353e"
+      }
+    ],
+    "geometry_id": "geom-otb-short-frontage-elevation"
+  }
+}

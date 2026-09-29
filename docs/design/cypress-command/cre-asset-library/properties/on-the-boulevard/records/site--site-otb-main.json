@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "site",
+  "id": "site-otb-main",
+  "name": "On The Boulevard — main tract",
+  "verification": {
+    "state": "draft",
+    "notes": "Site container only; parcel boundary stays in geometry.json (boundary.mainTract). Remote Lot 7 not modelled in this slice."
+  },
+  "source_refs": [
+    {
+      "source_id": "source-otb-geometry-json",
+      "revision": "worktree-sha256:452a914440a0f9fe",
+      "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "property_id": "on-the-boulevard",
+  "building_ids": [
+    "building-otb-long",
+    "building-otb-short"
+  ],
+  "sign_ids": [
+    "sign-otb-johnston-pylon"
+  ]
+}

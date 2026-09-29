@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-cc-cre-master-board",
+  "name": "Cypress Command CRE asset library master board v1.0.0",
+  "location": {
+    "repository_path": "docs/design/cypress-command/cre-asset-library/references/cypress-command-cre-asset-library-master-board.png"
+  },
+  "revision": "worktree-sha256:d86e6ab3ebd943c5",
+  "sha256": "d86e6ab3ebd943c590e0480b45d101d08e128d9081d49b9dc0b3867ad04c353e",
+  "kind": "generated-image",
+  "authority_domains": [
+    "appearance"
+  ],
+  "verification": {
+    "state": "unverified",
+    "notes": "Cypress Command CRE asset library master board v1.0.0 (generated). Styling reference only; its streets, counts, tenants and geometry are fictional."
+  }
+}

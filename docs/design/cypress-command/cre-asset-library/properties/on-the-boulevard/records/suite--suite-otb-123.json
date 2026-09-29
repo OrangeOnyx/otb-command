@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "suite",
+  "id": "suite-otb-123",
+  "name": "Suite 123",
+  "verification": {
+    "state": "draft",
+    "notes": "Physical suite identity adapted from the canonical unit record; frontage from the plat transcription. Not reviewed."
+  },
+  "source_refs": [
+    {
+      "source_id": "source-otb-geometry-json",
+      "revision": "worktree-sha256:452a914440a0f9fe",
+      "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "existing_operations_refs": [
+    {
+      "system": "otb-command",
+      "entity_type": "unit",
+      "entity_id": "123",
+      "record_location": {
+        "repository_path": "src/data/units.json"
+      }
+    }
+  ],
+  "property_id": "on-the-boulevard",
+  "building_id": "building-otb-long",
+  "suite_label": "123",
+  "asset_ids": [
+    "asset-otb-building-long-front-elevation"
+  ],
+  "measurements": [
+    {
+      "name": "storefront-frontage",
+      "value": 41.7,
+      "quantity": "length",
+      "unit": "ft",
+      "basis": "Recorded plat demising string (plat)",
+      "source_refs": [
+        {
+          "source_id": "source-otb-geometry-json",
+          "revision": "worktree-sha256:452a914440a0f9fe",
+          "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8",
+          "locator": "demising.longBuilding.bays[123]"
+        }
+      ],
+      "verification": {
+        "state": "unverified",
+        "notes": "Transcribed; not field-verified."
+      }
+    }
+  ]
+}

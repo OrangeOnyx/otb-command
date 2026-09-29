@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -28.4 220.65 39.4" role="img" aria-labelledby="t d" data-geometry-id="geom-otb-short-frontage-elevation" data-units="ft">
+  <title id="t">On The Boulevard — Short building (135–149) storefront elevation (schematic, draft)</title>
+  <desc id="d">Schematic storefront elevation, 1 unit = 1 ft. Bay widths from recorded-plat demising strings (dashed = derived SF split); heights from CAD BLD_HT annotations. Openings, awnings and signage are not drawn. Draft — not field-verified.</desc>
+  <style>
+    .cc-face{fill:var(--cc-cre-surface-raised,#FCF9F1);stroke:var(--cc-cre-text,#1E1B16);stroke-width:1.25;vector-effect:non-scaling-stroke}
+    .cc-face--derived{stroke-dasharray:4 3}
+    .cc-grade{stroke:var(--cc-cre-text,#1E1B16);stroke-width:2;vector-effect:non-scaling-stroke}
+    .cc-dim{stroke:var(--cc-cre-text-muted,#5C554A);stroke-width:1;vector-effect:non-scaling-stroke;fill:none}
+    .cc-label{fill:var(--cc-cre-text,#1E1B16);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
+    .cc-muted{fill:var(--cc-cre-text-muted,#5C554A);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
+    .cc-frame{fill:none;stroke:var(--cc-cre-text-muted,#5C554A);stroke-width:1;stroke-dasharray:6 4;vector-effect:non-scaling-stroke}
+  </style>
+  <g id="suite-otb-135a" class="cc-entity" data-entity-id="suite-otb-135a" data-entity-ids="suite-otb-135a" data-suite-label="135" data-width-basis="plat">
+    <title>135 section — frontage 37.4 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face" x="0" y="-16.4" width="37.4" height="16.4"/>
+    <text class="cc-label" x="18.7" y="4.2" font-size="2.6" text-anchor="middle">135A</text>
+    <text class="cc-muted" x="18.7" y="7.6" font-size="1.7" text-anchor="middle">37.4′</text>
+  </g>
+  <g id="suite-otb-137" class="cc-entity" data-entity-id="suite-otb-137" data-entity-ids="suite-otb-137" data-suite-label="137" data-width-basis="plat">
+    <title>Suite 137 — frontage 24.3 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face" x="37.4" y="-16.4" width="24.3" height="16.4"/>
+    <text class="cc-label" x="49.55" y="4.2" font-size="2.6" text-anchor="middle">137</text>
+    <text class="cc-muted" x="49.55" y="7.6" font-size="1.7" text-anchor="middle">24.3′</text>
+  </g>
+  <g id="suite-otb-139" class="cc-entity" data-entity-id="suite-otb-139" data-entity-ids="suite-otb-139" data-suite-label="139" data-width-basis="derived">
+    <title>Suite 139 — frontage 23.0875 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face cc-face--derived" x="61.7" y="-16.4" width="23.0875" height="16.4"/>
+    <text class="cc-label" x="73.24" y="4.2" font-size="2.6" text-anchor="middle">139</text>
+    <text class="cc-muted" x="73.24" y="7.6" font-size="1.7" text-anchor="middle">23.0875′</text>
+  </g>
+  <g id="suite-otb-141" class="cc-entity" data-entity-id="suite-otb-141" data-entity-ids="suite-otb-141" data-suite-label="141" data-width-basis="derived">
+    <title>Suite 141 — frontage 23.0875 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face cc-face--derived" x="84.79" y="-16.4" width="23.0875" height="16.4"/>
+    <text class="cc-label" x="96.33" y="4.2" font-size="2.6" text-anchor="middle">141</text>
+    <text class="cc-muted" x="96.33" y="7.6" font-size="1.7" text-anchor="middle">23.0875′</text>
+  </g>
+  <g id="suite-otb-143" class="cc-entity" data-entity-id="suite-otb-143" data-entity-ids="suite-otb-143" data-suite-label="143" data-width-basis="derived">
+    <title>Suite 143 — frontage 23.0875 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face cc-face--derived" x="107.88" y="-16.4" width="23.0875" height="16.4"/>
+    <text class="cc-label" x="119.42" y="4.2" font-size="2.6" text-anchor="middle">143</text>
+    <text class="cc-muted" x="119.42" y="7.6" font-size="1.7" text-anchor="middle">23.0875′</text>
+  </g>
+  <g id="suite-otb-145" class="cc-entity" data-entity-id="suite-otb-145" data-entity-ids="suite-otb-145" data-suite-label="145" data-width-basis="derived">
+    <title>Suite 145 — frontage 23.0875 ft (derived SF split) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face cc-face--derived" x="130.96" y="-16.4" width="23.0875" height="16.4"/>
+    <text class="cc-label" x="142.5" y="4.2" font-size="2.6" text-anchor="middle">145</text>
+    <text class="cc-muted" x="142.5" y="7.6" font-size="1.7" text-anchor="middle">23.0875′</text>
+  </g>
+  <g id="suite-otb-149" class="cc-entity" data-entity-id="suite-otb-149" data-entity-ids="suite-otb-149" data-suite-label="149" data-width-basis="plat">
+    <title>Suite 149 — frontage 54.6 ft (plat) · parapet 16.4 ft (CAD BLD_HT)</title>
+    <rect class="cc-face" x="154.05" y="-16.4" width="54.6" height="16.4"/>
+    <text class="cc-label" x="181.35" y="4.2" font-size="2.6" text-anchor="middle">149</text>
+    <text class="cc-muted" x="181.35" y="7.6" font-size="1.7" text-anchor="middle">54.6′</text>
+  </g>
+  <line class="cc-grade" x1="-6" y1="0" x2="214.65" y2="0"/>
+  <g class="cc-dimstring">
+    <path class="cc-dim" d="M0 -21.4 H208.65 M0 -22.9 V-19.9 M208.65 -22.9 V-19.9"/>
+    <text class="cc-muted" x="104.33" y="-22.9" font-size="2" text-anchor="middle">Σ bays 208.65′ · recorded length 208.65′</text>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-units-public",
+  "name": "Public tenancy fields (from Tier-1 rent roll)",
+  "location": {
+    "repository_path": "src/data/units.public.json"
+  },
+  "revision": "worktree-sha256:23e9093009e144a6",
+  "sha256": "23e9093009e144a6aaacae4d446ca0ccd33544a21284ed00140eed47d6c7238d",
+  "kind": "operational-record",
+  "authority_domains": [
+    "operations"
+  ],
+  "verification": {
+    "state": "unverified",
+    "notes": "Public-safe tenancy fields derived from the Tier-1 rent roll (units.json). Lease SF is a lease definition, not a measured footprint."
+  }
+}

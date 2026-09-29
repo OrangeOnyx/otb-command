@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "property",
+  "id": "on-the-boulevard",
+  "name": "On The Boulevard",
+  "verification": {
+    "state": "draft",
+    "notes": "First Cypress Command Platform reference property. Identity only; property facts stay in the repo's canonical records."
+  },
+  "source_refs": [
+    {
+      "source_id": "source-otb-geometry-json",
+      "revision": "worktree-sha256:452a914440a0f9fe",
+      "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "existing_operations_refs": [
+    {
+      "system": "otb-command",
+      "entity_type": "property",
+      "entity_id": "otb"
+    }
+  ],
+  "slug": "on-the-boulevard",
+  "site_ids": [
+    "site-otb-main"
+  ],
+  "building_ids": [
+    "building-otb-long",
+    "building-otb-short"
+  ],
+  "asset_ids": [
+    "asset-otb-building-long-front-elevation",
+    "asset-otb-building-short-front-elevation",
+    "asset-otb-johnston-pylon-panel-diagram"
+  ]
+}

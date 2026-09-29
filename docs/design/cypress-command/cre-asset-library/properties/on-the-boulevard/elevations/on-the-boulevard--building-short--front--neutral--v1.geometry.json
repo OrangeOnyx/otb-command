@@ -1,0 +1,92 @@
+{
+  "geometry_id": "geom-otb-short-frontage-elevation",
+  "units": "ft",
+  "frame": "otb-short-frontage-elevation",
+  "axis_order": [
+    "x",
+    "z"
+  ],
+  "building_id": "building-otb-short",
+  "recorded_length_ft": 208.65,
+  "depth_ft": 84.49,
+  "bays": [
+    {
+      "label": "135",
+      "x0Ft": 0,
+      "widthFt": 37.4,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: POLITICS 3,160 section — mid-depth split into 135A (breezeway square) / 135B (Patricia square)",
+      "entityIds": [
+        "suite-otb-135a"
+      ],
+      "note": "37.4 ft plat section split at mid-depth: the field face belongs to 135A; 135B is the Patricia half. Both suites front Marie Antoinette."
+    },
+    {
+      "label": "137",
+      "x0Ft": 37.4,
+      "widthFt": 24.3,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-137"
+      ]
+    },
+    {
+      "label": "139",
+      "x0Ft": 61.7,
+      "widthFt": 23.0875,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived: (208.65 − 54.6 − 24.3 − 37.4) / 4",
+      "entityIds": [
+        "suite-otb-139"
+      ]
+    },
+    {
+      "label": "141",
+      "x0Ft": 84.79,
+      "widthFt": 23.0875,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived",
+      "entityIds": [
+        "suite-otb-141"
+      ]
+    },
+    {
+      "label": "143",
+      "x0Ft": 107.88,
+      "widthFt": 23.0875,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived",
+      "entityIds": [
+        "suite-otb-143"
+      ]
+    },
+    {
+      "label": "145",
+      "x0Ft": 130.96,
+      "widthFt": 23.0875,
+      "heightFt": 16.4,
+      "widthBasis": "derived",
+      "basisNote": "derived",
+      "entityIds": [
+        "suite-otb-145"
+      ]
+    },
+    {
+      "label": "149",
+      "x0Ft": 154.05,
+      "widthFt": 54.6,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat",
+      "entityIds": [
+        "suite-otb-149"
+      ]
+    }
+  ]
+}

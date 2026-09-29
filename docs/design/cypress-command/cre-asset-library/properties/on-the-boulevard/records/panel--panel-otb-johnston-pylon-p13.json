@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "panel",
+  "id": "panel-otb-johnston-pylon-p13",
+  "name": "Pylon panel P13",
+  "verification": {
+    "state": "draft",
+    "notes": "Panel slot identity from the operator register. Nominal size 2x4 ft (operator schedule, unmeasured). Content/tenant binding stays in pylon.json."
+  },
+  "source_refs": [
+    {
+      "source_id": "source-otb-pylon-register",
+      "revision": "worktree-sha256:9f89be5da714cd77",
+      "sha256": "9f89be5da714cd77210f201d63cb2b9bb3f50c0c9196dda87a546f65fd679421",
+      "locator": "panels[P13]"
+    }
+  ],
+  "release": {
+    "state": "candidate"
+  },
+  "existing_operations_refs": [
+    {
+      "system": "otb-command",
+      "entity_type": "pylon-panel",
+      "entity_id": "P13",
+      "record_location": {
+        "repository_path": "src/data/pylon.json"
+      }
+    }
+  ],
+  "property_id": "on-the-boulevard",
+  "sign_id": "sign-otb-johnston-pylon",
+  "panel_key": "P13",
+  "asset_ids": [
+    "asset-otb-johnston-pylon-panel-diagram"
+  ]
+}

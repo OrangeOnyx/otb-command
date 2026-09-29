@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-pylon-register",
+  "name": "Pylon panel register (operator)",
+  "location": {
+    "repository_path": "src/data/pylon.json"
+  },
+  "revision": "worktree-sha256:9f89be5da714cd77",
+  "sha256": "9f89be5da714cd77210f201d63cb2b9bb3f50c0c9196dda87a546f65fd679421",
+  "kind": "operational-record",
+  "authority_domains": [
+    "operations"
+  ],
+  "verification": {
+    "state": "unverified",
+    "notes": "Operator panel register (D-19b, 2026-09-17): panel order, nominal sizes and panel→unit assignment. Not a measured sign drawing — cabinet, posts, gaps and installed panel dimensions are unmeasured."
+  }
+}

@@ -1,0 +1,402 @@
+{
+  "_comment": "Operations overlay for the preview. Bound to geometry by entity ID only; regenerate from the sources, never edit here.",
+  "sources": [
+    {
+      "source_id": "source-otb-units-public",
+      "revision": "worktree-sha256:23e9093009e144a6",
+      "sha256": "23e9093009e144a6aaacae4d446ca0ccd33544a21284ed00140eed47d6c7238d"
+    },
+    {
+      "source_id": "source-otb-pylon-register",
+      "revision": "worktree-sha256:9f89be5da714cd77",
+      "sha256": "9f89be5da714cd77210f201d63cb2b9bb3f50c0c9196dda87a546f65fd679421"
+    }
+  ],
+  "suites": [
+    {
+      "entity_id": "suite-otb-101",
+      "suite_label": "101",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "The Pink Paisley",
+      "use": "Women's fashion boutique",
+      "lease_sf": 6877
+    },
+    {
+      "entity_id": "suite-otb-103",
+      "suite_label": "103",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "The Pink Paisley",
+      "use": "Women's fashion boutique",
+      "lease_sf": 3054
+    },
+    {
+      "entity_id": "suite-otb-105",
+      "suite_label": "105",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Painted Bayou",
+      "use": "Louisiana art & specialty gifts",
+      "lease_sf": 2222
+    },
+    {
+      "entity_id": "suite-otb-107",
+      "suite_label": "107",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Great American Cookies / Hershey's",
+      "use": "Dessert café / QSR",
+      "lease_sf": 1743
+    },
+    {
+      "entity_id": "suite-otb-109",
+      "suite_label": "109",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "JC Kate Boutique",
+      "use": "Women's apparel & accessories",
+      "lease_sf": 2546
+    },
+    {
+      "entity_id": "suite-otb-111",
+      "suite_label": "111",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "BERNINA Lafayette (Lola Pink)",
+      "use": "Sewing & fabric specialty retail",
+      "lease_sf": 1690
+    },
+    {
+      "entity_id": "suite-otb-113",
+      "suite_label": "113",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Graze Acadiana",
+      "use": "Charcuterie café & catering",
+      "lease_sf": 2606
+    },
+    {
+      "entity_id": "suite-otb-115",
+      "suite_label": "115",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "The Clothing Loft Exchange",
+      "use": "Fashion consignment",
+      "lease_sf": 2170
+    },
+    {
+      "entity_id": "suite-otb-117",
+      "suite_label": "117",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "The Clothing Loft Exchange",
+      "use": "Fashion consignment",
+      "lease_sf": 2170
+    },
+    {
+      "entity_id": "suite-otb-117-5",
+      "suite_label": "117.5",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Victoria Nails",
+      "use": "Nail salon",
+      "lease_sf": 1769
+    },
+    {
+      "entity_id": "suite-otb-119",
+      "suite_label": "119",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "OUPAC Financial",
+      "use": "Consumer lending & tax prep",
+      "lease_sf": 1982
+    },
+    {
+      "entity_id": "suite-otb-119-5",
+      "suite_label": "119.5",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Cat Clinic of Lafayette",
+      "use": "Feline veterinary clinic",
+      "lease_sf": 1974
+    },
+    {
+      "entity_id": "suite-otb-121",
+      "suite_label": "121",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Magnolia Salon",
+      "use": "Full-service hair salon",
+      "lease_sf": 1709
+    },
+    {
+      "entity_id": "suite-otb-123",
+      "suite_label": "123",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "The Tux Shoppe",
+      "use": "Tuxedo rental & formalwear",
+      "lease_sf": 3563
+    },
+    {
+      "entity_id": "suite-otb-125",
+      "suite_label": "125",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Jordan Amanda by Shoetique",
+      "use": "Boutique fashion & footwear",
+      "lease_sf": 1735
+    },
+    {
+      "entity_id": "suite-otb-127",
+      "suite_label": "127",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Jordan Amanda by Shoetique",
+      "use": "Boutique fashion & footwear",
+      "lease_sf": 2538
+    },
+    {
+      "entity_id": "suite-otb-129",
+      "suite_label": "129",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "HotWorx",
+      "use": "Infrared fitness studio",
+      "lease_sf": 1789
+    },
+    {
+      "entity_id": "suite-otb-131",
+      "suite_label": "131",
+      "lease_state": "vacant",
+      "source_status": "vacant",
+      "display_name": "VACANT",
+      "use": "Inline small-shop retail / service",
+      "lease_sf": 1907
+    },
+    {
+      "entity_id": "suite-otb-133",
+      "suite_label": "133",
+      "lease_state": "vacant",
+      "source_status": "vacant",
+      "display_name": "VACANT",
+      "use": "Smallest inline bay",
+      "lease_sf": 1272
+    },
+    {
+      "entity_id": "suite-otb-135a",
+      "suite_label": "135A",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "C. Wolf Barber Shop",
+      "use": "Men's barber shop",
+      "lease_sf": 1580
+    },
+    {
+      "entity_id": "suite-otb-135b",
+      "suite_label": "135B",
+      "lease_state": "owner-occupied",
+      "source_status": "owner",
+      "display_name": "Belle Realty of Lafayette",
+      "use": "Management office",
+      "lease_sf": 1580
+    },
+    {
+      "entity_id": "suite-otb-137",
+      "suite_label": "137",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Greek Expressions",
+      "use": "Greek life apparel & custom merch",
+      "lease_sf": 2053
+    },
+    {
+      "entity_id": "suite-otb-139",
+      "suite_label": "139",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Fast Pass Tag & Title",
+      "use": "Vehicle registration & title services",
+      "lease_sf": 1917
+    },
+    {
+      "entity_id": "suite-otb-141",
+      "suite_label": "141",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Fast Pass Tag & Title",
+      "use": "Vehicle registration & title services",
+      "lease_sf": 1917
+    },
+    {
+      "entity_id": "suite-otb-143",
+      "suite_label": "143",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "1st Franklin Financial",
+      "use": "Consumer finance branch",
+      "lease_sf": 1917
+    },
+    {
+      "entity_id": "suite-otb-145",
+      "suite_label": "145",
+      "lease_state": "occupied",
+      "source_status": "active",
+      "display_name": "Upstream Rehabilitation",
+      "use": "Physical therapy / outpatient rehab",
+      "lease_sf": 1917
+    },
+    {
+      "entity_id": "suite-otb-149",
+      "suite_label": "149",
+      "lease_state": "occupied",
+      "source_status": "anchor",
+      "display_name": "Jason's Deli",
+      "use": "Full-service restaurant & catering",
+      "lease_sf": 4613
+    }
+  ],
+  "panels": [
+    {
+      "entity_id": "panel-otb-johnston-pylon-p1",
+      "panel_key": "P1",
+      "suite_entity_id": "suite-otb-107",
+      "content_mode": "tenant",
+      "display_name": "Great American Cookies / Hershey's",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p2",
+      "panel_key": "P2",
+      "suite_entity_id": "suite-otb-149",
+      "content_mode": "tenant",
+      "display_name": "Jason's Deli",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p3",
+      "panel_key": "P3",
+      "suite_entity_id": "suite-otb-123",
+      "content_mode": "tenant",
+      "display_name": "The Tux Shoppe",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p4",
+      "panel_key": "P4",
+      "suite_entity_id": "suite-otb-139",
+      "content_mode": "tenant",
+      "display_name": "Fast Pass Tag & Title",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p5",
+      "panel_key": "P5",
+      "suite_entity_id": "suite-otb-109",
+      "content_mode": "tenant",
+      "display_name": "JC Kate Boutique",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p6",
+      "panel_key": "P6",
+      "suite_entity_id": "suite-otb-125",
+      "content_mode": "tenant",
+      "display_name": "Jordan Amanda by Shoetique",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p7",
+      "panel_key": "P7",
+      "suite_entity_id": "suite-otb-115",
+      "content_mode": "tenant",
+      "display_name": "The Clothing Loft Exchange",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p8",
+      "panel_key": "P8",
+      "suite_entity_id": "suite-otb-129",
+      "content_mode": "tenant",
+      "display_name": "HotWorx",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p9",
+      "panel_key": "P9",
+      "suite_entity_id": "suite-otb-119-5",
+      "content_mode": "tenant",
+      "display_name": "Cat Clinic of Lafayette",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p10",
+      "panel_key": "P10",
+      "suite_entity_id": "suite-otb-111",
+      "content_mode": "tenant",
+      "display_name": "BERNINA Lafayette (Lola Pink)",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p11",
+      "panel_key": "P11",
+      "suite_entity_id": "suite-otb-143",
+      "content_mode": "tenant",
+      "display_name": "1st Franklin Financial",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p12",
+      "panel_key": "P12",
+      "suite_entity_id": "suite-otb-117-5",
+      "content_mode": "tenant",
+      "display_name": "Victoria Nails",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p13",
+      "panel_key": "P13",
+      "suite_entity_id": "suite-otb-145",
+      "content_mode": "tenant",
+      "display_name": "Upstream Rehabilitation",
+      "installed_reads": "Boulevard Nutrition",
+      "state": "conflict",
+      "note": "Installed panel reads \"Boulevard Nutrition\"; tenant of record for 145 is \"Upstream Rehabilitation\"."
+    },
+    {
+      "entity_id": "panel-otb-johnston-pylon-p14",
+      "panel_key": "P14",
+      "suite_entity_id": "suite-otb-119",
+      "content_mode": "tenant",
+      "display_name": "OUPAC Financial",
+      "installed_reads": null,
+      "state": "tenant",
+      "note": null
+    }
+  ]
+}
