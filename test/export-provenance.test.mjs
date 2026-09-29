@@ -58,4 +58,6 @@ test('NOFIN export omits all private unit fields and the source-review section',
   assert.equal(Object.hasOwn(data.derived, 'monthlyIncome'), false);
   assert.doesNotMatch(md, /Lease review and source authority|Owner-reported current payment|mail\.google\.com|\$6,150\.38|\$3,035\.25/);
   assert.doesNotMatch(JSON.stringify(data), /leaseEvidence|ownerReportedPayment|plannedRenewal|rentPhases|mail\.google\.com/);
+  assert.doesNotMatch(JSON.stringify(data), /\$\s?\d|riskNote|renewalOptions|recoveryTerms|appraisal2019/, 'buyer JSON carries no dollar figures, risk notes or lease economics');
+  assert.doesNotMatch(md, /\$\s?\d/, 'buyer overview carries no dollar figures');
 });

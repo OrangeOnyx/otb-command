@@ -11,6 +11,7 @@ import { dirname, join } from "node:path";
 import { unitFill, STATUS_META, CAT_META } from "../src/lib/colors.js";
 import { esc, sumKnownAmounts } from "../src/lib/format.js";
 import { splitUnits } from "./split-seed.mjs";
+import { PAGES } from "../src/lib/pages.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const rd = f => JSON.parse(readFileSync(join(root, "src/data", f), "utf8"));
@@ -391,7 +392,13 @@ const jsonObj = {
   buildingHeightsFt: heights,
   twinFrame: { horizontal: "EPSG:6344 NAD83(2011) / UTM 15N (m)", vertical: "NAVD88 GEOID12B (m)", localOrigin: { E: 591000, N: 3341600, H: 0 }, lidar: { source: elevation.source, release: elevation.release, aoi: elevation.aoi }, readme: "docs/twin-pack-README.md" }
 };
-writeFileSync(join(out, NOFIN ? "OTB-Property-Data-NoFinancials.json" : "OTB-Property-Data.json"), JSON.stringify(jsonObj, null, 1));
+/* Buyer JSON: free-text notes (directory, documents, easements) carry loan,
+   insurance and easement dollar figures — withhold every $ amount and drop the
+   internal riskNote commentary wholesale rather than chasing fields one by one. */
+const buyerScrub = o => Array.isArray(o) ? o.map(buyerScrub)
+  : o && typeof o === "object" ? Object.fromEntries(Object.entries(o).filter(([k]) => k !== "riskNote").map(([k, v]) => [k, buyerScrub(v)]))
+  : typeof o === "string" ? o.replace(/\$\s?[\d,]+(\.\d+)?\s?(K|M|MM|million)?(\/(mo|yr|SF))?/gi, "[withheld]") : o;
+writeFileSync(join(out, NOFIN ? "OTB-Property-Data-NoFinancials.json" : "OTB-Property-Data.json"), JSON.stringify(NOFIN ? buyerScrub(jsonObj) : jsonObj, null, 1));
 
 /* ── platform capabilities brief (full export only) ─────────────
    The dossier is the PROPERTY fact pack; this is the TOOL fact pack — paste
@@ -400,16 +407,17 @@ if (!NOFIN) {
   const platform = `# Cypress Command Platform — Platform Brief
 *What the tool is and can do, for LLM grounding. Generated ${GENERATED.toLocaleDateString("en-US")}; companion to OTB-Property-Dossier.md (the property fact pack).*
 
-**Live:** https://otb-command.vercel.app (magic-link auth) · Stack: Vite vanilla-JS app + Supabase (auth/Postgres-RLS/storage) + Vercel serverless functions + Claude (Anthropic) + ElevenLabs voice. Repo is authoritative; every export is one-way and disposable.
+**Live:** https://otb-command.vercel.app · orangeoceanatlas.com (magic-link auth); deployment address otb.cypresscommand.com · Stack: Vite vanilla-JS app + Supabase (auth/Postgres-RLS/storage/realtime) + Vercel serverless functions + Claude (Anthropic) + ElevenLabs voice + Twilio phone line. Repo is authoritative; every export is one-way and disposable.
 
-## Sheets (drawing-set nav)
-- **D-1 Dashboard** — KPIs + live action queue.
-- **A-1 Site Plan** — plat-exact native SVG (recorded-plat trace), photo/floor-plan overlay layers, unit click → shared drawer.
-- **A-2 Spatial** — four lenses: SVG isometric (real CAD parapet heights) · Three.js 3D twin · satellite (MapLibre + Esri imagery, footprints computationally FITTED to the imagery) · 🎥 Reality — a drone-captured 3D Gaussian splat, similarity-transform-aligned to plan space so UNITS ARE CLICKABLE inside the photoreal capture. All lenses click → drawer; selection syncs everywhere.
-- **R-1 Rent Roll** (11 cols, PSF breakdown) · **P-1 Financial** (income composition + NOI worksheet w/ owner OpEx inputs) · **C-1 Compliance** (per-unit tracked fields) · **T-1 Critical Dates** · **W-1 Action Board** (kanban auto-seeded from live data) · **K-1 Directory** (contacts + document register w/ Drive links + uploads).
-- **S-1 Owner Safe** — RLS-sealed vault (owner+operator only), 10-min signed URLs, full access audit log.
-- **AI-1 Agent Desk** — three Claude agents on one chat surface (below).
-- **V-1 Vendor Portal** — per-vendor sealed document folders (below).
+## Sheets (drawing-set nav — ${PAGES.length} sheets)
+- **D-0 Portfolio** — cross-property rollup (roster, ledger, maintenance); opens any property. **D-1 Dashboard** — KPIs + live action queue (the home sheet).
+- **A-1 Site Plan** — plat-exact native SVG (recorded-plat trace), access/easement layers, the site register (270+ assets with permanent IDs: columns, benches, cans, meters, shut-offs, ADA stalls, trees, RTUs, panels, time clocks, every striped stall), unit click → shared drawer.
+- **A-2 Spatial** — capture lenses: SVG isometric (CAD parapet heights) · Three.js 3D · satellite (footprints fitted to imagery) · Google photorealistic 3D tiles · 🎥 Reality (drone Gaussian splat aligned to plan space — units clickable inside the capture). Selection syncs everywhere.
+- **A-3 Asset Twin** — docked 3D twin with permanent asset records, dated research evidence, interior floors, water-meter/shut-off mapping. **A-4 Site Evidence** — Google Earth views, aerials, plans, field photos. **A-5 Exterior & Site** — exterior/site model. The twin is registered to the USGS 3DEP LiDAR (EPSG:6344 + NAVD88) and exports as a Blender/Unreal pack and a Google Earth KMZ.
+- **R-1 Rent Roll** (PSF breakdown) · **R-2 Rent Worksheet** (monthly prior vs expected rent, change reason, owner write-in) · **P-1 Financial** (income composition + NOI worksheet) · **C-1 Compliance** · **T-1 Critical Dates** · **W-1 Action Board** (kanban auto-seeded from live data) · **K-1 Directory** (contacts + document register).
+- **B-1 Marketing** — availability flyers, center overview, tenant co-marketing cards, photo library; feeds the public /tour microsite. **L-1 Comm Log** — cross-channel correspondence incl. every phone call's summary, transcript and recording. **N-1 Matters** — long-running property affairs with meeting notes and attachments. **O-1 Operations** — SOP library with due/overdue tracking.
+- **M-1 Maintenance** — work orders: tenants submit for their unit, operator assigns V-1 vendors. **S-1 Owner Safe** — RLS-sealed vault (owner+operator), 10-min signed URLs, access audit log.
+- **AI-1 Agent Desk** — three Claude agents on one chat surface (below). **V-1 Vendor Portal** — per-vendor sealed document folders + assigned work orders.
 
 ## AI agent desk (AI-1)
 - **🏛 Concierge** — grounded property Q&A. **🤝 Leasing Agent** — inventory, prospect screening (exclusive-use watch, liquor line, parking variance), and a LEASE ASSEMBLER tool: collects terms conversationally, then generates a tenant-facing Lease Proposal (OTB navy/white brand, DRAFT–subject-to-legal-review stamp, real SF/NNN/HVAC figures) or the internal Owner Lease Summary form; packages upload to sealed storage with 7-day signed links + one-click email compose. **🔧 Property Manager** — operations, HVAC splits/covenants, vendors, tenant-notice drafting.
@@ -417,7 +425,8 @@ if (!NOFIN) {
 - **Voice**: replies speak via ElevenLabs (server proxy), auto-speak toggle, mic input.
 
 ## Roles & security
-- Roles: **operator** (full control) · **owner** (read-oriented: operator-picked sheets, Safe read, vendor-roster read) · **vendor** (one-sheet shell: ONLY their own document folder — read + upload; sealed from everything else at the database layer) · **pending** (holding pen — no access).
+- Roles: **operator** (full control) · **owner** (read-oriented: operator-picked sheets, Safe read, vendor-roster read) · **vendor** (one-sheet shell: ONLY V-1 — their own document folder and work orders; sealed from everything else at the database layer) · **tenant** (one-sheet shell: ONLY M-1, scoped to their own unit) · **pending** (holding pen — no access).
+- **Phone line:** Twilio ConversationRelay + ElevenLabs voice answers leasing and maintenance calls; every call lands in L-1 with summary, transcript and recording.
 - New sign-ins resolve: SOT Vendor-List email → vendor · operator's allowlist → owner · else pending. Operator manages access in-app (sidebar → Sign-in access…).
 - Private storage buckets (assets/documents/safe/vendor-docs) with row-level-security policies; Safe + vendor access is audit-logged.
 
