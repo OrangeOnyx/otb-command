@@ -1,0 +1,73 @@
+# OTB Lease Matrix — 2026-09-23
+
+**Goal:** Close C-1 "Executed lease On file" for every current On The Boulevard tenant.  
+**Sources searched:** Gmail `adam@belle-realty.com` + `ap@belle-realty.com`; Drive `belle-realty` + `adamabdalla`; prior sweep `/workspace/tenant-compliance/2026-09-22/` (reused, no duplicate downloads).  
+**PC (Belle-Lenovo-Legion `9c0e596c-1642-44fc-9f1d-102cc19e7353`):** **NOT searchable in this executor** — `ListMachines` / `CopyToBox` / `CopyFromBox` / Shell-with-`machineId` are not exposed to this subagent (same limitation as 2026-09-22). Report to parent if PC must be swept.  
+**No emails sent.**
+
+## Legend
+| Status | Meaning |
+|---|---|
+| **HAVE EXECUTED** | Fully executed base lease (and/or current renewal) located; local PDF and/or Drive pointer |
+| **HAVE ADDENDUM ONLY** | Addendum/guaranty/consent on file but base lease still incomplete |
+| **PARTIAL** | Related package incomplete (e.g. lessor-only signature; draft only) |
+| **MISSING** | No executed OTB lease found after this hunt |
+
+## Matrix
+
+| Tenant | Suite | Status | Term dates (if readable) | File path or Drive ID | Source | Notes |
+|---|---|---|---|---|---|---|
+| The Pink Paisley | 101+103 | HAVE EXECUTED | See Drive PDF | `101-103-pink-paisley/lease/DRIVE_POINTER_Executed_Lease_101-103.md` — fileId `1XD6FoLd_zGB7vTeNLSQ4X3R0stvijBYJ` (~13MB) | Drive (prior + verified) | Current renewal: verify term in PDF if marking C-1 |
+| Painted Bayou | 105 | HAVE EXECUTED | See Drive PDF | `105-painted-bayou/lease/DRIVE_POINTER_Painted_Bayou_Executed.md` | Drive (prior) | |
+| Great American Cookies / Hershey's | 107 | HAVE EXECUTED | Lafayette Cookies & Cream lease; fully executed 10-3-22 pack also on Drive | **LOCAL** `107-great-american/lease/107_Executed_Great_American_Lease.pdf` (fileId `1Bc7PFlfee-4-MhpTzepro4xxYlO6gp1y`, 2.6MB) | Drive | **Was MISSING — FOUND** |
+| JC Kate Boutique | 109 | HAVE EXECUTED | Original Initial Term Aug 1 2020 → Sep 30 2025 (First Addendum); 2026 ownership change docs executed | **LOCAL** `109-jc-kate/lease/109_Executed_JC_Kate_Lease_Agreement.pdf` + `109_JC_Kate_Lease_and_Addendum.pdf` + First Addendum + Guaranty + Resolution + 2026 Consent/Replacement Guaranty | Drive | **Was PARTIAL — base lease FOUND.** Confirm post-9/30/2025 renewal/holdover status for C-1 |
+| BERNINA / Lola Pink | 111 | HAVE EXECUTED | See Drive PDF | `111-lola-pink/lease/DRIVE_POINTER_Executed_Lola_Pink_Lease.md` fileId `1Qz-ZaZWljsQ8_jvVcQRJGDr0j6Y0-yO2` (~9.2MB) + addendum pointer | Drive | **Was PARTIAL — executed base FOUND.** Ignore Bella Grace |
+| Graze Acadiana | 113 | HAVE EXECUTED | See Drive PDF | `113-graze-acadiana/lease/DRIVE_POINTER_Executed_Graze_Lease.md` fileId `112gnVfDQThRfEUMFfj9AhL5b10txKIwI` (~13.2MB) | Drive | **Was PARTIAL — executed base FOUND** |
+| The Clothing Loft Exchange | 115+117 | HAVE EXECUTED | Aug 1 2023 → Sep 30 2026 | `115-117-clothing-loft/lease/DRIVE_POINTER_Executed_Clothing_Loft_Lease.md` fileId `10rOZcxwBoXeEjtYmQKnh9MLN7H3SAQOS` (5.3MB) | Drive | **Was MISSING — FOUND** (filename Clothing Loft / Loft) |
+| Victoria Nails | 117.5 | HAVE EXECUTED | See Drive PDF | `117.5-victoria-nails/lease/DRIVE_POINTER_Executed_Victoria_Nails_Lease.md` fileId `1WqtUPku1hnqIe4igI1tNcGnN0aPEyb7U` (~8.1MB) + Third Addendum pointer | Drive | **Was PARTIAL — executed base FOUND** |
+| OUPAC Financial | 119 | HAVE EXECUTED | Initial Term Mar 1 2021 → Feb 29 2024 (local draft/summary); full executed+guaranty on Drive | **LOCAL** `119-oupac/lease/OUPAC_119_LEASE.pdf` + Drive pointer fileId `1Fy5SlGyy_8yzvIN1F1ySq4RNkOokF0qC` (~8.5MB) | Drive / prior | Verify current renewal if term rolled |
+| Cat Clinic of Lafayette | 119.5 | HAVE EXECUTED | Base + addenda; 2023 extension to **2026-02-28** (manifest flags NOT linked in SOT) | **LOCAL** `119.5-cat-clinic/lease/119.5_Executed_Lease_and_Addendums.pdf` + `119.5_Cat_Clinic_Extension.pdf` (fileId `1U8xqeYS6cI1hCl6ZG62VVGSn0oc-JExz`) | Drive | **Was PARTIAL — base+extension FOUND.** Extension ends 2026-02-28 — confirm 2026+ renewal |
+| Magnolia Salon | 121 | PARTIAL / MISSING executed | Draft proposes Jul 1 2025 → Dec 31 2031 | **LOCAL draft** `121-magnolia-salon/lease/121_Draft_Magnolia_Salon_Lease_Agreement.pdf`; NOTE_DRAFT_ONLY | Drive + Gmail | **Still no OTB executed.** Gmail "Magnolia Old Lease" = South College prior location only. Greg 8/28/26 asked for signed copy |
+| The Tux Shoppe | 123 | HAVE EXECUTED | See Drive PDF | `123-tux-shoppe/lease/DRIVE_POINTER_Executed_Tux_Shoppe_Lease.md` fileId `1yxuzFP3yhLzl2C3bNaOADe9gNEAqdCqz` (~6.7MB) | Drive | **Was MISSING — FOUND** |
+| Jordan Amanda / Shoetique | 125+127 | HAVE EXECUTED | See Drive PDF | `125-127-jordan-amanda/lease/DRIVE_POINTER_Shoetique_Executed.md` (~6MB Final Shoetique Lease Executed By Lessor) | Drive (prior) | Verify current renewal if needed |
+| HotWorx (Lexi Investments) | 129 | HAVE EXECUTED | See Drive PDF | `129-hotworx/lease/DRIVE_POINTER_Hotworx_Executed.md` fileId `1Q-KIo-bYh-1HdcSeRUrbGftNBVtVz-xJ` (~8MB) | Drive (prior) | |
+| C. Wolf Barber Shop | 135A | HAVE EXECUTED | See Drive PDF | `135a-c-wolf-barber/lease/DRIVE_POINTER_Executed_C_Wolf_Lease.md` fileId `1MrqekG2eGh5P8XEXPaiMTO5AHtcVPoEx` (~7.3MB) | Drive | **Was MISSING — FOUND** |
+| Greek Expressions | 137 | HAVE EXECUTED | See Drive PDF | `137-greek-expressions/lease/DRIVE_POINTER_Executed_Greek_Expressions_Lease.md` fileId `19my6mh0pdn367rrkQ-P3PRfR1BOPMRqT` (~10.9MB) | Drive | **Was MISSING — FOUND.** Ignore Esthi packs |
+| Fast Pass Tag & Title | 139+141 | HAVE EXECUTED | 2026 renewal executed (landlord signed ~9/12/26) | **LOCAL** `139-141-fast-pass/lease/FastPass_Lafayette_2026_EXECUTED.pdf` (+ drafts) | Gmail (prior) | Current renewal on file |
+| 1st Franklin Financial | 143 | HAVE EXECUTED | Base from 2015-09-01; 2nd Amend term to **2031-01-31** (manifest) | `143-1st-franklin/lease/DRIVE_POINTER_Executed_1st_Franklin.md` fileId `1PpQelwiXBnhTZ6vc9IWLWfHi2GCw6uiY` (~10.4MB) | Drive | **Was MISSING — FOUND** |
+| Upstream Rehabilitation | 145 | PARTIAL | Initial Term = 60 months from commencement (commencement formula in lease) | **LOCAL lessor-only** `145-upstream/lease/Clean_Unit_145_Lease_Executed_by_Lessor.pdf`; pointer to full Upstream packet `1EWrQ4w42grQjK6eqQ2XEsUjVUcbKyT99` | Drive | **Lessor signed; tenant countersign MISSING** per master manifest. Ignore Blvd Nutrition |
+| Jason's Deli | 149 | HAVE EXECUTED | Lease + addenda 1–5 (Fifth Addendum Feb 2026) | `149-jasons-deli/lease/DRIVE_POINTER_Jasons_Executed.md` fileId `1v7jlhG2EYjJXvOxvcW1zoaDB35aoQD_B` (~19MB) | Drive (prior) | |
+
+## Gap-list outcome (priority targets)
+
+| Prior status | Suite / Tenant | This sweep |
+|---|---|---|
+| MISSING | 107 Great American | **HAVE EXECUTED** (downloaded) |
+| MISSING | 115+117 Clothing Loft | **HAVE EXECUTED** (Drive pointer 5.3MB) |
+| MISSING | 121 Magnolia | **Still MISSING executed** (draft only; South College old lease ≠ OTB) |
+| MISSING | 123 Tux Shoppe | **HAVE EXECUTED** (Drive pointer) |
+| MISSING | 135A C. Wolf | **HAVE EXECUTED** (Drive pointer) |
+| MISSING | 137 Greek Expressions | **HAVE EXECUTED** (Drive pointer; not Esthi) |
+| MISSING | 143 1st Franklin | **HAVE EXECUTED** (Drive pointer) |
+| MISSING | 145 Upstream | **PARTIAL** — lessor-only executed (downloaded); need tenant countersign |
+| PARTIAL | 109 JC Kate | **HAVE EXECUTED** base (+2026 guaranty/consent package) |
+| PARTIAL | 111 Lola Pink | **HAVE EXECUTED** base (Drive pointer) |
+| PARTIAL | 113 Graze | **HAVE EXECUTED** base (Drive pointer) |
+| PARTIAL | 117.5 Victoria Nails | **HAVE EXECUTED** base (Drive pointer) |
+| PARTIAL | 119.5 Cat Clinic | **HAVE EXECUTED** base + extension (downloaded); confirm post-2/28/2026 |
+
+## Truly still open for Adam
+
+1. **121 Magnolia Salon** — get fully executed OTB lease (draft exists; tenant previously asked for signed copy 2026-08-28).
+2. **145 Upstream** — obtain tenant countersignature on Clean Unit 145 lease (lessor already signed).
+3. **Term hygiene (optional for C-1):** confirm current renewal for JC Kate (Initial Term ended 2025-09-30), Cat Clinic (extension ended 2026-02-28), OUPAC (initial ended 2024-02-29), and any others that may be on holdover.
+4. **PC sweep** — not done here; if paper/scan originals live only on Belle-Lenovo Downloads/Documents, parent must run with machine tools enabled.
+
+## Shared artifacts
+- `_shared/OTB_Master_Lease_Package_manifest.csv` — suite-by-suite executed/draft status from Aug 2026 master package build (G:\ paths).
+- Master package PDF copies also live under Drive parent folder of scanned leases (`1dF3Lv5QfEkD8YG25AUUYJ68Ui4j2dryh` and `1zcS180WV8cdV8fIiRLpru0S6q4i4NOOn`).
+
+## Actions NOT taken
+- No emails sent.
+- No Blvd Nutrition / Esthi / Bella Grace files treated as current.
+- Huge PDFs (>5MB) left as Drive pointers with file IDs.

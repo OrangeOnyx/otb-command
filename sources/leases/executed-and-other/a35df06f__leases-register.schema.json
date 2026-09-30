@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cypress-command.example/schemas/leases-register.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "lease.schema.json"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "records"
+  ],
+  "additionalProperties": false
+}

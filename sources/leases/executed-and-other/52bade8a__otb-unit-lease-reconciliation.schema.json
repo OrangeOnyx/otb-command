@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orangeocean.local/schemas/otb-unit-lease-reconciliation.schema.json",
+  "title": "OTB Unit and Lease Reconciliation Import",
+  "type": "object",
+  "required": ["schema_version", "template_id", "status", "current_authority_gate", "authority_designation", "records"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "template_id": {"const": "otb-unit-lease-reconciliation-blank"},
+    "status": {"const": "blank_template_no_current_data"},
+    "current_authority_gate": {
+      "type": "object",
+      "required": ["resolved", "required_before_import"],
+      "properties": {"resolved": {"const": false}, "required_before_import": {"const": true}},
+      "additionalProperties": false
+    },
+    "authority_designation": {"type": "object"},
+    "records": {"type": "array", "maxItems": 0}
+  },
+  "additionalProperties": false
+}

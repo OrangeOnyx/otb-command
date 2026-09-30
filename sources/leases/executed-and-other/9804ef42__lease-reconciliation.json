@@ -1,0 +1,38 @@
+{
+  "command_id": "OTB-CMD-001",
+  "command_name": "Reconcile OTB lease evidence",
+  "description": "Read a specified lease group and its executed-instrument chain; produce a proposed register revision and explicit exceptions.",
+  "trigger": "Human requests a named lease group or evidence batch review.",
+  "scope": "Local or specifically connected OTB evidence; working artifacts only. Contractual interpretations and conflicting sources remain reviewable.",
+  "goal_id": null,
+  "required_inputs": [
+    "lease_group_id",
+    "source-authority register",
+    "original instruments with stable locator and hash",
+    "current lease register",
+    "open exception queue"
+  ],
+  "expected_outputs": [
+    "field-level claim ledger",
+    "proposed state change",
+    "retained alternatives for conflicts",
+    "execution receipt"
+  ],
+  "authority_required": "A1",
+  "default_executor": "Executor with document reading and structured-output capability",
+  "workflow_id": "WFL-OTB-LEASE-RECONCILE",
+  "success_conditions": [
+    "All requested sources inventoried or access failures recorded",
+    "Every material assertion carries source and scope",
+    "No unresolved conflict is silently resolved",
+    "Receipt records only actual actions"
+  ],
+  "failure_conditions": [
+    "Required original instrument inaccessible",
+    "Material source conflict unresolved",
+    "Authority missing for requested live change"
+  ],
+  "receipt_required": true,
+  "implementation_status": "SPECIFICATION_ONLY"
+}
+

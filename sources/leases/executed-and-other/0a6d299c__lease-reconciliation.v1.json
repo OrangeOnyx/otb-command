@@ -1,0 +1,123 @@
+{
+  "workflow_id": "WFL-OTB-LEASE-RECONCILE",
+  "name": "OTB lease evidence reconciliation",
+  "version": "1.0-proposed",
+  "trigger": "OTB-CMD-001",
+  "inputs": [
+    "Named lease group",
+    "Source register",
+    "Current state and exceptions"
+  ],
+  "steps": [
+    {
+      "step_id": "01",
+      "description": "Inventory files without changing originals; record paths, hashes, document date and access status.",
+      "executor_capability": "read_files",
+      "outputs": [
+        "source candidates"
+      ]
+    },
+    {
+      "step_id": "02",
+      "description": "Inspect relevant original pages, signature pages, amendments and incorporation/supersession language; preserve limits. OCR is an aid, not signature verification.",
+      "executor_capability": "inspect_documents",
+      "outputs": [
+        "located claims",
+        "evidence gaps"
+      ]
+    },
+    {
+      "step_id": "03",
+      "description": "Match entity, suite aliases, physical units and lease group; retain uncertainty as an exception.",
+      "executor_capability": "structured_reasoning",
+      "outputs": [
+        "mapping proposal"
+      ]
+    },
+    {
+      "step_id": "04",
+      "description": "Compare contractual and operating fields separately as of an explicit date; retain every material competing value. A future rent step is not current billing.",
+      "executor_capability": "compare_claims",
+      "outputs": [
+        "proposed state",
+        "conflict alternatives"
+      ]
+    },
+    {
+      "step_id": "05",
+      "description": "Apply evidence and authority gates. Generate reviewable working files; stop before external communication or authoritative record changes unless separately permitted.",
+      "executor_capability": "gate_check",
+      "outputs": [
+        "draft artifacts",
+        "blocked actions"
+      ]
+    },
+    {
+      "step_id": "06",
+      "description": "Validate draft registers and write an actual execution receipt with source locators, completed and failed work, exceptions and next action.",
+      "executor_capability": "validate_and_receipt",
+      "outputs": [
+        "validation report",
+        "execution receipt"
+      ]
+    }
+  ],
+  "decision_nodes": [
+    "Does the document establish the current term, or only a historic term?",
+    "Is rent contractual, adopted billing, or a future escalation?",
+    "Is a conflicting value materially unresolved?",
+    "Does the requested change have scoped active authority?"
+  ],
+  "required_evidence": [
+    "Every material field has a claim object",
+    "Current contractual term requires applicable governing instrument chain",
+    "Owner-adopted billing identifies the approval source and as-of date"
+  ],
+  "authority_rules": [
+    "A1 creates proposed working outputs only",
+    "A-level policy definitions are not grants",
+    "A3 requires explicit communication policy",
+    "A4/A5 require human approval by default or a narrow written rule"
+  ],
+  "approval_gates": [
+    {
+      "gate_id": "GATE-OTB-EVIDENCE",
+      "type": "EVIDENCE GATE",
+      "trigger_condition": "Current governing chain or material factual conflict remains unresolved",
+      "required_action": "Retain alternatives and create/update an exception; do not declare the contractual fact verified.",
+      "approver": null,
+      "expiration": null,
+      "fallback": "Return proposed state with explicit unresolved scope",
+      "override_rule": null,
+      "receipt_requirement": true
+    },
+    {
+      "gate_id": "GATE-OTB-AUTHORITY",
+      "type": "AUTHORITY GATE",
+      "trigger_condition": "Requested action exceeds scoped active authority",
+      "required_action": "Stop that action and prepare the reviewable artifact.",
+      "approver": "Authorized owner or documented delegate",
+      "expiration": null,
+      "fallback": "Return blocked action and required approval",
+      "override_rule": null,
+      "receipt_requirement": true
+    }
+  ],
+  "exceptions": [
+    "Missing or unreadable instrument",
+    "Signature/counterpart incomplete",
+    "Conflicting expiration or economics",
+    "Suite alias or entity mismatch",
+    "Required authority absent"
+  ],
+  "outputs": [
+    "Draft lease register",
+    "Exception changes",
+    "Actual execution receipt"
+  ],
+  "receipt_schema": "schemas/receipt.schema.json",
+  "owner": null,
+  "last_reviewed": null,
+  "implementation_status": "SPECIFICATION_ONLY"
+}
+

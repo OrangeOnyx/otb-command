@@ -1,0 +1,1105 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-25",
+  "authority": "candidate_only",
+  "results": [
+    {
+      "suite": "101-103",
+      "leaseId": "lease_101_103_the_pink_paisley_llc",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "101-103.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_101_103_the_pink_paisley_llc",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_the_pink_paisley_llc",
+        "lease_suite_group": "101-103",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "9931",
+        "base_psf": "15.35",
+        "cam_psf": "2.1",
+        "tax_psf": "0.9",
+        "insurance_psf": "1.0",
+        "total_psf": "19.35",
+        "monthly_rent_stated": "16008.9",
+        "monthly_rent_formula_check": "16013.74",
+        "monthly_variance": "-4.84",
+        "expiration_date": "2027-02-28",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "Unit 103 SF increased by 3 SF per owner correction. Monthly stated rent retained from signed rent roll until/if billing is re-rated to corrected SF.",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "The Pink Paisley, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "16,008.90",
+          "pageHint": 4
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "19.35",
+          "pageHint": 4
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "February 28, 2027",
+          "pageHint": 2
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "105",
+      "leaseId": "lease_105_painted_bayou",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "105.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_105_painted_bayou",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_painted_bayou",
+        "lease_suite_group": "105",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "2222",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.85",
+        "insurance_psf": "1.0",
+        "total_psf": "17.45",
+        "monthly_rent_stated": "3231.16",
+        "monthly_rent_formula_check": "3231.16",
+        "monthly_variance": "0.0",
+        "expiration_date": "2029-03-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Painted Bayou, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "2,222",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "3,231.16",
+          "pageHint": 3
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 3,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "107",
+      "leaseId": "lease_107_great_american",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "107.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_107_great_american",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_great_american",
+        "lease_suite_group": "107",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1743",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.9",
+        "insurance_psf": "1.0",
+        "total_psf": "17.5",
+        "monthly_rent_stated": "2541.88",
+        "monthly_rent_formula_check": "2541.88",
+        "monthly_variance": "0.0",
+        "expiration_date": "2027-03-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Lafayette Cookies and Cream, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1743",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "2,541.88",
+          "pageHint": 4
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "17.50",
+          "pageHint": 4
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "109",
+      "leaseId": "lease_109_jc_kate",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "109.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_109_jc_kate",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_jc_kate",
+        "lease_suite_group": "109",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "2546",
+        "base_psf": "14.0",
+        "cam_psf": "2.1",
+        "tax_psf": "0.85",
+        "insurance_psf": "1.0",
+        "total_psf": "17.95",
+        "monthly_rent_stated": "3808.39",
+        "monthly_rent_formula_check": "3808.39",
+        "monthly_variance": "0.0",
+        "expiration_date": "2028-09-30",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "J.C. Kate Boutique LLC",
+          "pageHint": 5
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "2,546",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "3,808.39",
+          "pageHint": 3
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 3,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "111",
+      "leaseId": "lease_111_lola_pink",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "111.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_111_lola_pink",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_lola_pink",
+        "lease_suite_group": "111",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1690",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "18.5",
+        "monthly_rent_stated": "2605.42",
+        "monthly_rent_formula_check": "2605.42",
+        "monthly_variance": "0.0",
+        "expiration_date": "2027-01-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Lola Pink Fabrics, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1690",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "2,605.42",
+          "pageHint": 3
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "18.50",
+          "pageHint": 3
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "January 31, 2027",
+          "pageHint": 2
+        }
+      },
+      "evidenceMatchCount": 5,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "113",
+      "leaseId": "lease_113_graze_acadiana",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "113.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_113_graze_acadiana",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_graze_acadiana",
+        "lease_suite_group": "113",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "2606",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "18.5",
+        "monthly_rent_stated": "4017.58",
+        "monthly_rent_formula_check": "4017.58",
+        "monthly_variance": "0.0",
+        "expiration_date": "2027-06-30",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Graze Acadiana, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "2,606",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 2,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "115-117",
+      "leaseId": "lease_115_117_the_clothing_loft",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "115-117.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_115_117_the_clothing_loft",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_the_clothing_loft",
+        "lease_suite_group": "115-117",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "4340",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.85",
+        "total_psf": "18.4",
+        "monthly_rent_stated": "6654.67",
+        "monthly_rent_formula_check": "6654.67",
+        "monthly_variance": "0.0",
+        "expiration_date": "2026-09-30",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "The Clothing Loft Exchange, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "4340",
+          "pageHint": 1
+        },
+        "monthlyRent": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "September 30, 2026",
+          "pageHint": 1
+        }
+      },
+      "evidenceMatchCount": 3,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "117 1/2",
+      "leaseId": "lease_117_half_victoria_nails",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "117.5.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_117_half_victoria_nails",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_victoria_nails",
+        "lease_suite_group": "117 1/2",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1769",
+        "base_psf": "14.0",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "19.0",
+        "monthly_rent_stated": "2800.92",
+        "monthly_rent_formula_check": "2800.92",
+        "monthly_variance": "0.0",
+        "expiration_date": "2029-02-28",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Victoria Nails, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1769",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "2,800.92",
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "19.00",
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "February 28, 2029",
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 5,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "119",
+      "leaseId": "lease_119_oupac",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "119.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_119_oupac",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_oupac",
+        "lease_suite_group": "119",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1982",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.9",
+        "insurance_psf": "1.0",
+        "total_psf": "17.5",
+        "monthly_rent_stated": "2890.42",
+        "monthly_rent_formula_check": "2890.42",
+        "monthly_variance": "0.0",
+        "expiration_date": "2027-02-28",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Daco Investments, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1982",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "2,890.42",
+          "pageHint": 4
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 3,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "119 1/2",
+      "leaseId": "lease_119_half_cat_clinic_of_lafayette",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "119.5.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_119_half_cat_clinic_of_lafayette",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_cat_clinic_of_lafayette",
+        "lease_suite_group": "119 1/2",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1974",
+        "base_psf": "14.0",
+        "cam_psf": "2.1",
+        "tax_psf": "1.2",
+        "insurance_psf": "1.15",
+        "total_psf": "18.45",
+        "monthly_rent_stated": "3035.03",
+        "monthly_rent_formula_check": "3035.02",
+        "monthly_variance": "0.01",
+        "expiration_date": "2029-02-28",
+        "source_authority": "User-attached signed rent roll plus direct owner corrections; DoorLoop dates ignored.",
+        "notes": "Owner confirmed Cat Clinic renewed for 3 years. Expiration updated from 2/28/2026 to 2/28/2029.",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Cat Clinic of Lafayette, L.L.C.",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1974",
+          "pageHint": 1
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "3,035.03",
+          "pageHint": 1
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "18.45",
+          "pageHint": 1
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "121",
+      "leaseId": "lease_121_magnolia_salon",
+      "sotStatus": "ACTIVE",
+      "sourceFile": null,
+      "documentStatus": "draft_only",
+      "note": "Full text returned inline; filename and content identify a draft.",
+      "sot": {
+        "lease_id": "lease_121_magnolia_salon",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_magnolia_salon",
+        "lease_suite_group": "121",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1709",
+        "base_psf": "12.75",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "17.75",
+        "monthly_rent_stated": "2527.9",
+        "monthly_rent_formula_check": "2527.9",
+        "monthly_variance": "0.0",
+        "expiration_date": "2031-12-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {},
+      "disposition": "block_activation_pending_executed_copy"
+    },
+    {
+      "suite": "123",
+      "leaseId": "lease_123_the_tux_shoppe",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "123.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_123_the_tux_shoppe",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_the_tux_shoppe",
+        "lease_suite_group": "123",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "3563",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "18.5",
+        "monthly_rent_stated": "5492.96",
+        "monthly_rent_formula_check": "5492.96",
+        "monthly_variance": "0.0",
+        "expiration_date": "2029-12-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "The Tux Shoppe, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "3563",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "5,492.96",
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "18.50",
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "125-127",
+      "leaseId": "lease_125_127_jordan_amanda",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "125-127.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_125_127_jordan_amanda",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_jordan_amanda",
+        "lease_suite_group": "125-127",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "4273",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "18.5",
+        "monthly_rent_stated": "6587.54",
+        "monthly_rent_formula_check": "6587.54",
+        "monthly_variance": "0.0",
+        "expiration_date": "2028-04-30",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Jordan Amanda, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "4273",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "6,587.54",
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "18.50",
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "129",
+      "leaseId": "lease_129_hotworx",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "129.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_129_hotworx",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_hotworx",
+        "lease_suite_group": "129",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1789",
+        "base_psf": "14.0",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "19.0",
+        "monthly_rent_stated": "2832.58",
+        "monthly_rent_formula_check": "2832.58",
+        "monthly_variance": "0.0",
+        "expiration_date": "2029-08-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Lexi Investments 2, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1789",
+          "pageHint": 1
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "2,832.58",
+          "pageHint": 3
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "19.00",
+          "pageHint": 3
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "August 31, 2029",
+          "pageHint": 2
+        }
+      },
+      "evidenceMatchCount": 5,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "135A",
+      "leaseId": "lease_135a_c_wolf_barber_shop",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "135A.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_135a_c_wolf_barber_shop",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_c_wolf_barber_shop",
+        "lease_suite_group": "135A",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1580",
+        "base_psf": "10.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "15.5",
+        "monthly_rent_stated": "2040.83",
+        "monthly_rent_formula_check": "2040.83",
+        "monthly_variance": "0.0",
+        "expiration_date": "2031-05-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "C. Wolf Barber & Shop LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1580",
+          "pageHint": 2
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "2,040.83",
+          "pageHint": 2
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "15.50",
+          "pageHint": 2
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "May 31, 2031",
+          "pageHint": 2
+        }
+      },
+      "evidenceMatchCount": 5,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "135B",
+      "leaseId": "lease_135b_belle_realty",
+      "sotStatus": "OWNER_OCCUPIED",
+      "sourceFile": null,
+      "documentStatus": "no_lease_expected",
+      "note": "Owner-occupied suite; no tenant lease package expected.",
+      "sot": {
+        "lease_id": "lease_135b_belle_realty",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_belle_realty",
+        "lease_suite_group": "135B",
+        "lease_status": "OWNER_OCCUPIED",
+        "rentable_sf": "1580",
+        "base_psf": "0.0",
+        "cam_psf": "0.0",
+        "tax_psf": "0.0",
+        "insurance_psf": "0.0",
+        "total_psf": "0.0",
+        "monthly_rent_stated": "0.0",
+        "monthly_rent_formula_check": "0.0",
+        "monthly_variance": "0.0",
+        "expiration_date": "",
+        "source_authority": "User-attached signed rent roll plus direct owner corrections; DoorLoop dates ignored.",
+        "notes": "Owner confirmed Unit 135B is owner occupied. Zero rent/NA expiration intentionally retained.",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {},
+      "disposition": "not_applicable"
+    },
+    {
+      "suite": "137",
+      "leaseId": "lease_137_greek_expressions",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "137.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_137_greek_expressions",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_greek_expressions",
+        "lease_suite_group": "137",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "2053",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "18.5",
+        "monthly_rent_stated": "3165.04",
+        "monthly_rent_formula_check": "3165.04",
+        "monthly_variance": "0.0",
+        "expiration_date": "2030-10-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Parish Lettering, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "2053",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 2,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "139/141",
+      "leaseId": "lease_139_141_fast_pass_tag_and_title",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "139-141.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_139_141_fast_pass_tag_and_title",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_fast_pass_tag_and_title",
+        "lease_suite_group": "139/141",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "3834",
+        "base_psf": "13.5",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "18.5",
+        "monthly_rent_stated": "5910.75",
+        "monthly_rent_formula_check": "5910.75",
+        "monthly_variance": "0.0",
+        "expiration_date": "2027-04-30",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Fastpass Tag & Title, LLC",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "3834",
+          "pageHint": 2
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "5,910.75",
+          "pageHint": 4
+        },
+        "totalPsf": {
+          "found": true,
+          "matchedText": "18.50",
+          "pageHint": 4
+        },
+        "expirationDate": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    },
+    {
+      "suite": "143",
+      "leaseId": "lease_143_1st_franklin_financial",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "143.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_143_1st_franklin_financial",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_1st_franklin_financial",
+        "lease_suite_group": "143",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1917",
+        "base_psf": "16.0",
+        "cam_psf": "2.1",
+        "tax_psf": "0.85",
+        "insurance_psf": "1.0",
+        "total_psf": "19.95",
+        "monthly_rent_stated": "3187.01",
+        "monthly_rent_formula_check": "3187.01",
+        "monthly_variance": "0.0",
+        "expiration_date": "2031-01-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "1st Franklin Financial Corporation",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "1,917",
+          "pageHint": null
+        },
+        "monthlyRent": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "January 31, 2031",
+          "pageHint": 6
+        }
+      },
+      "evidenceMatchCount": 3,
+      "disposition": "manual_clause_review_required"
+    },
+    {
+      "suite": "145",
+      "leaseId": "lease_145_upstream_rehabilitation",
+      "sotStatus": "ACTIVE",
+      "sourceFile": null,
+      "documentStatus": "execution_review",
+      "note": "Full text returned inline; filename says executed by lessor, so lessee execution must be verified.",
+      "sot": {
+        "lease_id": "lease_145_upstream_rehabilitation",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_upstream_rehabilitation",
+        "lease_suite_group": "145",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "1917",
+        "base_psf": "14.95",
+        "cam_psf": "2.1",
+        "tax_psf": "0.95",
+        "insurance_psf": "1.95",
+        "total_psf": "19.95",
+        "monthly_rent_stated": "3187.01",
+        "monthly_rent_formula_check": "3187.01",
+        "monthly_variance": "0.0",
+        "expiration_date": "2031-01-31",
+        "source_authority": "User-attached signed rent roll plus direct owner corrections; DoorLoop dates ignored.",
+        "notes": "Owner confirmed Upstream signed lease and $19.95/SF. Base PSF inferred to $14.95 assuming CAM $2.10, tax $0.95, insurance $1.95 remain unchanged.",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {},
+      "disposition": "manual_signature_review"
+    },
+    {
+      "suite": "149",
+      "leaseId": "lease_149_jason_s_deli",
+      "sotStatus": "ACTIVE",
+      "sourceFile": "149.md",
+      "documentStatus": "extracted_candidate",
+      "sot": {
+        "lease_id": "lease_149_jason_s_deli",
+        "property_id": "prop_on_the_boulevard",
+        "tenant_id": "tenant_jason_s_deli",
+        "lease_suite_group": "149",
+        "lease_status": "ACTIVE",
+        "rentable_sf": "4613",
+        "base_psf": "16.25",
+        "cam_psf": "2.1",
+        "tax_psf": "0.85",
+        "insurance_psf": "1.0",
+        "total_psf": "20.2",
+        "monthly_rent_stated": "7765.22",
+        "monthly_rent_formula_check": "7765.22",
+        "monthly_variance": "0.0",
+        "expiration_date": "2030-10-31",
+        "source_authority": "User-attached rent roll from review of actual signed leases; Doorloop dates ignored per user.",
+        "notes": "",
+        "doorloop_dates_ignored": "True"
+      },
+      "evidence": {
+        "tenantName": {
+          "found": true,
+          "matchedText": "Deli Management, Inc.",
+          "pageHint": null
+        },
+        "rentableSf": {
+          "found": true,
+          "matchedText": "4613",
+          "pageHint": 4
+        },
+        "monthlyRent": {
+          "found": true,
+          "matchedText": "7,765.22",
+          "pageHint": 1
+        },
+        "totalPsf": {
+          "found": false,
+          "matchedText": null,
+          "pageHint": null
+        },
+        "expirationDate": {
+          "found": true,
+          "matchedText": "October 31, 2030",
+          "pageHint": 4
+        }
+      },
+      "evidenceMatchCount": 4,
+      "disposition": "ready_for_operator_review"
+    }
+  ]
+}

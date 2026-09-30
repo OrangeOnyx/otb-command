@@ -1,0 +1,313 @@
+{
+  "version": 1,
+  "sourceFolder": "G:\\My Drive\\00 OTB\\Belle Leases",
+  "generatedAt": "2026-07-25",
+  "authority": "intake_only_not_approved_lease_terms",
+  "fileCount": 23,
+  "exactDuplicateGroups": [],
+  "nearDuplicateCandidates": [
+    [
+      "129 Executed Hotworx Lease Agreement.pdf",
+      "Hotworx-Belle-Executed Lease Agreement.pdf"
+    ]
+  ],
+  "files": [
+    {
+      "fileName": "00 Example Master Lease Package.pdf",
+      "sha256": "BE1B73B77077B783B7566D8EE1E56E3CBD87F575C6D4B4FEB69F4310F0084060",
+      "bytes": 6016847,
+      "pages": 78,
+      "sampledPages": 6,
+      "sampledTextCharacters": 10004,
+      "textCoverage": "good",
+      "suiteFromFilename": null,
+      "status": "reference_only",
+      "flags": [
+        "filename explicitly says example"
+      ]
+    },
+    {
+      "fileName": "101-103 Executed PP Lease Agreement.pdf",
+      "sha256": "F4C912A26F5D20D0D2668BCEC76CF54F7A5B5491A95911D2849DC163E8C05539",
+      "bytes": 13095184,
+      "pages": 29,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "101-103",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "105 Executed Painted Bayou Lease Agreement.pdf",
+      "sha256": "23615154FFFAC649F0BE590DEA0A3C7F9871C706ED8D0A0901F126B67BA01E54",
+      "bytes": 605408,
+      "pages": 31,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "105",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "107 Executed Great American Lease.pdf",
+      "sha256": "1C5953F05FA9EC263705CD56249D529248660B17BC6D558EB8813FD0D6C8AA30",
+      "bytes": 2642947,
+      "pages": 30,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "107",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "109 JC Kate Lease and Addendum.pdf",
+      "sha256": "823641AF6A76248B4B47A1715B620D05C5E68B8EACD0D793F1C2079929F09718",
+      "bytes": 2060392,
+      "pages": 41,
+      "sampledPages": 6,
+      "sampledTextCharacters": 1862,
+      "textCoverage": "good",
+      "suiteFromFilename": "109",
+      "status": "status_review_required",
+      "flags": [
+        "filename does not explicitly say executed",
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "111 Executed Lola Pink Lease Agreement.pdf",
+      "sha256": "6DE0D2B400049050ECE83C4E2B9AE72D6584912F76EC056F24A26E1C38F79CB4",
+      "bytes": 9241843,
+      "pages": 34,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "111",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "113 Executed Graze Lease Agreement.pdf",
+      "sha256": "4F69A8F40A6955F3842027AADB13F89A52700CC90BBB12399273C330DB42ED36",
+      "bytes": 13169261,
+      "pages": 34,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "113",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "115-117 Executed Clothing Loft Lease Agreement.pdf",
+      "sha256": "A4002418D597F2458D6DF295F5AF2F92E3D392EC002F07086AA4ACEAE2DA0266",
+      "bytes": 5328924,
+      "pages": 31,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "115-117",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "117.5 Executed Victoria Nails Lease Agreement.pdf",
+      "sha256": "1426E6289B67CCB51626892F08AB298239A388EC80CD1FCF90AEB067699D8B58",
+      "bytes": 8058624,
+      "pages": 40,
+      "sampledPages": 6,
+      "sampledTextCharacters": 8085,
+      "textCoverage": "good",
+      "suiteFromFilename": "117.5",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "119 Executed Oupac Lease & Guaranty.pdf",
+      "sha256": "29939318AEFE9F9470E8D0775EC87171050E21AC9E51269C60DB4086DD53C3D9",
+      "bytes": 8556446,
+      "pages": 33,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "119",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "119.5 Executed Lease and Addendums.pdf",
+      "sha256": "BACE63725E611EAFB44113648DB40568231910886359153A54A530C2EB8E2DE7",
+      "bytes": 3666531,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "119.5",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "121 Draft Magnolia Salon Lease Agreement.pdf",
+      "sha256": "8A65F6E5746709A35BF1A5F40CBC6A74BA3A1D819DC6C7F64D0007687709606C",
+      "bytes": 634471,
+      "pages": 27,
+      "sampledPages": 6,
+      "sampledTextCharacters": 11112,
+      "textCoverage": "good",
+      "suiteFromFilename": "121",
+      "status": "draft",
+      "flags": [
+        "filename explicitly says draft"
+      ]
+    },
+    {
+      "fileName": "123 Executed Lease - The Tux Shoppe.pdf",
+      "sha256": "C43430BB72102EB7623CA74F47A7924B47511AF5B06DC37EE71D04634B476A36",
+      "bytes": 6740319,
+      "pages": 30,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "123",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "125-127 Executed Jordan Amanda Lease.pdf",
+      "sha256": "A761178DAAF33BB35A920008F124EADD03E983C95C7F3D96A697CE4A6040F382",
+      "bytes": 6215219,
+      "pages": 28,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "125-127",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "129 Executed Hotworx Lease Agreement.pdf",
+      "sha256": "B22FCCC3377B0B3CF0BAFA788A9E7C491BDFE1FA8FD7B841E0E6407D26195576",
+      "bytes": 8026233,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "129",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "135A Executed C Wolf Lease Agreement.pdf",
+      "sha256": "F66DA28FCF03C42D256307AC9CB34EA4E1A8027450957109C98AA302034D6939",
+      "bytes": 7280774,
+      "pages": 28,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "135A",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "137 Executed Greek Expressions Lease.pdf",
+      "sha256": "B05FD209B03C1F5ECC6136E71F46C63D8DDA979B230D0F993F87BFCC36B72140",
+      "bytes": 10907855,
+      "pages": 43,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "137",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "139-141 Fast Pass Tag & Title.pdf",
+      "sha256": "1E1ACCEB3D41CC2CF6DABDF95BD17E0D7A166591BDD7C480A0D92D2817232BB1",
+      "bytes": 5934880,
+      "pages": 33,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "139-141",
+      "status": "status_review_required",
+      "flags": [
+        "filename does not explicitly say executed"
+      ]
+    },
+    {
+      "fileName": "143 Executed 1st Franklin.pdf",
+      "sha256": "A697CE8B84B647734C16AEB3FC5BCF30392F67912E99F23AAB50264ADE9C2802",
+      "bytes": 10420027,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 2810,
+      "textCoverage": "good",
+      "suiteFromFilename": "143",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "149 Executed Jasons Lease and Addendums.pdf",
+      "sha256": "4AD6CDBA7B599C1ACEFC1B8BC469B5B6D479927252F71991614AC5073386CCB1",
+      "bytes": 19264691,
+      "pages": 81,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "149",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "Belle Package_compressed (1).pdf",
+      "sha256": "9018A1CF973E4C5F91CE24503F85A2E032A0910ECEC6DAFA364E39CB9B91F825",
+      "bytes": 5867611,
+      "pages": 74,
+      "sampledPages": 6,
+      "sampledTextCharacters": 10004,
+      "textCoverage": "good",
+      "suiteFromFilename": null,
+      "status": "supporting_package",
+      "flags": [
+        "aggregate package requires document-level separation"
+      ]
+    },
+    {
+      "fileName": "Clean Unit 145 Lease Executed by Lessor.pdf",
+      "sha256": "56D32C237B68CE1D6F9DF99C4697A01FCD13A9F0B7CCEB0A0605E463D52A6472",
+      "bytes": 1147839,
+      "pages": 29,
+      "sampledPages": 6,
+      "sampledTextCharacters": 12851,
+      "textCoverage": "good",
+      "suiteFromFilename": "145",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "Hotworx-Belle-Executed Lease Agreement.pdf",
+      "sha256": "7A0E42AAD764B79AE4C5A15E5EE8D963664129E16299DB37DE88CCA806760018",
+      "bytes": 8026224,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 0,
+      "textCoverage": "scanned_or_unreadable",
+      "suiteFromFilename": "129",
+      "status": "executed_candidate",
+      "flags": []
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "sourceFolder": "C:\\Users\\adam\\Codex Projects\\otb-command-consolidation\\output\\pdf\\lease-ocr",
+  "generatedAt": "2026-07-25",
+  "authority": "intake_only_not_approved_lease_terms",
+  "fileCount": 16,
+  "exactDuplicateGroups": [],
+  "nearDuplicateCandidates": [
+    [
+      "129 Executed Hotworx Lease Agreement - OCR.pdf",
+      "Hotworx-Belle-Executed Lease Agreement - OCR.pdf"
+    ]
+  ],
+  "files": [
+    {
+      "fileName": "101-103 Executed PP Lease Agreement - OCR.pdf",
+      "sha256": "6E3BBE05B157F11093B8A474406CF65B9CFFF0E259E5CCA44D1320837CA1A9A7",
+      "bytes": 10979029,
+      "pages": 29,
+      "sampledPages": 6,
+      "sampledTextCharacters": 11821,
+      "textCoverage": "good",
+      "suiteFromFilename": "101-103",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material",
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "105 Executed Painted Bayou Lease Agreement - OCR.pdf",
+      "sha256": "73D495A46FB5B8AA3CFFE639C986574FD812E2A6660FEEACCE1390C7A032F18F",
+      "bytes": 771145,
+      "pages": 31,
+      "sampledPages": 6,
+      "sampledTextCharacters": 10222,
+      "textCoverage": "good",
+      "suiteFromFilename": "105",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material",
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "107 Executed Great American Lease - OCR.pdf",
+      "sha256": "9598E567659301F4C4D8D95A892C60C39FA63276E05C90DA2866B23AFD02D9EA",
+      "bytes": 12384130,
+      "pages": 30,
+      "sampledPages": 6,
+      "sampledTextCharacters": 11251,
+      "textCoverage": "good",
+      "suiteFromFilename": "107",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "111 Executed Lola Pink Lease Agreement - OCR.pdf",
+      "sha256": "2EFED1FDED47A77C3187D20C8ADFD804AE13151CBA3006EE53EBE43653DB907C",
+      "bytes": 9521759,
+      "pages": 34,
+      "sampledPages": 6,
+      "sampledTextCharacters": 8515,
+      "textCoverage": "good",
+      "suiteFromFilename": "111",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "113 Executed Graze Lease Agreement - OCR.pdf",
+      "sha256": "4E0E657E02788ADC8624FF26AA4C970D698F81992BE1F8F61EFEDFDF331383EA",
+      "bytes": 10615582,
+      "pages": 34,
+      "sampledPages": 6,
+      "sampledTextCharacters": 7421,
+      "textCoverage": "good",
+      "suiteFromFilename": "113",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "115-117 Executed Clothing Loft Lease Agreement - OCR.pdf",
+      "sha256": "2C998FA850C343694797A8B317F1FA10456A70E52402A066C6198E9B61464EE5",
+      "bytes": 5657253,
+      "pages": 31,
+      "sampledPages": 6,
+      "sampledTextCharacters": 9970,
+      "textCoverage": "good",
+      "suiteFromFilename": "115-117",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "119 Executed Oupac Lease & Guaranty - OCR.pdf",
+      "sha256": "E54233216BDBE8BE24471C5FF197BA4F2EB107AAB8C36E82EBB2345DDBEDB7FC",
+      "bytes": 9401421,
+      "pages": 33,
+      "sampledPages": 6,
+      "sampledTextCharacters": 8965,
+      "textCoverage": "good",
+      "suiteFromFilename": "119",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material",
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "119.5 Executed Lease and Addendums - OCR.pdf",
+      "sha256": "08ACEF737A41B8695C8C5FCBC401C8660B5E19CC947ADAA5D6188EEEC267721F",
+      "bytes": 15480004,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 9245,
+      "textCoverage": "good",
+      "suiteFromFilename": "119.5",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "123 Executed Lease - The Tux Shoppe - OCR.pdf",
+      "sha256": "68E75A0B8DD623F5F058F3F30C03DC3C366E76C47571C98DC3DE582635DAD43B",
+      "bytes": 6783604,
+      "pages": 30,
+      "sampledPages": 6,
+      "sampledTextCharacters": 8816,
+      "textCoverage": "good",
+      "suiteFromFilename": "123",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "125-127 Executed Jordan Amanda Lease - OCR.pdf",
+      "sha256": "6D36D4D1B63FC122AC1925DBC68C3AF4ADE4540ECF94A6483E7FDB6631C891B5",
+      "bytes": 6419615,
+      "pages": 28,
+      "sampledPages": 6,
+      "sampledTextCharacters": 9087,
+      "textCoverage": "good",
+      "suiteFromFilename": "125-127",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "129 Executed Hotworx Lease Agreement - OCR.pdf",
+      "sha256": "D169F841B283EB40CE365CA55074B77298F2FF07F5B92BD75ACCB2D65E795A73",
+      "bytes": 8164428,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 13021,
+      "textCoverage": "good",
+      "suiteFromFilename": "129",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "135A Executed C Wolf Lease Agreement - OCR.pdf",
+      "sha256": "B789982A7FDF8604AB5DDAEB3B4C0CE61AFCDC7086AB86A47D3C1E32EB84FEB0",
+      "bytes": 7119206,
+      "pages": 28,
+      "sampledPages": 6,
+      "sampledTextCharacters": 9869,
+      "textCoverage": "good",
+      "suiteFromFilename": "135A",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "137 Executed Greek Expressions Lease - OCR.pdf",
+      "sha256": "0E64F16CFD7BFAC2F9E7D7049F0121C1E813DBDBB52E4F529C747F0B7FC1DB45",
+      "bytes": 35622581,
+      "pages": 43,
+      "sampledPages": 6,
+      "sampledTextCharacters": 14415,
+      "textCoverage": "good",
+      "suiteFromFilename": "137",
+      "status": "executed_candidate",
+      "flags": []
+    },
+    {
+      "fileName": "139-141 Fast Pass Tag & Title - OCR.pdf",
+      "sha256": "21559698F6D31E222803E64BEA2832010D91AD3AD7EB8DB880287C2D42DD1693",
+      "bytes": 6275693,
+      "pages": 33,
+      "sampledPages": 6,
+      "sampledTextCharacters": 10772,
+      "textCoverage": "good",
+      "suiteFromFilename": "139-141",
+      "status": "status_review_required",
+      "flags": [
+        "filename does not explicitly say executed",
+        "contains or claims guaranty material"
+      ]
+    },
+    {
+      "fileName": "149 Executed Jasons Lease and Addendums - OCR.pdf",
+      "sha256": "4365275EC724594FD77ACE58A2E2FF62F2A6581AA972A5A459BE5D9C7410C069",
+      "bytes": 9189990,
+      "pages": 81,
+      "sampledPages": 6,
+      "sampledTextCharacters": 9935,
+      "textCoverage": "good",
+      "suiteFromFilename": "149",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    },
+    {
+      "fileName": "Hotworx-Belle-Executed Lease Agreement - OCR.pdf",
+      "sha256": "22A19B3BD294BB4A03C2DBED307A794E34A283747A588FF4EF5377C330141BEE",
+      "bytes": 8164465,
+      "pages": 37,
+      "sampledPages": 6,
+      "sampledTextCharacters": 13021,
+      "textCoverage": "good",
+      "suiteFromFilename": "129",
+      "status": "executed_candidate",
+      "flags": [
+        "contains or claims addendum/amendment material"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+The Total Monthly Rental P:
+
+‘ayment Amount for months one (1) through thirty nine (39) of the
+Initial Term for the Premis. :
+
+hall be calculated as follows:
+
+UNIT 123 MONTH 1-2 3563
+May 2024-June 2024 RENT ITEM _|PER SF PER MONTH
+BASE $ $ *
+CAM $ $ -
+TAX $ $
+INS. $ - 18
+[TOTAL $ - |s S
+UNIT 123 MONTH 3-7 3563
+July 2024-November 2024 RENT ITEM |PER SF PER MONTH
+BASE $ 3
+|ICAM $ 21013 623.53
+{Taxes $ 0.95 | $ 282.07
+Insurance $ 1.95 |$ 578.99
+TOTAL $ 5.00 | $ 1,484.58
+UNIT 123 MONTH 8-12 3563
+December 2025- April 2025 RENT ITEM |PERSF PER MONTH
+BASE $ 7.00 |$ 2,078.42
+CAM $ 2.10 1$ 623.53
+‘Taxes $ 0.95 |$ 282.07
+Insurance $ 1.95 578.99
+TOTAL $ 12.00 |$ 3,563.00
+UNIT 123 MONTH 13-70 3563
+May 2025- April 2030 RENT ITEM |PER SF PER MONTH
+BASE $ 13.50 | $ 4,008.38
+AM $ 2.10 |$ 623.53
+‘Taxes: $ 0.95 |$ 282.07
+Insurance $ 1.95 [$ 578.99.
+TOTAL $ 18.50 | $ 5,492.96
+
+Notwithstanding anything contained herein to the contrary, beginning in the second year of the
+Initial Term, Lessor may, if, in Lessor’s dis
+
+tion, the same is necessary to cover an increase in
+Taxes and Insurance charges, increase the amount of the Common Area Maintenance Charges
+and/or ‘laxes and Insurance Charges for any calendar ycar thereafter by providing written
+notice of the same to the Lessee; provided, however that any such inctease shall not exceed the
+
+Lessor’s Initials page 5 of 30. Lessee’s Initials
+
