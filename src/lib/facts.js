@@ -2,8 +2,9 @@
    Views (D-1 KPI, W-1 seeded cards, T-1 timeline) derive every parking number,
    instrument date, and covenant line from here; no fact literal may live in a
    render function (carry-forward problem #4 from the 2026-07-22 extraction).
-   Convention: cite PARKING.provided (324) legally; plan ops on PARKING.drawn
-   (314) — see docs/parking-reconciliation-memo.md. */
+   Parking closed 2026-09-30 (operator): 324 striped = the variance's 324
+   provided — 314 plat-labeled + the 10-stall Johnston CAD row the 9/29 Polycam
+   scan shows striped. Cite and operate on 324; see docs/parking-reconciliation-memo.md. */
 import geometry from "../data/geometry.json" with { type: "json" };
 import instruments from "../data/instruments.json" with { type: "json" };
 import pylon from "../data/pylon.json" with { type: "json" };
@@ -14,8 +15,9 @@ export const PARKING = Object.freeze({
   entry: v.entry,               // "99-11797"
   provided: v.provided,         // 324 — the legal citation
   required: v.required,         // 344
-  drawn: geometry.parking.totalPlat, // 314 — plat striping, plan ops on this
-  delta: geometry.parking.totalPlat - v.provided // −10 unreconciled
+  drawn: geometry.parking.totalStriped,       // 324 — striped on the ground; operate on this
+  platLabeled: geometry.parking.totalPlat,     // 314 — plat "N SPACES" labels only
+  delta: geometry.parking.totalStriped - v.provided // 0 — reconciled 2026-09-30
 });
 
 export const JD_BANK = Object.freeze({ ...instruments.jdBank });
@@ -41,10 +43,11 @@ const mdy = iso => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { mon
 /* Card/timeline prose — plain strings (no HTML; callers escape/format). */
 export const factLines = {
   parkingRecon: () =>
-    "Plat striping " + PARKING.drawn + " vs variance " + PARKING.provided +
-    " — pull file " + PARKING.entry + " (see reconciliation memo)",
+    "Striped " + PARKING.drawn + " = variance " + PARKING.provided + " provided (plat labels " + PARKING.platLabeled +
+    " + 10-stall Johnston row, ground-confirmed 9/29/2026) — file " + PARKING.entry + " (see reconciliation memo)",
   parkingReconTitle: () =>
-    "Reconcile parking Δ" + (PARKING.delta < 0 ? "−" : "+") + Math.abs(PARKING.delta),
+    PARKING.delta === 0 ? "Parking reconciled — " + PARKING.drawn + " = variance"
+      : "Reconcile parking Δ" + (PARKING.delta < 0 ? "−" : "+") + Math.abs(PARKING.delta),
   jdBankExpiry: () =>
     "Belle loses " + JD_BANK.spaces + " spaces + $" + JD_BANK.monthlyToBelle +
     "/mo — re-run parking vs variance well before",

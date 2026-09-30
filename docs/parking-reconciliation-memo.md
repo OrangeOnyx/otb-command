@@ -18,7 +18,7 @@ The 2026-09-29 iPhone LiDAR scan (`E:/OTB-CAPTURE/OTB_Capture_2026-09-29/`) is r
 
 **Result.** The unlabeled row is striped on the ground today, so **314 labeled + 10 = 324 striped = the variance's "324 provided."**
 
-Retiring the 314 operating figure in CLAUDE.md (the flip step below) is waiting on operator confirmation.
+**CLOSED 2026-09-30 (operator).** CLAUDE.md, `src/lib/facts.js` (`PARKING.drawn` = 324, `platLabeled` = 314, `delta` = 0), geometry REV 17 (row marked `groundConfirmed`) and the UI copy all now read 324 striped = variance. The 314 operating figure is retired.
 
 ## UPDATE 2026-09-05 — candidate resolution from the architect CAD (geometry REV 13)
 While tracing ingress/egress from `cad/Boulev_CLEAN.dxf` for the A-1 access layer, the

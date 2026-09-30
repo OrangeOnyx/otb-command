@@ -15,7 +15,7 @@
     },
     {
       "source_id": "source-otb-pylon-final-v2",
-      "revision": "worktree-sha256:6828533ad8263bb0",
+      "revision": "git-blob:9212ad38e28452c65169d55b9d820f9b92b4b051",
       "sha256": "6828533ad8263bb0e925bef8b2e45d8bbcdab34a77b78e348ddd6951621a7bc3"
     }
   ],

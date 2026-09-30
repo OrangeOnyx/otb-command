@@ -64,7 +64,7 @@ export const centerOf = a => { const b = bboxOf(a); return [r2(b.x + b.w / 2), r
 
 /* Verification label for a zone's derived stalls. */
 export function stallStatus(zone) {
-  if (zone.pending) return "cad-pending";               // CAD-striped, no plat label: the 324 − 314 candidate
+  if (zone.platUnlabeled) return "scan-confirmed";     // CAD-striped, no plat label; striped on the ground (Polycam 9/29)
   if (zone.id === "storefront") return "est-geometric"; // row56 ↔ C3 stall-map, ±1 until the stall walk
   return "plat-derived";                                // plat count, even subdivision of the drawn row
 }
@@ -106,9 +106,9 @@ export function buildRegister(geometry, { cameras = [], unitName = () => "", ite
         sub: z.name + " · row " + row.id, parent: "zone-" + z.id, polys: [q], scope: z.scope,
         status: stallStatus(z), source: "plat count subdivided over the generator's drawn row" });
     }
-    out.push({ id: "zone-" + z.id, cat: "zone", label: z.name, sub: z.count + " stalls" + (z.pending ? " · pending ground confirmation" : ""),
+    out.push({ id: "zone-" + z.id, cat: "zone", label: z.name, sub: z.count + " stalls" + (z.platUnlabeled ? " · unlabeled on plat · ground-confirmed 9/29/2026" : ""),
       count: z.count, children: stalls.map(s => s.id), polys: z.rows.map(r => r.quad), scope: z.scope,
-      status: z.pending ? "cad-pending" : "plat", source: z.pending ? "architect CAD PARKING layer (no plat label)" : "recorded plat 'N SPACES' label" });
+      status: z.platUnlabeled ? "scan-confirmed" : "plat", source: z.platUnlabeled ? "architect CAD PARKING layer (no plat label); striped per 2026-09-29 Polycam scan" : "recorded plat 'N SPACES' label" });
     out.push(...stalls);
   }
   for (const d of ag.drives) out.push({ id: "drive-" + slug(d.id), cat: "drive", label: d.name, sub: d.street + " · " + d.movement,

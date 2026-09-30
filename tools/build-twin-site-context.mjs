@@ -57,7 +57,8 @@ export async function buildSiteContext({ outputDirectory = path.join(ROOT,'publi
   const geometry = JSON.parse(geometryBytes), fixtures = JSON.parse(fixtureBytes);
   // REV 15 (2026-09-30) changed only demising widths (101/103/109–113/139–145); site elements reviewed unchanged.
   // REV 16 (2026-09-30) added the JD Bank servitude trace to the easements layer only.
-  if (!['REV 14', 'REV 15', 'REV 16'].includes(geometry.rev)) throw new Error('Review source element mappings before adopting a new plan revision');
+  // REV 17 (2026-09-30) only relabels the Johnston CAD row as ground-confirmed.
+  if (!['REV 14', 'REV 15', 'REV 16', 'REV 17'].includes(geometry.rev)) throw new Error('Review source element mappings before adopting a new plan revision');
   const fit = fixtures.registration.planToNative, matrix = fit.matrix3x2;
   // Verify frame identity independently: these corners come from current geometry.json,
   // not from the fixture registration. This detects a changed/scaled/cropped A-1 frame.

@@ -115,6 +115,6 @@ test("Arnould frontage islands are drawn: 3' strip, 9' strip, four end caps, Jas
 });
 
 test("title block rev bumped with the geometry change", () => {
-  assert.equal(geometry.rev, "REV 16");
-  assert.ok(geometry.layers.titleBlock.some(p => p.t === "text" && /^REV 16/.test(p.s)));
+  assert.equal(geometry.rev, "REV 17");
+  assert.ok(geometry.layers.titleBlock.some(p => p.t === "text" && /^REV 17/.test(p.s)));
 });

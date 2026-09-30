@@ -26,7 +26,7 @@ export function initSiteExterior() {
       </div>
       <div class="ext-frame-host"></div>
     </div>
-    <p class="ext-note">Presentation model based on plat, CAD and operator references; locations and finishes still need field verification. Parking includes 314 plat stalls plus 10 candidate CAD stalls. Inspection history, photos and maintenance records are in A-3.</p>`;
+    <p class="ext-note">Presentation model based on plat, CAD and operator references; locations and finishes still need field verification. Parking: 324 striped = the variance (314 plat-labeled + the 10-stall Johnston row confirmed 9/29/2026). Inspection history, photos and maintenance records are in A-3.</p>`;
   const mount = host.querySelector('.ext-frame-host');
   const status = host.querySelector('.ext-status');
   const retry = host.querySelector('[data-retry]');

@@ -91,10 +91,10 @@ test("twin GLB validates and every drawn asset node carries its register id", as
   assert.equal(twin.data.assets.length, new Set(twin.data.assets.map(a => a.id)).size, "unique ids");
 });
 
-test("stalls 324 (10 cad-pending), columns 39, units 27 are nodes; data-only rows are not drawn", () => {
+test("stalls 324 (10 scan-confirmed), columns 39, units 27 are nodes; data-only rows are not drawn", () => {
   const by = c => twin.data.assets.filter(a => a.category === c && !a.dataOnly);
   assert.equal(by("stall").length, 324);
-  assert.equal(by("stall").filter(a => a.status === "cad-pending").length, 10);
+  assert.equal(by("stall").filter(a => a.status === "scan-confirmed").length, 10);
   assert.equal(by("column").length, 39);
   assert.equal(by("unit").length, 27);
   for (const c of ["panel", "timeclock", "wmeter", "emeter", "zone", "building"]) assert.equal(by(c).length, 0, c);

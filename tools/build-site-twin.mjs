@@ -137,7 +137,7 @@ export function buildTwin() {
       case "ribbon": { const geo = G(); if (line) ribbon(geo, line, s.widthM, s.y); polys.forEach(q => ribbon(geo, [...q, q[0]], s.widthM, s.y)); place(a, [{ geo, material: mat(s.color, a.cat) }], [C[0], s.y, C[1]]); break; }
       case "stall": {
         const q = polys[0], stripes = ribbon(G(), [...q, q[0]], s.stripeM, 0.02), fill = flatPolygon(G(), q, 0.015);
-        place(a, [{ geo: stripes, material: mat(a.status === "cad-pending" ? s.pending : s.color, a.status === "cad-pending" ? "pending stripe" : "stripe") },
+        place(a, [{ geo: stripes, material: mat(s.color, "stripe") },
                   { geo: fill, material: mat(SPEC.parcel.color, "asphalt") }], [C[0], 0, C[1]]);
         break;
       }

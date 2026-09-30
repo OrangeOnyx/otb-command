@@ -103,11 +103,11 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   **Lot 7** (remote, Lot 7 Block M, 110 Marie Antoinette St, parcel 6009649,
   ±14,375 SF, 32 spaces = 6+8+10+8, directly across Marie Antoinette from Lot 8; under mature oaks — invisible in aerials, operator-confirmed 2026-09-06, do not re-question from imagery).
   Also: rear M.A. parallel row 18 · Johnston strip 10 · JD Bank easement 13.
-  **Plat striping totals 314 vs variance "324 provided" — Δ −10 unreconciled**
-  (docs/parking-reconciliation-memo.md; cite 324 legally, plan ops on 314).
-  CANDIDATE RESOLUTION 2026-09-05 (REV 13): the architect CAD stripes an unlabeled
-  10-stall head-in row on the Johnston frontage south of the pylon sign → 314 + 10
-  = 324. Pending ground confirmation; do not retire the 314 ops figure yet.
+  **PARKING CLOSED 2026-09-30 (operator): 324 striped = the variance's "324 provided."** Plat "N SPACES"
+  labels total 314; the architect CAD's unlabeled 10-stall head-in row on the Johnston frontage south of 101
+  was confirmed striped by the 9/29/2026 Polycam scan (11 lines / 10 stalls at 9.0' pitch;
+  docs/parking-reconciliation-memo.md, docs/evidence/). Cite AND operate on 324; 314 survives only as the
+  plat-label tally (`PARKING.platLabeled`).
 - **Access (A-1 REV 13, docs/site-access-inventory-2026-09.md):** 8 Belle curb
   cuts — Arnould Driveway A (31' throat, two-way, the only full-movement cut:
   55' median opening) and Driveway B (40', two-way, shared with JD Bank);
@@ -128,8 +128,12 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - **Lease terms — Tier-1 is the September 2026 lease review (operator ruling
   2026-09-11): `docs/lease-population-2026-09-10.md` + per-suite `leaseEvidence`
   in `src/data/units.json` supersede `docs/sot-2026-07/` for every suite they
-  name.** Scheduled monthly total **$88,310.33** (was $88,070.71 before the
-  Fast Pass execution 2026-09-23; $90,291.23 before the Sept review). 143 1st Franklin:
+  name.** Scheduled monthly total **$88,346.48** from Oct 1, 2026 (was $88,310.33 before the Clothing
+  Loft 115/117 extension, executed 9/13/2026 and reviewed 2026-09-30; $88,070.71 before the Fast Pass
+  execution 2026-09-23; $90,291.23 before the Sept review). 115/117 Clothing Loft: extension FULLY EXECUTED
+  (Lessor + Lessee/Guarantor 9/13/2026) 10/1/2026–9/30/2029, $13.50/SF base, **$6,690.83/mo combined**
+  ($3,345.42 / $3,345.41), lessee 90-day early-termination right, $3,345.42 signing payment (credited to
+  Sep 2029 only if they stay); source `sources/leases/115-117-clothing-loft/`. 143 1st Franklin:
   signed amendment 12/22/2025 → **$3,354.75/mo ($21.00/SF total)**, 2/1/2026–
   1/31/2031. 145 Upstream: executed lease, base-rent abatement Jul–Dec 2026 at
   **$798.75/mo** (additional only), $3,035.25/mo from 1/2027; contractual

@@ -10,8 +10,8 @@
   "source_refs": [
     {
       "source_id": "source-otb-geometry-json",
-      "revision": "worktree-sha256:a6d5e96857c83749",
-      "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e"
+      "revision": "worktree-sha256:f47157a304b592bb",
+      "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
     },
     {
       "source_id": "source-otb-heights-json",
@@ -55,8 +55,8 @@
     "source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:a6d5e96857c83749",
-        "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e"
+        "revision": "worktree-sha256:f47157a304b592bb",
+        "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
       },
       {
         "source_id": "source-otb-heights-json",
@@ -93,8 +93,8 @@
       "input_source_refs": [
         {
           "source_id": "source-otb-geometry-json",
-          "revision": "worktree-sha256:a6d5e96857c83749",
-          "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e"
+          "revision": "worktree-sha256:f47157a304b592bb",
+          "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
         },
         {
           "source_id": "source-otb-heights-json",
@@ -111,8 +111,8 @@
     "input_source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:a6d5e96857c83749",
-        "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e"
+        "revision": "worktree-sha256:f47157a304b592bb",
+        "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
       },
       {
         "source_id": "source-otb-heights-json",

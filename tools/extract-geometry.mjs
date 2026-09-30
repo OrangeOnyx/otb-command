@@ -128,9 +128,9 @@ const rq = quad => quad.map(([x, y]) => [r2(x), r2(y)]);
  ["lot8", "L8", "Lot 8 pocket", 19], ["rear", "RM", "Rear Marie Antoinette parallel row", 18],
  ["johnston", "JS", "Johnston strip", 10], ["lot7", "L7", "Lot 7 remote lot", 32, "full"],
  ["jdbank", "JD", "JD Bank easement spaces (NOT A PART)", 13],
- ["johnston-cad", "JC", "Johnston CAD head-in row (unlabeled on plat)", 10, "main", true]]
-  .forEach(([id, code, name, count, scope = "main", pending]) =>
-    AG.zones.push({ id, code, name, count, ...(pending ? { pending: true } : {}), scope, rows: [] }));
+ ["johnston-cad", "JC", "Johnston CAD head-in row (unlabeled on plat; striped — Polycam 2026-09-29)", 10, "main", true]]
+  .forEach(([id, code, name, count, scope = "main", platUnlabeled]) =>
+    AG.zones.push({ id, code, name, count, ...(platUnlabeled ? { platUnlabeled: true, groundConfirmed: "2026-09-29 Polycam scan" } : {}), scope, rows: [] }));
 const azRow = (zid, id, n, quad) =>
   AG.zones.find(z => z.id === zid).rows.push({ id, n, quad: quad.map(([x, y]) => [r2(x), r2(y)]) });
 // a-range × b-range quad in plan px, ordered along a (ax/by are defined in the parking section; called later)
@@ -428,7 +428,7 @@ parking.push(rect(ax(625), by(-143), r2(ax(562) - ax(625)), r2(by(-122) - by(-14
   // variance + tally — in the aisle between the two bands
   parking.push(zlab(655, 486, "MAIN PARKING FIELD — FILLS FIRST · VARIANCE ENTRY 99-11797: 324 PROVIDED / 344 REQUIRED", 9.5, { "font-weight": "600" }));
   parking.push(zlab(655, 499, "PLAT LABELS 314 = FIELD 100 · ARNOULD 38 · STOREFRONT 56 · LOT 6 28 · LOT 8 19 · REAR 18 · JOHNSTON 10 · LOT 7 32 · JD BANK 13", 6));
-  parking.push(zlab(655, 508, "+ 10 UNLABELED JOHNSTON HEAD-IN STALLS (CAD-STRIPED) = 324 = VARIANCE 'PROVIDED' — CANDIDATE RECONCILIATION, VERIFY ON GROUND", 6));
+  parking.push(zlab(655, 508, "+ 10 UNLABELED JOHNSTON HEAD-IN STALLS (CAD-STRIPED) = 324 = VARIANCE 'PROVIDED' — CONFIRMED STRIPED (POLYCAM 9/29/2026)", 6));
 }
 
 // ── storefront row: 56 head-in stalls nosing the long-building walkway ──
@@ -964,14 +964,14 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "8" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + LOT 7", { class: "svg-lab", "font-size": "8" }),
   text(1078, 874, "GEOMETRY PER PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "8" }),
-  text(1078, 890, "REV 16 — JD BANK SERVITUDE (2020 EX. A-1) · 131|133", { class: "svg-lab", "font-size": "8" }),
+  text(1078, 890, "REV 17 — 324 STRIPED CONFIRMED · JD BANK SERVITUDE", { class: "svg-lab", "font-size": "8" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 16",
+  rev: "REV 17",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {
@@ -1018,7 +1018,8 @@ const geometry = {
     ],
     totalStriped: 324,
     variance: { entry: "99-11797", provided: 324, required: 344 },
-    reconciliation: "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. CANDIDATE reconciliation (REV 13, 2026-09-05): confirm those 10 stalls on the ground / current aerial, then close docs/parking-reconciliation-memo.md. Until then keep citing 324 legally and planning ops on 314."
+    reconciliation: "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. Proposed REV 13 (2026-09-05); CONFIRMED 2026-09-30: the 9/29 Polycam scan shows the row striped (11 lines / 10 stalls at 9.0' pitch). 324 striped = variance — cite and operate on 324 (operator 2026-09-30).",
+    groundConfirmed: { date: "2026-09-29", source: "Polycam LiDAR scan E:/OTB-CAPTURE/OTB_Capture_2026-09-29 (registered 77% within 0.3 m)", evidence: "docs/evidence/parking-johnston-cad-row-polycam-2026-09-29.jpg" }
   },
   access: ACCESS_META,
   streets: {

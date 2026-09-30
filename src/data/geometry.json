@@ -1,5 +1,5 @@
 {
- "rev": "REV 16",
+ "rev": "REV 17",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
  "viewBox": {
   "main": "0 0 1480 990",
@@ -237,7 +237,12 @@
    "provided": 324,
    "required": 344
   },
-  "reconciliation": "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. CANDIDATE reconciliation (REV 13, 2026-09-05): confirm those 10 stalls on the ground / current aerial, then close docs/parking-reconciliation-memo.md. Until then keep citing 324 legally and planning ops on 314."
+  "reconciliation": "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. Proposed REV 13 (2026-09-05); CONFIRMED 2026-09-30: the 9/29 Polycam scan shows the row striped (11 lines / 10 stalls at 9.0' pitch). 324 striped = variance — cite and operate on 324 (operator 2026-09-30).",
+  "groundConfirmed": {
+   "date": "2026-09-29",
+   "source": "Polycam LiDAR scan E:/OTB-CAPTURE/OTB_Capture_2026-09-29 (registered 77% within 0.3 m)",
+   "evidence": "docs/evidence/parking-johnston-cad-row-polycam-2026-09-29.jpg"
+  }
  },
  "access": {
   "source": "architect CAD Boulev_CLEAN.dxf (feet; plat-axis-aligned: a = X − 423.75, b = Y − 459.67) — LINCONC/LINCON2 curb & sidewalk returns, LINEDGRD edge of asphalt, TRAVLAN lanes, plat 'TF' flow arrows; each cut confirmed against the frozen Esri z19 satellite base (public/OTB-sat-base.jpg) via the footprints georef, 2026-09-05",
@@ -3569,7 +3574,7 @@
     "t": "text",
     "x": 655,
     "y": 508,
-    "s": "+ 10 UNLABELED JOHNSTON HEAD-IN STALLS (CAD-STRIPED) = 324 = VARIANCE 'PROVIDED' — CANDIDATE RECONCILIATION, VERIFY ON GROUND",
+    "s": "+ 10 UNLABELED JOHNSTON HEAD-IN STALLS (CAD-STRIPED) = 324 = VARIANCE 'PROVIDED' — CONFIRMED STRIPED (POLYCAM 9/29/2026)",
     "attrs": {
      "class": "svg-lab",
      "font-size": "6",
@@ -7509,7 +7514,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 16 — JD BANK SERVITUDE (2020 EX. A-1) · 131|133",
+    "s": "REV 17 — 324 STRIPED CONFIRMED · JD BANK SERVITUDE",
     "attrs": {
      "class": "svg-lab",
      "font-size": "8"
@@ -8502,9 +8507,10 @@
    {
     "id": "johnston-cad",
     "code": "JC",
-    "name": "Johnston CAD head-in row (unlabeled on plat)",
+    "name": "Johnston CAD head-in row (unlabeled on plat; striped — Polycam 2026-09-29)",
     "count": 10,
-    "pending": true,
+    "platUnlabeled": true,
+    "groundConfirmed": "2026-09-29 Polycam scan",
     "scope": "main",
     "rows": [
      {

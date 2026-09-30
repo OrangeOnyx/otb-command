@@ -11,8 +11,9 @@ test("parking variance facts match the audit record", () => {
   assert.equal(PARKING.entry, "99-11797");
   assert.equal(PARKING.provided, 324);
   assert.equal(PARKING.required, 344);
-  assert.equal(PARKING.drawn, 314);
-  assert.equal(PARKING.delta, -10, "plat striping vs variance Δ must stay surfaced");
+  assert.equal(PARKING.drawn, 324, "striped = operating figure since 2026-09-30");
+  assert.equal(PARKING.platLabeled, 314, "plat label tally stays surfaced");
+  assert.equal(PARKING.delta, 0, "reconciled: striped equals variance provided");
 });
 
 test("JD Bank easement instrument", () => {
@@ -41,7 +42,7 @@ test("fact lines carry the numbers (no HTML)", () => {
   const all = Object.values(factLines).map(fn => fn()).join(" ");
   assert.ok(all.includes("314") && all.includes("324") && all.includes("99-11797"));
   assert.ok(!/[<>]/.test(all), "seam emits plain strings; views escape/format");
-  assert.equal(factLines.parkingReconTitle(), "Reconcile parking Δ−10");
+  assert.equal(factLines.parkingReconTitle(), "Parking reconciled — 324 = variance");
 });
 
 test("facts are frozen — views cannot mutate the record", () => {

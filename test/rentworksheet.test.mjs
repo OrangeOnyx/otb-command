@@ -42,10 +42,20 @@ test("a month before the current term is 'not on file', never zero", () => {
 });
 
 test("expired term carries the last rent forward and is flagged", () => {
-  const r = worksheetRow(U("115"), "2026-10"); // term ended 9/30/2026
+  // fixture: 115 as it stood before its extension was executed (term ended 9/30/2026)
+  const before = { ...U("115"), end: "2026-09-30", leaseEvidence: undefined };
+  const r = worksheetRow(before, "2026-10");
   assert.equal(r.kind, "expired");
-  assert.equal(r.cur.amount, U("115").monthly);
+  assert.equal(r.cur.amount, before.monthly);
   assert.match(r.notes[0], /Term ended/);
+});
+
+test("115/117 executed extension: September on the final tier, October on the extension rent", () => {
+  for (const [id, oct] of [["115", 3345.42], ["117", 3345.41]]) {
+    assert.equal(worksheetRow(U(id), "2026-09").cur.amount, 3327.34, id);
+    assert.equal(worksheetRow(U(id), "2026-10").cur.amount, oct, id);
+  }
+  assert.equal(worksheet(units, "2026-10").curTotal, 88346.48);
 });
 
 test("vacant / owner-occupied suites classify without amounts", () => {

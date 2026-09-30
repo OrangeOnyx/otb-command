@@ -9,19 +9,20 @@ const geometry = JSON.parse(readFileSync(join(root, "src/data/geometry.json"), "
 
 const PLAT = { field: 100, arnould: 38, storefront: 56, lot6: 28, lot8: 19, rear: 18, johnston: 10, lot7: 32, jdbank: 13 };
 
-test("assetGeom zones carry the plat-label stall counts (314) + the pending CAD row (10)", () => {
+test("assetGeom zones carry the plat-label stall counts (314) + the ground-confirmed CAD row (10)", () => {
   const zones = geometry.assetGeom.zones;
   for (const [id, n] of Object.entries(PLAT)) {
     const z = zones.find(z => z.id === id);
     assert.ok(z, "missing zone " + id);
     assert.equal(z.count, n, id + " count");
     assert.equal(z.rows.reduce((s, r) => s + r.n, 0), n, id + " row sum");
-    assert.ok(!z.pending, id + " must not be pending");
+    assert.ok(!z.platUnlabeled, id + " is a plat-labeled zone");
   }
   const cad = zones.find(z => z.id === "johnston-cad");
   assert.equal(cad.count, 10);
-  assert.equal(cad.pending, true);
-  const plat = zones.filter(z => !z.pending).reduce((s, z) => s + z.count, 0);
+  assert.equal(cad.platUnlabeled, true);
+  assert.match(cad.groundConfirmed, /2026-09-29/);
+  const plat = zones.filter(z => !z.platUnlabeled).reduce((s, z) => s + z.count, 0);
   assert.equal(plat, geometry.parking.totalPlat);
   assert.equal(plat + cad.count, geometry.parking.totalStriped);
 });
@@ -57,7 +58,7 @@ test("buildRegister: 324 stalls, stable unique ids, parented to their zone", () 
   const sf = reg.find(a => a.id === "zone-storefront");
   assert.equal(sf.children.length, 56);
   assert.equal(reg.find(a => a.id === "stall-storefront-056").parent, "zone-storefront");
-  assert.equal(reg.filter(a => a.cat === "stall" && a.status === "cad-pending").length, 10);
+  assert.equal(reg.filter(a => a.cat === "stall" && a.status === "scan-confirmed").length, 10);
 });
 
 test("buildRegister: ids are deterministic across builds", () => {
@@ -99,8 +100,8 @@ test("pins map into their register category; placeholders exist with zero record
   assert.equal(categoryCounts(buildRegister(geometry))["storm-drain"], 0);
 });
 
-test("stallStatus: pending zone is cad-pending, storefront est-geometric, others plat-derived", () => {
-  assert.equal(stallStatus({ id: "johnston-cad", pending: true }), "cad-pending");
+test("stallStatus: plat-unlabeled zone is scan-confirmed, storefront est-geometric, others plat-derived", () => {
+  assert.equal(stallStatus({ id: "johnston-cad", platUnlabeled: true }), "scan-confirmed");
   assert.equal(stallStatus({ id: "storefront" }), "est-geometric");
   assert.equal(stallStatus({ id: "lot8" }), "plat-derived");
 });

@@ -222,9 +222,9 @@
   "sources": [
     {
       "path": "src/data/geometry.json",
-      "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e",
+      "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b",
       "hashEncoding": "utf8-lf",
-      "revision": "REV 16"
+      "revision": "REV 17"
     },
     {
       "path": "src/data/twin-site-fixtures.json",
@@ -243,7 +243,7 @@
     "varianceProvidedCount": 324,
     "varianceRequiredCount": 344,
     "reconciliationStatus": "pending-field-confirmation",
-    "note": "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. CANDIDATE reconciliation (REV 13, 2026-09-05): confirm those 10 stalls on the ground / current aerial, then close docs/parking-reconciliation-memo.md. Until then keep citing 324 legally and planning ops on 314."
+    "note": "plat 'N SPACES' labels total 314; the CAD also stripes an unlabeled 10-stall head-in row on the Johnston frontage → 324 striped = the variance 'provided' figure exactly. Proposed REV 13 (2026-09-05); CONFIRMED 2026-09-30: the 9/29 Polycam scan shows the row striped (11 lines / 10 stalls at 9.0' pitch). 324 striped = variance — cite and operate on 324 (operator 2026-09-30)."
   },
   "searchAreas": [
     {
@@ -592,7 +592,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "base[18]"
         ],
@@ -655,7 +655,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "base: excluded corner notch",
           "parking: JD Bank"
@@ -902,7 +902,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[0]"
         ],
@@ -2574,7 +2574,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[1]"
         ],
@@ -3322,7 +3322,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[2]"
         ],
@@ -3662,7 +3662,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[3]"
         ],
@@ -4002,7 +4002,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[4]"
         ],
@@ -4198,7 +4198,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[230]"
         ],
@@ -4346,7 +4346,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[242]"
         ],
@@ -4566,7 +4566,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[339]"
         ],
@@ -4628,7 +4628,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[340]"
         ],
@@ -4690,7 +4690,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[341]"
         ],
@@ -4886,7 +4886,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[51]"
         ],
@@ -4948,7 +4948,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[53]"
         ],
@@ -5010,7 +5010,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[54]"
         ],
@@ -5072,7 +5072,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[55]"
         ],
@@ -5134,7 +5134,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[56]"
         ],
@@ -5196,7 +5196,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[57]"
         ],
@@ -5258,7 +5258,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[58]"
         ],
@@ -5320,7 +5320,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[59]"
         ],
@@ -5382,7 +5382,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[110]"
         ],
@@ -5444,7 +5444,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[111]"
         ],
@@ -5506,7 +5506,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[112]"
         ],
@@ -5568,7 +5568,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[163]"
         ],
@@ -5630,7 +5630,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[164]"
         ],
@@ -5692,7 +5692,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[165]"
         ],
@@ -5754,7 +5754,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[231]"
         ],
@@ -5816,7 +5816,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[232]"
         ],
@@ -5878,7 +5878,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[52]"
         ],
@@ -5940,7 +5940,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[257]"
         ],
@@ -6002,7 +6002,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "parking[315]"
         ],
@@ -6064,7 +6064,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[0]"
         ],
@@ -6126,7 +6126,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[31]"
         ],
@@ -6188,7 +6188,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[32]"
         ],
@@ -6250,7 +6250,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[15]"
         ],
@@ -6312,7 +6312,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[16]"
         ],
@@ -6374,7 +6374,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[27]"
         ],
@@ -6436,7 +6436,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[33]"
         ],
@@ -6498,7 +6498,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[34]"
         ],
@@ -6560,7 +6560,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[35]"
         ],
@@ -6622,7 +6622,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[45]"
         ],
@@ -6684,7 +6684,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[46]"
         ],
@@ -6836,7 +6836,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "remoteLot[0]"
         ],
@@ -7332,7 +7332,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[3]",
           "access[4]"
@@ -7397,7 +7397,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[1]",
           "base[5]"
@@ -7462,7 +7462,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[2]",
           "base[10]"
@@ -7542,7 +7542,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "base[14]"
         ],
@@ -7606,7 +7606,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[6]"
         ],
@@ -7670,7 +7670,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[8]"
         ],
@@ -7734,7 +7734,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[3]",
           "base: near right-of-way edge"
@@ -7799,7 +7799,7 @@
       "source": "A-1 REV 14 / recorded plat and architect CAD",
       "provenance": {
         "sourceFile": "src/data/geometry.json",
-        "sourceRevision": "REV 16",
+        "sourceRevision": "REV 17",
         "sourceRefs": [
           "access[2]",
           "access: drainage open ditch description"

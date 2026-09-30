@@ -64,12 +64,14 @@ test("monthLabel renders the brief month", () => {
   assert.equal(monthLabel("2026-12-01"), "December 2026");
 });
 
-test("REGRESSION — real seed today: two live renewal windows (115/117 @ 9/30/26) + the brief", () => {
-  // SOT reconciled 2026-07-16: zero holdovers, occupancy 25/27; Clothing Loft
-  // Exchange (115+117 combined) expires 2026-09-30 — inside 180d as of today.
+test("REGRESSION — real seed: 115/117 extension executed 9/13/2026 clears their window; 101/103/111 arm by 9/30", () => {
+  // Clothing Loft (115+117) was the live 9/30/26 window in July; the executed
+  // extension runs to 2029-09-30, so July shows only the brief and the
+  // 2026-09-30 view arms the next three renewals inside 180 days.
   const out = collectCandidates(units, {}, "2026-07-16");
-  assert.deepEqual(out.map(c => c.triggerSource).sort(),
-    ["brief:2026-07", "renewal:115:2026-09-30", "renewal:117:2026-09-30"]);
+  assert.deepEqual(out.map(c => c.triggerSource).sort(), ["brief:2026-07"]);
+  assert.deepEqual(collectCandidates(units, {}, "2026-09-30").map(c => c.triggerSource).sort(),
+    ["brief:2026-09", "renewal:101:2027-02-28", "renewal:103:2027-02-28", "renewal:111:2027-01-31"]);
   const brief = out.find(c => c.kind === "brief");
   assert.match(brief.detail, /Holdovers:\*\* none/);
   assert.match(brief.detail, /131 \(1,907 SF\)/);
