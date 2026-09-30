@@ -1,0 +1,80 @@
+# CONSENT TO CHANGE OF BUSINESS OWNERSHIP AND RELEASE OF PRIOR GUARANTORS
+
+**J. C. KATE BOUTIQUE LLC — 109 Arnould Boulevard, Lafayette, Louisiana 70506**
+
+This Consent to Change of Business Ownership and Release of Prior Guarantors (this "Consent") is entered into as of August 31, 2026 (the "Effective Date"), by and among:
+
+- **BELLE REALTY OF LAFAYETTE, L.L.C.**, a Louisiana limited liability company ("Lessor");
+- **J. C. KATE BOUTIQUE LLC**, a Louisiana limited liability company ("Lessee");
+- **Jeanne Guilbeaux Desormeaux** and **Coby John Desormeaux** (together, the "Prior Guarantors"); and
+- **Lakin Carlin** ("New Guarantor").
+
+## RECITALS
+
+A. Lessor and Lessee are parties to that certain Lease Agreement dated as of November 2019, but effective for all purposes as of August 1, 2020, as amended by that certain First Addendum to Lease Agreement (together, the "Lease"), for approximately 2,546 square feet at 109 Arnould Boulevard, Lafayette, Louisiana 70506 (the "Premises").
+
+B. The Prior Guarantors guaranteed Lessee's obligations under the Lease pursuant to a Guaranty dated as of November 2019, effective August 1, 2020 (the "Prior Guaranty").
+
+C. Jeanne Guilbeaux Desormeaux has advised Lessor that Lakin Carlin acquired the assets, name, and business of JC Kate by asset sale, and that ownership of the business operations at the Premises has changed over to Lakin Carlin. The tenant entity under the Lease remains J. C. KATE BOUTIQUE LLC. The Lease is not assigned to a new entity and remains in place. No rent, CAM, tax, insurance, or other commercial term of the Lease is changed by this Consent.
+
+D. Lessor is willing to consent to that change of business ownership and to substitute New Guarantor for the Prior Guarantors, on the terms below.
+
+## AGREEMENT
+
+1. **Lease remains in place.** Lessor consents to the change of business ownership described in Recital C. The Lease continues in full force and effect with J. C. KATE BOUTIQUE LLC as Lessee. This Consent is not an assignment of the Lease to any other person or entity and does not modify rent or any other commercial term.
+
+2. **Replacement Guaranty.** Concurrently with this Consent, New Guarantor is executing a Replacement Guaranty in favor of Lessor, in substantially the form of the Prior Guaranty, guaranteeing all obligations of Lessee under the Lease (the "Replacement Guaranty").
+
+3. **Release of Prior Guarantors — prospective only.** Effective only upon (i) execution of the Replacement Guaranty by Lakin Carlin and (ii) execution of this Consent by all parties, Lessor releases Jeanne Guilbeaux Desormeaux and Coby John Desormeaux from the Prior Guaranty **solely as to obligations of Lessee that accrue after the Effective Date**. The Prior Guarantors remain fully liable under the Prior Guaranty for all obligations that accrued on or before the Effective Date, including any unpaid rent, additional rent, holdover rent, late charges, and other sums then due, and for any default existing on or before the Effective Date.
+
+4. **New Guarantor.** From and after the Effective Date, Lakin Carlin is the sole guarantor of Lessee's obligations under the Lease, pursuant to the Replacement Guaranty.
+
+5. **No other waiver.** Except as expressly set forth herein, the Lease, the First Addendum, and all other related instruments remain unmodified and in full force and effect. Lessor does not waive any default, including any holdover following expiration of the Initial Term.
+
+6. **Counterparts.** This Consent may be executed in counterparts (including electronic or PDF signatures), each of which shall be deemed an original.
+
+IN WITNESS WHEREOF, the parties have executed this Consent as of the Effective Date.
+
+---
+
+**LESSOR:**
+
+BELLE REALTY OF LAFAYETTE, L.L.C.
+
+By: _________________________________ Date: ______________
+
+Printed name: Adam Abdalla, Authorized Representative
+
+---
+
+**LESSEE:**
+
+J. C. KATE BOUTIQUE LLC
+
+By: _________________________________ Date: ______________
+
+Printed name: Lakin Carlin, Authorized Representative
+
+---
+
+**PRIOR GUARANTORS (released prospectively only):**
+
+Jeanne Guilbeaux Desormeaux
+
+Signature: _________________________________ Date: ______________
+
+Coby John Desormeaux
+
+Signature: _________________________________ Date: ______________
+
+---
+
+**NEW GUARANTOR:**
+
+Lakin Carlin
+
+Signature: _________________________________ Date: ______________
+
+---
+
+*Draft for Adam Abdalla / Belle Realty of Lafayette, LLC. Not executed. Not legal advice. Counsel (Becker & Hebert) previously handled the original JC Kate lease and First Addendum.*
