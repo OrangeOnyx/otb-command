@@ -51,10 +51,11 @@ test("suite evidence preserves derived divisions and doesn't leak hydrated confi
   for (const id of ["101", "103", "109", "111", "113", "139", "141", "143", "145"]) {
     assert.equal(suiteEvidence(units.find(unit => unit.unit === id), geometry).geometry.classification, "Plat dimension", id);
   }
+  // 131 | 133: operator ruling 2026-09-30 — two separate suites, line placed by lease SF
   for (const id of ["131", "133"]) {
     const unit = { ...units.find(unit => unit.unit === id), monthly: 99999, legal: "private tenant entity", notes: "private note" };
     const evidence = suiteEvidence(unit, geometry);
-    assert.equal(evidence.geometry.classification, "Derived boundary", id);
+    assert.equal(evidence.geometry.classification, "Operator-confirmed split", id);
     assert.ok(!JSON.stringify(evidence).includes("private tenant"));
     assert.ok(!JSON.stringify(evidence).includes("99999"));
   }

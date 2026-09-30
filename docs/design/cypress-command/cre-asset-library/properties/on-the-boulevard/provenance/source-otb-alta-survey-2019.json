@@ -6,7 +6,7 @@
   "location": {
     "repository_path": "reference/plats/plat-of-survey-detailed-2019.pdf"
   },
-  "revision": "worktree-sha256:c435d93d11bf6681",
+  "revision": "git-blob:4cbce17457b754675a609a2bc0794f9f9e932900",
   "sha256": "c435d93d11bf668154f9b22449c54c566ddd39ba61a62a551985a0603711f1e9",
   "kind": "survey-plat",
   "authority_domains": [

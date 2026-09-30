@@ -6,7 +6,7 @@
   "location": {
     "repository_path": "reference/plats/site-plan-simple-2020.pdf"
   },
-  "revision": "worktree-sha256:f612410769038c58",
+  "revision": "git-blob:3d931e77b6e4ab61c59439306ba4f2ff6a914f71",
   "sha256": "f612410769038c583666287c5766e82534f58b6828da1a5fe02c70fe04c3e483",
   "kind": "survey-plat",
   "authority_domains": [

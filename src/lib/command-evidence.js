@@ -56,7 +56,7 @@ export function suiteEvidence(unit, geometry) {
   const note = split135
     ? geometry?.demising?.shortBuilding?.split135 || "Mid-depth split; independent field confirmation unavailable."
     : bay?.[2] || "No demising source recorded for this suite.";
-  const classification = !bay ? "Unknown" : split135 ? "Interpreted split" : /^derived/i.test(note) ? "Derived boundary" : "Plat dimension";
+  const classification = !bay ? "Unknown" : split135 ? "Interpreted split" : /^derived/i.test(note) ? "Derived boundary" : /^operator/i.test(note) ? "Operator-confirmed split" : "Plat dimension";
   const publicRow = Object.fromEntries(["unit", "dba", "use", "cat", "status", "start", "end", "sf"]
     .filter(key => Object.hasOwn(unit, key)).map(key => [key, unit[key]]));
   const fields = [

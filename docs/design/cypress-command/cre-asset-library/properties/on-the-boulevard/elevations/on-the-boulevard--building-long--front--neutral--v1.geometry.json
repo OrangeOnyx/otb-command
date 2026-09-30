@@ -202,8 +202,8 @@
       "x0Ft": 485.1,
       "widthFt": 22.32,
       "heightFt": 16.4,
-      "widthBasis": "derived",
-      "basisNote": "derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block",
+      "widthBasis": "operator",
+      "basisNote": "operator 2026-09-30: two separate suites (131 | 133); line placed by lease SF (1,907 SF / 85.45') inside the plat 37.2' block — not a plat string",
       "entityIds": [
         "suite-otb-131"
       ]
@@ -213,8 +213,8 @@
       "x0Ft": 507.42,
       "widthFt": 14.88,
       "heightFt": 16.4,
-      "widthBasis": "derived",
-      "basisNote": "derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block",
+      "widthBasis": "operator",
+      "basisNote": "operator 2026-09-30: two separate suites (131 | 133); line placed by lease SF (1,272 SF / 85.45') inside the plat 37.2' block — not a plat string",
       "entityIds": [
         "suite-otb-133"
       ]

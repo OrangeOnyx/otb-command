@@ -585,8 +585,8 @@ const LB_REAR_SETBACK = 18.73;   // plat dim: rear face 18.73' off M.A. R/W (REV
                                  // holds the rear parallel parking + 10' utility easement)
 const LB_EAST_GAP = 19.07;       // plat: building SE corner to boundary at Johnston end
 const LB_BAYS = [ // [unit, width ft, source]
-  ["133", 14.88, "derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block"],
-  ["131", 22.32, "derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block"],
+  ["133", 14.88, "operator 2026-09-30: two separate suites (131 | 133); line placed by lease SF (1,272 SF / 85.45') inside the plat 37.2' block — not a plat string"],
+  ["131", 22.32, "operator 2026-09-30: two separate suites (131 | 133); line placed by lease SF (1,907 SF / 85.45') inside the plat 37.2' block — not a plat string"],
   ["129", 20.9, "plat"], ["127", 29.7, "plat"], ["125", 20.3, "plat"], ["123", 41.7, "plat"],
   ["121", 20.0, "plat"], ["119.5", 23.1, "plat"], ["119", 23.2, "plat"],
   ["117.5", 20.2, "plat (string conflicts with plat SF 1,769 → 20.7'; string governs)"],

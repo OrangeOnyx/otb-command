@@ -19,7 +19,7 @@
     .cc-muted{fill:var(--cc-cre-text-muted,#5C554A);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
   </style>
   <path class="cc-mass" filter="url(#cc-shadow)" d="M0 0 V-23.6 H83 V-20.6 H108 V-13.2 H134 V-16.4 H154.4 V-16.4 H184.4 V-16.4 H204.4 V-16.4 H235.2 V-16.4 H260.6 V-16.4 H286 V-16.4 H306.2 V-16.4 H329.4 V-16.4 H352.5 V-16.4 H372.5 V-16.4 H414.2 V-16.4 H434.5 V-16.4 H464.2 V-16.4 H485.1 V-16.4 H507.42 V-16.4 H522.3 V0"/>
-  <g class="cc-demising"><line class="cc-demise" x1="83" y1="0" x2="83" y2="-20.6"/><line class="cc-demise" x1="108" y1="0" x2="108" y2="-13.2"/><line class="cc-demise" x1="134" y1="0" x2="134" y2="-13.2"/><line class="cc-demise" x1="154.4" y1="0" x2="154.4" y2="-16.4"/><line class="cc-demise" x1="184.4" y1="0" x2="184.4" y2="-16.4"/><line class="cc-demise" x1="204.4" y1="0" x2="204.4" y2="-16.4"/><line class="cc-demise" x1="235.2" y1="0" x2="235.2" y2="-16.4"/><line class="cc-demise" x1="260.6" y1="0" x2="260.6" y2="-16.4"/><line class="cc-demise" x1="286" y1="0" x2="286" y2="-16.4"/><line class="cc-demise" x1="306.2" y1="0" x2="306.2" y2="-16.4"/><line class="cc-demise" x1="329.4" y1="0" x2="329.4" y2="-16.4"/><line class="cc-demise" x1="352.5" y1="0" x2="352.5" y2="-16.4"/><line class="cc-demise" x1="372.5" y1="0" x2="372.5" y2="-16.4"/><line class="cc-demise" x1="414.2" y1="0" x2="414.2" y2="-16.4"/><line class="cc-demise" x1="434.5" y1="0" x2="434.5" y2="-16.4"/><line class="cc-demise" x1="464.2" y1="0" x2="464.2" y2="-16.4"/><line class="cc-demise" x1="485.1" y1="0" x2="485.1" y2="-16.4"/><line class="cc-demise cc-demise--derived" x1="507.42" y1="0" x2="507.42" y2="-16.4"/></g>
+  <g class="cc-demising"><line class="cc-demise" x1="83" y1="0" x2="83" y2="-20.6"/><line class="cc-demise" x1="108" y1="0" x2="108" y2="-13.2"/><line class="cc-demise" x1="134" y1="0" x2="134" y2="-13.2"/><line class="cc-demise" x1="154.4" y1="0" x2="154.4" y2="-16.4"/><line class="cc-demise" x1="184.4" y1="0" x2="184.4" y2="-16.4"/><line class="cc-demise" x1="204.4" y1="0" x2="204.4" y2="-16.4"/><line class="cc-demise" x1="235.2" y1="0" x2="235.2" y2="-16.4"/><line class="cc-demise" x1="260.6" y1="0" x2="260.6" y2="-16.4"/><line class="cc-demise" x1="286" y1="0" x2="286" y2="-16.4"/><line class="cc-demise" x1="306.2" y1="0" x2="306.2" y2="-16.4"/><line class="cc-demise" x1="329.4" y1="0" x2="329.4" y2="-16.4"/><line class="cc-demise" x1="352.5" y1="0" x2="352.5" y2="-16.4"/><line class="cc-demise" x1="372.5" y1="0" x2="372.5" y2="-16.4"/><line class="cc-demise" x1="414.2" y1="0" x2="414.2" y2="-16.4"/><line class="cc-demise" x1="434.5" y1="0" x2="434.5" y2="-16.4"/><line class="cc-demise" x1="464.2" y1="0" x2="464.2" y2="-16.4"/><line class="cc-demise" x1="485.1" y1="0" x2="485.1" y2="-16.4"/><line class="cc-demise" x1="507.42" y1="0" x2="507.42" y2="-16.4"/></g>
   <path class="cc-roof" d="M0 0 V-23.6 H83 V-20.6 H108 V-13.2 H134 V-16.4 H154.4 V-16.4 H184.4 V-16.4 H204.4 V-16.4 H235.2 V-16.4 H260.6 V-16.4 H286 V-16.4 H306.2 V-16.4 H329.4 V-16.4 H352.5 V-16.4 H372.5 V-16.4 H414.2 V-16.4 H434.5 V-16.4 H464.2 V-16.4 H485.1 V-16.4 H507.42 V-16.4 H522.3 V0"/>
   
   <g id="suite-otb-101" class="cc-entity" data-entity-id="suite-otb-101" data-entity-ids="suite-otb-101" data-suite-label="101" data-width-basis="plat">
@@ -124,14 +124,14 @@
     <text class="cc-label" x="474.65" y="4.2" font-size="2.6" text-anchor="middle">129</text>
     <text class="cc-muted" x="474.65" y="7.6" font-size="1.7" text-anchor="middle">20.9′ · 16.4′h</text>
   </g>
-  <g id="suite-otb-131" class="cc-entity" data-entity-id="suite-otb-131" data-entity-ids="suite-otb-131" data-suite-label="131" data-width-basis="derived">
-    <title>Suite 131 — frontage 22.32 ft (derived SF split) · building height 16.4 ft (2019 survey)</title>
+  <g id="suite-otb-131" class="cc-entity" data-entity-id="suite-otb-131" data-entity-ids="suite-otb-131" data-suite-label="131" data-width-basis="operator">
+    <title>Suite 131 — frontage 22.32 ft (operator-confirmed line) · building height 16.4 ft (2019 survey)</title>
     <rect class="cc-hit" x="485.1" y="-16.4" width="22.32" height="16.4"/>
     <text class="cc-label" x="496.26" y="4.2" font-size="2.6" text-anchor="middle">131</text>
     <text class="cc-muted" x="496.26" y="7.6" font-size="1.7" text-anchor="middle">22.32′ · 16.4′h</text>
   </g>
-  <g id="suite-otb-133" class="cc-entity" data-entity-id="suite-otb-133" data-entity-ids="suite-otb-133" data-suite-label="133" data-width-basis="derived">
-    <title>Suite 133 — frontage 14.88 ft (derived SF split) · building height 16.4 ft (2019 survey)</title>
+  <g id="suite-otb-133" class="cc-entity" data-entity-id="suite-otb-133" data-entity-ids="suite-otb-133" data-suite-label="133" data-width-basis="operator">
+    <title>Suite 133 — frontage 14.88 ft (operator-confirmed line) · building height 16.4 ft (2019 survey)</title>
     <rect class="cc-hit" x="507.42" y="-16.4" width="14.88" height="16.4"/>
     <text class="cc-label" x="514.86" y="4.2" font-size="2.6" text-anchor="middle">133</text>
     <text class="cc-muted" x="514.86" y="7.6" font-size="1.7" text-anchor="middle">14.88′ · 16.4′h</text>

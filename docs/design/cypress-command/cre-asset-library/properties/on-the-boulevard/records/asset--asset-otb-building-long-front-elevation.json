@@ -10,8 +10,8 @@
   "source_refs": [
     {
       "source_id": "source-otb-geometry-json",
-      "revision": "worktree-sha256:f14a63ecf6ced130",
-      "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
+      "revision": "worktree-sha256:bf1875c940a4f594",
+      "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140"
     },
     {
       "source_id": "source-otb-heights-json",
@@ -36,7 +36,7 @@
     "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-long--front--neutral--v1.svg"
   },
   "revision": "v1",
-  "sha256": "8de7f04b8537ecf7b1d53bae5ee85a6f25314bf9b3348139be32a8d1c3160333",
+  "sha256": "952fd89692869d4bae56c771c4b8d660a8ba9e3551e2388244e5d0621405b1ee",
   "view": "front",
   "theme": "neutral",
   "style_reference_source_ids": [
@@ -51,12 +51,12 @@
       "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-long--front--neutral--v1.geometry.json"
     },
     "revision": "v1",
-    "sha256": "6a51d48d6eca4a215d7d7cc1d46f9870f06f333f7a981eada5a85d1039290fb8",
+    "sha256": "c6ca114b073fc318b5d3ffedca85ab655339a2d73e8e88cd7179e0515f76d7aa",
     "source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:f14a63ecf6ced130",
-        "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
+        "revision": "worktree-sha256:bf1875c940a4f594",
+        "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140"
       },
       {
         "source_id": "source-otb-heights-json",
@@ -93,8 +93,8 @@
       "input_source_refs": [
         {
           "source_id": "source-otb-geometry-json",
-          "revision": "worktree-sha256:f14a63ecf6ced130",
-          "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
+          "revision": "worktree-sha256:bf1875c940a4f594",
+          "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140"
         },
         {
           "source_id": "source-otb-heights-json",
@@ -111,8 +111,8 @@
     "input_source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:f14a63ecf6ced130",
-        "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
+        "revision": "worktree-sha256:bf1875c940a4f594",
+        "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140"
       },
       {
         "source_id": "source-otb-heights-json",

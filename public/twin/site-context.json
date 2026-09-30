@@ -222,7 +222,7 @@
   "sources": [
     {
       "path": "src/data/geometry.json",
-      "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226",
+      "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140",
       "hashEncoding": "utf8-lf",
       "revision": "REV 15"
     },

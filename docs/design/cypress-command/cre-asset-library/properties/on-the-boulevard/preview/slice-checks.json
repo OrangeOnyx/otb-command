@@ -27,7 +27,7 @@
       "unit": "sqft",
       "delta": -0.5,
       "result": "not_applicable",
-      "basis": "Plat footprint (bay 14.88 ft × depth 85.45 ft; derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+      "basis": "Plat footprint (bay 14.88 ft × depth 85.45 ft; operator 2026-09-30: two separate suites (131 | 133); line placed by lease SF (1,272 SF / 85.45') inside the plat 37.2' block — not a plat string) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
     },
     {
       "check": "area-131",
@@ -36,7 +36,7 @@
       "unit": "sqft",
       "delta": 0.24,
       "result": "not_applicable",
-      "basis": "Plat footprint (bay 22.32 ft × depth 85.45 ft; derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
+      "basis": "Plat footprint (bay 22.32 ft × depth 85.45 ft; operator 2026-09-30: two separate suites (131 | 133); line placed by lease SF (1,907 SF / 85.45') inside the plat 37.2' block — not a plat string) vs lease SF (units.public.json). Different measurement definitions — reported, never reconciled or averaged."
     },
     {
       "check": "area-129",

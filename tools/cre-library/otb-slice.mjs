@@ -51,7 +51,7 @@ export function frontageBays(geometry, heights, which, heightsProv = null) {
     const heightFt = heights[label] ?? heights[label + "A"] ?? null;
     const bay = {
       label, x0Ft: r2(x), widthFt, heightFt,
-      widthBasis: /^derived/i.test(basisNote) ? "derived" : "plat",
+      widthBasis: /^derived/i.test(basisNote) ? "derived" : /^operator/i.test(basisNote) ? "operator" : "plat",
       basisNote,
       entityIds: label === "135" ? [suiteId("135A")] : [suiteId(label)]
     };
@@ -158,7 +158,7 @@ export function entityRecords({ S, geometry, unitsPublic, pylon, assetIds }) {
     if (bay && bayLabel !== "135") {
       rec.measurements = [{
         name: "storefront-frontage", value: bay[1], quantity: "length", unit: "ft",
-        basis: bay[2].startsWith("derived") ? `Derived, not a plat dimension: ${bay[2]}` : `Recorded plat demising string (${bay[2]})`,
+        basis: bay[2].startsWith("derived") ? `Derived, not a plat dimension: ${bay[2]}` : bay[2].startsWith("operator") ? `Operator-confirmed suite line: ${bay[2]}` : `Recorded plat demising string (${bay[2]})`,
         source_refs: [ref(S.geometry, `demising.${BUILDINGS[which].key}.bays[${u.unit}]`)],
         verification: unverified("Transcribed; not field-verified.")
       }];
@@ -310,7 +310,7 @@ export function elevationSvg(geom, title) {
     const h = b.heightFt ?? 0;
     const cx = r2(b.x0Ft + b.widthFt / 2);
     return `  <g id="${esc(b.entityIds[0])}" class="cc-entity" data-entity-id="${esc(b.entityIds[0])}" data-entity-ids="${esc(ids)}" data-suite-label="${esc(b.label)}" data-width-basis="${b.widthBasis}">
-    <title>${esc(`${b.label === "135" ? "135 section" : "Suite " + b.label} — frontage ${b.widthFt} ft (${b.widthBasis === "derived" ? "derived SF split" : "plat"}) · building height ${h} ft (2019 survey)`)}</title>
+    <title>${esc(`${b.label === "135" ? "135 section" : "Suite " + b.label} — frontage ${b.widthFt} ft (${b.widthBasis === "derived" ? "derived SF split" : b.widthBasis === "operator" ? "operator-confirmed line" : "plat"}) · building height ${h} ft (2019 survey)`)}</title>
     <rect class="cc-hit" x="${b.x0Ft}" y="${r2(-h)}" width="${b.widthFt}" height="${h}"/>
     <text class="cc-label" x="${cx}" y="4.2" font-size="2.6" text-anchor="middle">${esc(b.label === "135" ? "135A" : b.label)}</text>
     <text class="cc-muted" x="${cx}" y="7.6" font-size="1.7" text-anchor="middle">${esc(b.widthFt + "′ · " + h + "′h")}</text>
