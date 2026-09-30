@@ -1,0 +1,4 @@
+Unit: 123
+Square Feet: 3563
+Tenant: The Tux Shoppe
+Folder: 123_THE_TUX_SHOPPE

@@ -1,0 +1,80 @@
+# LAYER 1 — GLOBAL STYLE BASE
+# On The Boulevard Shopping Center — Master Architectural Signage Prompt
+# Stack order: [LAYER 1] + [LAYER 2 category] + [LAYER 3 scene] + [TENANT-SPECIFIC]
+
+ROLE
+Adopt the role of an expert 3D architectural visualization specialist and technical
+rendering director with 15+ years of experience producing photorealistic commercial
+real estate renderings for institutional property owners. Output must reflect
+investor-grade presentation standards with disciplined real-world geometry,
+materials, and operational realism.
+
+PROJECT
+On The Boulevard Shopping Center — a polished suburban neighborhood retail center.
+Two-building parallel layout with central surface parking. NOT L-shaped. JD Bank
+outparcel excluded.
+
+SIGN CONSTRUCTION (default building standard)
+- Construction type: dimensional channel letters mounted on raceway or flush to
+  facade fascia band, set above the storefront bay
+- Standard depth: 3"–5" returns
+- Default illumination: internally illuminated channel letters; halo-lit (reverse
+  channel with LED backlight) for Facade Family A; face-lit (acrylic face with
+  internal LED) for Facade Family B and C — overridden by tenant block
+- Returns: dark bronze or matte black aluminum, color-matched to storefront frames
+- Trim cap: tight, color-matched, no visible fasteners
+- Mounting: clean, level, centered in the designated sign band; no exposed wiring,
+  conduit, or transformers visible
+- Wordmarks and icons must read as fabricated signage — not flat graphics, decals,
+  or printed banners
+
+LOGO INTEGRITY (CRITICAL — NON-NEGOTIABLE)
+- Use the supplied tenant logo as the single source of truth for color, typography,
+  proportion, kerning, and iconography
+- Do NOT redraw, restyle, re-letter, simplify, modernize, or "improve" any logo
+- Do NOT stretch, skew, pixelate, or distort
+- Do NOT hallucinate alternate brand styles, color palettes, or fonts
+- Preserve trademark symbols, taglines, and registered marks exactly as supplied
+- Icon/symbol elements (paw prints, monograms, crests, etc.) must remain identifiable
+  at the rendered scale
+- Maintain accurate proportions and centered alignment above the storefront
+
+ARCHITECTURAL STYLE
+- Polished suburban neighborhood retail center, upscale-but-restrained
+- Facade colors: White = Benjamin Moore OC-19 Seapearl; Tan = Benjamin Moore HC-79
+- Front roof edge: gray architectural shingles
+- Main roof: white TPO membrane
+- Columns: masonry-wrapped
+- Storefront frames: dark bronze aluminum
+- Glass: clear with subtle reflectivity
+- Sidewalks & curbs: light concrete, broom finish
+- Continuous covered pedestrian walkway with consistent column rhythm
+- End caps slightly emphasized but not exaggerated
+- No invented structures or architectural redesign
+
+LIGHTING & REALISM STANDARDS
+- Photoreal, physically-based rendering quality
+- Crisp but controlled shadows — never harsh, never dramatic
+- Subtle ambient bounce under covered walkways
+- Material response accurate to substrate (matte EIFS, satin aluminum returns,
+  acrylic faces glowing only when illuminated)
+- Avoid over-stylized lighting, neon halos, lens flares, or HDR over-processing
+- Signage illumination must read as real LED — soft, even, no hotspots
+
+CAMERA & COMPOSITION (default)
+- Lens: 45–60mm equivalent, minimal distortion, slight compression
+- Controlled verticals — no exaggerated perspective
+- Eye-level to slight upward tilt for storefront views
+- Signage centered in frame, legible, properly scaled
+- Tone: polished, restrained, professional, investor-grade
+
+MONUMENT SIGN
+- Reads exactly: "On The Blvd"
+- Included in foreground when composition allows
+
+GLOBAL QUALITY CONTROL
+- Maintain suburban retail scale and proportion
+- Subtle realistic material textures (EIFS, shingles, asphalt, concrete)
+- Landscaping slightly enhanced but believable
+- No cartoon, illustration, painterly, or stylized output
+- No invented tenants, signage, or architectural features

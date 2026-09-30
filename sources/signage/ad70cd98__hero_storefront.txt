@@ -1,0 +1,38 @@
+# DELIVERABLE TEMPLATE — Hero Storefront (Primary Leasing Showcase)
+# Full stack: LAYER 1 (Global Style) + LAYER 2 (Category) + LAYER 3 (Scene: daytime) + TENANT-SPECIFIC
+
+USAGE
+Replace {TENANT_NAME}, {CATEGORY}, and concatenate the four blocks below in order.
+
+DELIVERABLE INTENT
+Composition: eye-level storefront-centered hero of the subject tenant within
+On The Boulevard Shopping Center. Bright, polished, investor-grade leasing image.
+Signage fully legible and brand-accurate. Storefront entry, sidewalk, and partial
+covered walkway visible. Slight 5–10° camera angle for depth. Frame the subject
+tenant with partial neighbors at edges for context.
+
+============================================================
+[BLOCK 1] LAYER 1 — GLOBAL STYLE
+Insert full contents of: prompt_library/layer_1_global_style.txt
+============================================================
+
+[BLOCK 2] LAYER 2 — CATEGORY ENHANCEMENT
+Insert full contents of: prompt_library/layer_2_category_{CATEGORY}.txt
+(boutique | restaurant | salon | fitness | financial | medical | services | retail)
+
+============================================================
+
+[BLOCK 3] LAYER 3 — SCENE VARIANT
+Insert full contents of: prompt_library/layer_3_scene_daytime.txt
+
+============================================================
+
+[BLOCK 4] TENANT-SPECIFIC ENHANCEMENT
+Insert full contents of: prompt_library/tenant_specific/{tenant_slug}.txt
+
+============================================================
+
+FINAL DIRECTIVE
+Generate one photorealistic rendering of {TENANT_NAME} at On The Boulevard
+Shopping Center matching every specification above. Logo integrity is paramount.
+Output investor-grade quality.

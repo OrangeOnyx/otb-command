@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body {
+    margin: 0;
+    padding: 28px 32px 32px;
+    background: var(--cc-bg-page);
+    font-family: var(--cc-font-sans);
+    color: var(--cc-fg-strong);
+  }
+  .head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--cc-border-med);
+    margin-bottom: 24px;
+  }
+  .head .code {
+    font-family: var(--cc-font-display);
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.01em;
+    color: var(--cc-cypress-950);
+    line-height: 1;
+    font-variation-settings: 'SOFT' 20, 'opsz' 48;
+  }
+  .head .title {
+    font-family: var(--cc-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--cc-fg-strong);
+  }
+  .head .sub {
+    margin-left: auto;
+    font-family: var(--cc-font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cc-fg-muted);
+    font-variation-settings: 'SOFT' 100, 'opsz' 24;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--cc-border-soft);
+    border: 1px solid var(--cc-border-soft);
+  }
+  .cell {
+    background: var(--cc-bg-page);
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .cell .code {
+    position: absolute;
+    top: 12px; left: 14px;
+    font-family: var(--cc-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--cc-fg-subtle);
+  }
+  .cell.dark { background: var(--cc-cypress-950); }
+  .cell.dark .code { color: var(--cc-sage); }
+  .cell.dark .wordmark { color: var(--cc-bone-050); }
+  .cell.dark .wordmark .cmd { color: var(--cc-sage); }
+  .cell.dark .label { color: var(--cc-sage); border-top-color: rgba(243,237,224,0.14); }
+
+  .mark {
+    width: 116px;
+    height: 116px;
+    margin: 8px 0 14px;
+  }
+  .mark img { width: 100%; height: 100%; display: block; }
+
+  .wordmark {
+    font-family: var(--cc-font-display);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: 0.18em;
+    text-align: center;
+    color: var(--cc-cypress-950);
+    font-variation-settings: 'SOFT' 0, 'opsz' 24;
+    margin-bottom: 4px;
+  }
+  .wordmark .cmd {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    margin-top: 3px;
+    color: var(--cc-fg-primary);
+  }
+  .label {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--cc-border-soft);
+    width: 100%;
+    text-align: center;
+    font-family: var(--cc-font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--cc-fg-muted);
+  }
+</style>
+</head>
+<body>
+
+  <div class="head">
+    <span class="code">04C</span>
+    <span class="title">Balanced classic · final mark</span>
+    <span class="sub">Systems under control. Results that last.</span>
+  </div>
+
+  <div class="grid">
+
+    <div class="cell">
+      <span class="code">04C-1</span>
+      <div class="mark"><img src="../assets/logos/04C_primary.svg" alt="04C primary"/></div>
+      <div class="wordmark">CYPRESS<span class="cmd">COMMAND</span></div>
+      <div class="label">Primary</div>
+    </div>
+
+    <div class="cell">
+      <span class="code">04C-2</span>
+      <div class="mark"><img src="../assets/logos/04C_monochrome.svg" alt="04C monochrome"/></div>
+      <div class="wordmark" style="color:#2A2E2A;">CYPRESS<span class="cmd" style="color:#565A56;">COMMAND</span></div>
+      <div class="label">Monochrome</div>
+    </div>
+
+    <div class="cell">
+      <span class="code">04C-3</span>
+      <div class="mark"><img src="../assets/logos/04C_amber.svg" alt="04C amber accent"/></div>
+      <div class="wordmark">CYPRESS<span class="cmd">COMMAND</span></div>
+      <div class="label">Amber accent</div>
+    </div>
+
+    <div class="cell dark">
+      <span class="code">04C-4</span>
+      <div class="mark"><img src="../assets/logos/04C_reverse.svg" alt="04C reverse"/></div>
+      <div class="wordmark">CYPRESS<span class="cmd">COMMAND</span></div>
+      <div class="label">Reverse · on dark</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

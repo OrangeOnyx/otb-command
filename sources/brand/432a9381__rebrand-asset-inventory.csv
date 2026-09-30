@@ -1,0 +1,14 @@
+category,asset_or_system,current_location,action,owner,due_date,status,approval_or_evidence,notes
+Domain,Orange Ocean primary domain,,Redirect and retain,,,Pending,,Keep at least 24 months
+Domain,Cypress Command primary domain,https://cypresscommand.com,Verify ownership and security,,,Pending,,Registrar lock and MFA
+Website,Public website,,Update and test,,,Pending,,HTTPS forms analytics metadata canonical tags
+Email,Primary and role accounts,,Create aliases and dual-deliver,,,Pending,,SPF DKIM DMARC
+Documents,Contracts and agreements,,Review legal naming,,,Pending,,Do not alter historical records
+Documents,Proposals and statements of work,,Replace templates,,,Pending,,Use approved legal entity wording
+Finance,Invoices receipts and payment descriptors,,Update after approval,,,Pending,,Verify bank and processor display names
+Profiles,LinkedIn and social accounts,,Rename and update visuals,,,Pending,,Use continuity line for 60 days only
+Directories,Maps and business listings,,Update or claim,,,Pending,,Avoid duplicates
+Analytics,Analytics and Search Console,,Verify both domains,,,Pending,,Annotate launch date
+CRM,Company profile and templates,,Update,,,Pending,,Check links forms and sender identities
+Operations,Vendor and client portals,,Update selectively,,,Pending,,Protect payment and account continuity
+Archives,Former logos and documents,,Archive and retire from new use,,,Pending,,Preserve required records

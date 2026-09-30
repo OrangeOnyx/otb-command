@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — The Tux Shoppe
+# Unit 123 | Category: retail | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/the_tux_shoppe.png
+
+BRAND COLOR TREATMENT
+- black and white or black and silver per logo; formalwear restraint
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- bowtie or formal motif preserved exactly
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- classic serif or refined sans, formal in character
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- matte black returns, halo-lit reverse channel, warm-white LED
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters, refined understated glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Formalwear

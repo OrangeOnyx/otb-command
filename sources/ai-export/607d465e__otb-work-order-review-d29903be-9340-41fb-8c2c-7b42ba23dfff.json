@@ -1,0 +1,256 @@
+{
+  "actorId": "local:adam",
+  "createdAt": "2026-09-29T23:07:17.165Z",
+  "kind": "WORK_ORDER_REVIEW",
+  "learning": {
+    "proposal": "Review repeated evidence gaps before changing the maintenance workflow.",
+    "status": "REVIEW_PENDING"
+  },
+  "operationId": "d29903be-9340-41fb-8c2c-7b42ba23dfff",
+  "proposal": {
+    "baseRevision": "b3ce3fa91f17e304d0d0e7dcb662f24439fd349eba794f07865dc55dcf9d56ff",
+    "checks": [
+      {
+        "kind": "inspection",
+        "sourceIds": [],
+        "status": "MISSING"
+      },
+      {
+        "kind": "scope",
+        "sourceIds": [],
+        "status": "MISSING"
+      },
+      {
+        "kind": "completion",
+        "sourceIds": [],
+        "status": "MISSING"
+      }
+    ],
+    "completionGate": "MISSING_EVIDENCE",
+    "effects": {
+      "assign": false,
+      "close": false,
+      "dispatch": false,
+      "spend": false
+    },
+    "gaps": [
+      "inspection evidence is missing or unusable.",
+      "scope evidence is missing or unusable.",
+      "completion evidence is missing or unusable."
+    ],
+    "kind": "WORK_ORDER_REVIEW_DRAFT",
+    "limits": [
+      "Notes, vendor and budget are operator-reported proposals, not inspection, assignment or spending approval.",
+      "Recorded done/closed status and photo counts do not establish physical completion.",
+      "A1 produces a review packet; it cannot change M-1 or certify an operating-goal criterion."
+    ],
+    "nextAction": "Obtain the missing request-specific evidence, then review a new proposal.",
+    "operatorReported": {
+      "budgetCents": null,
+      "notes": "Evidence review only. No new site inspection or completion documentation was supplied in this session. The available system snapshot is dated September 8, 2026.",
+      "scope": "Confirm the exact defect location and current condition with a dated inspection. Obtain request-specific repair scope and completion evidence before considering closure.",
+      "vendor": ""
+    },
+    "proposalId": "PROP-d29903be-9340-41fb-8c2c-7b42ba23dfff",
+    "record": {
+      "archiveAsOf": "2026-08-29",
+      "archivedStatus": "open",
+      "currentCondition": "NOT_ESTABLISHED",
+      "description": "In front of pink paisley",
+      "location": {
+        "kind": "frontage-association",
+        "label": "In front of pink paisley. Associated storefronts face the Arnould Boulevard side of the long building.",
+        "precision": "Exact location unverified",
+        "suiteIds": [
+          "101",
+          "103"
+        ]
+      },
+      "recordedStatus": "open",
+      "requestId": "ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+      "sourceMode": "snapshot",
+      "systemReadAt": "2026-09-08T05:24:33.481499+00:00",
+      "title": "Pothole Repair",
+      "unknowns": [
+        "Exact defect point and extent",
+        "Current condition and repair status",
+        "Vendor / assignment",
+        "Repair scope and quote",
+        "Completion evidence",
+        "Payment status"
+      ],
+      "vendorId": null
+    },
+    "reportedBy": "local:adam",
+    "requestId": "ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+    "stage": "completion"
+  },
+  "receipt": {
+    "actions_attempted": [
+      "Read the scoped M-1 source and selected evidence inventory",
+      "Prepare a triage or completion-review packet"
+    ],
+    "actions_completed": [
+      "Preserved dated operating record and unresolved condition",
+      "Saved source identities, evidence gaps, draft and receipt"
+    ],
+    "actions_failed": [],
+    "approval_bindings": [],
+    "approvals_received": [],
+    "artifacts_created": [
+      "operations/d29903be-9340-41fb-8c2c-7b42ba23dfff"
+    ],
+    "assumptions": [],
+    "authority_used": [],
+    "command_id": "OTB-CMD-003",
+    "command_version": "1.0.0",
+    "completed_at": "2026-09-29T23:07:17.165Z",
+    "confidence": null,
+    "contract_version": "1.1",
+    "estimated_compute_cost": null,
+    "exceptions_created": [],
+    "exceptions_resolved": [],
+    "execution_environment": "Local A1 work-order evidence review",
+    "executor": "cces-local-work-order-review",
+    "external_changes": [],
+    "facts_used": [],
+    "goal_id": "GOAL-OTB-001",
+    "human_review_required": true,
+    "imported_claim_source_ids": [],
+    "initiated_by": "local:adam",
+    "internal_changes": [
+      "Created a private work-order review artifact"
+    ],
+    "model": null,
+    "next_action": "Obtain the missing request-specific evidence, then review a new proposal.",
+    "operation_id": "d29903be-9340-41fb-8c2c-7b42ba23dfff",
+    "original_result_status": null,
+    "other_cost": null,
+    "receipt_id": "RCP-d29903be-9340-41fb-8c2c-7b42ba23dfff",
+    "record_kind": "execution",
+    "record_outcomes": [],
+    "records_modified": [],
+    "result_status": "COMPLETED_WITH_EXCEPTION",
+    "sources_accessed": [
+      "SRC-WO-040d19b7603b9a1e975f",
+      "SRC-WO-24b896b506381117737a",
+      "SRC-WO-4858f2530b54575e09f5",
+      "SRC-WO-6bb52a024bd9f9b26dbd"
+    ],
+    "started_at": "2026-09-29T23:07:17.165Z",
+    "tokens_used": null,
+    "verification_scope": "Dated source excerpts and local evidence byte identity only. No current-condition, completion, invoice, payment or authority verification.",
+    "workflow_id": "WFL-OTB-WORK-ORDER-REVIEW",
+    "workflow_version": "1.0.0"
+  },
+  "requestId": "ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+  "sourceAuthorityRecords": [
+    {
+      "authority_scope": "Hash of a derived allowlisted source excerpt; original source not newly authenticated.",
+      "evidence_class": "E3",
+      "inspection_status": "primary_inspected",
+      "limitations": [
+        "No independent inspection or approval is established."
+      ],
+      "location": "docs/harvest/ac-archive-2026-08-29/work_orders.json",
+      "name": "Pothole repair · original archived request",
+      "sha256": "0133e8415a471b4c0d8ba0dcf225b4800b05ab2935a65df37ec2352eeebd73fc",
+      "source_date": "2026-08-29",
+      "source_id": "SRC-WO-040d19b7603b9a1e975f",
+      "source_type": "local_file"
+    },
+    {
+      "authority_scope": "Hash of a derived allowlisted source excerpt; original source not newly authenticated.",
+      "evidence_class": "E3",
+      "inspection_status": "primary_inspected",
+      "limitations": [
+        "No independent inspection or approval is established."
+      ],
+      "location": "docs/superpowers/specs/2026-08-29-ac-harvest.md",
+      "name": "Import verification · real request retained",
+      "sha256": "4c7514fc7f08a7291c1ddc75f75242ceaa23c3b7fc0fb4a64d0332b7f3e02cb0",
+      "source_date": "2026-08-29",
+      "source_id": "SRC-WO-24b896b506381117737a",
+      "source_type": "local_file"
+    },
+    {
+      "authority_scope": "Hash of a derived allowlisted source excerpt; original source not newly authenticated.",
+      "evidence_class": "E3",
+      "inspection_status": "primary_inspected",
+      "limitations": [
+        "No independent inspection or approval is established."
+      ],
+      "location": "src/data/units.public.json; docs/sot-2026-07/",
+      "name": "The Pink Paisley · suite association",
+      "sha256": "9d9c482d22b3d5f9441a7ad755b4c128344c3f53e504ce95d7fca8d1d7edfccc",
+      "source_date": "2026-07-16",
+      "source_id": "SRC-WO-4858f2530b54575e09f5",
+      "source_type": "local_file"
+    },
+    {
+      "authority_scope": "Hash of a derived allowlisted source excerpt; original source not newly authenticated.",
+      "evidence_class": "E3",
+      "inspection_status": "primary_inspected",
+      "limitations": [
+        "No independent inspection or approval is established."
+      ],
+      "location": "docs/harvest/maintenance-verification-2026-09-08.json · Supabase otb-command · public.maintenance_requests / public.maintenance_events · ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+      "name": "Linked M-1 work order · dated system read",
+      "sha256": "9cbcf39909e3c64bcc0d42c347822ec6e75c13fbe359c2f02836bce3385ab64f",
+      "source_date": "2026-09-08",
+      "source_id": "SRC-WO-6bb52a024bd9f9b26dbd",
+      "source_type": "local_file"
+    }
+  ],
+  "sourceExcerpts": [
+    {
+      "asOf": "2026-08-29",
+      "excerpt": "{\n  \"id\": \"c005cdc5-fd30-41a7-b71c-e40d3b3d1874\",\n  \"title\": \"Pothole Repair\",\n  \"description\": \"In front of pink paisley\",\n  \"unitId\": null,\n  \"priority\": \"normal\",\n  \"status\": \"open\",\n  \"reportedBy\": \"Pink paisley\",\n  \"reportedAt\": \"2026-07-27T19:23:58\",\n  \"vendorName\": null,\n  \"cost\": null,\n  \"assignedAt\": null,\n  \"completedAt\": null,\n  \"linkedVoiceIntakeId\": null,\n  \"updatedAt\": \"2026-07-27T19:23:58\"\n}\n\nArchive date: 2026-08-29. Naive source timestamps were interpreted as America/Chicago during the documented import. Open is the archived status, not a current inspection result. This archived record contains no photograph, vendor, quote, assignment, or completion evidence.",
+      "id": "pothole-record",
+      "kind": "Archived operational record",
+      "path": "docs/harvest/ac-archive-2026-08-29/work_orders.json",
+      "title": "Pothole repair · original archived request"
+    },
+    {
+      "asOf": "2026-08-29",
+      "excerpt": "| work_orders 24 | `maintenance_requests`+events | **1** | 23 rows are cancelled \"Test Tenant\"/\"PP Test\" test tickets — archived only, NOT imported into the live M-1 queue (deliberate deviation; the one real order = Pothole Repair, Common Area, open 2026-07-27) |\n\nThis record documents excluding 23 cancelled test tickets and retaining the one real Pothole Repair request. It does not establish its condition after the archive date.",
+      "id": "harvest-verification",
+      "kind": "Repository import record",
+      "path": "docs/superpowers/specs/2026-08-29-ac-harvest.md",
+      "title": "Import verification · real request retained"
+    },
+    {
+      "asOf": "2026-07-16",
+      "excerpt": "[\n  {\n    \"unit\": \"101\",\n    \"dba\": \"The Pink Paisley\",\n    \"use\": \"Women's fashion boutique\",\n    \"cat\": \"retail\",\n    \"status\": \"active\",\n    \"start\": \"2024-02-15\",\n    \"end\": \"2027-02-28\",\n    \"sf\": 6877\n  },\n  {\n    \"unit\": \"103\",\n    \"dba\": \"The Pink Paisley\",\n    \"use\": \"Women's fashion boutique\",\n    \"cat\": \"retail\",\n    \"status\": \"active\",\n    \"start\": \"2024-02-15\",\n    \"end\": \"2027-02-28\",\n    \"sf\": 3054\n  }\n]\n\nAssociation is derived from the reported business name and July 2026 roster. The work order has unitId=null. No precise defect location is supplied.",
+      "id": "roster-101-103",
+      "kind": "Adopted source extract",
+      "path": "src/data/units.public.json; docs/sot-2026-07/",
+      "title": "The Pink Paisley · suite association"
+    },
+    {
+      "asOf": "2026-09-08T05:24:33.481499+00:00",
+      "excerpt": "{\n  \"state\": \"verified\",\n  \"mode\": \"snapshot\",\n  \"readAt\": \"2026-09-08T05:24:33.481499+00:00\",\n  \"sourcePath\": \"docs/harvest/maintenance-verification-2026-09-08.json\",\n  \"method\": \"Read-only Supabase connector query; scoped to Orange Ocean / OTB and this request ID. This verification used database access, not a browser-user RLS acceptance test.\",\n  \"requestId\": \"ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874\",\n  \"unit\": \"Common Area\",\n  \"title\": \"Pothole Repair\",\n  \"detail\": \"In front of Pink Paisley (101–103). Imported from Asset Command work orders.\",\n  \"createdAt\": \"2026-07-28T00:23:58+00:00\",\n  \"status\": \"open\",\n  \"explicitStatus\": true,\n  \"vendorId\": null,\n  \"lastAt\": \"2026-07-28T00:23:58+00:00\",\n  \"events\": [\n    {\n      \"id\": 20,\n      \"kind\": \"status\",\n      \"status\": \"open\",\n      \"vendor_id\": null,\n      \"note\": \"Imported from Asset Command (reported 2026-07-27 by Pink Paisley; AC status open)\",\n      \"created_at\": \"2026-07-28T00:23:58+00:00\"\n    }\n  ],\n  \"photos\": {\n    \"state\": \"checked\",\n    \"count\": 0,\n    \"complete\": true\n  }\n}\n\nThis is a dated read of the request and its event trail, not an on-site inspection. A recorded status does not independently establish present conditions. No quote, invoice, payment or completion document is established by this read. Photo counts describe only the visible maintenance-photos request folder. The archived work order and physical frontage association retain their separate sources.",
+      "id": "maintenance-system-record",
+      "kind": "Database verification snapshot",
+      "path": "docs/harvest/maintenance-verification-2026-09-08.json · Supabase otb-command · public.maintenance_requests / public.maintenance_events · ac:c005cdc5-fd30-41a7-b71c-e40d3b3d1874",
+      "title": "Linked M-1 work order · dated system read"
+    }
+  ],
+  "sourceIntake": {
+    "configured": false,
+    "items": [],
+    "limitations": [
+      "No current work-order evidence inventory is configured."
+    ],
+    "manifestHash": null
+  },
+  "status": "COMPLETED_WITH_EXCEPTION",
+  "events": [
+    {
+      "at": "2026-09-29T23:07:17.165Z",
+      "eventId": "created-d29903be-9340-41fb-8c2c-7b42ba23dfff",
+      "operationId": "d29903be-9340-41fb-8c2c-7b42ba23dfff",
+      "type": "COMMITTED"
+    }
+  ]
+}

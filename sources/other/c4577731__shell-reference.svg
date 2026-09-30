@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1030" viewBox="0 0 1600 1030">
+<title>On The Boulevard — repo-derived shell reference</title>
+<desc>Uniform-scale footprint and suite reference reconstructed from OTB Command demising dimensions. Derived splits are highlighted. This is not an interior or as-built floor plan.</desc>
+<style>text{font-family:Arial,sans-serif;fill:#23372f}.title{font-size:30px;font-weight:700}.sub{font-size:15px}.small{font-size:12px}.unit{font-size:13px;font-weight:700;letter-spacing:.15px}.dim{font-size:14px;fill:#40544a}.rule{stroke:#65786c;stroke-width:1;fill:none}</style>
+<rect width="1600" height="1030" fill="#faf9f5"/>
+<text class="small" x="80" y="48" letter-spacing="2">OTB COMMAND / GEOMETRY REFERENCE / REV 14</text>
+<text class="title" x="80" y="88">On The Boulevard</text>
+<text class="sub" x="80" y="117">Repo-derived shell reference • uniform scale • suite partitions only</text>
+<text class="small" x="80" y="143">Reconstructed from source dimensions. Interiors, facade and as-built conditions are not represented.</text>
+<rect x="1196.34600" y="205.00000" width="32.73600" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 133: derived: 1,272 SF / 85.45&#x27; inside plat 37.2&#x27; (POLITICS) block</title></rect>
+<text class="unit" text-anchor="middle" x="1212.71400" y="302.99500">133</text>
+<rect x="1147.24200" y="205.00000" width="49.10400" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 131: derived: 1,907 SF / 85.45&#x27; inside plat 37.2&#x27; (POLITICS) block</title></rect>
+<text class="unit" text-anchor="middle" x="1171.79400" y="302.99500">131</text>
+<rect x="1101.26200" y="205.00000" width="45.98000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 129: plat</title></rect>
+<text class="unit" text-anchor="middle" x="1124.25200" y="302.99500">129</text>
+<rect x="1035.92200" y="205.00000" width="65.34000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 127: plat</title></rect>
+<text class="unit" text-anchor="middle" x="1068.59200" y="302.99500">127</text>
+<rect x="991.26200" y="205.00000" width="44.66000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 125: plat</title></rect>
+<text class="unit" text-anchor="middle" x="1013.59200" y="302.99500">125</text>
+<rect x="899.52200" y="205.00000" width="91.74000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 123: plat</title></rect>
+<text class="unit" text-anchor="middle" x="945.39200" y="302.99500">123</text>
+<rect x="855.52200" y="205.00000" width="44.00000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 121: plat</title></rect>
+<text class="unit" text-anchor="middle" x="877.52200" y="302.99500">121</text>
+<rect x="804.70200" y="205.00000" width="50.82000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 119.5: plat</title></rect>
+<text class="unit" text-anchor="middle" x="830.11200" y="302.99500">119.5</text>
+<rect x="753.66200" y="205.00000" width="51.04000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 119: plat</title></rect>
+<text class="unit" text-anchor="middle" x="779.18200" y="302.99500">119</text>
+<rect x="709.22200" y="205.00000" width="44.44000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 117.5: plat (string conflicts with plat SF 1,769 → 20.7&#x27;; string governs)</title></rect>
+<text class="unit" text-anchor="middle" x="731.44200" y="302.99500">117.5†</text>
+<rect x="653.34200" y="205.00000" width="55.88000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 117: plat</title></rect>
+<text class="unit" text-anchor="middle" x="681.28200" y="302.99500">117</text>
+<rect x="597.46200" y="205.00000" width="55.88000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 115: plat</title></rect>
+<text class="unit" text-anchor="middle" x="625.40200" y="302.99500">115</text>
+<rect x="529.74600" y="205.00000" width="67.71600" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 113: derived: SF split of plat 80.8&#x27; (LOT 12) block</title></rect>
+<text class="unit" text-anchor="middle" x="563.60400" y="302.99500">113</text>
+<rect x="485.83400" y="205.00000" width="43.91200" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 111: derived: SF split of plat 80.8&#x27; (LOT 12) block</title></rect>
+<text class="unit" text-anchor="middle" x="507.79000" y="302.99500">111</text>
+<rect x="419.68000" y="205.00000" width="66.15400" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 109: derived: SF split of plat 80.8&#x27; (LOT 12) block</title></rect>
+<text class="unit" text-anchor="middle" x="452.75700" y="302.99500">109</text>
+<rect x="374.80000" y="205.00000" width="44.88000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 107: plat</title></rect>
+<text class="unit" text-anchor="middle" x="397.24000" y="302.99500">107</text>
+<rect x="317.60000" y="205.00000" width="57.20000" height="187.99000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 105: plat</title></rect>
+<text class="unit" text-anchor="middle" x="346.20000" y="302.99500">105</text>
+<rect x="244.53800" y="205.00000" width="73.06200" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 103: derived: SF split of plat 108.00&#x27; (BROTHER&#x27;S) end block</title></rect>
+<text class="unit" text-anchor="middle" x="281.06900" y="302.99500">103</text>
+<rect x="80.00000" y="205.00000" width="164.53800" height="187.99000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 101: derived: SF split of plat 108.00&#x27; (BROTHER&#x27;S) end block</title></rect>
+<text class="unit" text-anchor="middle" x="162.26900" y="302.99500">101</text>
+<rect x="1260.76200" y="307.56400" width="92.93900" height="82.28000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 135A: 37.4 ft plat block; operator-confirmed side-by-side split; half of 84.49 ft depth.</title></rect>
+<text class="unit" text-anchor="middle" x="1307.23150" y="352.70400">135A</text>
+<rect x="1353.70100" y="307.56400" width="92.93900" height="82.28000" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 135B: 37.4 ft plat block; operator-confirmed side-by-side split; half of 84.49 ft depth.</title></rect>
+<text class="unit" text-anchor="middle" x="1400.17050" y="352.70400">135B</text>
+<rect x="1260.76200" y="389.84400" width="185.87800" height="53.46000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 137: plat</title></rect>
+<text class="unit" text-anchor="middle" x="1353.70100" y="420.57400">137</text>
+<rect x="1260.76200" y="443.30400" width="185.87800" height="50.79250" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 139: derived: (208.65 − 54.6 − 24.3 − 37.4) / 4</title></rect>
+<text class="unit" text-anchor="middle" x="1353.70100" y="472.70025">139</text>
+<rect x="1260.76200" y="494.09650" width="185.87800" height="50.79250" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 141: derived</title></rect>
+<text class="unit" text-anchor="middle" x="1353.70100" y="523.49275">141</text>
+<rect x="1260.76200" y="544.88900" width="185.87800" height="50.79250" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 143: derived</title></rect>
+<text class="unit" text-anchor="middle" x="1353.70100" y="574.28525">143</text>
+<rect x="1260.76200" y="595.68150" width="185.87800" height="50.79250" fill="#f0ddba" stroke="#40574a" stroke-width="1.15"><title>Suite 145: derived</title></rect>
+<text class="unit" text-anchor="middle" x="1353.70100" y="625.07775">145</text>
+<rect x="1260.76200" y="646.47400" width="185.87800" height="120.12000" fill="#dce6dc" stroke="#40574a" stroke-width="1.15"><title>Suite 149: plat</title></rect>
+<text class="unit" text-anchor="middle" x="1353.70100" y="710.53400">149</text>
+<path class="rule" d="M80.0000,178v12 M80.0000,184H1229.0820 M1229.0820,178v12"/>
+<text class="dim" text-anchor="middle" x="654.5410" y="175">LONG WING / 522.31 ft</text>
+<path class="rule" d="M1260.7620,786.594v12 M1260.7620,792.594H1446.6400 M1446.6400,786.594v12"/>
+<text class="dim" text-anchor="middle" x="1353.7010" y="783.594">84.49 ft</text>
+<path class="rule" d="M57,205.0000h12 M63,205.0000V392.9900 M57,392.9900h12"/>
+<text class="dim" transform="translate(47 298.9950) rotate(-90)" text-anchor="middle">85.45 ft</text>
+<path class="rule" d="M1470.6400,307.5640h12 M1476.6400,307.5640V766.5940 M1470.6400,766.5940h12"/>
+<text class="dim" transform="translate(1500.6400 537.0790) rotate(90)" text-anchor="middle">SHORT WING / 208.65 ft</text>
+<text class="sub" x="80" y="470" font-weight="700">Source basis</text>
+<rect x="80" y="487" width="18" height="18" fill="#dce6dc" stroke="#40574a"/>
+<text class="sub" x="110" y="501">Plat dimension attributed in the repository</text>
+<rect x="80" y="520" width="18" height="18" fill="#f0ddba" stroke="#40574a"/>
+<text class="sub" x="110" y="534">Derived suite allocation / 135A–B split</text>
+<text class="small" x="80" y="567">† Suite 117.5 retains the repository’s 20.2 ft dimension despite its documented area conflict.</text>
+<text class="small" x="80" y="596">Placement preserves the generator’s 14.40 ft inter-building gap.</text>
+<text class="small" x="80" y="617">A separate CAD-derived note says 12.3 ft; the discrepancy remains open.</text>
+<text class="small" x="80" y="652">Orientation: long wing backs Marie Antoinette; short wing follows Patricia.</text>
+<text class="small" x="80" y="673">Drawing axes are rotated from true north. Scale applies equally in both directions.</text>
+<text class="sub" x="80" y="737" font-weight="700">100 ft calibration</text>
+<rect x="80" y="752" width="110" height="10" fill="#23372f"/>
+<rect x="190" y="752" width="110" height="10" fill="#faf9f5" stroke="#23372f"/>
+<path d="M80,748v19 M190,752v15 M300,748v19" stroke="#23372f"/>
+<text class="small" x="80" y="785" text-anchor="middle">0</text>
+<text class="small" x="190" y="785" text-anchor="middle">50</text>
+<text class="small" x="300" y="785" text-anchor="middle">100 ft</text>
+<path d="M80,840H1520" stroke="#c6cfc7"/>
+<text class="sub" x="80" y="873" font-weight="700">27 suites • no positive-area overlaps • 522.31 ft / 208.65 ft bay sums verified</text>
+<text class="small" x="80" y="901">Source: OrangeOnyx/otb-command, master. Geometry and height files match the reviewed local checkout.</text>
+<text class="small" x="80" y="924">Geometry blob 50a783d8a1e802d36747ba3710115c0face6b54f</text>
+<text class="small" x="80" y="944">Heights blob 4b836ba1eded5052570c0772316592bfd9e281c4 • CAD blob f290bc8f68e3633ee6ba7510d85634dede9bbb40</text>
+<text class="small" x="80" y="984">Prepared 2026-09-23. JSON companion includes exact foot coordinates, dimension status and height-association caveats.</text>
+</svg>

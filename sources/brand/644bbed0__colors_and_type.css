@@ -1,0 +1,377 @@
+/* =========================================================================
+   CYPRESS COMMAND — COLORS + TYPE
+   The operating system for real-world businesses.
+   Every UI kit, slide, and preview card imports this file.
+   Prefix: --cc-*
+   ========================================================================= */
+
+/* --- Fonts -------------------------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@font-face {
+  font-family: "Fraunces Local";
+  src: url("./assets/fonts/Fraunces-400.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Local";
+  src: url("./assets/fonts/Inter-400.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono Local";
+  src: url("./assets/fonts/JetBrainsMono-400.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Root tokens -------------------------------------------------------- */
+
+:root {
+  /* PRIMARY PALETTE — Cypress Grove + Command Signal
+     ------------------------------------------------
+     Cypress is the structural color — the trunk of the brand.
+     Command Amber is the signal accent — attention, warning, action.
+     Bone is the page — warm, considered, off-white.
+     Slate is the shadow — near-black cypress-swamp deep.
+     Bayou is the earth accent — cypress bark, brass, leather.
+     Sage is the passive support — healthy states, meta text on dark.
+  */
+  --cc-cypress:      #1E4D3A;   /* Primary structural. Chrome, text on light, dark surfaces. */
+  --cc-moss:         #2F6B4E;   /* Supporting green. Buttons, active states. */
+  --cc-amber:        #D97706;   /* Command signal. CTAs, alerts, rule lines. NEVER as background wash. */
+  --cc-bone:         #F3EDE0;   /* Warm off-white. Default page background. */
+  --cc-slate:        #0E1F19;   /* Near-black cypress shadow. Deepest surfaces. */
+  --cc-sage:         #8AA694;   /* Passive support. Meta on dark, healthy indicators. */
+  --cc-bayou:        #78522A;   /* Cypress-bark brown. Premium accents, ledger lines. */
+  --cc-white:        #FFFFFF;
+
+  /* CYPRESS SCALE — extended */
+  --cc-cypress-950: #0A1F16;    /* deepest */
+  --cc-cypress-900: #0E1F19;    /* = slate */
+  --cc-cypress-800: #14372A;
+  --cc-cypress-700: #1E4D3A;    /* = cypress (primary) */
+  --cc-cypress-600: #2F6B4E;    /* = moss */
+  --cc-cypress-500: #45865F;
+  --cc-cypress-400: #6BA07E;
+  --cc-cypress-300: #94BCA6;
+  --cc-cypress-200: #C0D7CB;
+  --cc-cypress-100: #DDE9E1;
+  --cc-cypress-050: #EEF4EF;
+
+  /* AMBER SCALE — command signal */
+  --cc-amber-800: #8A4A03;      /* pressed */
+  --cc-amber-700: #A85D04;
+  --cc-amber-600: #C06805;      /* hover */
+  --cc-amber-500: #D97706;      /* = amber (primary CTA) */
+  --cc-amber-400: #E58A2E;
+  --cc-amber-300: #F0A55C;
+  --cc-amber-200: #F6C99A;
+  --cc-amber-100: #FBE5CB;
+  --cc-amber-050: #FDF3E7;
+
+  /* BONE SCALE — warm neutrals */
+  --cc-bone-050: #FAF6EE;       /* lightest — card interiors on bone bg */
+  --cc-bone-100: #F3EDE0;       /* = bone */
+  --cc-bone-200: #E7DFCC;
+  --cc-bone-300: #D3C8AC;
+  --cc-bone-400: #A69880;
+  --cc-bone-500: #786D57;
+
+  /* BAYOU SCALE — cypress bark */
+  --cc-bayou-700: #4F361B;
+  --cc-bayou-500: #78522A;      /* = bayou */
+  --cc-bayou-300: #B08560;
+  --cc-bayou-100: #E6D6C0;
+
+  /* SEMANTIC — status colors, tuned to the palette */
+  --cc-success:  #2F6B4E;       /* = moss — everything is measured in green health */
+  --cc-warning:  #D97706;       /* = amber — command signal */
+  --cc-danger:   #9B3E2B;       /* deep brick — measured, not panic */
+  --cc-info:     var(--cc-cypress-500);
+
+  /* FOREGROUNDS */
+  --cc-fg-strong:   var(--cc-cypress-950);  /* headlines */
+  --cc-fg-primary:  var(--cc-cypress-700);  /* body */
+  --cc-fg-muted:    #5A6B62;                /* meta — sage-tinted gray */
+  --cc-fg-subtle:   #8A9891;                /* placeholder / disabled */
+  --cc-fg-on-dark:  var(--cc-bone-100);
+  --cc-fg-on-dark-strong: var(--cc-white);
+  --cc-fg-on-dark-muted:  var(--cc-sage);
+  --cc-fg-brand:    var(--cc-amber-500);
+
+  /* BACKGROUNDS */
+  --cc-bg-page:      var(--cc-bone-100);
+  --cc-bg-surface:   var(--cc-bone-050);
+  --cc-bg-elevated:  var(--cc-white);
+  --cc-bg-inverse:   var(--cc-cypress-700);
+  --cc-bg-inverse-deep: var(--cc-cypress-900);
+  --cc-bg-terminal:  var(--cc-cypress-950);  /* AI console / mono contexts */
+
+  /* BORDERS — always cypress-tinted, never gray */
+  --cc-border-soft:     rgba(30, 77, 58, 0.10);
+  --cc-border-med:      rgba(30, 77, 58, 0.18);
+  --cc-border-strong:   rgba(30, 77, 58, 0.35);
+  --cc-border-on-dark:  rgba(243, 237, 224, 0.12);
+  --cc-border-on-dark-strong: rgba(243, 237, 224, 0.24);
+  --cc-border-terminal: rgba(138, 166, 148, 0.20);
+
+  /* TYPOGRAPHY FAMILIES */
+  --cc-font-display: "Fraunces", "Fraunces Local", Georgia, serif;
+  --cc-font-sans:    "Inter", "Inter Local", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --cc-font-mono:    "JetBrains Mono", "JetBrains Mono Local", "SF Mono", ui-monospace, Menlo, monospace;
+
+  /* TYPE SCALE */
+  --cc-text-2xs:  11px;
+  --cc-text-xs:   12px;
+  --cc-text-sm:   14px;
+  --cc-text-base: 16px;
+  --cc-text-md:   18px;
+  --cc-text-lg:   22px;
+  --cc-text-xl:   28px;
+  --cc-text-2xl:  36px;
+  --cc-text-3xl:  48px;
+  --cc-text-4xl:  64px;
+  --cc-text-5xl:  88px;
+  --cc-text-6xl:  120px;
+
+  /* LINE HEIGHTS */
+  --cc-lh-tight:  1.05;
+  --cc-lh-snug:   1.20;
+  --cc-lh-normal: 1.45;
+  --cc-lh-loose:  1.65;
+
+  /* LETTER SPACING */
+  --cc-track-eyebrow: 0.18em;  /* [01 — FOUNDATION] style labels */
+  --cc-track-label:   0.10em;
+  --cc-track-bracket: 0.12em;  /* [BRACKET-042] mono labels */
+  --cc-track-tight:  -0.02em;  /* large display */
+  --cc-track-normal:  0;
+
+  /* FONT WEIGHTS */
+  --cc-w-light:   300;
+  --cc-w-regular: 400;
+  --cc-w-medium:  500;
+  --cc-w-semi:    600;
+  --cc-w-bold:    700;
+  --cc-w-display: 800;
+
+  /* SPACING SCALE (4pt) */
+  --cc-s-0:   0;
+  --cc-s-1:   4px;
+  --cc-s-2:   8px;
+  --cc-s-3:   12px;
+  --cc-s-4:   16px;
+  --cc-s-5:   20px;
+  --cc-s-6:   24px;
+  --cc-s-8:   32px;
+  --cc-s-10:  40px;
+  --cc-s-12:  48px;
+  --cc-s-16:  64px;
+  --cc-s-20:  80px;
+  --cc-s-24:  96px;
+  --cc-s-32:  128px;
+
+  /* RADII — sharp editorial default */
+  --cc-r-none:  0;
+  --cc-r-xs:    2px;
+  --cc-r-sm:    4px;
+  --cc-r-md:    6px;    /* buttons, inputs */
+  --cc-r-lg:    10px;   /* cards */
+  --cc-r-xl:    16px;   /* prominent panels */
+  --cc-r-full:  9999px;
+
+  /* SHADOWS — cypress-tinted, no cool gray */
+  --cc-shadow-xs:    0 1px 2px rgba(14, 31, 25, 0.06);
+  --cc-shadow-sm:    0 2px 6px rgba(14, 31, 25, 0.08);
+  --cc-shadow-md:    0 8px 20px -6px rgba(14, 31, 25, 0.12);
+  --cc-shadow-lg:    0 18px 40px -12px rgba(14, 31, 25, 0.22);
+  --cc-shadow-xl:    0 32px 60px -20px rgba(14, 31, 25, 0.32);
+  --cc-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --cc-shadow-amber: 0 2px 8px rgba(217, 119, 6, 0.24);
+
+  /* MOTION — cypress patience, not spring bounce */
+  --cc-ease-out:   cubic-bezier(0.22, 0.61, 0.36, 1);
+  --cc-ease-in:    cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  --cc-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --cc-dur-fast:   140ms;
+  --cc-dur-med:    240ms;
+  --cc-dur-slow:   420ms;
+
+  /* LAYOUT */
+  --cc-container:      1240px;
+  --cc-container-wide: 1440px;
+  --cc-gutter:         32px;
+}
+
+/* --- Semantic classes -------------------------------------------------- */
+
+/* EYEBROWS — the signature bracketed label */
+.cc-eyebrow {
+  font-family: var(--cc-font-mono);
+  font-weight: var(--cc-w-medium);
+  font-size: var(--cc-text-xs);
+  letter-spacing: var(--cc-track-bracket);
+  text-transform: uppercase;
+  color: var(--cc-amber-500);
+}
+.cc-eyebrow--on-dark { color: var(--cc-amber-400); }
+.cc-eyebrow--muted   { color: var(--cc-fg-muted); }
+.cc-eyebrow--sage    { color: var(--cc-sage); }
+
+/* BRACKET TAG — the signature [LEASE-042] token */
+.cc-bracket {
+  font-family: var(--cc-font-mono);
+  font-weight: var(--cc-w-medium);
+  font-size: 0.85em;
+  letter-spacing: var(--cc-track-bracket);
+  color: var(--cc-fg-muted);
+}
+.cc-bracket--amber { color: var(--cc-amber-500); }
+.cc-bracket--sage  { color: var(--cc-sage); }
+
+/* DISPLAY HEADLINES — Fraunces, editorial, trailing period signature */
+.cc-h1 {
+  font-family: var(--cc-font-display);
+  font-weight: var(--cc-w-display);
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: var(--cc-lh-tight);
+  letter-spacing: var(--cc-track-tight);
+  color: var(--cc-fg-strong);
+  font-variation-settings: "SOFT" 20, "opsz" 144;
+}
+.cc-h2 {
+  font-family: var(--cc-font-display);
+  font-weight: var(--cc-w-display);
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: var(--cc-lh-tight);
+  letter-spacing: var(--cc-track-tight);
+  color: var(--cc-fg-strong);
+  font-variation-settings: "SOFT" 20, "opsz" 96;
+}
+.cc-h3 {
+  font-family: var(--cc-font-display);
+  font-weight: var(--cc-w-bold);
+  font-size: var(--cc-text-2xl);
+  line-height: var(--cc-lh-snug);
+  color: var(--cc-fg-strong);
+  font-variation-settings: "SOFT" 30, "opsz" 48;
+}
+.cc-h4 {
+  font-family: var(--cc-font-display);
+  font-weight: var(--cc-w-semi);
+  font-size: var(--cc-text-xl);
+  line-height: var(--cc-lh-snug);
+  color: var(--cc-fg-strong);
+}
+.cc-h5 {
+  font-family: var(--cc-font-sans);
+  font-weight: var(--cc-w-semi);
+  font-size: var(--cc-text-md);
+  line-height: var(--cc-lh-snug);
+  color: var(--cc-fg-strong);
+}
+
+/* BODY */
+.cc-body {
+  font-family: var(--cc-font-sans);
+  font-weight: var(--cc-w-regular);
+  font-size: var(--cc-text-base);
+  line-height: var(--cc-lh-loose);
+  color: var(--cc-fg-primary);
+  text-wrap: pretty;
+}
+.cc-body-lg {
+  font-family: var(--cc-font-sans);
+  font-weight: var(--cc-w-regular);
+  font-size: var(--cc-text-md);
+  line-height: var(--cc-lh-loose);
+  color: var(--cc-fg-primary);
+  text-wrap: pretty;
+}
+.cc-body-sm {
+  font-family: var(--cc-font-sans);
+  font-weight: var(--cc-w-regular);
+  font-size: var(--cc-text-sm);
+  line-height: var(--cc-lh-normal);
+  color: var(--cc-fg-muted);
+}
+
+.cc-meta {
+  font-family: var(--cc-font-mono);
+  font-weight: var(--cc-w-medium);
+  font-size: var(--cc-text-2xs);
+  letter-spacing: var(--cc-track-bracket);
+  text-transform: uppercase;
+  color: var(--cc-fg-muted);
+}
+
+.cc-pull-quote {
+  font-family: var(--cc-font-display);
+  font-weight: var(--cc-w-regular);
+  font-style: italic;
+  font-size: var(--cc-text-xl);
+  line-height: 1.35;
+  color: var(--cc-fg-strong);
+  font-variation-settings: "SOFT" 60, "opsz" 72;
+}
+
+/* CODE / TERMINAL — signature mono context for AI + ledger */
+.cc-code {
+  font-family: var(--cc-font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  background: var(--cc-cypress-050);
+  color: var(--cc-cypress-800);
+  border-radius: var(--cc-r-sm);
+}
+.cc-code--terminal {
+  background: var(--cc-slate);
+  color: var(--cc-sage);
+  border: 1px solid var(--cc-border-terminal);
+}
+
+/* LEDGER LINE — the signature separator with meta label */
+.cc-ledger-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--cc-border-soft);
+}
+.cc-ledger-line__meta {
+  font-family: var(--cc-font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: var(--cc-track-bracket);
+  text-transform: uppercase;
+  color: var(--cc-fg-muted);
+}
+
+/* --- Base reset --------------------------------------------------------- */
+
+.cc-reset, .cc-reset * { box-sizing: border-box; }
+.cc-reset body,
+body.cc-reset {
+  margin: 0;
+  font-family: var(--cc-font-sans);
+  color: var(--cc-fg-primary);
+  background: var(--cc-bg-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection */
+::selection { background: var(--cc-amber-200); color: var(--cc-cypress-900); }
+
+/* Focus */
+.cc-reset :focus-visible {
+  outline: 2px solid var(--cc-amber-500);
+  outline-offset: 2px;
+}

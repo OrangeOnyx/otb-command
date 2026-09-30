@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body {
+    margin: 0;
+    padding: 24px 28px;
+    background: var(--cc-bg-page);
+    font-family: var(--cc-font-sans);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .panel {
+    border: 1px solid var(--cc-border-soft);
+    padding: 18px;
+    background: var(--cc-bone-050);
+  }
+  .panel h3 {
+    margin: 0 0 4px;
+    font-family: var(--cc-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cc-fg-strong);
+  }
+  .panel p {
+    margin: 0 0 14px;
+    font-family: var(--cc-font-display);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--cc-fg-muted);
+    font-variation-settings: 'SOFT' 100, 'opsz' 24;
+  }
+
+  .cs {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+  .cs .frame {
+    position: absolute; inset: 0;
+    border: 1px dashed var(--cc-amber-500);
+  }
+  .cs .inner {
+    position: absolute;
+    inset: 40px;
+    background: url('../assets/logos/04C_primary.svg') center/contain no-repeat;
+  }
+  .cs .arrow {
+    position: absolute;
+    font-family: var(--cc-font-mono);
+    font-size: 10px;
+    color: var(--cc-amber-500);
+    letter-spacing: 0.14em;
+  }
+  .cs .a-top { top: 12px; left: 50%; transform: translateX(-50%); }
+  .cs .a-bot { bottom: 12px; left: 50%; transform: translateX(-50%); }
+  .cs .a-l   { left: 8px; top: 50%; transform: translateY(-50%); }
+  .cs .a-r   { right: 8px; top: 50%; transform: translateY(-50%); }
+
+  .ms {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 12px;
+    padding: 6px 0 0;
+  }
+  .ms .step {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+  }
+  .ms .step img { display: block; }
+  .ms .step .px {
+    font-family: var(--cc-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--cc-fg-subtle);
+    text-align: center;
+  }
+  .ms .step.floor .px { color: var(--cc-amber-500); font-weight: 600; }
+  .ms .step.floor img { outline: 1px dashed var(--cc-amber-500); outline-offset: 4px; }
+  .ms-note {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--cc-border-soft);
+    font-family: var(--cc-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cc-fg-muted);
+    text-align: center;
+  }
+  .ms-note b { color: var(--cc-amber-500); font-weight: 600; }
+</style>
+</head>
+<body>
+
+  <div class="panel">
+    <h3>Clear space</h3>
+    <p>Reserve one x&#8209;height of the inner square on all sides.</p>
+    <div class="cs">
+      <div class="frame"></div>
+      <div class="inner"></div>
+      <div class="arrow a-top">— x —</div>
+      <div class="arrow a-bot">— x —</div>
+      <div class="arrow a-l">x</div>
+      <div class="arrow a-r">x</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Minimum size</h3>
+    <p>Digital floor 24&#8239;px. Print floor 0.5&#8239;in (12&#8239;mm).</p>
+    <div class="ms">
+      <div class="step"><img src="../assets/logos/04C_primary.svg" width="64" height="64" alt=""/><span class="px">64&#8239;PX</span></div>
+      <div class="step"><img src="../assets/logos/04C_primary.svg" width="40" height="40" alt=""/><span class="px">40&#8239;PX</span></div>
+      <div class="step floor"><img src="../assets/logos/04C_primary.svg" width="24" height="24" alt=""/><span class="px">24&#8239;PX<br>DIGITAL FLOOR</span></div>
+      <div class="step"><img src="../assets/logos/04C_primary.svg" width="18" height="18" alt=""/><span class="px">16&#8239;PX FAV</span></div>
+    </div>
+    <div class="ms-note">Below <b>24&#8239;PX</b> → use favicon crop</div>
+  </div>
+
+</body>
+</html>

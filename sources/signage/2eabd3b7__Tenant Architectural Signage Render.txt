@@ -1,0 +1,79 @@
+Tenant Architectural Signage Rendering System
+Objective
+
+Create a scalable AI-assisted production workflow that transforms tenant logos into premium architectural storefront signage renderings suitable for:
+
+Leasing decks
+Redevelopment presentations
+Investor packages
+Site plans
+Broker marketing
+Tenant merchandising packages
+Master Architectural Signage Prompt
+Create a photorealistic architectural storefront signage rendering using the uploaded tenant logo as the source artwork.
+
+The final result should depict the logo transformed into premium fabricated exterior signage installed on a high-end shopping center or lifestyle center facade.
+
+SIGN TYPE:
+- Raised individual channel letters
+- Dimensional fabricated signage
+- Commercial-grade aluminum and acrylic construction
+- Realistic side returns and mounting depth
+- Slight beveling and edge detailing
+- Flush-mounted or raceway-mounted depending on logo style
+- Subtle premium illumination:
+  - front-lit channel letters
+  - halo-lit reverse channel letters
+  - or a tasteful combination if architecturally appropriate
+
+LOGO INTEGRITY:
+- Preserve the exact tenant branding
+- Preserve original typography
+- Preserve exact logo proportions
+- Preserve icon placement and spacing
+- Preserve official brand colors
+- Do not redesign the logo
+- Do not add fake slogans or extra wording
+- Do not distort or stylize the logo beyond realistic fabricated signage adaptation
+
+ARCHITECTURAL STYLE:
+- Upscale modern shopping center
+- Lifestyle-center aesthetic
+- Neutral luxury facade materials
+- White stucco, limestone, concrete panel, wood accent, or charcoal metal facade
+- Elegant storefront composition
+- Professional commercial real estate appearance
+- Clean architectural lines
+- Minimal visual clutter
+
+LIGHTING & REALISM:
+- Realistic daylight or blue-hour exterior lighting
+- Natural shadows beneath and behind letters
+- Soft reflections on acrylic and metal surfaces
+- Architectural realism similar to professional leasing brochure renderings
+- Slight perspective angle as if photographed by a commercial real estate photographer
+- Cinematic but believable lighting
+- Clean premium environment
+
+CAMERA STYLE:
+- Eye-level architectural perspective
+- Slightly angled storefront view
+- Leasing brochure quality
+- Ultra realistic
+- High detail
+- Sharp focus
+- Balanced composition
+- Exterior retail branding showcase
+
+IMPORTANT:
+The sign must look like a real fabricated tenant sign installed on an actual shopping center facade, not a flat graphic overlay or printed banner.
+
+The rendering should feel suitable for:
+- elite leasing presentations
+- investment decks
+- premium site plans
+- shopping center redevelopment packages
+- broker marketing materials
+- architectural tenant merchandising packages
+HOTWORX Enhancement Block
+The flame icon should appear as illuminated dimensional acrylic with rich orange-to-red glow gradients. The “HOT” letters should have warm illuminated channel-letter styling. The “WORX” portion should appear as bold matte-black fabricated channel letters with subtle edge lighting and premium depth. The overall storefront should feel energetic, modern, fitness-oriented, and architecturally upscale.

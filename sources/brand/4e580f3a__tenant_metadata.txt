@@ -1,0 +1,4 @@
+Unit: 109
+Square Feet: 2546
+Tenant: JC Kate Boutique
+Folder: 109_JC_KATE_BOUTIQUE

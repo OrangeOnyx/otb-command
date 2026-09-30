@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body {
+    margin: 0;
+    background: var(--cc-bg-page);
+    font-family: var(--cc-font-sans);
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--cc-border-soft);
+  }
+  .row:last-child { border-bottom: 0; }
+  .row.dark { background: var(--cc-cypress-950); }
+
+  .row .mark {
+    flex: 0 0 auto;
+    width: 64px; height: 64px;
+  }
+  .row .mark img { width: 100%; height: 100%; display: block; }
+
+  .row .rule {
+    width: 1px;
+    align-self: stretch;
+    background: var(--cc-border-med);
+    margin: 4px 4px;
+  }
+  .row.dark .rule { background: rgba(243,237,224,0.18); }
+
+  .wm {
+    font-family: var(--cc-font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    line-height: 1.05;
+    color: var(--cc-cypress-950);
+    font-variation-settings: 'SOFT' 0, 'opsz' 24;
+  }
+  .wm .cmd {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    color: var(--cc-fg-primary);
+    margin-top: 3px;
+  }
+  .row.dark .wm { color: var(--cc-bone-050); }
+  .row.dark .wm .cmd { color: var(--cc-sage); }
+
+  .row .code {
+    margin-left: auto;
+    font-family: var(--cc-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cc-fg-subtle);
+  }
+  .row.dark .code { color: var(--cc-sage); }
+
+  .wm-inline {
+    font-family: var(--cc-font-display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.22em;
+    color: var(--cc-cypress-950);
+    font-variation-settings: 'SOFT' 0, 'opsz' 24;
+  }
+  .row.dark .wm-inline { color: var(--cc-bone-050); }
+
+  .icon-only {
+    display: flex; gap: 24px; align-items: center;
+  }
+  .icon-only img { width: 48px; height: 48px; }
+  .icon-only img.sm { width: 32px; height: 32px; }
+  .icon-only img.xs { width: 24px; height: 24px; }
+</style>
+</head>
+<body>
+
+  <div class="row">
+    <div class="mark"><img src="../assets/logos/04C_primary.svg" alt=""/></div>
+    <div class="rule"></div>
+    <div class="wm">CYPRESS<span class="cmd">COMMAND</span></div>
+    <span class="code">Stacked · primary</span>
+  </div>
+
+  <div class="row">
+    <div class="mark"><img src="../assets/logos/04C_primary.svg" alt=""/></div>
+    <div class="rule"></div>
+    <div class="wm-inline">CYPRESS&nbsp;COMMAND</div>
+    <span class="code">Inline · header</span>
+  </div>
+
+  <div class="row">
+    <div class="icon-only">
+      <img src="../assets/logos/04C_primary.svg" alt=""/>
+      <img class="sm" src="../assets/logos/04C_primary.svg" alt=""/>
+      <img class="xs" src="../assets/logos/04C_primary.svg" alt=""/>
+    </div>
+    <span class="code">Icon only · 48 · 32 · 24</span>
+  </div>
+
+  <div class="row dark">
+    <div class="mark"><img src="../assets/logos/04C_reverse.svg" alt=""/></div>
+    <div class="rule"></div>
+    <div class="wm">CYPRESS<span class="cmd">COMMAND</span></div>
+    <span class="code">Reverse · on dark</span>
+  </div>
+
+</body>
+</html>

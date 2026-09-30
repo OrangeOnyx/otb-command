@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cypress Command — Slide template</title>
+  <link rel="stylesheet" href="../colors_and_type.css"/>
+  <script src="deck_stage.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #0E1F19; font-family: 'Inter', sans-serif; }
+    deck-stage section { background: var(--cc-bone-100); color: var(--cc-fg-primary); overflow: hidden; }
+    .slide { width: 1920px; height: 1080px; position: relative; padding: 96px 128px; box-sizing: border-box; display: flex; flex-direction: column; }
+    .slide.dark { background: var(--cc-slate); color: var(--cc-bone-100); }
+    .slide.cypress { background: var(--cc-cypress-700); color: var(--cc-bone-100); }
+    .slide.fullbleed { padding: 0; }
+
+    .cc-slide-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cc-amber-500); margin-bottom: 32px; }
+    .cc-slide-eyebrow.on-dark { color: var(--cc-amber-400); }
+    .cc-slide-h1 { font-family: 'Fraunces', serif; font-size: 132px; font-weight: 800; line-height: 0.96; letter-spacing: -0.03em; margin: 0; color: var(--cc-fg-strong); font-variation-settings: "SOFT" 20, "opsz" 144; }
+    .cc-slide-h1.on-dark { color: #fff; }
+    .cc-slide-h2 { font-family: 'Fraunces', serif; font-size: 84px; font-weight: 800; line-height: 1.02; letter-spacing: -0.025em; margin: 0; color: var(--cc-fg-strong); font-variation-settings: "SOFT" 20, "opsz" 96; }
+    .cc-slide-h2.on-dark { color: #fff; }
+    .cc-period { color: var(--cc-amber-500); }
+    .cc-slide-body { font-family: 'Inter', sans-serif; font-size: 28px; line-height: 1.55; color: var(--cc-fg-primary); max-width: 1100px; }
+    .cc-slide-body.on-dark { color: rgba(243,237,224,.85); }
+    .cc-slide-meta { position: absolute; bottom: 48px; left: 128px; right: 128px; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-fg-muted); }
+    .cc-slide-meta.on-dark { color: var(--cc-sage); }
+    .cc-brand-lockup { display: flex; align-items: center; gap: 20px; }
+    .cc-brand-lockup .mark { width: 56px; height: 56px; border-radius: 12px; background: var(--cc-cypress-700); display: flex; align-items: center; justify-content: center; }
+    .cc-brand-lockup .mark.amber { background: var(--cc-amber-500); }
+    .cc-brand-lockup .mark svg { width: 36px; height: 36px; }
+    .cc-brand-lockup .wm { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 800; letter-spacing: -0.015em; color: var(--cc-cypress-800); }
+    .cc-brand-lockup .wm.on-dark { color: #fff; }
+
+    .pattern-bg { position: absolute; inset: 0; background-image: url('../assets/patterns/pattern_tile.svg'); background-size: 260px; color: var(--cc-sage); opacity: 0.08; pointer-events: none; }
+  </style>
+  <script type="application/json" id="deck-config">{"aspect":"16:9","width":1920,"height":1080}</script>
+</head>
+<body>
+<deck-stage>
+
+  <!-- 01 · Title -->
+  <section data-screen-label="01 Title">
+    <div class="slide dark" style="justify-content: flex-end;">
+      <img src="../assets/photography/cypress_grove_blue_hour.jpg"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72;filter:saturate(0.85)"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(14,31,25,.94) 0%, rgba(14,31,25,.4) 60%);"></div>
+
+      <div style="position:relative;">
+        <div class="cc-brand-lockup" style="margin-bottom:96px;">
+          <div class="mark amber">
+            <svg viewBox="0 0 60 60" fill="none"><path d="M 12 12 L 12 48 M 12 12 L 48 12 M 12 48 L 48 48" stroke="#fff" stroke-width="7" stroke-linecap="square"/><path d="M 24 24 L 24 36 M 24 24 L 36 24 M 24 36 L 36 36" stroke="#fff" stroke-width="4.5" stroke-linecap="square"/></svg>
+          </div>
+          <div class="wm on-dark">Cypress Command<span class="cc-period">.</span></div>
+        </div>
+
+        <div class="cc-slide-eyebrow on-dark">[Q4 2026 · INVESTOR BRIEFING]</div>
+        <h1 class="cc-slide-h1 on-dark">
+          The operating system<br/>
+          for real-world<br/>
+          <span style="font-style: italic; color: var(--cc-amber-400); font-variation-settings: 'SOFT' 60, 'opsz' 144;">businesses<span class="cc-period">.</span></span>
+        </h1>
+      </div>
+
+      <div class="cc-slide-meta on-dark">
+        <span>[01 · TITLE]</span>
+        <span>LAFAYETTE, LA · EST 2026</span>
+        <span>GROUND TRUTH. DELIVERED.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Section header -->
+  <section data-screen-label="02 Section">
+    <div class="slide cypress">
+      <div class="pattern-bg"></div>
+      <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;">
+        <div class="cc-slide-eyebrow on-dark" style="font-size: 24px;">[01 — INTERSECTION]</div>
+        <h2 class="cc-slide-h1 on-dark" style="max-width: 1400px;">
+          We sit where three worlds<br/>
+          <span style="font-style: italic; color: var(--cc-amber-400); font-variation-settings: 'SOFT' 60, 'opsz' 144;">converge<span class="cc-period">.</span></span>
+        </h2>
+      </div>
+      <div class="cc-slide-meta on-dark">
+        <span>[02 · SECTION]</span>
+        <span>PHYSICAL OPS · AI + AUTOMATION · RISK + GOVERNANCE</span>
+        <span>CYPRESS COMMAND</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Three columns -->
+  <section data-screen-label="03 Three columns">
+    <div class="slide">
+      <div class="cc-slide-eyebrow">[02 — WHAT WE ARE]</div>
+      <h2 class="cc-slide-h2">Not a marketing agency. Not a lab. An operator<span class="cc-period">.</span></h2>
+
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 96px;">
+        <!-- 3.1 -->
+        <div style="padding: 40px 36px; background: var(--cc-bg-elevated); border: 1px solid var(--cc-border-soft); border-radius: 12px;">
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 68px; font-weight: 500; color: var(--cc-amber-500); letter-spacing: -0.02em; line-height: 1; margin-bottom: 32px;">2.1</div>
+          <h3 style="font-family:'Fraunces',serif; font-size: 40px; font-weight: 800; margin: 0 0 20px; letter-spacing: -0.02em; line-height: 1.1;">Physical operations<span class="cc-period">.</span></h3>
+          <p style="font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.5; color: var(--cc-fg-primary); margin: 0;">Buildings, leases, rent rolls, work orders. Codified into a system that never forgets an inspection date.</p>
+          <div style="margin-top: 40px; font-family:'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase;">[REAL ESTATE · CRE]</div>
+        </div>
+        <!-- 3.2 -->
+        <div style="padding: 40px 36px; background: var(--cc-bg-elevated); border: 1px solid var(--cc-border-soft); border-radius: 12px;">
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 68px; font-weight: 500; color: var(--cc-amber-500); letter-spacing: -0.02em; line-height: 1; margin-bottom: 32px;">2.2</div>
+          <h3 style="font-family:'Fraunces',serif; font-size: 40px; font-weight: 800; margin: 0 0 20px; letter-spacing: -0.02em; line-height: 1.1;">AI + automation<span class="cc-period">.</span></h3>
+          <p style="font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.5; color: var(--cc-fg-primary); margin: 0;">Agents that draft leases, reconcile ledgers, chase renewals, and surface exceptions overnight.</p>
+          <div style="margin-top: 40px; font-family:'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase;">[MODELS · AGENTS · FLOWS]</div>
+        </div>
+        <!-- 3.3 -->
+        <div style="padding: 40px 36px; background: var(--cc-bg-elevated); border: 1px solid var(--cc-border-soft); border-radius: 12px;">
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 68px; font-weight: 500; color: var(--cc-amber-500); letter-spacing: -0.02em; line-height: 1; margin-bottom: 32px;">2.3</div>
+          <h3 style="font-family:'Fraunces',serif; font-size: 40px; font-weight: 800; margin: 0 0 20px; letter-spacing: -0.02em; line-height: 1.1;">Risk + governance<span class="cc-period">.</span></h3>
+          <p style="font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.5; color: var(--cc-fg-primary); margin: 0;">Legal-grade audit trails. Compliance built into the ledger, not bolted on. Every decision defensible.</p>
+          <div style="margin-top: 40px; font-family:'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase;">[COMPLIANCE · AUDIT]</div>
+        </div>
+      </div>
+
+      <div class="cc-slide-meta">
+        <span>[03 · CAPABILITIES]</span>
+        <span>Q4 2026 INVESTOR BRIEFING</span>
+        <span>CYPRESS COMMAND</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Data slide -->
+  <section data-screen-label="04 Data">
+    <div class="slide">
+      <div class="cc-slide-eyebrow">[03 — TRACTION]</div>
+      <h2 class="cc-slide-h2">Precision to the entry<span class="cc-period">.</span></h2>
+
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 48px; margin-top: 96px;">
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 16px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase; margin-bottom: 24px;">[OCCUPANCY]</div>
+          <div style="font-family:'Fraunces',serif; font-size: 128px; font-weight: 800; letter-spacing: -0.03em; color: var(--cc-fg-strong); line-height: 0.95;">94.2%</div>
+          <div style="margin-top: 20px; font-family:'JetBrains Mono', monospace; font-size: 15px; color: var(--cc-cypress-600); letter-spacing: 0.10em;">▲ +0.8 PT VS Q2</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 16px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase; margin-bottom: 24px;">[LEDGER]</div>
+          <div style="font-family:'Fraunces',serif; font-size: 128px; font-weight: 800; letter-spacing: -0.03em; color: var(--cc-fg-strong); line-height: 0.95;">$4.2M</div>
+          <div style="margin-top: 20px; font-family:'JetBrains Mono', monospace; font-size: 15px; color: var(--cc-cypress-600); letter-spacing: 0.10em;">▲ +12.4% YoY</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 16px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase; margin-bottom: 24px;">[TENANTS]</div>
+          <div style="font-family:'Fraunces',serif; font-size: 128px; font-weight: 800; letter-spacing: -0.03em; color: var(--cc-fg-strong); line-height: 0.95;">47</div>
+          <div style="margin-top: 20px; font-family:'JetBrains Mono', monospace; font-size: 15px; color: var(--cc-cypress-600); letter-spacing: 0.10em;">3.4 YR AVG TENURE</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size: 16px; letter-spacing: 0.16em; color: var(--cc-fg-muted); text-transform: uppercase; margin-bottom: 24px;">[AGENT UPTIME]</div>
+          <div style="font-family:'Fraunces',serif; font-size: 128px; font-weight: 800; letter-spacing: -0.03em; color: var(--cc-fg-strong); line-height: 0.95;">47d</div>
+          <div style="margin-top: 20px; font-family:'JetBrains Mono', monospace; font-size: 15px; color: var(--cc-cypress-600); letter-spacing: 0.10em;">SINCE LAST INCIDENT</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 96px; padding-top: 32px; border-top: 1px solid var(--cc-border-med); display: flex; justify-content: space-between; font-family:'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.14em; color: var(--cc-fg-muted); text-transform: uppercase;">
+        <span>AUDITED MONTHLY · PUBLISHED QUARTERLY</span>
+        <span>DATA AS OF · 2026-09-01</span>
+      </div>
+
+      <div class="cc-slide-meta">
+        <span>[04 · KPI]</span>
+        <span>Q4 2026 INVESTOR BRIEFING</span>
+        <span>CYPRESS COMMAND</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Quote slide -->
+  <section data-screen-label="05 Quote">
+    <div class="slide dark">
+      <img src="../assets/photography/ledger_and_keys.jpg"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.30;filter:saturate(0.9)"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(14,31,25,.94) 40%, rgba(14,31,25,.4) 100%);"></div>
+
+      <div style="position:relative; flex:1; display:flex; flex-direction:column; justify-content:center; max-width: 1400px;">
+        <div class="cc-slide-eyebrow on-dark" style="font-size: 20px;">[FROM THE FOUNDER]</div>
+        <div style="font-family:'Fraunces',serif; font-size: 108px; font-weight: 400; font-style: italic; line-height: 1.05; letter-spacing: -0.02em; color: #fff; font-variation-settings: 'SOFT' 60, 'opsz' 144; margin-top: 40px;">
+          "You cannot<br/>
+          delegate what<br/>
+          you do not<br/>
+          <span style="color: var(--cc-amber-400);">measure<span class="cc-period">.</span></span>"
+        </div>
+        <div style="margin-top: 64px; display: flex; align-items: center; gap: 20px;">
+          <div style="width: 4px; height: 60px; background: var(--cc-amber-500);"></div>
+          <div>
+            <div style="font-family:'Fraunces',serif; font-size: 26px; font-weight: 700; color: #fff;">Adam Abdalla</div>
+            <div style="font-family:'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.16em; color: var(--cc-sage); text-transform: uppercase; margin-top: 6px;">[FOUNDER · OPERATOR · LAFAYETTE, LA]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-slide-meta on-dark">
+        <span>[05 · QUOTE]</span>
+        <span>Q4 2026 INVESTOR BRIEFING</span>
+        <span>CYPRESS COMMAND</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Full bleed image -->
+  <section data-screen-label="06 Image bleed">
+    <div class="slide fullbleed" style="background: var(--cc-slate);">
+      <img src="../assets/photography/shopping_center_dusk.jpg"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(14,31,25,.90) 0%, rgba(14,31,25,.20) 45%);"></div>
+      <div style="position:relative; align-self: flex-end; padding: 96px 128px; width: 100%; box-sizing: border-box;">
+        <div class="cc-slide-eyebrow on-dark">[KALISTE COURT · LAFAYETTE, LA]</div>
+        <h2 class="cc-slide-h1 on-dark" style="max-width: 1200px;">
+          6 properties<span class="cc-period">.</span><br/>
+          <span style="font-style: italic; color: var(--cc-amber-400); font-variation-settings: 'SOFT' 60, 'opsz' 144;">One system of record<span class="cc-period">.</span></span>
+        </h2>
+      </div>
+
+      <div class="cc-slide-meta on-dark">
+        <span>[06 · PORTFOLIO]</span>
+        <span>KALISTE COURT — 94.2% OCCUPIED — $142.3K/MO</span>
+        <span>CYPRESS COMMAND</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · Closing -->
+  <section data-screen-label="07 Closing">
+    <div class="slide dark">
+      <div style="position:absolute;inset:0;background-image:url('../assets/patterns/pattern_tile.svg');background-size:280px;color:var(--cc-sage);opacity:.08;"></div>
+
+      <div style="position:relative; flex:1; display:flex; flex-direction:column; justify-content:center; align-items: center; text-align: center;">
+        <div class="cc-brand-lockup" style="margin-bottom:80px;">
+          <div class="mark amber">
+            <svg viewBox="0 0 60 60" fill="none"><path d="M 12 12 L 12 48 M 12 12 L 48 12 M 12 48 L 48 48" stroke="#fff" stroke-width="7" stroke-linecap="square"/><path d="M 24 24 L 24 36 M 24 24 L 36 24 M 24 36 L 36 36" stroke="#fff" stroke-width="4.5" stroke-linecap="square"/></svg>
+          </div>
+          <div class="wm on-dark" style="font-size: 32px;">Cypress Command<span class="cc-period">.</span></div>
+        </div>
+
+        <div class="cc-slide-eyebrow on-dark" style="font-size: 22px;">[SIGN-OFF]</div>
+        <h1 class="cc-slide-h1 on-dark" style="margin-top: 32px;">
+          Ground truth<span class="cc-period">.</span><br/>
+          <span style="font-style: italic; color: var(--cc-amber-400); font-variation-settings: 'SOFT' 60, 'opsz' 144;">Delivered<span class="cc-period">.</span></span>
+        </h1>
+        <div style="margin-top: 72px; font-family:'JetBrains Mono', monospace; font-size: 16px; letter-spacing: 0.20em; color: var(--cc-sage); text-transform: uppercase;">
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bafbfefbf7faf9e3eae8ffe9e9f9f5f7f7fbf4fe94f9f5">[email&#160;protected]</a> · LAFAYETTE, LA · EST 2026
+        </div>
+      </div>
+
+      <div class="cc-slide-meta on-dark">
+        <span>[07 · CLOSE]</span>
+        <span>Q4 2026 INVESTOR BRIEFING</span>
+        <span>THANK YOU</span>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

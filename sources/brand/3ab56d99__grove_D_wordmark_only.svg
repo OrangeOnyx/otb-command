@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 160">
+  <rect width="460" height="160" fill="#F3EDE0"/>
+  <!-- Pure wordmark — no icon. Refined, confident, forward-thinking. Custom-feel display serif. -->
+  <g transform="translate(30, 0)">
+    <text x="0" y="82" font-family="Fraunces, 'Playfair Display', Georgia, serif" font-size="54" font-weight="600" fill="#1E4D3A" letter-spacing="-0.015em">Cypress</text>
+    <text x="0" y="132" font-family="Fraunces, 'Playfair Display', Georgia, serif" font-size="54" font-weight="600" fill="#1E4D3A" letter-spacing="-0.015em">Command<tspan fill="#D97706" font-weight="700">.</tspan></text>
+    <!-- Tiny left rule -->
+    <line x1="0" y1="46" x2="36" y2="46" stroke="#78522A" stroke-width="1.5"/>
+    <text x="44" y="49" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="500" fill="#78522A" letter-spacing="0.24em">CC — HERITAGE PROPERTIES</text>
+  </g>
+</svg>

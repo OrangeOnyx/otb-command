@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="20" fill="#1E4D3A"/>
+  <!-- Same construction as main mark, scaled down. Two C's overlapping in the middle. -->
+  <g transform="translate(14, 22)">
+    <!-- Back C (bone, since bg is cypress): opening right, 48w x 76h -->
+    <path d="M 0 0 L 48 0 L 48 12 L 12 12 L 12 64 L 48 64 L 48 76 L 0 76 Z" fill="#F3EDE0"/>
+    <!-- Front C (moss): opening left, 48w x 56h, positioned so both openings show -->
+    <path d="M 92 10 L 44 10 L 44 22 L 80 22 L 80 54 L 44 54 L 44 66 L 92 66 Z" fill="#2F6B4E"/>
+    <!-- Amber pin in interlock zone -->
+    <rect x="40" y="34" width="8" height="8" fill="#D97706"/>
+  </g>
+</svg>

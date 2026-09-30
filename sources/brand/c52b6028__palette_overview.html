@@ -1,0 +1,161 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 32px 40px; background: #F3EDE0; font-family: 'Inter', system-ui, sans-serif; color: #0A1F16; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 18px; border-bottom: 1px solid #D3C8AC; margin-bottom: 26px; }
+  .head h1 { font-family: 'Fraunces', Georgia, serif; font-size: 30px; font-weight: 500; letter-spacing: -0.02em; color: #1E4D3A; margin: 0; line-height: 1; }
+  .head .sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #5A6B62; margin-top: 6px; }
+  .head .meta { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: #5A6B62; line-height: 1.7; }
+
+  .section { margin-bottom: 30px; }
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .section-label .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #5A6B62; }
+  .section-label .name { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; color: #0A1F16; }
+  .section-label .line { flex: 1; height: 1px; background: #D3C8AC; }
+  .section-label .role { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62; }
+
+  /* Core row: 5 big chips */
+  .core { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .core .chip { height: 110px; border: 1px solid #D3C8AC; position: relative; }
+  .core .info { margin-top: 10px; }
+  .core .info .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: #0A1F16; }
+  .core .info .hex { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #5A6B62; margin-top: 2px; }
+  .core .info .role2 { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #5A6B62; margin-top: 6px; line-height: 1.5; }
+
+  /* Scale rows */
+  .scale { display: grid; grid-template-columns: repeat(11, 1fr); gap: 4px; }
+  .scale .step { position: relative; }
+  .scale .step .sw { height: 44px; border: 1px solid rgba(0,0,0,0.06); }
+  .scale .step .stk { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.06em; color: #5A6B62; margin-top: 4px; text-align: center; }
+  .scale .step .hex { font-family: 'JetBrains Mono', monospace; font-size: 7px; color: #8A9891; margin-top: 1px; text-align: center; letter-spacing: 0; }
+
+  /* Semantic tokens */
+  .semantic { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .tok { border: 1px solid #D3C8AC; padding: 10px 12px; background: #FAF6EE; }
+  .tok .swrow { display: flex; gap: 6px; margin-bottom: 8px; }
+  .tok .swrow .s { width: 24px; height: 24px; border: 1px solid rgba(0,0,0,0.08); }
+  .tok .name { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: #0A1F16; }
+  .tok .role { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; color: #5A6B62; margin-top: 3px; line-height: 1.5; }
+
+  .foot { margin-top: 12px; padding: 12px 14px; background: #EDE4D0; border-left: 3px solid #D97706; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; color: #0A1F16; line-height: 1.7; }
+  .foot b { color: #1E4D3A; letter-spacing: 0.14em; }
+</style></head><body>
+
+  <div class="head">
+    <div>
+      <h1>Cypress Command · Color Palette</h1>
+      <div class="sub">The system, at a glance</div>
+    </div>
+    <div class="meta">5 core colors<br/>2 tonal scales · 11 steps each<br/>Semantic tokens</div>
+  </div>
+
+  <!-- CORE PALETTE -->
+  <div class="section">
+    <div class="section-label"><span class="num">01</span><span class="name">Core Palette</span><span class="line"></span><span class="role">Brand-defining</span></div>
+    <div class="core">
+      <div>
+        <div class="chip" style="background:#1E4D3A"></div>
+        <div class="info"><div class="lbl">Cypress</div><div class="hex">#1E4D3A</div><div class="role2">Primary green.<br/>Chrome, headlines, dark surfaces.</div></div>
+      </div>
+      <div>
+        <div class="chip" style="background:#2F6B4E"></div>
+        <div class="info"><div class="lbl">Moss</div><div class="hex">#2F6B4E</div><div class="role2">Supporting green.<br/>Buttons, active states.</div></div>
+      </div>
+      <div>
+        <div class="chip" style="background:#D97706"></div>
+        <div class="info"><div class="lbl">Amber</div><div class="hex">#D97706</div><div class="role2">Command signal.<br/>CTAs, alerts, rule lines.</div></div>
+      </div>
+      <div>
+        <div class="chip" style="background:#0A1F16"></div>
+        <div class="info"><div class="lbl">Charcoal</div><div class="hex">#0A1F16</div><div class="role2">Text strong.<br/>Body copy, hard edges.</div></div>
+      </div>
+      <div>
+        <div class="chip" style="background:#F3EDE0; border-color:#B89968"></div>
+        <div class="info"><div class="lbl">Bone</div><div class="hex">#F3EDE0</div><div class="role2">Warm off-white.<br/>Default page background.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CYPRESS SCALE -->
+  <div class="section">
+    <div class="section-label"><span class="num">02</span><span class="name">Cypress Scale</span><span class="line"></span><span class="role">Green tonal ramp · 11 steps</span></div>
+    <div class="scale">
+      <div class="step"><div class="sw" style="background:#EEF4EF"></div><div class="stk">050</div><div class="hex">EEF4EF</div></div>
+      <div class="step"><div class="sw" style="background:#DDE9E1"></div><div class="stk">100</div><div class="hex">DDE9E1</div></div>
+      <div class="step"><div class="sw" style="background:#C0D7CB"></div><div class="stk">200</div><div class="hex">C0D7CB</div></div>
+      <div class="step"><div class="sw" style="background:#94BCA6"></div><div class="stk">300</div><div class="hex">94BCA6</div></div>
+      <div class="step"><div class="sw" style="background:#6BA07E"></div><div class="stk">400</div><div class="hex">6BA07E</div></div>
+      <div class="step"><div class="sw" style="background:#45865F"></div><div class="stk">500</div><div class="hex">45865F</div></div>
+      <div class="step"><div class="sw" style="background:#2F6B4E"></div><div class="stk">600</div><div class="hex">2F6B4E</div></div>
+      <div class="step"><div class="sw" style="background:#1E4D3A"></div><div class="stk">700 ★</div><div class="hex">1E4D3A</div></div>
+      <div class="step"><div class="sw" style="background:#14372A"></div><div class="stk">800</div><div class="hex">14372A</div></div>
+      <div class="step"><div class="sw" style="background:#0E1F19"></div><div class="stk">900</div><div class="hex">0E1F19</div></div>
+      <div class="step"><div class="sw" style="background:#0A1F16"></div><div class="stk">950</div><div class="hex">0A1F16</div></div>
+    </div>
+  </div>
+
+  <!-- AMBER SCALE -->
+  <div class="section">
+    <div class="section-label"><span class="num">03</span><span class="name">Amber Scale</span><span class="line"></span><span class="role">Signal tonal ramp · 9 steps</span></div>
+    <div class="scale">
+      <div class="step"><div class="sw" style="background:#FDF3E7"></div><div class="stk">050</div><div class="hex">FDF3E7</div></div>
+      <div class="step"><div class="sw" style="background:#FBE5CB"></div><div class="stk">100</div><div class="hex">FBE5CB</div></div>
+      <div class="step"><div class="sw" style="background:#F6C99A"></div><div class="stk">200</div><div class="hex">F6C99A</div></div>
+      <div class="step"><div class="sw" style="background:#F0A55C"></div><div class="stk">300</div><div class="hex">F0A55C</div></div>
+      <div class="step"><div class="sw" style="background:#E58A2E"></div><div class="stk">400</div><div class="hex">E58A2E</div></div>
+      <div class="step"><div class="sw" style="background:#D97706"></div><div class="stk">500 ★</div><div class="hex">D97706</div></div>
+      <div class="step"><div class="sw" style="background:#C06805"></div><div class="stk">600</div><div class="hex">C06805</div></div>
+      <div class="step"><div class="sw" style="background:#A85D04"></div><div class="stk">700</div><div class="hex">A85D04</div></div>
+      <div class="step"><div class="sw" style="background:#8A4A03"></div><div class="stk">800</div><div class="hex">8A4A03</div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+    </div>
+  </div>
+
+  <!-- BONE SCALE -->
+  <div class="section">
+    <div class="section-label"><span class="num">04</span><span class="name">Bone Scale</span><span class="line"></span><span class="role">Warm neutral · 6 steps</span></div>
+    <div class="scale">
+      <div class="step"><div class="sw" style="background:#FAF6EE"></div><div class="stk">050</div><div class="hex">FAF6EE</div></div>
+      <div class="step"><div class="sw" style="background:#F3EDE0"></div><div class="stk">100 ★</div><div class="hex">F3EDE0</div></div>
+      <div class="step"><div class="sw" style="background:#E7DFCC"></div><div class="stk">200</div><div class="hex">E7DFCC</div></div>
+      <div class="step"><div class="sw" style="background:#D3C8AC"></div><div class="stk">300</div><div class="hex">D3C8AC</div></div>
+      <div class="step"><div class="sw" style="background:#A69880"></div><div class="stk">400</div><div class="hex">A69880</div></div>
+      <div class="step"><div class="sw" style="background:#786D57"></div><div class="stk">500</div><div class="hex">786D57</div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+      <div class="step" style="visibility:hidden"><div class="sw"></div></div>
+    </div>
+  </div>
+
+  <!-- SEMANTIC -->
+  <div class="section">
+    <div class="section-label"><span class="num">05</span><span class="name">Semantic Tokens</span><span class="line"></span><span class="role">Applied roles</span></div>
+    <div class="semantic">
+      <div class="tok">
+        <div class="swrow"><div class="s" style="background:#F3EDE0"></div><div class="s" style="background:#FAF6EE"></div><div class="s" style="background:#FFFFFF"></div></div>
+        <div class="name">Backgrounds</div>
+        <div class="role">Page → Surface → Elevated</div>
+      </div>
+      <div class="tok">
+        <div class="swrow"><div class="s" style="background:#0A1F16"></div><div class="s" style="background:#1E4D3A"></div><div class="s" style="background:#5A6B62"></div><div class="s" style="background:#8A9891"></div></div>
+        <div class="name">Text</div>
+        <div class="role">Strong → Primary → Muted → Subtle</div>
+      </div>
+      <div class="tok">
+        <div class="swrow"><div class="s" style="background:#2F6B4E"></div><div class="s" style="background:#45865F"></div><div class="s" style="background:#D97706"></div></div>
+        <div class="name">Interactive</div>
+        <div class="role">Default → Hover → CTA/Focus</div>
+      </div>
+      <div class="tok">
+        <div class="swrow"><div class="s" style="background:#45865F"></div><div class="s" style="background:#D97706"></div><div class="s" style="background:#8A4A03"></div></div>
+        <div class="name">Status</div>
+        <div class="role">Success → Warning → Error</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><b>★ =</b> the "primary" step of each scale — the exact hex behind the Cypress / Amber / Bone names in the core row. <b>· Tell me what you want to change</b> — swap a hue, adjust a step, add a color, kill one.</div>
+
+</body></html>

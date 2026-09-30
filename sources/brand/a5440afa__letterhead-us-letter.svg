@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2550 3300">
+<rect width="2550" height="3300" fill="#F4EFE2"/>
+<g transform="translate(150,110) scale(0.18)">
+      <path fill="#A44E12" d="M60 18 H415 Q480 18 480 83 V205 H380 V110 H112 V390 H380 V305 H480 V430 Q480 490 415 490 H60 Q15 490 15 438 V70 Q15 18 60 18 Z"/>
+      <path fill="#A44E12" d="M188 170 H302 Q315 170 315 183 V320 H178 V183 Q178 170 188 170 Z"/>
+    </g>
+<text x="270" y="205" font-family="Inter,Arial" font-size="44" font-weight="750" letter-spacing="4" fill="#1E1B16">CYPRESS COMMAND</text>
+<line x1="150" y1="285" x2="2400" y2="285" stroke="#C9BFA8" stroke-width="3"/>
+<text x="150" y="3160" font-family="Inter,Arial" font-size="24" letter-spacing="3" fill="#5C554A">PRACTICAL INTELLIGENCE FOR REAL OPERATIONS.</text>
+<text x="2400" y="3160" text-anchor="end" font-family="Inter,Arial" font-size="24" fill="#5C554A">CYPRESSCOMMAND.COM</text>
+</svg>

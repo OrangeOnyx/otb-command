@@ -1,0 +1,7 @@
+claim_id,proposed_claim,claim_type,source_or_substantiation,permission_required,review_owner,status,approved_wording,notes
+CLM-001,"Founder experience across law, commercial real estate, contracts, finance, operations, business development, AI systems, and automation",biographical,"Resume, licenses where relevant, project records",Yes,Principal,Pending,,Do not imply legal services or representation
+CLM-002,"Named client or logo",client_reference,"Written client permission",Yes,Principal,Pending,,
+CLM-003,"Measured time, cost, revenue, quality, or risk result",performance,"Baseline, calculation method, timeframe, client approval",Yes,Principal,Pending,,
+CLM-004,"Specific software integration capability",technical,"Test evidence and maintained implementation capability",No,Technical lead,Pending,,
+CLM-005,"Security, privacy, or compliance statement",risk_or_compliance,"Documented controls plus qualified review",Yes,Legal or security reviewer,Pending,,Never imply certification unless held
+CLM-006,"Trademark, registration, ownership, or exclusivity statement",legal,"Counsel confirmation and filing records",Yes,Legal counsel,Blocked,,Do not use TM or registered symbol before authorization

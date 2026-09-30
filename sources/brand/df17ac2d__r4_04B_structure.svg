@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#F3EDE0"/>
+  <!-- 04B — Refined proportions. Thinner arms, chip is a proper nested square + amber pin. -->
+  <g transform="translate(20, 20)">
+    <path d="M 0 0 L 160 0 L 160 36 L 36 36 L 36 124 L 160 124 L 160 160 L 0 160 Z" fill="#1E4D3A"/>
+    <rect x="96" y="60" width="40" height="40" fill="#2F6B4E"/>
+    <rect x="106" y="70" width="20" height="20" fill="#F3EDE0"/>
+    <rect x="111" y="75" width="10" height="10" fill="#D97706"/>
+  </g>
+</svg>

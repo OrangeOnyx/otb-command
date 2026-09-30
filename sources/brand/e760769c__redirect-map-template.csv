@@ -1,0 +1,6 @@
+priority,old_url,target_url,http_status,query_string_rule,owner,test_date,test_result,notes
+P0,https://orangeocean.com/,https://cypresscommand.com/,301,preserve_relevant,,YYYY-MM-DD,Pending,Homepage
+P0,https://orangeocean.com/contact,https://cypresscommand.com/contact,301,preserve_campaign_parameters,,YYYY-MM-DD,Pending,Form test required
+P1,https://orangeocean.com/services/[service],https://cypresscommand.com/services/[service],301,preserve_relevant,,YYYY-MM-DD,Pending,Closest equivalent
+P1,https://orangeocean.com/resources/[file],https://cypresscommand.com/resources/[file],301,preserve_relevant,,YYYY-MM-DD,Pending,File or download destination
+P2,https://orangeocean.com/[retired-page],https://cypresscommand.com/[closest-relevant-page],301,document_exception,,YYYY-MM-DD,Pending,Do not redirect blindly to homepage

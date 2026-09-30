@@ -1,0 +1,11 @@
+# LAYER 2 — CATEGORY: RETAIL (GENERAL)
+Versatile, customer-focused, clean. Reads as approachable specialty retail.
+
+- Illumination: per tenant — halo-lit for upscale, face-lit for high-visibility;
+  follow facade family default unless tenant block overrides
+- Color treatment: brand palette preserved exactly as supplied
+- Typography: brand-accurate; rendered with proper kerning and weight
+- Materials: dark bronze returns; standard trim cap; acrylic faces or aluminum
+  per illumination type
+- Storefront programming hint: clean, organized merchandise displays through glass
+- Tone: inviting, polished, brand-forward

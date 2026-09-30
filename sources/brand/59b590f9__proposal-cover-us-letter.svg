@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2550 3300">
+<rect width="2550" height="3300" fill="#F4EFE2"/>
+<rect x="0" y="0" width="54" height="3300" fill="#A44E12"/>
+<g transform="translate(170,150) scale(0.22)">
+      <path fill="#A44E12" d="M60 18 H415 Q480 18 480 83 V205 H380 V110 H112 V390 H380 V305 H480 V430 Q480 490 415 490 H60 Q15 490 15 438 V70 Q15 18 60 18 Z"/>
+      <path fill="#A44E12" d="M188 170 H302 Q315 170 315 183 V320 H178 V183 Q178 170 188 170 Z"/>
+    </g>
+<text x="380" y="270" font-family="Inter,Arial" font-size="48" font-weight="750" letter-spacing="5" fill="#1E1B16">CYPRESS COMMAND</text>
+<line x1="170" y1="560" x2="2380" y2="560" stroke="#C9BFA8" stroke-width="3"/>
+<text x="170" y="850" font-family="Inter,Arial" font-size="30" letter-spacing="8" fill="#A44E12">PROPOSAL</text>
+<text x="170" y="1120" font-family="Libertinus Serif,Georgia,serif" font-size="142" font-weight="700" fill="#1E1B16">AI OPERATING</text>
+<text x="170" y="1280" font-family="Libertinus Serif,Georgia,serif" font-size="142" font-weight="700" fill="#1E1B16">SYSTEM</text>
+<text x="170" y="1465" font-family="Inter,Arial" font-size="34" letter-spacing="4" fill="#5C554A">PEOPLE. PROCESSES. TOOLS. REAL OUTCOMES.</text>
+<rect x="170" y="1820" width="2210" height="2" fill="#C9BFA8"/>
+<text x="170" y="2010" font-family="Inter,Arial" font-size="28" letter-spacing="4" fill="#5C554A">PREPARED FOR</text>
+<text x="170" y="2095" font-family="Libertinus Serif,Georgia,serif" font-size="62" fill="#1E1B16">Client Name</text>
+<text x="170" y="2230" font-family="Inter,Arial" font-size="28" letter-spacing="4" fill="#5C554A">DATE</text>
+<text x="170" y="2315" font-family="Libertinus Serif,Georgia,serif" font-size="50" fill="#1E1B16">Month DD, YYYY</text>
+<text x="170" y="3060" font-family="Inter,Arial" font-size="24" letter-spacing="3" fill="#5C554A">BUILD AI INTO HOW YOU ACTUALLY OPERATE.</text>
+</svg>

@@ -1,0 +1,38 @@
+{
+  "finish_pass": "2026-09-29T04:55:00-05:00",
+  "head": "ace81d8087a51764f63ec6e0707918507a770212",
+  "branch": "master",
+  "production_mutations": false,
+  "key_deliverables": [
+    "dependency-map.csv",
+    "coordinate-systems-reconciliation.md",
+    "schema-alias-map.csv",
+    "stale-brand-review.md",
+    "duplicate-conflict-register.csv",
+    "source-register.csv",
+    "geometry-validation.csv",
+    "migration-map.csv",
+    "target-architecture.md",
+    "change-plan.md",
+    "release-checklist.md",
+    "AUDIT_REPORT.md",
+    "audit-report.md",
+    "patches/a5-dark-mode-panel.md",
+    "patches/a5-dark-mode-panel.diff"
+  ],
+  "counts": {
+    "dependency_map": 22,
+    "aliases": 59,
+    "brand_rows": 3433,
+    "duplicate_rows": 278,
+    "sources": 9,
+    "geometry_validation": 4,
+    "migrations": 6
+  },
+  "missing": [],
+  "inventory_rerun": {
+    "enumerated_files": 4595,
+    "exact_duplicate_groups": 276,
+    "literal_dependency_candidates": 2245
+  }
+}

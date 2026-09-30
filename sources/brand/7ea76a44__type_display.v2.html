@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body {
+    margin: 0;
+    background: var(--cc-bg-page);
+    font-family: var(--cc-font-sans);
+    color: var(--cc-fg-strong);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .opt {
+    padding: 28px 28px 30px;
+    border-top: 1px solid var(--cc-border-soft);
+    position: relative;
+  }
+  .opt:first-child { border-top: 0; }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--cc-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cc-fg-muted);
+    margin-bottom: 18px;
+  }
+  .tag .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--cc-amber-500);
+  }
+  .tag .name { color: var(--cc-fg-strong); }
+  .tag .sub  { color: var(--cc-fg-subtle); }
+
+  /* ---- OPTION A · Editorial monolith ---- */
+  .a-head {
+    font-family: var(--cc-font-display);
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    margin: 0;
+    color: var(--cc-cypress-950);
+    font-variation-settings: 'SOFT' 0, 'opsz' 144;
+  }
+  .a-head .period { color: var(--cc-amber-500); }
+  .a-meta {
+    display: flex; gap: 18px; margin-top: 14px;
+    font-family: var(--cc-font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--cc-fg-muted);
+  }
+  .a-meta span b { color: var(--cc-fg-strong); font-weight: 500; }
+
+  /* ---- OPTION B · Roman + italic duet ---- */
+  .b-line {
+    font-family: var(--cc-font-display);
+    font-size: 62px;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--cc-cypress-950);
+  }
+  .b-roman {
+    font-weight: 500;
+    font-variation-settings: 'SOFT' 30, 'opsz' 144;
+  }
+  .b-italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cc-bayou-500);
+    font-variation-settings: 'SOFT' 100, 'opsz' 144;
+  }
+  .b-caps {
+    margin-top: 12px;
+    font-family: var(--cc-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cc-fg-strong);
+    font-variation-settings: 'SOFT' 0, 'opsz' 14;
+  }
+
+  /* ---- OPTION C · Soft axis, warm ---- */
+  .c-wrap {
+    background: var(--cc-cypress-950);
+    margin: 6px -28px -30px;
+    padding: 30px 28px 32px;
+    color: var(--cc-bone-100);
+  }
+  .c-wrap .tag { color: var(--cc-sage); margin-bottom: 14px; }
+  .c-wrap .tag .name { color: var(--cc-bone-050); }
+  .c-head {
+    font-family: var(--cc-font-display);
+    font-weight: 700;
+    font-size: 74px;
+    line-height: 0.95;
+    letter-spacing: -0.028em;
+    margin: 0;
+    color: var(--cc-bone-050);
+    font-variation-settings: 'SOFT' 100, 'opsz' 144;
+  }
+  .c-head .accent {
+    color: var(--cc-amber-400);
+    font-style: italic;
+    font-variation-settings: 'SOFT' 100, 'opsz' 144;
+  }
+  .c-sub {
+    margin-top: 10px;
+    font-family: var(--cc-font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--cc-sage);
+    font-variation-settings: 'SOFT' 100, 'opsz' 72;
+    max-width: 500px;
+  }
+
+  /* ---- OPTION D · Size ladder specimen ---- */
+  .d-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-top: 1px dashed var(--cc-border-soft);
+  }
+  .d-row:first-of-type { border-top: 0; padding-top: 0; }
+  .d-label {
+    font-family: var(--cc-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cc-fg-subtle);
+  }
+  .d-spec {
+    font-family: var(--cc-font-display);
+    color: var(--cc-cypress-950);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .d-120 { font-size: 88px; font-weight: 900; letter-spacing: -0.035em; font-variation-settings: 'SOFT' 0, 'opsz' 144; }
+  .d-64  { font-size: 54px; font-weight: 700; font-variation-settings: 'SOFT' 30, 'opsz' 96; }
+  .d-36  { font-size: 34px; font-weight: 600; font-variation-settings: 'SOFT' 50, 'opsz' 48; }
+  .d-24  { font-size: 22px; font-weight: 500; font-style: italic; color: var(--cc-bayou-500); font-variation-settings: 'SOFT' 100, 'opsz' 24; }
+  .d-spec .p { color: var(--cc-amber-500); }
+</style>
+</head>
+<body>
+  <div class="grid">
+
+    <!-- OPTION A -->
+    <section class="opt">
+      <div class="tag">
+        <span class="dot"></span>
+        <span class="name">Option A</span>
+        <span class="sub">· Editorial monolith — SOFT 0, wght 900</span>
+      </div>
+      <h1 class="a-head">Ground<br>truth<span class="period">.</span></h1>
+      <div class="a-meta">
+        <span><b>96 / 88</b> · size / leading</span>
+        <span><b>-3.5%</b> · tracking</span>
+        <span><b>SOFT 0</b> · sharp cut</span>
+      </div>
+    </section>
+
+    <!-- OPTION B -->
+    <section class="opt">
+      <div class="tag">
+        <span class="dot"></span>
+        <span class="name">Option B</span>
+        <span class="sub">· Roman + italic duet — bayou accent</span>
+      </div>
+      <p class="b-line"><span class="b-roman">The operating</span><br><span class="b-roman">system for </span><span class="b-italic">real&#8209;world</span><br><span class="b-italic">businesses.</span></p>
+      <div class="b-caps">Est. 2026 · Property intelligence</div>
+    </section>
+
+    <!-- OPTION C -->
+    <section class="opt" style="padding-bottom:0;">
+      <div class="c-wrap">
+        <div class="tag">
+          <span class="dot"></span>
+          <span class="name">Option C</span>
+          <span class="sub">· Soft axis on dark — SOFT 100</span>
+        </div>
+        <h2 class="c-head">Every acre.<br>Every <span class="accent">lease.</span></h2>
+        <p class="c-sub">Fraunces at SOFT 100 warms up on cypress&#8209;dark. The italic reads as a signature, not decoration.</p>
+      </div>
+    </section>
+
+    <!-- OPTION D -->
+    <section class="opt">
+      <div class="tag">
+        <span class="dot"></span>
+        <span class="name">Option D</span>
+        <span class="sub">· Size ladder — display to caption</span>
+      </div>
+      <div class="d-row"><div class="d-label">88 / 900</div><div class="d-spec d-120">Cypress<span class="p">.</span></div></div>
+      <div class="d-row"><div class="d-label">54 / 700</div><div class="d-spec d-64">Ground truth, delivered.</div></div>
+      <div class="d-row"><div class="d-label">34 / 600</div><div class="d-spec d-36">The operating system for real&#8209;world businesses.</div></div>
+      <div class="d-row"><div class="d-label">22 / italic</div><div class="d-spec d-24">A quiet standard for the built environment.</div></div>
+    </section>
+
+  </div>
+</body>
+</html>

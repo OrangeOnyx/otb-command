@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Greek Expressions
+# Unit 137 | Category: retail | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/greek_expressions.png
+
+BRAND COLOR TREATMENT
+- brand palette per logo — typically navy, with secondary accent
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- any greek-letter motif preserved exactly
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- bold collegiate or refined serif, brand-accurate
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- matte black or bronze returns, halo-lit reverse channel, warm-white LED
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters, refined collegiate glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Sorority/greek apparel

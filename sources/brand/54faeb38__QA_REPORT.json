@@ -1,0 +1,55 @@
+{
+  "version": "1.1.1",
+  "date": "2026-09-22",
+  "pdfPages": 34,
+  "contrastPairs": 86,
+  "contrastFailures": 0,
+  "browserVariants": 72,
+  "viewports": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "browserFailures": 0,
+  "interactiveChecks": [
+    "theme-aware hex values",
+    "clipboard copy",
+    "flat/raised/floating shadows",
+    "section search/no-results/reset",
+    "form invalid/busy/success/reset",
+    "mobile navigation open/close"
+  ],
+  "jsonCssParity": true,
+  "visualReview": "Release 1.1.1 cover, foundation, color guidance and portal reviewed. Prior 1.1.0 visual and interaction checks retained as baseline evidence.",
+  "limitations": [
+    "Specification and layout starters, not a production application library.",
+    "Contrast checks are not a whole-product accessibility certification.",
+    "PDF not certified as tagged accessible output."
+  ],
+  "browserEvidenceVersion": "1.1.0",
+  "currentReleaseChecks": {
+    "browserVariants": 12,
+    "overflowFailures": 0,
+    "pages": [
+      "index",
+      "website"
+    ],
+    "widths": [
+      320,
+      390,
+      1440
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "pdfPages": 34,
+    "contrastPairs": 86,
+    "contrastFailures": 0
+  }
+}

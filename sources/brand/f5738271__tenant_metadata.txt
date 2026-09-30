@@ -1,0 +1,4 @@
+Unit: 117
+Square Feet: 2170
+Tenant: Clothing Loft Exchange
+Folder: 117_CLOTHING_LOFT_EXCHANGE

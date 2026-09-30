@@ -1,0 +1,4 @@
+Unit: 103
+Square Feet: 3051
+Tenant: The Pink Paisley
+Folder: 103_THE_PINK_PAISLEY

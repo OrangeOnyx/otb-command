@@ -1,0 +1,1658 @@
+{
+ "repo": "orange-ocean-atlas",
+ "extracted_at_utc": "2026-08-23T06:38:18Z",
+ "head": {
+  "sha_short": "04734e3",
+  "sha_full": "04734e3a6c74addf6de5be1fb3b33a9cfd47c991",
+  "branch": "main",
+  "last_commit_utc": "2026-08-05T03:49:04Z"
+ },
+ "stats": {
+  "files": 543,
+  "ts_loc": 72984,
+  "module_count": 45,
+  "prisma_model_count": 59
+ },
+ "modules": [
+  {
+   "module_name": "AppModule",
+   "module_path": "apps/api/src",
+   "controllers": [],
+   "services": [
+    "// Enforce rate limiting globally. Applies the ThrottlerModule config above // (plus any per-route @Throttle overrides) to every request. { provide: APP_GUARD, useClass: ThrottlerGuard }"
+   ],
+   "imports": [
+    "// Config \u2014 global so all modules can inject ConfigService ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local', '.env'], // Fail fast at boot if a required secret/URL is missing. Relaxed under // NODE_ENV=test so the CI job (which only provides DB + admin JWT secrets) // and unit tests can boot without the full production secret set. validate: validateEnv, })",
+    "// Global Prisma \u2014 single PrismaClient shared across every feature module. // Without this",
+    "each feature module that lists PrismaService in its // providers spawns its own PrismaClient + connection pool",
+    "which exhausts // Postgres at boot. PrismaModule",
+    "// Rate limiting. A generous global default (per client IP) protects every // route from runaway traffic; sensitive endpoints (LLM chat, clause // abstraction, login) apply much tighter per-route @Throttle overrides. // The guard is wired globally via APP_GUARD below \u2014 without that provider // this config is inert (the Wave 49 gap this pass closes). ThrottlerModule.forRoot([ { ttl: 60_000, // 1 minute limit: 120, // 120 requests/min per IP \u2014 sane app-wide ceiling }, ])",
+    "// Bull queue (Redis). // // Railway exposes Redis at an internal IPv6 host (redis.railway.internal)",
+    "// so ioredis must use `family: 0` (allow IPv4+IPv6 DNS) or the connection // hangs forever. Critically",
+    "every ioredis client MUST have an 'error' // listener attached: when a background connection attempt times out // (ETIMEDOUT) and the retryStrategy stops retrying",
+    "ioredis emits an // 'error' event. Without a listener",
+    "Node treats it as an unhandled // exception and crashes the process ~70s after a clean boot. Using a // `createClient` factory (instead of plain `redis` options) is the only // way to attach that listener to each underlying connection. BullModule.forRootAsync({ imports: [ConfigModule], inject: [ConfigService], useFactory: (config: ConfigService) => { const logger = new Logger('BullRedis'); // Prefer ConfigService, but fall back to process.env directly in case // the global ConfigModule hasn't populated this key by the time this // async factory is evaluated. Only then default to localhost. const url = config.get<string>('REDIS_URL') ?? process.env.REDIS_URL ?? 'redis://localhost:6379'; const parsed = new URL(url); // Log the resolved host (never the credentials) so deploy logs make it // obvious whether we connected to Railway's Redis or the localhost // fallback. logger.log(`Queue backend Redis host resolved to: ${parsed.hostname}:${parsed.port || 6379}`); const baseOptions: RedisOptions = { host: parsed.hostname, port: Number(parsed.port || 6379), username: parsed.username || undefined, password: parsed.password || undefined, // Allow both IPv4 and IPv6 lookups (required for *.railway.internal). family: 0, enableReadyCheck: false, connectTimeout: 10000, // Stop reconnecting after a handful of attempts so a Redis outage // can never wedge the app; the 'error' listener below swallows the // resulting error so the process stays alive. retryStrategy: (times: number) => (times > 5 ? null : Math.min(times * 200, 2000)), }; return { createClient: (type: 'client' | 'subscriber' | 'bclient', redisOpts?: RedisOptions): Redis => { // IMPORTANT ordering: spread Bull's per-type `redisOpts` FIRST, then // our connection settings, so OUR host/port/family always win. Bull // fills `redisOpts` with its own defaults (which point at // localhost:6379); if those were spread last they'd clobber the // Railway internal host and the client would connect to 127.0.0.1. // // Bull's blocking ('bclient') and pub/sub ('subscriber') connections // require `maxRetriesPerRequest: null` and offline queueing; only the // regular 'client' connection should fail commands fast. const options: RedisOptions = { ...redisOpts, ...baseOptions, ...(type === 'client' ? { maxRetriesPerRequest: 3, enableOfflineQueue: false } : { maxRetriesPerRequest: null, enableOfflineQueue: true }), }; logger.log( `Creating Redis ${type} client -> ${options.host}:${options.port} (family ${options.family})`, ); const client = new IORedis(options); // THE fix: handle connection errors so they never bubble up as an // unhandled exception and crash the Node process. client.on('error', (err: Error) => { logger.warn(`Redis ${type} connection error (non-fatal): ${err.message}`); }); return client; }, }; }, })",
+    "// Phase 1 modules HealthModule",
+    "AuthModule",
+    "UsersModule",
+    "PropertiesModule",
+    "UnitsModule",
+    "TenantsModule",
+    "LeasesModule",
+    "LoisModule",
+    "MaintenanceModule",
+    "ComplianceModule",
+    "RemindersModule",
+    "NoticesModule",
+    "FinancialsModule",
+    "VendorsModule",
+    "DashboardModule",
+    "AuditModule",
+    "DocumentsModule",
+    "SettingsModule",
+    "// Phase 2 modules ParkingModule",
+    "TenantPortalModule",
+    "VendorRegistrationModule",
+    "SitePlanModule",
+    "SignageModule",
+    "AchModule",
+    "HvacContractsModule",
+    "CosModule",
+    "FloorPlansModule",
+    "ComplianceTypesModule",
+    "// Phase 3 modules LedgerModule",
+    "InvoicesModule",
+    "PaymentsModule",
+    "CommunicationsModule",
+    "WorkflowsModule",
+    "TasksModule",
+    "ReportsModule",
+    "CamReconciliationModule",
+    "Form1099Module",
+    "EsignModule",
+    "ChartOfAccountsModule",
+    "ExpensesModule",
+    "// Phase 4 / Wave 8 modules LateFeesModule",
+    "// Wave C modules PoisModule",
+    "CopilotModule"
+   ],
+   "exports": [],
+   "related_prisma_models": [],
+   "endpoint_count": 0,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "PrismaModule",
+   "module_path": "apps/api/src/common",
+   "controllers": [],
+   "services": [
+    "PrismaService"
+   ],
+   "imports": [],
+   "exports": [
+    "PrismaService"
+   ],
+   "related_prisma_models": [
+    "AuditLog",
+    "Unit"
+   ],
+   "endpoint_count": 0,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "AchModule",
+   "module_path": "apps/api/src/modules/ach",
+   "controllers": [
+    "AchController"
+   ],
+   "services": [
+    "AchService"
+   ],
+   "imports": [],
+   "exports": [
+    "AchService"
+   ],
+   "related_prisma_models": [
+    "AchForm"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "AuditModule",
+   "module_path": "apps/api/src/modules/audit",
+   "controllers": [
+    "AuditController"
+   ],
+   "services": [
+    "AuditService"
+   ],
+   "imports": [],
+   "exports": [
+    "AuditService"
+   ],
+   "related_prisma_models": [
+    "AuditLog"
+   ],
+   "endpoint_count": 1,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "AuthModule",
+   "module_path": "apps/api/src/modules/auth",
+   "controllers": [
+    "AuthController"
+   ],
+   "services": [
+    "AuthService",
+    "JwtStrategy",
+    "LocalStrategy"
+   ],
+   "imports": [
+    "PassportModule",
+    "UsersModule",
+    "JwtModule.registerAsync({ imports: [ConfigModule], inject: [ConfigService], useFactory: (config: ConfigService) => ({ secret: config.get<string>('JWT_SECRET'), signOptions: { expiresIn: '15m' }, }), })"
+   ],
+   "exports": [
+    "AuthService"
+   ],
+   "related_prisma_models": [
+    "AuditLog",
+    "User"
+   ],
+   "endpoint_count": 7,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "CamReconciliationModule",
+   "module_path": "apps/api/src/modules/cam-reconciliation",
+   "controllers": [
+    "CamReconciliationController"
+   ],
+   "services": [
+    "CamReconciliationService"
+   ],
+   "imports": [],
+   "exports": [
+    "CamReconciliationService"
+   ],
+   "related_prisma_models": [
+    "CamReconciliation",
+    "EmailLog",
+    "Expense",
+    "Lease",
+    "Unit"
+   ],
+   "endpoint_count": 6,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "ChartOfAccountsModule",
+   "module_path": "apps/api/src/modules/chart-of-accounts",
+   "controllers": [
+    "ChartOfAccountsController"
+   ],
+   "services": [
+    "ChartOfAccountsService"
+   ],
+   "imports": [],
+   "exports": [
+    "ChartOfAccountsService"
+   ],
+   "related_prisma_models": [
+    "ChartOfAccount"
+   ],
+   "endpoint_count": 7,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "CommunicationsModule",
+   "module_path": "apps/api/src/modules/communications",
+   "controllers": [
+    "CommunicationsController"
+   ],
+   "services": [
+    "CommunicationsService",
+    "EmailSenderService",
+    "EmailQueueService",
+    "EmailQueueProcessor"
+   ],
+   "imports": [
+    "ConfigModule",
+    "BullModule.registerQueue({ name: EMAIL_QUEUE })"
+   ],
+   "exports": [
+    "CommunicationsService",
+    "EmailSenderService",
+    "EmailQueueService"
+   ],
+   "related_prisma_models": [
+    "EmailLog",
+    "EmailTemplate",
+    "Tenant"
+   ],
+   "endpoint_count": 11,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "ComplianceTypesModule",
+   "module_path": "apps/api/src/modules/compliance-types",
+   "controllers": [
+    "ComplianceTypesController"
+   ],
+   "services": [
+    "ComplianceTypesService"
+   ],
+   "imports": [],
+   "exports": [
+    "ComplianceTypesService"
+   ],
+   "related_prisma_models": [
+    "ComplianceActionType"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "ComplianceModule",
+   "module_path": "apps/api/src/modules/compliance",
+   "controllers": [
+    "ComplianceController",
+    "ComplianceDashboardController",
+    "ComplianceEventsController"
+   ],
+   "services": [
+    "ComplianceService",
+    "ComplianceDashboardService",
+    "ComplianceEventsService"
+   ],
+   "imports": [],
+   "exports": [
+    "ComplianceService",
+    "ComplianceDashboardService",
+    "ComplianceEventsService"
+   ],
+   "related_prisma_models": [
+    "AchForm",
+    "CamReconciliation",
+    "CertificateOfOccupancy",
+    "ComplianceEvent",
+    "ComplianceTask",
+    "HvacMaintenanceContract",
+    "InsuranceCertificate",
+    "Lease",
+    "LeaseUnit",
+    "SignageApproval",
+    "Unit"
+   ],
+   "endpoint_count": 9,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "CopilotModule",
+   "module_path": "apps/api/src/modules/copilot",
+   "controllers": [
+    "CopilotController",
+    "CopilotPublicController"
+   ],
+   "services": [
+    "CopilotService",
+    "ClauseAbstractionService",
+    "AutoTriggerService",
+    "NerService",
+    "GrossUpService",
+    "EvictionService",
+    "OcrService",
+    "CapexService",
+    "KpiService",
+    "InsuranceService",
+    "CopilotContextService",
+    "CopilotRetrievalService",
+    "LlmService",
+    "EmbeddingService"
+   ],
+   "imports": [
+    "ScheduleModule.forRoot()"
+   ],
+   "exports": [
+    "CopilotService",
+    "ClauseAbstractionService",
+    "AutoTriggerService"
+   ],
+   "related_prisma_models": [
+    "CopilotMemo",
+    "CopilotMessage",
+    "CopilotSession",
+    "FinancialSnapshot",
+    "Lease",
+    "MaintenanceRequest",
+    "Notice",
+    "Property",
+    "Tenant",
+    "Unit",
+    "User"
+   ],
+   "endpoint_count": 17,
+   "purpose_one_line": "Operator Copilot module \u2014 Wave 46."
+  },
+  {
+   "module_name": "CosModule",
+   "module_path": "apps/api/src/modules/cos",
+   "controllers": [
+    "CosController"
+   ],
+   "services": [
+    "CosService"
+   ],
+   "imports": [],
+   "exports": [
+    "CosService"
+   ],
+   "related_prisma_models": [
+    "CertificateOfOccupancy",
+    "Lease"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "DashboardModule",
+   "module_path": "apps/api/src/modules/dashboard",
+   "controllers": [
+    "DashboardController"
+   ],
+   "services": [
+    "DashboardService"
+   ],
+   "imports": [],
+   "exports": [
+    "DashboardService"
+   ],
+   "related_prisma_models": [
+    "AchForm",
+    "AuditLog",
+    "CertificateOfOccupancy",
+    "ComplianceTask",
+    "HvacMaintenanceContract",
+    "InsuranceCertificate",
+    "Lease",
+    "MaintenanceRequest",
+    "ParkingAgreement",
+    "Reminder",
+    "Unit"
+   ],
+   "endpoint_count": 1,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "DocumentsModule",
+   "module_path": "apps/api/src/modules/documents",
+   "controllers": [
+    "DocumentsController"
+   ],
+   "services": [
+    "DocumentsService"
+   ],
+   "imports": [],
+   "exports": [
+    "DocumentsService"
+   ],
+   "related_prisma_models": [
+    "DocumentReference"
+   ],
+   "endpoint_count": 5,
+   "purpose_one_line": "DocumentsModule \u2014 full document repository with upload, download, and metadata management."
+  },
+  {
+   "module_name": "EsignModule",
+   "module_path": "apps/api/src/modules/esign",
+   "controllers": [
+    "EsignController",
+    "EsignPublicController"
+   ],
+   "services": [
+    "EsignService"
+   ],
+   "imports": [],
+   "exports": [
+    "EsignService"
+   ],
+   "related_prisma_models": [
+    "ESignRequest",
+    "EmailLog"
+   ],
+   "endpoint_count": 8,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "ExpensesModule",
+   "module_path": "apps/api/src/modules/expenses",
+   "controllers": [
+    "ExpensesController"
+   ],
+   "services": [
+    "ExpensesService"
+   ],
+   "imports": [],
+   "exports": [
+    "ExpensesService"
+   ],
+   "related_prisma_models": [
+    "Expense"
+   ],
+   "endpoint_count": 8,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "FinancialsModule",
+   "module_path": "apps/api/src/modules/financials",
+   "controllers": [
+    "FinancialsController"
+   ],
+   "services": [
+    "FinancialsService",
+    "RentRollService"
+   ],
+   "imports": [],
+   "exports": [
+    "FinancialsService",
+    "RentRollService"
+   ],
+   "related_prisma_models": [
+    "Lease",
+    "ParkingAgreement",
+    "Unit"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "FloorPlansModule",
+   "module_path": "apps/api/src/modules/floor-plans",
+   "controllers": [
+    "FloorPlansController"
+   ],
+   "services": [
+    "FloorPlansService"
+   ],
+   "imports": [],
+   "exports": [
+    "FloorPlansService"
+   ],
+   "related_prisma_models": [
+    "FloorPlan"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "Form1099Module",
+   "module_path": "apps/api/src/modules/form-1099",
+   "controllers": [
+    "Form1099Controller"
+   ],
+   "services": [
+    "Form1099Service"
+   ],
+   "imports": [],
+   "exports": [
+    "Form1099Service"
+   ],
+   "related_prisma_models": [
+    "Expense",
+    "Vendor"
+   ],
+   "endpoint_count": 3,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "HealthModule",
+   "module_path": "apps/api/src/modules/health",
+   "controllers": [
+    "HealthController"
+   ],
+   "services": [],
+   "imports": [
+    "CommunicationsModule"
+   ],
+   "exports": [],
+   "related_prisma_models": [
+    "LateFeeAssessment",
+    "LateFeeRun"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "HvacContractsModule",
+   "module_path": "apps/api/src/modules/hvac-contracts",
+   "controllers": [
+    "HvacContractsController"
+   ],
+   "services": [
+    "HvacContractsService"
+   ],
+   "imports": [],
+   "exports": [
+    "HvacContractsService"
+   ],
+   "related_prisma_models": [
+    "HvacMaintenanceContract"
+   ],
+   "endpoint_count": 4,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "InvoicesModule",
+   "module_path": "apps/api/src/modules/invoices",
+   "controllers": [
+    "InvoicesController"
+   ],
+   "services": [
+    "InvoicesService"
+   ],
+   "imports": [
+    "LedgerModule",
+    "CommunicationsModule"
+   ],
+   "exports": [
+    "InvoicesService"
+   ],
+   "related_prisma_models": [
+    "Invoice",
+    "Lease",
+    "LedgerEntry"
+   ],
+   "endpoint_count": 10,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "LateFeesModule",
+   "module_path": "apps/api/src/modules/late-fees",
+   "controllers": [
+    "LateFeesController"
+   ],
+   "services": [
+    "LateFeesService",
+    "LateFeesQueueProcessor"
+   ],
+   "imports": [
+    "ConfigModule",
+    "LedgerModule",
+    "CommunicationsModule",
+    "BullModule.registerQueue({ name: LATE_FEES_QUEUE })"
+   ],
+   "exports": [
+    "LateFeesService"
+   ],
+   "related_prisma_models": [
+    "Invoice",
+    "LateFeeAssessment",
+    "LateFeeRun",
+    "Lease",
+    "LedgerEntry"
+   ],
+   "endpoint_count": 5,
+   "purpose_one_line": "Wave 8 module."
+  },
+  {
+   "module_name": "LeasesModule",
+   "module_path": "apps/api/src/modules/leases",
+   "controllers": [
+    "LeasesController"
+   ],
+   "services": [
+    "LeasesService"
+   ],
+   "imports": [],
+   "exports": [
+    "LeasesService"
+   ],
+   "related_prisma_models": [
+    "Lease",
+    "LeaseUnit",
+    "Tenant",
+    "Unit"
+   ],
+   "endpoint_count": 8,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "LedgerModule",
+   "module_path": "apps/api/src/modules/ledger",
+   "controllers": [
+    "LedgerController"
+   ],
+   "services": [
+    "LedgerService"
+   ],
+   "imports": [],
+   "exports": [
+    "LedgerService"
+   ],
+   "related_prisma_models": [
+    "Lease",
+    "LedgerEntry",
+    "Tenant"
+   ],
+   "endpoint_count": 8,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "LoisModule",
+   "module_path": "apps/api/src/modules/lois",
+   "controllers": [
+    "LoisController"
+   ],
+   "services": [
+    "LoisService"
+   ],
+   "imports": [],
+   "exports": [
+    "LoisService"
+   ],
+   "related_prisma_models": [
+    "LOI",
+    "Lease",
+    "Tenant",
+    "Unit"
+   ],
+   "endpoint_count": 6,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "MaintenanceModule",
+   "module_path": "apps/api/src/modules/maintenance",
+   "controllers": [
+    "MaintenanceController"
+   ],
+   "services": [
+    "MaintenanceService"
+   ],
+   "imports": [],
+   "exports": [
+    "MaintenanceService"
+   ],
+   "related_prisma_models": [
+    "MaintenanceRequest",
+    "Vendor"
+   ],
+   "endpoint_count": 5,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "NoticesModule",
+   "module_path": "apps/api/src/modules/notices",
+   "controllers": [
+    "NoticesController"
+   ],
+   "services": [
+    "NoticesService"
+   ],
+   "imports": [
+    "CommunicationsModule"
+   ],
+   "exports": [
+    "NoticesService"
+   ],
+   "related_prisma_models": [
+    "Lease",
+    "Notice"
+   ],
+   "endpoint_count": 7,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "ParkingModule",
+   "module_path": "apps/api/src/modules/parking",
+   "controllers": [
+    "ParkingController"
+   ],
+   "services": [
+    "ParkingService"
+   ],
+   "imports": [],
+   "exports": [
+    "ParkingService"
+   ],
+   "related_prisma_models": [
+    "ParkingAgreement",
+    "ParkingLicense",
+    "ParkingLot",
+    "ParkingPayment",
+    "ParkingStall"
+   ],
+   "endpoint_count": 22,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "PaymentsModule",
+   "module_path": "apps/api/src/modules/payments",
+   "controllers": [
+    "PaymentsController"
+   ],
+   "services": [
+    "PaymentsService"
+   ],
+   "imports": [
+    "LedgerModule"
+   ],
+   "exports": [
+    "PaymentsService"
+   ],
+   "related_prisma_models": [
+    "Invoice",
+    "Lease",
+    "Payment"
+   ],
+   "endpoint_count": 9,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "PoisModule",
+   "module_path": "apps/api/src/modules/pois",
+   "controllers": [
+    "PoisController"
+   ],
+   "services": [
+    "PoisService"
+   ],
+   "imports": [
+    "DocumentsModule"
+   ],
+   "exports": [
+    "PoisService"
+   ],
+   "related_prisma_models": [
+    "PointOfInterest"
+   ],
+   "endpoint_count": 5,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "PropertiesModule",
+   "module_path": "apps/api/src/modules/properties",
+   "controllers": [
+    "PropertiesController"
+   ],
+   "services": [
+    "PropertiesService"
+   ],
+   "imports": [],
+   "exports": [
+    "PropertiesService"
+   ],
+   "related_prisma_models": [
+    "Property",
+    "Unit"
+   ],
+   "endpoint_count": 5,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "RemindersModule",
+   "module_path": "apps/api/src/modules/reminders",
+   "controllers": [
+    "RemindersController"
+   ],
+   "services": [
+    "RemindersService"
+   ],
+   "imports": [],
+   "exports": [
+    "RemindersService"
+   ],
+   "related_prisma_models": [
+    "Reminder"
+   ],
+   "endpoint_count": 6,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "ReportsModule",
+   "module_path": "apps/api/src/modules/reports",
+   "controllers": [
+    "ReportsController"
+   ],
+   "services": [
+    "ReportsService"
+   ],
+   "imports": [],
+   "exports": [
+    "ReportsService"
+   ],
+   "related_prisma_models": [
+    "Expense",
+    "Lease",
+    "LedgerEntry",
+    "Payment",
+    "Unit"
+   ],
+   "endpoint_count": 6,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "SettingsModule",
+   "module_path": "apps/api/src/modules/settings",
+   "controllers": [
+    "SettingsController"
+   ],
+   "services": [
+    "SettingsService"
+   ],
+   "imports": [],
+   "exports": [
+    "SettingsService"
+   ],
+   "related_prisma_models": [
+    "Property"
+   ],
+   "endpoint_count": 2,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "SignageModule",
+   "module_path": "apps/api/src/modules/signage",
+   "controllers": [
+    "SignageController"
+   ],
+   "services": [
+    "SignageService"
+   ],
+   "imports": [
+    "DocumentsModule"
+   ],
+   "exports": [
+    "SignageService"
+   ],
+   "related_prisma_models": [
+    "PylonSlot",
+    "SignageApproval"
+   ],
+   "endpoint_count": 10,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "SitePlanModule",
+   "module_path": "apps/api/src/modules/site-plan",
+   "controllers": [
+    "SitePlanController",
+    "SitePlanViewsController",
+    "DirectoryController",
+    "CriticalDatesController"
+   ],
+   "services": [
+    "SitePlanService"
+   ],
+   "imports": [
+    "DocumentsModule"
+   ],
+   "exports": [
+    "SitePlanService"
+   ],
+   "related_prisma_models": [
+    "Property",
+    "SitePlanShape",
+    "SitePlanView",
+    "Unit"
+   ],
+   "endpoint_count": 12,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "TasksModule",
+   "module_path": "apps/api/src/modules/tasks",
+   "controllers": [
+    "TasksController"
+   ],
+   "services": [
+    "TasksService"
+   ],
+   "imports": [],
+   "exports": [
+    "TasksService"
+   ],
+   "related_prisma_models": [
+    "Lease",
+    "Task",
+    "Tenant",
+    "Unit",
+    "User"
+   ],
+   "endpoint_count": 9,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "TenantPortalModule",
+   "module_path": "apps/api/src/modules/tenant-portal",
+   "controllers": [
+    "TenantPortalAuthController",
+    "TenantPortalController"
+   ],
+   "services": [
+    "TenantPortalAuthService",
+    "TenantPortalService",
+    "TenantPortalJwtStrategy"
+   ],
+   "imports": [
+    "PaymentsModule",
+    "PassportModule",
+    "JwtModule.registerAsync({ imports: [ConfigModule], inject: [ConfigService], useFactory: (config: ConfigService) => ({ secret: config.get<string>('PORTAL_JWT_SECRET'), signOptions: { expiresIn: '15m' }, }), })",
+    "MulterModule.register({ dest: './uploads/portal-documents', })"
+   ],
+   "exports": [
+    "TenantPortalAuthService",
+    "TenantPortalService"
+   ],
+   "related_prisma_models": [
+    "AchForm",
+    "CertificateOfOccupancy",
+    "DocumentReference",
+    "HvacMaintenanceContract",
+    "InsuranceCertificate",
+    "Lease",
+    "MaintenanceRequest",
+    "Payment",
+    "SignageApproval",
+    "TenantUser",
+    "Unit"
+   ],
+   "endpoint_count": 16,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "TenantsModule",
+   "module_path": "apps/api/src/modules/tenants",
+   "controllers": [
+    "TenantsController"
+   ],
+   "services": [
+    "TenantsService"
+   ],
+   "imports": [],
+   "exports": [
+    "TenantsService"
+   ],
+   "related_prisma_models": [
+    "Tenant",
+    "TenantUser"
+   ],
+   "endpoint_count": 8,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "UnitsModule",
+   "module_path": "apps/api/src/modules/units",
+   "controllers": [
+    "UnitsController"
+   ],
+   "services": [
+    "UnitsService"
+   ],
+   "imports": [],
+   "exports": [
+    "UnitsService"
+   ],
+   "related_prisma_models": [
+    "Unit"
+   ],
+   "endpoint_count": 7,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "UsersModule",
+   "module_path": "apps/api/src/modules/users",
+   "controllers": [
+    "UsersController"
+   ],
+   "services": [
+    "UsersService"
+   ],
+   "imports": [],
+   "exports": [
+    "UsersService"
+   ],
+   "related_prisma_models": [
+    "User"
+   ],
+   "endpoint_count": 6,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "VendorRegistrationModule",
+   "module_path": "apps/api/src/modules/vendor-registration",
+   "controllers": [
+    "VendorRegistrationController"
+   ],
+   "services": [
+    "VendorRegistrationService"
+   ],
+   "imports": [],
+   "exports": [
+    "VendorRegistrationService"
+   ],
+   "related_prisma_models": [
+    "Vendor"
+   ],
+   "endpoint_count": 2,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "VendorsModule",
+   "module_path": "apps/api/src/modules/vendors",
+   "controllers": [
+    "VendorsController"
+   ],
+   "services": [
+    "VendorsService"
+   ],
+   "imports": [],
+   "exports": [
+    "VendorsService"
+   ],
+   "related_prisma_models": [
+    "Expense",
+    "MaintenanceRequest",
+    "Vendor"
+   ],
+   "endpoint_count": 12,
+   "purpose_one_line": "[UNKNOWN]"
+  },
+  {
+   "module_name": "WorkflowsModule",
+   "module_path": "apps/api/src/modules/workflows",
+   "controllers": [
+    "WorkflowsController"
+   ],
+   "services": [
+    "WorkflowsService",
+    "WorkflowRunnerService"
+   ],
+   "imports": [
+    "// ScheduleModule.forRoot() is called here so WorkflowsModule is self-contained. // If AppModule also calls ScheduleModule.forRoot()",
+    "NestJS deduplicates it safely. ScheduleModule.forRoot()",
+    "forwardRef(() => CommunicationsModule)",
+    "forwardRef(() => LedgerModule)"
+   ],
+   "exports": [
+    "WorkflowsService",
+    "WorkflowRunnerService"
+   ],
+   "related_prisma_models": [
+    "HvacMaintenanceContract",
+    "InsuranceCertificate",
+    "Invoice",
+    "Lease",
+    "Reminder",
+    "Task",
+    "Tenant",
+    "WorkflowAction",
+    "WorkflowDefinition",
+    "WorkflowRun"
+   ],
+   "endpoint_count": 9,
+   "purpose_one_line": "[UNKNOWN]"
+  }
+ ],
+ "prisma_models": [
+  {
+   "model_name": "User",
+   "field_count": 13,
+   "relation_count": 9,
+   "indexes": [
+    "email @unique"
+   ],
+   "owning_module": "UsersModule"
+  },
+  {
+   "model_name": "Property",
+   "field_count": 31,
+   "relation_count": 23,
+   "indexes": [
+    "code @unique"
+   ],
+   "owning_module": "SitePlanModule"
+  },
+  {
+   "model_name": "Unit",
+   "field_count": 19,
+   "relation_count": 16,
+   "indexes": [
+    "@@unique([propertyId, suiteNumber])",
+    "@@index([propertyId])"
+   ],
+   "owning_module": "SitePlanModule"
+  },
+  {
+   "model_name": "Tenant",
+   "field_count": 23,
+   "relation_count": 19,
+   "indexes": [],
+   "owning_module": "CopilotModule"
+  },
+  {
+   "model_name": "Lease",
+   "field_count": 62,
+   "relation_count": 23,
+   "indexes": [
+    "@@index([status, leaseEnd])",
+    "@@index([unitId])",
+    "@@index([tenantId])",
+    "@@index([parentLeaseId])"
+   ],
+   "owning_module": "CopilotModule"
+  },
+  {
+   "model_name": "LeaseUnit",
+   "field_count": 10,
+   "relation_count": 2,
+   "indexes": [
+    "@@unique([leaseId, unitId])",
+    "@@index([leaseId])",
+    "@@index([unitId])"
+   ],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "ScheduleGEntry",
+   "field_count": 7,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([leaseId])"
+   ],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "LeaseOption",
+   "field_count": 10,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "LOI",
+   "field_count": 32,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([unitId])",
+    "@@index([tenantId])"
+   ],
+   "owning_module": "LoisModule"
+  },
+  {
+   "model_name": "Vendor",
+   "field_count": 41,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([propertyId])"
+   ],
+   "owning_module": "VendorsModule"
+  },
+  {
+   "model_name": "MaintenanceRequest",
+   "field_count": 26,
+   "relation_count": 5,
+   "indexes": [
+    "@@index([status])",
+    "@@index([category])",
+    "@@index([unitId])",
+    "@@index([tenantId])",
+    "@@index([vendorId])",
+    "@@index([createdById])",
+    "@@index([assignedToId])"
+   ],
+   "owning_module": "VendorsModule"
+  },
+  {
+   "model_name": "ExclusiveUse",
+   "field_count": 7,
+   "relation_count": 3,
+   "indexes": [],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "ComplianceTask",
+   "field_count": 20,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([status])"
+   ],
+   "owning_module": "ComplianceModule"
+  },
+  {
+   "model_name": "ComplianceEvent",
+   "field_count": 11,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([propertyId, unitId, fieldKey, createdAt])",
+    "@@index([propertyId, fieldKey, createdAt])",
+    "@@index([sourceDoc])"
+   ],
+   "owning_module": "ComplianceModule"
+  },
+  {
+   "model_name": "Reminder",
+   "field_count": 14,
+   "relation_count": 5,
+   "indexes": [
+    "@@index([dueDate])"
+   ],
+   "owning_module": "RemindersModule"
+  },
+  {
+   "model_name": "Notice",
+   "field_count": 22,
+   "relation_count": 3,
+   "indexes": [
+    "@@index([tenantId])",
+    "@@index([leaseId])",
+    "@@index([createdById])"
+   ],
+   "owning_module": "NoticesModule"
+  },
+  {
+   "model_name": "OccupationalLicense",
+   "field_count": 11,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "InsuranceCertificate",
+   "field_count": 13,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([leaseId])",
+    "@@index([tenantId])"
+   ],
+   "owning_module": "ComplianceModule"
+  },
+  {
+   "model_name": "FinancialSnapshot",
+   "field_count": 15,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "CopilotModule"
+  },
+  {
+   "model_name": "DocumentReference",
+   "field_count": 21,
+   "relation_count": 5,
+   "indexes": [
+    "@@index([unitId])",
+    "@@index([leaseId])",
+    "@@index([tenantId])",
+    "@@index([uploadedById])",
+    "@@index([uploadedByTenantUserId])"
+   ],
+   "owning_module": "DocumentsModule"
+  },
+  {
+   "model_name": "ActivityLog",
+   "field_count": 10,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([propertyId, createdAt])",
+    "@@index([entityType, entityId])"
+   ],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "AuditLog",
+   "field_count": 12,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([entityType, entityId])",
+    "@@index([userId])"
+   ],
+   "owning_module": "AuthModule"
+  },
+  {
+   "model_name": "Notification",
+   "field_count": 8,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([userId, isRead])"
+   ],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "ParkingAgreement",
+   "field_count": 19,
+   "relation_count": 2,
+   "indexes": [],
+   "owning_module": "ParkingModule"
+  },
+  {
+   "model_name": "ParkingPayment",
+   "field_count": 9,
+   "relation_count": 1,
+   "indexes": [
+    "@@unique([parkingAgreementId, periodMonth, periodYear])"
+   ],
+   "owning_module": "ParkingModule"
+  },
+  {
+   "model_name": "HvacMaintenanceContract",
+   "field_count": 22,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([propertyId])",
+    "@@index([unitId])",
+    "@@index([tenantId])",
+    "@@index([vendorId])"
+   ],
+   "owning_module": "HvacContractsModule"
+  },
+  {
+   "model_name": "CertificateOfOccupancy",
+   "field_count": 14,
+   "relation_count": 3,
+   "indexes": [
+    "@@index([unitId])",
+    "@@index([tenantId])",
+    "@@index([leaseId])"
+   ],
+   "owning_module": "CosModule"
+  },
+  {
+   "model_name": "SignageApproval",
+   "field_count": 17,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([unitId])",
+    "@@index([tenantId])",
+    "@@index([leaseId])",
+    "@@index([vendorId])"
+   ],
+   "owning_module": "SignageModule"
+  },
+  {
+   "model_name": "AchForm",
+   "field_count": 16,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([tenantId])",
+    "@@index([leaseId])"
+   ],
+   "owning_module": "AchModule"
+  },
+  {
+   "model_name": "ComplianceActionType",
+   "field_count": 12,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "ComplianceTypesModule"
+  },
+  {
+   "model_name": "TenantUser",
+   "field_count": 17,
+   "relation_count": 3,
+   "indexes": [
+    "email @unique"
+   ],
+   "owning_module": "TenantPortalModule"
+  },
+  {
+   "model_name": "TenantAuditLog",
+   "field_count": 10,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "SitePlanShape",
+   "field_count": 16,
+   "relation_count": 2,
+   "indexes": [],
+   "owning_module": "SitePlanModule"
+  },
+  {
+   "model_name": "SitePlanView",
+   "field_count": 16,
+   "relation_count": 1,
+   "indexes": [
+    "@@unique([propertyId, key])"
+   ],
+   "owning_module": "SitePlanModule"
+  },
+  {
+   "model_name": "FloorPlan",
+   "field_count": 13,
+   "relation_count": 3,
+   "indexes": [
+    "@@index([propertyId])",
+    "@@index([unitId])",
+    "@@index([uploadedById])"
+   ],
+   "owning_module": "FloorPlansModule"
+  },
+  {
+   "model_name": "PointOfInterest",
+   "field_count": 13,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([propertyId])",
+    "@@index([floorPlanId])"
+   ],
+   "owning_module": "PoisModule"
+  },
+  {
+   "model_name": "LedgerEntry",
+   "field_count": 23,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([leaseId])",
+    "@@index([tenantId])",
+    "@@index([propertyId, periodYear, periodMonth])"
+   ],
+   "owning_module": "LedgerModule"
+  },
+  {
+   "model_name": "Invoice",
+   "field_count": 20,
+   "relation_count": 5,
+   "indexes": [
+    "invoiceNumber @unique",
+    "@@unique([leaseId, periodMonth, periodYear])",
+    "@@index([tenantId])",
+    "@@index([status])",
+    "@@index([dueDate])"
+   ],
+   "owning_module": "InvoicesModule"
+  },
+  {
+   "model_name": "InvoiceLineItem",
+   "field_count": 8,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "Payment",
+   "field_count": 26,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([leaseId])",
+    "@@index([tenantId])",
+    "@@index([invoiceId])"
+   ],
+   "owning_module": "PaymentsModule"
+  },
+  {
+   "model_name": "WorkflowDefinition",
+   "field_count": 12,
+   "relation_count": 2,
+   "indexes": [],
+   "owning_module": "WorkflowsModule"
+  },
+  {
+   "model_name": "WorkflowAction",
+   "field_count": 13,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "WorkflowsModule"
+  },
+  {
+   "model_name": "WorkflowRun",
+   "field_count": 11,
+   "relation_count": 1,
+   "indexes": [],
+   "owning_module": "WorkflowsModule"
+  },
+  {
+   "model_name": "EmailTemplate",
+   "field_count": 10,
+   "relation_count": 0,
+   "indexes": [],
+   "owning_module": "CommunicationsModule"
+  },
+  {
+   "model_name": "EmailLog",
+   "field_count": 20,
+   "relation_count": 0,
+   "indexes": [
+    "@@index([tenantId])"
+   ],
+   "owning_module": "[UNCLAIMED]"
+  },
+  {
+   "model_name": "Task",
+   "field_count": 20,
+   "relation_count": 0,
+   "indexes": [
+    "@@index([assignedToId])",
+    "@@index([status])",
+    "@@index([dueDate])"
+   ],
+   "owning_module": "TasksModule"
+  },
+  {
+   "model_name": "CamReconciliation",
+   "field_count": 19,
+   "relation_count": 3,
+   "indexes": [
+    "@@unique([leaseId, reconcileYear])",
+    "@@index([propertyId])",
+    "@@index([tenantId])"
+   ],
+   "owning_module": "CamReconciliationModule"
+  },
+  {
+   "model_name": "ChartOfAccount",
+   "field_count": 11,
+   "relation_count": 0,
+   "indexes": [
+    "@@unique([propertyId, code])"
+   ],
+   "owning_module": "ChartOfAccountsModule"
+  },
+  {
+   "model_name": "Expense",
+   "field_count": 20,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([propertyId, expenseDate])",
+    "@@index([isCamExpense, camYear])",
+    "@@index([vendorId])"
+   ],
+   "owning_module": "ExpensesModule"
+  },
+  {
+   "model_name": "ESignRequest",
+   "field_count": 23,
+   "relation_count": 2,
+   "indexes": [
+    "token @unique"
+   ],
+   "owning_module": "EsignModule"
+  },
+  {
+   "model_name": "LateFeeRun",
+   "field_count": 12,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([startedAt])",
+    "@@index([status])"
+   ],
+   "owning_module": "LateFeesModule"
+  },
+  {
+   "model_name": "LateFeeAssessment",
+   "field_count": 16,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([invoiceId, createdAt])",
+    "@@index([leaseId])"
+   ],
+   "owning_module": "LateFeesModule"
+  },
+  {
+   "model_name": "ParkingLot",
+   "field_count": 11,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([propertyId])"
+   ],
+   "owning_module": "ParkingModule"
+  },
+  {
+   "model_name": "ParkingStall",
+   "field_count": 7,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([lotId])"
+   ],
+   "owning_module": "ParkingModule"
+  },
+  {
+   "model_name": "ParkingLicense",
+   "field_count": 16,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([propertyId])"
+   ],
+   "owning_module": "ParkingModule"
+  },
+  {
+   "model_name": "PylonSlot",
+   "field_count": 10,
+   "relation_count": 2,
+   "indexes": [
+    "@@index([propertyId])",
+    "@@index([unitId])"
+   ],
+   "owning_module": "SignageModule"
+  },
+  {
+   "model_name": "CopilotSession",
+   "field_count": 7,
+   "relation_count": 4,
+   "indexes": [
+    "@@index([userId, updatedAt])",
+    "@@index([propertyId])"
+   ],
+   "owning_module": "CopilotModule"
+  },
+  {
+   "model_name": "CopilotMessage",
+   "field_count": 9,
+   "relation_count": 1,
+   "indexes": [
+    "@@index([sessionId, createdAt])"
+   ],
+   "owning_module": "CopilotModule"
+  },
+  {
+   "model_name": "CopilotMemo",
+   "field_count": 9,
+   "relation_count": 1,
+   "indexes": [
+    "shareToken @unique",
+    "@@index([leaseId])",
+    "@@index([tenantId])"
+   ],
+   "owning_module": "CopilotModule"
+  }
+ ]
+}

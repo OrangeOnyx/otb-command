@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320">
+  <rect width="300" height="320" fill="#F3EDE0"/>
+  <!-- 02 STRUCTURE — architectural C, right-angle construction, reads as floor plan -->
+  <g transform="translate(60, 30)">
+    <!-- Big square C: three sides of a square, open right -->
+    <path d="M 0 0 L 180 0 L 180 45 L 45 45 L 45 135 L 180 135 L 180 180 L 0 180 Z" fill="#1E4D3A"/>
+    <!-- Chip: moss square dropped into the open right, aligned with C thickness (45) -->
+    <rect x="112" y="66" width="48" height="48" fill="#2F6B4E"/>
+    <!-- Inner cutout of chip to add depth -->
+    <rect x="126" y="80" width="20" height="20" fill="#F3EDE0"/>
+    <!-- Amber pin -->
+    <rect x="133" y="87" width="6" height="6" fill="#D97706"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="150" y="252" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="700" fill="#0A1F16" text-anchor="middle" letter-spacing="0.16em">CYPRESS</text>
+  <text x="150" y="284" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="700" fill="#0A1F16" text-anchor="middle" letter-spacing="0.16em">COMMAND</text>
+  <text x="150" y="306" font-family="'JetBrains Mono', monospace" font-size="8" fill="#5A6B62" text-anchor="middle" letter-spacing="0.28em">02 · STRUCTURE</text>
+</svg>

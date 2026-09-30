@@ -1,0 +1,385 @@
+{
+  "kit": "Cypress Command Brand Kit",
+  "version": "1.0",
+  "date": "2026-09-20",
+  "file_count": 75,
+  "validation": "PASS",
+  "errors": [],
+  "files": [
+    {
+      "path": "01-Brand-Standards/Cypress-Command-Brand-Standards.pdf",
+      "bytes": 2662669,
+      "sha256": "43a58cde73dab0ad9d9bc787b61b4bd325b968ebdd186e73ae5d2920e230804b"
+    },
+    {
+      "path": "01-Brand-Standards/Cypress-Command-Brand-Standards.typ",
+      "bytes": 30094,
+      "sha256": "78d534698ea205e998b018bdcff5ffbe55c6653231bd8d8e1e8980a20bf24caa"
+    },
+    {
+      "path": "01-Brand-Standards/Cypress-Command-Brand-Standards.verify.json",
+      "bytes": 1047,
+      "sha256": "0a2ef81cb307081638bfe083c5ed5acf5c16258b170396dada46ce666c172cc6"
+    },
+    {
+      "path": "01-Brand-Standards/Cypress-Command-Visual-Identity-Spec.md",
+      "bytes": 34410,
+      "sha256": "a978f50ac3f06608a299f71abe6301178a969aea326bbec5fd3c509853d22f5d"
+    },
+    {
+      "path": "02-Logos/README.md",
+      "bytes": 776,
+      "sha256": "91d1c27918ca1366b4556067dabfd72e366ca0b9e0dcb21bd454b9b9381724c5"
+    },
+    {
+      "path": "02-Logos/cc-favicon-180.png",
+      "bytes": 1867,
+      "sha256": "498959f481cf8adc2a873e420e8ce17e41c92ad3d9985cddd4f3aa46db63634d"
+    },
+    {
+      "path": "02-Logos/cc-favicon-32.png",
+      "bytes": 460,
+      "sha256": "72d674e2ab7446aa16d993cb2f5279f68357bee4df1d2314ec514f6c7f515a61"
+    },
+    {
+      "path": "02-Logos/cc-favicon-512.png",
+      "bytes": 5191,
+      "sha256": "2d3b49405542d1121cad51177dc319c7507616cedd2ed76430ce98ed57b5e90f"
+    },
+    {
+      "path": "02-Logos/cc-favicon-64.png",
+      "bytes": 766,
+      "sha256": "75a3a7b5981038c9afb06ecd88cea1d573485ce41936f4c6e781e11d05fb5360"
+    },
+    {
+      "path": "02-Logos/cc-favicon.ico",
+      "bytes": 11955,
+      "sha256": "55a9d2bb99ca4f2569d54aee0e53537fe922c3a68c336f997e1068e141d2b2e0"
+    },
+    {
+      "path": "02-Logos/cc-logo-one-color-ink.pdf",
+      "bytes": 6921,
+      "sha256": "c1c168042a567348f15ec90f259cee17354a871ea8b72271065fb05824fd0308"
+    },
+    {
+      "path": "02-Logos/cc-logo-one-color-ink.png",
+      "bytes": 48059,
+      "sha256": "448cf806ccc94bda10a4ee0d1bcc49600a6cef3f46d65176e3d501ce63ff6aa7"
+    },
+    {
+      "path": "02-Logos/cc-logo-one-color-ink.svg",
+      "bytes": 22650,
+      "sha256": "a0ec90c9e860690170f9ead6a7c343d04879cead0e4b91523a4afc1f0e79c241"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-horizontal.pdf",
+      "bytes": 6930,
+      "sha256": "90d8f4ca7e6d91b53570b564ebcbdc797f0a888f66e57974e957896b2f930246"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-horizontal.png",
+      "bytes": 48214,
+      "sha256": "cf1bcfa89fe259539e581e4579afbf3a9871a97011e400a0a9b4433c3772ebf1"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-horizontal.svg",
+      "bytes": 22650,
+      "sha256": "bc2b954abd067b45cd9ad6f455f9446089cd3fc3486025b727e756af8a788810"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-stacked.pdf",
+      "bytes": 6765,
+      "sha256": "f36c33d2e1bb3e75eb559527b1a914cb593400859093928b2fc808a41abc2643"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-stacked.png",
+      "bytes": 51544,
+      "sha256": "2b9ae98610d1b155e5a2bed3528f9a96754be8786f08dfe96df40eeb7e7c1ea0"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-stacked.svg",
+      "bytes": 22564,
+      "sha256": "b37d29293913cd6d795572adf600fd468134c8129e305c068a2817613b3c4e51"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-with-tagline.pdf",
+      "bytes": 14485,
+      "sha256": "dd240c2cb347c8f48777b0bea6cbb9b45b1c0e0d8a76f574d825125880c5f39a"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-with-tagline.png",
+      "bytes": 67974,
+      "sha256": "56423c20c0dc491871c0fd4dde33bb9d09aa92522ef6f20e58171ca5541252c1"
+    },
+    {
+      "path": "02-Logos/cc-logo-primary-with-tagline.svg",
+      "bytes": 56443,
+      "sha256": "4e0c929ad397275e8a38ace904d63007e942e41bda7c0c92154fa42069c17d5d"
+    },
+    {
+      "path": "02-Logos/cc-logo-reversed.pdf",
+      "bytes": 6940,
+      "sha256": "59508ab06be75f82ce75eecda2c66dbe52bd0a405cd2fab1471393f49914dc0b"
+    },
+    {
+      "path": "02-Logos/cc-logo-reversed.png",
+      "bytes": 47845,
+      "sha256": "3359b6c1de7bb555f4eaa31b8e824886c06e1f089e556279bbc4f8e710cf5c54"
+    },
+    {
+      "path": "02-Logos/cc-logo-reversed.svg",
+      "bytes": 22698,
+      "sha256": "7e09c297a70337d1317623ee1fc0de74993eed609ecaa4137c99f0ec4739c56b"
+    },
+    {
+      "path": "02-Logos/cc-mark-approved-uploaded-source.pdf",
+      "bytes": 1159,
+      "sha256": "6be17db4752772dfd0d660772b333eec30be9e09d3b3398d385ebc9817957faa"
+    },
+    {
+      "path": "02-Logos/cc-mark-approved-uploaded-source.svg",
+      "bytes": 478,
+      "sha256": "991e9c5a553b64dc4b0172d6cab5f325819f09e9759ddcadfd7ce122101fb696"
+    },
+    {
+      "path": "02-Logos/cc-mark-ink.pdf",
+      "bytes": 1202,
+      "sha256": "ca00c358b0d8a282256d4f7cb759a864aa5fae68968fe7840ac42976253c46ca"
+    },
+    {
+      "path": "02-Logos/cc-mark-ink.png",
+      "bytes": 12311,
+      "sha256": "04b7c25be2f51522f5e09a3f9fffe281760e5d33ad475b8d3713f880d9d77bac"
+    },
+    {
+      "path": "02-Logos/cc-mark-ink.svg",
+      "bytes": 331,
+      "sha256": "a37f80fef339f3cab356bf7d28d119958da662f8cf006d9d8d309ff1e0e22e5b"
+    },
+    {
+      "path": "02-Logos/cc-mark-paper.pdf",
+      "bytes": 1202,
+      "sha256": "a2044a71f321afb190cffc8a6ed0f9ca0d6ac3a0e56ab26ba02df397bd881fe4"
+    },
+    {
+      "path": "02-Logos/cc-mark-paper.png",
+      "bytes": 12300,
+      "sha256": "fcc360bb4d38669b9d695d22959c7876760ce540b1edc44fe75d12eba3761ca1"
+    },
+    {
+      "path": "02-Logos/cc-mark-paper.svg",
+      "bytes": 331,
+      "sha256": "308f34298627e4d86402bdf2bf915bfb3fbb2e80adecd3942dc8cebf876665cc"
+    },
+    {
+      "path": "02-Logos/cc-mark-terra.pdf",
+      "bytes": 1201,
+      "sha256": "f04f27d19c09c70b71339819cd03cbe09b51472ba5dd70802dbe6555869a9c88"
+    },
+    {
+      "path": "02-Logos/cc-mark-terra.png",
+      "bytes": 12334,
+      "sha256": "dbcbd83f1f6277c54d7d0ec7a853cac378a0615228656b027c626e3367938a80"
+    },
+    {
+      "path": "02-Logos/cc-mark-terra.svg",
+      "bytes": 331,
+      "sha256": "7aa1f23f05b2e9430ec40bb86b0d7672b546e55d5cdf814b8cdfa9c08bd7d90b"
+    },
+    {
+      "path": "02-Logos/cc-social-avatar.pdf",
+      "bytes": 1318,
+      "sha256": "128db4459dcea67d3678cddb528ccd1e0e41a4af98a1ccb5de11076595c855f1"
+    },
+    {
+      "path": "02-Logos/cc-social-avatar.png",
+      "bytes": 18378,
+      "sha256": "556981e988d199b6bedc6497e85f2d8ac136b43c891e2d07d6ba53c0bdb53156"
+    },
+    {
+      "path": "02-Logos/cc-social-avatar.svg",
+      "bytes": 444,
+      "sha256": "7e29459cd80ebd9a82a6a2510b3d249bef7ee75783890e0dd1b0bdeb86f9b962"
+    },
+    {
+      "path": "03-Design-Tokens/FONT-SOURCES.txt",
+      "bytes": 263,
+      "sha256": "b950b6c62f5b25280bb8c47c8061d4b1fee1cb18590218650279f2f411e33c2f"
+    },
+    {
+      "path": "03-Design-Tokens/Fonts/Inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "03-Design-Tokens/Fonts/Inter-Variable.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    {
+      "path": "03-Design-Tokens/cypress-command-color-palette.png",
+      "bytes": 56428,
+      "sha256": "b16543a8854ffa51971dae74079608c175b1506224eab7f75676b44cf23c7b1e"
+    },
+    {
+      "path": "03-Design-Tokens/cypress-command-color-palette.svg",
+      "bytes": 2625,
+      "sha256": "45da369c9a702d3267d6e8e4d6025272afb870d9b99e07c3823e7aeba9fd69fc"
+    },
+    {
+      "path": "03-Design-Tokens/cypress-command-tokens.css",
+      "bytes": 663,
+      "sha256": "449e192a0db81ab528df73a00bfa4d4602b03585eb2962f8a60af6c9d1ff9114"
+    },
+    {
+      "path": "03-Design-Tokens/cypress-command-tokens.json",
+      "bytes": 1139,
+      "sha256": "a8de0b011cc529b6eb61da9b58f346d6a25573cde8e112b45fff7b3de468cb38"
+    },
+    {
+      "path": "04-Templates/Cypress-Command-Capabilities-Sheet.pdf",
+      "bytes": 35157,
+      "sha256": "2fd21f5db65f12f320e7b42c1ea049f88a0a2e6805e43c379977ce3580b4cbec"
+    },
+    {
+      "path": "04-Templates/Cypress-Command-Capabilities-Sheet.typ",
+      "bytes": 4051,
+      "sha256": "9fa8321c1b6890dbe18c3f084920bae2da5091d7520fb5dfee255205e716cbac"
+    },
+    {
+      "path": "04-Templates/Cypress-Command-Capabilities-Sheet.verify.json",
+      "bytes": 1041,
+      "sha256": "1234773dd20c6a630e84e86f36263c6cdde0a49c1adf580b4ea6a8fa6d660015"
+    },
+    {
+      "path": "04-Templates/cypress-command-case-study-template.docx",
+      "bytes": 82119,
+      "sha256": "8ced34d4e34e373542de3e45133884186a9d73df84d96095b1291a24f7cf4a95"
+    },
+    {
+      "path": "04-Templates/cypress-command-case-study-template.pdf",
+      "bytes": 53908,
+      "sha256": "906359c27d3aa755ddf3c6d67dd18bab34a79a330aa1edc5aff5148eeb7ec5b7"
+    },
+    {
+      "path": "04-Templates/cypress-command-letterhead-template.docx",
+      "bytes": 81621,
+      "sha256": "8763872d81b6dee66e135f6a1b5d1ffa78d0aede06b24797951a5ffc123ccc18"
+    },
+    {
+      "path": "04-Templates/cypress-command-letterhead-template.pdf",
+      "bytes": 44174,
+      "sha256": "fb0456b4a221f3622b67df510b7bfaa089686de72498ff43d5748f36865ce11e"
+    },
+    {
+      "path": "04-Templates/cypress-command-proposal-template.docx",
+      "bytes": 81980,
+      "sha256": "77b20c4ce40bbf4cd638ee801d3718160a4a8477961a9aeb5c72a7ef9db8807f"
+    },
+    {
+      "path": "04-Templates/cypress-command-proposal-template.pdf",
+      "bytes": 47982,
+      "sha256": "1c2b7bac708460a48c3219238df799d3563412c95c112e8baeb9578449e7608c"
+    },
+    {
+      "path": "04-Templates/email-signature.html",
+      "bytes": 822,
+      "sha256": "e96e0ba927b4180923a8f66711546ecbf97964fef87d6e1dc5435d9074c95027"
+    },
+    {
+      "path": "04-Templates/letterhead-us-letter.png",
+      "bytes": 20970,
+      "sha256": "0a03b729cb70659c3e396ec0eb59d1c801efcd893045b28ee84ef4877910353b"
+    },
+    {
+      "path": "04-Templates/letterhead-us-letter.svg",
+      "bytes": 925,
+      "sha256": "a5440afad0c505f3d1528889e260cb228c7b2efe311f9a034a9059b37af98152"
+    },
+    {
+      "path": "04-Templates/linkedin-company-banner.png",
+      "bytes": 37977,
+      "sha256": "4e6205ce3c9fce27c9d7642fa4ed878fa06afea240bd1740e1fa7fb5d102fe58"
+    },
+    {
+      "path": "04-Templates/linkedin-company-banner.svg",
+      "bytes": 53659,
+      "sha256": "ac8f9ea030944d4fba87b49c783ba7cc19997413850a820a6b30ad4244ec95f0"
+    },
+    {
+      "path": "04-Templates/proposal-cover-us-letter.png",
+      "bytes": 49871,
+      "sha256": "b02108860823602a7811eb1801f485efbfd13d8e4312ae17588396a95a4fa93f"
+    },
+    {
+      "path": "04-Templates/proposal-cover-us-letter.svg",
+      "bytes": 1913,
+      "sha256": "59b590f9325753ca5f0d706cbcb253cb444c6f9e3752aa07f4a478b95ac428f5"
+    },
+    {
+      "path": "04-Templates/social-field-note-template-1080x1350.png",
+      "bytes": 59869,
+      "sha256": "af4dcae6945c104e13d5c6cfb0c1e200dc78fbd82a9c9485dd84f56a25c7d91e"
+    },
+    {
+      "path": "04-Templates/social-field-note-template-1080x1350.svg",
+      "bytes": 1484,
+      "sha256": "2f6155b750864f5f35045f166a60da5f8b0e7705b30911df81429b04064afde2"
+    },
+    {
+      "path": "04-Templates/social-share-template-1200x628.png",
+      "bytes": 39839,
+      "sha256": "1c421706104b6c043422b0f5cb5ba99b720c206b180be252bac72a1e4af4e976"
+    },
+    {
+      "path": "04-Templates/social-share-template-1200x628.svg",
+      "bytes": 1042,
+      "sha256": "fe74f755581f01e0e2a57540cea896fe8a391ce1b31dfb990e27d4d52d4a5b7a"
+    },
+    {
+      "path": "05-Messaging/Cypress-Command-Brand-Strategy.md",
+      "bytes": 22126,
+      "sha256": "bdec833cd7a18eacfc9853b8c9b6d12933c29a4e12c55bbd9c509b6a7fd01e0b"
+    },
+    {
+      "path": "05-Messaging/Cypress-Command-Public-Brand-Content-Master.md",
+      "bytes": 51253,
+      "sha256": "fb86fb69825ff45f1bd6789d771d3c7325011b01c608075cefd1cb0fe8ac8693"
+    },
+    {
+      "path": "06-Transition/CONFIDENTIAL-Orange-Ocean-to-Cypress-Command-Transition-Plan.md",
+      "bytes": 32389,
+      "sha256": "310169e28ab7ae90b594f3d63ba5bd0071d6a852d5eb6ee3fc78d9da6b84f512"
+    },
+    {
+      "path": "06-Transition/public-claim-verification-register.csv",
+      "bytes": 1203,
+      "sha256": "c02d7d1a7d8eb73fe24c59509c634c249cca58e209a0632ca49372b4ab26a147"
+    },
+    {
+      "path": "06-Transition/rebrand-asset-inventory.csv",
+      "bytes": 1431,
+      "sha256": "432a938188c962520e8b8c0f99815a647c37b0b9e71b87ed1e23c9a0b45ff391"
+    },
+    {
+      "path": "06-Transition/redirect-map-template.csv",
+      "bytes": 825,
+      "sha256": "e760769cdd13b16e3bce886b0230d76708d27f4be33c0ff67d1d213f4e8c56f2"
+    },
+    {
+      "path": "07-Reference/approved-uploaded-logo-source-crop.png",
+      "bytes": 17515,
+      "sha256": "0a5eb0aabe54f669a69065e81b7e20e5ce195e26e83fd9b1e648636370f16f94"
+    },
+    {
+      "path": "07-Reference/cypress-command-design-system-board.png",
+      "bytes": 2083428,
+      "sha256": "ca0b8451c26d3c05b712a1ca4b92ff5ea89088242c787afd3ea20c28d0115333"
+    },
+    {
+      "path": "START-HERE.md",
+      "bytes": 4768,
+      "sha256": "bd49a34cd12939fee8b9948fd90c22b2496ab2051e0f3fb483333d969a86e064"
+    }
+  ]
+}

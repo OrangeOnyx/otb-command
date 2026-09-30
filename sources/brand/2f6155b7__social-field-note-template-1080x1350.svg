@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350">
+<rect width="1080" height="1350" fill="#F4EFE2"/>
+<rect x="0" y="0" width="24" height="1350" fill="#A44E12"/>
+<g transform="translate(72,70) scale(0.16)">
+      <path fill="#A44E12" d="M60 18 H415 Q480 18 480 83 V205 H380 V110 H112 V390 H380 V305 H480 V430 Q480 490 415 490 H60 Q15 490 15 438 V70 Q15 18 60 18 Z"/>
+      <path fill="#A44E12" d="M188 170 H302 Q315 170 315 183 V320 H178 V183 Q178 170 188 170 Z"/>
+    </g>
+<text x="180" y="142" font-family="Inter,Arial" font-size="30" font-weight="750" letter-spacing="4" fill="#1E1B16">CYPRESS COMMAND</text>
+<line x1="72" y1="210" x2="1008" y2="210" stroke="#C9BFA8" stroke-width="2"/>
+<text x="72" y="300" font-family="Inter,Arial" font-size="24" font-weight="700" letter-spacing="6" fill="#A44E12">FIELD NOTE  /  01</text>
+<text x="72" y="500" font-family="Libertinus Serif,Georgia,serif" font-size="88" font-weight="700" fill="#1E1B16">A clear operating</text>
+<text x="72" y="600" font-family="Libertinus Serif,Georgia,serif" font-size="88" font-weight="700" fill="#1E1B16">principle goes here.</text>
+<text x="72" y="725" font-family="Inter,Arial" font-size="34" fill="#5C554A">Support it with one specific, useful sentence.</text>
+<line x1="72" y1="1160" x2="1008" y2="1160" stroke="#C9BFA8" stroke-width="2"/>
+<text x="72" y="1235" font-family="Inter,Arial" font-size="23" letter-spacing="4" fill="#5C554A">BUILD AI INTO HOW YOU ACTUALLY OPERATE.</text>
+</svg>

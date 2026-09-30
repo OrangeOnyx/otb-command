@@ -1,0 +1,2724 @@
+{
+ "repo": "asset-command",
+ "extracted_at_utc": "2026-08-23T06:45:03Z",
+ "head": {
+  "sha_short": "0e30880",
+  "sha_full": "0e308808251391eb4d0b558bf4cecae72cb80945",
+  "branch": "main",
+  "last_commit_utc": "2026-08-21T06:02:14Z"
+ },
+ "stats": {
+  "files": 514,
+  "ts_loc": 73156,
+  "table_count": 67,
+  "page_count": 27,
+  "trpc_router_count": 37
+ },
+ "method_notes": {
+  "tables_read_written": "Derived deterministically: page -> trpc procedures called in page file -> procedure body in router -> direct Drizzle table refs (.from/.insert/.update/.delete/joins/db.query.*) plus transitive resolution through server/db.ts helper functions (fixpoint). Component-level tRPC calls outside the page file are NOT included.",
+  "used_by_pages": "Literal grep for direct imports of the table from drizzle/schema in client/src/pages files, per spec.",
+  "used_by_trpc_routers": "Literal word-boundary grep for the table variable name across server/routers/**/*.ts plus server/routers.ts and server/_core/systemRouter.ts, per spec (test files included).",
+  "stripe_touched": "True if the page file has actual Stripe code integration (stripe package import, loadStripe/Stripe() call, or checkout/billing/js.stripe.com URL) or any tRPC procedure it calls (incl. resolved db.ts helpers) references Stripe. Prose-only mentions (e.g. legal pages) do not count."
+ },
+ "tables": [
+  {
+   "table_name": "users",
+   "sql_name": "users",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [
+    "openId .unique()",
+    "username .unique()"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/account.ts",
+    "server/routers/concierge.ts",
+    "server/routers/otb.ts",
+    "server/routers/superAdmin.ts"
+   ]
+  },
+  {
+   "table_name": "properties",
+   "sql_name": "properties",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/account.ts",
+    "server/routers/allowlist.ts",
+    "server/routers/properties.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/superAdmin.ts",
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "userProperties",
+   "sql_name": "user_properties",
+   "column_count": 5,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/properties.ts",
+    "server/routers/superAdmin.ts"
+   ]
+  },
+  {
+   "table_name": "units",
+   "sql_name": "units",
+   "column_count": 40,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/boardReport.ts",
+    "server/routers/cam.ts",
+    "server/routers/concierge.ts",
+    "server/routers/docExpiration.ts",
+    "server/routers/financial.ts",
+    "server/routers/leaseAbstraction.ts",
+    "server/routers/leaseAssembler.ts",
+    "server/routers/marketing.ts",
+    "server/routers/nlQuery.ts",
+    "server/routers/noiValuation.ts",
+    "server/routers/otb.ts",
+    "server/routers/predictiveMaint.ts",
+    "server/routers/reports.ts",
+    "server/routers/sotImport.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/superAdmin.ts",
+    "server/routers/tenantHealth.ts",
+    "server/routers/tenantPortal.ts"
+   ]
+  },
+  {
+   "table_name": "rentAbatements",
+   "sql_name": "rent_abatements",
+   "column_count": 8,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "complianceEvents",
+   "sql_name": "compliance_events",
+   "column_count": 8,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "floorPlans",
+   "sql_name": "floor_plans",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "lots",
+   "sql_name": "lots",
+   "column_count": 10,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "parkingStalls",
+   "sql_name": "parking_stalls",
+   "column_count": 13,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "signs",
+   "sql_name": "signs",
+   "column_count": 14,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "pylonSlots",
+   "sql_name": "pylon_slots",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "pois",
+   "sql_name": "pois",
+   "column_count": 19,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "poiCategories",
+   "sql_name": "poi_categories",
+   "column_count": 6,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "licenses",
+   "sql_name": "licenses",
+   "column_count": 28,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "parcels",
+   "sql_name": "parcels",
+   "column_count": 14,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "recordedAgreements",
+   "sql_name": "recorded_agreements",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "views",
+   "sql_name": "views",
+   "column_count": 15,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "documents",
+   "sql_name": "documents",
+   "column_count": 15,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/boardReport.ts",
+    "server/routers/docExpiration.ts",
+    "server/routers/governance.ts",
+    "server/routers/nlQuery.ts",
+    "server/routers/otb.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/tenantHealth.ts",
+    "server/routers/tenantPortal.ts"
+   ]
+  },
+  {
+   "table_name": "appraisals",
+   "sql_name": "appraisals",
+   "column_count": 22,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "waitlistProspects",
+   "sql_name": "waitlist_prospects",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "insuranceContacts",
+   "sql_name": "insurance_contacts",
+   "column_count": 10,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "voiceIntake",
+   "sql_name": "voice_intake",
+   "column_count": 12,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "propertyDocuments",
+   "sql_name": "property_documents",
+   "column_count": 10,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "propertyRegisterCategories",
+   "sql_name": "property_register_categories",
+   "column_count": 12,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "propertyIdentifiers",
+   "sql_name": "property_identifiers",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/otb.ts"
+   ]
+  },
+  {
+   "table_name": "accessAllowlist",
+   "sql_name": "access_allowlist",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [
+    "email .unique()"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "auditLog",
+   "sql_name": "audit_log",
+   "column_count": 5,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "communications",
+   "sql_name": "communications",
+   "column_count": 14,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/concierge.ts",
+    "server/routers/docExpiration.ts",
+    "server/routers/leaseAbstraction.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/tenantHealth.ts",
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "vendors",
+   "sql_name": "vendors",
+   "column_count": 13,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/boardReport.ts",
+    "server/routers/nlQuery.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/vendors.ts",
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "workOrders",
+   "sql_name": "work_orders",
+   "column_count": 15,
+   "foreign_keys": [],
+   "indexes": [
+    "uniqueIndex(\"work_orders_dedupe_key_uidx\")"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/boardReport.ts",
+    "server/routers/docExpiration.ts",
+    "server/routers/noiValuation.ts",
+    "server/routers/predictiveMaint.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/tenantHealth.ts",
+    "server/routers/tenantPortal.ts",
+    "server/routers/vendors.ts",
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "rentPayments",
+   "sql_name": "rent_payments",
+   "column_count": 12,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/boardReport.ts",
+    "server/routers/financial.ts",
+    "server/routers/noiValuation.ts",
+    "server/routers/stakeholderReports.ts",
+    "server/routers/tenantHealth.ts",
+    "server/routers/tenantPortal.ts",
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "hvacUnits",
+   "sql_name": "hvac_units",
+   "column_count": 8,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/predictiveMaint.ts"
+   ]
+  },
+  {
+   "table_name": "leaseAbstractions",
+   "sql_name": "lease_abstractions",
+   "column_count": 17,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "rentEscalations",
+   "sql_name": "rent_escalations",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/tenantPortal.ts"
+   ]
+  },
+  {
+   "table_name": "deals",
+   "sql_name": "deals",
+   "column_count": 14,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/dealPipeline.ts"
+   ]
+  },
+  {
+   "table_name": "ledgerEntries",
+   "sql_name": "ledger_entries",
+   "column_count": 16,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/financial.ts",
+    "server/routers/reports.ts"
+   ]
+  },
+  {
+   "table_name": "invoices",
+   "sql_name": "invoices",
+   "column_count": 16,
+   "foreign_keys": [],
+   "indexes": [
+    "invoiceNumber .unique()"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/financial.ts",
+    "server/routers/reports.ts",
+    "server/routers/vendors.ts"
+   ]
+  },
+  {
+   "table_name": "invoiceLineItems",
+   "sql_name": "invoice_line_items",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/financial.ts"
+   ]
+  },
+  {
+   "table_name": "payments",
+   "sql_name": "payments",
+   "column_count": 21,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/boardReport.ts",
+    "server/routers/concierge.ts",
+    "server/routers/financial.ts",
+    "server/routers/noiValuation.ts",
+    "server/routers/reports.ts"
+   ]
+  },
+  {
+   "table_name": "workOrderMedia",
+   "sql_name": "work_order_media",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/tenantPortal.ts",
+    "server/routers/workOrderMedia.ts",
+    "server/routers.ts"
+   ]
+  },
+  {
+   "table_name": "vendorUploadTokens",
+   "sql_name": "vendor_upload_tokens",
+   "column_count": 10,
+   "foreign_keys": [],
+   "indexes": [
+    "token .unique()"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/workOrderMedia.ts"
+   ]
+  },
+  {
+   "table_name": "expenses",
+   "sql_name": "expenses",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/cam.ts",
+    "server/routers/noiValuation.ts",
+    "server/routers/reports.ts",
+    "server/routers/stakeholderReports.ts"
+   ]
+  },
+  {
+   "table_name": "leaseUnits",
+   "sql_name": "lease_units",
+   "column_count": 4,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/cam.ts"
+   ]
+  },
+  {
+   "table_name": "camReconciliations",
+   "sql_name": "cam_reconciliations",
+   "column_count": 15,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/cam.ts"
+   ]
+  },
+  {
+   "table_name": "camTenantShares",
+   "sql_name": "cam_tenant_shares",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/cam.ts"
+   ]
+  },
+  {
+   "table_name": "lateFeeRuns",
+   "sql_name": "late_fee_runs",
+   "column_count": 12,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/financial.ts"
+   ]
+  },
+  {
+   "table_name": "lateFeeAssessments",
+   "sql_name": "late_fee_assessments",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "governanceEntities",
+   "sql_name": "governance_entities",
+   "column_count": 16,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/governance.ts"
+   ]
+  },
+  {
+   "table_name": "governanceDocuments",
+   "sql_name": "governance_documents",
+   "column_count": 13,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/governance.ts"
+   ]
+  },
+  {
+   "table_name": "governanceCovenants",
+   "sql_name": "governance_covenants",
+   "column_count": 18,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/governance.ts"
+   ]
+  },
+  {
+   "table_name": "governanceCalendar",
+   "sql_name": "governance_calendar",
+   "column_count": 13,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/governance.ts"
+   ]
+  },
+  {
+   "table_name": "qboConnections",
+   "sql_name": "qbo_connections",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/quickbooks.ts"
+   ]
+  },
+  {
+   "table_name": "qboAccountMappings",
+   "sql_name": "qbo_account_mappings",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/quickbooks.ts"
+   ]
+  },
+  {
+   "table_name": "qboSyncLog",
+   "sql_name": "qbo_sync_log",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/quickbooks.ts"
+   ]
+  },
+  {
+   "table_name": "subscriptionPlans",
+   "sql_name": "subscription_plans",
+   "column_count": 12,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/billing.ts",
+    "server/routers/properties.ts",
+    "server/routers/superAdmin.ts"
+   ]
+  },
+  {
+   "table_name": "subscriptions",
+   "sql_name": "subscriptions",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/billing.ts",
+    "server/routers/properties.ts",
+    "server/routers/superAdmin.ts"
+   ]
+  },
+  {
+   "table_name": "usageRecords",
+   "sql_name": "usage_records",
+   "column_count": 4,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/billing.ts"
+   ]
+  },
+  {
+   "table_name": "sopCategories",
+   "sql_name": "sop_categories",
+   "column_count": 8,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "sopProcedures",
+   "sql_name": "sop_procedures",
+   "column_count": 12,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/sop.ts"
+   ]
+  },
+  {
+   "table_name": "sopSteps",
+   "sql_name": "sop_steps",
+   "column_count": 11,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "sopAssignments",
+   "sql_name": "sop_assignments",
+   "column_count": 10,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/sop.ts"
+   ]
+  },
+  {
+   "table_name": "sopCompletions",
+   "sql_name": "sop_completions",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/sop.ts"
+   ]
+  },
+  {
+   "table_name": "tenantAccessTokens",
+   "sql_name": "tenant_access_tokens",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [
+    "token .unique()"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": [
+    "server/routers/tenantPortal.ts"
+   ]
+  },
+  {
+   "table_name": "marketingAssets",
+   "sql_name": "marketing_assets",
+   "column_count": 9,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "conciergeSavedPrompts",
+   "sql_name": "concierge_saved_prompts",
+   "column_count": 8,
+   "foreign_keys": [],
+   "indexes": [
+    "index(\"concierge_saved_prompts_property_user_idx\")"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "authTokens",
+   "sql_name": "auth_tokens",
+   "column_count": 7,
+   "foreign_keys": [],
+   "indexes": [
+    "uniqueIndex(\"token\")"
+   ],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  },
+  {
+   "table_name": "vendorInvoices",
+   "sql_name": "vendor_invoices",
+   "column_count": 14,
+   "foreign_keys": [],
+   "indexes": [],
+   "used_by_pages": [],
+   "used_by_trpc_routers": []
+  }
+ ],
+ "pages": [
+  {
+   "page_path": "/billing/success",
+   "file_path": "client/src/pages/BillingSuccess.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/ComponentShowcase.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/forgot-password",
+   "file_path": "client/src/pages/ForgotPassword.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/GettingStarted.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/guide",
+   "file_path": "client/src/pages/Guide.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/Home.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/login",
+   "file_path": "client/src/pages/Login.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/404",
+   "file_path": "client/src/pages/NotFound.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/",
+   "file_path": "client/src/pages/OtbApp.tsx",
+   "tables_read": [
+    "accessAllowlist",
+    "parkingStalls",
+    "pois",
+    "properties",
+    "propertyDocuments",
+    "signs",
+    "subscriptionPlans",
+    "subscriptions",
+    "userProperties",
+    "views",
+    "voiceIntake",
+    "workOrders"
+   ],
+   "tables_written": [
+    "parkingStalls",
+    "pois",
+    "signs",
+    "views"
+   ],
+   "trpc_procedures_called": [
+    "allowlist.me",
+    "billing.config",
+    "billing.mySubscription",
+    "otb.parking.create",
+    "otb.pois.create",
+    "otb.propertyVault.list",
+    "otb.signs.create",
+    "otb.views.update",
+    "otb.voiceIntake.counts",
+    "properties.getWorkspaceSettings",
+    "workOrders.list"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/pricing",
+   "file_path": "client/src/pages/Pricing.tsx",
+   "tables_read": [
+    "subscriptionPlans",
+    "subscriptions"
+   ],
+   "tables_written": [],
+   "trpc_procedures_called": [
+    "billing.config",
+    "billing.listPlans",
+    "billing.subscribe"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": true
+  },
+  {
+   "page_path": "/register",
+   "file_path": "client/src/pages/Register.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/reset-password",
+   "file_path": "client/src/pages/ResetPassword.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/tenant",
+   "file_path": "client/src/pages/TenantPortal.tsx",
+   "tables_read": [
+    "documents",
+    "rentEscalations",
+    "rentPayments",
+    "units",
+    "workOrders"
+   ],
+   "tables_written": [
+    "documents",
+    "workOrderMedia",
+    "workOrders"
+   ],
+   "trpc_procedures_called": [
+    "tenantPortal.authenticate",
+    "tenantPortal.leaseSummary",
+    "tenantPortal.myDocuments",
+    "tenantPortal.myEscalations",
+    "tenantPortal.myWorkOrders",
+    "tenantPortal.paymentHistory",
+    "tenantPortal.submitMaintenanceRequest",
+    "tenantPortal.uploadCoi"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/vendor-upload",
+   "file_path": "client/src/pages/VendorUpload.tsx",
+   "tables_read": [
+    "vendorUploadTokens"
+   ],
+   "tables_written": [
+    "vendorUploadTokens",
+    "workOrderMedia"
+   ],
+   "trpc_procedures_called": [
+    "workOrderMedia.vendorUpload",
+    "workOrderMedia.vendorValidateToken"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/acceptable-use",
+   "file_path": "client/src/pages/legal/AcceptableUse.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/privacy",
+   "file_path": "client/src/pages/legal/Privacy.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/refund-policy",
+   "file_path": "client/src/pages/legal/RefundPolicy.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/sla",
+   "file_path": "client/src/pages/legal/SLA.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "/terms",
+   "file_path": "client/src/pages/legal/Terms.tsx",
+   "tables_read": [],
+   "tables_written": [],
+   "trpc_procedures_called": [],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/BillingWorkspace.tsx",
+   "tables_read": [
+    "subscriptionPlans",
+    "subscriptions",
+    "usageRecords"
+   ],
+   "tables_written": [
+    "subscriptions"
+   ],
+   "trpc_procedures_called": [
+    "billing.cancel",
+    "billing.config",
+    "billing.createPortalSession",
+    "billing.listPlans",
+    "billing.mySubscription",
+    "billing.myUsage",
+    "billing.subscribe"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": true
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/GovernanceWorkspace.tsx",
+   "tables_read": [
+    "governanceCalendar",
+    "governanceCovenants",
+    "governanceDocuments",
+    "governanceEntities"
+   ],
+   "tables_written": [
+    "governanceCalendar",
+    "governanceCovenants",
+    "governanceDocuments",
+    "governanceEntities"
+   ],
+   "trpc_procedures_called": [
+    "governance.createCalendarEvent",
+    "governance.createCovenant",
+    "governance.createDocument",
+    "governance.createEntity",
+    "governance.deleteCalendarEvent",
+    "governance.deleteCovenant",
+    "governance.deleteDocument",
+    "governance.deleteEntity",
+    "governance.listCalendar",
+    "governance.listCovenants",
+    "governance.listDocuments",
+    "governance.listEntities",
+    "governance.summary",
+    "governance.updateCalendarEvent"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/MarketingStudio.tsx",
+   "tables_read": [
+    "units"
+   ],
+   "tables_written": [],
+   "trpc_procedures_called": [
+    "marketing.generateEventAnnouncement",
+    "marketing.generateSocialPost",
+    "marketing.generateVacancyFlyer",
+    "marketing.listAssets",
+    "marketing.saveAsset",
+    "marketing.vacantUnits"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/QuickBooksWorkspace.tsx",
+   "tables_read": [
+    "qboAccountMappings",
+    "qboConnections",
+    "qboSyncLog"
+   ],
+   "tables_written": [
+    "qboAccountMappings",
+    "qboConnections",
+    "qboSyncLog"
+   ],
+   "trpc_procedures_called": [
+    "quickbooks.categories",
+    "quickbooks.connectionStatus",
+    "quickbooks.disconnect",
+    "quickbooks.getAuthUrl",
+    "quickbooks.mappings.list",
+    "quickbooks.syncLog",
+    "quickbooks.toggleSync",
+    "quickbooks.triggerSync"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/SopWorkspace.tsx",
+   "tables_read": [
+    "sopAssignments",
+    "sopCompletions",
+    "sopProcedures"
+   ],
+   "tables_written": [
+    "sopAssignments"
+   ],
+   "trpc_procedures_called": [
+    "sop.analytics.heatmap",
+    "sop.analytics.streaks",
+    "sop.assignments.complete",
+    "sop.assignments.dashboard",
+    "sop.assignments.recentCompletions",
+    "sop.categories.create",
+    "sop.categories.delete",
+    "sop.categories.list",
+    "sop.categories.update",
+    "sop.completions.create",
+    "sop.completions.list",
+    "sop.procedures.create",
+    "sop.procedures.delete",
+    "sop.procedures.list",
+    "sop.procedures.update",
+    "sop.steps.create",
+    "sop.steps.delete",
+    "sop.steps.list"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/StakeholderReports.tsx",
+   "tables_read": [
+    "documents",
+    "rentPayments",
+    "units",
+    "workOrders"
+   ],
+   "tables_written": [],
+   "trpc_procedures_called": [
+    "stakeholderReports.buyer",
+    "stakeholderReports.cpa",
+    "stakeholderReports.investor",
+    "stakeholderReports.lawyer",
+    "stakeholderReports.lender",
+    "stakeholderReports.operator",
+    "stakeholderReports.owner"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/SuperAdminDashboard.tsx",
+   "tables_read": [
+    "properties",
+    "subscriptionPlans",
+    "subscriptions",
+    "units",
+    "userProperties",
+    "users"
+   ],
+   "tables_written": [],
+   "trpc_procedures_called": [
+    "superAdmin.listOwners",
+    "superAdmin.ownerDetail",
+    "superAdmin.platformStats"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  },
+  {
+   "page_path": "[UNKNOWN]",
+   "file_path": "client/src/pages/workspaces/VendorWorkspace.tsx",
+   "tables_read": [
+    "vendors",
+    "workOrders"
+   ],
+   "tables_written": [],
+   "trpc_procedures_called": [
+    "vendors.performanceScores"
+   ],
+   "unresolved_procedures": [],
+   "stripe_touched": false
+  }
+ ],
+ "trpc_routers": [
+  {
+   "router_name": "systemRouter",
+   "file_path": "server/_core/systemRouter.ts",
+   "mounted_as": "system",
+   "procedures": [
+    {
+     "name": "health",
+     "type": "query"
+    },
+    {
+     "name": "notifyOwner",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "[INLINE in server/routers.ts: auth]",
+   "file_path": "server/routers.ts",
+   "mounted_as": "auth",
+   "procedures": [
+    {
+     "name": "me",
+     "type": "query"
+    },
+    {
+     "name": "logout",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "otbRouter",
+   "file_path": "server/routers/otb.ts",
+   "mounted_as": "otb",
+   "procedures": [
+    {
+     "name": "property.get",
+     "type": "query"
+    },
+    {
+     "name": "property.parcels",
+     "type": "query"
+    },
+    {
+     "name": "property.agreements",
+     "type": "query"
+    },
+    {
+     "name": "property.licenses",
+     "type": "query"
+    },
+    {
+     "name": "property.lots",
+     "type": "query"
+    },
+    {
+     "name": "property.updateMeta",
+     "type": "mutation"
+    },
+    {
+     "name": "property.updateLicense",
+     "type": "mutation"
+    },
+    {
+     "name": "units.list",
+     "type": "query"
+    },
+    {
+     "name": "units.get",
+     "type": "query"
+    },
+    {
+     "name": "units.create",
+     "type": "mutation"
+    },
+    {
+     "name": "units.update",
+     "type": "mutation"
+    },
+    {
+     "name": "units.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "compliance.listByUnit",
+     "type": "query"
+    },
+    {
+     "name": "compliance.listAll",
+     "type": "query"
+    },
+    {
+     "name": "compliance.append",
+     "type": "mutation"
+    },
+    {
+     "name": "compliance.bulkImport",
+     "type": "mutation"
+    },
+    {
+     "name": "views.list",
+     "type": "query"
+    },
+    {
+     "name": "views.update",
+     "type": "mutation"
+    },
+    {
+     "name": "parking.list",
+     "type": "query"
+    },
+    {
+     "name": "parking.create",
+     "type": "mutation"
+    },
+    {
+     "name": "parking.update",
+     "type": "mutation"
+    },
+    {
+     "name": "parking.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "signs.list",
+     "type": "query"
+    },
+    {
+     "name": "signs.create",
+     "type": "mutation"
+    },
+    {
+     "name": "signs.update",
+     "type": "mutation"
+    },
+    {
+     "name": "signs.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "pylon.get",
+     "type": "query"
+    },
+    {
+     "name": "pylon.updateSlot",
+     "type": "mutation"
+    },
+    {
+     "name": "pois.list",
+     "type": "query"
+    },
+    {
+     "name": "pois.listByUnit",
+     "type": "query"
+    },
+    {
+     "name": "pois.categories",
+     "type": "query"
+    },
+    {
+     "name": "pois.create",
+     "type": "mutation"
+    },
+    {
+     "name": "pois.update",
+     "type": "mutation"
+    },
+    {
+     "name": "pois.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "floorPlans.listByUnit",
+     "type": "query"
+    },
+    {
+     "name": "floorPlans.create",
+     "type": "mutation"
+    },
+    {
+     "name": "floorPlans.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "documents.listByUnit",
+     "type": "query"
+    },
+    {
+     "name": "documents.listAll",
+     "type": "query"
+    },
+    {
+     "name": "documents.coverage",
+     "type": "query"
+    },
+    {
+     "name": "documents.primaryLogos",
+     "type": "query"
+    },
+    {
+     "name": "documents.create",
+     "type": "mutation"
+    },
+    {
+     "name": "documents.bulkCreate",
+     "type": "mutation"
+    },
+    {
+     "name": "documents.update",
+     "type": "mutation"
+    },
+    {
+     "name": "documents.setPrimaryLogo",
+     "type": "mutation"
+    },
+    {
+     "name": "documents.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "appraisals.list",
+     "type": "query"
+    },
+    {
+     "name": "appraisals.create",
+     "type": "mutation"
+    },
+    {
+     "name": "appraisals.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "waitlist.list",
+     "type": "query"
+    },
+    {
+     "name": "waitlist.pylonGap",
+     "type": "query"
+    },
+    {
+     "name": "waitlist.create",
+     "type": "mutation"
+    },
+    {
+     "name": "waitlist.update",
+     "type": "mutation"
+    },
+    {
+     "name": "waitlist.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "insuranceContacts.list",
+     "type": "query"
+    },
+    {
+     "name": "insuranceContacts.renewals",
+     "type": "query"
+    },
+    {
+     "name": "insuranceContacts.upsert",
+     "type": "mutation"
+    },
+    {
+     "name": "insuranceContacts.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "voiceIntake.list",
+     "type": "query"
+    },
+    {
+     "name": "voiceIntake.counts",
+     "type": "query"
+    },
+    {
+     "name": "voiceIntake.updateStatus",
+     "type": "mutation"
+    },
+    {
+     "name": "voiceIntake.convertToLead",
+     "type": "mutation"
+    },
+    {
+     "name": "propertyVault.list",
+     "type": "query"
+    },
+    {
+     "name": "propertyVault.upsert",
+     "type": "mutation"
+    },
+    {
+     "name": "propertyVault.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "propertyVault.attachFile",
+     "type": "mutation"
+    },
+    {
+     "name": "propertyRegister.list",
+     "type": "query"
+    },
+    {
+     "name": "propertyRegister.update",
+     "type": "mutation"
+    },
+    {
+     "name": "propertyRegister.attachFile",
+     "type": "mutation"
+    },
+    {
+     "name": "propertyIdentifiers.list",
+     "type": "query"
+    },
+    {
+     "name": "propertyIdentifiers.upsert",
+     "type": "mutation"
+    },
+    {
+     "name": "upload.image",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "sotImportRouter",
+   "file_path": "server/routers/sotImport.ts",
+   "mounted_as": "sotImport",
+   "procedures": [
+    {
+     "name": "reconcile",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "allowlistRouter",
+   "file_path": "server/routers/allowlist.ts",
+   "mounted_as": "allowlist",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "me",
+     "type": "query"
+    },
+    {
+     "name": "add",
+     "type": "mutation"
+    },
+    {
+     "name": "update",
+     "type": "mutation"
+    },
+    {
+     "name": "remove",
+     "type": "mutation"
+    },
+    {
+     "name": "setPassword",
+     "type": "mutation"
+    },
+    {
+     "name": "hasPassword",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "auditLogRouter",
+   "file_path": "server/routers/auditLog.ts",
+   "mounted_as": "auditLog",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "track",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "conciergeRouter",
+   "file_path": "server/routers/concierge.ts",
+   "mounted_as": "concierge",
+   "procedures": [
+    {
+     "name": "chat",
+     "type": "mutation"
+    },
+    {
+     "name": "listExamplePrompts",
+     "type": "query"
+    },
+    {
+     "name": "listSavedPrompts",
+     "type": "query"
+    },
+    {
+     "name": "createSavedPrompt",
+     "type": "mutation"
+    },
+    {
+     "name": "updateSavedPrompt",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteSavedPrompt",
+     "type": "mutation"
+    },
+    {
+     "name": "markSavedPromptUsed",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "communicationsRouter",
+   "file_path": "server/routers/communications.ts",
+   "mounted_as": "communications",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "create",
+     "type": "mutation"
+    },
+    {
+     "name": "update",
+     "type": "mutation"
+    },
+    {
+     "name": "delete",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "vendorsRouter",
+   "file_path": "server/routers/vendors.ts",
+   "mounted_as": "vendors",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "get",
+     "type": "query"
+    },
+    {
+     "name": "create",
+     "type": "mutation"
+    },
+    {
+     "name": "update",
+     "type": "mutation"
+    },
+    {
+     "name": "delete",
+     "type": "mutation"
+    },
+    {
+     "name": "performanceScores",
+     "type": "query"
+    },
+    {
+     "name": "invoices.list",
+     "type": "query"
+    },
+    {
+     "name": "invoices.create",
+     "type": "mutation"
+    },
+    {
+     "name": "invoices.updateStatus",
+     "type": "mutation"
+    },
+    {
+     "name": "invoices.summary",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "workOrdersRouter",
+   "file_path": "server/routers/workOrders.ts",
+   "mounted_as": "workOrders",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "get",
+     "type": "query"
+    },
+    {
+     "name": "create",
+     "type": "mutation"
+    },
+    {
+     "name": "update",
+     "type": "mutation"
+    },
+    {
+     "name": "delete",
+     "type": "mutation"
+    },
+    {
+     "name": "bulkCreate",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "rentPaymentsRouter",
+   "file_path": "server/routers/rentPayments.ts",
+   "mounted_as": "rentPayments",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "monthlySummary",
+     "type": "query"
+    },
+    {
+     "name": "upsert",
+     "type": "mutation"
+    },
+    {
+     "name": "delete",
+     "type": "mutation"
+    },
+    {
+     "name": "chronicLate",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "hvacRouter",
+   "file_path": "server/routers/hvac.ts",
+   "mounted_as": "hvac",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "byUnit",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "leaseAbstractionRouter",
+   "file_path": "server/routers/leaseAbstraction.ts",
+   "mounted_as": "leaseAbstraction",
+   "procedures": [
+    {
+     "name": "extract",
+     "type": "mutation"
+    },
+    {
+     "name": "batchExtract",
+     "type": "mutation"
+    },
+    {
+     "name": "getByUnit",
+     "type": "query"
+    },
+    {
+     "name": "listAll",
+     "type": "query"
+    },
+    {
+     "name": "escalationsByUnit",
+     "type": "query"
+    },
+    {
+     "name": "allEscalations",
+     "type": "query"
+    },
+    {
+     "name": "upcomingEscalations",
+     "type": "query"
+    },
+    {
+     "name": "updateEscalationStatus",
+     "type": "mutation"
+    },
+    {
+     "name": "generateNoticeDraft",
+     "type": "mutation"
+    },
+    {
+     "name": "sendEscalationNotice",
+     "type": "mutation"
+    },
+    {
+     "name": "renewalPipeline",
+     "type": "query"
+    },
+    {
+     "name": "recordRenewal",
+     "type": "mutation"
+    },
+    {
+     "name": "updateAbstraction",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteAbstraction",
+     "type": "mutation"
+    },
+    {
+     "name": "createEscalation",
+     "type": "mutation"
+    },
+    {
+     "name": "updateEscalation",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteEscalation",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "leaseAssemblerRouter",
+   "file_path": "server/routers/leaseAssembler.ts",
+   "mounted_as": "leaseAssembler",
+   "procedures": [
+    {
+     "name": "preview",
+     "type": "query"
+    },
+    {
+     "name": "availableUnits",
+     "type": "query"
+    },
+    {
+     "name": "generateDocx",
+     "type": "mutation"
+    },
+    {
+     "name": "listAbatements",
+     "type": "query"
+    },
+    {
+     "name": "createAbatement",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteAbatement",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "docExpirationRouter",
+   "file_path": "server/routers/docExpiration.ts",
+   "mounted_as": "docExpiration",
+   "procedures": [
+    {
+     "name": "listExpired",
+     "type": "query"
+    },
+    {
+     "name": "generateDemandLetter",
+     "type": "mutation"
+    },
+    {
+     "name": "sendDemandLetter",
+     "type": "mutation"
+    },
+    {
+     "name": "batchProcess",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "tenantHealthRouter",
+   "file_path": "server/routers/tenantHealth.ts",
+   "mounted_as": "tenantHealth",
+   "procedures": [
+    {
+     "name": "scores",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "dealPipelineRouter",
+   "file_path": "server/routers/dealPipeline.ts",
+   "mounted_as": "dealPipeline",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "create",
+     "type": "mutation"
+    },
+    {
+     "name": "updateStage",
+     "type": "mutation"
+    },
+    {
+     "name": "update",
+     "type": "mutation"
+    },
+    {
+     "name": "delete",
+     "type": "mutation"
+    },
+    {
+     "name": "summary",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "noiValuationRouter",
+   "file_path": "server/routers/noiValuation.ts",
+   "mounted_as": "noiValuation",
+   "procedures": [
+    {
+     "name": "compute",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "boardReportRouter",
+   "file_path": "server/routers/boardReport.ts",
+   "mounted_as": "boardReport",
+   "procedures": [
+    {
+     "name": "generate",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "nlQueryRouter",
+   "file_path": "server/routers/nlQuery.ts",
+   "mounted_as": "nlQuery",
+   "procedures": [
+    {
+     "name": "ask",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "predictiveMaintRouter",
+   "file_path": "server/routers/predictiveMaint.ts",
+   "mounted_as": "predictiveMaint",
+   "procedures": [
+    {
+     "name": "scores",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "tenantPortalRouter",
+   "file_path": "server/routers/tenantPortal.ts",
+   "mounted_as": "tenantPortal",
+   "procedures": [
+    {
+     "name": "authenticate",
+     "type": "mutation"
+    },
+    {
+     "name": "leaseSummary",
+     "type": "query"
+    },
+    {
+     "name": "paymentHistory",
+     "type": "query"
+    },
+    {
+     "name": "myDocuments",
+     "type": "query"
+    },
+    {
+     "name": "uploadCoi",
+     "type": "mutation"
+    },
+    {
+     "name": "submitMaintenanceRequest",
+     "type": "mutation"
+    },
+    {
+     "name": "myWorkOrders",
+     "type": "query"
+    },
+    {
+     "name": "myEscalations",
+     "type": "query"
+    },
+    {
+     "name": "authenticateByEmail",
+     "type": "query"
+    },
+    {
+     "name": "ownerActivity",
+     "type": "query"
+    },
+    {
+     "name": "generateToken",
+     "type": "mutation"
+    },
+    {
+     "name": "sendInvite",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "propertiesRouter",
+   "file_path": "server/routers/properties.ts",
+   "mounted_as": "properties",
+   "procedures": [
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "create",
+     "type": "mutation"
+    },
+    {
+     "name": "completeSetup",
+     "type": "mutation"
+    },
+    {
+     "name": "update",
+     "type": "mutation"
+    },
+    {
+     "name": "switchActive",
+     "type": "mutation"
+    },
+    {
+     "name": "getWorkspaceSettings",
+     "type": "query"
+    },
+    {
+     "name": "updateWorkspaceSettings",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "financialRouter",
+   "file_path": "server/routers/financial.ts",
+   "mounted_as": "financial",
+   "procedures": [
+    {
+     "name": "ledger.list",
+     "type": "query"
+    },
+    {
+     "name": "ledger.post",
+     "type": "mutation"
+    },
+    {
+     "name": "ledger.void",
+     "type": "mutation"
+    },
+    {
+     "name": "invoice.list",
+     "type": "query"
+    },
+    {
+     "name": "invoice.detail",
+     "type": "query"
+    },
+    {
+     "name": "invoice.generate",
+     "type": "mutation"
+    },
+    {
+     "name": "invoice.send",
+     "type": "mutation"
+    },
+    {
+     "name": "invoice.markVoid",
+     "type": "mutation"
+    },
+    {
+     "name": "payment.record",
+     "type": "mutation"
+    },
+    {
+     "name": "payment.void",
+     "type": "mutation"
+    },
+    {
+     "name": "payment.nsf",
+     "type": "mutation"
+    },
+    {
+     "name": "payment.list",
+     "type": "query"
+    },
+    {
+     "name": "arAging",
+     "type": "query"
+    },
+    {
+     "name": "lateFeeRuns",
+     "type": "query"
+    },
+    {
+     "name": "summary",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "workOrderMediaRouter",
+   "file_path": "server/routers/workOrderMedia.ts",
+   "mounted_as": "workOrderMedia",
+   "procedures": [
+    {
+     "name": "upload",
+     "type": "mutation"
+    },
+    {
+     "name": "list",
+     "type": "query"
+    },
+    {
+     "name": "delete",
+     "type": "mutation"
+    },
+    {
+     "name": "generateVendorLink",
+     "type": "mutation"
+    },
+    {
+     "name": "getVendorLinks",
+     "type": "query"
+    },
+    {
+     "name": "revokeVendorLink",
+     "type": "mutation"
+    },
+    {
+     "name": "vendorValidateToken",
+     "type": "query"
+    },
+    {
+     "name": "vendorUpload",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "calculatorsRouter",
+   "file_path": "server/routers/calculators.ts",
+   "mounted_as": "calculators",
+   "procedures": [
+    {
+     "name": "ner",
+     "type": "mutation"
+    },
+    {
+     "name": "grossUp",
+     "type": "mutation"
+    },
+    {
+     "name": "eviction",
+     "type": "mutation"
+    },
+    {
+     "name": "ocr",
+     "type": "mutation"
+    },
+    {
+     "name": "capex",
+     "type": "mutation"
+    },
+    {
+     "name": "kpi",
+     "type": "mutation"
+    },
+    {
+     "name": "insurance",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "camRouter",
+   "file_path": "server/routers/cam.ts",
+   "mounted_as": "cam",
+   "procedures": [
+    {
+     "name": "listExpenses",
+     "type": "query"
+    },
+    {
+     "name": "createExpense",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteExpense",
+     "type": "mutation"
+    },
+    {
+     "name": "expenseSummary",
+     "type": "query"
+    },
+    {
+     "name": "runReconciliation",
+     "type": "mutation"
+    },
+    {
+     "name": "listReconciliations",
+     "type": "query"
+    },
+    {
+     "name": "getReconciliation",
+     "type": "query"
+    },
+    {
+     "name": "finalizeReconciliation",
+     "type": "mutation"
+    },
+    {
+     "name": "listLeaseUnits",
+     "type": "query"
+    },
+    {
+     "name": "createLeaseUnit",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteLeaseUnit",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "reportsRouter",
+   "file_path": "server/routers/reports.ts",
+   "mounted_as": "reports",
+   "procedures": [
+    {
+     "name": "profitAndLoss",
+     "type": "query"
+    },
+    {
+     "name": "cashFlow",
+     "type": "query"
+    },
+    {
+     "name": "agingSummary",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "stakeholderReportsRouter",
+   "file_path": "server/routers/stakeholderReports.ts",
+   "mounted_as": "stakeholderReports",
+   "procedures": [
+    {
+     "name": "operator",
+     "type": "query"
+    },
+    {
+     "name": "owner",
+     "type": "query"
+    },
+    {
+     "name": "investor",
+     "type": "query"
+    },
+    {
+     "name": "lender",
+     "type": "query"
+    },
+    {
+     "name": "buyer",
+     "type": "query"
+    },
+    {
+     "name": "cpa",
+     "type": "query"
+    },
+    {
+     "name": "lawyer",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "governanceRouter",
+   "file_path": "server/routers/governance.ts",
+   "mounted_as": "governance",
+   "procedures": [
+    {
+     "name": "listEntities",
+     "type": "query"
+    },
+    {
+     "name": "createEntity",
+     "type": "mutation"
+    },
+    {
+     "name": "updateEntity",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteEntity",
+     "type": "mutation"
+    },
+    {
+     "name": "listCovenants",
+     "type": "query"
+    },
+    {
+     "name": "createCovenant",
+     "type": "mutation"
+    },
+    {
+     "name": "updateCovenant",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteCovenant",
+     "type": "mutation"
+    },
+    {
+     "name": "listCalendar",
+     "type": "query"
+    },
+    {
+     "name": "createCalendarEvent",
+     "type": "mutation"
+    },
+    {
+     "name": "updateCalendarEvent",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteCalendarEvent",
+     "type": "mutation"
+    },
+    {
+     "name": "listDocuments",
+     "type": "query"
+    },
+    {
+     "name": "createDocument",
+     "type": "mutation"
+    },
+    {
+     "name": "updateDocument",
+     "type": "mutation"
+    },
+    {
+     "name": "deleteDocument",
+     "type": "mutation"
+    },
+    {
+     "name": "summary",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "quickbooksRouter",
+   "file_path": "server/routers/quickbooks.ts",
+   "mounted_as": "quickbooks",
+   "procedures": [
+    {
+     "name": "connectionStatus",
+     "type": "query"
+    },
+    {
+     "name": "getAuthUrl",
+     "type": "mutation"
+    },
+    {
+     "name": "disconnect",
+     "type": "mutation"
+    },
+    {
+     "name": "toggleSync",
+     "type": "mutation"
+    },
+    {
+     "name": "mappings.list",
+     "type": "query"
+    },
+    {
+     "name": "mappings.upsert",
+     "type": "mutation"
+    },
+    {
+     "name": "mappings.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "syncLog",
+     "type": "query"
+    },
+    {
+     "name": "triggerSync",
+     "type": "mutation"
+    },
+    {
+     "name": "categories",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "billingRouter",
+   "file_path": "server/routers/billing.ts",
+   "mounted_as": "billing",
+   "procedures": [
+    {
+     "name": "config",
+     "type": "query"
+    },
+    {
+     "name": "listPlans",
+     "type": "query"
+    },
+    {
+     "name": "mySubscription",
+     "type": "query"
+    },
+    {
+     "name": "myUsage",
+     "type": "query"
+    },
+    {
+     "name": "subscribe",
+     "type": "mutation"
+    },
+    {
+     "name": "createPortalSession",
+     "type": "mutation"
+    },
+    {
+     "name": "cancel",
+     "type": "mutation"
+    },
+    {
+     "name": "upsertPlan",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "sopRouter",
+   "file_path": "server/routers/sop.ts",
+   "mounted_as": "sop",
+   "procedures": [
+    {
+     "name": "categories.list",
+     "type": "query"
+    },
+    {
+     "name": "categories.create",
+     "type": "mutation"
+    },
+    {
+     "name": "categories.update",
+     "type": "mutation"
+    },
+    {
+     "name": "categories.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "procedures.list",
+     "type": "query"
+    },
+    {
+     "name": "procedures.get",
+     "type": "query"
+    },
+    {
+     "name": "procedures.create",
+     "type": "mutation"
+    },
+    {
+     "name": "procedures.update",
+     "type": "mutation"
+    },
+    {
+     "name": "procedures.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "procedures.schedule",
+     "type": "mutation"
+    },
+    {
+     "name": "procedures.unschedule",
+     "type": "mutation"
+    },
+    {
+     "name": "steps.list",
+     "type": "query"
+    },
+    {
+     "name": "steps.create",
+     "type": "mutation"
+    },
+    {
+     "name": "steps.update",
+     "type": "mutation"
+    },
+    {
+     "name": "steps.delete",
+     "type": "mutation"
+    },
+    {
+     "name": "assignments.list",
+     "type": "query"
+    },
+    {
+     "name": "assignments.dashboard",
+     "type": "query"
+    },
+    {
+     "name": "assignments.recentCompletions",
+     "type": "query"
+    },
+    {
+     "name": "assignments.create",
+     "type": "mutation"
+    },
+    {
+     "name": "assignments.update",
+     "type": "mutation"
+    },
+    {
+     "name": "assignments.complete",
+     "type": "mutation"
+    },
+    {
+     "name": "analytics.heatmap",
+     "type": "query"
+    },
+    {
+     "name": "analytics.streaks",
+     "type": "query"
+    },
+    {
+     "name": "completions.list",
+     "type": "query"
+    },
+    {
+     "name": "completions.create",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "marketingRouter",
+   "file_path": "server/routers/marketing.ts",
+   "mounted_as": "marketing",
+   "procedures": [
+    {
+     "name": "vacantUnits",
+     "type": "query"
+    },
+    {
+     "name": "generateVacancyFlyer",
+     "type": "mutation"
+    },
+    {
+     "name": "generateSocialPost",
+     "type": "mutation"
+    },
+    {
+     "name": "generateEventAnnouncement",
+     "type": "mutation"
+    },
+    {
+     "name": "generateImage",
+     "type": "mutation"
+    },
+    {
+     "name": "saveAsset",
+     "type": "mutation"
+    },
+    {
+     "name": "listAssets",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "unifiRouter",
+   "file_path": "server/routers/unifi.ts",
+   "mounted_as": "unifi",
+   "procedures": [
+    {
+     "name": "networkStatus",
+     "type": "query"
+    },
+    {
+     "name": "healthPing",
+     "type": "query"
+    }
+   ]
+  },
+  {
+   "router_name": "superAdminRouter",
+   "file_path": "server/routers/superAdmin.ts",
+   "mounted_as": "superAdmin",
+   "procedures": [
+    {
+     "name": "platformStats",
+     "type": "query"
+    },
+    {
+     "name": "listOwners",
+     "type": "query"
+    },
+    {
+     "name": "ownerDetail",
+     "type": "query"
+    },
+    {
+     "name": "listAllProperties",
+     "type": "query"
+    },
+    {
+     "name": "setUserRole",
+     "type": "mutation"
+    },
+    {
+     "name": "grantSubscription",
+     "type": "mutation"
+    }
+   ]
+  },
+  {
+   "router_name": "accountRouter",
+   "file_path": "server/routers/account.ts",
+   "mounted_as": "account",
+   "procedures": [
+    {
+     "name": "deleteMyAccount",
+     "type": "mutation"
+    },
+    {
+     "name": "exportMyData",
+     "type": "mutation"
+    }
+   ]
+  }
+ ]
+}

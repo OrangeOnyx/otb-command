@@ -1,0 +1,605 @@
+<title>Cypress Command Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,700;0,900;1,400&family=Archivo:wght@400;500;700;800&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* ============================================================
+   Cypress Command — Design Tokens v2.0
+   Single source of truth for color, type, space, radius.
+   Consumers: website, Command Platform, Playbook, print CSS.
+   Day is default. Night via [data-theme="night"] or prefers-color-scheme.
+   Playbook scope via [data-brand="playbook"] (removes Cypress surface).
+   ============================================================ */
+
+:root {
+  /* --- Core surfaces & inks (Day) --- */
+  --cc-paper:        #F4EFE2;
+  --cc-paper-deep:   #EAE2CD;
+  --cc-ink:          #1E1B16;
+  --cc-ink-soft:     #5C554A;
+  --cc-rule:         #C9BFA8;
+  --cc-cypress:      #1E4D3A;   /* master-brand SURFACE only */
+
+  /* --- Semantic accents (Day) --- */
+  --cc-terra:        #A44E12;   /* primary / structural */
+  --cc-olive:        #49573C;   /* success / complete */
+  --cc-mustard:      #8F6D0C;   /* in progress / attention (≥14px 700 only) */
+  --cc-oxblood:      #8A2F1F;   /* critical / refusal — never emphasis */
+
+  /* --- Light variants (tokens exist; not used as fills) --- */
+  --cc-terra-light:   #C7681D;
+  --cc-mustard-light: #D9A419;
+  --cc-olive-light:   #5A6B4A;
+
+  /* --- Washes (8–16% of deep tone over paper) --- */
+  --cc-wash-terra:   rgba(164, 78, 18, 0.10);
+  --cc-wash-olive:   rgba(73, 87, 60, 0.10);
+  --cc-wash-mustard: rgba(143, 109, 12, 0.12);
+  --cc-wash-oxblood: rgba(138, 47, 31, 0.10);
+  --cc-wash-ink:     rgba(30, 27, 22, 0.06);
+
+  /* --- Role aliases (use these in components) --- */
+  --cc-bg:            var(--cc-paper);
+  --cc-bg-elev:       var(--cc-paper-deep);
+  --cc-fg:            var(--cc-ink);
+  --cc-fg-muted:      var(--cc-ink-soft);
+  --cc-border:        var(--cc-rule);
+  --cc-accent:        var(--cc-terra);
+  --cc-accent-fg:     var(--cc-paper);
+  --cc-success:       var(--cc-olive);
+  --cc-warning:       var(--cc-mustard);
+  --cc-critical:      var(--cc-oxblood);
+  --cc-surface-brand: var(--cc-cypress);
+  --cc-on-brand:      var(--cc-paper);
+  --cc-on-brand-accent: #D2802F;
+  --cc-focus:         var(--cc-terra);
+  --cc-selection:     rgba(164, 78, 18, 0.22);
+
+  /* --- Typography --- */
+  --cc-font-display: "Besley", "Fraunces", Georgia, "Times New Roman", serif;
+  --cc-font-sans:    "Archivo", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cc-font-mono:    "Courier Prime", "JetBrains Mono", "Courier New", monospace;
+
+  --cc-text-display: 56px; --cc-lh-display: 60px;
+  --cc-text-h1: 40px;      --cc-lh-h1: 44px;
+  --cc-text-h2: 28px;      --cc-lh-h2: 32px;
+  --cc-text-h3: 20px;      --cc-lh-h3: 26px;
+  --cc-text-body: 16px;    --cc-lh-body: 24px;
+  --cc-text-body-doc: 17px;--cc-lh-body-doc: 26px;
+  --cc-text-small: 14px;   --cc-lh-small: 20px;
+  --cc-text-caption: 12px; --cc-lh-caption: 16px;
+  --cc-text-label: 11px;   --cc-lh-label: 14px;
+  --cc-track-label: 0.10em;
+  --cc-track-display: -0.02em;
+
+  /* --- Space --- */
+  --cc-space-1: 4px;  --cc-space-2: 8px;  --cc-space-3: 12px; --cc-space-4: 16px;
+  --cc-space-6: 24px; --cc-space-8: 32px; --cc-space-12: 48px; --cc-space-16: 64px;
+  --cc-space-24: 96px;
+
+  /* --- Radius & rules --- */
+  --cc-radius-doc: 2px;
+  --cc-radius-ui: 4px;
+  --cc-radius-mark: 6px;
+  --cc-hairline: 1px;
+  --cc-plate-rule: 3px;
+
+  /* --- Layout --- */
+  --cc-max-width: 1200px;
+  --cc-measure: 70ch;
+  --cc-gutter: 24px;
+
+  color-scheme: light;
+}
+
+/* ---------- Night ---------- */
+[data-theme="night"], :root[data-theme="dark"] {
+  --cc-paper:        #1B1813;
+  --cc-paper-deep:   #26221B;
+  --cc-ink:          #F4EFE2;
+  --cc-ink-soft:     #BEB4A2;
+  --cc-rule:         #4E463A;
+  --cc-cypress:      #163A2C;
+  --cc-terra:        #D2802F;
+  --cc-olive:        #9AA989;
+  --cc-mustard:      #CFA032;
+  --cc-oxblood:      #D27363;
+  --cc-wash-terra:   rgba(210, 128, 47, 0.14);
+  --cc-wash-olive:   rgba(154, 169, 137, 0.14);
+  --cc-wash-mustard: rgba(207, 160, 50, 0.14);
+  --cc-wash-oxblood: rgba(210, 115, 99, 0.14);
+  --cc-wash-ink:     rgba(244, 239, 226, 0.06);
+  --cc-on-brand-accent: #D2802F;
+  --cc-selection:    rgba(210, 128, 47, 0.30);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="day"]) {
+    --cc-paper:        #1B1813;
+    --cc-paper-deep:   #26221B;
+    --cc-ink:          #F4EFE2;
+    --cc-ink-soft:     #BEB4A2;
+    --cc-rule:         #4E463A;
+    --cc-cypress:      #163A2C;
+    --cc-terra:        #D2802F;
+    --cc-olive:        #9AA989;
+    --cc-mustard:      #CFA032;
+    --cc-oxblood:      #D27363;
+    --cc-wash-terra:   rgba(210, 128, 47, 0.14);
+    --cc-wash-olive:   rgba(154, 169, 137, 0.14);
+    --cc-wash-mustard: rgba(207, 160, 50, 0.14);
+    --cc-wash-oxblood: rgba(210, 115, 99, 0.14);
+    --cc-wash-ink:     rgba(244, 239, 226, 0.06);
+    --cc-selection:    rgba(210, 128, 47, 0.30);
+    color-scheme: dark;
+  }
+}
+
+/* ---------- Playbook scope: same tokens, no Cypress surface ---------- */
+[data-brand="playbook"] {
+  --cc-cypress: var(--cc-ink);          /* surface falls back to ink */
+  --cc-surface-brand: var(--cc-ink);
+  --cc-font-sans: "Archivo", system-ui, sans-serif;
+  /* Level inks */
+  --pb-level-starter:      var(--cc-olive);
+  --pb-level-intermediate: var(--cc-mustard);
+  --pb-level-expert:       var(--cc-terra);
+  --pb-level-frontier:     var(--cc-ink);
+  --pb-risk:               var(--cc-oxblood);
+}
+
+/* ---------- Base ---------- */
+html { background: var(--cc-bg); color: var(--cc-fg); }
+body { font-family: var(--cc-font-sans); font-size: var(--cc-text-body); line-height: var(--cc-lh-body); margin: 0; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--cc-selection); }
+:focus-visible { outline: 2px solid var(--cc-focus); outline-offset: 2px; }
+a { color: var(--cc-accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============================================================
+   Cypress Command — Components v2.0  (requires tokens.css)
+   ============================================================ */
+
+/* ---- Type utilities ---- */
+.cc-display { font-family: var(--cc-font-display); font-weight: 900; font-size: var(--cc-text-display); line-height: var(--cc-lh-display); letter-spacing: var(--cc-track-display); margin: 0; }
+.cc-h1 { font-family: var(--cc-font-display); font-weight: 900; font-size: var(--cc-text-h1); line-height: var(--cc-lh-h1); letter-spacing: var(--cc-track-display); margin: 0; }
+.cc-h2 { font-family: var(--cc-font-display); font-weight: 700; font-size: var(--cc-text-h2); line-height: var(--cc-lh-h2); letter-spacing: -0.01em; margin: 0; }
+.cc-h3 { font-family: var(--cc-font-sans); font-weight: 700; font-size: var(--cc-text-h3); line-height: var(--cc-lh-h3); margin: 0; }
+.cc-body-doc { font-family: var(--cc-font-display); font-weight: 400; font-size: var(--cc-text-body-doc); line-height: var(--cc-lh-body-doc); }
+.cc-small { font-size: var(--cc-text-small); line-height: var(--cc-lh-small); }
+.cc-caption { font-size: var(--cc-text-caption); line-height: var(--cc-lh-caption); color: var(--cc-fg-muted); }
+.cc-eyebrow { font-family: var(--cc-font-sans); font-weight: 700; font-size: var(--cc-text-label); line-height: var(--cc-lh-label); letter-spacing: var(--cc-track-label); text-transform: uppercase; color: var(--cc-accent); }
+.cc-label { font-family: var(--cc-font-sans); font-weight: 700; font-size: var(--cc-text-label); line-height: var(--cc-lh-label); letter-spacing: var(--cc-track-label); text-transform: uppercase; color: var(--cc-fg-muted); }
+.cc-mono { font-family: var(--cc-font-mono); font-size: 12px; line-height: 17px; }
+.cc-muted { color: var(--cc-fg-muted); }
+.cc-numeral { font-family: var(--cc-font-display); font-weight: 900; letter-spacing: -0.03em; }
+
+/* ---- Rules ---- */
+.cc-hairline { border: 0; border-top: var(--cc-hairline) solid var(--cc-border); margin: 0; }
+.cc-section-head { display: flex; align-items: baseline; gap: var(--cc-space-3); padding: var(--cc-space-3) 0; border-top: 2px solid var(--cc-fg); border-bottom: var(--cc-hairline) solid var(--cc-border); }
+.cc-section-head .num { font-family: var(--cc-font-sans); font-weight: 800; font-size: 13px; }
+.cc-section-head .title { font-family: var(--cc-font-sans); font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+.cc-section-head .kicker { margin-left: auto; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cc-fg-muted); }
+
+/* ---- Buttons ---- */
+.cc-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--cc-font-sans); font-weight: 700; font-size: 14px; line-height: 20px; padding: 10px 18px; border-radius: var(--cc-radius-ui); border: 1px solid transparent; cursor: pointer; text-decoration: none; transition: background-color .15s, color .15s, border-color .15s; }
+.cc-btn:hover { text-decoration: none; }
+.cc-btn-primary { background: var(--cc-fg); color: var(--cc-bg); border-color: var(--cc-fg); }
+.cc-btn-primary:hover { background: var(--cc-ink-soft); border-color: var(--cc-ink-soft); }
+.cc-btn-accent { background: var(--cc-accent); color: var(--cc-accent-fg); border-color: var(--cc-accent); }
+.cc-btn-accent:hover { filter: brightness(1.08); }
+.cc-btn-secondary { background: var(--cc-bg); color: var(--cc-fg); border-color: var(--cc-fg); }
+.cc-btn-secondary:hover { background: var(--cc-bg-elev); }
+.cc-btn-tertiary { background: transparent; color: var(--cc-accent); padding-left: 0; padding-right: 0; }
+.cc-btn-tertiary:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cc-btn[disabled], .cc-btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.cc-doc .cc-btn { border-radius: var(--cc-radius-doc); }
+
+/* ---- Tags / status ---- */
+.cc-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--cc-font-sans); font-weight: 700; font-size: 11px; line-height: 14px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 8px; border-radius: var(--cc-radius-ui); border: 1px solid currentColor; }
+.cc-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.cc-tag-success  { color: var(--cc-success);  background: var(--cc-wash-olive); }
+.cc-tag-warning  { color: var(--cc-warning);  background: var(--cc-wash-mustard); }
+.cc-tag-critical { color: var(--cc-critical); background: var(--cc-wash-oxblood); }
+.cc-tag-accent   { color: var(--cc-accent);   background: var(--cc-wash-terra); }
+.cc-tag-neutral  { color: var(--cc-fg-muted); background: var(--cc-wash-ink); }
+.cc-tag-ink      { color: var(--cc-fg);       background: var(--cc-wash-ink); }
+
+/* ---- Cards ---- */
+.cc-card { background: var(--cc-bg); border: var(--cc-hairline) solid var(--cc-border); border-radius: var(--cc-radius-ui); padding: var(--cc-space-4); }
+.cc-card-accent { border-top: var(--cc-plate-rule) solid var(--cc-accent); }
+.cc-card-success { border-top: var(--cc-plate-rule) solid var(--cc-success); }
+.cc-card-warning { border-top: var(--cc-plate-rule) solid var(--cc-warning); }
+.cc-card-critical { border-top: var(--cc-plate-rule) solid var(--cc-critical); }
+.cc-card-ink { border-top: var(--cc-plate-rule) solid var(--cc-fg); }
+.cc-card-head { background: var(--cc-bg-elev); margin: calc(-1 * var(--cc-space-4)) calc(-1 * var(--cc-space-4)) var(--cc-space-3); padding: var(--cc-space-3) var(--cc-space-4); border-bottom: var(--cc-hairline) solid var(--cc-border); }
+
+/* ---- Plate / figure ---- */
+.cc-plate { border: var(--cc-hairline) solid var(--cc-border); border-top: var(--cc-plate-rule) solid var(--cc-accent); background: var(--cc-bg); padding: var(--cc-space-4); }
+.cc-plate-label { font-family: var(--cc-font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cc-accent); }
+.cc-fig { font-family: var(--cc-font-display); font-weight: 900; font-size: 13px; }
+.cc-fig-caption { font-size: 12px; color: var(--cc-fg-muted); }
+
+/* ---- Table ---- */
+.cc-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cc-table th { text-align: left; font-family: var(--cc-font-sans); font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cc-fg-muted); padding: 8px 10px; border-bottom: 2px solid var(--cc-fg); }
+.cc-table td { padding: 10px; border-bottom: var(--cc-hairline) solid var(--cc-border); vertical-align: top; }
+.cc-table td:first-child { font-weight: 500; }
+.cc-table tr:hover td { background: var(--cc-wash-ink); }
+
+/* ---- Inputs ---- */
+.cc-input, .cc-select, .cc-textarea { font-family: var(--cc-font-sans); font-size: 14px; line-height: 20px; color: var(--cc-fg); background: var(--cc-bg); border: var(--cc-hairline) solid var(--cc-border); border-radius: var(--cc-radius-ui); padding: 9px 12px; width: 100%; box-sizing: border-box; }
+.cc-input::placeholder { color: var(--cc-fg-muted); }
+.cc-input:focus, .cc-select:focus, .cc-textarea:focus { outline: 2px solid var(--cc-focus); outline-offset: 0; border-color: var(--cc-focus); }
+.cc-checkbox { appearance: none; width: 16px; height: 16px; border: 1.5px solid var(--cc-fg); border-radius: 2px; background: var(--cc-bg); vertical-align: -3px; margin-right: 8px; }
+.cc-checkbox:checked { background: var(--cc-fg); box-shadow: inset 0 0 0 3px var(--cc-bg); }
+.cc-toggle { appearance: none; width: 36px; height: 20px; border-radius: 10px; background: var(--cc-border); position: relative; cursor: pointer; }
+.cc-toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--cc-bg); transition: left .15s; }
+.cc-toggle:checked { background: var(--cc-success); }
+.cc-toggle:checked::after { left: 18px; }
+
+/* ---- Tabs ---- */
+.cc-tabs { display: flex; gap: 0; border-bottom: var(--cc-hairline) solid var(--cc-border); }
+.cc-tab { font-family: var(--cc-font-sans); font-weight: 500; font-size: 14px; padding: 10px 14px; color: var(--cc-fg-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; background: none; border-top: 0; border-left: 0; border-right: 0; }
+.cc-tab[aria-selected="true"] { color: var(--cc-fg); border-bottom-color: var(--cc-accent); font-weight: 700; }
+
+/* ---- Navigation ---- */
+.cc-rail { width: 220px; background: var(--cc-bg); border-right: var(--cc-hairline) solid var(--cc-border); padding: var(--cc-space-4); display: flex; flex-direction: column; gap: 2px; }
+.cc-rail-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--cc-radius-ui); font-size: 14px; color: var(--cc-fg); text-decoration: none; }
+.cc-rail-item:hover { background: var(--cc-wash-ink); text-decoration: none; }
+.cc-rail-item[aria-current="page"] { background: var(--cc-bg-elev); color: var(--cc-accent); font-weight: 700; }
+.cc-topbar { display: flex; align-items: center; gap: var(--cc-space-6); padding: 14px var(--cc-space-6); border-bottom: var(--cc-hairline) solid var(--cc-border); }
+.cc-topbar nav { display: flex; gap: var(--cc-space-6); margin-left: auto; font-size: 14px; }
+.cc-topbar nav a { color: var(--cc-fg); }
+.cc-topbar nav a[aria-current="page"] { color: var(--cc-accent); font-weight: 700; }
+
+/* ---- Alert ---- */
+.cc-alert { display: flex; gap: 12px; background: var(--cc-bg-elev); border-left: 3px solid var(--cc-fg-muted); padding: 12px 14px; font-size: 14px; }
+.cc-alert-success { border-left-color: var(--cc-success); }
+.cc-alert-warning { border-left-color: var(--cc-warning); }
+.cc-alert-critical { border-left-color: var(--cc-critical); }
+
+/* ---- Blockquote / field note ---- */
+.cc-quote { font-family: var(--cc-font-display); font-style: italic; font-size: 22px; line-height: 30px; border-left: 3px solid var(--cc-accent); padding-left: var(--cc-space-4); margin: 0; }
+.cc-fieldnote { background: var(--cc-bg-elev); padding: var(--cc-space-6); }
+
+/* ---- Brand surface ---- */
+.cc-surface-brand { background: var(--cc-surface-brand); color: var(--cc-on-brand); }
+.cc-surface-brand a, .cc-surface-brand .cc-eyebrow { color: var(--cc-on-brand-accent); }
+.cc-surface-ink { background: var(--cc-ink); color: var(--cc-paper); }
+
+/* ---- Footer stripe ---- */
+.cc-stripe { display: grid; grid-template-columns: repeat(4, 1fr); height: 6px; }
+.cc-stripe > span:nth-child(1) { background: var(--cc-olive); }
+.cc-stripe > span:nth-child(2) { background: var(--cc-mustard); }
+.cc-stripe > span:nth-child(3) { background: var(--cc-terra); }
+.cc-stripe > span:nth-child(4) { background: var(--cc-ink); }
+
+/* ---- Level chips (Playbook scope) ---- */
+[data-brand="playbook"] .pb-level { border: 1px solid currentColor; padding: 3px 8px; font: 700 10px/14px var(--cc-font-sans); letter-spacing: .1em; text-transform: uppercase; }
+[data-brand="playbook"] .pb-level-starter { color: var(--pb-level-starter); }
+[data-brand="playbook"] .pb-level-intermediate { color: var(--pb-level-intermediate); }
+[data-brand="playbook"] .pb-level-expert { color: var(--pb-level-expert); }
+[data-brand="playbook"] .pb-level-frontier { color: var(--pb-level-frontier); }
+[data-brand="playbook"] .pb-risk { color: var(--pb-risk); }
+
+/* ---- Motion ---- */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---- page ---- */
+body { background: var(--cc-bg); color: var(--cc-fg); padding-inline: 16px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-block: 0 64px; }
+.masthead { display:flex; align-items:center; gap:16px; padding:18px 0; border-bottom:2px solid var(--cc-fg); position: sticky; top: env(safe-area-inset-top, 0px); background: var(--cc-bg); z-index: 5; }
+.masthead .mk { width:40px; height:40px; flex:none; }
+.masthead .wm { font: 800 15px/17px var(--cc-font-sans); letter-spacing:.08em; }
+.masthead .sub { font: 500 11px/14px var(--cc-font-sans); letter-spacing:.1em; text-transform:uppercase; color: var(--cc-fg-muted); }
+.masthead .right { margin-left:auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+.masthead .ver { font: 400 11px/14px var(--cc-font-mono); color: var(--cc-fg-muted); }
+.toggle { font: 700 11px/14px var(--cc-font-sans); letter-spacing:.1em; text-transform:uppercase; border:1px solid var(--cc-fg); background:var(--cc-bg); color:var(--cc-fg); padding:8px 12px; cursor:pointer; border-radius: 2px; }
+.hero { display:grid; grid-template-columns: minmax(0,1fr) 220px; gap:32px; padding:40px 0 32px; border-bottom:1px solid var(--cc-border); }
+.hero h1 { text-wrap: balance; }
+.hero p { font-family: var(--cc-font-display); font-size:19px; line-height:28px; max-width: 68ch; margin:16px 0 0; }
+.hero aside { border-left:1px solid var(--cc-border); padding-left:20px; font: 500 12px/20px var(--cc-font-sans); letter-spacing:.1em; text-transform:uppercase; color: var(--cc-fg-muted); }
+.hero aside strong { display:block; color: var(--cc-fg); margin-top:16px; }
+section { padding: 32px 0; }
+.grid { display:grid; gap:16px; }
+.g6 { grid-template-columns: repeat(6, minmax(0,1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0,1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.swatch { border:1px solid var(--cc-border); }
+.swatch .chip { height:96px; }
+.swatch .meta { padding:10px 12px; }
+.swatch .meta b { display:block; font: 700 13px/18px var(--cc-font-sans); }
+.swatch .meta code { font: 400 11px/16px var(--cc-font-mono); color: var(--cc-fg-muted); }
+.swatch .meta span { display:block; font: 400 12px/16px var(--cc-font-sans); color: var(--cc-fg-muted); margin-top:6px; }
+.night-board { background:#1B1813; color:#F4EFE2; padding:20px; }
+.night-board .swatch { border-color:#4E463A; }
+.night-board .swatch .meta code, .night-board .swatch .meta span { color:#BEB4A2; }
+.type-specimen { display:grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap:32px; }
+.spec-row { display:grid; grid-template-columns: 120px minmax(0,1fr); gap:16px; padding:12px 0; border-bottom:1px solid var(--cc-border); align-items:baseline; }
+.spec-row .r { font: 700 11px/14px var(--cc-font-sans); letter-spacing:.1em; text-transform:uppercase; color: var(--cc-fg-muted); }
+.logo-row { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:16px; }
+.logo-cell { border:1px solid var(--cc-border); padding:24px; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.logo-cell .mk { width:72px; height:72px; }
+.logo-cell .lab { font: 400 11px/14px var(--cc-font-mono); color: var(--cc-fg-muted); text-align:center; }
+.on-cypress { background:#1E4D3A; }
+.on-cypress .lab { color:#BEB4A2; }
+.on-night { background:#1B1813; }
+.on-night .lab { color:#BEB4A2; }
+.demo { border:1px solid var(--cc-border); padding:16px; display:flex; flex-direction:column; gap:12px; }
+.demo h4 { margin:0; font: 700 11px/14px var(--cc-font-sans); letter-spacing:.1em; text-transform:uppercase; color: var(--cc-fg-muted); }
+.row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.app { border:1px solid var(--cc-border); overflow:hidden; }
+.app-hero { padding:28px; display:grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap:24px; }
+.app-hero .photo { min-height:200px; border:1px solid var(--cc-border); position:relative; background: var(--cc-bg-elev) repeating-linear-gradient(135deg, transparent 0 10px, var(--cc-wash-ink) 10px 11px); }
+.app-hero .photo::before { content:"PHOTOGRAPH PLACEHOLDER"; position:absolute; left:14px; top:12px; font: 700 10px/14px var(--cc-font-sans); letter-spacing:.14em; color: var(--cc-accent); }
+.app-hero .photo::after { content:"Real places · real people · real progress. Drop a site photograph here (On The Boulevard, daylight, no stock imagery)."; position:absolute; left:14px; right:14px; bottom:12px; font: 400 12px/16px var(--cc-font-sans); color: var(--cc-fg-muted); }
+.app-nav { display:flex; align-items:center; gap:20px; padding:12px 28px; border-bottom:1px solid var(--cc-border); font: 500 12px/16px var(--cc-font-sans); }
+.app-nav .mk { width:22px; height:22px; }
+.app-nav .links { margin-left:auto; display:flex; gap:16px; color: var(--cc-fg-muted); }
+.steps { display:grid; grid-template-columns: repeat(4,1fr); border-top:1px solid var(--cc-border); }
+.steps div { padding:12px 28px; font: 400 11px/16px var(--cc-font-mono); border-right:1px solid var(--cc-border); }
+.steps div:last-child { border-right:0; }
+.steps b { display:block; font-family: var(--cc-font-sans); font-weight:700; }
+.cover { aspect-ratio: 8.5/11; max-width:100%; background: var(--cc-paper); color: var(--cc-ink); border:1px solid var(--cc-border); position:relative; padding:24px 24px 24px 36px; display:flex; flex-direction:column; }
+.cover::before { content:""; position:absolute; left:0; top:0; bottom:0; width:14px; background:#A44E12; }
+.cover .mk { width:26px; height:26px; }
+.cover .ttl { font: 700 22px/26px var(--cc-font-display); margin-top:auto; }
+.cover .ph { background: var(--cc-paper-deep) repeating-linear-gradient(135deg, transparent 0 8px, rgba(30,27,22,.06) 8px 9px); border:1px solid #C9BFA8; height:38%; margin:14px 0; position:relative; }
+.cover .ph::after { content:"PHOTOGRAPH"; position:absolute; left:8px; top:6px; font: 700 7px/10px var(--cc-font-sans); letter-spacing:.14em; color:#A44E12; }
+.cover .ft { display:flex; justify-content:space-between; font: 400 9px/12px var(--cc-font-mono); border-top:1px solid #C9BFA8; padding-top:8px; }
+.slide { aspect-ratio:16/9; background:#1E4D3A; color:#F4EFE2; padding:24px; display:flex; flex-direction:column; position:relative; }
+.slide .top { display:flex; justify-content:space-between; font: 700 9px/12px var(--cc-font-sans); letter-spacing:.14em; }
+.slide .big { font: 700 34px/36px var(--cc-font-display); margin-top:auto; max-width: 70%; }
+.slide .rule { width:48px; height:3px; background:#D2802F; margin:12px 0; }
+.slide .agenda { position:absolute; right:24px; bottom:44px; font: 700 10px/20px var(--cc-font-sans); letter-spacing:.12em; }
+.slide .agenda span { color:#D2802F; margin-right:10px; }
+.slide .bot { font: 400 9px/12px var(--cc-font-mono); color:#BEB4A2; margin-top:12px; }
+.dash { display:grid; grid-template-columns: 170px minmax(0,1fr); border:1px solid var(--cc-border); }
+.dash .main { padding:16px; }
+.kpis { display:grid; grid-template-columns: repeat(4,1fr); gap:10px; margin:12px 0; }
+.kpi { border:1px solid var(--cc-border); padding:10px; }
+.kpi b { display:block; font: 700 22px/26px var(--cc-font-display); }
+.kpi span { font: 400 11px/14px var(--cc-font-sans); color: var(--cc-fg-muted); }
+.kpi i { font-style:normal; font: 700 11px/14px var(--cc-font-sans); }
+.bars { display:flex; align-items:flex-end; gap:6px; height:70px; border-bottom:1px solid var(--cc-border); padding-top:8px; }
+.bars span { flex:1; background: var(--cc-olive); }
+.rules-list { counter-reset: r; list-style:none; padding:0; margin:0; columns: 2; column-gap: 32px; }
+.rules-list li { counter-increment:r; break-inside: avoid; padding:10px 0 10px 36px; position:relative; border-bottom:1px solid var(--cc-border); font-size:14px; line-height:20px; }
+.rules-list li::before { content: counter(r, decimal-leading-zero); position:absolute; left:0; top:10px; font: 900 14px/20px var(--cc-font-display); color: var(--cc-accent); }
+.arch { font: 400 12px/18px var(--cc-font-mono); background: var(--cc-bg-elev); padding:16px; overflow-x:auto; white-space:pre; margin:0; }
+.footer { margin-top:32px; }
+.footer .line { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; padding:14px 0; font: 700 10px/14px var(--cc-font-sans); letter-spacing:.12em; text-transform:uppercase; color: var(--cc-fg-muted); }
+.pb { border:1px solid var(--cc-border); padding:16px; }
+.chapters { display:grid; grid-template-columns: repeat(9, minmax(0,1fr)); gap:6px; }
+.ch { border-top:3px solid; padding:8px 6px; font: 400 10px/13px var(--cc-font-sans); }
+.ch b { display:block; font: 900 20px/22px var(--cc-font-display); }
+@media (max-width: 900px) { .g6,.g5,.g4 { grid-template-columns: repeat(3, minmax(0,1fr)); } .type-specimen, .hero, .app-hero, .dash { grid-template-columns: 1fr; } .rules-list { columns:1; } .chapters { grid-template-columns: repeat(3,1fr); } .dash .cc-rail { width:auto; border-right:0; border-bottom:1px solid var(--cc-border); } }
+@media (max-width: 560px) { .g6,.g5,.g4,.g3,.g2 { grid-template-columns: repeat(2, minmax(0,1fr)); } .steps, .kpis { grid-template-columns: repeat(2,1fr); } .hero aside { border-left:0; padding-left:0; } }
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div>
+  <div><div class="wm">CYPRESS COMMAND</div><div class="sub">Design System · Brand Standards 2.0 · Final</div></div>
+  <div class="right"><span class="ver">v2.0 FINAL · 2026-09-22 · supersedes 1.0</span><button class="toggle" id="themeToggle" type="button" aria-pressed="false">Day / Night</button></div>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="cc-eyebrow">Cypress Command · Visual System</div>
+    <h1 class="cc-display" style="margin-top:12px">Ink on paper. One surface, one accent, three signals.</h1>
+    <p>One token set serves the company, the Playbook, Command Platform, and print. Terra is the only page-level accent. Cypress Green is a surface, never a color. Olive, Mustard and Oxblood carry state, never decoration. Color is never ornament: every colored element answers to a role, a state, a level, a chapter, or a risk.</p>
+  </div>
+  <aside>People<br>Systems<br>Real Work<br><strong>A more capable tomorrow.</strong></aside>
+</div>
+
+<section>
+  <div class="cc-section-head"><span class="num">01</span><span class="title">Core Palette · Day</span><span class="kicker">Surfaces, inks, and the brand surface</span></div>
+  <div class="grid g6" style="margin-top:16px">
+    <div class="swatch"><div class="chip" style="background:#F4EFE2"></div><div class="meta"><b>Paper</b><code>#F4EFE2</code><span>Page background</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#EAE2CD"></div><div class="meta"><b>Paper Deep</b><code>#EAE2CD</code><span>Plates, blockquotes, card heads, one full-bleed band</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#1E1B16"></div><div class="meta"><b>Ink</b><code>#1E1B16</code><span>Text, strokes, code, primary buttons</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#5C554A"></div><div class="meta"><b>Ink Soft</b><code>#5C554A</code><span>Secondary text, captions, inactive tabs</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#C9BFA8"></div><div class="meta"><b>Rule</b><code>#C9BFA8</code><span>Hairlines, table rows, dividers</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#1E4D3A"></div><div class="meta"><b>Cypress</b><code>#1E4D3A</code><span>Master-brand surface only. Never text. Never in the Playbook.</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">02</span><span class="title">Semantic Accents</span><span class="kicker">One accent. Three signals. One exception.</span></div>
+  <div class="grid g4" style="margin-top:16px">
+    <div class="swatch"><div class="chip" style="background:#A44E12"></div><div class="meta"><b>Terra · Primary</b><code>#A44E12 · night #D2802F</code><span>Eyebrows, active nav, links, primary CTA, byline mark, chapter accents. The only page-level accent.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#49573C"></div><div class="meta"><b>Olive · Success</b><code>#49573C · night #9AA989</code><span>Complete, positive state, "go". Starter level in the Playbook.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#8F6D0C"></div><div class="meta"><b>Mustard · Progress</b><code>#8F6D0C · night #CFA032</code><span>In progress, attention. Text only at ≥14px 700. Intermediate level.</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#8A2F1F"></div><div class="meta"><b>Oxblood · Critical</b><code>#8A2F1F · night #D27363</code><span>Blocked, refusal, "do not". Never emphasis, never a level.</span></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="pb">
+      <div class="cc-label">Retired — do not use</div>
+      <div class="row" style="margin-top:10px">
+        <span class="cc-tag cc-tag-neutral">Moss #2F6B4E → Olive</span><span class="cc-tag cc-tag-neutral">Amber #D97706 → Mustard</span><span class="cc-tag cc-tag-neutral">Charcoal → Ink</span><span class="cc-tag cc-tag-neutral">Bone → Paper</span><span class="cc-tag cc-tag-critical">Orange Ocean blue / orange</span>
+      </div>
+    </div>
+    <div class="pb">
+      <div class="cc-label">Contrast on Paper (WCAG)</div>
+      <div class="cc-mono" style="margin-top:10px; line-height:20px">Ink 14.95:1 · Ink Soft 6.41:1 · Terra 4.97:1 · Olive 6.75:1 · Oxblood 7.30:1 · Mustard 4.19:1 (large/bold only) · Paper on Cypress 8.40:1</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">03</span><span class="title">Night Values</span><span class="kicker">Same system. A darker surface. Hierarchy unchanged.</span></div>
+  <div class="night-board" style="margin-top:16px">
+    <div class="grid g5">
+      <div class="swatch"><div class="chip" style="background:#1B1813"></div><div class="meta"><b>Paper</b><code>#1B1813</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#26221B"></div><div class="meta"><b>Paper Deep</b><code>#26221B</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#F4EFE2"></div><div class="meta"><b>Ink</b><code>#F4EFE2</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#BEB4A2"></div><div class="meta"><b>Ink Soft</b><code>#BEB4A2</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#4E463A"></div><div class="meta"><b>Rule</b><code>#4E463A</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#163A2C"></div><div class="meta"><b>Cypress</b><code>#163A2C</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#D2802F"></div><div class="meta"><b>Terra</b><code>#D2802F</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#9AA989"></div><div class="meta"><b>Olive</b><code>#9AA989</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#CFA032"></div><div class="meta"><b>Mustard</b><code>#CFA032</code></div></div>
+      <div class="swatch"><div class="chip" style="background:#D27363"></div><div class="meta"><b>Oxblood</b><code>#D27363</code></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">04</span><span class="title">Typography</span><span class="kicker">Besley · Archivo · Courier Prime — all open licenses</span></div>
+  <div class="type-specimen" style="margin-top:16px">
+    <div>
+      <div class="cc-display">Build AI into how you actually operate.</div>
+      <div class="cc-body-doc" style="margin-top:16px; max-width:60ch">Besley 400 carries long-form and print at 17/26. It is a serious editorial serif with enough contrast to feel archival without feeling precious. Headlines set in 900 with tight tracking.</div>
+      <div style="margin-top:16px; font: 400 15px/24px var(--cc-font-sans); max-width:60ch">Archivo carries product interfaces, labels, navigation, tags, buttons, and the wordmark. Neutral, wide, mechanically clear at small sizes.</div>
+      <div class="cc-mono" style="margin-top:16px">inbox/2026-09-20.md · Suite_139 · PLATE 04 · TERRA · Fig. 02</div>
+    </div>
+    <div>
+      <div class="spec-row"><span class="r">Display</span><span style="font: 900 32px/34px var(--cc-font-display); letter-spacing:-.02em">Besley 900 · 56/60</span></div>
+      <div class="spec-row"><span class="r">H1</span><span style="font: 900 24px/28px var(--cc-font-display)">Besley 900 · 40/44</span></div>
+      <div class="spec-row"><span class="r">H2</span><span style="font: 700 20px/24px var(--cc-font-display)">Besley 700 · 28/32</span></div>
+      <div class="spec-row"><span class="r">H3</span><span style="font: 700 17px/22px var(--cc-font-sans)">Archivo 700 · 20/26</span></div>
+      <div class="spec-row"><span class="r">Body · doc</span><span style="font: 400 15px/22px var(--cc-font-display)">Besley 400 · 17/26</span></div>
+      <div class="spec-row"><span class="r">Body · UI</span><span style="font: 400 14px/20px var(--cc-font-sans)">Archivo 400 · 16/24</span></div>
+      <div class="spec-row"><span class="r">Label</span><span class="cc-eyebrow">Archivo 700 · 11 · tracked 0.10em</span></div>
+      <div class="spec-row"><span class="r">Mono</span><span class="cc-mono">Courier Prime 400 · 12/17</span></div>
+      <div class="spec-row"><span class="r">Quote</span><span style="font: italic 400 17px/22px var(--cc-font-display)">"Knowledge compounds when it is well arranged."</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">05</span><span class="title">Mark and Lockups</span><span class="kicker">The 04C mark · closed frame, right notch, inset core · one flat fill, color by context</span></div>
+  <div class="logo-row" style="margin-top:16px">
+    <div class="logo-cell"><div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#1E1B16" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">ink · nav, footer, documents</div></div>
+    <div class="logo-cell"><div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#A44E12" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">terra · byline, covers, avatar</div></div>
+    <div class="logo-cell on-cypress"><div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#F4EFE2" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">paper on Cypress surface</div></div>
+    <div class="logo-cell on-night"><div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#F4EFE2" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">paper on night</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="logo-cell" style="align-items:stretch"><div style="max-width:360px"><svg viewBox="0 0 440 100" width="100%" aria-label="Cypress Command"><path fill-rule="evenodd" fill="#1E1B16" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/><rect x="122" y="0" width="2.5" height="100" fill="#1E1B16"/><g font-family="Archivo, Inter, Arial, sans-serif" font-weight="800" font-size="35" letter-spacing="1" fill="#1E1B16"><text x="146" y="47">CYPRESS</text><text x="146" y="87">COMMAND</text></g></svg></div><div class="lab">horizontal lockup · mark · hairline · Archivo 800 · clear space = frame thickness</div></div>
+    <div class="logo-cell"><div style="max-width:220px"><svg viewBox="0 0 440 100" width="100%" aria-label="Cypress Command"><path fill-rule="evenodd" fill="#A44E12" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/><rect x="122" y="0" width="2.5" height="100" fill="#A44E12"/><g font-family="Archivo, Inter, Arial, sans-serif" font-weight="800" font-size="35" letter-spacing="1" fill="#A44E12"><text x="146" y="47">CYPRESS</text><text x="146" y="87">COMMAND</text></g></svg></div><div class="lab">byline lockup · "by Cypress Command"</div></div>
+  </div>
+
+  <div class="cc-label" style="margin-top:20px">Colorways · one flat fill, chosen by context</div>
+  <div class="logo-row" style="margin-top:8px">
+    <div class="logo-cell"><div class="mk" style="width:56px;height:56px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#1E1B16" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">ink · documents, nav</div></div>
+    <div class="logo-cell"><div class="mk" style="width:56px;height:56px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#A44E12" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">terra · bylines, covers, avatar</div></div>
+    <div class="logo-cell"><div class="mk" style="width:56px;height:56px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#49573C" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">olive · complete / Starter</div></div>
+    <div class="logo-cell"><div class="mk" style="width:56px;height:56px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#8F6D0C" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">mustard · in progress / Intermediate</div></div>
+    <div class="logo-cell"><div class="mk" style="width:56px;height:56px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#1E4D3A" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">cypress · dark-on-light alternate</div></div>
+    <div class="logo-cell on-cypress"><div class="mk" style="width:56px;height:56px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#D2802F" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><div class="lab">night terra on cypress · ≥40 px only</div></div>
+  </div>
+  <p class="cc-small cc-muted" style="max-width:70ch; margin-top:12px">Minimums: mark 20 px / 6 mm · lockup 120 px / 32 mm. The mark is monochrome and takes any single palette token by context — Ink on documents, Terra for bylines and covers, Paper on dark surfaces, Olive or Mustard when it labels a state, Cypress as a dark-on-light alternate. One color per instance; ≥4.5:1 against its ground; never Oxblood, never two-tone, never a gradient. Never rotate, shadow, outline, stretch, or set on photography without a panel. Inside the Playbook: Ink, Terra, Paper only.</p>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">06</span><span class="title">Components</span><span class="kicker">Modular · consistent · practical</span></div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="demo"><h4>Buttons</h4><div class="row"><button class="cc-btn cc-btn-primary" type="button">Primary</button><button class="cc-btn cc-btn-accent" type="button">Get Started</button><button class="cc-btn cc-btn-secondary" type="button">Secondary</button><button class="cc-btn cc-btn-tertiary" type="button">Tertiary →</button></div></div>
+    <div class="demo"><h4>Status tags</h4><div class="row"><span class="cc-tag cc-tag-success">Complete</span><span class="cc-tag cc-tag-warning">In Progress</span><span class="cc-tag cc-tag-critical">Blocked</span><span class="cc-tag cc-tag-accent">Active</span><span class="cc-tag cc-tag-neutral">Draft</span></div></div>
+    <div class="demo"><h4>Tabs</h4><div class="cc-tabs" role="tablist"><button class="cc-tab" role="tab" aria-selected="true" type="button">Overview</button><button class="cc-tab" role="tab" aria-selected="false" type="button">Documents</button><button class="cc-tab" role="tab" aria-selected="false" type="button">Interviews</button></div></div>
+    <div class="demo"><h4>Inputs</h4><input class="cc-input" id="demo-search" type="text" placeholder="Search prompts, people, or topics…"><label class="cc-small"><input class="cc-checkbox" id="demo-check" type="checkbox" checked> Include in report</label><label class="cc-small" style="display:flex;align-items:center;gap:8px"><input class="cc-toggle" id="demo-toggle" type="checkbox" checked> Enable notifications</label></div>
+    <div class="demo"><h4>Card</h4><div class="cc-card cc-card-accent"><div class="cc-eyebrow">Work Order</div><div class="cc-h3" style="margin-top:6px">Suite 139 · Parking lot repair</div><div class="cc-small cc-muted" style="margin-top:6px">Vendor scheduled · Sep 22</div></div></div>
+    <div class="demo"><h4>Alerts</h4><div class="cc-alert cc-alert-success">Lease addendum executed · Suite 109</div><div class="cc-alert cc-alert-critical">Never use AI outputs in high-stakes contexts without human review.</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="demo"><h4>Table</h4><div style="overflow-x:auto"><table class="cc-table"><thead><tr><th>Dimension</th><th>Indicator</th><th>State</th></tr></thead><tbody><tr><td>Context</td><td>AI receives your role, audience, priorities</td><td><span class="cc-tag cc-tag-success">Pass</span></td></tr><tr><td>Truth</td><td>Key sources have owners, dates, status</td><td><span class="cc-tag cc-tag-warning">Partial</span></td></tr><tr><td>Governance</td><td>Boundaries enforced by permissions or a human gate</td><td><span class="cc-tag cc-tag-critical">Missing</span></td></tr></tbody></table></div></div>
+    <div class="demo"><h4>Plate / figure</h4><div class="cc-plate"><div class="cc-plate-label">Plate 04 · Terra</div><div class="row" style="margin-top:12px; gap:0"><div style="border:1px solid var(--cc-fg); padding:8px 12px; font: 700 11px/14px var(--cc-font-sans)">BOOT</div><div style="width:24px;height:1px;background:var(--cc-fg)"></div><div style="border:1px solid var(--cc-fg); padding:8px 12px; font: 700 11px/14px var(--cc-font-sans)">WORK</div><div style="width:24px;height:1px;background:var(--cc-fg)"></div><div style="border:1px solid var(--cc-fg); padding:8px 12px; font: 700 11px/14px var(--cc-font-sans)">SHUTDOWN</div></div><div style="margin-top:12px"><span class="cc-fig">Fig. 04</span> <span class="cc-fig-caption">Session boot sequence — boot, work, shutdown, review</span></div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">07</span><span class="title">Applications</span><span class="kicker">One system · many surfaces</span></div>
+  <p class="cc-small cc-muted" style="margin:10px 0 0; max-width:80ch">Hatched panels mark where photography goes. The imagery rule: real places, real people, real progress — muted daylight photographs of actual sites and work, framed by a hairline. No stock "AI" imagery, no renders passed off as photos.</p>
+  <div class="grid g2" style="margin-top:16px">
+    <div>
+      <div class="cc-label" style="margin-bottom:8px">A · Website hero (Editorial)</div>
+      <div class="app">
+        <div class="app-nav"><div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><b style="letter-spacing:.06em">CYPRESS COMMAND</b><div class="links"><span>Our Approach</span><span>Services</span><span>Case Studies</span><span>Insights</span></div><span class="cc-btn cc-btn-accent" style="padding:6px 10px;font-size:11px">Get Started</span></div>
+        <div class="app-hero"><div><div class="cc-h1" style="font-size:32px;line-height:34px">Smarter Operations for What's Next.</div><p class="cc-small" style="max-width:40ch">We help real businesses design, install, and run AI systems that make everyday work simpler, faster, and more effective.</p><div class="row"><span class="cc-btn cc-btn-accent" style="font-size:12px">Get Started</span><span class="cc-btn cc-btn-secondary" style="font-size:12px">See How It Works →</span></div></div><div class="photo"></div></div>
+        <div class="steps"><div>01<b>Strategize</b></div><div>02<b>Design</b></div><div>03<b>Install</b></div><div>04<b>Operate</b></div></div>
+      </div>
+    </div>
+    <div class="grid g2">
+      <div><div class="cc-label" style="margin-bottom:8px">B · Proposal cover</div>
+        <div class="cover"><div class="row" style="justify-content:space-between"><div class="row" style="gap:8px"><div class="mk"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="#1E1B16" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><b style="font: 800 10px/12px var(--cc-font-sans); letter-spacing:.06em">CYPRESS<br>COMMAND</b></div><span style="font: 400 8px/11px var(--cc-font-mono)">CONFIDENTIAL<br>SEPT 2026</span></div><div style="font: 700 8px/11px var(--cc-font-sans); letter-spacing:.14em; color:#A44E12; margin-top:18px">PROPOSAL</div><div class="ttl" style="margin-top:6px">AI Operating System for On The Boulevard</div><div style="font: 400 8px/11px var(--cc-font-mono); margin-top:6px">PEOPLE. PROCESSES. PLACES.<br>A MORE CAPABLE TOMORROW.</div><div class="ph"></div><div class="ft"><span>PREPARED FOR<br><b>Belle Realty of Lafayette, LLC</b></span><span style="text-align:right">PREPARED BY<br><b>Cypress Command</b></span></div></div>
+      </div>
+      <div><div class="cc-label" style="margin-bottom:8px">C · Presentation (Cypress surface)</div>
+        <div class="slide"><div class="top"><span>CYPRESS COMMAND</span><span>CONFIDENTIAL</span></div><div class="big">From Complexity to Clarity.</div><div class="rule"></div><div style="font: 400 12px/16px var(--cc-font-display); max-width:60%">AI systems that make real work better.</div><div class="agenda"><span>01</span>PEOPLE<br><span>02</span>PROCESSES<br><span>03</span>TECHNOLOGY<br><span>04</span>OUTCOMES</div><div class="bot">A MORE CAPABLE TOMORROW.</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:16px">
+    <div class="cc-label" style="margin-bottom:8px">D · Command Platform (Digital)</div>
+    <div class="dash">
+      <nav class="cc-rail"><div class="row" style="gap:8px; padding:4px 10px 12px"><div class="mk" style="width:20px;height:20px"><svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M 10 0 H 90 A 10 10 0 0 1 100 10 V 90 A 10 10 0 0 1 90 100 H 10 A 10 10 0 0 1 0 90 V 10 A 10 10 0 0 1 10 0 Z M 22 22 V 78 H 78 V 61 H 100 V 42 H 78 V 22 Z M 34 34 V 66 H 66 V 34 Z"/></svg></div><b style="font: 800 10px/12px var(--cc-font-sans); letter-spacing:.06em">CYPRESS<br>COMMAND</b></div><a class="cc-rail-item" aria-current="page" href="#">Home</a><a class="cc-rail-item" href="#">Properties</a><a class="cc-rail-item" href="#">Work Orders</a><a class="cc-rail-item" href="#">Tenants</a><a class="cc-rail-item" href="#">Invoices</a><a class="cc-rail-item" href="#">Reports</a><a class="cc-rail-item" href="#">AI Assistants</a><a class="cc-rail-item" href="#">Settings</a></nav>
+      <div class="main"><div class="row" style="justify-content:space-between"><div><div class="cc-h2" style="font-size:22px;line-height:26px">Good afternoon, Adam.</div><div class="cc-small cc-muted">Here's what's happening across your portfolio.</div></div><span class="cc-mono">Sunday, Sep 20, 2026</span></div>
+        <div class="kpis"><div class="kpi"><b>92%</b><span>Occupancy</span> <i style="color:var(--cc-success)">+4%</i></div><div class="kpi"><b>12</b><span>Open Work Orders</span> <i style="color:var(--cc-success)">−3</i></div><div class="kpi"><b>5</b><span>Lease Renewals</span> <i class="cc-muted">Next 90 days</i></div><div class="kpi"><b>$48.2K</b><span>AR Outstanding</span> <i style="color:var(--cc-success)">−12%</i></div></div>
+        <div class="grid g2"><div class="cc-card"><div class="cc-label">Property overview</div><div class="bars"><span style="height:60%"></span><span style="height:75%"></span><span style="height:90%"></span><span style="height:70%"></span><span style="height:85%"></span><span style="height:55%;background:var(--cc-warning)"></span><span style="height:40%;background:var(--cc-warning)"></span><span style="height:30%;background:var(--cc-critical)"></span></div><div class="row cc-caption" style="margin-top:6px"><span>■ Occupied</span><span style="color:var(--cc-warning)">■ Vacant</span><span style="color:var(--cc-critical)">■ Coming Due</span></div></div>
+        <div class="cc-card"><div class="cc-label">Recent activity</div><div class="cc-small" style="margin-top:8px;display:grid;gap:6px"><div>Work order completed · <span class="cc-muted">Suite 139 · Sep 19</span></div><div>Lease addendum executed · <span class="cc-muted">Suite 109 · Sep 18</span></div><div>Invoice sent · <span class="cc-muted">Suite 145 · Sep 18</span></div><div>New tenant inquiry · <span class="cc-muted">Suite 131 · Sep 17</span></div></div></div></div>
+      </div>
+    </div>
+    <p class="cc-caption" style="margin-top:8px">Figures shown are placeholders from the v1.0 design board, not live portfolio data.</p>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">08</span><span class="title">Sub-brand · The AI Playbook</span><span class="kicker">Same tokens · chapter inks · level inks · no Cypress Green</span></div>
+  <div class="pb" style="margin-top:16px" data-brand="playbook">
+    <div class="row" style="justify-content:space-between"><div><div class="cc-eyebrow">The AI Playbook by Cypress Command</div><div class="cc-h2" style="margin-top:4px">Four level inks, nine chapter inks, one risk ink.</div></div><div class="row"><span class="pb-level pb-level-starter">Starter</span><span class="pb-level pb-level-intermediate">Intermediate</span><span class="pb-level pb-level-expert">Expert</span><span class="pb-level pb-level-frontier">Frontier Operator</span><span class="pb-level pb-risk">Critical Incident</span></div></div>
+    <div class="chapters" style="margin-top:16px">
+      <div class="ch" style="border-color:#A44E12"><b style="color:#A44E12">01</b>The Promise</div><div class="ch" style="border-color:#49573C"><b style="color:#49573C">02</b>How the Program Works</div><div class="ch" style="border-color:#8F6D0C"><b style="color:#8F6D0C">03</b>The Four Levels</div><div class="ch" style="border-color:#A44E12"><b style="color:#A44E12">04</b>The Document System</div><div class="ch" style="border-color:#8F6D0C"><b style="color:#8F6D0C">05</b>The Master Interview Engine</div><div class="ch" style="border-color:#49573C"><b style="color:#49573C">06</b>The Foundation Protocols</div><div class="ch" style="border-color:#A44E12"><b style="color:#A44E12">07</b>Implementation Intentions</div><div class="ch" style="border-color:#8A2F1F"><b style="color:#8A2F1F">08</b>What We Deliberately Don't Do</div><div class="ch" style="border-color:#8F6D0C"><b style="color:#8F6D0C">09</b>How This Document Is Illustrated</div>
+    </div>
+    <p class="cc-small cc-muted" style="margin-top:12px; max-width:80ch">The Playbook is a <em>scope</em> of this system (<code class="cc-mono">[data-brand="playbook"]</code>), not a fork. It inherits every token, remaps the brand surface to Ink, and adds level and chapter roles. Rules from the Playbook Brand Kit rev. 2 apply inside it unchanged.</p>
+  </div>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">09</span><span class="title">Brand Architecture</span><span class="kicker">Cypress Command names the company and nothing else</span></div>
+<pre class="arch" style="margin-top:16px">CYPRESS COMMAND                  company · master brand · cypresscommand.com
+├── The AI Operating Standard    what should exist (open methodology)
+│   └── The AI Playbook          the published, illustrated edition · ten interviews · four levels
+├── Command Installation         how it gets built with you (service)
+├── Command Platform             software supporting the operating environment (ex-Atlas)
+├── On The Boulevard             proof in the real world (flagship case study)
+└── Applied AI Curriculum        operator → builder → practitioner (separate track)</pre>
+</section>
+
+<section>
+  <div class="cc-section-head"><span class="num">10</span><span class="title">Rules</span><span class="kicker">A small set. Big discipline.</span></div>
+  <ol class="rules-list" style="margin-top:8px">
+    <li>Terra is the only page-level accent: eyebrows, active nav, links, byline mark, primary CTA.</li>
+    <li>Cypress Green is a surface, never a text color. Text on it is Paper; accent on it is night Terra. It never appears in the Playbook. The mark may take it as a dark-on-light fill.</li>
+    <li>Olive, Mustard, and Oxblood carry state. They never decorate.</li>
+    <li>Oxblood means "do not." Never emphasis, never importance, never a level.</li>
+    <li>Never more than one accent ink in view at once; Oxblood may join any of them as risk.</li>
+    <li>Paper Deep is a surface, not a color. Objects inside a band return to Paper.</li>
+    <li>No shadows. No radius above 2 px on documents, 4 px in product. Hairlines carry structure.</li>
+    <li>Besley for display and long-form body; Archivo for UI and labels; Courier Prime for technical content only.</li>
+    <li>Night inverts Paper and Ink and lifts the accents to their night values. Hierarchy and roles do not change.</li>
+    <li>Orange Ocean, Moss, Amber, Charcoal, and Bone are retired and must not appear.</li>
+    <li>Sub-brands are scopes of this token set, never new palettes.</li>
+    <li>tokens.css is the single source of truth. Figma, Tailwind, print, and the Playbook consume it.</li>
+  </ol>
+</section>
+
+<footer class="footer">
+  <div class="cc-stripe"><span></span><span></span><span></span><span></span></div>
+  <div class="line"><span>Cypress Command · Design System v2.0</span><span>Practical intelligence for real operations.</span><span>Systems under control. Results that last.</span></div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  function isDark(){ var t=root.getAttribute('data-theme'); if(t==='dark'||t==='night') return true; if(t==='light'||t==='day') return false; return window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function paint(){ btn.setAttribute('aria-pressed', isDark()?'true':'false'); btn.textContent = isDark()?'Night · switch to Day':'Day · switch to Night'; }
+  try { var s=localStorage.getItem('cc-theme'); if(s==='dark'||s==='light') root.setAttribute('data-theme', s); } catch(e){}
+  btn.addEventListener('click', function(){ var next=isDark()?'light':'dark'; root.setAttribute('data-theme', next); try{localStorage.setItem('cc-theme', next);}catch(e){} paint(); });
+  paint();
+})();
+</script>

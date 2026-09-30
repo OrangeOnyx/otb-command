@@ -1,0 +1,89 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$name": "Cypress Command Design Tokens",
+  "$version": "2.0.0",
+  "$description": "Single source of truth. Day is default; night values in $extensions. Playbook consumes the same tokens minus cypress.",
+  "color": {
+    "paper":      { "$type": "color", "$value": "#F4EFE2", "$description": "Page background", "$extensions": { "cc.night": "#1B1813" } },
+    "paper-deep": { "$type": "color", "$value": "#EAE2CD", "$description": "Plates, blockquotes, card heads, one full-bleed band", "$extensions": { "cc.night": "#26221B" } },
+    "ink":        { "$type": "color", "$value": "#1E1B16", "$description": "Text, strokes, code, primary buttons", "$extensions": { "cc.night": "#F4EFE2" } },
+    "ink-soft":   { "$type": "color", "$value": "#5C554A", "$description": "Secondary text, captions, inactive tabs", "$extensions": { "cc.night": "#BEB4A2" } },
+    "rule":       { "$type": "color", "$value": "#C9BFA8", "$description": "Hairlines, table rows, dividers", "$extensions": { "cc.night": "#4E463A" } },
+    "cypress":    { "$type": "color", "$value": "#1E4D3A", "$description": "Master-brand SURFACE only. Never text. Never in Playbook.", "$extensions": { "cc.night": "#163A2C", "cc.scope": "corporate-only" } },
+    "terra":      { "$type": "color", "$value": "#A44E12", "$description": "Primary accent: eyebrows, active nav, links, CTA, byline mark", "$extensions": { "cc.night": "#D2802F", "cc.light": "#C7681D" } },
+    "olive":      { "$type": "color", "$value": "#49573C", "$description": "Success / complete / Starter level", "$extensions": { "cc.night": "#9AA989", "cc.light": "#5A6B4A" } },
+    "mustard":    { "$type": "color", "$value": "#8F6D0C", "$description": "In progress / attention / Intermediate level. ≥14px 700 only.", "$extensions": { "cc.night": "#CFA032", "cc.light": "#D9A419" } },
+    "oxblood":    { "$type": "color", "$value": "#8A2F1F", "$description": "Critical / refusal / risk ink. Never emphasis, never a level.", "$extensions": { "cc.night": "#D27363" } },
+    "retired": {
+      "$description": "Do not use. Listed so tooling can lint against them.",
+      "orange-ocean-blue":   { "$type": "color", "$value": "#0B5FFF", "$deprecated": true },
+      "orange-ocean-orange": { "$type": "color", "$value": "#FF7A00", "$deprecated": true },
+      "moss":    { "$type": "color", "$value": "#2F6B4E", "$deprecated": "Use olive" },
+      "amber":   { "$type": "color", "$value": "#D97706", "$deprecated": "Use mustard" },
+      "charcoal":{ "$type": "color", "$value": "#0A1F16", "$deprecated": "Use ink" },
+      "bone":    { "$type": "color", "$value": "#F3EDE0", "$deprecated": "Use paper" }
+    }
+  },
+  "role": {
+    "bg":            { "$type": "color", "$value": "{color.paper}" },
+    "bg-elev":       { "$type": "color", "$value": "{color.paper-deep}" },
+    "fg":            { "$type": "color", "$value": "{color.ink}" },
+    "fg-muted":      { "$type": "color", "$value": "{color.ink-soft}" },
+    "border":        { "$type": "color", "$value": "{color.rule}" },
+    "accent":        { "$type": "color", "$value": "{color.terra}" },
+    "success":       { "$type": "color", "$value": "{color.olive}" },
+    "warning":       { "$type": "color", "$value": "{color.mustard}" },
+    "critical":      { "$type": "color", "$value": "{color.oxblood}" },
+    "surface-brand": { "$type": "color", "$value": "{color.cypress}" },
+    "on-brand":      { "$type": "color", "$value": "{color.paper}" },
+    "focus":         { "$type": "color", "$value": "{color.terra}" }
+  },
+  "font": {
+    "display": { "$type": "fontFamily", "$value": ["Besley", "Fraunces", "Georgia", "serif"], "$description": "Headlines, cover titles, numerals, pull quotes; document body at 400" },
+    "sans":    { "$type": "fontFamily", "$value": ["Archivo", "Inter", "system-ui", "sans-serif"], "$description": "UI, labels, nav, tags, buttons, wordmark, product body" },
+    "mono":    { "$type": "fontFamily", "$value": ["Courier Prime", "JetBrains Mono", "monospace"], "$description": "Code, file names, IDs, metadata" }
+  },
+  "type": {
+    "display": { "$type": "typography", "$value": { "fontFamily": "{font.display}", "fontWeight": 900, "fontSize": "56px", "lineHeight": "60px", "letterSpacing": "-0.02em" } },
+    "h1":      { "$type": "typography", "$value": { "fontFamily": "{font.display}", "fontWeight": 900, "fontSize": "40px", "lineHeight": "44px", "letterSpacing": "-0.02em" } },
+    "h2":      { "$type": "typography", "$value": { "fontFamily": "{font.display}", "fontWeight": 700, "fontSize": "28px", "lineHeight": "32px", "letterSpacing": "-0.01em" } },
+    "h3":      { "$type": "typography", "$value": { "fontFamily": "{font.sans}",    "fontWeight": 700, "fontSize": "20px", "lineHeight": "26px" } },
+    "body":    { "$type": "typography", "$value": { "fontFamily": "{font.sans}",    "fontWeight": 400, "fontSize": "16px", "lineHeight": "24px" } },
+    "body-doc":{ "$type": "typography", "$value": { "fontFamily": "{font.display}", "fontWeight": 400, "fontSize": "17px", "lineHeight": "26px" } },
+    "small":   { "$type": "typography", "$value": { "fontFamily": "{font.sans}",    "fontWeight": 400, "fontSize": "14px", "lineHeight": "20px" } },
+    "caption": { "$type": "typography", "$value": { "fontFamily": "{font.sans}",    "fontWeight": 400, "fontSize": "12px", "lineHeight": "16px" } },
+    "label":   { "$type": "typography", "$value": { "fontFamily": "{font.sans}",    "fontWeight": 700, "fontSize": "11px", "lineHeight": "14px", "letterSpacing": "0.10em", "textCase": "uppercase" } },
+    "mono":    { "$type": "typography", "$value": { "fontFamily": "{font.mono}",    "fontWeight": 400, "fontSize": "12px", "lineHeight": "17px" } }
+  },
+  "space": {
+    "1": { "$type": "dimension", "$value": "4px" },  "2": { "$type": "dimension", "$value": "8px" },
+    "3": { "$type": "dimension", "$value": "12px" }, "4": { "$type": "dimension", "$value": "16px" },
+    "6": { "$type": "dimension", "$value": "24px" }, "8": { "$type": "dimension", "$value": "32px" },
+    "12": { "$type": "dimension", "$value": "48px" }, "16": { "$type": "dimension", "$value": "64px" },
+    "24": { "$type": "dimension", "$value": "96px" }
+  },
+  "radius": {
+    "doc":  { "$type": "dimension", "$value": "2px" },
+    "ui":   { "$type": "dimension", "$value": "4px" },
+    "mark": { "$type": "dimension", "$value": "6px" }
+  },
+  "rule": {
+    "hairline": { "$type": "dimension", "$value": "1px" },
+    "plate":    { "$type": "dimension", "$value": "3px" }
+  },
+  "playbook": {
+    "$description": "Sub-brand scope. Same palette; cypress excluded by rule.",
+    "level": {
+      "starter":      { "$type": "color", "$value": "{color.olive}" },
+      "intermediate": { "$type": "color", "$value": "{color.mustard}" },
+      "expert":       { "$type": "color", "$value": "{color.terra}" },
+      "frontier":     { "$type": "color", "$value": "{color.ink}" }
+    },
+    "risk": { "$type": "color", "$value": "{color.oxblood}" },
+    "chapter": {
+      "01": "{color.terra}", "02": "{color.olive}", "03": "{color.mustard}",
+      "04": "{color.terra}", "05": "{color.mustard}", "06": "{color.olive}",
+      "07": "{color.terra}", "08": "{color.oxblood}", "09": "{color.mustard}"
+    }
+  }
+}

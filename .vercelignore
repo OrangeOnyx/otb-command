@@ -26,3 +26,6 @@ tools/brand-assets
 capture/
 bridge
 public/elevation
+
+# Ingested operator sources — private reference only, never uploaded to Vercel
+sources

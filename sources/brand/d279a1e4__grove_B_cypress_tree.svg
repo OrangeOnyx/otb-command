@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 160">
+  <rect width="460" height="160" fill="#F3EDE0"/>
+  <!-- Stylized italian cypress silhouette — tall, columnar, dignified -->
+  <g transform="translate(50, 20)">
+    <!-- Cypress: elongated flame/teardrop -->
+    <path d="M 30 120 Q 8 90 12 60 Q 15 30 30 6 Q 45 30 48 60 Q 52 90 30 120 Z" fill="#1E4D3A"/>
+    <!-- Trunk -->
+    <rect x="28" y="118" width="4" height="14" fill="#78522A"/>
+    <!-- Ground line -->
+    <line x1="6" y1="134" x2="54" y2="134" stroke="#78522A" stroke-width="1.5"/>
+  </g>
+  <!-- Wordmark, refined serif, tight tracking -->
+  <text x="140" y="72" font-family="Fraunces, Georgia, serif" font-size="30" font-weight="700" fill="#1E4D3A" letter-spacing="0.02em">Cypress</text>
+  <text x="140" y="104" font-family="Fraunces, Georgia, serif" font-size="30" font-weight="700" fill="#1E4D3A" letter-spacing="0.02em">Command</text>
+  <text x="140" y="126" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="500" fill="#78522A" letter-spacing="0.24em">PROPERTIES · SINCE 2015</text>
+</svg>

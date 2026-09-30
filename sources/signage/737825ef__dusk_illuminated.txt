@@ -1,0 +1,38 @@
+# DELIVERABLE TEMPLATE — Dusk Illuminated Variant (Social / Marketing)
+# Full stack: LAYER 1 (Global Style) + LAYER 2 (Category) + LAYER 3 (Scene: dusk) + TENANT-SPECIFIC
+
+USAGE
+Replace {TENANT_NAME}, {CATEGORY}, and concatenate the four blocks below in order.
+
+DELIVERABLE INTENT
+Composition: same inline storefront framing as the hero, captured at deep
+blue hour with full signage illumination. Channel letters glowing evenly, halo-lit
+elements producing soft architectural backlight on facade. Warm interior light
+spilling onto sidewalk. Cinematic but restrained — suitable for social media,
+marketing collateral, and stakeholder leasing decks.
+
+============================================================
+[BLOCK 1] LAYER 1 — GLOBAL STYLE
+Insert full contents of: prompt_library/layer_1_global_style.txt
+============================================================
+
+[BLOCK 2] LAYER 2 — CATEGORY ENHANCEMENT
+Insert full contents of: prompt_library/layer_2_category_{CATEGORY}.txt
+(boutique | restaurant | salon | fitness | financial | medical | services | retail)
+
+============================================================
+
+[BLOCK 3] LAYER 3 — SCENE VARIANT
+Insert full contents of: prompt_library/layer_3_scene_dusk.txt
+
+============================================================
+
+[BLOCK 4] TENANT-SPECIFIC ENHANCEMENT
+Insert full contents of: prompt_library/tenant_specific/{tenant_slug}.txt
+
+============================================================
+
+FINAL DIRECTIVE
+Generate one photorealistic rendering of {TENANT_NAME} at On The Boulevard
+Shopping Center matching every specification above. Logo integrity is paramount.
+Output investor-grade quality.

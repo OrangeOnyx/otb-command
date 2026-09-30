@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" fill="#F3EDE0"/>
+  <g stroke="#1E4D3A" opacity="0.18">
+    <line x1="0" y1="20" x2="300" y2="20" stroke-width="0.4"/><line x1="0" y1="36" x2="300" y2="36" stroke-width="0.4"/><line x1="0" y1="52" x2="300" y2="52" stroke-width="0.4"/><line x1="0" y1="68" x2="300" y2="68" stroke-width="0.4"/><line x1="0" y1="84" x2="300" y2="84" stroke-width="0.4"/><line x1="0" y1="100" x2="300" y2="100" stroke-width="0.4"/><line x1="0" y1="116" x2="300" y2="116" stroke-width="0.4"/><line x1="0" y1="132" x2="300" y2="132" stroke-width="0.4"/><line x1="0" y1="148" x2="300" y2="148" stroke-width="0.4"/><line x1="0" y1="164" x2="300" y2="164" stroke-width="0.4"/><line x1="0" y1="180" x2="300" y2="180" stroke-width="0.4"/><line x1="0" y1="196" x2="300" y2="196" stroke-width="0.4"/>
+    <line x1="40" y1="0" x2="40" y2="200" stroke="#D97706" stroke-width="0.6" opacity="0.5"/>
+    <line x1="44" y1="0" x2="44" y2="200" stroke="#D97706" stroke-width="0.6" opacity="0.5"/>
+  </g>
+</svg>

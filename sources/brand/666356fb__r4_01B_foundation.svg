@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#F3EDE0"/>
+  <!-- 01B — Refined geometry. Thinner stroke, larger counter, chip centered. -->
+  <g transform="translate(20, 20)">
+    <path d="M 80 0 A 80 80 0 1 0 80 160 L 80 118 A 38 38 0 1 1 80 42 Z" fill="#1E4D3A"/>
+    <rect x="66" y="66" width="28" height="28" fill="#2F6B4E"/>
+    <rect x="76" y="76" width="8" height="8" fill="#D97706"/>
+  </g>
+</svg>

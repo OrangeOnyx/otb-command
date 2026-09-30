@@ -1,0 +1,19 @@
+:root {
+  --cc-paper: #F4EFE2;
+  --cc-paper-deep: #E8E2CD;
+  --cc-ink: #1E1B16;
+  --cc-ink-soft: #5C554A;
+  --cc-rule: #C9BFA8;
+  --cc-olive: #49573C;
+  --cc-mustard: #8F6D0C;
+  --cc-terra: #A44E12;
+  --cc-oxblood: #8A2F1F;
+  --cc-font-display: "Libertinus Serif", Georgia, serif;
+  --cc-font-ui: Inter, Arial, sans-serif;
+  --cc-font-mono: "IBM Plex Mono", "Courier New", monospace;
+  --cc-space-1: 4px; --cc-space-2: 8px; --cc-space-3: 12px;
+  --cc-space-4: 16px; --cc-space-6: 24px; --cc-space-8: 32px;
+  --cc-space-12: 48px; --cc-space-16: 64px; --cc-space-24: 96px;
+  --cc-radius-sm: 2px; --cc-radius-md: 4px;
+  --cc-rule-thin: 1px; --cc-rule-strong: 2px;
+}

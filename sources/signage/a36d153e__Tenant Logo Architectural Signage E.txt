@@ -1,0 +1,86 @@
+Tenant Logo Architectural Signage Enhancements
+
+Tenant-Specific Architectural Signage Enhancement Prompts
+Based on the uploaded tenant logo inventory and site plan materials, these are customized enhancement directives intended to be appended to the master signage-rendering prompt for each tenant.
+
+Reference tenant inventory and logos: fileciteturn0file0
+
+101–103 — The Pink Paisley
+Enhancement Block
+Use elegant matte-black dimensional lettering with subtle feminine luxury styling. The paisley icon should appear as a layered dimensional acrylic emblem with soft blush-pink illumination and refined shadow depth. The overall sign should feel boutique-forward, upscale, clean, and Instagram-friendly while maintaining architectural sophistication appropriate for a premium lifestyle center.
+105 — Painted Bayou
+Enhancement Block
+Create an artisan-inspired fabricated sign with subtle hand-crafted character while maintaining premium architectural quality. Use layered dimensional lettering with weathered metallic accents and muted natural tones inspired by Louisiana wetlands and artistic textures. The sign should feel creative, locally rooted, upscale, and visually distinctive without appearing rustic or distressed.
+107 — Great American Cookies
+Enhancement Block
+Transform the colorful logo into vibrant premium channel lettering with dimensional acrylic depth and soft warm illumination. Preserve the playful color palette while elevating the execution to feel polished and high-end. The sign should feel energetic, family-friendly, and dessert-oriented while still fitting within a luxury outdoor retail environment.
+109 — JC Kate Boutique
+Enhancement Block
+Use elegant champagne-gold dimensional lettering with subtle halo illumination and refined boutique styling. The typography should feel fashion-forward, feminine, and luxurious. The sign should resemble premium designer retail signage commonly seen in upscale lifestyle centers and luxury mixed-use developments.
+111 — Lola Pink Fabrics / Bernina Lafayette
+Enhancement Block
+Create a clean modern fabricated sign system using layered dimensional acrylic elements and crisp color separation. Preserve the bright Bernina red and aqua color palette while upgrading the presentation to a polished architectural storefront installation. The sign should feel creative, premium, and design-oriented with precision fabrication detail.
+113 — Graze Acadiana
+Enhancement Block
+Use minimalist upscale dimensional lettering with refined spacing and understated luxury. The sign should feel modern, culinary-focused, and boutique hospitality-inspired. Use matte black or dark bronze fabricated lettering with subtle halo illumination and elegant depth. Maintain a clean editorial aesthetic similar to premium wine bars or modern cafés.
+115–117 — Clothing Loft Exchange
+Enhancement Block
+Create a sophisticated fashion-retail sign using dimensional matte-black lettering with soft backlit illumination. Maintain the clean modern typography while elevating the storefront presentation to resemble upscale fashion retail branding found in contemporary lifestyle developments.
+117.5 — Victoria Nails
+Enhancement Block
+Use elegant dimensional script-style fabricated lettering with soft gold metallic accents and refined halo illumination. The sign should feel luxurious, beauty-focused, and spa-inspired while remaining architecturally sophisticated and commercially polished.
+119 — Oupac Financial Services
+Enhancement Block
+Transform the logo into bold dimensional financial-services signage with premium fabricated depth and highly legible architectural presence. Preserve the orange-and-black palette while refining the execution into a modern commercial storefront sign appropriate for professional office-retail environments.
+119.5 — Cat Clinic of Lafayette
+Enhancement Block
+Create a clean modern veterinary storefront sign using dimensional acrylic elements and soft approachable illumination. Preserve the cat icon and aqua tones while elevating the design into a polished healthcare-oriented retail facade installation.
+121 — Magnolia Salon
+Enhancement Block
+Use elegant dimensional salon signage with luxury beauty-brand styling. Incorporate soft halo illumination, refined metallic side returns, and graceful shadow depth. The sign should feel premium, feminine, calming, and spa-oriented with strong architectural refinement.
+123 — The Tux Shoppe
+Enhancement Block
+Create classic luxury menswear signage using dimensional white lettering against a rich dark storefront facade. Use refined metallic detailing and subtle upscale illumination. The overall feel should resemble premium tailoring boutiques and formalwear retailers found in luxury retail districts.
+125–127 — Jordan Amanda
+Enhancement Block
+Use sleek contemporary boutique signage with elegant dimensional script lettering and minimalist architectural styling. The sign should feel fashion-forward, premium, and modern with subtle luxury detailing and soft boutique-style illumination.
+129 — HOTWORX
+Enhancement Block
+The flame icon should appear as illuminated dimensional acrylic with rich orange-to-red glow gradients. The “HOT” letters should have warm illuminated channel-letter styling. The “WORX” portion should appear as bold matte-black fabricated channel letters with subtle edge lighting and premium depth. The overall storefront should feel energetic, modern, fitness-oriented, and architecturally upscale.
+135A — C. Wolf Barber Shop
+Enhancement Block
+Create masculine premium barbershop signage with dimensional matte-black fabricated lettering and refined metallic detailing. Preserve the circular emblem while giving it realistic carved or fabricated depth. The storefront should feel modern, upscale, masculine, and lifestyle-driven.
+135B — Belle Realty / On The Boulevard
+Enhancement Block
+Create sophisticated commercial real estate branding signage with clean dimensional serif lettering and refined architectural integration. Use premium metallic or acrylic finishes with understated upscale illumination. The overall sign should resemble institutional mixed-use development branding.
+137 — Greek Expressions
+Enhancement Block
+Use dimensional fabricated lettering with subtle botanical-inspired detailing and premium boutique styling. Preserve the green palette while elevating the storefront appearance to feel elegant, polished, and lifestyle-oriented with refined architectural integration.
+139–141 — Fast Pass Tag & Title
+Enhancement Block
+Create a sleek modern fabricated sign using crisp dimensional lettering and clean color separation. Preserve the bright multicolor identity while refining the execution into a premium storefront installation with professional architectural lighting and realistic fabrication detail.
+143 — 1st Franklin Financial
+Enhancement Block
+Transform the logo into polished financial-institution storefront signage with premium dimensional lettering, clean metallic finishes, and strong architectural legibility. Preserve the professional blue palette while creating a refined Class A retail-office appearance.
+145 — Upstream Rehabilitation
+Enhancement Block
+Create modern healthcare-oriented dimensional signage using layered fabricated acrylic elements and clean architectural lighting. The sign should feel trustworthy, clinical, modern, and professionally integrated into an upscale retail-medical environment.
+149 — Jason’s Deli
+Enhancement Block
+Create premium dimensional restaurant signage preserving the iconic red branding and oval mark while upgrading the installation into sophisticated fabricated channel lettering with refined illumination and realistic architectural integration. The storefront should feel warm, active, family-friendly, and polished.
+Recommended Production Workflow
+
+Start with the master architectural signage prompt.
+
+Insert the uploaded tenant logo.
+
+Append the tenant-specific enhancement block.
+
+Keep rendering style consistent across all tenants.
+
+Use the same architectural facade family for portfolio consistency.
+
+Maintain identical camera angle ranges for cohesive leasing-package visuals.
+
+Export both daylight and dusk illuminated variants for each tenant.
+

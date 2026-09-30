@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Oupac
+# Unit 119 | Category: financial | Facade Family: C
+# Logo reference: /home/ubuntu/Shared/Uploads/oupac.png
+
+BRAND COLOR TREATMENT
+- corporate red and navy per supplied logo, preserved exactly
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- institutional mark preserved
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- strong sans-serif, fully legible at distance
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- dark bronze returns, face-lit acrylic faces, clean cool-white LED
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (C)
+
+ILLUMINATION STYLE
+- Default: face-lit channel letters
+- face-lit channel letters, institutional even glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Consumer lending

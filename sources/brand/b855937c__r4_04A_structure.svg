@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#F3EDE0"/>
+  <!-- 04A — Bold. Thick arms, tight counter, chip locked to opening. -->
+  <g transform="translate(20, 20)">
+    <path d="M 0 0 L 160 0 L 160 44 L 44 44 L 44 116 L 160 116 L 160 160 L 0 160 Z" fill="#1E4D3A"/>
+    <rect x="94" y="66" width="44" height="28" fill="#2F6B4E"/>
+  </g>
+</svg>

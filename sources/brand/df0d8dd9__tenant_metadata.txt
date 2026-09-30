@@ -1,0 +1,4 @@
+Unit: 111
+Square Feet: 1690
+Tenant: BERNINA Lafayette
+Folder: 111_BERNINA_LAFAYETTE

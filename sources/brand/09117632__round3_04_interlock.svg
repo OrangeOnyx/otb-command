@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320">
+  <rect width="300" height="320" fill="#F3EDE0"/>
+  <!-- 04 INTERLOCK — two square C's, genuinely interlocked, both openings visible -->
+  <!-- Total footprint ~210 wide x 180 tall, centered in 300px canvas => translate 45,30 -->
+  <g transform="translate(45, 30)">
+    <!-- BACK C (Cypress green): square C opening RIGHT. 110w x 180h. -->
+    <path d="M 0 0 L 110 0 L 110 30 L 30 30 L 30 150 L 110 150 L 110 180 L 0 180 Z" fill="#1E4D3A"/>
+
+    <!-- FRONT C (Moss): square C opening LEFT. 110w x 130h. Positioned so it OVERLAPS
+         only the top+bottom arms of the back C, leaving both openings clearly visible.
+         Back-C right edge is at x=110; front-C spans x=70..180 -> overlap zone x=70..110.
+         Front-C is shorter (130h) and vertically centered (y=25..155) so back-C's opening
+         between its arms (y=30..150) is still readable in the exposed middle strip. -->
+    <path d="M 180 25 L 70 25 L 70 55 L 150 55 L 150 125 L 70 125 L 70 155 L 180 155 Z" fill="#2F6B4E"/>
+
+    <!-- AMBER signal square in the interlock zone (where the two C's cross) -->
+    <rect x="82" y="82" width="16" height="16" fill="#D97706"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="150" y="252" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="700" fill="#0A1F16" text-anchor="middle" letter-spacing="0.16em">CYPRESS</text>
+  <text x="150" y="284" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="700" fill="#0A1F16" text-anchor="middle" letter-spacing="0.16em">COMMAND</text>
+  <text x="150" y="306" font-family="'JetBrains Mono', monospace" font-size="8" fill="#5A6B62" text-anchor="middle" letter-spacing="0.28em">04 · INTERLOCK</text>
+</svg>

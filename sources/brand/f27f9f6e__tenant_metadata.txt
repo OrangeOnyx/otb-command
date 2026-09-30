@@ -1,0 +1,4 @@
+Unit: 107
+Square Feet: 1743
+Tenant: Great American Cookies / Hershey's Ice Cream
+Folder: 107_GREAT_AMERICAN_COOKIES_HERSHEYS_ICE_CREAM

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "pdf": "/home/ubuntu/output/Cypress-Command-Brand-Kit/01-Brand-Standards/Cypress-Command-Brand-Standards.pdf",
+  "profile": "text-document",
+  "overall": "PASS",
+  "checks": [
+    {
+      "name": "signature",
+      "status": "PASS",
+      "message": "PDF header is valid",
+      "evidence": {
+        "header": "%PDF-"
+      }
+    },
+    {
+      "name": "pdfinfo",
+      "status": "PASS",
+      "message": "PDF is parseable by pdfinfo",
+      "evidence": {}
+    },
+    {
+      "name": "page-count",
+      "status": "PASS",
+      "message": "pages=17",
+      "evidence": {
+        "pages": 17
+      }
+    },
+    {
+      "name": "text-presence",
+      "status": "PASS",
+      "message": "characters=21516",
+      "evidence": {}
+    },
+    {
+      "name": "placeholders",
+      "status": "PASS",
+      "message": "No placeholder markers found",
+      "evidence": {
+        "matches": []
+      }
+    },
+    {
+      "name": "fonts",
+      "status": "PASS",
+      "message": "font_records=7",
+      "evidence": {}
+    }
+  ]
+}

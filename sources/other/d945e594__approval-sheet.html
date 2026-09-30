@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<title>OTB Decision Brief 2026-08-02</title>
+<style>
+:root{color-scheme:light dark}
+body{font:15px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;max-width:880px;
+margin:2rem auto;padding:0 1.2rem}
+h1{font-size:1.25rem;margin:0} .sub{opacity:.65;font-size:.85rem;margin:.3rem 0 2rem}
+section{border:1px solid rgba(128,128,128,.35);border-radius:10px;padding:1.1rem 1.2rem;margin:0 0 1.4rem}
+h2{font-size:1.02rem;margin:0 0 .35rem;display:flex;gap:.6rem;align-items:baseline}
+.n{font-variant-numeric:tabular-nums;opacity:.5;font-weight:400}
+h4{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;opacity:.6;margin:1.1rem 0 .4rem}
+.meta{font-size:.79rem;opacity:.65}
+ul{margin:0;padding-left:0;list-style:none}
+.ev li{margin:0 0 .5rem;padding-left:2.1rem;position:relative}
+.g{position:absolute;left:0;top:.1rem;font-size:.68rem;font-weight:700;border-radius:4px;
+padding:.08rem .38rem;border:1px solid currentColor}
+.gA{color:#1a7f37} .gB{color:#8a6d00} .gC{color:#a04000} .gD{color:#9a1c1c}
+.ref{display:block;font-size:.74rem;opacity:.55}
+.risk{margin:.9rem 0 0;padding:.6rem .8rem;border-left:3px solid rgba(128,128,128,.5);font-size:.9rem}
+.opt{display:flex;gap:.75rem;align-items:flex-start;margin:0 0 .7rem}
+button{font:inherit;font-size:.8rem;cursor:pointer;border:1px solid rgba(128,128,128,.55);
+background:transparent;color:inherit;border-radius:7px;padding:.35rem .7rem;white-space:nowrap}
+button:hover{border-color:currentColor}
+button.copied{border-color:#1a7f37;color:#1a7f37}
+.esc{margin-right:.4rem;opacity:.75;font-size:.76rem}
+.cons{font-size:.86rem;opacity:.8;margin-top:.15rem}
+.none{font-size:.86rem;opacity:.7}
+.gates li{font-size:.8rem;opacity:.7}
+.why{margin-top:1rem;font-size:.75rem;opacity:.6;border-top:1px dashed rgba(128,128,128,.4);padding-top:.6rem}
+.note{font-size:.8rem;opacity:.7;margin-top:2rem;border-top:1px solid rgba(128,128,128,.3);padding-top:.8rem}
+</style>
+<h1>OTB Decision Brief</h1>
+<div class="sub">2026-08-02 &middot; 5 cards &middot; clicking copies
+the exact decide command &mdash; nothing is written from this page</div>
+<section>
+<h2><span class="n">1</span>119.5 Cat Clinic of Lafayette, L.L.C. - Renewal option notice window closed without notice from the tenant</h2>
+<div class="meta">DEC-2026-08-02-6784 &middot; lapsed-option-window.v1 &middot;
+authority A4 &middot; evidence A &middot;
+priority 4.0 &middot; expires 2026-08-16</div>
+<h4>Evidence</h4><ul class="ev"><li><span class="g gA">A</span>Extension executed by both parties, term 2023-03-01 to 2026-02-28; §31.01 gives Lessee one 3-year option on 60 days notice.<span class="ref">119.5 Cat Clinic Extension.pdf</span></li><li><span class="g gA">A</span>SOT records term to 2029-02-28, exactly base-term-plus-one-option. No notice of exercise exists in the corpus; the 60-day deadline was 2025-12-30.<span class="ref">otb-sot-verification-2026-08-02.md §2</span></li></ul>
+<div class="risk"><b>If nothing is done.</b> Five months of occupancy with no current instrument; the SOT asserts a term the paper does not support.</div>
+<h4>Options</h4><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-6784 --option opt-1 --by YOU">opt-1</button><div><b>Record the option as lapsed and prepare a repriced renewal proposal</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Economics prepared for your approval; no position is communicated to the tenant on selection.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-6784 --option opt-2 --by YOU">opt-2</button><div><b>Prepare a month-to-month holdover confirmation at the existing rate</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Preserves the tenancy without granting the option term.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-6784 --option opt-3 --by YOU">opt-3</button><div><b>Confirm first whether a notice of exercise exists outside the searched corpus</b><div class="meta">schedule-verification &middot; reversibility full</div><div class="cons">&rarr; Absence of a notice in the corpus is not proof none was served; this checks before you take a position.</div></div></div>
+<h4>Escape</h4><div class="escs"><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-6784 --escape defer --by YOU">defer</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-6784 --escape reject-premise --by YOU">reject-premise</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-6784 --escape need-more-evidence --by YOU">need-more-evidence</button></div>
+
+<div class="why">Priority 4.0 = Impact 5 x Confidence 1.00 (capped by weakest evidence grade A) x Urgency 1.00 x Actionability 0.80 / Effort 1.00. template default 4 +1 for legal effect; overdue by 215d - urgency 1.00.</div>
+</section><section>
+<h2><span class="n">2</span>139-141 FastPass Tag &amp; Title, LLC (subsidiary of Alliance Safety Council) - Renewal option notice window closed without notice from the tenant</h2>
+<div class="meta">DEC-2026-08-02-0232 &middot; lapsed-option-window.v1 &middot;
+authority A4 &middot; evidence A &middot;
+priority 4.0 &middot; expires 2026-08-16</div>
+<h4>Evidence</h4><ul class="ev"><li><span class="g gA">A</span>Term 2023-07-01 to 2026-07-31; option 1 x 3 years on 60 days notice from Lessee, so notice was due 2026-06-01.<span class="ref">Fast Pass and Title Lease.pdf</span></li><li><span class="g gA">A</span>SOT shows 2027-04-30, a date supported by no instrument in the package.<span class="ref">otb-sot-verification-2026-08-02.md §2</span></li><li><span class="g gC">C</span>Alliance Safety Council guaranty block is filled in but shows no signature under OCR. The operating entity is a subsidiary, so the guaranty is the credit.<span class="ref">Fast Pass and Title Lease.pdf, guaranty page (master package p. 568)</span></li></ul>
+<div class="risk"><b>If nothing is done.</b> Tenant in possession past term end with no renewal instrument and an unconfirmed guaranty.</div>
+<h4>Options</h4><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-0232 --option opt-1 --by YOU">opt-1</button><div><b>Record the option as lapsed and prepare a repriced renewal proposal</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Economics prepared for your approval; no position is communicated to the tenant on selection.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-0232 --option opt-2 --by YOU">opt-2</button><div><b>Prepare a month-to-month holdover confirmation at the existing rate</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Preserves the tenancy without granting the option term.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-0232 --option opt-3 --by YOU">opt-3</button><div><b>Confirm first whether a notice of exercise exists outside the searched corpus</b><div class="meta">schedule-verification &middot; reversibility full</div><div class="cons">&rarr; Absence of a notice in the corpus is not proof none was served; this checks before you take a position.</div></div></div>
+<h4>Escape</h4><div class="escs"><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-0232 --escape defer --by YOU">defer</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-0232 --escape reject-premise --by YOU">reject-premise</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-0232 --escape need-more-evidence --by YOU">need-more-evidence</button></div>
+
+<div class="why">Priority 4.0 = Impact 5 x Confidence 1.00 (capped by weakest evidence grade A) x Urgency 1.00 x Actionability 0.80 / Effort 1.00. template default 4 +1 for legal effect; overdue by 62d - urgency 1.00.</div>
+</section><section>
+<h2><span class="n">3</span>121 Robertson Family Holdings, LLC / Alicia L. Robertson (Magnolia Salon) - Instrument executed by one party only, or occupancy under an unexecuted draft</h2>
+<div class="meta">DEC-2026-08-02-8531 &middot; unsigned-instrument-exposure.v1 &middot;
+authority A4 &middot; evidence B &middot;
+priority 3.443 &middot; expires 2026-08-09</div>
+<h4>Evidence</h4><ul class="ev"><li><span class="g gA">A</span>Draft only, commencement 2025-07-01, 1,709 SF, no signatures anywhere.<span class="ref">121 Draft Magnolia Salon Lease Agreement.pdf</span></li><li><span class="g gB">B</span>SOT books the unit Occupied on a 77-month term at $2,527.90/month against that draft.<span class="ref">otb-sot-verification-2026-08-02.md §2</span></li><li><span class="g gB">B</span>Six searches across two mailboxes and two Drive accounts returned no executed instrument. Absence of evidence, not evidence of absence.<span class="ref">otb-missing-instruments-found-2026-08-02.md §2</span></li></ul>
+<div class="risk"><b>If nothing is done.</b> Revenue is booked against an unsigned document; occupancy status is unconfirmed.</div>
+<h4>Options</h4><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-8531 --option opt-1 --by YOU">opt-1</button><div><b>Request countersignature and fix Effective Date + Delivery Date in one pass</b><div class="meta">draft-communication &middot; reversibility full</div><div class="cons">&rarr; Draft prepared for your approval; nothing sends until you confirm the exact payload.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-8531 --option opt-2 --by YOU">opt-2</button><div><b>Request countersignature only; defer the date fields</b><div class="meta">draft-communication &middot; reversibility full</div><div class="cons">&rarr; Faster ask, but the commencement clock still has no anchor in your records.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-8531 --option opt-3 --by YOU">opt-3</button><div><b>Escalate to counsel before contacting the counterparty</b><div class="meta">escalate-human &middot; reversibility full</div><div class="cons">&rarr; Card parks pending counsel; no contact is made.</div></div></div>
+<h4>Escape</h4><div class="escs"><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-8531 --escape defer --by YOU">defer</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-8531 --escape reject-premise --by YOU">reject-premise</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-8531 --escape need-more-evidence --by YOU">need-more-evidence</button></div>
+
+<div class="why">Priority 3.443 = Impact 5 x Confidence 0.85 (capped by weakest evidence grade B) x Urgency 0.90 x Actionability 0.90 / Effort 1.00. template default impact 5; undated obligation - urgency held at the template floor 0.90 (exposure is continuous, not dated: every day of occupancy under a one-sided instrument is another day the term and option are unenforceable).</div>
+</section><section>
+<h2><span class="n">4</span>115-117 The Clothing Loft Exchange - Renewal option notice window closed without notice from the tenant</h2>
+<div class="meta">DEC-2026-08-02-5194 &middot; lapsed-option-window.v1 &middot;
+authority A4 &middot; evidence B &middot;
+priority 3.4 &middot; expires 2026-08-16</div>
+<h4>Evidence</h4><ul class="ev"><li><span class="g gB">B</span>Lease end 2026-09-30, 60-day notice, 3-year renewal term; notice deadline 2026-08-01.<span class="ref">risk-issue-register R-004</span></li><li><span class="g gB">B</span>SOT start and end both match the executed lease exactly.<span class="ref">otb-sot-verification-2026-08-02.md §1</span></li></ul>
+<div class="risk"><b>If nothing is done.</b> Notice window has closed; posture toward the tenant is unrecorded.</div>
+<h4>Options</h4><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-5194 --option opt-1 --by YOU">opt-1</button><div><b>Record the option as lapsed and prepare a repriced renewal proposal</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Economics prepared for your approval; no position is communicated to the tenant on selection.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-5194 --option opt-2 --by YOU">opt-2</button><div><b>Prepare a month-to-month holdover confirmation at the existing rate</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Preserves the tenancy without granting the option term.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-5194 --option opt-3 --by YOU">opt-3</button><div><b>Confirm first whether a notice of exercise exists outside the searched corpus</b><div class="meta">schedule-verification &middot; reversibility full</div><div class="cons">&rarr; Absence of a notice in the corpus is not proof none was served; this checks before you take a position.</div></div></div>
+<h4>Escape</h4><div class="escs"><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-5194 --escape defer --by YOU">defer</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-5194 --escape reject-premise --by YOU">reject-premise</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-5194 --escape need-more-evidence --by YOU">need-more-evidence</button></div>
+
+<div class="why">Priority 3.4 = Impact 5 x Confidence 0.85 (capped by weakest evidence grade B) x Urgency 1.00 x Actionability 0.80 / Effort 1.00. template default 4 +1 for legal effect; overdue by 1d - urgency 1.00.</div>
+</section><section>
+<h2><span class="n">5</span>101 Pink Paisley - System of record disagrees with the executed instrument</h2>
+<div class="meta">DEC-2026-08-02-2697 &middot; sot-instrument-conflict.v1 &middot;
+authority A2 &middot; evidence B &middot;
+priority 1.211 &middot; expires 2026-08-23</div>
+<h4>Evidence</h4><ul class="ev"><li><span class="g gB">B</span>Unit 101 is 6,877 SF on Main OTB SOT and 6,677 SF on Lease Location, HVAC Split and LOGO. Main OTB SOT computes Unit_Allocation_Percent from its own figure.<span class="ref">otb-sot-verification-2026-08-02.md §4</span></li></ul>
+<div class="risk"><b>If nothing is done.</b> Every allocated CAM, tax and insurance dollar for the Pink Paisley premises inherits whichever figure is wrong.</div>
+<h4>Options</h4><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-2697 --option opt-2 --by YOU">opt-2</button><div><b>Read the instrument at the cited master-package page, then re-present</b><div class="meta">schedule-verification &middot; reversibility full</div><div class="cons">&rarr; One page turn resolves it; card re-issues with the value read from the document.</div></div></div><div class="opt"><button data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-2697 --option opt-3 --by YOU">opt-3</button><div><b>Test the option-booked-as-exercised hypothesis across all open conflicts in one pass</b><div class="meta">prepare-package &middot; reversibility full</div><div class="cons">&rarr; Batches every open SOT conflict into a single read list rather than reconciling row by row.</div></div></div>
+<h4>Escape</h4><div class="escs"><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-2697 --escape defer --by YOU">defer</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-2697 --escape reject-premise --by YOU">reject-premise</button><button class="esc" data-cmd="python tools/decide.py --decision-id DEC-2026-08-02-2697 --escape close-no-action --by YOU">close-no-action</button></div>
+<h4>Withheld</h4><ul class="gates"><li>opt-1: instrument_read == true [substituted -&gt; opt-2]</li></ul>
+<div class="why">Priority 1.211 = Impact 3 x Confidence 0.85 (capped by weakest evidence grade B) x Urgency 0.25 x Actionability 0.95 / Effort 0.50. template default impact 3; undated obligation - urgency held at the template floor 0.25.</div>
+</section>
+<div class="note">Selection is recorded by running the copied command. This page writes nothing:
+a browser page that could append to the decision ledger would be a decision surface with no
+authentication on it. A4 selections authorise preparation only.</div>
+<script>
+document.querySelectorAll('button[data-cmd]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var cmd = b.getAttribute('data-cmd'), original = b.textContent;
+    var done = function () {
+      b.textContent = 'copied'; b.classList.add('copied');
+      setTimeout(function () { b.textContent = original; b.classList.remove('copied'); }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(cmd).then(done, function () { window.prompt('Copy this command:', cmd); });
+    } else { window.prompt('Copy this command:', cmd); }
+  });
+});
+</script>
+</html>

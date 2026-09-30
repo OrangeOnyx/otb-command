@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Magnolia Salon
+# Unit 121 | Category: salon | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/magnolia_salon.jpg
+
+BRAND COLOR TREATMENT
+- soft sage, ivory, blush, or muted gold per logo; spa palette
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- magnolia bloom motif preserved as halo-lit dimensional accent
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- elegant serif or refined script with generous spacing
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- brushed brass or matte black returns, halo-lit reverse channel, warm-white LED
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters with soft architectural spa glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- —

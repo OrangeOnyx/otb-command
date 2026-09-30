@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Great American Cookie
+# Unit 107 | Category: restaurant | Facade Family: B
+# Logo reference: /home/ubuntu/Shared/Uploads/great_american_cookie_newer.png
+
+BRAND COLOR TREATMENT
+- signature brand red, white, and warm brown preserved exactly; trademark cookie graphic intact
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- cookie icon rendered as separate face-lit dimensional piece with internal white LED glowing through warm-tinted acrylic
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- bold red wordmark, slight slab character, fully legible
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- dark bronze returns, face-lit acrylic faces, crisp trim caps
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (B)
+
+ILLUMINATION STYLE
+- Default: face-lit channel letters
+- face-lit channel letters with warm-white LED; appetizing warm glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Bakery / dessert

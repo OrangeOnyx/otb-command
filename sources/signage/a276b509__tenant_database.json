@@ -1,0 +1,229 @@
+{
+  "tenants": [
+    {
+      "tenant_name": "The Pink Paisley",
+      "unit_number": "101-103",
+      "category": "boutique",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/101 the_pink_paisley.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": "Anchor boutique; large frontage 9,928 sqft"
+    },
+    {
+      "tenant_name": "Painted Bayou",
+      "unit_number": "105",
+      "category": "boutique",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/painted_bayou.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": ""
+    },
+    {
+      "tenant_name": "Great American Cookie",
+      "unit_number": "107",
+      "category": "restaurant",
+      "facade_family": "B",
+      "logo_file": "/home/ubuntu/Shared/Uploads/great_american_cookie_newer.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Bakery / dessert"
+    },
+    {
+      "tenant_name": "JC Kate Boutique",
+      "unit_number": "109",
+      "category": "boutique",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/jc_kate_boutique.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": ""
+    },
+    {
+      "tenant_name": "Lola Pink",
+      "unit_number": "111",
+      "category": "boutique",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/lola_pink.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": ""
+    },
+    {
+      "tenant_name": "Graze Acadiana",
+      "unit_number": "113",
+      "category": "restaurant",
+      "facade_family": "B",
+      "logo_file": "/home/ubuntu/Shared/Uploads/graze_oil_logo.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Restaurant"
+    },
+    {
+      "tenant_name": "The Clothing Loft",
+      "unit_number": "115-117",
+      "category": "boutique",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/the_clothing_loft.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": ""
+    },
+    {
+      "tenant_name": "Victoria Nails",
+      "unit_number": "117 1/2",
+      "category": "salon",
+      "facade_family": "C",
+      "logo_file": "/home/ubuntu/Shared/Uploads/victoria_nails.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Nail salon"
+    },
+    {
+      "tenant_name": "Oupac",
+      "unit_number": "119",
+      "category": "financial",
+      "facade_family": "C",
+      "logo_file": "/home/ubuntu/Shared/Uploads/oupac.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Consumer lending"
+    },
+    {
+      "tenant_name": "Cat Clinic of Lafayette",
+      "unit_number": "119 1/2",
+      "category": "medical",
+      "facade_family": "C",
+      "logo_file": "",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Veterinary - no logo file available"
+    },
+    {
+      "tenant_name": "Magnolia Salon",
+      "unit_number": "121",
+      "category": "salon",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/magnolia_salon.jpg",
+      "illumination_type": "halo-lit channel letters",
+      "notes": ""
+    },
+    {
+      "tenant_name": "The Tux Shoppe",
+      "unit_number": "123",
+      "category": "retail",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/the_tux_shoppe.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": "Formalwear"
+    },
+    {
+      "tenant_name": "Jordan Amanda",
+      "unit_number": "125-127",
+      "category": "boutique",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/jordan_amanda.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": "Jewelry/boutique"
+    },
+    {
+      "tenant_name": "HotWorx",
+      "unit_number": "129",
+      "category": "fitness",
+      "facade_family": "B",
+      "logo_file": "/home/ubuntu/Shared/Uploads/hotworx.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Infrared fitness studio"
+    },
+    {
+      "tenant_name": "Vacant",
+      "unit_number": "131",
+      "category": "vacant",
+      "facade_family": "B",
+      "logo_file": "",
+      "illumination_type": "",
+      "notes": "Available for lease"
+    },
+    {
+      "tenant_name": "Vacant",
+      "unit_number": "133",
+      "category": "vacant",
+      "facade_family": "B",
+      "logo_file": "",
+      "illumination_type": "",
+      "notes": "Available for lease"
+    },
+    {
+      "tenant_name": "C Wolf Barber Shop",
+      "unit_number": "135A",
+      "category": "salon",
+      "facade_family": "C",
+      "logo_file": "/home/ubuntu/Shared/Uploads/c_wolf_barber_shop.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Barber"
+    },
+    {
+      "tenant_name": "Belle Realty",
+      "unit_number": "135B",
+      "category": "services",
+      "facade_family": "C",
+      "logo_file": "",
+      "illumination_type": "face-lit channel letters",
+      "notes": "On-site management office"
+    },
+    {
+      "tenant_name": "Greek Expressions",
+      "unit_number": "137",
+      "category": "retail",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/greek_expressions.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": "Sorority/greek apparel"
+    },
+    {
+      "tenant_name": "Fast Pass Tag & Title",
+      "unit_number": "139/141",
+      "category": "services",
+      "facade_family": "C",
+      "logo_file": "/home/ubuntu/Shared/Uploads/fastpass_tag_title.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Auto title services"
+    },
+    {
+      "tenant_name": "1st Franklin Financial",
+      "unit_number": "143",
+      "category": "financial",
+      "facade_family": "C",
+      "logo_file": "/home/ubuntu/Shared/Uploads/1st_franklin_financial.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Consumer lending"
+    },
+    {
+      "tenant_name": "Blvd Nutrition",
+      "unit_number": "145",
+      "category": "restaurant",
+      "facade_family": "B",
+      "logo_file": "",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Nutrition/smoothie bar"
+    },
+    {
+      "tenant_name": "Jason's Deli",
+      "unit_number": "149",
+      "category": "restaurant",
+      "facade_family": "B",
+      "logo_file": "",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Anchor restaurant - national brand"
+    },
+    {
+      "tenant_name": "Mary Ellen's",
+      "unit_number": "Historic",
+      "category": "retail",
+      "facade_family": "A",
+      "logo_file": "/home/ubuntu/Shared/Uploads/Mary Ellens.png",
+      "illumination_type": "halo-lit channel letters",
+      "notes": "Logo on file from prior tenant roster"
+    },
+    {
+      "tenant_name": "Rehabilitation Services",
+      "unit_number": "Historic",
+      "category": "medical",
+      "facade_family": "C",
+      "logo_file": "/home/ubuntu/Shared/Uploads/Rehabilitation Services.png",
+      "illumination_type": "face-lit channel letters",
+      "notes": "Logo on file from prior tenant roster"
+    }
+  ]
+}

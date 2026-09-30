@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 320">
+  <rect width="300" height="320" fill="#F3EDE0"/>
+  <!-- 03 HORIZON MARK — circular ring bisected by horizon rules, simplified so C reads -->
+  <g transform="translate(60, 30)">
+    <!-- Circular ring (the C is the ring, gap on right) -->
+    <path d="M 90 6
+             A 84 84 0 1 0 90 174
+             L 90 154
+             A 64 64 0 1 1 90 26
+             Z" fill="#1E4D3A"/>
+    <!-- Central horizon line through the middle -->
+    <rect x="0" y="86" width="180" height="8" fill="#1E4D3A"/>
+    <!-- Chip square centered on horizon -->
+    <rect x="76" y="76" width="28" height="28" fill="#2F6B4E"/>
+    <!-- Amber center pin -->
+    <rect x="87" y="87" width="6" height="6" fill="#D97706"/>
+    <!-- Secondary horizon whisper lines -->
+    <rect x="-6" y="60" width="40" height="3" fill="#1E4D3A"/>
+    <rect x="146" y="60" width="40" height="3" fill="#1E4D3A"/>
+    <rect x="-6" y="117" width="40" height="3" fill="#1E4D3A"/>
+    <rect x="146" y="117" width="40" height="3" fill="#1E4D3A"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="150" y="252" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="700" fill="#0A1F16" text-anchor="middle" letter-spacing="0.16em">CYPRESS</text>
+  <text x="150" y="284" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="700" fill="#0A1F16" text-anchor="middle" letter-spacing="0.16em">COMMAND</text>
+  <text x="150" y="306" font-family="'JetBrains Mono', monospace" font-size="8" fill="#5A6B62" text-anchor="middle" letter-spacing="0.28em">03 · HORIZON</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <g fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.8">
+    <path d="M 10 60 Q 35 45, 60 60 T 110 60"/>
+    <path d="M 5 68 Q 32 52, 60 68 T 115 68"/>
+    <path d="M 0 76 Q 30 58, 60 76 T 120 76"/>
+    <path d="M 12 52 Q 36 40, 60 52 T 108 52"/>
+    <path d="M 18 44 Q 38 34, 60 44 T 102 44"/>
+    <path d="M 26 34 Q 42 28, 60 34 T 94 34"/>
+    <path d="M 36 24 Q 48 20, 60 24 T 84 24"/>
+    <path d="M 48 15 Q 54 13, 60 15 T 72 15"/>
+    <path d="M 54 90 Q 58 88, 60 90 T 66 90"/>
+    <path d="M 48 98 Q 55 95, 60 98 T 72 98"/>
+    <path d="M 40 106 Q 52 102, 60 106 T 80 106"/>
+  </g>
+</svg>

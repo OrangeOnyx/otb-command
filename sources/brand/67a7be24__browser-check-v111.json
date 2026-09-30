@@ -1,0 +1,98 @@
+[
+  {
+    "name": "index",
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "index",
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "index",
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "index",
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "index",
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "index",
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "website",
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "website",
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "website",
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "website",
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "website",
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  },
+  {
+    "name": "website",
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "heading": "Practical systems. Smarter operations.",
+    "footer": "CYPRESS COMMAND / Practical systems. Smarter operations. / 1.1.1"
+  }
+]

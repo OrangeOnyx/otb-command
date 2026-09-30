@@ -1,0 +1,37 @@
+# DELIVERABLE TEMPLATE — Signage Close-Up (Architectural Detail Package)
+# Full stack: LAYER 1 (Global Style) + LAYER 2 (Category) + LAYER 3 (Scene: close_up) + TENANT-SPECIFIC
+
+USAGE
+Replace {TENANT_NAME}, {CATEGORY}, and concatenate the four blocks below in order.
+
+DELIVERABLE INTENT
+Composition: tight architectural crop on the channel-letter signage. Reveals
+letter depth, returns, trim cap, mounting, and illumination quality. Slight 3/4
+angle. Use for sign permit packages, fabrication review, and architectural detail
+decks. Crystal clarity required — no people or vehicles in frame.
+
+============================================================
+[BLOCK 1] LAYER 1 — GLOBAL STYLE
+Insert full contents of: prompt_library/layer_1_global_style.txt
+============================================================
+
+[BLOCK 2] LAYER 2 — CATEGORY ENHANCEMENT
+Insert full contents of: prompt_library/layer_2_category_{CATEGORY}.txt
+(boutique | restaurant | salon | fitness | financial | medical | services | retail)
+
+============================================================
+
+[BLOCK 3] LAYER 3 — SCENE VARIANT
+Insert full contents of: prompt_library/layer_3_scene_close_up.txt
+
+============================================================
+
+[BLOCK 4] TENANT-SPECIFIC ENHANCEMENT
+Insert full contents of: prompt_library/tenant_specific/{tenant_slug}.txt
+
+============================================================
+
+FINAL DIRECTIVE
+Generate one photorealistic rendering of {TENANT_NAME} at On The Boulevard
+Shopping Center matching every specification above. Logo integrity is paramount.
+Output investor-grade quality.

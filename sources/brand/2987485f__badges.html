@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  body { margin: 0; padding: 24px; background: var(--cc-bg-page); font-family: Inter, sans-serif; }
+  .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cc-fg-muted); margin-bottom: 14px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .active { background: rgba(47,107,78,.12); color: #2F6B4E; }
+  .active .dot { background: #2F6B4E; }
+  .vacant { background: rgba(155,62,43,.12); color: #9B3E2B; }
+  .vacant .dot { background: #9B3E2B; }
+  .renewal { background: rgba(217,119,6,.14); color: #B36104; }
+  .renewal .dot { background: #B36104; }
+  .info { background: rgba(30,77,58,.10); color: #1E4D3A; }
+  .info .dot { background: #1E4D3A; }
+  .new { background: rgba(217,119,6,.12); color: #D97706; }
+  .new .dot { background: #D97706; }
+</style></head><body class="cc-reset">
+  <div class="lbl">[BADGES · STATUS PILLS]</div>
+  <div class="row">
+    <span class="badge active"><span class="dot"></span>Active</span>
+    <span class="badge vacant"><span class="dot"></span>Vacant</span>
+    <span class="badge renewal"><span class="dot"></span>Renewal</span>
+    <span class="badge info"><span class="dot"></span>Info</span>
+    <span class="badge new"><span class="dot"></span>New</span>
+  </div>
+</body></html>

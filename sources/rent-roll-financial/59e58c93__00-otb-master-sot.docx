@@ -1,0 +1,995 @@
+**ON THE BOULEVARD**  ·  MASTER SOURCE OF TRUTH  ·  v1.1
+
+**ON THE BOULEVARD**
+
+Shopping Center
+
+**Master Source of Truth**
+
+*+ Operations Manual + Compliance Calendar + Emergency Plan*
+
+101–149 Arnould Boulevard · Lafayette, Louisiana 70506
+
+**Belle Realty of Lafayette, LLC**
+
+Managed by Orange Ocean, LLC
+
+Version 1.1  ·  May 20, 2026
+
+Prepared by: Adam A. Abdalla, Managing Member
+
+# How to Use This Document
+
+This is the single daily-reference document for On The Boulevard Shopping Center. It consolidates all property facts, operational procedures, emergency protocols, compliance calendar, and the live action-item TODO into one file. Sections are organized for both daily reference (look up a contact, find a procedure) and audit reference (point a counterparty at a single source).
+
+### Document Map
+
+- **§1–§4 **— Property facts, entity structure, tenant roster, parking & licenses (the 'what')
+
+- **§5–§7 **— Floor plans, ops tool, brand (the property's documented assets)
+
+- **§8 **— Financial snapshot & banking
+
+- **§9 **— Vendor & service directory
+
+- **§10 **— Operations manual & SOPs (rent collection, eviction, service requests, approval matrix)
+
+- **§11 **— Insurance & risk management
+
+- **§12 ****— Emergency ****&**** hurricane response plan (KEEP ACCESSIBLE)**
+
+- **§13 **— Legal & compliance reference (LA + federal)
+
+- **§14 **— Physical plant inventory
+
+- **§15 **— Master compliance calendar
+
+- **§16 **— SOT folder hierarchy & file inventory
+
+- **§17 **— SOT workbook anomalies (open items)
+
+- **§18 ****— Sequenced TODO with priorities**
+
+- **§19–§20 **— Open questions, change log
+
+# Executive Summary
+
+### Snapshot
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Property** | On The Boulevard Shopping Center · 101–149 Arnould Blvd · Lafayette, LA 70506 | **FINAL** |
+| **Owner Entity** | Belle Realty of Lafayette, LLC | **FINAL** |
+| **Managing Entity** | Orange Ocean, LLC | **FINAL** |
+| **Total GLA** | 62,810 SF (range 62,810–62,883 across workbook sheets — see §17) | **FINAL (caveat)** |
+| **Lot Size** | 4.84 acres | **FINAL** |
+| **Parking** | 324 stalls across 3 lots | **FINAL** |
+| **Demised Units** | 27 (in 21 leases — some combined) | **FINAL** |
+| **Occupancy** | 94.9% (2 vacant of 27) | **FINAL** |
+| **Annual Rent (tenants)** | $1,080,773 | **FINAL** |
+| **Annual License Revenue (cross-parking)** | $12,000 | **FINAL** |
+| **Total Annual Revenue** | $1,092,773 | **FINAL** |
+| **At-Risk Revenue (expired leases)** | $191,015 across 5 holdover leases | **NEEDS ACTION** |
+| **Floor Plans Captured** | 25 of 26 needed (only 117.5 / Victoria Nails missing) | **FINAL (caveat)** |
+| **Active Operations Tool** | OTB_Ops_Tool_v5.html | **CURRENT** |
+
+# 1. Property Identification
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Address** | 101–149 Arnould Boulevard, Lafayette, Louisiana 70506 | **FINAL** |
+| **Parish** | Lafayette Parish | **FINAL** |
+| **Common name** | On The Boulevard Shopping Center | **FINAL** |
+| **Public website** | shopontheblvd.com | **FINAL** |
+| **Property type** | Multi-tenant neighborhood shopping center, L-shape | **FINAL** |
+| **Zoning** | CH — Commercial Highway | **FINAL** |
+| **Lot size** | 4.84 acres | **FINAL** |
+| **Total GLA** | 62,810 SF | **FINAL (caveat)** |
+| **Parking** | 324 stalls across 3 parking lots — see §4 | **FINAL** |
+| **Frontage** | Four streets: Patricia (N), Arnould (E — address frontage), Johnston/US-167 (S — major arterial), Marie Antoinette (W) | **FINAL** |
+| **Utilities** | All LUS (water/sewer/electric); telephone historically BellSouth | **FINAL** |
+| **Drainage** | Open-ditch (perimeter) | **FINAL** |
+| **Legal description** | Lots 1–3, 1–14, Partition of Lots 1 & 2, Block 1, Lot 7, Block M, Arnold Heights Subdivision Ext. No. 1 (Section 42, T10S, R4E) | **FINAL (caveat)** |
+| **Spelling of street name** | Plat: 'Arnauld' · Site plan: 'Arnold' · Modern signage: 'Arnould' — resolve before next title action | **NEEDS ACTION** |
+| **Surveyor of record** | A.E. Montagnet, RPLS 4484 — Montagnet and Domingue, Inc., 337-981-2130 | **FINAL** |
+| **Original survey date** | 5/20/1994; last revised 7/19/2019 | **FINAL** |
+| **HVAC PM vendor (required per C. Wolf lease)** | Butcher Air Conditioning | **FINAL** |
+| **Property management platform** | DoorLoop | **FINAL** |
+
+# 2. Entity Structure & Authority
+
+## 2.1 The Authority Stack
+
+The property operates under a two-entity structure separating ownership from operations.
+
+| **Layer** | **Entity** | **Function** |
+| --- | --- | --- |
+| **Owner** | Belle Realty of Lafayette, LLC | Holds title; principal in leases; signatory for major actions; insurance named insured. |
+| **Property Manager** | Orange Ocean, LLC | Day-to-day operations, vendor coordination, tenant relations, financial reporting, leasing. |
+| **Authorized Rep** | Adam A. Abdalla | Managing Member of Orange Ocean; authorized representative of Belle Realty. |
+
+## 2.2 Contact Card
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Name** | Adam A. Abdalla | **FINAL** |
+| **Office phone** | 337-769-1554 | **FINAL** |
+| **Mobile (24/7)** | 337-288-5411 | **FINAL** |
+| **Email — Operations** | adam@orangeocean.com | **FINAL** |
+| **Email — Legal / Belle Realty** | adam@belle-realty.com | **FINAL** |
+| **Management office (physical)** | 135B Arnould Blvd, Lafayette, LA 70506 | **FINAL** |
+| **Mailing address** | P.O. Box 62230, Lafayette, LA 70596 | **FINAL** |
+| **Property website** | shopontheblvd.com | **FINAL** |
+
+## 2.3 Signature Authority Matrix
+
+| **Action** | **Signing Authority** |
+| --- | --- |
+| **Lease execution ****&**** renewals** | Belle Realty (owner principal) |
+| **Lease amendments / estoppels** | Belle Realty |
+| **Default notices / enforcement** | Belle Realty (legal posture) |
+| **Insurance binding / claims** | Belle Realty (named insured) |
+| **Routine tenant communication** | Orange Ocean (PM) |
+| **Vendor contracts — routine ops** | Orange Ocean (PM) |
+| **Capital expenditures ****>**** $5,000** | Belle Realty approval required |
+| **Marketing / leasing inquiries** | On The Boulevard (DBA) via Orange Ocean |
+| **Bank withdrawals — owner accounts** | Belle Realty signatory |
+| **Bank withdrawals — operating accounts** | Orange Ocean signatory |
+
+# 3. Tenant Roster
+
+All 27 demised units. 21 leases (units 101/103, 115/117, 125/127, 139/141 are combined demises sharing a single lease). Color shading: red = expired holdover, orange = vacant, blue = owner-occupied, gold = anchor.
+
+| **Unit** | **DBA** | **Legal Entity** | **SF** | **Base $/SF** | **Total $/SF** | **Monthly Rent** | **Term End** | **Status** | **Notes** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **101** | The Pink Paisley | The Pink Paisley, LLC | 6,877 | $15.35 | $19.35 | $11,089.16 | 02/14/2027 | **ACTIVE** | Combined w/ 103 = 9,931 SF. Two-story. |
+| **103** | The Pink Paisley | The Pink Paisley, LLC | 3,054 | $15.35 | $19.35 | $4,924.58 | 02/14/2027 | **ACTIVE** | Combined w/ 101. Two-story. |
+| **105** | Painted Bayou | Painted Bayou, LLC | 2,222 | $13.50 | $17.45 | $3,231.16 | 03/17/2026 | **EXPIRED** | EXPIRED — operating in holdover. |
+| **107** | Great American Cookies / Hershey's | Lafayette Cookies and Cream, LLC | 1,743 | $13.50 | $17.50 | $2,541.88 | 07/13/2027 | **ACTIVE** | Food — grease trap on landlord schedule. |
+| **109** | JC Kate Boutique | J.C. Kate Boutique LLC | 2,546 | $14.00 | $17.95 | $3,808.39 | 09/17/2025 | **EXPIRED** | EXPIRED — 8+ months holdover. HIGHEST PRIORITY renewal. |
+| **111** | BERNINA Lafayette | Lola Pink Fabrics, LLC | 1,690 | $13.50 | $18.50 | $2,605.42 | 01/12/2027 | **ACTIVE** | BERNINA authorized dealer. |
+| **113** | Graze Acadiana | Graze Acadiana, LLC | 2,606 | $13.50 | $18.50 | $4,017.58 | 06/11/2027 | **ACTIVE** | Food — verify grease trap and hood/Ansul. |
+| **115** | Clothing Loft Exchange | The Clothing Loft Exchange, LLC | 2,170 | $13.50 | $18.40 | $3,327.33 | 09/11/2026 | **ACTIVE** | Combined w/ 117 = 4,340 SF. |
+| **117** | Clothing Loft Exchange | The Clothing Loft Exchange, LLC | 2,170 | $13.50 | $18.40 | $3,327.33 | 09/11/2026 | **ACTIVE** | Combined w/ 115. |
+| **117.5** | Victoria Nails | Victoria Nails, LLC | 1,769 | $14.00 | $19.00 | $2,800.92 | 02/14/2026 | **EXPIRED** | EXPIRED. Floor plan MISSING. |
+| **119** | OUPAC Financial | Daco Investments, LLC | 1,982 | $13.50 | $17.50 | $2,890.42 | 02/14/2026 | **EXPIRED** | EXPIRED. |
+| **119.5** | Cat Clinic of Lafayette | Cat Clinic of Lafayette, L.L.C. | 1,974 | $14.00 | $18.45 | $3,035.03 | 03/30/2029 | **ACTIVE** | Corrected from earlier stale data. |
+| **121** | Magnolia Salon | Robertson Family Holdings, LLC | 1,709 | $12.75 | $17.75 | $2,527.90 | 01/25/2032 | **ACTIVE** | Rent corrected from $0 anomaly. |
+| **123** | The Tux Shoppe | The Tux Shoppe, LLC | 3,563 | $13.50 | $18.50 | $5,492.96 | 01/27/2030 | **ACTIVE** |  |
+| **125** | Jordan Amanda by Shoetique | Jordan Amanda, LLC | 1,735 | $13.50 | $18.50 | $2,674.79 | 05/17/2028 | **ACTIVE** | Combined w/ 127 = 4,273 SF. |
+| **127** | Jordan Amanda by Shoetique | Jordan Amanda, LLC | 2,538 | $13.50 | $18.50 | $3,912.75 | 05/17/2028 | **ACTIVE** | Combined w/ 125. |
+| **129** | HotWorx | Lexi Investments 2, LLC | 1,789 | $14.00 | $19.00 | $2,832.58 | 09/25/2029 | **ACTIVE** | ⚠ Exclusive-use conflict watch w/ C. Wolf (135A). |
+| **131** | VACANT | — | 1,907 | — | — | — | — | **VACANT** | LOI pending — furniture-store prospect. |
+| **133** | VACANT | — | 1,272 | — | — | — | — | **VACANT** | Smallest available — active marketing. |
+| **135A** | C. Wolf Barber Shop | C. Wolf Barber & Shop LLC | 1,580 | $10.50 | $15.50 | $2,040.83 | 06/25/2031 | **ACTIVE** | Exclusive-use beneficiary. |
+| **135B** | Belle Realty Property Mgmt | Belle Realty of Lafayette, LLC | 1,580 | — | — | — | — | **OWNER** | Owner-occupied management office. |
+| **137** | Greek Expressions | Parish Lettering, LLC | 2,053 | $13.50 | $18.50 | $3,165.04 | 11/25/2030 | **ACTIVE** |  |
+| **139** | Fast Pass Tag & Title | Fastpass Tag & Title, LLC | 1,917 | $13.50 | $18.50 | $2,955.38 | 04/26/2027 | **ACTIVE** | Combined w/ 141 = 3,834 SF. |
+| **141** | Fast Pass Tag & Title | Fastpass Tag & Title, LLC | 1,917 | $13.50 | $18.50 | $2,955.38 | 04/26/2027 | **ACTIVE** | Combined w/ 139. |
+| **143** | 1st Franklin Financial | 1st Franklin Financial Corporation | 1,917 | $16.00 | $19.95 | $3,187.01 | 01/17/2026 | **EXPIRED** | EXPIRED. |
+| **145** | Upstream Rehabilitation | Upstream Partners | 1,917 | $13.50 | $18.50 | $2,955.38 | 02/25/2031 | **ACTIVE** | Recently leased — corrected from VACANT. |
+| **149** | Jason's Deli | Deli Management, Inc. | 4,613 | $16.25 | $20.20 | $7,765.22 | 11/25/2030 | **ANCHOR** | ANCHOR. Most complex buildout (kitchen/dining). |
+
+### Corrections vs. Earlier Data
+
+- **Unit 121 (Magnolia Salon): **rent corrected from $0 anomaly to $2,527.90/mo. Term through 1/25/2032.
+
+- **Unit 145 (Upstream Rehabilitation): **corrected from VACANT to actively leased. Term through 2/25/2031.
+
+- **Unit 119.5 (Cat Clinic of Lafayette): **corrected from EXPIRED (stale data) to ACTIVE. Term through 3/30/2029.
+
+- **Units 101 ****&**** 103 (Pink Paisley): **confirmed as two-story buildouts. Floor plans captured for both floors.
+
+### Five Expired Leases ($191,015/yr at-risk)
+
+- **Unit 109 — JC Kate Boutique: **expired 9/17/2025. 8+ months in holdover. **HIGHEST PRIORITY.**
+
+- **Unit 117.5 — Victoria Nails: **expired 2/14/2026.
+
+- **Unit 119 — OUPAC Financial: **expired 2/14/2026.
+
+- **Unit 143 — 1st Franklin Financial: **expired 1/17/2026.
+
+- **Unit 105 — Painted Bayou: **expired 3/17/2026.
+
+### Exclusive-Use Conflict Watch
+
+Unit 129 (HotWorx) and Unit 135A (C. Wolf Barber Shop): HotWorx executed Mar 2024; C. Wolf executed Nov 2024 with a competing-use prohibition. The HotWorx lease pre-dates the C. Wolf prohibition. Counsel review pending — see §18.
+
+# 4. Parking Lots & Cross-Parking
+
+## 4.1 The Three Lots
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Lot 1 — Main Parking Field** | Primary lot, east of long building. Fills first. | **FINAL** |
+| **Lot 2 — North Lot** | Location uncertain in current SOT — confirm on actual plat. | **PENDING** |
+| **Lot 3 — Remote Lot (across Marie Antoinette St.)** | Separate parcel west of main property. Overflow / cross-parking target. Originally mislabeled 'pad site' — corrected. | **FINAL** |
+| **Total stalls** | 324 across the three lots | **FINAL** |
+| **Fill order mechanic** | Customers and license holders use Lot 1 first; overflow to Lot 2; further overflow to Lot 3. | **FINAL** |
+
+## 4.2 Cross-Parking Licenses
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Our Saviors Church** | $500/month — reciprocal cross-parking license covering all 3 lots. | **FINAL (caveat)** |
+| **JD Bank** | $500/month — reciprocal cross-parking license covering all 3 lots. | **FINAL (caveat)** |
+| **Combined annual revenue** | $12,000/year | **FINAL** |
+| **License terms (full document)** | Term length, renewal mechanics, indemnity, termination clauses NOT yet documented. | **NEEDS ACTION** |
+
+# 5. Floor Plan Inventory
+
+Per-unit floor plans captured externally and uploaded into v5 ops tool.
+
+| **Plan** | **Tenant** | **Status** |
+| --- | --- | --- |
+| **101 — First Floor** | Pink Paisley | Received |
+| **101 — Second Floor** | Pink Paisley | Received |
+| **103 — First Floor** | Pink Paisley | Received |
+| **103 — Second Floor** | Pink Paisley | Received |
+| **105** | Painted Bayou | Received |
+| **107** | Great American Cookies | Received |
+| **109** | JC Kate Boutique | Received |
+| **111** | BERNINA Lafayette | Received |
+| **113** | Graze Acadiana | Received |
+| **115** | Clothing Loft Exchange | Received |
+| **117** | Clothing Loft Exchange | Received |
+| **117.5** | Victoria Nails | **MISSING** |
+| **119** | OUPAC Financial | Received |
+| **119.5** | Cat Clinic | Received |
+| **121** | Magnolia Salon | Received |
+| **123** | Tux Shoppe | Received |
+| **125 / 127** | Jordan Amanda | Received (combined) |
+| **129** | HotWorx | Received |
+| **131 / 133** | VACANT | Received (combined) |
+| **135A** | C. Wolf Barber | Received |
+| **135B** | Belle Realty Office | Received |
+| **137** | Greek Expressions | Received |
+| **139 / 141** | Fast Pass Tag & Title | Received (combined) |
+| **143** | 1st Franklin Financial | Received |
+| **145** | Upstream Rehab | Received |
+| **149** | Jason's Deli | Received |
+
+- **Two-story units: **101 and 103 (Pink Paisley) each have separate First and Second Floor plans. Combined demise ~9,931 SF across four floors.
+
+- **Combined-lease inconsistency: **125/127, 131/133, 139/141 each have one shared plan. 115/117 have separate plans. 101/103 separate plus second floors.
+
+- **Anchor 149 (Jason****'****s Deli): **most complex buildout — kitchen, restrooms, dining, column grid.
+
+- **Missing: ****Unit 117.5 (Victoria Nails) — **also one of the five in holdover; the floor plan is needed for renewal negotiation and replacement marketing.
+
+# 6. Operations Tool (v5) — Capability Summary
+
+OTB_Ops_Tool_v5.html is the current operational tool. Single self-contained HTML file with browser-local persistence. Auto-migrates v4 data on first open.
+
+### Core Capabilities
+
+- Site plan / plat / Google Maps image upload as background layer. Auto-compressed to max 2400px JPEG 85%.
+
+- Image editor: rotate (90° L / 90° R / 180°), crop (draw rectangle, apply, repeat), reset, apply & save.
+
+- Draw mode for units and parking stalls. Drag-to-move, drag-to-resize with 8-corner handles.
+
+- Snap-to-neighbor toggle. When On, dragging snaps to butt-against and edge-aligned positions within 8 SVG units.
+
+- Three parking lots pre-configured with fill order. Editable.
+
+- Per-stall: lot assignment, status (open / reserved / out-of-service), reservedFor (link to tenant).
+
+- Pylon sign: photo + tenant slot list with top-to-bottom order + per-slot approval status.
+
+- Per-unit exterior signage: photo + approval workflow (pending / approved / rejected / installed).
+
+- POI layer: 38 categories / 8 groups (Utilities / HVAC / Plumbing / Life Safety / Site / Building / Other) — water meters, water shutoffs, gas / electric, HVAC RTUs, grease traps, fire hydrants, FDC, knox boxes, AEDs, dumpsters, benches, etc.
+
+- Per-POI: status (operational / needs-service / out-of-service), last serviced, next due, vendor, photo, notes.
+
+- Per-unit floor plan upload (multi-floor supported) with pan/zoom viewer.
+
+- Heat map modes: Status, Lease Expiration, Rent $/SF, Size (SF).
+
+- Filter chips, search, sort, auto-fit, JSON export/import, reset to SOT.
+
+# 7. Brand Identity
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **OO Orange (accent / CTA)** | #F29F22 | **FINAL** |
+| **OO Blue (secondary / headers)** | #4F95C2 | **FINAL** |
+| **OO Dark Navy (text / structure)** | #1F3A5F | **FINAL** |
+| **OO Tan (background warmth)** | #F5EFE0 | **FINAL** |
+| **Brand Manual** | Full Corporate Identity & Brand Governance Manual produced | **FINAL** |
+| **Stationery suite** | Letterhead (Belle Realty + Orange Ocean), 5 email signatures, business cards, memo templates | **FINAL** |
+
+# 8. Financial Snapshot & Banking
+
+## 8.1 Portfolio Economics
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Total GLA** | 62,810 SF | **FINAL** |
+| **Occupied SF (incl. owner-occ)** | 59,631 SF | **FINAL** |
+| **Revenue-Producing Occupied SF** | 58,051 SF | **FINAL** |
+| **Vacant SF** | 3,179 SF | **FINAL** |
+| **Occupancy Rate** | 94.9% | **FINAL** |
+| **Monthly In-Place Rent** | $90,064.42 | **FINAL** |
+| **Annual In-Place Rent** | $1,080,773 | **FINAL** |
+| **Average Gross Rent PSF (revenue-producing)** | $18.62 / SF | **FINAL** |
+| **Annual Revenue At Risk (5 expired leases)** | $191,015 | **NEEDS ACTION** |
+| **At-Risk as % of Total Annual** | 17.7% | **NEEDS ACTION** |
+| **Highest PSF Tenant** | Jason's Deli (149) — $20.20 / SF gross | **FINAL** |
+| **Lowest Active PSF Tenant** | C. Wolf Barber Shop (135A) — $15.50 / SF gross | **FINAL** |
+
+## 8.2 Banking Structure
+
+*Best practice: separate trust treatment for security deposits; separate operating accounts by entity. Currently all sub-items pending population — see §18 P1.*
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Operating Account — Belle Realty** | _____________________ | **PENDING** |
+| **Operating Account — Orange Ocean (PM ops)** | _____________________ | **PENDING** |
+| **Security Deposit Trust Account** | _____________________ | **PENDING** |
+| **Replacement Reserves Account** | _____________________ | **PENDING** |
+| **Tenant Payment Portal (DoorLoop / merchant)** | _____________________ | **PENDING** |
+| **Wire Routing for Owner Distributions** | _____________________ | **PENDING** |
+| **Signatories — Belle Realty** | _____________________ | **PENDING** |
+| **Signatories — Orange Ocean** | _____________________ | **PENDING** |
+| **Positive Pay / Fraud Controls** | _____________________ | **PENDING** |
+
+## 8.3 CAM Methodology Snapshot
+
+Per SOT, NNN charges currently itemized as CAM $2.10/SF, Tax $0.85–$1.20/SF, Insurance $1.00–$1.95/SF across the portfolio. Tax and insurance components vary by lease vintage. Full CAM documentation pending.
+
+- CAM pool composition documented (year-over-year)
+
+- Pro-rata share calculation per tenant validated
+
+- Cap / stop tracking per tenant lease
+
+- Exclusions documented (capital, leasing commissions, owner overhead)
+
+- Annual reconciliation calendar set (within 90–120 days of year-end)
+
+- Tenant audit-rights window tracked
+
+## 8.4 Reporting Cadence
+
+- Monthly — P&L, balance sheet, rent roll, AR aging, variance to budget, leasing pipeline
+
+- Quarterly — capex tracking, vendor performance, lease expiration calendar
+
+- Annual — budget, CAM reconciliation, insurance review, capital plan, property tax appeal evaluation
+
+# 9. Vendor & Service Directory
+
+*Maintain current contracts, COIs, and W-9s in DoorLoop vendor records. All COIs must name Belle Realty of Lafayette, LLC as additional insured.*
+
+| **Service Category** | **Vendor** | **Status** | **Notes** |
+| --- | --- | --- | --- |
+| **HVAC — PM ****&**** Repairs** | Butcher Air Conditioning | **ACTIVE** | Required vendor per C. Wolf lease. |
+| **Electric Utility** | LUS (Lafayette Utilities System) | **VERIFY** | Common-area and signage. |
+| **Water / Sewer** | LUS | **VERIFY** | Master meter(s) for common areas. |
+| **Natural Gas** | Atmos Energy (verify) | **VERIFY** |  |
+| **Waste Hauler** | _____________________ | **TBD** |  |
+| **Landscape Maintenance** | _____________________ | **TBD** |  |
+| **Parking Lot Sweeping** | _____________________ | **TBD** |  |
+| **Pest Control** | _____________________ | **TBD** |  |
+| **Janitorial (Common Areas)** | _____________________ | **TBD** |  |
+| **Fire Sprinkler Inspection** | _____________________ | **TBD** | NFPA 25 cadence. |
+| **Fire Alarm Monitoring** | _____________________ | **TBD** |  |
+| **Fire Extinguisher Service** | _____________________ | **TBD** | Annual / 6yr / 12yr. |
+| **Backflow Preventer Testing** | _____________________ | **TBD** | Annual per LUS. |
+| **Roof Maintenance / Inspection** | _____________________ | **TBD** | Semi-annual + post-storm. |
+| **Parking Lot Repairs / Striping** | _____________________ | **TBD** |  |
+| **Pylon / Sign Maintenance** | _____________________ | **TBD** | Bulbs, structure, electrical. |
+| **Security / Patrol (if any)** | _____________________ | **TBD** |  |
+| **CCTV / Alarm Monitoring** | _____________________ | **TBD** |  |
+| **Locksmith (24/7)** | _____________________ | **TBD** |  |
+| **Plumbing (24/7 Emergency)** | _____________________ | **TBD** |  |
+| **Electrical (24/7 Emergency)** | _____________________ | **TBD** |  |
+| **Glass / Storefront Emergency** | _____________________ | **TBD** |  |
+| **Water Mitigation / Restoration** | _____________________ | **TBD** | Hurricane / flood critical. |
+| **Roof Tarp / Emergency Roof** | _____________________ | **TBD** | Hurricane critical. |
+| **Grease Trap Service** | _____________________ | **TBD** | Jason's Deli, Graze Acadiana, Great American. |
+| **Hood / Ansul Service** | _____________________ | **TBD** | Restaurant tenants. |
+| **Insurance Broker** | _____________________ | **TBD** |  |
+| **Insurance Claims Adjuster** | _____________________ | **TBD** |  |
+| **Property Counsel (LA-licensed)** | _____________________ | **TBD** |  |
+| **CPA / Tax Preparer** | _____________________ | **TBD** |  |
+| **Bookkeeping** | _____________________ | **TBD** |  |
+
+### 9.1 Vendor Onboarding Requirements
+
+- Signed Master Services Agreement or vendor work order
+
+- W-9 on file (for 1099 reporting)
+
+- Certificate of Insurance — Belle Realty of Lafayette, LLC named additional insured
+
+- Minimum coverage: $1M / $2M CGL; workers' comp per LA law
+
+- Auto liability for any vehicle activity on site
+
+- Background check confirmation for after-hours access
+
+# 10. Operations Manual & SOPs
+
+## 10.1 Rent Collection
+
+- Rent due: 1st of month
+
+- Grace period: per individual lease (typically 5 days)
+
+- Late fee: per individual lease
+
+- Auto-pay via DoorLoop tenant portal preferred
+
+- ACH / wire / check accepted; cash discouraged
+
+- Collections workflow: Day 1 statement → Day 6 reminder → Day 11 late notice → Day 16 default notice
+
+## 10.2 Default & Eviction Workflow
+
+*Louisiana is a civil-law jurisdiction. Eviction procedure differs from common-law states. Use LA-licensed counsel for any action beyond standard notice.*
+
+- Day 1: auto-reminder via DoorLoop
+
+- Day 11: late fee assessed per lease
+
+- Day 16: default notice sent (Belle Realty letterhead, certified mail + email)
+
+- Day 21: cure deadline lapses
+
+- Day 22+: file Rule for Possession in City Court of Lafayette or appropriate venue
+
+- Coordinate with LA counsel before filing
+
+- Document every step — dates, certified mail receipts, photos, payment records
+
+## 10.3 Service Request Workflow
+
+- Tenant submits via DoorLoop portal, email, or phone
+
+- PM logs in DoorLoop maintenance module within 24 hours
+
+- PM triage: landlord vs tenant responsibility per lease
+
+- Landlord items: dispatch vendor with PO
+
+- Tenant items: notify tenant in writing
+
+- Emergencies: immediate dispatch via 24/7 vendor list
+
+- Close ticket in DoorLoop with vendor invoice + tenant confirmation
+
+## 10.4 Approval Matrix
+
+| **Action Type** | **Required Approval** |
+| --- | --- |
+| **Routine repairs ****<**** $500** | PM (Orange Ocean) |
+| **Repairs $500–$2,500** | PM with same-day notice to owner |
+| **Repairs $2,500–$5,000** | Owner (Belle Realty) email approval |
+| **Capital expenditures ****>**** $5,000** | Owner written approval |
+| **New lease execution** | Owner signature |
+| **Lease amendment / extension** | Owner signature |
+| **Default notice issuance** | Owner / counsel review |
+| **Eviction filing** | Owner + LA counsel |
+| **Vendor onboarding (new MSA)** | Owner approval |
+| **Insurance claims ****>**** $10,000** | Owner direct involvement |
+| **Tenant lease concessions** | Owner written approval |
+| **Sublease / assignment consent** | Owner + counsel review |
+
+## 10.5 DoorLoop Configuration Checklist
+
+- Property profile complete (address, GLA, units, photos)
+
+- Tenant records — all 21 active tenants, contact info populated
+
+- Lease abstracts entered — critical dates, options, escalations per SOT
+
+- Recurring charges configured (base, CAM, tax, insurance)
+
+- Late fee rules per lease
+
+- Tenant portal access provisioned
+
+- Owner portal access — Belle Realty
+
+- Vendor records with W-9 + COI tracking
+
+- Maintenance workflow active
+
+- Lease expiration alerts (180-day, 90-day, 30-day)
+
+- Document storage — all leases, amendments, COIs uploaded
+
+# 11. Insurance & Risk Management
+
+## 11.1 Required Coverage
+
+| **Coverage** | **Notes** |
+| --- | --- |
+| **Commercial Property** | Special form; replacement cost; verify TIV current |
+| **Wind / Named Peril** | Verify deductible (often separate, %-of-value); critical in LA |
+| **Flood (NFIP and/or private)** | Required per lender; verify flood zone; consider excess flood |
+| **Commercial General Liability** | $1M / $2M minimum; higher recommended |
+| **Umbrella / Excess Liability** | $5M+ recommended for retail center |
+| **Ordinance or Law** | Coverage A (loss to undamaged portion), B (demolition), C (increased cost of construction) |
+| **Business Income / Rent Loss** | 12+ months minimum |
+| **Equipment Breakdown** | HVAC, electrical, mechanical |
+| **Pollution Legal Liability** | If environmental risk identified |
+| **Cyber Liability** | If collecting tenant data / online payments |
+| **Crime / Fidelity** | Employee dishonesty coverage |
+| **EPLI** | If employees — employment practices |
+
+## 11.2 Tenant Insurance Requirements
+
+- Each tenant maintains CGL $1M / $2M minimum
+
+- Belle Realty of Lafayette, LLC named as additional insured on tenant CGL
+
+- Workers' compensation per LA law where employees present
+
+- Property insurance on tenant's improvements and personal property
+
+- Annual COI collection and audit
+
+- **Special requirements — food tenants: **Jason's, Graze, Great American Cookies — product liability
+
+- **Special requirements — HotWorx: **health-club style exposures
+
+- **Special requirements — Cat Clinic: **professional liability / animal handling
+
+- **Special requirements — Upstream Rehab: **healthcare professional liability
+
+## 11.3 COI Tracking
+
+- DoorLoop COI tracker active for all tenants
+
+- Quarterly audit of expiring COIs
+
+- Default-notice protocol for non-current COIs
+
+- Vendor COI audit — same cadence
+
+# 12. Emergency & Hurricane Response Plan
+
+*Hurricane season: June 1 – November 30. Lafayette has experienced direct strikes and major windstorm events. Pre-season preparation is mandatory; in-season response must be drilled.*
+
+## 12.1 Emergency Contacts — First Call Tree
+
+| **Contact** | **Number** |
+| --- | --- |
+| **Property Manager (24/7) — Adam Abdalla** | 337-288-5411 |
+| **Lafayette Police (non-emergency)** | 337-291-8600 |
+| **Lafayette Parish Sheriff** | 337-232-9211 |
+| **Lafayette Fire (non-emergency)** | 337-291-8716 |
+| **Acadian Ambulance / EMS** | 911 |
+| **LUS Emergency (Electric/Water)** | 337-291-9200 |
+| **Atmos Gas Leak** | 866-322-8667 |
+| **Lafayette Consolidated Government** | 337-291-8000 |
+| **Insurance Broker** | _____________________ |
+| **Property Counsel** | _____________________ |
+| **Water Mitigation Vendor** | _____________________ |
+| **Roofing Emergency Tarp** | _____________________ |
+| **Glass Storefront Emergency** | _____________________ |
+
+## 12.2 Pre-Season Checklist (Complete by May 31)
+
+- Insurance review with broker: wind/named-peril deductible, flood policy current, ordinance or law coverage adequate
+
+- Confirm policy limits sufficient for total insurable value
+
+- Photographic documentation: all building exteriors, signage, parking, mechanical equipment, common areas
+
+- Update insurance schedule of values
+
+- Roof inspection completed; minor repairs closed out
+
+- Drainage / stormwater inlets clear; detention basin assessed
+
+- Landscape trim: dead limbs removed; trees pruned near buildings/signs
+
+- Pylon / monument sign structural inspection
+
+- Loose items inventory (dumpsters, planters, A-frames) — securement plan
+
+- Tenant communication: pre-season letter with hurricane plan, contacts, expectations
+
+- Vendor confirmations: water mitigation, roofing, glass, electrical pre-positioned
+
+- Master key inventory accessible off-site
+
+- Cloud backup of property documents verified
+
+## 12.3 Storm Approaching
+
+### T-72 hours
+
+- Monitor National Hurricane Center advisories
+
+- Tenant notification — first advisory email
+
+- Pre-position emergency vendor calls
+
+- Bank: pre-fund operating account for processing delays
+
+### T-48 hours
+
+- Photograph property condition (timestamped) — baseline for claims
+
+- Secure loose items — dumpsters chained, A-frames stored
+
+- Tenant directive: shutdown procedures, board windows if Cat 3+, secure signage
+
+- Confirm insurance broker reachable
+
+### T-24 hours
+
+- Final walk-through and photograph
+
+- Confirm all tenants evacuating per their plans
+
+- Office: data backup verified, critical docs in waterproof storage
+
+- Disable non-essential exterior power if directed by LUS
+
+## 12.4 Post-Storm Response
+
+- Safety first: do not enter until LFD/LCG clears area
+
+- Photograph all damage before any cleanup — every angle, every unit
+
+- Video walk-through narrated with timestamps
+
+- Notify insurance broker within 24 hours of accessing property
+
+- Open claim file with policy number and damage inventory
+
+- Emergency mitigation: water extraction, board-up, tarp — photograph before/during/after
+
+- Save all receipts and invoices for emergency response (recoverable)
+
+- Tenant communication: status, projected restoration timeline, rent abatement decisions
+
+- Coordinate adjuster site visit
+
+- Document Code Enforcement / FEMA / SBA interactions
+
+- If federally declared disaster: explore SBA disaster loan for rebuild capital
+
+## 12.5 Other Emergencies
+
+### Water Leak (Interior)
+
+- Isolate source — shut off water at main if needed
+
+- Notify affected tenants
+
+- Dispatch plumber / water mitigation
+
+- Document with photos for insurance
+
+### Fire
+
+- 911
+
+- Account for tenants / patrons — do not re-enter
+
+- Notify insurance immediately upon LFD clearance
+
+- Coordinate state fire marshal investigation
+
+### Power Outage
+
+- Confirm with LUS — area outage vs property-specific
+
+- Tenant notification
+
+- Emergency lighting check
+
+- If extended: refrigeration tenants (**Jason****'****s Deli, Graze Acadiana, Great American Cookies**) priority.
+
+### Security Incident
+
+- 911 if active threat
+
+- Preserve scene for LPD
+
+- Pull CCTV footage immediately and preserve
+
+- Tenant communication post-clearance
+
+- Insurance notification if property damage
+
+# 13. Legal & Compliance Reference
+
+## 13.1 Document Library Inventory
+
+- Standard form lease (current attorney-approved) — location: _______________
+
+- Letter of Intent template
+
+- Lease amendment / extension template
+
+- Estoppel certificate template
+
+- SNDA template
+
+- Guaranty template (corporate and personal)
+
+- Default notice templates (LA-compliant)
+
+- Demand letter templates
+
+- Owner Lease Summary template (14-section format)
+
+- Vendor MSA template
+
+- Brand-compliant letterhead and notice templates
+
+## 13.2 Active Matters Log
+
+| **Matter** | **Status** |
+| --- | --- |
+| **HotWorx / C. Wolf exclusive-use review** | **OPEN — counsel review** |
+| **Five expired-lease holdover negotiations** | **OPEN — high priority** |
+| **Street name spelling reconciliation (****'****Arnauld****'**** vs ****'****Arnold****'**** vs ****'****Arnould****'****)** | **OPEN — title confirmation** |
+| **Cross-parking license full terms (Our Saviors Church + JD Bank)** | **OPEN — locate documents** |
+
+## 13.3 Louisiana / Lafayette Parish Compliance
+
+- LA Secretary of State — Belle Realty annual report current
+
+- LA Secretary of State — Orange Ocean annual report current
+
+- Registered agent on file for both entities
+
+- LA Department of Revenue — entity tax filings current
+
+- Lafayette Parish Assessor — property records accurate
+
+- Lafayette Parish Sheriff — property tax payment current
+
+- LAT-5 personal property declaration filed annually
+
+- Lafayette Consolidated Government — occupational license current
+
+- Tenant occupational licenses tracked
+
+- State Fire Marshal annual inspection on file
+
+- LDH food permits: **Jason****'****s Deli, Graze Acadiana, Great American Cookies**
+
+- ATC permits for any tenant with alcohol service
+
+## 13.4 Federal Compliance
+
+- EIN confirmation on file for both entities
+
+- FinCEN Beneficial Ownership Information filing current
+
+- 1099-NEC issuance to qualifying vendors by Jan 31
+
+- ADA Title III compliance — review and remediate periodically
+
+- FEMA flood insurance current per lender
+
+# 14. Physical Plant Inventory
+
+*Maintain a photographic baseline updated annually. Evidence base for insurance claims, capital planning, and PCA updates. All sub-items pending population — see §18 P1.*
+
+## 14.1 Roof Systems
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Long Building — Roof Type** | _____________________ | **PENDING** |
+| **Long Building — Age / Warranty** | _____________________ | **PENDING** |
+| **Short Building — Roof Type** | _____________________ | **PENDING** |
+| **Short Building — Age / Warranty** | _____________________ | **PENDING** |
+| **Anchor (149) Roof — If Separate** | _____________________ | **PENDING** |
+| **Drainage System Inventory** | _____________________ | **PENDING** |
+| **Most Recent Inspection Date / Vendor** | _____________________ | **PENDING** |
+
+## 14.2 HVAC Inventory
+
+Per suite. Track manufacturer, model, serial, tonnage, age, refrigerant, last service. Maintain in DoorLoop unit profile.
+
+*Butcher Air Conditioning is the required PM vendor per C. Wolf lease. Confirm scope for other suites.*
+
+## 14.3 Electrical
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Service Entrance Locations** | _____________________ | **PENDING** |
+| **Total Service Capacity (Amps)** | _____________________ | **PENDING** |
+| **Meter Bases — Tenant Submeters** | 27 (one per suite — verify) | **VERIFY** |
+| **Common-Area Panel Locations** | _____________________ | **PENDING** |
+| **Site Lighting Controls** | _____________________ | **PENDING** |
+| **Generator (if any)** | _____________________ | **PENDING** |
+
+## 14.4 Plumbing
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Water Service Entrance / Master Meter** | LUS | **FINAL** |
+| **Backflow Preventer Inventory** | _____________________ | **PENDING** |
+| **Sewer Cleanout Locations** | _____________________ | **PENDING** |
+| **Grease Trap — Jason****'****s Deli (149)** | _____________________ | **PENDING** |
+| **Grease Trap — Graze Acadiana (113)** | _____________________ | **PENDING** |
+| **Grease Trap — Great American Cookies (107)** | _____________________ | **PENDING** |
+| **Irrigation Backflow / RPZ** | _____________________ | **PENDING** |
+
+## 14.5 Fire & Life Safety
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Sprinkler System Type** | _____________________ | **PENDING** |
+| **Sprinkler Service / Inspection Vendor** | _____________________ | **PENDING** |
+| **FDC Location(s)** | _____________________ | **PENDING** |
+| **Knox Box — LFD On File** | _____________________ | **PENDING** |
+| **Fire Alarm Panel Make / Model / Age** | _____________________ | **PENDING** |
+| **Fire Alarm Monitoring Provider** | _____________________ | **PENDING** |
+| **Kitchen Hood / Ansul — Jason****'****s Deli** | _____________________ | **PENDING** |
+| **Kitchen Hood / Ansul — Graze Acadiana** | _____________________ | **PENDING** |
+| **Fire Extinguisher Service Vendor** | _____________________ | **PENDING** |
+| **Last State Fire Marshal Inspection** | _____________________ | **PENDING** |
+
+## 14.6 Site & Exterior
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Total Parking Stalls** | 324 | **FINAL** |
+| **ADA Parking Stalls** | _____________________ | **PENDING** |
+| **Parking Lot Lighting — Pole Count** | _____________________ | **PENDING** |
+| **Pylon Sign — Location, Tenant Panels** | _____________________ | **PENDING** |
+| **Monument Signs** | _____________________ | **PENDING** |
+| **Dumpster Enclosures** | _____________________ | **PENDING** |
+| **Last Sealcoat / Stripe** | _____________________ | **PENDING** |
+| **Landscape Zones / Irrigation** | _____________________ | **PENDING** |
+
+# 15. Master Compliance Calendar
+
+| **When** | **Item** | **Owner / Action** |
+| --- | --- | --- |
+| **January 31** | 1099-NEC issuance to vendors | Bookkeeper / CPA |
+| **February** | LAT-5 personal property declaration | Bookkeeper → Lafayette Parish Assessor |
+| **March 15** | Federal partnership return (or extension) | CPA |
+| **April** | Annual CAM reconciliation due to tenants | PM + Bookkeeper |
+| **April 15** | Federal individual return / K-1 distribution | CPA |
+| **May 31** | Hurricane pre-season checklist complete | PM |
+| **June 1** | Hurricane season begins (through Nov 30) | Operational posture shift |
+| **Anniversary** | LA Secretary of State annual reports | Counsel / registered agent |
+| **Annual** | Occupational license renewal — LCG | Owner / PM |
+| **Annual** | Insurance renewal — broker review 60 days prior | PM + broker |
+| **Annual** | Property tax payment — Lafayette Parish Sheriff | Bookkeeper |
+| **Aug–Sep** | Property tax assessment review / appeal window | Owner + counsel |
+| **Annual** | Sprinkler inspection (NFPA 25) | Fire vendor |
+| **Annual** | Fire alarm inspection | Fire vendor |
+| **Annual** | Fire extinguisher service | Fire vendor |
+| **Annual** | Backflow preventer test | Plumbing vendor / LUS |
+| **Annual** | State Fire Marshal inspection | PM coordinates |
+| **Quarterly** | COI audit — tenants and vendors | PM |
+| **Quarterly** | Owner reporting package | PM + Bookkeeper |
+| **Quarterly** | Lease expiration calendar review (180-day horizon) | PM |
+| **Monthly** | Rent roll, P&L, AR aging, variance report | Bookkeeper |
+| **Monthly** | DoorLoop late-fee / delinquency review | PM |
+| **Nov 30** | Hurricane season ends — post-season inspection | PM |
+| **Dec 31** | Year-end close prep — 1099 vendor data collection | Bookkeeper |
+
+# 16. SOT Folder Hierarchy & File Inventory
+
+## 16.1 SOT Folder Hierarchy
+
+All property files organized under the Belle Realty SOT structure with 11 top-level categories:
+
+- 00_ADMIN_AND_PROPERTY_WIDE — Master templates (ACH forms, default notices, estoppels, insurance templates, LOIs, lease templates, Schedule G templates, TI addenda, vendor agreements).
+
+- 01_PHYSICAL_UNIT_MASTER — Per-unit subfolders: 01_Lease, 02_Insurance, 03_HVAC, 04_Maintenance, 05_Photos, 06_FloorPlans, 99_Archive.
+
+- 02_ACTIVE_TENANTS — Tenant-specific files keyed by current occupant.
+
+- 03_VACANCY_AND_LEASING — Active LOIs, marketing collateral, broker materials.
+
+- 04_VENDOR — Service vendor contracts, COIs, contact info.
+
+- 05_FINANCIALS — Rent rolls, financial statements, AR/AP, lender docs.
+
+- 06_INSURANCE — Master property COIs, tenant COIs, claims history.
+
+- 07_CAPEX — Capital projects, roof history, parking lot history, signage.
+
+- 08_LEGAL — Title, litigation, easements, cross-parking license originals.
+
+- 09_ARCHIVE — Superseded versions.
+
+- 10_AI_EXPORTS — JSON exports from ops tool, AI-generated deliverables.
+
+## 16.2 Master File Inventory
+
+| **File** | **Purpose** | **Status** |
+| --- | --- | --- |
+| **00_OTB_Master_SOT.docx (v1.1)** | THIS DOCUMENT — master reference + ops manual + TODO | **CURRENT** |
+| **OTB_Ops_Tool_v5.html** | Interactive ops tool: image edit, snap, POIs, floor plans | **CURRENT** |
+| **00-OTB-Master-Template-Set-SOT.xlsx** | SOT workbook (anomalies pending — see §17) | **FINAL (caveat)** |
+| **Belle_Realty_SOT_Documents.zip** | Organized SOT folder hierarchy (00–10 categories) | **FINAL** |
+| **OTB_Master_Documentation_v2.docx** | Predecessor master doc — content rolled into v1.1 | *SUPERSEDED* |
+| **Shopping_Center_Handover_Checklist.docx** | Generic 24-pp handover checklist (~700 line items) | **FINAL** |
+| **OTB_Ops_Tool_v4.html** | Previous ops tool | *SUPERSEDED* |
+| **OTB_Ops_Tool.html (v3)** | Editable ops tool with licenses module | *SUPERSEDED* |
+| **OTB_Site_Plan_Interactive.html** | First interactive site plan | *SUPERSEDED* |
+| **OTB_Master_Documentation.docx (v1)** | First boulevard-specific master doc | *SUPERSEDED* |
+
+# 17. SOT Workbook Anomalies
+
+00-OTB-Master-Template-Set-SOT.xlsx is in use as the authoritative rent roll but has known discrepancies across its three sheets. Resolution required before next reporting cycle.
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **Unit 101 SF discrepancy** | 6,877 SF (Sheet 2 + plat) vs 6,677 SF (Sheets 1 & 3). Plat governs absent rebut. | **NEEDS ACTION** |
+| **Unit 117.5 SF discrepancy** | 1,769 SF (Sheet 2) vs 1,789 SF (Sheets 1 & 3). | **NEEDS ACTION** |
+| **Unit 135B formula error** | Cell returns #VALUE! — formula error. | **NEEDS ACTION** |
+| **Unit 145 term data** | Current_Term_Months = 1572 (likely should be 60). Term_start blank. Alloc_Base shows wrong value. | **NEEDS ACTION** |
+| **Missing security deposits** | Units 107 and 137 blank; 143 and 149 show 0. Verify against original leases. | **NEEDS ACTION** |
+| **NW corner structure on plat** | Confirmed as the Remote Parking Lot (Lot 3) across Marie Antoinette. | **FINAL** |
+| **Street name spelling** | Plat 'Arnauld' / site plan 'Arnold' / signage 'Arnould' — see §1. | **NEEDS ACTION** |
+
+# 18. Pending Action Items — Sequenced TODO
+
+Priority key: P0 = next 2 weeks. P1 = next 30 days. P2 = next 60–90 days. P3 = ongoing / nice-to-have.
+
+| **Pri.** | **Type** | **Action** | **Owner** | **Why It Matters** |
+| --- | --- | --- | --- | --- |
+| **P0** | **TENANT** | Negotiate renewal or move-out for Unit 109 (JC Kate Boutique) — 8+ months in holdover. | Adam | Highest holdover risk; longest exposure. |
+| **P0** | **TENANT** | Negotiate renewals for Units 105, 117.5, 119, 143 — all in holdover. | Adam | $191,015/yr at risk across all expired. |
+| **P0** | **LEGAL** | Counsel review of HotWorx (129) vs C. Wolf (135A) exclusive-use conflict. | Adam + Counsel | C. Wolf Nov 2024 prohibition may conflict with prior HotWorx Mar 2024 lease. |
+| **P0** | **LEGAL** | Title check on 'Arnauld' / 'Arnold' / 'Arnould' spelling variants. | Adam + Counsel/Title Co. | Plat says 'Arnauld', site plan says 'Arnold', signage says 'Arnould'. |
+| **P0** | **INSURANCE** | Hurricane pre-season checklist (complete by May 31 annually). | Adam + Broker | Lafayette hurricane season Jun 1 – Nov 30. |
+| **P1** | **VENDOR** | Complete §9 Vendor Directory — fill all TBD vendor slots with name, contact, COI. | Adam | Currently most vendor slots are blank placeholders. |
+| **P1** | **WORKBOOK** | Resolve Unit 101 SF discrepancy: 6,877 vs 6,677. | Adam | Affects rent calc, occupancy %. |
+| **P1** | **WORKBOOK** | Resolve Unit 117.5 SF discrepancy: 1,769 vs 1,789. | Adam | Affects rent calc. |
+| **P1** | **WORKBOOK** | Fix Unit 135B #VALUE! formula error. | Adam | Workbook integrity. |
+| **P1** | **WORKBOOK** | Fix Unit 145 Current_Term_Months = 1572 (likely 60); add term_start; correct Alloc_Base. | Adam | Data error. |
+| **P1** | **WORKBOOK** | Populate missing security deposits for Units 107, 137, 143, 149. | Adam | Compliance — deposit liability tracking. |
+| **P1** | **FLOOR PLAN** | Source Unit 117.5 (Victoria Nails) floor plan — only unit missing. | Adam | Needed for renewal negotiation. |
+| **P1** | **OPS TOOL** | Bulk-upload all 25 floor plans into v5 ops tool. | Adam | Activates per-unit floor plan reference. |
+| **P1** | **LICENSE** | Locate Our Saviors Church + JD Bank cross-parking license docs — capture term, renewal, indemnity, termination. | Adam | Only fees documented; legal terms unknown. |
+| **P1** | **PHYSICAL** | Complete §15 Physical Plant Inventory — roof, HVAC, electrical, plumbing, fire/life safety, site. | Adam | Currently blank; needed for capex planning and insurance claims. |
+| **P1** | **INSURANCE** | Confirm broker, current policy schedule, all required coverages per §13. | Adam + Broker | Annual review 60 days prior to renewal. |
+| **P1** | **BANKING** | Document banking structure: operating accounts, deposit trust, replacement reserves, signatories. | Adam | §11.2 currently blank. |
+| **P2** | **OPS TOOL** | Confirm Lot 2 (North Lot) actual location on site plan; relabel if different. | Adam | Location uncertain. |
+| **P2** | **OPS TOOL** | Decide combined-lease floor plan convention for 125/127, 131/133, 139/141, 115/117. | Adam | Inconsistent in uploaded set. |
+| **P2** | **OPS TOOL** | Upload site plan; rotate 90° L; crop; place unit rectangles on actual footprints. | Adam | Activates spatial accuracy. |
+| **P2** | **OPS TOOL** | Smoke-test POI placement (water meter, dumpster, fire hydrant, bench). | Adam | Validates UX before bulk POI population. |
+| **P2** | **COMPLIANCE** | Verify LA Secretary of State annual reports current for both entities. | Adam + Counsel | §14 Louisiana compliance. |
+| **P2** | **COMPLIANCE** | FinCEN Beneficial Ownership Information filing current for both entities. | Adam + Counsel | §14 Federal compliance. |
+| **P2** | **CAM** | Document CAM methodology — pool composition, gross-up, exclusions, caps, pro-rata. | Adam + Bookkeeper | §8.3 currently snapshot only. |
+| **P3** | **OPS TOOL** | After two weeks of real use, list friction points; decide v6 priorities. | Adam | Avoid premature optimization. |
+| **P3** | **DOC** | Clip whole-center floor plan into 27 per-unit views; populate 06_FloorPlans/. | Adam | Per-unit SOT folders currently empty. |
+| **P3** | **DOC** | One-page laminated emergency contact card (from §12.1) for management office. | Adam | Operational reference. |
+| **P3** | **DOC** | Print 11×17 site plan from v5 ops tool for management office wall. | Adam | Operational reference. |
+| **P3** | **TENANT** | Begin per-tenant COI expiration tracking (manual until tool extension). | Adam | Insurance compliance. |
+| **P3** | **TENANT** | Begin per-tenant HVAC PM tracking (Butcher AC per C. Wolf lease). | Adam | Maintenance compliance. |
+
+# 19. Open Questions
+
+- Where exactly is Lot 2 (the 'North Lot')? Resolve when site plan is uploaded to v5.
+
+- Which convention for combined-lease floor plans? Single shared plan or duplicated per unit?
+
+- Does the HotWorx (March 2024) vs C. Wolf (November 2024) exclusive-use conflict have a contractual workaround, or is C. Wolf's prohibition unenforceable as to HotWorx?
+
+- Does title actually carry the 'Arnauld' spelling from the 1994 plat, and if so does that match the city's recorded street name today?
+
+- Should v6 of the ops tool migrate from localStorage to IndexedDB, add a sync-back to the SOT xlsx, or build a prospect-facing leasing site?
+
+# 20. Document Change Log
+
+| **Item** | **Detail** | **Status** |
+| --- | --- | --- |
+| **v1.0 — earlier this session** | Initial consolidated master SOT — facts, entity structure, tenant roster (with corrections), parking, licenses, floor plans, brand, SOT folder, file inventory, workbook anomalies, TODO, and open questions. | *SUPERSEDED* |
+| **v1.1 — May 20, 2026** | Integrated operational content from Master Doc v2: §2.3 Signature Authority, §8 Financial & Banking, §9 Vendor Directory, §10 Operations & SOPs, §11 Insurance, §12 Emergency & Hurricane Response, §13 Legal & Compliance, §14 Physical Plant, §15 Master Compliance Calendar. TODO expanded to 30 items including all newly-surfaced gaps (vendor blanks, banking, physical plant, compliance filings, CAM documentation). | **CURRENT** |
+
+*END OF DOCUMENT*
+
+		Belle Realty of Lafayette, LLC  ·  Managed by Orange Ocean, LLC	*Confidential — Internal Use Only*	Page  of

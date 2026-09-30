@@ -1,0 +1,68 @@
+# On The Boulevard - Signage Rendering Production Config
+
+paths:
+  tenant_database: /home/ubuntu/tenant_database.json
+  prompt_library: /home/ubuntu/prompt_library
+  generated_prompts: /home/ubuntu/generated_prompts
+  production_root: /home/ubuntu/production
+  exports: /home/ubuntu/exports
+  logs: /home/ubuntu/scripts/logs
+
+api:
+  image_model: "abacus-image-gen"
+  default_quality: "high"
+  default_size: "1536x1024"
+  max_retries: 3
+  retry_backoff_seconds: 5
+  timeout_seconds: 180
+
+naming:
+  prompt_file: "{tenant_slug}_{variant}_{deliverable_type}.txt"
+  render_file: "{tenant_slug}_{variant}_{deliverable_type}_{timestamp}.png"
+  date_format: "%Y%m%d_%H%M%S"
+
+deliverable_types:
+  - hero_storefront
+  - dusk_illuminated
+  - signage_close_up
+  - context_streetscape
+
+scene_variants:
+  hero_storefront: daytime
+  dusk_illuminated: dusk
+  signage_close_up: close_up
+  context_streetscape: streetscape
+
+qc:
+  min_resolution: [1280, 720]
+  preferred_resolution: [1536, 1024]
+  min_file_size_kb: 200
+  max_file_size_mb: 25
+  allowed_formats: [".png", ".jpg", ".jpeg"]
+  blur_threshold: 100.0
+
+tenant_folders:
+  - logo_source
+  - prompts
+  - renders
+  - finals
+  - revisions
+
+export_packages:
+  leasing_deck:
+    description: "Leasing presentation deck assets"
+    deliverables: [hero_storefront, dusk_illuminated]
+    include_logos: true
+  investor_package:
+    description: "Investor relations package"
+    deliverables: [hero_storefront, dusk_illuminated, context_streetscape]
+    include_logos: true
+    include_manifest: true
+  site_plan:
+    description: "Site plan accompanying renderings"
+    deliverables: [context_streetscape, hero_storefront]
+    include_logos: false
+  broker_marketing:
+    description: "Broker marketing materials"
+    deliverables: [hero_storefront, signage_close_up, dusk_illuminated]
+    include_logos: true

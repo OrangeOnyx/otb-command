@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Cypress Command — Property OS</title>
+  <link rel="stylesheet" href="../../colors_and_type.css"/>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body { background: var(--cc-bg-page); font-family: 'Inter', sans-serif; color: var(--cc-fg-primary); -webkit-font-smoothing: antialiased; }
+    #root { height: 100vh; display: flex; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-thumb { background: var(--cc-border-med); border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body class="cc-reset">
+  <div id="root"></div>
+
+  <script type="text/babel" src="../../components/Atoms.jsx"></script>
+  <script type="text/babel" src="../../components/Chrome.jsx"></script>
+  <script type="text/babel" src="../../components/Data.jsx"></script>
+  <script type="text/babel" src="./Screens.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [screen, setScreen] = useState(() => {
+        try { return localStorage.getItem('cc:screen') || 'dashboard'; } catch(e) { return 'dashboard'; }
+      });
+      const setAndPersist = (s) => {
+        setScreen(s);
+        try { localStorage.setItem('cc:screen', s); } catch(e) {}
+      };
+
+      const titles = {
+        dashboard:   { title: 'Kaliste Court · Portfolio', eyebrow: '[DASHBOARD]', meta: 'LEDGER SYNCED · 14:32 CT · 6 PROPERTIES · 47 LEASES' },
+        properties:  { title: 'Properties',    eyebrow: '[PORTFOLIO]',   meta: '6 PROPERTIES · LAFAYETTE, LA + BROUSSARD' },
+        ledger:      { title: 'Rent Roll',     eyebrow: '[LEDGER]',      meta: '$342,847.20 COLLECTED · AUG 2026 · CLOSED' },
+        leases:      { title: 'Lease pipeline', eyebrow: '[OPERATIONS]', meta: '47 ACTIVE · 8 RENEWALS DUE Q4 · 1 DRAFT' },
+        maintenance: { title: 'Maintenance',   eyebrow: '[OPERATIONS]',  meta: '3 OPEN · 12 IN PROGRESS · 218 CLOSED YTD' },
+        tenants:     { title: 'Tenants',       eyebrow: '[OPERATIONS]',  meta: '47 ACTIVE OPERATORS · 3.4 YR AVG TENURE' },
+        console:     { title: 'AI Console',    eyebrow: '[COMMAND · BETA]', meta: '4 AGENTS · 1,247 ACTIONS · 47D UPTIME' },
+        agents:      { title: 'Agents',        eyebrow: '[COMMAND]',     meta: '4 AGENTS · 3 ALWAYS-ON · 1 SCHEDULED' },
+        audit:       { title: 'Audit log',    eyebrow: '[COMMAND]',      meta: 'IMMUTABLE LEDGER · 12,847 ENTRIES · SOC 2 II' },
+      };
+      const t = titles[screen] || titles.dashboard;
+
+      const renderScreen = () => {
+        if (screen === 'dashboard' || screen === 'properties') return <DashboardScreen/>;
+        if (screen === 'leases' || screen === 'ledger') return <LeasesScreen/>;
+        if (screen === 'maintenance') return <MaintenanceScreen/>;
+        if (screen === 'tenants') return <TenantsScreen/>;
+        if (screen === 'console' || screen === 'agents' || screen === 'audit') return <AIConsoleScreen/>;
+        return <DashboardScreen/>;
+      };
+
+      return (
+        <>
+          <Sidebar current={screen} onNavigate={setAndPersist}/>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+            <TopBar title={t.title} subtitle={t.eyebrow} meta={t.meta}/>
+            <div style={{ flex: 1, overflowY: 'auto' }}>
+              {renderScreen()}
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

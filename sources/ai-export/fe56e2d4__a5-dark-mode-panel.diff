@@ -1,0 +1,68 @@
+*** PROPOSED DIFF — NOT APPLIED ***
+*** Begin Patch
+*** Update File: tools/site-twin/viewer/styles.css
+@@
+ html.embedded,.embedded body{height:100%;overflow:hidden}.embedded aside{min-height:0}
++
++html[data-theme="dark"] {
++  --paper: #12151A;
++  --surface: #1A1F26;
++  --ink: #E8EBE6;
++  --muted: #A8B0A4;
++  --line: #2C333C;
++  --brass: #C4A35A;
++  --sel: #E5A045;
++  color: var(--ink);
++  background: var(--paper);
++}
++html[data-theme="dark"] button { background: var(--surface); }
++html[data-theme="dark"] button:hover { background: #232A31; }
++html[data-theme="dark"] #stage { background: #0E1116; }
++html[data-theme="dark"] .mk { background: rgba(26,31,38,.92); color: var(--ink); }
++html[data-theme="dark"] .mk.sel { background: #3A2E16; }
++html[data-theme="dark"] .stage-caption,
++html[data-theme="dark"] .tour { background: rgba(26,31,38,.95); }
++html[data-theme="dark"] .search input { background: #12151A; color: var(--ink); }
++html[data-theme="dark"] .row { border-bottom-color: #2C333C; }
++html[data-theme="dark"] .row.on { background: #3A2E16; }
+*** End Patch
+
+*** Begin Patch
+*** Update File: tools/site-twin/viewer/viewer.js
+@@
+ const embedded = new URLSearchParams(location.search).get('embedded') === '1';
+ if (embedded) document.documentElement.classList.add('embedded');
++function applyTheme(theme) {
++  const t = theme === 'dark' ? 'dark' : 'light';
++  if (t === 'dark') document.documentElement.dataset.theme = 'dark';
++  else delete document.documentElement.dataset.theme;
++}
++function readParentTheme() {
++  try {
++    if (embedded && window.parent && window.parent !== window) {
++      const t = window.parent.document?.documentElement?.dataset?.theme;
++      if (t) return t;
++      const ls = window.parent.localStorage?.getItem('otb-theme');
++      if (ls) return ls;
++    }
++  } catch (_) {}
++  return localStorage.getItem('otb-theme') || 'light';
++}
++applyTheme(readParentTheme());
++window.addEventListener('message', (event) => {
++  if (event.origin !== location.origin) return;
++  if (event.data?.type === 'otb-theme' && (event.data.theme === 'dark' || event.data.theme === 'light')) {
++    applyTheme(event.data.theme);
++  }
++});
+*** End Patch
+
+*** Begin Patch
+*** Update File: src/main.js
+@@
+     document.documentElement.dataset.theme = next;
+     localStorage.setItem("otb-theme", next);
++    document.querySelectorAll("iframe").forEach((frame) => {
++      try { frame.contentWindow?.postMessage({ type: "otb-theme", theme: next }, location.origin); } catch (_) {}
++    });
+*** End Patch

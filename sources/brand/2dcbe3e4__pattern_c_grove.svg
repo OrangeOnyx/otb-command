@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" fill="#1E4D3A"/>
+  <g fill="#F3EDE0" opacity="0.14">
+    
+      <polygon points="4,180 7,80 8,70 10,60 12,70 13,80 16,180"/>
+      <rect x="9.2" y="180" width="1.6" height="10"/>
+      <polygon points="24,180 27,43 28,33 30,23 32,33 33,43 36,180"/>
+      <rect x="29.2" y="180" width="1.6" height="10"/>
+      <polygon points="49,180 52,66 53,56 55,46 57,56 58,66 61,180"/>
+      <rect x="54.2" y="180" width="1.6" height="10"/>
+      <polygon points="72,180 75,29 76,19 78,9 80,19 81,29 84,180"/>
+      <rect x="77.2" y="180" width="1.6" height="10"/>
+      <polygon points="94,180 97,52 98,42 100,32 102,42 103,52 106,180"/>
+      <rect x="99.2" y="180" width="1.6" height="10"/>
+      <polygon points="119,180 122,75 123,65 125,55 127,65 128,75 131,180"/>
+      <rect x="124.2" y="180" width="1.6" height="10"/>
+      <polygon points="144,180 147,38 148,28 150,18 152,28 153,38 156,180"/>
+      <rect x="149.2" y="180" width="1.6" height="10"/>
+      <polygon points="169,180 172,61 173,51 175,41 177,51 178,61 181,180"/>
+      <rect x="174.2" y="180" width="1.6" height="10"/>
+      <polygon points="194,180 197,24 198,14 200,4 202,14 203,24 206,180"/>
+      <rect x="199.2" y="180" width="1.6" height="10"/>
+      <polygon points="219,180 222,47 223,37 225,27 227,37 228,47 231,180"/>
+      <rect x="224.2" y="180" width="1.6" height="10"/>
+      <polygon points="244,180 247,70 248,60 250,50 252,60 253,70 256,180"/>
+      <rect x="249.2" y="180" width="1.6" height="10"/>
+      <polygon points="269,180 272,33 273,23 275,13 277,23 278,33 281,180"/>
+      <rect x="274.2" y="180" width="1.6" height="10"/>
+    <line x1="0" y1="192" x2="300" y2="192" stroke="#F3EDE0" stroke-width="0.5" opacity="0.5"/>
+  </g>
+</svg>

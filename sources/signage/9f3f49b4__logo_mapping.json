@@ -1,0 +1,211 @@
+{
+  "The Pink Paisley": {
+    "unit_number": "101-103",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/101_103_The_Pink_Paisley",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/101_103_The_Pink_Paisley/logo_source/101 the_pink_paisley.png"
+    ],
+    "has_logo": true,
+    "category": "boutique"
+  },
+  "Painted Bayou": {
+    "unit_number": "105",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/105_Painted_Bayou",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/105_Painted_Bayou/logo_source/painted_bayou.png"
+    ],
+    "has_logo": true,
+    "category": "boutique"
+  },
+  "Great American Cookie": {
+    "unit_number": "107",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/107_Great_American_Cookie",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/107_Great_American_Cookie/logo_source/great_american_cookie_newer.png",
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/107_Great_American_Cookie/logo_source/great_american_cookie_legacy.png"
+    ],
+    "has_logo": true,
+    "category": "restaurant"
+  },
+  "JC Kate Boutique": {
+    "unit_number": "109",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/109_JC_Kate_Boutique",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/109_JC_Kate_Boutique/logo_source/jc_kate_boutique.png",
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/109_JC_Kate_Boutique/logo_source/jc_kate_boutique_alt.jpg"
+    ],
+    "has_logo": true,
+    "category": "boutique"
+  },
+  "Lola Pink": {
+    "unit_number": "111",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/111_Lola_Pink",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/111_Lola_Pink/logo_source/lola_pink.png"
+    ],
+    "has_logo": true,
+    "category": "boutique"
+  },
+  "Graze Acadiana": {
+    "unit_number": "113",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/113_Graze_Acadiana",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/113_Graze_Acadiana/logo_source/graze_oil_logo.png",
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/113_Graze_Acadiana/logo_source/graze_alt_variant.webp"
+    ],
+    "has_logo": true,
+    "category": "restaurant"
+  },
+  "The Clothing Loft": {
+    "unit_number": "115-117",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/115_117_The_Clothing_Loft",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/115_117_The_Clothing_Loft/logo_source/the_clothing_loft.png"
+    ],
+    "has_logo": true,
+    "category": "boutique"
+  },
+  "Victoria Nails": {
+    "unit_number": "117 1/2",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/117_1_2_Victoria_Nails",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/117_1_2_Victoria_Nails/logo_source/victoria_nails.png"
+    ],
+    "has_logo": true,
+    "category": "salon"
+  },
+  "Oupac": {
+    "unit_number": "119",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/119_Oupac",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/119_Oupac/logo_source/oupac.png"
+    ],
+    "has_logo": true,
+    "category": "financial"
+  },
+  "Cat Clinic of Lafayette": {
+    "unit_number": "119 1/2",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/119_1_2_Cat_Clinic_of_Lafayette",
+    "logos_placed": [],
+    "has_logo": false,
+    "category": "medical"
+  },
+  "Magnolia Salon": {
+    "unit_number": "121",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/121_Magnolia_Salon",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/121_Magnolia_Salon/logo_source/magnolia_salon.jpg"
+    ],
+    "has_logo": true,
+    "category": "salon"
+  },
+  "The Tux Shoppe": {
+    "unit_number": "123",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/123_The_Tux_Shoppe",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/123_The_Tux_Shoppe/logo_source/the_tux_shoppe.png"
+    ],
+    "has_logo": true,
+    "category": "retail"
+  },
+  "Jordan Amanda": {
+    "unit_number": "125-127",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/125_127_Jordan_Amanda",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/125_127_Jordan_Amanda/logo_source/jordan_amanda.png"
+    ],
+    "has_logo": true,
+    "category": "boutique"
+  },
+  "HotWorx": {
+    "unit_number": "129",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/129_HotWorx",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/129_HotWorx/logo_source/hotworx.png"
+    ],
+    "has_logo": true,
+    "category": "fitness"
+  },
+  "Vacant": {
+    "unit_number": "133",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/133_Vacant",
+    "logos_placed": [],
+    "has_logo": false,
+    "category": "vacant"
+  },
+  "C Wolf Barber Shop": {
+    "unit_number": "135A",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/135A_C_Wolf_Barber_Shop",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/135A_C_Wolf_Barber_Shop/logo_source/c_wolf_barber_shop.png"
+    ],
+    "has_logo": true,
+    "category": "salon"
+  },
+  "Belle Realty": {
+    "unit_number": "135B",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/135B_Belle_Realty",
+    "logos_placed": [],
+    "has_logo": false,
+    "category": "services"
+  },
+  "Greek Expressions": {
+    "unit_number": "137",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/137_Greek_Expressions",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/137_Greek_Expressions/logo_source/greek_expressions.png"
+    ],
+    "has_logo": true,
+    "category": "retail"
+  },
+  "Fast Pass Tag & Title": {
+    "unit_number": "139/141",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/139_141_Fast_Pass_Tag_Title",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/139_141_Fast_Pass_Tag_Title/logo_source/fastpass_tag_title.png"
+    ],
+    "has_logo": true,
+    "category": "services"
+  },
+  "1st Franklin Financial": {
+    "unit_number": "143",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/143_1st_Franklin_Financial",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/143_1st_Franklin_Financial/logo_source/1st_franklin_financial.png"
+    ],
+    "has_logo": true,
+    "category": "financial"
+  },
+  "Blvd Nutrition": {
+    "unit_number": "145",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/145_Blvd_Nutrition",
+    "logos_placed": [],
+    "has_logo": false,
+    "category": "restaurant"
+  },
+  "Jason's Deli": {
+    "unit_number": "149",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/149_Jason_s_Deli",
+    "logos_placed": [],
+    "has_logo": false,
+    "category": "restaurant"
+  },
+  "Mary Ellen's": {
+    "unit_number": "Historic",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/Historic_Mary_Ellen_s",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/Historic_Mary_Ellen_s/logo_source/Mary Ellens.png"
+    ],
+    "has_logo": true,
+    "category": "retail"
+  },
+  "Rehabilitation Services": {
+    "unit_number": "Historic",
+    "tenant_dir": "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/Historic_Rehabilitation_Services",
+    "logos_placed": [
+      "/home/ubuntu/ON_THE_BOULEVARD/TENANTS/Historic_Rehabilitation_Services/logo_source/Rehabilitation Services.png"
+    ],
+    "has_logo": true,
+    "category": "medical"
+  }
+}

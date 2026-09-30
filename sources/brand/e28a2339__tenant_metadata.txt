@@ -1,0 +1,4 @@
+Unit: 117.5
+Square Feet: 1789
+Tenant: Victoria Nails
+Folder: 117_5_VICTORIA_NAILS

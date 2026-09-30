@@ -1,0 +1,8 @@
+# LAYER 3 — SCENE: DAYTIME
+- Time of day: late morning
+- Sun elevation: ~45°, color temperature ~5800K
+- Bright clear daylight, clear sky, minimal haze
+- Crisp but controlled shadows
+- Signage illumination OFF or barely visible (ambient only)
+- Facade reads true to material colors
+- Parking occupancy: 40–50%, natural vehicle mix

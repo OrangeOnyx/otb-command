@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body {
+    margin: 0;
+    padding: 24px 28px;
+    background: var(--cc-bg-page);
+    font-family: var(--cc-font-sans);
+  }
+  .row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .tile .art {
+    width: 132px; height: 132px;
+    border-radius: 28px;
+    display: grid;
+    place-items: center;
+    box-shadow: var(--cc-shadow-md);
+    overflow: hidden;
+  }
+  .tile .art .inner {
+    width: 74%; height: 74%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .art.cypress { background: var(--cc-cypress-700); }
+  .art.cypress .inner { background-image: url("../assets/logos/04C_reverse.svg"); }
+  .art.bone { background: var(--cc-bone-100); }
+  .art.bone .inner { background-image: url("../assets/logos/04C_primary.svg"); }
+  .art.slate { background: var(--cc-cypress-950); }
+  .art.slate .inner { background-image: url("../assets/logos/04C_reverse.svg"); }
+  .art.amber { background: var(--cc-amber-500); }
+  .art.amber .inner {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='translate(20,20)'><path fill='%230A1F16' d='M 22 0 L 138 0 Q 160 0 160 22 L 160 60 L 52 60 Q 46 60 46 66 L 46 94 Q 46 100 52 100 L 160 100 L 160 138 Q 160 160 138 160 L 22 160 Q 0 160 0 138 L 0 22 Q 0 0 22 0 Z'/><rect x='73' y='53' width='54' height='54' rx='4' fill='%23F3EDE0'/></g></svg>");
+  }
+
+  .tile .lbl {
+    font-family: var(--cc-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--cc-fg-muted);
+  }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="tile">
+      <div class="art cypress"><div class="inner"></div></div>
+      <span class="lbl">Cypress · default</span>
+    </div>
+    <div class="tile">
+      <div class="art bone"><div class="inner"></div></div>
+      <span class="lbl">Bone · light mode</span>
+    </div>
+    <div class="tile">
+      <div class="art slate"><div class="inner"></div></div>
+      <span class="lbl">Slate · dark mode</span>
+    </div>
+    <div class="tile">
+      <div class="art amber"><div class="inner"></div></div>
+      <span class="lbl">Amber · campaign</span>
+    </div>
+  </div>
+</body>
+</html>

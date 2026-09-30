@@ -1,0 +1,230 @@
+{
+  "checks": [
+    {
+      "width": 320,
+      "theme": "light",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "view": "requests",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "view": "documents",
+      "overflow": false,
+      "rows": 3
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "view": "approvals",
+      "overflow": false,
+      "rows": 2
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "view": "activity",
+      "overflow": false,
+      "rows": 3
+    }
+  ],
+  "errors": [],
+  "images": []
+}

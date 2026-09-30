@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Jordan Amanda
+# Unit 125-127 | Category: boutique | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/jordan_amanda.png
+
+BRAND COLOR TREATMENT
+- refined boutique palette per logo — typically black, ivory, or rose gold
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- initials/monogram preserved exactly
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- elegant editorial serif or refined script
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- brushed brass or matte black returns, halo-lit reverse channel
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters, jewelry-boutique luxury glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Jewelry/boutique

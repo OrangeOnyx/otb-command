@@ -1,0 +1,4 @@
+Unit: 143
+Square Feet: 1917
+Tenant: 1st Franklin Financial
+Folder: 143_1ST_FRANKLIN_FINANCIAL

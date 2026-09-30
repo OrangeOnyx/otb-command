@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#F3EDE0"/>
+  <!-- 04D — Slightly softened. 4px rounded corners across, modern and enduring. -->
+  <g transform="translate(20, 20)">
+    <path d="M 4 0 L 156 0 A 4 4 0 0 1 160 4 L 160 40 A 4 4 0 0 1 156 44 L 44 44 A 4 4 0 0 0 40 48 L 40 112 A 4 4 0 0 0 44 116 L 156 116 A 4 4 0 0 1 160 120 L 160 156 A 4 4 0 0 1 156 160 L 4 160 A 4 4 0 0 1 0 156 L 0 4 A 4 4 0 0 1 4 0 Z" fill="#1E4D3A"/>
+    <rect x="94" y="66" width="32" height="28" rx="3" fill="#2F6B4E"/>
+  </g>
+</svg>

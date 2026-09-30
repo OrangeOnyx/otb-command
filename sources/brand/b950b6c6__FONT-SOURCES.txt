@@ -1,0 +1,4 @@
+Primary UI typeface: Inter (SIL Open Font License).
+Source: https://github.com/google/fonts/tree/main/ofl/inter
+Primary editorial serif: Libertinus Serif (open-source; widely available on Linux).
+Fallbacks: Georgia for editorial serif; Arial for functional sans.

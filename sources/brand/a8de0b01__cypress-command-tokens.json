@@ -1,0 +1,69 @@
+{
+  "color": {
+    "paper": {
+      "value": "#F4EFE2",
+      "type": "color"
+    },
+    "paper_deep": {
+      "value": "#E8E2CD",
+      "type": "color"
+    },
+    "ink": {
+      "value": "#1E1B16",
+      "type": "color"
+    },
+    "ink_soft": {
+      "value": "#5C554A",
+      "type": "color"
+    },
+    "rule": {
+      "value": "#C9BFA8",
+      "type": "color"
+    },
+    "olive": {
+      "value": "#49573C",
+      "type": "color"
+    },
+    "mustard": {
+      "value": "#8F6D0C",
+      "type": "color"
+    },
+    "terra": {
+      "value": "#A44E12",
+      "type": "color"
+    },
+    "oxblood": {
+      "value": "#8A2F1F",
+      "type": "color"
+    }
+  },
+  "font": {
+    "display": {
+      "value": "Libertinus Serif",
+      "fallback": "Georgia, serif"
+    },
+    "ui": {
+      "value": "Inter",
+      "fallback": "Arial, sans-serif"
+    },
+    "mono": {
+      "value": "IBM Plex Mono",
+      "fallback": "Courier New, monospace"
+    }
+  },
+  "spacing_px": {
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "6": 24,
+    "8": 32,
+    "12": 48,
+    "16": 64,
+    "24": 96
+  },
+  "radius_px": {
+    "small": 2,
+    "medium": 4
+  }
+}

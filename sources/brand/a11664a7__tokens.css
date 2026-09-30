@@ -1,0 +1,154 @@
+/* ============================================================
+   Cypress Command — Design Tokens v2.0
+   Single source of truth for color, type, space, radius.
+   Consumers: website, Command Platform, Playbook, print CSS.
+   Day is default. Night via [data-theme="night"] or prefers-color-scheme.
+   Playbook scope via [data-brand="playbook"] (removes Cypress surface).
+   ============================================================ */
+
+:root {
+  /* --- Core surfaces & inks (Day) --- */
+  --cc-paper:        #F4EFE2;
+  --cc-paper-deep:   #EAE2CD;
+  --cc-ink:          #1E1B16;
+  --cc-ink-soft:     #5C554A;
+  --cc-rule:         #C9BFA8;
+  --cc-cypress:      #1E4D3A;   /* master-brand SURFACE only */
+
+  /* --- Semantic accents (Day) --- */
+  --cc-terra:        #A44E12;   /* primary / structural */
+  --cc-olive:        #49573C;   /* success / complete */
+  --cc-mustard:      #8F6D0C;   /* in progress / attention (≥14px 700 only) */
+  --cc-oxblood:      #8A2F1F;   /* critical / refusal — never emphasis */
+
+  /* --- Light variants (tokens exist; not used as fills) --- */
+  --cc-terra-light:   #C7681D;
+  --cc-mustard-light: #D9A419;
+  --cc-olive-light:   #5A6B4A;
+
+  /* --- Washes (8–16% of deep tone over paper) --- */
+  --cc-wash-terra:   rgba(164, 78, 18, 0.10);
+  --cc-wash-olive:   rgba(73, 87, 60, 0.10);
+  --cc-wash-mustard: rgba(143, 109, 12, 0.12);
+  --cc-wash-oxblood: rgba(138, 47, 31, 0.10);
+  --cc-wash-ink:     rgba(30, 27, 22, 0.06);
+
+  /* --- Role aliases (use these in components) --- */
+  --cc-bg:            var(--cc-paper);
+  --cc-bg-elev:       var(--cc-paper-deep);
+  --cc-fg:            var(--cc-ink);
+  --cc-fg-muted:      var(--cc-ink-soft);
+  --cc-border:        var(--cc-rule);
+  --cc-accent:        var(--cc-terra);
+  --cc-accent-fg:     var(--cc-paper);
+  --cc-success:       var(--cc-olive);
+  --cc-warning:       var(--cc-mustard);
+  --cc-critical:      var(--cc-oxblood);
+  --cc-surface-brand: var(--cc-cypress);
+  --cc-on-brand:      var(--cc-paper);
+  --cc-on-brand-accent: #D2802F;
+  --cc-focus:         var(--cc-terra);
+  --cc-selection:     rgba(164, 78, 18, 0.22);
+
+  /* --- Typography --- */
+  --cc-font-display: "Besley", "Fraunces", Georgia, "Times New Roman", serif;
+  --cc-font-sans:    "Archivo", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cc-font-mono:    "Courier Prime", "JetBrains Mono", "Courier New", monospace;
+
+  --cc-text-display: 56px; --cc-lh-display: 60px;
+  --cc-text-h1: 40px;      --cc-lh-h1: 44px;
+  --cc-text-h2: 28px;      --cc-lh-h2: 32px;
+  --cc-text-h3: 20px;      --cc-lh-h3: 26px;
+  --cc-text-body: 16px;    --cc-lh-body: 24px;
+  --cc-text-body-doc: 17px;--cc-lh-body-doc: 26px;
+  --cc-text-small: 14px;   --cc-lh-small: 20px;
+  --cc-text-caption: 12px; --cc-lh-caption: 16px;
+  --cc-text-label: 11px;   --cc-lh-label: 14px;
+  --cc-track-label: 0.10em;
+  --cc-track-display: -0.02em;
+
+  /* --- Space --- */
+  --cc-space-1: 4px;  --cc-space-2: 8px;  --cc-space-3: 12px; --cc-space-4: 16px;
+  --cc-space-6: 24px; --cc-space-8: 32px; --cc-space-12: 48px; --cc-space-16: 64px;
+  --cc-space-24: 96px;
+
+  /* --- Radius & rules --- */
+  --cc-radius-doc: 2px;
+  --cc-radius-ui: 4px;
+  --cc-radius-mark: 6px;
+  --cc-hairline: 1px;
+  --cc-plate-rule: 3px;
+
+  /* --- Layout --- */
+  --cc-max-width: 1200px;
+  --cc-measure: 70ch;
+  --cc-gutter: 24px;
+
+  color-scheme: light;
+}
+
+/* ---------- Night ---------- */
+[data-theme="night"],
+:root:not([data-theme="day"]) .cc-night {
+  --cc-paper:        #1B1813;
+  --cc-paper-deep:   #26221B;
+  --cc-ink:          #F4EFE2;
+  --cc-ink-soft:     #BEB4A2;
+  --cc-rule:         #4E463A;
+  --cc-cypress:      #163A2C;
+  --cc-terra:        #D2802F;
+  --cc-olive:        #9AA989;
+  --cc-mustard:      #CFA032;
+  --cc-oxblood:      #D27363;
+  --cc-wash-terra:   rgba(210, 128, 47, 0.14);
+  --cc-wash-olive:   rgba(154, 169, 137, 0.14);
+  --cc-wash-mustard: rgba(207, 160, 50, 0.14);
+  --cc-wash-oxblood: rgba(210, 115, 99, 0.14);
+  --cc-wash-ink:     rgba(244, 239, 226, 0.06);
+  --cc-on-brand-accent: #D2802F;
+  --cc-selection:    rgba(210, 128, 47, 0.30);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="day"]) {
+    --cc-paper:        #1B1813;
+    --cc-paper-deep:   #26221B;
+    --cc-ink:          #F4EFE2;
+    --cc-ink-soft:     #BEB4A2;
+    --cc-rule:         #4E463A;
+    --cc-cypress:      #163A2C;
+    --cc-terra:        #D2802F;
+    --cc-olive:        #9AA989;
+    --cc-mustard:      #CFA032;
+    --cc-oxblood:      #D27363;
+    --cc-wash-terra:   rgba(210, 128, 47, 0.14);
+    --cc-wash-olive:   rgba(154, 169, 137, 0.14);
+    --cc-wash-mustard: rgba(207, 160, 50, 0.14);
+    --cc-wash-oxblood: rgba(210, 115, 99, 0.14);
+    --cc-wash-ink:     rgba(244, 239, 226, 0.06);
+    --cc-selection:    rgba(210, 128, 47, 0.30);
+    color-scheme: dark;
+  }
+}
+
+/* ---------- Playbook scope: same tokens, no Cypress surface ---------- */
+[data-brand="playbook"] {
+  --cc-cypress: var(--cc-ink);          /* surface falls back to ink */
+  --cc-surface-brand: var(--cc-ink);
+  --cc-font-sans: "Archivo", system-ui, sans-serif;
+  /* Level inks */
+  --pb-level-starter:      var(--cc-olive);
+  --pb-level-intermediate: var(--cc-mustard);
+  --pb-level-expert:       var(--cc-terra);
+  --pb-level-frontier:     var(--cc-ink);
+  --pb-risk:               var(--cc-oxblood);
+}
+
+/* ---------- Base ---------- */
+html { background: var(--cc-bg); color: var(--cc-fg); }
+body { font-family: var(--cc-font-sans); font-size: var(--cc-text-body); line-height: var(--cc-lh-body); margin: 0; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--cc-selection); }
+:focus-visible { outline: 2px solid var(--cc-focus); outline-offset: 2px; }
+a { color: var(--cc-accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }

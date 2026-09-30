@@ -1,0 +1,59 @@
+{
+ "ramps": {
+  "green": {
+   "50": "#F2F9F4",
+   "100": "#E2F1E8",
+   "200": "#C4E2CF",
+   "300": "#9ECAAF",
+   "400": "#6DA885",
+   "500": "#458461",
+   "600": "#2E6849",
+   "700": "#1E5036",
+   "800": "#173B28",
+   "900": "#112A1C",
+   "950": "#0B1C13"
+  },
+  "neutral": {
+   "50": "#FAF8F4",
+   "100": "#F4F1EC",
+   "200": "#E8E4DD",
+   "300": "#D4D1CA",
+   "400": "#AEAAA4",
+   "500": "#86837D",
+   "600": "#66635D",
+   "700": "#4D4A44",
+   "800": "#35332E",
+   "900": "#23211D",
+   "950": "#151411"
+  },
+  "status": {
+   "error": "#AC3031",
+   "warning": "#9A6000",
+   "info": "#1F6A96"
+  }
+ },
+ "roles": {
+  "Cypress Green (brand / accent solid)": "#1E5036",
+  "Cypress Deep (hover, dark surfaces)": "#173B28",
+  "Cypress Night (dark background)": "#0B1C13",
+  "Moss (tinted borders, chips)": "#C4E2CF",
+  "Moss Light (tinted surface)": "#F2F9F4",
+  "Bone (page background)": "#FAF8F4",
+  "Parchment (cards)": "#F4F1EC",
+  "Border": "#D4D1CA",
+  "Text muted": "#66635D",
+  "Ink (text)": "#151411"
+ },
+ "contrast": {
+  "Ink on Bone": 17.37,
+  "Text muted on Bone": 5.64,
+  "Cypress Green on Bone": 8.78,
+  "Bone on Cypress Green": 8.78,
+  "Bone on Cypress Deep": 11.7,
+  "Bone on Cypress Night": 16.64,
+  "Moss 300 on Cypress Night": 9.68,
+  "Cypress Green on Moss Light": 8.7,
+  "Error on Bone": 6.15,
+  "Warning on Bone": 4.89
+ }
+}

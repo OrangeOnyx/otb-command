@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — The Clothing Loft
+# Unit 115-117 | Category: boutique | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/the_clothing_loft.png
+
+BRAND COLOR TREATMENT
+- palette per supplied logo, restrained boutique tones
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- wordmark preserved
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- refined editorial sans or serif, brand-accurate
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- matte black or bronze returns, halo-lit reverse channel
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters, soft boutique backlight
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- —

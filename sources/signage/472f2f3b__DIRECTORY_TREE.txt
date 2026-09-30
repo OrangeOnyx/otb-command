@@ -1,0 +1,187 @@
+ON_THE_BOULEVARD — Directory Tree
+Generated automatically.
+
+ON_THE_BOULEVARD/
+├── BRAND_SYSTEM/  (1 files)  ← master prompt & brand standards
+│   └── FINAL_MASTER_PROMPT.txt
+├── LEASING_DECKS/  (0 files)  ← leasing deliverables
+├── MASTER_PROMPTS -> /home/ubuntu/prompt_library  (symlink)  ← layered prompt library
+├── PORTFOLIO_EXPORTS/  (0 files)  ← investor/broker packages
+├── SITE_PLANS/  (10 files)  ← plats & overlays
+│   ├── Clean Plat Simple.jpg
+│   ├── Clean Plat Simple.pdf
+│   ├── LOGO LIST.pdf
+│   ├── LOGO LIST.xlsx
+│   ├── Plat of Survey Detailed (2).pdf
+│   ├── README.md
+│   ├── Site Plan.png
+│   ├── Tenant List.png
+│   ├── TENANT LOGO.pdf
+│   └── Tenant Overlaid.jpeg
+├── TENANTS/  (30 files)  ← one folder per tenant
+│   ├── 101_103_The_Pink_Paisley/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 105_Painted_Bayou/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 107_Great_American_Cookie/  (2 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (2 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 109_JC_Kate_Boutique/  (2 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (2 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 111_Lola_Pink/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 113_Graze_Acadiana/  (2 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (2 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 115_117_The_Clothing_Loft/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 117_1_2_Victoria_Nails/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 119_1_2_Cat_Clinic_of_Lafayette/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 119_Oupac/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 121_Magnolia_Salon/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 123_The_Tux_Shoppe/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 125_127_Jordan_Amanda/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 129_HotWorx/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 131_Vacant/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 133_Vacant/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 135A_C_Wolf_Barber_Shop/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 135B_Belle_Realty/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 137_Greek_Expressions/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 139_141_Fast_Pass_Tag_Title/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 143_1st_Franklin_Financial/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 145_Blvd_Nutrition/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── 149_Jason_s_Deli/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── Historic_Mary_Ellen_s/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── Historic_Rehabilitation_Services/  (1 files)
+│   │   ├── finals/  (0 files)
+│   │   ├── logo_source/  (1 files)
+│   │   ├── prompts/  (0 files)
+│   │   ├── renders/  (0 files)
+│   │   └── revisions/  (0 files)
+│   ├── logo_mapping.json
+│   └── README.md
+├── DIRECTORY_TREE.txt
+├── OPERATOR_GUIDE.docx
+├── OPERATOR_GUIDE.md
+├── OPERATOR_GUIDE.pdf
+├── PRODUCTION_TRACKER.csv
+├── PRODUCTION_TRACKER.xlsx
+├── PROJECT_SUMMARY.md
+├── QUICKSTART.docx
+├── QUICKSTART.md
+├── QUICKSTART.pdf
+├── README.md
+├── SYSTEM_ARCHITECTURE.docx
+├── SYSTEM_ARCHITECTURE.md
+└── SYSTEM_ARCHITECTURE.pdf

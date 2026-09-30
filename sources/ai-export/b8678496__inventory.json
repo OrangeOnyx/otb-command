@@ -1,0 +1,106 @@
+{
+  "project_id": 109978485,
+  "project_name": "On The Boulevard",
+  "exported_at_utc": "2026-09-23T23:31:02.573814+00:00",
+  "source": "https://floorplanner.com/api/v2/projects/109978485/download_json.fml",
+  "retrieval": "Floorplanner Dashboard > project > More > Download FML",
+  "format": "Native Floorplanner FML serialized as JSON",
+  "coordinate_units": "centimeters for this export; 388.62 cm wall height corresponds to the editor 12 ft 9 in",
+  "units_note": "useMetric=false is the display preference; dimensions were not converted.",
+  "files": {
+    "On_The_Boulevard.native.fml": {
+      "bytes": 1302542,
+      "sha256": "89d3b30d265ff19b0b5b305a849653940cc87d3bfa59b5172eea3021774153f6",
+      "role": "Untouched native download"
+    },
+    "On_The_Boulevard.working.json": {
+      "bytes": 3506934,
+      "sha256": "a9b1851cd0f7aa8fd0692c00c1dde2788e2a7a5b50930e3c38cc41cfe2b79bec",
+      "role": "Pretty-printed working copy; same parsed content"
+    }
+  },
+  "validation": {
+    "native_byte_identical": true,
+    "working_json_semantically_identical": true,
+    "project_id_confirmed": true
+  },
+  "floors": [
+    {
+      "id": 178816737,
+      "name": "First floor",
+      "level": 0,
+      "height": 305.0,
+      "updated_at": "2026-09-23T23:23:17.000Z",
+      "floor_cameras": [
+        "Camera 1",
+        "Camera 3",
+        "Camera 2"
+      ],
+      "designs": [
+        {
+          "id": 241952337,
+          "name": "First design (copy)",
+          "walls": 1646,
+          "openings_nested_in_walls": 257,
+          "areas": 277,
+          "surfaces": 2,
+          "items": 0,
+          "lines": 0,
+          "dimensions": 0,
+          "labels": 2,
+          "camera_names": [
+            "Camera 1",
+            "Camera 3",
+            "Camera 2",
+            "01 Center Overview - Draft",
+            "02 End Unit - Eye Level Draft",
+            "Camera 4"
+          ]
+        },
+        {
+          "id": 189209676,
+          "name": "First design",
+          "walls": 1584,
+          "openings_nested_in_walls": 257,
+          "areas": 227,
+          "surfaces": 2,
+          "items": 0,
+          "lines": 0,
+          "dimensions": 0,
+          "labels": 2,
+          "camera_names": [
+            "Camera 1",
+            "Camera 3",
+            "Camera 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 183163884,
+      "name": "Second Floor",
+      "level": 1,
+      "height": 305.0,
+      "updated_at": "2021-12-15T15:31:11.000Z",
+      "floor_cameras": [
+        "Camera 1",
+        "Camera 2"
+      ],
+      "designs": [
+        {
+          "id": 193835178,
+          "name": "First design",
+          "walls": 187,
+          "openings_nested_in_walls": 19,
+          "areas": 21,
+          "surfaces": 0,
+          "items": 0,
+          "lines": 0,
+          "dimensions": 0,
+          "labels": 0,
+          "camera_names": []
+        }
+      ]
+    }
+  ]
+}

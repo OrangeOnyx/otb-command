@@ -1,0 +1,4 @@
+Unit: 119.5
+Square Feet: 1974
+Tenant: Cat Clinic of Lafayette
+Folder: 119_5_CAT_CLINIC_OF_LAFAYETTE

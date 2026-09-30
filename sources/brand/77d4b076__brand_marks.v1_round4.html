@@ -1,0 +1,172 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px 48px 32px; background: #F3EDE0; font-family: 'Inter', system-ui, sans-serif; color: #0A1F16; }
+  .head { display:flex; justify-content: space-between; align-items: flex-start; gap: 40px; padding-bottom: 22px; border-bottom: 1px solid #D3C8AC; margin-bottom: 30px; }
+  .head-left h1 { font-family: 'Fraunces', Georgia, serif; font-size: 44px; font-weight: 500; letter-spacing: -0.02em; color: #1E4D3A; margin: 0 0 6px; line-height: 1; }
+  .head-left .sub { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #5A6B62; }
+  .head-right { flex: 0 0 320px; text-align: left; padding-left: 32px; border-left: 1px solid #D3C8AC; }
+  .head-right p { font-family: 'Fraunces', Georgia, serif; font-size: 13px; line-height: 1.55; color: #0A1F16; margin: 0; }
+
+  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .col-head { display:flex; align-items: baseline; gap: 14px; margin-bottom: 4px; }
+  .col-head .num { font-family: 'Fraunces', Georgia, serif; font-size: 46px; font-weight: 500; color: #94BCA6; line-height: 1; }
+  .col-head .name { font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: 0.14em; color: #0A1F16; }
+  .col-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #5A6B62; margin-left: 60px; margin-bottom: 20px; }
+  .divider { height: 1px; background: #D3C8AC; margin-bottom: 16px; }
+
+  .variant { display: grid; grid-template-columns: 20px 120px 1fr 70px; gap: 18px; align-items: center; padding: 14px 0; border-bottom: 1px solid #E7DFCC; }
+  .variant:last-child { border-bottom: 0; }
+  .var-letter { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5A6B62; font-weight: 600; }
+  .var-mark { width: 120px; height: 120px; }
+  .var-mark img { width: 100%; height: 100%; display: block; }
+  .var-body .wordmark { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.22em; color: #0A1F16; line-height: 1.35; }
+  .var-body .desc { font-family: 'Fraunces', Georgia, serif; font-size: 12px; color: #5A6B62; font-style: italic; margin-top: 8px; line-height: 1.45; }
+  .var-fav { width: 62px; height: 62px; }
+  .var-fav img { width: 100%; height: 100%; display: block; }
+
+  .foot { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px; padding-top: 22px; border-top: 1px solid #D3C8AC; }
+  .foot-title { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: #0A1F16; margin-bottom: 14px; }
+  .swatches { display: flex; gap: 12px; }
+  .sw { flex: 1; }
+  .sw .chip { width: 100%; height: 54px; border: 1px solid #D3C8AC; }
+  .sw .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 8px; color: #0A1F16; font-weight: 700; }
+  .sw .hex { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #5A6B62; margin-top: 2px; letter-spacing: 0.05em; }
+  .contenders { display: flex; gap: 30px; align-items: flex-end; }
+  .contender .id { font-family: 'Fraunces', Georgia, serif; font-size: 36px; font-weight: 500; color: #1E4D3A; line-height: 1; }
+  .contender .who { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #5A6B62; margin-top: 8px; }
+
+  .cta { grid-column: 1 / -1; margin-top: 24px; padding: 16px 20px; background: #EDE4D0; border-left: 3px solid #D97706; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #0A1F16; letter-spacing: 0.06em; line-height: 1.7; }
+  .cta b { color: #1E4D3A; letter-spacing: 0.14em; }
+</style></head><body>
+
+  <div class="head">
+    <div class="head-left">
+      <h1>Cypress Command</h1>
+      <div class="sub">Round 4 — Focused Refinement · 01 &amp; 04</div>
+    </div>
+    <div class="head-right">
+      <p>Final pass on the two front-runners, rebuilt in the approved Cypress palette. Four variations of each — pick the letter that clicks and we lock the mark.</p>
+    </div>
+  </div>
+
+  <div class="columns">
+
+    <!-- LEFT: 01 FOUNDATION -->
+    <div>
+      <div class="col-head"><span class="num">01</span><span class="name">FOUNDATION</span></div>
+      <div class="col-tag">Solid. Focused. Reliable.</div>
+      <div class="divider"></div>
+
+      <div class="variant">
+        <div class="var-letter">A</div>
+        <div class="var-mark"><img src="../assets/logos/r4_01A_foundation.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Balanced proportions. Timeless and strong.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_01A_foundation_fav.svg" alt=""/></div>
+      </div>
+
+      <div class="variant">
+        <div class="var-letter">B</div>
+        <div class="var-mark"><img src="../assets/logos/r4_01B_foundation.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Refined geometry with amber signal — modern &amp; confident.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_01B_foundation_fav.svg" alt=""/></div>
+      </div>
+
+      <div class="variant">
+        <div class="var-letter">C</div>
+        <div class="var-mark"><img src="../assets/logos/r4_01C_foundation.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Open and distinctive. Elevated simplicity.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_01C_foundation_fav.svg" alt=""/></div>
+      </div>
+
+      <div class="variant">
+        <div class="var-letter">D</div>
+        <div class="var-mark"><img src="../assets/logos/r4_01D_foundation.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Softer terminals. Approachable strength.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_01D_foundation_fav.svg" alt=""/></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: 04 STRUCTURE -->
+    <div>
+      <div class="col-head"><span class="num">04</span><span class="name">STRUCTURE</span></div>
+      <div class="col-tag">Systems. Structure. Success.</div>
+      <div class="divider"></div>
+
+      <div class="variant">
+        <div class="var-letter">A</div>
+        <div class="var-mark"><img src="../assets/logos/r4_04A_structure.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Bold and authoritative. A clear leader.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_04A_structure_fav.svg" alt=""/></div>
+      </div>
+
+      <div class="variant">
+        <div class="var-letter">B</div>
+        <div class="var-mark"><img src="../assets/logos/r4_04B_structure.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Refined proportions + amber pin. Stronger structure.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_04B_structure_fav.svg" alt=""/></div>
+      </div>
+
+      <div class="variant">
+        <div class="var-letter">C</div>
+        <div class="var-mark"><img src="../assets/logos/r4_04C_structure.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Clean and modern. Confident and scalable.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_04C_structure_fav.svg" alt=""/></div>
+      </div>
+
+      <div class="variant">
+        <div class="var-letter">D</div>
+        <div class="var-mark"><img src="../assets/logos/r4_04D_structure.svg" alt=""/></div>
+        <div class="var-body">
+          <div class="wordmark">CYPRESS<br/>COMMAND</div>
+          <div class="desc">Slightly softened corners. Modern and enduring.</div>
+        </div>
+        <div class="var-fav"><img src="../assets/logos/r4_04D_structure_fav.svg" alt=""/></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <div>
+      <div class="foot-title">Color Palette · Locked</div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#1E4D3A"></div><div class="lbl">Cypress</div><div class="hex">#1E4D3A</div></div>
+        <div class="sw"><div class="chip" style="background:#2F6B4E"></div><div class="lbl">Moss</div><div class="hex">#2F6B4E</div></div>
+        <div class="sw"><div class="chip" style="background:#D97706"></div><div class="lbl">Amber</div><div class="hex">#D97706</div></div>
+        <div class="sw"><div class="chip" style="background:#0A1F16"></div><div class="lbl">Charcoal</div><div class="hex">#0A1F16</div></div>
+        <div class="sw"><div class="chip" style="background:#F3EDE0"></div><div class="lbl">Bone</div><div class="hex">#F3EDE0</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="foot-title">My picks · If you make me choose</div>
+      <div class="contenders">
+        <div class="contender"><div class="id">01B</div><div class="who">Foundation · Refined</div></div>
+        <div class="contender"><div class="id">04C</div><div class="who">Structure · Clean</div></div>
+      </div>
+    </div>
+
+    <div class="cta"><b>YOUR CALL, ADAM →</b> &nbsp; Reply with one code — <b>01A</b>, <b>01B</b>, <b>01C</b>, <b>01D</b>, <b>04A</b>, <b>04B</b>, <b>04C</b>, or <b>04D</b> — and I'll lock it as the primary mark and roll it through letterhead, deck cover, UI kit, and the project thumbnail. Want to keep both a Foundation and a Structure variant as siblings in the system? Say so.</div>
+  </div>
+
+</body></html>

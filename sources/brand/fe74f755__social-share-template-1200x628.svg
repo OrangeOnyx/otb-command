@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628">
+<rect width="1200" height="628" fill="#1E1B16"/>
+<rect x="0" y="0" width="22" height="628" fill="#A44E12"/>
+<g transform="translate(70,62) scale(0.15)">
+      <path fill="#A44E12" d="M60 18 H415 Q480 18 480 83 V205 H380 V110 H112 V390 H380 V305 H480 V430 Q480 490 415 490 H60 Q15 490 15 438 V70 Q15 18 60 18 Z"/>
+      <path fill="#A44E12" d="M188 170 H302 Q315 170 315 183 V320 H178 V183 Q178 170 188 170 Z"/>
+    </g>
+<text x="168" y="132" font-family="Inter,Arial" font-size="28" font-weight="750" letter-spacing="4" fill="#F4EFE2">CYPRESS COMMAND</text>
+<text x="72" y="330" font-family="Libertinus Serif,Georgia,serif" font-size="76" font-weight="700" fill="#F4EFE2">Build AI into how you</text>
+<text x="72" y="418" font-family="Libertinus Serif,Georgia,serif" font-size="76" font-weight="700" fill="#F4EFE2">actually operate.</text>
+<text x="74" y="530" font-family="Inter,Arial" font-size="23" letter-spacing="4" fill="#C9BFA8">PEOPLE + SYSTEMS + REAL WORK</text>
+</svg>

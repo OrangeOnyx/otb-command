@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Blvd Nutrition
+# Unit 145 | Category: restaurant | Facade Family: B
+# Logo reference: NOT SUPPLIED — use brand standards from category default
+
+BRAND COLOR TREATMENT
+- fresh palette — greens, citrus, white per brand; energetic but clean
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- leaf, smoothie, or fitness-nutrition motif preserved if present
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- modern sans-serif, friendly and athletic
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- dark bronze returns, face-lit acrylic faces, crisp white LED
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (B)
+
+ILLUMINATION STYLE
+- Default: face-lit channel letters
+- face-lit channel letters, fresh energetic glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Nutrition/smoothie bar

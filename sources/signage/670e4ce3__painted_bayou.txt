@@ -1,0 +1,29 @@
+# TENANT-SPECIFIC ENHANCEMENT — Painted Bayou
+# Unit 105 | Category: boutique | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/painted_bayou.png
+
+BRAND COLOR TREATMENT
+- muted earthy palette per logo — soft greens, dusty rose, cream
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- brushstroke/artisanal wordmark preserved with hand-lettered character intact
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- hand-lettered or refined script — do NOT clean up irregularities
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- dark bronze returns, halo-lit reverse channel, warm-white LED
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters, warm boutique glow
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- —

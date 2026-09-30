@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 160">
+  <rect width="460" height="160" fill="#F3EDE0"/>
+  <!-- Command chevron — inverted-shield with cypress inside. Military heritage. -->
+  <g transform="translate(50, 20)">
+    <!-- Shield/chevron shape: point-down heraldic -->
+    <path d="M 6 8 L 74 8 L 74 68 Q 74 96 40 118 Q 6 96 6 68 Z" fill="#1E4D3A"/>
+    <!-- Inner accent line -->
+    <path d="M 12 14 L 68 14 L 68 66 Q 68 92 40 110 Q 12 92 12 66 Z" fill="none" stroke="#F3EDE0" stroke-width="0.8" opacity="0.5"/>
+    <!-- Cypress silhouette inside -->
+    <path d="M 40 92 Q 28 76 30 58 Q 32 40 40 26 Q 48 40 50 58 Q 52 76 40 92 Z" fill="#F3EDE0"/>
+    <!-- Chevron stripe at top -->
+    <path d="M 6 8 L 74 8 L 74 22 L 40 30 L 6 22 Z" fill="#D97706"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="150" y="72" font-family="Fraunces, Georgia, serif" font-size="30" font-weight="700" fill="#1E4D3A" letter-spacing="0.01em">CYPRESS</text>
+  <text x="150" y="104" font-family="Fraunces, Georgia, serif" font-size="30" font-weight="700" fill="#1E4D3A" letter-spacing="0.01em">COMMAND</text>
+  <text x="150" y="126" font-family="'JetBrains Mono', monospace" font-size="8" fill="#78522A" letter-spacing="0.24em">COMMERCIAL PROPERTIES</text>
+</svg>

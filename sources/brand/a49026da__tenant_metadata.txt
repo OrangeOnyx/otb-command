@@ -1,0 +1,4 @@
+Unit: 133
+Square Feet: 1272
+Tenant: VACANT
+Folder: 133_VACANT

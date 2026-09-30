@@ -1,0 +1,184 @@
+# The Pink Paisley — Dusk Illuminated (dusk)
+# Unit: 101-103 | Category: boutique | Facade: A | Illumination: halo-lit channel letters
+
+## LAYER 1 — GLOBAL STYLE
+# LAYER 1 — GLOBAL STYLE BASE
+# On The Boulevard Shopping Center — Master Architectural Signage Prompt
+# Stack order: [LAYER 1] + [LAYER 2 category] + [LAYER 3 scene] + [TENANT-SPECIFIC]
+
+ROLE
+Adopt the role of an expert 3D architectural visualization specialist and technical
+rendering director with 15+ years of experience producing photorealistic commercial
+real estate renderings for institutional property owners. Output must reflect
+investor-grade presentation standards with disciplined real-world geometry,
+materials, and operational realism.
+
+PROJECT
+On The Boulevard Shopping Center — a polished suburban neighborhood retail center.
+Two-building parallel layout with central surface parking. NOT L-shaped. JD Bank
+outparcel excluded.
+
+SIGN CONSTRUCTION (default building standard)
+- Construction type: dimensional channel letters mounted on raceway or flush to
+  facade fascia band, set above the storefront bay
+- Standard depth: 3"–5" returns
+- Default illumination: internally illuminated channel letters; halo-lit (reverse
+  channel with LED backlight) for Facade Family A; face-lit (acrylic face with
+  internal LED) for Facade Family B and C — overridden by tenant block
+- Returns: dark bronze or matte black aluminum, color-matched to storefront frames
+- Trim cap: tight, color-matched, no visible fasteners
+- Mounting: clean, level, centered in the designated sign band; no exposed wiring,
+  conduit, or transformers visible
+- Wordmarks and icons must read as fabricated signage — not flat graphics, decals,
+  or printed banners
+
+LOGO INTEGRITY (CRITICAL — NON-NEGOTIABLE)
+- Use the supplied tenant logo as the single source of truth for color, typography,
+  proportion, kerning, and iconography
+- Do NOT redraw, restyle, re-letter, simplify, modernize, or "improve" any logo
+- Do NOT stretch, skew, pixelate, or distort
+- Do NOT hallucinate alternate brand styles, color palettes, or fonts
+- Preserve trademark symbols, taglines, and registered marks exactly as supplied
+- Icon/symbol elements (paw prints, monograms, crests, etc.) must remain identifiable
+  at the rendered scale
+- Maintain accurate proportions and centered alignment above the storefront
+
+ARCHITECTURAL STYLE
+- Polished suburban neighborhood retail center, upscale-but-restrained
+- Facade colors: White = Benjamin Moore OC-19 Seapearl; Tan = Benjamin Moore HC-79
+- Front roof edge: gray architectural shingles
+- Main roof: white TPO membrane
+- Columns: masonry-wrapped
+- Storefront frames: dark bronze aluminum
+- Glass: clear with subtle reflectivity
+- Sidewalks & curbs: light concrete, broom finish
+- Continuous covered pedestrian walkway with consistent column rhythm
+- End caps slightly emphasized but not exaggerated
+- No invented structures or architectural redesign
+
+LIGHTING & REALISM STANDARDS
+- Photoreal, physically-based rendering quality
+- Crisp but controlled shadows — never harsh, never dramatic
+- Subtle ambient bounce under covered walkways
+- Material response accurate to substrate (matte EIFS, satin aluminum returns,
+  acrylic faces glowing only when illuminated)
+- Avoid over-stylized lighting, neon halos, lens flares, or HDR over-processing
+- Signage illumination must read as real LED — soft, even, no hotspots
+
+CAMERA & COMPOSITION (default)
+- Lens: 45–60mm equivalent, minimal distortion, slight compression
+- Controlled verticals — no exaggerated perspective
+- Eye-level to slight upward tilt for storefront views
+- Signage centered in frame, legible, properly scaled
+- Tone: polished, restrained, professional, investor-grade
+
+MONUMENT SIGN
+- Reads exactly: "On The Blvd"
+- Included in foreground when composition allows
+
+GLOBAL QUALITY CONTROL
+- Maintain suburban retail scale and proportion
+- Subtle realistic material textures (EIFS, shingles, asphalt, concrete)
+- Landscaping slightly enhanced but believable
+- No cartoon, illustration, painterly, or stylized output
+- No invented tenants, signage, or architectural features
+
+## LAYER 2 — CATEGORY (boutique)
+# LAYER 2 — CATEGORY: BOUTIQUE
+Upscale, fashion-forward, refined. Reads as curated specialty retail.
+
+- Illumination: halo-lit channel letters for soft architectural glow (preferred);
+  understated brilliance over loud signage
+- Color treatment: brand palette preserved exactly — often blush, navy, black,
+  ivory, gold, or signature accent color
+- Typography: high-end editorial — refined serifs, modern sans, or signature
+  script faithful to the supplied logo
+- Materials: matte black, dark bronze, or brushed brass returns; clean trim caps;
+  optional subtle backer panel in coordinating tone
+- Storefront programming hint: curated apparel displays, mannequins, soft interior
+  lighting visible through clear glass
+- Tone: confident, polished, never flashy — luxury restraint
+
+## LAYER 3 — SCENE (dusk)
+# LAYER 3 — SCENE: DUSK / BLUE HOUR
+- Time of day: 15–25 minutes after sunset
+- Sky: deep cobalt-to-magenta gradient, soft ambient blue light
+- Signage FULLY ILLUMINATED — channel letters glowing evenly, halo-lit pieces
+  producing a soft architectural backlight on facade
+- Storefront interior lighting ON, warm glow spilling onto sidewalk
+- Covered walkway downlights active, warm pools on concrete
+- Parking lot pole lights on at low intensity, no lens flare
+- Color temperature mix: warm interiors against cool sky
+- Photoreal, restrained — no over-saturated neon look
+- Parking occupancy: 30–40%, some vehicle headlights subtle
+
+## TENANT-SPECIFIC
+# TENANT-SPECIFIC ENHANCEMENT — The Pink Paisley
+# Unit 101-103 | Category: boutique | Facade Family: A
+# Logo reference: /home/ubuntu/Shared/Uploads/101 the_pink_paisley.png
+
+BRAND COLOR TREATMENT
+- signature pink, soft blush, with refined black or charcoal accents; paisley motif preserved exactly
+- Match supplied logo PMS / hex values exactly; do not shift hue, saturation, or value
+
+LOGO ICON / SYMBOL HANDLING
+- paisley emblem and script wordmark — render as separate dimensional pieces, paisley as halo-lit reverse channel icon
+- All icon elements rendered as discrete dimensional pieces with proper depth and
+  trim cap finishing — never as flat printed graphic
+
+TYPOGRAPHY EMPHASIS
+- elegant script wordmark with delicate weight and generous letter spacing
+- Preserve kerning, weight, and any custom letterforms from the supplied logo
+
+MATERIAL RECOMMENDATIONS
+- matte black returns, halo-lit reverse channel with warm-white LED backlight, optional brushed brass accent on icon
+- Returns, trim caps, and mounting hardware finished consistent with adjacent
+  tenants on the same facade family (A)
+
+ILLUMINATION STYLE
+- Default: halo-lit channel letters
+- halo-lit channel letters with warm soft architectural glow; anchor end-cap presence
+- Illumination reads soft and even at dusk; barely active in daytime ambient
+
+NOTES
+- Anchor boutique; large frontage 9,928 sqft
+
+## DELIVERABLE TEMPLATE — dusk_illuminated
+# DELIVERABLE TEMPLATE — Dusk Illuminated Variant (Social / Marketing)
+# Full stack: LAYER 1 (Global Style) + LAYER 2 (Category) + LAYER 3 (Scene: dusk) + TENANT-SPECIFIC
+
+USAGE
+Replace {TENANT_NAME}, {CATEGORY}, and concatenate the four blocks below in order.
+
+DELIVERABLE INTENT
+Composition: same inline storefront framing as the hero, captured at deep
+blue hour with full signage illumination. Channel letters glowing evenly, halo-lit
+elements producing soft architectural backlight on facade. Warm interior light
+spilling onto sidewalk. Cinematic but restrained — suitable for social media,
+marketing collateral, and stakeholder leasing decks.
+
+============================================================
+[BLOCK 1] LAYER 1 — GLOBAL STYLE
+Insert full contents of: prompt_library/layer_1_global_style.txt
+============================================================
+
+[BLOCK 2] LAYER 2 — CATEGORY ENHANCEMENT
+Insert full contents of: prompt_library/layer_2_category_{CATEGORY}.txt
+(boutique | restaurant | salon | fitness | financial | medical | services | retail)
+
+============================================================
+
+[BLOCK 3] LAYER 3 — SCENE VARIANT
+Insert full contents of: prompt_library/layer_3_scene_dusk.txt
+
+============================================================
+
+[BLOCK 4] TENANT-SPECIFIC ENHANCEMENT
+Insert full contents of: prompt_library/tenant_specific/{tenant_slug}.txt
+
+============================================================
+
+FINAL DIRECTIVE
+Generate one photorealistic rendering of {TENANT_NAME} at On The Boulevard
+Shopping Center matching every specification above. Logo integrity is paramount.
+Output investor-grade quality.

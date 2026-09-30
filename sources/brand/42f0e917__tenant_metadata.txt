@@ -1,0 +1,4 @@
+Unit: 135B
+Square Feet: 1580
+Tenant: Belle Realty of Lafayette
+Folder: 135B_BELLE_REALTY_OF_LAFAYETTE

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Cypress Command mark — 04C amber accent">
+  <g transform="translate(20, 20)">
+    <path fill="#1E4D3A" d="
+      M 22 0 L 138 0 Q 160 0 160 22 L 160 60
+      L 52 60 Q 46 60 46 66 L 46 94 Q 46 100 52 100
+      L 160 100 L 160 138 Q 160 160 138 160
+      L 22 160 Q 0 160 0 138 L 0 22 Q 0 0 22 0 Z
+    "/>
+    <rect x="73" y="53" width="54" height="54" rx="4" fill="#D97706"/>
+  </g>
+</svg>

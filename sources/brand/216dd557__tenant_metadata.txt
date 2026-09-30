@@ -1,0 +1,4 @@
+Unit: 127
+Square Feet: 2538
+Tenant: Jordan Amanda by Shoetique
+Folder: 127_JORDAN_AMANDA_BY_SHOETIQUE

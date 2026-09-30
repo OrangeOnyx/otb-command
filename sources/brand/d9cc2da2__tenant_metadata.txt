@@ -1,0 +1,4 @@
+Unit: 131
+Square Feet: 1907
+Tenant: VACANT
+Folder: 131_VACANT

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 160">
+  <rect width="460" height="160" fill="#F3EDE0"/>
+  <!-- Circular seal / crest -->
+  <g transform="translate(80, 80)">
+    <circle r="58" fill="none" stroke="#1E4D3A" stroke-width="2"/>
+    <circle r="50" fill="none" stroke="#1E4D3A" stroke-width="0.8"/>
+    <!-- Cypress silhouette inside -->
+    <path d="M 0 26 Q -14 8 -11 -10 Q -8 -26 0 -38 Q 8 -26 11 -10 Q 14 8 0 26 Z" fill="#1E4D3A"/>
+    <rect x="-1.5" y="24" width="3" height="8" fill="#78522A"/>
+    <!-- Curved top text -->
+    <path id="topArc" d="M -44 -8 A 44 44 0 0 1 44 -8" fill="none"/>
+    <text font-family="Fraunces, Georgia, serif" font-size="9" font-weight="700" fill="#1E4D3A" letter-spacing="0.32em">
+      <textPath href="#topArc" startOffset="50%" text-anchor="middle">CYPRESS COMMAND</textPath>
+    </text>
+    <!-- Bottom stars -->
+    <text x="0" y="46" font-family="Fraunces, Georgia, serif" font-size="10" font-weight="700" fill="#78522A" text-anchor="middle" letter-spacing="0.3em">★ EST ★</text>
+  </g>
+  <!-- Wordmark right -->
+  <line x1="160" y1="50" x2="160" y2="120" stroke="#1E4D3A" stroke-width="1"/>
+  <text x="176" y="72" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="700" fill="#1E4D3A">CYPRESS</text>
+  <text x="176" y="102" font-family="Fraunces, Georgia, serif" font-size="26" font-weight="700" fill="#1E4D3A">COMMAND</text>
+  <text x="176" y="122" font-family="'JetBrains Mono', monospace" font-size="8" fill="#78522A" letter-spacing="0.22em">HERITAGE · PROPERTY · TRUST</text>
+</svg>
