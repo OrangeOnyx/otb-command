@@ -1,5 +1,5 @@
 {
- "rev": "REV 15",
+ "rev": "REV 16",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
  "viewBox": {
   "main": "0 0 1480 990",
@@ -6623,6 +6623,65 @@
    },
    {
     "t": "path",
+    "d": "M 363.65 662 L 295.16 662 L 295.16 473.34 L 76.91 473.34 L 76.91 432.59 L 363.65 432.59 Z",
+    "attrs": {
+     "fill": "#B08A3E",
+     "fill-opacity": 0.12,
+     "stroke": "#8A6D1E",
+     "stroke-width": 1.2,
+     "stroke-dasharray": "5 3",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 329.45,
+    "y": 548.8,
+    "s": "JD BANK SERVITUDE · RIGHT OF PASSAGE (EX. A-1, 2020)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5.5",
+     "text-anchor": "middle",
+     "transform": "rotate(-90 329.45 548.8)"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 469.43 655.21 L 363.89 655.21 L 363.89 621.25 L 469.43 621.25 Z",
+    "attrs": {
+     "fill": "#B08A3E",
+     "fill-opacity": 0.08,
+     "stroke": "#8A6D1E",
+     "stroke-width": 1.2,
+     "stroke-dasharray": "2 2",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "path",
+    "d": "M 454.62 581.06 L 369.45 581.06 L 369.45 514.47 L 454.62 514.47 Z",
+    "attrs": {
+     "fill": "#B08A3E",
+     "fill-opacity": 0.08,
+     "stroke": "#8A6D1E",
+     "stroke-width": 1.2,
+     "stroke-dasharray": "2 2",
+     "pointer-events": "none"
+    }
+   },
+   {
+    "t": "text",
+    "x": 416.66,
+    "y": 605.4,
+    "s": "BELLE PARKING · JD BANK USE (EX. A-1)",
+    "attrs": {
+     "class": "svg-lab",
+     "font-size": "5",
+     "text-anchor": "middle"
+    }
+   },
+   {
+    "t": "path",
     "d": "M 3.96 337.68 L 86.02 350.49 L 1186.64 350.49 A 322.35 328.46 0 0 0 1471.09 176.56",
     "attrs": {
      "fill": "none",
@@ -7450,7 +7509,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 15 — FRONTAGES PER 2020 SITE PLAN + SURVEY CAD",
+    "s": "REV 16 — JD BANK SERVITUDE (2020 EX. A-1) · 131|133",
     "attrs": {
      "class": "svg-lab",
      "font-size": "8"
@@ -8856,6 +8915,61 @@
    }
   ],
   "easements": [
+   {
+    "id": "jdbank-right-of-passage",
+    "name": "JD Bank servitude — Right of Passage (2020 agreement, Exhibit A-1; traced ±3 ft)",
+    "d": "M 363.65 662 L 295.16 662 L 295.16 473.34 L 76.91 473.34 L 76.91 432.59 L 363.65 432.59 Z",
+    "bbox": {
+     "x": 76.91,
+     "y": 432.59,
+     "w": 286.74,
+     "h": 229.41
+    }
+   },
+   {
+    "id": "jdbank-belle-parking-arnould",
+    "name": "JD Bank servitude — Belle parking spaces, Arnould row (Exhibit A-1; traced)",
+    "quad": [
+     [
+      469.43,
+      655.21
+     ],
+     [
+      363.89,
+      655.21
+     ],
+     [
+      363.89,
+      621.25
+     ],
+     [
+      469.43,
+      621.25
+     ]
+    ]
+   },
+   {
+    "id": "jdbank-belle-parking-field",
+    "name": "JD Bank servitude — Belle parking spaces, herringbone segment (Exhibit A-1; traced)",
+    "quad": [
+     [
+      454.62,
+      581.06
+     ],
+     [
+      369.45,
+      581.06
+     ],
+     [
+      369.45,
+      514.47
+     ],
+     [
+      454.62,
+      514.47
+     ]
+    ]
+   },
    {
     "id": "util-arnould",
     "name": "10' utility easement — Arnould",

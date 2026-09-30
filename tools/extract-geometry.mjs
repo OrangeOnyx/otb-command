@@ -566,6 +566,27 @@ const easements = [];
   // 5×5' guy easement at the pylon-sign pocket (plat marker 10 area)
   easements.push(rect(ax(663), by(-155), r2(ax(658) - ax(663)), r2(by(-150) - by(-155)),
     { fill: "none", stroke: "#8A937F", "stroke-width": 1, "stroke-dasharray": "3 2" }));
+  /* JD Bank reciprocal servitude — 2020 agreement (Belle ↔ JD Bank, 3/19/2020; supersedes the
+     2004 Whitney instrument, Entry 2004-00057697), Exhibit A-1 "Belle Servitude Area",
+     reference/instruments/jd-bank/. Traced from the exhibit (scaled on the notch's 100.00' /
+     120.61' lines, ±3 ft): Right of Passage = the notch N-S aisle (a 513.13–550.12, 36.99' strip)
+     + the notch E-W aisle (b −100…−121.6) to Johnston; Belle Parking Spaces granted = the Arnould
+     row stalls south of the notch + one herringbone band segment. JD Bank's 13 spaces granted to
+     Belle (Exhibit B-1) are the jdbank parking zone. Operator-approved trace 2026-09-30. */
+  const SERV = { fill: "#B08A3E", "fill-opacity": 0.12, stroke: "#8A6D1E", "stroke-width": 1.2, "stroke-dasharray": "5 3", "pointer-events": "none" };
+  const ROP = [[513.13, 0], [550.12, 0], [550.12, -100], [668, -100], [668, -121.6], [513.13, -121.6]];
+  const ropPts = ROP.map(([a, b]) => [ax(a), by(b)]);
+  easements.push(path("M " + ropPts.map(([x, y]) => r2(x) + " " + r2(y)).join(" L ") + " Z", SERV));
+  easements.push(zlab(ax(531.6), by(-60), "JD BANK SERVITUDE · RIGHT OF PASSAGE (EX. A-1, 2020)", 5.5,
+    { transform: "rotate(-90 " + ax(531.6) + " " + by(-60) + ")" }));
+  const BELLE_PK = [abQuad(456, 513, -3.6, -21.6), abQuad(464, 510, -42.9, -78.2)];
+  for (const q of BELLE_PK) easements.push(path("M " + q.map(([x, y]) => r2(x) + " " + r2(y)).join(" L ") + " Z",
+    { ...SERV, "fill-opacity": 0.08, "stroke-dasharray": "2 2" }));
+  easements.push(zlab(ax(484.5), by(-30), "BELLE PARKING · JD BANK USE (EX. A-1)", 5));
+  AG.easements.push(
+    { id: "jdbank-right-of-passage", name: "JD Bank servitude — Right of Passage (2020 agreement, Exhibit A-1; traced ±3 ft)", d: "M " + rq(ropPts).map(p => p.join(" ")).join(" L ") + " Z", bbox: bb(ropPts) },
+    { id: "jdbank-belle-parking-arnould", name: "JD Bank servitude — Belle parking spaces, Arnould row (Exhibit A-1; traced)", quad: rq(BELLE_PK[0]) },
+    { id: "jdbank-belle-parking-field", name: "JD Bank servitude — Belle parking spaces, herringbone segment (Exhibit A-1; traced)", quad: rq(BELLE_PK[1]) });
   AG.easements.push(
     { id: "util-arnould", name: "10' utility easement — Arnould", line: rq([[ax(-25), by(-10)], [ax(550), by(-10)]]) },
     { id: "util-patricia", name: "10' utility easement — Patricia", line: rq([[ax(-15), 100], [ax(-15), 658]]) },
@@ -943,14 +964,14 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "8" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + LOT 7", { class: "svg-lab", "font-size": "8" }),
   text(1078, 874, "GEOMETRY PER PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "8" }),
-  text(1078, 890, "REV 15 — FRONTAGES PER 2020 SITE PLAN + SURVEY CAD", { class: "svg-lab", "font-size": "8" }),
+  text(1078, 890, "REV 16 — JD BANK SERVITUDE (2020 EX. A-1) · 131|133", { class: "svg-lab", "font-size": "8" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 15",
+  rev: "REV 16",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {

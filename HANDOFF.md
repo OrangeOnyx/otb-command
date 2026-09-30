@@ -24,7 +24,7 @@
 
 - **CRE Asset Library (Cypress Command Platform)**
   - Package v1.0.0 is at `docs/design/cypress-command/cre-asset-library/`.
-  - The repo audit is in `audits/2026-09-29-run-01/`; start with `audit-report.md` and `change-plan.md`.
+  - The repo audit is in `docs/design/cypress-command/cre-asset-library/audits/2026-09-29-run-01/`; start with `audit-report.md` and `change-plan.md`.
   - `tools/cre-library/build-otb-slice.mjs` builds 78 validated records (SHA-pinned), leasing elevations, the pylon directory-sign render and the site-plan vector. It also turns the 270-item site register into library layers, stripping HVAC cost caps and keeping utility layers operator-only.
   - It also builds `src/data/cre-library-otb.json`. **Rerun the builder after any change to geometry, heights, pylon, units or site-register data.**
 - **A-6 Asset Library sheet**

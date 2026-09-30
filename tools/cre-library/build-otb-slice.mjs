@@ -51,6 +51,7 @@ const SRC = {
   pylon: source("source-otb-pylon-register", "Pylon panel register (operator)", "src/data/pylon.json"),
   units: source("source-otb-units-public", "Public tenancy fields (from Tier-1 rent roll)", "src/data/units.public.json"),
   register: source("source-otb-site-register", "Digitized site register (270 items)", "src/data/site-register.json"),
+  pylonMaster: source("source-otb-pylon-final-v2", "OTB pylon sign — approved master OTB_Pylon_Final_v2 (vector)", "reference/pylon/otb-pylon-final-v2/OTB_Pylon_Final_v2_vector.svg"),
   board: source("source-cc-cre-master-board", "Cypress Command CRE asset library master board v1.0.0", `${LIB}/references/cypress-command-cre-asset-library-master-board.png`)
 };
 
@@ -78,7 +79,7 @@ for (const which of ["long", "short"]) {
 }
 {
   const p = `${OTB}/signage/on-the-boulevard--sign-johnston-pylon--front--neutral--v1.svg`;
-  svgs.sign = S.signSvg(pylon, "On The Boulevard — Johnston St pylon directory sign (vector render)");
+  svgs.sign = S.signSvgApproved(readFileSync(abs(SRC.pylonMaster.path), "utf8"), pylon, "On The Boulevard — Johnston St pylon directory sign (approved v2)");
   files.sign = { svgPath: p, svgSha: put(p, svgs.sign) };
 }
 

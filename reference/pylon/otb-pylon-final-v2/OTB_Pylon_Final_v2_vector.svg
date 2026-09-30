@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1023 1537" role="img" aria-labelledby="t d" data-units="px-approved-render">
-  <title id="t">On The Boulevard — Johnston St pylon directory sign (approved v2)</title>
-  <desc id="d">Operator-approved On The Boulevard pylon (OTB_Pylon_Final_v2): 14 panels, P1 2x8, P2 4x8, P3–P14 paired 2x4. Panel groups bound to library panel IDs; tenant slots are empty and editable. Dimensions nominal; not a sign-shop drawing.</desc>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1023" height="1537" viewBox="0 0 1023 1537">
   <defs>
     <linearGradient id="beigeGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f5dfba"/>
@@ -38,62 +37,62 @@
 
   <g id="directory_panel_system">
     <rect id="directory_backplate" x="320" y="409" width="383" height="783" fill="#d8bd92" stroke="#5d503f" stroke-width="2"/>
-    <g id="panel-otb-johnston-pylon-p1" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p1" data-panel-key="P1" data-nominal-size="2x8"><title>Panel P1 — nominal 2′ × 8′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="419" width="361" height="91" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    <g id="panel_01_2x8">
+      <rect x="330" y="419" width="361" height="91" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="423" width="353" height="83" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="510.5" y="474.3" font-size="28" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p2" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p2" data-panel-key="P2" data-nominal-size="4x8"><title>Panel P2 — nominal 4′ × 8′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="520" width="361" height="135" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_02_4x8">
+      <rect x="330" y="520" width="361" height="135" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="524" width="353" height="127" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="510.5" y="597.3" font-size="28" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p3" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p3" data-panel-key="P3" data-nominal-size="2x4"><title>Panel P3 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="665" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_03_2x4">
+      <rect x="330" y="665" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="669" width="168" height="68" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="418" y="709.65" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p4" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p4" data-panel-key="P4" data-nominal-size="2x4"><title>Panel P4 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="515" y="665" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_04_2x4">
+      <rect x="515" y="665" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="519" y="669" width="168" height="68" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="603" y="709.65" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p5" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p5" data-panel-key="P5" data-nominal-size="2x4"><title>Panel P5 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="751" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_05_2x4">
+      <rect x="330" y="751" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="755" width="168" height="69" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="418" y="796.15" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p6" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p6" data-panel-key="P6" data-nominal-size="2x4"><title>Panel P6 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="515" y="751" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_06_2x4">
+      <rect x="515" y="751" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="519" y="755" width="168" height="69" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="603" y="796.15" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p7" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p7" data-panel-key="P7" data-nominal-size="2x4"><title>Panel P7 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="838" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_07_2x4">
+      <rect x="330" y="838" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="842" width="168" height="68" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="418" y="882.65" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p8" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p8" data-panel-key="P8" data-nominal-size="2x4"><title>Panel P8 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="515" y="838" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_08_2x4">
+      <rect x="515" y="838" width="176" height="76" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="519" y="842" width="168" height="68" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="603" y="882.65" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p9" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p9" data-panel-key="P9" data-nominal-size="2x4"><title>Panel P9 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="924" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_09_2x4">
+      <rect x="330" y="924" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="928" width="168" height="69" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="418" y="969.15" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p10" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p10" data-panel-key="P10" data-nominal-size="2x4"><title>Panel P10 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="515" y="924" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_10_2x4">
+      <rect x="515" y="924" width="176" height="77" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="519" y="928" width="168" height="69" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="603" y="969.15" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p11" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p11" data-panel-key="P11" data-nominal-size="2x4"><title>Panel P11 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="1011" width="176" height="75" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_11_2x4">
+      <rect x="330" y="1011" width="176" height="75" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="1015" width="168" height="67" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="418" y="1055.15" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p12" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p12" data-panel-key="P12" data-nominal-size="2x4"><title>Panel P12 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="515" y="1011" width="176" height="75" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_12_2x4">
+      <rect x="515" y="1011" width="176" height="75" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="519" y="1015" width="168" height="67" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="603" y="1055.15" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p13" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p13" data-panel-key="P13" data-nominal-size="2x4"><title>Panel P13 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="330" y="1096" width="176" height="78" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_13_2x4">
+      <rect x="330" y="1096" width="176" height="78" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="334" y="1100" width="168" height="70" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="418" y="1141.65" font-size="19" text-anchor="middle"></text></g>
-    <g id="panel-otb-johnston-pylon-p14" class="cc-entity" data-entity-id="panel-otb-johnston-pylon-p14" data-panel-key="P14" data-nominal-size="2x4"><title>Panel P14 — nominal 2′ × 4′ (approved v2 layout)</title>
-      <rect class="cc-face" x="515" y="1096" width="176" height="78" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
+    </g>
+    <g id="panel_14_2x4">
+      <rect x="515" y="1096" width="176" height="78" fill="url(#panelFill)" stroke="#655744" stroke-width="2"/>
       <rect x="519" y="1100" width="168" height="70" fill="none" stroke="#d4c2a2" stroke-width="1.5"/>
-    <text class="cc-slot" data-slot="tenant" x="603" y="1141.65" font-size="19" text-anchor="middle"></text></g>
+    </g>
     <rect id="bottom_panel_rail" x="320" y="1184" width="383" height="17" fill="#a7895e" stroke="#5d503f" stroke-width="1.5"/>
   </g>
 
@@ -155,5 +154,4 @@
       <text x="603.0" y="1152.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="16">(2x4)</text>
     </g>
   </g>
-  <style>.cc-slot{fill:#3B342A;font-family:var(--cc-cre-font-ui,Archivo,Arial,sans-serif)}</style>
 </svg>

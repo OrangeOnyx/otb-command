@@ -96,3 +96,12 @@ test("the sheet's live overlay and the snapshot overlay are the same function", 
   assert.deepEqual(live.panels, snap.panels);
   assert.equal(live.panels.find((p) => p.panel_key === "P13").state, "conflict");
 });
+
+test("approved pylon master (v2) binds all 14 panels to library IDs with empty tenant slots", async () => {
+  const { signSvgApproved } = await import("../tools/cre-library/otb-slice.mjs");
+  const svg = signSvgApproved(readFileSync(new URL("../reference/pylon/otb-pylon-final-v2/OTB_Pylon_Final_v2_vector.svg", import.meta.url), "utf8"), pylon, "t");
+  for (let n = 1; n <= 14; n++) assert.match(svg, new RegExp(`data-entity-id="panel-otb-johnston-pylon-p${n}"`));
+  assert.equal((svg.match(/data-slot="tenant"[^>]*><\/text>/g) || []).length, 14);
+  for (const u of unitsPublic) if (u.dba) assert.ok(!svg.includes(u.dba), `tenant baked into pylon art: ${u.dba}`);
+  assert.throws(() => signSvgApproved("<svg></svg>", pylon, "t"), /bound 0 of 14/);
+});

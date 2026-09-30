@@ -132,6 +132,8 @@ export function sourceRecords(S) {
       verification: unverified("Operator panel register (D-19b, 2026-09-17): panel order, nominal sizes and panel→unit assignment. Not a measured sign drawing — cabinet, posts, gaps and installed panel dimensions are unmeasured.") }),
     base(S.units, { kind: "operational-record", authority_domains: ["operations"],
       verification: unverified("Public-safe tenancy fields derived from the Tier-1 rent roll (units.json). Lease SF is a lease definition, not a measured footprint.") }),
+    base(S.pylonMaster, { kind: "style-reference", authority_domains: ["appearance"],
+      verification: unverified("Operator-approved pylon master OTB_Pylon_Final_v2 (layered PSD, vector SVG, panel guide, layout JSON; reference/pylon/otb-pylon-final-v2/). Confirms the 14-panel layout (operator 2026-09-30). Editable vector recreation of the approved render — appearance authority, not a measured sign drawing.") }),
     base(S.board, { kind: "generated-image", authority_domains: ["appearance"],
       verification: unverified("Cypress Command CRE asset library master board v1.0.0 (generated). Styling reference only; its streets, counts, tenants and geometry are fictional.") })
   ];
@@ -241,13 +243,13 @@ export function assetRecords({ S, G, assetIds, files, pylon }) {
   }
   recs.push({
     schema_version: "1.0.0", record_type: "asset", id: assetIds.sign, name: "Johnston St pylon — directory sign vector render",
-    verification: unverified(`Panel stack = operator schedule (${pylon.sign.schedule}), nominal feet. Cabinet, header and posts are illustrative proportions (no measured sign drawing in the repo). Tenant slots empty and editable.`),
-    source_refs: [ref(S.pylon)], release: candidate, scope: "property", property_id: PROPERTY_ID,
+    verification: unverified(`Operator-approved master render OTB_Pylon_Final_v2 with its 14 named panel groups bound to library panel IDs (${pylon.sign.schedule}). Panel sizes nominal (2' x 4' spaces per the pylon rental agreements); no sign-shop dimension drawing exists. Tenant slots empty and editable.`),
+    source_refs: [ref(S.pylon), ref(S.pylonMaster)], release: candidate, scope: "property", property_id: PROPERTY_ID,
     subject_refs: [{ record_type: "sign", id: SIGN_ID }, ...pylon.panels.map((p) => ({ record_type: "panel", id: panelId(p.panel) }))],
     asset_type: "signage", representation: "diagram",
     location: { repository_path: files.sign.svgPath }, revision: "v1", sha256: files.sign.svgSha,
-    view: "front", theme: "neutral", style_reference_source_ids: [S.board.id],
-    display_label: "DIRECTORY SIGN RENDER — nominal panels; cabinet/posts illustrative, not measured"
+    view: "front", theme: "neutral", style_reference_source_ids: [S.board.id, S.pylonMaster.id],
+    display_label: "DIRECTORY SIGN RENDER — approved v2 master; nominal panel sizes"
   });
   return recs;
 }
@@ -397,6 +399,31 @@ ${body}
   <text class="cc-muted" x="${width / 2}" y="${r2(bottom + 1.2)}" font-size="0.32" text-anchor="middle">${esc(pylon.sign.schedule)} · nominal ft · cabinet/posts illustrative</text>
 </svg>
 `;
+}
+
+/* Operator-approved pylon master (reference/pylon/otb-pylon-final-v2/, "OTB_Pylon_Final_v2",
+   14 panels: P1 2x8, P2 4x8, P3–P14 paired 2x4, spacer reveal above P1). The approved vector's
+   named panel groups (panel_01_2x8 …) are bound to library panel IDs and given an empty
+   editable tenant slot; the artwork itself is used as delivered. Supersedes signSvg's
+   illustrative cabinet for the A-6 sheet (operator 2026-09-30). */
+export function signSvgApproved(svgText, pylon, title) {
+  const keys = new Map(pylon.panels.map((p) => [Number(p.panel.slice(1)), p]));
+  let out = svgText.replace(/<\?xml[^>]*>\s*/, "")
+    .replace(/<svg([^>]*?)\swidth="\d+"\sheight="\d+"/, "<svg$1")
+    .replace(/<svg([^>]*)>/, `<svg$1 role="img" aria-labelledby="t d" data-units="px-approved-render">\n  <title id="t">${esc(title)}</title>\n  <desc id="d">Operator-approved On The Boulevard pylon (OTB_Pylon_Final_v2): 14 panels, P1 2x8, P2 4x8, P3–P14 paired 2x4. Panel groups bound to library panel IDs; tenant slots are empty and editable. Dimensions nominal; not a sign-shop drawing.</desc>`);
+  let bound = 0;
+  out = out.replace(/<g id="panel_(\d\d)_([\dx]+)">([\s\S]*?)<\/g>/g, (m, nn, size, body) => {
+    const n = Number(nn), p = keys.get(n);
+    if (!p) return m;
+    const r = body.match(/<rect x="([\d.]+)" y="([\d.]+)" width="([\d.]+)" height="([\d.]+)"/);
+    if (!r) return m;
+    const [x, y, w, h] = r.slice(1).map(Number);
+    const fs = w > 300 ? 28 : 19;
+    bound++;
+    return `<g id="${panelId(p.panel)}" class="cc-entity" data-entity-id="${panelId(p.panel)}" data-panel-key="${p.panel}" data-nominal-size="${size}"><title>${esc(`Panel ${p.panel} — nominal ${size.replace("x", "′ × ")}′ (approved v2 layout)`)}</title>${body.replace("<rect ", '<rect class="cc-face" ')}<text class="cc-slot" data-slot="tenant" x="${r2(x + w / 2)}" y="${r2(y + h / 2 + fs * 0.35)}" font-size="${fs}" text-anchor="middle"></text></g>`;
+  });
+  if (bound !== pylon.panels.length) throw new Error(`approved pylon: bound ${bound} of ${pylon.panels.length} panels`);
+  return out.replace(/<\/svg>\s*$/, `  <style>.cc-slot{fill:${MATERIAL.ink};font-family:var(--cc-cre-font-ui,Archivo,Arial,sans-serif)}</style>\n</svg>\n`);
 }
 
 /* ── site register → library layers ("commercial site plan vectorization") ── */

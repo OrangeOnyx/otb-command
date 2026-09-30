@@ -5,6 +5,21 @@
 
 ---
 
+## UPDATE 2026-09-30 — ground evidence from the 9/29 Polycam scan
+
+The 2026-09-29 iPhone LiDAR scan (`E:/OTB-CAPTURE/OTB_Capture_2026-09-29/`) is registered to the twin frame and passes acceptance: 77% of points within 0.3 m, 0.16 m median. It covers the Johnston frontage directly south of unit 101.
+
+**What the scan shows.** A top-down orthophoto of the scan's ground returns, with automatic stripe detection along the curb direction, finds **11 stripe lines and 10 stall bays** in a head-in row nosing the Johnston planting strip.
+- Nine bays measure ~2.75 m (9.0 ft), matching the plat's 9.00' stalls.
+- The end bay measures ~4.0 m.
+- Evidence image: `docs/evidence/parking-johnston-cad-row-polycam-2026-09-29.jpg`.
+
+**Why this is the unlabeled CAD row.** The signature and location match the CAD row described below: 11 lines, 10 stalls at 9.0' pitch, south of 101 on Johnston. The plat's labeled "Johnston strip 10" is a different 8 + 2 layout.
+
+**Result.** The unlabeled row is striped on the ground today, so **314 labeled + 10 = 324 striped = the variance's "324 provided."**
+
+Retiring the 314 operating figure in CLAUDE.md (the flip step below) is waiting on operator confirmation.
+
 ## UPDATE 2026-09-05 — candidate resolution from the architect CAD (geometry REV 13)
 While tracing ingress/egress from `cad/Boulev_CLEAN.dxf` for the A-1 access layer, the
 CAD's PARKING layer showed an **11-line head-in row (10 stalls at 9.0' pitch) nosing the

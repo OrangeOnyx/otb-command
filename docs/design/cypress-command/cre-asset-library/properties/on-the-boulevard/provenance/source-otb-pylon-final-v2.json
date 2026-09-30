@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-pylon-final-v2",
+  "name": "OTB pylon sign — approved master OTB_Pylon_Final_v2 (vector)",
+  "location": {
+    "repository_path": "reference/pylon/otb-pylon-final-v2/OTB_Pylon_Final_v2_vector.svg"
+  },
+  "revision": "worktree-sha256:6828533ad8263bb0",
+  "sha256": "6828533ad8263bb0e925bef8b2e45d8bbcdab34a77b78e348ddd6951621a7bc3",
+  "kind": "style-reference",
+  "authority_domains": [
+    "appearance"
+  ],
+  "verification": {
+    "state": "unverified",
+    "notes": "Operator-approved pylon master OTB_Pylon_Final_v2 (layered PSD, vector SVG, panel guide, layout JSON; reference/pylon/otb-pylon-final-v2/). Confirms the 14-panel layout (operator 2026-09-30). Editable vector recreation of the approved render — appearance authority, not a measured sign drawing."
+  }
+}

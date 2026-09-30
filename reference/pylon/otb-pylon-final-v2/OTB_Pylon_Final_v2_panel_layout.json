@@ -1,0 +1,152 @@
+{
+  "asset_name": "On The Boulevard Pylon Sign Final",
+  "version": "v2",
+  "source_image": "Blannk Pylon Sign Final(1).png",
+  "canvas_px": {
+    "width": 1023,
+    "height": 1537
+  },
+  "style": "Architectural leasing asset illustration / commercial real estate directory sign vector render",
+  "layout": "14 panels total with spacer reveal above Panel 1. Panel 1 = 2x8 full width; Panel 2 = 4x8 full width; Panels 3-14 = six rows of paired 2x4 panels.",
+  "panel_coordinates_px": [
+    {
+      "id": 1,
+      "name": "Panel 1",
+      "size": "2x8",
+      "x": 330,
+      "y": 419,
+      "w": 361,
+      "h": 91
+    },
+    {
+      "id": 2,
+      "name": "Panel 2",
+      "size": "4x8",
+      "x": 330,
+      "y": 520,
+      "w": 361,
+      "h": 135
+    },
+    {
+      "id": 3,
+      "name": "Panel 3",
+      "size": "2x4",
+      "x": 330,
+      "y": 665,
+      "w": 176,
+      "h": 76
+    },
+    {
+      "id": 4,
+      "name": "Panel 4",
+      "size": "2x4",
+      "x": 515,
+      "y": 665,
+      "w": 176,
+      "h": 76
+    },
+    {
+      "id": 5,
+      "name": "Panel 5",
+      "size": "2x4",
+      "x": 330,
+      "y": 751,
+      "w": 176,
+      "h": 77
+    },
+    {
+      "id": 6,
+      "name": "Panel 6",
+      "size": "2x4",
+      "x": 515,
+      "y": 751,
+      "w": 176,
+      "h": 77
+    },
+    {
+      "id": 7,
+      "name": "Panel 7",
+      "size": "2x4",
+      "x": 330,
+      "y": 838,
+      "w": 176,
+      "h": 76
+    },
+    {
+      "id": 8,
+      "name": "Panel 8",
+      "size": "2x4",
+      "x": 515,
+      "y": 838,
+      "w": 176,
+      "h": 76
+    },
+    {
+      "id": 9,
+      "name": "Panel 9",
+      "size": "2x4",
+      "x": 330,
+      "y": 924,
+      "w": 176,
+      "h": 77
+    },
+    {
+      "id": 10,
+      "name": "Panel 10",
+      "size": "2x4",
+      "x": 515,
+      "y": 924,
+      "w": 176,
+      "h": 77
+    },
+    {
+      "id": 11,
+      "name": "Panel 11",
+      "size": "2x4",
+      "x": 330,
+      "y": 1011,
+      "w": 176,
+      "h": 75
+    },
+    {
+      "id": 12,
+      "name": "Panel 12",
+      "size": "2x4",
+      "x": 515,
+      "y": 1011,
+      "w": 176,
+      "h": 75
+    },
+    {
+      "id": 13,
+      "name": "Panel 13",
+      "size": "2x4",
+      "x": 330,
+      "y": 1096,
+      "w": 176,
+      "h": 78
+    },
+    {
+      "id": 14,
+      "name": "Panel 14",
+      "size": "2x4",
+      "x": 515,
+      "y": 1096,
+      "w": 176,
+      "h": 78
+    }
+  ],
+  "files": {
+    "transparent_png": "OTB_Pylon_Final_v2_transparent.png",
+    "transparent_png_2x": "OTB_Pylon_Final_v2_transparent_2x.png",
+    "svg_vector": "OTB_Pylon_Final_v2_vector.svg",
+    "layered_psd": "OTB_Pylon_Final_v2_layered.psd",
+    "panel_guide_png": "OTB_Pylon_Final_v2_panel_guide.png",
+    "panel_guide_svg": "OTB_Pylon_Final_v2_panel_guide.svg"
+  },
+  "notes": [
+    "PNG is a faithful transparent-background extraction from the approved final mockup.",
+    "PSD is layered raster: approved sign render base layer plus separate panel face layers for Panels 1-14 and a hidden panel-number guide layer.",
+    "SVG is an editable vector recreation with named panel groups, not a traced path-for-path copy of the raster rendering."
+  ]
+}

@@ -10,8 +10,8 @@
   "source_refs": [
     {
       "source_id": "source-otb-geometry-json",
-      "revision": "worktree-sha256:bf1875c940a4f594",
-      "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140"
+      "revision": "worktree-sha256:a6d5e96857c83749",
+      "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e"
     }
   ],
   "release": {
@@ -43,8 +43,8 @@
       "source_refs": [
         {
           "source_id": "source-otb-geometry-json",
-          "revision": "worktree-sha256:bf1875c940a4f594",
-          "sha256": "bf1875c940a4f59497ec1eb0826445ef90030e7ee73e971ad8a69c1f9d280140",
+          "revision": "worktree-sha256:a6d5e96857c83749",
+          "sha256": "a6d5e96857c8374907e5c8724098c88f0a850f9aa2d69921db2b3ab5ef73d13e",
           "locator": "demising.shortBuilding.bays[141]"
         }
       ],
