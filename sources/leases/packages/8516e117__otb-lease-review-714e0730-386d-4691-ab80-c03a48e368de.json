@@ -1,0 +1,362 @@
+{
+  "actorId": "local:adam",
+  "createdAt": "2026-09-27T22:59:28.934Z",
+  "kind": "LEASE_RECONCILIATION",
+  "learning": {
+    "proposal": "Review repeated source gaps before proposing a versioned workflow improvement.",
+    "status": "REVIEW_PENDING"
+  },
+  "leaseGroupId": "LEASE-GRP-149",
+  "operationId": "714e0730-386d-4691-ab80-c03a48e368de",
+  "proposal": {
+    "adoptedEnd": {
+      "epistemic_status": "prior_session_report",
+      "sources": [
+        {
+          "locator": "message 8f267e7a-9a51-437f-bb73-c5555042761a; canonical register",
+          "source_id": "SRC-CHAT-001"
+        }
+      ],
+      "value": "2030-10-31",
+      "verification_scope": "Prior-session reported end; does not settle open contractual questions"
+    },
+    "adoptionAllowed": false,
+    "asOf": "2026-09-27",
+    "baseRevision": "0f36fbf70ef965d7fe59e59dc4803f09a5647e0af4025cfa4e87c4a756ca3c27",
+    "candidateAssertions": [
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "prior_session_report",
+        "field": "monthly_rent",
+        "locator": "canonical register or earlier reconciliation; 149",
+        "scope": "Source-reported adopted or historical value; not new adoption",
+        "sourceId": "SRC-CHAT-001",
+        "sourceIds": [
+          "SRC-CHAT-001"
+        ],
+        "value": "7765.22"
+      },
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "verified",
+        "field": "monthly_rent",
+        "locator": "Physical PDF pages 78,79,80,81; local_signed_fifth_addendum_total",
+        "scope": "Local-source alternative as observed; no automatic state adoption",
+        "sourceId": "SRC-LOCAL-E7F689F328",
+        "sourceIds": [
+          "SRC-LOCAL-E7F689F328"
+        ],
+        "value": "8553.27"
+      },
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "prior_session_report",
+        "field": "fifth_addendum_version",
+        "locator": "canonical register or earlier reconciliation; 149",
+        "scope": "Source-reported adopted or historical value; not new adoption",
+        "sourceId": "SRC-CHAT-001",
+        "sourceIds": [
+          "SRC-CHAT-001"
+        ],
+        "value": "February2026"
+      },
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "verified",
+        "field": "fifth_addendum_version",
+        "locator": "Physical PDF pages 78,79,80,81; local_signature_dates",
+        "scope": "Local-source alternative as observed; no automatic state adoption",
+        "sourceId": "SRC-LOCAL-E7F689F328",
+        "sourceIds": [
+          "SRC-LOCAL-E7F689F328"
+        ],
+        "value": "2025-04-07"
+      }
+    ],
+    "changes": [
+      {
+        "adoptionBlocked": true,
+        "basis": "Competing source value for review; not an adopted correction.",
+        "field": "monthly_rent",
+        "from": "7765.22",
+        "sourceIds": [
+          "SRC-LOCAL-E7F689F328"
+        ],
+        "to": "8553.27"
+      }
+    ],
+    "currentSoftwareValues": [
+      {
+        "end": "2030-10-31",
+        "monthly": 7765.22,
+        "total": 20.2,
+        "unit": "149"
+      }
+    ],
+    "judgment": {
+      "assumptions": [],
+      "evidenceThatWouldChangeConclusion": [
+        "Obtain any later replacement/corrected Fifth Addendum and current billing ledger reconciliation; retain both rent claims and avoid changing billing. Current local review: Obtain any later replacement/corrected Fifth Addendum and current billing ledger reconciliation; retain both rent claims and avoid changing billing."
+      ],
+      "facts": [
+        "Source access and content identity results are recorded in sourceIntake.",
+        "Current software values were read from the existing repository roster."
+      ],
+      "inferences": [
+        "Conflicting source claims require a scoped disposition before adoption."
+      ],
+      "recommendation": "Review the exact source pages and resolve the stated evidence requirements; retain current operating values until a specific proposal is approved.",
+      "risks": [
+        "A historical observation or extracted clause may be superseded by another instrument."
+      ],
+      "unknowns": [
+        "Obtain any later replacement/corrected Fifth Addendum and current billing ledger reconciliation; retain both rent claims and avoid changing billing. Current local review: Obtain any later replacement/corrected Fifth Addendum and current billing ledger reconciliation; retain both rent claims and avoid changing billing."
+      ]
+    },
+    "kind": "LEASE_RECONCILIATION_DRAFT",
+    "kitFingerprint": "a90a9b6d090b196377928e2b13755b4e3c1688e7bf70b77bd8950e6503333887",
+    "leaseGroupId": "LEASE-GRP-149",
+    "openExceptionIds": [
+      "EX-LOCAL-149"
+    ],
+    "operatingRent": {
+      "as_of": "2026-09-23",
+      "epistemic_status": "prior_session_report",
+      "sources": [
+        {
+          "locator": "Rent roll; grouped sum where two suites",
+          "source_id": "SRC-OTB-001"
+        }
+      ],
+      "value": "7765.22",
+      "verification_scope": "USD per month, operating schedule as of September 23; retained in September 27 bootstrap, not bank-reconciled"
+    },
+    "proposalId": "PROP-714e0730-386d-4691-ab80-c03a48e368de",
+    "rentPhases": [],
+    "retainedAlternatives": [
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "prior_session_report",
+        "field": "monthly_rent",
+        "locator": "canonical register or earlier reconciliation; 149",
+        "scope": "Source-reported adopted or historical value; not new adoption",
+        "sourceId": "SRC-CHAT-001",
+        "sourceIds": [
+          "SRC-CHAT-001"
+        ],
+        "value": "7765.22"
+      },
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "verified",
+        "field": "monthly_rent",
+        "locator": "Physical PDF pages 78,79,80,81; local_signed_fifth_addendum_total",
+        "scope": "Local-source alternative as observed; no automatic state adoption",
+        "sourceId": "SRC-LOCAL-E7F689F328",
+        "sourceIds": [
+          "SRC-LOCAL-E7F689F328"
+        ],
+        "value": "8553.27"
+      },
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "prior_session_report",
+        "field": "fifth_addendum_version",
+        "locator": "canonical register or earlier reconciliation; 149",
+        "scope": "Source-reported adopted or historical value; not new adoption",
+        "sourceId": "SRC-CHAT-001",
+        "sourceIds": [
+          "SRC-CHAT-001"
+        ],
+        "value": "February2026"
+      },
+      {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "epistemicStatus": "verified",
+        "field": "fifth_addendum_version",
+        "locator": "Physical PDF pages 78,79,80,81; local_signature_dates",
+        "scope": "Local-source alternative as observed; no automatic state adoption",
+        "sourceId": "SRC-LOCAL-E7F689F328",
+        "sourceIds": [
+          "SRC-LOCAL-E7F689F328"
+        ],
+        "value": "2025-04-07"
+      }
+    ],
+    "suites": [
+      "149"
+    ],
+    "summary": "Review Jason's Deli (149): 1 open exception(s); operating values preserved."
+  },
+  "receipt": {
+    "actions_attempted": [
+      "Read named lease evidence and source pointers",
+      "Compare kit claims with the current repository roster",
+      "Prepare a draft with retained alternatives"
+    ],
+    "actions_completed": [
+      "Read existing operating values without modification",
+      "Retained original assertions and open exceptions",
+      "Recorded source identity and extraction outcomes",
+      "Prepared candidate proposal and durable receipt"
+    ],
+    "actions_failed": [],
+    "approval_bindings": [],
+    "approvals_received": [],
+    "artifacts_created": [
+      "operations/714e0730-386d-4691-ab80-c03a48e368de/operation.json"
+    ],
+    "assumptions": [],
+    "authority_used": [],
+    "command_id": "OTB-CMD-001",
+    "command_version": "1.1.0",
+    "completed_at": "2026-09-27T22:59:29.676Z",
+    "confidence": null,
+    "contract_version": "1.1",
+    "estimated_compute_cost": null,
+    "exceptions_created": [],
+    "exceptions_resolved": [],
+    "execution_environment": "Local OTB review; staged artifacts only",
+    "executor": "cces-local-reconciliation",
+    "external_changes": [],
+    "facts_used": [],
+    "goal_id": "GOAL-OTB-001",
+    "human_review_required": true,
+    "imported_claim_source_ids": [],
+    "initiated_by": "local:adam",
+    "internal_changes": [
+      "Created a draft operation in the private local receipt store"
+    ],
+    "model": null,
+    "next_action": "Review the exact source pages and resolve the stated evidence requirements; retain current operating values until a specific proposal is approved.",
+    "operation_id": "714e0730-386d-4691-ab80-c03a48e368de",
+    "original_result_status": null,
+    "other_cost": null,
+    "receipt_id": "RCP-714e0730-386d-4691-ab80-c03a48e368de",
+    "record_kind": "execution",
+    "record_outcomes": [],
+    "records_modified": [],
+    "result_status": "COMPLETED_WITH_EXCEPTION",
+    "sources_accessed": [
+      "SRC-CHAT-001",
+      "SRC-OTB-001",
+      "SRC-AUDIT-001",
+      "SRC-LOCAL-E7F689F328"
+    ],
+    "started_at": "2026-09-27T22:59:28.934Z",
+    "tokens_used": null,
+    "verification_scope": "Verified file access and recorded byte hashes only. Page text is a navigation aid. No signature, current-term, rent, approval, or exception-resolution verification is asserted.",
+    "workflow_id": "WFL-OTB-LEASE-RECONCILE",
+    "workflow_version": "1.1.0"
+  },
+  "request": {
+    "action": "prepare",
+    "actorId": "local:adam",
+    "asOf": "2026-09-27",
+    "baseRevision": "0f36fbf70ef965d7fe59e59dc4803f09a5647e0af4025cfa4e87c4a756ca3c27",
+    "kitFingerprint": "a90a9b6d090b196377928e2b13755b4e3c1688e7bf70b77bd8950e6503333887",
+    "leaseGroupId": "LEASE-GRP-149"
+  },
+  "sourceIntake": {
+    "contents": [
+      {
+        "contentId": "SHA256-b402a596938ac137ed39440e5391387b60cc0d4d1ac820cd0c1c34bb3c1c1678",
+        "extraction": "NOT_REQUESTED",
+        "locations": [
+          "chatgpt-conversation://6ab892be-39c0-83ea-8e62-9dc1f1df665a"
+        ],
+        "pageText": [],
+        "sha256": "b402a596938ac137ed39440e5391387b60cc0d4d1ac820cd0c1c34bb3c1c1678",
+        "size": 95468,
+        "sourceIds": [
+          "SRC-CHAT-001"
+        ],
+        "verification": "BYTE_IDENTITY_ONLY"
+      },
+      {
+        "contentId": "SHA256-20b4df90ea61512cee37b55f0c7ae15119cbf71d9abb1c2809eeec4c06cb8370",
+        "extraction": "NOT_REQUESTED",
+        "locations": [
+          "https://drive.google.com/file/d/1_Mh_fqo4RuOyN_Nd9eJxyLnnYTPpa6_g/view"
+        ],
+        "pageText": [],
+        "sha256": "20b4df90ea61512cee37b55f0c7ae15119cbf71d9abb1c2809eeec4c06cb8370",
+        "size": 31300,
+        "sourceIds": [
+          "SRC-OTB-001"
+        ],
+        "verification": "BYTE_IDENTITY_ONLY"
+      },
+      {
+        "contentId": "SHA256-383ff9f7b2b907c26a1e6cda5c13aa31225493d93480982346700023a1cc9704",
+        "extraction": "NOT_REQUESTED",
+        "locations": [
+          "installations/otb/evidence/local-lease-audit.json"
+        ],
+        "pageText": [],
+        "sha256": "383ff9f7b2b907c26a1e6cda5c13aa31225493d93480982346700023a1cc9704",
+        "size": 74737,
+        "sourceIds": [
+          "SRC-AUDIT-001"
+        ],
+        "verification": "BYTE_IDENTITY_ONLY"
+      },
+      {
+        "contentId": "SHA256-4ad6cdba7b599c1acefc1b8bc469b5b6d479927252f71991614ac5073386ccb1",
+        "extraction": "PARTIAL_REVIEW_REQUIRED",
+        "locations": [
+          "C:\\Users\\adam\\Downloads\\OTB-Executed-Leases\\149_Jasons_Deli\\Executed_Lease.pdf"
+        ],
+        "pageText": [
+          {
+            "method": "pypdf_page_text",
+            "page": 78,
+            "status": "IMAGE_OR_SPARSE_TEXT_REQUIRES_VISUAL_REVIEW",
+            "text": "",
+            "truncated": false
+          },
+          {
+            "method": "pypdf_page_text",
+            "page": 79,
+            "status": "IMAGE_OR_SPARSE_TEXT_REQUIRES_VISUAL_REVIEW",
+            "text": "",
+            "truncated": false
+          },
+          {
+            "method": "pypdf_page_text",
+            "page": 80,
+            "status": "IMAGE_OR_SPARSE_TEXT_REQUIRES_VISUAL_REVIEW",
+            "text": "",
+            "truncated": false
+          },
+          {
+            "method": "pypdf_page_text",
+            "page": 81,
+            "status": "IMAGE_OR_SPARSE_TEXT_REQUIRES_VISUAL_REVIEW",
+            "text": "",
+            "truncated": false
+          }
+        ],
+        "sha256": "4ad6cdba7b599c1acefc1b8bc469b5b6d479927252f71991614ac5073386ccb1",
+        "size": 19264691,
+        "sourceIds": [
+          "SRC-LOCAL-E7F689F328"
+        ],
+        "verification": "BYTE_IDENTITY_ONLY"
+      }
+    ],
+    "failures": [],
+    "limitations": [
+      "Hash matching and text extraction do not verify signatures, contractual effect, or the current governing chain. Existing observations retain their original review scope."
+    ]
+  },
+  "status": "COMPLETED_WITH_EXCEPTION"
+}
