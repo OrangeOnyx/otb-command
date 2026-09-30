@@ -591,12 +591,12 @@ const LB_BAYS = [ // [unit, width ft, source]
   ["121", 20.0, "plat"], ["119.5", 23.1, "plat"], ["119", 23.2, "plat"],
   ["117.5", 20.2, "plat (string conflicts with plat SF 1,769 → 20.7'; string governs)"],
   ["117", 25.4, "plat"], ["115", 25.4, "plat"],
-  ["113", 30.78, "derived: SF split of plat 80.8' (LOT 12) block"],
-  ["111", 19.96, "derived: SF split of plat 80.8' (LOT 12) block"],
-  ["109", 30.07, "derived: SF split of plat 80.8' (LOT 12) block"],
+  ["113", 30.8, "CAD demising lines 30.79' (UNITS layer); 2020 site-plan label 32.3' is a drafting error — 30.8 closes the 2019 survey 80.8' LOT 12 block (REV 15)"],
+  ["111", 20.0, "plat: 2020 site plan + CAD demising (REV 15)"],
+  ["109", 30.0, "plat: 2020 site plan + CAD demising (REV 15)"],
   ["107", 20.4, "plat"], ["105", 26.0, "plat"],
-  ["103", 33.21, "derived: SF split of plat 108.00' (BROTHER'S) end block"],
-  ["101", 74.79, "derived: SF split of plat 108.00' (BROTHER'S) end block"]
+  ["103", 25.0, "plat: 2020 site plan + 2019 survey CAD layer (TENANT_TXT) — CAD UNITS layer shows 35.5' (fits 103's SF); open (REV 15)"],
+  ["101", 83.0, "plat: 2020 site plan; 103 + 101 = 108.00' survey end block (REV 15)"]
 ];
 /* Short building: along Patricia, 84.49' deep, 208.65' long (plat wall dim).
    Jason's Deli (149) at the Arnould end. 1,917 SF bays share the residual
@@ -611,8 +611,8 @@ const SB_NORTH_FROM_ARNOULD_RW = 26.0;  // scaled from plat (no string)
 const SB_BAYS = [ // Marie Antoinette end → Arnould end
   ["135", 37.4, "plat: POLITICS 3,160 section — mid-depth split into 135A (breezeway square) / 135B (Patricia square)"],
   ["137", 24.3, "plat"],
-  ["139", 23.0875, "derived: (208.65 − 54.6 − 24.3 − 37.4) / 4"],
-  ["141", 23.0875, "derived"], ["143", 23.0875, "derived"], ["145", 23.0875, "derived"],
+  ["139", 23.0875, "plat: 2020 site plan 23.1' (rounded display); 23.0875 closes the 208.65' surveyed wall (REV 15)"],
+  ["141", 23.0875, "plat: 2020 site plan 23.1' (rounded)"], ["143", 23.0875, "plat: 2020 site plan 23.1' (rounded)"], ["145", 23.0875, "plat: 2020 site plan 23.1' (rounded)"],
   ["149", 54.6, "plat"]
 ];
 
@@ -943,14 +943,14 @@ const titleBlock = [
   text(1078, 842, "SHEET A-1 · SITE PLAN · ZONED CH", { class: "svg-lab", "font-size": "8" }),
   text(1078, 858, "62,883 SF · 27 UNITS · 2 BLDGS + LOT 7", { class: "svg-lab", "font-size": "8" }),
   text(1078, 874, "GEOMETRY PER PLAT (ROTATED 90° CW)", { class: "svg-lab", "font-size": "8" }),
-  text(1078, 890, "REV 14 — ACCESS · ARNOULD FRONTAGE ISLANDS", { class: "svg-lab", "font-size": "8" }),
+  text(1078, 890, "REV 15 — FRONTAGES PER 2020 SITE PLAN + SURVEY CAD", { class: "svg-lab", "font-size": "8" }),
   path("M1296 936 L1322 930 L1315 936 L1322 942 Z", { fill: "#1C2B26" }),
   text(1332, 940, "N", { "dominant-baseline": "middle", "font-family": "'IBM Plex Mono',monospace", "font-size": "10", "font-weight": "600", fill: "#1C2B26" }),
   text(1212, 962, "PLAN ROTATED — TRUE NORTH AT RIGHT (PATRICIA ST)", { class: "svg-lab", "font-size": "7.5", "text-anchor": "middle" })
 ];
 
 const geometry = {
-  rev: "REV 14",
+  rev: "REV 15",
   source: "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
   viewBox: { main: "0 0 1480 990", full: "0 -310 1480 1300" },
   demising: {

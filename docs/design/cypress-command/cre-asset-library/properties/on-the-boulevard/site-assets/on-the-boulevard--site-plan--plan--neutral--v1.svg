@@ -33,13 +33,13 @@
   <g class="cc-layer" data-layer="walk" data-sensitive="false"><g id="asset-otb-walk-long" class="cc-item cc-cat-walk" data-item-id="asset-otb-walk-long"><title>Covered walkways · walk-long</title><polygon points="160.78,292.56 1125.84,292.56 1125.84,313.35 160.78,313.35"/></g><g id="asset-otb-walk-101-end" class="cc-item cc-cat-walk" data-item-id="asset-otb-walk-101-end"><title>Covered walkways · walk-101-end</title><polygon points="146.58,121.35 160.78,121.35 160.78,313.35 146.58,313.35"/></g><g id="asset-otb-walk-short" class="cc-item cc-cat-walk" data-item-id="asset-otb-walk-short"><title>Covered walkways · walk-short</title><polygon points="1131.34,219.31 1154.51,219.31 1154.51,627.33 1131.34,627.33"/></g><g id="asset-otb-breezeway" class="cc-item cc-cat-walk" data-item-id="asset-otb-breezeway"><title>Covered walkways · breezeway</title><polygon points="1125.84,219.31 1154.51,219.31 1154.51,292.56 1125.84,292.56"/></g><g id="asset-otb-sidewalk-arnould" class="cc-item cc-cat-walk" data-item-id="asset-otb-sidewalk-arnould"><title>Covered walkways · sidewalk-arnould</title><polyline points="70,668 1360,668"/></g></g>
   <g id="plan-suite-otb-101" class="cc-entity" data-entity-id="suite-otb-101" data-suite-label="101">
     <title>Suite 101</title>
-    <rect class="cc-plan-suite" x="160.78" y="131.35" width="136.47" height="161.21"/>
-    <text class="cc-label" x="229.02" y="215.96" font-size="12" text-anchor="middle">101</text>
+    <rect class="cc-plan-suite" x="160.78" y="131.35" width="151.67" height="161.21"/>
+    <text class="cc-label" x="236.62" y="215.96" font-size="12" text-anchor="middle">101</text>
   </g>
   <g id="plan-suite-otb-103" class="cc-entity" data-entity-id="suite-otb-103" data-suite-label="103">
     <title>Suite 103</title>
-    <rect class="cc-plan-suite" x="299.26" y="131.35" width="59.49" height="161.21"/>
-    <text class="cc-label" x="329.01" y="215.96" font-size="12" text-anchor="middle">103</text>
+    <rect class="cc-plan-suite" x="314.46" y="131.35" width="44.29" height="161.21"/>
+    <text class="cc-label" x="336.6" y="215.96" font-size="12" text-anchor="middle">103</text>
   </g>
   <g id="plan-suite-otb-105" class="cc-entity" data-entity-id="suite-otb-105" data-suite-label="105">
     <title>Suite 105</title>
@@ -53,68 +53,68 @@
   </g>
   <g id="plan-suite-otb-109" class="cc-entity" data-entity-id="suite-otb-109" data-suite-label="109">
     <title>Suite 109</title>
-    <rect class="cc-plan-suite" x="446.65" y="131.35" width="53.67" height="161.21"/>
-    <text class="cc-label" x="473.48" y="215.96" font-size="12" text-anchor="middle">109</text>
+    <rect class="cc-plan-suite" x="446.65" y="131.35" width="53.55" height="161.21"/>
+    <text class="cc-label" x="473.42" y="215.96" font-size="12" text-anchor="middle">109</text>
   </g>
   <g id="plan-suite-otb-111" class="cc-entity" data-entity-id="suite-otb-111" data-suite-label="111">
     <title>Suite 111</title>
-    <rect class="cc-plan-suite" x="502.33" y="131.35" width="34.96" height="161.21"/>
-    <text class="cc-label" x="519.81" y="215.96" font-size="9" text-anchor="middle">111</text>
+    <rect class="cc-plan-suite" x="502.2" y="131.35" width="35.03" height="161.21"/>
+    <text class="cc-label" x="519.72" y="215.96" font-size="9" text-anchor="middle">111</text>
   </g>
   <g id="plan-suite-otb-113" class="cc-entity" data-entity-id="suite-otb-113" data-suite-label="113">
     <title>Suite 113</title>
-    <rect class="cc-plan-suite" x="539.29" y="131.35" width="54.99" height="161.21"/>
-    <text class="cc-label" x="566.79" y="215.96" font-size="12" text-anchor="middle">113</text>
+    <rect class="cc-plan-suite" x="539.23" y="131.35" width="55.03" height="161.21"/>
+    <text class="cc-label" x="566.75" y="215.96" font-size="12" text-anchor="middle">113</text>
   </g>
   <g id="plan-suite-otb-115" class="cc-entity" data-entity-id="suite-otb-115" data-suite-label="115">
     <title>Suite 115</title>
-    <rect class="cc-plan-suite" x="596.27" y="131.35" width="45.03" height="161.21"/>
-    <text class="cc-label" x="618.79" y="215.96" font-size="12" text-anchor="middle">115</text>
+    <rect class="cc-plan-suite" x="596.26" y="131.35" width="45.03" height="161.21"/>
+    <text class="cc-label" x="618.78" y="215.96" font-size="12" text-anchor="middle">115</text>
   </g>
   <g id="plan-suite-otb-117" class="cc-entity" data-entity-id="suite-otb-117" data-suite-label="117">
     <title>Suite 117</title>
-    <rect class="cc-plan-suite" x="643.3" y="131.35" width="45.03" height="161.21"/>
-    <text class="cc-label" x="665.82" y="215.96" font-size="12" text-anchor="middle">117</text>
+    <rect class="cc-plan-suite" x="643.28" y="131.35" width="45.03" height="161.21"/>
+    <text class="cc-label" x="665.8" y="215.96" font-size="12" text-anchor="middle">117</text>
   </g>
   <g id="plan-suite-otb-119" class="cc-entity" data-entity-id="suite-otb-119" data-suite-label="119">
     <title>Suite 119</title>
-    <rect class="cc-plan-suite" x="727.73" y="131.35" width="40.95" height="161.21"/>
-    <text class="cc-label" x="748.21" y="215.96" font-size="12" text-anchor="middle">119</text>
+    <rect class="cc-plan-suite" x="727.71" y="131.35" width="40.95" height="161.21"/>
+    <text class="cc-label" x="748.19" y="215.96" font-size="12" text-anchor="middle">119</text>
   </g>
   <g id="plan-suite-otb-121" class="cc-entity" data-entity-id="suite-otb-121" data-suite-label="121">
     <title>Suite 121</title>
-    <rect class="cc-plan-suite" x="813.46" y="131.35" width="35.03" height="161.21"/>
-    <text class="cc-label" x="830.98" y="215.96" font-size="9" text-anchor="middle">121</text>
+    <rect class="cc-plan-suite" x="813.44" y="131.35" width="35.03" height="161.21"/>
+    <text class="cc-label" x="830.96" y="215.96" font-size="9" text-anchor="middle">121</text>
   </g>
   <g id="plan-suite-otb-123" class="cc-entity" data-entity-id="suite-otb-123" data-suite-label="123">
     <title>Suite 123</title>
-    <rect class="cc-plan-suite" x="850.49" y="131.35" width="75.21" height="161.21"/>
-    <text class="cc-label" x="888.1" y="215.96" font-size="12" text-anchor="middle">123</text>
+    <rect class="cc-plan-suite" x="850.47" y="131.35" width="75.21" height="161.21"/>
+    <text class="cc-label" x="888.08" y="215.96" font-size="12" text-anchor="middle">123</text>
   </g>
   <g id="plan-suite-otb-125" class="cc-entity" data-entity-id="suite-otb-125" data-suite-label="125">
     <title>Suite 125</title>
-    <rect class="cc-plan-suite" x="927.69" y="131.35" width="35.59" height="161.21"/>
-    <text class="cc-label" x="945.49" y="215.96" font-size="9" text-anchor="middle">125</text>
+    <rect class="cc-plan-suite" x="927.67" y="131.35" width="35.59" height="161.21"/>
+    <text class="cc-label" x="945.46" y="215.96" font-size="9" text-anchor="middle">125</text>
   </g>
   <g id="plan-suite-otb-127" class="cc-entity" data-entity-id="suite-otb-127" data-suite-label="127">
     <title>Suite 127</title>
-    <rect class="cc-plan-suite" x="965.28" y="131.35" width="52.99" height="161.21"/>
-    <text class="cc-label" x="991.78" y="215.96" font-size="12" text-anchor="middle">127</text>
+    <rect class="cc-plan-suite" x="965.26" y="131.35" width="52.99" height="161.21"/>
+    <text class="cc-label" x="991.76" y="215.96" font-size="12" text-anchor="middle">127</text>
   </g>
   <g id="plan-suite-otb-129" class="cc-entity" data-entity-id="suite-otb-129" data-suite-label="129">
     <title>Suite 129</title>
-    <rect class="cc-plan-suite" x="1020.27" y="131.35" width="36.7" height="161.21"/>
-    <text class="cc-label" x="1038.62" y="215.96" font-size="9" text-anchor="middle">129</text>
+    <rect class="cc-plan-suite" x="1020.25" y="131.35" width="36.7" height="161.21"/>
+    <text class="cc-label" x="1038.6" y="215.96" font-size="9" text-anchor="middle">129</text>
   </g>
   <g id="plan-suite-otb-131" class="cc-entity" data-entity-id="suite-otb-131" data-suite-label="131">
     <title>Suite 131</title>
-    <rect class="cc-plan-suite" x="1058.96" y="131.35" width="39.33" height="161.21"/>
-    <text class="cc-label" x="1078.63" y="215.96" font-size="9" text-anchor="middle">131</text>
+    <rect class="cc-plan-suite" x="1058.95" y="131.35" width="39.33" height="161.21"/>
+    <text class="cc-label" x="1078.62" y="215.96" font-size="9" text-anchor="middle">131</text>
   </g>
   <g id="plan-suite-otb-133" class="cc-entity" data-entity-id="suite-otb-133" data-suite-label="133">
     <title>Suite 133</title>
-    <rect class="cc-plan-suite" x="1100.29" y="131.35" width="25.55" height="161.21"/>
-    <text class="cc-label" x="1113.07" y="215.96" font-size="9" text-anchor="middle">133</text>
+    <rect class="cc-plan-suite" x="1100.27" y="131.35" width="25.55" height="161.21"/>
+    <text class="cc-label" x="1113.05" y="215.96" font-size="9" text-anchor="middle">133</text>
   </g>
   <g id="plan-suite-otb-137" class="cc-entity" data-entity-id="suite-otb-137" data-suite-label="137">
     <title>Suite 137</title>
@@ -148,13 +148,13 @@
   </g>
   <g id="plan-suite-otb-119-5" class="cc-entity" data-entity-id="suite-otb-119-5" data-suite-label="119.5">
     <title>Suite 119.5</title>
-    <rect class="cc-plan-suite" x="770.69" y="131.35" width="40.77" height="161.21"/>
-    <text class="cc-label" x="791.08" y="215.96" font-size="12" text-anchor="middle">119.5</text>
+    <rect class="cc-plan-suite" x="770.67" y="131.35" width="40.77" height="161.21"/>
+    <text class="cc-label" x="791.06" y="215.96" font-size="12" text-anchor="middle">119.5</text>
   </g>
   <g id="plan-suite-otb-117-5" class="cc-entity" data-entity-id="suite-otb-117-5" data-suite-label="117.5">
     <title>Suite 117.5</title>
-    <rect class="cc-plan-suite" x="690.33" y="131.35" width="35.4" height="161.21"/>
-    <text class="cc-label" x="708.03" y="215.96" font-size="9" text-anchor="middle">117.5</text>
+    <rect class="cc-plan-suite" x="690.31" y="131.35" width="35.4" height="161.21"/>
+    <text class="cc-label" x="708.01" y="215.96" font-size="9" text-anchor="middle">117.5</text>
   </g>
   <g id="plan-suite-otb-135a" class="cc-entity" data-entity-id="suite-otb-135a" data-suite-label="135A">
     <title>Suite 135A</title>

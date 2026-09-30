@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-site-plan-2020",
+  "name": "Site plan - Montagnet & Domingue (Boulev.dwg), 2020",
+  "location": {
+    "repository_path": "reference/plats/site-plan-simple-2020.pdf"
+  },
+  "revision": "worktree-sha256:f612410769038c58",
+  "sha256": "f612410769038c583666287c5766e82534f58b6828da1a5fe02c70fe04c3e483",
+  "kind": "survey-plat",
+  "authority_domains": [
+    "geometry",
+    "dimensions"
+  ],
+  "units": [
+    "ft"
+  ],
+  "owner": {
+    "party": "Montagnet & Domingue, Inc. (Boulev.dwg) for Belle Realty of Lafayette, LLC"
+  },
+  "verification": {
+    "state": "unverified",
+    "notes": "2020 site plan (plot stamp Sep 29 2020): per-unit frontage strings for every suite. Label error: 113 printed 32.3' - CAD demising measures 30.79' and 30.8' closes the survey 80.8' block. Tenant names are historical."
+  }
+}

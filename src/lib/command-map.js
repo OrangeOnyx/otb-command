@@ -200,7 +200,7 @@ export function createCommandMap(host, opts = {}) {
     if (mode === "model") suiteLayer.setAttribute("filter", `url(#${id}-shadow)`);
     drawIssue(); drawCompass();
     note.innerHTML = mode === "model"
-      ? "<b>Recorded geometry · visual massing</b>LiDAR-measured rooflines (USGS 2017) · dashed divisions are derived"
+      ? "<b>Recorded geometry · visual massing</b>Survey building heights (2019 ALTA; LiDAR-checked) · dashed divisions are derived"
       : "<b>Recorded plan · street-oriented</b>Dashed divisions are derived · Alt + scroll to zoom";
     const corners = [[-55, -315], [1510, -315], [1510, 780], [-55, 780]].map(([x, y]) => point(mode, x, y));
     fitBox = bounds(corners, 34);

@@ -61,3 +61,14 @@ Nothing here is pushed or deployed. None of it touches canonical data, productio
 | **103** | **21.7** | **CONFLICT: you said typical.** The LiDAR shows a ~30 ft roof section at 21.7 ft between 105 and the 101 end cap. The value stays as measured and flagged until you rule |
 
 **Side finding:** the LAZ point cloud is EPSG:6344 + NAVD88, the same frame as the twin. The EPSG:26915 label belongs to the DEM only. This partly resolves conflict C11.
+
+## E. Operator decisions 2026-09-30 — plats (A-1 REV 15)
+
+| Item | Decision / result |
+|---|---|
+| Frontages | 2020 site plan + survey CAD. 101 83.0 · 103 25.0 · 109 30 · 111 20 · 113 30.8 (CAD demising 30.79'; plan label 32.3' is an error). Only 131/133 is still derived |
+| Heights | 2019 ALTA survey labels. 16.4 typical · 105 13.2 · 103 20.6 (operator: taller) · 101 23.6 · 101 end projection 13.5 · facade ≈23.6 (Jason's). The LiDAR cross-check runs +1.1 to +2.4 ft |
+| Housekeeping | Native plats added in `reference/plats/` and registered as library sources |
+| C08 | Resolved. CAD 528.93' = 521.04' storefront face + 7.83' end projection |
+| C14 (mm-13) | Withdrawn. The survey itself spells "Arnould Heights"; the title-check ruling keeps "Arnold Heights" as the name of record. No edits |
+| Still open | 101/103 line: CAD `UNITS` layer 35.5 / 72.5 vs survey 25.0 / 83.0 · 117.5: CAD demising 19.5' vs plat string 20.2' |

@@ -10,8 +10,8 @@
   "source_refs": [
     {
       "source_id": "source-otb-geometry-json",
-      "revision": "worktree-sha256:452a914440a0f9fe",
-      "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+      "revision": "worktree-sha256:f14a63ecf6ced130",
+      "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
     }
   ],
   "release": {
@@ -39,12 +39,12 @@
       "value": 23.0875,
       "quantity": "length",
       "unit": "ft",
-      "basis": "Derived, not a plat dimension: derived: (208.65 − 54.6 − 24.3 − 37.4) / 4",
+      "basis": "Recorded plat demising string (plat: 2020 site plan 23.1' (rounded display); 23.0875 closes the 208.65' surveyed wall (REV 15))",
       "source_refs": [
         {
           "source_id": "source-otb-geometry-json",
-          "revision": "worktree-sha256:452a914440a0f9fe",
-          "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8",
+          "revision": "worktree-sha256:f14a63ecf6ced130",
+          "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226",
           "locator": "demising.shortBuilding.bays[139]"
         }
       ],

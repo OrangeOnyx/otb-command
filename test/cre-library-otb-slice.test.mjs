@@ -37,10 +37,13 @@ test("long-building elevation reads Johnston (101) on the viewer's left", () => 
   assert.equal(frontageBays(geometry, heights, "short")[0].entityIds[0], "suite-otb-135a");
 });
 
-test("rooflines follow the operator attestation; disagreements stay flagged, never averaged", () => {
+test("heights follow the 2019 survey and the operator attestation; LiDAR cross-check holds", () => {
   const prov = load("src/data/heights-provenance.json");
   const typ = prov.typical_ft;
-  assert.ok(heights["101"] > typ && heights["149"] > typ && heights["105"] < typ);
+  // 2019 ALTA survey labels (operator-adopted 2026-09-30); 149 reads taller by its facade
+  assert.ok(heights["101"] > typ && heights["103"] > typ && heights["105"] < typ);
+  assert.equal(prov.units["149"].facade.survey_note_ft, 23.6);
+  for (const r of Object.values(prov.units)) assert.ok(r.lidar_minus_survey_ft > 0.5 && r.lidar_minus_survey_ft < 3, "LiDAR cross-check drifted");
   for (const [u, r] of Object.entries(prov.units)) {
     if (r.attested === "typical" && r.status !== "conflict") assert.equal(heights[u], typ, u);
   }

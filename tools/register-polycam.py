@@ -1,6 +1,7 @@
 # Register the Polycam iPhone LiDAR scans to the OTB twin frame (EPSG:6344 + NAVD88, origin 591000/3341600).
 #
 #   python tools/register-polycam.py          # -> export/polycam-twin/ (+ copies into the twin pack build)
+#   python tools/register-polycam.py 2026-09-29   # one scan only (merges into report.json; keeps memory flat)
 #
 # Per scan (E:/OTB-CAPTURE/OTB_Capture_<date>/04_model_exports/<m_d_yyyy>.*):
 #   1. local PLY <-> geo LAZ: same points, same order -> exact similarity (index-matched Umeyama);
@@ -11,7 +12,7 @@
 #      into tilt. Accepted when >= 50 % of the points the DJI cloud covers (NN < 1 m) sit within 0.3 m;
 #      the DJI dense cloud's own noise (~0.15-0.3 m) bounds what this can prove.
 # Outputs: <date>-twin.laz (absolute coords, CRS embedded), <date>-twin.glb (textured mesh, registered), report.json
-import json, math, struct
+import json, math, struct, sys, gc
 from pathlib import Path
 import numpy as np
 from scipy.spatial import cKDTree
@@ -23,7 +24,8 @@ CAP = Path("E:/OTB-CAPTURE")
 OUT = ROOT / "export/polycam-twin"
 ORIGIN = np.array([591000.0, 3341600.0, 0.0])
 SCANS = {"2026-08-18": "OTB_Capture_2026-08-18/04_model_exports/8_18_2026",
-         "2026-09-28": "OTB_Capture_2026-09-28/04_model_exports/9_28_2026"}
+         "2026-09-28": "OTB_Capture_2026-09-28/04_model_exports/9_28_2026",
+         "2026-09-29": "OTB_Capture_2026-09-29/04_model_exports/9_29_2026"}
 to_utm = Transformer.from_crs(4326, 6344, always_xy=True)
 
 def _mod(name, path):
@@ -62,8 +64,13 @@ def main():
     L = mesh.lidar()
     d = np.load(ROOT / ".cache/twin-mesh/dji-twin.npz", allow_pickle=True)
     D, DN = d["P"].astype(np.float64), d["N"].astype(np.float64)
-    rep = {}
+    only = set(sys.argv[1:])
+    rp = OUT / "report.json"
+    rep = json.load(open(rp)) if only and rp.exists() else {}
     for date, stem in SCANS.items():
+        if only and date not in only:
+            continue
+        gc.collect()
         las = laspy.read(CAP / f"{stem}.laz"); ply = mesh.read_ply(CAP / f"{stem}.ply")
         Ploc = np.stack([ply["x"], ply["y"], ply["z"]], 1).astype(np.float64)
         C = np.stack([ply["red"], ply["green"], ply["blue"]], 1).astype(np.uint8)

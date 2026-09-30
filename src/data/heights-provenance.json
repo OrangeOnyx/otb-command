@@ -10,230 +10,279 @@
     "ground_navd88_m": 9.92,
     "definition": "median ground return 4–20 m around the buildings (parking field); heights are roof above that, not above finished floor"
   },
-  "typical_ft": 18.5,
-  "attestation": "Operator 2026-09-29: all units share one roofline except 101 end cap (taller), 149 Jason's (taller), 105 (lower); bell tower at the corner.",
+  "typical_ft": 16.4,
+  "lidar_typical_ft": 18.5,
+  "survey": {
+    "source": "reference/plats/plat-of-survey-detailed-2019.pdf",
+    "note": "BUILDING HEIGHT EXCLUDES FACADE WHICH IS APPROX. 23.6'",
+    "facade_ft": 23.6
+  },
+  "attestation": "Operator 2026-09-29/30: all units share one roofline except 101 end cap (taller), 103 (taller, confirmed 2026-09-30), 149 Jason's (taller — facade), 105 (lower); bell tower at the corner.",
   "cad_bld_ht_note": "CAD BLD_HT labels (16.4/13.2/13.5/20.6/23.6) are point labels, not per-unit values; superseded for heights.json. Typical CAD 16.4 vs LiDAR 18.5: CAD likely measured from finished floor or to a different element (unresolved).",
   "units": {
     "101": {
       "attested": "taller",
+      "value_ft": 23.6,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 25.8,
-      "returns": 7154,
-      "value_ft": 25.8,
-      "basis": "LiDAR median inside the unit outline",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.2,
+      "returns": 8093,
+      "status": "survey"
     },
     "103": {
-      "attested": "typical",
+      "attested": "taller",
+      "value_ft": 20.6,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 21.7,
-      "returns": 2671,
-      "value_ft": 21.7,
-      "basis": "LiDAR median inside the unit outline",
-      "status": "conflict",
-      "note": "Operator attests 'typical'; LiDAR measures 21.7 ft vs typical 18.5 ft. Roof steps need not follow demising lines, and this outline is SF-derived — operator to confirm."
+      "lidar_minus_survey_ft": 1.1,
+      "returns": 1707,
+      "status": "survey"
     },
     "105": {
       "attested": "lower",
+      "value_ft": 13.2,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 15.2,
+      "lidar_minus_survey_ft": 2.0,
       "returns": 1906,
-      "value_ft": 15.2,
-      "basis": "LiDAR median inside the unit outline",
-      "status": "measured"
+      "status": "survey"
     },
     "107": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.6,
-      "returns": 1199,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.2,
+      "returns": 1204,
+      "status": "survey"
     },
     "109": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
-      "returns": 2320,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.1,
+      "returns": 2314,
+      "status": "survey"
     },
     "111": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
-      "returns": 1121,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.1,
+      "returns": 1122,
+      "status": "survey"
     },
     "113": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
-      "returns": 2259,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.1,
+      "returns": 2265,
+      "status": "survey"
     },
     "115": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
+      "lidar_minus_survey_ft": 2.1,
       "returns": 1652,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "117": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.6,
+      "lidar_minus_survey_ft": 2.2,
       "returns": 1632,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "117.5": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
-      "returns": 1158,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.1,
+      "returns": 1156,
+      "status": "survey"
     },
     "119": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.4,
+      "lidar_minus_survey_ft": 2.0,
       "returns": 1492,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "119.5": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
+      "lidar_minus_survey_ft": 2.1,
       "returns": 1529,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "121": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.4,
+      "lidar_minus_survey_ft": 2.0,
       "returns": 1159,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "123": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.6,
+      "lidar_minus_survey_ft": 2.2,
       "returns": 3625,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "125": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.7,
+      "lidar_minus_survey_ft": 2.3,
       "returns": 1194,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "127": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.7,
-      "returns": 2250,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "lidar_minus_survey_ft": 2.3,
+      "returns": 2251,
+      "status": "survey"
     },
     "129": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.7,
+      "lidar_minus_survey_ft": 2.3,
       "returns": 1277,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "131": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.8,
+      "lidar_minus_survey_ft": 2.4,
       "returns": 1435,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "133": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.0,
+      "lidar_minus_survey_ft": 1.6,
       "returns": 451,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "135A": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.6,
+      "lidar_minus_survey_ft": 2.2,
       "returns": 1299,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "135B": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.0,
+      "lidar_minus_survey_ft": 1.6,
       "returns": 1066,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "137": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.3,
+      "lidar_minus_survey_ft": 1.9,
       "returns": 1464,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "139": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.5,
+      "lidar_minus_survey_ft": 2.1,
       "returns": 1733,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "141": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.3,
+      "lidar_minus_survey_ft": 1.9,
       "returns": 1370,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "143": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.3,
+      "lidar_minus_survey_ft": 1.9,
       "returns": 1414,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "145": {
       "attested": "typical",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.4,
+      "lidar_minus_survey_ft": 2.0,
       "returns": 1375,
-      "value_ft": 18.5,
-      "basis": "building-wide typical roofline (LiDAR median of typical units)",
-      "status": "measured"
+      "status": "survey"
     },
     "149": {
       "attested": "taller",
+      "value_ft": 16.4,
+      "basis": "2019 ALTA survey BUILDING HEIGHT label",
       "lidar_median_ft": 18.6,
+      "lidar_minus_survey_ft": 2.2,
       "returns": 5283,
-      "value_ft": 23.5,
-      "basis": "median of flat raised roof cells (Jason's raised roofline); main deck ≈ 18.6 ft",
-      "raised_cells_m2": 57,
-      "status": "measured"
+      "facade": {
+        "survey_note_ft": 23.6,
+        "lidar_raised_ft": 23.5,
+        "raised_cells_m2": 57,
+        "note": "Jason's reads taller because of its facade; the survey height excludes the facade (approx. 23.6')."
+      },
+      "status": "survey"
     }
   },
   "features": [
+    {
+      "id": "rear-projection-101",
+      "name": "101 end projection (7.8 ft at the Johnston end; CAD LINBLDG)",
+      "survey_ft": 13.5,
+      "basis": "2019 ALTA survey 'BLD. HT. 13.5''"
+    },
+    {
+      "id": "facade-149",
+      "name": "Jason's Deli (149) facade",
+      "survey_ft": 23.6,
+      "basis": "survey general note (facade approx. 23.6'); LiDAR raised roofline cells corroborate"
+    },
     {
       "id": "bell-tower",
       "name": "Bell tower (hip-roofed tower at the long/short building junction, near 133/135)",

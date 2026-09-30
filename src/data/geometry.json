@@ -1,5 +1,5 @@
 {
- "rev": "REV 14",
+ "rev": "REV 15",
  "source": "Recorded plat — Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019 (boundary per legal description; buildings per plat demising strings; liquor line + parking zones/stall counts per plat trace); access layer + Arnould stall registration from the architect CAD Boulev_CLEAN.dxf, satellite-confirmed (REV 13)",
  "viewBox": {
   "main": "0 0 1480 990",
@@ -10,7 +10,7 @@
    "depthFt": 85.45,
    "rearSetbackFt": 18.73,
    "eastGapFt": 19.07,
-   "lengthFt": 522.31,
+   "lengthFt": 522.3,
    "bays": [
     [
      "133",
@@ -74,18 +74,18 @@
     ],
     [
      "113",
-     30.78,
-     "derived: SF split of plat 80.8' (LOT 12) block"
+     30.8,
+     "CAD demising lines 30.79' (UNITS layer); 2020 site-plan label 32.3' is a drafting error — 30.8 closes the 2019 survey 80.8' LOT 12 block (REV 15)"
     ],
     [
      "111",
-     19.96,
-     "derived: SF split of plat 80.8' (LOT 12) block"
+     20,
+     "plat: 2020 site plan + CAD demising (REV 15)"
     ],
     [
      "109",
-     30.07,
-     "derived: SF split of plat 80.8' (LOT 12) block"
+     30,
+     "plat: 2020 site plan + CAD demising (REV 15)"
     ],
     [
      "107",
@@ -99,13 +99,13 @@
     ],
     [
      "103",
-     33.21,
-     "derived: SF split of plat 108.00' (BROTHER'S) end block"
+     25,
+     "plat: 2020 site plan + 2019 survey CAD layer (TENANT_TXT) — CAD UNITS layer shows 35.5' (fits 103's SF); open (REV 15)"
     ],
     [
      "101",
-     74.79,
-     "derived: SF split of plat 108.00' (BROTHER'S) end block"
+     83,
+     "plat: 2020 site plan; 103 + 101 = 108.00' survey end block (REV 15)"
     ]
    ]
   },
@@ -128,22 +128,22 @@
     [
      "139",
      23.0875,
-     "derived: (208.65 − 54.6 − 24.3 − 37.4) / 4"
+     "plat: 2020 site plan 23.1' (rounded display); 23.0875 closes the 208.65' surveyed wall (REV 15)"
     ],
     [
      "141",
      23.0875,
-     "derived"
+     "plat: 2020 site plan 23.1' (rounded)"
     ],
     [
      "143",
      23.0875,
-     "derived"
+     "plat: 2020 site plan 23.1' (rounded)"
     ],
     [
      "145",
      23.0875,
-     "derived"
+     "plat: 2020 site plan 23.1' (rounded)"
     ],
     [
      "149",
@@ -1141,7 +1141,7 @@
     "t": "rect",
     "x": 160.78,
     "y": 294.56,
-    "w": 965.06,
+    "w": 965.04,
     "h": 18,
     "attrs": {
      "fill": "#E2E5D9",
@@ -7450,7 +7450,7 @@
     "t": "text",
     "x": 1078,
     "y": 890,
-    "s": "REV 14 — ACCESS · ARNOULD FRONTAGE ISLANDS",
+    "s": "REV 15 — FRONTAGES PER 2020 SITE PLAN + SURVEY CAD",
     "attrs": {
      "class": "svg-lab",
      "font-size": "8"
@@ -7493,13 +7493,13 @@
   "101": {
    "x": 160.78,
    "y": 131.35,
-   "w": 136.47,
+   "w": 151.67,
    "h": 161.21
   },
   "103": {
-   "x": 299.26,
+   "x": 314.46,
    "y": 131.35,
-   "w": 59.49,
+   "w": 44.29,
    "h": 161.21
   },
   "105": {
@@ -7517,77 +7517,77 @@
   "109": {
    "x": 446.65,
    "y": 131.35,
-   "w": 53.67,
+   "w": 53.55,
    "h": 161.21
   },
   "111": {
-   "x": 502.33,
+   "x": 502.2,
    "y": 131.35,
-   "w": 34.96,
+   "w": 35.03,
    "h": 161.21
   },
   "113": {
-   "x": 539.29,
+   "x": 539.23,
    "y": 131.35,
-   "w": 54.99,
+   "w": 55.03,
    "h": 161.21
   },
   "115": {
-   "x": 596.27,
+   "x": 596.26,
    "y": 131.35,
    "w": 45.03,
    "h": 161.21
   },
   "117": {
-   "x": 643.3,
+   "x": 643.28,
    "y": 131.35,
    "w": 45.03,
    "h": 161.21
   },
   "119": {
-   "x": 727.73,
+   "x": 727.71,
    "y": 131.35,
    "w": 40.95,
    "h": 161.21
   },
   "121": {
-   "x": 813.46,
+   "x": 813.44,
    "y": 131.35,
    "w": 35.03,
    "h": 161.21
   },
   "123": {
-   "x": 850.49,
+   "x": 850.47,
    "y": 131.35,
    "w": 75.21,
    "h": 161.21
   },
   "125": {
-   "x": 927.69,
+   "x": 927.67,
    "y": 131.35,
    "w": 35.59,
    "h": 161.21
   },
   "127": {
-   "x": 965.28,
+   "x": 965.26,
    "y": 131.35,
    "w": 52.99,
    "h": 161.21
   },
   "129": {
-   "x": 1020.27,
+   "x": 1020.25,
    "y": 131.35,
    "w": 36.7,
    "h": 161.21
   },
   "131": {
-   "x": 1058.96,
+   "x": 1058.95,
    "y": 131.35,
    "w": 39.33,
    "h": 161.21
   },
   "133": {
-   "x": 1100.29,
+   "x": 1100.27,
    "y": 131.35,
    "w": 25.55,
    "h": 161.21
@@ -7629,13 +7629,13 @@
    "h": 101.01
   },
   "119.5": {
-   "x": 770.69,
+   "x": 770.67,
    "y": 131.35,
    "w": 40.77,
    "h": 161.21
   },
   "117.5": {
-   "x": 690.33,
+   "x": 690.31,
    "y": 131.35,
    "w": 35.4,
    "h": 161.21

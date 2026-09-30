@@ -24,7 +24,12 @@
 
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
 > **A-6 Asset Library (2026-09-29):** Cypress Command Platform CRE asset library, OTB slice — `tools/cre-library/build-otb-slice.mjs` → `docs/design/cypress-command/cre-asset-library/` records + `src/data/cre-library-otb.json`; house style in its `shared/style-vocabulary.md`.
-> **Roof heights = LiDAR (2026-09-29):** `heights.json` comes from `tools/measure-roof-heights.py` (USGS 3DEP 2017): typical 18.5 ft, 101 end cap 25.8, 149 raised 23.5, 105 15.2, bell tower 28.5–32.1 at 133/135; 103 = 21.7 is an OPEN conflict with the operator attestation. Never rerun the CAD label matcher (`extract-heights.py`, superseded). The sign is a **pylon** (operator 2026-09-29).
+> **Heights + frontages = 2019 ALTA survey / 2020 site plan (operator 2026-09-30, A-1 REV 15):** natives in
+> `reference/plats/`. `heights.json` = survey BUILDING HEIGHT labels (typical 16.4 · 105 13.2 · 103 20.6 · 101 23.6;
+> heights exclude the facade ≈23.6 — Jason's 149 reads taller by its facade; 101 end projection 13.5); USGS LiDAR
+> cross-check runs ~2 ft higher (parking-field datum) — `tools/measure-roof-heights.py`. Frontages: 101 83.0 · 103 25.0 ·
+> 109 30 · 111 20 · 113 30.8 (CAD demising; the 2020 plan's 32.3 is a label error). Only 131/133 remains a derived
+> split. Never rerun `extract-heights.py` (superseded). The sign is a **pylon** (operator 2026-09-29).
 > **Sheets (2026-09-27): 20 in `src/lib/pages.js`** — A-2 Spatial opens with the capture lenses
 > (iso · 3D · satellite · drone Reality) on top; **A-3 Asset Twin** (docked 3D twin, permanent
 > records) and **A-4 Site Evidence** (Google Earth views, aerials, plans, field photos) are sheets,

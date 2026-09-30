@@ -206,7 +206,7 @@ export function buildTwin() {
     ],
     limits: [
       "Positions come from the A-1 register: plat/CAD geometry plus digitized operator sheets (≤6 px ≈ 3 ft), historic trees (≤10 px), LUS context (≈9 ft). Not surveyed, not field verified.",
-      "Building heights are LiDAR-measured rooflines above the parking field (heights.json, USGS 3DEP 2017), not ceiling heights. Canopy eave/top and RTU proxies are presentation values (D1, D2).",
+      "Building heights are the 2019 ALTA survey BUILDING HEIGHT labels (heights.json; USGS LiDAR cross-check runs ~2 ft higher above the parking field), not ceiling heights. Canopy eave/top and RTU proxies are presentation values (D1, D2).",
       "LUS mains drawn at −1.2 m: depth unverified.",
     ],
   };

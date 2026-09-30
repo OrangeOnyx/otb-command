@@ -10,7 +10,7 @@
   "source_refs": [
     {
       "source_id": "source-otb-pylon-register",
-      "revision": "worktree-sha256:6c5274d02b5e57cc",
+      "revision": "git-blob:5ce5647038f58301763091e1818d48c80e98873c",
       "sha256": "6c5274d02b5e57ccf53258952c1af79569065c859569dd52b1813ea04dc4759f",
       "locator": "panels[P7]"
     }

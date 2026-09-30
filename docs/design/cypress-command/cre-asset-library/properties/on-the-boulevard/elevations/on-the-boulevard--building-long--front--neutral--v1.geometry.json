@@ -7,27 +7,27 @@
     "z"
   ],
   "building_id": "building-otb-long",
-  "recorded_length_ft": 522.31,
+  "recorded_length_ft": 522.3,
   "depth_ft": 85.45,
   "bays": [
     {
       "label": "101",
       "x0Ft": 0,
-      "widthFt": 74.79,
-      "heightFt": 25.8,
-      "widthBasis": "derived",
-      "basisNote": "derived: SF split of plat 108.00' (BROTHER'S) end block",
+      "widthFt": 83,
+      "heightFt": 23.6,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan; 103 + 101 = 108.00' survey end block (REV 15)",
       "entityIds": [
         "suite-otb-101"
       ]
     },
     {
       "label": "103",
-      "x0Ft": 74.79,
-      "widthFt": 33.21,
-      "heightFt": 21.7,
-      "widthBasis": "derived",
-      "basisNote": "derived: SF split of plat 108.00' (BROTHER'S) end block",
+      "x0Ft": 83,
+      "widthFt": 25,
+      "heightFt": 20.6,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan + 2019 survey CAD layer (TENANT_TXT) — CAD UNITS layer shows 35.5' (fits 103's SF); open (REV 15)",
       "entityIds": [
         "suite-otb-103"
       ]
@@ -36,7 +36,7 @@
       "label": "105",
       "x0Ft": 108,
       "widthFt": 26,
-      "heightFt": 15.2,
+      "heightFt": 13.2,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -47,7 +47,7 @@
       "label": "107",
       "x0Ft": 134,
       "widthFt": 20.4,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -57,41 +57,41 @@
     {
       "label": "109",
       "x0Ft": 154.4,
-      "widthFt": 30.07,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived: SF split of plat 80.8' (LOT 12) block",
+      "widthFt": 30,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan + CAD demising (REV 15)",
       "entityIds": [
         "suite-otb-109"
       ]
     },
     {
       "label": "111",
-      "x0Ft": 184.47,
-      "widthFt": 19.96,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived: SF split of plat 80.8' (LOT 12) block",
+      "x0Ft": 184.4,
+      "widthFt": 20,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan + CAD demising (REV 15)",
       "entityIds": [
         "suite-otb-111"
       ]
     },
     {
       "label": "113",
-      "x0Ft": 204.43,
-      "widthFt": 30.78,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived: SF split of plat 80.8' (LOT 12) block",
+      "x0Ft": 204.4,
+      "widthFt": 30.8,
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "CAD demising lines 30.79' (UNITS layer); 2020 site-plan label 32.3' is a drafting error — 30.8 closes the 2019 survey 80.8' LOT 12 block (REV 15)",
       "entityIds": [
         "suite-otb-113"
       ]
     },
     {
       "label": "115",
-      "x0Ft": 235.21,
+      "x0Ft": 235.2,
       "widthFt": 25.4,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -100,9 +100,9 @@
     },
     {
       "label": "117",
-      "x0Ft": 260.61,
+      "x0Ft": 260.6,
       "widthFt": 25.4,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -111,9 +111,9 @@
     },
     {
       "label": "117.5",
-      "x0Ft": 286.01,
+      "x0Ft": 286,
       "widthFt": 20.2,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat (string conflicts with plat SF 1,769 → 20.7'; string governs)",
       "entityIds": [
@@ -122,9 +122,9 @@
     },
     {
       "label": "119",
-      "x0Ft": 306.21,
+      "x0Ft": 306.2,
       "widthFt": 23.2,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -133,9 +133,9 @@
     },
     {
       "label": "119.5",
-      "x0Ft": 329.41,
+      "x0Ft": 329.4,
       "widthFt": 23.1,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -144,9 +144,9 @@
     },
     {
       "label": "121",
-      "x0Ft": 352.51,
+      "x0Ft": 352.5,
       "widthFt": 20,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -155,9 +155,9 @@
     },
     {
       "label": "123",
-      "x0Ft": 372.51,
+      "x0Ft": 372.5,
       "widthFt": 41.7,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -166,9 +166,9 @@
     },
     {
       "label": "125",
-      "x0Ft": 414.21,
+      "x0Ft": 414.2,
       "widthFt": 20.3,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -177,9 +177,9 @@
     },
     {
       "label": "127",
-      "x0Ft": 434.51,
+      "x0Ft": 434.5,
       "widthFt": 29.7,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -188,9 +188,9 @@
     },
     {
       "label": "129",
-      "x0Ft": 464.21,
+      "x0Ft": 464.2,
       "widthFt": 20.9,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -199,9 +199,9 @@
     },
     {
       "label": "131",
-      "x0Ft": 485.11,
+      "x0Ft": 485.1,
       "widthFt": 22.32,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "derived",
       "basisNote": "derived: 1,907 SF / 85.45' inside plat 37.2' (POLITICS) block",
       "entityIds": [
@@ -210,9 +210,9 @@
     },
     {
       "label": "133",
-      "x0Ft": 507.43,
+      "x0Ft": 507.42,
       "widthFt": 14.88,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "derived",
       "basisNote": "derived: 1,272 SF / 85.45' inside plat 37.2' (POLITICS) block",
       "entityIds": [

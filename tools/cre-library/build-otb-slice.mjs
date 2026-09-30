@@ -44,7 +44,9 @@ function source(id, name, path) {
 
 const SRC = {
   geometry: source("source-otb-geometry-json", "OTB site geometry (plat transcription + CAD access layer)", "src/data/geometry.json"),
-  heights: source("source-otb-heights-json", "OTB roofline heights (USGS 3DEP 2017 LiDAR)", "src/data/heights.json"),
+  heights: source("source-otb-heights-json", "OTB building heights (2019 ALTA survey labels, LiDAR-checked)", "src/data/heights.json"),
+  survey: source("source-otb-alta-survey-2019", "ALTA/ACSM survey - Montagnet & Domingue, rev. 7/19/2019", "reference/plats/plat-of-survey-detailed-2019.pdf"),
+  siteplan: source("source-otb-site-plan-2020", "Site plan - Montagnet & Domingue (Boulev.dwg), 2020", "reference/plats/site-plan-simple-2020.pdf"),
   cad: source("source-otb-cad-boulev-clean", "Architect CAD — Boulev_CLEAN.dxf", "cad/Boulev_CLEAN.dxf"),
   pylon: source("source-otb-pylon-register", "Pylon panel register (operator)", "src/data/pylon.json"),
   units: source("source-otb-units-public", "Public tenancy fields (from Tier-1 rent roll)", "src/data/units.public.json"),
@@ -68,7 +70,7 @@ const files = { layers: {} };
 const G = {};
 const svgs = {};
 for (const which of ["long", "short"]) {
-  G[which] = S.elevationGeometry(geometry, heights, which);
+  G[which] = S.elevationGeometry(geometry, heights, which, heightsProv);
   const base = `${OTB}/elevations/on-the-boulevard--building-${which}--front--neutral--v1`;
   const geomSha = putJson(`${base}.geometry.json`, G[which]);
   svgs[which] = S.elevationSvg(G[which], `On The Boulevard — ${S.BUILDINGS[which].name} storefront elevation (leasing illustration, draft)`);

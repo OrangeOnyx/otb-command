@@ -14,7 +14,7 @@
       "label": "135",
       "x0Ft": 0,
       "widthFt": 37.4,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat: POLITICS 3,160 section — mid-depth split into 135A (breezeway square) / 135B (Patricia square)",
       "entityIds": [
@@ -26,7 +26,7 @@
       "label": "137",
       "x0Ft": 37.4,
       "widthFt": 24.3,
-      "heightFt": 18.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
@@ -37,9 +37,9 @@
       "label": "139",
       "x0Ft": 61.7,
       "widthFt": 23.0875,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived: (208.65 − 54.6 − 24.3 − 37.4) / 4",
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan 23.1' (rounded display); 23.0875 closes the 208.65' surveyed wall (REV 15)",
       "entityIds": [
         "suite-otb-139"
       ]
@@ -48,9 +48,9 @@
       "label": "141",
       "x0Ft": 84.79,
       "widthFt": 23.0875,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived",
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan 23.1' (rounded)",
       "entityIds": [
         "suite-otb-141"
       ]
@@ -59,9 +59,9 @@
       "label": "143",
       "x0Ft": 107.88,
       "widthFt": 23.0875,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived",
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan 23.1' (rounded)",
       "entityIds": [
         "suite-otb-143"
       ]
@@ -70,9 +70,9 @@
       "label": "145",
       "x0Ft": 130.96,
       "widthFt": 23.0875,
-      "heightFt": 18.5,
-      "widthBasis": "derived",
-      "basisNote": "derived",
+      "heightFt": 16.4,
+      "widthBasis": "plat",
+      "basisNote": "plat: 2020 site plan 23.1' (rounded)",
       "entityIds": [
         "suite-otb-145"
       ]
@@ -81,12 +81,13 @@
       "label": "149",
       "x0Ft": 154.05,
       "widthFt": 54.6,
-      "heightFt": 23.5,
+      "heightFt": 16.4,
       "widthBasis": "plat",
       "basisNote": "plat",
       "entityIds": [
         "suite-otb-149"
-      ]
+      ],
+      "facadeFt": 23.6
     }
   ]
 }

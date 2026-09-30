@@ -101,8 +101,8 @@ export function mountCreLibrary(host, bundle, opts = {}) {
   const checks = bundle.checks.map((c) => `<li><b>${esc(c.result)}</b> · ${esc(c.check)} — ${esc(c.summary)}</li>`).join("");
   const brand = opts.standalone
     ? `<header class="band brand"><img data-logo src="${esc(opts.logo?.light || "")}" alt="Cypress Command Platform">
-        <div><h1>CRE Asset Library · On The Boulevard</h1><p>Plat frontages · LiDAR rooflines · digitized site register · operations bound by entity ID</p></div>`
-    : `<header class="band"><div><h1>CRE Asset Library · On The Boulevard</h1><p>Plat frontages · LiDAR rooflines · digitized site register · operations bound by entity ID</p></div>`;
+        <div><h1>CRE Asset Library · On The Boulevard</h1><p>Plat frontages · survey building heights · digitized site register · operations bound by entity ID</p></div>`
+    : `<header class="band"><div><h1>CRE Asset Library · On The Boulevard</h1><p>Plat frontages · survey building heights · digitized site register · operations bound by entity ID</p></div>`;
   host.innerHTML = `<div class="cc-cre cc-lib">
     ${brand}
       <span class="draft">DRAFT · NOT FIELD-VERIFIED</span>
@@ -167,7 +167,7 @@ export function mountCreLibrary(host, bundle, opts = {}) {
     const items = Object.values(bundle.items).filter((it) => it.suite_entity_id === id && (opts.showSensitive || !bundle.layers[it.cat]?.sensitive));
     detail.innerHTML = `<h3>${esc(e.name)}</h3><dl class="kv"><dt>Entity ID</dt><dd>${esc(id)}</dd>
       <dt>Verification</dt><dd><span class="state">${esc(e.verification.state)}</span> · release ${esc(e.release || "—")}<br>${esc(e.verification.notes)}</dd>
-      ${ms ? "<dt>Measurements</dt>" + ms : ""}${e.roofline ? `<dt>Roofline (LiDAR)</dt><dd>${esc(e.roofline)}</dd>` : ""}
+      ${ms ? "<dt>Measurements</dt>" + ms : ""}${e.roofline ? `<dt>Building height</dt><dd>${esc(e.roofline)}</dd>` : ""}
       <dt>Evidence</dt>${ss || "<dd>none</dd>"}
       <dt>Operations binding</dt><dd>${esc(e.ops.join(", ") || "—")}</dd>
       <dt>Operations overlay</dt><dd>${o ? `<span class="state">${esc(o.state)}</span> ${esc(o.text)}${o.lease_sf ? " · lease " + o.lease_sf + " SF" : ""}${o.extra ? "<br>" + esc(o.extra) : ""}` : "unknown — no operational record bound"}</dd>

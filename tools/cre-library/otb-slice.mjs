@@ -2,7 +2,7 @@
 
    Adapter, not a second property database: reads the repo's canonical records
    (src/data/geometry.json demising strings = recorded-plat transcription,
-   src/data/heights.json = USGS LiDAR rooflines, src/data/pylon.json = operator
+   src/data/heights.json = 2019 ALTA survey building heights (LiDAR-checked), src/data/pylon.json = operator
    panel register, src/data/units.public.json = public tenancy fields) and emits
    library exchange records (docs/design/cypress-command/cre-asset-library/
    schemas), deterministic SVG derivatives and a SEPARATE operations overlay.
@@ -43,7 +43,7 @@ const r2 = (n) => Math.round(n * 100) / 100;
    Viewer stands in the main field facing the storefronts. Long building: the
    plat string runs 133→101, Johnston (101) is on the viewer's LEFT, so reverse.
    Short building: 135 (Marie Antoinette end) is on the viewer's left. */
-export function frontageBays(geometry, heights, which) {
+export function frontageBays(geometry, heights, which, heightsProv = null) {
   const b = geometry.demising[BUILDINGS[which].key];
   const bays = which === "long" ? [...b.bays].reverse() : [...b.bays];
   let x = 0;
@@ -55,6 +55,8 @@ export function frontageBays(geometry, heights, which) {
       basisNote,
       entityIds: label === "135" ? [suiteId("135A")] : [suiteId(label)]
     };
+    const facade = heightsProv?.units?.[label]?.facade;
+    if (facade) bay.facadeFt = facade.survey_note_ft;
     if (label === "135") bay.note = `${widthFt} ft plat section split at mid-depth: the field face belongs to 135A; 135B is the Patricia half. Both suites front Marie Antoinette.`;
     x += widthFt;
     return bay;
@@ -93,7 +95,7 @@ export function frontageChecks(geometry, heights, unitsPublic, heightsProv = nul
     out.push({
       check: "roofline-attestation", observed: conflicts.length, expected: 0, unit: "count", delta: conflicts.length,
       result: conflicts.length ? "unresolved" : "pass",
-      basis: `LiDAR roofline per unit vs operator attestation (typical ${heightsProv.typical_ft} ft; 101/149 taller, 105 lower).` + (conflicts.length ? " Open: " + conflicts.join("; ") : "")
+      basis: `2019 survey heights vs operator attestation (typical ${heightsProv.typical_ft} ft; 101/103/149 taller, 105 lower).` + (conflicts.length ? " Open: " + conflicts.join("; ") : "")
     });
   }
   return out;
@@ -115,9 +117,15 @@ export function sourceRecords(S) {
   return [
     base(S.geometry, { kind: "verified-property-data", authority_domains: ["geometry", "dimensions"], units: ["ft"],
       owner: { party: "Belle Realty of Lafayette, LLC (operator: Orange Ocean, LLC)" },
-      verification: unverified("Repo transcription of the recorded plat (Montagnet & Domingue, Inc., 5/20/1994, last rev. 7/19/2019) plus architect-CAD access layer. Native plat PDF is not in the repo (raster crops in reference/). International vs US survey foot not stated; recorded as ft pending confirmation. Demising strings marked 'derived' are SF splits, not plat dimensions.") }),
+      verification: unverified("Repo transcription of the recorded plat (Montagnet & Domingue 2019 ALTA survey + 2020 site plan; natives in reference/plats/) plus architect-CAD access layer. REV 15 (2026-09-30): every frontage is a plat string except the 131/133 split inside the 37.2' block. Foot definition not stated; recorded as ft.") }),
     base(S.heights, { kind: "verified-property-data", authority_domains: ["geometry", "dimensions"], units: ["ft"],
-      verification: unverified("Roofline heights measured from the USGS 3DEP 2017 point cloud by tools/measure-roof-heights.py (roof returns minus parking-field ground, international ft), classified by the operator's 2026-09-29 attestation. Evidence per unit in src/data/heights-provenance.json. 103 is an open LiDAR-vs-attestation conflict. Supersedes the CAD BLD_HT label matching.") }),
+      verification: unverified("Per-unit BUILDING HEIGHT labels from the 2019 ALTA survey (reference/plats/plat-of-survey-detailed-2019.pdf), operator-adopted 2026-09-30; heights exclude the facade (survey note, approx. 23.6'). Cross-checked by USGS 3DEP 2017 LiDAR in src/data/heights-provenance.json: every labelled step confirmed, LiDAR ~2 ft higher (parking-field datum).") }),
+    base(S.survey, { kind: "survey-plat", authority_domains: ["geometry", "dimensions"], units: ["ft"],
+      owner: { party: "Montagnet & Domingue, Inc. (A. E. Montagnet, P.L.S. 4484) for Belle Realty of Lafayette, LLC" },
+      verification: unverified("ALTA/ACSM survey, 5/20/1994 last rev. 7/19/2019. Governs boundary, block dimension strings (80.8' LOT 12, 108.00' end block) and building height labels. Foot definition not stated on the sheet. Tenant names on the sheet are historical.") }),
+    base(S.siteplan, { kind: "survey-plat", authority_domains: ["geometry", "dimensions"], units: ["ft"],
+      owner: { party: "Montagnet & Domingue, Inc. (Boulev.dwg) for Belle Realty of Lafayette, LLC" },
+      verification: unverified("2020 site plan (plot stamp Sep 29 2020): per-unit frontage strings for every suite. Label error: 113 printed 32.3' - CAD demising measures 30.79' and 30.8' closes the survey 80.8' block. Tenant names are historical.") }),
     base(S.cad, { kind: "cad", authority_domains: ["geometry", "dimensions"], units: ["ft"],
       verification: unverified("Architect CAD (cleaned). Parent of heights.json and the geometry.json access layer; not a direct input to this slice. Drawing date/author/as-built status not recorded in the repo.") }),
     base(S.pylon, { kind: "operational-record", authority_domains: ["operations"],
@@ -222,11 +230,11 @@ export function assetRecords({ S, G, assetIds, files, pylon }) {
         coordinate_reference: {
           type: "local", identifier: `otb-${which}-frontage-elevation`, axis_order: ["x", "z"], handedness: "right-handed", units: "ft",
           origin: { coordinates: [0, 0], description: which === "long"
-            ? "x = 0 at the Johnston-end wall of unit 101, increasing along the storefront toward Patricia; z = 0 at the parking-field ground (median LiDAR ground return, NAVD88 per heights-provenance.json)."
-            : "x = 0 at the Marie Antoinette-end wall of the 135 section, increasing toward Arnould (149); z = 0 at the parking-field ground (median LiDAR ground return, NAVD88 per heights-provenance.json)." }
+            ? "x = 0 at the Johnston-end wall of unit 101, increasing along the storefront toward Patricia; z = 0 at the datum of the 2019 survey building heights (not stated; LiDAR places it ~2 ft above the parking field)."
+            : "x = 0 at the Marie Antoinette-end wall of the 135 section, increasing toward Arnould (149); z = 0 at the datum of the 2019 survey building heights (not stated; LiDAR places it ~2 ft above the parking field)." }
         },
-        verification: unverified("Frontage closure checked against recorded building length; see geometry-validation.csv. Plat foot definition unresolved; heights LiDAR-measured with 103 in conflict."),
-        derivation: { method: "Cumulative sum of demising-string bay widths (plat order, reversed for viewer-left) × per-unit LiDAR roofline height; no simplification.", tool: TOOL, tool_version: TOOL_VERSION, input_source_refs: geo }
+        verification: unverified("Frontage closure checked against recorded building length; see geometry-validation.csv. Plat foot definition unresolved. Heights = 2019 survey labels, LiDAR-checked."),
+        derivation: { method: "Cumulative sum of plat frontage strings (reversed for viewer-left) × per-unit 2019 survey building height; facade overlay from the survey note; no simplification.", tool: TOOL, tool_version: TOOL_VERSION, input_source_refs: geo }
       },
       render_derivation: { method: "SVG, 1 user unit = 1 ft, y = −z; theme via --cc-cre-* custom properties with light fallbacks.", tool: TOOL, tool_version: TOOL_VERSION, input_source_refs: [...geo, ref(S.board)], geometry_id: g.geometry_id }
     });
@@ -245,14 +253,14 @@ export function assetRecords({ S, G, assetIds, files, pylon }) {
 }
 
 /* ── derived geometry payloads (the canonical derivative the SVG renders) ── */
-export function elevationGeometry(geometry, heights, which) {
+export function elevationGeometry(geometry, heights, which, heightsProv = null) {
   return {
     geometry_id: `geom-otb-${which}-frontage-elevation`,
     units: "ft", frame: `otb-${which}-frontage-elevation`, axis_order: ["x", "z"],
     building_id: BUILDINGS[which].id,
     recorded_length_ft: geometry.demising[BUILDINGS[which].key].lengthFt,
     depth_ft: geometry.demising[BUILDINGS[which].key].depthFt,
-    bays: frontageBays(geometry, heights, which)
+    bays: frontageBays(geometry, heights, which, heightsProv)
   };
 }
 
@@ -282,7 +290,7 @@ const SVG_STYLE = `
 const SHADOW = (id, d) => `<filter id="${id}" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="${d}" dy="${d}" stdDeviation="${d}" flood-color="#3B342A" flood-opacity=".16"/></filter>`;
 
 export function elevationSvg(geom, title) {
-  const maxH = Math.max(...geom.bays.map((b) => b.heightFt ?? 0));
+  const maxH = Math.max(...geom.bays.map((b) => Math.max(b.heightFt ?? 0, b.facadeFt ?? 0)));
   const L = r2(geom.bays.reduce((a, b) => a + b.widthFt, 0));
   const pad = 6, top = maxH + 12, bottom = 11;
   const vb = [-pad, -top, L + pad * 2, top + bottom].map(r2).join(" ");
@@ -295,12 +303,14 @@ export function elevationSvg(geom, title) {
     const derived = prev.widthBasis === "derived" && b.widthBasis === "derived";
     return `<line class="cc-demise${derived ? " cc-demise--derived" : ""}" x1="${b.x0Ft}" y1="0" x2="${b.x0Ft}" y2="${r2(-Math.min(prev.heightFt ?? 0, b.heightFt ?? 0))}"/>`;
   }).join("");
+  const facades = geom.bays.filter((b) => b.facadeFt).map((b) =>
+    `<g class="cc-facade"><title>${esc(`Facade ≈${b.facadeFt} ft (2019 survey note: building height excludes facade)`)}</title><path class="cc-roof cc-demise--derived" d="M${b.x0Ft} ${r2(-(b.heightFt ?? 0))} V${r2(-b.facadeFt)} H${r2(b.x0Ft + b.widthFt)} V${r2(-(b.heightFt ?? 0))}"/><text class="cc-muted" x="${r2(b.x0Ft + b.widthFt / 2)}" y="${r2(-b.facadeFt - 0.8)}" font-size="1.7" text-anchor="middle">facade ≈${b.facadeFt}′</text></g>`).join("");
   const g = geom.bays.map((b) => {
     const ids = b.entityIds.join(" ");
     const h = b.heightFt ?? 0;
     const cx = r2(b.x0Ft + b.widthFt / 2);
     return `  <g id="${esc(b.entityIds[0])}" class="cc-entity" data-entity-id="${esc(b.entityIds[0])}" data-entity-ids="${esc(ids)}" data-suite-label="${esc(b.label)}" data-width-basis="${b.widthBasis}">
-    <title>${esc(`${b.label === "135" ? "135 section" : "Suite " + b.label} — frontage ${b.widthFt} ft (${b.widthBasis === "derived" ? "derived SF split" : "plat"}) · roofline ${h} ft (LiDAR 2017)`)}</title>
+    <title>${esc(`${b.label === "135" ? "135 section" : "Suite " + b.label} — frontage ${b.widthFt} ft (${b.widthBasis === "derived" ? "derived SF split" : "plat"}) · building height ${h} ft (2019 survey)`)}</title>
     <rect class="cc-hit" x="${b.x0Ft}" y="${r2(-h)}" width="${b.widthFt}" height="${h}"/>
     <text class="cc-label" x="${cx}" y="4.2" font-size="2.6" text-anchor="middle">${esc(b.label === "135" ? "135A" : b.label)}</text>
     <text class="cc-muted" x="${cx}" y="7.6" font-size="1.7" text-anchor="middle">${esc(b.widthFt + "′ · " + h + "′h")}</text>
@@ -308,13 +318,14 @@ export function elevationSvg(geom, title) {
   }).join("\n");
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" role="img" aria-labelledby="t d" data-geometry-id="${geom.geometry_id}" data-units="ft">
   <title id="t">${esc(title)}</title>
-  <desc id="d">Architectural leasing elevation (orthographic, 1 unit = 1 ft). Massing = plat demising-string bay widths × USGS 3DEP 2017 LiDAR roofline heights; dashed demising = derived SF split. Storefront glazing, canopy, columns and signage are not drawn (no measured source). Draft — not field-verified.</desc>
+  <desc id="d">Architectural leasing elevation (orthographic, 1 unit = 1 ft). Massing = plat frontage strings × 2019 ALTA survey building heights (LiDAR-checked); dashed demising = derived split; dashed outline above a bay = facade (survey note ≈23.6′). Storefront glazing, canopy, columns and signage are not drawn (no measured source). Draft — not field-verified.</desc>
   <defs>${SHADOW("cc-shadow", 0.5)}</defs>
   <style>${SVG_STYLE}
   </style>
   <path class="cc-mass" filter="url(#cc-shadow)" d="${sky}"/>
   <g class="cc-demising">${demises}</g>
   <path class="cc-roof" d="${sky}"/>
+  ${facades}
 ${g}
   <line class="cc-grade" x1="${-pad}" y1="0" x2="${r2(L + pad)}" y2="0"/>
   <g class="cc-dimstring">

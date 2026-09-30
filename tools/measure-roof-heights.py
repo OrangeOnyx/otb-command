@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Measure per-unit roofline heights from the USGS 3DEP 2017 point cloud.
+Per-unit building heights: 2019 ALTA survey values, cross-checked by USGS LiDAR.
+
+heights.json = the "BUILDING HEIGHT" labels on the Montagnet & Domingue ALTA
+survey (rev. 7/19/2019; reference/plats/) — operator adopted 2026-09-30.
+Survey note: "BUILDING HEIGHT EXCLUDES FACADE WHICH IS APPROX. 23.6'".
+The LiDAR measurement below is kept as the independent cross-check: it runs a
+steady ~2 ft higher (roof above the parking field vs the survey's datum,
+likely finished floor) and confirms every step the survey labels.
 Supersedes tools/extract-heights.py (nearest-CAD-label matching put the
 20.6'/23.6' labels on 103 and missed 101, 149 and the bell tower).
 
@@ -35,7 +42,12 @@ FP = os.path.join(ROOT, "src", "data", "footprints-geo.json")
 OUT = os.path.join(ROOT, "src", "data", "heights.json")
 PROV = os.path.join(ROOT, "src", "data", "heights-provenance.json")
 M2FT = 1 / 0.3048  # international foot
-ATTESTED = {"101": "taller", "149": "taller", "105": "lower"}  # everything else: typical
+ATTESTED = {"101": "taller", "149": "taller", "105": "lower", "103": "taller"}  # operator 2026-09-29/30; everything else: typical
+# 2019 ALTA survey BUILDING HEIGHT labels (ft). Unlisted units carry the typical label 16.4.
+SURVEY = {"105": 13.2, "103": 20.6, "101": 23.6}
+SURVEY_TYPICAL = 16.4
+SURVEY_FACADE = 23.6      # general note: height excludes facade, approx. 23.6'
+SURVEY_101_REAR = 13.5    # "BLD. HT. 13.5'" — the 7.8' projection at the 101/Johnston end
 TYPICAL_BAND_FT = 1.0  # a unit within ±1 ft of the typical median agrees with "typical"
 
 T = Transformer.from_crs(4326, 6344, always_xy=True)
@@ -74,21 +86,17 @@ heights, units = {}, {}
 for u in sorted(fp, key=lambda s: (float(s.rstrip("AB")), s)):
     med, n = meas[u]
     att = ATTESTED.get(u, "typical")
-    rec = {"attested": att, "lidar_median_ft": med, "returns": n}
+    survey = SURVEY.get(u, SURVEY_TYPICAL)
+    rec = {"attested": att, "value_ft": survey, "basis": "2019 ALTA survey BUILDING HEIGHT label", "lidar_median_ft": med,
+           "lidar_minus_survey_ft": round(med - survey, 1), "returns": n}
     if u == "149":
         cells = raised_cells(fp[u].buffer(3))
-        val = round(float(np.median(cells)), 1)
-        rec.update(value_ft=val, basis="median of flat raised roof cells (Jason's raised roofline); main deck ≈ %s ft" % med, raised_cells_m2=int(len(cells)))
-    elif att == "typical" and abs(med - typical) <= TYPICAL_BAND_FT:
-        rec.update(value_ft=typical, basis="building-wide typical roofline (LiDAR median of typical units)")
-    else:
-        rec.update(value_ft=med, basis="LiDAR median inside the unit outline")
-        agrees = (att == "taller" and med > typical + TYPICAL_BAND_FT) or (att == "lower" and med < typical - TYPICAL_BAND_FT)
-        if not agrees:
-            rec["status"] = "conflict"
-            rec["note"] = f"Operator attests '{att}'; LiDAR measures {med} ft vs typical {typical} ft. Roof steps need not follow demising lines, and this outline is SF-derived — operator to confirm."
-    rec.setdefault("status", "measured")
-    heights[u] = rec["value_ft"]
+        rec["facade"] = {"survey_note_ft": SURVEY_FACADE, "lidar_raised_ft": round(float(np.median(cells)), 1), "raised_cells_m2": int(len(cells)),
+                         "note": "Jason's reads taller because of its facade; the survey height excludes the facade (approx. 23.6')."}
+    agrees = {"typical": abs(survey - SURVEY_TYPICAL) < 0.05, "taller": survey > SURVEY_TYPICAL or u == "149", "lower": survey < SURVEY_TYPICAL}[att]
+    rec["status"] = "survey" if agrees else "conflict"
+    if not agrees: rec["note"] = f"Operator attests '{att}'; survey says {survey} ft."
+    heights[u] = survey
     units[u] = rec
 
 tower = raised_cells(fp["133"].buffer(3))
@@ -97,19 +105,25 @@ prov = {
     "source": {"dataset": "USGS 3DEP LA_Catahoula_Concordia_2017_D17 (OTB-site.laz clip)", "crs": "EPSG:6344 + NAVD88 (Geoid12B), metres",
                "captured": "2017 (project year)", "foot": "international (0.3048 m)"},
     "datum": {"ground_navd88_m": round(ground, 2), "definition": "median ground return 4–20 m around the buildings (parking field); heights are roof above that, not above finished floor"},
-    "typical_ft": typical,
-    "attestation": "Operator 2026-09-29: all units share one roofline except 101 end cap (taller), 149 Jason's (taller), 105 (lower); bell tower at the corner.",
+    "typical_ft": SURVEY_TYPICAL,
+    "lidar_typical_ft": typical,
+    "survey": {"source": "reference/plats/plat-of-survey-detailed-2019.pdf", "note": "BUILDING HEIGHT EXCLUDES FACADE WHICH IS APPROX. 23.6'", "facade_ft": SURVEY_FACADE},
+    "attestation": "Operator 2026-09-29/30: all units share one roofline except 101 end cap (taller), 103 (taller, confirmed 2026-09-30), 149 Jason's (taller — facade), 105 (lower); bell tower at the corner.",
     "cad_bld_ht_note": "CAD BLD_HT labels (16.4/13.2/13.5/20.6/23.6) are point labels, not per-unit values; superseded for heights.json. Typical CAD 16.4 vs LiDAR %.1f: CAD likely measured from finished floor or to a different element (unresolved)." % typical,
     "units": units,
     "features": [{
+        "id": "rear-projection-101", "name": "101 end projection (7.8 ft at the Johnston end; CAD LINBLDG)", "survey_ft": SURVEY_101_REAR,
+        "basis": "2019 ALTA survey 'BLD. HT. 13.5''"}, {
+        "id": "facade-149", "name": "Jason's Deli (149) facade", "survey_ft": SURVEY_FACADE,
+        "basis": "survey general note (facade approx. 23.6'); LiDAR raised roofline cells corroborate"}, {
         "id": "bell-tower", "name": "Bell tower (hip-roofed tower at the long/short building junction, near 133/135)",
         "median_ft": round(float(np.median(tower)), 1), "peak_ft": round(float(tower.max()), 1), "cells_m2": int(len(tower)),
         "basis": "flat-ish raised cells >21 ft within 3 m of the 133 outline; hip roof so median < peak"}]
 }
 json.dump(heights, open(OUT, "w", encoding="utf-8"), indent=2, ensure_ascii=False); open(OUT, "a").write("\n")
 json.dump(prov, open(PROV, "w", encoding="utf-8"), indent=2, ensure_ascii=False); open(PROV, "a").write("\n")
-print(f"typical {typical} ft · ground {ground:.2f} m NAVD88")
+print(f"survey typical {SURVEY_TYPICAL} ft, LiDAR typical {typical} ft, ground {ground:.2f} m NAVD88")
 for u, r in units.items():
     flag = "  <-- CONFLICT" if r["status"] == "conflict" else ""
-    print(f"  {u:6} {r['value_ft']:5} ft  ({r['attested']}, lidar {r['lidar_median_ft']}){flag}")
-print("  bell tower", prov["features"][0]["median_ft"], "median /", prov["features"][0]["peak_ft"], "peak")
+    print(f"  {u:6} {r['value_ft']:5} ft survey  ({r['attested']}, lidar {r['lidar_median_ft']}, diff {r['lidar_minus_survey_ft']}){flag}")
+print("  bell tower", prov["features"][-1]["median_ft"], "median /", prov["features"][-1]["peak_ft"], "peak")

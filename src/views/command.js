@@ -57,7 +57,7 @@ export function initCommand(account) {
           <button id="cmdZoomIn" aria-label="Zoom in">${icon('plus')}</button><button id="cmdZoomOut" aria-label="Zoom out">${icon('minus')}</button>
           <button id="cmdReset" aria-label="Fit full property">${icon('reset')}</button></div>
         <div class="cmd-map-key"><span><i class="cmd-key-solid"></i> Suite</span><span><i class="cmd-key-dashed"></i> Derived division</span><span><i class="cmd-key-amber"></i> Record association</span><span><i class="cmd-key-column"></i> Walkway column</span></div>
-        <div class="cmd-map-footer"><span id="cmdViewNote">Plat-based footprints · LiDAR-measured rooflines</span><span>Mouse drag to pan · Alt + scroll to zoom · Tap a suite</span></div>
+        <div class="cmd-map-footer"><span id="cmdViewNote">Plat-based footprints · survey building heights</span><span>Mouse drag to pan · Alt + scroll to zoom · Tap a suite</span></div>
       </section>
       <aside class="cmd-inspector" aria-label="Suite and maintenance details">
         <div class="cmd-inspector-nav"><button id="cmdSuiteTab" class="is-active" aria-pressed="true">Suite detail</button><button id="cmdIssueTab" aria-pressed="false">Maintenance <span id="cmdIssueCount">—</span></button></div>
@@ -233,7 +233,7 @@ export function initCommand(account) {
   $('cmdZoomIn').onclick = () => map.zoomBy(1.3); $('cmdZoomOut').onclick = () => map.zoomBy(1/1.3); $('cmdReset').onclick = () => map.reset();
   for (const [id,view] of [['cmdModel','model'],['cmdPlan','plan']]) $(id).onclick = () => {
     map.setView(view); $('cmdModel').setAttribute('aria-pressed',String(view==='model')); $('cmdPlan').setAttribute('aria-pressed',String(view==='plan'));
-    $('cmdViewNote').textContent = view==='model' ? 'Plat-based footprints · LiDAR-measured rooflines' : 'Street-oriented plat view · dashed divisions are derived';
+    $('cmdViewNote').textContent = view==='model' ? 'Plat-based footprints · survey building heights' : 'Street-oriented plat view · dashed divisions are derived';
   };
   // A plan uses the narrow mobile canvas more effectively; both views remain
   // available and subsequent viewport changes preserve the user's choice.

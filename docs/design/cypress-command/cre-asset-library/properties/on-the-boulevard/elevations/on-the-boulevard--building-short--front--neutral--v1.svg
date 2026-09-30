@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -35.5 220.65 46.5" role="img" aria-labelledby="t d" data-geometry-id="geom-otb-short-frontage-elevation" data-units="ft">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -35.6 220.65 46.6" role="img" aria-labelledby="t d" data-geometry-id="geom-otb-short-frontage-elevation" data-units="ft">
   <title id="t">On The Boulevard — Short building (135–149) storefront elevation (leasing illustration, draft)</title>
-  <desc id="d">Architectural leasing elevation (orthographic, 1 unit = 1 ft). Massing = plat demising-string bay widths × USGS 3DEP 2017 LiDAR roofline heights; dashed demising = derived SF split. Storefront glazing, canopy, columns and signage are not drawn (no measured source). Draft — not field-verified.</desc>
+  <desc id="d">Architectural leasing elevation (orthographic, 1 unit = 1 ft). Massing = plat frontage strings × 2019 ALTA survey building heights (LiDAR-checked); dashed demising = derived split; dashed outline above a bay = facade (survey note ≈23.6′). Storefront glazing, canopy, columns and signage are not drawn (no measured source). Draft — not field-verified.</desc>
   <defs><filter id="cc-shadow" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0.5" dy="0.5" stdDeviation="0.5" flood-color="#3B342A" flood-opacity=".16"/></filter></defs>
   <style>
     .cc-mass{fill:#EFE6D2}
@@ -18,54 +18,55 @@
     .cc-label{fill:var(--cc-cre-text,#1E1B16);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
     .cc-muted{fill:var(--cc-cre-text-muted,#5C554A);font-family:var(--cc-cre-font-meta,"Courier Prime",monospace)}
   </style>
-  <path class="cc-mass" filter="url(#cc-shadow)" d="M0 0 V-18.5 H37.4 V-18.5 H61.7 V-18.5 H84.79 V-18.5 H107.88 V-18.5 H130.97 V-18.5 H154.05 V-23.5 H208.65 V0"/>
-  <g class="cc-demising"><line class="cc-demise" x1="37.4" y1="0" x2="37.4" y2="-18.5"/><line class="cc-demise" x1="61.7" y1="0" x2="61.7" y2="-18.5"/><line class="cc-demise cc-demise--derived" x1="84.79" y1="0" x2="84.79" y2="-18.5"/><line class="cc-demise cc-demise--derived" x1="107.88" y1="0" x2="107.88" y2="-18.5"/><line class="cc-demise cc-demise--derived" x1="130.96" y1="0" x2="130.96" y2="-18.5"/><line class="cc-demise" x1="154.05" y1="0" x2="154.05" y2="-18.5"/></g>
-  <path class="cc-roof" d="M0 0 V-18.5 H37.4 V-18.5 H61.7 V-18.5 H84.79 V-18.5 H107.88 V-18.5 H130.97 V-18.5 H154.05 V-23.5 H208.65 V0"/>
+  <path class="cc-mass" filter="url(#cc-shadow)" d="M0 0 V-16.4 H37.4 V-16.4 H61.7 V-16.4 H84.79 V-16.4 H107.88 V-16.4 H130.97 V-16.4 H154.05 V-16.4 H208.65 V0"/>
+  <g class="cc-demising"><line class="cc-demise" x1="37.4" y1="0" x2="37.4" y2="-16.4"/><line class="cc-demise" x1="61.7" y1="0" x2="61.7" y2="-16.4"/><line class="cc-demise" x1="84.79" y1="0" x2="84.79" y2="-16.4"/><line class="cc-demise" x1="107.88" y1="0" x2="107.88" y2="-16.4"/><line class="cc-demise" x1="130.96" y1="0" x2="130.96" y2="-16.4"/><line class="cc-demise" x1="154.05" y1="0" x2="154.05" y2="-16.4"/></g>
+  <path class="cc-roof" d="M0 0 V-16.4 H37.4 V-16.4 H61.7 V-16.4 H84.79 V-16.4 H107.88 V-16.4 H130.97 V-16.4 H154.05 V-16.4 H208.65 V0"/>
+  <g class="cc-facade"><title>Facade ≈23.6 ft (2019 survey note: building height excludes facade)</title><path class="cc-roof cc-demise--derived" d="M154.05 -16.4 V-23.6 H208.65 V-16.4"/><text class="cc-muted" x="181.35" y="-24.4" font-size="1.7" text-anchor="middle">facade ≈23.6′</text></g>
   <g id="suite-otb-135a" class="cc-entity" data-entity-id="suite-otb-135a" data-entity-ids="suite-otb-135a" data-suite-label="135" data-width-basis="plat">
-    <title>135 section — frontage 37.4 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="0" y="-18.5" width="37.4" height="18.5"/>
+    <title>135 section — frontage 37.4 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="0" y="-16.4" width="37.4" height="16.4"/>
     <text class="cc-label" x="18.7" y="4.2" font-size="2.6" text-anchor="middle">135A</text>
-    <text class="cc-muted" x="18.7" y="7.6" font-size="1.7" text-anchor="middle">37.4′ · 18.5′h</text>
+    <text class="cc-muted" x="18.7" y="7.6" font-size="1.7" text-anchor="middle">37.4′ · 16.4′h</text>
   </g>
   <g id="suite-otb-137" class="cc-entity" data-entity-id="suite-otb-137" data-entity-ids="suite-otb-137" data-suite-label="137" data-width-basis="plat">
-    <title>Suite 137 — frontage 24.3 ft (plat) · roofline 18.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="37.4" y="-18.5" width="24.3" height="18.5"/>
+    <title>Suite 137 — frontage 24.3 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="37.4" y="-16.4" width="24.3" height="16.4"/>
     <text class="cc-label" x="49.55" y="4.2" font-size="2.6" text-anchor="middle">137</text>
-    <text class="cc-muted" x="49.55" y="7.6" font-size="1.7" text-anchor="middle">24.3′ · 18.5′h</text>
+    <text class="cc-muted" x="49.55" y="7.6" font-size="1.7" text-anchor="middle">24.3′ · 16.4′h</text>
   </g>
-  <g id="suite-otb-139" class="cc-entity" data-entity-id="suite-otb-139" data-entity-ids="suite-otb-139" data-suite-label="139" data-width-basis="derived">
-    <title>Suite 139 — frontage 23.0875 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="61.7" y="-18.5" width="23.0875" height="18.5"/>
+  <g id="suite-otb-139" class="cc-entity" data-entity-id="suite-otb-139" data-entity-ids="suite-otb-139" data-suite-label="139" data-width-basis="plat">
+    <title>Suite 139 — frontage 23.0875 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="61.7" y="-16.4" width="23.0875" height="16.4"/>
     <text class="cc-label" x="73.24" y="4.2" font-size="2.6" text-anchor="middle">139</text>
-    <text class="cc-muted" x="73.24" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 18.5′h</text>
+    <text class="cc-muted" x="73.24" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 16.4′h</text>
   </g>
-  <g id="suite-otb-141" class="cc-entity" data-entity-id="suite-otb-141" data-entity-ids="suite-otb-141" data-suite-label="141" data-width-basis="derived">
-    <title>Suite 141 — frontage 23.0875 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="84.79" y="-18.5" width="23.0875" height="18.5"/>
+  <g id="suite-otb-141" class="cc-entity" data-entity-id="suite-otb-141" data-entity-ids="suite-otb-141" data-suite-label="141" data-width-basis="plat">
+    <title>Suite 141 — frontage 23.0875 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="84.79" y="-16.4" width="23.0875" height="16.4"/>
     <text class="cc-label" x="96.33" y="4.2" font-size="2.6" text-anchor="middle">141</text>
-    <text class="cc-muted" x="96.33" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 18.5′h</text>
+    <text class="cc-muted" x="96.33" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 16.4′h</text>
   </g>
-  <g id="suite-otb-143" class="cc-entity" data-entity-id="suite-otb-143" data-entity-ids="suite-otb-143" data-suite-label="143" data-width-basis="derived">
-    <title>Suite 143 — frontage 23.0875 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="107.88" y="-18.5" width="23.0875" height="18.5"/>
+  <g id="suite-otb-143" class="cc-entity" data-entity-id="suite-otb-143" data-entity-ids="suite-otb-143" data-suite-label="143" data-width-basis="plat">
+    <title>Suite 143 — frontage 23.0875 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="107.88" y="-16.4" width="23.0875" height="16.4"/>
     <text class="cc-label" x="119.42" y="4.2" font-size="2.6" text-anchor="middle">143</text>
-    <text class="cc-muted" x="119.42" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 18.5′h</text>
+    <text class="cc-muted" x="119.42" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 16.4′h</text>
   </g>
-  <g id="suite-otb-145" class="cc-entity" data-entity-id="suite-otb-145" data-entity-ids="suite-otb-145" data-suite-label="145" data-width-basis="derived">
-    <title>Suite 145 — frontage 23.0875 ft (derived SF split) · roofline 18.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="130.96" y="-18.5" width="23.0875" height="18.5"/>
+  <g id="suite-otb-145" class="cc-entity" data-entity-id="suite-otb-145" data-entity-ids="suite-otb-145" data-suite-label="145" data-width-basis="plat">
+    <title>Suite 145 — frontage 23.0875 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="130.96" y="-16.4" width="23.0875" height="16.4"/>
     <text class="cc-label" x="142.5" y="4.2" font-size="2.6" text-anchor="middle">145</text>
-    <text class="cc-muted" x="142.5" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 18.5′h</text>
+    <text class="cc-muted" x="142.5" y="7.6" font-size="1.7" text-anchor="middle">23.0875′ · 16.4′h</text>
   </g>
   <g id="suite-otb-149" class="cc-entity" data-entity-id="suite-otb-149" data-entity-ids="suite-otb-149" data-suite-label="149" data-width-basis="plat">
-    <title>Suite 149 — frontage 54.6 ft (plat) · roofline 23.5 ft (LiDAR 2017)</title>
-    <rect class="cc-hit" x="154.05" y="-23.5" width="54.6" height="23.5"/>
+    <title>Suite 149 — frontage 54.6 ft (plat) · building height 16.4 ft (2019 survey)</title>
+    <rect class="cc-hit" x="154.05" y="-16.4" width="54.6" height="16.4"/>
     <text class="cc-label" x="181.35" y="4.2" font-size="2.6" text-anchor="middle">149</text>
-    <text class="cc-muted" x="181.35" y="7.6" font-size="1.7" text-anchor="middle">54.6′ · 23.5′h</text>
+    <text class="cc-muted" x="181.35" y="7.6" font-size="1.7" text-anchor="middle">54.6′ · 16.4′h</text>
   </g>
   <line class="cc-grade" x1="-6" y1="0" x2="214.65" y2="0"/>
   <g class="cc-dimstring">
-    <path class="cc-dim" d="M0 -28.5 H208.65 M0 -30 V-27 M208.65 -30 V-27"/>
-    <text class="cc-muted" x="104.33" y="-30" font-size="2" text-anchor="middle">Σ bays 208.65′ · recorded length 208.65′</text>
+    <path class="cc-dim" d="M0 -28.6 H208.65 M0 -30.1 V-27.1 M208.65 -30.1 V-27.1"/>
+    <text class="cc-muted" x="104.33" y="-30.1" font-size="2" text-anchor="middle">Σ bays 208.65′ · recorded length 208.65′</text>
   </g>
 </svg>

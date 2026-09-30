@@ -10,7 +10,7 @@
   "source_refs": [
     {
       "source_id": "source-otb-site-register",
-      "revision": "worktree-sha256:fdcb2c5b1b3cd2f7",
+      "revision": "git-blob:80b8b9f1668640c0f68e03068b214a556a5046c7",
       "sha256": "fdcb2c5b1b3cd2f704e18cf107d93584600f3b0c977915b5daaaae3896facf23"
     }
   ],

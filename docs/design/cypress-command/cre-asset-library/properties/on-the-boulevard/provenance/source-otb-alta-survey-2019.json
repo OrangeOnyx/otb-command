@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "source",
+  "id": "source-otb-alta-survey-2019",
+  "name": "ALTA/ACSM survey - Montagnet & Domingue, rev. 7/19/2019",
+  "location": {
+    "repository_path": "reference/plats/plat-of-survey-detailed-2019.pdf"
+  },
+  "revision": "worktree-sha256:c435d93d11bf6681",
+  "sha256": "c435d93d11bf668154f9b22449c54c566ddd39ba61a62a551985a0603711f1e9",
+  "kind": "survey-plat",
+  "authority_domains": [
+    "geometry",
+    "dimensions"
+  ],
+  "units": [
+    "ft"
+  ],
+  "owner": {
+    "party": "Montagnet & Domingue, Inc. (A. E. Montagnet, P.L.S. 4484) for Belle Realty of Lafayette, LLC"
+  },
+  "verification": {
+    "state": "unverified",
+    "notes": "ALTA/ACSM survey, 5/20/1994 last rev. 7/19/2019. Governs boundary, block dimension strings (80.8' LOT 12, 108.00' end block) and building height labels. Foot definition not stated on the sheet. Tenant names on the sheet are historical."
+  }
+}

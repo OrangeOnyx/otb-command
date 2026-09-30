@@ -10,13 +10,13 @@
   "source_refs": [
     {
       "source_id": "source-otb-geometry-json",
-      "revision": "worktree-sha256:452a914440a0f9fe",
-      "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+      "revision": "worktree-sha256:f14a63ecf6ced130",
+      "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
     },
     {
       "source_id": "source-otb-heights-json",
-      "revision": "worktree-sha256:48ce8ca7dc3fa885",
-      "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
+      "revision": "worktree-sha256:d1af423dfcca4a1e",
+      "sha256": "d1af423dfcca4a1ef1ca2d9801d776e510e63ac1b9fc0c7afc4798d9b243c572"
     }
   ],
   "release": {
@@ -36,7 +36,7 @@
     "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-short--front--neutral--v1.svg"
   },
   "revision": "v1",
-  "sha256": "926c33345f501d68fb3f3d115b10b9605c83109dbc899eb866fce4de4f21893d",
+  "sha256": "2d2f1f11a50b1cad5bc6b994c085333d060c84a5e436fe518c2338b27c37337d",
   "view": "front",
   "theme": "neutral",
   "style_reference_source_ids": [
@@ -51,17 +51,17 @@
       "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/elevations/on-the-boulevard--building-short--front--neutral--v1.geometry.json"
     },
     "revision": "v1",
-    "sha256": "8c48f7f934a432360e486c6860d2ee34fd09ede039667736d0a69432196e3ac9",
+    "sha256": "faf308a1fcd0ec8d7dca0b03230af0b0f024adb1c6c4c4dd95afcb095ae8cee2",
     "source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:452a914440a0f9fe",
-        "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+        "revision": "worktree-sha256:f14a63ecf6ced130",
+        "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
       },
       {
         "source_id": "source-otb-heights-json",
-        "revision": "worktree-sha256:48ce8ca7dc3fa885",
-        "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
+        "revision": "worktree-sha256:d1af423dfcca4a1e",
+        "sha256": "d1af423dfcca4a1ef1ca2d9801d776e510e63ac1b9fc0c7afc4798d9b243c572"
       }
     ],
     "length_unit": "ft",
@@ -79,27 +79,27 @@
           0,
           0
         ],
-        "description": "x = 0 at the Marie Antoinette-end wall of the 135 section, increasing toward Arnould (149); z = 0 at the parking-field ground (median LiDAR ground return, NAVD88 per heights-provenance.json)."
+        "description": "x = 0 at the Marie Antoinette-end wall of the 135 section, increasing toward Arnould (149); z = 0 at the datum of the 2019 survey building heights (not stated; LiDAR places it ~2 ft above the parking field)."
       }
     },
     "verification": {
       "state": "unverified",
-      "notes": "Frontage closure checked against recorded building length; see geometry-validation.csv. Plat foot definition unresolved; heights LiDAR-measured with 103 in conflict."
+      "notes": "Frontage closure checked against recorded building length; see geometry-validation.csv. Plat foot definition unresolved. Heights = 2019 survey labels, LiDAR-checked."
     },
     "derivation": {
-      "method": "Cumulative sum of demising-string bay widths (plat order, reversed for viewer-left) × per-unit LiDAR roofline height; no simplification.",
+      "method": "Cumulative sum of plat frontage strings (reversed for viewer-left) × per-unit 2019 survey building height; facade overlay from the survey note; no simplification.",
       "tool": "tools/cre-library/build-otb-slice.mjs",
       "tool_version": "1.1.0",
       "input_source_refs": [
         {
           "source_id": "source-otb-geometry-json",
-          "revision": "worktree-sha256:452a914440a0f9fe",
-          "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+          "revision": "worktree-sha256:f14a63ecf6ced130",
+          "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
         },
         {
           "source_id": "source-otb-heights-json",
-          "revision": "worktree-sha256:48ce8ca7dc3fa885",
-          "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
+          "revision": "worktree-sha256:d1af423dfcca4a1e",
+          "sha256": "d1af423dfcca4a1ef1ca2d9801d776e510e63ac1b9fc0c7afc4798d9b243c572"
         }
       ]
     }
@@ -111,13 +111,13 @@
     "input_source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:452a914440a0f9fe",
-        "sha256": "452a914440a0f9fee327240847a200d9cabf461c68006012d0fa40ea422b93a8"
+        "revision": "worktree-sha256:f14a63ecf6ced130",
+        "sha256": "f14a63ecf6ced130d1cdebf70e54df8afe211d79f280dcbca8231c7c39677226"
       },
       {
         "source_id": "source-otb-heights-json",
-        "revision": "worktree-sha256:48ce8ca7dc3fa885",
-        "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8"
+        "revision": "worktree-sha256:d1af423dfcca4a1e",
+        "sha256": "d1af423dfcca4a1ef1ca2d9801d776e510e63ac1b9fc0c7afc4798d9b243c572"
       },
       {
         "source_id": "source-cc-cre-master-board",

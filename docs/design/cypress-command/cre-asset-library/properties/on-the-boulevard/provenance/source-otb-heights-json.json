@@ -2,12 +2,12 @@
   "schema_version": "1.0.0",
   "record_type": "source",
   "id": "source-otb-heights-json",
-  "name": "OTB roofline heights (USGS 3DEP 2017 LiDAR)",
+  "name": "OTB building heights (2019 ALTA survey labels, LiDAR-checked)",
   "location": {
     "repository_path": "src/data/heights.json"
   },
-  "revision": "worktree-sha256:48ce8ca7dc3fa885",
-  "sha256": "48ce8ca7dc3fa88574fe48174fb5e464a0d11cb83fef62b7d90552a68dad6aa8",
+  "revision": "worktree-sha256:d1af423dfcca4a1e",
+  "sha256": "d1af423dfcca4a1ef1ca2d9801d776e510e63ac1b9fc0c7afc4798d9b243c572",
   "kind": "verified-property-data",
   "authority_domains": [
     "geometry",
@@ -18,6 +18,6 @@
   ],
   "verification": {
     "state": "unverified",
-    "notes": "Roofline heights measured from the USGS 3DEP 2017 point cloud by tools/measure-roof-heights.py (roof returns minus parking-field ground, international ft), classified by the operator's 2026-09-29 attestation. Evidence per unit in src/data/heights-provenance.json. 103 is an open LiDAR-vs-attestation conflict. Supersedes the CAD BLD_HT label matching."
+    "notes": "Per-unit BUILDING HEIGHT labels from the 2019 ALTA survey (reference/plats/plat-of-survey-detailed-2019.pdf), operator-adopted 2026-09-30; heights exclude the facade (survey note, approx. 23.6'). Cross-checked by USGS 3DEP 2017 LiDAR in src/data/heights-provenance.json: every labelled step confirmed, LiDAR ~2 ft higher (parking-field datum)."
   }
 }

@@ -55,7 +55,8 @@ export async function buildSiteContext({ outputDirectory = path.join(ROOT,'publi
   const fixtureBytes = fs.readFileSync(path.join(ROOT,'src/data/twin-site-fixtures.json'));
   const modelBytes = fs.readFileSync(path.join(ROOT,'public/twin/model.glb'));
   const geometry = JSON.parse(geometryBytes), fixtures = JSON.parse(fixtureBytes);
-  if (geometry.rev !== 'REV 14') throw new Error('Review source element mappings before adopting a new plan revision');
+  // REV 15 (2026-09-30) changed only demising widths (101/103/109–113/139–145); site elements reviewed unchanged.
+  if (!['REV 14', 'REV 15'].includes(geometry.rev)) throw new Error('Review source element mappings before adopting a new plan revision');
   const fit = fixtures.registration.planToNative, matrix = fit.matrix3x2;
   // Verify frame identity independently: these corners come from current geometry.json,
   // not from the fixture registration. This detects a changed/scaled/cropped A-1 frame.

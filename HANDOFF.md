@@ -1,5 +1,25 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 30, 2026 — A-1 REV 15: plat frontages + survey building heights
+
+- **Native plats now in the repo:** `reference/plats/`, with a README. The 2019 ALTA survey (Montagnet & Domingue, rev. 7/19/2019) and the 2020 site plan are both from `Boulev.dwg`.
+- **Frontages (`tools/extract-geometry.mjs`, REV 15).** Every bay is now a plat dimension except the 131/133 split.
+  - 101 is 83.0 and 103 is 25.0, together the 108.00' end block.
+  - 109 is 30 and 111 is 20.
+  - 113 is 30.8, from the CAD demising lines (30.79'). The 2020 plan's 32.3' label is a drafting error.
+  - 139–145 stay at 23.0875, shown as 23.1 on the plan, because that closes the 208.65' surveyed wall and the twin registration.
+  - Regenerated: `geometry.json`, `footprints-geo.json`, the twin site context and the concierge dossier.
+- **Heights (`heights.json`).** These are the survey BUILDING HEIGHT labels: 16.4 typical · 105 13.2 · 103 20.6 (operator confirmed taller) · 101 23.6.
+  - The survey note says heights exclude the facade (≈23.6'), which is why Jason's reads taller.
+  - The 101 end projection is 13.5.
+  - The LiDAR cross-check is kept in `heights-provenance.json` and runs about 2 ft higher at every unit.
+- **C08 resolved.** The CAD's 528.93' = the 521.04' storefront face + a 7.83' end projection at 101.
+- **Polycam scan 2026-09-29.** Stored in `E:/OTB-CAPTURE/OTB_Capture_2026-09-29/`, with its capture log. It covers the 101–107 storefronts.
+  - Registered and accepted: 77% of points within 0.3 m, 0.16 m median. `tools/register-polycam.py` now takes a scan date argument.
+  - The 101 end projection's top measures 13.4 ft, which confirms the survey's BLD. HT. 13.5.
+  - The storefront canopy steps down 79–81 ft from the 101 corner. That supports the survey's 83.0 ft for 101, not the CAD `UNITS` layer's 72.5 ft.
+- **Open.** The CAD `UNITS` layer puts the 101/103 line at 35.5' / 72.5'. The survey layer, the 2019 survey and the 2020 plan all say 25.0 / 83.0. The CAD's 117.5 demising measures 19.5' against 20.2' on the plat.
+
 ## September 29, 2026 — A-6 Asset Library · LiDAR roof heights · pylon naming · 946 tests
 
 - **CRE Asset Library (Cypress Command Platform)**
