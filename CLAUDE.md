@@ -23,6 +23,9 @@
 > available: Atlas (spatial) · Almanac (dates) · Ledger · Desk · Register.
 
 > **New session: read `HANDOFF.md` for live state + the open punch-list.**
+> **SOURCE INDEX (2026-09-30): before calling any document missing / not pulled / pending, search
+> `docs/source-audit-2026-09-30/` (README + manifests of every file on Drive, D:, E:, Downloads and the Codex
+> folders, with hashes and in-repo status).** The operator has provided far more than the repo holds.
 > **A-6 Asset Library (2026-09-29):** Cypress Command Platform CRE asset library, OTB slice — `tools/cre-library/build-otb-slice.mjs` → `docs/design/cypress-command/cre-asset-library/` records + `src/data/cre-library-otb.json`; house style in its `shared/style-vocabulary.md`.
 > **Heights + frontages = 2019 ALTA survey / 2020 site plan (operator 2026-09-30, A-1 REV 15):** natives in
 > `reference/plats/`. `heights.json` = survey BUILDING HEIGHT labels (typical 16.4 · 105 13.2 · 103 20.6 · 101 23.6;

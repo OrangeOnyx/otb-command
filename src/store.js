@@ -124,7 +124,7 @@ export const FEATURE_TYPES = [
   ["light", "💡", "Light pole"], ["sign", "🪧", "Sign"],
   // lease / ops designations (2026-09-05): mark reserved stalls, a monument-sign
   // site, common-area extents, loading and dumpster pads on the A-1 plan
-  ["reserved", "🔒", "Reserved parking"], ["monument", "🏷", "Monument sign site"],
+  ["reserved", "🔒", "Reserved parking"], ["monument", "🏷", "Pylon sign site"],
   ["common", "🌿", "Common area"], ["loading", "🚚", "Loading zone"], ["dumpster", "♻", "Dumpster pad"],
   // A-1 site register placeholders (2026-09-24): no drawing on file — the operator's pins fill these categories
   ["storm-drain", "🕳", "Storm drain / catch basin"], ["backflow", "🔁", "Backflow preventer"],

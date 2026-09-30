@@ -112,7 +112,7 @@ ${p.notes ? `<tr><th>Additional terms</th><td>${esc(p.notes)}</td></tr>` : ""}
 <h2>The Center</h2>
 <p>62,883 SF neighborhood center at Johnston Street (US Hwy 167) and Arnould Boulevard — an established
 co-tenancy of restaurants, fashion, services, medical, and financial uses anchored by Jason's Deli, with
-on-site parking and monument signage on the Johnston Street corner.</p>
+on-site parking and pylon signage on the Johnston Street corner.</p>
 <h2>Next Steps</h2>
 <p>Reply to this proposal or contact us to schedule a walkthrough. Upon agreement of business terms we will
 issue the lease for review by your counsel.</p>
