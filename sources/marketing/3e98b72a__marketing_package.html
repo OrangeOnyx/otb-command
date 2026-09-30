@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On The Boulevard Shopping Center — Marketing Package 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #1C2D4F;
+    --navy-light: #243660;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --off-white: #F5F5F0;
+    --white: #FFFFFF;
+    --text-dark: #1C2D4F;
+    --text-mid: #4A5568;
+    --text-light: #718096;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #E8E8E4;
+    color: var(--text-dark);
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    width: 1100px;
+    margin: 0 auto 40px;
+    background: var(--white);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 1 — COVER
+  ══════════════════════════════════════════ */
+  .cover {
+    height: 780px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(28, 45, 79, 0.15) 0%,
+      rgba(28, 45, 79, 0.30) 40%,
+      rgba(28, 45, 79, 0.82) 75%,
+      rgba(28, 45, 79, 0.95) 100%
+    );
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 64px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 68px;
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .cover-title em {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    display: block;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .cover-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 28px;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: 40px;
+  }
+
+  .cover-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cover-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .cover-stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .cover-stat-sep {
+    width: 1px;
+    background: rgba(255,255,255,0.25);
+    align-self: stretch;
+  }
+
+  .cover-logo-area {
+    position: absolute;
+    top: 36px;
+    right: 48px;
+    z-index: 3;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
+    padding: 14px 20px;
+  }
+
+  .cover-logo-area img {
+    height: 44px;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+
+  .cover-badge {
+    position: absolute;
+    top: 36px;
+    left: 48px;
+    z-index: 3;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 2 — PROPERTY OVERVIEW
+  ══════════════════════════════════════════ */
+  .section-header {
+    background: var(--navy);
+    padding: 48px 64px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+  }
+
+  .section-body {
+    padding: 48px 64px;
+  }
+
+  .property-overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .property-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  .property-desc p + p {
+    margin-top: 16px;
+  }
+
+  .property-desc strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .spec-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .spec-table tr {
+    border-bottom: 1px solid #E8E8E4;
+  }
+
+  .spec-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .spec-table td {
+    padding: 12px 0;
+    font-size: 14px;
+    vertical-align: top;
+  }
+
+  .spec-table td:first-child {
+    font-weight: 600;
+    color: var(--navy);
+    width: 45%;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-right: 16px;
+  }
+
+  .spec-table td:last-child {
+    color: var(--text-mid);
+  }
+
+  .spec-accent {
+    color: var(--gold) !important;
+    font-weight: 600 !important;
+  }
+
+  /* ══════════════════════════════════════════
+     METRICS ROW
+  ══════════════════════════════════════════ */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 3px solid var(--gold);
+  }
+
+  .metric-block {
+    padding: 36px 32px;
+    border-right: 1px solid #E8E8E4;
+    text-align: center;
+  }
+
+  .metric-block:last-child {
+    border-right: none;
+  }
+
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  .metric-sub {
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 3 — MARKET / DEMOGRAPHICS
+  ══════════════════════════════════════════ */
+  .market-page {
+    background: var(--navy);
+    min-height: 780px;
+  }
+
+  .market-page .section-header {
+    background: transparent;
+    border-bottom: none;
+  }
+
+  .market-page .section-header::after {
+    display: none;
+  }
+
+  .market-page .section-eyebrow {
+    color: var(--gold);
+  }
+
+  .market-page .section-title {
+    color: var(--white);
+  }
+
+  .market-img-full {
+    width: 100%;
+    display: block;
+  }
+
+  .market-footer {
+    padding: 28px 64px;
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .market-footer-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px 0 0;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .market-footer-item:last-child {
+    border-right: none;
+    padding-left: 24px;
+    padding-right: 0;
+  }
+
+  .market-footer-item:first-child {
+    padding-left: 0;
+  }
+
+  .market-footer-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .market-footer-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+
+  .market-footer-text span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.5px;
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 4 — TRANSFORMATION PROOF
+  ══════════════════════════════════════════ */
+  .proof-img {
+    width: 100%;
+    display: block;
+  }
+
+  .proof-story {
+    padding: 48px 64px;
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .proof-story-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .proof-story-block p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 5 — TENANT MIX
+  ══════════════════════════════════════════ */
+  .tenant-mix-img {
+    width: 100%;
+    display: block;
+  }
+
+  .tenant-lifestyle-img {
+    width: 100%;
+    display: block;
+  }
+
+  .tenant-mix-caption {
+    padding: 24px 64px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tenant-mix-caption p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+  }
+
+  .tenant-mix-caption strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 6 — SITE PLAN
+  ══════════════════════════════════════════ */
+  .site-plan-img {
+    width: 100%;
+    display: block;
+  }
+
+  .site-plan-legend {
+    padding: 24px 64px;
+    background: var(--off-white);
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border-top: 3px solid var(--gold);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .legend-dot.occupied { background: var(--navy); }
+  .legend-dot.available { background: var(--gold); }
+  .legend-dot.owner { background: #8B9DC3; }
+
+  /* ══════════════════════════════════════════
+     PAGE 7 — AVAILABLE SPACE
+  ══════════════════════════════════════════ */
+  .available-img {
+    width: 100%;
+    display: block;
+  }
+
+  /* ══════════════════════════════════════════
+     PAGE 8 — CONTACT / CTA
+  ══════════════════════════════════════════ */
+  .contact-page {
+    background: var(--navy);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-hero {
+    flex: 1;
+    padding: 72px 64px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+
+  .contact-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .contact-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+
+  .contact-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .contact-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin-bottom: 40px;
+  }
+
+  .contact-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .contact-item {
+    padding: 20px 24px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+
+  .contact-item:last-child {
+    border-right: none;
+  }
+
+  .contact-item-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .contact-item-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .contact-footer {
+    padding: 24px 64px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contact-footer-logo img {
+    height: 36px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+
+  .contact-footer-attr {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .contact-footer-attr strong {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ══════════════════════════════════════════
+     PRINT STYLES
+  ══════════════════════════════════════════ */
+  @media print {
+    body { background: white; }
+    .page {
+      width: 100%;
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     SCREEN WRAPPER
+  ══════════════════════════════════════════ */
+  .wrapper {
+    padding: 40px 0;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .pkg-header {
+    text-align: center;
+    padding: 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+
+  .pkg-header strong {
+    color: var(--navy);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<div class="pkg-header">
+  <strong>ON THE BOULEVARD SHOPPING CENTER</strong> &nbsp;|&nbsp; Marketing Package 2026 &nbsp;|&nbsp; Confidential — Belle Realty of Lafayette, LLC
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1 — COVER
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <img class="cover-bg" src="hero_cover.png" alt="On The Boulevard Shopping Center">
+    <div class="cover-overlay"></div>
+
+    <div class="cover-badge">2026 Leasing Package</div>
+
+    <div class="cover-logo-area">
+      <img src="otb_logo.png" alt="On The Boulevard">
+    </div>
+
+    <div class="cover-content">
+      <div class="cover-eyebrow">Lafayette, Louisiana &nbsp;·&nbsp; 101–149 Arnould Blvd</div>
+      <div class="cover-title">
+        <em>on the</em>
+        BOULEVARD
+      </div>
+      <div class="cover-subtitle">Shopping Center &nbsp;·&nbsp; Established 1976</div>
+      <div class="cover-divider"></div>
+      <div class="cover-stats">
+        <div class="cover-stat">
+          <div class="cover-stat-num">95%</div>
+          <div class="cover-stat-label">Occupancy</div>
+        </div>
+        <div class="cover-stat-sep"></div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">62,749 SF</div>
+          <div class="cover-stat-label">Leasable Area</div>
+        </div>
+        <div class="cover-stat-sep"></div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">33,000+</div>
+          <div class="cover-stat-label">Daily Traffic</div>
+        </div>
+        <div class="cover-stat-sep"></div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">25</div>
+          <div class="cover-stat-label">Active Tenants</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — PROPERTY OVERVIEW
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Property Overview</div>
+    <div class="section-title">A Legacy Center.<br>A Proven Operation.</div>
+  </div>
+
+  <div class="section-body">
+    <div class="property-overview-grid">
+      <div>
+        <p class="property-desc">
+          <p>On The Boulevard is a <strong>62,749 SF open-air shopping center</strong> located at 101–149 Arnould Boulevard in Lafayette, Louisiana. Built in 1976 by the Abdalla family and comprehensively renovated in 2019, the center sits on a <strong>4.84-acre site</strong> fronting Highway 167 (Johnston Street) — one of Lafayette's primary commercial corridors.</p>
+          <p>The center operates at <strong>95% occupancy</strong> with 25 active tenants across fashion, food & beverage, health & wellness, services, and specialty retail. Two inline units — 131 and 133 — are currently available, representing a rare opportunity to join a fully stabilized, high-demand destination.</p>
+          <p>Ownership and management remain <strong>family-operated</strong> through Belle Realty of Lafayette, LLC, with day-to-day operations managed by Orange Ocean, LLC. The center has maintained an <strong>88% tenant retention rate</strong> and carries a waiting list of qualified businesses seeking entry.</p>
+        </p>
+      </div>
+      <div>
+        <table class="spec-table">
+          <tr><td>Address</td><td>101–149 Arnould Blvd, Lafayette, LA 70506</td></tr>
+          <tr><td>Total GLA</td><td class="spec-accent">62,749 SF</td></tr>
+          <tr><td>Site Area</td><td>4.84 Acres (210,830 SF)</td></tr>
+          <tr><td>Year Built</td><td>1976</td></tr>
+          <tr><td>Last Renovated</td><td>2019</td></tr>
+          <tr><td>Zoning</td><td>CH — Commercial Heavy</td></tr>
+          <tr><td>Parking</td><td>324 Stalls Provided</td></tr>
+          <tr><td>Flood Zone</td><td>Not in Special Flood Hazard Area</td></tr>
+          <tr><td>Ownership</td><td>Belle Realty of Lafayette, LLC</td></tr>
+          <tr><td>Management</td><td>Orange Ocean, LLC</td></tr>
+          <tr><td>Monthly Rent Roll</td><td class="spec-accent">~$90,064</td></tr>
+          <tr><td>Current Occupancy</td><td class="spec-accent">95% (25 of 27 units)</td></tr>
+          <tr><td>Available Units</td><td class="spec-accent">Unit 131 &amp; Unit 133</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-block">
+      <div class="metric-num">95%</div>
+      <div class="metric-label">Occupancy Rate</div>
+      <div class="metric-sub">2 units available</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-num">32.9%</div>
+      <div class="metric-label">Revenue Growth</div>
+      <div class="metric-sub">2019 – 2026</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-num">88%</div>
+      <div class="metric-label">Tenant Retention</div>
+      <div class="metric-sub">Proven stability</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-num">50 yrs</div>
+      <div class="metric-label">Family Ownership</div>
+      <div class="metric-sub">Est. 1976</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 3 — MARKET & DEMOGRAPHICS
+══════════════════════════════════════════ -->
+<div class="page market-page">
+  <div class="section-header">
+    <div class="section-eyebrow">Lafayette Market</div>
+    <div class="section-title">Hub City Advantage</div>
+  </div>
+  <img class="market-img-full" src="market_demographics.png" alt="Lafayette Market Demographics">
+  <div class="market-footer">
+    <div class="market-footer-item">
+      <div class="market-footer-icon">🛣️</div>
+      <div class="market-footer-text">
+        <strong>I-10 &amp; I-49 Intersection</strong>
+        <span>Regional hub connectivity</span>
+      </div>
+    </div>
+    <div class="market-footer-item">
+      <div class="market-footer-icon">🏫</div>
+      <div class="market-footer-text">
+        <strong>Lafayette High School</strong>
+        <span>Walking distance — built-in foot traffic</span>
+      </div>
+    </div>
+    <div class="market-footer-item">
+      <div class="market-footer-icon">🚌</div>
+      <div class="market-footer-text">
+        <strong>RTS Bus Service</strong>
+        <span>Public transit stop on site</span>
+      </div>
+    </div>
+    <div class="market-footer-item">
+      <div class="market-footer-icon">🏟️</div>
+      <div class="market-footer-text">
+        <strong>Cajun Dome &amp; Moncus Park</strong>
+        <span>Major demand generators nearby</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 4 — TRANSFORMATION PROOF
+══════════════════════════════════════════ -->
+<div class="page">
+  <img class="proof-img" src="transformation_proof.png" alt="Proven Transformation">
+  <div class="proof-story">
+    <div class="proof-story-block">
+      <h3>The Transformation Story</h3>
+      <p>When the Abdalla family took active operational control of On The Boulevard in 2019, the center sat at approximately 50% occupancy. Through a comprehensive renovation program, strategic tenant curation, and hands-on property management, the center reached 95% occupancy — a transformation that produced a 32.9% increase in gross revenue and 22% appreciation in property value over the same period.</p>
+    </div>
+    <div class="proof-story-block">
+      <h3>What This Means for Tenants</h3>
+      <p>The 88% tenant retention rate is the most important number in this package. It reflects a management approach built on responsiveness, fair dealing, and a genuine interest in tenant success. The 14 businesses currently on the waiting list confirm that the center's reputation among local operators is strong. Joining On The Boulevard means joining a stable, well-run, community-anchored destination.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 5 — TENANT MIX
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Current Tenants</div>
+    <div class="section-title">A Curated Community<br>of 25 Local Businesses</div>
+  </div>
+  <img class="tenant-mix-img" src="tenant_category_grid.png" alt="Tenant Mix">
+  <div class="tenant-mix-caption">
+    <p>All tenants as of July 2026. Units 131 and 133 are the only available spaces.</p>
+    <strong>14 Businesses on Waiting List</strong>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 6 — LIFESTYLE / DESTINATION
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">The Experience</div>
+    <div class="section-title">Where Lafayette<br>Shops, Eats &amp; Lives</div>
+  </div>
+  <img class="tenant-lifestyle-img" src="tenant_lifestyle.png" alt="Tenant Lifestyle">
+  <div class="metrics-row" style="border-top: 1px solid #E8E8E4; border-bottom: none;">
+    <div class="metric-block">
+      <div class="metric-num" style="font-size:32px;">Fashion</div>
+      <div class="metric-label">5 Boutiques</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-num" style="font-size:32px;">Food</div>
+      <div class="metric-label">3 Concepts</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-num" style="font-size:32px;">Wellness</div>
+      <div class="metric-label">5 Providers</div>
+    </div>
+    <div class="metric-block">
+      <div class="metric-num" style="font-size:32px;">Services</div>
+      <div class="metric-label">8 Businesses</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 7 — SITE PLAN
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Site Plan</div>
+    <div class="section-title">101–149 Arnould Boulevard<br>Lafayette, Louisiana 70506</div>
+  </div>
+  <img class="site-plan-img" src="site_plan_schematic.png" alt="Site Plan">
+  <div class="site-plan-legend">
+    <div class="legend-item">
+      <div class="legend-dot occupied"></div>
+      Occupied Unit
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot available"></div>
+      Available — Units 131 &amp; 133
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot owner"></div>
+      Owner / Management Office (135B)
+    </div>
+    <div style="margin-left:auto; font-size:12px; color:#888; font-style:italic;">
+      Units 131 &amp; 133 can be combined for ±2,400 SF
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 8 — AVAILABLE SPACE
+══════════════════════════════════════════ -->
+<div class="page">
+  <img class="available-img" src="available_space.png" alt="Available Space">
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 9 — CONTACT / CTA
+══════════════════════════════════════════ -->
+<div class="page contact-page">
+  <div class="contact-hero">
+    <div class="contact-eyebrow">Leasing Inquiries</div>
+    <div class="contact-headline">
+      Your Business<br>Belongs <em>Here.</em>
+    </div>
+    <div class="contact-divider"></div>
+    <p class="contact-body">
+      On The Boulevard is one of Lafayette's most stable and in-demand retail destinations. With 95% occupancy and a waiting list of qualified tenants, available space is rare. We invite serious operators to reach out directly.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value">(337) 769-1554</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value">info@belle-realty.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Website</div>
+        <div class="contact-item-value">ontheblvd.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-footer">
+    <div class="contact-footer-logo">
+      <img src="otb_logo.png" alt="On The Boulevard">
+    </div>
+    <div class="contact-footer-attr">
+      <strong>Belle Realty of Lafayette, LLC</strong><br>
+      Managed by Orange Ocean, LLC &nbsp;|&nbsp; P.O. Box 62230, Lafayette, LA 70596<br>
+      101–149 Arnould Blvd, Lafayette, LA 70506
+    </div>
+  </div>
+</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>

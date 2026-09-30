@@ -38,3 +38,6 @@ capture/
 # Claude agent worktrees (per-session, never committed)
 .claude/worktrees/
 dist-twin/
+
+# ingested operator marketing sources are tracked (the root marketing/ output stays ignored)
+!sources/marketing/
