@@ -33,11 +33,11 @@
 > cross-check runs ~2 ft higher (parking-field datum) — `tools/measure-roof-heights.py`. Frontages: 101 83.0 · 103 25.0 ·
 > 109 30 · 111 20 · 113 30.8 (CAD demising; the 2020 plan's 32.3 is a label error). Only 131/133 remains a derived
 > split. Never rerun `extract-heights.py` (superseded). The sign is a **pylon** (operator 2026-09-29).
-> **Sheets (2026-09-27): 20 in `src/lib/pages.js`** — A-2 Spatial opens with the capture lenses
+> **Sheets (2026-10-01): 25 in `src/lib/pages.js`** (adds A-5 Exterior · A-6 Asset Library · A-7 Visual Library · A-8 Styled Twin; the pages.js array is authoritative) — A-2 Spatial opens with the capture lenses
 > (iso · 3D · satellite · drone Reality) on top; **A-3 Asset Twin** (docked 3D twin, permanent
 > records) and **A-4 Site Evidence** (Google Earth views, aerials, plans, field photos) are sheets,
 > both gated like the twin (`VITE_ASSET_TWIN_ENABLED` + operator/owner). The list below is older.
-> Current build = **13 sheets** (D-1 Dashboard · A-1 Site Plan · A-2 Spatial [property
+> Historical (2026-09-11) build = 13 sheets (D-1 Dashboard · A-1 Site Plan · A-2 Spatial [property
 > workspace since 2026-09-11: plat-based model + suite inspector + evidence/owner-brief
 > flow + dated ledger strip; iso/3D/satellite/reality under "Capture & legacy views"] ·
 > R-1 Rent Roll · P-1 Financial · C-1 Compliance · T-1 Critical Dates ·
@@ -123,7 +123,7 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   JD Bank $250/mo to Belle + 13 spaces, expires 12/30/2034. JD Bank corner parcel
   is SOLD — never render it as Belle property; boundary shows a "NOT A PART" notch.
 - Anchor: Jason's Deli (149) — §9.01 requires monthly HVAC PM contract with
-  **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC.
+  **Butcher Air Conditioning**; tenant maintains 100% of Unit 149 HVAC (operator ruling 2026-10-01 — governs over the §9.01 $500 repair threshold; do not re-raise).
 - Exclusive-use watch: HotWorx (129, Mar 2024) vs C. Wolf (135A, Nov 2024).
 - **Lease terms — Tier-1 is the September 2026 lease review (operator ruling
   2026-09-11): `docs/lease-population-2026-09-10.md` + per-suite `leaseEvidence`
