@@ -18,7 +18,7 @@ export const STOREFRONT_VIEWS = [
 ];
 
 export const SITE_ELEMENTS = [
-  { id: "poles", label: "Light poles", note: "Parking-field poles and heads", file: "site-light-poles.webp" },
+  { id: "poles", label: "Light poles", note: "Parking-field poles, twin heads", file: "site-light-poles.webp" },
   { id: "bollards", label: "Bollards", note: "Pipe, sleeved and decorative", file: "site-bollards.webp" },
   { id: "hvac", label: "HVAC", note: "Rooftop units, condenser, exhaust fan", file: "site-hvac.webp" },
   { id: "electrical", label: "Electrical", note: "Transformer, meter bank, disconnect, time clock", file: "site-electrical.webp" }
