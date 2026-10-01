@@ -43,6 +43,19 @@ def sha256(p):
     return h.hexdigest()
 
 
+def laz_points(p):
+    with open(p, "rb") as f:
+        b = f.read(111)
+    return int.from_bytes(b[107:111], "little")                       # LAS 1.2 legacy point count
+
+
+def ply_points(p):
+    with open(p, "rb") as f:
+        head = f.read(4096).split(b"end_header")[0].decode("latin1")
+    m = re.search(r"element vertex (\d+)", head)
+    return int(m[1]) if m else -1
+
+
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
@@ -72,6 +85,10 @@ def find_sets():
 
 def ingest(stem, files, ledger, dry):
     date, key = scan_key(stem, files)
+    by_ext = {f.suffix.lower(): f for f in files}
+    if laz_points(by_ext[".laz"]) != ply_points(by_ext[".ply"]):
+        # browsers number duplicate downloads per extension, so "x (1).ply" and "x (1).laz" can be different captures
+        raise RuntimeError(f"{stem}: .laz and .ply point counts differ - files from different captures; file by hand")
     hashes = {f.suffix.lower(): sha256(f) for f in files}
     fingerprint = hashes[".laz"]
     if fingerprint in ledger["by_laz_sha"]:
