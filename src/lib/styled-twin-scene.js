@@ -15,7 +15,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
-import { STYLED_PALETTE as P, zoneColor, polygonCentroid, isParkingIsland } from "./styled-twin-placement.js";
+import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
 import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
 
 const POLE_HEIGHT = 9.1, EAVE = CANOPY.eaveFt * FT, FASCIA = CANOPY.fasciaTopFt * FT, MANSARD = CANOPY.mansardTopFt * FT;
@@ -104,7 +104,7 @@ function twinHeadPole() {
   const base = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 0.75, 12), shared("pier", () => std("#cfc9bb"))));
   base.position.y = 0.37; g.add(base);
   const shaft = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.11, POLE_HEIGHT, 10), bronze)); shaft.position.y = POLE_HEIGHT / 2 + 0.7; g.add(shaft);
-  const lens = std("#d9d6cc", { emissive: "#ffd9a0", emissiveIntensity: 0 });
+  const lens = std("#d9d6cc", { emissive: "#eef3ff", emissiveIntensity: 0 });
   for (const side of [-1, 1]) {
     const arm = cast(new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.08, 0.08), bronze)); arm.position.set(side * 0.45, POLE_HEIGHT + 0.55, 0); g.add(arm);
     const head = cast(new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.16, 0.45), bronze)); head.position.set(side * 1.05, POLE_HEIGHT + 0.55, 0); g.add(head);
@@ -200,7 +200,7 @@ function pylon(panels, units) {
 }
 
 /* ---------- the scene ---------- */
-export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, onReady = () => {} }) {
+export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", onReady = () => {} }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -369,6 +369,14 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     const [x, z] = planToWorld(c.point), w = 2 * FT;
     bld.add(boxAt(x - w / 2, x + w / 2, 0.16, EAVE, z - w / 2, z + w / 2, colMat));
     bld.add(boxAt(x - w / 2 - 0.06, x + w / 2 + 0.06, 0.16, 0.45, z - w / 2 - 0.06, z + w / 2 + 0.06, kick));
+    // Column-mounted fixture on the parking-lot face (operator 2026-10-01): gooseneck arm + shade.
+    const out = c.point[0] < LONG.x0 || c.point[0] > 1128 ? [-1, 0] : [0, 1];
+    const fx = x + out[0] * (w / 2 + 0.22), fz = z + out[1] * (w / 2 + 0.22), fy = 2.75;
+    const iron = shared("fixtureIron", () => std("#24282a", { roughness: 0.45, metalness: 0.6 }));
+    bld.add(boxAt(x + out[0] * w / 2 - 0.03 + out[0] * 0.11, x + out[0] * w / 2 + 0.03 + out[0] * 0.11, fy + 0.18, fy + 0.24, z + out[1] * w / 2 - 0.03 + out[1] * 0.11, z + out[1] * w / 2 + 0.03 + out[1] * 0.11, iron));
+    const shade = cast(new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.16, 16, 1, true), iron)); shade.position.set(fx, fy + 0.1, fz); bld.add(shade);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 8), shared("fixtureLens", () => { const m = std("#f1f3f6", { emissive: "#eef3ff", emissiveIntensity: 0 }); night.lenses.push(m); return m; }));
+    bulb.position.set(fx, fy + 0.02, fz); bld.add(bulb);
   }
   // Runs: outer (column-line) edge, inward direction, depth to the wall face, optional hip at either end.
   const W = p => planToWorld(p);
@@ -397,7 +405,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       const s = flatPoly([a, b, [b[0] + inward[0] * depth, b[1] + inward[1] * depth], [a[0] + inward[0] * depth, a[1] + inward[1] * depth]], EAVE, soffitMat);
       s.castShadow = true; bld.add(s);
       // Recessed downlights (lit at dusk).
-      const n = Math.floor(len / 4.6), lamp = shared("downlight", () => { const mm = std("#fff7e6", { emissive: "#ffd9a0", emissiveIntensity: 0 }); night.soffit.push(mm); return mm; });
+      const n = Math.floor(len / 4.6), lamp = shared("downlight", () => { const mm = std("#f4f6fb", { emissive: "#eaf0ff", emissiveIntensity: 0 }); night.soffit.push(mm); return mm; });
       for (let i = 0; i < n; i++) {
         const t = (i + 0.5) / n, p = [a[0] + dir[0] * t + inward[0] * depth / 2, a[1] + dir[1] * t + inward[1] * depth / 2];
         const d = new THREE.Mesh(new THREE.CircleGeometry(0.16, 12), lamp); d.rotation.x = Math.PI / 2; d.position.set(p[0], EAVE - 0.01, p[1]); bld.add(d);
@@ -441,10 +449,30 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       while (c.measureText(text).width > cw * 0.96 && fs > 30) { fs -= 4; c.font = `800 ${fs}px "Big Shoulders Display", "Public Sans", Arial, sans-serif`; }
       c.textAlign = "center"; c.textBaseline = "middle"; if (stroke) { c.lineWidth = 8; c.strokeStyle = stroke; c.strokeText(text, cw / 2, ch / 2); } c.fillStyle = fill; c.fillText(text, cw / 2, ch / 2);
     });
-    const t = letters("#2c2620", "rgba(250,246,236,0.9)");
-    const mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.08, roughness: 0.5, emissive: "#fff2d8", emissiveMap: letters("#ffffff"), emissiveIntensity: 0 });
+    const logoUnit = sg.suites.find(u => logoUnits.includes(String(u)));
+    let mat, plane;
+    let ym = (EAVE + FASCIA) / 2;
+    if (logoUnit) {
+      ym = EAVE + 0.06 + 1.25 / 2;
+      // Tenant's own logo (G:\My Drive\00 OTB\…\Tenant Logo, vendored in tools/brand-assets/tenant-logos).
+      mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.05, roughness: 0.55, emissive: "#ffffff", emissiveIntensity: 0, visible: false });
+      plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat);
+      const maxW = Math.min(len * 0.8, 7.5), maxH = 1.25; // may rise slightly past the fascia, like a sign cabinet
+      const backer = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), shared("logoBacker", () => std("#fbf9f4", { roughness: 0.6, transparent: true, opacity: 0.92 })));
+      backer.visible = false; backer.renderOrder = 1; plane.renderOrder = 2; plane.add(backer); backer.position.z = -0.01;
+      new THREE.TextureLoader().load(logoBase + encodeURIComponent(logoUnit) + ".webp", tx => {
+        tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8;
+        const a = tx.image.width / tx.image.height, sw = Math.min(maxW, maxH * a), sh = sw / a;
+        mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; plane.scale.set(sw, sh, 1);
+        backer.scale.set(1 + 0.24 / sw, 1 + 0.16 / sh, 1); backer.visible = true; invalidate();
+      });
+      plane.userData.logo = logoUnit;
+    } else {
+      const t = letters("#2c2620", "rgba(250,246,236,0.9)");
+      mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.08, roughness: 0.5, emissive: "#fff2d8", emissiveMap: letters("#ffffff"), emissiveIntensity: 0 });
+      plane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    }
     night.signs.push(mat);
-    const plane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat), ym = (EAVE + FASCIA) / 2;
     if (sg.building === "long") {
       const xs = ss.flatMap(s => s.corners.map(c => c[0])), cx = (Math.min(...xs) + Math.max(...xs)) / 2;
       plane.position.set(cx, ym, lo + 0.14);
@@ -457,7 +485,11 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // 149 Arnould-face sign (the anchor reads from Arnould too).
   {
     const anchor = storefrontSigns(suites, units).find(s => s.suites.includes("149"));
-    if (anchor) {
+    if (anchor && logoUnits.includes("149")) {
+      const mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.05, emissive: "#ffffff", emissiveIntensity: 0, visible: false }); night.signs.push(mat);
+      const p = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); p.position.set((sf + sRight) / 2, (EAVE + gableEave) / 2, sEnd + 2.52); bld.add(p);
+      new THREE.TextureLoader().load(logoBase + "149.webp", tx => { tx.colorSpace = THREE.SRGBColorSpace; const a = tx.image.width / tx.image.height, h = 1.2; mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; p.scale.set(Math.min(6, h * a), Math.min(6, h * a) / a, 1); invalidate(); });
+    } else if (anchor) {
       const t = canvasTex(1024, 160, (c, cw, ch) => { c.font = '800 110px "Big Shoulders Display", Arial, sans-serif'; c.textAlign = "center"; c.textBaseline = "middle"; c.lineWidth = 10; c.strokeStyle = "rgba(40,36,30,0.85)"; c.strokeText(anchor.text.toUpperCase(), cw / 2, ch / 2); c.fillStyle = "#c8312b"; c.fillText(anchor.text.toUpperCase(), cw / 2, ch / 2); });
       const mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.08, emissive: "#ffffff", emissiveMap: t, emissiveIntensity: 0 }); night.signs.push(mat);
       const p = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 0.86), mat); p.position.set((sf + sRight) / 2, (EAVE + gableEave) / 2, sEnd + 2.52); bld.add(p);
@@ -505,14 +537,15 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // Island planting: hedge edges, and twin-head poles (illustrative placement).
   const shrub = shared("shrub", () => std("#3f6b34", { roughness: 1, flatShading: true }));
   const shrubGeo = new THREE.IcosahedronGeometry(0.55, 0), shrubs = [];
-  const poleAt = (x, z) => { const pole = twinHeadPole(); pole.position.set(x, 0.15, z); dressing.add(pole); night.lenses.push(pole.userData.lens); const light = new THREE.PointLight("#ffd29a", 0, 34, 2); light.position.set(x, POLE_HEIGHT + 0.3, z); scene.add(light); night.lights.push(light); };
+  const poleAt = (x, z, y = 0.15) => { const pole = twinHeadPole(); pole.position.set(x, y, z); dressing.add(pole); night.lenses.push(pole.userData.lens); const light = new THREE.PointLight("#e9efff", 0, 34, 2); light.position.set(x, POLE_HEIGHT + 0.3, z); scene.add(light); night.lights.push(light); return pole; };
+  // Double light poles: operator inventory (5 main field + 1 Lot 7), positions from the night aerial.
+  for (const p of lighting?.doublePoles ?? []) { const [x, z] = planToWorld(p.point); poleAt(x, z, 0.02).userData.lighting = p; }
   for (const z of worldZones.filter(z => z.kind === "landscape" && !/median/.test(z.id))) {
     const pts = z.world, c = polygonCentroid(pts.map(([x, z2]) => [x, 0, z2]));
     for (let k = 0; k < pts.length; k++) {
       const a = pts[k], b = pts[(k + 1) % pts.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.floor(len / 1.4);
       for (let j = 0; j < n; j++) { const t = (j + 0.5) / n, px = a[0] + (b[0] - a[0]) * t, pz = a[1] + (b[1] - a[1]) * t, v = [c[0] - px, c[1] - pz], vl = Math.hypot(...v) || 1; shrubs.push([px + v[0] / vl * 0.9, pz + v[1] / vl * 0.9, 0.7 + ((j * 7 + k) % 5) / 10]); }
     }
-    if (isParkingIsland(z)) poleAt(c[0] + 1.4, c[1]);
   }
   const inst = new THREE.InstancedMesh(shrubGeo, shrub, shrubs.length), mtx = new THREE.Matrix4();
   shrubs.forEach(([x, z, s], k) => { mtx.compose(new THREE.Vector3(x, 0.15 + 0.35 * s, z), new THREE.Quaternion().setFromEuler(new THREE.Euler(0, k, 0)), new THREE.Vector3(s, s * 0.8, s)); inst.setMatrixAt(k, mtx); });
@@ -520,6 +553,12 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // Wall packs over each rear service door (lit at dusk).
   const pack = shared("wallpack", () => { const m = std("#3a3a37", { emissive: "#ffd9a0", emissiveIntensity: 0 }); night.lenses.push(m); return m; });
   for (const s of suites.filter(s => s.building === "long")) { const cx = (s.corners[0][0] + s.corners[1][0]) / 2; bld.add(boxAt(cx - 0.18, cx + 0.18, 2.6, 2.85, lRear - 0.2, lRear, pack)); }
+  // Building-mounted lights over Lot 8 (operator 2026-10-01), on the 135A/B wall that faces the lot.
+  for (const wp of lighting?.wallPacks ?? []) {
+    const [x, z] = planToWorld(wp.point);
+    bld.add(boxAt(x - 0.25, x + 0.25, 3.9, 4.25, z - 0.32, z, pack));
+    const l = new THREE.PointLight("#e9efff", 0, 18, 2); l.position.set(x, 3.8, z - 1); scene.add(l); night.lights.push(l);
+  }
 
   /* ---- dimension overlay (CAD/plat feet; toggled) ---- */
   const dimGroup = new THREE.Group(); dimGroup.name = "dimensions"; scene.add(dimGroup);

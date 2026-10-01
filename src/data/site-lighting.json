@@ -1,0 +1,19 @@
+{
+  "_readme": "Site lighting inventory, operator 2026-10-01: 5 double light poles in the main parking lot; a few building-mounted lights at the small lot (Lot 8); 1 double pole in the remote lot (Lot 7); a light fixture on the walkway columns; walkway lights under the covered walkway in one straight line down the center. Counts are the operator's. Pole positions are placed from the night aerial (src/assets/twin/night-reference.jpg) onto the A-1 plan and are approximate. Points are A-1 plan px. Correct a point here and A-8 follows. The register's 2006 corner luminaire (site-register light-pole-corner) is drawn separately.",
+  "color": "cool-white LED (night aerial)",
+  "doublePoles": [
+    { "id": "field-pole-1", "lot": "main", "point": [367, 628], "near": "Arnould end cap D (west)", "status": "count operator-confirmed; position approximate" },
+    { "id": "field-pole-2", "lot": "main", "point": [538, 432], "near": "main field island B2", "status": "count operator-confirmed; position approximate" },
+    { "id": "field-pole-3", "lot": "main", "point": [716, 628], "near": "Arnould end cap B (by the oak)", "status": "count operator-confirmed; position approximate" },
+    { "id": "field-pole-4", "lot": "main", "point": [913, 432], "near": "main field island B1", "status": "count operator-confirmed; position approximate" },
+    { "id": "field-pole-5", "lot": "main", "point": [1105, 614], "near": "landscape in front of 149", "status": "count operator-confirmed; position approximate" },
+    { "id": "lot7-pole", "lot": "lot-7", "point": [1268, -121], "near": "Lot 7 center", "status": "count operator-confirmed; position approximate" }
+  ],
+  "wallPacks": [
+    { "id": "lot8-pack-1", "lot": "lot-8", "wall": "135A/135B north wall (faces Lot 8)", "point": [1180, 219.31], "status": "operator: 'a few' — count and spacing approximate" },
+    { "id": "lot8-pack-2", "lot": "lot-8", "wall": "135A/135B north wall (faces Lot 8)", "point": [1232, 219.31], "status": "operator: 'a few' — count and spacing approximate" },
+    { "id": "lot8-pack-3", "lot": "lot-8", "wall": "135A/135B north wall (faces Lot 8)", "point": [1285, 219.31], "status": "operator: 'a few' — count and spacing approximate" }
+  ],
+  "columnFixtures": "one fixture on the parking-lot face of every walkway column (site-register `column`)",
+  "walkwayLights": "recessed downlights in one straight line down the center of every covered walkway"
+}
