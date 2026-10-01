@@ -11,3 +11,10 @@
 .st-stage{position:relative;height:min(72vh,720px);min-height:360px;border:1px solid var(--line,#C9CEBE);background:#F3EDE0;overflow:hidden}
 .st-loading{position:absolute;inset:0;display:grid;place-items:center;font:12px var(--mono,'IBM Plex Mono',monospace);color:var(--slate,#5F6E64)}
 .st-hint{font:11px var(--mono,'IBM Plex Mono',monospace);color:var(--slate,#5F6E64);margin-top:6px}
+.st-labels .st-dim{font:600 10.5px var(--mono,'IBM Plex Mono',monospace);color:#1C2B26;background:rgba(252,252,249,.9);border:1px solid #A87E2F;padding:1px 5px;white-space:nowrap;letter-spacing:.02em}
+.st-labels .st-dim.overall{font-size:11.5px;background:#1C2B26;color:#F3EDE0;border-color:#1C2B26}
+.st-labels .st-dim.height{color:#A87E2F;border-style:dashed}
+.st-actions .st-toggle[aria-pressed="false"]{background:var(--white,#FCFCF9);color:var(--ink70,rgba(28,43,38,.72))}
+.st-actions .st-toggle[aria-pressed="true"]{background:#A87E2F;color:#FCFCF9}
+.st-shots{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.st-shots .chip{cursor:pointer}
