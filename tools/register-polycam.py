@@ -15,6 +15,13 @@
 #   Interior scans (< 5 % of points within 1 m of the DJI cloud - roof and walls hide them from the drone) skip ICP:
 #   GPS + LiDAR-ground placement only (heading = phone compass, ~1-2 deg), written to export/polycam-twin/gps-only/,
 #   which build-twin-pack.py does not pick up - promote by hand after checking against the footprint.
+#   Fallback (2026-10-01): an exterior scan the DJI cloud cannot hold (thin drone coverage, e.g. the parking strip
+#   behind 135-149) is re-fit against the DJI cloud PLUS the already-accepted Polycam scans that overlap it, with a
+#   coarse-to-fine trim; accepted when >= 50 % of the points within 1 m of an accepted scan sit within 0.15 m of it
+#   (phone-to-phone agreement) and that overlap covers >= 10 % of the scan.
+#   Seeds (tools/polycam-seeds.json): a scan ICP cannot pin down (long featureless wall -> slides along it) gets a
+#   hand-solved local->twin transform with its evidence (door numbers vs suite faces, roof edge); used as-is, the
+#   DJI agreement is still measured and reported.
 # Outputs: <date>-twin.laz (absolute coords, CRS embedded), <date>-twin.glb (textured mesh, registered), report.json
 import json, math, struct, sys, gc
 from pathlib import Path
@@ -31,6 +38,7 @@ SCANS = {"2026-08-18": "OTB_Capture_2026-08-18/04_model_exports/8_18_2026",
          "2026-09-28": "OTB_Capture_2026-09-28/04_model_exports/9_28_2026",
          "2026-09-29": "OTB_Capture_2026-09-29/04_model_exports/9_29_2026"}
 _ledger = CAP / "polycam-inbox-ledger.json"
+SEEDS = json.load(open(ROOT / "tools/polycam-seeds.json")) if (ROOT / "tools/polycam-seeds.json").exists() else {}
 if _ledger.exists():
     SCANS.update({k: v["stem"] for k, v in json.load(open(_ledger))["keys"].items() if k not in SCANS})
 to_utm = Transformer.from_crs(4326, 6344, always_xy=True)
@@ -64,6 +72,29 @@ def icp_rigid(src, dst, dn, tree, iters=45, trims=(1.5, 0.6, 0.3, 0.15)):
         R = dR @ R; t = dR @ t + dt
         hist.append((trim, int(m.sum()), float(np.sqrt(np.mean(r ** 2)))))
     return R, t, c, hist
+
+def neighbour_reference(key, lo, hi):
+    """Accepted Polycam twin clouds (other than `key`) inside [lo, hi]: 0.1 m voxel points + PCA normals."""
+    import laspy
+    pts, names = [], []
+    for f in sorted(OUT.glob("OTB-polycam-*-twin.laz")):
+        k = f.name[len("OTB-polycam-"):-len("-twin.laz")]
+        if k == key:
+            continue
+        las = laspy.read(f)
+        Q = np.stack([np.asarray(las.x) - ORIGIN[0], np.asarray(las.y) - ORIGIN[1], np.asarray(las.z)], 1)
+        Q = Q[np.all((Q > lo) & (Q < hi), 1)]
+        if len(Q) < 5000:
+            continue
+        _, first = np.unique(np.floor(Q / 0.1).astype(np.int64), axis=0, return_index=True)
+        pts.append(Q[first]); names.append(k)
+    if not pts:
+        return None, None, []
+    Q = np.concatenate(pts)
+    _, nb = cKDTree(Q).query(Q, k=16)
+    X = Q[nb] - Q[nb].mean(1, keepdims=True)
+    _, _, Vt = np.linalg.svd(np.einsum("nki,nkj->nij", X, X))
+    return Q, Vt[:, 2, :], names
 
 def main():
     import laspy
@@ -106,15 +137,38 @@ def main():
         near = dd < 1.0
         inl = float(np.mean(dd[near] < 0.3)) if near.any() else 0.0
         ok = inl >= 0.5 and not interior
+        how, anchors, inl_pc = ("gps-only (interior, no drone overlap)" if interior else "icp-to-dji"), [], None
+        if not ok and not interior:                                        # fallback: anchor on accepted neighbours
+            Q, QN, anchors = neighbour_reference(date, lo, hi)
+            if anchors:
+                ref, refn = np.vstack([dst, Q]), np.vstack([dn, QN])
+                sub = P[np.random.default_rng(1).choice(len(P), min(len(P), 200_000), replace=False)]
+                R1, t1, c1, hist = icp_rigid(sub, ref, refn, cKDTree(ref), iters=72, trims=(4.0, 2.0, 1.0, 0.5, 0.3, 0.15))
+                Pf = (R1 @ (P - c1).T).T + c1 + t1
+                pr = Pf[np.random.default_rng(2).choice(len(Pf), 100_000, replace=False)]
+                dd, _ = tree.query(pr); near = dd < 1.0
+                inl = float(np.mean(dd[near] < 0.3)) if near.any() else 0.0
+                dq, _ = cKDTree(Q).query(pr); nq = dq < 1.0
+                inl_pc = float(np.mean(dq[nq] < 0.15)) if nq.any() else 0.0
+                ok = bool(inl_pc >= 0.5 and nq.mean() >= 0.10)
+                how = "icp-to-dji+polycam"
         # full local -> twin-local (Z-up) similarity
         S = s0; Rf = R1 @ R0; tf = R1 @ (t0 + np.array([0, 0, dz]) - c1) + c1 + t1
+        if date in SEEDS:                                                  # hand-solved, evidence in the seed file
+            sd = SEEDS[date]["local_to_twin"]; S, Rf, tf = sd["scale"], np.array(sd["R"]), np.array(sd["t"])
+            Pf = (S * (Rf @ Ploc.T)).T + tf
+            dd, _ = tree.query(Pf[np.random.default_rng(2).choice(len(Pf), 100_000, replace=False)]); near = dd < 1.0
+            inl = float(np.mean(dd[near] < 0.3)) if near.any() else 0.0
+            ok, how, anchors, inl_pc, hist = True, "seed: " + SEEDS[date]["method"], [], None, []
+            R1, t1, c1 = np.eye(3), np.zeros(3), np.zeros(3)
         rep[date] = {"points": int(len(P)), "local_to_geo_scale": round(float(s0), 5), "vertical_seed_m": round(dz, 2),
                      "icp_shift_m": np.round(t1 + (R1 @ -c1) + c1, 2).tolist(),
                      "icp_rotation_deg": round(math.degrees(math.acos(np.clip((np.trace(R1) - 1) / 2, -1, 1))), 3),
                      "icp_final": hist[-1] if hist else None, "overlap_fraction": round(float(near.mean()), 3),
                      "overlap_within_0p3m_of_dji": round(inl, 3),
                      "median_distance_m": round(float(np.median(dd)), 3) if np.isfinite(dd).any() else None,
-                     "registration": "gps-only (interior, no drone overlap)" if interior else "icp-to-dji", "accepted": ok,
+                     "registration": how, "anchors": anchors,
+                     "overlap_within_0p15m_of_polycam": round(inl_pc, 3) if inl_pc is not None else None, "accepted": ok,
                      "local_to_twin": {"scale": float(S), "R": Rf.tolist(), "t": tf.tolist()}}
         print(date, json.dumps({k: v for k, v in rep[date].items() if k != "local_to_twin"}))
         if not ok and not interior:

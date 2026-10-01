@@ -1,0 +1,74 @@
+{
+  "2026-10-01-rear-135b-to-149": {
+    "local_to_twin": {
+      "scale": 0.999681554024138,
+      "R": [
+        [
+          -0.7781792933279642,
+          0.6280421860177261,
+          4.2029774732181925e-06
+        ],
+        [
+          -0.628042185988415,
+          -0.778179293178143,
+          -1.6960486951192114e-05
+        ],
+        [
+          -7.381231261410076e-06,
+          -1.583794691010186e-05,
+          0.9999999998473384
+        ]
+      ],
+      "t": [
+        -27.949706947834724,
+        74.45962587343665,
+        10.773249217232895
+      ]
+    },
+    "method": "door-and-roof-edge constrained (operator scan 2026-10-01; ICP to the DJI cloud is degenerate along this 57 m wall)",
+    "evidence": {
+      "wall_plane": "fitted to 188k scan points (rms 0.056 m); rotated -2.79 deg and set 0.25 m inside the LiDAR roof edge (eave overhang measured in the scan: 0.02-0.25 m)",
+      "along_wall": "slid 2.4 m so the scan's first wall point meets the 135B building corner (scan began at the 135B corner)",
+      "rear_door_numbers_m_from_135B_corner": {
+        "135B": 9.35,
+        "137": 15.15,
+        "139": 21.65,
+        "141": 29.35,
+        "143": 34.25,
+        "145": 42.0
+      },
+      "suite_rear_faces_m": {
+        "135B": [
+          0,
+          11.4
+        ],
+        "137": [
+          11.4,
+          18.8
+        ],
+        "139": [
+          18.8,
+          25.9
+        ],
+        "141": [
+          25.9,
+          32.9
+        ],
+        "143": [
+          32.9,
+          39.9
+        ],
+        "145": [
+          39.9,
+          47.0
+        ],
+        "149": [
+          47.0,
+          63.6
+        ]
+      },
+      "door_window": "every door lies inside its own suite for any slide 0.35-3.75 m; 2.4 m chosen",
+      "reference": "export/skydio-rectify/footprints-lidar.geojson NW face 135B corner (-55.8, 57.9) -> 149 corner (-6.6, 98.2)"
+    }
+  }
+}
