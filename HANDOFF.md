@@ -1,5 +1,73 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## PAUSE POINT: September 30, 2026 (end of day). Start here.
+
+**State.** master is at `1966143`, clean and pushed. Production deploy is green. Tests: 948/948. Geometry is **REV 17**. The scheduled rent is **$88,462.70/mo from 10/1/2026** (September: $88,426.55).
+
+**Before you say any document is missing:** check `docs/source-audit-2026-09-30/README.md` (the index of every operator file) and `sources/INDEX.csv` (2,072 originals now in the repo). The operator has provided far more than the repo used to hold.
+
+**Working rule (operator, 2026-09-30).** Before you edit canonical data, show the operator each proposed change with its document, page and quote, and wait for approval. The lease review followed this pattern.
+
+### Shipped today (newest first)
+
+| Item | What was done |
+|---|---|
+| Executed-lease review, items 1–10 | **149 Jason's** moved to the signed Fifth Addendum: $8,553.27/mo. **137 Greek Expressions** moved to Schedule G: $2,493.21/mo, with abatement and March steps. Terms fixed for 107, 123, 125/127, 137 and the 115/117 start. 145 legal name corrected. 125/127 and 145 flagged as lessor-signed only. Deposits recorded from the leases. Every change carries a `leaseEvidence` source with path, page and excerpt. Summary: `docs/lease-population-2026-09-10.md` (addendum). |
+| Clothing Loft 115/117 | Executed extension recorded: 10/1/2026–9/30/2029, $6,690.83/mo combined, lessee 90-day early termination. Recoveries corrected. |
+| Parking | Closed at **324 striped = variance**. The 9/29 Polycam scan showed the unlabeled Johnston CAD row striped. |
+| Sources | Audit plus ingest: Tier-1 documents and all leases are in `sources/`, deduplicated and hash-verified. `sources/` is excluded from Vercel. |
+| JD Bank | The 2020 servitude agreement is now in the repo; Exhibit A-1 is traced on A-1 (REV 16). |
+| Pylon | Approved 14-panel master (OTB_Pylon_Final_v2) filed and used by A-6. |
+| 131/133 | Shown as two operator-confirmed suites. |
+| Plat frontages and heights | From the 2019 ALTA survey and the 2020 site plan (REV 15). |
+| A-6 Asset Library | The CRE asset library slice is live as a sheet. |
+
+### Next session: the operator plans to finish the tenant lease review
+
+1. **113 Graze.** None of the copies has the tenant's signature, and the signed term ended 4/30/2024. Was the 3-year option exercised? The app's 6/30/2027 end and $13.50 base are in no signed document. The deposit per the lease is $3,680.96.
+2. **149 HVAC.** Lease §9.01: Belle repairs/replaces after the tenant's first $500. CLAUDE.md says "tenant maintains 100%". Needs an operator ruling before either is edited.
+3. **Billing check.**
+   - 149: if it was still billed $7,765.22 after 11/2025, it is owed **+$788.05/mo**.
+   - 137: if it was billed $3,165.04 since 3/2026, it was **overbilled $671.83/mo**.
+4. **Documents to obtain.**
+   - lessee-signed copies of 113, 125/127 and 145 (the 145 copy was an August email attachment that was never filed)
+   - page 17 of the 143 lease, which holds the deposit clause
+5. **C-1 compliance "Security deposit" states.** These live in the database and were not changed. The operator should set 107, 137 and 149 (deposits now known) in C-1.
+
+### Pending operator approval: audit change plan B
+
+The full list is in `docs/design/cypress-command/cre-asset-library/audits/2026-09-29-run-01/change-plan.md`.
+
+- **B7: market-facing wording.** 19 places still say plain "Cypress Command" instead of "Cypress Command Platform":
+  - the print footer, owner-update draft and brief footer
+  - the manual and intake form, and their generators
+  - the brief variants, proforma and voiceover tools
+  - the showreel
+
+  The exact lines are in `brand-reference-audit.csv`, rows marked propose-change.
+- **B8: /tour favicon.** `tour.html` links a `favicon.svg` that does not exist. Point it at `/brand/cypress/favicon.ico`.
+- **B9a: stray files.** Delete the accidental root files `marketing$name.png` and `marketing$n.pdf`. Nothing references them.
+- **B9b: pylon renderers.** There are three: `src/lib/pylonsvg.js` (K-1/B-1), `tools/pylon.py` (posters) and A-6's approved v2. Options, ranked:
+  1. Move everything to the approved v2 master.
+  2. Move K-1/B-1 only.
+  3. Leave as is.
+
+### Other open items (from the source audit; see the README)
+
+- **Rezoning brief.** Lot 7 was named in a 2022 CH → MN-1 proposal; the brief is in `Claude outputs`, along with letters marked privileged. The repo has no rezoning facts.
+- **Easement records.**
+  - Our Savior's Church easement plus the "OSC Midtown" parking agreement
+  - 2007 cross-easement
+  - `Zoning Issue/` folder (probably holds variance 99-11797)
+- **Credential files on D:.** Lock codes, a Google passwords export and backup codes. The operator should secure or destroy them; they are not in the repo.
+- **Other property.** Files for The Boulevard Shopping Center at 100–128 Arnould are a different property. Never merge them into OTB.
+
+### Environment notes
+
+- **Memory.** The machine runs short of memory (Codex, Chrome and other projects). Bulk git work ran with `-c gc.auto=0 -c pack.threads=1 -c pack.window=0`. If tests fail in large numbers, retry after memory frees up before debugging.
+- **Polycam.** Captures go in `E:/OTB-CAPTURE/OTB_Capture_<date>/` with a capture log. Register one at a time with `python tools/register-polycam.py <date>`.
+- **After editing rent or term data.** Run `npm run split-seed && npm run concierge-context`, rebuild the library with `node tools/cre-library/build-otb-slice.mjs`, then `npm test`.
+
 ## September 30, 2026 (later) — sources ingested · parking closed at 324 · Clothing Loft extended · REV 17
 
 - **Source audit + ingest.** All 43,841 operator files across Drive, D:, E:, Downloads and the Codex folders are indexed in `docs/source-audit-2026-09-30/`. CLAUDE.md now points every session there first.
