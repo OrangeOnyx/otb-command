@@ -3,7 +3,8 @@
 #   python tools/register-polycam.py          # -> export/polycam-twin/ (+ copies into the twin pack build)
 #   python tools/register-polycam.py 2026-09-29   # one scan only (merges into report.json; keeps memory flat)
 #
-# Per scan (E:/OTB-CAPTURE/OTB_Capture_<date>/04_model_exports/<m_d_yyyy>.*):
+# Scans = the three below + every key in E:/OTB-CAPTURE/polycam-inbox-ledger.json (tools/polycam-inbox.py).
+# Per scan (E:/OTB-CAPTURE/OTB_Capture_<date>/04_model_exports/<stem>.*):
 #   1. local PLY <-> geo LAZ: same points, same order -> exact similarity (index-matched Umeyama);
 #   2. geo (phone GPS, unknown vertical datum) -> twin local: vertical seeded from the LiDAR ground;
 #   3. 4-DoF point-to-plane ICP (heading + shift) onto the DJI dense cloud already in the twin frame
@@ -11,6 +12,9 @@
 #      tilt is not solved; a free 6-DoF fit put 1.2-1.4 deg into heading (compass error) and only 0.2-0.3 deg
 #      into tilt. Accepted when >= 50 % of the points the DJI cloud covers (NN < 1 m) sit within 0.3 m;
 #      the DJI dense cloud's own noise (~0.15-0.3 m) bounds what this can prove.
+#   Interior scans (< 5 % of points within 1 m of the DJI cloud - roof and walls hide them from the drone) skip ICP:
+#   GPS + LiDAR-ground placement only (heading = phone compass, ~1-2 deg), written to export/polycam-twin/gps-only/,
+#   which build-twin-pack.py does not pick up - promote by hand after checking against the footprint.
 # Outputs: <date>-twin.laz (absolute coords, CRS embedded), <date>-twin.glb (textured mesh, registered), report.json
 import json, math, struct, sys, gc
 from pathlib import Path
@@ -26,6 +30,9 @@ ORIGIN = np.array([591000.0, 3341600.0, 0.0])
 SCANS = {"2026-08-18": "OTB_Capture_2026-08-18/04_model_exports/8_18_2026",
          "2026-09-28": "OTB_Capture_2026-09-28/04_model_exports/9_28_2026",
          "2026-09-29": "OTB_Capture_2026-09-29/04_model_exports/9_29_2026"}
+_ledger = CAP / "polycam-inbox-ledger.json"
+if _ledger.exists():
+    SCANS.update({k: v["stem"] for k, v in json.load(open(_ledger))["keys"].items() if k not in SCANS})
 to_utm = Transformer.from_crs(4326, 6344, always_xy=True)
 
 def _mod(name, path):
@@ -85,14 +92,20 @@ def main():
         lo, hi = P.min(0) - 15, P.max(0) + 15
         mk = np.all((D > lo) & (D < hi), 1)
         dst, dn = D[mk], DN[mk]
-        tree = cKDTree(dst)
-        sub = P[np.random.default_rng(1).choice(len(P), min(len(P), 200_000), replace=False)]
-        R1, t1, c1, hist = icp_rigid(sub, dst, dn, tree)
-        Pf = (R1 @ (P - c1).T).T + c1 + t1
-        dd, _ = tree.query(Pf[np.random.default_rng(2).choice(len(Pf), 100_000, replace=False)])
+        probe = P[np.random.default_rng(2).choice(len(P), min(len(P), 100_000), replace=False)]
+        tree = cKDTree(dst) if len(dst) >= 1000 else None
+        interior = tree is None or float(np.mean(tree.query(probe)[0] < 1.0)) < 0.05
+        if interior:                                                       # no drone overlap -> GPS placement only
+            R1, t1, c1, hist = np.eye(3), np.zeros(3), np.zeros(3), []
+            Pf = P; dd = tree.query(probe)[0] if tree is not None else np.full(len(probe), np.inf)
+        else:
+            sub = P[np.random.default_rng(1).choice(len(P), min(len(P), 200_000), replace=False)]
+            R1, t1, c1, hist = icp_rigid(sub, dst, dn, tree)
+            Pf = (R1 @ (P - c1).T).T + c1 + t1
+            dd, _ = tree.query(Pf[np.random.default_rng(2).choice(len(Pf), 100_000, replace=False)])
         near = dd < 1.0
-        inl = float(np.mean(dd[near] < 0.3))
-        ok = inl >= 0.5
+        inl = float(np.mean(dd[near] < 0.3)) if near.any() else 0.0
+        ok = inl >= 0.5 and not interior
         # full local -> twin-local (Z-up) similarity
         S = s0; Rf = R1 @ R0; tf = R1 @ (t0 + np.array([0, 0, dz]) - c1) + c1 + t1
         rep[date] = {"points": int(len(P)), "local_to_geo_scale": round(float(s0), 5), "vertical_seed_m": round(dz, 2),
@@ -100,17 +113,20 @@ def main():
                      "icp_rotation_deg": round(math.degrees(math.acos(np.clip((np.trace(R1) - 1) / 2, -1, 1))), 3),
                      "icp_final": hist[-1] if hist else None, "overlap_fraction": round(float(near.mean()), 3),
                      "overlap_within_0p3m_of_dji": round(inl, 3),
-                     "median_distance_m": round(float(np.median(dd)), 3), "accepted": ok,
+                     "median_distance_m": round(float(np.median(dd)), 3) if np.isfinite(dd).any() else None,
+                     "registration": "gps-only (interior, no drone overlap)" if interior else "icp-to-dji", "accepted": ok,
                      "local_to_twin": {"scale": float(S), "R": Rf.tolist(), "t": tf.tolist()}}
         print(date, json.dumps({k: v for k, v in rep[date].items() if k != "local_to_twin"}))
-        if not ok:
+        if not ok and not interior:
             continue
-        mesh.write_laz(OUT / f"OTB-polycam-{date}-twin.laz", Pf.astype(np.float32), C)
+        dest = OUT / "gps-only" if interior else OUT
+        dest.mkdir(exist_ok=True)
+        mesh.write_laz(dest / f"OTB-polycam-{date}-twin.laz", Pf.astype(np.float32), C)
         # textured mesh: Polycam GLB is the PLY frame in glTF Y-up (x, z, -y); wrap with local->twin (glTF)
         Mz = np.eye(4); Mz[:3, :3] = S * Rf; Mz[:3, 3] = tf                       # local Z-up -> twin Z-up
         Y2Z = np.array([[1, 0, 0, 0], [0, 0, -1, 0], [0, 1, 0, 0], [0, 0, 0, 1.0]])   # glTF (x,y,z) -> Z-up (x,-z,y)
         Z2Y = np.linalg.inv(Y2Z)
-        pack.wrap_glb(CAP / f"{stem}.glb", OUT / f"OTB-polycam-{date}-twin.glb", Z2Y @ Mz @ Y2Z,
+        pack.wrap_glb(CAP / f"{stem}.glb", dest / f"OTB-polycam-{date}-twin.glb", Z2Y @ Mz @ Y2Z,
                       f"OTB_Polycam_{date}_TwinFrame", {"otb_frame": "EPSG:6344 + NAVD88", "otb_local_origin": "E 591000 N 3341600",
                                                          "overlap_within_0p3m_of_dji": inl})
     json.dump(rep, open(OUT / "report.json", "w"), indent=2)
