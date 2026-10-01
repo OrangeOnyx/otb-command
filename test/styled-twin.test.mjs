@@ -30,3 +30,4 @@ test("register placements keep only items with a recorded point", () => {
   assert.ok(placed.every(p => p.xz.every(Number.isFinite)));
   assert.equal(rectToModel({ x: 0, y: 0, w: 10, h: 10 }, M).length, 4);
 });
+

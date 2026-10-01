@@ -21,9 +21,15 @@ export const SITE_ELEMENTS = [
   { id: "poles", label: "Light poles", note: "Parking-field poles, twin heads", file: "site-light-poles.webp" },
   { id: "bollards", label: "Bollards", note: "Pipe, sleeved and decorative", file: "site-bollards.webp" },
   { id: "hvac", label: "HVAC", note: "Rooftop units, condenser, exhaust fan", file: "site-hvac.webp" },
-  { id: "electrical", label: "Electrical", note: "Transformer, meter bank, disconnect, time clock", file: "site-electrical.webp" }
+  { id: "electrical", label: "Electrical", note: "Transformer, meter bank, disconnect, time clock", file: "site-electrical.webp" },
+  { id: "trees", label: "Trees", note: "Live oak, crape myrtle, street tree, boxwood", file: "site-trees.webp" },
+  { id: "islands", label: "Landscape islands", note: "Planting island · lawn island with twin-head pole", file: "site-islands.webp" },
+  { id: "stalls", label: "Parking stalls", note: "Standard and ADA, on concrete", file: "site-stalls.webp" },
+  { id: "dumpster", label: "Dumpster enclosure", note: "Stucco enclosure, bronze gates, bollards", file: "site-dumpster.webp" }
 ];
+
+export const MASTER_BOARD = { id: "board", label: "OTB master board", file: "otb-master-board.webp" };
 
 export const visualURL = file => VISUALS_BASE + file;
 
-export const ALL_VISUAL_FILES = [...CENTER_VIEWS, ...STOREFRONT_VIEWS, ...SITE_ELEMENTS].map(v => v.file);
+export const ALL_VISUAL_FILES = [...CENTER_VIEWS, ...STOREFRONT_VIEWS, ...SITE_ELEMENTS, MASTER_BOARD].map(v => v.file);

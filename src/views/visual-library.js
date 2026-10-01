@@ -2,7 +2,7 @@
    OTB — the center in three lights, the storefront, and the site-element
    plates. Appearance only; the manifest lives in lib/visual-library.js. */
 import "./visual-library.css";
-import { CENTER_VIEWS, STOREFRONT_VIEWS, SITE_ELEMENTS, visualURL } from "../lib/visual-library.js";
+import { CENTER_VIEWS, STOREFRONT_VIEWS, SITE_ELEMENTS, MASTER_BOARD, visualURL } from "../lib/visual-library.js";
 
 const tabs = (group, views, active) => '<div class="vl-tabs" role="tablist">' +
   views.map(v => '<button type="button" role="tab" data-group="' + group + '" data-id="' + v.id + '" aria-selected="' + (v.id === active) + '">' + v.label + "</button>").join("") + "</div>";
@@ -23,6 +23,7 @@ export function initVisualLibrary() {
   const groups = { center: CENTER_VIEWS, storefront: STOREFRONT_VIEWS };
   host.innerHTML =
     '<p class="vl-lede">Presentation imagery for leasing, marketing and owner decks. Appearance only — building, parking and site details are illustrative; A-1, A-2 and A-3 remain the record for counts and dimensions.</p>' +
+    '<section class="card vl-sec"><div class="vl-head"><h2>OTB master board</h2></div>' + stage("board", MASTER_BOARD) + "</section>" +
     '<section class="card vl-sec"><div class="vl-head"><h2>The center</h2>' + tabs("center", CENTER_VIEWS, "golden") + "</div>" + stage("center", CENTER_VIEWS[0]) + "</section>" +
     '<section class="card vl-sec"><div class="vl-head"><h2>Storefront</h2>' + tabs("storefront", STOREFRONT_VIEWS, "enhanced") + "</div>" + stage("storefront", STOREFRONT_VIEWS[0]) + "</section>" +
     '<section class="card vl-sec"><div class="vl-head"><h2>Site elements</h2></div><div class="vl-plates">' + SITE_ELEMENTS.map(plate).join("") + "</div></section>";
