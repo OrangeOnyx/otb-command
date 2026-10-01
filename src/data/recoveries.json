@@ -122,11 +122,11 @@
    "total": 0
   },
   "137": {
-   "base": 13.5,
+   "base": 9.57,
    "cam": 2.1,
    "tax": 0.95,
    "ins": 1.95,
-   "total": 18.5
+   "total": 14.57
   },
   "139": {
    "base": 13.5,
@@ -159,11 +159,11 @@
    "note": "Current owner-mapped abatement; $798.75 additional rent is not allocated by component."
   },
   "149": {
-   "base": 16.25,
+   "base": 17.25,
    "cam": 2.1,
-   "tax": 0.85,
-   "ins": 1,
-   "total": 20.2
+   "tax": 0.95,
+   "ins": 1.95,
+   "total": 22.25
   },
   "117.5": {
    "base": 14,

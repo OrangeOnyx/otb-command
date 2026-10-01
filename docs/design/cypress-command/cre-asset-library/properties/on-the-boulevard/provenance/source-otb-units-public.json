@@ -6,8 +6,8 @@
   "location": {
     "repository_path": "src/data/units.public.json"
   },
-  "revision": "worktree-sha256:a1a30bc4718dbe51",
-  "sha256": "a1a30bc4718dbe51003783acd7c9c6b4d09ef4876fc6118f50b814eabf3faa83",
+  "revision": "worktree-sha256:e5ec19724591fe9e",
+  "sha256": "e5ec19724591fe9e7ad78d6b080692e207bc0e2344f558f21facd6be51ebbb86",
   "kind": "operational-record",
   "authority_domains": [
     "operations"

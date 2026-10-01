@@ -28,7 +28,10 @@ test("per-unit total = base + CAM + Tax + Ins (single-source invariant)", () => 
 // billing uses the STATED monthly from the signed rent roll; PSF formula is an
 // audit check only. Pink Paisley (101-103) group stated $16,008.90 vs formula
 // $16,013.74 → documented −$4.84/mo. Do not "fix" these back to formula.
-const STATED_EXCEPTIONS = { "101": 11085.81, "103": 4923.09 };
+// 137 Greek Expressions: signed Schedule G states $2,493.21 (base computed on
+// 1,709 SF, restated per-SF on 2,053) vs formula $2,492.68 (+$0.53/mo) —
+// operator-approved lease review 2026-09-30.
+const STATED_EXCEPTIONS = { "101": 11085.81, "103": 4923.09, "137": 2493.21 };
 
 test("monthly = total × SF / 12 for every leased unit (except documented stated-rent exceptions)", () => {
   for (const u of units) {
@@ -52,8 +55,9 @@ test("complete income compositions reconcile to their stated rents within the do
   });
   const compTotal = comp.base + comp.cam + comp.tax + comp.ins;
   const monthlyAnnual = completeUnits.reduce((s, u) => s + (u.monthly || 0), 0) * 12;
-  // Expected gap = Pink Paisley owner-accepted −$4.84/mo = $58.08/yr (± rounding pennies)
-  const documentedVariance = 4.84 * 12;
+  // Expected gap = Pink Paisley owner-accepted −$4.84/mo, net of 137's Schedule G
+  // +$0.53/mo stated-over-formula (2026-09-30) — annualized (± rounding pennies)
+  const documentedVariance = (4.84 - (2493.21 - 14.57 * 2053 / 12)) * 12;
   const delta = compTotal - monthlyAnnual;
   assert.ok(Math.abs(delta - documentedVariance) < 1,
     `composition ${compTotal.toFixed(2)} vs monthly×12 ${monthlyAnnual.toFixed(2)}: Δ ${delta.toFixed(2)} ≠ documented ${documentedVariance.toFixed(2)} (±$1)`);

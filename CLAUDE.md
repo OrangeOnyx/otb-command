@@ -128,7 +128,13 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - **Lease terms — Tier-1 is the September 2026 lease review (operator ruling
   2026-09-11): `docs/lease-population-2026-09-10.md` + per-suite `leaseEvidence`
   in `src/data/units.json` supersede `docs/sot-2026-07/` for every suite they
-  name.** Scheduled monthly total **$88,346.48** from Oct 1, 2026 (was $88,310.33 before the Clothing
+  name.** Scheduled monthly total **$88,462.70** from Oct 1, 2026 (Sept 2026 = $88,426.55). The
+  2026-09-30 executed-document review (operator-approved) moved **149 Jason's to the signed Fifth Addendum
+  $8,553.27/mo ($22.25/SF)** (app had carried the Fourth Addendum $7,765.22) and **137 Greek Expressions to
+  Schedule G $2,493.21/mo** (Mar 2026–Feb 2027, steps each March to $3,062.88; app had carried $3,165.04); it
+  also fixed terms for 107 (4/1/2022–9/30/2027), 123 (5/1/2024–4/30/2029), 125/127 (5/1/2024–
+  8/31/2029, LESSOR-SIGNED COPY ONLY), 137 (10/1/2025–9/30/2030) and 115/117 start (8/1/2023), and 145's
+  legal name (Upstream Growth Partners, LLC; LESSOR-SIGNED COPY ONLY). Before that: $88,346.48 after the Clothing
   Loft 115/117 extension, executed 9/13/2026 and reviewed 2026-09-30; $88,070.71 before the Fast Pass
   execution 2026-09-23; $90,291.23 before the Sept review). 115/117 Clothing Loft: extension FULLY EXECUTED
   (Lessor + Lessee/Guarantor 9/13/2026) 10/1/2026–9/30/2029, $13.50/SF base, **$6,690.83/mo combined**
@@ -189,7 +195,9 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
 - Workbook anomalies MOSTLY CLOSED 2026-07-16 by the owner-corrected signed rent roll
   (docs/sot-2026-07/): 101 SF = 6,877 CONFIRMED; 117.5 SF = 1,769 CONFIRMED; 135B =
   owner-occupied $0 (the #VALUE! is moot); 145 re-signed (old term-months moot); unit
-  103 corrected 3,051→3,054. STILL OPEN: missing deposits 107/137/143/149. New
+  103 corrected 3,051→3,054. Deposits (2026-09-30 document review): 107 = $0 by contract; 137 = $1,922.63; 149 = $0 (no deposit
+  clause); 123 = $4,008.38; 125/127 = $2,500 combined; 115/117 = $4,941.37 combined. STILL OPEN: 143 (lease p.17
+  missing from both scans) and 113 (signed lease predates the app's term — operator ruling pending). New
   owner-accepted stated-rent exceptions (do not "fix" to formula): Pink Paisley 101-103
   stated $16,008.90/mo (−$4.84 vs formula); Cat Clinic 119.5 $0.01 rounding.
 

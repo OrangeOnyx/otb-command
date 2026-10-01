@@ -21,8 +21,8 @@ test('captured Atlas report distinguishes contractual rent, dated entries, histo
   assert.equal(report.mode, 'dated-production-extract');
   assert.equal(report.capturedAt, snapshot.capturedAt);
   assert.equal(report.scheduled.asOf, '2026-09-30'); // 115/117 extension reviewed 2026-09-30
-  assert.equal(report.scheduled.monthly, 88346.48);
-  assert.equal(report.scheduled.annualized, 1060157.76);
+  assert.equal(report.scheduled.monthly, 88462.7); // + 149 Fifth Addendum, 137 Schedule G (lease review 2026-09-30)
+  assert.equal(report.scheduled.annualized, 1061552.4);
   assert.equal(report.scheduled.unitCount, 27);
   assert.equal(report.scheduled.rentPayingUnitCount, 24);
   assert.equal(report.scheduled.units['101'].monthly, 11085.81);

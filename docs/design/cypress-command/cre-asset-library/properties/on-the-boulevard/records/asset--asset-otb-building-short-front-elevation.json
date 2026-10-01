@@ -10,7 +10,7 @@
   "source_refs": [
     {
       "source_id": "source-otb-geometry-json",
-      "revision": "worktree-sha256:f47157a304b592bb",
+      "revision": "git-blob:ec51194158d3a9e7a7068bd7ac8ed1075ed1544b",
       "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
     },
     {
@@ -55,7 +55,7 @@
     "source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:f47157a304b592bb",
+        "revision": "git-blob:ec51194158d3a9e7a7068bd7ac8ed1075ed1544b",
         "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
       },
       {
@@ -93,7 +93,7 @@
       "input_source_refs": [
         {
           "source_id": "source-otb-geometry-json",
-          "revision": "worktree-sha256:f47157a304b592bb",
+          "revision": "git-blob:ec51194158d3a9e7a7068bd7ac8ed1075ed1544b",
           "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
         },
         {
@@ -111,7 +111,7 @@
     "input_source_refs": [
       {
         "source_id": "source-otb-geometry-json",
-        "revision": "worktree-sha256:f47157a304b592bb",
+        "revision": "git-blob:ec51194158d3a9e7a7068bd7ac8ed1075ed1544b",
         "sha256": "f47157a304b592bb074142e2567add767571742df8fd6434bd549afff751ff1b"
       },
       {

@@ -19,8 +19,9 @@ test("month arithmetic crosses year boundaries", () => {
 
 test("September 2026 worksheet ties to the scheduled monthly total", () => {
   const w = worksheet(units, "2026-09");
-  assert.equal(w.curTotal, 88310.33);
-  assert.equal(w.priorTotal, 88310.33);
+  // 2026-09-30 lease review: 149 Fifth Addendum (+$788.05) and 137 Schedule G (−$671.83)
+  assert.equal(w.curTotal, 88426.55);
+  assert.equal(w.priorTotal, 88426.55);
   assert.equal(w.diffTotal, 0);
   assert.equal(w.rows.length, 27);
 });
@@ -55,7 +56,7 @@ test("115/117 executed extension: September on the final tier, October on the ex
     assert.equal(worksheetRow(U(id), "2026-09").cur.amount, 3327.34, id);
     assert.equal(worksheetRow(U(id), "2026-10").cur.amount, oct, id);
   }
-  assert.equal(worksheet(units, "2026-10").curTotal, 88346.48);
+  assert.equal(worksheet(units, "2026-10").curTotal, 88462.7);
 });
 
 test("vacant / owner-occupied suites classify without amounts", () => {

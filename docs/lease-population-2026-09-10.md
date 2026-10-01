@@ -38,3 +38,27 @@ The historical ledger is unchanged; revised schedule metadata no longer claims t
 - Reviewed dossier/data copied to `G:/My Drive/00 OTB/Cypress-Review-2026-09-10/`.
 
 Remaining owner facts: DACO current expiration and Victoria Nails exact HVAC split. Additional signed copies/renewal instruments remain attachment follow-ups, not grounds to discard the owner's explicit confirmations.
+
+
+## Addendum 2026-09-30: executed-document review (operator-approved items 1–10)
+
+The signed copies are now in `sources/leases/` (see `sources/INDEX.csv`). Each change below is recorded in `units.json` `leaseEvidence`, with document path, page and excerpt.
+
+| Suite | Change | Signed source |
+|---|---|---|
+| 149 Jason's | $7,765.22 → **$8,553.27/mo** ($17.25 base / $22.25 total). Term unchanged (11/1/2025–10/31/2030). Option: 60 months at $9,083.78. Deposit $0 (no clause). | Fifth Addendum pp. 78–81, both parties signed 4/7/2025 |
+| 137 Greek Expressions | $3,165.04 → **$2,493.21/mo**, with Schedule G phases (abatement Oct 2025–Feb 2026, March steps to $3,062.88). Term **10/1/2025–9/30/2030**. Deposit $1,922.63. | Lease signed 9/25/2025: §3.01 p.2, §35.01 p.13, Schedule G p.36 |
+| 115/117 Clothing Loft | Start **8/1/2023**. Deposit $4,941.37 is one combined deposit, recorded on 115. | Original lease §3.01 p.2, §35.01 p.17 (DocuSign) |
+| 123 Tux Shoppe | Term **5/1/2024–4/30/2029**. Deposit $4,008.38. | §3.01 p.3, §35.01 p.17 |
+| 125/127 Jordan Amanda | Term **5/1/2024–8/31/2029**. Deposit $2,500 combined. **Lessor-signed copy only.** | §3.01 p.3, §35.01 p.16; p.17 lessee line blank |
+| 107 Great American | Term **4/1/2022–9/30/2027**. Deposit $0 by contract. | Fully executed 10/3/2022: §3.01 p.3, §35.01 p.19 |
+| 145 Upstream | Legal name **Upstream Growth Partners, LLC**. **Lessor-signed copy only.** No deposit (§35.01). Start/end stay blank. | Lease pp. 1, 19 |
+| 143 1st Franklin | No change: the 12/22/2025 amendment matches. Deposit unresolved (lease p.17 missing from both scans). | pp. 36–37 |
+
+**Rent effect.** The schedule moves from $88,346.48 to **$88,462.70** from 10/1/2026. September is $88,426.55.
+
+**Still open (operator):**
+- **113 Graze:** no lessee signature on any copy, and the signed term ended 4/30/2024. Was the option exercised?
+- **149 §9.01 HVAC:** Lessor repairs/replaces after the tenant's first $500, versus the "tenant maintains 100%" fact.
+- **Billing reconciliation for 149 and 137:** were the documented amounts actually billed since 11/2025 and 3/2026?
+- **Lessee-signed copies:** still needed for 113, 125/127 and 145.
