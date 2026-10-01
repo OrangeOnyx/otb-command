@@ -22,3 +22,6 @@ These images are for presentation only. They are AI-generated, so never use them
 - **Sign lettering is a simple sans-serif channel letter, not any tenant's real logo.** Check each tenant's trademark and sign approval before any external use.
 - **Frontage widths were in the prompts, but the model does not hold proportions exactly.** These images are not to scale.
 - **None of this is in the repo or on Drive yet.** The cloud session's network blocks Higgsfield's upload and CDN hosts. The images live in the Higgsfield library, and the manifest URLs open in a browser. Copy them to `G:\My Drive\00 OTB\Style-Studies-2026-10-01\` from a machine that can reach them, then convert the accepted ones to WebP under `public/visuals/` for A-7.
+
+## Diorama set (operator request, 2026-10-01)
+Ten images restyled after the isometric diorama study (job `2871d53c`): the OTB center plus all nine site-element plates (poles, bollards, HVAC, electrical, trees, islands, stalls, dumpster, pylon). Each paired the study's style with the matching OTB content image. 15 credits. Listed under `dioramaSet` in `manifest.json`.

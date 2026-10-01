@@ -243,5 +243,71 @@
    3060
   ],
   "composition": "deterministic Pillow layout of the real images above (hero = golden-hour center job aeb69e76-bbe9-43bb-86b8-339eb0ae95c9), not AI-generated"
+ },
+ "dioramaSet": {
+  "note": "operator request 2026-10-01: recreate the assets in the style of the isometric diorama study (job 2871d53c-d734-4fd9-a255-5d5fbaf5690e); each pairs that style reference with the matching OTB content image. 15 credits.",
+  "styleReference": "job 2871d53c-d734-4fd9-a255-5d5fbaf5690e",
+  "items": [
+   {
+    "id": "center",
+    "label": "OTB center as an isometric diorama (real layout: mansard colonnade, concrete lot, pylon)",
+    "job": "8aae2e22-2000-4495-8268-b764e42f4902",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_8aae2e22-2000-4495-8268-b764e42f4902.png"
+   },
+   {
+    "id": "poles",
+    "label": "Twin-head light poles",
+    "job": "456c194b-ca27-478c-b6d2-1bb8ab66a33f",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_456c194b-ca27-478c-b6d2-1bb8ab66a33f.png"
+   },
+   {
+    "id": "bollards",
+    "label": "Bollards",
+    "job": "0ca79f1e-2887-42ea-80fb-c0c7eeb90483",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_0ca79f1e-2887-42ea-80fb-c0c7eeb90483.png"
+   },
+   {
+    "id": "hvac",
+    "label": "HVAC",
+    "job": "6e5c0fb8-cd58-41f5-b15b-1da559601718",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_6e5c0fb8-cd58-41f5-b15b-1da559601718.png"
+   },
+   {
+    "id": "electrical",
+    "label": "Electrical (no text)",
+    "job": "a80697ec-5802-4463-b3a0-d2455f8f43d1",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_a80697ec-5802-4463-b3a0-d2455f8f43d1.png"
+   },
+   {
+    "id": "trees",
+    "label": "Trees",
+    "job": "c45adb71-c8a5-49dd-a24c-64873b32e2ca",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_c45adb71-c8a5-49dd-a24c-64873b32e2ca.png"
+   },
+   {
+    "id": "islands",
+    "label": "Landscape islands",
+    "job": "22b14822-d3cf-4c0d-8dfe-04449f0b6245",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_22b14822-d3cf-4c0d-8dfe-04449f0b6245.png"
+   },
+   {
+    "id": "stalls",
+    "label": "ADA + standard stalls",
+    "job": "f3bc15a2-5629-4721-90ab-c43f85201813",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_f3bc15a2-5629-4721-90ab-c43f85201813.png"
+   },
+   {
+    "id": "dumpster",
+    "label": "Dumpster enclosure",
+    "job": "0bfe2719-e978-404d-9910-b1d919730bb7",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_0bfe2719-e978-404d-9910-b1d919730bb7.png"
+   },
+   {
+    "id": "pylon",
+    "label": "Pylon, 14 blank panels",
+    "job": "0b0e4f1e-acb3-4571-9969-992e78b73b21",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_0b0e4f1e-acb3-4571-9969-992e78b73b21.png"
+   }
+  ]
  }
 }
