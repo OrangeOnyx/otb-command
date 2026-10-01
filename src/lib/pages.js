@@ -12,6 +12,7 @@ export const PAGES = [
   ["evidence", "A-4", "Site Evidence"],
   ["exterior", "A-5", "Exterior & Site"],
   ["library", "A-6", "Asset Library"],
+  ["visuals", "A-7", "Visual Library"],
   ["roll", "R-1", "Rent Roll"],
   ["rentws", "R-2", "Rent Worksheet"],
   ["comp", "C-1", "Compliance"],

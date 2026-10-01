@@ -441,6 +441,12 @@ function initViews(account) {
     .catch(error => console.error("Asset library could not load:", error));
   window.addEventListener("sheetchange", e => { if (e.detail.id === "library") openLibrary(); });
   if (document.getElementById("pg-library")?.classList.contains("on")) openLibrary();
+  /* A-7 Visual Library: presentation imagery, loaded the first time the sheet opens. */
+  const openVisuals = () => import("./views/visual-library.js")
+    .then(({ initVisualLibrary }) => initVisualLibrary())
+    .catch(error => console.error("Visual library could not load:", error));
+  window.addEventListener("sheetchange", e => { if (e.detail.id === "visuals") openVisuals(); });
+  if (document.getElementById("pg-visuals")?.classList.contains("on")) openVisuals();
   initMatrix();
   initDates();
   initBoard();

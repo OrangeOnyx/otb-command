@@ -12,6 +12,7 @@
 
 | Item | What was done |
 |---|---|
+| A-7 Visual Library (new sheet) | Operator-approved presentation look: the Style B center study enhanced (golden hour / midday / dusk + original), the storefront enhanced, and master-board-style site-element plates (light poles, bollards, HVAC, electrical). Images in `public/visuals/` (WebP, ~1 MB total), manifest `src/lib/visual-library.js`. **Appearance only.** Generated with Higgsfield (nano_banana_2) from the Style B studies. The Style B library itself stays OUTSIDE the repo (`Documents\Codex\2026-09-27\…\otb-style-b\library`). **The parking field is concrete, not blacktop**: every prompt must say so. Not an owner default. Originals: `G:\My Drive\00 OTB\Style-Studies-2026-09-30\`. |
 | Executed-lease review, items 1–10 | **149 Jason's** moved to the signed Fifth Addendum: $8,553.27/mo. **137 Greek Expressions** moved to Schedule G: $2,493.21/mo, with abatement and March steps. Terms fixed for 107, 123, 125/127, 137 and the 115/117 start. 145 legal name corrected. 125/127 and 145 flagged as lessor-signed only. Deposits recorded from the leases. Every change carries a `leaseEvidence` source with path, page and excerpt. Summary: `docs/lease-population-2026-09-10.md` (addendum). |
 | Clothing Loft 115/117 | Executed extension recorded: 10/1/2026–9/30/2029, $6,690.83/mo combined, lessee 90-day early termination. Recoveries corrected. |
 | Parking | Closed at **324 striped = variance**. The 9/29 Polycam scan showed the unlabeled Johnston CAD row striped. |

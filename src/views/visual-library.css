@@ -1,0 +1,18 @@
+/* A-7 Visual Library — plan-room palette (ink / brass on paper cards). */
+.vl-lede{max-width:80ch;color:var(--slate,#5F6E64);font-size:13.5px;margin:0 0 16px}
+.vl-sec{margin-bottom:18px;padding:16px}
+.vl-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.vl-head h2{margin:0;font-size:18px}
+.vl-tabs{display:flex;flex-wrap:wrap;border:1px solid var(--line,#C9CEBE)}
+.vl-tabs button{font:500 12px var(--mono,'IBM Plex Mono',monospace);padding:7px 12px;background:var(--white,#FCFCF9);color:var(--ink70,rgba(28,43,38,.72));border:0;border-right:1px solid var(--line,#C9CEBE);cursor:pointer}
+.vl-tabs button:last-child{border-right:0}
+.vl-tabs button[aria-selected="true"]{background:var(--ink,#1C2B26);color:var(--paper,#EDEFE8)}
+.vl-stage{margin:0}
+.vl-stage img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;background:#fff;border:1px solid var(--line,#C9CEBE)}
+.vl-stage figcaption,.vl-plate figcaption{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;font:11.5px var(--mono,'IBM Plex Mono',monospace);color:var(--slate,#5F6E64);margin-top:6px}
+.vl-dl{margin-left:auto;color:var(--green,#2F6B4F);font-weight:600;text-decoration:none}
+.vl-dl:hover{text-decoration:underline}
+.vl-plates{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:14px}
+.vl-plate{margin:0}
+.vl-plate img{display:block;width:100%;height:auto;border:1px solid var(--line,#C9CEBE);background:#F6F1E6}
+.vl-plate b{color:var(--ink,#1C2B26);font-family:var(--body,inherit);font-size:13px}
