@@ -1,0 +1,313 @@
+{
+ "generated": "2026-10-01",
+ "model": "Higgsfield nano_banana_2 (1.5 credits each; 29 images = 43.5 credits)",
+ "status": "appearance-only presentation imagery — never a source for counts, dimensions or tenancy",
+ "styleReferences": {
+  "masterBoard": "media fc86f979-217d-45f0-89ab-e4902ea2503b",
+  "sitePlate": "job 285ba97c-b970-447b-a341-151970552bf8",
+  "storefront": "job b0f8349e-ca0e-4051-8a23-96ea60310c70"
+ },
+ "siteElements": [
+  {
+   "id": "trees",
+   "label": "Trees: live oak, island oak, crape myrtle, sago palm",
+   "job": "cce1637d-4ac4-4535-ba7f-1dd866388098",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090057_cce1637d-4ac4-4535-ba7f-1dd866388098.png"
+  },
+  {
+   "id": "islands",
+   "label": "Landscape islands on concrete",
+   "job": "22097bb8-60ec-4f95-976d-22d7408f2221",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090057_22097bb8-60ec-4f95-976d-22d7408f2221.png"
+  },
+  {
+   "id": "stalls",
+   "label": "ADA + standard stalls on concrete",
+   "job": "98d41a80-72cd-4ef4-8de9-2713bd1b471a",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090058_98d41a80-72cd-4ef4-8de9-2713bd1b471a.png"
+  },
+  {
+   "id": "dumpster",
+   "label": "Dumpster enclosure",
+   "job": "877949c7-460f-4117-9c52-52c0d6af7307",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090057_877949c7-460f-4117-9c52-52c0d6af7307.png"
+  },
+  {
+   "id": "pylon",
+   "label": "Pylon, 14 blank panels (P1 2x8 · P2 4x8 · P3–P14 2x4)",
+   "job": "bfd71cce-96d4-4bea-9329-130eaaad2511",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090057_bfd71cce-96d4-4bea-9329-130eaaad2511.png"
+  },
+  {
+   "id": "electrical",
+   "label": "Electrical row, rerun with no labels",
+   "job": "b74b432b-be01-4f19-811d-2bdfba5dbfb6",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090057_b74b432b-be01-4f19-811d-2bdfba5dbfb6.png"
+  }
+ ],
+ "storefronts": [
+  {
+   "suites": [
+    "101",
+    "103"
+   ],
+   "sign": "The Pink Paisley",
+   "job": "0f46f7a2-8ada-4c24-949f-52da8eef4ce1",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_0f46f7a2-8ada-4c24-949f-52da8eef4ce1.png"
+  },
+  {
+   "suites": [
+    "105"
+   ],
+   "sign": "Painted Bayou",
+   "job": "2ad5185e-97dd-439b-83a9-764e6e1029be",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_2ad5185e-97dd-439b-83a9-764e6e1029be.png"
+  },
+  {
+   "suites": [
+    "107"
+   ],
+   "sign": "Great American Cookies",
+   "job": "fab83d09-fce1-4bc6-b902-e57137920b1f",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_fab83d09-fce1-4bc6-b902-e57137920b1f.png"
+  },
+  {
+   "suites": [
+    "109"
+   ],
+   "sign": "JC Kate Boutique",
+   "job": "8d79641d-2bcc-4e21-adee-2b57d53b84a1",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_8d79641d-2bcc-4e21-adee-2b57d53b84a1.png"
+  },
+  {
+   "suites": [
+    "111"
+   ],
+   "sign": "BERNINA",
+   "job": "787b97c3-75b4-4afb-80df-ece2e00fa302",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090158_787b97c3-75b4-4afb-80df-ece2e00fa302.png"
+  },
+  {
+   "suites": [
+    "113"
+   ],
+   "sign": "Graze Acadiana",
+   "job": "cca20eab-6977-4f91-992c-908b7c9e3ad3",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_cca20eab-6977-4f91-992c-908b7c9e3ad3.png"
+  },
+  {
+   "suites": [
+    "115",
+    "117"
+   ],
+   "sign": "The Clothing Loft",
+   "job": "6fa21621-3689-47d4-a358-d0591c0abb41",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_6fa21621-3689-47d4-a358-d0591c0abb41.png"
+  },
+  {
+   "suites": [
+    "117.5"
+   ],
+   "sign": "Victoria Nails",
+   "job": "17b253c8-afa1-4c3e-b33f-925af746c6f5",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_17b253c8-afa1-4c3e-b33f-925af746c6f5.png"
+  },
+  {
+   "suites": [
+    "119"
+   ],
+   "sign": "OUPAC Financial",
+   "job": "1b961161-94a1-4291-a75e-f86b27fe3b2b",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_1b961161-94a1-4291-a75e-f86b27fe3b2b.png"
+  },
+  {
+   "suites": [
+    "119.5"
+   ],
+   "sign": "Cat Clinic of Lafayette",
+   "job": "fc3cf14a-6e0f-4af4-a5b4-93c451b18ca0",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_fc3cf14a-6e0f-4af4-a5b4-93c451b18ca0.png"
+  },
+  {
+   "suites": [
+    "121"
+   ],
+   "sign": "Magnolia Salon",
+   "job": "70736232-2215-4e4c-a1fa-3d9f58420563",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_70736232-2215-4e4c-a1fa-3d9f58420563.png"
+  },
+  {
+   "suites": [
+    "123"
+   ],
+   "sign": "The Tux Shoppe",
+   "job": "3d22571d-0ab8-4468-ac38-6a2d956e8f04",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090157_3d22571d-0ab8-4468-ac38-6a2d956e8f04.png"
+  },
+  {
+   "suites": [
+    "125",
+    "127"
+   ],
+   "sign": "Jordan Amanda",
+   "job": "e46b64d5-2d9c-4b57-86f5-a6532d7daca7",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_e46b64d5-2d9c-4b57-86f5-a6532d7daca7.png"
+  },
+  {
+   "suites": [
+    "129"
+   ],
+   "sign": "HotWorx",
+   "job": "572ef6f0-6a3d-445e-aca1-bef6b65c1890",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_572ef6f0-6a3d-445e-aca1-bef6b65c1890.png"
+  },
+  {
+   "suites": [
+    "131"
+   ],
+   "sign": "VACANT (blank sign band)",
+   "job": "fa25eadb-24e4-463b-9cc9-5c295f0c4381",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_fa25eadb-24e4-463b-9cc9-5c295f0c4381.png"
+  },
+  {
+   "suites": [
+    "133"
+   ],
+   "sign": "VACANT (blank sign band)",
+   "job": "7fbf014a-0eac-4d0f-8933-e1b62521fa32",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_7fbf014a-0eac-4d0f-8933-e1b62521fa32.png"
+  },
+  {
+   "suites": [
+    "135A"
+   ],
+   "sign": "C. Wolf Barber Shop",
+   "job": "37d9b561-2fc2-4740-8b41-781d6d73277b",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_37d9b561-2fc2-4740-8b41-781d6d73277b.png"
+  },
+  {
+   "suites": [
+    "135B"
+   ],
+   "sign": "Belle Realty (owner office)",
+   "job": "6d84bfe2-6ed5-45d9-8a3f-52477a94bc1f",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_6d84bfe2-6ed5-45d9-8a3f-52477a94bc1f.png"
+  },
+  {
+   "suites": [
+    "137"
+   ],
+   "sign": "Greek Expressions",
+   "job": "e169a7a4-758c-4f91-86c6-587dadaf4895",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_e169a7a4-758c-4f91-86c6-587dadaf4895.png"
+  },
+  {
+   "suites": [
+    "139",
+    "141"
+   ],
+   "sign": "Fast Pass Tag & Title",
+   "job": "66266042-33a0-401d-92ad-8192db31a841",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_66266042-33a0-401d-92ad-8192db31a841.png"
+  },
+  {
+   "suites": [
+    "143"
+   ],
+   "sign": "1st Franklin Financial",
+   "job": "9aa4a18f-65dd-43ac-86e3-e608dcb7ab0a",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_9aa4a18f-65dd-43ac-86e3-e608dcb7ab0a.png"
+  },
+  {
+   "suites": [
+    "145"
+   ],
+   "sign": "Upstream Rehabilitation",
+   "job": "0b3da5ec-01c3-4ea0-8bc8-cf2b2fdb8ed1",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_0b3da5ec-01c3-4ea0-8bc8-cf2b2fdb8ed1.png"
+  },
+  {
+   "suites": [
+    "149"
+   ],
+   "sign": "Jason's Deli",
+   "job": "9a15b2e5-70e8-438b-9d01-428b48aa121b",
+   "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_090229_9a15b2e5-70e8-438b-9d01-428b48aa121b.png"
+  }
+ ],
+ "masterBoard": {
+  "media": "72546ab1-8e4c-446c-9f9d-b3290c7793ed",
+  "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/72546ab1-8e4c-446c-9f9d-b3290c7793ed.png",
+  "size": [
+   4800,
+   3060
+  ],
+  "composition": "deterministic Pillow layout of the real images above (hero = golden-hour center job aeb69e76-bbe9-43bb-86b8-339eb0ae95c9), not AI-generated"
+ },
+ "dioramaSet": {
+  "note": "operator request 2026-10-01: recreate the assets in the style of the isometric diorama study (job 2871d53c-d734-4fd9-a255-5d5fbaf5690e); each pairs that style reference with the matching OTB content image. 15 credits.",
+  "styleReference": "job 2871d53c-d734-4fd9-a255-5d5fbaf5690e",
+  "items": [
+   {
+    "id": "center",
+    "label": "OTB center as an isometric diorama (real layout: mansard colonnade, concrete lot, pylon)",
+    "job": "8aae2e22-2000-4495-8268-b764e42f4902",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_8aae2e22-2000-4495-8268-b764e42f4902.png"
+   },
+   {
+    "id": "poles",
+    "label": "Twin-head light poles",
+    "job": "456c194b-ca27-478c-b6d2-1bb8ab66a33f",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_456c194b-ca27-478c-b6d2-1bb8ab66a33f.png"
+   },
+   {
+    "id": "bollards",
+    "label": "Bollards",
+    "job": "0ca79f1e-2887-42ea-80fb-c0c7eeb90483",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_0ca79f1e-2887-42ea-80fb-c0c7eeb90483.png"
+   },
+   {
+    "id": "hvac",
+    "label": "HVAC",
+    "job": "6e5c0fb8-cd58-41f5-b15b-1da559601718",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_6e5c0fb8-cd58-41f5-b15b-1da559601718.png"
+   },
+   {
+    "id": "electrical",
+    "label": "Electrical (no text)",
+    "job": "a80697ec-5802-4463-b3a0-d2455f8f43d1",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_a80697ec-5802-4463-b3a0-d2455f8f43d1.png"
+   },
+   {
+    "id": "trees",
+    "label": "Trees",
+    "job": "c45adb71-c8a5-49dd-a24c-64873b32e2ca",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_c45adb71-c8a5-49dd-a24c-64873b32e2ca.png"
+   },
+   {
+    "id": "islands",
+    "label": "Landscape islands",
+    "job": "22b14822-d3cf-4c0d-8dfe-04449f0b6245",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_22b14822-d3cf-4c0d-8dfe-04449f0b6245.png"
+   },
+   {
+    "id": "stalls",
+    "label": "ADA + standard stalls",
+    "job": "f3bc15a2-5629-4721-90ab-c43f85201813",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_f3bc15a2-5629-4721-90ab-c43f85201813.png"
+   },
+   {
+    "id": "dumpster",
+    "label": "Dumpster enclosure",
+    "job": "0bfe2719-e978-404d-9910-b1d919730bb7",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_0bfe2719-e978-404d-9910-b1d919730bb7.png"
+   },
+   {
+    "id": "pylon",
+    "label": "Pylon, 14 blank panels",
+    "job": "0b0e4f1e-acb3-4571-9969-992e78b73b21",
+    "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zDdvhhoKQxD6EDxSt3kBkZA0u3/hf_20261001_105116_0b0e4f1e-acb3-4571-9969-992e78b73b21.png"
+   }
+  ]
+ }
+}
