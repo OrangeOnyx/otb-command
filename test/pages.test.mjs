@@ -7,9 +7,9 @@ import { PAGES, PAGE_IDS, DEFAULT_PAGE, DEFAULT_OWNER_SHEETS } from "../src/lib/
    whitelist that was missing spatial (A-2) and safe (S-1), so ticking them
    was a silent no-op — and owners could never see the Owner Safe. */
 
-test("PAGES is the full 24-sheet nav in drawing-set order", () => {
+test("PAGES is the full 25-sheet nav in drawing-set order", () => {
   assert.deepEqual(PAGES.map(p => p[1]), [
-    "D-0", "D-1", "A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "R-1", "R-2", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "B-1", "L-1", "N-1", "M-1", "O-1", "V-1"
+    "D-0", "D-1", "A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "R-1", "R-2", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "B-1", "L-1", "N-1", "M-1", "O-1", "V-1"
   ]);
 });
 
@@ -55,4 +55,9 @@ test("A-6 Asset Library is an operator sheet, not an owner default (operator rul
 test("A-7 Visual Library is an operator sheet, not an owner default (operator ruling 2026-09-30)", () => {
   assert.ok(PAGE_IDS.includes("visuals"));
   assert.equal(DEFAULT_OWNER_SHEETS.includes("visuals"), false);
+});
+
+test("A-8 Styled Twin is an operator sheet, not an owner default (operator ruling 2026-10-01)", () => {
+  assert.ok(PAGE_IDS.includes("styled"));
+  assert.equal(DEFAULT_OWNER_SHEETS.includes("styled"), false);
 });

@@ -468,9 +468,11 @@ function initViews(account) {
       .catch(error => console.error('Site evidence could not load:', error));
     import('./views/site-exterior.js').then(({ initSiteExterior }) => initSiteExterior())
       .catch(error => console.error('Exterior site model could not load:', error));
+    import('./views/styled-twin.js').then(({ initStyledTwin }) => initStyledTwin())
+      .catch(error => console.error('Styled twin could not load:', error));
   } else {
-    // A-3 / A-4 / A-5 exist only where the twin is released for this account.
-    for (const id of ['twin', 'evidence', 'exterior']) if (navBtn[id]) { navBtn[id].dataset.gated = '1'; navBtn[id].style.display = 'none'; }
+    // A-3 / A-4 / A-5 / A-8 exist only where the twin is released for this account.
+    for (const id of ['twin', 'evidence', 'exterior', 'styled']) if (navBtn[id]) { navBtn[id].dataset.gated = '1'; navBtn[id].style.display = 'none'; }
   }
   initSop(account);
   initPortfolio();

@@ -13,6 +13,7 @@ export const PAGES = [
   ["exterior", "A-5", "Exterior & Site"],
   ["library", "A-6", "Asset Library"],
   ["visuals", "A-7", "Visual Library"],
+  ["styled", "A-8", "Styled Twin"],
   ["roll", "R-1", "Rent Roll"],
   ["rentws", "R-2", "Rent Worksheet"],
   ["comp", "C-1", "Compliance"],

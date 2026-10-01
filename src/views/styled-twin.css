@@ -1,0 +1,13 @@
+/* A-8 Styled Twin — plan-room palette (ink / brass on paper cards). */
+.st-lede{max-width:84ch;color:var(--slate,#5F6E64);font-size:13.5px;margin:0 0 14px}
+.st-card{padding:12px}
+.st-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.st-tabs{display:flex;flex-wrap:wrap;border:1px solid var(--line,#C9CEBE)}
+.st-tabs button{font:500 12px var(--mono,'IBM Plex Mono',monospace);padding:7px 12px;background:var(--white,#FCFCF9);color:var(--ink70,rgba(28,43,38,.72));border:0;border-right:1px solid var(--line,#C9CEBE);cursor:pointer}
+.st-tabs button:last-child{border-right:0}
+.st-tabs button[aria-selected="true"]{background:var(--ink,#1C2B26);color:var(--paper,#EDEFE8)}
+.st-actions{display:flex;gap:8px}
+.st-actions .chip{cursor:pointer}
+.st-stage{position:relative;height:min(72vh,720px);min-height:360px;border:1px solid var(--line,#C9CEBE);background:#F3EDE0;overflow:hidden}
+.st-loading{position:absolute;inset:0;display:grid;place-items:center;font:12px var(--mono,'IBM Plex Mono',monospace);color:var(--slate,#5F6E64)}
+.st-hint{font:11px var(--mono,'IBM Plex Mono',monospace);color:var(--slate,#5F6E64);margin-top:6px}
