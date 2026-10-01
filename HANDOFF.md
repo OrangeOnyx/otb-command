@@ -1,5 +1,31 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## September 30, 2026 (later) — sources ingested · parking closed at 324 · Clothing Loft extended · REV 17
+
+- **Source audit + ingest.** All 43,841 operator files across Drive, D:, E:, Downloads and the Codex folders are indexed in `docs/source-audit-2026-09-30/`. CLAUDE.md now points every session there first.
+  - **In the repo:** `sources/` holds 2,072 files, 1.6 GB: the Tier-1 documents plus every lease, amendment and package. They are deduplicated, hash-verified and listed in `sources/INDEX.csv`.
+  - **Kept out of `sources/`:** credential files and the other property (100–128 Arnould). `sources/` is also excluded from Vercel uploads.
+  - **External only:** the Master Lease Package and Belle Leases.zip, which are over GitHub's 100 MB limit, and 23 GB of drone and scan media on E:.
+- **115/117 Clothing Loft.** The extension was fully executed 9/13/2026 and runs 10/1/2026–9/30/2029 at $6,690.83/mo combined. The tenant has a 90-day early-termination right.
+  - Rent phases keep September on the final tier.
+  - Recoveries were corrected per the addendum: tax 1.20, insurance 1.70.
+  - The schedule is **$88,346.48** from 10/1.
+  - **Open:** the start date. `units.json` says 2023-09-12; the addendum recites an 8/1/2023 initial term.
+- **Parking closed.** 324 striped = the variance, after the 9/29 Polycam scan confirmed the unlabeled Johnston row. `PARKING.drawn` is 324, `platLabeled` is 314, the zone is marked `scan-confirmed`, and geometry is REV 17.
+- **Also today:**
+  - 131/133 drawn as two operator-confirmed suites.
+  - JD Bank 2020 servitude filed and Exhibit A-1 traced (REV 16).
+  - Approved 14-panel pylon master filed and used by A-6.
+- **Open from the audit.** These need operator review; see `docs/source-audit-2026-09-30/README.md`:
+  - term-end mismatches: 107, 123, 125/127, 137
+  - the 149 Fifth Addendum total
+  - 113 with no lessee signature
+  - 145 as a lessor-only copy
+  - missing deposits 107/137/143/149, now resolvable from the ingested leases
+  - Lot 7 rezoning brief
+  - Our Savior's Church / OSC Midtown agreements
+  - credential files the operator should secure
+
 ## September 30, 2026 — A-1 REV 15: plat frontages + survey building heights
 
 - **Native plats now in the repo:** `reference/plats/`, with a README. The 2019 ALTA survey (Montagnet & Domingue, rev. 7/19/2019) and the 2020 site plan are both from `Boulev.dwg`.
