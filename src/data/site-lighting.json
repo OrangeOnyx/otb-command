@@ -1,19 +1,151 @@
 {
-  "_readme": "Site lighting inventory, operator 2026-10-01: 5 double light poles in the main parking lot; a few building-mounted lights at the small lot (Lot 8); 1 double pole in the remote lot (Lot 7); a light fixture on the walkway columns; walkway lights under the covered walkway in one straight line down the center. Counts are the operator's. Pole positions are placed from the night aerial (src/assets/twin/night-reference.jpg) onto the A-1 plan and are approximate. Points are A-1 plan px. Correct a point here and A-8 follows. The register's 2006 corner luminaire (site-register light-pole-corner) is drawn separately.",
-  "color": "cool-white LED (night aerial)",
-  "doublePoles": [
-    { "id": "field-pole-1", "lot": "main", "point": [367, 628], "near": "Arnould end cap D (west)", "status": "count operator-confirmed; position approximate" },
-    { "id": "field-pole-2", "lot": "main", "point": [538, 432], "near": "main field island B2", "status": "count operator-confirmed; position approximate" },
-    { "id": "field-pole-3", "lot": "main", "point": [716, 628], "near": "Arnould end cap B (by the oak)", "status": "count operator-confirmed; position approximate" },
-    { "id": "field-pole-4", "lot": "main", "point": [913, 432], "near": "main field island B1", "status": "count operator-confirmed; position approximate" },
-    { "id": "field-pole-5", "lot": "main", "point": [1105, 614], "near": "landscape in front of 149", "status": "count operator-confirmed; position approximate" },
-    { "id": "lot7-pole", "lot": "lot-7", "point": [1268, -121], "near": "Lot 7 center", "status": "count operator-confirmed; position approximate" }
-  ],
-  "wallPacks": [
-    { "id": "lot8-pack-1", "lot": "lot-8", "wall": "135A/135B north wall (faces Lot 8)", "point": [1180, 219.31], "status": "operator: 'a few' — count and spacing approximate" },
-    { "id": "lot8-pack-2", "lot": "lot-8", "wall": "135A/135B north wall (faces Lot 8)", "point": [1232, 219.31], "status": "operator: 'a few' — count and spacing approximate" },
-    { "id": "lot8-pack-3", "lot": "lot-8", "wall": "135A/135B north wall (faces Lot 8)", "point": [1285, 219.31], "status": "operator: 'a few' — count and spacing approximate" }
-  ],
-  "columnFixtures": "one fixture on the parking-lot face of every walkway column (site-register `column`)",
-  "walkwayLights": "recessed downlights in one straight line down the center of every covered walkway"
+ "_readme": "Site lighting inventory, operator 2026-10-01/02. Main lot: 5 double poles — two in front of Units 105/107 (islands at plan x 385), two a few spaces down (islands at x 538), and the one near the corner by Jason's (the register's 2006 corner luminaire, site-register light-pole-corner, counted here as pole 5). Lot 7: one double pole on the far edge, 3/4 of the way across from the right. Lot 8: 4 building-mounted lights, 2 on each wall that faces the lot (the 135A/135B north wall and the 133 east end wall). A fixture on every walkway column; the two corner columns (101 Johnston corner, 149 Arnould corner) carry two, one per open face. Walkway downlights in one line down the center. Points are A-1 plan px and approximate to within an island / a few feet.",
+ "color": "cool-white LED (night aerial)",
+ "doublePoles": [
+  {
+   "id": "field-pole-1",
+   "lot": "main",
+   "point": [
+    385,
+    432
+   ],
+   "near": "island in front of 105/107 (north band, B3)",
+   "status": "operator 2026-10-02"
+  },
+  {
+   "id": "field-pole-2",
+   "lot": "main",
+   "point": [
+    385,
+    548
+   ],
+   "near": "island in front of 105/107 (south band, A3)",
+   "status": "operator 2026-10-02"
+  },
+  {
+   "id": "field-pole-3",
+   "lot": "main",
+   "point": [
+    538,
+    432
+   ],
+   "near": "island a few spaces down (B2)",
+   "status": "operator 2026-10-02"
+  },
+  {
+   "id": "field-pole-4",
+   "lot": "main",
+   "point": [
+    538,
+    548
+   ],
+   "near": "island a few spaces down (A2)",
+   "status": "operator 2026-10-02"
+  },
+  {
+   "id": "field-pole-5",
+   "lot": "main",
+   "point": [
+    1340,
+    640
+   ],
+   "near": "corner by Jason's (Arnould × Patricia)",
+   "register": "light-pole-corner",
+   "status": "operator 2026-10-02; position from the 2006 E1.02 plan"
+  },
+  {
+   "id": "lot7-pole",
+   "lot": "lot-7",
+   "point": [
+    1221,
+    -257
+   ],
+   "near": "far edge of Lot 7, 3/4 across from the right",
+   "status": "operator 2026-10-02"
+  }
+ ],
+ "wallPacks": [
+  {
+   "id": "lot8-135a",
+   "lot": "lot-8",
+   "wall": "135A/135B north wall",
+   "face": "north",
+   "point": [
+    1215,
+    219.31
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  },
+  {
+   "id": "lot8-135b",
+   "lot": "lot-8",
+   "wall": "135A/135B north wall",
+   "face": "north",
+   "point": [
+    1290,
+    219.31
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  },
+  {
+   "id": "lot8-133-1",
+   "lot": "lot-8",
+   "wall": "133 east end wall",
+   "face": "east",
+   "point": [
+    1127.8,
+    152
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  },
+  {
+   "id": "lot8-133-2",
+   "lot": "lot-8",
+   "wall": "133 east end wall",
+   "face": "east",
+   "point": [
+    1127.8,
+    198
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  }
+ ],
+ "columnFixtures": "one fixture on the parking-lot face of every walkway column (site-register `column`)",
+ "walkwayLights": "recessed downlights in one straight line down the center of every covered walkway",
+ "cornerColumns": [
+  {
+   "column": "col-07",
+   "faces": [
+    "west",
+    "south"
+   ],
+   "note": "101 Johnston corner: one fixture facing Johnston, one facing Arnould"
+  },
+  {
+   "column": "col-39",
+   "faces": [
+    "west",
+    "south"
+   ],
+   "note": "149 corner: one facing Johnston, one facing Arnould"
+  }
+ ],
+ "lot8Doors": [
+  {
+   "suite": "135A",
+   "point": [
+    1193.6,
+    219.31
+   ],
+   "type": "double door + standing-seam metal awning"
+  },
+  {
+   "suite": "135B",
+   "point": [
+    1271.8,
+    219.31
+   ],
+   "type": "double door + standing-seam metal awning"
+  }
+ ]
 }

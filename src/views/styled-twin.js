@@ -10,9 +10,13 @@ import units from "../data/units.public.json";
 import pylonData from "../data/pylon.json";
 import lighting from "../data/site-lighting.json";
 import logoUnits from "../data/logo-thumbs.json";
+import facadeOpenings from "../data/facade-openings.json";
+import roofEquipment from "../data/roof-equipment.json";
+import serviceItems from "../data/site-service-items.json";
+import cameras from "../data/cameras.json";
 
 const BASE = import.meta.env.BASE_URL;
-const LIGHTS = [["day", "Day"], ["golden", "Golden hour"], ["dusk", "Dusk"]];
+const LIGHTS = [["day", "Day"], ["golden", "Golden hour"], ["dusk", "Dusk"], ["night", "Night"]];
 const SHOTS = [["overview", "Overview"], ["storefronts", "Storefronts"], ["breezeway", "Breezeway"], ["corner", "Jason\u2019s corner"], ["pylon", "Pylon"]];
 
 let started = false, scene = null;
@@ -39,7 +43,7 @@ async function start(host) {
     const siteData = await fetch(BASE + "twin/site-context.json").then(r => { if (!r.ok) throw new Error("site context"); return r.json(); });
     const { createStyledTwinScene } = await import("../lib/styled-twin-scene.js");
     scene = createStyledTwinScene(stage, {
-      siteData, register, geometry, heights, units, pylonData, lighting, logoUnits, logoBase: BASE + "tenant-logos/sign/",
+      siteData, register, geometry, heights, units, pylonData, lighting, logoUnits, logoBase: BASE + "tenant-logos/sign/", facadeOpenings, roofEquipment, serviceItems, cameras, pylonBase: BASE + "pylon/",
       onReady: () => stage.querySelector(".st-loading")?.remove()
     });
     await scene.ready;
