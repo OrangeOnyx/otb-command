@@ -15,7 +15,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
-import { STYLED_PALETTE as P, zoneColor, polygonCentroid, isParkingIsland } from "./styled-twin-placement.js";
+import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
 import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
 
 const POLE_HEIGHT = 9.1, EAVE = CANOPY.eaveFt * FT, FASCIA = CANOPY.fasciaTopFt * FT, MANSARD = CANOPY.mansardTopFt * FT;
@@ -23,6 +23,7 @@ const POLE_HEIGHT = 9.1, EAVE = CANOPY.eaveFt * FT, FASCIA = CANOPY.fasciaTopFt 
 export const LIGHTING = Object.freeze({
   day:    { sky: ["#9fc2e6", "#e9eef0"], fog: "#e6ebea", bg: "#EEF0EC", hemi: ["#f4f7ff", "#a39d8e", 0.9], sun: ["#fffaf0", 3.2], sunDir: [-0.35, 1, 0.55], exposure: 0.95, env: 0.35, night: 0, bloom: 0 },
   golden: { sky: ["#c9d3e0", "#f6dcb8"], fog: "#efdcc2", bg: "#F4E6D2", hemi: ["#ffefd9", "#8f857a", 0.7], sun: ["#ffd3a0", 3.8], sunDir: [-1, 0.42, 0.42], exposure: 0.95, env: 0.3, night: 0, bloom: 0 },
+  night:  { sky: ["#05070d", "#141a2a"], fog: "#0b0e16", bg: "#070910", hemi: ["#3a4668", "#101014", 0.22], sun: ["#9fb3ff", 0.12], sunDir: [0.3, 1, 0.4], exposure: 1.15, env: 0.03, night: 1, bloom: 0.6 },
   dusk:   { sky: ["#121a30", "#a2604f"], fog: "#262836", bg: "#1F2840", hemi: ["#5f6f9c", "#24242c", 0.42], sun: ["#ff8f5e", 0.35], sunDir: [-1, 0.1, 0.3], exposure: 1.05, env: 0.08, night: 1, bloom: 0.5 }
 });
 
@@ -65,6 +66,16 @@ const shingleTex = () => canvasTex(256, 256, (g, w, h) => {
   }
   noise(g, w, h, 3000, 0.08);
 }, [1, 1]);
+// Painted brick (cream), 1.2 m × 0.6 m tile = 4 × 8 courses — the storefront piers in the photos.
+const brickTex = () => canvasTex(256, 128, (g, w, h) => {
+  g.fillStyle = "#d9cdb4"; g.fillRect(0, 0, w, h);
+  const rows = 8, ch = h / rows, bw = w / 4;
+  for (let r = 0; r < rows; r++) for (let c = -1; c < 5; c++) {
+    const x = c * bw + (r % 2 ? bw / 2 : 0), tone = 228 + Math.floor(Math.random() * 10);
+    g.fillStyle = `rgb(${tone},${tone - 8},${tone - 22})`; g.fillRect(x + 1.5, r * ch + 1.5, bw - 3, ch - 3);
+  }
+  noise(g, w, h, 1500, 0.05);
+}, [1, 1]);
 const membraneTex = () => canvasTex(256, 256, (g, w, h) => {
   g.fillStyle = "#ecebe6"; g.fillRect(0, 0, w, h); noise(g, w, h, 4000, 0.04);
   g.strokeStyle = "rgba(160,160,150,0.25)"; g.lineWidth = 1; for (let x = 0; x < w; x += 64) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
@@ -104,7 +115,7 @@ function twinHeadPole() {
   const base = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 0.75, 12), shared("pier", () => std("#cfc9bb"))));
   base.position.y = 0.37; g.add(base);
   const shaft = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.11, POLE_HEIGHT, 10), bronze)); shaft.position.y = POLE_HEIGHT / 2 + 0.7; g.add(shaft);
-  const lens = std("#d9d6cc", { emissive: "#ffd9a0", emissiveIntensity: 0 });
+  const lens = std("#d9d6cc", { emissive: "#eef3ff", emissiveIntensity: 0 });
   for (const side of [-1, 1]) {
     const arm = cast(new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.08, 0.08), bronze)); arm.position.set(side * 0.45, POLE_HEIGHT + 0.55, 0); g.add(arm);
     const head = cast(new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.16, 0.45), bronze)); head.position.set(side * 1.05, POLE_HEIGHT + 0.55, 0); g.add(head);
@@ -154,53 +165,47 @@ function trashCan() {
   const lid = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.1, 12), shared("iron", () => std("#2d2e2c", { roughness: 0.5, metalness: 0.5 })))); lid.position.y = 1; g.add(lid);
   return g;
 }
-function pylon(panels, units) {
-  // OTB pylon, 14 panels (P1 2x8 · P2 4x8 anchor · P3–P14 2x4 pairs). Overall height is presentation.
-  const g = new THREE.Group(), cab = shared("pylonCab", () => std("#E6D8BC", { roughness: 0.7 })), trim = shared("pylonTrim", () => std("#3e4a44", { roughness: 0.5, metalness: 0.2 }));
-  const W = 8 * FT, base = 1.6;
-  g.add(boxAt(-W / 2 - 0.35, W / 2 + 0.35, 0, base, -0.45, 0.45, shared("pier", () => std("#cfc9bb"))));
-  const name = u => { const r = units.find(x => String(x.unit) === String(u)); return r && r.status !== "vacant" ? String(r.dba || "").split(/\s+\/\s+|\s+\(/)[0] : "AVAILABLE"; };
-  let y = base;
-  const rows = [];
-  rows.push([panels[0]]); rows.push([panels[1]]);
-  for (let i = 2; i < panels.length; i += 2) rows.push(panels.slice(i, i + 2));
-  const faces = [];
-  for (const row of rows.reverse()) {
-    const h = (row[0].size === "4x8" ? 4 : 2) * FT;
-    row.forEach((p, i) => {
-      const w = row.length === 2 ? W / 2 : W, x0 = -W / 2 + i * w;
-      faces.push({ text: name(p.unit), x: x0 + w / 2, y: y + h / 2, w: w - 0.04, h: h - 0.04, anchor: p.size === "4x8" });
-    });
-    y += h;
-  }
-  const headH = 1.1;
-  g.add(boxAt(-W / 2 - 0.2, W / 2 + 0.2, base, y + headH + 0.25, -0.36, 0.36, cab));
-  g.add(boxAt(-W / 2 - 0.3, W / 2 + 0.3, y + headH + 0.25, y + headH + 0.45, -0.45, 0.45, trim));
-  faces.push({ text: "ON THE BOULEVARD", x: 0, y: y + headH / 2 + 0.1, w: W, h: headH, header: true });
-  const tex = canvasTex(512, 1024, (c, cw, ch) => {
-    const top = y + headH + 0.25;
-    c.fillStyle = "#E6D8BC"; c.fillRect(0, 0, cw, ch);
-    const sx = cw / (W + 0.4), sy = ch / (top - base);
-    for (const f of faces) {
-      const px = (f.x - f.w / 2 + W / 2 + 0.2) * sx, py = (top - f.y - f.h / 2) * sy, pw = f.w * sx, ph = f.h * sy;
-      c.fillStyle = f.header ? "#1E4D3A" : f.text === "AVAILABLE" ? "#f4f1ea" : "#fbfaf6"; c.fillRect(px, py, pw, ph);
-      c.fillStyle = f.header ? "#F3EDE0" : f.text === "AVAILABLE" ? "#9a9a92" : "#1C2B26";
-      let fs = Math.min(ph * 0.5, 30); c.font = `700 ${fs}px "Public Sans", Arial, sans-serif`;
-      while (c.measureText(f.text).width > pw * 0.9 && fs > 8) { fs -= 1; c.font = `700 ${fs}px "Public Sans", Arial, sans-serif`; }
-      c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(f.text, px + pw / 2, py + ph / 2);
-    }
-  });
-  const faceMat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6, emissive: "#ffffff", emissiveMap: tex, emissiveIntensity: 0 });
-  const top = y + headH + 0.25;
+// The OTB pylon from the approved master art with the tenant panels composited in (public/pylon/,
+// tools/build-pylon-face.py). 1023 × 1537 px at 45.1 px/ft (Panel 2 = 8 ft) → 22.7 ft × 34.1 ft.
+// Faces ±Z (Johnston traffic); panels + "On The Boulevard" glow from the glow map dusk to dawn.
+const PYLON_FT = [1023 / 45.125, 1537 / 45.125], PX = 45.125;
+function pylonFromFace(base, onLoad) {
+  const g = new THREE.Group(), W = PYLON_FT[0] * FT, H = PYLON_FT[1] * FT, D = 0.86, ft = px => px / PX * FT;
+  const cream = shared("pylonCream", () => std("#efe6d4", { roughness: 0.75 })), tan = shared("pylonTan", () => std("#dcc8a4", { roughness: 0.7 }));
+  const box = (x0, x1, y0, y1, d, m) => g.add(boxAt(ft(x0) - W / 2, ft(x1) - W / 2, H - ft(y1), H - ft(y0), -d / 2, d / 2, m));
+  box(262, 342, 420, 1440, D, cream); box(690, 770, 420, 1440, D, cream);   // posts
+  box(330, 692, 415, 1195, D * 0.9, cream);                                  // panel cabinet
+  box(200, 830, 170, 470, D * 1.15, tan);                                    // header cabinet
+  const loader = new THREE.TextureLoader(), mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.5, roughness: 0.6, emissive: "#ffffff", emissiveIntensity: 0, visible: false });
+  let left = 2; const done = () => { if (--left === 0) { mat.visible = true; mat.needsUpdate = true; onLoad?.(); } };
+  loader.load(base + "otb-pylon-face.webp", t => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; mat.map = t; done(); });
+  loader.load(base + "otb-pylon-glow.webp", t => { mat.emissiveMap = t; done(); });
   for (const side of [1, -1]) {
-    const f = new THREE.Mesh(new THREE.PlaneGeometry(W + 0.4, top - base), faceMat);
-    f.position.set(0, (top + base) / 2, side * 0.365); if (side < 0) f.rotation.y = Math.PI; g.add(f);
+    const f = new THREE.Mesh(new THREE.PlaneGeometry(W, H), mat); f.position.set(0, H / 2, side * (D * 0.58 + 0.01));
+    if (side < 0) f.rotation.y = Math.PI; g.add(f);
   }
-  g.userData.face = faceMat; return g;
+  g.userData.face = mat; return g;
+}
+function dumpster(color) {
+  const g = new THREE.Group(), c = { yellow: "#e3b520", blue: "#2f5ea8", green: "#2f5d3c", brown: "#6b4a2f" }[color] ?? "#2f5d3c";
+  const body = shared("dump-" + color, () => std(c, { roughness: 0.6, metalness: 0.35 })), lid = shared("dumpLid", () => std("#2b2c2a", { roughness: 0.7 }));
+  g.add(boxAt(-0.95, 0.95, 0.12, 1.35, -0.8, 0.7, body));
+  const top = cast(new THREE.Mesh(new THREE.BoxGeometry(1.95, 0.06, 1.55), lid)); top.position.set(0, 1.42, -0.05); top.rotation.x = 0.12; g.add(top);
+  for (const x of [-0.8, 0.8]) for (const z of [-0.65, 0.55]) { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.05, 10), lid); w.rotation.z = Math.PI / 2; w.position.set(x, 0.08, z); g.add(w); }
+  return g;
+}
+function securityCamera() { // generic white bullet on a wall arm (model not on record)
+  const g = new THREE.Group(), white = shared("camWhite", () => std("#f2f2ef", { roughness: 0.35, metalness: 0.1 })), dark = shared("camDark", () => std("#1d1f20", { roughness: 0.2, metalness: 0.4 }));
+  g.add(boxAt(-0.05, 0.05, -0.12, 0.08, -0.05, 0.05, white));
+  const body = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 0.32, 14), white)); body.rotation.z = Math.PI / 2; body.position.set(0.2, -0.14, 0); g.add(body);
+  const lens = new THREE.Mesh(new THREE.CircleGeometry(0.055, 14), dark); lens.rotation.y = Math.PI / 2; lens.position.set(0.365, -0.14, 0); g.add(lens);
+  const hood = cast(new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.02, 0.18), white)); hood.position.set(0.22, -0.06, 0); g.add(hood);
+  return g;
 }
 
 /* ---------- the scene ---------- */
-export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, onReady = () => {} }) {
+export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", onReady = () => {} }) {
+  const W0 = p => planToWorld(p);
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -245,12 +250,12 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   const bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), 0.5, 0.35, 0.92); composer.addPass(bloom);
   composer.addPass(new OutputPass());
 
-  const night = { glass: [], lenses: [], lights: [], soffit: [], signs: [] };
+  const night = { glass: [], lenses: [], lights: [], soffit: [], signs: [], pylon: [] };
   const matrix = siteData.registration.matrix3x2;
   let frame = 0, disposed = false;
 
   /* ---- ground ---- */
-  const tex = { concrete: concreteTex("#d9d7d0", "rgba(120,118,110,0.35)", 15), walk: concreteTex("#dedbd2", "rgba(120,115,105,0.5)", 5), grass: grassTex(), road: concreteTex("#a9aaa6", "rgba(80,80,78,0.4)", 20), shingle: shingleTex(), membrane: membraneTex() };
+  const tex = { concrete: concreteTex("#d9d7d0", "rgba(120,118,110,0.35)", 15), walk: concreteTex("#dedbd2", "rgba(120,115,105,0.5)", 5), grass: grassTex(), road: concreteTex("#a9aaa6", "rgba(80,80,78,0.4)", 20), shingle: shingleTex(), membrane: membraneTex(), brick: brickTex() };
   const ground = new THREE.Group(); ground.name = "ground"; scene.add(ground);
   ground.add(flatPoly([[-600, -500], [600, -500], [600, 500], [-600, 500]], -0.05, std("#c3c8b0", { roughness: 1 })));
   const LIFT = { service: 0, "off-parcel": 0.004, roads: 0.006, parking: 0.012, sidewalk: 0.15, landscape: 0.15 };
@@ -315,40 +320,80 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     // Parapet cap + roof membrane inset.
     const t = 0.22;
     bld.add(boxAt(x0, x1, h, h + 0.5, z0, z0 + t, capMat), boxAt(x0, x1, h, h + 0.5, z1 - t, z1, capMat), boxAt(x0, x0 + t, h, h + 0.5, z0, z1, capMat), boxAt(x1 - t, x1, h, h + 0.5, z0, z1, capMat));
-    // Rooftop unit: register lists one per suite.
-    const rtu = rooftopUnit(s.frontageFt > 45 ? 1.4 : 1); rtu.position.set((x0 + x1) / 2 + (s.building === "short" ? -2 : 0), h, (z0 + z1) / 2 + (s.building === "long" ? -3 : 0));
-    if (s.building === "short") rtu.rotation.y = Math.PI / 2; bld.add(rtu);
-    // Rear service door + electrical panel + lighting time clock (records: per suite; positions approximate).
+    // Electrical panel + lighting time clock on the rear wall (records: one per suite; position approximate).
     const grey = shared("svc", () => std("#8d918c", { roughness: 0.5, metalness: 0.4 }));
     if (s.building === "long") {
       const cx = (x0 + x1) / 2;
-      bld.add(boxAt(cx - 0.5, cx + 0.5, 0, 2.15, z0 - 0.06, z0, shared("rearDoor", () => std("#7c7466"))));
       bld.add(boxAt(cx + 1, cx + 1.6, 1.2, 2.0, z0 - 0.18, z0, grey), boxAt(cx + 1.8, cx + 2.05, 1.4, 1.75, z0 - 0.1, z0, grey));
     } else if (s.unit !== "135A") {
       const cz = (z0 + z1) / 2;
-      bld.add(boxAt(x1, x1 + 0.06, 0, 2.15, cz - 0.5, cz + 0.5, shared("rearDoor", () => std("#7c7466"))));
       bld.add(boxAt(x1, x1 + 0.18, 1.2, 2.0, cz + 1, cz + 1.6, grey), boxAt(x1, x1 + 0.1, 1.4, 1.75, cz + 1.8, cz + 2.05, grey));
     }
-    // Storefront glazing on the walkway face.
-    if (s.unit === "135B") continue;
-    const gm = glassMat();
-    const span = s.frontageFt * FT, inset = 0.45, top = EAVE - 0.55;
-    if (s.building === "long") {
-      const zf = z1 + 0.04;
-      bld.add(boxAt(x0 + inset, x1 - inset, 0.16, 0.6, zf - 0.02, zf + 0.04, kick));
-      const g = boxAt(x0 + inset, x1 - inset, 0.6, top, zf - 0.02, zf, gm); g.castShadow = false; bld.add(g);
-      bld.add(boxAt(x0 + inset, x1 - inset, top, top + 0.08, zf, zf + 0.06, mullion));
-      const n = Math.max(2, Math.round((span - 2 * inset) / 1.6));
-      for (let i = 0; i <= n; i++) { const x = x0 + inset + (span - 2 * inset) * i / n; bld.add(boxAt(x - 0.035, x + 0.035, 0.6, top, zf, zf + 0.06, mullion)); }
-      bld.add(boxAt(x0 + inset, x1 - inset, 2.35, 2.42, zf, zf + 0.06, mullion));
+    // Painted-brick storefront wall (the storefront photos), courses scaled to the face.
+    const front = s.building === "long" ? 4 : 1, faceW = s.building === "long" ? x1 - x0 : z1 - z0;
+    const bt = tex.brick.clone(); bt.needsUpdate = true; bt.repeat.set(faceW / 1.2, h / 0.6);
+    const mats = body.material.slice(); mats[front] = std("#ffffff", { map: bt, roughness: 0.9 }); body.material = mats;
+  }
+  // Storefront doors and windows: the Floorplanner twin's openings (facade-openings.json), plan-true.
+  const faceFrames = {
+    "long-front": { n: [0, 1], at: W0([0, LONG.frontY])[1], axis: "x" },
+    "long-rear": { n: [0, -1], at: W0([0, LONG.rearY])[1], axis: "x" },
+    "long-west": { n: [-1, 0], at: W0([LONG.x0, 0])[0], axis: "z" },
+    "short-front": { n: [-1, 0], at: W0([SHORT.faceX, 0])[0], axis: "z" },
+    "short-rear": { n: [1, 0], at: W0([SHORT.faceX + geometry.demising.shortBuilding.depthFt * KX, 0])[0], axis: "z" },
+    "short-south": { n: [0, 1], at: W0([0, SHORT.y0 + geometry.demising.shortBuilding.lengthFt * KY])[1], axis: "x" }
+  };
+  const shopGlass = glassMat(), frameMat = shared("shopFrame", () => std("#3b3530", { roughness: 0.4, metalness: 0.6 }));
+  const steelDoor = shared("rearDoor", () => std("#7c7466", { roughness: 0.6, metalness: 0.3 }));
+  const sillMat = shared("sill", () => std("#e7dfcf", { roughness: 0.7 }));
+  function opening(o) {
+    const F = faceFrames[o.face]; if (!F) return;
+    const a = F.axis === "x" ? W0([o.along, 0])[0] : W0([0, o.along])[1];
+    const g = new THREE.Group();
+    g.position.set(F.axis === "x" ? a : F.at, 0, F.axis === "x" ? F.at : a);
+    g.rotation.y = F.n[1] === 1 ? 0 : F.n[1] === -1 ? Math.PI : F.n[0] === -1 ? -Math.PI / 2 : Math.PI / 2;
+    const w = o.widthFt * FT, h = o.heightFt * FT, sill = o.type === "door" ? 0.16 : Math.max(0.5, o.sillFt * FT), fr = 0.06;
+    const service = o.face === "long-rear" || o.face === "short-rear";
+    if (service) { g.add(boxAt(-w / 2, w / 2, 0.02, Math.max(2.1, h), 0, 0.05, steelDoor)); bld.add(g); return; }
+    const glass = boxAt(-w / 2 + fr, w / 2 - fr, sill + fr, sill + h - fr, 0.005, 0.02, shopGlass); glass.castShadow = false; g.add(glass);
+    g.add(boxAt(-w / 2, w / 2, sill + h - fr, sill + h, 0, 0.07, frameMat), boxAt(-w / 2, -w / 2 + fr, sill, sill + h, 0, 0.07, frameMat), boxAt(w / 2 - fr, w / 2, sill, sill + h, 0, 0.07, frameMat));
+    if (o.type === "door") {
+      g.add(boxAt(-w / 2, w / 2, sill, sill + 0.12, 0, 0.07, frameMat));                    // bottom rail
+      if (w > 1.4) g.add(boxAt(-0.03, 0.03, sill, sill + h, 0, 0.07, frameMat));           // pair of leaves
+      g.add(boxAt(-w / 4 - 0.1, -w / 4 + 0.1, sill + 1.0, sill + 1.04, 0.07, 0.1, frameMat)); // push bar
     } else {
-      const xf = x0 - 0.04;
-      bld.add(boxAt(xf - 0.04, xf + 0.02, 0.16, 0.6, z0 + inset, z1 - inset, kick));
-      const g = boxAt(xf, xf + 0.02, 0.6, top, z0 + inset, z1 - inset, gm); g.castShadow = false; bld.add(g);
-      bld.add(boxAt(xf - 0.06, xf, top, top + 0.08, z0 + inset, z1 - inset, mullion));
-      const n = Math.max(2, Math.round((span - 2 * inset) / 1.6));
-      for (let i = 0; i <= n; i++) { const z = z0 + inset + (span - 2 * inset) * i / n; bld.add(boxAt(xf - 0.06, xf, 0.6, top, z - 0.035, z + 0.035, mullion)); }
-      bld.add(boxAt(xf - 0.06, xf, 2.35, 2.42, z0 + inset, z1 - inset, mullion));
+      g.add(boxAt(-w / 2 - 0.05, w / 2 + 0.05, sill - 0.06, sill, 0, 0.12, sillMat));       // sill
+      g.add(boxAt(-w / 2, w / 2, sill, sill + fr, 0, 0.07, frameMat));
+      const n = Math.max(1, Math.round(w / 0.9));                                             // divided lites
+      for (let i = 1; i < n; i++) { const x = -w / 2 + w * i / n; g.add(boxAt(x - 0.02, x + 0.02, sill, sill + h, 0, 0.05, frameMat)); }
+    }
+    bld.add(g);
+  }
+  for (const o of facadeOpenings?.openings ?? []) opening(o);
+  // Suites the Floorplanner export leaves without a storefront opening keep a plain glazed front.
+  for (const s of suites) {
+    if (s.unit === "135B") continue;
+    const xs = s.corners.map(c => c[0]), zs = s.corners.map(c => c[1]);
+    const [x0, x1, z0, z1] = [Math.min(...xs), Math.max(...xs), Math.min(...zs), Math.max(...zs)];
+    const face = s.building === "long" ? "long-front" : "short-front";
+    const has = (facadeOpenings?.openings ?? []).some(o => o.face === face && (s.building === "long"
+      ? (a => a >= x0 && a <= x1)(W0([o.along, 0])[0]) : (a => a >= z0 && a <= z1)(W0([0, o.along])[1])));
+    if (has) continue;
+    const top = EAVE - 0.55, inset = 0.45;
+    if (s.building === "long") { const g = boxAt(x0 + inset, x1 - inset, 0.6, top, z1 + 0.02, z1 + 0.04, shopGlass); g.castShadow = false; bld.add(g); }
+    else { const g = boxAt(x0 - 0.04, x0 - 0.02, 0.6, top, z0 + inset, z1 - inset, shopGlass); g.castShadow = false; bld.add(g); }
+  }
+  // Rooftop HVAC at the positions the satellite base shows (roof-equipment.json).
+  for (const it of roofEquipment?.items ?? []) {
+    const su = suites.find(s => s.unit === it.unit); if (!su) continue;
+    const [x, z] = planToWorld(it.point), h = su.heightFt * FT;
+    if (it.kind === "rtu") {
+      const u = rooftopUnit(1); const [wf, df] = it.sizeFt;
+      u.scale.set(Math.min(Math.max(wf * FT / 2.6, 0.7), 1.9), 1, Math.min(Math.max(df * FT / 1.6, 0.7), 1.9));
+      u.position.set(x, h, z); bld.add(u);
+    } else {
+      const f = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.38, 0.5, 14), shared("fanHood", () => std("#c9cbc6", { roughness: 0.4, metalness: 0.5 }))));
+      f.position.set(x, h + 0.25, z); bld.add(f);
     }
   }
   // Fire-rated walls: parapets proud of the roof (register `firewall`).
@@ -369,6 +414,18 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     const [x, z] = planToWorld(c.point), w = 2 * FT;
     bld.add(boxAt(x - w / 2, x + w / 2, 0.16, EAVE, z - w / 2, z + w / 2, colMat));
     bld.add(boxAt(x - w / 2 - 0.06, x + w / 2 + 0.06, 0.16, 0.45, z - w / 2 - 0.06, z + w / 2 + 0.06, kick));
+    // Column-mounted fixture on the parking-lot face (operator 2026-10-01); the two corner columns
+    // carry a second one on their open end (operator 2026-10-02: one facing Johnston, one facing Arnould).
+    const outs = [c.point[0] < LONG.x0 || c.point[0] > 1128 ? [-1, 0] : [0, 1]];
+    if ((lighting?.cornerColumns ?? []).some(k => k.column === c.id)) outs.push([0, 1]);
+    for (const out of outs) {
+      const fx = x + out[0] * (w / 2 + 0.22), fz = z + out[1] * (w / 2 + 0.22), fy = 2.75;
+      const iron = shared("fixtureIron", () => std("#24282a", { roughness: 0.45, metalness: 0.6 }));
+      bld.add(boxAt(x + out[0] * w / 2 - 0.03 + out[0] * 0.11, x + out[0] * w / 2 + 0.03 + out[0] * 0.11, fy + 0.18, fy + 0.24, z + out[1] * w / 2 - 0.03 + out[1] * 0.11, z + out[1] * w / 2 + 0.03 + out[1] * 0.11, iron));
+      const shade = cast(new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.16, 16, 1, true), iron)); shade.position.set(fx, fy + 0.1, fz); bld.add(shade);
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 8), shared("fixtureLens", () => { const m = std("#f1f3f6", { emissive: "#eef3ff", emissiveIntensity: 0 }); night.lenses.push(m); return m; }));
+      bulb.position.set(fx, fy + 0.02, fz); bld.add(bulb);
+    }
   }
   // Runs: outer (column-line) edge, inward direction, depth to the wall face, optional hip at either end.
   const W = p => planToWorld(p);
@@ -397,7 +454,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       const s = flatPoly([a, b, [b[0] + inward[0] * depth, b[1] + inward[1] * depth], [a[0] + inward[0] * depth, a[1] + inward[1] * depth]], EAVE, soffitMat);
       s.castShadow = true; bld.add(s);
       // Recessed downlights (lit at dusk).
-      const n = Math.floor(len / 4.6), lamp = shared("downlight", () => { const mm = std("#fff7e6", { emissive: "#ffd9a0", emissiveIntensity: 0 }); night.soffit.push(mm); return mm; });
+      const n = Math.floor(len / 4.6), lamp = shared("downlight", () => { const mm = std("#f4f6fb", { emissive: "#eaf0ff", emissiveIntensity: 0 }); night.soffit.push(mm); return mm; });
       for (let i = 0; i < n; i++) {
         const t = (i + 0.5) / n, p = [a[0] + dir[0] * t + inward[0] * depth / 2, a[1] + dir[1] * t + inward[1] * depth / 2];
         const d = new THREE.Mesh(new THREE.CircleGeometry(0.16, 12), lamp); d.rotation.x = Math.PI / 2; d.position.set(p[0], EAVE - 0.01, p[1]); bld.add(d);
@@ -441,10 +498,30 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       while (c.measureText(text).width > cw * 0.96 && fs > 30) { fs -= 4; c.font = `800 ${fs}px "Big Shoulders Display", "Public Sans", Arial, sans-serif`; }
       c.textAlign = "center"; c.textBaseline = "middle"; if (stroke) { c.lineWidth = 8; c.strokeStyle = stroke; c.strokeText(text, cw / 2, ch / 2); } c.fillStyle = fill; c.fillText(text, cw / 2, ch / 2);
     });
-    const t = letters("#2c2620", "rgba(250,246,236,0.9)");
-    const mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.08, roughness: 0.5, emissive: "#fff2d8", emissiveMap: letters("#ffffff"), emissiveIntensity: 0 });
+    const logoUnit = sg.suites.find(u => logoUnits.includes(String(u)));
+    let mat, plane;
+    let ym = (EAVE + FASCIA) / 2;
+    if (logoUnit) {
+      ym = EAVE + 0.06 + 1.25 / 2;
+      // Tenant's own logo (G:\My Drive\00 OTB\…\Tenant Logo, vendored in tools/brand-assets/tenant-logos).
+      mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.05, roughness: 0.55, emissive: "#ffffff", emissiveIntensity: 0, visible: false });
+      plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat);
+      const maxW = Math.min(len * 0.8, 7.5), maxH = 1.25; // may rise slightly past the fascia, like a sign cabinet
+      const backer = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), shared("logoBacker", () => std("#fbf9f4", { roughness: 0.6, transparent: true, opacity: 0.92 })));
+      backer.visible = false; backer.renderOrder = 1; plane.renderOrder = 2; plane.add(backer); backer.position.z = -0.01;
+      new THREE.TextureLoader().load(logoBase + encodeURIComponent(logoUnit) + ".webp", tx => {
+        tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8;
+        const a = tx.image.width / tx.image.height, sw = Math.min(maxW, maxH * a), sh = sw / a;
+        mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; plane.scale.set(sw, sh, 1);
+        backer.scale.set(1 + 0.24 / sw, 1 + 0.16 / sh, 1); backer.visible = true; invalidate();
+      });
+      plane.userData.logo = logoUnit;
+    } else {
+      const t = letters("#2c2620", "rgba(250,246,236,0.9)");
+      mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.08, roughness: 0.5, emissive: "#fff2d8", emissiveMap: letters("#ffffff"), emissiveIntensity: 0 });
+      plane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    }
     night.signs.push(mat);
-    const plane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat), ym = (EAVE + FASCIA) / 2;
     if (sg.building === "long") {
       const xs = ss.flatMap(s => s.corners.map(c => c[0])), cx = (Math.min(...xs) + Math.max(...xs)) / 2;
       plane.position.set(cx, ym, lo + 0.14);
@@ -457,7 +534,11 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // 149 Arnould-face sign (the anchor reads from Arnould too).
   {
     const anchor = storefrontSigns(suites, units).find(s => s.suites.includes("149"));
-    if (anchor) {
+    if (anchor && logoUnits.includes("149")) {
+      const mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.05, emissive: "#ffffff", emissiveIntensity: 0, visible: false }); night.signs.push(mat);
+      const p = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); p.position.set((sf + sRight) / 2, (EAVE + gableEave) / 2, sEnd + 2.52); bld.add(p);
+      new THREE.TextureLoader().load(logoBase + "149.webp", tx => { tx.colorSpace = THREE.SRGBColorSpace; const a = tx.image.width / tx.image.height, h = 1.2; mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; p.scale.set(Math.min(6, h * a), Math.min(6, h * a) / a, 1); invalidate(); });
+    } else if (anchor) {
       const t = canvasTex(1024, 160, (c, cw, ch) => { c.font = '800 110px "Big Shoulders Display", Arial, sans-serif'; c.textAlign = "center"; c.textBaseline = "middle"; c.lineWidth = 10; c.strokeStyle = "rgba(40,36,30,0.85)"; c.strokeText(anchor.text.toUpperCase(), cw / 2, ch / 2); c.fillStyle = "#c8312b"; c.fillText(anchor.text.toUpperCase(), cw / 2, ch / 2); });
       const mat = new THREE.MeshStandardMaterial({ map: t, transparent: true, alphaTest: 0.08, emissive: "#ffffff", emissiveMap: t, emissiveIntensity: 0 }); night.signs.push(mat);
       const p = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 0.86), mat); p.position.set((sf + sRight) / 2, (EAVE + gableEave) / 2, sEnd + 2.52); bld.add(p);
@@ -492,8 +573,8 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       case "meter-cluster": { const g = new THREE.Group(); const n = Math.min(i.count || 4, 8); for (let k = 0; k < n; k++) { const m = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.12, 12), shared("meterBox", () => std("#2f3a33")))); m.position.set((k - n / 2) * 0.32, 0.06, 0); g.add(m); } at(g, i.point); break; }
       case "shutoff": case "lus-point": { const m = new THREE.Mesh(new THREE.CylinderGeometry(i.cat === "shutoff" ? 0.18 : 0.26, i.cat === "shutoff" ? 0.18 : 0.26, 0.03, 14), shared(i.cat, () => std(i.cat === "shutoff" ? "#3b3e3a" : "#4a5a6a", { roughness: 0.6, metalness: 0.4 }))); m.receiveShadow = true; at(m, i.point, y + 0.015); break; }
       case "pole": { const g = new THREE.Group(); const p = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.17, 11, 8), shared("woodPole", () => std("#6b5843")))); p.position.y = 5.5; g.add(p); g.add(boxAt(-1.1, 1.1, 10.2, 10.35, -0.07, 0.07, shared("woodPole", () => std("#6b5843")))); const can = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.8, 10), shared("xfmrCan", () => std("#9ea19b", { metalness: 0.4 })))); can.position.set(0.3, 9.2, 0); g.add(can); at(g, i.point); break; }
-      case "lighting": { if (!i.point) break; const p = at(twinHeadPole(), i.point); night.lenses.push(p.userData.lens); break; }
-      case "sign": { if (i.id !== "sign-pylon" || !pylonData) break; const p = at(pylon(pylonData.panels, units), i.point); night.signs.push(p.userData.face); break; }
+      case "lighting": { if (!i.point || (lighting?.suppressRegister ?? []).includes(i.id) || (lighting?.doublePoles ?? []).some(p => p.register === i.id)) break; const p = at(twinHeadPole(), i.point); night.lenses.push(p.userData.lens); break; }
+      case "sign": { if (i.id !== "sign-pylon") break; const p = at(pylonFromFace(pylonBase, invalidate), i.point); night.pylon.push(p.userData.face); break; }
       case "fence": {
         if (i.line) { const wood = shared("fence", () => std("#8a6a48", { roughness: 0.9 })); for (let k = 1; k < i.line.length; k++) { const a = planToWorld(i.line[k - 1]), b = planToWorld(i.line[k]); const len = Math.hypot(b[0] - a[0], b[1] - a[1]); const f = cast(new THREE.Mesh(new THREE.BoxGeometry(len, 1.83, 0.08), wood)); f.position.set((a[0] + b[0]) / 2, 0.915, (a[1] + b[1]) / 2); f.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); dressing.add(f); } }
         if (i.polys) for (const poly of i.polys) dressing.add(slabPoly(poly.map(planToWorld), 0, 3, shared("freezer", () => std("#e9ebe7", { roughness: 0.4, metalness: 0.3 }))));
@@ -505,14 +586,15 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // Island planting: hedge edges, and twin-head poles (illustrative placement).
   const shrub = shared("shrub", () => std("#3f6b34", { roughness: 1, flatShading: true }));
   const shrubGeo = new THREE.IcosahedronGeometry(0.55, 0), shrubs = [];
-  const poleAt = (x, z) => { const pole = twinHeadPole(); pole.position.set(x, 0.15, z); dressing.add(pole); night.lenses.push(pole.userData.lens); const light = new THREE.PointLight("#ffd29a", 0, 34, 2); light.position.set(x, POLE_HEIGHT + 0.3, z); scene.add(light); night.lights.push(light); };
+  const poleAt = (x, z, y = 0.15) => { const pole = twinHeadPole(); pole.position.set(x, y, z); dressing.add(pole); night.lenses.push(pole.userData.lens); const light = new THREE.PointLight("#e9efff", 0, 34, 2); light.position.set(x, POLE_HEIGHT + 0.3, z); scene.add(light); night.lights.push(light); return pole; };
+  // Double light poles: operator inventory (5 main field + 1 Lot 7), positions from the night aerial.
+  for (const p of lighting?.doublePoles ?? []) { const [x, z] = planToWorld(p.point); poleAt(x, z, 0.02).userData.lighting = p; }
   for (const z of worldZones.filter(z => z.kind === "landscape" && !/median/.test(z.id))) {
     const pts = z.world, c = polygonCentroid(pts.map(([x, z2]) => [x, 0, z2]));
     for (let k = 0; k < pts.length; k++) {
       const a = pts[k], b = pts[(k + 1) % pts.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.floor(len / 1.4);
       for (let j = 0; j < n; j++) { const t = (j + 0.5) / n, px = a[0] + (b[0] - a[0]) * t, pz = a[1] + (b[1] - a[1]) * t, v = [c[0] - px, c[1] - pz], vl = Math.hypot(...v) || 1; shrubs.push([px + v[0] / vl * 0.9, pz + v[1] / vl * 0.9, 0.7 + ((j * 7 + k) % 5) / 10]); }
     }
-    if (isParkingIsland(z)) poleAt(c[0] + 1.4, c[1]);
   }
   const inst = new THREE.InstancedMesh(shrubGeo, shrub, shrubs.length), mtx = new THREE.Matrix4();
   shrubs.forEach(([x, z, s], k) => { mtx.compose(new THREE.Vector3(x, 0.15 + 0.35 * s, z), new THREE.Quaternion().setFromEuler(new THREE.Euler(0, k, 0)), new THREE.Vector3(s, s * 0.8, s)); inst.setMatrixAt(k, mtx); });
@@ -520,6 +602,40 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // Wall packs over each rear service door (lit at dusk).
   const pack = shared("wallpack", () => { const m = std("#3a3a37", { emissive: "#ffd9a0", emissiveIntensity: 0 }); night.lenses.push(m); return m; });
   for (const s of suites.filter(s => s.building === "long")) { const cx = (s.corners[0][0] + s.corners[1][0]) / 2; bld.add(boxAt(cx - 0.18, cx + 0.18, 2.6, 2.85, lRear - 0.2, lRear, pack)); }
+  // Building-mounted lights over Lot 8 (operator 2026-10-01), on the 135A/B wall that faces the lot.
+  for (const wp of lighting?.wallPacks ?? []) {
+    const [x, z] = planToWorld(wp.point), east = wp.face === "east";
+    bld.add(east ? boxAt(x, x + 0.32, 3.9, 4.25, z - 0.25, z + 0.25, pack) : boxAt(x - 0.25, x + 0.25, 3.9, 4.25, z - 0.32, z, pack));
+    const l = new THREE.PointLight("#e9efff", 0, 18, 2); l.position.set(east ? x + 1 : x, 3.8, east ? z : z - 1); scene.add(l); night.lights.push(l);
+  }
+  // 135A / 135B double doors with standing-seam metal awnings on the Lot 8 wall (operator 2026-10-02).
+  for (const dd of lighting?.lot8Doors ?? []) {
+    const [x, z] = planToWorld(dd.point);
+    bld.add(boxAt(x - 0.95, x + 0.95, 0, 2.25, z - 0.06, z, steelDoor), boxAt(x - 0.02, x + 0.02, 0, 2.25, z - 0.08, z - 0.06, frameMat));
+    const seam = shared("awning", () => std("#c7cbcc", { roughness: 0.45, metalness: 0.55 }));
+    const aw = cast(new THREE.Mesh(new THREE.BoxGeometry(2.7, 0.05, 1.15), seam)); aw.position.set(x, 2.75, z - 0.55); aw.rotation.x = -0.32; bld.add(aw);
+    for (let i = -6; i <= 6; i++) { const rib = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.03, 1.15), seam); rib.position.set(x + i * 0.2, 2.79, z - 0.55); rib.rotation.x = -0.32; bld.add(rib); }
+  }
+
+  // Rear / side service items (site-service-items.json: rear drone photo + satellite).
+  for (const it of serviceItems?.items ?? []) {
+    const [x, z] = planToWorld(it.point);
+    let o;
+    if (it.kind === "dumpster") o = dumpster(it.color);
+    else if (it.kind === "carts") { o = new THREE.Group(); for (const dx of [-0.4, 0.4]) { const c = boxAt(dx - 0.33, dx + 0.33, 0.05, 1.05, -0.36, 0.36, shared("cart-" + it.color, () => std(it.color === "green" ? "#2f6b3e" : "#2d5d9f", { roughness: 0.6 }))); o.add(c); } }
+    else if (it.kind === "grease-bin") o = boxAt(-0.5, 0.5, 0, 1.1, -0.45, 0.45, shared("grease", () => std("#6b4a2f", { roughness: 0.6, metalness: 0.3 })));
+    else o = boxAt(-0.6, 0.6, 0, 1.5, -0.35, 0.35, shared("cabinet", () => std("#4f6b52", { roughness: 0.55, metalness: 0.3 })));
+    const g = new THREE.Group(); g.add(o); g.position.set(x, 0, z); g.userData.service = it; dressing.add(g);
+  }
+  // Security cameras at their recorded mounts and aims (cameras.json; aim frame-verified 2026-07-16).
+  const walkTop = EAVE - 0.25;
+  for (const c of cameras?.cameras ?? []) {
+    const [x, z] = planToWorld([c.pos.x, c.pos.y]), cam = securityCamera();
+    const underCanopy = c.pos.y > 285 && c.pos.y < 320 || c.pos.x > 1128 && c.pos.x < 1160;
+    cam.position.set(x, underCanopy ? walkTop : 3.4, z);
+    cam.rotation.y = -THREE.MathUtils.degToRad(c.aimDeg); cam.rotation.z = -0.22; cam.userData.camera = c.id;
+    dressing.add(cam);
+  }
 
   /* ---- dimension overlay (CAD/plat feet; toggled) ---- */
   const dimGroup = new THREE.Group(); dimGroup.name = "dimensions"; scene.add(dimGroup);
@@ -554,6 +670,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     for (const m of night.lenses) m.emissiveIntensity = L.night ? 4 : 0;
     for (const m of night.soffit) m.emissiveIntensity = L.night ? 3 : 0;
     for (const m of night.signs) m.emissiveIntensity = L.night ? 0.55 : 0;
+    for (const m of night.pylon) m.emissiveIntensity = L.night ? 0.85 : 0; // dusk to dawn
     for (const l of night.lights) l.intensity = L.night ? 70 : 0;
     bloom.strength = L.bloom; bloom.enabled = L.bloom > 0;
     invalidate();

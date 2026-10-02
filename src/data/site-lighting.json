@@ -1,0 +1,153 @@
+{
+ "_readme": "Site lighting inventory, operator 2026-10-01/02. Main lot: 5 double poles — two in front of Units 105/107 (islands at plan x 385), two in the islands further down (plan x 913), and one at the front corner of Jason's by the 149 walkway — positions marked by the operator on the A-8 night render 2026-10-02. The register's 2006 corner luminaire (light-pole-corner, Arnould × Patricia) is not among the five and is not drawn (`suppressRegister`). Lot 7: one double pole on the far edge, 3/4 of the way across from the right. Lot 8: 4 building-mounted lights, 2 on each wall that faces the lot (the 135A/135B north wall and the 133 east end wall). A fixture on every walkway column; the two corner columns (101 Johnston corner, 149 Arnould corner) carry two, one per open face. Walkway downlights in one line down the center. Points are A-1 plan px and approximate to within an island / a few feet.",
+ "color": "cool-white LED (night aerial)",
+ "doublePoles": [
+  {
+   "id": "field-pole-1",
+   "lot": "main",
+   "point": [
+    385,
+    432
+   ],
+   "near": "island in front of 105/107 (north band, B3)",
+   "status": "operator-marked 2026-10-02"
+  },
+  {
+   "id": "field-pole-2",
+   "lot": "main",
+   "point": [
+    385,
+    548
+   ],
+   "near": "island in front of 105/107 (south band, A3)",
+   "status": "operator-marked 2026-10-02"
+  },
+  {
+   "id": "field-pole-3",
+   "lot": "main",
+   "point": [
+    913,
+    432
+   ],
+   "near": "narrow island, north band (B1)",
+   "status": "operator-marked 2026-10-02"
+  },
+  {
+   "id": "field-pole-4",
+   "lot": "main",
+   "point": [
+    913,
+    548
+   ],
+   "near": "narrow island, south band (A1)",
+   "status": "operator-marked 2026-10-02"
+  },
+  {
+   "id": "field-pole-5",
+   "lot": "main",
+   "point": [
+    1105,
+    612
+   ],
+   "near": "front corner of Jason's (149 walkway end)",
+   "status": "operator-marked 2026-10-02"
+  },
+  {
+   "id": "lot7-pole",
+   "lot": "lot-7",
+   "point": [
+    1221,
+    -245
+   ],
+   "near": "far edge of Lot 7, 3/4 across from the right",
+   "status": "operator-marked 2026-10-02"
+  }
+ ],
+ "wallPacks": [
+  {
+   "id": "lot8-135a",
+   "lot": "lot-8",
+   "wall": "135A/135B north wall",
+   "face": "north",
+   "point": [
+    1215,
+    219.31
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  },
+  {
+   "id": "lot8-135b",
+   "lot": "lot-8",
+   "wall": "135A/135B north wall",
+   "face": "north",
+   "point": [
+    1290,
+    219.31
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  },
+  {
+   "id": "lot8-133-1",
+   "lot": "lot-8",
+   "wall": "133 east end wall",
+   "face": "east",
+   "point": [
+    1127.8,
+    152
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  },
+  {
+   "id": "lot8-133-2",
+   "lot": "lot-8",
+   "wall": "133 east end wall",
+   "face": "east",
+   "point": [
+    1127.8,
+    198
+   ],
+   "status": "operator 2026-10-02: 2 per wall"
+  }
+ ],
+ "columnFixtures": "one fixture on the parking-lot face of every walkway column (site-register `column`)",
+ "walkwayLights": "recessed downlights in one straight line down the center of every covered walkway",
+ "cornerColumns": [
+  {
+   "column": "col-07",
+   "faces": [
+    "west",
+    "south"
+   ],
+   "note": "101 Johnston corner: one fixture facing Johnston, one facing Arnould"
+  },
+  {
+   "column": "col-39",
+   "faces": [
+    "west",
+    "south"
+   ],
+   "note": "149 corner: one facing Johnston, one facing Arnould"
+  }
+ ],
+ "lot8Doors": [
+  {
+   "suite": "135A",
+   "point": [
+    1193.6,
+    219.31
+   ],
+   "type": "double door + standing-seam metal awning"
+  },
+  {
+   "suite": "135B",
+   "point": [
+    1271.8,
+    219.31
+   ],
+   "type": "double door + standing-seam metal awning"
+  }
+ ],
+ "suppressRegister": [
+  "light-pole-corner"
+ ]
+}

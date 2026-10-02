@@ -1,0 +1,146 @@
+{
+ "_readme": "Rear and side service items, placed from the operator's 2026-10-01 rear drone photo (long-building rear strip along Marie Antoinette, photo x mapped linearly onto the 133\u2192101 rear wall) and the frozen satellite base (green dumpsters). Positions approximate to a few feet; A-1 plan px.",
+ "items": [
+  {
+   "id": "rear-dumpster-1",
+   "kind": "dumpster",
+   "color": "yellow",
+   "point": [
+    971,
+    118
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-dumpster-2",
+   "kind": "dumpster",
+   "color": "yellow",
+   "point": [
+    536,
+    118
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-dumpster-3",
+   "kind": "dumpster",
+   "color": "yellow",
+   "point": [
+    400,
+    118
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-dumpster-4",
+   "kind": "dumpster",
+   "color": "yellow",
+   "point": [
+    342,
+    118
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-dumpster-5",
+   "kind": "dumpster",
+   "color": "yellow",
+   "point": [
+    178,
+    118
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-dumpster-6",
+   "kind": "dumpster",
+   "color": "blue",
+   "point": [
+    717,
+    117
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-dumpster-7",
+   "kind": "dumpster",
+   "color": "blue",
+   "point": [
+    687,
+    117
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-carts",
+   "kind": "carts",
+   "color": "green",
+   "point": [
+    1056,
+    122
+   ],
+   "count": 2,
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-grease",
+   "kind": "grease-bin",
+   "color": "brown",
+   "point": [
+    696,
+    124
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-cabinet-1",
+   "kind": "cabinet",
+   "color": "green",
+   "point": [
+    949,
+    125
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "rear-cabinet-2",
+   "kind": "cabinet",
+   "color": "green",
+   "point": [
+    270,
+    125
+   ],
+   "source": "rear photo"
+  },
+  {
+   "id": "lot8-dumpster",
+   "kind": "dumpster",
+   "color": "green",
+   "point": [
+    1340,
+    103
+   ],
+   "source": "satellite"
+  },
+  {
+   "id": "patricia-dumpster",
+   "kind": "dumpster",
+   "color": "green",
+   "point": [
+    1336,
+    350
+   ],
+   "source": "satellite"
+  },
+  {
+   "id": "jasons-dumpster",
+   "kind": "dumpster",
+   "color": "green",
+   "point": [
+    1322,
+    622
+   ],
+   "source": "satellite"
+  }
+ ]
+}
