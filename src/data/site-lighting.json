@@ -1,5 +1,5 @@
 {
- "_readme": "Site lighting inventory, operator 2026-10-01/02. Main lot: 5 double poles — two in front of Units 105/107 (islands at plan x 385), two a few spaces down (islands at x 538), and the one near the corner by Jason's (the register's 2006 corner luminaire, site-register light-pole-corner, counted here as pole 5). Lot 7: one double pole on the far edge, 3/4 of the way across from the right. Lot 8: 4 building-mounted lights, 2 on each wall that faces the lot (the 135A/135B north wall and the 133 east end wall). A fixture on every walkway column; the two corner columns (101 Johnston corner, 149 Arnould corner) carry two, one per open face. Walkway downlights in one line down the center. Points are A-1 plan px and approximate to within an island / a few feet.",
+ "_readme": "Site lighting inventory, operator 2026-10-01/02. Main lot: 5 double poles — two in front of Units 105/107 (islands at plan x 385), two in the islands further down (plan x 913), and one at the front corner of Jason's by the 149 walkway — positions marked by the operator on the A-8 night render 2026-10-02. The register's 2006 corner luminaire (light-pole-corner, Arnould × Patricia) is not among the five and is not drawn (`suppressRegister`). Lot 7: one double pole on the far edge, 3/4 of the way across from the right. Lot 8: 4 building-mounted lights, 2 on each wall that faces the lot (the 135A/135B north wall and the 133 east end wall). A fixture on every walkway column; the two corner columns (101 Johnston corner, 149 Arnould corner) carry two, one per open face. Walkway downlights in one line down the center. Points are A-1 plan px and approximate to within an island / a few feet.",
  "color": "cool-white LED (night aerial)",
  "doublePoles": [
   {
@@ -10,7 +10,7 @@
     432
    ],
    "near": "island in front of 105/107 (north band, B3)",
-   "status": "operator 2026-10-02"
+   "status": "operator-marked 2026-10-02"
   },
   {
    "id": "field-pole-2",
@@ -20,48 +20,47 @@
     548
    ],
    "near": "island in front of 105/107 (south band, A3)",
-   "status": "operator 2026-10-02"
+   "status": "operator-marked 2026-10-02"
   },
   {
    "id": "field-pole-3",
    "lot": "main",
    "point": [
-    538,
+    913,
     432
    ],
-   "near": "island a few spaces down (B2)",
-   "status": "operator 2026-10-02"
+   "near": "narrow island, north band (B1)",
+   "status": "operator-marked 2026-10-02"
   },
   {
    "id": "field-pole-4",
    "lot": "main",
    "point": [
-    538,
+    913,
     548
    ],
-   "near": "island a few spaces down (A2)",
-   "status": "operator 2026-10-02"
+   "near": "narrow island, south band (A1)",
+   "status": "operator-marked 2026-10-02"
   },
   {
    "id": "field-pole-5",
    "lot": "main",
    "point": [
-    1340,
-    640
+    1105,
+    612
    ],
-   "near": "corner by Jason's (Arnould × Patricia)",
-   "register": "light-pole-corner",
-   "status": "operator 2026-10-02; position from the 2006 E1.02 plan"
+   "near": "front corner of Jason's (149 walkway end)",
+   "status": "operator-marked 2026-10-02"
   },
   {
    "id": "lot7-pole",
    "lot": "lot-7",
    "point": [
     1221,
-    -257
+    -245
    ],
    "near": "far edge of Lot 7, 3/4 across from the right",
-   "status": "operator 2026-10-02"
+   "status": "operator-marked 2026-10-02"
   }
  ],
  "wallPacks": [
@@ -147,5 +146,8 @@
    ],
    "type": "double door + standing-seam metal awning"
   }
+ ],
+ "suppressRegister": [
+  "light-pole-corner"
  ]
 }

@@ -29,11 +29,10 @@ test("Lot 8: 4 building lights, 2 on each wall facing the lot (135A/B north wall
   for (const w of east) { assert.ok(Math.abs(w.point[0] - 1127.8) < 1); assert.ok(w.point[1] > 131.35 && w.point[1] < 219.31); }
 });
 
-test("the corner by Jason's pole is the register's 2006 luminaire, counted once", () => {
-  const p5 = lighting.doublePoles.find(p => p.register);
-  assert.equal(p5.register, "light-pole-corner");
-  const reg = load("../src/data/site-register.json").items.find(i => i.id === "light-pole-corner");
-  assert.deepEqual(p5.point, reg.point);
+test("operator-marked field poles: 105/107 islands, the narrow islands, Jason's front corner; 2006 corner luminaire not drawn", () => {
+  const pts = lighting.doublePoles.filter(p => p.lot === "main").map(p => p.point);
+  assert.deepEqual(pts, [[385, 432], [385, 548], [913, 432], [913, 548], [1105, 612]]);
+  assert.deepEqual(lighting.suppressRegister, ["light-pole-corner"]);
 });
 
 test("Lot 7 pole sits on the far edge, 3/4 across from the right", () => {
