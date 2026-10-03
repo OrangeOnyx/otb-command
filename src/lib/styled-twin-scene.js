@@ -186,6 +186,20 @@ function pylonFromFace(base, onLoad) {
   }
   g.userData.face = mat; return g;
 }
+// Fixed steel roof-access ladder: two rails, rungs at 12", stand-off brackets, rails returning over the parapet.
+// Built facing +z (wall behind at z = 0); rotate to the wall's outward normal.
+function roofLadder(h, w) {
+  const g = new THREE.Group(), m = shared("ladder", () => std("#8e9289", { roughness: 0.5, metalness: 0.6 })), off = 0.18;
+  for (const sx of [-w / 2, w / 2]) {
+    const r = cast(new THREE.Mesh(new THREE.BoxGeometry(0.06, h + 1.05, 0.05), m)); r.position.set(sx, (h + 1.05) / 2, off); g.add(r);
+    const top = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.05, off + 0.35), m); top.position.set(sx, h + 1.05, off - (off + 0.35) / 2 + 0.03); g.add(top);
+    for (const by of [0.4, h / 2, h - 0.3]) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, off), m); b.position.set(sx, by, off / 2); g.add(b); }
+  }
+  for (let y = 0.3; y < h + 0.9; y += 0.305) { const r = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, w, 6), m); r.rotation.z = Math.PI / 2; r.position.set(0, y, off); g.add(r); }
+  const guard = new THREE.Mesh(new THREE.BoxGeometry(w + 0.08, 0.06, 0.06), m); guard.position.set(0, 2.0, off + 0.03); g.add(guard); // the bar the scan shows ~2 m up
+  return g;
+}
+
 function dumpster(color) {
   const g = new THREE.Group(), c = { yellow: "#e3b520", blue: "#2f5ea8", green: "#2f5d3c", brown: "#6b4a2f" }[color] ?? "#2f5d3c";
   const body = shared("dump-" + color, () => std(c, { roughness: 0.6, metalness: 0.35 })), lid = shared("dumpLid", () => std("#2b2c2a", { roughness: 0.7 }));
@@ -232,7 +246,8 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     storefronts: { pos: [-62, 10, 24], target: [-30, 4, -13] },
     corner: { pos: [38, 13, 72], target: [76, 4, 28] },
     pylon: { pos: [-84, 7, 30], target: [-105, 6, 3] },
-    breezeway: { pos: [36, 10, 6], target: [66, 5, -20] }
+    breezeway: { pos: [36, 10, 6], target: [66, 5, -20] },
+    rear: { pos: [116, 7, 34], target: [94, 3.5, 17] }
   };
   function shot(name) {
     const s = SHOTS[name]; if (!s) { userMoved = false; fitView(); invalidate(); return; }
@@ -621,6 +636,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   for (const it of serviceItems?.items ?? []) {
     const [x, z] = planToWorld(it.point);
     let o;
+    if (it.kind === "roof-ladder") { const l = roofLadder((it.heightFt ?? 16.4) * FT, it.railSpacingM ?? 0.5); if (it.face === "east") l.rotation.y = Math.PI / 2; l.position.set(x, 0, z); l.userData.service = it; dressing.add(l); continue; }
     if (it.kind === "dumpster") o = dumpster(it.color);
     else if (it.kind === "carts") { o = new THREE.Group(); for (const dx of [-0.4, 0.4]) { const c = boxAt(dx - 0.33, dx + 0.33, 0.05, 1.05, -0.36, 0.36, shared("cart-" + it.color, () => std(it.color === "green" ? "#2f6b3e" : "#2d5d9f", { roughness: 0.6 }))); o.add(c); } }
     else if (it.kind === "grease-bin") o = boxAt(-0.5, 0.5, 0, 1.1, -0.45, 0.45, shared("grease", () => std("#6b4a2f", { roughness: 0.6, metalness: 0.3 })));
