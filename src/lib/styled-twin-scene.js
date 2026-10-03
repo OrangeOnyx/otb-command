@@ -208,12 +208,14 @@ function dumpster(color) {
   for (const x of [-0.8, 0.8]) for (const z of [-0.65, 0.55]) { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.05, 10), lid); w.rotation.z = Math.PI / 2; w.position.set(x, 0.08, z); g.add(w); }
   return g;
 }
-function securityCamera() { // generic white bullet on a wall arm (model not on record)
-  const g = new THREE.Group(), white = shared("camWhite", () => std("#f2f2ef", { roughness: 0.35, metalness: 0.1 })), dark = shared("camDark", () => std("#1d1f20", { roughness: 0.2, metalness: 0.4 }));
-  g.add(boxAt(-0.05, 0.05, -0.12, 0.08, -0.05, 0.05, white));
-  const body = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 0.32, 14), white)); body.rotation.z = Math.PI / 2; body.position.set(0.2, -0.14, 0); g.add(body);
-  const lens = new THREE.Mesh(new THREE.CircleGeometry(0.055, 14), dark); lens.rotation.y = Math.PI / 2; lens.position.set(0.365, -0.14, 0); g.add(lens);
-  const hood = cast(new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.02, 0.18), white)); hood.position.set(0.22, -0.06, 0); g.add(hood);
+function securityCamera() { // DW MEGApix CaaS 4MP vandal dome on the DWC-VFZWM wall arm (cameras.json `hardware`)
+  const g = new THREE.Group(), white = shared("camWhite", () => std("#f2f2ef", { roughness: 0.35, metalness: 0.1 }));
+  const smoke = shared("camSmoke", () => std("#2a2d2f", { roughness: 0.08, metalness: 0.3, transparent: true, opacity: 0.82 })), dark = shared("camDark", () => std("#1d1f20", { roughness: 0.2, metalness: 0.4 }));
+  g.add(boxAt(-0.02, 0.02, -0.1, 0.1, -0.06, 0.06, white)); // wall plate
+  g.add(boxAt(0, 0.24, 0.0, 0.05, -0.035, 0.035, white));    // arm
+  const base = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 20), white)); base.position.set(0.3, -0.01, 0); g.add(base);
+  const dome = cast(new THREE.Mesh(new THREE.SphereGeometry(0.085, 20, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), smoke)); dome.position.set(0.3, -0.04, 0); g.add(dome);
+  const lens = new THREE.Mesh(new THREE.SphereGeometry(0.03, 10, 8), dark); lens.position.set(0.335, -0.08, 0); g.add(lens);
   return g;
 }
 

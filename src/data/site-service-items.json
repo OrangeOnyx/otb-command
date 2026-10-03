@@ -153,7 +153,7 @@
    "heightFt": 16.4,
    "railSpacingM": 0.66,
    "source": "Polycam rear-wall scan 2026-10-01 (registered by door numbers + LiDAR roof edge; tools/polycam-seeds.json). Twin rails ground-to-eave 46.0 m from the 135B corner = 145 rear face, ~1 m in from the 149 line (docs/evidence/rear-wall-135b-149-polycam-2026-10-01.jpg, ortho x 1728-1795).",
-   "status": "scan-read 2026-10-03; operator to confirm"
+   "status": "scan-read, operator-confirmed 2026-10-03"
   }
  ]
 }
