@@ -1,5 +1,10 @@
 {
  "source": "DW Spectrum cloud roster (system 'Belle Reality', read 2026-07-15) + 2021 install-map plat (Camera Options for Belle.pdf p.1). NVR: Digital Watchdog Blackjack Cube (DW-BJCUBE), DW Spectrum IPVMS, ONVIF/RTSP, LAN 10.10.10.0/24, server 192.168.1.9.",
+ "hardware": {
+  "camera": "Digital Watchdog MEGApix CaaS 4MP vandal dome (DWC-MV84WiAC series, 2.8-12 mm, 87-32 deg FoV, IR 100 ft) on the DWC-VFZWM wall-mount arm",
+  "nvr": "Digital Watchdog Blackjack Cube (DW-BJCUBE)",
+  "source": "sources/vendor-contract/35ba7ed4__Camera Options for Belle.pdf (2021 proposal; its DW package matches the installed DW Spectrum / Blackjack Cube system)"
+ },
  "systemId": "97bad7e3-923e-433b-b6ee-4caffcc1f7b7",
  "cloudBase": "https://dwspectrum.digital-watchdog.com",
  "posNote": "pos = A-1 plan px (viewBox 0 0 1480 990). aimDeg: 0=+x (true north / Patricia), 90=+y (Arnould), 180=-x (Johnston), 270=-y (Marie Antoinette). Aims FRAME-VERIFIED 2026-07-16 against labeled Cube stills (capture/2026-07-16, cube-frames.mjs); pin x/y still approximate mounts — fine-tune via ✎ Adjust on an operator walk.",

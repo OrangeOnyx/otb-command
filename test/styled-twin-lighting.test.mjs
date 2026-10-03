@@ -68,6 +68,13 @@ test("service items stay off the buildings", () => {
     assert.ok(!units.some(u => it.point[0] > u.x + 1 && it.point[0] < u.x + u.w - 1 && it.point[1] > u.y + 1 && it.point[1] < u.y + u.h - 1), it.id);
 });
 
+test("the rear roof ladder sits on the short building's Patricia face, in 145 by the 149 line (10/1 scan)", () => {
+  const l = load("../src/data/site-service-items.json").items.find(i => i.kind === "roof-ladder");
+  const u = load("../src/data/geometry.json").units["145"];
+  assert.equal(l.point[0], u.x + u.w);
+  assert.ok(l.point[1] > u.y && l.point[1] < u.y + u.h && u.y + u.h - l.point[1] < 6);
+});
+
 test("pylon face and glow map are built from the approved master", () => {
   for (const f of ["otb-pylon-face.webp", "otb-pylon-glow.webp"]) assert.ok(existsSync(new URL(`../public/pylon/${f}`, import.meta.url)), f);
 });

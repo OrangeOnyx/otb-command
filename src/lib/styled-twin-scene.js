@@ -186,6 +186,20 @@ function pylonFromFace(base, onLoad) {
   }
   g.userData.face = mat; return g;
 }
+// Fixed steel roof-access ladder: two rails, rungs at 12", stand-off brackets, rails returning over the parapet.
+// Built facing +z (wall behind at z = 0); rotate to the wall's outward normal.
+function roofLadder(h, w) {
+  const g = new THREE.Group(), m = shared("ladder", () => std("#8e9289", { roughness: 0.5, metalness: 0.6 })), off = 0.18;
+  for (const sx of [-w / 2, w / 2]) {
+    const r = cast(new THREE.Mesh(new THREE.BoxGeometry(0.06, h + 1.05, 0.05), m)); r.position.set(sx, (h + 1.05) / 2, off); g.add(r);
+    const top = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.05, off + 0.35), m); top.position.set(sx, h + 1.05, off - (off + 0.35) / 2 + 0.03); g.add(top);
+    for (const by of [0.4, h / 2, h - 0.3]) { const b = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, off), m); b.position.set(sx, by, off / 2); g.add(b); }
+  }
+  for (let y = 0.3; y < h + 0.9; y += 0.305) { const r = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, w, 6), m); r.rotation.z = Math.PI / 2; r.position.set(0, y, off); g.add(r); }
+  const guard = new THREE.Mesh(new THREE.BoxGeometry(w + 0.08, 0.06, 0.06), m); guard.position.set(0, 2.0, off + 0.03); g.add(guard); // the bar the scan shows ~2 m up
+  return g;
+}
+
 function dumpster(color) {
   const g = new THREE.Group(), c = { yellow: "#e3b520", blue: "#2f5ea8", green: "#2f5d3c", brown: "#6b4a2f" }[color] ?? "#2f5d3c";
   const body = shared("dump-" + color, () => std(c, { roughness: 0.6, metalness: 0.35 })), lid = shared("dumpLid", () => std("#2b2c2a", { roughness: 0.7 }));
@@ -194,12 +208,14 @@ function dumpster(color) {
   for (const x of [-0.8, 0.8]) for (const z of [-0.65, 0.55]) { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.05, 10), lid); w.rotation.z = Math.PI / 2; w.position.set(x, 0.08, z); g.add(w); }
   return g;
 }
-function securityCamera() { // generic white bullet on a wall arm (model not on record)
-  const g = new THREE.Group(), white = shared("camWhite", () => std("#f2f2ef", { roughness: 0.35, metalness: 0.1 })), dark = shared("camDark", () => std("#1d1f20", { roughness: 0.2, metalness: 0.4 }));
-  g.add(boxAt(-0.05, 0.05, -0.12, 0.08, -0.05, 0.05, white));
-  const body = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.08, 0.32, 14), white)); body.rotation.z = Math.PI / 2; body.position.set(0.2, -0.14, 0); g.add(body);
-  const lens = new THREE.Mesh(new THREE.CircleGeometry(0.055, 14), dark); lens.rotation.y = Math.PI / 2; lens.position.set(0.365, -0.14, 0); g.add(lens);
-  const hood = cast(new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.02, 0.18), white)); hood.position.set(0.22, -0.06, 0); g.add(hood);
+function securityCamera() { // DW MEGApix CaaS 4MP vandal dome on the DWC-VFZWM wall arm (cameras.json `hardware`)
+  const g = new THREE.Group(), white = shared("camWhite", () => std("#f2f2ef", { roughness: 0.35, metalness: 0.1 }));
+  const smoke = shared("camSmoke", () => std("#2a2d2f", { roughness: 0.08, metalness: 0.3, transparent: true, opacity: 0.82 })), dark = shared("camDark", () => std("#1d1f20", { roughness: 0.2, metalness: 0.4 }));
+  g.add(boxAt(-0.02, 0.02, -0.1, 0.1, -0.06, 0.06, white)); // wall plate
+  g.add(boxAt(0, 0.24, 0.0, 0.05, -0.035, 0.035, white));    // arm
+  const base = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 20), white)); base.position.set(0.3, -0.01, 0); g.add(base);
+  const dome = cast(new THREE.Mesh(new THREE.SphereGeometry(0.085, 20, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), smoke)); dome.position.set(0.3, -0.04, 0); g.add(dome);
+  const lens = new THREE.Mesh(new THREE.SphereGeometry(0.03, 10, 8), dark); lens.position.set(0.335, -0.08, 0); g.add(lens);
   return g;
 }
 
@@ -232,7 +248,8 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     storefronts: { pos: [-62, 10, 24], target: [-30, 4, -13] },
     corner: { pos: [38, 13, 72], target: [76, 4, 28] },
     pylon: { pos: [-84, 7, 30], target: [-105, 6, 3] },
-    breezeway: { pos: [36, 10, 6], target: [66, 5, -20] }
+    breezeway: { pos: [36, 10, 6], target: [66, 5, -20] },
+    rear: { pos: [116, 7, 34], target: [94, 3.5, 17] }
   };
   function shot(name) {
     const s = SHOTS[name]; if (!s) { userMoved = false; fitView(); invalidate(); return; }
@@ -621,6 +638,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   for (const it of serviceItems?.items ?? []) {
     const [x, z] = planToWorld(it.point);
     let o;
+    if (it.kind === "roof-ladder") { const l = roofLadder((it.heightFt ?? 16.4) * FT, it.railSpacingM ?? 0.5); if (it.face === "east") l.rotation.y = Math.PI / 2; l.position.set(x, 0, z); l.userData.service = it; dressing.add(l); continue; }
     if (it.kind === "dumpster") o = dumpster(it.color);
     else if (it.kind === "carts") { o = new THREE.Group(); for (const dx of [-0.4, 0.4]) { const c = boxAt(dx - 0.33, dx + 0.33, 0.05, 1.05, -0.36, 0.36, shared("cart-" + it.color, () => std(it.color === "green" ? "#2f6b3e" : "#2d5d9f", { roughness: 0.6 }))); o.add(c); } }
     else if (it.kind === "grease-bin") o = boxAt(-0.5, 0.5, 0, 1.1, -0.45, 0.45, shared("grease", () => std("#6b4a2f", { roughness: 0.6, metalness: 0.3 })));

@@ -1,5 +1,5 @@
 {
- "_readme": "Rear and side service items, placed from the operator's 2026-10-01 rear drone photo (long-building rear strip along Marie Antoinette, photo x mapped linearly onto the 133\u2192101 rear wall) and the frozen satellite base (green dumpsters). Positions approximate to a few feet; A-1 plan px.",
+ "_readme": "Rear and side service items, placed from the operator's 2026-10-01 rear drone photo (long-building rear strip along Marie Antoinette, photo x mapped linearly onto the 133→101 rear wall) and the frozen satellite base (green dumpsters). Positions approximate to a few feet; A-1 plan px.",
  "items": [
   {
    "id": "rear-dumpster-1",
@@ -141,6 +141,19 @@
     622
    ],
    "source": "satellite"
+  },
+  {
+   "id": "ladder-145-rear",
+   "kind": "roof-ladder",
+   "face": "east",
+   "point": [
+    1310.94,
+    504.05
+   ],
+   "heightFt": 16.4,
+   "railSpacingM": 0.66,
+   "source": "Polycam rear-wall scan 2026-10-01 (registered by door numbers + LiDAR roof edge; tools/polycam-seeds.json). Twin rails ground-to-eave 46.0 m from the 135B corner = 145 rear face, ~1 m in from the 149 line (docs/evidence/rear-wall-135b-149-polycam-2026-10-01.jpg, ortho x 1728-1795).",
+   "status": "scan-read, operator-confirmed 2026-10-03"
   }
  ]
 }
