@@ -6,8 +6,8 @@
   "location": {
     "repository_path": "cad/Boulev_CLEAN.dxf"
   },
-  "revision": "worktree-sha256:6c31f953ee5328ce",
-  "sha256": "6c31f953ee5328ce15e0fd9e7bf1bdf6264b18f15ff7ceaef141b66d5ab6738f",
+  "revision": "git-blob:f290bc8f68e3633ee6ba7510d85634dede9bbb40",
+  "sha256": "f190c26e00403c6af8b1fb8a0f4bb0104ed3572e7c1c941efac3d107fdba69ef",
   "kind": "cad",
   "authority_domains": [
     "geometry",

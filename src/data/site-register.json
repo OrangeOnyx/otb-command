@@ -60,10 +60,10 @@
    "label": "Column 1",
    "point": [
     148.58,
-    121.61
+    118.8
    ],
-   "status": "digitized",
-   "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+   "status": "scan-measured",
+   "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory); moved 2026-10-04 to the 9/28 Polycam end-cap scan (16.9 ft on centre from col-02; was y 121.61)",
    "sub": "101 end"
   },
   {
@@ -2301,11 +2301,11 @@
     [
      [
       146.58,
-      121.35
+      118.54
      ],
      [
       160.78,
-      121.35
+      118.54
      ],
      [
       160.78,

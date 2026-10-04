@@ -3,7 +3,7 @@
   "sources": [
     {
       "source_id": "source-otb-units-public",
-      "revision": "worktree-sha256:e5ec19724591fe9e",
+      "revision": "git-blob:10fd8643ed15c5bd1fc7d5618ea4d104401ca74b",
       "sha256": "e5ec19724591fe9e7ad78d6b080692e207bc0e2344f558f21facd6be51ebbb86"
     },
     {

@@ -11,14 +11,14 @@
       "register_id": "col-01",
       "cat": "column",
       "label": "Column 1",
-      "status": "digitized",
-      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory)",
+      "status": "scan-measured",
+      "source": "07 Columns, Benches, and Cans.pdf (operator walkway inventory); moved 2026-10-04 to the 9/28 Polycam end-cap scan (16.9 ft on centre from col-02; was y 121.61)",
       "note": "101 end",
       "count": null,
       "suite_entity_id": null,
       "point": [
         148.58,
-        121.61
+        118.8
       ]
     },
     {

@@ -15,8 +15,8 @@
     },
     {
       "source_id": "source-otb-site-register",
-      "revision": "git-blob:80b8b9f1668640c0f68e03068b214a556a5046c7",
-      "sha256": "fdcb2c5b1b3cd2f704e18cf107d93584600f3b0c977915b5daaaae3896facf23"
+      "revision": "worktree-sha256:8a55410b527d4256",
+      "sha256": "8a55410b527d42568a7431305ad36af934aafa290829c0ed1de018629f013c31"
     }
   ],
   "release": {
@@ -144,7 +144,7 @@
     "repository_path": "docs/design/cypress-command/cre-asset-library/properties/on-the-boulevard/site-assets/on-the-boulevard--site-plan--plan--neutral--v1.svg"
   },
   "revision": "v1",
-  "sha256": "e3592727cb7b5b6257e99d5b062150d4516142e4c2a032506816c932defaefcc",
+  "sha256": "f106dad4be5caa2a1e1ab9ee7f50679b34c7fa77a4de067e5e5eb2180e946aed",
   "view": "plan",
   "theme": "neutral",
   "style_reference_source_ids": [
