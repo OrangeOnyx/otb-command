@@ -81,6 +81,10 @@ test("101 end: the Johnston billboard spans col-02 to col-01; the end projection
   const j = items.find(i => i.id === "billboard-101-johnston"), m = items.find(i => i.id === "billboard-101-marie-antoinette");
   const [c1, c2] = [col("col-01"), col("col-02")];
   assert.ok(j.span[0][1] > c1[1] && j.span[1][1] < c2[1] && Math.abs(j.span[0][0] - c1[0]) < 1);
+  // drawn width = the register pier gap (centres 15.4 ft apart, 2 ft piers); the scan's 14.9 ft is recorded alongside
+  const KY = 1.8866, drawnFt = (j.span[1][1] - j.span[0][1]) / KY, gapFt = (c2[1] - c1[1]) / KY - 2;
+  assert.ok(Math.abs(drawnFt - gapFt) < 0.05, `drawn ${drawnFt.toFixed(2)} ft vs pier gap ${gapFt.toFixed(2)} ft`);
+  assert.equal(j.scanWidthFt, 14.9);
   const p = items.find(i => i.id === "projection-101-rear");
   assert.equal(p.heightFt, 13.5);
   assert.ok(m.span.every(([x, y]) => x > p.box[0][0] && x < p.box[1][0] && y <= p.box[0][1]));
