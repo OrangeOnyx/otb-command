@@ -160,12 +160,12 @@
    "kind": "enclosure",
    "point": [
     154.68,
-    136.15
+    134.74
    ],
    "box": [
     [
      148.58,
-     121.61
+     118.8
     ],
     [
      160.78,
@@ -180,12 +180,12 @@
    "kind": "enclosure",
    "point": [
     168.07,
-    125.53
+    124.13
    ],
    "box": [
     [
      147.64,
-     119.72
+     116.91
     ],
     [
      188.5,
@@ -201,12 +201,12 @@
    "face": "west",
    "point": [
     148.58,
-    136.15
+    134.74
    ],
    "span": [
     [
      148.0,
-     123.5
+     120.69
     ],
     [
      148.0,
@@ -217,7 +217,7 @@
    "topFt": 11.0,
    "texture": "/billboards/pink-paisley-johnston.webp",
    "reads": "The Pink Paisley — Kendra Scott / Tyler Candle — Home · Gifts · Accessories",
-   "source": "Polycam 101 end-cap scan 2026-09-28 (operator upload 2026-10-04): orthographic elevations + 1.8 m plan cut; panel set between the col-02 and col-01 piers, facing Johnston. Scan measures the panel 14.9 x 10 ft with piers 16.9 ft on centre; the register's digitized col-01/col-02 are 15.4 ft on centre, so the panel is drawn to the register pier gap (13.4 ft). Moving col-01 ~1.5 ft toward Marie Antoinette (to plan y ~118.8) would restore the scan width — open follow-up, it propagates to the register-derived fixtures.",
+   "source": "Polycam 101 end-cap scan 2026-09-28 (operator upload 2026-10-04): orthographic elevations + 1.8 m plan cut; 14.9 x 10 ft panel between the col-02 and col-01 piers (16.9 ft on centre, col-01 moved to the scan 2026-10-04), facing Johnston.",
    "scanWidthFt": 14.9
   },
   {
@@ -226,16 +226,16 @@
    "face": "north",
    "point": [
     164.4,
-    119.0
+    116.21
    ],
    "span": [
     [
      151.4,
-     119.0
+     116.21
     ],
     [
      177.4,
-     119.0
+     116.21
     ]
    ],
    "bottomFt": 1.4,

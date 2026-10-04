@@ -481,7 +481,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   }
   const longDepth = lo - lf, endDepth = exIn - ex, shortDepth = sf - so;
   canopyRun([ex, lo], [W([1125.84, 0])[0], lo], [0, -1], longDepth, { hipA: endDepth });          // long storefront
-  canopyRun([ex, W([0, 121.35])[1]], [ex, lo], [1, 0], endDepth, { hipB: longDepth });              // 101 Johnston end
+  canopyRun([ex, W([0, 118.54])[1]], [ex, lo], [1, 0], endDepth, { hipB: longDepth });              // 101 Johnston end
   canopyRun([so, sWalkEnd], [so, sTop], [1, 0], shortDepth, { hipA: sWalkEnd - sEnd });             // short storefront
   canopyRun([sRight + 0.6, sWalkEnd], [so, sWalkEnd], [0, -1], sWalkEnd - sEnd, { hipB: shortDepth, soffit: false }); // 149 Arnould face
   canopyRun([sRight + 0.6, W([0, 509.94])[1]], [sRight + 0.6, sWalkEnd], [-1, 0], 0.6, { hipB: sWalkEnd - sEnd, soffit: false }); // 149 Patricia return

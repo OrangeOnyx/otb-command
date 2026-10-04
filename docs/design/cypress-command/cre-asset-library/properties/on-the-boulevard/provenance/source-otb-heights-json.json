@@ -6,8 +6,8 @@
   "location": {
     "repository_path": "src/data/heights.json"
   },
-  "revision": "worktree-sha256:d1af423dfcca4a1e",
-  "sha256": "d1af423dfcca4a1ef1ca2d9801d776e510e63ac1b9fc0c7afc4798d9b243c572",
+  "revision": "git-blob:05d51568035b5b4dad52e1a2fddd0bd29c48e6ce",
+  "sha256": "7ddf0907c5631fe3b21ff5cef9bab48182b6fbe9bc22b80286f968e6c90763d1",
   "kind": "verified-property-data",
   "authority_domains": [
     "geometry",
