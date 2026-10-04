@@ -249,7 +249,8 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     corner: { pos: [38, 13, 72], target: [76, 4, 28] },
     pylon: { pos: [-84, 7, 30], target: [-105, 6, 3] },
     breezeway: { pos: [36, 10, 6], target: [66, 5, -20] },
-    rear: { pos: [116, 7, 34], target: [94, 3.5, 17] }
+    rear: { pos: [116, 7, 34], target: [94, 3.5, 17] },
+    johnston: { pos: [-121, 5.5, -18], target: [-97, 3, -36] }
   };
   function shot(name) {
     const s = SHOTS[name]; if (!s) { userMoved = false; fitView(); invalidate(); return; }
@@ -639,6 +640,23 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     const [x, z] = planToWorld(it.point);
     let o;
     if (it.kind === "roof-ladder") { const l = roofLadder((it.heightFt ?? 16.4) * FT, it.railSpacingM ?? 0.5); if (it.face === "east") l.rotation.y = Math.PI / 2; l.position.set(x, 0, z); l.userData.service = it; dressing.add(l); continue; }
+    if (it.kind === "enclosure") { // closed bays / the 101 end projection (9/28 end-cap scan)
+      const [p0, p1] = it.box.map(planToWorld);
+      dressing.add(boxAt(Math.min(p0[0], p1[0]), Math.max(p0[0], p1[0]), 0, it.heightFt * FT, Math.min(p0[1], p1[1]), Math.max(p0[1], p1[1]), shared("endBlock", () => std("#EFE7D6", { roughness: 0.85 }))));
+      continue;
+    }
+    if (it.kind === "billboard") { // the scan's own panel faces, textured from the end-cap capture
+      const [a, b] = it.span.map(planToWorld), w = Math.hypot(b[0] - a[0], b[1] - a[1]), h = (it.topFt - it.bottomFt) * FT;
+      const n = { west: [-1, 0], north: [0, -1], east: [1, 0], south: [0, 1] }[it.face];
+      const mat = new THREE.MeshStandardMaterial({ color: "#ffffff", roughness: 0.55 });
+      const panel = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+      panel.position.set((a[0] + b[0]) / 2 + n[0] * 0.06, (it.bottomFt * FT) + h / 2, (a[1] + b[1]) / 2 + n[1] * 0.06);
+      panel.rotation.y = Math.atan2(n[0], n[1]); panel.userData.service = it; dressing.add(panel);
+      const frame = cast(new THREE.Mesh(new THREE.BoxGeometry(w + 0.12, h + 0.12, 0.08), shared("bbFrame", () => std("#d9d6cf", { roughness: 0.5, metalness: 0.3 }))));
+      frame.position.copy(panel.position).addScaledVector(new THREE.Vector3(n[0], 0, n[1]), -0.045); frame.rotation.y = panel.rotation.y; dressing.add(frame);
+      new THREE.TextureLoader().load(it.texture, tx => { tx.colorSpace = THREE.SRGBColorSpace; mat.map = tx; mat.needsUpdate = true; invalidate(); });
+      continue;
+    }
     if (it.kind === "dumpster") o = dumpster(it.color);
     else if (it.kind === "carts") { o = new THREE.Group(); for (const dx of [-0.4, 0.4]) { const c = boxAt(dx - 0.33, dx + 0.33, 0.05, 1.05, -0.36, 0.36, shared("cart-" + it.color, () => std(it.color === "green" ? "#2f6b3e" : "#2d5d9f", { roughness: 0.6 }))); o.add(c); } }
     else if (it.kind === "grease-bin") o = boxAt(-0.5, 0.5, 0, 1.1, -0.45, 0.45, shared("grease", () => std("#6b4a2f", { roughness: 0.6, metalness: 0.3 })));
