@@ -1,6 +1,28 @@
 # Cypress Command Platform · OTB — Session Handoff
 
-## PAUSE POINT: September 30, 2026 (end of day). Start here.
+## PAUSE POINT: October 4, 2026. Start here.
+
+**State.** master `8a83f3a` (PR #25), **978/978 tests**, deploy run #85 green (production). Nav = 25 sheets. Geometry REV 17. Scheduled rent $88,462.70/mo from 10/1/2026. No open PRs; no unresolved review threads on #20–#25.
+
+**This session (Oct 1–4) was A-8 Styled Twin work — no canonical lease/rent data changed.** Merged, newest first:
+
+| PR | What |
+|---|---|
+| #25 | **col-01 moved to the 9/28 scan** (plan y 121.61 → 118.80, 16.9 ft o.c. from col-02); walkway polygon, canopy, CRE slice and concierge dossier regenerated. `twin-site-fixtures.json` deliberately keeps the source PDF's coordinate. |
+| #24 | **101 end from the 9/28 Polycam end-cap scan:** Johnston billboard between col-02/col-01 (bay closed behind), the survey's 13.5' end projection with the Marie Antoinette billboard; textures cut from the scan (`public/billboards/`), evidence `docs/evidence/101-*`; *Johnston end* shot. |
+| #23 | **145 rear roof ladder** from the 10/1 rear-wall scan (operator-confirmed) + *Patricia rear* shot; **cameras** drawn as the installed DW MEGApix CaaS 4MP vandal dome (`cameras.json` `hardware`, from the 2021 Camera Options proposal). |
+| #22 | Tenant logos on fascias; operator-marked site lighting (5 field poles incl. Jason's front corner, Lot 7 pole, 4 Lot 8 wall packs, corner-column doubles; 2006 corner luminaire suppressed); lit pylon with real panels; Floorplanner storefront openings; 42 RTUs from the satellite; rear service items; cameras; Night preset. |
+| #20–21 | A-8 REV 2 plan-true rebuild (mansard, CAD dimensions, concrete paving); Visual Library round 2 (Higgsfield set). |
+
+**Open (A-8), ranked:**
+1. Rear service-item positions (dumpsters, carts, grease bin) are photo-mapped, ± a few feet — refine on a walk or a rear scan.
+2. Long-building ladders: none on record (only the 145 rear ladder is placed).
+3. RTU positions come from the frozen satellite base — newer units may be missing.
+4. Billboard faces are the 9/28 capture; refresh the textures if Pink Paisley changes its panels.
+
+The lease-review next steps and audit change plan B below (from the Sept 30 pause) are still open.
+
+## September 30, 2026 (end of day) — previous pause point
 
 **State (corrected 2026-10-01).** master was at `1966143` at the pause; four later commits (A-7 Visual Library, two light-pole plate redraws, A-8 Styled Twin) took it to `f25c80c`. The 948/948 test count and the green deploy predate those four commits — re-run `npm test` before citing them. **Nav = 25 sheets** (`src/lib/pages.js`, D-0 … V-1). Geometry is **REV 17**. The scheduled rent is **$88,462.70/mo from 10/1/2026** (September: $88,426.55).
 
