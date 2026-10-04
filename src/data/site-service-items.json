@@ -46,10 +46,10 @@
    "kind": "dumpster",
    "color": "yellow",
    "point": [
-    178,
+    197,
     118
    ],
-   "source": "rear photo"
+   "source": "rear photo; nudged past the 101 end projection 2026-10-04 (the 9/28 scan shows the Marie Antoinette billboard face clear)"
   },
   {
    "id": "rear-dumpster-6",
@@ -154,6 +154,94 @@
    "railSpacingM": 0.66,
    "source": "Polycam rear-wall scan 2026-10-01 (registered by door numbers + LiDAR roof edge; tools/polycam-seeds.json). Twin rails ground-to-eave 46.0 m from the 135B corner = 145 rear face, ~1 m in from the 149 line (docs/evidence/rear-wall-135b-149-polycam-2026-10-01.jpg, ortho x 1728-1795).",
    "status": "scan-read, operator-confirmed 2026-10-03"
+  },
+  {
+   "id": "bay-101-johnston",
+   "kind": "enclosure",
+   "point": [
+    154.68,
+    136.15
+   ],
+   "box": [
+    [
+     148.58,
+     121.61
+    ],
+    [
+     160.78,
+     150.68
+    ]
+   ],
+   "heightFt": 11.0,
+   "source": "Polycam 101 end-cap scan 2026-09-28 (operator upload 2026-10-04): orthographic elevations + 1.8 m plan cut; the walkway is closed behind the Johnston billboard between col-02 and col-01 (no walk floor in the cut)."
+  },
+  {
+   "id": "projection-101-rear",
+   "kind": "enclosure",
+   "point": [
+    168.07,
+    125.53
+   ],
+   "box": [
+    [
+     147.64,
+     119.72
+    ],
+    [
+     188.5,
+     131.35
+    ]
+   ],
+   "heightFt": 13.5,
+   "source": "Polycam 101 end-cap scan 2026-09-28 (operator upload 2026-10-04): orthographic elevations + 1.8 m plan cut; the survey's 101 end projection (BLD. HT. 13.5', 7.8 ft at the Johnston end, heights-provenance rear-projection-101), 21.6 ft deep from the column line in the scan."
+  },
+  {
+   "id": "billboard-101-johnston",
+   "kind": "billboard",
+   "face": "west",
+   "point": [
+    148.58,
+    136.15
+   ],
+   "span": [
+    [
+     148.0,
+     123.5
+    ],
+    [
+     148.0,
+     148.79
+    ]
+   ],
+   "bottomFt": 1.5,
+   "topFt": 11.0,
+   "texture": "/billboards/pink-paisley-johnston.webp",
+   "reads": "The Pink Paisley — Kendra Scott / Tyler Candle — Home · Gifts · Accessories",
+   "source": "Polycam 101 end-cap scan 2026-09-28 (operator upload 2026-10-04): orthographic elevations + 1.8 m plan cut; 14.9 x 10 ft panel between the col-02 and col-01 piers, facing Johnston."
+  },
+  {
+   "id": "billboard-101-marie-antoinette",
+   "kind": "billboard",
+   "face": "north",
+   "point": [
+    164.4,
+    119.0
+   ],
+   "span": [
+    [
+     151.4,
+     119.0
+    ],
+    [
+     177.4,
+     119.0
+    ]
+   ],
+   "bottomFt": 1.4,
+   "topFt": 11.3,
+   "texture": "/billboards/pink-paisley-marie-antoinette.webp",
+   "reads": "The Pink Paisley — Bayou Babe / Mais La — thepinkpaisley.com",
+   "source": "Polycam 101 end-cap scan 2026-09-28 (operator upload 2026-10-04): orthographic elevations + 1.8 m plan cut; 14 x 10 ft panel on the end projection's Marie Antoinette face."
   }
  ]
 }

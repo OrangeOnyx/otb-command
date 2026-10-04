@@ -17,7 +17,7 @@ import cameras from "../data/cameras.json";
 
 const BASE = import.meta.env.BASE_URL;
 const LIGHTS = [["day", "Day"], ["golden", "Golden hour"], ["dusk", "Dusk"], ["night", "Night"]];
-const SHOTS = [["overview", "Overview"], ["storefronts", "Storefronts"], ["breezeway", "Breezeway"], ["corner", "Jason\u2019s corner"], ["pylon", "Pylon"], ["rear", "Patricia rear"]];
+const SHOTS = [["overview", "Overview"], ["storefronts", "Storefronts"], ["breezeway", "Breezeway"], ["corner", "Jason\u2019s corner"], ["pylon", "Pylon"], ["rear", "Patricia rear"], ["johnston", "Johnston end"]];
 
 let started = false, scene = null;
 export function initStyledTwin() {

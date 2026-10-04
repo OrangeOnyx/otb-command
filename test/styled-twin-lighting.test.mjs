@@ -75,6 +75,18 @@ test("the rear roof ladder sits on the short building's Patricia face, in 145 by
   assert.ok(l.point[1] > u.y && l.point[1] < u.y + u.h && u.y + u.h - l.point[1] < 6);
 });
 
+test("101 end: the Johnston billboard spans col-02 to col-01; the end projection carries the Marie Antoinette billboard (9/28 scan)", () => {
+  const items = load("../src/data/site-service-items.json").items, reg = load("../src/data/site-register.json");
+  const col = id => (reg.items ?? reg).find(i => i.id === id).point;
+  const j = items.find(i => i.id === "billboard-101-johnston"), m = items.find(i => i.id === "billboard-101-marie-antoinette");
+  const [c1, c2] = [col("col-01"), col("col-02")];
+  assert.ok(j.span[0][1] > c1[1] && j.span[1][1] < c2[1] && Math.abs(j.span[0][0] - c1[0]) < 1);
+  const p = items.find(i => i.id === "projection-101-rear");
+  assert.equal(p.heightFt, 13.5);
+  assert.ok(m.span.every(([x, y]) => x > p.box[0][0] && x < p.box[1][0] && y <= p.box[0][1]));
+  for (const b of [j, m]) assert.ok(existsSync(new URL(`../public${b.texture}`, import.meta.url)), b.texture);
+});
+
 test("pylon face and glow map are built from the approved master", () => {
   for (const f of ["otb-pylon-face.webp", "otb-pylon-glow.webp"]) assert.ok(existsSync(new URL(`../public/pylon/${f}`, import.meta.url)), f);
 });
