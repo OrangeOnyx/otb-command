@@ -70,5 +70,40 @@
       "door_window": "every door lies inside its own suite for any slide 0.35-3.75 m; 2.4 m chosen",
       "reference": "export/skydio-rectify/footprints-lidar.geojson NW face 135B corner (-55.8, 57.9) -> 149 corner (-6.6, 98.2)"
     }
+  },
+  "2026-10-01-rear-parking-patricia": {
+    "local_to_twin": {
+      "scale": 0.9996931451512402,
+      "R": [
+        [
+          -0.6052288047443839,
+          -0.7960515648542624,
+          -8.738898489777797e-07
+        ],
+        [
+          0.7960515645745703,
+          -0.6052288045601327,
+          2.5866797413140973e-05
+        ],
+        [
+          -2.1120207867125762e-05,
+          1.495966949931378e-05,
+          0.9999999996650728
+        ]
+      ],
+      "t": [
+        -28.237105007683322,
+        84.570744351879,
+        11.188127133851477
+      ]
+    },
+    "method": "chained to the seeded rear-wall scan (same 10/1 walk): rear-wall GPS correction applied, then ICP onto the seeded rear-wall cloud",
+    "evidence": {
+      "seed_from_rear_wall_gps_correction": "walls +1.45 m vs LiDAR outline, ground -0.45 m vs DTM (rejected start)",
+      "after_refine_on_rear_wall": "overlap 0.46, 57% within 0.15 m of the rear-wall cloud, moved [-4.3, -0.67, 0.52] m / 2.59 deg",
+      "walls_vs_lidar_outline_m": -0.25,
+      "ground_vs_lidar_dtm": "median +0.089 m, MAD 0.077 m over 1,820 LiDAR cells",
+      "depends_on": "2026-10-01-rear-135b-to-149 seed (door numbers + roof edge)"
+    }
   }
 }
