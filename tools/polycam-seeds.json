@@ -92,8 +92,8 @@
         ]
       ],
       "t": [
-        -28.237105007683322,
-        84.570744351879,
+        -26.303087757785804,
+        86.1549088878723,
         11.188127133851477
       ]
     },
@@ -103,7 +103,8 @@
       "after_refine_on_rear_wall": "overlap 0.46, 57% within 0.15 m of the rear-wall cloud, moved [-4.3, -0.67, 0.52] m / 2.59 deg",
       "walls_vs_lidar_outline_m": -0.25,
       "ground_vs_lidar_dtm": "median +0.089 m, MAD 0.077 m over 1,820 LiDAR cells",
-      "depends_on": "2026-10-01-rear-135b-to-149 seed (door numbers + roof edge)"
+      "depends_on": "2026-10-01-rear-135b-to-149 seed (door numbers + roof edge)",
+      "along_wall_check": "2026-10-05 slide search of above-ground structure (walls, Jason's stepped rear wall + fence, AC units, meters) against the door-placed rear-wall cloud: best +2.5 m along the wall (38% within 0.10 m; any slide >=5 m off scores 0.07-0.25). Applied. Scan now centred 41.8 m from the 135B corner = 145/149 rear lot (operator: \"149 Parking\")."
     }
   },
   "2026-10-04-lot7": {
