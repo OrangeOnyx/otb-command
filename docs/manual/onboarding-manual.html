@@ -1,71 +1,211 @@
-<!doctype html><html><head><meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cypress Command Platform — Onboarding Manual</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
-* { box-sizing: border-box; }
-body { margin:0; background:#EDEFE8; color:#1C2B26;
-  font:15px/1.55 'Public Sans',sans-serif; }
-.wrap { max-width:880px; margin:0 auto; padding:28px 34px 60px; }
-.titleblock { border:2px solid #1C2B26; background:#F6F7F1; padding:14px 20px;
-  margin-bottom:30px; display:flex; justify-content:space-between;
-  align-items:baseline; gap:16px; flex-wrap:wrap; }
-.titleblock .name { font:700 30px 'Big Shoulders Display',sans-serif;
-  letter-spacing:.5px; }
-.titleblock .sheet { font:600 13px 'IBM Plex Mono',monospace; color:#A87E2F; }
-h1 { font:700 26px 'Big Shoulders Display',sans-serif; letter-spacing:.5px;
-  border-bottom:2px solid #1C2B26; padding-bottom:6px; margin:44px 0 14px;
-  break-after:avoid; }
-h2 { font:700 19px 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
-  color:#2F6B4F; margin:30px 0 8px; break-after:avoid; }
-h3 { font:600 15px 'Public Sans',sans-serif; margin:22px 0 6px; }
-p { margin:8px 0; }
-strong { color:#1C2B26; }
-a { color:#2F6B4F; }
-img { max-width:100%; border:1px solid #5F6E64; border-radius:3px;
-  margin:10px 0 4px; break-inside:avoid; }
-table { border-collapse:collapse; font-size:13px; margin:12px 0; width:100%;
-  break-inside:avoid; }
-th, td { border:1px solid #5F6E64; padding:5px 9px; text-align:left;
-  vertical-align:top; }
-th { background:#F6F7F1; font:600 12px 'IBM Plex Mono',monospace;
-  text-transform:uppercase; letter-spacing:.4px; }
-code { font:13px 'IBM Plex Mono',monospace; background:#F6F7F1;
-  padding:1px 5px; border-radius:3px; }
-pre { background:#F6F7F1; border:1px solid #5F6E64; border-radius:3px;
-  padding:12px 14px; overflow-x:auto; break-inside:avoid; }
-pre code { background:none; padding:0; }
-blockquote { border-left:4px solid #A87E2F; margin:10px 0; padding:2px 14px;
-  color:#5F6E64; }
-ul, ol { margin:8px 0; padding-left:26px; }
-li { margin:3px 0; }
-hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
-.confid { color:#C25E33; font:600 12px 'IBM Plex Mono',monospace;
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
+:root { --ink:#1C2B26; --paper:#EDEFE8; --card:#F6F7F1; --brass:#A87E2F; --sage:#5F6E64;
+  --grn:#2F6B4F; --anchor:#1E4F3C; --brick:#C25E33; --charcoal:#0A1F16; }
+* { box-sizing:border-box; }
+html { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body { margin:0; background:var(--paper); color:var(--ink);
+  font:15px/1.6 'Public Sans',sans-serif; }
+.mono { font-family:'IBM Plex Mono',monospace; }
+
+/* ---------- cover ---------- */
+.cover { background:var(--charcoal); color:#F3EDE0; position:relative;
+  min-height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+.cover .grid { position:absolute; inset:0; opacity:.07; pointer-events:none;
+  background-image:linear-gradient(#F3EDE0 1px,transparent 1px),
+    linear-gradient(90deg,#F3EDE0 1px,transparent 1px);
+  background-size:28px 28px; }
+.cover .top { position:relative; padding:44px 56px 0; display:flex;
+  justify-content:space-between; align-items:flex-start; gap:24px; }
+.cover .lockup { width:300px; height:auto; display:block; margin:-14px 0 0 -18px; }
+.cover .stamp { font:600 11px 'IBM Plex Mono',monospace; letter-spacing:1.4px;
+  border:1.5px solid #A87E2F; color:#A87E2F; padding:7px 12px; text-align:right;
+  line-height:1.6; }
+.cover .titles { position:relative; padding:34px 56px 0; }
+.cover .eyebrow { font:600 12px 'IBM Plex Mono',monospace; letter-spacing:2.4px;
+  color:#A87E2F; }
+.cover h1.doc { font:800 76px/0.95 'Big Shoulders Display',sans-serif;
+  letter-spacing:1px; margin:10px 0 14px; color:#F3EDE0; border:0; padding:0; }
+.cover .deploy { font:600 20px 'Public Sans',sans-serif; color:#F3EDE0; }
+.cover .addr { font:13px 'IBM Plex Mono',monospace; color:#B9C2B6; margin-top:4px;
   letter-spacing:.6px; }
-.foot { margin-top:46px; border-top:2px solid #1C2B26; padding-top:10px;
-  font:11px 'IBM Plex Mono',monospace; color:#5F6E64;
+.cover .lede { max-width:560px; color:#D8DCCF; font-size:15px; margin:16px 0 0; }
+.cover .hero { position:relative; margin:30px 56px 0; border:1.5px solid #3B5446;
+  background:#14301F; flex:1 1 auto; min-height:300px; display:flex; }
+.cover .hero img { width:100%; height:100%; object-fit:cover; display:block;
+  border:0; margin:0; border-radius:0; }
+.cover .hero .cap { position:absolute; left:0; bottom:0; background:var(--charcoal);
+  color:#B9C2B6; font:10.5px 'IBM Plex Mono',monospace; letter-spacing:.8px;
+  padding:6px 10px; border-top:1.5px solid #3B5446; border-right:1.5px solid #3B5446; }
+.cover .tb { position:relative; margin:22px 56px 44px; display:grid;
+  grid-template-columns:2.2fr 1.6fr 1fr 1.2fr 1.6fr; border:1.5px solid #F3EDE0; }
+.cover .tb div { padding:9px 12px; border-left:1px solid #5B7363; }
+.cover .tb div:first-child { border-left:0; }
+.cover .tb b { display:block; font:600 9.5px 'IBM Plex Mono',monospace;
+  letter-spacing:1.4px; color:#A87E2F; margin-bottom:3px; }
+.cover .tb span { font:600 13px 'Public Sans',sans-serif; color:#F3EDE0; }
+.cover .tb .big { font:800 26px/1 'Big Shoulders Display',sans-serif; }
+
+/* ---------- reading column ---------- */
+.wrap { max-width:900px; margin:0 auto; padding:40px 40px 60px; }
+.webbar { font:12px 'IBM Plex Mono',monospace; margin:0 0 18px; display:flex;
+  gap:16px; flex-wrap:wrap; }
+.webbar a { color:var(--grn); text-decoration:none; border-bottom:1px solid var(--brass); }
+
+/* contents + sheet index */
+.toc { break-after:page; }
+.kicker { font:600 11.5px 'IBM Plex Mono',monospace; letter-spacing:2px; color:var(--brass); }
+.toc h2.toc-h { font:800 44px/1 'Big Shoulders Display',sans-serif; margin:6px 0 20px;
+  color:var(--ink); border-bottom:3px solid var(--ink); padding-bottom:10px; }
+.edition { background:var(--card); border:1px solid var(--sage); border-left:5px solid var(--brass);
+  padding:12px 16px; margin:0 0 24px; font-size:13.5px; }
+.edition p { margin:3px 0; }
+.toc-cols { columns:2; column-gap:34px; }
+.toc-part { margin:0 0 16px; }
+.toc-part > a { break-after:avoid; break-inside:avoid; display:flex; gap:10px; align-items:baseline; text-decoration:none;
+  color:var(--ink); font:700 18px 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
+  border-bottom:1.5px solid var(--ink); padding-bottom:3px; margin-bottom:5px; }
+.toc-part > a .pn { color:var(--brass); font:600 11px 'IBM Plex Mono',monospace;
+  letter-spacing:1px; min-width:52px; }
+.toc-part ol { list-style:none; margin:0; padding:0; }
+.toc-part li { margin:0; font-size:12.5px; line-height:1.75; }
+.toc-part li a { color:var(--ink); text-decoration:none; display:flex; gap:8px; }
+.toc-part li .n { font:11px 'IBM Plex Mono',monospace; color:var(--sage); min-width:34px; }
+.toc-book { font:800 15px 'Big Shoulders Display',sans-serif; letter-spacing:1px;
+  background:var(--ink); color:var(--paper); padding:5px 10px; margin:4px 0 10px;
+  break-inside:avoid; break-after:avoid; }
+.index { break-before:page; padding-top:4px; }
+.index h3 { font:700 20px 'Big Shoulders Display',sans-serif; letter-spacing:.5px;
+  margin:4px 0 4px; }
+.index .lead { font-size:12.5px; color:var(--sage); margin:0 0 10px; }
+.sheetgrid { display:grid; grid-template-columns:repeat(5,1fr); border-top:2px solid var(--ink);
+  border-left:1px solid var(--sage); }
+.sheetgrid > div { border-right:1px solid var(--sage); border-bottom:1px solid var(--sage);
+  padding:10px 11px 11px; background:var(--card); }
+.sheetgrid .c { font:800 19px/1 'Big Shoulders Display',sans-serif; color:var(--anchor); }
+.sheetgrid .l { font-size:11.5px; font-weight:600; margin-top:3px; line-height:1.25; }
+.sheetgrid .g { font:9px 'IBM Plex Mono',monospace; color:var(--sage); letter-spacing:.6px;
+  text-transform:uppercase; margin-top:2px; }
+
+/* parts, books, headings */
+.book { break-before:page; background:var(--charcoal); color:#F3EDE0; padding:60px 46px;
+  margin:0 -40px 30px; min-height:240px; }
+.book .kicker { color:#A87E2F; }
+.book .t { font:800 54px/1 'Big Shoulders Display',sans-serif; margin-top:10px; }
+h1.part { break-before:page; margin:0 0 22px; padding:0 0 14px; border-bottom:3px solid var(--ink);
+  font:800 46px/1 'Big Shoulders Display',sans-serif; letter-spacing:.6px; }
+h1.part.first { break-before:auto; }
+h1.part .pk { display:block; font:600 12px 'IBM Plex Mono',monospace; letter-spacing:2.4px;
+  color:var(--brass); margin-bottom:10px; }
+h2 { font:700 23px/1.15 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
+  color:var(--ink); margin:38px 0 10px; break-after:avoid; display:flex; align-items:center;
+  gap:10px; flex-wrap:wrap; }
+h2 .num { font:600 12px 'IBM Plex Mono',monospace; color:var(--sage); letter-spacing:.5px;
+  border:1px solid var(--sage); padding:2px 6px; border-radius:2px; }
+h2 .code { font:800 15px/1 'Big Shoulders Display',sans-serif; letter-spacing:.8px;
+  background:var(--anchor); color:var(--paper); padding:5px 8px 4px; border-radius:2px; }
+h2::after { content:""; flex:1 1 40px; height:1.5px; background:var(--ink); opacity:.85; }
+h3 { font:700 15px 'Public Sans',sans-serif; margin:22px 0 6px; color:var(--grn); break-after:avoid; }
+p { margin:9px 0; }
+strong { color:var(--ink); font-weight:700; }
+a { color:var(--grn); }
+ul, ol { margin:8px 0; padding-left:24px; }
+li { margin:4px 0; }
+li::marker { color:var(--brass); }
+hr { display:none; }
+
+/* figures */
+figure { margin:18px 0 20px; break-inside:avoid; background:var(--card);
+  border:1.5px solid var(--ink); }
+figure img { display:block; max-width:100%; max-height:560px; width:auto; height:auto; margin:0 auto;
+  border:0; }
+figure figcaption { border-top:1.5px solid var(--ink); background:var(--paper); }
+figcaption { display:flex; justify-content:space-between; gap:12px; padding:6px 10px;
+  font:11px 'IBM Plex Mono',monospace; letter-spacing:.5px; color:var(--ink); }
+figcaption b { color:var(--brass); font-weight:600; }
+img { max-width:100%; }
+.figrow { display:flex; gap:18px; justify-content:center; break-inside:avoid; }
+.figrow figure { flex:0 1 250px; margin:18px 0; }
+.figrow figure img { max-height:none; width:100%; }
+
+/* tables, code, notes */
+table { border-collapse:collapse; font-size:13px; margin:14px 0; width:100%; break-inside:avoid;
+  border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); }
+th, td { border-bottom:1px solid #C9CEC2; padding:7px 10px; text-align:left; vertical-align:top; }
+th { background:var(--card); font:600 11px 'IBM Plex Mono',monospace;
+  text-transform:uppercase; letter-spacing:.6px; color:var(--anchor); }
+tbody tr:nth-child(even) td { background:rgba(246,247,241,.7); }
+code { font:12.5px 'IBM Plex Mono',monospace; background:var(--card); border:1px solid #D9DDD2;
+  padding:0 5px; border-radius:2px; }
+pre { background:var(--ink); color:var(--paper); border-radius:2px; padding:12px 16px;
+  overflow-x:auto; break-inside:avoid; }
+pre code { background:none; border:0; padding:0; color:inherit; }
+blockquote { margin:16px 0; padding:12px 16px 12px 18px; background:var(--card);
+  border:1px solid var(--sage); border-left:5px solid var(--brass); break-inside:avoid; }
+blockquote p { margin:4px 0; }
+.confid { color:var(--brick); font:600 12px 'IBM Plex Mono',monospace; letter-spacing:.6px; }
+.foot { margin-top:50px; border-top:2px solid var(--ink); padding-top:10px;
+  font:11px 'IBM Plex Mono',monospace; color:var(--sage);
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-@page { size: letter; margin: 14mm 12mm; }
+
+@page { size:letter; margin:16mm 15mm 18mm; }
 @media print {
   body { background:#fff; }
   .wrap { max-width:none; padding:0; }
-  img { border-color:#ccc; }
+  .book { margin:0 0 30px; }
+  .webbar, .foot { display:none; }
 }
-</style></head><body><div class="wrap">
-<div class="titleblock">
-  <div><div class="name">CYPRESS COMMAND · OTB</div>
-  <div style="font:600 13px 'IBM Plex Mono',monospace">ONBOARDING MANUAL · SEPTEMBER 2026</div></div>
-  <div class="sheet">SHEET M-2 · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
-</div>
-<h1>Cypress Command Platform — Property Onboarding Manual</h1>
-<p><strong>Version September 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run</strong>
+@media screen and (max-width:720px) {
+  .wrap { padding:24px 16px 48px; }
+  .cover .top, .cover .titles { padding-left:20px; padding-right:20px; }
+  .cover .hero, .cover .tb { margin-left:20px; margin-right:20px; }
+  .cover .hero { min-height:0; flex:0 0 auto; }
+  .cover .hero img { height:auto; }
+  .cover h1.doc { font-size:48px; }
+  .cover .lockup { width:260px; }
+  .cover .stamp { display:none; }
+  .cover .tb { grid-template-columns:1fr 1fr; }
+  .cover .tb div { border-left:0; border-top:1px solid #5B7363; }
+  .toc-cols { columns:1; }
+  .sheetgrid { grid-template-columns:repeat(2,1fr); }
+  .book { margin:0 -16px 24px; padding:40px 20px; }
+  table { display:block; overflow-x:auto; }
+}
+</style></head><body>
+<section class="cover"><div class="grid"></div>
+<div class="top"><img class="lockup" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3MzIgMjU2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q3lwcmVzcyBDb21tYW5kIC0gY2MtMDRjLWhvcml6b250YWwtcmV2ZXJzZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1hcnkgaG9yaXpvbnRhbCBsb2NrdXAuIElkZW50aWNhbCAxNjggYnkgMTYwIG1hcmsgZ2VvbWV0cnk7IE1vbnRzZXJyYXQgU2VtaUJvbGQgb3V0bGluZWQgd29yZG1hcmsuIENsZWFyIHNwYWNlIGluY2x1ZGVkLjwvZGVzYz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCA0OCkiPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik0zMiAwSDEzNkMxNTMuNjczIDAgMTY4IDE0LjMyNyAxNjggMzJWNThIMTM1VjM1UTEzNSAzMCAxMzAgMzBIMzdRMzIgMzAgMzIgMzVWMTI1UTMyIDEzMCAzNyAxMzBIMTMwUTEzNSAxMzAgMTM1IDEyNVY5NkgxNjhWMTI4QzE2OCAxNDUuNjczIDE1My42NzMgMTYwIDEzNiAxNjBIMzJDMTQuMzI3IDE2MCAwIDE0NS42NzMgMCAxMjhWMzJDMCAxNC4zMjcgMTQuMzI3IDAgMzIgMFoiLz48cmVjdCB4PSI2MSIgeT0iNTYiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0YzRURFMCIvPjwvZz48cGF0aCBmaWxsPSIjRjNFREUwIiBkPSJNMjk3LjQ1MDM0NDY3ODA4MzcgMTIyLjc5MjQxMjc0NjU4NTc0UTI5MS4wMDg5NjU5NjU3NDkgMTIyLjc5MjQxMjc0NjU4NTc0IDI4NS41MzI3NTk1OTI0NTYxIDEyMC42NzI0MTI3NDY1ODU3NFEyODAuMDU2NTUzMjE5MTYzMiAxMTguNTUyNDEyNzQ2NTg1NzMgMjc2LjAzMDY5MTUyMzk1NDAzIDExNC42NjcyNDA0MDc1NDM4OVEyNzIuMDA0ODI5ODI4NzQ0ODUgMTEwLjc4MjA2ODA2ODUwMjA2IDI2OS43NTQ0ODUxNTA2NjExNCAxMDUuNTI2NTUxMDUxMzc2NTRRMjY3LjUwNDE0MDQ3MjU3NzUgMTAwLjI3MTAzNDAzNDI1MTAzIDI2Ny41MDQxNDA0NzI1Nzc1IDk0LjBRMjY3LjUwNDE0MDQ3MjU3NzUgODcuNzI4OTY1OTY1NzQ4OTcgMjY5Ljc1NDQ4NTE1MDY2MTE0IDgyLjQ3MzQ0ODk0ODYyMzQ2UTI3Mi4wMDQ4Mjk4Mjg3NDQ4NSA3Ny4yMTc5MzE5MzE0OTc5NCAyNzYuMDY1NTE5MTg0OTEyMiA3My4zMzI3NTk1OTI0NTYxMVEyODAuMTI2MjA4NTQxMDc5NTYgNjkuNDQ3NTg3MjUzNDE0MjcgMjg1LjYwMjQxNDkxNDM3MjQgNjcuMzI3NTg3MjUzNDE0MjZRMjkxLjA3ODYyMTI4NzY2NTI3IDY1LjIwNzU4NzI1MzQxNDI2IDI5Ny41MiA2NS4yMDc1ODcyNTM0MTQyNlEzMDQuMzY2ODkzNTYxNjczNSA2NS4yMDc1ODcyNTM0MTQyNiAzMTAuMDY1MTY4MDAzNDY4NDQgNjcuNTY1MTcyMzM5MDQxODRRMzE1Ljc2MzQ0MjQ0NTI2MzQgNjkuOTIyNzU3NDI0NjY5NDEgMzE5LjY0NDgyMTE1NzU5ODEgNzQuNTI2ODkzNTYxNjczNTNMMzEyLjk0ODk3MDMwMTMyMjMzIDgwLjkxNzkxODkyNDc3NzgxUTMwOS45MTE3Mjc3MjU5OTE3NCA3Ny41ODg5NTI5NTkwMjg4MyAzMDYuMTQ1NTE5MTg0OTEyMiA3NS45Mzg2MDgyODA5NDUxNVEzMDIuMzc5MzEwNjQzODMyNjQgNzQuMjg4MjYzNjAyODYxNDggMjk3Ljk5MjQxMjc0NjU4NTcgNzQuMjg4MjYzNjAyODYxNDhRMjkzLjYzOTMwNjMwODI1OTMgNzQuMjg4MjYzNjAyODYxNDggMjg5Ljk4NTUxMDUxMzc2NTQ2IDc1LjczNTg1MDg1NjI3NTczUTI4Ni4zMzE3MTQ3MTkyNzE2NCA3Ny4xODM0MzgxMDk2OSAyODMuNjM2NTQwMjEyNDQzMSA3OS44MjQ0NzQzMTE3Mjc3M1EyODAuOTQxMzY1NzA1NjE0NTQgODIuNDY1NTEwNTEzNzY1NDUgMjc5LjQ1ODk1MDc5MTI0MjE2IDg2LjA3NTUxMjY4MTU1MjE0UTI3Ny45NzY1MzU4NzY4Njk3IDg5LjY4NTUxNDg0OTMzODgzIDI3Ny45NzY1MzU4NzY4Njk3IDk0LjBRMjc3Ljk3NjUzNTg3Njg2OTcgOTguMzE0NDg1MTUwNjYxMTcgMjc5LjQ1ODk1MDc5MTI0MjE2IDEwMS45MjQ0ODczMTg0NDc4NlEyODAuOTQxMzY1NzA1NjE0NTQgMTA1LjUzNDQ4OTQ4NjIzNDU1IDI4My42MzY1NDAyMTI0NDMxIDEwOC4xNzU1MjU2ODgyNzIyN1EyODYuMzMxNzE0NzE5MjcxNjQgMTEwLjgxNjU2MTg5MDMxIDI4OS45ODU1MTA1MTM3NjU0NiAxMTIuMjY0MTQ5MTQzNzI0MjdRMjkzLjYzOTMwNjMwODI1OTMgMTEzLjcxMTczNjM5NzEzODUyIDI5Ny45OTI0MTI3NDY1ODU3IDExMy43MTE3MzYzOTcxMzg1MlEzMDIuMzc5MzEwNjQzODMyNjQgMTEzLjcxMTczNjM5NzEzODUyIDMwNi4xNDU1MTkxODQ5MTIyIDExMi4wNjEzOTE3MTkwNTQ4NVEzMDkuOTExNzI3NzI1OTkxNzQgMTEwLjQxMTA0NzA0MDk3MTE3IDMxMi45NDg5NzAzMDEzMjIzMyAxMDcuMDEyNDI1NzUzMzA1ODhMMzE5LjY0NDgyMTE1NzU5ODEgMTEzLjQwMzQ1MTExNjQxMDE0UTMxNS43NjM0NDI0NDUyNjM0IDExNy45OTcyNDI1NzUzMzA1OSAzMTAuMDY1MTY4MDAzNDY4NDQgMTIwLjM5NDgyNzY2MDk1ODE2UTMwNC4zNjY4OTM1NjE2NzM1IDEyMi43OTI0MTI3NDY1ODU3NCAyOTcuNDUwMzQ0Njc4MDgzNyAxMjIuNzkyNDEyNzQ2NTg1NzRaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTM0OS4xNzg2MjU2MjMyMzg3IDEyMi4wVjk5Ljg3NzkzNjI2NzA3MTMyTDM1MS41NDgyNzY2MDk1ODE2NSAxMDYuMjEyNDA4NDExMDEyMzZMMzI3LjIyMjc2MTc2MDI0MjggNjYuMEgzMzguMjk2NTM1ODc2ODY5N0wzNTcuODY0ODE2ODIyMDI0NzUgOTguNDA0MTQ0ODA4MTUwODdIMzUxLjYyODI3NjYwOTU4MTYzTDM3MS4yODY5MDIyMzI4MjAzIDY2LjBIMzgxLjUxNjU0MDIxMjQ0MzFMMzU3LjIxMTcxNDcxOTI3MTY0IDEwNi4yMTI0MDg0MTEwMTIzNkwzNTkuNTYwNjc2MzQ5NDQ3MjUgOTkuODc3OTM2MjY3MDcxMzJWMTIyLjBaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTM5NC44MzUxNzg4NDI0MDE5NCAxMjIuMFY2Ni4wSDQxNy44MjQ4MjU0OTMxNzE1UTQyNS4yNDY4OTM1NjE2NzM2IDY2LjAgNDMwLjU4Mzc4OTI5MTEzMzggNjguMzg1ODYxNjk1MjA5MTlRNDM1LjkyMDY4NTAyMDU5NCA3MC43NzE3MjMzOTA0MTgzNyA0MzguNzk2ODkxMzkzODg2OSA3NS4yNTMxMDIxMDI3NTMwOVE0NDEuNjczMDk3NzY3MTc5NzQgNzkuNzM0NDgwODE1MDg3OCA0NDEuNjczMDk3NzY3MTc5NzQgODUuOTM1ODU5NTI3NDIyNTFRNDQxLjY3MzA5Nzc2NzE3OTc0IDkyLjA2NzU4MjkxNzg0MDg4IDQzOC43OTY4OTEzOTM4ODY5IDk2LjU0Mzc4OTI5MTEzMzc1UTQzNS45MjA2ODUwMjA1OTQgMTAxLjAxOTk5NTY2NDQyNjYyIDQzMC41ODM3ODkyOTExMzM4IDEwMy40MTEwMjk2OTg2Nzc2NVE0MjUuMjQ2ODkzNTYxNjczNiAxMDUuODAyMDYzNzMyOTI4NjcgNDE3LjgyNDgyNTQ5MzE3MTUgMTA1LjgwMjA2MzczMjkyODY3SDQwMC41Nzg2MTY5NTIwOTE5TDQwNS4yMTcyMjk1Njg2MTA1IDEwMC45OTU4NjM4NjI5OTU4OFYxMjIuMFpNNDA1LjIxNzIyOTU2ODYxMDUgMTAyLjEwMDY4OTM1NjE2NzM1IDQwMC41Nzg2MTY5NTIwOTE5IDk3LjAyMzQ1NTQ1MTk4MzUySDQxNy4zOTEwMzQwMzQyNTEwNVE0MjQuMjM2NTU3NTU0NzM2NjMgOTcuMDIzNDU1NDUxOTgzNTIgNDI3LjcxODYyOTk1ODgxMjEgOTQuMTE0MTQyNjQwMzY0MThRNDMxLjIwMDcwMjM2Mjg4NzUgOTEuMjA0ODI5ODI4NzQ0ODUgNDMxLjIwMDcwMjM2Mjg4NzUgODUuOTM1ODU5NTI3NDIyNTFRNDMxLjIwMDcwMjM2Mjg4NzUgODAuNTk3MjMzOTA0MTgzODQgNDI3LjcxODYyOTk1ODgxMjEgNzcuNjg3OTIxMDkyNTY0NVE0MjQuMjM2NTU3NTU0NzM2NjMgNzQuNzc4NjA4MjgwOTQ1MTUgNDE3LjM5MTAzNDAzNDI1MTA1IDc0Ljc3ODYwODI4MDk0NTE1SDQwMC41Nzg2MTY5NTIwOTE5TDQwNS4yMTcyMjk1Njg2MTA1IDY5LjcwMTM3NDM3Njc2MTMyWiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik00NTkuMzk1MTc4ODQyNDAxOTUgMTIyLjBWNjYuMEg0ODIuMjgxMzc4NzEyMzM0NzRRNDkzLjQ4OTY1MDk4NjM0Mjk1IDY2LjAgNDk5Ljg2MTM3NDM3Njc2MTMgNzEuMjk2ODk1NzI5NDYwMjJRNTA2LjIzMzA5Nzc2NzE3OTc0IDc2LjU5Mzc5MTQ1ODkyMDQ0IDUwNi4yMzMwOTc3NjcxNzk3NCA4NS45MzU4NTk1Mjc0MjI1MVE1MDYuMjMzMDk3NzY3MTc5NzQgOTIuMDY3NTgyOTE3ODQwODggNTAzLjM1Njg5MTM5Mzg4NjkgOTYuNTAzNzg5MjkxMTMzNzZRNTAwLjQ4MDY4NTAyMDU5NCAxMDAuOTM5OTk1NjY0NDI2NjIgNDk1LjE0Mzc4OTI5MTEzMzc3IDEwMy4zMTU1MTI2ODE1NTIxNFE0ODkuODA2ODkzNTYxNjczNiAxMDUuNjkxMDI5Njk4Njc3NjUgNDgyLjM4NDgyNTQ5MzE3MTUgMTA1LjY5MTAyOTY5ODY3NzY1SDQ2NS4xMzg2MTY5NTIwOTE5TDQ2OS43NzcyMjk1Njg2MTA1IDEwMC45OTU4NjM4NjI5OTU4OFYxMjIuMFpNNDk1Ljk4MDAxMzAwNjcyMDIgMTIyLjAgNDgxLjgwMjA4MTA3NTIyMjI1IDEwMS42Njk2NTUzMjE5MTYzMkg0OTIuOTU1ODU1MTkxODQ5MTRMNTA3LjIyNDEzMTgwMTQzMDc2IDEyMi4wWk00NjkuNzc3MjI5NTY4NjEwNSAxMDIuMTAwNjg5MzU2MTY3MzUgNDY1LjEzODYxNjk1MjA5MTkgOTcuMDkzMTEwNzczODk5ODVINDgxLjk1MTAzNDAzNDI1MTA1UTQ4OC43OTY1NTc1NTQ3MzY2NCA5Ny4wOTMxMTA3NzM4OTk4NSA0OTIuMjc4NjI5OTU4ODEyMSA5NC4xNDg5NzAzMDEzMjIzNVE0OTUuNzYwNzAyMzYyODg3NSA5MS4yMDQ4Mjk4Mjg3NDQ4NSA0OTUuNzYwNzAyMzYyODg3NSA4NS45MzU4NTk1Mjc0MjI1MVE0OTUuNzYwNzAyMzYyODg3NSA4MC41OTcyMzM5MDQxODM4NCA0OTIuMjc4NjI5OTU4ODEyMSA3Ny42ODc5MjEwOTI1NjQ1UTQ4OC43OTY1NTc1NTQ3MzY2NCA3NC43Nzg2MDgyODA5NDUxNSA0ODEuOTUxMDM0MDM0MjUxMDUgNzQuNzc4NjA4MjgwOTQ1MTVINDY1LjEzODYxNjk1MjA5MTlMNDY5Ljc3NzIyOTU2ODYxMDUgNjkuNzAxMzc0Mzc2NzYxMzJaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTUyNC4zNTUxNzg4NDI0MDIgMTIyLjBWNjYuMEg1NjUuMjA4MjcyMjc0MDA4M1Y3NC43MzcyMjk1Njg2MTA0NUg1MzQuNjk1ODUwODU2Mjc1OFYxMTMuMjYyNzcwNDMxMzg5NTVINTY2LjMxNzkyNzU5NTkyNDZWMTIyLjBaTTUzMy45MDM0MzgxMDk2OTAxIDk3LjgyMjc1MzA4OTA5NjA0Vjg5LjMwNzU5MTU4ODk4NzYzSDU2MS43ODg5NjE2MzAxNzU3Vjk3LjgyMjc1MzA4OTA5NjA0WiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik02MDEuNzYyNzU3NDI0NjY5NSAxMjIuNzkyNDEyNzQ2NTg1NzRRNTk1LjIxMDM0NDY3ODA4MzcgMTIyLjc5MjQxMjc0NjU4NTc0IDU4OS4yMDc1ODcyNTM0MTQ0IDEyMC45MTM3OTE0NTg5MjA0NFE1ODMuMjA0ODI5ODI4NzQ1IDExOS4wMzUxNzAxNzEyNTUxNSA1NzkuNjYxMzgzMDQ3OTA4MiAxMTYuMDU3MjM4MjM5NzU3MjFMNTgzLjMwMzQ0Njc4MDgzNjkgMTA4LjAwODk3NDYzNjg5NTczUTU4Ni42NzY1NDg4ODM1ODk5IDExMC42NzcyNTEyNDY0NzczNCA1OTEuNjMxMzc2NTQ0NTQ4MiAxMTIuNDI1NTI3ODU2MDU4OTZRNTk2LjU4NjIwNDIwNTUwNjMgMTE0LjE3MzgwNDQ2NTY0MDU5IDYwMS43ODM0NDY3ODA4MzY5IDExNC4xNzM4MDQ0NjU2NDA1OVE2MDYuMTc1MTc0NTA2ODI4NiAxMTQuMTczODA0NDY1NjQwNTkgNjA4Ljg4NDQ4NzMxODQ0OCAxMTMuMjIxNzM0MjI5MzUxODJRNjExLjU5MzgwMDEzMDA2NzMgMTEyLjI2OTY2Mzk5MzA2MzA4IDYxMi44NzEwNDI3MDUzOTc5IDExMC42MTQ0ODk0ODYyMzQ1NlE2MTQuMTQ4Mjg1MjgwNzI4NSAxMDguOTU5MzE0OTc5NDA2MDMgNjE0LjE0ODI4NTI4MDcyODUgMTA2Ljg4NDgyOTgyODc0NDg2UTYxNC4xNDgyODUyODA3Mjg1IDEwNC4zMiA2MTIuMzI4OTc0NjM2ODk1OSAxMDIuNzc4Mjc0NDQxNzk0OTJRNjEwLjUwOTY2Mzk5MzA2MzIgMTAxLjIzNjU0ODg4MzU4OTg1IDYwNy41NzU1MjU2ODgyNzI0IDEwMC4yODgyNzIyNzQwMDgyNFE2MDQuNjQxMzg3MzgzNDgxNiA5OS4zMzk5OTU2NjQ0MjY2MiA2MDEuMDgyNzY2MDk1ODE2MyA5OC41NTU1MTI2ODE1NTIxM1E1OTcuNTI0MTQ0ODA4MTUwOSA5Ny43NzEwMjk2OTg2Nzc2NSA1OTMuOTYwMzUxMTgxNDQzOSA5Ni42ODU4NTczNTk2MzU4UTU5MC4zOTY1NTc1NTQ3MzY4IDk1LjYwMDY4NTAyMDU5Mzk3IDU4Ny40NjI0MTkyNDk5NDU5IDkzLjg2NTE2ODAwMzQ2ODQ1UTU4NC41MjgyODA5NDUxNTUxIDkyLjEyOTY1MDk4NjM0Mjk0IDU4Mi43MDg5NzAzMDEzMjI0IDg5LjI2ODk2MTYzMDE3NTU4UTU4MC44ODk2NTk2NTc0ODk4IDg2LjQwODI3MjI3NDAwODIzIDU4MC44ODk2NTk2NTc0ODk4IDgxLjkyODI3MjI3NDAwODI0UTU4MC44ODk2NTk2NTc0ODk4IDc3LjM1NTE3MDE3MTI1NTE0IDU4My4zMjIwNzI0MDQwNzU1IDczLjU2Mjc1NzQyNDY2OTRRNTg1Ljc1NDQ4NTE1MDY2MTMgNjkuNzcwMzQ0Njc4MDgzNjcgNTkwLjc1MzQ0ODk0ODYyMzYgNjcuNDg4OTY1OTY1NzQ4OTdRNTk1Ljc1MjQxMjc0NjU4NTggNjUuMjA3NTg3MjUzNDE0MjYgNjAzLjQxNzIzODIzOTc1NzQgNjUuMjA3NTg3MjUzNDE0MjZRNjA4LjQ3MDM0MDM0MjUxMDQgNjUuMjA3NTg3MjUzNDE0MjYgNjEzLjQzMzA5Nzc2NzE3OTggNjYuNDc3MjQyNTc1MzMwNTlRNjE4LjM5NTg1NTE5MTg0OTMgNjcuNzQ2ODk3ODk3MjQ2OTEgNjIyLjA5OTMwMTk3MjY4NiA3MC4xNTcyNDI1NzUzMzA1OUw2MTguNzg3NTgyOTE3ODQxIDc4LjI2NDgxNjgyMjAyNDcxUTYxNS4wNDU1MTQ4NDkzMzg5IDc1Ljk3NTg1MDg1NjI3NTc0IDYxMS4wNjEwMzE4NjY0NjQ0IDc0LjkwMTAyMzE5NTMxNzU4UTYwNy4wNzY1NDg4ODM1OSA3My44MjYxOTU1MzQzNTk0MSA2MDMuMzI2ODkzNTYxNjczNiA3My44MjYxOTU1MzQzNTk0MVE1OTkuMDc0NDc2NDc5NTE0NSA3My44MjYxOTU1MzQzNTk0MSA1OTYuMzU5OTkxMzI4ODUzMyA3NC44NjM0MzgxMDk2OTAwMVE1OTMuNjQ1NTA2MTc4MTkyMSA3NS45MDA2ODA2ODUwMjA2IDU5Mi40MDgyNjM2MDI4NjE2IDc3LjYwNjE5OTg2OTkzMjgxUTU5MS4xNzEwMjEwMjc1MzEgNzkuMzExNzE5MDU0ODQ1MDEgNTkxLjE3MTAyMTAyNzUzMSA4MS40NTU4NTk1Mjc0MjI1UTU5MS4xNzEwMjEwMjc1MzEgODQuMDEwMzQ0Njc4MDgzNjcgNTkyLjk5MDMzMTY3MTM2MzYgODUuNTQ2ODk3ODk3MjQ2OTFRNTk0LjgwOTY0MjMxNTE5NjIgODcuMDgzNDUxMTE2NDEwMTUgNTk3Ljc0Mzc4MDYxOTk4NzEgODcuOTkxNzI3NzI1OTkxNzdRNjAwLjY3NzkxODkyNDc3NzkgODguOTAwMDA0MzM1NTczMzkgNjA0LjI0MTcxMjU1MTQ4NTEgODkuNzE0MTQyNjQwMzY0MTlRNjA3LjgwNTUwNjE3ODE5MjIgOTAuNTI4MjgwOTQ1MTU0OTkgNjExLjM2NDEyNzQ2NTg1NzYgOTEuNTc4NjI1NjIzMjM4NjhRNjE0LjkyMjc0ODc1MzUyMjggOTIuNjI4OTcwMzAxMzIyMzUgNjE3Ljg1Njg4NzA1ODMxMzUgOTQuMzI5NjU5NjU3NDg5NzFRNjIwLjc5MTAyNTM2MzEwNDQgOTYuMDMwMzQ5MDEzNjU3MDYgNjIyLjYxMDMzNjAwNjkzNyA5OC44ODU4NjYwMzA3ODI1OFE2MjQuNDI5NjQ2NjUwNzY5NyAxMDEuNzQxMzgzMDQ3OTA4MDkgNjI0LjQyOTY0NjY1MDc2OTcgMTA2LjE0MTM4MzA0NzkwODA4UTYyNC40Mjk2NDY2NTA3Njk3IDExMC42MzQ0ODUxNTA2NjExOCA2MjEuOTYyNDA2MjQzMjI1OCAxMTQuNDI2ODk3ODk3MjQ2OVE2MTkuNDk1MTY1ODM1NjgxOSAxMTguMjE5MzEwNjQzODMyNjQgNjE0LjQ2NjU0NjcxNTgwMzIgMTIwLjUwNTg2MTY5NTIwOTE5UTYwOS40Mzc5Mjc1OTU5MjQ2IDEyMi43OTI0MTI3NDY1ODU3NCA2MDEuNzYyNzU3NDI0NjY5NSAxMjIuNzkyNDEyNzQ2NTg1NzRaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTY1OC41NjI3NTc0MjQ2Njk1IDEyMi43OTI0MTI3NDY1ODU3NFE2NTIuMDEwMzQ0Njc4MDgzNyAxMjIuNzkyNDEyNzQ2NTg1NzQgNjQ2LjAwNzU4NzI1MzQxNDQgMTIwLjkxMzc5MTQ1ODkyMDQ0UTY0MC4wMDQ4Mjk4Mjg3NDUgMTE5LjAzNTE3MDE3MTI1NTE1IDYzNi40NjEzODMwNDc5MDgyIDExNi4wNTcyMzgyMzk3NTcyMUw2NDAuMTAzNDQ2NzgwODM2OSAxMDguMDA4OTc0NjM2ODk1NzNRNjQzLjQ3NjU0ODg4MzU4OTkgMTEwLjY3NzI1MTI0NjQ3NzM0IDY0OC40MzEzNzY1NDQ1NDgxIDExMi40MjU1Mjc4NTYwNTg5NlE2NTMuMzg2MjA0MjA1NTA2MyAxMTQuMTczODA0NDY1NjQwNTkgNjU4LjU4MzQ0Njc4MDgzNjkgMTE0LjE3MzgwNDQ2NTY0MDU5UTY2Mi45NzUxNzQ1MDY4Mjg2IDExNC4xNzM4MDQ0NjU2NDA1OSA2NjUuNjg0NDg3MzE4NDQ4IDExMy4yMjE3MzQyMjkzNTE4MlE2NjguMzkzODAwMTMwMDY3MiAxMTIuMjY5NjYzOTkzMDYzMDggNjY5LjY3MTA0MjcwNTM5NzkgMTEwLjYxNDQ4OTQ4NjIzNDU2UTY3MC45NDgyODUyODA3Mjg0IDEwOC45NTkzMTQ5Nzk0MDYwMyA2NzAuOTQ4Mjg1MjgwNzI4NCAxMDYuODg0ODI5ODI4NzQ0ODZRNjcwLjk0ODI4NTI4MDcyODQgMTA0LjMyIDY2OS4xMjg5NzQ2MzY4OTU4IDEwMi43NzgyNzQ0NDE3OTQ5MlE2NjcuMzA5NjYzOTkzMDYzMiAxMDEuMjM2NTQ4ODgzNTg5ODUgNjY0LjM3NTUyNTY4ODI3MjMgMTAwLjI4ODI3MjI3NDAwODI0UTY2MS40NDEzODczODM0ODE2IDk5LjMzOTk5NTY2NDQyNjYyIDY1Ny44ODI3NjYwOTU4MTYyIDk4LjU1NTUxMjY4MTU1MjEzUTY1NC4zMjQxNDQ4MDgxNTA5IDk3Ljc3MTAyOTY5ODY3NzY1IDY1MC43NjAzNTExODE0NDM5IDk2LjY4NTg1NzM1OTYzNThRNjQ3LjE5NjU1NzU1NDczNjcgOTUuNjAwNjg1MDIwNTkzOTcgNjQ0LjI2MjQxOTI0OTk0NTkgOTMuODY1MTY4MDAzNDY4NDVRNjQxLjMyODI4MDk0NTE1NSA5Mi4xMjk2NTA5ODYzNDI5NCA2MzkuNTA4OTcwMzAxMzIyNCA4OS4yNjg5NjE2MzAxNzU1OFE2MzcuNjg5NjU5NjU3NDg5OCA4Ni40MDgyNzIyNzQwMDgyMyA2MzcuNjg5NjU5NjU3NDg5OCA4MS45MjgyNzIyNzQwMDgyNFE2MzcuNjg5NjU5NjU3NDg5OCA3Ny4zNTUxNzAxNzEyNTUxNCA2NDAuMTIyMDcyNDA0MDc1NCA3My41NjI3NTc0MjQ2Njk0UTY0Mi41NTQ0ODUxNTA2NjEyIDY5Ljc3MDM0NDY3ODA4MzY3IDY0Ny41NTM0NDg5NDg2MjM2IDY3LjQ4ODk2NTk2NTc0ODk3UTY1Mi41NTI0MTI3NDY1ODU4IDY1LjIwNzU4NzI1MzQxNDI2IDY2MC4yMTcyMzgyMzk3NTczIDY1LjIwNzU4NzI1MzQxNDI2UTY2NS4yNzAzNDAzNDI1MTA0IDY1LjIwNzU4NzI1MzQxNDI2IDY3MC4yMzMwOTc3NjcxNzk3IDY2LjQ3NzI0MjU3NTMzMDU5UTY3NS4xOTU4NTUxOTE4NDkyIDY3Ljc0Njg5Nzg5NzI0NjkxIDY3OC44OTkzMDE5NzI2ODYgNzAuMTU3MjQyNTc1MzMwNTlMNjc1LjU4NzU4MjkxNzg0MDkgNzguMjY0ODE2ODIyMDI0NzFRNjcxLjg0NTUxNDg0OTMzODkgNzUuOTc1ODUwODU2Mjc1NzQgNjY3Ljg2MTAzMTg2NjQ2NDQgNzQuOTAxMDIzMTk1MzE3NThRNjYzLjg3NjU0ODg4MzU5IDczLjgyNjE5NTUzNDM1OTQxIDY2MC4xMjY4OTM1NjE2NzM2IDczLjgyNjE5NTUzNDM1OTQxUTY1NS44NzQ0NzY0Nzk1MTQ0IDczLjgyNjE5NTUzNDM1OTQxIDY1My4xNTk5OTEzMjg4NTMzIDc0Ljg2MzQzODEwOTY5MDAxUTY1MC40NDU1MDYxNzgxOTIxIDc1LjkwMDY4MDY4NTAyMDYgNjQ5LjIwODI2MzYwMjg2MTUgNzcuNjA2MTk5ODY5OTMyODFRNjQ3Ljk3MTAyMTAyNzUzMDkgNzkuMzExNzE5MDU0ODQ1MDEgNjQ3Ljk3MTAyMTAyNzUzMDkgODEuNDU1ODU5NTI3NDIyNVE2NDcuOTcxMDIxMDI3NTMwOSA4NC4wMTAzNDQ2NzgwODM2NyA2NDkuNzkwMzMxNjcxMzYzNiA4NS41NDY4OTc4OTcyNDY5MVE2NTEuNjA5NjQyMzE1MTk2MiA4Ny4wODM0NTExMTY0MTAxNSA2NTQuNTQzNzgwNjE5OTg3IDg3Ljk5MTcyNzcyNTk5MTc3UTY1Ny40Nzc5MTg5MjQ3Nzc5IDg4LjkwMDAwNDMzNTU3MzM5IDY2MS4wNDE3MTI1NTE0ODUgODkuNzE0MTQyNjQwMzY0MTlRNjY0LjYwNTUwNjE3ODE5MjIgOTAuNTI4MjgwOTQ1MTU0OTkgNjY4LjE2NDEyNzQ2NTg1NzUgOTEuNTc4NjI1NjIzMjM4NjhRNjcxLjcyMjc0ODc1MzUyMjggOTIuNjI4OTcwMzAxMzIyMzUgNjc0LjY1Njg4NzA1ODMxMzUgOTQuMzI5NjU5NjU3NDg5NzFRNjc3LjU5MTAyNTM2MzEwNDMgOTYuMDMwMzQ5MDEzNjU3MDYgNjc5LjQxMDMzNjAwNjkzNyA5OC44ODU4NjYwMzA3ODI1OFE2ODEuMjI5NjQ2NjUwNzY5NiAxMDEuNzQxMzgzMDQ3OTA4MDkgNjgxLjIyOTY0NjY1MDc2OTYgMTA2LjE0MTM4MzA0NzkwODA4UTY4MS4yMjk2NDY2NTA3Njk2IDExMC42MzQ0ODUxNTA2NjExOCA2NzguNzYyNDA2MjQzMjI1OCAxMTQuNDI2ODk3ODk3MjQ2OVE2NzYuMjk1MTY1ODM1NjgxOCAxMTguMjE5MzEwNjQzODMyNjQgNjcxLjI2NjU0NjcxNTgwMzIgMTIwLjUwNTg2MTY5NTIwOTE5UTY2Ni4yMzc5Mjc1OTU5MjQ2IDEyMi43OTI0MTI3NDY1ODU3NCA2NTguNTYyNzU3NDI0NjY5NSAxMjIuNzkyNDEyNzQ2NTg1NzRaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTI5Mi42NzE3MjQwMDk3ODYwMyAxOTAuNjc5MjEwOTI1NjQ0OTJRMjg3LjE1MDU0MjI1NjM1NjMgMTkwLjY3OTIxMDkyNTY0NDkyIDI4Mi40NTY2NTEwNzkyNDgxIDE4OC44NjIwNjgwNjg1MDIwOFEyNzcuNzYyNzU5OTAyMTM5OSAxODcuMDQ0OTI1MjExMzU5MiAyNzQuMzEyMDIxMzA2MjQ2MyAxODMuNzE0Nzc3NDkyMTgwNDdRMjcwLjg2MTI4MjcxMDM1MjcgMTgwLjM4NDYyOTc3MzAwMTc2IDI2OC45MzI0MTU4NDM0MjM5IDE3NS44Nzk5MDA5MDExNzk5UTI2Ny4wMDM1NDg5NzY0OTUgMTcxLjM3NTE3MjAyOTM1ODAzIDI2Ny4wMDM1NDg5NzY0OTUgMTY2LjBRMjY3LjAwMzU0ODk3NjQ5NSAxNjAuNjI0ODI3OTcwNjQxOTcgMjY4LjkzMjQxNTg0MzQyMzkgMTU2LjEyMDA5OTA5ODgyMDFRMjcwLjg2MTI4MjcxMDM1MjcgMTUxLjYxNTM3MDIyNjk5ODI0IDI3NC4zNDE4NzM1ODcwNjc2IDE0OC4yODUyMjI1MDc4MTk1M1EyNzcuODIyNDY0NDYzNzgyNDcgMTQ0Ljk1NTA3NDc4ODY0MDggMjgyLjUxNjM1NTY0MDg5MDY1IDE0My4xMzc5MzE5MzE0OTc5MlEyODcuMjEwMjQ2ODE3OTk4ODQgMTQxLjMyMDc4OTA3NDM1NTA4IDI5Mi43MzE0Mjg1NzE0Mjg2IDE0MS4zMjA3ODkwNzQzNTUwOFEyOTguNjAwMTk0NDgxNDM0NDcgMTQxLjMyMDc4OTA3NDM1NTA4IDMwMy40ODQ0Mjk3MTcyNTg2NSAxNDMuMzQxNTc2MjkwNjA3M1EzMDguMzY4NjY0OTUzMDgyOSAxNDUuMzYyMzYzNTA2ODU5NDggMzExLjY5NTU2MDk5MjIyNjk0IDE0OS4zMDg3NjU5MTAwMDU5TDMwNS45NTYyNjAyNTgyNzYzIDE1NC43ODY3ODc2NDk4MDk1NVEzMDMuMzUyOTA5NDc5NDIxNSAxNTEuOTMzMzg4MjUwNTk2MTIgMzAwLjEyNDczMDcyOTkyNDc1IDE1MC41MTg4MDcwOTc5NTNRMjk2Ljg5NjU1MTk4MDQyOCAxNDkuMTA0MjI1OTQ1MzA5ODUgMjkzLjEzNjM1Mzc4Mjc4Nzc1IDE0OS4xMDQyMjU5NDUzMDk4NVEyODkuNDA1MTE5NjkyNzkzNyAxNDkuMTA0MjI1OTQ1MzA5ODUgMjg2LjI3MzI5NDcyNjA4NDcgMTUwLjM0NTAxNTAxOTY2NDlRMjgzLjE0MTQ2OTc1OTM3NTcgMTUxLjU4NTgwNDA5NDAyIDI4MC44MzEzMjAxODIwOTQxIDE1My44NDk1NDk0MTAwNTIzM1EyNzguNTIxMTcwNjA0ODEyNSAxNTYuMTEzMjk0NzI2MDg0NjYgMjc3LjI1MDUyOTI0OTYzNjEgMTU5LjIwNzU4MjI5ODQ3MzI2UTI3NS45Nzk4ODc4OTQ0NTk3NSAxNjIuMzAxODY5ODcwODYxODUgMjc1Ljk3OTg4Nzg5NDQ1OTc1IDE2Ni4wUTI3NS45Nzk4ODc4OTQ0NTk3NSAxNjkuNjk4MTMwMTI5MTM4MTUgMjc3LjI1MDUyOTI0OTYzNjEgMTcyLjc5MjQxNzcwMTUyNjc0UTI3OC41MjExNzA2MDQ4MTI1IDE3NS44ODY3MDUyNzM5MTUzNCAyODAuODMxMzIwMTgyMDk0MSAxNzguMTUwNDUwNTg5OTQ3NjdRMjgzLjE0MTQ2OTc1OTM3NTcgMTgwLjQxNDE5NTkwNTk4IDI4Ni4yNzMyOTQ3MjYwODQ3IDE4MS42NTQ5ODQ5ODAzMzUxUTI4OS40MDUxMTk2OTI3OTM3IDE4Mi44OTU3NzQwNTQ2OTAxNSAyOTMuMTM2MzUzNzgyNzg3NzUgMTgyLjg5NTc3NDA1NDY5MDE1UTI5Ni44OTY1NTE5ODA0MjggMTgyLjg5NTc3NDA1NDY5MDE1IDMwMC4xMjQ3MzA3Mjk5MjQ3NSAxODEuNDgxMTkyOTAyMDQ2OThRMzAzLjM1MjkwOTQ3OTQyMTUgMTgwLjA2NjYxMTc0OTQwMzg1IDMwNS45NTYyNjAyNTgyNzYzIDE3Ny4xNTM1MDc3ODg1NDc5TDMxMS42OTU1NjA5OTIyMjY5NCAxODIuNjMxNTI5NTI4MzUxNTZRMzA4LjM2ODY2NDk1MzA4MjkgMTg2LjU2OTA2NTA2NDU2OTEgMzAzLjQ4NDQyOTcxNzI1ODY1IDE4OC42MjQxMzc5OTUxMDdRMjk4LjYwMDE5NDQ4MTQzNDQ3IDE5MC42NzkyMTA5MjU2NDQ5MiAyOTIuNjcxNzI0MDA5Nzg2MDMgMTkwLjY3OTIxMDkyNTY0NDkyWiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik0zNDUuMjMyNTkzODIzNjAwODQgMTkwLjY3OTIxMDkyNTY0NDkyUTMzOS42NTEzOTU1Njg5MTM2IDE5MC42NzkyMTA5MjU2NDQ5MiAzMzQuOTA1Nzk2ODgzMjc2OTMgMTg4LjgyNzc4MjM1NDIxNjM3UTMzMC4xNjAxOTgxOTc2NDAyIDE4Ni45NzYzNTM3ODI3ODc3OCAzMjYuNjc1MTczODg3NDYwOSAxODMuNjQxNzcyNjMwMTQ0NjNRMzIzLjE5MDE0OTU3NzI4MTYgMTgwLjMwNzE5MTQ3NzUwMTQ4IDMyMS4yNTY4NDkyNzY4ODgyNiAxNzUuODE3MzQ5NDE1NzI1NTRRMzE5LjMyMzU0ODk3NjQ5NSAxNzEuMzI3NTA3MzUzOTQ5NiAzMTkuMzIzNTQ4OTc2NDk1IDE2NS45OTU4MTk5MDU1OTA2OFEzMTkuMzIzNTQ4OTc2NDk1IDE2MC42NjQxMzI0NTcyMzE3NCAzMjEuMjU2ODc4NjM3Mzc0OCAxNTYuMTgwMzcwNTMyNzc4NDVRMzIzLjE5MDIwODI5ODI1NDYgMTUxLjY5NjYwODYwODMyNTIgMzI2LjY4Mjc5NzI0OTIwOSAxNDguMzUxNTEyMzI1MDE0OTRRMzMwLjE3NTM4NjIwMDE2MzMgMTQ1LjAwNjQxNjA0MTcwNDY1IDMzNC44OTk3NjMwODYyNDExNCAxNDMuMTYzNjAyNTU4MDI5ODhRMzM5LjYyNDEzOTk3MjMxOSAxNDEuMzIwNzg5MDc0MzU1MDggMzQ1LjIxNTE3MjAyOTM1ODAzIDE0MS4zMjA3ODkwNzQzNTUwOFEzNTAuODEzNzkyMDc4Mjg4MSAxNDEuMzIwNzg5MDc0MzU1MDggMzU1LjUxNzIyMzAwMDA1MzgzIDE0My4xNTI5ODM5NjE0OTYxUTM2MC4yMjA2NTM5MjE4MTk1IDE0NC45ODUxNzg4NDg2MzcxMyAzNjMuNzAwNTQyNTYwMzE5MTUgMTQ4LjMxMTA0MTQ0NzY1OTg3UTM2Ny4xODA0MzExOTg4MTg4NCAxNTEuNjM2OTA0MDQ2NjgyNjIgMzY5LjExMzc2MDg1OTY5ODcgMTU2LjE0MTI2OTg5ODI5MVEzNzEuMDQ3MDkwNTIwNTc4NSAxNjAuNjQ1NjM1NzQ5ODk5MzYgMzcxLjA0NzA5MDUyMDU3ODUgMTY2LjAwMTc5MDM2MTc1NDkzUTM3MS4wNDcwOTA1MjA1Nzg1IDE3MS4zNTc5NDQ5NzM2MTA1MyAzNjkuMTEzNzkwMjIwMTg1MiAxNzUuODYyNDIwNTA2Mzc3MjhRMzY3LjE4MDQ4OTkxOTc5MTkgMTgwLjM2Njg5NjAzOTE0NDAyIDM2My43MDA1NzE5MjA4MDU3IDE4My42OTA4NTg1OTUyNTM0MlEzNjAuMjIwNjUzOTIxODE5NSAxODcuMDE0ODIxMTUxMzYyODQgMzU1LjUxNzIyMzAwMDA1MzgzIDE4OC44NDcwMTYwMzg1MDM4OFEzNTAuODEzNzkyMDc4Mjg4MSAxOTAuNjc5MjEwOTI1NjQ0OTIgMzQ1LjIzMjU5MzgyMzYwMDg0IDE5MC42NzkyMTA5MjU2NDQ5MlpNMzQ1LjIxNDc3NTAwNTQ2NTcgMTgyLjg5NTc3NDA1NDY5MDE1UTM0OC44NTEyMzQwODk5OTQxNCAxODIuODk1Nzc0MDU0NjkwMTUgMzUxLjkxNDQ3Njc1NDc4ODkgMTgxLjY0NjA5MjgxMTU3OThRMzU0Ljk3NzcxOTQxOTU4MzcgMTgwLjM5NjQxMTU2ODQ2OTQzIDM1Ny4yNTM1OTQxNTU5MjIzIDE3OC4xMTYxMzk1NzM4MzU1NFEzNTkuNTI5NDY4ODkyMjYxIDE3NS44MzU4Njc1NzkyMDE2NSAzNjAuODAwMTEwMjQ3NDM3NCAxNzIuNzUzNDA4MjY5MDI1MjdRMzYyLjA3MDc1MTYwMjYxMzcgMTY5LjY3MDk0ODk1ODg0ODg3IDM2Mi4wNzA3NTE2MDI2MTM3IDE2NS45ODE5NzU5ODEzOTA5MlEzNjIuMDcwNzUxNjAyNjEzNyAxNjIuMjkzMDAzMDAzOTMzIDM2MC44MDY4MTg2MjUxNDk5NiAxNTkuMjMzNjk1MDEyNTA2NzZRMzU5LjU0Mjg4NTY0NzY4NjI2IDE1Ni4xNzQzODcwMjEwODA1IDM1Ny4yNjQxNTM2MzkzNTg5NCAxNTMuODkwODA1OTE3ODQ0OVEzNTQuOTg1NDIxNjMxMDMxNTYgMTUxLjYwNzIyNDgxNDYwOTMgMzUxLjkxODcyNDg4NDQwNTE1IDE1MC4zNTU3MjUzNzk5NTk1OFEzNDguODUyMDI4MTM3Nzc4OCAxNDkuMTA0MjI1OTQ1MzA5ODUgMzQ1LjIxNTU2OTA1MzI1MDM2IDE0OS4xMDQyMjU5NDUzMDk4NVEzNDEuNTc5MTA5OTY4NzIxOSAxNDkuMTA0MjI1OTQ1MzA5ODUgMzM4LjQ5ODE1MjIxNzU5NzA3IDE1MC4zNTc2NjE3OTg3MzIwN1EzMzUuNDE3MTk0NDY2NDcyMiAxNTEuNjExMDk3NjUyMTU0MjkgMzMzLjEyODE3NjI3ODk4NTQ1IDE1My44OTgyMDMwMzc1NTU4UTMzMC44MzkxNTgwOTE0OTg3IDE1Ni4xODUzMDg0MjI5NTczIDMyOS41Njk1MjI5OTI5NzkyIDE1OS4yNDkzMDI1NDc4MTI5NlEzMjguMjk5ODg3ODk0NDU5NzQgMTYyLjMxMzI5NjY3MjY2ODYzIDMyOC4yOTk4ODc4OTQ0NTk3NCAxNjUuOTgwMjk0NTUzNTQ2NTRRMzI4LjI5OTg4Nzg5NDQ1OTc0IDE2OS42NDcyOTI0MzQ0MjQ0NiAzMjkuNTY2NzcxNjE5ODgyNCAxNzIuNzI5NzUxNzQ0NjAwODNRMzMwLjgzMzY1NTM0NTMwNTAzIDE3NS44MTIyMTEwNTQ3NzcyIDMzMy4xMTc3MTAyNzE1MTkwNiAxNzguMTEzMjAzNDgwMzc4NjJRMzM1LjQwMTc2NTE5NzczMzEgMTgwLjQxNDE5NTkwNTk4IDMzOC40OTAwNDA1NTkzMzUxNyAxODEuNjU0OTg0OTgwMzM1MVEzNDEuNTc4MzE1OTIwOTM3MjYgMTgyLjg5NTc3NDA1NDY5MDE1IDM0NS4yMTQ3NzUwMDU0NjU3IDE4Mi44OTU3NzQwNTQ2OTAxNVoiLz48cGF0aCBmaWxsPSIjRjNFREUwIiBkPSJNMzgzLjYxODcyNDcyMjA1ODc0IDE5MC4wVjE0Mi4wSDM5MC45NTExMjU3MDA2NTk2TDQxMS45NDIyNjI1NDk5MzY0NiAxNzcuMDM4ODI1Njc4OTgxNzdINDA4LjA1MjYxNDA0MTA2NDAzTDQyOC43MzM5OTc3MDgzMzk3NiAxNDIuMEg0MzYuMDY2Mzk4Njg2OTQwNkw0MzYuMTQzODM2OTgyNDQwOSAxOTAuMEg0MjcuNjY5OTU4ODEyMDUyODdMNDI3LjU5MjUyMDUxNjU1MjU1IDE1NS4yNjE0NTg2MTA3NTg0SDQyOS4zODY2MDgwMzMxOTgwNkw0MTEuODU1OTU3Mzg3NTA3MyAxODQuNTQ1NjEzMzI4NzkxMzJINDA3LjgyOTE2NjAyMTQ5MjAzTDM5MC4wNDg0NjY3NTU0NDI2MyAxNTUuMjYxNDU4NjEwNzU4NEgzOTIuMDkyNjAyODkyNDQ2OFYxOTAuMFoiLz48cGF0aCBmaWxsPSIjRjNFREUwIiBkPSJNNDUyLjE5MDE1MzI5MzQ4NzMgMTkwLjBWMTQyLjBINDU5LjUyMjU1NDI3MjA4ODE0TDQ4MC41MTM2OTExMjEzNjUgMTc3LjAzODgyNTY3ODk4MTc3SDQ3Ni42MjQwNDI2MTI0OTI2TDQ5Ny4zMDU0MjYyNzk3NjgzIDE0Mi4wSDUwNC42Mzc4MjcyNTgzNjkxNkw1MDQuNzE1MjY1NTUzODY5NSAxOTAuMEg0OTYuMjQxMzg3MzgzNDgxNEw0OTYuMTYzOTQ5MDg3OTgxMSAxNTUuMjYxNDU4NjEwNzU4NEg0OTcuOTU4MDM2NjA0NjI2Nkw0ODAuNDI3Mzg1OTU4OTM1OSAxODQuNTQ1NjEzMzI4NzkxMzJINDc2LjQwMDU5NDU5MjkyMDZMNDU4LjYxOTg5NTMyNjg3MTIgMTU1LjI2MTQ1ODYxMDc1ODRINDYwLjY2NDAzMTQ2Mzg3NTM1VjE5MC4wWiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik01MTMuOTM4MTMwMTI5MTM4MSAxOTAuMCA1MzUuNTE4MDMyODg4NDIwOSAxNDIuMEg1NDQuMzIxNzYxNDgxNTI3M0w1NjUuOTYxMzY4ODAyNDUyNiAxOTAuMEg1NTYuNjMzMzA1ODc0NzAxOEw1MzguMDkxMjMwMzczNzg4MyAxNDYuNzU0NDc2NDc5NTE0NEg1NDEuNjUzMzkxOTY2ODAxOEw1MjMuMTExMzE2NDY1ODg4MyAxOTAuMFpNNTIzLjkxMDUzODU0MDE1MDUgMTc4Ljg4Nzg3NTg3ODcyNzggNTI2LjI5MzM5MTk2NjgwMTggMTcxLjg4NzY4ODgyOTcwNDg3SDU1Mi4xOTQ0ODM5MTE5MjU5TDU1NC42MzcwNDE5MDAyMTk5IDE3OC44ODc4NzU4Nzg3Mjc4WiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik01NzUuMjA3Mjk2MTUwNjMwMiAxOTAuMFYxNDIuMEg1ODIuNTM5Njk3MTI5MjMxMUw2MTIuNjIzMDU5MDU2NzAzIDE3OC45NzMwMjE1ODQ5NjE3NEg2MDguOTU5MjIyMDc0MjYyMVYxNDIuMEg2MTcuODA0OTIxNDk1MTUzNFYxOTAuMEg2MTAuNDcyNTIwNTE2NTUyNUw1ODAuMzg5MTU4NTg5MDgwNSAxNTMuMDI2OTc4NDE1MDM4MjNINTg0LjA1Mjk5NTU3MTUyMTVWMTkwLjBaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTYzMy44MzU4Njc1NzkyMDE2IDE5MC4wVjE0Mi4wSDY1NC44MDYzMDUxNjI0MjkxUTY2Mi41OTAzNDQwNTg3MTU5IDE0Mi4wIDY2OC40ODQyMzUyMzU4MjQxIDE0NS4wMDM4NDI1NTY3NDk1NlE2NzQuMzc4MTI2NDEyOTMyMyAxNDguMDA3Njg1MTEzNDk5MTIgNjc3LjY4NzI4ODcxODIxODYgMTUzLjM4NjEwODgyMjg5MTgzUTY4MC45OTY0NTEwMjM1MDUgMTU4Ljc2NDUzMjUzMjI4NDUzIDY4MC45OTY0NTEwMjM1MDUgMTY2LjBRNjgwLjk5NjQ1MTAyMzUwNSAxNzMuMjI2NjAwNjAwNzg2NTggNjc3LjY4NzI4ODcxODIxODYgMTc4LjYwOTQ1Nzc0MzY0MzczUTY3NC4zNzgxMjY0MTI5MzIzIDE4My45OTIzMTQ4ODY1MDA4OCA2NjguNDg0MjM1MjM1ODI0MSAxODYuOTk2MTU3NDQzMjUwNDRRNjYyLjU5MDM0NDA1ODcxNTkgMTkwLjAgNjU0LjgwNjMwNTE2MjQyOTEgMTkwLjBaTTY0Mi43MzQ3NjgyMDE2NjYgMTgyLjQ1Nzc0NDg4MjQ3NUg2NTQuMzU5NDA5MTIzMjg1UTY1OS43NTgyMzEwODYwNjExIDE4Mi40NTc3NDQ4ODI0NzUgNjYzLjcwMjg2NDU3NTI2ODYgMTgwLjQwODU4MDcxOTA4NTgyUTY2Ny42NDc0OTgwNjQ0NzYgMTc4LjM1OTQxNjU1NTY5NjY0IDY2OS44MzM4MDUwODUwMDgyIDE3NC42NTM2MDEzMTMwNTkzN1E2NzIuMDIwMTEyMTA1NTQwMiAxNzAuOTQ3Nzg2MDcwNDIyMSA2NzIuMDIwMTEyMTA1NTQwMiAxNjYuMFE2NzIuMDIwMTEyMTA1NTQwMiAxNjAuOTgzNjQyNTAxMDA2NDcgNjY5LjgzMzgwNTA4NTAwODIgMTU3LjMxMjExMjk3MjY1NDkyUTY2Ny42NDc0OTgwNjQ0NzYgMTUzLjY0MDU4MzQ0NDMwMzM2IDY2My43MDI4NjQ1NzUyNjg2IDE1MS41OTE0MTkyODA5MTQxOFE2NTkuNzU4MjMxMDg2MDYxMSAxNDkuNTQyMjU1MTE3NTI1IDY1NC4zNTk0MDkxMjMyODUgMTQ5LjU0MjI1NTExNzUyNUg2NDIuNzM0NzY4MjAxNjY2WiIvPjwvc3ZnPg0K" alt="Cypress Command Platform">
+<div class="stamp">OCTOBER 2026<br>SHEET M-2</div></div>
+<div class="titles"><div class="eyebrow">CYPRESS COMMAND PLATFORM · OTB DEPLOYMENT</div>
+<h1 class="doc">Onboarding Manual</h1>
+<div class="deploy">On The Boulevard Shopping Center</div>
+<div class="addr">101–149 ARNOULD BLVD · LAFAYETTE, LA 70506</div>
+<p class="lede">Bringing a new property onto the platform: intake, dry run, live run, verification.</p></div>
+<div class="hero"><img src="img/styled-overview.webp" alt="A-8 Styled Twin — the center at golden hour">
+<div class="cap">A-8 STYLED TWIN · PLAN-TRUE TO THE CAD AT SURVEY HEIGHTS</div></div>
+<div class="tb">
+<div><b>PROJECT</b><span>On The Boulevard Shopping Center</span></div>
+<div><b>DOCUMENT</b><span>Onboarding Manual</span></div>
+<div><b>SHEET</b><span class="big">M-2</span></div>
+<div><b>EDITION</b><span>October 2026</span></div>
+<div><b>PREPARED BY</b><span>Orange Ocean, LLC · 2026-10-05</span></div>
+</div></section>
+<main class="wrap">
+<section class="toc"><div class="kicker">CYPRESS COMMAND PLATFORM · SHEET M-2</div>
+<h2 class="toc-h">Contents</h2>
+<div class="edition"><p><strong>Version October 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run</strong>
 Operator-driven by design — there is no self-serve signup. One intake file =
 one property.</p>
 <p>This is the complete procedure for bringing a new property onto the platform:
 what to collect, how to build the intake file, how to run it (dry, then live),
 how to verify the result, and what the new property's people do next. It ends
-with the deliberate v1 fences and the teardown procedure.</p>
-<hr />
-<h1>1. What onboarding does</h1>
+with the deliberate v1 fences and the teardown procedure.</p></div>
+<div class="toc-cols"><div class="toc-part"><a href="#what-onboarding-does"><span class="pn">SECTION 1</span><span>What onboarding does</span></a><ol></ol></div><div class="toc-part"><a href="#what-to-collect-before-you-start-intake-checklis"><span class="pn">SECTION 2</span><span>What to collect before you start (intake checklist)</span></a><ol></ol></div><div class="toc-part"><a href="#build-the-intake-file"><span class="pn">SECTION 3</span><span>Build the intake file</span></a><ol></ol></div><div class="toc-part"><a href="#dry-run"><span class="pn">SECTION 4</span><span>Dry-run</span></a><ol></ol></div><div class="toc-part"><a href="#live-run"><span class="pn">SECTION 5</span><span>Live run</span></a><ol></ol></div><div class="toc-part"><a href="#verify-two-minutes"><span class="pn">SECTION 6</span><span>Verify (two minutes)</span></a><ol></ol></div><div class="toc-part"><a href="#first-sign-ins"><span class="pn">SECTION 7</span><span>First sign-ins</span></a><ol></ol></div><div class="toc-part"><a href="#the-v1-fences-deliberate-do-not-fight-them"><span class="pn">SECTION 8</span><span>The v1 fences (deliberate — do not fight them)</span></a><ol></ol></div><div class="toc-part"><a href="#teardown-removing-a-property"><span class="pn">SECTION 9</span><span>Teardown (removing a property)</span></a><ol></ol></div><div class="toc-part"><a href="#troubleshooting"><span class="pn">SECTION 10</span><span>Troubleshooting</span></a><ol><li><a href="#the-easy-way-the-intake-form-no-technical-knowle"><span class="n"></span><span>The easy way — the intake form (no technical knowledge needed)</span></a></li><li><a href="#the-technical-way-edit-the-json-directly"><span class="n"></span><span>The technical way — edit the JSON directly</span></a></li></ol></div></div>
+
+</section>
+<h1 class="part first" id="what-onboarding-does"><span class="pk">SECTION 1</span>What onboarding does</h1>
 <p>A successful run creates, in one all-or-nothing transaction:</p>
 <ol>
 <li><strong>The organization</strong> (management company) — or reuses it by slug if it
@@ -83,34 +223,42 @@ with the deliberate v1 fences and the teardown procedure.</p>
 the sidebar for every org-wide member. Nothing else changes: rent posting and
 API surfaces keep serving the default property until the new one is
 deliberately activated.</p>
-<p><img alt="D-0 Portfolio — each onboarded property is a card" src="img/portfolio.png" /></p>
-<h1>2. What to collect before you start (intake checklist)</h1>
-<p><strong>Org (management company)</strong>
-- Slug (lowercase, hyphens — permanent, choose once) and display name.
-- Brand kit if available (palette / wordmark / contact block) — may start
-  empty <code>{}</code>.</p>
-<p><strong>Property</strong>
-- Slug (permanent), display name, street address, IANA timezone
-  (e.g. <code>America/Chicago</code>).
-- Facts worth surfacing: GLA, unit count, parking (with source citations —
+<figure><img src="img/portfolio.png" alt="D-0 Portfolio — each onboarded property is a card"><figcaption><span><b>FIG. 01</b> &nbsp;D-0 Portfolio — each onboarded property is a card</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
+<h1 class="part" id="what-to-collect-before-you-start-intake-checklis"><span class="pk">SECTION 2</span>What to collect before you start (intake checklist)</h1>
+<p><strong>Org (management company)</strong></p>
+<ul>
+<li>Slug (lowercase, hyphens — permanent, choose once) and display name.</li>
+<li>Brand kit if available (palette / wordmark / contact block) — may start
+  empty <code>{}</code>.</li>
+</ul>
+<p><strong>Property</strong></p>
+<ul>
+<li>Slug (permanent), display name, street address, IANA timezone
+  (e.g. <code>America/Chicago</code>).</li>
+<li>Facts worth surfacing: GLA, unit count, parking (with source citations —
   "rent roll 2026-08", "site plan"…). Facts are display rows, not schema;
-  add what the owner will want to see.</p>
-<p><strong>Settings</strong>
-- <code>ledger_start_ym</code> (<code>YYYY-MM</code>) — the first month rent charges will post.
+  add what the owner will want to see.</li>
+</ul>
+<p><strong>Settings</strong></p>
+<ul>
+<li><code>ledger_start_ym</code> (<code>YYYY-MM</code>) — the first month rent charges will post.
   Choose the first FULL month on the platform; historical balances are a
-  data-package concern, not an onboarding concern.
-- <code>renewal_horizon_days</code> (default 180), <code>occupancy_floor</code> (default 0.85),
-  late-fee schedule (<code>late_grace_days</code> / <code>late_flat</code> / <code>late_per_day</code>).
-- SOP answers (emergency policy, vendor rules …) — free jsonb under
-  <code>settings.settings</code>.</p>
-<p><strong>People</strong>
-- Every email that should have access on day one, each tagged with a role:
+  data-package concern, not an onboarding concern.</li>
+<li><code>renewal_horizon_days</code> (default 180), <code>occupancy_floor</code> (default 0.85),
+  late-fee schedule (<code>late_grace_days</code> / <code>late_flat</code> / <code>late_per_day</code>).</li>
+<li>SOP answers (emergency policy, vendor rules …) — free jsonb under
+  <code>settings.settings</code>.</li>
+</ul>
+<p><strong>People</strong></p>
+<ul>
+<li>Every email that should have access on day one, each tagged with a role:
   <code>operator</code> (full control) or <code>owner</code> (read-only, operator-curated sheets).
   Vendors and tenants are NOT onboarding rows — they come later through the
-  vendor roster and tenant-login editor inside the app.</p>
-<h1>3. Build the intake file</h1>
-<h2>The easy way — the intake form (no technical knowledge needed)</h2>
-<p><img alt="The fill-in-the-blank intake form" src="img/intake-form.png" /></p>
+  vendor roster and tenant-login editor inside the app.</li>
+</ul>
+<h1 class="part" id="build-the-intake-file"><span class="pk">SECTION 3</span>Build the intake file</h1>
+<h2 id="the-easy-way-the-intake-form-no-technical-knowle"><span>The easy way — the intake form (no technical knowledge needed)</span></h2>
+<figure><img src="img/intake-form.png" alt="The fill-in-the-blank intake form"><figcaption><span><b>FIG. 02</b> &nbsp;The fill-in-the-blank intake form</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Send the new property's manager the intake form link —
 <strong>https://otb.cypresscommand.com/manual/intake-form.html</strong> (or email them the
 file itself, <code>docs/phase-c/intake-form.html</code> — it works offline too). They
@@ -124,7 +272,7 @@ the file — nothing is created until you run the rail in §4–5.</p>
 <p>Anything they skip (facts, notes) you can add to the JSON afterward; their
 free-text notes arrive under <code>settings.settings.intake_notes</code> for you to
 translate into real SOP settings.</p>
-<h2>The technical way — edit the JSON directly</h2>
+<h2 id="the-technical-way-edit-the-json-directly"><span>The technical way — edit the JSON directly</span></h2>
 <p>Copy the template and fill it in:</p>
 <pre><code>docs/phase-c/onboarding-intake-template.json   →   docs/phase-c/intake-&lt;slug&gt;.json
 </code></pre>
@@ -164,13 +312,13 @@ error): slug shape, timezone shape, <code>YYYY-MM</code> ledger start, role whit
 fact and authorized row shapes. Reusing an existing org slug is legitimate
 (that is how a portfolio grows); reusing an existing <strong>property</strong> slug under
 the same org is refused.</p>
-<h1>4. Dry-run</h1>
+<h1 class="part" id="dry-run"><span class="pk">SECTION 4</span>Dry-run</h1>
 <pre><code class="language-bash">node tools/onboard-property.mjs docs/phase-c/intake-&lt;slug&gt;.json --dry-run
 </code></pre>
 <p>Validates the file and prints the full plan — org reuse vs create, the
 property row, settings, and authorized emails — without any database contact.
 Fix anything wrong and re-run until the plan reads exactly like the deal.</p>
-<h1>5. Live run</h1>
+<h1 class="part" id="live-run"><span class="pk">SECTION 5</span>Live run</h1>
 <p>The live run uses the standard CRON_SECRET pull-load-delete drill (the secret
 is pulled from Vercel env for the moment of use — never typed into chat,
 never left on disk):</p>
@@ -179,14 +327,16 @@ never left on disk):</p>
 <p>The RPC is all-or-nothing: any failure rolls the entire intake back. A
 <strong>duplicate property raises</strong> (<code>P0001</code>) and clobbers nothing — this is the
 protection, not an error to work around.</p>
-<h1>6. Verify (two minutes)</h1>
-<p><strong>In the app</strong> (as an org-wide member):
-1. <strong>D-0 Portfolio</strong> shows the new property's card ($0 A/R, 0 work orders —
-   correct for an empty property).
-2. The <strong>property switcher</strong> now renders in the sidebar (it appears only at
-   two or more visible properties).
-3. Switch to the new property — every sheet boots <strong>empty</strong>. That is
-   correct: a fresh property has no data package (§8).</p>
+<h1 class="part" id="verify-two-minutes"><span class="pk">SECTION 6</span>Verify (two minutes)</h1>
+<p><strong>In the app</strong> (as an org-wide member):</p>
+<ol>
+<li><strong>D-0 Portfolio</strong> shows the new property's card ($0 A/R, 0 work orders —
+   correct for an empty property).</li>
+<li>The <strong>property switcher</strong> now renders in the sidebar (it appears only at
+   two or more visible properties).</li>
+<li>Switch to the new property — every sheet boots <strong>empty</strong>. That is
+   correct: a fresh property has no data package (§8).</li>
+</ol>
 <p><strong>In SQL</strong> (Supabase console), if you want belt-and-suspenders:</p>
 <pre><code class="language-sql">select p.slug, p.name, p.created_at, s.ledger_start_ym
 from properties p join property_settings s on s.property_id = p.id
@@ -198,23 +348,23 @@ select email, role from authorized_emails order by email;
 <code>api/*</code> still resolves the flagship. A newly onboarded property cannot create
 financial side effects until it is deliberately given a data package and
 activated.</p>
-<h1>7. First sign-ins</h1>
+<h1 class="part" id="first-sign-ins"><span class="pk">SECTION 7</span>First sign-ins</h1>
 <p>Send each authorized person to the login page — they enter their email and
 click the magic link; their membership row and role materialize on first
 sign-in. Nothing to provision, no passwords to distribute.</p>
-<p><img alt="The sign-in screen every counterparty uses" src="img/login.png" /></p>
+<figure><img src="img/login.png" alt="The sign-in screen every counterparty uses"><figcaption><span><b>FIG. 03</b> &nbsp;The sign-in screen every counterparty uses</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <ul>
 <li>The new <strong>operator</strong> lands with full control of their (empty) property.</li>
 <li><strong>Owners</strong> land read-only on the operator-curated sheet set.</li>
 <li>Anyone not on the authorized list lands on the pending screen with no
   data access — promote or ignore from the sidebar's access panel.</li>
 </ul>
-<h1>8. The v1 fences (deliberate — do not fight them)</h1>
+<h1 class="part" id="the-v1-fences-deliberate-do-not-fight-them"><span class="pk">SECTION 8</span>The v1 fences (deliberate — do not fight them)</h1>
 <ol>
 <li><strong>No data package.</strong> Onboarding creates the container, not the contents:
    units, geometry, rent roll, and seeds are the site-plan-tier premium step
    (Phase C data-package pipeline). Until that lands for the new property,
-   the 17 property sheets remain bound to the flagship's bundled data — the
+   the 25 property sheets remain bound to the flagship's bundled data — the
    new property renders correctly on D-0 and boots its own sheets empty.</li>
 <li><strong>Known residual while switched:</strong> manual edits made while you are
    actively switched INTO a data-less property will sync to that property.
@@ -224,7 +374,7 @@ sign-in. Nothing to provision, no passwords to distribute.</p>
 <li><strong>No self-serve UI.</strong> Governed, operator-driven onboarding is the
    deliberate wedge; a UI can wrap this rail later without changing it.</li>
 </ol>
-<h1>9. Teardown (removing a property)</h1>
+<h1 class="part" id="teardown-removing-a-property"><span class="pk">SECTION 9</span>Teardown (removing a property)</h1>
 <p>The C-2 proof property was created and torn down cleanly with this exact
 pattern. Order matters (children first), and this is irreversible — read
 twice, run once:</p>
@@ -235,7 +385,7 @@ delete from properties where slug = '&lt;slug&gt;';
 </code></pre>
 <p>Then verify: D-0 shows one card fewer; the switcher disappears if only one
 property remains; the flagship's data is untouched.</p>
-<h1>10. Troubleshooting</h1>
+<h1 class="part" id="troubleshooting"><span class="pk">SECTION 10</span>Troubleshooting</h1>
 <table>
 <thead>
 <tr>
@@ -284,7 +434,7 @@ validation seam <code>src/lib/onboard.js</code>; RPC migration <code>onboarding_
 prod and funnel-proven live by the C-2 run (property created via the rail,
 verified, then torn down).</em></p>
 <div class="foot">
-  <span>CYPRESS COMMAND — instrumented asset management</span>
-  <span>Managed by Orange Ocean, LLC · generated 2026-09-22</span>
+  <span>CYPRESS COMMAND PLATFORM — instrumented asset management</span>
+  <span>Managed by Orange Ocean, LLC · generated 2026-10-05</span>
 </div>
-</div></body></html>
+</main></body></html>

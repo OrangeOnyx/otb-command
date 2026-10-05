@@ -1,14 +1,27 @@
 # Cypress Command Platform — Operating Manual (On The Boulevard deployment)
-**Version September 22, 2026 · covers the 18-sheet production build (777 tests)**
+**Version October 5, 2026 · covers the 25-sheet production build (978 tests)**
 Live app: https://otb.cypresscommand.com (also orangeoceanatlas.com · otb-command.vercel.app) · Operator: adam@adamabdalla.com
 
-This supersedes the July 2026 text-only edition (`docs/pitch/operator-manual.md`).
+This supersedes the September 22 edition and the July 2026 text-only edition
+(`docs/pitch/operator-manual.md`).
 Every screenshot is a real capture of the running system. **Tenant names and
 dollar figures shown are representative sample data, not actual tenancy or
 economics.** Part I is orientation, Part II
 is the operator's day, Part III covers each sheet in depth, Part IV is the
 counterparty guides (owner / vendor / tenant / signer), Part V is the monthly
 and periodic rhythms, Part VI is administration and recovery.
+
+> **New in this edition (October 2026).** Seven sheets joined the set:
+> **A-3 Asset Twin** (permanent records for every physical asset, on a 3D model),
+> **A-4 Site Evidence** (every source behind the twin, with what its date means),
+> **A-5 Exterior & Site** (the A-1 register in 3D, all 324 stalls),
+> **A-6 Asset Library** (storefront elevations, pylon and site plan as one drawing set),
+> **A-7 Visual Library** (approved presentation imagery),
+> **A-8 Styled Twin** (a presentation-grade 3D model laid out to the CAD and survey), and
+> **R-2 Rent Worksheet** (the owners' month-over-month rent check). A-2 Spatial now opens
+> on its capture lenses, including the drone **Reality** splat, the drone-skinned **3D**
+> mesh and **Google 3D**. Parking is closed at **324 striped**, which equals the
+> variance's "324 provided".
 
 ---
 
@@ -38,8 +51,10 @@ The left sidebar is a **sheet index**, like an architect's drawing set:
 - **D-0 Portfolio** — cross-property rollup (one card per property)
 - **D-1 Dashboard** — KPIs, action queue, live cards
 - **A-1 Site Plan** — the interactive plat
-- **A-2 Spatial** — the property workspace (plat model, suite inspector, evidence) + capture lenses
-- **R-1 Rent Roll** · **C-1 Compliance** · **P-1 Financial** — money and obligations
+- **A-2 Spatial** — capture lenses (iso · 3D · satellite · drone Reality · Google 3D) + the property workspace
+- **A-3 Asset Twin** · **A-4 Site Evidence** · **A-5 Exterior & Site** — the digital twin, its sources, the site in 3D
+- **A-6 Asset Library** · **A-7 Visual Library** · **A-8 Styled Twin** — drawings, imagery and the presentation model
+- **R-1 Rent Roll** · **R-2 Rent Worksheet** · **C-1 Compliance** · **P-1 Financial** — money and obligations
 - **S-1 Owner Safe** — sealed document vault + property records
 - **AI-1 Concierge** — the three AI personas
 - **T-1 Critical Dates** · **W-1 Action Board** — what is due, who is doing it
@@ -104,14 +119,14 @@ A normal day touches five surfaces:
    payment arrived that couldn't be matched. Each condition opens exactly
    **one** thread, ever — if there's nothing new, there's nothing there.
 4. **M-1 Maintenance** — new tenant requests (from the portal or the phone
-   line) appear in the queue. Triage per §3.10.
+   line) appear in the queue. Triage per §3.17.
 4a. **L-1 Comm Log** — the "Calls · 7 days" strip and the attention filter:
    every recorded phone call with its summary, intent and urgency chips;
-   listen, read the turns, then **✓ Mark handled** (§3.19).
+   listen, read the turns, then **✓ Mark handled** (§3.26).
 5. **Mail/phone → the system** — anything that arrived outside the system
    (a signed lease, a COI, a check conversation) gets recorded where it
-   belongs the same day: SOT update (§5.3), vendor folder (§3.13), ledger
-   entry (§3.11).
+   belongs the same day: SOT update (§5.3), vendor folder (§3.20), ledger
+   entry (§3.18).
 
 ---
 
@@ -150,8 +165,9 @@ The recorded plat, interactive. A **View** row above the chips sets a preset
 Site / Hardscape — and the chips re-derive from it; toggling any chip by hand
 drops the preset highlight. **Chips** toggle overlay layers:
 - **Lenses:** Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.
-- **🅿 Parking** — the 314 plat-labeled stalls by zone, plus the 10-stall Johnston
-  row the CAD stripes but the plat never labels (marked as such).
+- **🅿 Parking** — all **324 striped stalls** by zone: the 314 the plat labels plus
+  the 10-stall Johnston row south of 101, confirmed striped by the 9/29/2026 scan.
+  324 striped = the variance's "324 provided" (Entry 99-11797; 344 required).
 - **⇆ Access** — ingress/egress as built: every curb cut drawn as an apron with its
   throat width, two-way arrow pairs at the cuts and along the aisles, the Arnould
   raised median and its one 55' opening (Driveway A is the only full-movement cut),
@@ -172,20 +188,103 @@ drops the preset highlight. **Chips** toggle overlay layers:
   boxes, with an opacity slider.
 Click any unit → drawer.
 
-## 3.4 A-2 Spatial (four lenses)
+## 3.4 A-2 Spatial (capture lenses + property workspace)
 
 ![A-2 Spatial — iso lens](img/spatial.png)
 
-- **Iso** — SVG isometric, real CAD heights; ⇅ toggles true heights;
-  ⤓ SVG exports a standalone file.
-- **◧ 3D** — orbitable massing; **🏗 Mesh** swaps in the photogrammetry mesh.
-- **🛰 Satellite** — frozen basemap with georeferenced footprints, unit
-  labels, asset pins; opens plan-oriented (Marie Antoinette top).
-- **🎥 Reality** — photoreal drone splat; ▦ toggles unit overlays; click a
-  storefront → drawer.
-All lenses share the same selection — pick a unit in one, it's selected in all.
+The sheet opens on its lenses:
+- **▱ Isometric** — SVG isometric at the survey heights; **⇅ True heights** switches
+  between plat-scale and exaggerated heights; **⤓ SVG** exports a standalone file.
+- **◧ 3D** — orbitable model skinned with the drone photogrammetry mesh.
+- **🛰 Satellite** — frozen basemap with georeferenced footprints, unit labels and
+  asset pins; opens plan-oriented (Marie Antoinette top).
+- **🎥 Reality** — the photoreal drone Gaussian splat; ▦ toggles unit overlays;
+  click a storefront → drawer.
+- **🌐 Google 3D** — Google Photorealistic 3D Tiles with the suites draped on top;
+  click a suite → drawer. Needs the Map Tiles key; without it the pane shows setup help.
 
-## 3.5 R-1 Rent Roll
+All lenses share the same selection — pick a unit in one, it's selected in all.
+Below the lenses is the **property workspace**: Model / Plan toggle, **Geometry &
+sources**, and **Draft owner update**. A reported-frontage marker clears on its own
+once the matching M-1 work order is Done or Closed.
+
+## 3.5 A-3 Asset Twin
+
+The permanent record of every physical asset — columns, water, fixtures, common
+areas — placed on a 3D model of the center.
+- Pick a mode: **Inspect**, **Present** or **Field**. Views: Overview · Plan · Eye
+  level; tools: **Measure**, **Save view**, **Fit model**.
+- Switch between **Interior floor plans** and **Exterior & site**, pick a level, or
+  jump straight to **Water & shutoffs** or **Plans & sources**.
+- **Start guided walkway tour** → Next stop / Previous stop / Play tour.
+- Select an asset → tabs for **References · Photos · Inspections · Work orders**.
+  **Record an issue** creates a linked M-1 request; **Add an inspection**; **Asset
+  link & QR** downloads a printable SVG tag that opens the asset directly
+  (`/?asset=pa_…#twin`).
+- Asset IDs are permanent: geometry can improve, IDs never renumber.
+- Model files download as .glb / .json.
+
+Operator writes; owners read when granted. Sheets A-3, A-4, A-5 and A-8 appear for
+operator and owner sign-ins on the production build.
+
+## 3.6 A-4 Site Evidence
+
+A read-only library of every source behind the twin, each card stating **what its
+date means** (capture date, selector year, or plan date). Sections: Google Earth &
+aerial references (the Earth project, dated views, the DOTD 2024 aerial) · Aerials
+& GIS captures · suite floor plans · the water meters & shutoffs source map ·
+time-clock photos · open verification notes. **Open ↗** opens a source; **Notes &
+caveats** expands; the "Open … in the twin →" links jump to A-3 without a reload.
+Nothing here manufactures certainty — unverified items stay marked unverified.
+
+## 3.7 A-5 Exterior & Site
+
+The A-1 site register in 3D: finishes, all **324 parking stalls**, walkway
+fixtures and utilities. The model loads when you open the sheet and unloads when
+you leave. Select any object to read its register entry. **Expand view** (Esc
+closes), **Download 3D model**, **Asset CSV**; links run to A-3 interior records
+and A-4 sources.
+
+## 3.8 A-6 Asset Library
+
+The Cypress Command Platform CRE asset library for this center, drawn as one set:
+storefront elevations for the long building (101–133) and the short building
+(135–149), the Johnston St **pylon** directory sign, and the site plan with layer
+checkboxes. **Operations overlay** tints suites and panels by lease state (vacant ·
+owner-occupied · conflict · occupied); **Dark** switches theme. Click any bay,
+panel, suite or site item — or use the entity list — for its details; **Checks**
+lists the builder's validation results. Marked *DRAFT · NOT FIELD-VERIFIED* until
+the field walk closes it.
+
+## 3.9 A-7 Visual Library
+
+Approved presentation imagery for leasing, marketing and owner decks —
+appearance only, never a record. **The center** (lighting tabs: golden hour,
+midday, dusk, original), **Storefront**, and **Site elements** (light poles,
+bollards, HVAC, electrical plates). **Download** under any image.
+
+## 3.10 A-8 Styled Twin
+
+![A-8 Styled Twin — storefronts at dusk](img/styled-storefronts-dusk.webp)
+
+A presentation-grade 3D model in the Visual Library look, laid out plan-true from
+the CAD demising feet at the survey building heights: tenant-of-record fascia
+signs, the lit pylon, site lighting, rooftop HVAC, cameras, columns, trees and
+rear service items.
+- **Lighting:** Day · Golden hour (default) · Dusk · Night.
+- **Camera shots:** Overview · Storefronts · Breezeway · Jason's corner · Pylon ·
+  Patricia rear · Johnston end.
+- **Dimensions** overlays the CAD/plat feet on the model; **Reset view**;
+  **Save image** downloads a PNG for a deck.
+- Drag to orbit, scroll to zoom, right-drag to pan.
+
+![A-8 with Dimensions on — CAD/plat feet drawn on the model](img/styled-dimensions.webp)
+
+Canopy, fascia and mansard heights, pole positions and tree species are
+presentation choices, stated on the sheet; footprints and building heights are
+survey.
+
+## 3.11 R-1 Rent Roll
 
 ![R-1 Rent Roll](img/roll.png)
 
@@ -196,7 +295,24 @@ additional). The PSF breakdown chart is the only place component economics
 measures itself and shrinks to fit), with expiry flags — ▲ brick ≤6 months,
 △ amber 6–12 months — and a legend in the stamp.
 
-## 3.6 P-1 Financial
+## 3.12 R-2 Rent Worksheet
+
+Built at the owners' request: a per-suite check of the **preceding month's
+scheduled total rent against the expected month**, with a column for the owner's
+own figure. R-1 is unchanged.
+- **‹ ›** changes month. Columns: Unit · Tenant · preceding month · expected ·
+  Difference · Change/note · Owner expected.
+- **Change/note** pills explain every move: No change · Increase · Decrease ·
+  Abatement · Abatement ends · New term · Vacant · Owner-occupied · Term expired.
+- Type your expected figure in the last column — a mismatch with the schedule is
+  flagged and the totals update. Figures stay in your browser only; **Clear my
+  figures** resets the month.
+- Click a unit or tenant → drawer. **Print / Save PDF** gives a portrait page with
+  "Reviewed by / Date" lines.
+
+On by default for owners.
+
+## 3.13 P-1 Financial
 
 ![P-1 Financial](img/fin.png)
 
@@ -219,7 +335,7 @@ methodology. Suites with unknown PSF print "Not determinable" rather than a
 guess. The Excel proforma (`npm run proforma`) is the owner-overridable model
 for underwriting conversations.
 
-## 3.7 C-1 Compliance
+## 3.14 C-1 Compliance
 
 ![C-1 Compliance](img/comp.png)
 
@@ -232,7 +348,7 @@ who, when, from→to — and **⏱ History** shows the trail. You cannot corrupt
 this history; corrections are new flips. Edits sync live between devices —
 flip a cell on your phone and it flips on the desktop without a reload.
 
-## 3.8 T-1 Critical Dates
+## 3.15 T-1 Critical Dates
 
 ![T-1 Critical Dates](img/dates.png)
 
@@ -250,7 +366,7 @@ Three derived views — nothing to maintain:
   insurance renewals, the premium-finance maturity, and every S-1 governance
   item with a date, on the same timeline as the leases.
 
-## 3.9 W-1 Action Board
+## 3.16 W-1 Action Board
 
 ![W-1 Action Board](img/board.png)
 
@@ -261,7 +377,7 @@ compliance flag, covenant) and **live work-order cards** (`mr:` prefixed).
 Overrides (lane moves, dismissals) persist; the seed recomputes every render,
 so a dismissed card returns only if the underlying fact returns.
 
-## 3.10 M-1 Maintenance (operator face)
+## 3.17 M-1 Maintenance (operator face)
 
 - **Queue:** every request with status, age, unit, photos.
 - **Assign:** pick a vendor from the service roster → the vendor sees it in
@@ -274,7 +390,7 @@ so a dismissed card returns only if the underlying fact returns.
   open a manager thread automatically.
 Tenant-side view: §4.3.
 
-## 3.11 The Ledger (drawer → Ledger)
+## 3.18 The Ledger (drawer → Ledger)
 - Balance headline + last entries with running balance.
 - **⤓ Statement** — a branded, printable tenant statement (owner-visible).
 - **Prior payments** — 13 months of payment history with status-truth
@@ -300,7 +416,7 @@ Tenant-side view: §4.3.
 - **Amount changes:** re-run `tools/stripe-payment-links.mjs` for that unit
   and retire the old link in the Stripe dashboard.
 
-## 3.12 The E-Sign panel (drawer → E-Sign)
+## 3.19 The E-Sign panel (drawer → E-Sign)
 1. **Create** a request (optionally attach a document for review).
 2. **Copy link / Copy message** — the app sends nothing; you deliver the link
    through your own channel (text/email). This is deliberate.
@@ -311,7 +427,7 @@ Tenant-side view: §4.3.
 Tokens are single-lifecycle: double-signing or declining after signing is
 rejected by the database itself.
 
-## 3.13 V-1 Vendor Portal (operator face)
+## 3.20 V-1 Vendor Portal (operator face)
 
 - Roster (service vendors first, green "portal" tag = they can sign in).
 - Per-vendor private folder: upload / open / delete, all audited.
@@ -324,7 +440,7 @@ rejected by the database itself.
   email. Nothing else to configure.
 - Policy: COI / W-9 / license are verified at **payment**, not dispatch.
 
-## 3.14 K-1 Directory
+## 3.21 K-1 Directory
 
 ![K-1 Directory](img/dir.png)
 
@@ -338,7 +454,7 @@ The **pylon sign** renders as a native SVG elevation next to the tenant
 roster — hover links panel ↔ row, click → drawer; installed-but-unlisted
 faces draw brick-dashed.
 
-## 3.15 S-1 Owner Safe
+## 3.22 S-1 Owner Safe
 
 Opens with **Property records**: a **Risk register** (worst-first) and a
 **Renewal & maturity radar** (soonest-first) derived from the document
@@ -353,7 +469,7 @@ Banking / Other). Upload and open as the operator; owners read-only;
 vendors/tenants sealed out at the database layer. **Recent access**
 (operator-only) shows every view, upload, and delete with who and when.
 
-## 3.16 AI-1 Agent Desk
+## 3.23 AI-1 Agent Desk
 
 ![AI-1 Concierge](img/ai.png)
 
@@ -379,7 +495,7 @@ Three personas — **🏛 Concierge** (property Q&A), **🤝 Leasing**,
   **✉ Email** (pre-filled mailto — you send it; it never auto-sends).
   Every generated document is DRAFT-stamped, subject to legal review.
 
-## 3.17 The voice lines (LIVE)
+## 3.24 The voice lines (LIVE)
 - **Tenant line (337) 273-0384:** 24/7; triages per the SOP (emergencies =
   leak / electrical / break-in / sewer → dispatch + notify after-hours, never
   wakes you for permission); files real work orders into M-1; never discusses
@@ -406,7 +522,7 @@ Three personas — **🏛 Concierge** (property Q&A), **🤝 Leasing**,
 - Go-live steps + secret rotation drill: `docs/a3-voice-runbook.md`; call
   records: `docs/voice-call-records-runbook-2026-09-18.md`.
 
-## 3.18 B-1 Marketing
+## 3.25 B-1 Marketing
 
 Five blocks, every one generated from the source of truth on the fly — a
 flyer can never disagree with the rent roll, and **rates are never printed**:
@@ -423,11 +539,11 @@ Every output opens as a page with Print / Save PDF. The **pylon sign** block
 shows the sign, its roster and "tenants without a face" per tenant. QR codes
 for the leasing page and the tour live in `public/qr/`.
 
-## 3.19 L-1 Comm Log
+## 3.26 L-1 Comm Log
 
 The cross-channel correspondence sheet. Filter by channel (note / e-mail /
 letter / meeting / SMS / voice / web) or unit, search, expand an entry,
-hand-log new correspondence, delete stale rows. **Voice rows** (§3.17) carry
+hand-log new correspondence, delete stale rows. **Voice rows** (§3.24) carry
 intent and urgency chips, a needs-attention dot, the summary, outcome links
 (work order · tour · lead · package), ▶ Play recording, the Caller/Agent
 turns, and **✓ Mark handled**. The "Calls · 7 days" strip and the attention
@@ -435,7 +551,7 @@ filter are the morning triage (Part II). Web tour requests from /tour land
 here too. Owners see the log read-only, including every call's summary,
 transcript and recording; tenants and vendors never see this sheet.
 
-## 3.20 N-1 Matters & Planning
+## 3.27 N-1 Matters & Planning
 
 Long-running property affairs as status-filtered cards: kind (lease
 negotiation, claim, permit, dispute, project, general), status, deadlines,
@@ -444,7 +560,7 @@ inline, log meeting notes (they mirror into L-1), attach documents (they ride
 the documents bucket), close or reopen. Deadlines feed T-1. Owners read the
 cards and open attachments but never attach.
 
-## 3.21 O-1 Operations
+## 3.28 O-1 Operations
 
 The procedures (SOP) library — categories → procedures → steps, with
 due-today / overdue / streak state. Browse, expand a procedure, ✓ **Complete**
@@ -455,7 +571,7 @@ occurrence and opens ONE "SOPs overdue" digest thread in AI-1 keyed by the
 newest lapse (a static backlog never re-fires). Owners read-only; tenants and
 vendors never see O-1.
 
-## 3.22 The public /tour microsite
+## 3.29 The public /tour microsite
 
 `otb.cypresscommand.com/tour` needs no sign-in: a 360° viewer per suite when
 panoramas have been published from B-1, otherwise the plat, the numbers and
@@ -540,7 +656,7 @@ Never trust an imported system's dates over signed paper; store stated-rent
 exceptions as exceptions — do not "fix" them to formula.
 
 ## 5.4 Periodic
-- COI badges: chase at ≤60 days, escalate at ≤30 (§3.13).
+- COI badges: chase at ≤60 days, escalate at ≤30 (§3.20).
 - Semi-annual house HVAC PM (the anchor unit is excluded — its lease requires
   the tenant to maintain its own HVAC with the designated contractor).
 - Move-out: solo walk + photos within 30 days; file to the unit's assets.
@@ -563,7 +679,7 @@ exceptions as exceptions — do not "fix" them to formula.
   sheets owners get.
 
 ## 6.2 Quality gates (never skip)
-`node --check` on changed modules · `npm test` (777) · `npm run build` ·
+`node --check` on changed modules · `npm test` (978) · `npm run build` ·
 deploy · **grep the prod bundle for the change** · smoke the live URL.
 Since 2026-09-11 **every push to `master` deploys** through
 `.github/workflows/deploy.yml` (npm ci → npm test → vercel build/deploy

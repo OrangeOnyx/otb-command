@@ -1,79 +1,229 @@
-<!doctype html><html><head><meta charset="utf-8">
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cypress Command Platform — Complete Program Documentation</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
-* { box-sizing: border-box; }
-body { margin:0; background:#EDEFE8; color:#1C2B26;
-  font:15px/1.55 'Public Sans',sans-serif; }
-.wrap { max-width:880px; margin:0 auto; padding:28px 34px 60px; }
-.titleblock { border:2px solid #1C2B26; background:#F6F7F1; padding:14px 20px;
-  margin-bottom:30px; display:flex; justify-content:space-between;
-  align-items:baseline; gap:16px; flex-wrap:wrap; }
-.titleblock .name { font:700 30px 'Big Shoulders Display',sans-serif;
-  letter-spacing:.5px; }
-.titleblock .sheet { font:600 13px 'IBM Plex Mono',monospace; color:#A87E2F; }
-h1 { font:700 26px 'Big Shoulders Display',sans-serif; letter-spacing:.5px;
-  border-bottom:2px solid #1C2B26; padding-bottom:6px; margin:44px 0 14px;
-  break-after:avoid; }
-h2 { font:700 19px 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
-  color:#2F6B4F; margin:30px 0 8px; break-after:avoid; }
-h3 { font:600 15px 'Public Sans',sans-serif; margin:22px 0 6px; }
-p { margin:8px 0; }
-strong { color:#1C2B26; }
-a { color:#2F6B4F; }
-img { max-width:100%; border:1px solid #5F6E64; border-radius:3px;
-  margin:10px 0 4px; break-inside:avoid; }
-table { border-collapse:collapse; font-size:13px; margin:12px 0; width:100%;
-  break-inside:avoid; }
-th, td { border:1px solid #5F6E64; padding:5px 9px; text-align:left;
-  vertical-align:top; }
-th { background:#F6F7F1; font:600 12px 'IBM Plex Mono',monospace;
-  text-transform:uppercase; letter-spacing:.4px; }
-code { font:13px 'IBM Plex Mono',monospace; background:#F6F7F1;
-  padding:1px 5px; border-radius:3px; }
-pre { background:#F6F7F1; border:1px solid #5F6E64; border-radius:3px;
-  padding:12px 14px; overflow-x:auto; break-inside:avoid; }
-pre code { background:none; padding:0; }
-blockquote { border-left:4px solid #A87E2F; margin:10px 0; padding:2px 14px;
-  color:#5F6E64; }
-ul, ol { margin:8px 0; padding-left:26px; }
-li { margin:3px 0; }
-hr { border:none; border-top:1px solid #5F6E64; margin:26px 0; }
-.confid { color:#C25E33; font:600 12px 'IBM Plex Mono',monospace;
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap');
+:root { --ink:#1C2B26; --paper:#EDEFE8; --card:#F6F7F1; --brass:#A87E2F; --sage:#5F6E64;
+  --grn:#2F6B4F; --anchor:#1E4F3C; --brick:#C25E33; --charcoal:#0A1F16; }
+* { box-sizing:border-box; }
+html { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body { margin:0; background:var(--paper); color:var(--ink);
+  font:15px/1.6 'Public Sans',sans-serif; }
+.mono { font-family:'IBM Plex Mono',monospace; }
+
+/* ---------- cover ---------- */
+.cover { background:var(--charcoal); color:#F3EDE0; position:relative;
+  min-height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+.cover .grid { position:absolute; inset:0; opacity:.07; pointer-events:none;
+  background-image:linear-gradient(#F3EDE0 1px,transparent 1px),
+    linear-gradient(90deg,#F3EDE0 1px,transparent 1px);
+  background-size:28px 28px; }
+.cover .top { position:relative; padding:44px 56px 0; display:flex;
+  justify-content:space-between; align-items:flex-start; gap:24px; }
+.cover .lockup { width:300px; height:auto; display:block; margin:-14px 0 0 -18px; }
+.cover .stamp { font:600 11px 'IBM Plex Mono',monospace; letter-spacing:1.4px;
+  border:1.5px solid #A87E2F; color:#A87E2F; padding:7px 12px; text-align:right;
+  line-height:1.6; }
+.cover .titles { position:relative; padding:34px 56px 0; }
+.cover .eyebrow { font:600 12px 'IBM Plex Mono',monospace; letter-spacing:2.4px;
+  color:#A87E2F; }
+.cover h1.doc { font:800 76px/0.95 'Big Shoulders Display',sans-serif;
+  letter-spacing:1px; margin:10px 0 14px; color:#F3EDE0; border:0; padding:0; }
+.cover .deploy { font:600 20px 'Public Sans',sans-serif; color:#F3EDE0; }
+.cover .addr { font:13px 'IBM Plex Mono',monospace; color:#B9C2B6; margin-top:4px;
   letter-spacing:.6px; }
-.foot { margin-top:46px; border-top:2px solid #1C2B26; padding-top:10px;
-  font:11px 'IBM Plex Mono',monospace; color:#5F6E64;
+.cover .lede { max-width:560px; color:#D8DCCF; font-size:15px; margin:16px 0 0; }
+.cover .hero { position:relative; margin:30px 56px 0; border:1.5px solid #3B5446;
+  background:#14301F; flex:1 1 auto; min-height:300px; display:flex; }
+.cover .hero img { width:100%; height:100%; object-fit:cover; display:block;
+  border:0; margin:0; border-radius:0; }
+.cover .hero .cap { position:absolute; left:0; bottom:0; background:var(--charcoal);
+  color:#B9C2B6; font:10.5px 'IBM Plex Mono',monospace; letter-spacing:.8px;
+  padding:6px 10px; border-top:1.5px solid #3B5446; border-right:1.5px solid #3B5446; }
+.cover .tb { position:relative; margin:22px 56px 44px; display:grid;
+  grid-template-columns:2.2fr 1.6fr 1fr 1.2fr 1.6fr; border:1.5px solid #F3EDE0; }
+.cover .tb div { padding:9px 12px; border-left:1px solid #5B7363; }
+.cover .tb div:first-child { border-left:0; }
+.cover .tb b { display:block; font:600 9.5px 'IBM Plex Mono',monospace;
+  letter-spacing:1.4px; color:#A87E2F; margin-bottom:3px; }
+.cover .tb span { font:600 13px 'Public Sans',sans-serif; color:#F3EDE0; }
+.cover .tb .big { font:800 26px/1 'Big Shoulders Display',sans-serif; }
+
+/* ---------- reading column ---------- */
+.wrap { max-width:900px; margin:0 auto; padding:40px 40px 60px; }
+.webbar { font:12px 'IBM Plex Mono',monospace; margin:0 0 18px; display:flex;
+  gap:16px; flex-wrap:wrap; }
+.webbar a { color:var(--grn); text-decoration:none; border-bottom:1px solid var(--brass); }
+
+/* contents + sheet index */
+.toc { break-after:page; }
+.kicker { font:600 11.5px 'IBM Plex Mono',monospace; letter-spacing:2px; color:var(--brass); }
+.toc h2.toc-h { font:800 44px/1 'Big Shoulders Display',sans-serif; margin:6px 0 20px;
+  color:var(--ink); border-bottom:3px solid var(--ink); padding-bottom:10px; }
+.edition { background:var(--card); border:1px solid var(--sage); border-left:5px solid var(--brass);
+  padding:12px 16px; margin:0 0 24px; font-size:13.5px; }
+.edition p { margin:3px 0; }
+.toc-cols { columns:2; column-gap:34px; }
+.toc-part { margin:0 0 16px; }
+.toc-part > a { break-after:avoid; break-inside:avoid; display:flex; gap:10px; align-items:baseline; text-decoration:none;
+  color:var(--ink); font:700 18px 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
+  border-bottom:1.5px solid var(--ink); padding-bottom:3px; margin-bottom:5px; }
+.toc-part > a .pn { color:var(--brass); font:600 11px 'IBM Plex Mono',monospace;
+  letter-spacing:1px; min-width:52px; }
+.toc-part ol { list-style:none; margin:0; padding:0; }
+.toc-part li { margin:0; font-size:12.5px; line-height:1.75; }
+.toc-part li a { color:var(--ink); text-decoration:none; display:flex; gap:8px; }
+.toc-part li .n { font:11px 'IBM Plex Mono',monospace; color:var(--sage); min-width:34px; }
+.toc-book { font:800 15px 'Big Shoulders Display',sans-serif; letter-spacing:1px;
+  background:var(--ink); color:var(--paper); padding:5px 10px; margin:4px 0 10px;
+  break-inside:avoid; break-after:avoid; }
+.index { break-before:page; padding-top:4px; }
+.index h3 { font:700 20px 'Big Shoulders Display',sans-serif; letter-spacing:.5px;
+  margin:4px 0 4px; }
+.index .lead { font-size:12.5px; color:var(--sage); margin:0 0 10px; }
+.sheetgrid { display:grid; grid-template-columns:repeat(5,1fr); border-top:2px solid var(--ink);
+  border-left:1px solid var(--sage); }
+.sheetgrid > div { border-right:1px solid var(--sage); border-bottom:1px solid var(--sage);
+  padding:10px 11px 11px; background:var(--card); }
+.sheetgrid .c { font:800 19px/1 'Big Shoulders Display',sans-serif; color:var(--anchor); }
+.sheetgrid .l { font-size:11.5px; font-weight:600; margin-top:3px; line-height:1.25; }
+.sheetgrid .g { font:9px 'IBM Plex Mono',monospace; color:var(--sage); letter-spacing:.6px;
+  text-transform:uppercase; margin-top:2px; }
+
+/* parts, books, headings */
+.book { break-before:page; background:var(--charcoal); color:#F3EDE0; padding:60px 46px;
+  margin:0 -40px 30px; min-height:240px; }
+.book .kicker { color:#A87E2F; }
+.book .t { font:800 54px/1 'Big Shoulders Display',sans-serif; margin-top:10px; }
+h1.part { break-before:page; margin:0 0 22px; padding:0 0 14px; border-bottom:3px solid var(--ink);
+  font:800 46px/1 'Big Shoulders Display',sans-serif; letter-spacing:.6px; }
+h1.part.first { break-before:auto; }
+h1.part .pk { display:block; font:600 12px 'IBM Plex Mono',monospace; letter-spacing:2.4px;
+  color:var(--brass); margin-bottom:10px; }
+h2 { font:700 23px/1.15 'Big Shoulders Display',sans-serif; letter-spacing:.4px;
+  color:var(--ink); margin:38px 0 10px; break-after:avoid; display:flex; align-items:center;
+  gap:10px; flex-wrap:wrap; }
+h2 .num { font:600 12px 'IBM Plex Mono',monospace; color:var(--sage); letter-spacing:.5px;
+  border:1px solid var(--sage); padding:2px 6px; border-radius:2px; }
+h2 .code { font:800 15px/1 'Big Shoulders Display',sans-serif; letter-spacing:.8px;
+  background:var(--anchor); color:var(--paper); padding:5px 8px 4px; border-radius:2px; }
+h2::after { content:""; flex:1 1 40px; height:1.5px; background:var(--ink); opacity:.85; }
+h3 { font:700 15px 'Public Sans',sans-serif; margin:22px 0 6px; color:var(--grn); break-after:avoid; }
+p { margin:9px 0; }
+strong { color:var(--ink); font-weight:700; }
+a { color:var(--grn); }
+ul, ol { margin:8px 0; padding-left:24px; }
+li { margin:4px 0; }
+li::marker { color:var(--brass); }
+hr { display:none; }
+
+/* figures */
+figure { margin:18px 0 20px; break-inside:avoid; background:var(--card);
+  border:1.5px solid var(--ink); }
+figure img { display:block; max-width:100%; max-height:560px; width:auto; height:auto; margin:0 auto;
+  border:0; }
+figure figcaption { border-top:1.5px solid var(--ink); background:var(--paper); }
+figcaption { display:flex; justify-content:space-between; gap:12px; padding:6px 10px;
+  font:11px 'IBM Plex Mono',monospace; letter-spacing:.5px; color:var(--ink); }
+figcaption b { color:var(--brass); font-weight:600; }
+img { max-width:100%; }
+.figrow { display:flex; gap:18px; justify-content:center; break-inside:avoid; }
+.figrow figure { flex:0 1 250px; margin:18px 0; }
+.figrow figure img { max-height:none; width:100%; }
+
+/* tables, code, notes */
+table { border-collapse:collapse; font-size:13px; margin:14px 0; width:100%; break-inside:avoid;
+  border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); }
+th, td { border-bottom:1px solid #C9CEC2; padding:7px 10px; text-align:left; vertical-align:top; }
+th { background:var(--card); font:600 11px 'IBM Plex Mono',monospace;
+  text-transform:uppercase; letter-spacing:.6px; color:var(--anchor); }
+tbody tr:nth-child(even) td { background:rgba(246,247,241,.7); }
+code { font:12.5px 'IBM Plex Mono',monospace; background:var(--card); border:1px solid #D9DDD2;
+  padding:0 5px; border-radius:2px; }
+pre { background:var(--ink); color:var(--paper); border-radius:2px; padding:12px 16px;
+  overflow-x:auto; break-inside:avoid; }
+pre code { background:none; border:0; padding:0; color:inherit; }
+blockquote { margin:16px 0; padding:12px 16px 12px 18px; background:var(--card);
+  border:1px solid var(--sage); border-left:5px solid var(--brass); break-inside:avoid; }
+blockquote p { margin:4px 0; }
+.confid { color:var(--brick); font:600 12px 'IBM Plex Mono',monospace; letter-spacing:.6px; }
+.foot { margin-top:50px; border-top:2px solid var(--ink); padding-top:10px;
+  font:11px 'IBM Plex Mono',monospace; color:var(--sage);
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-@page { size: letter; margin: 14mm 12mm; }
+
+@page { size:letter; margin:16mm 15mm 18mm; }
 @media print {
   body { background:#fff; }
   .wrap { max-width:none; padding:0; }
-  img { border-color:#ccc; }
+  .book { margin:0 0 30px; }
+  .webbar, .foot { display:none; }
 }
-</style></head><body><div class="wrap"><p style="font:12px 'IBM Plex Mono',monospace;margin:0 0 14px"><a href="Cypress-Command-Complete-Documentation.pdf">⤓ Download as PDF</a> · <a href="intake-form.html">property intake form</a> · <a href="/">back to the app</a></p>
-<div class="titleblock">
-  <div><div class="name">CYPRESS COMMAND · OTB</div>
-  <div style="font:600 13px 'IBM Plex Mono',monospace">COMPLETE PROGRAM DOCUMENTATION · SEPTEMBER 2026</div></div>
-  <div class="sheet">SHEET M-0 · 101–149 ARNOULD BLVD · LAFAYETTE, LA</div>
-</div>
-<p style="font-size:14px;color:#5F6E64">One document, every part of the program:</p><ul><li>BOOK I — OPERATING MANUAL</li><li>BOOK II — PROPERTY ONBOARDING</li></ul>
-<div style="border:2px solid #1C2B26; background:#F6F7F1;
-  padding:18px 22px; margin:52px 0 30px; 
-  font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
-  BOOK I — OPERATING MANUAL</div><h1>Cypress Command Platform — Operating Manual (On The Boulevard deployment)</h1>
-<p><strong>Version September 22, 2026 · covers the 18-sheet production build (777 tests)</strong>
+@media screen and (max-width:720px) {
+  .wrap { padding:24px 16px 48px; }
+  .cover .top, .cover .titles { padding-left:20px; padding-right:20px; }
+  .cover .hero, .cover .tb { margin-left:20px; margin-right:20px; }
+  .cover .hero { min-height:0; flex:0 0 auto; }
+  .cover .hero img { height:auto; }
+  .cover h1.doc { font-size:48px; }
+  .cover .lockup { width:260px; }
+  .cover .stamp { display:none; }
+  .cover .tb { grid-template-columns:1fr 1fr; }
+  .cover .tb div { border-left:0; border-top:1px solid #5B7363; }
+  .toc-cols { columns:1; }
+  .sheetgrid { grid-template-columns:repeat(2,1fr); }
+  .book { margin:0 -16px 24px; padding:40px 20px; }
+  table { display:block; overflow-x:auto; }
+}
+</style></head><body>
+<section class="cover"><div class="grid"></div>
+<div class="top"><img class="lockup" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3MzIgMjU2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q3lwcmVzcyBDb21tYW5kIC0gY2MtMDRjLWhvcml6b250YWwtcmV2ZXJzZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1hcnkgaG9yaXpvbnRhbCBsb2NrdXAuIElkZW50aWNhbCAxNjggYnkgMTYwIG1hcmsgZ2VvbWV0cnk7IE1vbnRzZXJyYXQgU2VtaUJvbGQgb3V0bGluZWQgd29yZG1hcmsuIENsZWFyIHNwYWNlIGluY2x1ZGVkLjwvZGVzYz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCA0OCkiPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik0zMiAwSDEzNkMxNTMuNjczIDAgMTY4IDE0LjMyNyAxNjggMzJWNThIMTM1VjM1UTEzNSAzMCAxMzAgMzBIMzdRMzIgMzAgMzIgMzVWMTI1UTMyIDEzMCAzNyAxMzBIMTMwUTEzNSAxMzAgMTM1IDEyNVY5NkgxNjhWMTI4QzE2OCAxNDUuNjczIDE1My42NzMgMTYwIDEzNiAxNjBIMzJDMTQuMzI3IDE2MCAwIDE0NS42NzMgMCAxMjhWMzJDMCAxNC4zMjcgMTQuMzI3IDAgMzIgMFoiLz48cmVjdCB4PSI2MSIgeT0iNTYiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0iI0YzRURFMCIvPjwvZz48cGF0aCBmaWxsPSIjRjNFREUwIiBkPSJNMjk3LjQ1MDM0NDY3ODA4MzcgMTIyLjc5MjQxMjc0NjU4NTc0UTI5MS4wMDg5NjU5NjU3NDkgMTIyLjc5MjQxMjc0NjU4NTc0IDI4NS41MzI3NTk1OTI0NTYxIDEyMC42NzI0MTI3NDY1ODU3NFEyODAuMDU2NTUzMjE5MTYzMiAxMTguNTUyNDEyNzQ2NTg1NzMgMjc2LjAzMDY5MTUyMzk1NDAzIDExNC42NjcyNDA0MDc1NDM4OVEyNzIuMDA0ODI5ODI4NzQ0ODUgMTEwLjc4MjA2ODA2ODUwMjA2IDI2OS43NTQ0ODUxNTA2NjExNCAxMDUuNTI2NTUxMDUxMzc2NTRRMjY3LjUwNDE0MDQ3MjU3NzUgMTAwLjI3MTAzNDAzNDI1MTAzIDI2Ny41MDQxNDA0NzI1Nzc1IDk0LjBRMjY3LjUwNDE0MDQ3MjU3NzUgODcuNzI4OTY1OTY1NzQ4OTcgMjY5Ljc1NDQ4NTE1MDY2MTE0IDgyLjQ3MzQ0ODk0ODYyMzQ2UTI3Mi4wMDQ4Mjk4Mjg3NDQ4NSA3Ny4yMTc5MzE5MzE0OTc5NCAyNzYuMDY1NTE5MTg0OTEyMiA3My4zMzI3NTk1OTI0NTYxMVEyODAuMTI2MjA4NTQxMDc5NTYgNjkuNDQ3NTg3MjUzNDE0MjcgMjg1LjYwMjQxNDkxNDM3MjQgNjcuMzI3NTg3MjUzNDE0MjZRMjkxLjA3ODYyMTI4NzY2NTI3IDY1LjIwNzU4NzI1MzQxNDI2IDI5Ny41MiA2NS4yMDc1ODcyNTM0MTQyNlEzMDQuMzY2ODkzNTYxNjczNSA2NS4yMDc1ODcyNTM0MTQyNiAzMTAuMDY1MTY4MDAzNDY4NDQgNjcuNTY1MTcyMzM5MDQxODRRMzE1Ljc2MzQ0MjQ0NTI2MzQgNjkuOTIyNzU3NDI0NjY5NDEgMzE5LjY0NDgyMTE1NzU5ODEgNzQuNTI2ODkzNTYxNjczNTNMMzEyLjk0ODk3MDMwMTMyMjMzIDgwLjkxNzkxODkyNDc3NzgxUTMwOS45MTE3Mjc3MjU5OTE3NCA3Ny41ODg5NTI5NTkwMjg4MyAzMDYuMTQ1NTE5MTg0OTEyMiA3NS45Mzg2MDgyODA5NDUxNVEzMDIuMzc5MzEwNjQzODMyNjQgNzQuMjg4MjYzNjAyODYxNDggMjk3Ljk5MjQxMjc0NjU4NTcgNzQuMjg4MjYzNjAyODYxNDhRMjkzLjYzOTMwNjMwODI1OTMgNzQuMjg4MjYzNjAyODYxNDggMjg5Ljk4NTUxMDUxMzc2NTQ2IDc1LjczNTg1MDg1NjI3NTczUTI4Ni4zMzE3MTQ3MTkyNzE2NCA3Ny4xODM0MzgxMDk2OSAyODMuNjM2NTQwMjEyNDQzMSA3OS44MjQ0NzQzMTE3Mjc3M1EyODAuOTQxMzY1NzA1NjE0NTQgODIuNDY1NTEwNTEzNzY1NDUgMjc5LjQ1ODk1MDc5MTI0MjE2IDg2LjA3NTUxMjY4MTU1MjE0UTI3Ny45NzY1MzU4NzY4Njk3IDg5LjY4NTUxNDg0OTMzODgzIDI3Ny45NzY1MzU4NzY4Njk3IDk0LjBRMjc3Ljk3NjUzNTg3Njg2OTcgOTguMzE0NDg1MTUwNjYxMTcgMjc5LjQ1ODk1MDc5MTI0MjE2IDEwMS45MjQ0ODczMTg0NDc4NlEyODAuOTQxMzY1NzA1NjE0NTQgMTA1LjUzNDQ4OTQ4NjIzNDU1IDI4My42MzY1NDAyMTI0NDMxIDEwOC4xNzU1MjU2ODgyNzIyN1EyODYuMzMxNzE0NzE5MjcxNjQgMTEwLjgxNjU2MTg5MDMxIDI4OS45ODU1MTA1MTM3NjU0NiAxMTIuMjY0MTQ5MTQzNzI0MjdRMjkzLjYzOTMwNjMwODI1OTMgMTEzLjcxMTczNjM5NzEzODUyIDI5Ny45OTI0MTI3NDY1ODU3IDExMy43MTE3MzYzOTcxMzg1MlEzMDIuMzc5MzEwNjQzODMyNjQgMTEzLjcxMTczNjM5NzEzODUyIDMwNi4xNDU1MTkxODQ5MTIyIDExMi4wNjEzOTE3MTkwNTQ4NVEzMDkuOTExNzI3NzI1OTkxNzQgMTEwLjQxMTA0NzA0MDk3MTE3IDMxMi45NDg5NzAzMDEzMjIzMyAxMDcuMDEyNDI1NzUzMzA1ODhMMzE5LjY0NDgyMTE1NzU5ODEgMTEzLjQwMzQ1MTExNjQxMDE0UTMxNS43NjM0NDI0NDUyNjM0IDExNy45OTcyNDI1NzUzMzA1OSAzMTAuMDY1MTY4MDAzNDY4NDQgMTIwLjM5NDgyNzY2MDk1ODE2UTMwNC4zNjY4OTM1NjE2NzM1IDEyMi43OTI0MTI3NDY1ODU3NCAyOTcuNDUwMzQ0Njc4MDgzNyAxMjIuNzkyNDEyNzQ2NTg1NzRaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTM0OS4xNzg2MjU2MjMyMzg3IDEyMi4wVjk5Ljg3NzkzNjI2NzA3MTMyTDM1MS41NDgyNzY2MDk1ODE2NSAxMDYuMjEyNDA4NDExMDEyMzZMMzI3LjIyMjc2MTc2MDI0MjggNjYuMEgzMzguMjk2NTM1ODc2ODY5N0wzNTcuODY0ODE2ODIyMDI0NzUgOTguNDA0MTQ0ODA4MTUwODdIMzUxLjYyODI3NjYwOTU4MTYzTDM3MS4yODY5MDIyMzI4MjAzIDY2LjBIMzgxLjUxNjU0MDIxMjQ0MzFMMzU3LjIxMTcxNDcxOTI3MTY0IDEwNi4yMTI0MDg0MTEwMTIzNkwzNTkuNTYwNjc2MzQ5NDQ3MjUgOTkuODc3OTM2MjY3MDcxMzJWMTIyLjBaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTM5NC44MzUxNzg4NDI0MDE5NCAxMjIuMFY2Ni4wSDQxNy44MjQ4MjU0OTMxNzE1UTQyNS4yNDY4OTM1NjE2NzM2IDY2LjAgNDMwLjU4Mzc4OTI5MTEzMzggNjguMzg1ODYxNjk1MjA5MTlRNDM1LjkyMDY4NTAyMDU5NCA3MC43NzE3MjMzOTA0MTgzNyA0MzguNzk2ODkxMzkzODg2OSA3NS4yNTMxMDIxMDI3NTMwOVE0NDEuNjczMDk3NzY3MTc5NzQgNzkuNzM0NDgwODE1MDg3OCA0NDEuNjczMDk3NzY3MTc5NzQgODUuOTM1ODU5NTI3NDIyNTFRNDQxLjY3MzA5Nzc2NzE3OTc0IDkyLjA2NzU4MjkxNzg0MDg4IDQzOC43OTY4OTEzOTM4ODY5IDk2LjU0Mzc4OTI5MTEzMzc1UTQzNS45MjA2ODUwMjA1OTQgMTAxLjAxOTk5NTY2NDQyNjYyIDQzMC41ODM3ODkyOTExMzM4IDEwMy40MTEwMjk2OTg2Nzc2NVE0MjUuMjQ2ODkzNTYxNjczNiAxMDUuODAyMDYzNzMyOTI4NjcgNDE3LjgyNDgyNTQ5MzE3MTUgMTA1LjgwMjA2MzczMjkyODY3SDQwMC41Nzg2MTY5NTIwOTE5TDQwNS4yMTcyMjk1Njg2MTA1IDEwMC45OTU4NjM4NjI5OTU4OFYxMjIuMFpNNDA1LjIxNzIyOTU2ODYxMDUgMTAyLjEwMDY4OTM1NjE2NzM1IDQwMC41Nzg2MTY5NTIwOTE5IDk3LjAyMzQ1NTQ1MTk4MzUySDQxNy4zOTEwMzQwMzQyNTEwNVE0MjQuMjM2NTU3NTU0NzM2NjMgOTcuMDIzNDU1NDUxOTgzNTIgNDI3LjcxODYyOTk1ODgxMjEgOTQuMTE0MTQyNjQwMzY0MThRNDMxLjIwMDcwMjM2Mjg4NzUgOTEuMjA0ODI5ODI4NzQ0ODUgNDMxLjIwMDcwMjM2Mjg4NzUgODUuOTM1ODU5NTI3NDIyNTFRNDMxLjIwMDcwMjM2Mjg4NzUgODAuNTk3MjMzOTA0MTgzODQgNDI3LjcxODYyOTk1ODgxMjEgNzcuNjg3OTIxMDkyNTY0NVE0MjQuMjM2NTU3NTU0NzM2NjMgNzQuNzc4NjA4MjgwOTQ1MTUgNDE3LjM5MTAzNDAzNDI1MTA1IDc0Ljc3ODYwODI4MDk0NTE1SDQwMC41Nzg2MTY5NTIwOTE5TDQwNS4yMTcyMjk1Njg2MTA1IDY5LjcwMTM3NDM3Njc2MTMyWiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik00NTkuMzk1MTc4ODQyNDAxOTUgMTIyLjBWNjYuMEg0ODIuMjgxMzc4NzEyMzM0NzRRNDkzLjQ4OTY1MDk4NjM0Mjk1IDY2LjAgNDk5Ljg2MTM3NDM3Njc2MTMgNzEuMjk2ODk1NzI5NDYwMjJRNTA2LjIzMzA5Nzc2NzE3OTc0IDc2LjU5Mzc5MTQ1ODkyMDQ0IDUwNi4yMzMwOTc3NjcxNzk3NCA4NS45MzU4NTk1Mjc0MjI1MVE1MDYuMjMzMDk3NzY3MTc5NzQgOTIuMDY3NTgyOTE3ODQwODggNTAzLjM1Njg5MTM5Mzg4NjkgOTYuNTAzNzg5MjkxMTMzNzZRNTAwLjQ4MDY4NTAyMDU5NCAxMDAuOTM5OTk1NjY0NDI2NjIgNDk1LjE0Mzc4OTI5MTEzMzc3IDEwMy4zMTU1MTI2ODE1NTIxNFE0ODkuODA2ODkzNTYxNjczNiAxMDUuNjkxMDI5Njk4Njc3NjUgNDgyLjM4NDgyNTQ5MzE3MTUgMTA1LjY5MTAyOTY5ODY3NzY1SDQ2NS4xMzg2MTY5NTIwOTE5TDQ2OS43NzcyMjk1Njg2MTA1IDEwMC45OTU4NjM4NjI5OTU4OFYxMjIuMFpNNDk1Ljk4MDAxMzAwNjcyMDIgMTIyLjAgNDgxLjgwMjA4MTA3NTIyMjI1IDEwMS42Njk2NTUzMjE5MTYzMkg0OTIuOTU1ODU1MTkxODQ5MTRMNTA3LjIyNDEzMTgwMTQzMDc2IDEyMi4wWk00NjkuNzc3MjI5NTY4NjEwNSAxMDIuMTAwNjg5MzU2MTY3MzUgNDY1LjEzODYxNjk1MjA5MTkgOTcuMDkzMTEwNzczODk5ODVINDgxLjk1MTAzNDAzNDI1MTA1UTQ4OC43OTY1NTc1NTQ3MzY2NCA5Ny4wOTMxMTA3NzM4OTk4NSA0OTIuMjc4NjI5OTU4ODEyMSA5NC4xNDg5NzAzMDEzMjIzNVE0OTUuNzYwNzAyMzYyODg3NSA5MS4yMDQ4Mjk4Mjg3NDQ4NSA0OTUuNzYwNzAyMzYyODg3NSA4NS45MzU4NTk1Mjc0MjI1MVE0OTUuNzYwNzAyMzYyODg3NSA4MC41OTcyMzM5MDQxODM4NCA0OTIuMjc4NjI5OTU4ODEyMSA3Ny42ODc5MjEwOTI1NjQ1UTQ4OC43OTY1NTc1NTQ3MzY2NCA3NC43Nzg2MDgyODA5NDUxNSA0ODEuOTUxMDM0MDM0MjUxMDUgNzQuNzc4NjA4MjgwOTQ1MTVINDY1LjEzODYxNjk1MjA5MTlMNDY5Ljc3NzIyOTU2ODYxMDUgNjkuNzAxMzc0Mzc2NzYxMzJaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTUyNC4zNTUxNzg4NDI0MDIgMTIyLjBWNjYuMEg1NjUuMjA4MjcyMjc0MDA4M1Y3NC43MzcyMjk1Njg2MTA0NUg1MzQuNjk1ODUwODU2Mjc1OFYxMTMuMjYyNzcwNDMxMzg5NTVINTY2LjMxNzkyNzU5NTkyNDZWMTIyLjBaTTUzMy45MDM0MzgxMDk2OTAxIDk3LjgyMjc1MzA4OTA5NjA0Vjg5LjMwNzU5MTU4ODk4NzYzSDU2MS43ODg5NjE2MzAxNzU3Vjk3LjgyMjc1MzA4OTA5NjA0WiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik02MDEuNzYyNzU3NDI0NjY5NSAxMjIuNzkyNDEyNzQ2NTg1NzRRNTk1LjIxMDM0NDY3ODA4MzcgMTIyLjc5MjQxMjc0NjU4NTc0IDU4OS4yMDc1ODcyNTM0MTQ0IDEyMC45MTM3OTE0NTg5MjA0NFE1ODMuMjA0ODI5ODI4NzQ1IDExOS4wMzUxNzAxNzEyNTUxNSA1NzkuNjYxMzgzMDQ3OTA4MiAxMTYuMDU3MjM4MjM5NzU3MjFMNTgzLjMwMzQ0Njc4MDgzNjkgMTA4LjAwODk3NDYzNjg5NTczUTU4Ni42NzY1NDg4ODM1ODk5IDExMC42NzcyNTEyNDY0NzczNCA1OTEuNjMxMzc2NTQ0NTQ4MiAxMTIuNDI1NTI3ODU2MDU4OTZRNTk2LjU4NjIwNDIwNTUwNjMgMTE0LjE3MzgwNDQ2NTY0MDU5IDYwMS43ODM0NDY3ODA4MzY5IDExNC4xNzM4MDQ0NjU2NDA1OVE2MDYuMTc1MTc0NTA2ODI4NiAxMTQuMTczODA0NDY1NjQwNTkgNjA4Ljg4NDQ4NzMxODQ0OCAxMTMuMjIxNzM0MjI5MzUxODJRNjExLjU5MzgwMDEzMDA2NzMgMTEyLjI2OTY2Mzk5MzA2MzA4IDYxMi44NzEwNDI3MDUzOTc5IDExMC42MTQ0ODk0ODYyMzQ1NlE2MTQuMTQ4Mjg1MjgwNzI4NSAxMDguOTU5MzE0OTc5NDA2MDMgNjE0LjE0ODI4NTI4MDcyODUgMTA2Ljg4NDgyOTgyODc0NDg2UTYxNC4xNDgyODUyODA3Mjg1IDEwNC4zMiA2MTIuMzI4OTc0NjM2ODk1OSAxMDIuNzc4Mjc0NDQxNzk0OTJRNjEwLjUwOTY2Mzk5MzA2MzIgMTAxLjIzNjU0ODg4MzU4OTg1IDYwNy41NzU1MjU2ODgyNzI0IDEwMC4yODgyNzIyNzQwMDgyNFE2MDQuNjQxMzg3MzgzNDgxNiA5OS4zMzk5OTU2NjQ0MjY2MiA2MDEuMDgyNzY2MDk1ODE2MyA5OC41NTU1MTI2ODE1NTIxM1E1OTcuNTI0MTQ0ODA4MTUwOSA5Ny43NzEwMjk2OTg2Nzc2NSA1OTMuOTYwMzUxMTgxNDQzOSA5Ni42ODU4NTczNTk2MzU4UTU5MC4zOTY1NTc1NTQ3MzY4IDk1LjYwMDY4NTAyMDU5Mzk3IDU4Ny40NjI0MTkyNDk5NDU5IDkzLjg2NTE2ODAwMzQ2ODQ1UTU4NC41MjgyODA5NDUxNTUxIDkyLjEyOTY1MDk4NjM0Mjk0IDU4Mi43MDg5NzAzMDEzMjI0IDg5LjI2ODk2MTYzMDE3NTU4UTU4MC44ODk2NTk2NTc0ODk4IDg2LjQwODI3MjI3NDAwODIzIDU4MC44ODk2NTk2NTc0ODk4IDgxLjkyODI3MjI3NDAwODI0UTU4MC44ODk2NTk2NTc0ODk4IDc3LjM1NTE3MDE3MTI1NTE0IDU4My4zMjIwNzI0MDQwNzU1IDczLjU2Mjc1NzQyNDY2OTRRNTg1Ljc1NDQ4NTE1MDY2MTMgNjkuNzcwMzQ0Njc4MDgzNjcgNTkwLjc1MzQ0ODk0ODYyMzYgNjcuNDg4OTY1OTY1NzQ4OTdRNTk1Ljc1MjQxMjc0NjU4NTggNjUuMjA3NTg3MjUzNDE0MjYgNjAzLjQxNzIzODIzOTc1NzQgNjUuMjA3NTg3MjUzNDE0MjZRNjA4LjQ3MDM0MDM0MjUxMDQgNjUuMjA3NTg3MjUzNDE0MjYgNjEzLjQzMzA5Nzc2NzE3OTggNjYuNDc3MjQyNTc1MzMwNTlRNjE4LjM5NTg1NTE5MTg0OTMgNjcuNzQ2ODk3ODk3MjQ2OTEgNjIyLjA5OTMwMTk3MjY4NiA3MC4xNTcyNDI1NzUzMzA1OUw2MTguNzg3NTgyOTE3ODQxIDc4LjI2NDgxNjgyMjAyNDcxUTYxNS4wNDU1MTQ4NDkzMzg5IDc1Ljk3NTg1MDg1NjI3NTc0IDYxMS4wNjEwMzE4NjY0NjQ0IDc0LjkwMTAyMzE5NTMxNzU4UTYwNy4wNzY1NDg4ODM1OSA3My44MjYxOTU1MzQzNTk0MSA2MDMuMzI2ODkzNTYxNjczNiA3My44MjYxOTU1MzQzNTk0MVE1OTkuMDc0NDc2NDc5NTE0NSA3My44MjYxOTU1MzQzNTk0MSA1OTYuMzU5OTkxMzI4ODUzMyA3NC44NjM0MzgxMDk2OTAwMVE1OTMuNjQ1NTA2MTc4MTkyMSA3NS45MDA2ODA2ODUwMjA2IDU5Mi40MDgyNjM2MDI4NjE2IDc3LjYwNjE5OTg2OTkzMjgxUTU5MS4xNzEwMjEwMjc1MzEgNzkuMzExNzE5MDU0ODQ1MDEgNTkxLjE3MTAyMTAyNzUzMSA4MS40NTU4NTk1Mjc0MjI1UTU5MS4xNzEwMjEwMjc1MzEgODQuMDEwMzQ0Njc4MDgzNjcgNTkyLjk5MDMzMTY3MTM2MzYgODUuNTQ2ODk3ODk3MjQ2OTFRNTk0LjgwOTY0MjMxNTE5NjIgODcuMDgzNDUxMTE2NDEwMTUgNTk3Ljc0Mzc4MDYxOTk4NzEgODcuOTkxNzI3NzI1OTkxNzdRNjAwLjY3NzkxODkyNDc3NzkgODguOTAwMDA0MzM1NTczMzkgNjA0LjI0MTcxMjU1MTQ4NTEgODkuNzE0MTQyNjQwMzY0MTlRNjA3LjgwNTUwNjE3ODE5MjIgOTAuNTI4MjgwOTQ1MTU0OTkgNjExLjM2NDEyNzQ2NTg1NzYgOTEuNTc4NjI1NjIzMjM4NjhRNjE0LjkyMjc0ODc1MzUyMjggOTIuNjI4OTcwMzAxMzIyMzUgNjE3Ljg1Njg4NzA1ODMxMzUgOTQuMzI5NjU5NjU3NDg5NzFRNjIwLjc5MTAyNTM2MzEwNDQgOTYuMDMwMzQ5MDEzNjU3MDYgNjIyLjYxMDMzNjAwNjkzNyA5OC44ODU4NjYwMzA3ODI1OFE2MjQuNDI5NjQ2NjUwNzY5NyAxMDEuNzQxMzgzMDQ3OTA4MDkgNjI0LjQyOTY0NjY1MDc2OTcgMTA2LjE0MTM4MzA0NzkwODA4UTYyNC40Mjk2NDY2NTA3Njk3IDExMC42MzQ0ODUxNTA2NjExOCA2MjEuOTYyNDA2MjQzMjI1OCAxMTQuNDI2ODk3ODk3MjQ2OVE2MTkuNDk1MTY1ODM1NjgxOSAxMTguMjE5MzEwNjQzODMyNjQgNjE0LjQ2NjU0NjcxNTgwMzIgMTIwLjUwNTg2MTY5NTIwOTE5UTYwOS40Mzc5Mjc1OTU5MjQ2IDEyMi43OTI0MTI3NDY1ODU3NCA2MDEuNzYyNzU3NDI0NjY5NSAxMjIuNzkyNDEyNzQ2NTg1NzRaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTY1OC41NjI3NTc0MjQ2Njk1IDEyMi43OTI0MTI3NDY1ODU3NFE2NTIuMDEwMzQ0Njc4MDgzNyAxMjIuNzkyNDEyNzQ2NTg1NzQgNjQ2LjAwNzU4NzI1MzQxNDQgMTIwLjkxMzc5MTQ1ODkyMDQ0UTY0MC4wMDQ4Mjk4Mjg3NDUgMTE5LjAzNTE3MDE3MTI1NTE1IDYzNi40NjEzODMwNDc5MDgyIDExNi4wNTcyMzgyMzk3NTcyMUw2NDAuMTAzNDQ2NzgwODM2OSAxMDguMDA4OTc0NjM2ODk1NzNRNjQzLjQ3NjU0ODg4MzU4OTkgMTEwLjY3NzI1MTI0NjQ3NzM0IDY0OC40MzEzNzY1NDQ1NDgxIDExMi40MjU1Mjc4NTYwNTg5NlE2NTMuMzg2MjA0MjA1NTA2MyAxMTQuMTczODA0NDY1NjQwNTkgNjU4LjU4MzQ0Njc4MDgzNjkgMTE0LjE3MzgwNDQ2NTY0MDU5UTY2Mi45NzUxNzQ1MDY4Mjg2IDExNC4xNzM4MDQ0NjU2NDA1OSA2NjUuNjg0NDg3MzE4NDQ4IDExMy4yMjE3MzQyMjkzNTE4MlE2NjguMzkzODAwMTMwMDY3MiAxMTIuMjY5NjYzOTkzMDYzMDggNjY5LjY3MTA0MjcwNTM5NzkgMTEwLjYxNDQ4OTQ4NjIzNDU2UTY3MC45NDgyODUyODA3Mjg0IDEwOC45NTkzMTQ5Nzk0MDYwMyA2NzAuOTQ4Mjg1MjgwNzI4NCAxMDYuODg0ODI5ODI4NzQ0ODZRNjcwLjk0ODI4NTI4MDcyODQgMTA0LjMyIDY2OS4xMjg5NzQ2MzY4OTU4IDEwMi43NzgyNzQ0NDE3OTQ5MlE2NjcuMzA5NjYzOTkzMDYzMiAxMDEuMjM2NTQ4ODgzNTg5ODUgNjY0LjM3NTUyNTY4ODI3MjMgMTAwLjI4ODI3MjI3NDAwODI0UTY2MS40NDEzODczODM0ODE2IDk5LjMzOTk5NTY2NDQyNjYyIDY1Ny44ODI3NjYwOTU4MTYyIDk4LjU1NTUxMjY4MTU1MjEzUTY1NC4zMjQxNDQ4MDgxNTA5IDk3Ljc3MTAyOTY5ODY3NzY1IDY1MC43NjAzNTExODE0NDM5IDk2LjY4NTg1NzM1OTYzNThRNjQ3LjE5NjU1NzU1NDczNjcgOTUuNjAwNjg1MDIwNTkzOTcgNjQ0LjI2MjQxOTI0OTk0NTkgOTMuODY1MTY4MDAzNDY4NDVRNjQxLjMyODI4MDk0NTE1NSA5Mi4xMjk2NTA5ODYzNDI5NCA2MzkuNTA4OTcwMzAxMzIyNCA4OS4yNjg5NjE2MzAxNzU1OFE2MzcuNjg5NjU5NjU3NDg5OCA4Ni40MDgyNzIyNzQwMDgyMyA2MzcuNjg5NjU5NjU3NDg5OCA4MS45MjgyNzIyNzQwMDgyNFE2MzcuNjg5NjU5NjU3NDg5OCA3Ny4zNTUxNzAxNzEyNTUxNCA2NDAuMTIyMDcyNDA0MDc1NCA3My41NjI3NTc0MjQ2Njk0UTY0Mi41NTQ0ODUxNTA2NjEyIDY5Ljc3MDM0NDY3ODA4MzY3IDY0Ny41NTM0NDg5NDg2MjM2IDY3LjQ4ODk2NTk2NTc0ODk3UTY1Mi41NTI0MTI3NDY1ODU4IDY1LjIwNzU4NzI1MzQxNDI2IDY2MC4yMTcyMzgyMzk3NTczIDY1LjIwNzU4NzI1MzQxNDI2UTY2NS4yNzAzNDAzNDI1MTA0IDY1LjIwNzU4NzI1MzQxNDI2IDY3MC4yMzMwOTc3NjcxNzk3IDY2LjQ3NzI0MjU3NTMzMDU5UTY3NS4xOTU4NTUxOTE4NDkyIDY3Ljc0Njg5Nzg5NzI0NjkxIDY3OC44OTkzMDE5NzI2ODYgNzAuMTU3MjQyNTc1MzMwNTlMNjc1LjU4NzU4MjkxNzg0MDkgNzguMjY0ODE2ODIyMDI0NzFRNjcxLjg0NTUxNDg0OTMzODkgNzUuOTc1ODUwODU2Mjc1NzQgNjY3Ljg2MTAzMTg2NjQ2NDQgNzQuOTAxMDIzMTk1MzE3NThRNjYzLjg3NjU0ODg4MzU5IDczLjgyNjE5NTUzNDM1OTQxIDY2MC4xMjY4OTM1NjE2NzM2IDczLjgyNjE5NTUzNDM1OTQxUTY1NS44NzQ0NzY0Nzk1MTQ0IDczLjgyNjE5NTUzNDM1OTQxIDY1My4xNTk5OTEzMjg4NTMzIDc0Ljg2MzQzODEwOTY5MDAxUTY1MC40NDU1MDYxNzgxOTIxIDc1LjkwMDY4MDY4NTAyMDYgNjQ5LjIwODI2MzYwMjg2MTUgNzcuNjA2MTk5ODY5OTMyODFRNjQ3Ljk3MTAyMTAyNzUzMDkgNzkuMzExNzE5MDU0ODQ1MDEgNjQ3Ljk3MTAyMTAyNzUzMDkgODEuNDU1ODU5NTI3NDIyNVE2NDcuOTcxMDIxMDI3NTMwOSA4NC4wMTAzNDQ2NzgwODM2NyA2NDkuNzkwMzMxNjcxMzYzNiA4NS41NDY4OTc4OTcyNDY5MVE2NTEuNjA5NjQyMzE1MTk2MiA4Ny4wODM0NTExMTY0MTAxNSA2NTQuNTQzNzgwNjE5OTg3IDg3Ljk5MTcyNzcyNTk5MTc3UTY1Ny40Nzc5MTg5MjQ3Nzc5IDg4LjkwMDAwNDMzNTU3MzM5IDY2MS4wNDE3MTI1NTE0ODUgODkuNzE0MTQyNjQwMzY0MTlRNjY0LjYwNTUwNjE3ODE5MjIgOTAuNTI4MjgwOTQ1MTU0OTkgNjY4LjE2NDEyNzQ2NTg1NzUgOTEuNTc4NjI1NjIzMjM4NjhRNjcxLjcyMjc0ODc1MzUyMjggOTIuNjI4OTcwMzAxMzIyMzUgNjc0LjY1Njg4NzA1ODMxMzUgOTQuMzI5NjU5NjU3NDg5NzFRNjc3LjU5MTAyNTM2MzEwNDMgOTYuMDMwMzQ5MDEzNjU3MDYgNjc5LjQxMDMzNjAwNjkzNyA5OC44ODU4NjYwMzA3ODI1OFE2ODEuMjI5NjQ2NjUwNzY5NiAxMDEuNzQxMzgzMDQ3OTA4MDkgNjgxLjIyOTY0NjY1MDc2OTYgMTA2LjE0MTM4MzA0NzkwODA4UTY4MS4yMjk2NDY2NTA3Njk2IDExMC42MzQ0ODUxNTA2NjExOCA2NzguNzYyNDA2MjQzMjI1OCAxMTQuNDI2ODk3ODk3MjQ2OVE2NzYuMjk1MTY1ODM1NjgxOCAxMTguMjE5MzEwNjQzODMyNjQgNjcxLjI2NjU0NjcxNTgwMzIgMTIwLjUwNTg2MTY5NTIwOTE5UTY2Ni4yMzc5Mjc1OTU5MjQ2IDEyMi43OTI0MTI3NDY1ODU3NCA2NTguNTYyNzU3NDI0NjY5NSAxMjIuNzkyNDEyNzQ2NTg1NzRaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTI5Mi42NzE3MjQwMDk3ODYwMyAxOTAuNjc5MjEwOTI1NjQ0OTJRMjg3LjE1MDU0MjI1NjM1NjMgMTkwLjY3OTIxMDkyNTY0NDkyIDI4Mi40NTY2NTEwNzkyNDgxIDE4OC44NjIwNjgwNjg1MDIwOFEyNzcuNzYyNzU5OTAyMTM5OSAxODcuMDQ0OTI1MjExMzU5MiAyNzQuMzEyMDIxMzA2MjQ2MyAxODMuNzE0Nzc3NDkyMTgwNDdRMjcwLjg2MTI4MjcxMDM1MjcgMTgwLjM4NDYyOTc3MzAwMTc2IDI2OC45MzI0MTU4NDM0MjM5IDE3NS44Nzk5MDA5MDExNzk5UTI2Ny4wMDM1NDg5NzY0OTUgMTcxLjM3NTE3MjAyOTM1ODAzIDI2Ny4wMDM1NDg5NzY0OTUgMTY2LjBRMjY3LjAwMzU0ODk3NjQ5NSAxNjAuNjI0ODI3OTcwNjQxOTcgMjY4LjkzMjQxNTg0MzQyMzkgMTU2LjEyMDA5OTA5ODgyMDFRMjcwLjg2MTI4MjcxMDM1MjcgMTUxLjYxNTM3MDIyNjk5ODI0IDI3NC4zNDE4NzM1ODcwNjc2IDE0OC4yODUyMjI1MDc4MTk1M1EyNzcuODIyNDY0NDYzNzgyNDcgMTQ0Ljk1NTA3NDc4ODY0MDggMjgyLjUxNjM1NTY0MDg5MDY1IDE0My4xMzc5MzE5MzE0OTc5MlEyODcuMjEwMjQ2ODE3OTk4ODQgMTQxLjMyMDc4OTA3NDM1NTA4IDI5Mi43MzE0Mjg1NzE0Mjg2IDE0MS4zMjA3ODkwNzQzNTUwOFEyOTguNjAwMTk0NDgxNDM0NDcgMTQxLjMyMDc4OTA3NDM1NTA4IDMwMy40ODQ0Mjk3MTcyNTg2NSAxNDMuMzQxNTc2MjkwNjA3M1EzMDguMzY4NjY0OTUzMDgyOSAxNDUuMzYyMzYzNTA2ODU5NDggMzExLjY5NTU2MDk5MjIyNjk0IDE0OS4zMDg3NjU5MTAwMDU5TDMwNS45NTYyNjAyNTgyNzYzIDE1NC43ODY3ODc2NDk4MDk1NVEzMDMuMzUyOTA5NDc5NDIxNSAxNTEuOTMzMzg4MjUwNTk2MTIgMzAwLjEyNDczMDcyOTkyNDc1IDE1MC41MTg4MDcwOTc5NTNRMjk2Ljg5NjU1MTk4MDQyOCAxNDkuMTA0MjI1OTQ1MzA5ODUgMjkzLjEzNjM1Mzc4Mjc4Nzc1IDE0OS4xMDQyMjU5NDUzMDk4NVEyODkuNDA1MTE5NjkyNzkzNyAxNDkuMTA0MjI1OTQ1MzA5ODUgMjg2LjI3MzI5NDcyNjA4NDcgMTUwLjM0NTAxNTAxOTY2NDlRMjgzLjE0MTQ2OTc1OTM3NTcgMTUxLjU4NTgwNDA5NDAyIDI4MC44MzEzMjAxODIwOTQxIDE1My44NDk1NDk0MTAwNTIzM1EyNzguNTIxMTcwNjA0ODEyNSAxNTYuMTEzMjk0NzI2MDg0NjYgMjc3LjI1MDUyOTI0OTYzNjEgMTU5LjIwNzU4MjI5ODQ3MzI2UTI3NS45Nzk4ODc4OTQ0NTk3NSAxNjIuMzAxODY5ODcwODYxODUgMjc1Ljk3OTg4Nzg5NDQ1OTc1IDE2Ni4wUTI3NS45Nzk4ODc4OTQ0NTk3NSAxNjkuNjk4MTMwMTI5MTM4MTUgMjc3LjI1MDUyOTI0OTYzNjEgMTcyLjc5MjQxNzcwMTUyNjc0UTI3OC41MjExNzA2MDQ4MTI1IDE3NS44ODY3MDUyNzM5MTUzNCAyODAuODMxMzIwMTgyMDk0MSAxNzguMTUwNDUwNTg5OTQ3NjdRMjgzLjE0MTQ2OTc1OTM3NTcgMTgwLjQxNDE5NTkwNTk4IDI4Ni4yNzMyOTQ3MjYwODQ3IDE4MS42NTQ5ODQ5ODAzMzUxUTI4OS40MDUxMTk2OTI3OTM3IDE4Mi44OTU3NzQwNTQ2OTAxNSAyOTMuMTM2MzUzNzgyNzg3NzUgMTgyLjg5NTc3NDA1NDY5MDE1UTI5Ni44OTY1NTE5ODA0MjggMTgyLjg5NTc3NDA1NDY5MDE1IDMwMC4xMjQ3MzA3Mjk5MjQ3NSAxODEuNDgxMTkyOTAyMDQ2OThRMzAzLjM1MjkwOTQ3OTQyMTUgMTgwLjA2NjYxMTc0OTQwMzg1IDMwNS45NTYyNjAyNTgyNzYzIDE3Ny4xNTM1MDc3ODg1NDc5TDMxMS42OTU1NjA5OTIyMjY5NCAxODIuNjMxNTI5NTI4MzUxNTZRMzA4LjM2ODY2NDk1MzA4MjkgMTg2LjU2OTA2NTA2NDU2OTEgMzAzLjQ4NDQyOTcxNzI1ODY1IDE4OC42MjQxMzc5OTUxMDdRMjk4LjYwMDE5NDQ4MTQzNDQ3IDE5MC42NzkyMTA5MjU2NDQ5MiAyOTIuNjcxNzI0MDA5Nzg2MDMgMTkwLjY3OTIxMDkyNTY0NDkyWiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik0zNDUuMjMyNTkzODIzNjAwODQgMTkwLjY3OTIxMDkyNTY0NDkyUTMzOS42NTEzOTU1Njg5MTM2IDE5MC42NzkyMTA5MjU2NDQ5MiAzMzQuOTA1Nzk2ODgzMjc2OTMgMTg4LjgyNzc4MjM1NDIxNjM3UTMzMC4xNjAxOTgxOTc2NDAyIDE4Ni45NzYzNTM3ODI3ODc3OCAzMjYuNjc1MTczODg3NDYwOSAxODMuNjQxNzcyNjMwMTQ0NjNRMzIzLjE5MDE0OTU3NzI4MTYgMTgwLjMwNzE5MTQ3NzUwMTQ4IDMyMS4yNTY4NDkyNzY4ODgyNiAxNzUuODE3MzQ5NDE1NzI1NTRRMzE5LjMyMzU0ODk3NjQ5NSAxNzEuMzI3NTA3MzUzOTQ5NiAzMTkuMzIzNTQ4OTc2NDk1IDE2NS45OTU4MTk5MDU1OTA2OFEzMTkuMzIzNTQ4OTc2NDk1IDE2MC42NjQxMzI0NTcyMzE3NCAzMjEuMjU2ODc4NjM3Mzc0OCAxNTYuMTgwMzcwNTMyNzc4NDVRMzIzLjE5MDIwODI5ODI1NDYgMTUxLjY5NjYwODYwODMyNTIgMzI2LjY4Mjc5NzI0OTIwOSAxNDguMzUxNTEyMzI1MDE0OTRRMzMwLjE3NTM4NjIwMDE2MzMgMTQ1LjAwNjQxNjA0MTcwNDY1IDMzNC44OTk3NjMwODYyNDExNCAxNDMuMTYzNjAyNTU4MDI5ODhRMzM5LjYyNDEzOTk3MjMxOSAxNDEuMzIwNzg5MDc0MzU1MDggMzQ1LjIxNTE3MjAyOTM1ODAzIDE0MS4zMjA3ODkwNzQzNTUwOFEzNTAuODEzNzkyMDc4Mjg4MSAxNDEuMzIwNzg5MDc0MzU1MDggMzU1LjUxNzIyMzAwMDA1MzgzIDE0My4xNTI5ODM5NjE0OTYxUTM2MC4yMjA2NTM5MjE4MTk1IDE0NC45ODUxNzg4NDg2MzcxMyAzNjMuNzAwNTQyNTYwMzE5MTUgMTQ4LjMxMTA0MTQ0NzY1OTg3UTM2Ny4xODA0MzExOTg4MTg4NCAxNTEuNjM2OTA0MDQ2NjgyNjIgMzY5LjExMzc2MDg1OTY5ODcgMTU2LjE0MTI2OTg5ODI5MVEzNzEuMDQ3MDkwNTIwNTc4NSAxNjAuNjQ1NjM1NzQ5ODk5MzYgMzcxLjA0NzA5MDUyMDU3ODUgMTY2LjAwMTc5MDM2MTc1NDkzUTM3MS4wNDcwOTA1MjA1Nzg1IDE3MS4zNTc5NDQ5NzM2MTA1MyAzNjkuMTEzNzkwMjIwMTg1MiAxNzUuODYyNDIwNTA2Mzc3MjhRMzY3LjE4MDQ4OTkxOTc5MTkgMTgwLjM2Njg5NjAzOTE0NDAyIDM2My43MDA1NzE5MjA4MDU3IDE4My42OTA4NTg1OTUyNTM0MlEzNjAuMjIwNjUzOTIxODE5NSAxODcuMDE0ODIxMTUxMzYyODQgMzU1LjUxNzIyMzAwMDA1MzgzIDE4OC44NDcwMTYwMzg1MDM4OFEzNTAuODEzNzkyMDc4Mjg4MSAxOTAuNjc5MjEwOTI1NjQ0OTIgMzQ1LjIzMjU5MzgyMzYwMDg0IDE5MC42NzkyMTA5MjU2NDQ5MlpNMzQ1LjIxNDc3NTAwNTQ2NTcgMTgyLjg5NTc3NDA1NDY5MDE1UTM0OC44NTEyMzQwODk5OTQxNCAxODIuODk1Nzc0MDU0NjkwMTUgMzUxLjkxNDQ3Njc1NDc4ODkgMTgxLjY0NjA5MjgxMTU3OThRMzU0Ljk3NzcxOTQxOTU4MzcgMTgwLjM5NjQxMTU2ODQ2OTQzIDM1Ny4yNTM1OTQxNTU5MjIzIDE3OC4xMTYxMzk1NzM4MzU1NFEzNTkuNTI5NDY4ODkyMjYxIDE3NS44MzU4Njc1NzkyMDE2NSAzNjAuODAwMTEwMjQ3NDM3NCAxNzIuNzUzNDA4MjY5MDI1MjdRMzYyLjA3MDc1MTYwMjYxMzcgMTY5LjY3MDk0ODk1ODg0ODg3IDM2Mi4wNzA3NTE2MDI2MTM3IDE2NS45ODE5NzU5ODEzOTA5MlEzNjIuMDcwNzUxNjAyNjEzNyAxNjIuMjkzMDAzMDAzOTMzIDM2MC44MDY4MTg2MjUxNDk5NiAxNTkuMjMzNjk1MDEyNTA2NzZRMzU5LjU0Mjg4NTY0NzY4NjI2IDE1Ni4xNzQzODcwMjEwODA1IDM1Ny4yNjQxNTM2MzkzNTg5NCAxNTMuODkwODA1OTE3ODQ0OVEzNTQuOTg1NDIxNjMxMDMxNTYgMTUxLjYwNzIyNDgxNDYwOTMgMzUxLjkxODcyNDg4NDQwNTE1IDE1MC4zNTU3MjUzNzk5NTk1OFEzNDguODUyMDI4MTM3Nzc4OCAxNDkuMTA0MjI1OTQ1MzA5ODUgMzQ1LjIxNTU2OTA1MzI1MDM2IDE0OS4xMDQyMjU5NDUzMDk4NVEzNDEuNTc5MTA5OTY4NzIxOSAxNDkuMTA0MjI1OTQ1MzA5ODUgMzM4LjQ5ODE1MjIxNzU5NzA3IDE1MC4zNTc2NjE3OTg3MzIwN1EzMzUuNDE3MTk0NDY2NDcyMiAxNTEuNjExMDk3NjUyMTU0MjkgMzMzLjEyODE3NjI3ODk4NTQ1IDE1My44OTgyMDMwMzc1NTU4UTMzMC44MzkxNTgwOTE0OTg3IDE1Ni4xODUzMDg0MjI5NTczIDMyOS41Njk1MjI5OTI5NzkyIDE1OS4yNDkzMDI1NDc4MTI5NlEzMjguMjk5ODg3ODk0NDU5NzQgMTYyLjMxMzI5NjY3MjY2ODYzIDMyOC4yOTk4ODc4OTQ0NTk3NCAxNjUuOTgwMjk0NTUzNTQ2NTRRMzI4LjI5OTg4Nzg5NDQ1OTc0IDE2OS42NDcyOTI0MzQ0MjQ0NiAzMjkuNTY2NzcxNjE5ODgyNCAxNzIuNzI5NzUxNzQ0NjAwODNRMzMwLjgzMzY1NTM0NTMwNTAzIDE3NS44MTIyMTEwNTQ3NzcyIDMzMy4xMTc3MTAyNzE1MTkwNiAxNzguMTEzMjAzNDgwMzc4NjJRMzM1LjQwMTc2NTE5NzczMzEgMTgwLjQxNDE5NTkwNTk4IDMzOC40OTAwNDA1NTkzMzUxNyAxODEuNjU0OTg0OTgwMzM1MVEzNDEuNTc4MzE1OTIwOTM3MjYgMTgyLjg5NTc3NDA1NDY5MDE1IDM0NS4yMTQ3NzUwMDU0NjU3IDE4Mi44OTU3NzQwNTQ2OTAxNVoiLz48cGF0aCBmaWxsPSIjRjNFREUwIiBkPSJNMzgzLjYxODcyNDcyMjA1ODc0IDE5MC4wVjE0Mi4wSDM5MC45NTExMjU3MDA2NTk2TDQxMS45NDIyNjI1NDk5MzY0NiAxNzcuMDM4ODI1Njc4OTgxNzdINDA4LjA1MjYxNDA0MTA2NDAzTDQyOC43MzM5OTc3MDgzMzk3NiAxNDIuMEg0MzYuMDY2Mzk4Njg2OTQwNkw0MzYuMTQzODM2OTgyNDQwOSAxOTAuMEg0MjcuNjY5OTU4ODEyMDUyODdMNDI3LjU5MjUyMDUxNjU1MjU1IDE1NS4yNjE0NTg2MTA3NTg0SDQyOS4zODY2MDgwMzMxOTgwNkw0MTEuODU1OTU3Mzg3NTA3MyAxODQuNTQ1NjEzMzI4NzkxMzJINDA3LjgyOTE2NjAyMTQ5MjAzTDM5MC4wNDg0NjY3NTU0NDI2MyAxNTUuMjYxNDU4NjEwNzU4NEgzOTIuMDkyNjAyODkyNDQ2OFYxOTAuMFoiLz48cGF0aCBmaWxsPSIjRjNFREUwIiBkPSJNNDUyLjE5MDE1MzI5MzQ4NzMgMTkwLjBWMTQyLjBINDU5LjUyMjU1NDI3MjA4ODE0TDQ4MC41MTM2OTExMjEzNjUgMTc3LjAzODgyNTY3ODk4MTc3SDQ3Ni42MjQwNDI2MTI0OTI2TDQ5Ny4zMDU0MjYyNzk3NjgzIDE0Mi4wSDUwNC42Mzc4MjcyNTgzNjkxNkw1MDQuNzE1MjY1NTUzODY5NSAxOTAuMEg0OTYuMjQxMzg3MzgzNDgxNEw0OTYuMTYzOTQ5MDg3OTgxMSAxNTUuMjYxNDU4NjEwNzU4NEg0OTcuOTU4MDM2NjA0NjI2Nkw0ODAuNDI3Mzg1OTU4OTM1OSAxODQuNTQ1NjEzMzI4NzkxMzJINDc2LjQwMDU5NDU5MjkyMDZMNDU4LjYxOTg5NTMyNjg3MTIgMTU1LjI2MTQ1ODYxMDc1ODRINDYwLjY2NDAzMTQ2Mzg3NTM1VjE5MC4wWiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik01MTMuOTM4MTMwMTI5MTM4MSAxOTAuMCA1MzUuNTE4MDMyODg4NDIwOSAxNDIuMEg1NDQuMzIxNzYxNDgxNTI3M0w1NjUuOTYxMzY4ODAyNDUyNiAxOTAuMEg1NTYuNjMzMzA1ODc0NzAxOEw1MzguMDkxMjMwMzczNzg4MyAxNDYuNzU0NDc2NDc5NTE0NEg1NDEuNjUzMzkxOTY2ODAxOEw1MjMuMTExMzE2NDY1ODg4MyAxOTAuMFpNNTIzLjkxMDUzODU0MDE1MDUgMTc4Ljg4Nzg3NTg3ODcyNzggNTI2LjI5MzM5MTk2NjgwMTggMTcxLjg4NzY4ODgyOTcwNDg3SDU1Mi4xOTQ0ODM5MTE5MjU5TDU1NC42MzcwNDE5MDAyMTk5IDE3OC44ODc4NzU4Nzg3Mjc4WiIvPjxwYXRoIGZpbGw9IiNGM0VERTAiIGQ9Ik01NzUuMjA3Mjk2MTUwNjMwMiAxOTAuMFYxNDIuMEg1ODIuNTM5Njk3MTI5MjMxMUw2MTIuNjIzMDU5MDU2NzAzIDE3OC45NzMwMjE1ODQ5NjE3NEg2MDguOTU5MjIyMDc0MjYyMVYxNDIuMEg2MTcuODA0OTIxNDk1MTUzNFYxOTAuMEg2MTAuNDcyNTIwNTE2NTUyNUw1ODAuMzg5MTU4NTg5MDgwNSAxNTMuMDI2OTc4NDE1MDM4MjNINTg0LjA1Mjk5NTU3MTUyMTVWMTkwLjBaIi8+PHBhdGggZmlsbD0iI0YzRURFMCIgZD0iTTYzMy44MzU4Njc1NzkyMDE2IDE5MC4wVjE0Mi4wSDY1NC44MDYzMDUxNjI0MjkxUTY2Mi41OTAzNDQwNTg3MTU5IDE0Mi4wIDY2OC40ODQyMzUyMzU4MjQxIDE0NS4wMDM4NDI1NTY3NDk1NlE2NzQuMzc4MTI2NDEyOTMyMyAxNDguMDA3Njg1MTEzNDk5MTIgNjc3LjY4NzI4ODcxODIxODYgMTUzLjM4NjEwODgyMjg5MTgzUTY4MC45OTY0NTEwMjM1MDUgMTU4Ljc2NDUzMjUzMjI4NDUzIDY4MC45OTY0NTEwMjM1MDUgMTY2LjBRNjgwLjk5NjQ1MTAyMzUwNSAxNzMuMjI2NjAwNjAwNzg2NTggNjc3LjY4NzI4ODcxODIxODYgMTc4LjYwOTQ1Nzc0MzY0MzczUTY3NC4zNzgxMjY0MTI5MzIzIDE4My45OTIzMTQ4ODY1MDA4OCA2NjguNDg0MjM1MjM1ODI0MSAxODYuOTk2MTU3NDQzMjUwNDRRNjYyLjU5MDM0NDA1ODcxNTkgMTkwLjAgNjU0LjgwNjMwNTE2MjQyOTEgMTkwLjBaTTY0Mi43MzQ3NjgyMDE2NjYgMTgyLjQ1Nzc0NDg4MjQ3NUg2NTQuMzU5NDA5MTIzMjg1UTY1OS43NTgyMzEwODYwNjExIDE4Mi40NTc3NDQ4ODI0NzUgNjYzLjcwMjg2NDU3NTI2ODYgMTgwLjQwODU4MDcxOTA4NTgyUTY2Ny42NDc0OTgwNjQ0NzYgMTc4LjM1OTQxNjU1NTY5NjY0IDY2OS44MzM4MDUwODUwMDgyIDE3NC42NTM2MDEzMTMwNTkzN1E2NzIuMDIwMTEyMTA1NTQwMiAxNzAuOTQ3Nzg2MDcwNDIyMSA2NzIuMDIwMTEyMTA1NTQwMiAxNjYuMFE2NzIuMDIwMTEyMTA1NTQwMiAxNjAuOTgzNjQyNTAxMDA2NDcgNjY5LjgzMzgwNTA4NTAwODIgMTU3LjMxMjExMjk3MjY1NDkyUTY2Ny42NDc0OTgwNjQ0NzYgMTUzLjY0MDU4MzQ0NDMwMzM2IDY2My43MDI4NjQ1NzUyNjg2IDE1MS41OTE0MTkyODA5MTQxOFE2NTkuNzU4MjMxMDg2MDYxMSAxNDkuNTQyMjU1MTE3NTI1IDY1NC4zNTk0MDkxMjMyODUgMTQ5LjU0MjI1NTExNzUyNUg2NDIuNzM0NzY4MjAxNjY2WiIvPjwvc3ZnPg0K" alt="Cypress Command Platform">
+<div class="stamp">OCTOBER 2026<br>SHEET M-0</div></div>
+<div class="titles"><div class="eyebrow">CYPRESS COMMAND PLATFORM · OTB DEPLOYMENT</div>
+<h1 class="doc">Complete Program Documentation</h1>
+<div class="deploy">On The Boulevard Shopping Center</div>
+<div class="addr">101–149 ARNOULD BLVD · LAFAYETTE, LA 70506</div>
+<p class="lede">The operating manual and the property-onboarding manual in one volume.</p></div>
+<div class="hero"><img src="img/styled-overview.webp" alt="A-8 Styled Twin — the center at golden hour">
+<div class="cap">A-8 STYLED TWIN · PLAN-TRUE TO THE CAD AT SURVEY HEIGHTS</div></div>
+<div class="tb">
+<div><b>PROJECT</b><span>On The Boulevard Shopping Center</span></div>
+<div><b>DOCUMENT</b><span>Complete Program Documentation</span></div>
+<div><b>SHEET</b><span class="big">M-0</span></div>
+<div><b>EDITION</b><span>October 2026</span></div>
+<div><b>PREPARED BY</b><span>Orange Ocean, LLC · 2026-10-05</span></div>
+</div></section>
+<main class="wrap"><nav class="webbar"><a href="Cypress-Command-Complete-Documentation.pdf">⤓ Download as PDF</a><a href="intake-form.html">Property intake form</a><a href="/">← Back to the app</a></nav>
+<section class="toc"><div class="kicker">CYPRESS COMMAND PLATFORM · SHEET M-0</div>
+<h2 class="toc-h">Contents</h2>
+<div class="edition"><p><strong>Version October 5, 2026 · covers the 25-sheet production build (978 tests)</strong>
 Live app: https://otb.cypresscommand.com (also orangeoceanatlas.com · otb-command.vercel.app) · Operator: adam@adamabdalla.com</p>
-<p>This supersedes the July 2026 text-only edition (<code>docs/pitch/operator-manual.md</code>).
+<p>This supersedes the September 22 edition and the July 2026 text-only edition
+(<code>docs/pitch/operator-manual.md</code>).
 Every screenshot is a real capture of the running system. <strong>Tenant names and
 dollar figures shown are representative sample data, not actual tenancy or
 economics.</strong> Part I is orientation, Part II
 is the operator's day, Part III covers each sheet in depth, Part IV is the
 counterparty guides (owner / vendor / tenant / signer), Part V is the monthly
 and periodic rhythms, Part VI is administration and recovery.</p>
-<hr />
-<h1>Part I — Orientation</h1>
-<h2>1.1 Signing in</h2>
-<p><img alt="The sign-in screen" src="img/login.png" /></p>
+<blockquote>
+<p><strong>New in this edition (October 2026).</strong> Seven sheets joined the set:
+<strong>A-3 Asset Twin</strong> (permanent records for every physical asset, on a 3D model),
+<strong>A-4 Site Evidence</strong> (every source behind the twin, with what its date means),
+<strong>A-5 Exterior &amp; Site</strong> (the A-1 register in 3D, all 324 stalls),
+<strong>A-6 Asset Library</strong> (storefront elevations, pylon and site plan as one drawing set),
+<strong>A-7 Visual Library</strong> (approved presentation imagery),
+<strong>A-8 Styled Twin</strong> (a presentation-grade 3D model laid out to the CAD and survey), and
+<strong>R-2 Rent Worksheet</strong> (the owners' month-over-month rent check). A-2 Spatial now opens
+on its capture lenses, including the drone <strong>Reality</strong> splat, the drone-skinned <strong>3D</strong>
+mesh and <strong>Google 3D</strong>. Parking is closed at <strong>324 striped</strong>, which equals the
+variance's "324 provided".</p>
+</blockquote></div>
+<div class="toc-cols"><div class="toc-book">BOOK I — OPERATING MANUAL</div><div class="toc-part"><a href="#b0-orientation"><span class="pn">PART I</span><span>Orientation</span></a><ol></ol></div><div class="toc-part"><a href="#b0-the-operator-s-day"><span class="pn">PART II</span><span>The operator&#x27;s day</span></a><ol></ol></div><div class="toc-part"><a href="#b0-sheet-by-sheet-instructions"><span class="pn">PART III</span><span>Sheet-by-sheet instructions</span></a><ol></ol></div><div class="toc-part"><a href="#b0-counterparty-guides"><span class="pn">PART IV</span><span>Counterparty guides</span></a><ol></ol></div><div class="toc-part"><a href="#b0-rhythms"><span class="pn">PART V</span><span>Rhythms</span></a><ol></ol></div><div class="toc-part"><a href="#b0-administration-amp-recovery"><span class="pn">PART VI</span><span>Administration &amp; recovery</span></a><ol><li><a href="#b0-1-1-signing-in"><span class="n">1.1</span><span>Signing in</span></a></li><li><a href="#b0-1-2-the-drawing-set-metaphor"><span class="n">1.2</span><span>The drawing-set metaphor</span></a></li><li><a href="#b0-1-3-the-unit-drawer-the-universal-detail-surf"><span class="n">1.3</span><span>The unit drawer — the universal detail surface</span></a></li><li><a href="#b0-1-4-search-and-shortcuts"><span class="n">1.4</span><span>Search and shortcuts</span></a></li><li><a href="#b0-1-5-phones-and-tablets"><span class="n">1.5</span><span>Phones and tablets</span></a></li><li><a href="#b0-3-1-d-0-portfolio"><span class="n">3.1</span><span>D-0 Portfolio</span></a></li><li><a href="#b0-3-2-d-1-dashboard"><span class="n">3.2</span><span>D-1 Dashboard</span></a></li><li><a href="#b0-3-3-a-1-site-plan"><span class="n">3.3</span><span>A-1 Site Plan</span></a></li><li><a href="#b0-3-4-a-2-spatial-capture-lenses-property-works"><span class="n">3.4</span><span>A-2 Spatial (capture lenses + property workspace)</span></a></li><li><a href="#b0-3-5-a-3-asset-twin"><span class="n">3.5</span><span>A-3 Asset Twin</span></a></li><li><a href="#b0-3-6-a-4-site-evidence"><span class="n">3.6</span><span>A-4 Site Evidence</span></a></li><li><a href="#b0-3-7-a-5-exterior-amp-site"><span class="n">3.7</span><span>A-5 Exterior &amp; Site</span></a></li><li><a href="#b0-3-8-a-6-asset-library"><span class="n">3.8</span><span>A-6 Asset Library</span></a></li><li><a href="#b0-3-9-a-7-visual-library"><span class="n">3.9</span><span>A-7 Visual Library</span></a></li><li><a href="#b0-3-10-a-8-styled-twin"><span class="n">3.10</span><span>A-8 Styled Twin</span></a></li><li><a href="#b0-3-11-r-1-rent-roll"><span class="n">3.11</span><span>R-1 Rent Roll</span></a></li><li><a href="#b0-3-12-r-2-rent-worksheet"><span class="n">3.12</span><span>R-2 Rent Worksheet</span></a></li><li><a href="#b0-3-13-p-1-financial"><span class="n">3.13</span><span>P-1 Financial</span></a></li><li><a href="#b0-3-14-c-1-compliance"><span class="n">3.14</span><span>C-1 Compliance</span></a></li><li><a href="#b0-3-15-t-1-critical-dates"><span class="n">3.15</span><span>T-1 Critical Dates</span></a></li><li><a href="#b0-3-16-w-1-action-board"><span class="n">3.16</span><span>W-1 Action Board</span></a></li><li><a href="#b0-3-17-m-1-maintenance-operator-face"><span class="n">3.17</span><span>M-1 Maintenance (operator face)</span></a></li><li><a href="#b0-3-18-the-ledger-drawer-ledger"><span class="n">3.18</span><span>The Ledger (drawer → Ledger)</span></a></li><li><a href="#b0-3-19-the-e-sign-panel-drawer-e-sign"><span class="n">3.19</span><span>The E-Sign panel (drawer → E-Sign)</span></a></li><li><a href="#b0-3-20-v-1-vendor-portal-operator-face"><span class="n">3.20</span><span>V-1 Vendor Portal (operator face)</span></a></li><li><a href="#b0-3-21-k-1-directory"><span class="n">3.21</span><span>K-1 Directory</span></a></li><li><a href="#b0-3-22-s-1-owner-safe"><span class="n">3.22</span><span>S-1 Owner Safe</span></a></li><li><a href="#b0-3-23-ai-1-agent-desk"><span class="n">3.23</span><span>AI-1 Agent Desk</span></a></li><li><a href="#b0-3-24-the-voice-lines-live"><span class="n">3.24</span><span>The voice lines (LIVE)</span></a></li><li><a href="#b0-3-25-b-1-marketing"><span class="n">3.25</span><span>B-1 Marketing</span></a></li><li><a href="#b0-3-26-l-1-comm-log"><span class="n">3.26</span><span>L-1 Comm Log</span></a></li><li><a href="#b0-3-27-n-1-matters-amp-planning"><span class="n">3.27</span><span>N-1 Matters &amp; Planning</span></a></li><li><a href="#b0-3-28-o-1-operations"><span class="n">3.28</span><span>O-1 Operations</span></a></li><li><a href="#b0-3-29-the-public-tour-microsite"><span class="n">3.29</span><span>The public /tour microsite</span></a></li><li><a href="#b0-4-1-owners"><span class="n">4.1</span><span>Owners</span></a></li><li><a href="#b0-4-2-vendors"><span class="n">4.2</span><span>Vendors</span></a></li><li><a href="#b0-4-3-tenants"><span class="n">4.3</span><span>Tenants</span></a></li><li><a href="#b0-4-4-document-signers"><span class="n">4.4</span><span>Document signers</span></a></li><li><a href="#b0-5-1-daily-mostly-automatic"><span class="n">5.1</span><span>Daily (mostly automatic)</span></a></li><li><a href="#b0-5-2-monthly"><span class="n">5.2</span><span>Monthly</span></a></li><li><a href="#b0-5-3-when-a-lease-is-signed-a-fact-changes-gov"><span class="n">5.3</span><span>When a lease is signed / a fact changes (governed SOT update)</span></a></li><li><a href="#b0-5-4-periodic"><span class="n">5.4</span><span>Periodic</span></a></li><li><a href="#b0-6-1-granting-and-revoking-access"><span class="n">6.1</span><span>Granting and revoking access</span></a></li><li><a href="#b0-6-2-quality-gates-never-skip"><span class="n">6.2</span><span>Quality gates (never skip)</span></a></li><li><a href="#b0-6-3-deploying"><span class="n">6.3</span><span>Deploying</span></a></li><li><a href="#b0-6-4-backup-amp-portability"><span class="n">6.4</span><span>Backup &amp; portability</span></a></li><li><a href="#b0-6-5-secrets"><span class="n">6.5</span><span>Secrets</span></a></li><li><a href="#b0-6-6-the-camera-c3-pipeline"><span class="n">6.6</span><span>The camera (C3) pipeline</span></a></li><li><a href="#b0-6-7-known-limits-deliberate-v1-boundaries"><span class="n">6.7</span><span>Known limits (deliberate v1 boundaries)</span></a></li></ol></div><div class="toc-book">BOOK II — PROPERTY ONBOARDING</div><div class="toc-part"><a href="#b1-what-onboarding-does"><span class="pn">SECTION 1</span><span>What onboarding does</span></a><ol></ol></div><div class="toc-part"><a href="#b1-what-to-collect-before-you-start-intake-check"><span class="pn">SECTION 2</span><span>What to collect before you start (intake checklist)</span></a><ol></ol></div><div class="toc-part"><a href="#b1-build-the-intake-file"><span class="pn">SECTION 3</span><span>Build the intake file</span></a><ol></ol></div><div class="toc-part"><a href="#b1-dry-run"><span class="pn">SECTION 4</span><span>Dry-run</span></a><ol></ol></div><div class="toc-part"><a href="#b1-live-run"><span class="pn">SECTION 5</span><span>Live run</span></a><ol></ol></div><div class="toc-part"><a href="#b1-verify-two-minutes"><span class="pn">SECTION 6</span><span>Verify (two minutes)</span></a><ol></ol></div><div class="toc-part"><a href="#b1-first-sign-ins"><span class="pn">SECTION 7</span><span>First sign-ins</span></a><ol></ol></div><div class="toc-part"><a href="#b1-the-v1-fences-deliberate-do-not-fight-them"><span class="pn">SECTION 8</span><span>The v1 fences (deliberate — do not fight them)</span></a><ol></ol></div><div class="toc-part"><a href="#b1-teardown-removing-a-property"><span class="pn">SECTION 9</span><span>Teardown (removing a property)</span></a><ol></ol></div><div class="toc-part"><a href="#b1-troubleshooting"><span class="pn">SECTION 10</span><span>Troubleshooting</span></a><ol><li><a href="#b1-the-easy-way-the-intake-form-no-technical-kno"><span class="n"></span><span>The easy way — the intake form (no technical knowledge needed)</span></a></li><li><a href="#b1-the-technical-way-edit-the-json-directly"><span class="n"></span><span>The technical way — edit the JSON directly</span></a></li></ol></div></div>
+<div class="index"><div class="kicker">THE DRAWING SET</div><h3>Sheet index — 25 sheets</h3><p class="lead">The left sidebar of the app, in drawing-set order. Every sheet is derived from the same governed data; roles see only the sheets they are granted.</p><div class="sheetgrid"><div><div class="c">D-0</div><div class="l">Portfolio</div><div class="g">Dashboards</div></div><div><div class="c">D-1</div><div class="l">Dashboard</div><div class="g">Dashboards</div></div><div><div class="c">A-1</div><div class="l">Site Plan</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-2</div><div class="l">Spatial</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-3</div><div class="l">Asset Twin</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-4</div><div class="l">Site Evidence</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-5</div><div class="l">Exterior &amp; Site</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-6</div><div class="l">Asset Library</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-7</div><div class="l">Visual Library</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">A-8</div><div class="l">Styled Twin</div><div class="g">Spatial &amp; twin</div></div><div><div class="c">R-1</div><div class="l">Rent Roll</div><div class="g">Money</div></div><div><div class="c">R-2</div><div class="l">Rent Worksheet</div><div class="g">Money</div></div><div><div class="c">C-1</div><div class="l">Compliance</div><div class="g">Obligations</div></div><div><div class="c">P-1</div><div class="l">Financial</div><div class="g">Money</div></div><div><div class="c">S-1</div><div class="l">Owner Safe</div><div class="g">Records</div></div><div><div class="c">AI-1</div><div class="l">Concierge</div><div class="g">Intelligence</div></div><div><div class="c">T-1</div><div class="l">Critical Dates</div><div class="g">Obligations</div></div><div><div class="c">W-1</div><div class="l">Action Board</div><div class="g">Work</div></div><div><div class="c">K-1</div><div class="l">Directory</div><div class="g">Records</div></div><div><div class="c">B-1</div><div class="l">Marketing</div><div class="g">Outreach</div></div><div><div class="c">L-1</div><div class="l">Comm Log</div><div class="g">Outreach</div></div><div><div class="c">N-1</div><div class="l">Matters</div><div class="g">Outreach</div></div><div><div class="c">M-1</div><div class="l">Maintenance</div><div class="g">Work</div></div><div><div class="c">O-1</div><div class="l">Operations</div><div class="g">Work</div></div><div><div class="c">V-1</div><div class="l">Vendor Portal</div><div class="g">Counterparties</div></div></div></div>
+</section>
+<div class="book"><div class="kicker">BOOK I</div><div class="t">OPERATING MANUAL</div></div><h1 class="part first" id="b0-orientation"><span class="pk">PART I</span>Orientation</h1>
+<h2 id="b0-1-1-signing-in"><span class="num">§1.1</span><span>Signing in</span></h2>
+<figure><img src="img/login.png" alt="The sign-in screen"><figcaption><span><b>FIG. 01</b> &nbsp;The sign-in screen</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>There are no passwords. Enter your email on the login screen; a <strong>magic link</strong>
 arrives by email; clicking it signs you in. Your role is resolved
 automatically:</p>
@@ -114,14 +264,16 @@ automatically:</p>
 </tbody>
 </table>
 <p>If a legitimate person lands in pending, the operator promotes them (§6.1).</p>
-<h2>1.2 The drawing-set metaphor</h2>
+<h2 id="b0-1-2-the-drawing-set-metaphor"><span class="num">§1.2</span><span>The drawing-set metaphor</span></h2>
 <p>The left sidebar is a <strong>sheet index</strong>, like an architect's drawing set:</p>
 <ul>
 <li><strong>D-0 Portfolio</strong> — cross-property rollup (one card per property)</li>
 <li><strong>D-1 Dashboard</strong> — KPIs, action queue, live cards</li>
 <li><strong>A-1 Site Plan</strong> — the interactive plat</li>
-<li><strong>A-2 Spatial</strong> — the property workspace (plat model, suite inspector, evidence) + capture lenses</li>
-<li><strong>R-1 Rent Roll</strong> · <strong>C-1 Compliance</strong> · <strong>P-1 Financial</strong> — money and obligations</li>
+<li><strong>A-2 Spatial</strong> — capture lenses (iso · 3D · satellite · drone Reality · Google 3D) + the property workspace</li>
+<li><strong>A-3 Asset Twin</strong> · <strong>A-4 Site Evidence</strong> · <strong>A-5 Exterior &amp; Site</strong> — the digital twin, its sources, the site in 3D</li>
+<li><strong>A-6 Asset Library</strong> · <strong>A-7 Visual Library</strong> · <strong>A-8 Styled Twin</strong> — drawings, imagery and the presentation model</li>
+<li><strong>R-1 Rent Roll</strong> · <strong>R-2 Rent Worksheet</strong> · <strong>C-1 Compliance</strong> · <strong>P-1 Financial</strong> — money and obligations</li>
 <li><strong>S-1 Owner Safe</strong> — sealed document vault + property records</li>
 <li><strong>AI-1 Concierge</strong> — the three AI personas</li>
 <li><strong>T-1 Critical Dates</strong> · <strong>W-1 Action Board</strong> — what is due, who is doing it</li>
@@ -138,13 +290,13 @@ Needs attention — and each figure is a button that drills into its sheet.</p>
 <p>The URL tracks the open sheet (<code>#roll</code>, <code>#plan</code>…) — the back button walks your
 history, and links can deep-link a sheet. Boot lands on D-1 (D-0 sits above it
 in drawing-set order but is a rollup, not the daily surface).</p>
-<h2>1.3 The unit drawer — the universal detail surface</h2>
-<p><img alt="The unit drawer opened from the rent roll" src="img/drawer.png" /></p>
+<h2 id="b0-1-3-the-unit-drawer-the-universal-detail-surf"><span class="num">§1.3</span><span>The unit drawer — the universal detail surface</span></h2>
+<figure><img src="img/drawer.png" alt="The unit drawer opened from the rent roll"><figcaption><span><b>FIG. 02</b> &nbsp;The unit drawer opened from the rent roll</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Click any unit anywhere (site plan, rent roll, 3D lens, satellite) and the
 <strong>drawer</strong> opens with everything about that unit: term progress, PSF economics,
 HVAC responsibility, notes, contacts, documents, photos, compliance rows, the
 <strong>Ledger</strong> panel, and the <strong>E-Sign</strong> panel. Most day-to-day work happens here.</p>
-<h2>1.4 Search and shortcuts</h2>
+<h2 id="b0-1-4-search-and-shortcuts"><span class="num">§1.4</span><span>Search and shortcuts</span></h2>
 <ul>
 <li>Press <strong>/</strong> anywhere → omni-search units, contacts, documents; Enter opens
   the top hit.</li>
@@ -155,13 +307,13 @@ HVAC responsibility, notes, contacts, documents, photos, compliance rows, the
 <li>Theme toggle (sidebar foot): plan-room (default) ↔ dark. Print always
   reverts to paper.</li>
 </ul>
-<h2>1.5 Phones and tablets</h2>
-<p><img alt="D-1 on a phone" src="img/mobile-dash.png" /> <img alt="The sheet index drawer on a phone" src="img/mobile-nav.png" /></p>
+<h2 id="b0-1-5-phones-and-tablets"><span class="num">§1.5</span><span>Phones and tablets</span></h2>
+<div class="figrow"><figure><img src="img/mobile-dash.png" alt="D-1 on a phone"><figcaption><span><b>FIG. 15</b> &nbsp;D-1 on a phone</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure><figure><img src="img/mobile-nav.png" alt="The sheet index drawer on a phone"><figcaption><span><b>FIG. 16</b> &nbsp;The sheet index drawer on a phone</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure></div>
 <p>At phone widths the sheet index becomes an off-canvas drawer behind the ☰
 button, grids collapse to one column, and the unit drawer goes full-screen.
 Everything works; nothing is mobile-only.</p>
 <hr />
-<h1>Part II — The operator's day</h1>
+<h1 class="part" id="b0-the-operator-s-day"><span class="pk">PART II</span>The operator's day</h1>
 <p>A normal day touches five surfaces:</p>
 <ol>
 <li><strong>D-1 Dashboard</strong> — scan the KPI row, the live cards, and the Action Queue
@@ -177,25 +329,25 @@ Everything works; nothing is mobile-only.</p>
    payment arrived that couldn't be matched. Each condition opens exactly
    <strong>one</strong> thread, ever — if there's nothing new, there's nothing there.</li>
 <li><strong>M-1 Maintenance</strong> — new tenant requests (from the portal or the phone
-   line) appear in the queue. Triage per §3.10.
+   line) appear in the queue. Triage per §3.17.
 4a. <strong>L-1 Comm Log</strong> — the "Calls · 7 days" strip and the attention filter:
    every recorded phone call with its summary, intent and urgency chips;
-   listen, read the turns, then <strong>✓ Mark handled</strong> (§3.19).</li>
+   listen, read the turns, then <strong>✓ Mark handled</strong> (§3.26).</li>
 <li><strong>Mail/phone → the system</strong> — anything that arrived outside the system
    (a signed lease, a COI, a check conversation) gets recorded where it
-   belongs the same day: SOT update (§5.3), vendor folder (§3.13), ledger
-   entry (§3.11).</li>
+   belongs the same day: SOT update (§5.3), vendor folder (§3.20), ledger
+   entry (§3.18).</li>
 </ol>
 <hr />
-<h1>Part III — Sheet-by-sheet instructions</h1>
-<h2>3.1 D-0 Portfolio</h2>
+<h1 class="part" id="b0-sheet-by-sheet-instructions"><span class="pk">PART III</span>Sheet-by-sheet instructions</h1>
+<h2 id="b0-3-1-d-0-portfolio"><span class="num">§3.1</span><span class="code">D-0</span><span>Portfolio</span></h2>
 <p>One card per property you can see: A/R outstanding (sum of positive unit
 balances over effective ledger entries) and open work orders, with an as-of
 stamp. "Open →" switches the active property. With a single property the
 <strong>property switcher</strong> stays hidden; at two or more it appears in the sidebar
 (see the onboarding manual). Derived — nothing to maintain here.</p>
-<h2>3.2 D-1 Dashboard</h2>
-<p><img alt="D-1 Dashboard" src="img/dash.png" /></p>
+<h2 id="b0-3-2-d-1-dashboard"><span class="num">§3.2</span><span class="code">D-1</span><span>Dashboard</span></h2>
+<figure><img src="img/dash.png" alt="D-1 Dashboard"><figcaption><span><b>FIG. 03</b> &nbsp;D-1 Dashboard</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Read-only KPIs derived from live data — nothing to maintain here. Cards:
 occupancy/rent KPIs, parking variance (from the instruments file, not typed),
 <strong>Parking Occupancy (C3)</strong> with 7-day trend (48-hour freshness window; the
@@ -207,56 +359,145 @@ UniFi, rent posting, and the owner brief all ride that one daily cron —
 <strong>Calls</strong> KPI (recorded voice calls awaiting attention), and the
 Action Queue (same cards as W-1). If a card shows brick-red, it is telling you
 something needs attention.</p>
-<h2>3.3 A-1 Site Plan</h2>
-<p><img alt="A-1 Site Plan" src="img/plan.png" /></p>
+<h2 id="b0-3-3-a-1-site-plan"><span class="num">§3.3</span><span class="code">A-1</span><span>Site Plan</span></h2>
+<figure><img src="img/plan.png" alt="A-1 Site Plan"><figcaption><span><b>FIG. 04</b> &nbsp;A-1 Site Plan</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>The recorded plat, interactive. A <strong>View</strong> row above the chips sets a preset
 — Leasing · Daily Ops · Building Systems · Common Areas · Signage · Roof ·
 Site / Hardscape — and the chips re-derive from it; toggling any chip by hand
-drops the preset highlight. <strong>Chips</strong> toggle overlay layers:
-- <strong>Lenses:</strong> Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.
-- <strong>🅿 Parking</strong> — the 314 plat-labeled stalls by zone, plus the 10-stall Johnston
-  row the CAD stripes but the plat never labels (marked as such).
-- <strong>⇆ Access</strong> — ingress/egress as built: every curb cut drawn as an apron with its
+drops the preset highlight. <strong>Chips</strong> toggle overlay layers:</p>
+<ul>
+<li><strong>Lenses:</strong> Status / Expiry / Rent / Use / HVAC / Size — unit fills + legend.</li>
+<li><strong>🅿 Parking</strong> — all <strong>324 striped stalls</strong> by zone: the 314 the plat labels plus
+  the 10-stall Johnston row south of 101, confirmed striped by the 9/29/2026 scan.
+  324 striped = the variance's "324 provided" (Entry 99-11797; 344 required).</li>
+<li><strong>⇆ Access</strong> — ingress/egress as built: every curb cut drawn as an apron with its
   throat width, two-way arrow pairs at the cuts and along the aisles, the Arnould
   raised median and its one 55' opening (Driveway A is the only full-movement cut),
   edge-of-pavement lines, Lot 7's open Patricia frontage. Source: the architect CAD,
-  satellite-confirmed (<code>docs/site-access-inventory-2026-09.md</code>).
-- <strong>§ Easements</strong> — the §3a liquor line and its notes, the church easement note,
+  satellite-confirmed (<code>docs/site-access-inventory-2026-09.md</code>).</li>
+<li><strong>§ Easements</strong> — the §3a liquor line and its notes, the church easement note,
   10' utility easements, electric easement 577566, the 5×5' guy easement. Switch off
-  for a clean leasing exhibit.
-- <strong>🎥 Cameras</strong> — 17 mounts with view cones; click one → its live view.
+  for a clean leasing exhibit.</li>
+<li><strong>🎥 Cameras</strong> — 17 mounts with view cones; click one → its live view.
   <strong>✎ Adjust cams</strong> (operator-only): drag pin to move, drag the brass dot to
-  re-aim, double-click to reset; corrections persist.
-- <strong>🚗 Occupancy</strong> — latest measured stall states painted green/outline over
-  the storefront row, Lot 8 pocket, and the 149 corner.
-- <strong>📍 Pins / ＋ Pin</strong> — drop a pin per water shutoff, meter, bench, column — and
+  re-aim, double-click to reset; corrections persist.</li>
+<li><strong>🚗 Occupancy</strong> — latest measured stall states painted green/outline over
+  the storefront row, Lot 8 pocket, and the 149 corner.</li>
+<li><strong>📍 Pins / ＋ Pin</strong> — drop a pin per water shutoff, meter, bench, column — and
   for lease/ops designations: reserved parking, monument-sign site, common area,
-  loading zone, dumpster pad. Pins also appear on the satellite lens.
-- <strong>Overlay → Floor plan</strong> — whole-center floor-plan raster under the unit
+  loading zone, dumpster pad. Pins also appear on the satellite lens.</li>
+<li><strong>Overlay → Floor plan</strong> — whole-center floor-plan raster under the unit
   boxes, with an opacity slider.
-Click any unit → drawer.</p>
-<h2>3.4 A-2 Spatial (four lenses)</h2>
-<p><img alt="A-2 Spatial — iso lens" src="img/spatial.png" /></p>
-<ul>
-<li><strong>Iso</strong> — SVG isometric, real CAD heights; ⇅ toggles true heights;
-  ⤓ SVG exports a standalone file.</li>
-<li><strong>◧ 3D</strong> — orbitable massing; <strong>🏗 Mesh</strong> swaps in the photogrammetry mesh.</li>
-<li><strong>🛰 Satellite</strong> — frozen basemap with georeferenced footprints, unit
-  labels, asset pins; opens plan-oriented (Marie Antoinette top).</li>
-<li><strong>🎥 Reality</strong> — photoreal drone splat; ▦ toggles unit overlays; click a
-  storefront → drawer.
-All lenses share the same selection — pick a unit in one, it's selected in all.</li>
+Click any unit → drawer.</li>
 </ul>
-<h2>3.5 R-1 Rent Roll</h2>
-<p><img alt="R-1 Rent Roll" src="img/roll.png" /></p>
+<h2 id="b0-3-4-a-2-spatial-capture-lenses-property-works"><span class="num">§3.4</span><span class="code">A-2</span><span>Spatial (capture lenses + property workspace)</span></h2>
+<figure><img src="img/spatial.png" alt="A-2 Spatial — iso lens"><figcaption><span><b>FIG. 05</b> &nbsp;A-2 Spatial — iso lens</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
+<p>The sheet opens on its lenses:</p>
+<ul>
+<li><strong>▱ Isometric</strong> — SVG isometric at the survey heights; <strong>⇅ True heights</strong> switches
+  between plat-scale and exaggerated heights; <strong>⤓ SVG</strong> exports a standalone file.</li>
+<li><strong>◧ 3D</strong> — orbitable model skinned with the drone photogrammetry mesh.</li>
+<li><strong>🛰 Satellite</strong> — frozen basemap with georeferenced footprints, unit labels and
+  asset pins; opens plan-oriented (Marie Antoinette top).</li>
+<li><strong>🎥 Reality</strong> — the photoreal drone Gaussian splat; ▦ toggles unit overlays;
+  click a storefront → drawer.</li>
+<li><strong>🌐 Google 3D</strong> — Google Photorealistic 3D Tiles with the suites draped on top;
+  click a suite → drawer. Needs the Map Tiles key; without it the pane shows setup help.</li>
+</ul>
+<p>All lenses share the same selection — pick a unit in one, it's selected in all.
+Below the lenses is the <strong>property workspace</strong>: Model / Plan toggle, <strong>Geometry &amp;
+sources</strong>, and <strong>Draft owner update</strong>. A reported-frontage marker clears on its own
+once the matching M-1 work order is Done or Closed.</p>
+<h2 id="b0-3-5-a-3-asset-twin"><span class="num">§3.5</span><span class="code">A-3</span><span>Asset Twin</span></h2>
+<p>The permanent record of every physical asset — columns, water, fixtures, common
+areas — placed on a 3D model of the center.</p>
+<ul>
+<li>Pick a mode: <strong>Inspect</strong>, <strong>Present</strong> or <strong>Field</strong>. Views: Overview · Plan · Eye
+  level; tools: <strong>Measure</strong>, <strong>Save view</strong>, <strong>Fit model</strong>.</li>
+<li>Switch between <strong>Interior floor plans</strong> and <strong>Exterior &amp; site</strong>, pick a level, or
+  jump straight to <strong>Water &amp; shutoffs</strong> or <strong>Plans &amp; sources</strong>.</li>
+<li><strong>Start guided walkway tour</strong> → Next stop / Previous stop / Play tour.</li>
+<li>Select an asset → tabs for <strong>References · Photos · Inspections · Work orders</strong>.
+  <strong>Record an issue</strong> creates a linked M-1 request; <strong>Add an inspection</strong>; <strong>Asset
+  link &amp; QR</strong> downloads a printable SVG tag that opens the asset directly
+  (<code>/?asset=pa_…#twin</code>).</li>
+<li>Asset IDs are permanent: geometry can improve, IDs never renumber.</li>
+<li>Model files download as .glb / .json.</li>
+</ul>
+<p>Operator writes; owners read when granted. Sheets A-3, A-4, A-5 and A-8 appear for
+operator and owner sign-ins on the production build.</p>
+<h2 id="b0-3-6-a-4-site-evidence"><span class="num">§3.6</span><span class="code">A-4</span><span>Site Evidence</span></h2>
+<p>A read-only library of every source behind the twin, each card stating <strong>what its
+date means</strong> (capture date, selector year, or plan date). Sections: Google Earth &amp;
+aerial references (the Earth project, dated views, the DOTD 2024 aerial) · Aerials
+&amp; GIS captures · suite floor plans · the water meters &amp; shutoffs source map ·
+time-clock photos · open verification notes. <strong>Open ↗</strong> opens a source; <strong>Notes &amp;
+caveats</strong> expands; the "Open … in the twin →" links jump to A-3 without a reload.
+Nothing here manufactures certainty — unverified items stay marked unverified.</p>
+<h2 id="b0-3-7-a-5-exterior-amp-site"><span class="num">§3.7</span><span class="code">A-5</span><span>Exterior &amp; Site</span></h2>
+<p>The A-1 site register in 3D: finishes, all <strong>324 parking stalls</strong>, walkway
+fixtures and utilities. The model loads when you open the sheet and unloads when
+you leave. Select any object to read its register entry. <strong>Expand view</strong> (Esc
+closes), <strong>Download 3D model</strong>, <strong>Asset CSV</strong>; links run to A-3 interior records
+and A-4 sources.</p>
+<h2 id="b0-3-8-a-6-asset-library"><span class="num">§3.8</span><span class="code">A-6</span><span>Asset Library</span></h2>
+<p>The Cypress Command Platform CRE asset library for this center, drawn as one set:
+storefront elevations for the long building (101–133) and the short building
+(135–149), the Johnston St <strong>pylon</strong> directory sign, and the site plan with layer
+checkboxes. <strong>Operations overlay</strong> tints suites and panels by lease state (vacant ·
+owner-occupied · conflict · occupied); <strong>Dark</strong> switches theme. Click any bay,
+panel, suite or site item — or use the entity list — for its details; <strong>Checks</strong>
+lists the builder's validation results. Marked <em>DRAFT · NOT FIELD-VERIFIED</em> until
+the field walk closes it.</p>
+<h2 id="b0-3-9-a-7-visual-library"><span class="num">§3.9</span><span class="code">A-7</span><span>Visual Library</span></h2>
+<p>Approved presentation imagery for leasing, marketing and owner decks —
+appearance only, never a record. <strong>The center</strong> (lighting tabs: golden hour,
+midday, dusk, original), <strong>Storefront</strong>, and <strong>Site elements</strong> (light poles,
+bollards, HVAC, electrical plates). <strong>Download</strong> under any image.</p>
+<h2 id="b0-3-10-a-8-styled-twin"><span class="num">§3.10</span><span class="code">A-8</span><span>Styled Twin</span></h2>
+<figure><img src="img/styled-storefronts-dusk.webp" alt="A-8 Styled Twin — storefronts at dusk"><figcaption><span><b>FIG. 06</b> &nbsp;A-8 Styled Twin — storefronts at dusk</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
+<p>A presentation-grade 3D model in the Visual Library look, laid out plan-true from
+the CAD demising feet at the survey building heights: tenant-of-record fascia
+signs, the lit pylon, site lighting, rooftop HVAC, cameras, columns, trees and
+rear service items.</p>
+<ul>
+<li><strong>Lighting:</strong> Day · Golden hour (default) · Dusk · Night.</li>
+<li><strong>Camera shots:</strong> Overview · Storefronts · Breezeway · Jason's corner · Pylon ·
+  Patricia rear · Johnston end.</li>
+<li><strong>Dimensions</strong> overlays the CAD/plat feet on the model; <strong>Reset view</strong>;
+  <strong>Save image</strong> downloads a PNG for a deck.</li>
+<li>Drag to orbit, scroll to zoom, right-drag to pan.</li>
+</ul>
+<figure><img src="img/styled-dimensions.webp" alt="A-8 with Dimensions on — CAD/plat feet drawn on the model"><figcaption><span><b>FIG. 07</b> &nbsp;A-8 with Dimensions on — CAD/plat feet drawn on the model</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
+<p>Canopy, fascia and mansard heights, pole positions and tree species are
+presentation choices, stated on the sheet; footprints and building heights are
+survey.</p>
+<h2 id="b0-3-11-r-1-rent-roll"><span class="num">§3.11</span><span class="code">R-1</span><span>Rent Roll</span></h2>
+<figure><img src="img/roll.png" alt="R-1 Rent Roll"><figcaption><span><b>FIG. 08</b> &nbsp;R-1 Rent Roll</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>11 sortable columns; any bare monthly amount is <strong>TOTAL rent</strong> (base +
 additional). The PSF breakdown chart is the only place component economics
 (Base · CAM · Tax · Ins) appear — by design.
 <strong>⤓ SHEET</strong> prints the owner one-pager: guaranteed one page (the layout
 measures itself and shrinks to fit), with expiry flags — ▲ brick ≤6 months,
 △ amber 6–12 months — and a legend in the stamp.</p>
-<h2>3.6 P-1 Financial</h2>
-<p><img alt="P-1 Financial" src="img/fin.png" /></p>
+<h2 id="b0-3-12-r-2-rent-worksheet"><span class="num">§3.12</span><span class="code">R-2</span><span>Rent Worksheet</span></h2>
+<p>Built at the owners' request: a per-suite check of the <strong>preceding month's
+scheduled total rent against the expected month</strong>, with a column for the owner's
+own figure. R-1 is unchanged.</p>
+<ul>
+<li><strong>‹ ›</strong> changes month. Columns: Unit · Tenant · preceding month · expected ·
+  Difference · Change/note · Owner expected.</li>
+<li><strong>Change/note</strong> pills explain every move: No change · Increase · Decrease ·
+  Abatement · Abatement ends · New term · Vacant · Owner-occupied · Term expired.</li>
+<li>Type your expected figure in the last column — a mismatch with the schedule is
+  flagged and the totals update. Figures stay in your browser only; <strong>Clear my
+  figures</strong> resets the month.</li>
+<li>Click a unit or tenant → drawer. <strong>Print / Save PDF</strong> gives a portrait page with
+  "Reviewed by / Date" lines.</li>
+</ul>
+<p>On by default for owners.</p>
+<h2 id="b0-3-13-p-1-financial"><span class="num">§3.13</span><span class="code">P-1</span><span>Financial</span></h2>
+<figure><img src="img/fin.png" alt="P-1 Financial"><figcaption><span><b>FIG. 09</b> &nbsp;P-1 Financial</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Income composition (bars + a composition donut beside the Base · CAM · Tax ·
 Ins breakdown), rollover, and concentration charts; the <strong>NOI worksheet</strong>
 (enter opex → NOI → cap-rate value) now opens with a <strong>revenue → NOI
@@ -275,8 +516,8 @@ tenant's annual reconciliation with the PSF breakdown, cap line and
 methodology. Suites with unknown PSF print "Not determinable" rather than a
 guess. The Excel proforma (<code>npm run proforma</code>) is the owner-overridable model
 for underwriting conversations.</p>
-<h2>3.7 C-1 Compliance</h2>
-<p><img alt="C-1 Compliance" src="img/comp.png" /></p>
+<h2 id="b0-3-14-c-1-compliance"><span class="num">§3.14</span><span class="code">C-1</span><span>Compliance</span></h2>
+<figure><img src="img/comp.png" alt="C-1 Compliance"><figcaption><span><b>FIG. 10</b> &nbsp;C-1 Compliance</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>A <strong>Document coverage</strong> card sits above the matrix: per occupied suite —
 Lease · COI · COI expires · other documents — with filter chips and five
 summary counts. Evidence = a file on the suite's document records OR a matrix
@@ -285,30 +526,32 @@ summary counts. Evidence = a file on the suite's document records OR a matrix
 who, when, from→to — and <strong>⏱ History</strong> shows the trail. You cannot corrupt
 this history; corrections are new flips. Edits sync live between devices —
 flip a cell on your phone and it flips on the desktop without a reload.</p>
-<h2>3.8 T-1 Critical Dates</h2>
-<p><img alt="T-1 Critical Dates" src="img/dates.png" /></p>
-<p>Three derived views — nothing to maintain:
-- <strong>Lease expiry timeline</strong> — a four-year Gantt with a today line and bucket
+<h2 id="b0-3-15-t-1-critical-dates"><span class="num">§3.15</span><span class="code">T-1</span><span>Critical Dates</span></h2>
+<figure><img src="img/dates.png" alt="T-1 Critical Dates"><figcaption><span><b>FIG. 11</b> &nbsp;T-1 Critical Dates</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
+<p>Three derived views — nothing to maintain:</p>
+<ul>
+<li><strong>Lease expiry timeline</strong> — a four-year Gantt with a today line and bucket
   cards (past end · &lt;90 d · 90–180 d · &gt;180 d · term unresolved). Suites whose
   lease end is unresolved in the September 2026 lease review list under
   "term unresolved" with their review label — BY DESIGN, never guessed.
-  Row click → drawer.
-- <strong>Renewal pipeline</strong> — option terms transcribed from the executed leases
+  Row click → drawer.</li>
+<li><strong>Renewal pipeline</strong> — option terms transcribed from the executed leases
   (<code>src/data/renewal-options.json</code>, reference only; every notice = 60 days).
   Groups: Notice window · Deadline passed · Option available · Term
-  unresolved. "Open suite" → drawer.
-- <strong>Instrument + governance deadlines</strong> — the JD Bank servitude end, the
+  unresolved. "Open suite" → drawer.</li>
+<li><strong>Instrument + governance deadlines</strong> — the JD Bank servitude end, the
   insurance renewals, the premium-finance maturity, and every S-1 governance
-  item with a date, on the same timeline as the leases.</p>
-<h2>3.9 W-1 Action Board</h2>
-<p><img alt="W-1 Action Board" src="img/board.png" /></p>
+  item with a date, on the same timeline as the leases.</li>
+</ul>
+<h2 id="b0-3-16-w-1-action-board"><span class="num">§3.16</span><span class="code">W-1</span><span>Action Board</span></h2>
+<figure><img src="img/board.png" alt="W-1 Action Board"><figcaption><span><b>FIG. 12</b> &nbsp;W-1 Action Board</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>See Part II. A <strong>leasing pipeline strip</strong> over the deals table (inquiry →
 tour → proposal → signed; voice and web leads land here on their own) sits
 above the lanes. Card types include seeded facts (holdover, renewal, vacancy,
 compliance flag, covenant) and <strong>live work-order cards</strong> (<code>mr:</code> prefixed).
 Overrides (lane moves, dismissals) persist; the seed recomputes every render,
 so a dismissed card returns only if the underlying fact returns.</p>
-<h2>3.10 M-1 Maintenance (operator face)</h2>
+<h2 id="b0-3-17-m-1-maintenance-operator-face"><span class="num">§3.17</span><span class="code">M-1</span><span>Maintenance (operator face)</span></h2>
 <ul>
 <li><strong>Queue:</strong> every request with status, age, unit, photos.</li>
 <li><strong>Assign:</strong> pick a vendor from the service roster → the vendor sees it in
@@ -321,7 +564,7 @@ so a dismissed card returns only if the underlying fact returns.</p>
   open a manager thread automatically.
 Tenant-side view: §4.3.</li>
 </ul>
-<h2>3.11 The Ledger (drawer → Ledger)</h2>
+<h2 id="b0-3-18-the-ledger-drawer-ledger"><span class="num">§3.18</span><span>The Ledger (drawer → Ledger)</span></h2>
 <ul>
 <li>Balance headline + last entries with running balance.</li>
 <li><strong>⤓ Statement</strong> — a branded, printable tenant statement (owner-visible).</li>
@@ -348,7 +591,7 @@ Tenant-side view: §4.3.</li>
 <li><strong>Amount changes:</strong> re-run <code>tools/stripe-payment-links.mjs</code> for that unit
   and retire the old link in the Stripe dashboard.</li>
 </ul>
-<h2>3.12 The E-Sign panel (drawer → E-Sign)</h2>
+<h2 id="b0-3-19-the-e-sign-panel-drawer-e-sign"><span class="num">§3.19</span><span>The E-Sign panel (drawer → E-Sign)</span></h2>
 <ol>
 <li><strong>Create</strong> a request (optionally attach a document for review).</li>
 <li><strong>Copy link / Copy message</strong> — the app sends nothing; you deliver the link
@@ -360,7 +603,7 @@ Tenant-side view: §4.3.</li>
 Tokens are single-lifecycle: double-signing or declining after signing is
 rejected by the database itself.</li>
 </ol>
-<h2>3.13 V-1 Vendor Portal (operator face)</h2>
+<h2 id="b0-3-20-v-1-vendor-portal-operator-face"><span class="num">§3.20</span><span class="code">V-1</span><span>Vendor Portal (operator face)</span></h2>
 <ul>
 <li>Roster (service vendors first, green "portal" tag = they can sign in).</li>
 <li>Per-vendor private folder: upload / open / delete, all audited.</li>
@@ -373,8 +616,8 @@ rejected by the database itself.</li>
   email. Nothing else to configure.</li>
 <li>Policy: COI / W-9 / license are verified at <strong>payment</strong>, not dispatch.</li>
 </ul>
-<h2>3.14 K-1 Directory</h2>
-<p><img alt="K-1 Directory" src="img/dir.png" /></p>
+<h2 id="b0-3-21-k-1-directory"><span class="num">§3.21</span><span class="code">K-1</span><span>Directory</span></h2>
+<figure><img src="img/dir.png" alt="K-1 Directory"><figcaption><span><b>FIG. 13</b> &nbsp;K-1 Directory</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Property contacts (including the <strong>Property lines</strong> block — the tenant and
 leasing numbers — and the insurance contacts: agent, brokers, claims lines),
 the document register, and the site-imagery library. Register rows carry
@@ -384,7 +627,7 @@ fresh secure URL); an <strong>expiring strip</strong> at the top lists what laps
 The <strong>pylon sign</strong> renders as a native SVG elevation next to the tenant
 roster — hover links panel ↔ row, click → drawer; installed-but-unlisted
 faces draw brick-dashed.</p>
-<h2>3.15 S-1 Owner Safe</h2>
+<h2 id="b0-3-22-s-1-owner-safe"><span class="num">§3.22</span><span class="code">S-1</span><span>Owner Safe</span></h2>
 <p>Opens with <strong>Property records</strong>: a <strong>Risk register</strong> (worst-first) and a
 <strong>Renewal &amp; maturity radar</strong> (soonest-first) derived from the document
 register — today that is the 2026–27 insurance program as bound (property ·
@@ -397,30 +640,32 @@ owner briefs), and the category folders (Proforma / Leases / Tax / Insurance /
 Banking / Other). Upload and open as the operator; owners read-only;
 vendors/tenants sealed out at the database layer. <strong>Recent access</strong>
 (operator-only) shows every view, upload, and delete with who and when.</p>
-<h2>3.16 AI-1 Agent Desk</h2>
-<p><img alt="AI-1 Concierge" src="img/ai.png" /></p>
+<h2 id="b0-3-23-ai-1-agent-desk"><span class="num">§3.23</span><span class="code">AI-1</span><span>Agent Desk</span></h2>
+<figure><img src="img/ai.png" alt="AI-1 Concierge"><figcaption><span><b>FIG. 14</b> &nbsp;AI-1 Concierge</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Three personas — <strong>🏛 Concierge</strong> (property Q&amp;A), <strong>🤝 Leasing</strong>,
-<strong>🔧 Property Manager</strong> — all grounded in the property dossier + live state.
-- Conversations persist and resume after reload; <strong>🗂 History</strong> reopens any
-  thread; <strong>＋ New</strong> starts fresh.
-- <strong>🎙</strong> mic input and <strong>🔊</strong> spoken replies (Chrome/Edge).
-- <strong>Numbers are guardrailed:</strong> once a calculation is involved, every figure in
+<strong>🔧 Property Manager</strong> — all grounded in the property dossier + live state.</p>
+<ul>
+<li>Conversations persist and resume after reload; <strong>🗂 History</strong> reopens any
+  thread; <strong>＋ New</strong> starts fresh.</li>
+<li><strong>🎙</strong> mic input and <strong>🔊</strong> spoken replies (Chrome/Edge).</li>
+<li><strong>Numbers are guardrailed:</strong> once a calculation is involved, every figure in
   the reply must trace to the deterministic engines or the reply is replaced
   with the engines' own summary. Ask the leasing agent things like
   <em>"compare retaining at $17 vs replacing at $20 with 3 months free and $10
   TI, 5-yr term, 1,917 SF, 7.5% cap"</em> — or the manager
   <em>"should I spend $45K on an RTU replacement with a $120K reserve, $30K/yr
-  contributions, installed 2008, 15-yr life?"</em>
-- <strong>📊 Briefs</strong> — the monthly owner-brief archive; Open 🔒 renders any month.
-- <strong>📦 Lead SMS</strong> (leasing persona): copies a ready-to-send text with the
+  contributions, installed 2008, 15-yr life?"</em></li>
+<li><strong>📊 Briefs</strong> — the monthly owner-brief archive; Open 🔒 renders any month.</li>
+<li><strong>📦 Lead SMS</strong> (leasing persona): copies a ready-to-send text with the
   public leasing one-pager (otb.cypresscommand.com/leasing.html) and the
-  leasing line number. You paste and send it — the app sends nothing.
-- <strong>Lease packages (operator-only):</strong> ask 🤝 Leasing to assemble a proposal;
+  leasing line number. You paste and send it — the app sends nothing.</li>
+<li><strong>Lease packages (operator-only):</strong> ask 🤝 Leasing to assemble a proposal;
   it collects terms conversationally, then generates a branded DRAFT proposal
   (and optionally the internal owner summary) as a card with <strong>Open 🔒</strong> and
   <strong>✉ Email</strong> (pre-filled mailto — you send it; it never auto-sends).
-  Every generated document is DRAFT-stamped, subject to legal review.</p>
-<h2>3.17 The voice lines (LIVE)</h2>
+  Every generated document is DRAFT-stamped, subject to legal review.</li>
+</ul>
+<h2 id="b0-3-24-the-voice-lines-live"><span class="num">§3.24</span><span>The voice lines (LIVE)</span></h2>
 <ul>
 <li><strong>Tenant line (337) 273-0384:</strong> 24/7; triages per the SOP (emergencies =
   leak / electrical / break-in / sewer → dispatch + notify after-hours, never
@@ -448,39 +693,41 @@ vendors/tenants sealed out at the database layer. <strong>Recent access</strong>
 <li>Go-live steps + secret rotation drill: <code>docs/a3-voice-runbook.md</code>; call
   records: <code>docs/voice-call-records-runbook-2026-09-18.md</code>.</li>
 </ul>
-<h2>3.18 B-1 Marketing</h2>
+<h2 id="b0-3-25-b-1-marketing"><span class="num">§3.25</span><span class="code">B-1</span><span>Marketing</span></h2>
 <p>Five blocks, every one generated from the source of truth on the fly — a
-flyer can never disagree with the rent roll, and <strong>rates are never printed</strong>:
-1. <strong>Availability flyers</strong> — one printable flyer per vacant suite.
-2. <strong>Center overview</strong> — stats · logo wall · site plan · availability.
-3. <strong>Tenant cards</strong> — 1080-square co-marketing card per tenant.
-4. <strong>Photo library</strong> — the assets bucket by suite; the operator picks the
-   hero image per suite and the pick persists (<code>marketing</code> layer).
-5. <strong>360° tour media</strong> — panoramas + hero stills uploaded to the PUBLIC
+flyer can never disagree with the rent roll, and <strong>rates are never printed</strong>:</p>
+<ol>
+<li><strong>Availability flyers</strong> — one printable flyer per vacant suite.</li>
+<li><strong>Center overview</strong> — stats · logo wall · site plan · availability.</li>
+<li><strong>Tenant cards</strong> — 1080-square co-marketing card per tenant.</li>
+<li><strong>Photo library</strong> — the assets bucket by suite; the operator picks the
+   hero image per suite and the pick persists (<code>marketing</code> layer).</li>
+<li><strong>360° tour media</strong> — panoramas + hero stills uploaded to the PUBLIC
    <code>tour</code> bucket; <strong>Publish manifest</strong> refreshes what the /tour microsite
    shows. Insta360 export settings and the upload steps:
    <code>docs/marketing-b1-and-tour-2026-09-18.md</code>.
 Every output opens as a page with Print / Save PDF. The <strong>pylon sign</strong> block
 shows the sign, its roster and "tenants without a face" per tenant. QR codes
-for the leasing page and the tour live in <code>public/qr/</code>.</p>
-<h2>3.19 L-1 Comm Log</h2>
+for the leasing page and the tour live in <code>public/qr/</code>.</li>
+</ol>
+<h2 id="b0-3-26-l-1-comm-log"><span class="num">§3.26</span><span class="code">L-1</span><span>Comm Log</span></h2>
 <p>The cross-channel correspondence sheet. Filter by channel (note / e-mail /
 letter / meeting / SMS / voice / web) or unit, search, expand an entry,
-hand-log new correspondence, delete stale rows. <strong>Voice rows</strong> (§3.17) carry
+hand-log new correspondence, delete stale rows. <strong>Voice rows</strong> (§3.24) carry
 intent and urgency chips, a needs-attention dot, the summary, outcome links
 (work order · tour · lead · package), ▶ Play recording, the Caller/Agent
 turns, and <strong>✓ Mark handled</strong>. The "Calls · 7 days" strip and the attention
 filter are the morning triage (Part II). Web tour requests from /tour land
 here too. Owners see the log read-only, including every call's summary,
 transcript and recording; tenants and vendors never see this sheet.</p>
-<h2>3.20 N-1 Matters &amp; Planning</h2>
+<h2 id="b0-3-27-n-1-matters-amp-planning"><span class="num">§3.27</span><span class="code">N-1</span><span>Matters &amp; Planning</span></h2>
 <p>Long-running property affairs as status-filtered cards: kind (lease
 negotiation, claim, permit, dispute, project, general), status, deadlines,
 correspondence and file attachments. Operator: open a matter, edit fields
 inline, log meeting notes (they mirror into L-1), attach documents (they ride
 the documents bucket), close or reopen. Deadlines feed T-1. Owners read the
 cards and open attachments but never attach.</p>
-<h2>3.21 O-1 Operations</h2>
+<h2 id="b0-3-28-o-1-operations"><span class="num">§3.28</span><span class="code">O-1</span><span>Operations</span></h2>
 <p>The procedures (SOP) library — categories → procedures → steps, with
 due-today / overdue / streak state. Browse, expand a procedure, ✓ <strong>Complete</strong>
 with notes and minutes (it closes the oldest open occurrence), author new
@@ -489,7 +736,7 @@ occurrences. The daily cron materializes each scheduled procedure's current
 occurrence and opens ONE "SOPs overdue" digest thread in AI-1 keyed by the
 newest lapse (a static backlog never re-fires). Owners read-only; tenants and
 vendors never see O-1.</p>
-<h2>3.22 The public /tour microsite</h2>
+<h2 id="b0-3-29-the-public-tour-microsite"><span class="num">§3.29</span><span>The public /tour microsite</span></h2>
 <p><code>otb.cypresscommand.com/tour</code> needs no sign-in: a 360° viewer per suite when
 panoramas have been published from B-1, otherwise the plat, the numbers and
 Call / Text-to-tour. The <strong>Request a tour</strong> form writes a web lead (deal row +
@@ -497,8 +744,8 @@ L-1 note, capped per day), opens a manager thread in AI-1, and e-mails the
 owners when mail is configured. The leasing one-pager stays at
 <code>/leasing.html</code>.</p>
 <hr />
-<h1>Part IV — Counterparty guides</h1>
-<h2>4.1 Owners</h2>
+<h1 class="part" id="b0-counterparty-guides"><span class="pk">PART IV</span>Counterparty guides</h1>
+<h2 id="b0-4-1-owners"><span class="num">§4.1</span><span>Owners</span></h2>
 <p>Sign in with your authorized email (the owner list is fixed by the operator —
 §6.1). You see the sheets the operator has shared (dashboard, rent roll,
 financials, and the Safe are typical), <strong>read-only</strong>. The Comm Log, when
@@ -507,12 +754,12 @@ transcript.
 The <strong>📊 Briefs</strong> panel in AI-1 holds your monthly intelligence brief — every
 figure deterministic, archived permanently. You may ask the AI desk questions;
 its numbers are guardrailed the same as the operator's.</p>
-<h2>4.2 Vendors</h2>
+<h2 id="b0-4-2-vendors"><span class="num">§4.2</span><span>Vendors</span></h2>
 <p>Magic-link in with the email the operator has on file. You see one sheet: your
 own folder (your documents + "send a file to management"), your COI status
 with a renewal nudge, and <strong>your assigned work orders</strong> — open each to read
 notes and photos, add notes, and <strong>✓ Mark complete</strong> when done.</p>
-<h2>4.3 Tenants</h2>
+<h2 id="b0-4-3-tenants"><span class="num">§4.3</span><span>Tenants</span></h2>
 <p>Magic-link in with the email your management added. You see M-1 for <strong>your
 unit only</strong>: file a maintenance request (describe the problem, attach photos),
 watch its status, and <strong>"Your account"</strong> — your current balance and recent
@@ -520,14 +767,14 @@ ledger entries. Rent is paid through the payment link management sends you —
 one link per unit, reusable every month. Emergencies (water leak, electrical
 hazard, break-in, sewer): call the maintenance line rather than filing a
 ticket.</p>
-<h2>4.4 Document signers</h2>
+<h2 id="b0-4-4-document-signers"><span class="num">§4.4</span><span>Document signers</span></h2>
 <p>You'll receive a link from management. It opens a simple page — no account,
 no app. Review the request (and the attached document if one is linked), then
 sign or decline. The signature is recorded with timestamp and consent language
 under the federal E-SIGN Act and Louisiana UETA.</p>
 <hr />
-<h1>Part V — Rhythms</h1>
-<h2>5.1 Daily (mostly automatic)</h2>
+<h1 class="part" id="b0-rhythms"><span class="pk">PART V</span>Rhythms</h1>
+<h2 id="b0-5-1-daily-mostly-automatic"><span class="num">§5.1</span><span>Daily (mostly automatic)</span></h2>
 <ul>
 <li>11:00 UTC — proactive scan: renewals/holdovers/occupancy → AI threads;
   work-order aging; camera-pipeline heartbeat; rent-charge posting;
@@ -540,7 +787,7 @@ under the federal E-SIGN Act and Louisiana UETA.</p>
   (hands-free; the sampler is watchdog-healed).</li>
 <li>You: the Part II walk — dashboard, board, AI history, maintenance queue.</li>
 </ul>
-<h2>5.2 Monthly</h2>
+<h2 id="b0-5-2-monthly"><span class="num">§5.2</span><span>Monthly</span></h2>
 <ul>
 <li><strong>1st:</strong> Owner Intelligence Brief generates itself; rent charges post
   themselves. Skim the brief before the owner does.</li>
@@ -550,7 +797,7 @@ under the federal E-SIGN Act and Louisiana UETA.</p>
 <li>Documented property walk (per SOP); update C-1 flags as found — the history
   logs itself.</li>
 </ul>
-<h2>5.3 When a lease is signed / a fact changes (governed SOT update)</h2>
+<h2 id="b0-5-3-when-a-lease-is-signed-a-fact-changes-gov"><span class="num">§5.3</span><span>When a lease is signed / a fact changes (governed SOT update)</span></h2>
 <ol>
 <li>Update the source of truth: <code>docs/lease-population-2026-09-10.md</code> and the
    suite's <code>leaseEvidence</code> in <code>src/data/units.json</code> (Tier 1 since the
@@ -566,9 +813,9 @@ under the federal E-SIGN Act and Louisiana UETA.</p>
 Never trust an imported system's dates over signed paper; store stated-rent
 exceptions as exceptions — do not "fix" them to formula.</li>
 </ol>
-<h2>5.4 Periodic</h2>
+<h2 id="b0-5-4-periodic"><span class="num">§5.4</span><span>Periodic</span></h2>
 <ul>
-<li>COI badges: chase at ≤60 days, escalate at ≤30 (§3.13).</li>
+<li>COI badges: chase at ≤60 days, escalate at ≤30 (§3.20).</li>
 <li>Semi-annual house HVAC PM (the anchor unit is excluded — its lease requires
   the tenant to maintain its own HVAC with the designated contractor).</li>
 <li>Move-out: solo walk + photos within 30 days; file to the unit's assets.</li>
@@ -576,8 +823,8 @@ exceptions as exceptions — do not "fix" them to formula.</li>
   leasing one-pager per <code>tools/leasing-package.py</code>).</li>
 </ul>
 <hr />
-<h1>Part VI — Administration &amp; recovery</h1>
-<h2>6.1 Granting and revoking access</h2>
+<h1 class="part" id="b0-administration-amp-recovery"><span class="pk">PART VI</span>Administration &amp; recovery</h1>
+<h2 id="b0-6-1-granting-and-revoking-access"><span class="num">§6.1</span><span>Granting and revoking access</span></h2>
 <ul>
 <li><strong>Owner:</strong> sidebar → "Sign-in access…" → type email → <strong>+ Owner</strong>. Their
   first magic link lands them as owner. Anyone stuck in pending is listed
@@ -589,14 +836,14 @@ exceptions as exceptions — do not "fix" them to formula.</li>
 <li><strong>Owner sheet visibility:</strong> the "Owners can see…" panel controls which
   sheets owners get.</li>
 </ul>
-<h2>6.2 Quality gates (never skip)</h2>
-<p><code>node --check</code> on changed modules · <code>npm test</code> (777) · <code>npm run build</code> ·
+<h2 id="b0-6-2-quality-gates-never-skip"><span class="num">§6.2</span><span>Quality gates (never skip)</span></h2>
+<p><code>node --check</code> on changed modules · <code>npm test</code> (978) · <code>npm run build</code> ·
 deploy · <strong>grep the prod bundle for the change</strong> · smoke the live URL.
 Since 2026-09-11 <strong>every push to <code>master</code> deploys</strong> through
 <code>.github/workflows/deploy.yml</code> (npm ci → npm test → vercel build/deploy
 --prod); a failing test blocks the deploy. Verify by fetching the live page
 and checking the <code>assets/main-&lt;hash&gt;.js</code> bundle name against the local build.</p>
-<h2>6.3 Deploying</h2>
+<h2 id="b0-6-3-deploying"><span class="num">§6.3</span><span>Deploying</span></h2>
 <p>Push to <code>master</code> (or merge a PR) — GitHub Actions deploys production. Manual
 fallback from this machine:</p>
 <pre><code class="language-bash">npx vercel deploy --prod --yes --scope adams-projects-0c52918e
@@ -605,7 +852,7 @@ fallback from this machine:</p>
 <code>public/</code>.) Never promote a Preview deployment: previews run against the
 isolated Supabase branch and the build aborts if production secrets leak into
 the Preview scope.</p>
-<h2>6.4 Backup &amp; portability</h2>
+<h2 id="b0-6-4-backup-amp-portability"><span class="num">§6.4</span><span>Backup &amp; portability</span></h2>
 <ul>
 <li>Topbar <strong>Export</strong> → full-state JSON. Take one before risky edits; <strong>Import</strong>
   restores.</li>
@@ -618,7 +865,7 @@ the Preview scope.</p>
   temporarily — and restore it after. (Confidential rents do not render in
   that mode — by design.)</li>
 </ul>
-<h2>6.5 Secrets</h2>
+<h2 id="b0-6-5-secrets"><span class="num">§6.5</span><span>Secrets</span></h2>
 <p>Keys live <strong>only</strong> in Vercel env — never in chat, repo, or disk. Rotations are
 scripted drills: <code>tools/rotate-secret.mjs</code> (shared cron secret),
 <code>tools/rotate-voice-secret.mjs</code> (voice). One-shot key needs (e.g. the
@@ -627,14 +874,14 @@ drill: key to a dotfile, tool consumes it, file deleted — never in chat.
 Vercel rejects env values with trailing whitespace at deploy time — the
 scripts handle this; when feeding a secret to a CLI, use <code>cmd /c "… &lt; file"</code>
 (PowerShell pipes append a newline).</p>
-<h2>6.6 The camera (C3) pipeline</h2>
+<h2 id="b0-6-6-the-camera-c3-pipeline"><span class="num">§6.6</span><span>The camera (C3) pipeline</span></h2>
 <p>Fully hands-free: sampler (5-min ticks, watchdog task self-heals it at logon
 + every 5 min) → midday 12:00 + nightly 23:45 classify + upload → app
 surfaces. If it goes quiet 36 hours, a manager thread opens on its own. After
 a machine reboot the watchdog relaunches the sampler; no manual step. Known
 conventions: capture day-directories are UTC-keyed; frames live outside the
 repo.</p>
-<h2>6.7 Known limits (deliberate v1 boundaries)</h2>
+<h2 id="b0-6-7-known-limits-deliberate-v1-boundaries"><span class="num">§6.7</span><span>Known limits (deliberate v1 boundaries)</span></h2>
 <ul>
 <li>E-sign, lease proposals, and payment links: the operator transmits
   links/documents; the app sends nothing outbound on its own.</li>
@@ -652,19 +899,7 @@ repo.</p>
 <hr />
 <p><em>Questions the manual doesn't answer: ask the 🏛 Concierge — it is grounded in
 the same governed data this manual describes.</em></p>
-<div style="border:2px solid #1C2B26; background:#F6F7F1;
-  padding:18px 22px; margin:52px 0 30px; break-before:page;
-  font:700 24px 'Big Shoulders Display',sans-serif; letter-spacing:.6px;">
-  BOOK II — PROPERTY ONBOARDING</div><h1>Cypress Command Platform — Property Onboarding Manual</h1>
-<p><strong>Version September 2026 · the Phase C-1 rail, funnel-proven by the C-2 live run</strong>
-Operator-driven by design — there is no self-serve signup. One intake file =
-one property.</p>
-<p>This is the complete procedure for bringing a new property onto the platform:
-what to collect, how to build the intake file, how to run it (dry, then live),
-how to verify the result, and what the new property's people do next. It ends
-with the deliberate v1 fences and the teardown procedure.</p>
-<hr />
-<h1>1. What onboarding does</h1>
+<div class="book"><div class="kicker">BOOK II</div><div class="t">PROPERTY ONBOARDING</div></div><h1 class="part first" id="b1-what-onboarding-does"><span class="pk">SECTION 1</span>What onboarding does</h1>
 <p>A successful run creates, in one all-or-nothing transaction:</p>
 <ol>
 <li><strong>The organization</strong> (management company) — or reuses it by slug if it
@@ -682,34 +917,42 @@ with the deliberate v1 fences and the teardown procedure.</p>
 the sidebar for every org-wide member. Nothing else changes: rent posting and
 API surfaces keep serving the default property until the new one is
 deliberately activated.</p>
-<p><img alt="D-0 Portfolio — each onboarded property is a card" src="img/portfolio.png" /></p>
-<h1>2. What to collect before you start (intake checklist)</h1>
-<p><strong>Org (management company)</strong>
-- Slug (lowercase, hyphens — permanent, choose once) and display name.
-- Brand kit if available (palette / wordmark / contact block) — may start
-  empty <code>{}</code>.</p>
-<p><strong>Property</strong>
-- Slug (permanent), display name, street address, IANA timezone
-  (e.g. <code>America/Chicago</code>).
-- Facts worth surfacing: GLA, unit count, parking (with source citations —
+<figure><img src="img/portfolio.png" alt="D-0 Portfolio — each onboarded property is a card"><figcaption><span><b>FIG. 17</b> &nbsp;D-0 Portfolio — each onboarded property is a card</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
+<h1 class="part" id="b1-what-to-collect-before-you-start-intake-check"><span class="pk">SECTION 2</span>What to collect before you start (intake checklist)</h1>
+<p><strong>Org (management company)</strong></p>
+<ul>
+<li>Slug (lowercase, hyphens — permanent, choose once) and display name.</li>
+<li>Brand kit if available (palette / wordmark / contact block) — may start
+  empty <code>{}</code>.</li>
+</ul>
+<p><strong>Property</strong></p>
+<ul>
+<li>Slug (permanent), display name, street address, IANA timezone
+  (e.g. <code>America/Chicago</code>).</li>
+<li>Facts worth surfacing: GLA, unit count, parking (with source citations —
   "rent roll 2026-08", "site plan"…). Facts are display rows, not schema;
-  add what the owner will want to see.</p>
-<p><strong>Settings</strong>
-- <code>ledger_start_ym</code> (<code>YYYY-MM</code>) — the first month rent charges will post.
+  add what the owner will want to see.</li>
+</ul>
+<p><strong>Settings</strong></p>
+<ul>
+<li><code>ledger_start_ym</code> (<code>YYYY-MM</code>) — the first month rent charges will post.
   Choose the first FULL month on the platform; historical balances are a
-  data-package concern, not an onboarding concern.
-- <code>renewal_horizon_days</code> (default 180), <code>occupancy_floor</code> (default 0.85),
-  late-fee schedule (<code>late_grace_days</code> / <code>late_flat</code> / <code>late_per_day</code>).
-- SOP answers (emergency policy, vendor rules …) — free jsonb under
-  <code>settings.settings</code>.</p>
-<p><strong>People</strong>
-- Every email that should have access on day one, each tagged with a role:
+  data-package concern, not an onboarding concern.</li>
+<li><code>renewal_horizon_days</code> (default 180), <code>occupancy_floor</code> (default 0.85),
+  late-fee schedule (<code>late_grace_days</code> / <code>late_flat</code> / <code>late_per_day</code>).</li>
+<li>SOP answers (emergency policy, vendor rules …) — free jsonb under
+  <code>settings.settings</code>.</li>
+</ul>
+<p><strong>People</strong></p>
+<ul>
+<li>Every email that should have access on day one, each tagged with a role:
   <code>operator</code> (full control) or <code>owner</code> (read-only, operator-curated sheets).
   Vendors and tenants are NOT onboarding rows — they come later through the
-  vendor roster and tenant-login editor inside the app.</p>
-<h1>3. Build the intake file</h1>
-<h2>The easy way — the intake form (no technical knowledge needed)</h2>
-<p><img alt="The fill-in-the-blank intake form" src="img/intake-form.png" /></p>
+  vendor roster and tenant-login editor inside the app.</li>
+</ul>
+<h1 class="part" id="b1-build-the-intake-file"><span class="pk">SECTION 3</span>Build the intake file</h1>
+<h2 id="b1-the-easy-way-the-intake-form-no-technical-kno"><span>The easy way — the intake form (no technical knowledge needed)</span></h2>
+<figure><img src="img/intake-form.png" alt="The fill-in-the-blank intake form"><figcaption><span><b>FIG. 18</b> &nbsp;The fill-in-the-blank intake form</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <p>Send the new property's manager the intake form link —
 <strong>https://otb.cypresscommand.com/manual/intake-form.html</strong> (or email them the
 file itself, <code>docs/phase-c/intake-form.html</code> — it works offline too). They
@@ -723,7 +966,7 @@ the file — nothing is created until you run the rail in §4–5.</p>
 <p>Anything they skip (facts, notes) you can add to the JSON afterward; their
 free-text notes arrive under <code>settings.settings.intake_notes</code> for you to
 translate into real SOP settings.</p>
-<h2>The technical way — edit the JSON directly</h2>
+<h2 id="b1-the-technical-way-edit-the-json-directly"><span>The technical way — edit the JSON directly</span></h2>
 <p>Copy the template and fill it in:</p>
 <pre><code>docs/phase-c/onboarding-intake-template.json   →   docs/phase-c/intake-&lt;slug&gt;.json
 </code></pre>
@@ -763,13 +1006,13 @@ error): slug shape, timezone shape, <code>YYYY-MM</code> ledger start, role whit
 fact and authorized row shapes. Reusing an existing org slug is legitimate
 (that is how a portfolio grows); reusing an existing <strong>property</strong> slug under
 the same org is refused.</p>
-<h1>4. Dry-run</h1>
+<h1 class="part" id="b1-dry-run"><span class="pk">SECTION 4</span>Dry-run</h1>
 <pre><code class="language-bash">node tools/onboard-property.mjs docs/phase-c/intake-&lt;slug&gt;.json --dry-run
 </code></pre>
 <p>Validates the file and prints the full plan — org reuse vs create, the
 property row, settings, and authorized emails — without any database contact.
 Fix anything wrong and re-run until the plan reads exactly like the deal.</p>
-<h1>5. Live run</h1>
+<h1 class="part" id="b1-live-run"><span class="pk">SECTION 5</span>Live run</h1>
 <p>The live run uses the standard CRON_SECRET pull-load-delete drill (the secret
 is pulled from Vercel env for the moment of use — never typed into chat,
 never left on disk):</p>
@@ -778,14 +1021,16 @@ never left on disk):</p>
 <p>The RPC is all-or-nothing: any failure rolls the entire intake back. A
 <strong>duplicate property raises</strong> (<code>P0001</code>) and clobbers nothing — this is the
 protection, not an error to work around.</p>
-<h1>6. Verify (two minutes)</h1>
-<p><strong>In the app</strong> (as an org-wide member):
-1. <strong>D-0 Portfolio</strong> shows the new property's card ($0 A/R, 0 work orders —
-   correct for an empty property).
-2. The <strong>property switcher</strong> now renders in the sidebar (it appears only at
-   two or more visible properties).
-3. Switch to the new property — every sheet boots <strong>empty</strong>. That is
-   correct: a fresh property has no data package (§8).</p>
+<h1 class="part" id="b1-verify-two-minutes"><span class="pk">SECTION 6</span>Verify (two minutes)</h1>
+<p><strong>In the app</strong> (as an org-wide member):</p>
+<ol>
+<li><strong>D-0 Portfolio</strong> shows the new property's card ($0 A/R, 0 work orders —
+   correct for an empty property).</li>
+<li>The <strong>property switcher</strong> now renders in the sidebar (it appears only at
+   two or more visible properties).</li>
+<li>Switch to the new property — every sheet boots <strong>empty</strong>. That is
+   correct: a fresh property has no data package (§8).</li>
+</ol>
 <p><strong>In SQL</strong> (Supabase console), if you want belt-and-suspenders:</p>
 <pre><code class="language-sql">select p.slug, p.name, p.created_at, s.ledger_start_ym
 from properties p join property_settings s on s.property_id = p.id
@@ -797,23 +1042,23 @@ select email, role from authorized_emails order by email;
 <code>api/*</code> still resolves the flagship. A newly onboarded property cannot create
 financial side effects until it is deliberately given a data package and
 activated.</p>
-<h1>7. First sign-ins</h1>
+<h1 class="part" id="b1-first-sign-ins"><span class="pk">SECTION 7</span>First sign-ins</h1>
 <p>Send each authorized person to the login page — they enter their email and
 click the magic link; their membership row and role materialize on first
 sign-in. Nothing to provision, no passwords to distribute.</p>
-<p><img alt="The sign-in screen every counterparty uses" src="img/login.png" /></p>
+<figure><img src="img/login.png" alt="The sign-in screen every counterparty uses"><figcaption><span><b>FIG. 19</b> &nbsp;The sign-in screen every counterparty uses</span><span>CYPRESS COMMAND PLATFORM</span></figcaption></figure>
 <ul>
 <li>The new <strong>operator</strong> lands with full control of their (empty) property.</li>
 <li><strong>Owners</strong> land read-only on the operator-curated sheet set.</li>
 <li>Anyone not on the authorized list lands on the pending screen with no
   data access — promote or ignore from the sidebar's access panel.</li>
 </ul>
-<h1>8. The v1 fences (deliberate — do not fight them)</h1>
+<h1 class="part" id="b1-the-v1-fences-deliberate-do-not-fight-them"><span class="pk">SECTION 8</span>The v1 fences (deliberate — do not fight them)</h1>
 <ol>
 <li><strong>No data package.</strong> Onboarding creates the container, not the contents:
    units, geometry, rent roll, and seeds are the site-plan-tier premium step
    (Phase C data-package pipeline). Until that lands for the new property,
-   the 17 property sheets remain bound to the flagship's bundled data — the
+   the 25 property sheets remain bound to the flagship's bundled data — the
    new property renders correctly on D-0 and boots its own sheets empty.</li>
 <li><strong>Known residual while switched:</strong> manual edits made while you are
    actively switched INTO a data-less property will sync to that property.
@@ -823,7 +1068,7 @@ sign-in. Nothing to provision, no passwords to distribute.</p>
 <li><strong>No self-serve UI.</strong> Governed, operator-driven onboarding is the
    deliberate wedge; a UI can wrap this rail later without changing it.</li>
 </ol>
-<h1>9. Teardown (removing a property)</h1>
+<h1 class="part" id="b1-teardown-removing-a-property"><span class="pk">SECTION 9</span>Teardown (removing a property)</h1>
 <p>The C-2 proof property was created and torn down cleanly with this exact
 pattern. Order matters (children first), and this is irreversible — read
 twice, run once:</p>
@@ -834,7 +1079,7 @@ delete from properties where slug = '&lt;slug&gt;';
 </code></pre>
 <p>Then verify: D-0 shows one card fewer; the switcher disappears if only one
 property remains; the flagship's data is untouched.</p>
-<h1>10. Troubleshooting</h1>
+<h1 class="part" id="b1-troubleshooting"><span class="pk">SECTION 10</span>Troubleshooting</h1>
 <table>
 <thead>
 <tr>
@@ -883,7 +1128,7 @@ validation seam <code>src/lib/onboard.js</code>; RPC migration <code>onboarding_
 prod and funnel-proven live by the C-2 run (property created via the rail,
 verified, then torn down).</em></p>
 <div class="foot">
-  <span>CYPRESS COMMAND — instrumented asset management</span>
-  <span>Managed by Orange Ocean, LLC · generated 2026-09-22</span>
+  <span>CYPRESS COMMAND PLATFORM — instrumented asset management</span>
+  <span>Managed by Orange Ocean, LLC · generated 2026-10-05</span>
 </div>
-</div></body></html>
+</main></body></html>
