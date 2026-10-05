@@ -105,5 +105,40 @@
       "ground_vs_lidar_dtm": "median +0.089 m, MAD 0.077 m over 1,820 LiDAR cells",
       "depends_on": "2026-10-01-rear-135b-to-149 seed (door numbers + roof edge)"
     }
+  },
+  "2026-10-04-lot7": {
+    "local_to_twin": {
+      "scale": 0.999689166886804,
+      "R": [
+        [
+          -0.6823087654808406,
+          -0.7310641206792076,
+          -1.8835634192870383e-06
+        ],
+        [
+          0.7310641206805084,
+          -0.6823087654820471,
+          -3.07436155171244e-09
+        ],
+        [
+          -1.2829242759049631e-06,
+          -1.3791032987086995e-06,
+          0.999999999998226
+        ]
+      ],
+      "t": [
+        -103.95845510930474,
+        -1.0693332103533084,
+        10.510202039643211
+      ]
+    },
+    "method": "fitted to the 3DEP LiDAR directly (under the oaks the DJI cloud has no ground): grid search of yaw + xy around the phone-GPS placement scoring scan ground vs the DTM and wall-height points vs LiDAR building edges",
+    "confidence": "provisional: position +/-0.5 m, heading +/-2 deg (score plateau) -> about +/-1 m at the scan ends",
+    "evidence": {
+      "gps_to_fit": "yaw +1.00 deg, shift E +1.25 m N -7.00 m, z -0.24 m",
+      "ground_vs_lidar_dtm": "76% of ground points within 0.15 m (MAD 0.07 m)",
+      "parcel_check": "scan footprint covers the Lot 7, Block M parcel from geometry.json (plat ring moved into the LiDAR frame by the footprints-geo -> footprints-lidar fit, residual 0.22 m); the part north of it is Marie Antoinette St / the walk from Lot 8",
+      "placemark": "raw keyframe GPS placemark = 110 Marie Antoinette St"
+    }
   }
 }
