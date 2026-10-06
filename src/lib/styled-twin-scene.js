@@ -277,6 +277,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   composer.addPass(new OutputPass());
 
   const night = { glass: [], lenses: [], lights: [], soffit: [], signs: [], pylon: [] };
+  const liveOverlay = []; // data-driven objects that stay drawn over the Photo / Illustrated capture
   const matrix = siteData.registration.matrix3x2;
   let frame = 0, disposed = false;
 
@@ -600,7 +601,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       case "shutoff": case "lus-point": { const m = new THREE.Mesh(new THREE.CylinderGeometry(i.cat === "shutoff" ? 0.18 : 0.26, i.cat === "shutoff" ? 0.18 : 0.26, 0.03, 14), shared(i.cat, () => std(i.cat === "shutoff" ? "#3b3e3a" : "#4a5a6a", { roughness: 0.6, metalness: 0.4 }))); m.receiveShadow = true; at(m, i.point, y + 0.015); break; }
       case "pole": { const g = new THREE.Group(); const p = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.17, 11, 8), shared("woodPole", () => std("#6b5843")))); p.position.y = 5.5; g.add(p); g.add(boxAt(-1.1, 1.1, 10.2, 10.35, -0.07, 0.07, shared("woodPole", () => std("#6b5843")))); const can = cast(new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.8, 10), shared("xfmrCan", () => std("#9ea19b", { metalness: 0.4 })))); can.position.set(0.3, 9.2, 0); g.add(can); at(g, i.point); break; }
       case "lighting": { if (!i.point || (lighting?.suppressRegister ?? []).includes(i.id) || (lighting?.doublePoles ?? []).some(p => p.register === i.id)) break; const p = at(twinHeadPole(), i.point); night.lenses.push(p.userData.lens); break; }
-      case "sign": { if (i.id !== "sign-pylon") break; const p = at(pylonFromFace(pylonBase, invalidate), i.point); night.pylon.push(p.userData.face); break; }
+      case "sign": { if (i.id !== "sign-pylon") break; const p = at(pylonFromFace(pylonBase, invalidate), i.point); night.pylon.push(p.userData.face); liveOverlay.push(p); break; }
       case "fence": {
         if (i.line) { const wood = shared("fence", () => std("#8a6a48", { roughness: 0.9 })); for (let k = 1; k < i.line.length; k++) { const a = planToWorld(i.line[k - 1]), b = planToWorld(i.line[k]); const len = Math.hypot(b[0] - a[0], b[1] - a[1]); const f = cast(new THREE.Mesh(new THREE.BoxGeometry(len, 1.83, 0.08), wood)); f.position.set((a[0] + b[0]) / 2, 0.915, (a[1] + b[1]) / 2); f.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); dressing.add(f); } }
         if (i.polys) for (const poly of i.polys) dressing.add(slabPoly(poly.map(planToWorld), 0, 3, shared("freezer", () => std("#e9ebe7", { roughness: 0.4, metalness: 0.3 }))));
@@ -748,6 +749,25 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   const ready = (document.fonts?.ready ?? Promise.resolve()).then(() => { onReady(); invalidate(); });
 
   /* Photo mode: the drone splat in the same frame and camera; the CG model hides. */
+  /* Live data over the capture: vacant suites as amber volumes (status from units). */
+  let vacancy = null;
+  function vacancyLayer() {
+    if (vacancy) return vacancy;
+    vacancy = new THREE.Group(); vacancy.name = "vacancy-overlay"; scene.add(vacancy);
+    const fill = new THREE.MeshBasicMaterial({ color: "#d97706", transparent: true, opacity: 0.45, depthWrite: false });
+    const edge = new THREE.LineBasicMaterial({ color: "#f59e0b" });
+    let k = 0;
+    for (const s of suites.filter(s => units.find(u => u.unit === s.unit)?.status === "vacant")) {
+      const h = s.heightFt * FT, xs = s.corners.map(c => c[0]), zs = s.corners.map(c => c[1]);
+      const [x0, x1, z0, z1] = [Math.min(...xs), Math.max(...xs), Math.min(...zs), Math.max(...zs)];
+      const box = new THREE.BoxGeometry(x1 - x0, h, z1 - z0); box.translate((x0 + x1) / 2, h / 2, (z0 + z1) / 2);
+      vacancy.add(new THREE.Mesh(box, fill), new THREE.LineSegments(new THREE.EdgesGeometry(box), edge));
+      const tag = document.createElement("div"); tag.className = "st-vacant-tag"; tag.textContent = s.unit + " · Available";
+      Object.assign(tag.style, { font: "600 12px system-ui", padding: "3px 8px", borderRadius: "4px", background: "#d97706", color: "#fff", whiteSpace: "nowrap" });
+      const label = new CSS2DObject(tag); label.position.set((x0 + x1) / 2, h + 1.5 + 2.6 * k++, (z0 + z1) / 2); vacancy.add(label);
+    }
+    return vacancy;
+  }
   const photo = { on: false, style: "photo", root: null, viewer: null, loading: null, hidden: [], loop: 0, fog: null, bloom: false };
   function photoLoop() { if (!photo.on || disposed) { photo.loop = 0; return; } controls.update(); if (illustrate.enabled) composer.render(); else renderer.render(scene, camera); labels.render(scene, camera); photo.loop = requestAnimationFrame(photoLoop); }
   async function setPhoto(on, style = "photo") {
@@ -756,8 +776,17 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     if (on === photo.on) return photo.on;
     photo.on = on;
     if (on) {
-      photo.hidden = scene.children.filter(o => !o.isLight && o !== photo.root && o.visible);
-      for (const o of photo.hidden) o.visible = false;
+      // Hide CG meshes one by one so the live-data overlays (pylon panels, tenant signs) stay drawn.
+      const keep = new Set(), signMats = new Set(night.signs);
+      for (const r of liveOverlay) r.traverse(o => keep.add(o));
+      const vac = vacancyLayer(); vac.traverse(o => keep.add(o));
+      photo.hidden = [];
+      scene.traverse(o => {
+        if (o === scene || o.isLight || keep.has(o) || !o.visible || (photo.root && (o === photo.root || o.parent === photo.root))) return;
+        if (o.isMesh && [].concat(o.material).some(m => signMats.has(m))) return;
+        if (o.isMesh || o.isLine || o.isLineSegments || o.isPoints || o.isSprite || o.isCSS2DObject) { o.visible = false; photo.hidden.push(o); }
+      });
+      vac.visible = true; labels.domElement.style.display = "";
       photo.fog = scene.fog; scene.fog = null; photo.bloom = bloom.enabled; bloom.enabled = false;
       if (!photo.root) {
         onPhotoStatus("loading");
@@ -776,6 +805,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       if (photo.on && !photo.loop) photo.loop = requestAnimationFrame(photoLoop);
     } else {
       for (const o of photo.hidden) o.visible = true; photo.hidden = [];
+      if (vacancy) vacancy.visible = false; labels.domElement.style.display = dimGroup.visible ? "" : "none";
       if (photo.root) photo.root.visible = false;
       scene.fog = photo.fog; bloom.enabled = photo.bloom;
       if (photo.loop) { cancelAnimationFrame(photo.loop); photo.loop = 0; }
