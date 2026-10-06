@@ -60,15 +60,15 @@ const grassTex = () => canvasTex(256, 256, (g, w, h) => {
   g.fillStyle = "#6d9156"; g.fillRect(0, 0, w, h);
   for (let i = 0; i < 9000; i++) { const s = Math.random(); g.fillStyle = s > 0.5 ? "rgba(140,175,100,0.25)" : "rgba(60,90,45,0.25)"; g.fillRect(Math.random() * w, Math.random() * h, 1.5, 3); }
 }, [1 / 6, 1 / 6]);
-// Architectural shingle courses: weathered brown (operator 2026-10-06; colour sampled from the July 2026 drone frame).
+// Architectural shingle courses: GREY (operator 2026-10-06: the late-2020 renovation re-roofed brown -> grey; grey is current).
 const shingleTex = () => canvasTex(256, 256, (g, w, h) => {
-  g.fillStyle = "#6f5f57"; g.fillRect(0, 0, w, h);
+  g.fillStyle = "#7e7d79"; g.fillRect(0, 0, w, h);
   const course = 16;
   for (let y = 0; y < h; y += course) {
     const off = (y / course) % 2 ? 0 : 18;
     for (let x = -off; x < w; x += 36) {
       const tone = 112 + Math.floor(Math.random() * 30);
-      g.fillStyle = `rgb(${tone},${Math.round(tone * 0.86)},${Math.round(tone * 0.79)})`; g.fillRect(x + 1, y + 1, 34, course - 3);
+      g.fillStyle = `rgb(${tone},${tone - 2},${tone - 5})`; g.fillRect(x + 1, y + 1, 34, course - 3);
     }
     g.fillStyle = "rgba(30,30,30,0.55)"; g.fillRect(0, y + course - 2, w, 2);
   }
