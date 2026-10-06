@@ -210,6 +210,8 @@ once the matching M-1 work order is Done or Closed.
 
 ## 3.5 A-3 Asset Twin
 
+![A-3 Asset Twin — interior plans with the permanent asset register](img/twin.png)
+
 The permanent record of every physical asset — columns, water, fixtures, common
 areas — placed on a 3D model of the center.
 - Pick a mode: **Inspect**, **Present** or **Field**. Views: Overview · Plan · Eye
@@ -229,6 +231,8 @@ operator and owner sign-ins on the production build.
 
 ## 3.6 A-4 Site Evidence
 
+![A-4 Site Evidence — every source with what its date means](img/evidence.png)
+
 A read-only library of every source behind the twin, each card stating **what its
 date means** (capture date, selector year, or plan date). Sections: Google Earth &
 aerial references (the Earth project, dated views, the DOTD 2024 aerial) · Aerials
@@ -239,6 +243,8 @@ Nothing here manufactures certainty — unverified items stay marked unverified.
 
 ## 3.7 A-5 Exterior & Site
 
+![A-5 Exterior & Site — the 3D site with the site register](img/exterior.png)
+
 The A-1 site register in 3D: finishes, all **324 parking stalls**, walkway
 fixtures and utilities. The model loads when you open the sheet and unloads when
 you leave. Select any object to read its register entry. **Expand view** (Esc
@@ -246,6 +252,8 @@ closes), **Download 3D model**, **Asset CSV**; links run to A-3 interior records
 and A-4 sources.
 
 ## 3.8 A-6 Asset Library
+
+![A-6 Asset Library — storefront elevations, pylon and site plan](img/library.png)
 
 The Cypress Command Platform CRE asset library for this center, drawn as one set:
 storefront elevations for the long building (101–133) and the short building
@@ -257,6 +265,8 @@ lists the builder's validation results. Marked *DRAFT · NOT FIELD-VERIFIED* unt
 the field walk closes it.
 
 ## 3.9 A-7 Visual Library
+
+![A-7 Visual Library — the center at golden hour](img/visuals.png)
 
 Approved presentation imagery for leasing, marketing and owner decks —
 appearance only, never a record. **The center** (lighting tabs: golden hour,
