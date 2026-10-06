@@ -45,7 +45,7 @@ export const PAGE_IDS = PAGES.map(([id]) => id);
    proper information and the digital twin are the two main things anybody
    needs to see". They stay real sheets (deep links, owner ticks) but their
    nav buttons are hidden; X-1 lists them. Promote one by removing it here. */
-export const LAB_SHEETS = Object.freeze(["visuals", "styled"]);
+export const LAB_SHEETS = Object.freeze(["evidence", "exterior", "library", "visuals", "styled", "mkt"]);
 
 /* Boot lands here (D-1 remains the working home sheet — operator ruling
    2026-09-11; D-0 sits above it in drawing-set order but is a cross-property

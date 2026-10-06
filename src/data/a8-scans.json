@@ -10,7 +10,7 @@
     "rmsM": 0.039456189549204435,
     "maxM": 0.4418423615296148
   },
-  "published": false,
+  "published": true,
   "checks": [
     {
       "id": "col-03",

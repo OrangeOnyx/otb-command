@@ -4,7 +4,7 @@
    Polycam scan for the web (draco + 2048 webp textures + simplify).
    Inputs (gitignored): export/twin-pack/OTB_Twin_Pack/data/assets-twin-frame.csv,
    export/polycam-twin/OTB-polycam-*-twin.glb. Outputs: src/data/a8-scans.json
-   (fit + check points + scan list) and export/a8-scans/*.glb.
+   (fit + check points + scan list) and public/twin/scans/*.glb (Git LFS).
    Usage: node tools/visuals/build-a8-scans.mjs [--fit-only] */
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, statSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -32,7 +32,7 @@ const res = pairs.map(p => { const q = apply(p.src); return Math.hypot(q[0] - p.
 const groundH = twin["ada-1"]?.H ?? 10.2;
 const checks = ["col-03", "col-20", "bench-01", "tree-01"].filter(id => twin[id]).map(id => ({ id, glb: [twin[id].E, twin[id].H, -twin[id].N] }));
 
-const outDir = path.join(root, "export/a8-scans");
+const outDir = path.join(root, "public/twin/scans");
 mkdirSync(outDir, { recursive: true });
 const srcDir = path.join(root, "export/polycam-twin");
 const scans = readdirSync(srcDir).filter(f => /^OTB-polycam-.*-twin\.glb$/.test(f)).sort().map(f => {
@@ -48,8 +48,8 @@ const scans = readdirSync(srcDir).filter(f => /^OTB-polycam-.*-twin\.glb$/.test(
 const data = {
   _comment: "A-8 scan layer. GLB twin frame (x=E, y=Up NAVD88, z=-N, local origin E 591000 N 3341600) → A-8 world: X,Z = scale·R(theta)·(x,z) + (tx,tz); Y = scale·(y − groundH). Fit from register items present in both frames. Regenerate with tools/visuals/build-a8-scans.mjs.",
   fit: { n, thetaRad: theta, scale, tx, tz, groundH, rmsM: Math.sqrt(res.reduce((a, r) => a + r * r, 0) / n), maxM: Math.max(...res) },
-  // GLBs ship only after the operator rules on committing derived scan assets (CLAUDE.md: LFS exception list).
-  published: false,
+  // Operator ruling 2026-10-06: the web-optimized scans ship via Git LFS (public/twin/scans/, .gitattributes).
+  published: true,
   checks, scans
 };
 writeFileSync(path.join(root, "src/data/a8-scans.json"), JSON.stringify(data, null, 2) + "\n");

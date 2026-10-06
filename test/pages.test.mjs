@@ -62,9 +62,9 @@ test("A-8 Styled Twin is an operator sheet, not an owner default (operator rulin
   assert.equal(DEFAULT_OWNER_SHEETS.includes("styled"), false);
 });
 
-test("X-1 Lab holds A-7 and A-8; lab sheets are real sheets and never owner defaults (operator 2026-10-06)", () => {
+test("X-1 Lab holds A-4 to A-8 and B-1; lab sheets are real sheets and never owner defaults (operator 2026-10-06)", () => {
   assert.ok(PAGE_IDS.includes("lab"));
-  assert.deepEqual([...LAB_SHEETS], ["visuals", "styled"]);
+  assert.deepEqual([...LAB_SHEETS], ["evidence", "exterior", "library", "visuals", "styled", "mkt"]);
   for (const id of LAB_SHEETS) { assert.ok(PAGE_IDS.includes(id), id); assert.equal(DEFAULT_OWNER_SHEETS.includes(id), false); }
   assert.equal(DEFAULT_OWNER_SHEETS.includes("lab"), false);
 });

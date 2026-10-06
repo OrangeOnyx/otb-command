@@ -244,7 +244,9 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   Never commit capture frames, drone footage, or other large binaries to this repo.
   Exception (operator ruling 2026-09-27): the two derived web assets the A-2 lenses load —
   `public/OTB-splat.ksplat` (Reality) and `public/OTB-mesh.glb` (3D skin) — ship via **Git LFS**
-  (`.gitattributes`; deploy.yml checks out with `lfs: true`). Raw captures still never go in git.
+  (`.gitattributes`; deploy.yml checks out with `lfs: true`). **Also LFS (operator ruling 2026-10-06):** the A-8
+  scan layer's web-optimized Polycam scans, `public/twin/scans/*.glb` (built by `tools/visuals/build-a8-scans.mjs`).
+  Raw captures still never go in git.
 - **Remote:** `https://github.com/OrangeOnyx/otb-command` (private).
 - **Digital-twin frame (2026-09-28):** every twin asset (Blender, Unreal, meshes, splats, scans) registers to
   **EPSG:6344 + NAVD88, local origin E 591000 N 3341600** (the 3DEP LiDAR frame). Pipeline: `tools/skydio-rectify.py` →

@@ -46,7 +46,7 @@ async function start(host) {
     scene = createStyledTwinScene(stage, {
       siteData, register, geometry, heights, units, pylonData, lighting, logoUnits, logoBase: BASE + "tenant-logos/sign/", facadeOpenings, roofEquipment, serviceItems, cameras, pylonBase: BASE + "pylon/",
       splatUrl: BASE + "OTB-splat.ksplat",
-      scans: scanData, scansBase: import.meta.env.DEV ? "/export/a8-scans/" : BASE + "twin/scans/", dracoBase: BASE + "draco/",
+      scans: scanData, scansBase: BASE + "twin/scans/", dracoBase: BASE + "draco/",
       onScanStatus: (status, info) => { const b = host.querySelector('[data-act="scans"]'); if (b) b.textContent = status === "loading" ? "Scans · loading…" : status === "error" ? "Scans · unavailable" : "Scans" + (info && info.loaded < info.total ? " (" + info.loaded + "/" + info.total + ")" : ""); },
       onPhotoStatus: status => { const b = host.querySelector('[data-act="photo"][aria-pressed="true"]'); if (b) b.textContent = (b.dataset.style === "illustrated" ? "Illustrated" : "Photo") + (status === "loading" ? " · loading…" : status === "error" ? " · unavailable" : ""); },
       onReady: () => stage.querySelector(".st-loading")?.remove()

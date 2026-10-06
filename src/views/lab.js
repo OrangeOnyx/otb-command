@@ -7,6 +7,10 @@ import { PAGES, LAB_SHEETS } from "../lib/pages.js";
 
 const BASE = import.meta.env.BASE_URL;
 const ABOUT = {
+  evidence: { thumb: "OTB-sat-base.jpg", text: "The twin's source library: Google Earth views and dated aerials, GIS captures, suite floor plans, the water/shut-off map, field photos and open verification notes." },
+  exterior: { thumb: "visuals/otb-twin-dusk.webp", text: "The A-1 register exterior model in 3D — every register item at its recorded position, in the twin's site frame." },
+  library: { thumb: "visuals/otb-pylon-v2.webp", text: "The Cypress Command Platform CRE asset library slice for OTB: leasing elevations, the pylon directory-sign render, the site-plan vectorization and per-entity provenance." },
+  mkt: { thumb: "visuals/otb-center-golden.webp", text: "Marketing assembly: flyers, property overview, tenant cards, the photo library with hero picks, and the public /tour media." },
   visuals: { thumb: "visuals/otb-master-board.webp", text: "The presentation look: the OTB master board, the center in three lights, the storefront and the site-element plates. Generated imagery — appearance only." },
   styled: { thumb: "visuals/otb-twin-day.webp", text: "The 3D twin dressed in the Visual Library look, with Day · Golden hour · Dusk · Night lighting, a Photo mode that swaps in the drone capture, and an Illustrated mode that paints it." }
 };

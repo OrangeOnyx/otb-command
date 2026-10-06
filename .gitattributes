@@ -10,3 +10,6 @@ docs/design/cypress-command/cre-asset-library/** -text
 
 # Ingested operator sources (2026-09-30): keep exact bytes so INDEX.csv hashes hold
 sources/** -text
+
+# A-8 scan layer (operator ruling 2026-10-06): derived, web-optimized Polycam scans
+public/twin/scans/*.glb filter=lfs diff=lfs merge=lfs -text
