@@ -34,7 +34,7 @@ async function start(host) {
     '<p class="st-lede">The site in the Visual Library look, built to the CAD and plat: every suite is laid out from the demising frontages and depths (REV 17) at the 2019 survey building heights, the stall striping is the A-1 drawing\'s own, and every site-register item with a recorded position sits at it. Turn on <b>Dimensions</b> to read the CAD/plat feet on the model. Storefront signs use each tenant\'s own logo file. Lighting follows the operator\'s inventory (5 double poles in the main field, 1 in Lot 7, wall lights over Lot 8, a fixture on every column, center-line walkway lights); pole positions are read off the night aerial and approximate. Canopy, fascia and mansard heights and tree species are presentation choices, not measurements.</p>' +
     '<div class="card st-card"><div class="st-bar"><div class="st-tabs" role="tablist">' +
     LIGHTS.map(([id, label]) => '<button type="button" role="tab" data-light="' + id + '" aria-selected="' + (id === "golden") + '">' + label + "</button>").join("") +
-    '</div><div class="st-actions"><button type="button" class="chip st-toggle" data-act="dims" aria-pressed="true">Dimensions</button><button type="button" class="chip" data-act="reset">Reset view</button><button type="button" class="chip" data-act="png">Save image</button></div></div>' +
+    '</div><div class="st-actions"><button type="button" class="chip st-toggle" data-act="photo" aria-pressed="false" title="Drone photo capture (Gaussian splat), same camera">Photo</button><button type="button" class="chip st-toggle" data-act="dims" aria-pressed="true">Dimensions</button><button type="button" class="chip" data-act="reset">Reset view</button><button type="button" class="chip" data-act="png">Save image</button></div></div>' +
     '<div class="st-shots" role="group" aria-label="Camera">' + SHOTS.map(([id, label]) => '<button type="button" class="chip" data-shot="' + id + '">' + label + "</button>").join("") + "</div>" +
     '<div class="st-stage" id="stStage"><div class="st-loading">Loading the twin…</div></div>' +
     '<div class="st-hint">Drag to orbit · scroll to zoom · right-drag to pan</div></div>';
@@ -44,6 +44,8 @@ async function start(host) {
     const { createStyledTwinScene } = await import("../lib/styled-twin-scene.js");
     scene = createStyledTwinScene(stage, {
       siteData, register, geometry, heights, units, pylonData, lighting, logoUnits, logoBase: BASE + "tenant-logos/sign/", facadeOpenings, roofEquipment, serviceItems, cameras, pylonBase: BASE + "pylon/",
+      splatUrl: BASE + "OTB-splat.ksplat",
+      onPhotoStatus: status => { const b = host.querySelector('[data-act="photo"]'); if (b) b.textContent = status === "loading" ? "Photo · loading…" : status === "error" ? "Photo · unavailable" : "Photo"; },
       onReady: () => stage.querySelector(".st-loading")?.remove()
     });
     await scene.ready;
@@ -57,12 +59,14 @@ async function start(host) {
     if (light) {
       host.querySelectorAll("[data-light]").forEach(b => b.setAttribute("aria-selected", String(b === light)));
       scene.setLighting(light.dataset.light);
+      scene.setPhoto(false); host.querySelector('[data-act="photo"]')?.setAttribute("aria-pressed", "false");
       return;
     }
     const shotBtn = e.target.closest("[data-shot]");
     if (shotBtn) { scene.shot(shotBtn.dataset.shot); return; }
     const act = e.target.closest("[data-act]")?.dataset.act;
     if (act === "dims") { const on = e.target.closest("[data-act]").getAttribute("aria-pressed") !== "true"; e.target.closest("[data-act]").setAttribute("aria-pressed", String(on)); scene.setDimensions(on); }
+    if (act === "photo") { const b = e.target.closest("[data-act]"), on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", String(on)); scene.setPhoto(on); }
     if (act === "reset") scene.resetView();
     if (act === "png") { const a = document.createElement("a"); a.href = scene.capture(); a.download = "On-The-Boulevard-styled-twin.png"; a.click(); }
   });

@@ -17,6 +17,8 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
 import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
+import { splatToStyled } from "./styled-twin-photo.js";
+import splatAlign from "../data/splat-align.json";
 
 const POLE_HEIGHT = 9.1, EAVE = CANOPY.eaveFt * FT, FASCIA = CANOPY.fasciaTopFt * FT, MANSARD = CANOPY.mansardTopFt * FT;
 
@@ -220,7 +222,7 @@ function securityCamera() { // DW MEGApix CaaS 4MP vandal dome on the DWC-VFZWM 
 }
 
 /* ---------- the scene ---------- */
-export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", onReady = () => {} }) {
+export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", splatUrl = null, onPhotoStatus = () => {}, onReady = () => {} }) {
   const W0 = p => planToWorld(p);
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
@@ -739,13 +741,48 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   setLighting("golden");
   const ready = (document.fonts?.ready ?? Promise.resolve()).then(() => { onReady(); invalidate(); });
 
+  /* Photo mode: the drone splat in the same frame and camera; the CG model hides. */
+  const photo = { on: false, root: null, viewer: null, loading: null, hidden: [], loop: 0, fog: null, bloom: false };
+  function photoLoop() { if (!photo.on || disposed) { photo.loop = 0; return; } controls.update(); renderer.render(scene, camera); labels.render(scene, camera); photo.loop = requestAnimationFrame(photoLoop); }
+  async function setPhoto(on) {
+    if (on === photo.on || !splatUrl) return photo.on;
+    photo.on = on;
+    if (on) {
+      photo.hidden = scene.children.filter(o => !o.isLight && o !== photo.root && o.visible);
+      for (const o of photo.hidden) o.visible = false;
+      photo.fog = scene.fog; scene.fog = null; photo.bloom = bloom.enabled; bloom.enabled = false;
+      if (!photo.root) {
+        onPhotoStatus("loading");
+        photo.loading ??= import("@mkkellogg/gaussian-splats-3d").then(GS => {
+          const t = splatToStyled(geometry.units);
+          const root = new THREE.Group(); root.name = "photo-splat";
+          root.scale.set(...t.scale); root.position.set(...t.position);
+          const viewer = new GS.DropInViewer({ sharedMemoryForWorkers: false, gpuAcceleratedSort: false, sceneRevealMode: GS.SceneRevealMode.Instant });
+          root.add(viewer); photo.root = root; photo.viewer = viewer; scene.add(root);
+          return viewer.addSplatScene(splatUrl, { showLoadingUI: false, progressiveLoad: true, position: splatAlign.position,
+            rotation: splatAlign.quaternion, scale: [splatAlign.scale, splatAlign.scale, splatAlign.scale] });
+        });
+        try { await photo.loading; onPhotoStatus("ready"); } catch (e) { onPhotoStatus("error"); console.warn("A-8 photo splat:", e.message); }
+      }
+      if (photo.root) photo.root.visible = photo.on;
+      if (photo.on && !photo.loop) photo.loop = requestAnimationFrame(photoLoop);
+    } else {
+      for (const o of photo.hidden) o.visible = true; photo.hidden = [];
+      if (photo.root) photo.root.visible = false;
+      scene.fog = photo.fog; bloom.enabled = photo.bloom;
+      if (photo.loop) { cancelAnimationFrame(photo.loop); photo.loop = 0; }
+      invalidate();
+    }
+    return photo.on;
+  }
+
   function setDimensions(on) { dimGroup.visible = on; labels.domElement.style.display = on ? "" : "none"; invalidate(); }
   function resetView() { userMoved = false; fitView(); invalidate(); }
   function capture() { if (bloom.enabled) composer.render(); else renderer.render(scene, camera); return renderer.domElement.toDataURL("image/png"); }
   function dispose() {
-    disposed = true; observer.disconnect(); if (frame) cancelAnimationFrame(frame); controls.dispose();
+    disposed = true; observer.disconnect(); if (frame) cancelAnimationFrame(frame); if (photo.loop) cancelAnimationFrame(photo.loop); photo.viewer?.dispose?.(); controls.dispose();
     scene.traverse(o => { o.geometry?.dispose(); for (const m of [].concat(o.material ?? [])) { m.map?.dispose(); m.dispose(); } });
     MAT_CACHE.clear(); pmrem.dispose(); composer.dispose?.(); renderer.dispose(); renderer.domElement.remove(); labels.domElement.remove();
   }
-  return { ready, setLighting, setDimensions, resetView, shot, skippedTrees, capture, dispose, suites, counts: () => ({ suites: suites.length, poleLights: night.lights.length, stallLines: stallLines.length }) };
+  return { ready, setLighting, setPhoto, setDimensions, resetView, shot, skippedTrees, capture, dispose, suites, counts: () => ({ suites: suites.length, poleLights: night.lights.length, stallLines: stallLines.length }) };
 }
