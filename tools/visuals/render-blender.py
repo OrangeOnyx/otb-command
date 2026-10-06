@@ -78,7 +78,8 @@ MAT = {
     "rearWall": pbr("rear", "plastered_wall", 3.0, (0.95, 0.88, 0.76)), "fascia": pbr("fascia", "plastered_wall", 3.0, CREAM),
     "endBlock": pbr("endblock", "plastered_wall", 3.0, CREAM), "trim": pbr("trim", "plastered_wall", 3.0, (1, 0.97, 0.9)),
     "cap": pbr("cap", "plastered_wall", 3.0, (1, 0.97, 0.9)), "sill": pbr("sill", "plastered_wall", 3.0, (1, 0.97, 0.9)),
-    "mansard": pbr("shingle", "roof_09", 2.5, (0.62, 0.64, 0.66)),
+    "mansard": pbr("shingle", "roof_09", 2.5, (0.66, 0.50, 0.42)),  # weathered brown (drone frame DJI_0030_0031)
+    "towerStucco": pbr("tower", "plastered_wall", 3.0, CREAM),
     "zone-parking": pbr("paving", "concrete_floor_02", 4.0, (0.92, 0.91, 0.88)),
     "zone-service": pbr("paving_svc", "concrete_floor_02", 4.0, (0.9, 0.89, 0.86)),
     "zone-sidewalk": pbr("walk", "concrete_floor_02", 2.0, (1.0, 0.99, 0.96)), "curb": pbr("curb", "concrete_floor_02", 1.5, (1, 1, 0.97)),
