@@ -86,13 +86,12 @@ def find_sets():
 def ingest(stem, files, ledger, dry):
     date, key = scan_key(stem, files)
     by_ext = {f.suffix.lower(): f for f in files}
+    if sha256(by_ext[".laz"]) in ledger["by_laz_sha"]:
+        return None                                                    # already ingested, or marked ignored
     if laz_points(by_ext[".laz"]) != ply_points(by_ext[".ply"]):
         # browsers number duplicate downloads per extension, so "x (1).ply" and "x (1).laz" can be different captures
         raise RuntimeError(f"{stem}: .laz and .ply point counts differ - files from different captures; file by hand")
     hashes = {f.suffix.lower(): sha256(f) for f in files}
-    fingerprint = hashes[".laz"]
-    if fingerprint in ledger["by_laz_sha"]:
-        return None                                                    # already ingested (same export)
     while key in ledger["keys"]:                                       # same name, different scan -> suffix
         key = key + "-b" if not re.search(r"-b+$", key) else key + "b"
     if dry:
