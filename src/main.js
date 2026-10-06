@@ -11,7 +11,7 @@ import { initErrorLog } from "./lib/errlog.js";
 import { logClientError, logSignin } from "./lib/remote.js";
 import { loadSeed } from "./lib/seed.js";
 import { TODAY, esc } from "./lib/format.js";
-import { PAGES, DEFAULT_PAGE, VENDOR_SHEET, TENANT_SHEET } from "./lib/pages.js";
+import { PAGES, DEFAULT_PAGE, VENDOR_SHEET, TENANT_SHEET, LAB_SHEETS } from "./lib/pages.js";
 import { pageFromHash, hashFor, resolveRoute } from "./lib/router.js";
 import { initDashboard } from "./views/dashboard.js";
 import { initPlan } from "./views/plan.js";
@@ -128,6 +128,7 @@ function buildShell(account) {
       if (pageFromHash(location.hash) !== id) location.hash = hashFor(id);
     };
     navBtn[id] = b;
+    if (LAB_SHEETS.includes(id)) { b.dataset.lab = "1"; b.style.display = "none"; }
     nav.appendChild(b);
   });
   document.getElementById("pg-" + DEFAULT_PAGE).classList.add("on");
@@ -315,7 +316,7 @@ function buildShell(account) {
   function applyOwner() {
     const vis = new Set(getOwnerSheets());
     document.body.classList.toggle("owner-preview", ownerPreview);
-    PAGES.forEach(([id]) => { navBtn[id].style.display = navBtn[id].dataset.gated || (ownerPreview && !vis.has(id)) ? "none" : ""; });
+    PAGES.forEach(([id]) => { navBtn[id].style.display = navBtn[id].dataset.gated || navBtn[id].dataset.lab || (ownerPreview && !vis.has(id)) ? "none" : ""; });
     if (ownerPreview) {
       const active = document.querySelector(".nav button.on");
       if (!active || active.style.display === "none") {
@@ -380,7 +381,7 @@ function applyRole(role) {
   }
   if (owner) {
     const vis = new Set(getOwnerSheets());
-    PAGES.forEach(([id]) => { navBtn[id].style.display = vis.has(id) && !navBtn[id].dataset.gated ? "" : "none"; });
+    PAGES.forEach(([id]) => { navBtn[id].style.display = vis.has(id) && !navBtn[id].dataset.gated && !navBtn[id].dataset.lab ? "" : "none"; });
     const active = document.querySelector(".nav button.on");
     if (!active || active.style.display === "none") {
       const first = PAGES.find(([id]) => vis.has(id) && !navBtn[id].dataset.gated);
@@ -395,7 +396,9 @@ function applyRole(role) {
    a hash naming a sheet this role can't see snaps back without navigating
    (visibility is UX — RLS seals the data server-side regardless). */
 function initRouter() {
-  const visible = () => PAGES.map(([id]) => id).filter(id => navBtn[id] && navBtn[id].style.display !== "none");
+  // Lab sheets have no nav button of their own: reachable while X-1 is.
+  const labOpen = id => navBtn[id]?.dataset.lab && !navBtn[id].dataset.gated && navBtn.lab && navBtn.lab.style.display !== "none";
+  const visible = () => PAGES.map(([id]) => id).filter(id => navBtn[id] && (navBtn[id].style.display !== "none" || labOpen(id)));
   const currentId = () => PAGES.map(([id]) => id).find(id => navBtn[id] && navBtn[id].classList.contains("on"));
   const goHash = () => {
     const target = resolveRoute(pageFromHash(location.hash), visible());
@@ -474,6 +477,10 @@ function initViews(account) {
     // A-3 / A-4 / A-5 / A-8 exist only where the twin is released for this account.
     for (const id of ['twin', 'evidence', 'exterior', 'styled']) if (navBtn[id]) { navBtn[id].dataset.gated = '1'; navBtn[id].style.display = 'none'; }
   }
+  /* X-1 Lab: lists the LAB_SHEETS this account can open; a lab sheet keeps X-1 lit in the index. */
+  import('./views/lab.js').then(({ initLab }) => initLab({ isAvailable: id => !!navBtn[id] && !navBtn[id].dataset.gated, open: id => navBtn[id].click() }))
+    .catch(error => console.error('Lab could not load:', error));
+  window.addEventListener('sheetchange', e => { if (LAB_SHEETS.includes(e.detail.id) && navBtn.lab) { navBtn.lab.classList.add('on'); navBtn.lab.setAttribute('aria-current', 'page'); } });
   initSop(account);
   initPortfolio();
   initComms(account);

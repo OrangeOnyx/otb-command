@@ -28,7 +28,8 @@ export const PAGES = [
   ["matters", "N-1", "Matters"],
   ["maint", "M-1", "Maintenance"],
   ["sop", "O-1", "Operations"],
-  ["vendors", "V-1", "Vendor Portal"]
+  ["vendors", "V-1", "Vendor Portal"],
+  ["lab", "X-1", "Lab"]
 ];
 
 /* The one sheet a role-vendor login sees (P3) — everything else is hidden in
@@ -38,6 +39,13 @@ export const VENDOR_SHEET = "vendors";
 export const TENANT_SHEET = "maint";
 
 export const PAGE_IDS = PAGES.map(([id]) => id);
+
+/* X-1 Lab (operator 2026-10-06): showcase / experimental sheets live behind
+   the Lab sheet instead of the main sheet index — "the site plan with all the
+   proper information and the digital twin are the two main things anybody
+   needs to see". They stay real sheets (deep links, owner ticks) but their
+   nav buttons are hidden; X-1 lists them. Promote one by removing it here. */
+export const LAB_SHEETS = Object.freeze(["visuals", "styled"]);
 
 /* Boot lands here (D-1 remains the working home sheet — operator ruling
    2026-09-11; D-0 sits above it in drawing-set order but is a cross-property

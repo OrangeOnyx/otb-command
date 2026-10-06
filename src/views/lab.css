@@ -1,0 +1,11 @@
+/* X-1 Lab — plan-room palette (ink / brass on paper cards). */
+.lab-lede{max-width:80ch;color:var(--slate,#5F6E64);font-size:13.5px;margin:0 0 16px}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:16px}
+.lab-card{padding:0;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.lab-open{display:block;padding:0;border:0;border-bottom:1px solid var(--line,#C9CEBE);background:#F3EDE0;cursor:pointer}
+.lab-open img{display:block;width:100%;height:220px;object-fit:cover}
+.lab-body{padding:14px 16px 16px}
+.lab-code{font:600 11px var(--mono,'IBM Plex Mono',monospace);letter-spacing:.14em;color:var(--brass,#A87E2F)}
+.lab-body h2{margin:4px 0 6px;font-size:18px}
+.lab-body p{margin:0 0 12px;font-size:13px;line-height:1.5;color:var(--ink70,rgba(28,43,38,.72))}
+.lab-body .chip{cursor:pointer}

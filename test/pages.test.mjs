@@ -1,15 +1,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PAGES, PAGE_IDS, DEFAULT_PAGE, DEFAULT_OWNER_SHEETS } from "../src/lib/pages.js";
+import { PAGES, PAGE_IDS, DEFAULT_PAGE, DEFAULT_OWNER_SHEETS, LAB_SHEETS } from "../src/lib/pages.js";
 
 /* Regression guard for the ownerSheets drift bug: main.js rendered
    "Owners can see…" checkboxes for every sheet, but store.js kept its own
    whitelist that was missing spatial (A-2) and safe (S-1), so ticking them
    was a silent no-op — and owners could never see the Owner Safe. */
 
-test("PAGES is the full 25-sheet nav in drawing-set order", () => {
+test("PAGES is the full 26-sheet nav in drawing-set order", () => {
   assert.deepEqual(PAGES.map(p => p[1]), [
-    "D-0", "D-1", "A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "R-1", "R-2", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "B-1", "L-1", "N-1", "M-1", "O-1", "V-1"
+    "D-0", "D-1", "A-1", "A-2", "A-3", "A-4", "A-5", "A-6", "A-7", "A-8", "R-1", "R-2", "C-1", "P-1", "S-1", "AI-1", "T-1", "W-1", "K-1", "B-1", "L-1", "N-1", "M-1", "O-1", "V-1", "X-1"
   ]);
 });
 
@@ -60,4 +60,11 @@ test("A-7 Visual Library is an operator sheet, not an owner default (operator ru
 test("A-8 Styled Twin is an operator sheet, not an owner default (operator ruling 2026-10-01)", () => {
   assert.ok(PAGE_IDS.includes("styled"));
   assert.equal(DEFAULT_OWNER_SHEETS.includes("styled"), false);
+});
+
+test("X-1 Lab holds A-7 and A-8; lab sheets are real sheets and never owner defaults (operator 2026-10-06)", () => {
+  assert.ok(PAGE_IDS.includes("lab"));
+  assert.deepEqual([...LAB_SHEETS], ["visuals", "styled"]);
+  for (const id of LAB_SHEETS) { assert.ok(PAGE_IDS.includes(id), id); assert.equal(DEFAULT_OWNER_SHEETS.includes(id), false); }
+  assert.equal(DEFAULT_OWNER_SHEETS.includes("lab"), false);
 });
