@@ -14,3 +14,10 @@ export function scanToStyled([x, y, z], fit) {
 export function scanNodePose(fit) {
   return { scale: fit.scale, rotationY: -fit.thetaRad, position: [fit.tx, -fit.scale * fit.groundH, fit.tz] };
 }
+
+/** Inverse node pose: A-8 world → GLB twin frame (for exporting A-8 into the twin frame). */
+export function styledToScanPose(fit) {
+  const c = Math.cos(fit.thetaRad), s = Math.sin(fit.thetaRad);
+  return { scale: 1 / fit.scale, rotationY: fit.thetaRad,
+    position: [-(fit.tx * c + fit.tz * s) / fit.scale, fit.groundH, -(-fit.tx * s + fit.tz * c) / fit.scale] };
+}

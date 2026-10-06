@@ -27,3 +27,10 @@ test("node pose reproduces scanToStyled (three.js yaw convention)", () => {
   const viaPose = [p.scale * (x * c + z * s) + p.position[0], p.scale * y + p.position[1], p.scale * (-x * s + z * c) + p.position[2]];
   scanToStyled([x, y, z], scans.fit).forEach((v, i) => assert.ok(Math.abs(v - viaPose[i]) < 1e-9));
 });
+
+test("export pose inverts the scan pose (A-8 → twin frame round trip)", async () => {
+  const { styledToScanPose } = await import("../src/lib/styled-twin-scans.js");
+  const inv = styledToScanPose(scans.fit), yaw = (p, v) => { const c = Math.cos(p.rotationY), s = Math.sin(p.rotationY); return [p.scale * (v[0] * c + v[2] * s) + p.position[0], p.scale * v[1] + p.position[1], p.scale * (-v[0] * s + v[2] * c) + p.position[2]]; };
+  const glb = [40, 11, -20], back = yaw(inv, scanToStyled(glb, scans.fit));
+  glb.forEach((v, i) => assert.ok(Math.abs(v - back[i]) < 1e-9, `${i}: ${back[i]}`));
+});

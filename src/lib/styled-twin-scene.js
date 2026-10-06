@@ -19,7 +19,7 @@ import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { IllustrateShader } from "./styled-twin-illustrate.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
-import { scanNodePose } from "./styled-twin-scans.js";
+import { scanNodePose, styledToScanPose } from "./styled-twin-scans.js";
 import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
 import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
 import { splatToStyled } from "./styled-twin-photo.js";
@@ -36,7 +36,8 @@ export const LIGHTING = Object.freeze({
 
 const MAT_CACHE = new Map();
 const std = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.9, metalness: 0, ...extra });
-const shared = (key, make) => { if (!MAT_CACHE.has(key)) MAT_CACHE.set(key, make()); return MAT_CACHE.get(key); };
+// Materials carry their key as name so exports (Blender / Unreal) can swap in real materials by role.
+const shared = (key, make) => { if (!MAT_CACHE.has(key)) { const m = make(); if (m && !m.name) m.name = key; MAT_CACHE.set(key, m); } return MAT_CACHE.get(key); };
 const cast = mesh => { mesh.castShadow = true; mesh.receiveShadow = true; return mesh; };
 
 /* ---------- procedural textures (no external files) ---------- */
@@ -841,6 +842,32 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     return on;
   }
 
+  /* 3D export: the CG model as GLB, optionally carried into the twin frame (EPSG:6344 + NAVD88 local,
+     GLB axes x=E y=Up z=-N) by inverting the scan fit — so Unreal / Blender open it already in place. */
+  async function exportGLB({ twinFrame = true } = {}) {
+    const { GLTFExporter } = await import("three/addons/exporters/GLTFExporter.js");
+    const root = new THREE.Group(); root.name = twinFrame ? "OTB-A8-twin-frame" : "OTB-A8";
+    for (const g of [ground, bld, dressing]) root.add(g.clone(true));
+    root.traverse(o => { if (o.isLight || o.isCSS2DObject) o.removeFromParent?.(); });
+    // Bake instanced meshes (shrubs, trees) into plain meshes: Unreal's glTF import rejects EXT_mesh_gpu_instancing.
+    const { mergeGeometries } = await import("three/addons/utils/BufferGeometryUtils.js");
+    const inst = []; root.traverse(o => { if (o.isInstancedMesh) inst.push(o); });
+    for (const im of inst) {
+      const m = new THREE.Matrix4(), parts = [];
+      for (let i = 0; i < im.count; i++) { im.getMatrixAt(i, m); const g = im.geometry.clone(); g.applyMatrix4(m); parts.push(g); }
+      if (!parts.length) { im.removeFromParent(); continue; }
+      const mesh = new THREE.Mesh(mergeGeometries(parts, false), im.material);
+      mesh.name = im.name || "instanced"; mesh.position.copy(im.position); mesh.quaternion.copy(im.quaternion); mesh.scale.copy(im.scale);
+      im.parent.add(mesh); im.removeFromParent();
+    }
+    if (twinFrame && scans?.fit) {
+      const pose = styledToScanPose(scans.fit);
+      root.scale.setScalar(pose.scale); root.rotation.y = pose.rotationY; root.position.set(...pose.position);
+    }
+    const wrap = new THREE.Scene(); wrap.add(root); wrap.updateMatrixWorld(true);
+    return new GLTFExporter().parseAsync(wrap, { binary: true, onlyVisible: true, maxTextureSize: 2048 });
+  }
+
   function setDimensions(on) { dimGroup.visible = on; labels.domElement.style.display = on ? "" : "none"; invalidate(); }
   function resetView() { userMoved = false; fitView(); invalidate(); }
   function capture() { if (bloom.enabled) composer.render(); else renderer.render(scene, camera); return renderer.domElement.toDataURL("image/png"); }
@@ -849,5 +876,5 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     scene.traverse(o => { o.geometry?.dispose(); for (const m of [].concat(o.material ?? [])) { m.map?.dispose(); m.dispose(); } });
     MAT_CACHE.clear(); pmrem.dispose(); composer.dispose?.(); renderer.dispose(); renderer.domElement.remove(); labels.domElement.remove();
   }
-  return { ready, setLighting, setPhoto, setScans, setDimensions, resetView, shot, skippedTrees, capture, dispose, suites, counts: () => ({ suites: suites.length, poleLights: night.lights.length, stallLines: stallLines.length }) };
+  return { ready, setLighting, setPhoto, setScans, exportGLB, setDimensions, resetView, shot, skippedTrees, capture, dispose, suites, counts: () => ({ suites: suites.length, poleLights: night.lights.length, stallLines: stallLines.length }) };
 }
