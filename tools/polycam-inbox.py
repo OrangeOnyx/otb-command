@@ -18,6 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CAP = Path("E:/OTB-CAPTURE")
+DRIVE = Path("G:/My Drive/00 OTB/OTB-CAPTURE")   # operator 2026-10-06: Drive mirror of every filed set
 INBOXES = [Path("G:/My Drive/00 OTB/Polycam-Inbox"), Path("C:/Users/adam/Downloads")]
 LEDGER = CAP / "polycam-inbox-ledger.json"
 LOG = CAP / "polycam-inbox.log"
@@ -123,7 +124,22 @@ def ingest(stem, files, ledger, dry):
                            "ingested": datetime.now().isoformat(timespec="seconds"), "registered": None}
     ledger["by_laz_sha"][fingerprint] = key
     log(f"ingested {stem} -> {rel} ({len(copied)} files, verified)")
+    mirror_to_drive(dest, copied)
     return key
+
+
+def mirror_to_drive(dest, copied):
+    """Copy the newly filed set (and its capture log) to the Drive mirror. Never fatal."""
+    if not DRIVE.parent.is_dir():
+        log("Drive not mounted - mirror skipped (the nightly OTB-Capture-Drive-Mirror task will catch up)"); return
+    try:
+        for t in [*copied, dest / "00_log/capture-log.md"]:
+            d = DRIVE / t.relative_to(CAP)
+            d.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(t, d)
+        log(f"mirrored {len(copied)} files to Drive")
+    except OSError as e:
+        log(f"Drive mirror failed (non-fatal): {e}")
 
 
 def seed_ledger():
