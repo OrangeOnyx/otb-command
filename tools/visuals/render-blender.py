@@ -32,7 +32,7 @@ def img(name, color=True):
     im.colorspace_settings.name = "sRGB" if color else "Non-Color"
     return im
 
-def pbr(key, tex, size_m, tint=(1, 1, 1), rough_mul=1.0):
+def pbr(key, tex, size_m, tint=(1, 1, 1), rough_mul=1.0, paint=None):
     m = bpy.data.materials.new("OTB_" + key); m.use_nodes = True
     nt, L = m.node_tree, m.node_tree.links
     nt.nodes.clear()
@@ -49,8 +49,12 @@ def pbr(key, tex, size_m, tint=(1, 1, 1), rough_mul=1.0):
     d, r, nrm = tx(f"{tex}_diffuse_2k.jpg", True), tx(f"{tex}_rough_2k.jpg", False), tx(f"{tex}_nor_gl_2k.jpg", False)
     if d:
         mix = nt.nodes.new("ShaderNodeMix"); mix.data_type = "RGBA"; mix.blend_type = "MULTIPLY"
-        mix.inputs["Factor"].default_value = 1.0; mix.inputs[7].default_value = (*tint, 1)
-        L.new(d.outputs[0], mix.inputs[6]); L.new(mix.outputs[2], bsdf.inputs["Base Color"])
+        if paint:  # painted masonry: the paint colour, with only a trace of the texture's mortar/relief tone
+            mix.inputs["Factor"].default_value = 0.18; mix.inputs[6].default_value = (*paint, 1)
+            L.new(d.outputs[0], mix.inputs[7]); L.new(mix.outputs[2], bsdf.inputs["Base Color"])
+        else:
+            mix.inputs["Factor"].default_value = 1.0; mix.inputs[7].default_value = (*tint, 1)
+            L.new(d.outputs[0], mix.inputs[6]); L.new(mix.outputs[2], bsdf.inputs["Base Color"])
     if r:
         mul = nt.nodes.new("ShaderNodeMath"); mul.operation = "MULTIPLY"; mul.inputs[1].default_value = rough_mul
         L.new(r.outputs[0], mul.inputs[0]); L.new(mul.outputs[0], bsdf.inputs["Roughness"])
@@ -72,9 +76,12 @@ def lawn():
     return m
 
 CREAM = (1.0, 0.93, 0.80)
+def srgb(h): return tuple(((int(h[i:i + 2], 16) / 255 + 0.055) / 1.055) ** 2.4 for i in (1, 3, 5))
+OC19 = srgb("#E7E3D8")  # Benjamin Moore OC-19, columns are painted brick (operator 2026-10-06; screen approximation)
 MAT = {
-    "stucco": pbr("brick", "brick_wall_08", 1.6, CREAM), "column": pbr("brick_col", "brick_wall_08", 1.6, CREAM),
-    "pier": pbr("pier", "brick_wall_08", 1.6, CREAM),
+    "stucco": pbr("brick", "brick_wall_08", 1.6, CREAM), "column": pbr("brick_col", "brick_wall_08", 1.6, paint=OC19),
+    "pier": pbr("pier", "brick_wall_08", 1.6, paint=OC19),
+    "jasonsFacade": pbr("jasons", "plastered_wall", 3.0, (0.97, 0.93, 0.86)), "signCabinet": pbr("signcab", "plastered_wall", 4.0, (0.72, 0.03, 0.04)),
     "rearWall": pbr("rear", "plastered_wall", 3.0, (0.95, 0.88, 0.76)), "fascia": pbr("fascia", "plastered_wall", 3.0, CREAM),
     "endBlock": pbr("endblock", "plastered_wall", 3.0, CREAM), "trim": pbr("trim", "plastered_wall", 3.0, (1, 0.97, 0.9)),
     "cap": pbr("cap", "plastered_wall", 3.0, (1, 0.97, 0.9)), "sill": pbr("sill", "plastered_wall", 3.0, (1, 0.97, 0.9)),

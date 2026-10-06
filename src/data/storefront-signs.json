@@ -16,6 +16,10 @@
       "heightIn": 75,
       "bottomFt": 13.25,
       "faces": ["storefront", "arnould"],
+      "shape": "oval",
+      "depthIn": 3.5,
+      "cabinet": "#b8141c",
+      "mount": "flat sign on the flat raised 149 facade (operator 2026-10-06; depth ~3-4 in)",
       "source": "sources/signage/1a3bc6d7__JD-54-Lafayette-LA.pdf (Anchor Sign 11/05/2024): 16'-8 1/4\" long, top 19'-6\" / bottom 13'-3\" above grade"
     }
   }

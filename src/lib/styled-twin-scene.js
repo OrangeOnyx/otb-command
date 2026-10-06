@@ -445,7 +445,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   }
 
   /* ---- covered walkway: columns, soffit, fascia and the grey mansard ---- */
-  const colMat = shared("column", () => std("#EFE7D6", { roughness: 0.85 }));
+  const colMat = shared("column", () => std("#E7E3D8", { roughness: 0.85 })); // painted brick, Benjamin Moore OC-19 (operator 2026-10-06; screen approximation)
   const fasciaMat = shared("fascia", () => std("#E9DDC4", { roughness: 0.8, side: THREE.DoubleSide }));
   const soffitMat = shared("soffit", () => std("#efe9dc", { roughness: 0.9, side: THREE.DoubleSide }));
   const mansardMat = shared("mansard", () => std("#ffffff", { map: tex.shingle, roughness: 0.95, side: THREE.DoubleSide }));
@@ -545,18 +545,35 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     const DX = c * dx - sn * dz, DZ = sn * dx + c * dz;
     hipTower(tx, tz, TOWER.sizeFt * FT, TOWER.eaveFt * FT, TOWER.apexFt * FT, Math.atan2(-DZ, DX));
   } else { const [tx, tz] = W([1138, 306]); gable(tx, tz, 5.6, 4.6, 0, gableEave, ridge, -Math.PI / 4); }
-  gable((sf + sRight) / 2, sEnd + 1.25, 8, 2.5, EAVE, gableEave, ridge, 0);                                          // 149 Arnould entry
+  // 149 Jason's: flat raised facades on the field and Arnould faces (operator 2026-10-06: "its flat"; the oval sits in the
+  // larger raised area). Widths from the Anchor Sign elevations (56'-2" overall, 37'-4" raised centre); top = the 23.6 ft facade.
+  {
+    const jmat = shared("jasonsFacade", () => std("#E6E0D2", { roughness: 0.85 })), top = 23.6 * FT, low = MANSARD;
+    const j = suites.find(s => s.unit === "149");
+    if (j) {
+      const zs = j.corners.map(c => c[1]), z0 = Math.min(...zs), z1 = Math.max(...zs), zc = (z0 + z1) / 2, half = 37.33 * FT / 2;
+      bld.add(boxAt(so - 0.12, so + 0.2, EAVE, low, z0, z1, jmat), boxAt(so - 0.12, so + 0.2, low, top, zc - half, zc + half, jmat));
+    }
+    const xc = (sf + sRight) / 2, half = 37.33 * FT / 2;
+    bld.add(boxAt(xc - half, xc + half, EAVE, top, sEnd + 2.2, sEnd + 2.5, jmat));
+  }
 
   function realSign(unit, ymDefault) {
     const r = realSigns[unit], IN = 0.0254, w = r.widthIn * IN;
     const mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.04, roughness: 0.45, emissive: "#ffffff", emissiveIntensity: 0, visible: false });
-    const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); plane.renderOrder = 2; plane.userData.realSign = unit;
-    const hKnown = r.heightIn ? r.heightIn * IN : null;
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); face.renderOrder = 2;
+    const plane = new THREE.Group(); plane.userData.realSign = unit; plane.add(face);
+    const hKnown = r.heightIn ? r.heightIn * IN : null, depth = (r.depthIn ?? 0) * IN;
     const ym = r.bottomFt != null && hKnown ? r.bottomFt * FT + hKnown / 2 : ymDefault;
-    plane.scale.set(w, hKnown ?? w / 4, 1);
+    face.position.z = depth + 0.004; face.scale.set(w, hKnown ?? w / 4, 1);
+    if (depth && hKnown) { // flat sign cabinet at the proof depth; oval cabinets get an elliptical body
+      const body = new THREE.Mesh(r.shape === "oval" ? new THREE.CylinderGeometry(0.5, 0.5, 1, 48) : new THREE.BoxGeometry(1, 1, 1), shared("signCabinet", () => std(r.cabinet ?? "#b8141c", { roughness: 0.5 })));
+      if (r.shape === "oval") { body.rotation.x = Math.PI / 2; body.scale.set(w, depth, hKnown); } else body.scale.set(w, hKnown, depth);
+      body.position.z = depth / 2; cast(body); plane.add(body);
+    }
     new THREE.TextureLoader().load(realSignBase + r.art, tx => {
       tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8;
-      plane.scale.set(w, hKnown ?? w * tx.image.height / tx.image.width, 1);
+      face.scale.set(w, hKnown ?? w * tx.image.height / tx.image.width, 1);
       mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; invalidate();
     });
     night.signs.push(mat);
