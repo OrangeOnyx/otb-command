@@ -202,6 +202,10 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   stated $16,008.90/mo (−$4.84 vs formula); Cat Clinic 119.5 $0.01 rounding.
 
 ## Conventions
+- **Manual PDFs stay current in Drive (operator rule, 2026-10-06):** `tools/build-manuals.py` copies all three
+  manual PDFs to `G:\My Drive\00 OTB\Cypress Command Manual\` on every run (overwrites; skipped where G: is not
+  mounted) and publishes all three under `public/manual/`. The Drive doc in that folder links the live PDFs, so
+  merging a manual change keeps Drive current. Any manual edit = rerun the builder + commit the outputs.
 - **Exports go to Google Drive (operator rule, 2026-08-03):** any generated
   export/package for the operator is ALSO copied to `G:\My Drive\00 OTB\`
   (property LLM package → `OTB-LLM-Export\` + refresh `OTB-LLM-Export.zip`).

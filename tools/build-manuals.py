@@ -512,18 +512,38 @@ def publish():
               '<a href="/">← Back to the app</a></nav>')
     html_doc = html_doc.replace('<main class="wrap">', '<main class="wrap">' + banner, 1)
     open(os.path.join(pub, "index.html"), "w", encoding="utf-8").write(html_doc)
-    shutil.copyfile(os.path.join(SRC, "Cypress-Command-Complete-Documentation.pdf"),
-                    os.path.join(pub, "Cypress-Command-Complete-Documentation.pdf"))
+    for _, _, pdf_name, _, _ in MANUALS:  # same content as the combined doc, split per book
+        shutil.copyfile(os.path.join(SRC, pdf_name), os.path.join(pub, pdf_name))
     shutil.copyfile(os.path.join(ROOT, "docs", "phase-c", "intake-form.html"),
                     os.path.join(pub, "intake-form.html"))
     img_dst = os.path.join(pub, "img")
     shutil.rmtree(img_dst, ignore_errors=True)
     shutil.copytree(os.path.join(SRC, "img"), img_dst)
     n = len(os.listdir(img_dst))
-    print(f"published -> public/manual/ (index.html + PDF + {n} images)")
+    print(f"published -> public/manual/ (index.html + {len(MANUALS)} PDFs + {n} images)")
+
+
+# Operator rule (2026-08-03, reaffirmed 2026-10-06): the current manual PDFs always
+# live in Drive. Drive for desktop syncs this folder; the Drive doc "Cypress Command
+# Manual — current PDFs" in it links the live copies. Override with OTB_DRIVE_MANUAL.
+DRIVE_MANUAL = os.environ.get("OTB_DRIVE_MANUAL",
+                              r"G:\My Drive\00 OTB\Cypress Command Manual")
+
+
+def sync_drive():
+    """Copy every manual PDF into the synced Drive folder, replacing the previous
+    edition in place. Skipped (with a note) on machines without the Drive mount."""
+    if not os.path.isdir(os.path.dirname(DRIVE_MANUAL)):
+        print(f"drive sync skipped — {DRIVE_MANUAL} not mounted here")
+        return
+    os.makedirs(DRIVE_MANUAL, exist_ok=True)
+    for _, _, pdf_name, _, _ in MANUALS:
+        shutil.copyfile(os.path.join(SRC, pdf_name), os.path.join(DRIVE_MANUAL, pdf_name))
+    print(f"drive -> {DRIVE_MANUAL} ({len(MANUALS)} PDFs)")
 
 
 if __name__ == "__main__":
     for spec in MANUALS:
         build(*spec)
     publish()
+    sync_drive()
