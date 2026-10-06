@@ -1,0 +1,22 @@
+{
+  "_note": "Real exterior storefront signs, cut from the tenants' sign proofs and drawn at the proof size (operator 2026-10-06: show the actual exterior signage, not the tenant logo files). Suites not listed fall back to the logo file until a current photo or proof is on file.",
+  "signs": {
+    "145": {
+      "art": "145.webp",
+      "reads": "physiofit / Physical Therapy and Wellness",
+      "kind": "LED channel letters + logo cabinet on raceway, mounted on the 36 in sign band",
+      "widthIn": 131.25,
+      "source": "sources/signage/89505501__ (Big Mouth Signs proof 2026-09-10, sheets 1, 3, 4; signed copy 3acce118__)"
+    },
+    "149": {
+      "art": "149.webp",
+      "reads": "Jason's Deli",
+      "kind": "Single-face internally lit oval wall cabinet (Signs A and B)",
+      "widthIn": 200.25,
+      "heightIn": 75,
+      "bottomFt": 13.25,
+      "faces": ["storefront", "arnould"],
+      "source": "sources/signage/1a3bc6d7__JD-54-Lafayette-LA.pdf (Anchor Sign 11/05/2024): 16'-8 1/4\" long, top 19'-6\" / bottom 13'-3\" above grade"
+    }
+  }
+}

@@ -10,6 +10,7 @@ import units from "../data/units.public.json";
 import pylonData from "../data/pylon.json";
 import lighting from "../data/site-lighting.json";
 import logoUnits from "../data/logo-thumbs.json";
+import storefrontSignData from "../data/storefront-signs.json";
 import facadeOpenings from "../data/facade-openings.json";
 import roofEquipment from "../data/roof-equipment.json";
 import serviceItems from "../data/site-service-items.json";
@@ -32,7 +33,7 @@ export function initStyledTwin() {
 async function start(host) {
   started = true;
   host.innerHTML =
-    '<p class="st-lede">The site in the Visual Library look, built to the CAD and plat: every suite is laid out from the demising frontages and depths (REV 17) at the 2019 survey building heights, the stall striping is the A-1 drawing\'s own, and every site-register item with a recorded position sits at it. Turn on <b>Dimensions</b> to read the CAD/plat feet on the model. Storefront signs use each tenant\'s own logo file. Lighting follows the operator\'s inventory (5 double poles in the main field, 1 in Lot 7, wall lights over Lot 8, a fixture on every column, center-line walkway lights); pole positions are read off the night aerial and approximate. Canopy, fascia and mansard heights and tree species are presentation choices, not measurements.</p>' +
+    '<p class="st-lede">The site in the Visual Library look, built to the CAD and plat: every suite is laid out from the demising frontages and depths (REV 17) at the 2019 survey building heights, the stall striping is the A-1 drawing\'s own, and every site-register item with a recorded position sits at it. Turn on <b>Dimensions</b> to read the CAD/plat feet on the model. Storefront signs for 145 and 149 are the real exterior signs, cut from the sign proofs and drawn at the proof size; the rest show the tenant\'s logo file until a current photo is on file. Lighting follows the operator\'s inventory (5 double poles in the main field, 1 in Lot 7, wall lights over Lot 8, a fixture on every column, center-line walkway lights); pole positions are read off the night aerial and approximate. Canopy, fascia and mansard heights and tree species are presentation choices, not measurements.</p>' +
     '<div class="card st-card"><div class="st-bar"><div class="st-tabs" role="tablist">' +
     LIGHTS.map(([id, label]) => '<button type="button" role="tab" data-light="' + id + '" aria-selected="' + (id === "golden") + '">' + label + "</button>").join("") +
     '</div><div class="st-actions"><button type="button" class="chip st-toggle" data-act="photo" data-style="photo" aria-pressed="false" title="Drone photo capture (Gaussian splat), same camera">Photo</button><button type="button" class="chip st-toggle" data-act="photo" data-style="illustrated" aria-pressed="false" title="The drone capture, painted (experimental)">Illustrated</button>' + (import.meta.env.DEV || scanData.published ? '<button type="button" class="chip st-toggle" data-act="scans" aria-pressed="false" title="Registered Polycam LiDAR scans (real textured surfaces) over the model">Scans</button>' : '') + '<button type="button" class="chip st-toggle" data-act="dims" aria-pressed="true">Dimensions</button><button type="button" class="chip" data-act="reset">Reset view</button><button type="button" class="chip" data-act="png">Save image</button><button type="button" class="chip" data-act="glb" title="The model as a 3D file in the survey frame (EPSG:6344 + NAVD88) — opens in place in Unreal / Blender">Download 3D</button></div></div>' +
@@ -44,7 +45,7 @@ async function start(host) {
     const siteData = await fetch(BASE + "twin/site-context.json").then(r => { if (!r.ok) throw new Error("site context"); return r.json(); });
     const { createStyledTwinScene } = await import("../lib/styled-twin-scene.js");
     scene = createStyledTwinScene(stage, {
-      siteData, register, geometry, heights, units, pylonData, lighting, logoUnits, logoBase: BASE + "tenant-logos/sign/", facadeOpenings, roofEquipment, serviceItems, cameras, pylonBase: BASE + "pylon/",
+      siteData, register, geometry, heights, units, pylonData, lighting, logoUnits, logoBase: BASE + "tenant-logos/sign/", realSigns: storefrontSignData.signs, realSignBase: BASE + "signs/real/", facadeOpenings, roofEquipment, serviceItems, cameras, pylonBase: BASE + "pylon/",
       splatUrl: BASE + "OTB-splat.ksplat",
       scans: scanData, scansBase: BASE + "twin/scans/", dracoBase: BASE + "draco/",
       onScanStatus: (status, info) => { const b = host.querySelector('[data-act="scans"]'); if (b) b.textContent = status === "loading" ? "Scans · loading…" : status === "error" ? "Scans · unavailable" : "Scans" + (info && info.loaded < info.total ? " (" + info.loaded + "/" + info.total + ")" : ""); },

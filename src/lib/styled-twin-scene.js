@@ -228,7 +228,7 @@ function securityCamera() { // DW MEGApix CaaS 4MP vandal dome on the DWC-VFZWM 
 }
 
 /* ---------- the scene ---------- */
-export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", splatUrl = null, onPhotoStatus = () => {}, scans = null, scansBase = "/twin/scans/", dracoBase = "/draco/", onScanStatus = () => {}, onReady = () => {} }) {
+export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", realSigns = {}, realSignBase = "/signs/real/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", splatUrl = null, onPhotoStatus = () => {}, scans = null, scansBase = "/twin/scans/", dracoBase = "/draco/", onScanStatus = () => {}, onReady = () => {} }) {
   const W0 = p => planToWorld(p);
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
@@ -547,6 +547,21 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   } else { const [tx, tz] = W([1138, 306]); gable(tx, tz, 5.6, 4.6, 0, gableEave, ridge, -Math.PI / 4); }
   gable((sf + sRight) / 2, sEnd + 1.25, 8, 2.5, EAVE, gableEave, ridge, 0);                                          // 149 Arnould entry
 
+  function realSign(unit, ymDefault) {
+    const r = realSigns[unit], IN = 0.0254, w = r.widthIn * IN;
+    const mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.04, roughness: 0.45, emissive: "#ffffff", emissiveIntensity: 0, visible: false });
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); plane.renderOrder = 2; plane.userData.realSign = unit;
+    const hKnown = r.heightIn ? r.heightIn * IN : null;
+    const ym = r.bottomFt != null && hKnown ? r.bottomFt * FT + hKnown / 2 : ymDefault;
+    plane.scale.set(w, hKnown ?? w / 4, 1);
+    new THREE.TextureLoader().load(realSignBase + r.art, tx => {
+      tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 8;
+      plane.scale.set(w, hKnown ?? w * tx.image.height / tx.image.width, 1);
+      mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; invalidate();
+    });
+    night.signs.push(mat);
+    return { mat, plane, ym };
+  }
   // Storefront signs on the fascia (tenant of record; one per tenant).
   for (const sg of storefrontSigns(suites, units)) {
     const ss = sg.suites.map(u => suites.find(s => s.unit === u));
@@ -558,9 +573,13 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
       c.textAlign = "center"; c.textBaseline = "middle"; if (stroke) { c.lineWidth = 8; c.strokeStyle = stroke; c.strokeText(text, cw / 2, ch / 2); } c.fillStyle = fill; c.fillText(text, cw / 2, ch / 2);
     });
     const logoUnit = sg.suites.find(u => logoUnits.includes(String(u)));
+    const realUnit = sg.suites.find(u => realSigns[u]);
     let mat, plane;
     let ym = (EAVE + FASCIA) / 2;
-    if (logoUnit) {
+    if (realUnit) {
+      // The tenant's real exterior sign (storefront-signs.json), cut from its sign proof and drawn at the proof size.
+      ({ mat, plane, ym } = realSign(realUnit, ym));
+    } else if (logoUnit) {
       ym = EAVE + 0.06 + 1.25 / 2;
       // Tenant's own logo (G:\My Drive\00 OTB\…\Tenant Logo, vendored in tools/brand-assets/tenant-logos).
       mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.05, roughness: 0.55, emissive: "#ffffff", emissiveIntensity: 0, visible: false });
@@ -593,7 +612,10 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   // 149 Arnould-face sign (the anchor reads from Arnould too).
   {
     const anchor = storefrontSigns(suites, units).find(s => s.suites.includes("149"));
-    if (anchor && logoUnits.includes("149")) {
+    if (anchor && realSigns["149"]?.faces?.includes("arnould")) {
+      const { plane, ym } = realSign("149", (EAVE + gableEave) / 2);
+      plane.position.set((sf + sRight) / 2, ym, sEnd + 2.52); bld.add(plane);
+    } else if (anchor && logoUnits.includes("149")) {
       const mat = new THREE.MeshStandardMaterial({ transparent: true, alphaTest: 0.05, emissive: "#ffffff", emissiveIntensity: 0, visible: false }); night.signs.push(mat);
       const p = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat); p.position.set((sf + sRight) / 2, (EAVE + gableEave) / 2, sEnd + 2.52); bld.add(p);
       new THREE.TextureLoader().load(logoBase + "149.webp", tx => { tx.colorSpace = THREE.SRGBColorSpace; const a = tx.image.width / tx.image.height, h = 1.2; mat.map = tx; mat.emissiveMap = tx; mat.visible = true; mat.needsUpdate = true; p.scale.set(Math.min(6, h * a), Math.min(6, h * a) / a, 1); invalidate(); });
