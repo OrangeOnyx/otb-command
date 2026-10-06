@@ -15,6 +15,8 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+import { IllustrateShader } from "./styled-twin-illustrate.js";
 import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
 import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
 import { splatToStyled } from "./styled-twin-photo.js";
@@ -268,6 +270,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), 0.5, 0.35, 0.92); composer.addPass(bloom);
+  const illustrate = new ShaderPass(IllustrateShader); illustrate.enabled = false; composer.addPass(illustrate);
   composer.addPass(new OutputPass());
 
   const night = { glass: [], lenses: [], lights: [], soffit: [], signs: [], pylon: [] };
@@ -734,7 +737,7 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   let userMoved = false; controls.addEventListener("start", () => { userMoved = true; });
   function resize() {
     const r = container.getBoundingClientRect(), w = Math.max(1, r.width), h = Math.max(1, r.height);
-    renderer.setSize(w, h, false); composer.setSize(w, h); labels.setSize(w, h);
+    renderer.setSize(w, h, false); composer.setSize(w, h); const dpr = renderer.getPixelRatio(); illustrate.uniforms.resolution.value = [w * dpr, h * dpr]; labels.setSize(w, h);
     camera.aspect = w / h; camera.updateProjectionMatrix(); if (!userMoved) fitView(); invalidate();
   }
   const observer = new ResizeObserver(resize); observer.observe(container); resize();
@@ -742,10 +745,12 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
   const ready = (document.fonts?.ready ?? Promise.resolve()).then(() => { onReady(); invalidate(); });
 
   /* Photo mode: the drone splat in the same frame and camera; the CG model hides. */
-  const photo = { on: false, root: null, viewer: null, loading: null, hidden: [], loop: 0, fog: null, bloom: false };
-  function photoLoop() { if (!photo.on || disposed) { photo.loop = 0; return; } controls.update(); renderer.render(scene, camera); labels.render(scene, camera); photo.loop = requestAnimationFrame(photoLoop); }
-  async function setPhoto(on) {
-    if (on === photo.on || !splatUrl) return photo.on;
+  const photo = { on: false, style: "photo", root: null, viewer: null, loading: null, hidden: [], loop: 0, fog: null, bloom: false };
+  function photoLoop() { if (!photo.on || disposed) { photo.loop = 0; return; } controls.update(); if (illustrate.enabled) composer.render(); else renderer.render(scene, camera); labels.render(scene, camera); photo.loop = requestAnimationFrame(photoLoop); }
+  async function setPhoto(on, style = "photo") {
+    if (!splatUrl) return photo.on;
+    photo.style = style; illustrate.enabled = on && style === "illustrated";
+    if (on === photo.on) return photo.on;
     photo.on = on;
     if (on) {
       photo.hidden = scene.children.filter(o => !o.isLight && o !== photo.root && o.visible);
