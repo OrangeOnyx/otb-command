@@ -215,7 +215,7 @@ all exported HTML/JSON/SVG are one-way, disposable snapshots.
   history → `G:\My Drive\00 OTB\repo-backups\` (keep 10, verify logged).
   Uncommitted work is NOT captured — commit anything that matters.
 - **Capture mirror (operator 2026-10-06):** Scheduled Task `OTB-Capture-Drive-Mirror` (daily 02:30,
-  `tools/capture-drive-mirror.ps1 -Register`) copies `E:\OTB-CAPTURE` → `G:\My Drive  OTB\OTB-CAPTURE\`, additive
+  `tools/capture-drive-mirror.ps1 -Register`) copies `E:\OTB-CAPTURE` → `G:\My Drive\00 OTB\OTB-CAPTURE\`, additive
   only (never deletes); the Polycam inbox also mirrors each set as it files it. E: stays the working copy.
 - **Rent presentation (operator, 2026-07-17):** any bare monthly amount in owner/
   tenant-facing output = TOTAL rent (base + additional). Component economics
