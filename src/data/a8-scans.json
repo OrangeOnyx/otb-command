@@ -1,0 +1,92 @@
+{
+  "_comment": "A-8 scan layer. GLB twin frame (x=E, y=Up NAVD88, z=-N, local origin E 591000 N 3341600) → A-8 world: X,Z = scale·R(theta)·(x,z) + (tx,tz); Y = scale·(y − groundH). Fit from register items present in both frames. Regenerate with tools/visuals/build-a8-scans.mjs.",
+  "fit": {
+    "n": 129,
+    "thetaRad": 2.2466852556356667,
+    "scale": 0.9897420802332216,
+    "tx": 13.867418422107729,
+    "tz": -18.152920379642616,
+    "groundH": 10.2,
+    "rmsM": 0.039456189549204435,
+    "maxM": 0.4418423615296148
+  },
+  "published": false,
+  "checks": [
+    {
+      "id": "col-03",
+      "glb": [
+        59.648,
+        13.282,
+        96.222
+      ]
+    },
+    {
+      "id": "col-20",
+      "glb": [
+        30.06,
+        13.282,
+        25.569
+      ]
+    },
+    {
+      "id": "bench-01",
+      "glb": [
+        69.854,
+        10.664,
+        79.662
+      ]
+    },
+    {
+      "id": "tree-01",
+      "glb": [
+        70.71,
+        10.202,
+        -31.357
+      ]
+    }
+  ],
+  "scans": [
+    {
+      "id": "2026-08-18",
+      "file": "scan-2026-08-18.glb",
+      "night": false,
+      "bytes": 1215380
+    },
+    {
+      "id": "2026-09-29",
+      "file": "scan-2026-09-29.glb",
+      "night": false,
+      "bytes": 4064424
+    },
+    {
+      "id": "2026-10-01-rear-135b-to-149",
+      "file": "scan-2026-10-01-rear-135b-to-149.glb",
+      "night": false,
+      "bytes": 4933428
+    },
+    {
+      "id": "2026-10-01-rear-parking-patricia",
+      "file": "scan-2026-10-01-rear-parking-patricia.glb",
+      "night": false,
+      "bytes": 2188616
+    },
+    {
+      "id": "2026-10-04-lot7",
+      "file": "scan-2026-10-04-lot7.glb",
+      "night": false,
+      "bytes": 12821084
+    },
+    {
+      "id": "2026-10-04-storefronts-133-149-night",
+      "file": "scan-2026-10-04-storefronts-133-149-night.glb",
+      "night": true,
+      "bytes": 2719664
+    },
+    {
+      "id": "2026-10-05-lot8",
+      "file": "scan-2026-10-05-lot8.glb",
+      "night": false,
+      "bytes": 2706716
+    }
+  ]
+}

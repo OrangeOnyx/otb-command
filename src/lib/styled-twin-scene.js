@@ -17,6 +17,9 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { IllustrateShader } from "./styled-twin-illustrate.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
+import { scanNodePose } from "./styled-twin-scans.js";
 import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
 import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
 import { splatToStyled } from "./styled-twin-photo.js";
@@ -224,7 +227,7 @@ function securityCamera() { // DW MEGApix CaaS 4MP vandal dome on the DWC-VFZWM 
 }
 
 /* ---------- the scene ---------- */
-export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", splatUrl = null, onPhotoStatus = () => {}, onReady = () => {} }) {
+export function createStyledTwinScene(container, { siteData, register, geometry, heights, units, pylonData, lighting = null, logoUnits = [], logoBase = "/tenant-logos/sign/", facadeOpenings = null, roofEquipment = null, serviceItems = null, cameras = null, pylonBase = "/pylon/", splatUrl = null, onPhotoStatus = () => {}, scans = null, scansBase = "/twin/scans/", dracoBase = "/draco/", onScanStatus = () => {}, onReady = () => {} }) {
   const W0 = p => planToWorld(p);
   const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
@@ -781,6 +784,33 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     return photo.on;
   }
 
+  /* Scan layer: the registered Polycam scans (real textured surfaces) over the CG model. */
+  const scanLayer = { root: null, loading: null };
+  async function setScans(on) {
+    if (!scans?.scans?.length) return false;
+    if (on && !scanLayer.root) {
+      onScanStatus("loading");
+      scanLayer.loading ??= (async () => {
+        const pose = scanNodePose(scans.fit), root = new THREE.Group(); root.name = "scan-layer";
+        root.scale.setScalar(pose.scale); root.rotation.y = pose.rotationY; root.position.set(...pose.position);
+        const loader = new GLTFLoader().setDRACOLoader(new DRACOLoader().setDecoderPath(dracoBase));
+        const results = await Promise.allSettled(scans.scans.map(sc => loader.loadAsync(scansBase + sc.file).then(g => {
+          g.scene.userData.scan = sc.id;
+          g.scene.traverse(m => { if (!m.isMesh) return; m.receiveShadow = true;
+            for (const mat of [].concat(m.material)) { mat.polygonOffset = true; mat.polygonOffsetFactor = -2; mat.polygonOffsetUnits = -2; mat.envMapIntensity = 0.4; } });
+          root.add(g.scene);
+        })));
+        scanLayer.root = root; scene.add(root);
+        const failed = results.filter(r => r.status === "rejected").length;
+        onScanStatus(failed === results.length ? "error" : "ready", { loaded: results.length - failed, total: results.length });
+      })();
+      await scanLayer.loading;
+    }
+    if (scanLayer.root) scanLayer.root.visible = on;
+    invalidate();
+    return on;
+  }
+
   function setDimensions(on) { dimGroup.visible = on; labels.domElement.style.display = on ? "" : "none"; invalidate(); }
   function resetView() { userMoved = false; fitView(); invalidate(); }
   function capture() { if (bloom.enabled) composer.render(); else renderer.render(scene, camera); return renderer.domElement.toDataURL("image/png"); }
@@ -789,5 +819,5 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     scene.traverse(o => { o.geometry?.dispose(); for (const m of [].concat(o.material ?? [])) { m.map?.dispose(); m.dispose(); } });
     MAT_CACHE.clear(); pmrem.dispose(); composer.dispose?.(); renderer.dispose(); renderer.domElement.remove(); labels.domElement.remove();
   }
-  return { ready, setLighting, setPhoto, setDimensions, resetView, shot, skippedTrees, capture, dispose, suites, counts: () => ({ suites: suites.length, poleLights: night.lights.length, stallLines: stallLines.length }) };
+  return { ready, setLighting, setPhoto, setScans, setDimensions, resetView, shot, skippedTrees, capture, dispose, suites, counts: () => ({ suites: suites.length, poleLights: night.lights.length, stallLines: stallLines.length }) };
 }
