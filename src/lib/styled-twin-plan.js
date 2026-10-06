@@ -31,6 +31,14 @@ export const SHORT = Object.freeze({ faceX: 1154.51, y0: 219.31 });             
 /** Presentation assumptions for the covered walkway (feet; NOT surveyed). */
 export const CANOPY = Object.freeze({ eaveFt: 11, fasciaTopFt: 14.5, mansardTopFt: 19.5, gableTopFt: 23.6 });
 
+/* The corner "P" tower at the inside corner of the two walkways, MEASURED (2026-10-06, operator: two tenant
+   signs are going up on it): 3DEP 2017 LiDAR + DJI photogrammetry, points above 21 ft within 9 m of the tower.
+   Centre and long axis are in the twin frame (EPSG:6344 local E/N, metres; axis degrees counter-clockwise
+   from East). Heights above the parking-field datum with the documented ~2 ft LiDAR offset removed.
+   ±1 ft (LiDAR 1 m spacing) — refine from the 2026-10-06 walk-scan. Plan size ±2 ft (LiDAR hip-roof spread 28 × 18.7 ft above 21 ft includes the overhang). */
+export const TOWER = Object.freeze({ form: "square stucco tower, four-sided shingle hip roof (July 2026 drone frame DJI_0030_0031)", centerEN: [-28.8, 45.0], axisDegEN: 39, sizeFt: 19.0, eaveFt: 21.0, apexFt: 29.7,
+  source: "3DEP 2017 LiDAR (apex 31.7 ft raw) + DJI photogrammetry (32.2 ft raw), -2 ft datum offset; ±1 ft" });
+
 const SPLIT_135 = 42.245; // 135A | 135B mid-depth split (geometry.json demising.shortBuilding.split135)
 
 /**

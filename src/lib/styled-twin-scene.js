@@ -19,9 +19,9 @@ import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { IllustrateShader } from "./styled-twin-illustrate.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
-import { scanNodePose, styledToScanPose } from "./styled-twin-scans.js";
+import { scanNodePose, styledToScanPose, scanToStyled } from "./styled-twin-scans.js";
 import { STYLED_PALETTE as P, polygonCentroid } from "./styled-twin-placement.js";
-import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns } from "./styled-twin-plan.js";
+import { FT, KX, KY, CANOPY, LONG, SHORT, planToWorld, modelToWorld, layoutSuites, dimensionStrings, storefrontSigns, TOWER } from "./styled-twin-plan.js";
 import { splatToStyled } from "./styled-twin-photo.js";
 import splatAlign from "../data/splat-align.json";
 
@@ -60,15 +60,15 @@ const grassTex = () => canvasTex(256, 256, (g, w, h) => {
   g.fillStyle = "#6d9156"; g.fillRect(0, 0, w, h);
   for (let i = 0; i < 9000; i++) { const s = Math.random(); g.fillStyle = s > 0.5 ? "rgba(140,175,100,0.25)" : "rgba(60,90,45,0.25)"; g.fillRect(Math.random() * w, Math.random() * h, 1.5, 3); }
 }, [1 / 6, 1 / 6]);
-// Architectural shingle courses (the grey sloped mansard).
+// Architectural shingle courses: weathered brown (operator 2026-10-06; colour sampled from the July 2026 drone frame).
 const shingleTex = () => canvasTex(256, 256, (g, w, h) => {
-  g.fillStyle = "#7e7d79"; g.fillRect(0, 0, w, h);
+  g.fillStyle = "#6f5f57"; g.fillRect(0, 0, w, h);
   const course = 16;
   for (let y = 0; y < h; y += course) {
     const off = (y / course) % 2 ? 0 : 18;
     for (let x = -off; x < w; x += 36) {
       const tone = 112 + Math.floor(Math.random() * 30);
-      g.fillStyle = `rgb(${tone},${tone - 2},${tone - 5})`; g.fillRect(x + 1, y + 1, 34, course - 3);
+      g.fillStyle = `rgb(${tone},${Math.round(tone * 0.86)},${Math.round(tone * 0.79)})`; g.fillRect(x + 1, y + 1, 34, course - 3);
     }
     g.fillStyle = "rgba(30,30,30,0.55)"; g.fillRect(0, y + course - 2, w, 2);
   }
@@ -345,9 +345,20 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     const [x0, x1, z0, z1] = [Math.min(...xs), Math.max(...xs), Math.min(...zs), Math.max(...zs)], h = s.heightFt * FT;
     const body = boxAt(x0, x1, 0, h, z0, z1, stucco); body.material = [stucco, stucco, roofMat, rearWall, stucco, s.building === "long" ? rearWall : stucco]; body.userData = { unit: s.unit };
     bld.add(body);
-    // Parapet cap + roof membrane inset.
-    const t = 0.22;
-    bld.add(boxAt(x0, x1, h, h + 0.5, z0, z0 + t, capMat), boxAt(x0, x1, h, h + 0.5, z1 - t, z1, capMat), boxAt(x0, x0 + t, h, h + 0.5, z0, z1, capMat), boxAt(x1 - t, x1, h, h + 0.5, z0, z1, capMat));
+    // Parapet cap on the building perimeter only (operator 2026-10-06: the roof is continuous across demising
+    // lines; a parapet stands only at the outer edge, at phase lines — the register firewalls below — and
+    // where the roof steps between suites of different height).
+    const t = 0.22, same = suites.filter(o => o.building === s.building).sort((a, b) => a.offsetFt - b.offsetFt), k = same.indexOf(s);
+    const prev = same[k - 1], next = same[k + 1], step = o => !o || Math.abs(o.heightFt - s.heightFt) > 0.3;
+    if (s.building === "long") {
+      bld.add(boxAt(x0, x1, h, h + 0.5, z0, z0 + t, capMat), boxAt(x0, x1, h, h + 0.5, z1 - t, z1, capMat));
+      if (step(prev)) bld.add(boxAt(x0, x0 + t, h, h + 0.5, z0, z1, capMat));
+      if (step(next)) bld.add(boxAt(x1 - t, x1, h, h + 0.5, z0, z1, capMat));
+    } else {
+      bld.add(boxAt(x0, x0 + t, h, h + 0.5, z0, z1, capMat), boxAt(x1 - t, x1, h, h + 0.5, z0, z1, capMat));
+      if (step(prev)) bld.add(boxAt(x0, x1, h, h + 0.5, z0, z0 + t, capMat));
+      if (step(next)) bld.add(boxAt(x0, x1, h, h + 0.5, z1 - t, z1, capMat));
+    }
     // Electrical panel + lighting time clock on the rear wall (records: one per suite; position approximate).
     const grey = shared("svc", () => std("#8d918c", { roughness: 0.5, metalness: 0.4 }));
     if (s.building === "long") {
@@ -478,6 +489,11 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     // Sloped shingle mansard: outer edge at fascia top → wall face at the mansard top.
     const m = quad([ao[0], FASCIA, ao[1]], [bo[0], FASCIA, bo[1]], [bi[0], top, bi[1]], [ai[0], top, ai[1]], mansardMat);
     m.geometry.attributes.uv.array.forEach((v, i, arr) => { arr[i] = v / 2.2; }); bld.add(m);
+    // Rear slope (operator 2026-10-06: "the backside of it slopes") from the ridge down onto the roof.
+    const back = Math.min(top - 0.3, 16.4 * FT), run = 1.3;
+    const ar = [ai[0] + inward[0] * run, ai[1] + inward[1] * run], br = [bi[0] + inward[0] * run, bi[1] + inward[1] * run];
+    const mb = quad([ai[0], top, ai[1]], [bi[0], top, bi[1]], [br[0], back, br[1]], [ar[0], back, ar[1]], mansardMat);
+    mb.geometry.attributes.uv.array.forEach((v, i, arr) => { arr[i] = v / 2.2; }); bld.add(mb);
     if (soffit) {
       const s = flatPoly([a, b, [b[0] + inward[0] * depth, b[1] + inward[1] * depth], [a[0] + inward[0] * depth, a[1] + inward[1] * depth]], EAVE, soffitMat);
       s.castShadow = true; bld.add(s);
@@ -513,7 +529,22 @@ export function createStyledTwinScene(container, { siteData, register, geometry,
     g.position.set(cx, 0, cz); g.rotation.y = rot; bld.add(g);
   }
   const gableEave = 18.2 * FT, ridge = CANOPY.gableTopFt * FT;
-  { const [tx, tz] = W([1138, 306]); gable(tx, tz, 5.6, 4.6, 0, gableEave, ridge, -Math.PI / 4); } // "P" tower: inside corner of the two walkways, facing the field
+  // The corner tower: a square stucco box under a four-sided (pyramid) shingle hip roof, "P" mark on the field face.
+  function hipTower(cx, cz, size, eave, apex, rot) {
+    const g = new THREE.Group(), h2 = size / 2, over = 0.45;
+    g.add(boxAt(-h2, h2, 0, eave, -h2, h2, shared("towerStucco", () => std("#F1ECE2", { roughness: 0.9 }))));
+    g.add(boxAt(-h2 - 0.12, h2 + 0.12, eave - 0.35, eave, -h2 - 0.12, h2 + 0.12, shared("trim", () => std("#f6f1e6", { roughness: 0.6, side: THREE.DoubleSide }))));
+    const r = (h2 + over) * Math.SQRT2, roof = cast(new THREE.Mesh(new THREE.ConeGeometry(r, apex - eave, 4, 1), mansardMat));
+    roof.rotation.y = Math.PI / 4; roof.position.y = eave + (apex - eave) / 2; g.add(roof);
+    g.position.set(cx, 0, cz); g.rotation.y = rot; bld.add(g); return g;
+  }
+  if (scans?.fit) { // "P" tower, measured (TOWER in styled-twin-plan.js): inside corner of the two walkways, facing the field
+    const f = scans.fit, [e, n] = TOWER.centerEN, a = TOWER.axisDegEN * Math.PI / 180;
+    const [tx, , tz] = scanToStyled([e, 0, -n], f);
+    const dx = Math.cos(a), dz = -Math.sin(a), c = Math.cos(f.thetaRad), sn = Math.sin(f.thetaRad);
+    const DX = c * dx - sn * dz, DZ = sn * dx + c * dz;
+    hipTower(tx, tz, TOWER.sizeFt * FT, TOWER.eaveFt * FT, TOWER.apexFt * FT, Math.atan2(-DZ, DX));
+  } else { const [tx, tz] = W([1138, 306]); gable(tx, tz, 5.6, 4.6, 0, gableEave, ridge, -Math.PI / 4); }
   gable((sf + sRight) / 2, sEnd + 1.25, 8, 2.5, EAVE, gableEave, ridge, 0);                                          // 149 Arnould entry
 
   // Storefront signs on the fascia (tenant of record; one per tenant).
