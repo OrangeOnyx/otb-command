@@ -158,6 +158,23 @@ export function callStats(rows, nowIso, days = 7) {
   return out;
 }
 
+/* ---- push alert (2026-10-06): one short notification per finalized call.
+   Lock-screen text, so it carries who / what / unit — never the transcript. */
+export function callPush({ call, callSid = "", appUrl = "https://otb.cypresscommand.com" } = {}) {
+  const c = call || {};
+  const intent = validIntent(c.intent), urgency = validUrgency(c.urgency);
+  const prefix = urgency === "emergency" ? "EMERGENCY · " : urgency === "urgent" ? "Urgent · " : "";
+  const who = c.caller_name || fmtPhone(c.callback) || fmtPhone(c.caller) || "Unknown caller";
+  const summary = String(c.summary || "").trim();
+  return {
+    title: prefix + "New " + CALL_INTENTS[intent][0].toLowerCase() + " call" + (c.unit ? " · Unit " + c.unit : ""),
+    body: who + (summary ? " — " + (summary.length > 140 ? summary.slice(0, 137) + "…" : summary) : ""),
+    url: appUrl + "/#comms",
+    tag: callSid ? "call:" + callSid : "call",
+    urgent: urgency !== "routine",
+  };
+}
+
 /* ---- owner e-mail ---- */
 const escHtml = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]));
 

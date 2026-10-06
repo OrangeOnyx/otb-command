@@ -64,9 +64,20 @@ export async function refreshComms() {
     .order("at", { ascending: false }).limit(500);
   if (error) { console.warn("comm_log read failed:", error.message); return cache; }
   cache = data || [];
+  /* the call-alert poll re-pulls every 60 s — repaint only on a real change,
+     so an open search box or a playing recording isn't wiped by a no-op */
+  const sig = commsSignature(cache);
+  if (sig === lastSig) return cache;
+  lastSig = sig;
   listeners.forEach(cb => { try { cb(); } catch (e) { console.warn(e); } });
   return cache;
 }
+let lastSig = null;
+
+/* pure: identity of a log snapshot (row set + each row's mutable fields) */
+export const commsSignature = rows =>
+  (rows || []).map(r => [r.id, r.status, r.updated_at, r.summary,
+    r.payload && r.payload.recording_status].map(v => v || "").join(":")).join("|");
 
 export async function addComm(fields, by) {
   const f = fields || {};
@@ -123,6 +134,36 @@ export async function setCommStatus(id, status) {
   const { error } = await sb.from("comm_log").update({ status: st, updated_at: new Date().toISOString() }).eq("id", id);
   if (error) throw error;
   await refreshComms();
+}
+
+/* "Send leasing package" (2026-10-06, operator). Calls the same server sender
+   the phone agent uses, then logs what ACTUALLY went out as an outbound L-1
+   entry (unit-tagged when known). Returns the server's per-leg result. */
+export async function sendLeasingPackage({ email = "", phone = "", name = "", unit = "" }, by) {
+  const session = (await sb.auth.getSession()).data.session;
+  if (!session) throw new Error("session expired — sign in again");
+  const r = await fetch("/api/voice-call?action=package", {
+    method: "POST",
+    headers: { "content-type": "application/json", Authorization: "Bearer " + session.access_token },
+    body: JSON.stringify({ email, phone, name }),
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || "HTTP " + r.status);
+  const legs = packageLegs(j);
+  if (legs) {
+    await addComm({
+      channel: j.sent ? "email" : "sms", direction: "out", unit,
+      contactName: name, contactEmail: j.email || "", contactPhone: j.phone || "",
+      summary: "Leasing package " + legs, agent: "operator",
+    }, by);
+  }
+  return j;
+}
+
+/* pure: server result → "e-mailed to x and texted to y" ("" = nothing sent) */
+export function packageLegs(j) {
+  const r = j || {};
+  return [r.sent ? "e-mailed to " + r.email : "", r.sms ? "texted to " + r.phone : ""].filter(Boolean).join(" and ");
 }
 
 /* M-1 → L-1 back-link: the call whose outcome filed this work order. */

@@ -1,5 +1,27 @@
 # Cypress Command Platform · OTB — Session Handoff
 
+## October 6, 2026 — call alerts · device push · Send leasing package (branch work, NOT yet deployed)
+
+**Found:** prod Vercel env has NO `RESEND_API_KEY` / `NOTIFY_FROM` / `TWILIO_*`. So no recordings, no call e-mails,
+no texts, and **no leasing package has ever actually been sent** (the agent truthfully says "Adam will send it").
+Calls still summarize into L-1.
+
+**Built (operator picks: push alerts · own cloned voice · agent sends live + text + a button):**
+- **Masthead bell + L-1 badge + toasts** (`src/lib/callalerts.js`, wired in `main.js` for owner/operator): bell counts every
+  voice call not marked handled; toast for calls newer than this device's last L-1 visit (emergencies stick). L-1 is
+  re-pulled every 60 s + on tab focus; `refreshComms` now repaints only on a real change (`commsSignature`).
+- **Device push** (Web Push, no carrier registration): `public/sw.js`, `public/manifest.webmanifest` (iPhone = Add to
+  Home Screen first), opt-in row at the top of L-1, `push_subscriptions` table + `push_targets` / `push_mark` RPCs
+  (`20261006120000_push_subscriptions.sql` — **NOT YET ON PROD**), fan-out in `api/_push.mjs` called from `finalizeCall`.
+  Needs env: `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VITE_VAPID_PUBLIC_KEY` (same public value), optional `VAPID_SUBJECT`.
+- **One package sender** `deliverPackage` (`api/_voicecall.mjs`) used by the phone agent AND the new **📦 Send leasing
+  package** form on L-1 call cards + **📦 Package** on W-1 deal rows (`POST /api/voice-call?action=package`, operator only,
+  40/day cap). Each send logs an outbound L-1 entry with only the legs that went out.
+- Tests: `test/callalerts.test.mjs` (7). Suite 992/992.
+
+**Voice:** speed is settable with no code: `flyctl secrets set TTS_VOICE=<voiceId>-0.9_0.6_0.8` (speed 0.7–1.2). Operator
+wants his own cloned voice; whether Twilio's ElevenLabs integration can use a PRIVATE clone is unconfirmed — test with one call.
+
 ## PAUSE POINT: October 4, 2026. Start here.
 
 **State.** master `8a83f3a` (PR #25), **978/978 tests**, deploy run #85 green (production). Nav = 25 sheets. Geometry REV 17. Scheduled rent $88,462.70/mo from 10/1/2026. No open PRs; no unresolved review threads on #20–#25.

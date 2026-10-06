@@ -12,8 +12,10 @@ import { esc } from "../lib/format.js";
 import {
   CHANNELS, filterComms, commLine,
   getComms, onCommsChange, refreshComms, addComm, deleteComm, deleteComms, setCommStatus,
+  sendLeasingPackage, packageLegs,
 } from "../lib/comms.js";
 import { isVoiceCall, callDisplay, callStats, CALL_INTENTS } from "../lib/voicecall.js";
+import { pushState, enablePush, disablePush } from "../lib/callalerts.js";
 
 /* view-local UI state — survives data re-renders. `select` = bulk-select mode
    (operator); `sel` holds the checked ids across list repaints. */
@@ -44,9 +46,16 @@ function callDetailHTML(r, operator) {
       '<div class="turn ' + t.role + '"><span class="who">' + (t.role === "caller" ? "Caller" : "Agent") + '</span>' +
       '<span class="txt">' + esc(t.text).replace(/\n/g, "<br>") + '</span></div>').join("") + '</div>'
     : '<div class="call-sec">Transcript</div><div class="led-note">Nothing was captured on this call.</div>';
+  const pkg = (r.payload && r.payload.outcome && r.payload.outcome.package) || {};
   const handled = operator
     ? '<div class="call-acts"><button class="chip call-status" data-id="' + esc(r.id) + '" data-st="' + (d.handled ? "new" : "handled") + '">' +
-      (d.handled ? "↺ Reopen" : "✓ Mark handled") + '</button></div>'
+      (d.handled ? "↺ Reopen" : "✓ Mark handled") + '</button>' +
+      '<button class="chip call-pkg-open">📦 Send leasing package</button></div>' +
+      '<div class="call-pkg" hidden data-name="' + esc(r.contact_name || "") + '" data-unit="' + esc(d.unit) + '">' +
+      '<input type="email" class="pk-email" placeholder="e-mail" value="' + esc(r.contact_email || pkg.email || "") + '">' +
+      '<input type="tel" class="pk-phone" placeholder="mobile for a text" value="' + esc(d.phone) + '">' +
+      '<button class="chip pk-send" style="font-weight:600">Send</button>' +
+      '<span class="led-note pk-msg"></span></div>'
     : "";
   return '<div class="call-detail">' +
     '<div class="call-head">' + tag(d.intentLabel, d.intentColor) +
@@ -229,7 +238,28 @@ function wireList(el, host, account) {
     try { await setCommStatus(b.dataset.id, b.dataset.st); }
     catch (err) { b.disabled = false; alert("Update failed: " + err.message); }
   });
-  el.querySelectorAll(".call-detail a, .call-detail audio, .call-detail .call-audio").forEach(a => a.onclick = e => e.stopPropagation());
+  el.querySelectorAll(".call-pkg-open").forEach(b => b.onclick = e => {
+    e.stopPropagation();
+    const box = b.closest(".call-detail").querySelector(".call-pkg");
+    box.hidden = !box.hidden;
+    if (!box.hidden) box.querySelector(".pk-email").focus();
+  });
+  el.querySelectorAll(".pk-send").forEach(b => b.onclick = async e => {
+    e.stopPropagation();
+    const box = b.closest(".call-pkg"), msg = box.querySelector(".pk-msg");
+    const email = box.querySelector(".pk-email").value.trim();
+    const phone = box.querySelector(".pk-phone").value.trim();
+    if (!email && !phone) { msg.textContent = "Give an e-mail or a mobile number."; return; }
+    b.disabled = true; msg.textContent = "Sending…";
+    try {
+      const j = await sendLeasingPackage({ email, phone, name: box.dataset.name, unit: box.dataset.unit }, account.email);
+      const legs = packageLegs(j);
+      msg.textContent = legs ? "✓ Package " + legs + "." + (j.why.length ? " (" + j.why.join("; ") + ")" : "")
+        : "Nothing was sent — " + (j.why.join("; ") || "unknown reason") + ".";
+    } catch (err) { msg.textContent = "Send failed: " + err.message; }
+    b.disabled = false;
+  });
+  el.querySelectorAll(".call-detail a, .call-detail audio, .call-detail .call-audio, .call-pkg input").forEach(a => a.onclick = e => e.stopPropagation());
   el.querySelectorAll(".comm-row").forEach(row => row.onclick = e => {
     if (e.target.closest(".comm-del") || e.target.closest(".comm-sel") || e.target.closest(".call-detail")) return;
     if (state.select) { // select mode: row click = toggle, not expand
@@ -243,11 +273,37 @@ function wireList(el, host, account) {
   });
 }
 
+/* "Phone alerts on this device" (2026-10-06): Web Push opt-in, per browser */
+const PUSH_COPY = {
+  on: ["<b>Phone alerts: on</b> for this device — every new call buzzes here.", "Turn off"],
+  off: ["<b>Phone alerts: off</b> on this device.", "Turn on alerts"],
+  denied: ["Notifications are blocked for this site — allow them in the browser's site settings, then reload.", ""],
+  "ios-install": ["<b>iPhone:</b> tap Share → <b>Add to Home Screen</b>, open the app from the new icon, then come back here to turn on alerts.", ""],
+  unconfigured: ["Phone alerts aren't switched on server-side yet (VAPID keys).", ""],
+  none: ["This browser can't receive push alerts.", ""],
+};
+async function paintPushRow(host) {
+  const row = host.querySelector("#pushRow");
+  if (!row) return;
+  let st = "none";
+  try { st = await pushState(); } catch { /* stays none */ }
+  const [text, action] = PUSH_COPY[st] || PUSH_COPY.none;
+  row.innerHTML = "<span>🔔 " + text + "</span>" + (action ? '<button id="pushBtn">' + action + "</button>" : "");
+  const btn = row.querySelector("#pushBtn");
+  if (btn) btn.onclick = async () => {
+    btn.disabled = true;
+    try { if (st === "on") await disablePush(); else await enablePush(); }
+    catch (e) { alert(e.message); }
+    paintPushRow(host);
+  };
+}
+
 function render(host, account) {
   const operator = account && account.role === "operator";
-  host.innerHTML = headerHTML(operator) +
+  host.innerHTML = '<div class="push-row" id="pushRow"></div>' + headerHTML(operator) +
     (operator && state.form ? formHTML() : "") +
     '<div id="commList"></div>';
+  paintPushRow(host);
 
   host.querySelectorAll(".comm-ch").forEach(b => b.onclick = () => {
     state.channel = state.channel === b.dataset.ch ? "" : b.dataset.ch; // re-click = back to All
