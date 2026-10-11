@@ -18,9 +18,7 @@ import {
 import {
   mainPersona, resolveLine, persistLine, isRouterLine, bookingGuardApplies, MAIN_GREETING,
 } from "../src/lib/voicerouter.js";
-import { leasingPackageEmail, smsText, LEASING_URL } from "../src/lib/leasing.js";
-import { startRecording, finalizeCall, sendSms, smsConfigured } from "./_voicecall.mjs";
-import { sendEmail, emailConfigured } from "./_email.mjs";
+import { startRecording, finalizeCall, deliverPackage } from "./_voicecall.mjs";
 import sop from "../src/data/sop.json" with { type: "json" };
 import UNITS from "../src/data/units.public.json" with { type: "json" };
 
@@ -97,18 +95,10 @@ async function runTool(name, input, callSid, caller) {
       });
       await recordOutcome(callSid, "lead", leadId);
       const okEmail = EMAIL_RE.test(email);
-      const roll = UNITS.units || UNITS;
-      let sent = false, texted = false;
-      if (okEmail && emailConfigured()) {
-        const msg = leasingPackageEmail({ units: roll, prospect: name_.split(" ")[0] });
-        sent = (await sendEmail({ to: [email], subject: msg.subject, text: msg.text, html: msg.html })).sent;
-      }
       const phone = String(input.phone || caller || "");
-      if (smsConfigured() && phone) {
-        const vacants = roll.filter(u => u.status === "vacant").map(u => ({ unit: u.unit, sf: u.sf }));
-        texted = (await sendSms(phone, smsText(vacants, LEASING_URL))).sent;
-      }
-      await recordOutcome(callSid, "package", { sent, email: okEmail ? email : "", sms: texted, phone: texted ? phone : "" });
+      const d = await deliverPackage({ email, phone, name: name_, units: UNITS.units || UNITS });
+      const sent = d.sent, texted = d.sms;
+      await recordOutcome(callSid, "package", { sent, email: d.email, sms: texted, phone: d.phone });
       const how = [sent ? "e-mailed to " + email : "", texted ? "texted to their callback number" : ""].filter(Boolean).join(" and ");
       return sent || texted
         ? { ok: true, note: "Package " + how + ". Tell the caller exactly that and nothing more." }

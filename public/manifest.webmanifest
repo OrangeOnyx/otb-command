@@ -1,0 +1,12 @@
+{
+  "name": "Cypress Command Platform — On The Boulevard",
+  "short_name": "OTB Command",
+  "start_url": "/#dash",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A1F16",
+  "theme_color": "#0A1F16",
+  "icons": [
+    { "src": "/brand/cypress/app-icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

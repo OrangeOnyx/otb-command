@@ -41,6 +41,7 @@ import { closeDrawer } from "./views/drawer.js";
 import { getActionCards } from "./views/board.js";
 import { onMaintChange } from "./lib/maintenance.js";
 import { ribbonModel, ribbonHTML } from "./lib/ribbon.js";
+import { initCallAlerts } from "./lib/callalerts.js";
 import { isoDate } from "./lib/docexpiry.js";
 import { COMMAND_PREVIEW } from './lib/command-evidence.js';
 
@@ -634,6 +635,9 @@ async function boot() {
     logSignin({ page: (location.hash || "").slice(0, 200), ua: navigator.userAgent.slice(0, 300) });
     if (account.role === "operator" || account.role === "owner")
       initPropertySwitcher();
+    /* call alerts (2026-10-06): masthead bell + L-1 badge + toasts */
+    if (account.role === "operator" || account.role === "owner")
+      initCallAlerts({ navBtn });
     if (account.role === "operator" || account.role === "owner")
       startRealtime({
         syncQueue, origin: CLIENT_ORIGIN,

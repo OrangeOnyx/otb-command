@@ -13,6 +13,7 @@ import {
   addDeal, setDealStage, deleteDeal, dealActionCards
 } from "../lib/deals.js";
 import { REMOTE, getSession } from "../lib/remote.js";
+import { sendLeasingPackage, packageLegs } from "../lib/comms.js";
 import { HVAC_149, JD_BANK, factLines } from "../lib/facts.js";
 import { openDrawer } from "./drawer.js";
 
@@ -189,6 +190,7 @@ function dealRowHTML(d, canWrite) {
     '<span style="margin-left:auto;display:flex;align-items:center;gap:6px">' +
     '<select class="deal-stage" data-id="' + esc(d.id) + '" data-stage="' + esc(d.stage) + '"' + (canWrite ? "" : " disabled") +
     ' style="font-family:var(--mono);font-size:11px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)">' + opts + '</select>' +
+    (canWrite && (d.contact_email || d.contact_phone) ? '<button class="deal-pkg" data-id="' + esc(d.id) + '" title="Send the leasing package to ' + esc([d.contact_email, d.contact_phone].filter(Boolean).join(" / ")) + '" style="border:1px solid var(--brass);background:none;border-radius:4px;color:var(--brass);cursor:pointer;font-size:11px;padding:2px 7px">📦 Package</button>' : "") +
     (canWrite ? '<button class="deal-del" data-id="' + esc(d.id) + '" title="Delete deal" style="border:1px solid var(--line);background:none;border-radius:4px;color:var(--ink50);cursor:pointer;font-size:11px;padding:2px 7px">✕</button>' : "") +
     '</span></div>';
 }
@@ -234,6 +236,20 @@ function wireStrip(strip, canWrite) {
   strip.querySelectorAll(".deal-stage").forEach(sel => sel.onchange = async () => {
     try { await setDealStage(sel.dataset.id, sel.value, actorEmail); } // refreshDeals repaints
     catch (e) { fail("stage change", e); sel.value = sel.dataset.stage; }
+  });
+  strip.querySelectorAll(".deal-pkg").forEach(btn => btn.onclick = async () => {
+    const d = getDeals().find(x => x.id === btn.dataset.id);
+    if (!d) return;
+    const to = [d.contact_email, d.contact_phone].filter(Boolean).join(" and ");
+    if (!confirm("Send the leasing package to " + (d.prospect || "this prospect") + " (" + to + ")?")) return;
+    btn.disabled = true;
+    try {
+      const j = await sendLeasingPackage({ email: d.contact_email || "", phone: d.contact_phone || "", name: d.prospect || "", unit: d.target_unit || "" }, actorEmail);
+      const legs = packageLegs(j);
+      alert(legs ? "Package " + legs + "." + (j.why.length ? "\n\nNot sent: " + j.why.join("; ") : "")
+        : "Nothing was sent — " + (j.why.join("; ") || "unknown reason") + ".");
+    } catch (e) { fail("package send", e); }
+    btn.disabled = false;
   });
   strip.querySelectorAll(".deal-del").forEach(btn => btn.onclick = async () => {
     if (!confirm("Delete this deal? This is permanent.")) return;

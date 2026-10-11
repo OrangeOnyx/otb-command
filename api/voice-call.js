@@ -15,9 +15,10 @@
                                security-invoker: RLS decides), so a guessed
                                sid returns 404. Twilio credentials never leave
                                the server; the browser gets audio bytes only. */
-import { requireOwnerOrOperator } from "./_auth.mjs";
+import { requireOwnerOrOperator, underDailyCap, capReply } from "./_auth.mjs";
 import { rpcSecret, rpcUser } from "./_supa.mjs";
-import { twilioConfigured, twilioSignatureValid, fetchRecordingAudio, RECORDING_CALLBACK } from "./_voicecall.mjs";
+import { twilioConfigured, twilioSignatureValid, fetchRecordingAudio, RECORDING_CALLBACK, deliverPackage } from "./_voicecall.mjs";
+import UNITS from "../src/data/units.public.json" with { type: "json" };
 
 export const maxDuration = 60;
 
@@ -74,7 +75,28 @@ async function streamAudio(req, res) {
   res.end();
 }
 
+/* POST /api/voice-call?action=package (2026-10-06) — the operator's "Send
+   leasing package" button on an L-1 call card or a W-1 lead. Same sender as
+   the phone agent (deliverPackage), so it is always the same final package.
+   OPERATOR only (it e-mails / texts a prospect on Belle's behalf); capped at
+   40 sends a day per user. Body { email, phone, name }. Folded in here, not a
+   new file, to keep the function count flat. */
+async function sendPackage(req, res) {
+  const gate = await requireOwnerOrOperator(req);
+  if (gate.error) return res.status(gate.status).json({ error: gate.error });
+  if (gate.role !== "operator") return res.status(403).json({ error: "operator only" });
+  const b = req.body && typeof req.body === "object" ? req.body : {};
+  const email = String(b.email || "").trim().slice(0, 120);
+  const phone = String(b.phone || "").replace(/[^\d+]/g, "").slice(0, 16);
+  if (!email && !phone) return res.status(400).json({ error: "give an e-mail address or a phone number" });
+  const cap = capReply(await underDailyCap("leasing_package", 40, gate.token), "package");
+  if (cap) return res.status(cap.status).json({ error: cap.error });
+  const out = await deliverPackage({ email, phone, name: String(b.name || "").slice(0, 120), units: UNITS.units || UNITS });
+  return res.status(200).json(out);
+}
+
 export default async function handler(req, res) {
+  if (req.method === "POST" && req.query?.action === "package") return sendPackage(req, res);
   if (!twilioConfigured()) return res.status(503).json({ error: "recordings not configured" });
   if (req.method === "POST") return twilioCallback(req, res);
   if (req.method === "GET") return streamAudio(req, res);

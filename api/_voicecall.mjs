@@ -12,8 +12,10 @@ import crypto from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
 import { rpcSecret } from "./_supa.mjs";
 import { sendEmail, emailConfigured } from "./_email.mjs";
+import { pushAll } from "./_push.mjs";
+import { leasingPackageEmail, smsText, LEASING_URL } from "../src/lib/leasing.js";
 import {
-  SUMMARY_TOOL, summaryPrompt, normalizeSummary, transcriptText, callEmail,
+  SUMMARY_TOOL, summaryPrompt, normalizeSummary, transcriptText, callEmail, callPush,
 } from "../src/lib/voicecall.js";
 
 export const PUBLIC_ORIGIN = (process.env.VOICE_PUBLIC_ORIGIN || "https://otb-command.vercel.app").replace(/\/$/, "");
@@ -103,6 +105,38 @@ export async function sendSms(to, body) {
   }
 }
 
+/* ---- leasing package delivery (2026-10-06): ONE sender for both the phone
+   agent's send_leasing_package tool and the operator's "Send leasing
+   package" button, so the package a caller gets is always the same final
+   version (leasingPackageEmail + smsText in src/lib/leasing.js). Each leg
+   reports truthfully: e-mail needs the mail key, text needs an approved
+   sender. Never throws. ---- */
+const PKG_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export async function deliverPackage({ email = "", phone = "", name = "", units }) {
+  const roll = Array.isArray(units) ? units : [];
+  const to = String(email || "").trim().toLowerCase();
+  const okEmail = PKG_EMAIL_RE.test(to);
+  const out = { email: okEmail ? to : "", sent: false, sms: false, phone: "", why: [] };
+  if (okEmail) {
+    if (emailConfigured()) {
+      const msg = leasingPackageEmail({ units: roll, prospect: String(name || "").trim().split(" ")[0] });
+      const r = await sendEmail({ to: [to], subject: msg.subject, text: msg.text, html: msg.html });
+      out.sent = !!r.sent;
+      if (!r.sent) out.why.push("e-mail failed: " + (r.reason || "unknown"));
+    } else out.why.push("e-mail not configured (RESEND_API_KEY + NOTIFY_FROM)");
+  }
+  if (phone) {
+    if (smsConfigured()) {
+      const vacants = roll.filter(u => u.status === "vacant").map(u => ({ unit: u.unit, sf: u.sf }));
+      const r = await sendSms(phone, smsText(vacants, LEASING_URL));
+      out.sms = !!r.sent;
+      if (r.sent) out.phone = String(phone);
+      else out.why.push("text failed: " + (r.reason || "unknown"));
+    } else out.why.push("texting not enabled (no approved Twilio sender yet)");
+  }
+  return out;
+}
+
 /* The recording media, streamed from Twilio (mp3). Returns the fetch Response. */
 export function fetchRecordingAudio(recordingSid) {
   return fetch(twilioBase() + "/Recordings/" + recordingSid + ".mp3", {
@@ -158,6 +192,11 @@ export async function finalizeCall({ callSid, line, caller, messages, durationS,
     } catch (e) { email = { sent: false, reason: e.message }; }
   }
 
+  /* push alert to every opted-in owner/operator device (2026-10-06) */
+  let push = { sent: 0 };
+  try { push = await pushAll(callPush({ call, callSid, appUrl: APP_URL }), secret); }
+  catch (e) { console.error("voice push:", e.message); }
+
   if (s.urgency === "emergency" && cronSecret) {
     try {
       await rpcSecret("open_trigger_thread", {
@@ -170,5 +209,5 @@ export async function finalizeCall({ callSid, line, caller, messages, durationS,
       });
     } catch (e) { console.error("voice emergency thread:", e.message); }
   }
-  return { summary: s, email, commId: r && r.comm_id };
+  return { summary: s, email, push, commId: r && r.comm_id };
 }

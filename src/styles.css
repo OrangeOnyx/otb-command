@@ -1186,3 +1186,36 @@ body.role-vendor .ownerview { display: none !important; }
 #plan .reg-label{font:600 7px "IBM Plex Mono",monospace;fill:#1C2B26;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#F6F7F1;stroke-width:2.5px}
 #plan.reg-isolate>g:not(.reg-layer){opacity:.18}
 @media (max-width:1180px){.plan-card.with-register{grid-template-columns:1fr}.site-register{max-height:none}}
+
+/* ===== CALL ALERTS (2026-10-06) — masthead bell · L-1 nav badge · toasts · device push row ===== */
+.call-bell{display:flex;align-items:center;gap:6px;margin-right:10px;padding:5px 12px;border:1px solid #F0956F;border-radius:4px;background:rgba(194,94,51,.18);color:var(--paper);font-family:var(--mono);cursor:pointer;white-space:nowrap}
+.call-bell[hidden]{display:none}
+.call-bell b{font-family:var(--disp);font-weight:700;font-size:20px;line-height:1;color:#F0956F}
+.call-bell i{font-style:normal;font-size:8.5px;letter-spacing:.14em}
+.call-bell:hover{background:rgba(194,94,51,.3)}
+.call-bell:focus-visible{outline:2px solid #F3EDE0;outline-offset:2px}
+.call-bell.hot{animation:bellPulse 1.6s ease-in-out infinite}
+@keyframes bellPulse{50%{background:rgba(194,94,51,.5)}}
+@media (prefers-reduced-motion:reduce){.call-bell.hot{animation:none;background:rgba(194,94,51,.5)}}
+@media (max-width:860px){.call-bell{order:2;margin-right:0;padding:4px 8px}.call-bell i{display:none}}
+@media print{.call-bell,.call-toasts{display:none}}
+.nav-badge{margin-left:auto;min-width:18px;padding:1px 6px;border-radius:9px;background:var(--brick);color:#fff;font-family:var(--mono);font-size:10px;font-weight:600;line-height:16px;text-align:center}
+.nav-badge[hidden]{display:none}
+.call-toasts{position:fixed;right:16px;bottom:16px;z-index:9000;display:flex;flex-direction:column;gap:10px;width:min(360px,calc(100vw - 32px))}
+.call-toast{background:var(--card);color:var(--ink);border:1px solid var(--line);border-left:5px solid var(--tc,var(--green));border-radius:5px;box-shadow:0 8px 24px rgba(10,31,22,.22);padding:10px 12px;font-size:13px;animation:toastIn .2s ease-out}
+.call-toast.sticky{border-color:var(--brick);border-left-color:var(--brick)}
+.ct-t{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--green))}
+.ct-w{font-weight:600;margin-top:3px}
+.ct-s{color:var(--ink70);margin-top:3px;line-height:1.4}
+.ct-a{display:flex;gap:8px;margin-top:8px}
+.ct-a button{border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:3px;padding:4px 10px;font:600 11px var(--mono);cursor:pointer}
+.ct-a button[data-act="open"]{border-color:var(--brass);color:var(--brass)}
+.ct-a button[data-act="x"]{margin-left:auto}
+@keyframes toastIn{from{transform:translateY(8px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.call-toast{animation:none}}
+.push-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 18px;border-top:1px dashed var(--line2);font-size:12.5px;color:var(--ink70)}
+.push-row button{border:1px solid var(--brass);background:transparent;color:var(--brass);border-radius:3px;padding:4px 10px;font:600 11px var(--mono);cursor:pointer}
+.push-row b{color:var(--ink)}
+.call-pkg{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:6px;padding:6px 8px;border:1px dashed var(--brass);border-radius:4px}
+.call-pkg[hidden]{display:none}
+.call-pkg input{font-size:12px;min-width:170px}
